@@ -1,9 +1,9 @@
 schema_version: 0
-lab_status: bounded_cycle_010_complete_pending_human_review
+lab_status: milestone_001_review_complete_pending_human_review
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
-last_human_review_required_before: LCC_v0_experiment_implementation
+last_human_review_required_before: independent_reimplementation_or_cross_theory_tournament_or_cycle_011
 rules:
   - no theory may be implemented before a theory card exists
   - no experiment may be implemented before an experiment contract exists
@@ -19,12 +19,16 @@ theories:
     card: theories/proposed/LCC_v0.yaml
     experiment_contract: contracts/experiments/LCC_EFFECT_SWAP_001.yaml
     latest_redteam: artifacts/cycles/cycle_010/cycle_010_decision.json
+    latest_milestone_review: artifacts/milestones/M1/M1-006/milestone_001_decision.json
+    latest_milestone_verdict: authorize_independent_reimplementation_contract_only
     theory_support: not_yet
     implementation_authorized: false
     clean_room_candidate_authorized: false
+    independent_reimplementation_contract: recommended_not_started
+    cross_theory_tournament: recommended_after_independent_reimplementation
     general_agent_implementation: not_authorized
     ego_migration: no_go
-    human_review_required_before: cycle_011_or_stronger_claim
+    human_review_required_before: independent_reimplementation_or_cross_theory_tournament_or_cycle_011
 frozen_lineages:
   - lineage_id: vcco_vcac_fopc_negative_lineage
     source_repo: ../VCCO_Lab

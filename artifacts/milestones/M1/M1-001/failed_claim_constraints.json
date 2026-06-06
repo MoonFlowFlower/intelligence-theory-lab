@@ -1,0 +1,44 @@
+{
+  "task_id": "M1-001",
+  "source_lineages": [
+    "VCCO",
+    "VCAC-Core",
+    "FOPC"
+  ],
+  "binding_constraints": [
+    {
+      "constraint": "no_action_label_future_option_proxy",
+      "reason": "FOPC future_action_variety_proxy was action-causal but reducible to action labels."
+    },
+    {
+      "constraint": "no_trace_only_control_claim",
+      "reason": "VCAC boundary/action-closure information existed in traces but failed counterfactual control-loop tests."
+    },
+    {
+      "constraint": "no_score_only_causality_claim",
+      "reason": "Score sensitivity without action-distribution change is insufficient mechanism evidence."
+    },
+    {
+      "constraint": "no_no_op_ablation_claim",
+      "reason": "Plastic selection and repertoire expansion no-op ablations invalidated full VCCO component necessity."
+    },
+    {
+      "constraint": "no_evaluator_metric_feature_reuse",
+      "reason": "Metric features cannot be reused as candidate control features."
+    },
+    {
+      "constraint": "no_hidden_future_or_oracle_input",
+      "reason": "Hidden future state, true transition tables, and plan tables would invalidate causal evidence."
+    },
+    {
+      "constraint": "no_metadata_shortcuts",
+      "reason": "Cycle/task/scenario IDs, semantic names, object IDs, entity IDs, and goal labels would turn mechanism claims into lookup claims."
+    }
+  ],
+  "integration_result": {
+    "negative_evidence_preserved": true,
+    "constraints_imported_into_milestone_review": true,
+    "theory_upgrade_allowed": false,
+    "ego_migration_allowed": false
+  }
+}

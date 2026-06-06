@@ -1,0 +1,53 @@
+contract_id: LCC_INDEPENDENT_REIMPLEMENTATION_001
+status: draft_not_authorized_for_execution
+purpose: >
+  Test whether an independently implemented LCC candidate can reproduce the
+  key bounded evidence pattern without using the current repository's candidate
+  code, cycle runners, expected outputs, hidden tables, or evaluator features.
+allowed_scope:
+  - public theory card
+  - public contract requirements
+  - public forbidden-input list
+  - public artifact requirements
+  - independently authored testbed
+  - independently authored scorer
+  - independently authored baselines
+forbidden_scope:
+  - current candidate implementation
+  - current selector/control code
+  - cycle-specific runner internals
+  - expected-output tables
+  - semantic action labels
+  - semantic goal labels
+  - task_id
+  - cycle_id
+  - contract_id
+  - scenario_id
+  - evaluator metrics as candidate features
+  - hidden future state
+  - true transition tables
+  - oracle plan tables
+minimum_required_gates:
+  - label_permutation_invariance
+  - effect_swap_sensitivity
+  - passive_observation_vs_own_intervention_split
+  - counterfactual_model_perturbation_changes_action_distribution
+  - behavior_only_replay
+  - independent_trace_only_scoring
+  - strong_baseline_equivalence
+  - negative_controls
+allowed_verdicts:
+  - independent_reimplementation_bounded_pass
+  - independent_reimplementation_failed
+  - label_shortcut_detected
+  - intervention_effect_not_learned
+  - behavior_only_replay_failed
+  - hidden_or_metric_leak_detected
+  - strong_baseline_equivalent
+  - inconclusive_contract_needs_revision
+not_authorized:
+  - general_lcc_agent
+  - ego_migration
+  - theory_support_claim
+  - bottom_intelligence_principle_claim
+  - autonomous_theory_search

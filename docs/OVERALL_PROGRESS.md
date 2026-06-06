@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T15:07:18-05:00
+Last updated: 2026-06-06T15:34:12-05:00
 
 ## Program Goal
 
@@ -8,40 +8,38 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 010 as a bounded blind-holdout independent-replication redteam:
+Execute Milestone 001 theory readiness review:
 
 ```text
-Cycle 009 freeze -> candidate freeze/scope lock -> contract DSL and blind holdout generation -> blind holdout evaluation -> generic baseline tournament -> independent trace-only scoring -> statistical replication -> blind-holdout ablations -> negative controls -> decision
+Freeze Cycle 000-010 evidence -> integrate VCCO/VCAC/FOPC negative evidence -> compress LCC into a minimal principle -> compare against existing theory families -> audit reimplementation readiness -> audit strong baseline gaps -> issue milestone decision
 ```
 
-Only `LCC_CYCLE_010_BLIND_HOLDOUT` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_MILESTONE_001_THEORY_READINESS_REVIEW` was authorized. No Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate/control code is frozen before blind holdout generation and remains hash-stable.
-Blind holdout is generated after freeze using fresh predeclared seeds and at least 8 DSL templates.
-Frozen candidate passes blind holdout using only allowed abstract inputs.
-Strong generic baselines, including model-based MPC and empowerment proxies, do not dominate.
-Independent trace-only scorer reproduces primary metrics without evaluator coupling.
-Statistical replication passes on fresh seeds without candidate/control code changes.
-Blind-holdout ablations remain non-equivalent.
-Negative controls do not trigger hallucinated effects or false overclaiming.
+Cycle 000-010 evidence chain is frozen.
+VCCO/VCAC/FOPC negative evidence remains binding.
+LCC is compressed into a minimal principle without implementation details.
+Relationship to model-based RL, causal control, active inference, empowerment, and predictive processing is audited.
+Independent reimplementation readiness is reviewed.
+Strong baseline gaps are made explicit.
 No stronger theory claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_blind_holdout_bounded
+authorize_independent_reimplementation_contract_only
 ```
 
-This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
+This is not a theory-support verdict. It authorizes at most a future independent reimplementation contract if the human reviewer explicitly starts that work.
 
 Review status:
 
 ```text
-pending_human_review_for_next_step
+milestone_001_review_complete
 ```
 
 ## Validated Evidence
@@ -162,24 +160,31 @@ Cycle 010 empowerment_gap = 0.21
 Cycle 010 independent_scoring max_abs_diff = 0.0
 Cycle 010 replication_success_rate = 1.0
 Cycle 010 false_confidence_rate = 0.02
+Milestone 001 verdict is authorize_independent_reimplementation_contract_only.
+Milestone 001 minimal principle: Intelligence-relevant control is learned counterfactual effect control; actions are selected by intervention-grounded predictions that remain label-invariant and change under effect perturbations.
+Milestone 001 theory_support = not_yet.
+Milestone 001 general_lcc_agent = not_authorized.
+Milestone 001 ego_migration = no_go.
+Milestone 001 Cycle 011 = not_authorized.
+Milestone 001 baseline gaps block theory-support upgrade but do not block independent reimplementation.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 010 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 011 contract.
+No successor implementation can proceed until a human reviewer explicitly authorizes a bounded independent reimplementation contract, cross-theory tournament contract, Cycle 011 contract, or closure.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_010_BLIND_HOLDOUT` result.
+Human review of `LCC_MILESTONE_001_THEORY_READINESS_REVIEW` result.
 
 Review decision options:
 
 ```text
-accept_bounded_contract_result
-revise_contract_for_harder_blind_holdout
-reject_LCC_v0_despite_bounded_pass
+authorize_independent_reimplementation_contract_only
+authorize_cross_theory_tournament_contract_only
 authorize_cycle_011_contract_only
+keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
 ```
