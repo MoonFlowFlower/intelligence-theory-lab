@@ -1,0 +1,77 @@
+schema_version: 0
+required_fields:
+  theory_id:
+    type: string
+    rule: stable unique identifier
+  name:
+    type: string
+  one_sentence_core:
+    type: string
+    rule: one falsifiable mechanism claim, not a broad aspiration
+  status:
+    type: enum
+    allowed:
+      - proposed
+      - active
+      - failed
+      - reduced
+      - superseded
+      - supported_bounded
+  core_claims:
+    type: list[string]
+    rule: each claim must map to at least one kill test
+  prior_failures_addressed:
+    type: list[string]
+    rule: must cite failed_claims.yaml entries for successor theories
+  forbidden_shortcuts:
+    type: list[string]
+    minimum:
+      - action_label_semantics
+      - object_name
+      - scenario_id
+      - hidden_future_state
+      - evaluator_metric_as_feature
+  kill_tests:
+    type: list[string]
+    rule: must include fastest plausible falsifier
+  baseline_requirements:
+    type: list[string]
+    minimum:
+      - random
+      - strong_hand_coded_heuristic
+      - compression_only
+      - heuristic_equivalence
+  allowed_agent_inputs:
+    type: list[string]
+  forbidden_agent_inputs:
+    type: list[string]
+  evidence_gate:
+    type: list[string]
+    minimum:
+      - trace_replay
+      - behavior_only_replay
+      - hidden_state_leak_scan
+      - label_permutation
+      - effect_swap
+      - strong_baseline_equivalence
+      - ablation_no_op_audit
+  stop_conditions:
+    type: list[string]
+  claim_boundary:
+    type: string
+template:
+  theory_id: TBD
+  name: TBD
+  one_sentence_core: TBD
+  status: proposed
+  core_claims: []
+  prior_failures_addressed: []
+  forbidden_shortcuts: []
+  kill_tests: []
+  baseline_requirements: []
+  allowed_agent_inputs: []
+  forbidden_agent_inputs: []
+  evidence_gate: []
+  stop_conditions: []
+  claim_boundary: bounded toy mechanism candidate only
+

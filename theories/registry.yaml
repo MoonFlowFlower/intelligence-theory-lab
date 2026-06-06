@@ -1,0 +1,22 @@
+schema_version: 0
+lab_status: scaffold_only
+active_theory: null
+clean_room_candidate_authorized: false
+implementation_authorized: false
+last_human_review_required_before: any_theory_implementation
+rules:
+  - no theory may be implemented before a theory card exists
+  - no experiment may be implemented before an experiment contract exists
+  - every successor theory must cite predecessor failures
+  - every theory must declare kill tests before implementation
+  - negative evidence must be preserved and cannot be overwritten
+  - score sensitivity is not control-loop causality
+  - trace visibility is not selector usage
+theories: []
+frozen_lineages:
+  - lineage_id: vcco_vcac_fopc_negative_lineage
+    source_repo: ../VCCO_Lab
+    status: closed_as_negative_evidence
+    summary_doc: docs/VCCO_VCAC_FOPC_NEGATIVE_LINEAGE.md
+    failed_claims: theories/failed_claims.yaml
+

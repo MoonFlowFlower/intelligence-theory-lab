@@ -1,0 +1,51 @@
+schema_version: 0
+ledger_status: seeded_from_vcco_vcac_fopc_lineage
+negative_evidence_policy:
+  overwrite_allowed: false
+  successor_must_reference_relevant_failures: true
+  failure_is_successful_evidence: true
+failed_claims:
+  - claim_id: full_vcco_necessity
+    status: closed
+    failure_type: over_specified_components
+    evidence:
+      - plastic_selection invalidated as no-op
+      - repertoire_expansion invalidated as no-op
+    consequence: full six-component VCCO cannot be retained as necessary bottom-level mechanism
+    successor_constraint: future theories must not include no-op components as core claims
+  - claim_id: vcac_core_control_loop
+    status: closed
+    failure_type: control_loop_causality_failed
+    evidence:
+      - boundary did not change action distribution under counterfactual perturbation
+      - action_closure did not change action distribution under counterfactual perturbation
+    consequence: VCAC-Core is not supported as current control-loop core
+    successor_constraint: trace-visible diagnostics cannot be claimed as control components unless selector causality is shown
+  - claim_id: viability_compression_as_supported_core
+    status: downgraded
+    failure_type: score_only_or_weak_action_distribution_effect
+    evidence:
+      - viability score_delta was large but action_distribution_delta was weak
+      - predicted_damage score_delta was large but action_distribution_delta was weak
+    consequence: viability/compression remain score-sensitive evidence only
+    successor_constraint: counterfactual action-distribution delta must be primary, score delta is secondary
+  - claim_id: fopc_future_option_proxy
+    status: closed
+    failure_type: action_label_shortcut
+    evidence:
+      - future_action_variety_proxy was broad action-causal in SCA-002
+      - SCA-003 verdict was fav_reducible_to_action_label
+      - renamed_label_change_rate was 0.444444
+      - explicit_action_label_rules was true
+    consequence: clean-room FOPC candidate contract is not authorized
+    successor_constraint: no action-label-sensitive future-option proxy may be used as a core mechanism claim
+global_successor_constraints:
+  - no action-label future-option proxy
+  - no trace-only boundary or control claim
+  - no score-only causality claim
+  - no no-op ablation claim
+  - no evaluator metric as agent feature
+  - no hidden future or oracle field
+  - no scenario_id or object_name shortcut
+  - no theory rename without stronger kill test
+
