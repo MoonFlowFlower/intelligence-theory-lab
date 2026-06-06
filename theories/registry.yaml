@@ -1,9 +1,9 @@
 schema_version: 0
-lab_status: scaffold_only
+lab_status: docs_only_cycle_000_candidate_gate
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
-last_human_review_required_before: any_theory_implementation
+last_human_review_required_before: LCC_v0_experiment_implementation
 rules:
   - no theory may be implemented before a theory card exists
   - no experiment may be implemented before an experiment contract exists
@@ -12,11 +12,18 @@ rules:
   - negative evidence must be preserved and cannot be overwritten
   - score sensitivity is not control-loop causality
   - trace visibility is not selector usage
-theories: []
+theories:
+  - theory_id: LCC_v0
+    name: Learned Counterfactual Controllability
+    status: proposed
+    card: theories/proposed/LCC_v0.yaml
+    experiment_contract: contracts/experiments/LCC_EFFECT_SWAP_001.yaml
+    implementation_authorized: false
+    clean_room_candidate_authorized: false
+    human_review_required_before: any_code_or_testbed
 frozen_lineages:
   - lineage_id: vcco_vcac_fopc_negative_lineage
     source_repo: ../VCCO_Lab
     status: closed_as_negative_evidence
     summary_doc: docs/VCCO_VCAC_FOPC_NEGATIVE_LINEAGE.md
     failed_claims: theories/failed_claims.yaml
-
