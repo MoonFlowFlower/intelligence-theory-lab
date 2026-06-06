@@ -1,23 +1,25 @@
 {
   "program_goal": "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-  "current_stage_goal": "Open Cycle 000 as a documentation-only candidate gate with one proposed theory card, one experiment contract, declared kill tests, and a human review packet.",
+  "current_stage_goal": "Execute LCC_EFFECT_SWAP_001 as a bounded contract-only implementation and stop at result review.",
   "stage_success_criteria": [
-    "theory card exists",
-    "experiment contract exists",
-    "prior VCCO/VCAC/FOPC failures are cited",
-    "fast kill tests are declared before implementation",
-    "human review is required before code or testbed work",
-    "no agent, selector, environment, baseline, or runner implementation exists"
+    "label permutation keeps behavior invariant",
+    "effect swap changes behavior",
+    "behavior-only replay reconstructs decisions",
+    "candidate leak scans pass",
+    "strong action-label and static baselines are not equivalent",
+    "no stronger theory claim is made"
   ],
-  "next_decision_gate": "Human review of LCC_v0 and LCC_EFFECT_SWAP_001 before any implementation.",
+  "next_decision_gate": "Human review of LCC_EFFECT_SWAP_001 result before any successor cycle.",
   "current_iteration": "cycle_000",
-  "reviewer_verdict": "blocked_by_external_dependency",
+  "reviewer_verdict": "success_reached",
   "current_best_evidence": [
     "VCCO/VCAC/FOPC lineage preserved as negative evidence",
-    "LCC_v0 addresses action-label shortcut as its first kill condition",
-    "LCC_EFFECT_SWAP_001 separates label permutation from effect swap before performance claims"
+    "label_permutation_change_rate = 0.0",
+    "effect_swap_change_rate = 1.0",
+    "behavior-only replay reconstructed 9/9 decisions",
+    "ActionLabelHeuristicBaseline, StaticSafetyTableBaseline, and EffectBlindBaseline were not equivalent"
   ],
-  "next_frontier": "Human reviewer must authorize, revise, reject, or close the LCC_v0 contract.",
-  "status": "pending_human_review",
-  "updated_at": "2026-06-06T00:41:48-05:00"
+  "next_frontier": "Human reviewer must accept bounded result, revise the contract, reject LCC_v0 despite bounded pass, or close the line.",
+  "status": "stage_complete_pending_human_review",
+  "updated_at": "2026-06-06T04:21:49-05:00"
 }

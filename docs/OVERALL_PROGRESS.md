@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T00:41:48-05:00
+Last updated: 2026-06-06T04:21:49-05:00
 
 ## Program Goal
 
@@ -8,32 +8,37 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Open Cycle 000 as a documentation-only candidate gate:
+Execute Cycle 000 as a bounded contract-only implementation:
 
 ```text
-candidate theory card -> experiment contract -> kill tests -> human review
+candidate theory card -> experiment contract -> minimal testbed -> kill tests -> artifacts -> human review
 ```
 
-No implementation is authorized in this stage.
+Only `LCC_EFFECT_SWAP_001` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Theory card exists.
-Experiment contract exists.
-Prior VCCO/VCAC/FOPC failures are cited as constraints.
-Fast kill tests are declared before implementation.
-Human review is required before code or testbed work.
-No agent, selector, environment, baseline, or runner implementation exists.
+Label permutation: same effects + changed labels -> behavior invariant.
+Effect swap: same labels + changed effects -> behavior changes.
+Behavior-only replay reconstructs decision evidence.
+Action-label heuristic does not match candidate.
+Hidden-state / evaluator-metric / action-label leak scans pass for candidate.
 ```
 
-## Reviewer Verdict
+## Runner Verdict
 
 ```text
-pending_human_review
+lcc_contract_pass_bounded
 ```
 
-Codex may prepare the review packet, but cannot self-authorize implementation.
+This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
+
+Review status:
+
+```text
+pending_human_review_for_next_step
+```
 
 ## Validated Evidence
 
@@ -42,24 +47,27 @@ VCCO/VCAC/FOPC lineage is frozen as negative evidence.
 Full VCCO necessity claim is closed.
 VCAC-Core control-loop claim is closed.
 FOPC future_action_variety_proxy was closed because it was reducible to action labels.
+LCC_EFFECT_SWAP_001 verdict is lcc_contract_pass_bounded.
+label_permutation_change_rate = 0.0
+effect_swap_change_rate = 1.0
+behavior-only replay reconstructed 9/9 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No implementation can proceed until a human reviewer authorizes the next bounded experiment contract.
+No successor cycle can proceed until a human reviewer decides whether to close, revise, or authorize only the next bounded contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_v0` and `LCC_EFFECT_SWAP_001`.
+Human review of `LCC_EFFECT_SWAP_001` result.
 
 Review decision options:
 
 ```text
-authorize_contract_only
-revise_contract
-reject_candidate
+accept_bounded_contract_result
+revise_contract_for_stronger_baselines
+reject_LCC_v0_despite_bounded_pass
 close_current_line
 ```
-

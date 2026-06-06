@@ -1,8 +1,8 @@
 schema_version: 0
 experiment_id: LCC_EFFECT_SWAP_001
 theory_id: LCC_v0
-status: contract_only
-implementation_authorized: false
+status: completed_bounded_contract_run
+implementation_authorized: contract_runner_only_completed
 clean_room_candidate_authorized: false
 purpose: Test whether a future candidate can make action choices from learned causal effects rather than action labels, trace-only variables, score-only changes, or evaluator features.
 current_stage: pre_implementation_human_review
@@ -71,5 +71,11 @@ human_review_required_before:
   - any experiment runner
   - any benchmark result
   - any successor cycle
-claim_boundary: Contract for a possible future falsification experiment only; it provides no support for LCC_v0.
-
+claim_boundary: Completed bounded contract run only; it provides no support for LCC_v0 as a general theory.
+latest_result:
+  verdict: lcc_contract_pass_bounded
+  artifact_dir: artifacts/cycles/cycle_000/LCC_EFFECT_SWAP_001
+  label_permutation_change_rate: 0.0
+  effect_swap_change_rate: 1.0
+  theory_support: not_claimed
+  next_human_review_required: true
