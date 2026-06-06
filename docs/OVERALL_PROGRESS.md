@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T13:55:20-05:00
+Last updated: 2026-06-06T14:22:31-05:00
 
 ## Program Goal
 
@@ -8,24 +8,24 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 007 as a bounded relational compositional counterfactual transfer redteam:
+Execute Cycle 008 as a bounded goal-conditioned counterfactual model reuse redteam:
 
 ```text
-Cycle 006 freeze -> relational anonymous-entity testbed -> entity permutation and role sensitivity -> variable cardinality and distractors -> compositional relation transfer -> tool-mediated causal chain -> relational perturbation -> ablations -> strong baselines -> replay/provenance -> decision
+Cycle 007 freeze -> goal-conditioned anonymous testbed -> goal switch with fixed effects -> constraint reweighting -> novel goal composition -> conflicting goal tradeoff -> model reuse vs relearning -> ablations -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_007_RELATIONAL_COMPOSITIONAL` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_008_GOAL_CONDITIONED_REUSE` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate is invariant to entity permutation when relational effects are fixed.
-Candidate is sensitive to role/effect swaps when surface features are fixed.
-Candidate handles variable entity counts and distractor insertion/removal.
-Candidate composes learned relation schemas in heldout combinations.
-Candidate succeeds on tool-mediated causal chains without direct-effect or tool-name shortcuts.
-Candidate action distribution is sensitive to learned relation perturbation but not entity-ID or nuisance perturbation.
-Ablations show relational encoder, role binding, relation composition, intervention history, and counterfactual query are non-no-op.
+Candidate changes behavior when non-semantic goal vectors change while learned effects stay fixed.
+Candidate remains invariant to nuisance task/goal label mutation when goal vectors stay fixed.
+Candidate respects changed non-semantic constraints without relearning the effect model.
+Candidate composes heldout goal combinations using learned effects, not task lookup.
+Candidate responds to conflicting goal weights and constraints rather than fixed priority.
+Candidate reuses the learned effect model across goal switches without relearning from scratch.
+Ablations show goal vector, constraint vector, effect model reuse, and counterfactual query are non-no-op.
 Strong baselines are not equivalent.
 Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
@@ -34,7 +34,7 @@ No stronger theory claim is made.
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_relational_compositional_bounded
+lcc_contract_strengthened_goal_conditioned_reuse_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -121,24 +121,38 @@ Cycle 007 tool_chain_success_rate = 0.86
 Cycle 007 relation_edge_perturbation_action_change_rate = 0.82
 Cycle 007 entity_id_swap_rank_flip_rate = 0.05
 Cycle 007 behavior-only replay reconstructed 24/24 decisions.
+Cycle 008 verdict is lcc_contract_strengthened_goal_conditioned_reuse_bounded.
+Cycle 008 goal_switch_action_change_rate = 1.0
+Cycle 008 task_label_invariance_rate = 1.0
+Cycle 008 goal_label_permutation_change_rate = 0.0
+Cycle 008 goal_vector_perturbation_action_change_rate = 1.0
+Cycle 008 constraint_reweighting_action_change_rate = 0.83
+Cycle 008 constraint_violation_rate = 0.08
+Cycle 008 novel_goal_composition_success_rate = 0.86
+Cycle 008 goal_lookup_gap = 0.32
+Cycle 008 nearest_neighbor_task_gap = 0.29
+Cycle 008 weight_sensitive_tradeoff_rate = 0.82
+Cycle 008 zero_shot_goal_switch_success_rate = 0.88
+Cycle 008 old_goal_recovery_success = 0.90
+Cycle 008 behavior-only replay reconstructed 24/24 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 007 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 008 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 008 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 009 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_007_RELATIONAL_COMPOSITIONAL` result.
+Human review of `LCC_CYCLE_008_GOAL_CONDITIONED_REUSE` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_relational_compositional_transfer
+revise_contract_for_harder_goal_conditioned_reuse
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_008_contract_only
+authorize_cycle_009_contract_only
 close_current_line
 ```

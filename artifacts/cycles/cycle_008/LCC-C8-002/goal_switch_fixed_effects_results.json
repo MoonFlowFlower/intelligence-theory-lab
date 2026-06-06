@@ -1,0 +1,44 @@
+{
+  "baselines": {
+    "GoalLookupTablePolicy": {
+      "equivalent": false,
+      "match_rate": 0.5
+    },
+    "NearestNeighborTaskPolicy": {
+      "equivalent": false,
+      "match_rate": 0.58
+    },
+    "OracleGoalPlannerDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    },
+    "SingleGoalPolicy": {
+      "equivalent": false,
+      "match_rate": 0.33
+    },
+    "TaskLabelPolicy": {
+      "equivalent": false,
+      "match_rate": 0.25
+    }
+  },
+  "behavior_only_replay": {
+    "passed": true,
+    "reconstructed_decisions": 24,
+    "replay_inputs": [
+      "observations",
+      "own_intervention_history",
+      "observed_outcomes",
+      "learned_effect_model_outputs",
+      "non_semantic_goal_vector",
+      "non_semantic_constraint_vector"
+    ],
+    "total_decisions": 24
+  },
+  "effect_model_reuse_rate": 1.0,
+  "goal_label_permutation_change_rate": 0.0,
+  "goal_switch_action_change_rate": 1.0,
+  "goal_vector_perturbation_action_change_rate": 1.0,
+  "stop_condition": null,
+  "task_label_invariance_rate": 1.0,
+  "verdict": "goal_switch_fixed_effects_passed"
+}
