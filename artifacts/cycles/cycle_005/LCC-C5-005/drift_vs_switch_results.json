@@ -1,0 +1,28 @@
+{
+  "baselines": {
+    "AlwaysResetPolicy": {
+      "equivalent": false,
+      "overreaction_to_noise_rate": 0.56
+    },
+    "FixedLearningRatePolicy": {
+      "equivalent": false,
+      "match_rate": 0.6
+    },
+    "NoUpdatePolicy": {
+      "control_success_after_switch": 0.32,
+      "equivalent": false
+    },
+    "OracleChangeTypeDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    }
+  },
+  "control_success_after_switch": 0.88,
+  "control_success_during_drift": 0.86,
+  "drift_tracking_error": 0.11,
+  "overreaction_to_noise_rate": 0.08,
+  "stop_condition": null,
+  "switch_detection_delay": 1,
+  "underreaction_to_true_change_rate": 0.1,
+  "verdict": "drift_vs_switch_passed"
+}

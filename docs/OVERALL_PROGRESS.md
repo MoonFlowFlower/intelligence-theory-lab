@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T12:03:50-05:00
+Last updated: 2026-06-06T12:43:09-05:00
 
 ## Program Goal
 
@@ -8,22 +8,23 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 004 as a bounded sequential closed-loop counterfactual control redteam:
+Execute Cycle 005 as a bounded nonstationary causal effect revision redteam:
 
 ```text
-Cycle 003 freeze -> sequential anonymous-action testbed -> multi-step composition -> closed-loop replanning -> irreversible trap and option preservation -> novel sequence transfer -> ablations -> strong baselines -> replay/provenance -> decision
+Cycle 004 freeze -> nonstationary anonymous-action testbed -> prediction-error model invalidation -> safe re-identification -> context-specific revision -> gradual drift vs sudden switch -> reversal/trap memory -> ablations -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_004_SEQUENTIAL_CONTROL` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_005_NONSTATIONARY_REVISION` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate composes learned one-step effects into useful multi-step control.
-Candidate replans after unexpected observations instead of following a cached sequence.
-Candidate avoids irreversible traps and preserves future options when uncertainty warrants it.
-Candidate transfers learned effect primitives to heldout sequence combinations.
-Ablations show rollout composition, replanning, uncertainty, intervention history, and counterfactual query are non-no-op.
+Candidate detects invalidation from prediction error without oracle switch flags.
+Candidate safely re-identifies changed effects without choosing irreversible probes.
+Candidate revises context-specific models without global overwrite or catastrophic forgetting.
+Candidate handles gradual drift and sudden effect switch.
+Candidate suppresses unsafe old habits after reversal and recovers them when old context returns.
+Ablations show prediction-error invalidation, uncertainty update, diagnostic probe, context belief, and counterfactual query are non-no-op.
 Strong baselines are not equivalent.
 Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
@@ -32,7 +33,7 @@ No stronger theory claim is made.
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_sequential_control_bounded
+lcc_contract_strengthened_nonstationary_revision_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -88,24 +89,35 @@ Cycle 004 post_replan_success_rate = 1.0
 Cycle 004 heldout_sequence_success_rate = 1.0
 Cycle 004 sequence_lookup_gap = 0.45
 Cycle 004 behavior-only replay reconstructed 50/50 decisions.
+Cycle 005 verdict is lcc_contract_strengthened_nonstationary_revision_bounded.
+Cycle 005 confidence_reduction_after_mismatch = 0.83
+Cycle 005 diagnostic_probe_rate_after_mismatch = 1.0
+Cycle 005 safe_diagnostic_selection_rate = 0.88
+Cycle 005 irreversible_trap_avoidance_rate = 0.92
+Cycle 005 old_context_recovery_success = 0.88
+Cycle 005 catastrophic_forgetting_rate = 0.08
+Cycle 005 drift_tracking_error = 0.11
+Cycle 005 switch_detection_delay = 1
+Cycle 005 sequence_recovery_after_old_context_return = 0.86
+Cycle 005 behavior-only replay reconstructed 60/60 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 004 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 005 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 005 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 006 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_004_SEQUENTIAL_CONTROL` result.
+Human review of `LCC_CYCLE_005_NONSTATIONARY_REVISION` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_sequential_control
+revise_contract_for_harder_nonstationary_revision
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_005_contract_only
+authorize_cycle_006_contract_only
 close_current_line
 ```
