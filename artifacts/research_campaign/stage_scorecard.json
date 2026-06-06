@@ -1,25 +1,28 @@
 {
   "program_goal": "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-  "current_stage_goal": "Execute LCC_EFFECT_SWAP_001 as a bounded contract-only implementation and stop at result review.",
+  "current_stage_goal": "Execute LCC Cycle 001 contract redteam and stop at result review.",
   "stage_success_criteria": [
-    "label permutation keeps behavior invariant",
-    "effect swap changes behavior",
-    "behavior-only replay reconstructs decisions",
-    "candidate leak scans pass",
-    "strong action-label and static baselines are not equivalent",
+    "scaled action counts 3, 5, and 8 pass label/effect decoupling",
+    "learned effect model passes without relying on EffectTablePolicy",
+    "strong baselines are not equivalent",
+    "counterfactual model perturbation changes action distribution",
+    "heldout latent actuator world passes",
     "no stronger theory claim is made"
   ],
-  "next_decision_gate": "Human review of LCC_EFFECT_SWAP_001 result before any successor cycle.",
-  "current_iteration": "cycle_000",
+  "next_decision_gate": "Human review of Cycle 001 result before any successor cycle.",
+  "current_iteration": "cycle_001",
   "reviewer_verdict": "success_reached",
   "current_best_evidence": [
     "VCCO/VCAC/FOPC lineage preserved as negative evidence",
-    "label_permutation_change_rate = 0.0",
-    "effect_swap_change_rate = 1.0",
-    "behavior-only replay reconstructed 9/9 decisions",
-    "ActionLabelHeuristicBaseline, StaticSafetyTableBaseline, and EffectBlindBaseline were not equivalent"
+    "Cycle 000 verdict = lcc_contract_pass_bounded",
+    "Cycle 001 verdict = lcc_contract_strengthened_bounded",
+    "scaled label_permutation_change_rate = 0.0",
+    "scaled effect_swap_change_rate = 1.0",
+    "LearnedEffectModelPolicy heldout_best_action_match_rate = 1.0",
+    "NearestNeighborTracePolicy match_rate = 0.8666666666666667, below equivalence band 0.95",
+    "heldout latent_actuator_world passed"
   ],
-  "next_frontier": "Human reviewer must accept bounded result, revise the contract, reject LCC_v0 despite bounded pass, or close the line.",
+  "next_frontier": "Human reviewer must accept bounded Cycle 001 result, revise the contract, reject LCC_v0 despite bounded passes, authorize Cycle 002 contract-only, or close the line.",
   "status": "stage_complete_pending_human_review",
-  "updated_at": "2026-06-06T04:21:49-05:00"
+  "updated_at": "2026-06-06T05:54:27-05:00"
 }

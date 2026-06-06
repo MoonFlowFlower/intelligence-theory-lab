@@ -15,12 +15,16 @@ rules:
 theories:
   - theory_id: LCC_v0
     name: Learned Counterfactual Controllability
-    status: proposed
+    status: bounded_contract_survived
     card: theories/proposed/LCC_v0.yaml
     experiment_contract: contracts/experiments/LCC_EFFECT_SWAP_001.yaml
+    latest_redteam: artifacts/cycles/cycle_001/LCC-RT-006/cycle_001_decision.json
+    theory_support: not_yet
     implementation_authorized: false
     clean_room_candidate_authorized: false
-    human_review_required_before: any_code_or_testbed
+    general_agent_implementation: not_authorized
+    ego_migration: no_go
+    human_review_required_before: any_successor_cycle_or_stronger_claim
 frozen_lineages:
   - lineage_id: vcco_vcac_fopc_negative_lineage
     source_repo: ../VCCO_Lab
