@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T15:34:12-05:00
+Last updated: 2026-06-06T18:38:21-05:00
 
 ## Program Goal
 
@@ -8,38 +8,38 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Milestone 001 theory readiness review:
+Create the LCC independent reimplementation contract package:
 
 ```text
-Freeze Cycle 000-010 evidence -> integrate VCCO/VCAC/FOPC negative evidence -> compress LCC into a minimal principle -> compare against existing theory families -> audit reimplementation readiness -> audit strong baseline gaps -> issue milestone decision
+public theory card -> public I/O schema -> public redteam gates -> replication claim boundary -> contract-only authorization artifact -> contract manifest
 ```
 
-Only `LCC_MILESTONE_001_THEORY_READINESS_REVIEW` was authorized. No Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_INDEPENDENT_REIMPLEMENTATION_001` contract packaging was authorized. No implementation, Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Cycle 000-010 evidence chain is frozen.
-VCCO/VCAC/FOPC negative evidence remains binding.
-LCC is compressed into a minimal principle without implementation details.
-Relationship to model-based RL, causal control, active inference, empowerment, and predictive processing is audited.
-Independent reimplementation readiness is reviewed.
-Strong baseline gaps are made explicit.
+Public theory card exists and contains the minimal principle only.
+Public I/O schema separates allowed candidate inputs from forbidden hidden/oracle/semantic/evaluator fields.
+Public redteam gates define the five minimum replication gates.
+Replication claim boundary prevents theory-support upgrade.
+Authorization artifact states implementation is not authorized by this task.
+Contract manifest is machine-readable and parseable.
 No stronger theory claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-authorize_independent_reimplementation_contract_only
+independent_reimplementation_contract_ready
 ```
 
-This is not a theory-support verdict. It authorizes at most a future independent reimplementation contract if the human reviewer explicitly starts that work.
+This is not a theory-support verdict. It does not authorize implementation; it only makes the public contract package ready for a future human-reviewed execution task.
 
 Review status:
 
 ```text
-milestone_001_review_complete
+independent_reimplementation_contract_package_ready
 ```
 
 ## Validated Evidence
@@ -167,22 +167,26 @@ Milestone 001 general_lcc_agent = not_authorized.
 Milestone 001 ego_migration = no_go.
 Milestone 001 Cycle 011 = not_authorized.
 Milestone 001 baseline gaps block theory-support upgrade but do not block independent reimplementation.
+Independent reimplementation contract package verdict is independent_reimplementation_contract_ready.
+Independent reimplementation implementation_authorized = false.
+Independent reimplementation minimum suite = label/effect decoupling, passive observation vs own intervention, active diagnostic intervention, sequential closed-loop replanning, blind holdout after candidate freeze.
+Independent reimplementation required baselines = ActionLabelHeuristic, NearestNeighborTracePolicy, ContextualHeuristic, ModelBasedMPCBaseline, EmpowermentProxyBaseline, OracleDiagnosticUpperBound diagnostic only.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a bounded independent reimplementation contract, cross-theory tournament contract, Cycle 011 contract, or closure.
+No successor implementation can proceed until a human reviewer explicitly authorizes execution of the independent reimplementation contract, a cross-theory tournament contract, Cycle 011 contract, or closure.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_MILESTONE_001_THEORY_READINESS_REVIEW` result.
+Human review of `LCC_INDEPENDENT_REIMPLEMENTATION_001` contract package.
 
 Review decision options:
 
 ```text
-authorize_independent_reimplementation_contract_only
+authorize_independent_reimplementation_execution_contract_only
 authorize_cross_theory_tournament_contract_only
 authorize_cycle_011_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
