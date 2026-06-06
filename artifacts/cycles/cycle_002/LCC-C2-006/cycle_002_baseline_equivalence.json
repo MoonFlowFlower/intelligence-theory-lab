@@ -1,0 +1,35 @@
+{
+  "baselines": {
+    "ActionLabelHeuristicBaseline": {
+      "equivalent": false,
+      "match_rate": 0.3
+    },
+    "ContextualHeuristicBaseline": {
+      "equivalent": false,
+      "match_rate": 0.2
+    },
+    "GlobalActionEffectPolicy": {
+      "equivalent": false,
+      "match_rate": 0.5
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "match_rate": 0.6
+    },
+    "PassiveCorrelationPolicy": {
+      "equivalent": false,
+      "match_rate": 0.3
+    },
+    "StaticSafetyTableBaseline": {
+      "equivalent": false,
+      "match_rate": 0.2
+    }
+  },
+  "effect_table_policy": {
+    "diagnostic_only": true,
+    "name": "EffectTablePolicyDiagnosticUpperBound"
+  },
+  "equivalence_band": "match_rate >= 0.95",
+  "stop_condition": null,
+  "verdict": "strong_baselines_not_equivalent"
+}

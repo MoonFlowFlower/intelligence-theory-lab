@@ -2,7 +2,7 @@ schema_version: 0
 theory_id: LCC_v0
 name: Learned Counterfactual Controllability
 one_sentence_core: Intelligence-relevant control requires learned effect-conditioned action selection that follows observed causal effects, not action labels, trace annotations, score-only changes, or evaluator features.
-status: proposed
+status: bounded_contract_survived
 core_claims:
   - A control mechanism is candidate-worthy only if counterfactual changes to learned action effects change action distributions under the same observation constraints.
   - Action-label renaming must not change behavior when learned effects and observations are preserved.
@@ -89,13 +89,18 @@ latest_contract_result:
   theory_support: not_claimed
   next_human_review_required: true
 latest_redteam_result:
-  cycle_id: cycle_001
-  verdict: lcc_contract_strengthened_bounded
+  cycle_id: cycle_002
+  verdict: lcc_contract_strengthened_experiential_bounded
   result_scope: bounded contract redteam only
   theory_support: not_yet
   general_agent_implementation: not_authorized
   ego_migration: no_go
   next_human_review_required: true
+previous_redteam_result:
+  cycle_id: cycle_001
+  verdict: lcc_contract_strengthened_bounded
+  result_scope: bounded contract redteam only
+  theory_support: not_yet
 human_review_required_before:
   - any_code
   - any_testbed

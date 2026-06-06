@@ -1,0 +1,85 @@
+{
+  "baselines": {
+    "InterventionOnlyOracleDiagnostic": {
+      "diagnostic_only": true,
+      "match_rate": 1.0
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "match_rate": 0.5
+    },
+    "PassiveCorrelationPolicy": {
+      "equivalent": false,
+      "match_rate": 0.0
+    }
+  },
+  "behavior_only_replay": {
+    "excluded_fields": [
+      "agent_identity",
+      "self_report",
+      "scenario_label",
+      "evaluator_metric",
+      "hidden_state",
+      "semantic_action_label_text"
+    ],
+    "mismatches": [],
+    "passed": true,
+    "replayed_decisions": 40,
+    "total_decisions": 40,
+    "used_fields": [
+      "partial_observation",
+      "action_id",
+      "learned_effect_model"
+    ]
+  },
+  "candidate": {
+    "effect_swap_change_rate": 1.0,
+    "intervention_alignment_rate": 1.0,
+    "label_permutation_change_rate": 0.0,
+    "passive_correlation_alignment_rate": 0.0,
+    "selected_actions": [
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A1",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2",
+      "A2"
+    ]
+  },
+  "stop_condition": null,
+  "verdict": "intervention_split_passed"
+}

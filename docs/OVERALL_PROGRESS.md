@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T05:54:27-05:00
+Last updated: 2026-06-06T08:04:23-05:00
 
 ## Program Goal
 
@@ -8,31 +8,30 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 001 as a bounded contract redteam:
+Execute Cycle 002 as a bounded experiential counterfactual redteam:
 
 ```text
-Cycle 000 freeze -> scaled label/effect decoupling -> learned effect model -> strong baselines -> model perturbation -> heldout mechanism world -> decision
+Cycle 001 freeze -> experiential testbed -> passive/intervention split -> delayed effects -> stochastic controllability -> state-dependent effects -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_001_CONTRACT_REDTEAM` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_002_EXPERIENTIAL_COUNTERFACTUAL` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Action count scales to 3 / 5 / 8 with >= 50 states each.
-Label permutation remains invariant.
-Effect swap remains sensitive.
-LearnedEffectModelPolicy works without requiring EffectTablePolicy.
+Candidate follows intervention effects over passive correlations.
+Delayed effects at 2 / 3 / 5 steps are learned.
+Stochastic controllability distinguishes reliable controllable actions from high-mean high-variance actions.
+State-dependent effect generalization passes heldout contexts.
 Strong baselines are not equivalent.
-Counterfactual model perturbation changes action distribution.
-Heldout mechanism world passes.
+Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_bounded
+lcc_contract_strengthened_experiential_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -61,24 +60,34 @@ Cycle 001 learned model heldout_best_action_match_rate = 1.0
 NearestNeighborTracePolicy match_rate = 0.867, below equivalence band 0.95
 Heldout latent_actuator_world label_permutation_change_rate = 0.0
 Heldout latent_actuator_world effect_swap_change_rate = 1.0
+Cycle 002 verdict is lcc_contract_strengthened_experiential_bounded.
+Cycle 002 passive/intervention candidate intervention_alignment_rate = 1.0
+Cycle 002 passive_correlation_alignment_rate = 0.0
+Cycle 002 PassiveCorrelationPolicy match_rate = 0.0
+Cycle 002 NearestNeighborTracePolicy match_rate = 0.5 in passive/intervention split
+Cycle 002 delayed learned_delayed_effect_rate = 1.0 for delays 2 / 3 / 5
+Cycle 002 stochastic reliable preference rate = 1.0
+Cycle 002 mean-only policy match_rate = 0.0
+Cycle 002 state-dependent heldout_context_match_rate = 1.0
+Cycle 002 behavior-only replay reconstructed 40/40 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 001 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 002 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 002 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 003 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_001_CONTRACT_REDTEAM` result.
+Human review of `LCC_CYCLE_002_EXPERIENTIAL_COUNTERFACTUAL` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_learning_or_baselines
+revise_contract_for_harder_experiential_counterfactuals
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_002_contract_only
+authorize_cycle_003_contract_only
 close_current_line
 ```
