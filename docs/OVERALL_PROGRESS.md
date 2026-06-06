@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T12:43:09-05:00
+Last updated: 2026-06-06T13:12:37-05:00
 
 ## Program Goal
 
@@ -8,23 +8,23 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 005 as a bounded nonstationary causal effect revision redteam:
+Execute Cycle 006 as a bounded representation-grounded counterfactual controllability redteam:
 
 ```text
-Cycle 004 freeze -> nonstationary anonymous-action testbed -> prediction-error model invalidation -> safe re-identification -> context-specific revision -> gradual drift vs sudden switch -> reversal/trap memory -> ablations -> strong baselines -> replay/provenance -> decision
+Cycle 005 freeze -> raw/aliased observation testbed -> nuisance invariance vs causal sensitivity -> aliased observation disambiguation -> learned representation perturbation -> cross-nuisance transfer -> ablations -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_005_NONSTATIONARY_REVISION` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_006_REPRESENTATION_GROUNDED` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate detects invalidation from prediction error without oracle switch flags.
-Candidate safely re-identifies changed effects without choosing irreversible probes.
-Candidate revises context-specific models without global overwrite or catastrophic forgetting.
-Candidate handles gradual drift and sudden effect switch.
-Candidate suppresses unsafe old habits after reversal and recovers them when old context returns.
-Ablations show prediction-error invalidation, uncertainty update, diagnostic probe, context belief, and counterfactual query are non-no-op.
+Candidate acts invariantly under nuisance swaps when causal effects are fixed.
+Candidate changes action distribution under causal feature/effect swaps.
+Candidate disambiguates aliased observations using history or diagnostic intervention.
+Candidate action distribution is sensitive to learned causal representation perturbation but not nuisance perturbation.
+Candidate transfers across heldout renderer/nuisance distributions.
+Ablations show learned encoder, history, intervention history, causal representation, and counterfactual query are non-no-op.
 Strong baselines are not equivalent.
 Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
@@ -33,7 +33,7 @@ No stronger theory claim is made.
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_nonstationary_revision_bounded
+lcc_contract_strengthened_representation_grounded_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -100,24 +100,34 @@ Cycle 005 drift_tracking_error = 0.11
 Cycle 005 switch_detection_delay = 1
 Cycle 005 sequence_recovery_after_old_context_return = 0.86
 Cycle 005 behavior-only replay reconstructed 60/60 decisions.
+Cycle 006 verdict is lcc_contract_strengthened_representation_grounded_bounded.
+Cycle 006 nuisance_swap_behavior_change_rate = 0.0
+Cycle 006 causal_swap_behavior_change_rate = 1.0
+Cycle 006 heldout_spurious_token_failure_rate = 0.08
+Cycle 006 history_dependent_disambiguation_success = 0.90
+Cycle 006 diagnostic_disambiguation_success = 0.88
+Cycle 006 causal_latent_perturbation_action_change_rate = 0.84
+Cycle 006 nuisance_latent_perturbation_action_change_rate = 0.06
+Cycle 006 cross_renderer_success_rate = 0.89
+Cycle 006 behavior-only replay reconstructed 20/20 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 005 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 006 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 006 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 007 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_005_NONSTATIONARY_REVISION` result.
+Human review of `LCC_CYCLE_006_REPRESENTATION_GROUNDED` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_nonstationary_revision
+revise_contract_for_harder_representation_grounding
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_006_contract_only
+authorize_cycle_007_contract_only
 close_current_line
 ```
