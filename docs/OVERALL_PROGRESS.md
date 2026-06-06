@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T14:22:31-05:00
+Last updated: 2026-06-06T14:43:03-05:00
 
 ## Program Goal
 
@@ -8,24 +8,23 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 008 as a bounded goal-conditioned counterfactual model reuse redteam:
+Execute Cycle 009 as a bounded unified-mechanism anti-specialization redteam:
 
 ```text
-Cycle 007 freeze -> goal-conditioned anonymous testbed -> goal switch with fixed effects -> constraint reweighting -> novel goal composition -> conflicting goal tradeoff -> model reuse vs relearning -> ablations -> strong baselines -> replay/provenance -> decision
+Cycle 008 freeze -> unified interface contract -> mixed prior-family suite -> hybrid holdout contracts -> metadata mutation redteam -> unified mechanism ablations -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_008_GOAL_CONDITIONED_REUSE` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_009_UNIFIED_MECHANISM` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate changes behavior when non-semantic goal vectors change while learned effects stay fixed.
-Candidate remains invariant to nuisance task/goal label mutation when goal vectors stay fixed.
-Candidate respects changed non-semantic constraints without relearning the effect model.
-Candidate composes heldout goal combinations using learned effects, not task lookup.
-Candidate responds to conflicting goal weights and constraints rather than fixed priority.
-Candidate reuses the learned effect model across goal switches without relearning from scratch.
-Ablations show goal vector, constraint vector, effect model reuse, and counterfactual query are non-no-op.
+Candidate uses one bounded interface, one selector path, one effect-prediction path, and one update path.
+Candidate/control logic has no cycle/contract/task-family metadata shortcut.
+Candidate handles a mixed suite of prior contract families through the same abstract interface.
+Candidate transfers to hybrid holdout contracts not identical to prior cycles.
+Metadata mutation, contract-ID mutation, and forged recommended-action fields do not change behavior.
+Ablations show effect model, intervention update, counterfactual query, uncertainty, representation, goal conditioning, relational binding, and closed-loop use are non-no-op.
 Strong baselines are not equivalent.
 Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
@@ -34,7 +33,7 @@ No stronger theory claim is made.
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_goal_conditioned_reuse_bounded
+lcc_contract_strengthened_unified_mechanism_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -135,24 +134,36 @@ Cycle 008 weight_sensitive_tradeoff_rate = 0.82
 Cycle 008 zero_shot_goal_switch_success_rate = 0.88
 Cycle 008 old_goal_recovery_success = 0.90
 Cycle 008 behavior-only replay reconstructed 24/24 decisions.
+Cycle 009 verdict is lcc_contract_strengthened_unified_mechanism_bounded.
+Cycle 009 overall_family_pass_rate = 0.855556
+Cycle 009 min_family_pass_rate = 0.82
+Cycle 009 label_permutation_change_rate = 0.0
+Cycle 009 effect_swap_change_rate = 0.977778
+Cycle 009 mixed behavior-only replay reconstructed 45/45 decisions.
+Cycle 009 hybrid_success_rate = 0.82
+Cycle 009 specialist_ensemble_gap = 0.24
+Cycle 009 nearest_neighbor_gap = 0.27
+Cycle 009 static_recipe_gap = 0.31
+Cycle 009 metadata_mutation_action_change_rate = 0.0
+Cycle 009 contract_id_mutation_action_change_rate = 0.0
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 008 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 009 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 009 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 010 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_008_GOAL_CONDITIONED_REUSE` result.
+Human review of `LCC_CYCLE_009_UNIFIED_MECHANISM` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_goal_conditioned_reuse
+revise_contract_for_harder_unified_mechanism
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_009_contract_only
+authorize_cycle_010_contract_only
 close_current_line
 ```

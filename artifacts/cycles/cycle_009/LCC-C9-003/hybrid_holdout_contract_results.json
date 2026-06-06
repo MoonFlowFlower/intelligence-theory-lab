@@ -1,0 +1,40 @@
+{
+  "baselines": {
+    "ContextualHeuristicBaseline": {
+      "equivalent": false,
+      "success_rate": 0.6
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "success_rate": 0.55
+    },
+    "OracleHybridDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    },
+    "PerContractSpecialistEnsemble": {
+      "equivalent": false,
+      "success_rate": 0.58
+    },
+    "StaticRecipeTableBaseline": {
+      "equivalent": false,
+      "success_rate": 0.51
+    }
+  },
+  "effect_swap_change_rate": 1.0,
+  "hybrid_families": [
+    "nonstationary_plus_goal_conditioned",
+    "relational_plus_delayed_effect",
+    "representation_grounded_plus_active_diagnostic",
+    "sequential_plus_stochastic_controllability",
+    "goal_conditioned_plus_relational_tool_chain",
+    "aliased_observation_plus_nonstationary_context_return"
+  ],
+  "hybrid_success_rate": 0.82,
+  "label_permutation_change_rate": 0.0,
+  "nearest_neighbor_gap": 0.27,
+  "specialist_ensemble_gap": 0.24,
+  "static_recipe_gap": 0.31,
+  "stop_condition": null,
+  "verdict": "hybrid_holdout_contracts_passed"
+}
