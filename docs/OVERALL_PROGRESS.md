@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T14:43:03-05:00
+Last updated: 2026-06-06T15:07:18-05:00
 
 ## Program Goal
 
@@ -8,32 +8,32 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 009 as a bounded unified-mechanism anti-specialization redteam:
+Execute Cycle 010 as a bounded blind-holdout independent-replication redteam:
 
 ```text
-Cycle 008 freeze -> unified interface contract -> mixed prior-family suite -> hybrid holdout contracts -> metadata mutation redteam -> unified mechanism ablations -> strong baselines -> replay/provenance -> decision
+Cycle 009 freeze -> candidate freeze/scope lock -> contract DSL and blind holdout generation -> blind holdout evaluation -> generic baseline tournament -> independent trace-only scoring -> statistical replication -> blind-holdout ablations -> negative controls -> decision
 ```
 
-Only `LCC_CYCLE_009_UNIFIED_MECHANISM` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_010_BLIND_HOLDOUT` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate uses one bounded interface, one selector path, one effect-prediction path, and one update path.
-Candidate/control logic has no cycle/contract/task-family metadata shortcut.
-Candidate handles a mixed suite of prior contract families through the same abstract interface.
-Candidate transfers to hybrid holdout contracts not identical to prior cycles.
-Metadata mutation, contract-ID mutation, and forged recommended-action fields do not change behavior.
-Ablations show effect model, intervention update, counterfactual query, uncertainty, representation, goal conditioning, relational binding, and closed-loop use are non-no-op.
-Strong baselines are not equivalent.
-Behavior-only replay and provenance audit pass.
+Candidate/control code is frozen before blind holdout generation and remains hash-stable.
+Blind holdout is generated after freeze using fresh predeclared seeds and at least 8 DSL templates.
+Frozen candidate passes blind holdout using only allowed abstract inputs.
+Strong generic baselines, including model-based MPC and empowerment proxies, do not dominate.
+Independent trace-only scorer reproduces primary metrics without evaluator coupling.
+Statistical replication passes on fresh seeds without candidate/control code changes.
+Blind-holdout ablations remain non-equivalent.
+Negative controls do not trigger hallucinated effects or false overclaiming.
 No stronger theory claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_unified_mechanism_bounded
+lcc_contract_strengthened_blind_holdout_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -146,24 +146,40 @@ Cycle 009 nearest_neighbor_gap = 0.27
 Cycle 009 static_recipe_gap = 0.31
 Cycle 009 metadata_mutation_action_change_rate = 0.0
 Cycle 009 contract_id_mutation_action_change_rate = 0.0
+Cycle 010 verdict is lcc_contract_strengthened_blind_holdout_bounded.
+Cycle 010 freeze candidate_hash_unchanged = true
+Cycle 010 blind_holdout instance_count = 200
+Cycle 010 blind_holdout template_count = 8
+Cycle 010 blind_holdout hybrid_template_count = 4
+Cycle 010 overall_success_rate = 1.0
+Cycle 010 min_template_success_rate = 1.0
+Cycle 010 label_permutation_change_rate = 0.0
+Cycle 010 effect_swap_change_rate = 0.995
+Cycle 010 behavior-only replay reconstructed 200/200 decisions.
+Cycle 010 candidate_beats_non_oracle_count = 10
+Cycle 010 model_based_mpc_gap = 0.18
+Cycle 010 empowerment_gap = 0.21
+Cycle 010 independent_scoring max_abs_diff = 0.0
+Cycle 010 replication_success_rate = 1.0
+Cycle 010 false_confidence_rate = 0.02
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 009 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 010 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 010 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 011 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_009_UNIFIED_MECHANISM` result.
+Human review of `LCC_CYCLE_010_BLIND_HOLDOUT` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_unified_mechanism
+revise_contract_for_harder_blind_holdout
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_010_contract_only
+authorize_cycle_011_contract_only
 close_current_line
 ```

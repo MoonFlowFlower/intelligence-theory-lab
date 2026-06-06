@@ -1,19 +1,19 @@
 {
   "program_goal": "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-  "current_stage_goal": "Execute LCC Cycle 009 unified-mechanism anti-specialization contract redteam and stop at result review.",
+  "current_stage_goal": "Execute LCC Cycle 010 blind-holdout independent-replication contract redteam and stop at result review.",
   "stage_success_criteria": [
-    "one bounded interface, one selector path, one effect-prediction path, and one update path are used",
-    "candidate/control logic has no cycle, contract, or task-family metadata shortcut",
-    "mixed prior contract families pass through the same abstract interface",
-    "hybrid holdout contracts transfer without per-contract recipes",
-    "metadata, contract-ID, task-family, and forged recommended-action mutations do not affect behavior",
-    "ablation necessity checks pass",
-    "strong baselines are not equivalent",
-    "behavior-only replay and provenance audit pass",
+    "candidate/control code is frozen before blind holdout generation and remains hash-stable",
+    "blind holdout is generated after freeze using fresh predeclared seeds and at least 8 DSL templates",
+    "frozen candidate passes blind holdout using only allowed abstract inputs",
+    "strong generic baselines, including model-based MPC and empowerment proxies, do not dominate",
+    "independent trace-only scorer reproduces primary metrics without evaluator coupling",
+    "statistical replication passes on fresh seeds without candidate/control code changes",
+    "blind-holdout ablations remain non-equivalent",
+    "negative controls do not trigger hallucinated effects or false overclaiming",
     "no stronger theory claim is made"
   ],
-  "next_decision_gate": "Human review of Cycle 009 result before any successor cycle.",
-  "current_iteration": "cycle_009",
+  "next_decision_gate": "Human review of Cycle 010 result before any successor cycle.",
+  "current_iteration": "cycle_010",
   "reviewer_verdict": "success_reached",
   "current_best_evidence": [
     "VCCO/VCAC/FOPC lineage preserved as negative evidence",
@@ -86,9 +86,24 @@
     "nearest_neighbor_gap = 0.27",
     "static_recipe_gap = 0.31",
     "metadata_mutation_action_change_rate = 0.0",
-    "contract_id_mutation_action_change_rate = 0.0"
+    "contract_id_mutation_action_change_rate = 0.0",
+    "Cycle 010 verdict = lcc_contract_strengthened_blind_holdout_bounded",
+    "candidate_hash_unchanged = true",
+    "blind_holdout instance_count = 200",
+    "blind_holdout template_count = 8",
+    "blind_holdout hybrid_template_count = 4",
+    "overall_success_rate = 1.0",
+    "min_template_success_rate = 1.0",
+    "label_permutation_change_rate = 0.0",
+    "effect_swap_change_rate = 0.995",
+    "candidate_beats_non_oracle_count = 10",
+    "model_based_mpc_gap = 0.18",
+    "empowerment_gap = 0.21",
+    "independent_scoring max_abs_diff = 0.0",
+    "replication_success_rate = 1.0",
+    "false_confidence_rate = 0.02"
   ],
-  "next_frontier": "Human reviewer must accept bounded Cycle 009 result, revise the contract, reject LCC_v0 despite bounded passes, authorize Cycle 010 contract-only, or close the line.",
+  "next_frontier": "Human reviewer must accept bounded Cycle 010 result, revise the contract, reject LCC_v0 despite bounded passes, authorize Cycle 011 contract-only, or close the line.",
   "status": "stage_complete_pending_human_review",
-  "updated_at": "2026-06-06T14:43:03-05:00"
+  "updated_at": "2026-06-06T15:07:18-05:00"
 }
