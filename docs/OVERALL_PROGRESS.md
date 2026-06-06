@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T11:30:43-05:00
+Last updated: 2026-06-06T12:03:50-05:00
 
 ## Program Goal
 
@@ -8,23 +8,22 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 003 as a bounded active causal identification redteam:
+Execute Cycle 004 as a bounded sequential closed-loop counterfactual control redteam:
 
 ```text
-Cycle 002 freeze -> ambiguous hypothesis testbed -> active diagnostic intervention -> exploration-control tradeoff -> confounded passive correlations -> post-identification transfer -> ablations -> strong baselines -> replay/provenance -> decision
+Cycle 003 freeze -> sequential anonymous-action testbed -> multi-step composition -> closed-loop replanning -> irreversible trap and option preservation -> novel sequence transfer -> ablations -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_003_ACTIVE_CAUSAL_IDENTIFICATION` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_004_SEQUENTIAL_CONTROL` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate selects diagnostic intervention in ambiguous states.
-Candidate avoids unnecessary diagnostic action in certain states.
-Candidate trades short-term cost for long-term controllability information only when useful.
-Candidate overrides confounded passive correlations with own intervention evidence.
-Post-identification effects transfer to heldout contexts without repeated diagnosis.
-Ablations show uncertainty, intervention history, posterior update, counterfactual query, and intervention training are non-no-op.
+Candidate composes learned one-step effects into useful multi-step control.
+Candidate replans after unexpected observations instead of following a cached sequence.
+Candidate avoids irreversible traps and preserves future options when uncertainty warrants it.
+Candidate transfers learned effect primitives to heldout sequence combinations.
+Ablations show rollout composition, replanning, uncertainty, intervention history, and counterfactual query are non-no-op.
 Strong baselines are not equivalent.
 Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
@@ -33,7 +32,7 @@ No stronger theory claim is made.
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_active_identification_bounded
+lcc_contract_strengthened_sequential_control_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -81,24 +80,32 @@ Cycle 003 confounded passive candidate_tests_own_intervention_rate = 0.92
 Cycle 003 post-identification heldout_transfer_success = 0.90
 Cycle 003 posterior_reuse_without_rediagnosis = 0.88
 Cycle 003 behavior-only replay reconstructed 40/40 decisions.
+Cycle 004 verdict is lcc_contract_strengthened_sequential_control_bounded.
+Cycle 004 multi_step_success_rate = 1.0
+Cycle 004 greedy_trap_avoidance_rate = 1.0
+Cycle 004 closed-loop replan_after_deviation_rate = 1.0
+Cycle 004 post_replan_success_rate = 1.0
+Cycle 004 heldout_sequence_success_rate = 1.0
+Cycle 004 sequence_lookup_gap = 0.45
+Cycle 004 behavior-only replay reconstructed 50/50 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 003 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 004 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 004 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 005 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_003_ACTIVE_CAUSAL_IDENTIFICATION` result.
+Human review of `LCC_CYCLE_004_SEQUENTIAL_CONTROL` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_active_identification
+revise_contract_for_harder_sequential_control
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_004_contract_only
+authorize_cycle_005_contract_only
 close_current_line
 ```
