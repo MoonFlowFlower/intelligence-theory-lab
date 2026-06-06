@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T13:12:37-05:00
+Last updated: 2026-06-06T13:55:20-05:00
 
 ## Program Goal
 
@@ -8,23 +8,24 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute Cycle 006 as a bounded representation-grounded counterfactual controllability redteam:
+Execute Cycle 007 as a bounded relational compositional counterfactual transfer redteam:
 
 ```text
-Cycle 005 freeze -> raw/aliased observation testbed -> nuisance invariance vs causal sensitivity -> aliased observation disambiguation -> learned representation perturbation -> cross-nuisance transfer -> ablations -> strong baselines -> replay/provenance -> decision
+Cycle 006 freeze -> relational anonymous-entity testbed -> entity permutation and role sensitivity -> variable cardinality and distractors -> compositional relation transfer -> tool-mediated causal chain -> relational perturbation -> ablations -> strong baselines -> replay/provenance -> decision
 ```
 
-Only `LCC_CYCLE_006_REPRESENTATION_GROUNDED` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only `LCC_CYCLE_007_RELATIONAL_COMPOSITIONAL` was authorized. No general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Candidate acts invariantly under nuisance swaps when causal effects are fixed.
-Candidate changes action distribution under causal feature/effect swaps.
-Candidate disambiguates aliased observations using history or diagnostic intervention.
-Candidate action distribution is sensitive to learned causal representation perturbation but not nuisance perturbation.
-Candidate transfers across heldout renderer/nuisance distributions.
-Ablations show learned encoder, history, intervention history, causal representation, and counterfactual query are non-no-op.
+Candidate is invariant to entity permutation when relational effects are fixed.
+Candidate is sensitive to role/effect swaps when surface features are fixed.
+Candidate handles variable entity counts and distractor insertion/removal.
+Candidate composes learned relation schemas in heldout combinations.
+Candidate succeeds on tool-mediated causal chains without direct-effect or tool-name shortcuts.
+Candidate action distribution is sensitive to learned relation perturbation but not entity-ID or nuisance perturbation.
+Ablations show relational encoder, role binding, relation composition, intervention history, and counterfactual query are non-no-op.
 Strong baselines are not equivalent.
 Behavior-only replay and provenance audit pass.
 No stronger theory claim is made.
@@ -33,7 +34,7 @@ No stronger theory claim is made.
 ## Runner Verdict
 
 ```text
-lcc_contract_strengthened_representation_grounded_bounded
+lcc_contract_strengthened_relational_compositional_bounded
 ```
 
 This is not a theory-support verdict. Human review is still required before any successor cycle or stronger claim.
@@ -110,24 +111,34 @@ Cycle 006 causal_latent_perturbation_action_change_rate = 0.84
 Cycle 006 nuisance_latent_perturbation_action_change_rate = 0.06
 Cycle 006 cross_renderer_success_rate = 0.89
 Cycle 006 behavior-only replay reconstructed 20/20 decisions.
+Cycle 007 verdict is lcc_contract_strengthened_relational_compositional_bounded.
+Cycle 007 entity_permutation_behavior_change_rate = 0.0
+Cycle 007 role_swap_behavior_change_rate = 1.0
+Cycle 007 variable_cardinality_success_rate = 0.88
+Cycle 007 distractor_invariance_rate = 0.90
+Cycle 007 novel_composition_success_rate = 0.84
+Cycle 007 tool_chain_success_rate = 0.86
+Cycle 007 relation_edge_perturbation_action_change_rate = 0.82
+Cycle 007 entity_id_swap_rank_flip_rate = 0.05
+Cycle 007 behavior-only replay reconstructed 24/24 decisions.
 ```
 
 ## Current Blocker
 
 ```text
-No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 006 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 007 contract.
+No successor cycle can proceed until a human reviewer decides whether to accept bounded Cycle 007 evidence, revise the contract, close LCC_v0, or authorize only a new bounded Cycle 008 contract.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CYCLE_006_REPRESENTATION_GROUNDED` result.
+Human review of `LCC_CYCLE_007_RELATIONAL_COMPOSITIONAL` result.
 
 Review decision options:
 
 ```text
 accept_bounded_contract_result
-revise_contract_for_harder_representation_grounding
+revise_contract_for_harder_relational_compositional_transfer
 reject_LCC_v0_despite_bounded_pass
-authorize_cycle_007_contract_only
+authorize_cycle_008_contract_only
 close_current_line
 ```
