@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T00:01:11-05:00
+Last updated: 2026-06-07T00:20:51-05:00
 
 ## Program Goal
 
@@ -8,27 +8,26 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Redteam the bounded consolidation gate for longitudinal companion learning:
+Validate a bounded longitudinal growth gate for companion learning:
 
 ```text
-fresh longitudinal histories -> competing consolidated priors
--> source deletion / noisy outcomes / delayed outcomes / prior corruption
--> recency-frequency-heuristic baselines -> renderer isolation
--> behavior-only replay
+multi-session rollout -> consolidated priors
+-> cross-context transfer -> prior conflict arbitration
+-> consolidated-prior deletion/corruption/source deletion
+-> strong baselines / renderer isolation / behavior-only replay
 ```
 
-Only the bounded consolidation redteam contract was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only the bounded longitudinal growth gate was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Fresh longitudinal histories and multiple competing consolidated priors are evaluated.
-Conflicting priors select by public context/goal, not action frequency alone.
-Deleting source episodes reduces the consolidated prior confidence and action probability.
-Noisy outcomes do not form a strong spurious prior.
-Delayed outcomes are attributed to the source action and enter the control loop.
+Multi-session rollout creates traceable consolidated priors across sessions.
+Cross-context transfer succeeds on unseen public contexts without scene lookup.
+Prior conflict arbitration selects by public context/goal, not fixed priority.
+Consolidated prior deletion and source deletion reduce final-action probability.
 Final-prior corruption changes action while irrelevant-prior corruption does not.
-Recency-only, frequency-only, and contextual heuristic baselines are not equivalent.
+Recency-only, RAG-summary, and strong contextual heuristic baselines are not equivalent.
 Renderer prompts cannot change selected action.
 Behavior-only replay reconstructs prior -> prediction -> action distribution -> selected action.
 No stronger theory, product, companion-agent, or EGO claim is made.
@@ -37,10 +36,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-consolidation_redteam_bounded_pass
+longitudinal_growth_bounded_pass
 ```
 
-This is not longitudinal companion-growth support. It means the bounded consolidation gate survived one redteam covering competing priors, source deletion, noisy outcomes, delayed outcomes, prior corruption, stronger simple baselines, renderer isolation, and behavior-only replay.
+This is not general longitudinal companion-growth support. It means one bounded multi-session gate passed: consolidated priors transferred across new contexts, arbitrated conflicts, and remained traceable/deletable/auditable under baseline, renderer, and behavior-replay checks.
 
 Review status:
 
@@ -333,6 +332,95 @@ artifacts/cmbc_companion_consolidation_redteam_001/CMBC_COMPANION_CONSOLIDATION_
 artifacts/cmbc_companion_consolidation_redteam_001/cmbc_companion_consolidation_redteam_001_result.json
 ```
 
+## Latest Companion Longitudinal Gate
+
+```text
+task = CMBC-COMPANION-LONGITUDINAL-002
+verdict = longitudinal_growth_bounded_pass
+claim_boundary = bounded longitudinal growth gate only
+source_gate = CMBC-COMPANION-CONSOLIDATION-REDTEAM-001
+```
+
+Key findings:
+
+```text
+session_count = 4
+episode_count = 16
+consolidated_prior_count = 4
+multi_session_prior_ids = 4
+
+final_action = act_6
+supporting_prior_id = prior_act_6
+supporting_prior_source_session_count = 2
+
+cross_context_transfer transfer_success_rate = 1.0
+office_focus_context = act_2
+evening_support_context = act_6
+new_class_transfer_context = act_2
+safety_boundary_context = act_4
+scene_lookup_baseline match_rate = 0.0
+
+prior_conflict distinct_selected_actions = 4
+free_checkin_context = act_0
+class_interruption_context = act_2
+evening_support_context = act_6
+safety_boundary_context = act_4
+fixed_priority_baseline match_rate = 0.25
+
+delete_final_prior_probability_drop = 0.5880154100448305
+source_deletion prior_confidence_drop = 1.0
+source_deletion final_action_probability_drop = 0.5880154100448305
+corrupt_final_prior_changes_action = true
+corrupt_irrelevant_prior_changes_action = false
+
+RecencyOnlyBaseline match_rate = 0.14285714285714285
+RAGSummaryBaseline match_rate = 0.5
+StrongContextualHeuristicBaseline match_rate = 0.9285714285714286
+adversarial_renderer_action_change_rate = 0.0
+behavior_only_replay_match_rate = 1.0
+```
+
+Residual risks:
+
+```text
+StrongContextualHeuristicBaseline is close to the 0.95 equivalence band.
+Deleting the final prior/source strongly regresses action probability but does
+not flip selected_action because the support action remains top-ranked.
+```
+
+Interpretation:
+
+```text
+This is the first bounded gate that tests multi-session longitudinal accumulation
+plus transfer and conflict arbitration. It gives bounded evidence that
+multi-session own-intervention outcomes can consolidate into priors that affect
+new-context action distributions and remain traceable through deletion,
+corruption, source deletion, renderer isolation, and behavior-only replay.
+
+This is still not a product or EGO integration signal. It does not prove robust
+longitudinal companion growth, real emotion, real love, self-awareness, AGI,
+life, or EGO readiness.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_longitudinal_002/LONGITUDINAL_002_STATUS.md
+artifacts/cmbc_companion_longitudinal_002/longitudinal_002_config.json
+artifacts/cmbc_companion_longitudinal_002/multi_session_rollout.json
+artifacts/cmbc_companion_longitudinal_002/cross_context_transfer.json
+artifacts/cmbc_companion_longitudinal_002/prior_conflict_arbitration.json
+artifacts/cmbc_companion_longitudinal_002/prior_deletion_corruption.json
+artifacts/cmbc_companion_longitudinal_002/source_deletion_audit.json
+artifacts/cmbc_companion_longitudinal_002/baseline_equivalence_report.md
+artifacts/cmbc_companion_longitudinal_002/renderer_isolation_report.md
+artifacts/cmbc_companion_longitudinal_002/behavior_only_replay.json
+artifacts/cmbc_companion_longitudinal_002/decision_trace.jsonl
+artifacts/cmbc_companion_longitudinal_002/prior_source_trace.jsonl
+artifacts/cmbc_companion_longitudinal_002/CMBC_COMPANION_LONGITUDINAL_002_RESULT.md
+artifacts/cmbc_companion_longitudinal_002/cmbc_companion_longitudinal_002_result.json
+```
+
 ## Validated Evidence
 
 ```text
@@ -516,17 +604,29 @@ CMBC consolidation redteam delayed_prior_in_control_loop = true.
 CMBC consolidation redteam final_prior_corruption_changes_action = true.
 CMBC consolidation redteam recency/frequency/contextual baselines are not equivalent.
 CMBC consolidation redteam behavior-only replay match_rate = 1.0.
+CMBC-COMPANION-LONGITUDINAL-002 verdict = longitudinal_growth_bounded_pass.
+CMBC longitudinal 002 session_count = 4.
+CMBC longitudinal 002 transfer_success_rate = 1.0.
+CMBC longitudinal 002 prior_conflict distinct_selected_actions = 4.
+CMBC longitudinal 002 final action act_6 is supported by prior_act_6 from 2 sessions.
+CMBC longitudinal 002 delete_final_prior_probability_drop = 0.5880154100448305.
+CMBC longitudinal 002 source_deletion prior_confidence_drop = 1.0.
+CMBC longitudinal 002 source_deletion final_action_probability_drop = 0.5880154100448305.
+CMBC longitudinal 002 RecencyOnlyBaseline match_rate = 0.14285714285714285.
+CMBC longitudinal 002 RAGSummaryBaseline match_rate = 0.5.
+CMBC longitudinal 002 StrongContextualHeuristicBaseline match_rate = 0.9285714285714286.
+CMBC longitudinal 002 behavior-only replay match_rate = 1.0.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-consolidation-redteam contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-LONGITUDINAL-002 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-CONSOLIDATION-REDTEAM-001`.
+Human review of `CMBC-COMPANION-LONGITUDINAL-002`.
 
 Review decision options:
 
@@ -536,6 +636,8 @@ authorize_causal_model_based_control_contract_only
 authorize_cmbc_companion_failure_rca_contract_only
 accept_bounded_consolidation_evidence_no_next_implementation
 accept_bounded_consolidation_redteam_evidence_no_next_implementation
+accept_bounded_longitudinal_002_evidence_no_next_implementation
+authorize_cmbc_companion_longitudinal_redteam_003_contract_only
 authorize_cmbc_companion_longitudinal_generalization_contract_only
 authorize_cmbc_companion_redesign_contract_only
 keep_lcc_bounded_evidence_no_next_implementation

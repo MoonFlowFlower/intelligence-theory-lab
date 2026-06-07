@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_consolidation_redteam_001_bounded_pass
+lab_status: cmbc_companion_longitudinal_002_bounded_pass
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -96,6 +96,29 @@ surviving_theory_families:
       behavior_only_replay_match_rate: 1.0
       adversarial_renderer_action_change_rate: 0.0
     latest_companion_claim_after_consolidation_redteam: bounded_consolidation_redteam_evidence_only
+    latest_companion_longitudinal_002: artifacts/cmbc_companion_longitudinal_002/cmbc_companion_longitudinal_002_result.json
+    latest_companion_longitudinal_002_verdict: longitudinal_growth_bounded_pass
+    latest_companion_longitudinal_002_scope: bounded_longitudinal_growth_gate_only
+    latest_companion_longitudinal_002_key_metrics:
+      session_count: 4
+      episode_count: 16
+      transfer_success_rate: 1.0
+      conflict_distinct_selected_actions: 4
+      final_action: act_6
+      supporting_prior_id: prior_act_6
+      supporting_prior_source_session_count: 2
+      delete_final_prior_probability_drop: 0.5880154100448305
+      source_deletion_prior_confidence_drop: 1.0
+      source_deletion_final_action_probability_drop: 0.5880154100448305
+      recency_baseline_match_rate: 0.14285714285714285
+      rag_summary_baseline_match_rate: 0.5
+      strong_contextual_heuristic_match_rate: 0.9285714285714286
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+    latest_companion_longitudinal_002_residual_risks:
+      - strong_contextual_heuristic_near_equivalence_band
+      - final_prior_deletion_distribution_regresses_without_selected_action_flip
+    latest_companion_claim_after_longitudinal_002: bounded_longitudinal_growth_gate_only
     implementation_authorized: false
     next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:
