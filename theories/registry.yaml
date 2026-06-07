@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_verify_000_bounded_pass_pending_human_review
+lab_status: cmbc_companion_redteam_001_stopped_longitudinal_drift_failed
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -50,6 +50,10 @@ surviving_theory_families:
     latest_companion_verification: artifacts/cmbc_companion_verify_000/cmbc_companion_verify_result.json
     latest_companion_verification_verdict: cmbc_companion_growth_loop_bounded_pass
     latest_companion_verification_scope: bounded_minimal_growth_loop_only
+    latest_companion_redteam: artifacts/cmbc_companion_redteam_001/cmbc_companion_redteam_001_result.json
+    latest_companion_redteam_verdict: longitudinal_drift_failed
+    latest_companion_redteam_stop_condition: longitudinal_drift_failed
+    latest_companion_claim_after_redteam: fixed_fixture_companion_growth_evidence_only
     implementation_authorized: false
     next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:

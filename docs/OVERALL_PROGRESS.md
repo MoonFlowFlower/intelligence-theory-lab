@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T20:54:09-05:00
+Last updated: 2026-06-06T21:45:55-05:00
 
 ## Program Goal
 
@@ -8,14 +8,14 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Verify the minimal CMBC companion growth loop:
+Redteam the CMBC companion growth loop:
 
 ```text
-experience -> learned causal model update -> future action distribution change
--> deletion / perturbation / renderer isolation / behavior replay proof
+parameter sweep -> stronger baselines -> longitudinal stress
+-> adversarial renderer isolation -> downgrade or bounded survival verdict
 ```
 
-Only bounded verification was authorized. No real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only bounded redteam execution was authorized. No real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, candidate patch-to-win, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -110,6 +110,51 @@ distributions under deletion, perturbation, renderer-isolation, and behavior-rep
 ```
 
 This does not prove consciousness, subjective experience, true self-awareness, AGI, life, real emotion, real love, EGO readiness, or robust universal support.
+
+## Latest Companion Redteam
+
+```text
+task = CMBC-COMPANION-REDTEAM-001
+verdict = longitudinal_drift_failed
+claim_boundary = bounded CMBC companion redteam only
+stop_conditions = [longitudinal_drift_failed]
+post_redteam_claim = fixed-fixture companion growth evidence only
+```
+
+Key metrics:
+
+```text
+fresh_scenario_pass_rate = 0.8
+same_context_unseen_history_divergence_rate = 1.0
+stronger_heuristic_match_rate = 0.625
+rag_summary_match_rate = 0.5625
+contextual_schedule_match_rate = 0.375
+over_proactivity_rate = 0.166667
+over_refusal_rate = 0.083333
+longitudinal_post_deletion_action_changed = false
+adversarial_renderer_action_change_rate = 0.0
+behavior_only_replay_match = 1.0
+```
+
+Interpretation:
+
+```text
+VERIFY-000 remains fixed-fixture evidence that prior interaction experience can change
+future action distributions under local deletion/perturbation/replay gates.
+
+REDTEAM-001 blocks any stronger longitudinal companion-growth claim because, after
+the long rollout, deleting the targeted long-run experience did not change the final
+selected action.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_redteam_001/REDTEAM_STATUS.md
+artifacts/cmbc_companion_redteam_001/STOP_REPORT.md
+artifacts/cmbc_companion_redteam_001/metrics.json
+artifacts/cmbc_companion_redteam_001/cmbc_companion_redteam_001_result.json
+```
 
 ## Validated Evidence
 
@@ -261,24 +306,34 @@ CMBC companion interruption_risk_perturbation_sensitivity = 1.0.
 CMBC companion renderer_action_invariance = 1.0.
 CMBC companion behavior_only_replay_match = 1.0.
 CMBC companion challenger equivalence gates = false for strong heuristic, RAG memory, and active-inference/empowerment proxy.
+CMBC-COMPANION-REDTEAM-001 verdict = longitudinal_drift_failed.
+CMBC redteam fresh_scenario_pass_rate = 0.8.
+CMBC redteam stronger_heuristic_match_rate = 0.625.
+CMBC redteam rag_summary_match_rate = 0.5625.
+CMBC redteam contextual_schedule_match_rate = 0.375.
+CMBC redteam adversarial_renderer_action_change_rate = 0.0.
+CMBC redteam behavior_only_replay_match = 1.0.
+CMBC redteam longitudinal_post_deletion_action_changed = false.
+CMBC redteam post-claim = fixed-fixture companion growth evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-verification contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-redteam contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-VERIFY-000`.
+Human review of `CMBC-COMPANION-REDTEAM-001`.
 
 Review decision options:
 
 ```text
 revise_lcc_as_operational_redteam_discipline
 authorize_causal_model_based_control_contract_only
-authorize_cmbc_companion_next_verification_contract_only
+authorize_cmbc_companion_failure_rca_contract_only
+authorize_cmbc_companion_redesign_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
 ```
