@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T19:42:34-05:00
+Last updated: 2026-06-06T19:56:59-05:00
 
 ## Program Goal
 
@@ -8,13 +8,15 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute the LCC cross-theory tournament:
+Close out the LCC cross-theory tournament collapse:
 
 ```text
-freeze contract -> shared runtime -> bounded competitors -> shared task families -> freeze competitors -> blind holdout -> run once -> metrics/equivalence -> shared redteam gates -> independent scoring -> replication -> verdict
+accept collapse verdict -> close LCC independent theory claim -> preserve LCC gates
+as operational evidence discipline -> define causal model-based control as strongest
+surviving family under current tournament -> authorize no implementation
 ```
 
-Only one bounded cross-theory tournament execution was authorized. No Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, EGO migration, or theory-support claim is authorized.
+Only closeout was authorized. No Cycle 011, general LCC agent, autonomous theory search, causal model-based control implementation, VCCO/VCAC/FOPC repair, EGO migration, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -42,7 +44,26 @@ This is not a theory-support verdict. It means LCC_v0 is better treated as an op
 Review status:
 
 ```text
-cross_theory_tournament_executed_lcc_collapsed
+lcc_independent_theory_closed_collapsed_into_causal_model_based_control
+```
+
+## Closeout Decision
+
+```text
+LCC as independent theory = closed / collapsed
+winning_or_collapsing_family = causal_model_based_control
+LCC remaining value = operational evidence discipline
+strongest surviving theory family = causal_model_based_control
+implementation_authorized = false
+```
+
+Closeout artifacts:
+
+```text
+docs/LCC_COLLAPSE_TO_CAUSAL_MODEL_BASED_CONTROL_CLOSEOUT.md
+docs/CAUSAL_MODEL_BASED_CONTROL_MINIMAL_PRINCIPLE.md
+artifacts/theory_closeout/lcc_collapse_decision.json
+artifacts/theory_closeout/surviving_principle_ledger.json
 ```
 
 ## Validated Evidence
@@ -191,19 +212,18 @@ Current maximum claim = LCC_v0 is better treated as an operational evidence disc
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes post-collapse theory revision, closure, or a new bounded contract. Cycle 011 remains not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-collapse contract. Cycle 011, general LCC agent, autonomous theory search, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CROSS_THEORY_TOURNAMENT_EXECUTION`.
+Human review of the LCC collapse closeout.
 
 Review decision options:
 
 ```text
-accept_lcc_collapse_into_causal_model_based_control
 revise_lcc_as_operational_redteam_discipline
-authorize_post_collapse_theory_revision_contract_only
+authorize_causal_model_based_control_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
 ```

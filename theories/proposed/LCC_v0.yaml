@@ -2,7 +2,7 @@ schema_version: 0
 theory_id: LCC_v0
 name: Learned Counterfactual Controllability
 one_sentence_core: "Intelligence-relevant control is learned counterfactual effect control: actions are selected by intervention-grounded predictions that remain label-invariant and change under effect perturbations."
-status: bounded_contract_survived_milestone_reviewed
+status: collapsed_into_causal_model_based_control
 core_claims:
   - A control mechanism is candidate-worthy only if counterfactual changes to learned action effects change action distributions under the same observation constraints.
   - Action-label renaming must not change behavior when learned effects and observations are preserved.
@@ -156,6 +156,19 @@ latest_cross_theory_tournament_result:
   ego_migration: no_go
   cycle_011: not_authorized
   next_human_review_required: true
+latest_closeout:
+  verdict: lcc_collapses_into_causal_model_based_control
+  closeout_artifact: artifacts/theory_closeout/lcc_collapse_decision.json
+  surviving_principle_ledger: artifacts/theory_closeout/surviving_principle_ledger.json
+  status: independent_theory_claim_closed
+  remaining_value: operational_evidence_discipline_for_causal_model_based_control
+  strongest_surviving_theory_family: causal_model_based_control
+  theory_support: not_yet
+  bottom_intelligence_principle: not_claimed
+  general_agent_implementation: not_authorized
+  autonomous_theory_search: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
 previous_redteam_result:
   cycle_id: cycle_009
   verdict: lcc_contract_strengthened_unified_mechanism_bounded

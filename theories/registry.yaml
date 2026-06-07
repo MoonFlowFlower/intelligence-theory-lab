@@ -1,9 +1,9 @@
 schema_version: 0
-lab_status: cross_theory_tournament_executed_lcc_collapsed_pending_human_review
+lab_status: lcc_independent_theory_closed_collapsed_into_causal_model_based_control
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
-last_human_review_required_before: post_collapse_theory_revision_or_closure
+last_human_review_required_before: any_post_collapse_theory_revision_or_implementation
 rules:
   - no theory may be implemented before a theory card exists
   - no experiment may be implemented before an experiment contract exists
@@ -15,7 +15,7 @@ rules:
 theories:
   - theory_id: LCC_v0
     name: Learned Counterfactual Controllability
-    status: bounded_contract_survived
+    status: collapsed_into_causal_model_based_control
     card: theories/proposed/LCC_v0.yaml
     experiment_contract: contracts/experiments/LCC_EFFECT_SWAP_001.yaml
     latest_redteam: artifacts/cycles/cycle_010/cycle_010_decision.json
@@ -29,7 +29,10 @@ theories:
     latest_cross_theory_tournament_contract_verdict: cross_theory_tournament_contract_ready
     latest_cross_theory_tournament_result: artifacts/cross_theory_tournament_execution/XTE-011/cross_theory_tournament_result.json
     latest_cross_theory_tournament_verdict: lcc_collapses_into_causal_model_based_control
+    latest_closeout_decision: artifacts/theory_closeout/lcc_collapse_decision.json
+    latest_closeout_verdict: lcc_collapses_into_causal_model_based_control
     collapse_family: causal_model_based_control
+    remaining_value: operational_evidence_discipline
     theory_support: not_yet
     implementation_authorized: false
     clean_room_candidate_authorized: false
@@ -37,7 +40,15 @@ theories:
     cross_theory_tournament: executed_lcc_collapsed
     general_agent_implementation: not_authorized
     ego_migration: no_go
-    human_review_required_before: post_collapse_theory_revision_or_closure
+    human_review_required_before: any_post_collapse_theory_revision_or_implementation
+surviving_theory_families:
+  - family_id: causal_model_based_control
+    name: Causal Model-Based Control
+    status: strongest_surviving_family_under_current_tournament_not_theory_support
+    principle_doc: docs/CAUSAL_MODEL_BASED_CONTROL_MINIMAL_PRINCIPLE.md
+    ledger: artifacts/theory_closeout/surviving_principle_ledger.json
+    implementation_authorized: false
+    next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:
   - lineage_id: vcco_vcac_fopc_negative_lineage
     source_repo: ../VCCO_Lab
