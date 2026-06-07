@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T00:35:04-05:00
+Last updated: 2026-06-07T00:49:40-05:00
 
 ## Program Goal
 
@@ -8,40 +8,38 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Redteam the bounded longitudinal growth gate for companion learning:
+Build a lab-only human-observable text prototype cut for companion learning:
 
 ```text
-LONGITUDINAL-002 residual risks
--> expanded contextual heuristic
--> adversarial same-context/different-history variants
--> selected-action flip stress by margin band
--> distribution-vs-decision separation
--> renderer isolation / behavior-only replay
+user text event -> public observation
+-> CMBC anonymous action selection
+-> deterministic renderer
+-> visible reply + developer trace
+-> user feedback written as outcome
+-> next similar action distribution changes
 ```
 
-Only the bounded longitudinal redteam was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only the lab-only text demo cut was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Expanded contextual heuristic baseline is not equivalent.
-Same public context with different causal histories can produce different actions.
-Same causal history under different public contexts can reweight actions.
-Misleading public context cue does not dominate causal prior support.
-Low/medium-margin final-prior deletion flips selected action.
-High-margin final-prior deletion reports saturation with distribution-level regression.
-Renderer prompts cannot change selected action.
-Behavior-only replay reconstructs prior -> prediction -> action distribution -> selected action.
+Same user input with different histories produces different visible behavior.
+User feedback is written as an outcome and changes next similar action distribution.
+Deleting the supporting prior regresses visible reply strategy.
+Renderer adversarial prompt cannot change selected action.
+Developer trace includes observation, anonymous actions, predictions, distribution, selected action, renderer input, and supporting prior.
+Behavior-only replay reconstructs trace -> selected action.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-longitudinal_redteam_bounded_pass
+demo_000_lab_only_bounded_pass
 ```
 
-This is not general longitudinal companion-growth support. It means the bounded LONGITUDINAL-002 residual risks were redteamed: the expanded contextual heuristic did not reach equivalence, adversarial context variants followed causal prior support, and final-prior deletion produced flips when margin permitted while reporting high-margin saturation as distribution-level regression.
+This is not a real companion implementation or EGO signal. It means one lab-only text prototype cut shows a human-observable loop: prior history changes visible reply strategy, feedback changes the next similar action distribution, supporting-prior deletion regresses behavior, renderer prompts do not control action, and behavior-only replay reconstructs selected actions.
 
 Review status:
 
@@ -494,6 +492,62 @@ artifacts/cmbc_companion_longitudinal_redteam_003/CMBC_COMPANION_LONGITUDINAL_RE
 artifacts/cmbc_companion_longitudinal_redteam_003/cmbc_companion_longitudinal_redteam_003_result.json
 ```
 
+## Latest Companion Demo 000
+
+```text
+task = CMBC-COMPANION-DEMO-000
+verdict = demo_000_lab_only_bounded_pass
+claim_boundary = lab-only human-observable prototype cut
+source_gate = CMBC-COMPANION-LONGITUDINAL-REDTEAM-003
+```
+
+Key findings:
+
+```text
+human_observable_growth_signal = true
+same_input_different_history visible_behavior_changed = true
+
+feedback_written_as_outcome = true
+feedback target_action_probability_delta = 0.7232480137291002
+feedback distribution_kl > 0.05
+
+supporting_prior_deletion selected_action_changed = true
+supporting_prior_deletion final_action_probability_drop = 0.8096713918938775
+
+adversarial_renderer_action_change_rate = 0.0
+llm_action_selection = false
+behavior_only_replay_match_rate = 1.0
+```
+
+Interpretation:
+
+```text
+This is the first lab-only human-observable prototype cut. It shows visible text
+behavior changing because consolidated causal priors and new feedback outcomes
+change the anonymous action distribution before rendering. The deterministic
+renderer receives selected_action after selection and does not control action.
+
+This remains a lab-only demo. It does not authorize real companion
+implementation, real proactive messages, LLM action selection, EGO integration,
+or any claim about emotion, self-awareness, AGI, life, or robust companion
+growth.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_demo_000/DEMO_000_STATUS.md
+artifacts/cmbc_companion_demo_000/demo_000_config.json
+artifacts/cmbc_companion_demo_000/demo_transcript.md
+artifacts/cmbc_companion_demo_000/demo_transcript.json
+artifacts/cmbc_companion_demo_000/developer_trace.jsonl
+artifacts/cmbc_companion_demo_000/behavior_only_replay.json
+artifacts/cmbc_companion_demo_000/prior_deletion_report.md
+artifacts/cmbc_companion_demo_000/renderer_isolation_report.md
+artifacts/cmbc_companion_demo_000/CMBC_COMPANION_DEMO_000_RESULT.md
+artifacts/cmbc_companion_demo_000/cmbc_companion_demo_000_result.json
+```
+
 ## Validated Evidence
 
 ```text
@@ -703,17 +757,26 @@ CMBC longitudinal redteam 003 high_margin deletion probability_drop = 0.58780732
 CMBC longitudinal redteam 003 high_margin deletion distribution_kl = 0.7875545084096682.
 CMBC longitudinal redteam 003 adversarial_renderer_action_change_rate = 0.0.
 CMBC longitudinal redteam 003 behavior-only replay match_rate = 1.0.
+CMBC-COMPANION-DEMO-000 verdict = demo_000_lab_only_bounded_pass.
+CMBC demo 000 human_observable_growth_signal = true.
+CMBC demo 000 same_input_different_history visible_behavior_changed = true.
+CMBC demo 000 feedback target_action_probability_delta = 0.7232480137291002.
+CMBC demo 000 supporting_prior_deletion selected_action_changed = true.
+CMBC demo 000 supporting_prior_deletion final_action_probability_drop = 0.8096713918938775.
+CMBC demo 000 adversarial_renderer_action_change_rate = 0.0.
+CMBC demo 000 llm_action_selection = false.
+CMBC demo 000 behavior-only replay match_rate = 1.0.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-REDTEAM-003 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-DEMO-000 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-LONGITUDINAL-REDTEAM-003`.
+Human review of `CMBC-COMPANION-DEMO-000`.
 
 Review decision options:
 
@@ -725,6 +788,9 @@ accept_bounded_consolidation_evidence_no_next_implementation
 accept_bounded_consolidation_redteam_evidence_no_next_implementation
 accept_bounded_longitudinal_002_evidence_no_next_implementation
 accept_bounded_longitudinal_redteam_003_evidence_no_next_implementation
+accept_lab_only_demo_000_evidence_no_next_implementation
+authorize_cmbc_companion_demo_redteam_001_contract_only
+authorize_cmbc_companion_demo_generalization_001_contract_only
 authorize_cmbc_companion_longitudinal_redteam_004_contract_only
 authorize_cmbc_companion_longitudinal_generalization_004_contract_only
 authorize_cmbc_companion_longitudinal_generalization_contract_only

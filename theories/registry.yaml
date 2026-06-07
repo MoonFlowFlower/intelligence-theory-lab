@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_longitudinal_redteam_003_bounded_pass
+lab_status: cmbc_companion_demo_000_lab_only_bounded_pass
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -146,6 +146,22 @@ surviving_theory_families:
       - high_margin_final_prior_deletion_saturated_without_selected_action_flip
       - bounded_fixture_not_product_or_ego_signal
     latest_companion_claim_after_longitudinal_redteam_003: bounded_longitudinal_redteam_evidence_only
+    latest_companion_demo_000: artifacts/cmbc_companion_demo_000/cmbc_companion_demo_000_result.json
+    latest_companion_demo_000_verdict: demo_000_lab_only_bounded_pass
+    latest_companion_demo_000_scope: lab_only_human_observable_prototype_cut
+    latest_companion_demo_000_key_metrics:
+      human_observable_growth_signal: true
+      same_input_different_history_visible_behavior_changed: true
+      feedback_target_action_probability_delta: 0.7232480137291002
+      prior_deletion_final_action_probability_drop: 0.8096713918938775
+      prior_deletion_selected_action_changed: true
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_demo_000: lab_only_human_observable_prototype_evidence_only
+    real_companion_implementation: not_authorized
+    proactive_messages: not_authorized
+    llm_action_selection: false
     implementation_authorized: false
     next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:
