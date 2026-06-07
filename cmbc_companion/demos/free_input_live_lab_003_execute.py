@@ -28,7 +28,16 @@ CLAIM_UNCODED_INPUT = (
     "because feedback/outcome coding was unavailable or unstable"
 )
 
-UNSPECIFIED_OUTCOME_VALUES = {None, "", "unspecified", "unknown", "unavailable", "not_provided"}
+UNSPECIFIED_OUTCOME_VALUES = {
+    None,
+    "",
+    "unspecified",
+    "unknown",
+    "unavailable",
+    "not_provided",
+    "pending",
+    "pending_outcome_coding",
+}
 
 
 def write_json(path: Path, data: Any) -> None:
@@ -51,10 +60,16 @@ def load_free_input_transcript(input_path: str | Path | None) -> list[dict[str, 
 
 def has_outcome_coding(row: dict[str, Any]) -> bool:
     feedback_label = row.get("feedback_label")
+    feedback = row.get("feedback")
+    feedback_status = row.get("feedback_status")
     outcome_label = row.get("outcome_label")
     outcome_vector = row.get("outcome_vector")
     observed_outcome = row.get("observed_outcome")
     if feedback_label not in UNSPECIFIED_OUTCOME_VALUES:
+        return True
+    if feedback not in UNSPECIFIED_OUTCOME_VALUES:
+        return True
+    if feedback_status not in UNSPECIFIED_OUTCOME_VALUES:
         return True
     if outcome_label not in UNSPECIFIED_OUTCOME_VALUES:
         return True
