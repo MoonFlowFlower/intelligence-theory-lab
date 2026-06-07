@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T19:17:14-05:00
+Last updated: 2026-06-06T19:42:34-05:00
 
 ## Program Goal
 
@@ -8,39 +8,41 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Create the LCC cross-theory tournament contract:
+Execute the LCC cross-theory tournament:
 
 ```text
-freeze independent replication evidence -> competitor theory cards -> shared tournament I/O -> task families -> metrics/equivalence -> shared redteam gates -> verdict taxonomy -> contract readiness decision
+freeze contract -> shared runtime -> bounded competitors -> shared task families -> freeze competitors -> blind holdout -> run once -> metrics/equivalence -> shared redteam gates -> independent scoring -> replication -> verdict
 ```
 
-Only cross-theory tournament contract design was authorized. No tournament execution, competitor implementation, Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only one bounded cross-theory tournament execution was authorized. No Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, EGO migration, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Independent reimplementation pass is frozen as bounded evidence.
-Competitor cards define all required theory families and do not weaken competitors by definition.
-Shared I/O gives every non-oracle competitor equal public information and forbids hidden/oracle/semantic/evaluator fields.
-Task families include required core, extended, hybrid, and negative-control families.
-Metrics and equivalence criteria allow LCC win, loss, tie, or collapse.
-Redteam gates apply to every non-oracle competitor.
-Verdict taxonomy includes explicit collapse verdicts.
+Contract was frozen before implementation.
+Shared runtime I/O gives every non-oracle competitor equal public information.
+All required competitors were implemented, with OracleDiagnosticUpperBound diagnostic-only.
+Blind holdout was generated after competitor freeze.
+Tournament was run once on predeclared families.
+Metrics/equivalence scoring used predeclared metrics.
+Shared redteam gates applied to every non-oracle competitor.
+Independent trace-only scoring matched primary scoring.
+Statistical replication was stable.
 No stronger theory claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-cross_theory_tournament_contract_ready
+lcc_collapses_into_causal_model_based_control
 ```
 
-This is not a theory-support verdict. It does not authorize tournament execution; it only makes the cross-theory tournament contract ready for future human review.
+This is not a theory-support verdict. It means LCC_v0 is better treated as an operational evidence discipline or special case of causal model-based control under this tournament contract.
 
 Review status:
 
 ```text
-cross_theory_tournament_contract_ready
+cross_theory_tournament_executed_lcc_collapsed
 ```
 
 ## Validated Evidence
@@ -175,27 +177,33 @@ Independent reimplementation required baselines = ActionLabelHeuristic, NearestN
 Independent clean-room reimplementation verdict = independent_reimplementation_bounded_pass.
 Independent clean-room maximum claim = LCC_v0 survived one clean-room independent bounded replication of the core public contract.
 Cross-theory tournament contract verdict = cross_theory_tournament_contract_ready.
-Cross-theory tournament execution = not_authorized.
-Cross-theory competitor implementation = not_authorized.
+Cross-theory tournament execution = completed_bounded_once.
+Cross-theory competitor implementation = completed_for_bounded_tournament_only.
 Cross-theory allowed future verdicts include LCC collapse into model-based RL, causal model-based control, active inference, empowerment, strong heuristic equivalence, generic baseline loss, all-theory negative-control failure, and inconclusive contract revision.
+Cross-theory tournament execution verdict = lcc_collapses_into_causal_model_based_control.
+T3_CausalModelBasedControl reproduced the LCC pass profile within equivalence band.
+Shared redteam gates passed for all non-oracle competitors.
+Independent scoring max_abs_diff = 0.0.
+Statistical replication verdict = replication_stable.
+Current maximum claim = LCC_v0 is better treated as an operational evidence discipline or special case of causal model-based control under this tournament contract.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes cross-theory tournament execution, Cycle 011 contract-only, or closure.
+No successor implementation can proceed until a human reviewer explicitly authorizes post-collapse theory revision, closure, or a new bounded contract. Cycle 011 remains not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_CROSS_THEORY_TOURNAMENT_CONTRACT`.
+Human review of `LCC_CROSS_THEORY_TOURNAMENT_EXECUTION`.
 
 Review decision options:
 
 ```text
-authorize_cross_theory_tournament_execution_contract_only
-revise_cross_theory_tournament_contract
-authorize_cycle_011_contract_only
+accept_lcc_collapse_into_causal_model_based_control
+revise_lcc_as_operational_redteam_discipline
+authorize_post_collapse_theory_revision_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
 ```

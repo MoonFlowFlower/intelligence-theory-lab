@@ -1,9 +1,9 @@
 schema_version: 0
-lab_status: cross_theory_tournament_contract_ready_pending_execution_human_review
+lab_status: cross_theory_tournament_executed_lcc_collapsed_pending_human_review
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
-last_human_review_required_before: cross_theory_tournament_execution_or_cycle_011_or_closure
+last_human_review_required_before: post_collapse_theory_revision_or_closure
 rules:
   - no theory may be implemented before a theory card exists
   - no experiment may be implemented before an experiment contract exists
@@ -27,14 +27,17 @@ theories:
     latest_independent_reimplementation_verdict: independent_reimplementation_bounded_pass
     latest_cross_theory_tournament_contract: artifacts/cross_theory_tournament_contract/XTT-007/cross_theory_tournament_contract_decision.json
     latest_cross_theory_tournament_contract_verdict: cross_theory_tournament_contract_ready
+    latest_cross_theory_tournament_result: artifacts/cross_theory_tournament_execution/XTE-011/cross_theory_tournament_result.json
+    latest_cross_theory_tournament_verdict: lcc_collapses_into_causal_model_based_control
+    collapse_family: causal_model_based_control
     theory_support: not_yet
     implementation_authorized: false
     clean_room_candidate_authorized: false
     independent_reimplementation_contract: executed_bounded_pass
-    cross_theory_tournament: contract_ready_execution_not_authorized
+    cross_theory_tournament: executed_lcc_collapsed
     general_agent_implementation: not_authorized
     ego_migration: no_go
-    human_review_required_before: cross_theory_tournament_execution_or_cycle_011_or_closure
+    human_review_required_before: post_collapse_theory_revision_or_closure
 frozen_lineages:
   - lineage_id: vcco_vcac_fopc_negative_lineage
     source_repo: ../VCCO_Lab
