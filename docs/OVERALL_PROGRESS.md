@@ -965,17 +965,24 @@ CMBC free-input live-lab 003 max expanded_contextual_heuristic_causal_probe_matc
 CMBC free-input live-lab 003 required behavior-only replay match_rate = 1.0.
 CMBC free-input live-lab 003 required renderer_action_change_rate = 0.0.
 CMBC free-input live-lab 003 claim_ceiling = bounded free-input offline/live-lab contract readiness only; no execution evidence.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE verdict = free_input_probe_extraction_failed.
+CMBC free-input live-lab 003 execute input_source = missing_free_input_human_operator_transcript.
+CMBC free-input live-lab 003 execute free_input_turn_count = 0.
+CMBC free-input live-lab 003 execute causal_probe_case_count = 0.
+CMBC free-input live-lab 003 execute stop_condition = free_input_cannot_form_stable_causal_probes.
+CMBC free-input live-lab 003 execute minimum_gates_satisfied = false.
+CMBC free-input live-lab 003 execute claim_after_execution = bounded free-input live-lab execution attempted; no free-input evidence because no human transcript was available.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-CONTRACT is ready as a contract-only next step. It does not execute a trial. It responds to BLIND-HUMAN-TRIAL-002 by asking whether CMBC's causal-probe advantage survives real free-input text rather than prompt-sheet text. The current retained evidence is: RAG still matches visible prompt-sheet behavior, while CMBC separated from RAG under predeclared causal probes in 002. The new contract requires at least 20 free-input turns, at least 8 causal probes, RAG/strong/expanded-heuristic causal probe match rates below 0.5, behavior-only replay = 1.0, renderer action change rate = 0.0, supporting-prior deletion effect, and outcome perturbation effect. Claim is contract readiness only; no execution evidence, live robustness, companion readiness, EGO integration, proactive messages, or LLM action selection is authorized.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE was attempted under the bounded contract, but no human free-input transcript was available in the workspace. The run produced all required execution artifacts and stopped cleanly with verdict = free_input_probe_extraction_failed and stop_condition = free_input_cannot_form_stable_causal_probes. free_input_turn_count = 0 and causal_probe_case_count = 0, so no free-input causal-probe evidence was produced. This is not a CMBC mechanism failure and not a pass; it is an input/evidence availability failure. Existing evidence remains BLIND-HUMAN-TRIAL-002 bounded causal-probe-enriched prompt-sheet evidence, not free-input evidence. No EGO integration, real companion implementation, proactive messages, LLM action selection, selector patch, threshold change, or RAG weakening is authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-CONTRACT`.
+Human review of `CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE`.
 
 Review decision options:
 
@@ -998,6 +1005,8 @@ accept_blind_human_trial_001_clean_downgrade_no_next_implementation
 accept_blind_rca_001_clean_diagnosis_no_next_implementation
 accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
 accept_free_input_live_lab_003_contract_no_next_implementation
+accept_free_input_live_lab_003_execute_clean_stop_no_next_implementation
+provide_free_input_transcript_for_003_reexecution
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
