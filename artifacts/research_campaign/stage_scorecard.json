@@ -1,19 +1,20 @@
 {
   "program_goal": "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-  "current_stage_goal": "Build a lab-only human-observable text prototype cut without patching selector/runtime or authorizing real companion implementation.",
+  "current_stage_goal": "Build a lab-only offline human-trial harness without patching selector/runtime or authorizing real companion implementation.",
   "stage_success_criteria": [
-    "same user input with different histories produces different visible behavior",
-    "user feedback is written as an outcome and changes next similar action distribution",
-    "deleting the supporting prior regresses visible reply strategy",
+    "10-20 local/offline turns are recorded",
+    "manual feedback is encoded as outcome, not raw text memory",
+    "action distribution changes after trial feedback",
+    "deleting the supporting prior regresses action probability or selected action",
     "renderer adversarial prompt cannot change selected action",
-    "developer trace includes observation, anonymous actions, predictions, distribution, selected action, renderer input, and supporting prior",
-    "behavior-only replay reconstructs trace to selected action",
+    "behavior-only replay reconstructs key decisions",
+    "developer trace remains readable enough for a human to audit why an action was selected",
     "no selector patch, long_term_memory_weight, affection_score, threshold change, baseline weakening, EGO integration, or new companion agent is introduced",
     "no stronger theory or EGO claim is made"
   ],
-  "next_decision_gate": "Human review before any post-DEMO-000 contract, real companion implementation, proactive messaging, LLM action selection, EGO migration, or theory claim.",
-  "current_iteration": "cmbc_companion_demo_000",
-  "reviewer_verdict": "demo_000_lab_only_bounded_pass",
+  "next_decision_gate": "Human review before any post-HUMAN-TRIAL-V0 contract, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
+  "current_iteration": "cmbc_companion_human_trial_v0",
+  "reviewer_verdict": "human_trial_v0_lab_only_bounded_pass",
   "current_best_evidence": [
     "VCCO/VCAC/FOPC lineage preserved as negative evidence",
     "Cycle 000 verdict = lcc_contract_pass_bounded",
@@ -220,9 +221,21 @@
     "CMBC demo 000 supporting_prior_deletion final_action_probability_drop = 0.8096713918938775",
     "CMBC demo 000 adversarial_renderer_action_change_rate = 0.0",
     "CMBC demo 000 llm_action_selection = false",
-    "CMBC demo 000 behavior-only replay match_rate = 1.0"
+    "CMBC demo 000 behavior-only replay match_rate = 1.0",
+    "CMBC-COMPANION-HUMAN-TRIAL-V0 verdict = human_trial_v0_lab_only_bounded_pass",
+    "CMBC human trial v0 turn_count = 12",
+    "CMBC human trial v0 feedback_written_as_outcome = true",
+    "CMBC human trial v0 raw_text_memory_only = false",
+    "CMBC human trial v0 target_action_probability_delta = 0.27352024642491246",
+    "CMBC human trial v0 supporting_prior_deletion_probability_drop = 0.6686579796069175",
+    "CMBC human trial v0 selected_action_counts = act_2: 6, act_6: 2, act_4: 2, act_0: 2",
+    "CMBC human trial v0 distinct_selected_actions = 4",
+    "CMBC human trial v0 dominant_action_rate = 0.5",
+    "CMBC human trial v0 adversarial_renderer_action_change_rate = 0.0",
+    "CMBC human trial v0 llm_action_selection = false",
+    "CMBC human trial v0 behavior-only replay match_rate = 1.0"
   ],
-  "next_frontier": "Human reviewer decides whether to accept lab-only DEMO-000 evidence, authorize a demo redteam/generalization contract only, keep bounded evidence with no next implementation, or close current line.",
-  "status": "cmbc_companion_demo_000_lab_only_bounded_pass",
-  "updated_at": "2026-06-07T00:49:40-05:00"
+  "next_frontier": "Human reviewer decides whether to accept lab-only HUMAN-TRIAL-V0 evidence, authorize a trial redteam/generalization contract only, keep bounded evidence with no next implementation, or close current line.",
+  "status": "cmbc_companion_human_trial_v0_lab_only_bounded_pass",
+  "updated_at": "2026-06-07T01:06:56-05:00"
 }

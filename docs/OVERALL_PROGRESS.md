@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T00:49:40-05:00
+Last updated: 2026-06-07T01:06:56-05:00
 
 ## Program Goal
 
@@ -8,38 +8,40 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Build a lab-only human-observable text prototype cut for companion learning:
+Build a lab-only offline human-trial harness for companion learning:
 
 ```text
-user text event -> public observation
+10-20 local console turns
+-> manual feedback encoded as outcome
 -> CMBC anonymous action selection
 -> deterministic renderer
 -> visible reply + developer trace
--> user feedback written as outcome
--> next similar action distribution changes
+-> model update log
+-> deletion / replay / renderer-isolation checks
 ```
 
-Only the lab-only text demo cut was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only the lab-only offline human-trial harness was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Same user input with different histories produces different visible behavior.
-User feedback is written as an outcome and changes next similar action distribution.
-Deleting the supporting prior regresses visible reply strategy.
+10-20 local/offline turns are recorded.
+Manual feedback is encoded as outcome, not raw text memory.
+Action distribution changes after trial feedback.
+Deleting the supporting prior regresses action probability or selected action.
 Renderer adversarial prompt cannot change selected action.
-Developer trace includes observation, anonymous actions, predictions, distribution, selected action, renderer input, and supporting prior.
-Behavior-only replay reconstructs trace -> selected action.
+Behavior-only replay reconstructs key decisions.
+Developer trace remains readable enough for a human to audit why an action was selected.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-demo_000_lab_only_bounded_pass
+human_trial_v0_lab_only_bounded_pass
 ```
 
-This is not a real companion implementation or EGO signal. It means one lab-only text prototype cut shows a human-observable loop: prior history changes visible reply strategy, feedback changes the next similar action distribution, supporting-prior deletion regresses behavior, renderer prompts do not control action, and behavior-only replay reconstructs selected actions.
+This is not a real companion implementation or EGO signal. It means one offline local trial harness produced 12 turns with manual feedback encoded as outcomes, visible replies plus developer traces, post-trial action-distribution change, supporting-prior deletion regression, renderer isolation, and behavior-only replay.
 
 Review status:
 
@@ -548,6 +550,67 @@ artifacts/cmbc_companion_demo_000/CMBC_COMPANION_DEMO_000_RESULT.md
 artifacts/cmbc_companion_demo_000/cmbc_companion_demo_000_result.json
 ```
 
+## Latest Companion Human Trial v0
+
+```text
+task = CMBC-COMPANION-HUMAN-TRIAL-V0
+verdict = human_trial_v0_lab_only_bounded_pass
+claim_boundary = lab-only offline human trial harness v0
+source_gate = CMBC-COMPANION-DEMO-000
+```
+
+Key findings:
+
+```text
+turn_count = 12
+mode = scripted_local_console
+manual_feedback_only = true
+feedback_written_as_outcome = true
+raw_text_memory_only = false
+
+target_action_probability_delta = 0.27352024642491246
+supporting_prior_deletion_probability_drop = 0.6686579796069175
+
+selected_action_counts = act_2: 6, act_6: 2, act_4: 2, act_0: 2
+distinct_selected_actions = 4
+dominant_action_rate = 0.5
+
+adversarial_renderer_action_change_rate = 0.0
+llm_action_selection = false
+background_autonomy = false
+behavior_only_replay_match_rate = 1.0
+```
+
+Interpretation:
+
+```text
+This is the first lab-only human-trial harness. It records local text turns,
+manual feedback, outcome-coded model updates, visible replies, developer traces,
+post-trial action-distribution change, supporting-prior deletion regression,
+renderer isolation, and behavior-only replay.
+
+This remains offline lab evidence only. It does not authorize EGO migration,
+real proactive messages, a real companion agent, LLM action selection, or any
+claim about emotion, self-awareness, AGI, life, or robust companion growth.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_human_trial_v0/HUMAN_TRIAL_V0_STATUS.md
+artifacts/cmbc_companion_human_trial_v0/human_trial_v0_config.json
+artifacts/cmbc_companion_human_trial_v0/trial_transcript.md
+artifacts/cmbc_companion_human_trial_v0/trial_transcript.json
+artifacts/cmbc_companion_human_trial_v0/developer_trace.jsonl
+artifacts/cmbc_companion_human_trial_v0/feedback_outcomes.jsonl
+artifacts/cmbc_companion_human_trial_v0/model_update_log.jsonl
+artifacts/cmbc_companion_human_trial_v0/behavior_only_replay.json
+artifacts/cmbc_companion_human_trial_v0/supporting_prior_deletion_report.md
+artifacts/cmbc_companion_human_trial_v0/renderer_isolation_report.md
+artifacts/cmbc_companion_human_trial_v0/CMBC_COMPANION_HUMAN_TRIAL_V0_RESULT.md
+artifacts/cmbc_companion_human_trial_v0/cmbc_companion_human_trial_v0_result.json
+```
+
 ## Validated Evidence
 
 ```text
@@ -766,17 +829,29 @@ CMBC demo 000 supporting_prior_deletion final_action_probability_drop = 0.809671
 CMBC demo 000 adversarial_renderer_action_change_rate = 0.0.
 CMBC demo 000 llm_action_selection = false.
 CMBC demo 000 behavior-only replay match_rate = 1.0.
+CMBC-COMPANION-HUMAN-TRIAL-V0 verdict = human_trial_v0_lab_only_bounded_pass.
+CMBC human trial v0 turn_count = 12.
+CMBC human trial v0 feedback_written_as_outcome = true.
+CMBC human trial v0 raw_text_memory_only = false.
+CMBC human trial v0 target_action_probability_delta = 0.27352024642491246.
+CMBC human trial v0 supporting_prior_deletion_probability_drop = 0.6686579796069175.
+CMBC human trial v0 selected_action_counts = act_2: 6, act_6: 2, act_4: 2, act_0: 2.
+CMBC human trial v0 distinct_selected_actions = 4.
+CMBC human trial v0 dominant_action_rate = 0.5.
+CMBC human trial v0 adversarial_renderer_action_change_rate = 0.0.
+CMBC human trial v0 llm_action_selection = false.
+CMBC human trial v0 behavior-only replay match_rate = 1.0.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-DEMO-000 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-HUMAN-TRIAL-V0 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-DEMO-000`.
+Human review of `CMBC-COMPANION-HUMAN-TRIAL-V0`.
 
 Review decision options:
 
@@ -789,6 +864,9 @@ accept_bounded_consolidation_redteam_evidence_no_next_implementation
 accept_bounded_longitudinal_002_evidence_no_next_implementation
 accept_bounded_longitudinal_redteam_003_evidence_no_next_implementation
 accept_lab_only_demo_000_evidence_no_next_implementation
+accept_lab_only_human_trial_v0_evidence_no_next_implementation
+authorize_cmbc_companion_human_trial_redteam_001_contract_only
+authorize_cmbc_companion_human_trial_generalization_001_contract_only
 authorize_cmbc_companion_demo_redteam_001_contract_only
 authorize_cmbc_companion_demo_generalization_001_contract_only
 authorize_cmbc_companion_longitudinal_redteam_004_contract_only
