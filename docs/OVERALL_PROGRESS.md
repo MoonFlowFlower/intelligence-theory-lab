@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T18:18:56-05:00
+Last updated: 2026-06-07T18:36:00-05:00
 
 ## Program Goal
 
@@ -8,41 +8,40 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Define the CMBC parametric action interface contract without changing runtime behavior:
+Validate the CMBC parametric action interface in N=7 shadow compatibility mode without expanding the action space or changing selector behavior:
 
 ```text
-004-RCA selector_static_action_handle_bottleneck_confirmed
--> CandidateOption / ParametricSelectorInput schemas
--> prediction / distribution / replay schemas
--> shadow 7-action adapter contract
--> expanded baseline and renderer adapter contracts
--> claim ceiling update
+005 contract parametric_action_interface_contract_ready
+-> old ACTION_HANDLES mapped to opaque CandidateOption IDs
+-> N=7 parametric replay traces generated
+-> old 003 replay decisions reproduced
+-> distribution deltas reported as zero in shadow mode
+-> semantic leak scan and renderer-post-selection boundary preserved
 ```
 
-Only contract architecture was authorized. No selector implementation, selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only N=7 shadow compatibility was authorized. No N>=20 expansion, selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-variable-N option list is explicitly supported.
-N=7 compatibility path is defined without rewriting 003 evidence.
-N>=20 future execution path is defined.
-selector-visible fields exclude semantic labels, rendered text, public action names, action family names, natural language descriptions, hidden future state, oracle effects, evaluator metrics, and baseline outputs.
-replay can reconstruct from full option distribution.
-baselines receive the same anonymous options as selector.
-renderer remains strictly post-selection.
+N=7 shadow adapter maps old static handles to opaque CandidateOption IDs.
+Old 003 replay decisions are reproduced from full option distribution.
+Old 003 evidence remains labeled as small-action-set bounded evidence.
+Selector-visible fields exclude semantic labels, rendered text, public action names, action family names, natural language descriptions, hidden future state, oracle effects, evaluator metrics, and baseline outputs.
+Renderer remains strictly post-selection.
+Baselines receive the same anonymous options in shadow contract form, without equivalence execution.
 No selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
-Next task is shadow implementation only if authorized by human review.
+N>=20 action-space advantage remains untested.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-parametric_action_interface_contract_ready
+parametric_shadow_n7_compatibility_pass
 ```
 
-This is not a real companion implementation or EGO signal. It means 005 defines a variable-N anonymous option interface contract and preservation rules, but no selector implementation or expanded execution has occurred.
+This is not expanded action-space evidence, a real companion implementation, or an EGO signal. It means the parametric CandidateOption interface can reproduce the old 003 replay path in N=7 shadow mode without selector-visible semantic labels or renderer control.
 
 Review status:
 
@@ -1043,17 +1042,31 @@ CMBC parametric action interface 005 evidence_preservation_003 = preserve_as_sma
 CMBC parametric action interface 005 claim_ceiling = parametric action interface contract readiness only; no implementation or execution evidence.
 CMBC parametric action interface 005 recommended_next_task = CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-SHADOW-IMPLEMENT.
 CMBC parametric action interface 005 recommended_next_task_authorized = false.
+CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-SHADOW-IMPLEMENT verdict = parametric_shadow_n7_compatibility_pass.
+CMBC parametric action interface 005 shadow execution_scope = n7_shadow_compatibility_only.
+CMBC parametric action interface 005 shadow candidate_option_count = 7.
+CMBC parametric action interface 005 shadow n_gte_20_executed = false.
+CMBC parametric action interface 005 shadow old_replay_match_rate = 1.0.
+CMBC parametric action interface 005 shadow parametric_replay_match_rate = 1.0.
+CMBC parametric action interface 005 shadow selected_action_mismatch_count = 0.
+CMBC parametric action interface 005 shadow max_probability_abs_delta = 0.0.
+CMBC parametric action interface 005 shadow max_distribution_kl = 0.0.
+CMBC parametric action interface 005 shadow semantic_leak_scan_passed = true.
+CMBC parametric action interface 005 shadow renderer_runs_after_selection = true.
+CMBC parametric action interface 005 shadow renderer_action_change_rate = 0.0.
+CMBC parametric action interface 005 shadow relabel_old_003_as_parametric_evidence = false.
+CMBC parametric action interface 005 shadow claim_after_shadow = parametric interface N=7 shadow compatibility evidence only; no expanded action-space evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT is ready, but it is contract readiness only. The current implementation remains non-parametric until a separately authorized shadow implementation proves the CandidateOption interface can preserve N=7 evidence and later support N>=20 without semantic leaks. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
+CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-SHADOW-IMPLEMENT passed N=7 shadow compatibility, but this is still not N>=20 or scalable action-space evidence. The current selector remains non-parametric for expanded candidate spaces until a separately authorized future task tests or implements variable-N selection. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT`.
+Human review after `CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-SHADOW-IMPLEMENT` before any N>=20 expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
