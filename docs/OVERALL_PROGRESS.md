@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T01:06:56-05:00
+Last updated: 2026-06-07T16:20:26-05:00
 
 ## Program Goal
 
@@ -983,17 +983,31 @@ CMBC free-input causal probe pack 003B every_probe_anchored_to_existing_human_tu
 CMBC free-input causal probe pack 003B synthetic_user_turn_counted_as_free_input = false.
 CMBC free-input causal probe pack 003B post_result_probe_selection = false.
 CMBC free-input causal probe pack 003B claim_after_pack = causal probe pack ready only; no re-execution evidence.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-REEXECUTE verdict = free_input_causal_probe_bounded_pass.
+CMBC free-input live-lab 003 reexecute input_source = frozen 20-turn human free-input transcript + stable outcome ledger + predeclared 003B probe pack.
+CMBC free-input live-lab 003 reexecute causal_probe_case_count = 10.
+CMBC free-input live-lab 003 reexecute causal_probe_pass_rate = 1.0.
+CMBC free-input live-lab 003 reexecute rag_visible_action_match_rate = 1.0.
+CMBC free-input live-lab 003 reexecute rag_causal_probe_match_rate = 0.0.
+CMBC free-input live-lab 003 reexecute strong_heuristic_causal_probe_match_rate = 0.0.
+CMBC free-input live-lab 003 reexecute expanded_contextual_heuristic_causal_probe_match_rate = 0.0.
+CMBC free-input live-lab 003 reexecute supporting_prior_deletion_effect = true.
+CMBC free-input live-lab 003 reexecute outcome_perturbation_effect = true.
+CMBC free-input live-lab 003 reexecute behavior_only_replay_match_rate = 1.0.
+CMBC free-input live-lab 003 reexecute renderer_action_change_rate = 0.0.
+CMBC free-input live-lab 003 reexecute stop_conditions = [].
+CMBC free-input live-lab 003 reexecute claim_after_reexecute = bounded free-input causal-probe evidence under frozen 20-turn transcript and predeclared 003B probe pack only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE was re-run with 20 user-supplied free-input turns and 20 feedback labels. That execution stopped cleanly with verdict = free_input_probe_extraction_failed because causal_probe_case_count = 0. CMBC-COMPANION-FREE-INPUT-CAUSAL-PROBE-PACK-003B now predeclares 10 causal intervention definitions covering all required probe types and anchors every probe to existing human free-input turns. This is contract/data readiness only, not re-execution evidence. Existing evidence remains BLIND-HUMAN-TRIAL-002 bounded causal-probe-enriched prompt-sheet evidence, not free-input causal-probe pass evidence. No EGO integration, real companion implementation, proactive messages, LLM action selection, selector patch, threshold change, RAG weakening, or 003 re-execution is authorized by the pack itself.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-REEXECUTE passed the existing 003 gates using the frozen 20-turn human free-input transcript, stable outcome coding ledger, and predeclared 003B causal probe pack. This preserves the earlier 003-EXECUTE failure as probe-extraction negative evidence and treats 003B as the predeclared probe repair, not as new free-input text. The claim ceiling is bounded free-input causal-probe evidence only. RAG visible-action equivalence remains reported at 1.0, so this does not prove visible companion superiority over RAG, live robustness, product readiness, EGO readiness, real proactive messaging safety, or LLM renderer production safety.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE`.
+Human review of `CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-REEXECUTE`.
 
 Review decision options:
 
@@ -1017,6 +1031,7 @@ accept_blind_rca_001_clean_diagnosis_no_next_implementation
 accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
 accept_free_input_live_lab_003_contract_no_next_implementation
 accept_free_input_causal_probe_pack_003b_no_next_implementation
+accept_free_input_live_lab_003_reexecute_bounded_pass_no_next_implementation
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
