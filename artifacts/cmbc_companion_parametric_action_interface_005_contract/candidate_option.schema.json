@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_observation_features": {
+      "additionalProperties": {
+        "type": [
+          "number",
+          "boolean",
+          "string"
+        ]
+      },
+      "description": "Non-semantic public observation features available to the selector.",
+      "type": "object"
+    },
+    "cost_risk_budget_features": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Non-semantic cost, risk, and budget features.",
+      "type": "object"
+    },
+    "option_id": {
+      "description": "Anonymous option handle. It must not encode a semantic action name.",
+      "pattern": "^(anon|option|candidate)_[A-Za-z0-9_-]+$",
+      "type": "string"
+    },
+    "predicted_effect_vector": {
+      "additionalProperties": false,
+      "properties": {
+        "interruption_risk": {
+          "type": "number"
+        },
+        "relationship_delta": {
+          "type": "number"
+        },
+        "safety_delta": {
+          "type": "number"
+        },
+        "support_delta": {
+          "type": "number"
+        },
+        "trust_delta": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "relationship_delta",
+        "interruption_risk",
+        "trust_delta",
+        "safety_delta",
+        "support_delta"
+      ],
+      "type": "object"
+    },
+    "prior_support_refs": {
+      "description": "Opaque source references to allowed prior or episode evidence.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "uncertainty": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        "evidence_quality": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        "sample_count": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "confidence",
+        "sample_count",
+        "evidence_quality"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "option_id",
+    "allowed_observation_features",
+    "predicted_effect_vector",
+    "uncertainty",
+    "prior_support_refs",
+    "cost_risk_budget_features"
+  ],
+  "title": "CandidateOption",
+  "type": "object"
+}

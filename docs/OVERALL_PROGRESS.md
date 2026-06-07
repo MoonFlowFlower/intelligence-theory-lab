@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T17:25:39-05:00
+Last updated: 2026-06-07T18:18:56-05:00
 
 ## Program Goal
 
@@ -8,37 +8,41 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Diagnose the CMBC action-space expansion blocker without changing runtime behavior:
+Define the CMBC parametric action interface contract without changing runtime behavior:
 
 ```text
-004-EXECUTE small_action_set_only
--> static ACTION_HANDLES dependency audit
--> selector / replay / renderer / baseline dependency separation
--> minimal parametric interface proposal
+004-RCA selector_static_action_handle_bottleneck_confirmed
+-> CandidateOption / ParametricSelectorInput schemas
+-> prediction / distribution / replay schemas
+-> shadow 7-action adapter contract
+-> expanded baseline and renderer adapter contracts
 -> claim ceiling update
 ```
 
-Only RCA / contract-analysis was authorized. No selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only contract architecture was authorized. No selector implementation, selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-004 source failure is frozen and cited.
-All static ACTION_HANDLES / fixed action-id dependencies are audited.
-Selector parametricity is separated from replay, renderer, and baseline dependencies.
+variable-N option list is explicitly supported.
+N=7 compatibility path is defined without rewriting 003 evidence.
+N>=20 future execution path is defined.
+selector-visible fields exclude semantic labels, rendered text, public action names, action family names, natural language descriptions, hidden future state, oracle effects, evaluator metrics, and baseline outputs.
+replay can reconstruct from full option distribution.
+baselines receive the same anonymous options as selector.
+renderer remains strictly post-selection.
 No selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
-Claim ceiling is reduced to current small 7-action anonymous action set.
-Next task is contract-only if authorized by human review.
+Next task is shadow implementation only if authorized by human review.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-selector_static_action_handle_bottleneck_confirmed
+parametric_action_interface_contract_ready
 ```
 
-This is not a real companion implementation or EGO signal. It means 004-RCA confirmed that the current frozen selector is non-parametric over candidate action space and only supports the existing 7 anonymous action handles.
+This is not a real companion implementation or EGO signal. It means 005 defines a variable-N anonymous option interface contract and preservation rules, but no selector implementation or expanded execution has occurred.
 
 Review status:
 
@@ -1023,17 +1027,33 @@ CMBC action-space expansion 004 RCA renderer_static_dependency_blocks_expansion 
 CMBC action-space expansion 004 RCA baseline_contract_blocks_expansion = false, but expanded baselines need the same anonymous option list.
 CMBC action-space expansion 004 RCA claim_after_rca = bounded free-input causal-probe evidence under current small 7-action anonymous action set only; expanded action-space advantage is not established.
 CMBC action-space expansion 004 RCA next_recommended_task = CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT.
+CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT verdict = parametric_action_interface_contract_ready.
+CMBC parametric action interface 005 authorized_scope = contract_only.
+CMBC parametric action interface 005 execution_authorized = false.
+CMBC parametric action interface 005 implementation_authorized = false.
+CMBC parametric action interface 005 selector_patch_authorized = false.
+CMBC parametric action interface 005 action_handles_patch_authorized = false.
+CMBC parametric action interface 005 variable-N CandidateOption schema defined = true.
+CMBC parametric action interface 005 N=7 shadow adapter path defined = true.
+CMBC parametric action interface 005 N>=20 future execution path defined = true.
+CMBC parametric action interface 005 replay from full option distribution defined = true.
+CMBC parametric action interface 005 expanded baseline shared-input contract defined = true.
+CMBC parametric action interface 005 renderer strictly post-selection = true.
+CMBC parametric action interface 005 evidence_preservation_003 = preserve_as_small_action_set_bounded_evidence.
+CMBC parametric action interface 005 claim_ceiling = parametric action interface contract readiness only; no implementation or execution evidence.
+CMBC parametric action interface 005 recommended_next_task = CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-SHADOW-IMPLEMENT.
+CMBC parametric action interface 005 recommended_next_task_authorized = false.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-RCA confirmed selector_static_action_handle_bottleneck_confirmed. The frozen selector exposes only the existing 7 ACTION_HANDLES, has no candidate_options parameter, and ignores arbitrary extra candidate options when constructing utilities/action_distribution. This preserves 003-REEXECUTE as bounded small-action-set causal-probe evidence but blocks any scalable companion behavior control claim. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
+CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT is ready, but it is contract readiness only. The current implementation remains non-parametric until a separately authorized shadow implementation proves the CandidateOption interface can preserve N=7 evidence and later support N>=20 without semantic leaks. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-RCA`.
+Human review of `CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT`.
 
 Review decision options:
 
@@ -1062,6 +1082,7 @@ accept_action_space_expansion_004_contract_no_next_implementation
 authorize_action_space_expansion_004_bounded_execution_contract_only
 authorize_action_space_expansion_004_rca_contract_only
 authorize_cmbc_companion_parametric_action_interface_005_contract_only
+authorize_cmbc_companion_parametric_action_interface_005_shadow_implement_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only

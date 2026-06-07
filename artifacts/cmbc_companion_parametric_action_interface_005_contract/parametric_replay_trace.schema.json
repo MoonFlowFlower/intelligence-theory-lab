@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "action_distribution": {
+      "$ref": "action_distribution_over_options.schema.json"
+    },
+    "candidate_options": {
+      "items": {
+        "$ref": "candidate_option.schema.json"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "observation": {
+      "type": "object"
+    },
+    "prediction_before_action": {
+      "$ref": "prediction_before_action_per_option.schema.json"
+    },
+    "replay_rule": {
+      "const": "reconstruct selected_action by max probability over full option distribution",
+      "type": "string"
+    },
+    "selected_option_id": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "trace_id",
+    "observation",
+    "candidate_options",
+    "prediction_before_action",
+    "action_distribution",
+    "selected_option_id",
+    "model_version",
+    "replay_rule"
+  ],
+  "title": "ParametricReplayTrace",
+  "type": "object"
+}
