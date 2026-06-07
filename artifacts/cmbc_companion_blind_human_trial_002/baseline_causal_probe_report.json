@@ -1,0 +1,115 @@
+{
+  "cases": [
+    {
+      "candidate_after_action": "act_2",
+      "candidate_before_action": "act_6",
+      "candidate_distribution_kl": 0.68693128926697,
+      "candidate_passed": true,
+      "candidate_probability_drop": 0.46048914178450356,
+      "probe_id": "supporting_prior_deletion",
+      "probe_type": "supporting_prior_deletion",
+      "rag_after_action": "act_6",
+      "rag_before_action": "act_6",
+      "rag_matched_causal_response": false,
+      "strong_after_action": "act_6",
+      "strong_before_action": "act_6",
+      "strong_heuristic_matched_causal_response": false,
+      "supporting_prior_id": "prior_act_6"
+    },
+    {
+      "candidate_after_action": "act_2",
+      "candidate_before_action": "act_6",
+      "candidate_distribution_kl": 4.297921062716807,
+      "candidate_passed": true,
+      "probe_id": "predicted_outcome_perturbation",
+      "probe_type": "predicted_outcome_perturbation",
+      "rag_action_changed": false,
+      "rag_matched_causal_response": false,
+      "strong_heuristic_action_changed": false,
+      "strong_heuristic_matched_causal_response": false
+    },
+    {
+      "candidate_alternate_history_action": "act_2",
+      "candidate_base_action": "act_6",
+      "candidate_passed": true,
+      "probe_id": "same_text_different_causal_history",
+      "probe_type": "same_text_different_causal_history",
+      "rag_alternate_history_action": "act_6",
+      "rag_base_action": "act_6",
+      "rag_matched_causal_response": false,
+      "strong_alternate_history_action": "act_6",
+      "strong_base_action": "act_6",
+      "strong_heuristic_matched_causal_response": false
+    },
+    {
+      "candidate_bad_feedback_action": "act_4",
+      "candidate_distribution_kl": 0.8468638362646865,
+      "candidate_good_feedback_action": "act_2",
+      "candidate_passed": true,
+      "probe_id": "same_history_different_feedback_outcome",
+      "probe_type": "same_history_different_feedback_outcome",
+      "rag_action_same_surface_text": "act_1",
+      "rag_matched_causal_response": false,
+      "strong_heuristic_action_same_surface_text": "act_1",
+      "strong_heuristic_matched_causal_response": false
+    },
+    {
+      "candidate_filtered_action": "act_2",
+      "candidate_passed": true,
+      "candidate_raw_action": "act_4",
+      "probe_id": "feedback_admission_single_contradiction",
+      "probe_type": "feedback_admission_single_contradiction",
+      "rag_has_admission_state": false,
+      "rag_matched_causal_response": false,
+      "single_bad_timing_no_family_flip": true,
+      "single_bad_timing_status": "pending_counterevidence",
+      "strong_heuristic_has_admission_state": false,
+      "strong_heuristic_matched_causal_response": false
+    },
+    {
+      "candidate_passed": true,
+      "probe_id": "feedback_admission_repeated_feedback",
+      "probe_type": "feedback_admission_repeated_feedback",
+      "rag_has_admission_state": false,
+      "rag_matched_causal_response": false,
+      "repeated_feedback_admits_context_counterevidence": true,
+      "repeated_feedback_status": "admitted_context_counterevidence",
+      "strong_heuristic_has_admission_state": false,
+      "strong_heuristic_matched_causal_response": false
+    },
+    {
+      "candidate_passed": true,
+      "global_scope_created": false,
+      "later_correction_context_narrows": true,
+      "probe_id": "later_correction_context_narrowing",
+      "probe_type": "later_correction_context_narrowing",
+      "rag_has_context_narrowing_state": false,
+      "rag_matched_causal_response": false,
+      "scope_after_correction": "feedback_focus_context",
+      "strong_heuristic_has_context_narrowing_state": false,
+      "strong_heuristic_matched_causal_response": false
+    }
+  ],
+  "forbidden_fields_used": [],
+  "rag_summary_memory": {
+    "allowed_fields": [
+      "surface_summary_tokens",
+      "recent_feedback_summary",
+      "public_observation_goal_weights"
+    ],
+    "causal_probe_match_rate": 0.0,
+    "equivalent": false,
+    "forbidden_fields_used": []
+  },
+  "strong_human_like_heuristic": {
+    "allowed_fields": [
+      "public_observation_goal_weights",
+      "surface_intent_flags",
+      "recent_feedback_labels",
+      "turn_index"
+    ],
+    "causal_probe_match_rate": 0.0,
+    "equivalent": false,
+    "forbidden_fields_used": []
+  }
+}

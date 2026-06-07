@@ -937,17 +937,33 @@ CMBC blind RCA 001 same_prompt_different_causal_history candidate_action_changed
 CMBC blind RCA 001 feedback_outcome_swap_same_text candidate_shift = true.
 CMBC blind RCA 001 secondary_findings = blind_prompt_sheet_too_surface_level, strong_heuristic_near_equivalence_due_to_weak_prompt_distribution.
 CMBC blind RCA 001 claim_after_rca = bounded offline human-trial generalization evidence only.
+CMBC-COMPANION-BLIND-HUMAN-TRIAL-002 verdict = cmbc_beats_rag_under_causal_probes_bounded.
+CMBC blind human trial 002 input_source = blind_prompt_sheet_with_predeclared_causal_probes_not_live_human.
+CMBC blind human trial 002 turn_count = 24.
+CMBC blind human trial 002 visible_decision_pass_rate = 1.0.
+CMBC blind human trial 002 causal_probe_pass_rate = 1.0.
+CMBC blind human trial 002 rag_visible_action_match_rate = 1.0.
+CMBC blind human trial 002 rag_causal_probe_match_rate = 0.0.
+CMBC blind human trial 002 strong_heuristic_causal_probe_match_rate = 0.0.
+CMBC blind human trial 002 supporting_prior_deletion_effect = true.
+CMBC blind human trial 002 perturbation_sensitivity = true.
+CMBC blind human trial 002 single_bad_timing_status = pending_counterevidence.
+CMBC blind human trial 002 repeated_feedback_status = admitted_context_counterevidence.
+CMBC blind human trial 002 later_correction_context_narrows = true.
+CMBC blind human trial 002 behavior-only replay match_rate = 1.0.
+CMBC blind human trial 002 renderer_action_change_rate = 0.0.
+CMBC blind human trial 002 claim_after_trial = bounded causal-probe-enriched blind/offline human-trial evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-BLIND-RCA-001 diagnosed BLIND-HUMAN-TRIAL-001. RAGSummaryMemoryBaseline matched 24/24 original prompt-sheet decisions because the prompt distribution was surface/context sufficient; StrongHumanLikeHeuristic was also near-equivalent at 0.9167. However, post-hoc causal probes separated CMBC from RAG: supporting-prior deletion, effect perturbation, same prompt with different causal history, feedback outcome swap, and feedback admission state all changed or exposed CMBC causal state while RAG did not respond. Verdict = rag_equivalent_on_behavior_but_not_causal_probes. Claim remains bounded offline human-trial generalization evidence only; this does not authorize blind/live human-trial robustness, companion readiness, EGO integration, proactive messages, or LLM action selection.
+CMBC-COMPANION-BLIND-HUMAN-TRIAL-002 moved the RCA probes into the predeclared blind/offline trial contract. Visible decisions still remain RAG-matchable at 1.0, so BLIND-HUMAN-TRIAL-001 negative evidence is retained. Under causal probes, CMBC separated from RAG and strong heuristic baselines: causal_probe_pass_rate = 1.0, rag_causal_probe_match_rate = 0.0, strong_heuristic_causal_probe_match_rate = 0.0, behavior-only replay = 1.0, renderer_action_change_rate = 0.0. Verdict = cmbc_beats_rag_under_causal_probes_bounded. Claim is only bounded causal-probe-enriched blind/offline human-trial evidence; this does not authorize live human-trial robustness, companion readiness, EGO integration, proactive messages, or LLM action selection.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-FEEDBACK-ADMISSION-000`.
+Human review of `CMBC-COMPANION-BLIND-HUMAN-TRIAL-002`.
 
 Review decision options:
 
@@ -968,9 +984,12 @@ accept_human_trial_redteam_002_bounded_feedback_admission_no_next_implementation
 accept_human_trial_generalization_001_bounded_offline_no_next_implementation
 accept_blind_human_trial_001_clean_downgrade_no_next_implementation
 accept_blind_rca_001_clean_diagnosis_no_next_implementation
+accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only
+authorize_cmbc_companion_live_offline_human_trial_contract_only
+authorize_cmbc_companion_blind_human_trial_redteam_003_contract_only
 authorize_cmbc_companion_demo_redteam_001_contract_only
 authorize_cmbc_companion_demo_generalization_001_contract_only
 authorize_cmbc_companion_longitudinal_redteam_004_contract_only
