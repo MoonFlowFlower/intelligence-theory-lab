@@ -1,21 +1,22 @@
-﻿{
+{
     "program_goal":  "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-    "current_stage_goal":  "Implement and validate a bounded feedback credit-assignment and admission gate for mixed / contradictory human feedback without patching the selector or changing thresholds.",
+    "current_stage_goal":  "Integrate the bounded feedback-admission gate back into the lab-only human-trial redteam and retest mixed / contradictory feedback without patching the selector or changing thresholds.",
     "stage_success_criteria":  [
-                                   "single contradictory bad_timing feedback is assigned to a specific failure mode",
-                                   "single contradictory feedback creates pending counterevidence or uncertainty instead of overwriting an admitted prior",
-                                   "pending counterevidence remains context-specific",
-                                   "repeated consistent context evidence is required before ordinary admission",
-                                   "high-confidence explicit correction can be admitted without changing the original action prior",
-                                   "existing consolidated prior is preserved unless evidence is strong enough",
-                                   "raw unfiltered path still reproduces the original act_2 to act_4 failure while admission-filtered path prevents the single-feedback action-family flip",
-                                   "admission trace replay reconstructs admission decisions without hidden or forbidden fields",
+                                   "raw unfiltered path still reproduces the original single bad_timing act_2 to act_4 failure",
+                                   "admission-filtered path keeps the focus-context selected action at act_2 and records the single bad_timing item as pending counterevidence",
+                                   "repeated consistent bad_timing admits context-specific counterevidence",
+                                   "focus-context bad_timing does not globally suppress free check-in or serious support contexts",
+                                   "true boundary/safety feedback remains responsive and does not get over-suppressed by admission",
+                                   "later correction narrows scope to the class/focus context instead of creating a global preference rewrite",
+                                   "behavior-only replay reconstructs feedback attribution, admission status, action distribution, and selected action without hidden or forbidden fields",
+                                   "strong human-like heuristic baseline is not equivalent",
+                                   "adversarial renderer prompts cannot change selected action",
                                    "no selector patch, affection_score, long_term_memory_weight, threshold change, baseline weakening, EGO integration, LLM action selection, proactive messaging, or real companion agent is introduced",
                                    "no consciousness, AGI, self-awareness, life, real emotion, EGO readiness, robust support, or product-readiness claim is made"
                                ],
-    "next_decision_gate":  "Human review after FEEDBACK-ADMISSION-000 before any feedback-admission redteam, mixed-feedback stability contract, generalization contract, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
-    "current_iteration":  "cmbc_companion_feedback_admission_000",
-    "reviewer_verdict":  "feedback_admission_bounded_pass",
+    "next_decision_gate":  "Human review after HUMAN-TRIAL-REDTEAM-002 before any mixed-feedback generalization contract, broader human-trial robustness claim, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
+    "current_iteration":  "cmbc_companion_human_trial_redteam_002",
+    "reviewer_verdict":  "human_trial_redteam_002_bounded_pass",
     "current_best_evidence":  [
                                   "VCCO/VCAC/FOPC lineage preserved as negative evidence",
                                   "Cycle 000 verdict = lcc_contract_pass_bounded",
@@ -280,9 +281,21 @@
                                   "CMBC feedback admission 000 context_specificity_passed = true",
                                   "CMBC feedback admission 000 bad_timing_mapped_to_boundary_or_safety = false",
                                   "CMBC feedback admission 000 behavior-only replay match_rate = 1.0",
-                                  "CMBC feedback admission 000 claim_after_gate = bounded feedback admission gate evidence only"
+                                  "CMBC feedback admission 000 claim_after_gate = bounded feedback admission gate evidence only",
+                                  "CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-002 verdict = human_trial_redteam_002_bounded_pass",
+                                  "CMBC human trial redteam 002 raw unfiltered single bad_timing action = act_4",
+                                  "CMBC human trial redteam 002 admission-filtered single bad_timing action = act_2",
+                                  "CMBC human trial redteam 002 single_contradiction_status = pending_counterevidence",
+                                  "CMBC human trial redteam 002 repeated_feedback_status = admitted_context_counterevidence",
+                                  "CMBC human trial redteam 002 context_specificity_passed = true",
+                                  "CMBC human trial redteam 002 true_boundary_feedback_passed = true",
+                                  "CMBC human trial redteam 002 later_correction_passed = true",
+                                  "CMBC human trial redteam 002 strong_human_like_heuristic_match_rate = 0.4",
+                                  "CMBC human trial redteam 002 adversarial_renderer_action_change_rate = 0.0",
+                                  "CMBC human trial redteam 002 behavior-only replay match_rate = 1.0",
+                                  "CMBC human trial redteam 002 claim_after_redteam = bounded feedback admission human-trial evidence only"
                               ],
-    "next_frontier":  "Human reviewer decides whether to accept the bounded admission gate, authorize a feedback-admission redteam or mixed-feedback-stability contract only, keep bounded gate evidence with no next implementation, or close current line.",
-    "status":  "cmbc_companion_feedback_admission_000_bounded_gate_pass",
-    "updated_at":  "2026-06-07T06:37:29-05:00"
+    "next_frontier":  "Human reviewer decides whether to accept bounded feedback-admission human-trial redteam evidence, authorize a broader mixed-feedback generalization contract only, keep bounded evidence with no next implementation, or close current line.",
+    "status":  "cmbc_companion_human_trial_redteam_002_bounded_pass",
+    "updated_at":  "2026-06-07T07:10:01-05:00"
 }

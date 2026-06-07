@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_human_trial_v0_lab_only_bounded_pass
+lab_status: cmbc_companion_human_trial_redteam_002_bounded_pass
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -244,6 +244,22 @@ surviving_theory_families:
       affection_score_added: false
       long_term_memory_weight_added: false
     latest_companion_claim_after_feedback_admission_000: bounded_feedback_admission_gate_evidence_only
+    latest_companion_human_trial_redteam_002: artifacts/cmbc_companion_human_trial_redteam_002/cmbc_companion_human_trial_redteam_002_result.json
+    latest_companion_human_trial_redteam_002_verdict: human_trial_redteam_002_bounded_pass
+    latest_companion_human_trial_redteam_002_scope: bounded_feedback_admission_human_trial_redteam_only
+    latest_companion_human_trial_redteam_002_key_metrics:
+      single_contradiction_raw_unfiltered_action: act_4
+      single_contradiction_admission_filtered_action: act_2
+      single_contradiction_status: pending_counterevidence
+      repeated_feedback_status: admitted_context_counterevidence
+      context_specificity_passed: true
+      true_boundary_feedback_passed: true
+      later_correction_passed: true
+      strong_human_like_heuristic_match_rate: 0.4
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_human_trial_redteam_002: bounded_feedback_admission_human_trial_evidence_only
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false

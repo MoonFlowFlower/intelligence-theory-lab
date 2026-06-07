@@ -887,12 +887,24 @@ CMBC feedback admission 000 context_specificity_passed = true.
 CMBC feedback admission 000 bad_timing_mapped_to_boundary_or_safety = false.
 CMBC feedback admission 000 behavior-only replay match_rate = 1.0.
 CMBC feedback admission 000 claim_after_gate = bounded feedback admission gate evidence only.
+CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-002 verdict = human_trial_redteam_002_bounded_pass.
+CMBC human trial redteam 002 raw unfiltered single bad_timing action = act_4.
+CMBC human trial redteam 002 admission-filtered single bad_timing action = act_2.
+CMBC human trial redteam 002 single_contradiction_status = pending_counterevidence.
+CMBC human trial redteam 002 repeated_feedback_status = admitted_context_counterevidence.
+CMBC human trial redteam 002 context_specificity_passed = true.
+CMBC human trial redteam 002 true_boundary_feedback_passed = true.
+CMBC human trial redteam 002 later_correction_passed = true.
+CMBC human trial redteam 002 strong_human_like_heuristic_match_rate = 0.4.
+CMBC human trial redteam 002 adversarial_renderer_action_change_rate = 0.0.
+CMBC human trial redteam 002 behavior-only replay match_rate = 1.0.
+CMBC human trial redteam 002 claim_after_redteam = bounded feedback admission human-trial evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-FEEDBACK-ADMISSION-000 added a bounded admission gate for the specific mixed-feedback failure: single bad_timing is classified as timing_interruption, stored as pending context-specific counterevidence, increases uncertainty, and does not overwrite prior_act_2. Repeated or high-confidence evidence can be admitted as context counterevidence while preserving the original action prior. This is bounded gate evidence only, not open-ended mixed-feedback robustness. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
+CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-002 integrated the feedback-admission gate back into the offline human-trial redteam. It preserved the old raw failure as a control (single bad_timing raw path act_2 -> act_4), while the admission-filtered path kept act_2 and stored the feedback as pending_counterevidence. Repeated consistent bad_timing admitted context counterevidence, true boundary feedback remained responsive, later correction stayed context-scoped, renderer action change rate stayed 0.0, and behavior-only replay stayed 1.0. This is bounded feedback-admission human-trial evidence only, not open-ended mixed-feedback robustness. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
@@ -914,6 +926,7 @@ accept_lab_only_human_trial_v0_evidence_no_next_implementation
 accept_human_trial_redteam_001_clean_downgrade_no_next_implementation
 accept_mixed_feedback_rca_000_clean_diagnosis_no_next_implementation
 accept_feedback_admission_000_bounded_gate_no_next_implementation
+accept_human_trial_redteam_002_bounded_feedback_admission_no_next_implementation
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only
