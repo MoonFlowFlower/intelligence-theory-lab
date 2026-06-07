@@ -926,12 +926,23 @@ CMBC blind human trial 001 behavior-only replay match_rate = 1.0.
 CMBC blind human trial 001 renderer_action_change_rate = 0.0.
 CMBC blind human trial 001 stop_condition = rag_summary_memory_equivalent.
 CMBC blind human trial 001 claim_after_trial = bounded offline human-trial generalization evidence only.
+CMBC-COMPANION-BLIND-RCA-001 verdict = rag_equivalent_on_behavior_but_not_causal_probes.
+CMBC blind RCA 001 rag_match_rate_on_original_turns = 1.0.
+CMBC blind RCA 001 strong_heuristic_match_rate_on_original_turns = 0.9166666666666666.
+CMBC blind RCA 001 candidate_rag_probe_match_rate = 0.0.
+CMBC blind RCA 001 rag_remains_equivalent_under_causal_probes = false.
+CMBC blind RCA 001 supporting_prior_deletion candidate_action_changed = true, rag_action_changed = false.
+CMBC blind RCA 001 effect_perturbation candidate_distribution_changed = true, rag_action_changed = false.
+CMBC blind RCA 001 same_prompt_different_causal_history candidate_action_changed = true, rag_action_changed = false.
+CMBC blind RCA 001 feedback_outcome_swap_same_text candidate_shift = true.
+CMBC blind RCA 001 secondary_findings = blind_prompt_sheet_too_surface_level, strong_heuristic_near_equivalence_due_to_weak_prompt_distribution.
+CMBC blind RCA 001 claim_after_rca = bounded offline human-trial generalization evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-BLIND-HUMAN-TRIAL-001 froze selector/admission/consolidation/renderer hashes before generating a local blind prompt sheet, then ran 24 offline prompt-sheet turns. Core replay/renderer/deletion gates stayed intact, and feedback still changed later action distribution. However, this was not live human input, and RAGSummaryMemoryBaseline reproduced 24/24 candidate decisions with match_rate = 1.0. The correct verdict is heuristic_or_rag_equivalent, with stop_condition = rag_summary_memory_equivalent. Claim remains bounded offline human-trial generalization evidence only; do not upgrade to blind/live human-trial robustness or companion readiness. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
+CMBC-COMPANION-BLIND-RCA-001 diagnosed BLIND-HUMAN-TRIAL-001. RAGSummaryMemoryBaseline matched 24/24 original prompt-sheet decisions because the prompt distribution was surface/context sufficient; StrongHumanLikeHeuristic was also near-equivalent at 0.9167. However, post-hoc causal probes separated CMBC from RAG: supporting-prior deletion, effect perturbation, same prompt with different causal history, feedback outcome swap, and feedback admission state all changed or exposed CMBC causal state while RAG did not respond. Verdict = rag_equivalent_on_behavior_but_not_causal_probes. Claim remains bounded offline human-trial generalization evidence only; this does not authorize blind/live human-trial robustness, companion readiness, EGO integration, proactive messages, or LLM action selection.
 ```
 
 ## Next Frontier
@@ -956,6 +967,7 @@ accept_feedback_admission_000_bounded_gate_no_next_implementation
 accept_human_trial_redteam_002_bounded_feedback_admission_no_next_implementation
 accept_human_trial_generalization_001_bounded_offline_no_next_implementation
 accept_blind_human_trial_001_clean_downgrade_no_next_implementation
+accept_blind_rca_001_clean_diagnosis_no_next_implementation
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only

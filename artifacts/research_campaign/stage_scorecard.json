@@ -1,23 +1,18 @@
 {
     "program_goal":  "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-    "current_stage_goal":  "Run a frozen lab-only offline blind prompt-sheet trial and stop cleanly if strong RAG or heuristic baselines reproduce the candidate.",
+    "current_stage_goal":  "Diagnose why BLIND-HUMAN-TRIAL-001 failed with rag_summary_memory_equivalent, without patching selector logic or weakening the RAG baseline.",
     "stage_success_criteria":  [
-                                   "selector, admission, consolidation, and renderer code hashes are frozen before prompt-sheet generation",
-                                   "20-40 local offline prompt-sheet turns are collected after freeze",
-                                   "blind prompt-sheet input source is not misreported as live human input",
-                                   "paraphrase/context collision gates are evaluated without exposing fixture labels to candidate selector logic",
-                                   "mixed feedback does not produce a single bad_timing action-family flip",
-                                   "feedback changes later action distribution",
-                                   "supporting prior deletion regresses behavior",
-                                   "adversarial renderer prompts cannot change selected action",
-                                   "behavior-only replay reconstructs decisions without hidden or forbidden fields",
-                                   "strong human-like heuristic and RAG summary memory baselines are evaluated and any equivalence is recorded as a stop condition",
-                                   "no selector patch, affection_score, long_term_memory_weight, threshold change, baseline weakening, EGO integration, LLM action selection, proactive messaging, or real companion agent is introduced",
+                                   "BLIND-HUMAN-TRIAL-001 failure artifacts are frozen",
+                                   "all 24 turns compare CMBC action, RAG action, strong heuristic action, supporting prior, action distribution, feedback, and admission status",
+                                   "each matched decision is classified by whether surface context, memory summary, causal prior, deletion, perturbation, or feedback admission was required or missing",
+                                   "post-hoc causal probes test supporting-prior deletion, RAG summary deletion, predicted-outcome perturbation, feedback outcome swap, same prompt with different causal history, and feedback admission state",
+                                   "RCA determines whether RAG remains equivalent under causal probes",
+                                   "no selector patch, affection_score, long_term_memory_weight, threshold change, RAG baseline weakening, EGO integration, LLM action selection, proactive messaging, or real companion agent is introduced",
                                    "no consciousness, AGI, self-awareness, life, real emotion, EGO readiness, robust support, or product-readiness claim is made"
                                ],
-    "next_decision_gate":  "Human review after BLIND-HUMAN-TRIAL-001 before any live human-trial contract, stronger RAG/challenger redesign, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
-    "current_iteration":  "cmbc_companion_blind_human_trial_001",
-    "reviewer_verdict":  "heuristic_or_rag_equivalent",
+    "next_decision_gate":  "Human review after BLIND-RCA-001 before any causal-probe-enriched blind contract, live human-trial contract, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
+    "current_iteration":  "cmbc_companion_blind_rca_001",
+    "reviewer_verdict":  "rag_equivalent_on_behavior_but_not_causal_probes",
     "current_best_evidence":  [
                                   "VCCO/VCAC/FOPC lineage preserved as negative evidence",
                                   "Cycle 000 verdict = lcc_contract_pass_bounded",
@@ -321,9 +316,20 @@
                                   "CMBC blind human trial 001 behavior-only replay match_rate = 1.0",
                                   "CMBC blind human trial 001 renderer_action_change_rate = 0.0",
                                   "CMBC blind human trial 001 stop_condition = rag_summary_memory_equivalent",
-                                  "CMBC blind human trial 001 claim_after_trial = bounded offline human-trial generalization evidence only"
+                                  "CMBC blind human trial 001 claim_after_trial = bounded offline human-trial generalization evidence only",
+                                  "CMBC-COMPANION-BLIND-RCA-001 verdict = rag_equivalent_on_behavior_but_not_causal_probes",
+                                  "CMBC blind RCA 001 rag_match_rate_on_original_turns = 1.0",
+                                  "CMBC blind RCA 001 strong_heuristic_match_rate_on_original_turns = 0.9166666666666666",
+                                  "CMBC blind RCA 001 candidate_rag_probe_match_rate = 0.0",
+                                  "CMBC blind RCA 001 rag_remains_equivalent_under_causal_probes = false",
+                                  "CMBC blind RCA 001 supporting_prior_deletion candidate_action_changed = true and rag_action_changed = false",
+                                  "CMBC blind RCA 001 effect_perturbation candidate_distribution_changed = true and rag_action_changed = false",
+                                  "CMBC blind RCA 001 same_prompt_different_causal_history candidate_action_changed = true and rag_action_changed = false",
+                                  "CMBC blind RCA 001 feedback_outcome_swap_same_text candidate_shift = true",
+                                  "CMBC blind RCA 001 secondary_findings = blind_prompt_sheet_too_surface_level, strong_heuristic_near_equivalence_due_to_weak_prompt_distribution",
+                                  "CMBC blind RCA 001 claim_after_rca = bounded offline human-trial generalization evidence only"
                               ],
-    "next_frontier":  "Human reviewer decides whether to accept the blind prompt-sheet clean downgrade, authorize an RCA for RAG-summary equivalence, authorize a true live-human input contract only, keep bounded evidence with no next implementation, or close current line.",
-    "status":  "cmbc_companion_blind_human_trial_001_clean_downgrade",
-    "updated_at":  "2026-06-07T10:11:51-05:00"
+    "next_frontier":  "Human reviewer decides whether to accept the RCA, authorize a causal-probe-enriched blind contract only, keep bounded evidence with no next implementation, or close current line.",
+    "status":  "cmbc_companion_blind_rca_001_clean_diagnosis",
+    "updated_at":  "2026-06-07T10:41:13-05:00"
 }

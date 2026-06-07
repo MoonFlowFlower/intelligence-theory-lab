@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_blind_human_trial_001_heuristic_or_rag_equivalent
+lab_status: cmbc_companion_blind_rca_001_rag_behavior_equivalent_not_causal_probe_equivalent
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -301,6 +301,26 @@ surviving_theory_families:
       - strong_human_like_heuristic_near_equivalence_risk
       - rag_summary_memory_near_or_full_equivalence_risk
     latest_companion_claim_after_blind_human_trial_001: bounded_offline_human_trial_generalization_evidence_only
+    latest_companion_blind_rca_001: artifacts/cmbc_companion_blind_rca_001/rag_equivalence_rca_result.json
+    latest_companion_blind_rca_001_verdict: rag_equivalent_on_behavior_but_not_causal_probes
+    latest_companion_blind_rca_001_scope: rca_only_no_runtime_changes
+    latest_companion_blind_rca_001_secondary_findings:
+      - blind_prompt_sheet_too_surface_level
+      - strong_heuristic_near_equivalence_due_to_weak_prompt_distribution
+    latest_companion_blind_rca_001_key_metrics:
+      rag_match_rate_on_original_turns: 1.0
+      strong_heuristic_match_rate_on_original_turns: 0.9166666666666666
+      candidate_rag_probe_match_rate: 0.0
+      rag_remains_equivalent_under_causal_probes: false
+      supporting_prior_deletion_candidate_action_changed: true
+      supporting_prior_deletion_rag_action_changed: false
+      effect_perturbation_candidate_distribution_changed: true
+      effect_perturbation_rag_action_changed: false
+      same_prompt_different_causal_history_candidate_action_changed: true
+      same_prompt_different_causal_history_rag_action_changed: false
+      feedback_outcome_swap_same_text_candidate_shift: true
+      rag_has_feedback_admission_state: false
+    latest_companion_claim_after_blind_rca_001: bounded_offline_human_trial_generalization_evidence_only
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false

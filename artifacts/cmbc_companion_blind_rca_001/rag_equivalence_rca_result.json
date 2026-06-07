@@ -1,0 +1,37 @@
+{
+  "authorization_boundary": {
+    "ego_migration": "no_go",
+    "llm_action_selection": false,
+    "proactive_messages": "not_authorized",
+    "rag_baseline_weakened": false,
+    "real_companion_implementation": "not_authorized",
+    "selector_patched": false,
+    "thresholds_changed": false
+  },
+  "candidate_rag_probe_match_rate": 0.0,
+  "claim_after_rca": "bounded offline human-trial generalization evidence only",
+  "not_authorized": [
+    "EGO migration",
+    "real companion implementation",
+    "proactive messages",
+    "LLM action selection",
+    "selector patch",
+    "RAG baseline weakening",
+    "threshold change",
+    "open-ended robustness claim"
+  ],
+  "rag_match_rate": 1.0,
+  "rag_remains_equivalent_under_causal_probes": false,
+  "secondary_findings": [
+    "blind_prompt_sheet_too_surface_level",
+    "strong_heuristic_near_equivalence_due_to_weak_prompt_distribution"
+  ],
+  "source_failure": {
+    "artifact_dir": "artifacts\\cmbc_companion_blind_human_trial_001",
+    "stop_condition": "rag_summary_memory_equivalent",
+    "suite_id": "CMBC-COMPANION-BLIND-HUMAN-TRIAL-001",
+    "verdict": "heuristic_or_rag_equivalent"
+  },
+  "strong_heuristic_match_rate": 0.9166666666666666,
+  "verdict": "rag_equivalent_on_behavior_but_not_causal_probes"
+}
