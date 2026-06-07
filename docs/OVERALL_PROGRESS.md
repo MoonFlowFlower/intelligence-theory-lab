@@ -869,17 +869,35 @@ CMBC mixed feedback RCA feedback_admission_gate_present = false.
 CMBC mixed feedback RCA uncertainty_state_present = false.
 CMBC mixed feedback RCA context_specificity_missing = true.
 CMBC mixed feedback RCA claim_after_rca = scripted lab harness evidence only.
+CMBC-COMPANION-FEEDBACK-ADMISSION-000 verdict = feedback_admission_bounded_pass.
+CMBC feedback admission 000 single_contradiction_status = pending_counterevidence.
+CMBC feedback admission 000 assigned_failure_mode = timing_interruption.
+CMBC feedback admission 000 context_scope = feedback_focus_context.
+CMBC feedback admission 000 uncertainty_delta = 0.18.
+CMBC feedback admission 000 raw_unfiltered_action = act_4.
+CMBC feedback admission 000 admission_filtered_action = act_2.
+CMBC feedback admission 000 prior_source_count_before_gate = 10.
+CMBC feedback admission 000 prior_source_count_after_gate = 10.
+CMBC feedback admission 000 single_feedback_prevented_action_family_flip = true.
+CMBC feedback admission 000 single_feedback_target_probability_drop = 0.0.
+CMBC feedback admission 000 repeated_feedback_status = admitted_context_counterevidence.
+CMBC feedback admission 000 repeated_feedback_admitted_evidence_count = 3.
+CMBC feedback admission 000 high_confidence_feedback_status = admitted_context_counterevidence.
+CMBC feedback admission 000 context_specificity_passed = true.
+CMBC feedback admission 000 bad_timing_mapped_to_boundary_or_safety = false.
+CMBC feedback admission 000 behavior-only replay match_rate = 1.0.
+CMBC feedback admission 000 claim_after_gate = bounded feedback admission gate evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-MIXED-FEEDBACK-RCA-000 diagnosed the HUMAN-TRIAL-REDTEAM-001 failure as negative_feedback_credit_assignment_too_coarse with missing feedback admission, missing uncertainty-before-policy-flip, and missing context specificity. A single bad_timing outcome is admitted into an action-level act_2 prior; act_2 utility drops while act_4 utility does not change, so set_boundary rises by relative distribution reweighting. The current claim remains scripted lab harness evidence only. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
+CMBC-COMPANION-FEEDBACK-ADMISSION-000 added a bounded admission gate for the specific mixed-feedback failure: single bad_timing is classified as timing_interruption, stored as pending context-specific counterevidence, increases uncertainty, and does not overwrite prior_act_2. Repeated or high-confidence evidence can be admitted as context counterevidence while preserving the original action prior. This is bounded gate evidence only, not open-ended mixed-feedback robustness. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-MIXED-FEEDBACK-RCA-000`.
+Human review of `CMBC-COMPANION-FEEDBACK-ADMISSION-000`.
 
 Review decision options:
 
@@ -895,8 +913,9 @@ accept_lab_only_demo_000_evidence_no_next_implementation
 accept_lab_only_human_trial_v0_evidence_no_next_implementation
 accept_human_trial_redteam_001_clean_downgrade_no_next_implementation
 accept_mixed_feedback_rca_000_clean_diagnosis_no_next_implementation
+accept_feedback_admission_000_bounded_gate_no_next_implementation
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
-authorize_cmbc_companion_feedback_admission_contract_only
+authorize_cmbc_companion_feedback_admission_redteam_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only
 authorize_cmbc_companion_demo_redteam_001_contract_only
 authorize_cmbc_companion_demo_generalization_001_contract_only
