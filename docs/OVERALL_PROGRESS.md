@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T19:56:59-05:00
+Last updated: 2026-06-06T20:54:09-05:00
 
 ## Program Goal
 
@@ -8,15 +8,14 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Close out the LCC cross-theory tournament collapse:
+Verify the minimal CMBC companion growth loop:
 
 ```text
-accept collapse verdict -> close LCC independent theory claim -> preserve LCC gates
-as operational evidence discipline -> define causal model-based control as strongest
-surviving family under current tournament -> authorize no implementation
+experience -> learned causal model update -> future action distribution change
+-> deletion / perturbation / renderer isolation / behavior replay proof
 ```
 
-Only closeout was authorized. No Cycle 011, general LCC agent, autonomous theory search, causal model-based control implementation, VCCO/VCAC/FOPC repair, EGO migration, or theory-support claim is authorized.
+Only bounded verification was authorized. No real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -65,6 +64,52 @@ docs/CAUSAL_MODEL_BASED_CONTROL_MINIMAL_PRINCIPLE.md
 artifacts/theory_closeout/lcc_collapse_decision.json
 artifacts/theory_closeout/surviving_principle_ledger.json
 ```
+
+## Latest Companion Verification
+
+```text
+task = CMBC-COMPANION-VERIFY-000
+verdict = cmbc_companion_growth_loop_bounded_pass
+claim_boundary = bounded companion growth-loop verification only
+stop_conditions = []
+```
+
+Key metrics:
+
+```text
+same_context_history_divergence_rate = 1.0
+relevant_deletion_regression = 0.728864
+irrelevant_deletion_non_regression = 0.996145
+relationship_outcome_perturbation_sensitivity = 1.0
+interruption_risk_perturbation_sensitivity = 1.0
+label_permutation_invariance = 1.0
+effect_swap_sensitivity = 1.0
+renderer_action_invariance = 1.0
+behavior_only_replay_match = 1.0
+strong_heuristic_equivalence = false
+rag_memory_equivalence = false
+active_inference_empowerment_equivalence = false
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_verify_000/VERIFY_STATUS.md
+artifacts/cmbc_companion_verify_000/metrics.json
+artifacts/cmbc_companion_verify_000/traces.jsonl
+artifacts/cmbc_companion_verify_000/behavior_only_replay.json
+artifacts/cmbc_companion_verify_000/cmbc_companion_verify_result.json
+```
+
+Maximum claim:
+
+```text
+CMBC Companion Prototype v0 shows bounded evidence that prior interaction
+experience can update a learned causal model and change future companion action
+distributions under deletion, perturbation, renderer-isolation, and behavior-replay gates.
+```
+
+This does not prove consciousness, subjective experience, true self-awareness, AGI, life, real emotion, real love, EGO readiness, or robust universal support.
 
 ## Validated Evidence
 
@@ -207,23 +252,33 @@ Shared redteam gates passed for all non-oracle competitors.
 Independent scoring max_abs_diff = 0.0.
 Statistical replication verdict = replication_stable.
 Current maximum claim = LCC_v0 is better treated as an operational evidence discipline or special case of causal model-based control under this tournament contract.
+CMBC-COMPANION-VERIFY-000 verdict = cmbc_companion_growth_loop_bounded_pass.
+CMBC companion same_context_history_divergence_rate = 1.0.
+CMBC companion relevant_deletion_regression = 0.728864.
+CMBC companion irrelevant_deletion_non_regression = 0.996145.
+CMBC companion relationship_outcome_perturbation_sensitivity = 1.0.
+CMBC companion interruption_risk_perturbation_sensitivity = 1.0.
+CMBC companion renderer_action_invariance = 1.0.
+CMBC companion behavior_only_replay_match = 1.0.
+CMBC companion challenger equivalence gates = false for strong heuristic, RAG memory, and active-inference/empowerment proxy.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-collapse contract. Cycle 011, general LCC agent, autonomous theory search, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-verification contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of the LCC collapse closeout.
+Human review of `CMBC-COMPANION-VERIFY-000`.
 
 Review decision options:
 
 ```text
 revise_lcc_as_operational_redteam_discipline
 authorize_causal_model_based_control_contract_only
+authorize_cmbc_companion_next_verification_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
 ```
