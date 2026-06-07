@@ -27,6 +27,10 @@ CLAIM_UNCODED_INPUT = (
     "bounded free-input live-lab execution attempted; no causal-probe evidence "
     "because feedback/outcome coding was unavailable or unstable"
 )
+CLAIM_CODED_NO_PROBES = (
+    "bounded free-input live-lab execution attempted with outcome-coded transcript; "
+    "no free-input causal-probe evidence because stable causal probes could not be formed"
+)
 
 UNSPECIFIED_OUTCOME_VALUES = {
     None,
@@ -121,8 +125,10 @@ def base_result(input_rows: list[dict[str, Any]], input_path: str | Path | None)
         failure_reason = "outcome_coding_unstable"
         claim_after_execution = CLAIM_UNCODED_INPUT
     else:
+        verdict = "free_input_probe_extraction_failed"
+        stop_conditions.append("free_input_cannot_form_stable_causal_probes")
         failure_reason = "free_input_cannot_form_stable_causal_probes"
-        claim_after_execution = "inconclusive free-input execution requires causal-probe scoring"
+        claim_after_execution = CLAIM_CODED_NO_PROBES
     return {
         "suite_id": "CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE",
         "execution_scope": "bounded_execution_only",

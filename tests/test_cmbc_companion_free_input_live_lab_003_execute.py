@@ -143,3 +143,33 @@ def test_free_input_live_lab_003_execute_treats_pending_feedback_as_uncoded(tmp_
     assert result["outcome_coding"]["outcome_coding_ledger_count"] == 0
     assert result["outcome_coding"]["uncoded_turn_count"] == 20
     assert result["outcome_coding"]["outcome_coding_stable"] is False
+
+
+def test_free_input_live_lab_003_execute_stops_when_coded_input_has_no_stable_probes(tmp_path):
+    input_path = tmp_path / "coded_input.jsonl"
+    with input_path.open("w", encoding="utf-8") as fh:
+        for idx in range(20):
+            row = {
+                "turn_id": f"free_{idx + 1:03d}",
+                "free_input_text": f"user free input {idx + 1}",
+                "input_source": "free_input_human_operator",
+                "feedback_label": "helpful",
+                "context_hint": "free_time",
+            }
+            fh.write(json.dumps(row, sort_keys=True) + "\n")
+
+    result = run_free_input_live_lab_003(tmp_path, input_path)
+
+    assert result["verdict"] == "free_input_probe_extraction_failed"
+    assert result["stop_conditions"] == ["free_input_cannot_form_stable_causal_probes"]
+    assert result["free_input_capture"]["free_input_turn_count"] == 20
+    assert result["outcome_coding"]["outcome_coding_ledger_count"] == 20
+    assert result["outcome_coding"]["uncoded_turn_count"] == 0
+    assert result["outcome_coding"]["outcome_coding_stable"] is True
+    assert result["causal_probe_extraction"]["causal_probe_case_count"] == 0
+    assert result["causal_probe_extraction"]["stable_causal_probes_formed"] is False
+    assert result["causal_probe_extraction"]["failure_reason"] == "free_input_cannot_form_stable_causal_probes"
+    assert result["claim_after_execution"] == (
+        "bounded free-input live-lab execution attempted with outcome-coded transcript; "
+        "no free-input causal-probe evidence because stable causal probes could not be formed"
+    )

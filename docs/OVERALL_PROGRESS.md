@@ -965,21 +965,21 @@ CMBC free-input live-lab 003 max expanded_contextual_heuristic_causal_probe_matc
 CMBC free-input live-lab 003 required behavior-only replay match_rate = 1.0.
 CMBC free-input live-lab 003 required renderer_action_change_rate = 0.0.
 CMBC free-input live-lab 003 claim_ceiling = bounded free-input offline/live-lab contract readiness only; no execution evidence.
-CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE verdict = outcome_coding_unstable.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE verdict = free_input_probe_extraction_failed.
 CMBC free-input live-lab 003 execute input_source = free_input_human_operator.
 CMBC free-input live-lab 003 execute free_input_turn_count = 20.
 CMBC free-input live-lab 003 execute causal_probe_case_count = 0.
-CMBC free-input live-lab 003 execute outcome_coding_ledger_count = 0.
-CMBC free-input live-lab 003 execute outcome_coding_stable = false.
-CMBC free-input live-lab 003 execute stop_condition = outcome_coding_unstable.
+CMBC free-input live-lab 003 execute outcome_coding_ledger_count = 20.
+CMBC free-input live-lab 003 execute outcome_coding_stable = true.
+CMBC free-input live-lab 003 execute stop_condition = free_input_cannot_form_stable_causal_probes.
 CMBC free-input live-lab 003 execute minimum_gates_satisfied = false.
-CMBC free-input live-lab 003 execute claim_after_execution = bounded free-input live-lab execution attempted; no causal-probe evidence because feedback/outcome coding was unavailable or unstable.
+CMBC free-input live-lab 003 execute claim_after_execution = bounded free-input live-lab execution attempted with outcome-coded transcript; no free-input causal-probe evidence because stable causal probes could not be formed.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE was re-run with 20 user-supplied free-input turns. The run produced all required execution artifacts and stopped cleanly with verdict = outcome_coding_unstable and stop_condition = outcome_coding_unstable. free_input_turn_count = 20, but outcome_coding_ledger_count = 0 and causal_probe_case_count = 0, so no free-input causal-probe evidence was produced. This is not a CMBC mechanism failure and not a pass; it is an outcome-coding/evidence-formation failure. Existing evidence remains BLIND-HUMAN-TRIAL-002 bounded causal-probe-enriched prompt-sheet evidence, not free-input evidence. No EGO integration, real companion implementation, proactive messages, LLM action selection, selector patch, threshold change, or RAG weakening is authorized.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE was re-run with 20 user-supplied free-input turns and 20 feedback labels. The run produced all required execution artifacts and stopped cleanly with verdict = free_input_probe_extraction_failed and stop_condition = free_input_cannot_form_stable_causal_probes. free_input_turn_count = 20 and outcome_coding_ledger_count = 20, but causal_probe_case_count = 0, so no free-input causal-probe evidence was produced. This is not a CMBC mechanism failure and not a pass; it is a causal-probe formation failure. Existing evidence remains BLIND-HUMAN-TRIAL-002 bounded causal-probe-enriched prompt-sheet evidence, not free-input evidence. No EGO integration, real companion implementation, proactive messages, LLM action selection, selector patch, threshold change, or RAG weakening is authorized.
 ```
 
 ## Next Frontier
@@ -1007,8 +1007,8 @@ accept_blind_human_trial_001_clean_downgrade_no_next_implementation
 accept_blind_rca_001_clean_diagnosis_no_next_implementation
 accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
 accept_free_input_live_lab_003_contract_no_next_implementation
-accept_free_input_live_lab_003_execute_outcome_coding_stop_no_next_implementation
-provide_outcome_coded_free_input_transcript_for_003_reexecution
+accept_free_input_live_lab_003_execute_probe_extraction_stop_no_next_implementation
+provide_predeclared_causal_probe_pairs_for_003_reexecution
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only

@@ -363,16 +363,16 @@ surviving_theory_families:
       - not_live_human_trial_execution
       - no_real_companion_readiness_claim
     latest_companion_free_input_live_lab_003_execute: artifacts/cmbc_companion_free_input_live_lab_003_execute/free_input_live_lab_003_result.json
-    latest_companion_free_input_live_lab_003_execute_verdict: outcome_coding_unstable
-    latest_companion_free_input_live_lab_003_execute_scope: bounded_execution_attempt_user_supplied_free_input_without_outcome_coding
+    latest_companion_free_input_live_lab_003_execute_verdict: free_input_probe_extraction_failed
+    latest_companion_free_input_live_lab_003_execute_scope: bounded_execution_attempt_outcome_coded_free_input_without_stable_causal_probes
     latest_companion_free_input_live_lab_003_execute_stop_conditions:
-      - outcome_coding_unstable
+      - free_input_cannot_form_stable_causal_probes
     latest_companion_free_input_live_lab_003_execute_key_metrics:
       input_source: free_input_human_operator
       free_input_turn_count: 20
       causal_probe_case_count: 0
-      outcome_coding_ledger_count: 0
-      outcome_coding_stable: false
+      outcome_coding_ledger_count: 20
+      outcome_coding_stable: true
       rag_visible_action_match_rate: null
       rag_causal_probe_match_rate: null
       strong_heuristic_causal_probe_match_rate: null
@@ -382,7 +382,7 @@ surviving_theory_families:
       supporting_prior_deletion_effect: null
       outcome_perturbation_effect: null
       minimum_gates_satisfied: false
-    latest_companion_claim_after_free_input_live_lab_003_execute: bounded_free_input_live_lab_execution_attempted_no_causal_probe_evidence_outcome_coding_unstable
+    latest_companion_claim_after_free_input_live_lab_003_execute: bounded_free_input_live_lab_execution_attempted_outcome_coded_no_stable_causal_probe_evidence
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false

@@ -10,7 +10,7 @@
   },
   "causal_probe_extraction": {
     "causal_probe_case_count": 0,
-    "failure_reason": "outcome_coding_unstable",
+    "failure_reason": "free_input_cannot_form_stable_causal_probes",
     "formed_probe_types": [],
     "required_probe_types": [
       "same_text_different_causal_history",
@@ -24,7 +24,7 @@
     ],
     "stable_causal_probes_formed": false
   },
-  "claim_after_execution": "bounded free-input live-lab execution attempted; no causal-probe evidence because feedback/outcome coding was unavailable or unstable",
+  "claim_after_execution": "bounded free-input live-lab execution attempted with outcome-coded transcript; no free-input causal-probe evidence because stable causal probes could not be formed",
   "claim_boundary": "bounded free-input live-lab execution only; no real companion readiness",
   "free_input_capture": {
     "capture_failed_reason": null,
@@ -79,16 +79,37 @@
     "EGO readiness"
   ],
   "outcome_coding": {
-    "coded_turn_ids": [],
-    "feedback_encoded_as_outcome": false,
-    "not_applicable_reason": "feedback_or_outcome_labels_missing_for_some_or_all_turns",
-    "outcome_coding_ledger_count": 0,
-    "outcome_coding_stable": false,
+    "coded_turn_ids": [
+      "turn_001",
+      "turn_002",
+      "turn_003",
+      "turn_004",
+      "turn_005",
+      "turn_006",
+      "turn_007",
+      "turn_008",
+      "turn_009",
+      "turn_010",
+      "turn_011",
+      "turn_012",
+      "turn_013",
+      "turn_014",
+      "turn_015",
+      "turn_016",
+      "turn_017",
+      "turn_018",
+      "turn_019",
+      "turn_020"
+    ],
+    "feedback_encoded_as_outcome": true,
+    "not_applicable_reason": null,
+    "outcome_coding_ledger_count": 20,
+    "outcome_coding_stable": true,
     "raw_text_memory_only": false,
-    "uncoded_turn_count": 20
+    "uncoded_turn_count": 0
   },
   "stop_conditions": [
-    "outcome_coding_unstable"
+    "free_input_cannot_form_stable_causal_probes"
   ],
-  "verdict": "outcome_coding_unstable"
+  "verdict": "free_input_probe_extraction_failed"
 }
