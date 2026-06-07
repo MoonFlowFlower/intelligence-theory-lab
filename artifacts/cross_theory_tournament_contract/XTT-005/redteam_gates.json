@@ -1,0 +1,40 @@
+{
+  "task_id": "XTT-005",
+  "verdict": "redteam_gates_ready",
+  "required_gates": [
+    "action_label_leak_scan",
+    "semantic_goal_label_leak_scan",
+    "object_entity_name_leak_scan",
+    "scenario_task_contract_id_mutation",
+    "hidden_state_leak_scan",
+    "evaluator_metric_leak_scan",
+    "oracle_transition_or_plan_scan",
+    "behavior_only_replay",
+    "independent_trace_only_scorer",
+    "candidate_freeze_before_blind_holdout_generation",
+    "no_code_changes_after_holdout_generation",
+    "strong_baseline_equivalence_check",
+    "negative_controls"
+  ],
+  "applies_to": "all_non_oracle_competitors",
+  "oracle_upper_bound": {
+    "id": "T10_OracleDiagnosticUpperBound",
+    "diagnostic_only": true,
+    "cannot_be_valid_competitor": true
+  },
+  "gate_failure_consequence": "behavioral_score_does_not_count_toward_theory_win",
+  "anti_shortcut_mutations": [
+    "anonymous_action_handle_mutation",
+    "non_semantic_goal_vector_mutation",
+    "hidden_metadata_mutation",
+    "identity_self_report_mutation",
+    "hidden_object_entity_name_mutation",
+    "hidden_expected_output_mutation"
+  ],
+  "invalidating_conditions": [
+    "redteam_gate_not_shared",
+    "oracle_leak_not_checked",
+    "behavior_replay_not_required"
+  ],
+  "stop_conditions": []
+}

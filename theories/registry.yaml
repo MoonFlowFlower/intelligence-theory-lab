@@ -1,9 +1,9 @@
 schema_version: 0
-lab_status: independent_reimplementation_contract_ready_pending_execution_human_review
+lab_status: cross_theory_tournament_contract_ready_pending_execution_human_review
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
-last_human_review_required_before: independent_reimplementation_execution_or_cross_theory_tournament_or_cycle_011
+last_human_review_required_before: cross_theory_tournament_execution_or_cycle_011_or_closure
 rules:
   - no theory may be implemented before a theory card exists
   - no experiment may be implemented before an experiment contract exists
@@ -23,14 +23,18 @@ theories:
     latest_milestone_verdict: authorize_independent_reimplementation_contract_only
     latest_contract_package: artifacts/independent_reimplementation/contract_manifest.json
     latest_contract_package_verdict: independent_reimplementation_contract_ready
+    latest_independent_reimplementation_result: ../lcc-independent-reimplementation/artifacts/independent_execution/IR-010/independent_reimplementation_decision.json
+    latest_independent_reimplementation_verdict: independent_reimplementation_bounded_pass
+    latest_cross_theory_tournament_contract: artifacts/cross_theory_tournament_contract/XTT-007/cross_theory_tournament_contract_decision.json
+    latest_cross_theory_tournament_contract_verdict: cross_theory_tournament_contract_ready
     theory_support: not_yet
     implementation_authorized: false
     clean_room_candidate_authorized: false
-    independent_reimplementation_contract: package_ready_execution_not_authorized
-    cross_theory_tournament: recommended_after_independent_reimplementation
+    independent_reimplementation_contract: executed_bounded_pass
+    cross_theory_tournament: contract_ready_execution_not_authorized
     general_agent_implementation: not_authorized
     ego_migration: no_go
-    human_review_required_before: independent_reimplementation_execution_or_cross_theory_tournament_or_cycle_011
+    human_review_required_before: cross_theory_tournament_execution_or_cycle_011_or_closure
 frozen_lineages:
   - lineage_id: vcco_vcac_fopc_negative_lineage
     source_repo: ../VCCO_Lab

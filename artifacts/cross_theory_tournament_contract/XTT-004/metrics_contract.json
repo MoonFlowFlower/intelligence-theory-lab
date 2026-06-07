@@ -1,0 +1,47 @@
+{
+  "task_id": "XTT-004",
+  "verdict": "metrics_contract_ready",
+  "required_metrics": [
+    "label_permutation_change_rate",
+    "effect_swap_change_rate",
+    "intervention_alignment_rate",
+    "passive_correlation_rejection_rate",
+    "diagnostic_action_rate_when_ambiguous",
+    "diagnostic_overuse_when_certain",
+    "closed_loop_replanning_success",
+    "nonstationary_revision_success",
+    "representation_nuisance_invariance",
+    "relational_transfer_success",
+    "goal_conditioned_reuse_success",
+    "blind_holdout_success",
+    "negative_control_false_confidence_rate",
+    "behavior_only_replay_match"
+  ],
+  "equivalence_tests": [
+    "overall_win_loss_tie",
+    "per_family_win_loss_tie",
+    "equivalence_band",
+    "statistical_replication_stability",
+    "failure_mode_comparison",
+    "shortcut_resistance_comparison"
+  ],
+  "default_equivalence_band": {
+    "aggregate_pass_profile_abs_diff_lte": 0.05,
+    "per_family_abs_diff_lte": 0.1,
+    "failure_modes_must_match_for_equivalence": true,
+    "shared_leak_scans_must_pass": true
+  },
+  "metric_bias_guards": [
+    "no_lcc_internal_metric",
+    "public_behavior_metrics_only",
+    "public_decision_evidence_only",
+    "behavior_only_replay_required",
+    "negative_controls_required"
+  ],
+  "invalidating_conditions": [
+    "metrics_favor_lcc_by_definition",
+    "equivalence_band_missing",
+    "negative_control_metrics_missing"
+  ],
+  "stop_conditions": []
+}

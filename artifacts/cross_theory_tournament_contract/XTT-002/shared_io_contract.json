@@ -1,0 +1,44 @@
+{
+  "task_id": "XTT-002",
+  "verdict": "shared_io_contract_ready",
+  "allowed_inputs": [
+    "public_observations",
+    "anonymous_action_handles",
+    "own_intervention_history",
+    "observed_outcomes",
+    "non_semantic_goal_vector_when_applicable",
+    "non_semantic_constraint_vector_when_applicable",
+    "horizon",
+    "budget",
+    "public_uncertainty_or_confidence_if_derived_from_allowed_data"
+  ],
+  "forbidden_inputs_for_non_oracle_competitors": [
+    "semantic_action_labels",
+    "semantic_goal_labels",
+    "object_names",
+    "entity_names",
+    "scenario_id",
+    "task_id",
+    "contract_id",
+    "cycle_id",
+    "hidden_latent_state",
+    "hidden_future_state",
+    "oracle_transition_table",
+    "oracle_causal_graph",
+    "oracle_plan_table",
+    "evaluator_metric_values",
+    "expected_output_table",
+    "baseline_outputs"
+  ],
+  "oracle_exception": {
+    "competitor_id": "T10_OracleDiagnosticUpperBound",
+    "diagnostic_only": true,
+    "valid_competitor": false
+  },
+  "invalidating_conditions": [
+    "unequal_information_access",
+    "hidden_oracle_allowed_for_non_oracle",
+    "semantic_label_allowed_for_competitor"
+  ],
+  "stop_conditions": []
+}

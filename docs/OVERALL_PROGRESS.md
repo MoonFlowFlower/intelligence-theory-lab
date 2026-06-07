@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T18:38:21-05:00
+Last updated: 2026-06-06T19:17:14-05:00
 
 ## Program Goal
 
@@ -8,38 +8,39 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Create the LCC independent reimplementation contract package:
+Create the LCC cross-theory tournament contract:
 
 ```text
-public theory card -> public I/O schema -> public redteam gates -> replication claim boundary -> contract-only authorization artifact -> contract manifest
+freeze independent replication evidence -> competitor theory cards -> shared tournament I/O -> task families -> metrics/equivalence -> shared redteam gates -> verdict taxonomy -> contract readiness decision
 ```
 
-Only `LCC_INDEPENDENT_REIMPLEMENTATION_001` contract packaging was authorized. No implementation, Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
+Only cross-theory tournament contract design was authorized. No tournament execution, competitor implementation, Cycle 011, general LCC agent, autonomous theory search, VCCO/VCAC/FOPC repair, or EGO migration is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Public theory card exists and contains the minimal principle only.
-Public I/O schema separates allowed candidate inputs from forbidden hidden/oracle/semantic/evaluator fields.
-Public redteam gates define the five minimum replication gates.
-Replication claim boundary prevents theory-support upgrade.
-Authorization artifact states implementation is not authorized by this task.
-Contract manifest is machine-readable and parseable.
+Independent reimplementation pass is frozen as bounded evidence.
+Competitor cards define all required theory families and do not weaken competitors by definition.
+Shared I/O gives every non-oracle competitor equal public information and forbids hidden/oracle/semantic/evaluator fields.
+Task families include required core, extended, hybrid, and negative-control families.
+Metrics and equivalence criteria allow LCC win, loss, tie, or collapse.
+Redteam gates apply to every non-oracle competitor.
+Verdict taxonomy includes explicit collapse verdicts.
 No stronger theory claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-independent_reimplementation_contract_ready
+cross_theory_tournament_contract_ready
 ```
 
-This is not a theory-support verdict. It does not authorize implementation; it only makes the public contract package ready for a future human-reviewed execution task.
+This is not a theory-support verdict. It does not authorize tournament execution; it only makes the cross-theory tournament contract ready for future human review.
 
 Review status:
 
 ```text
-independent_reimplementation_contract_package_ready
+cross_theory_tournament_contract_ready
 ```
 
 ## Validated Evidence
@@ -171,23 +172,29 @@ Independent reimplementation contract package verdict is independent_reimplement
 Independent reimplementation implementation_authorized = false.
 Independent reimplementation minimum suite = label/effect decoupling, passive observation vs own intervention, active diagnostic intervention, sequential closed-loop replanning, blind holdout after candidate freeze.
 Independent reimplementation required baselines = ActionLabelHeuristic, NearestNeighborTracePolicy, ContextualHeuristic, ModelBasedMPCBaseline, EmpowermentProxyBaseline, OracleDiagnosticUpperBound diagnostic only.
+Independent clean-room reimplementation verdict = independent_reimplementation_bounded_pass.
+Independent clean-room maximum claim = LCC_v0 survived one clean-room independent bounded replication of the core public contract.
+Cross-theory tournament contract verdict = cross_theory_tournament_contract_ready.
+Cross-theory tournament execution = not_authorized.
+Cross-theory competitor implementation = not_authorized.
+Cross-theory allowed future verdicts include LCC collapse into model-based RL, causal model-based control, active inference, empowerment, strong heuristic equivalence, generic baseline loss, all-theory negative-control failure, and inconclusive contract revision.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes execution of the independent reimplementation contract, a cross-theory tournament contract, Cycle 011 contract, or closure.
+No successor implementation can proceed until a human reviewer explicitly authorizes cross-theory tournament execution, Cycle 011 contract-only, or closure.
 ```
 
 ## Next Frontier
 
-Human review of `LCC_INDEPENDENT_REIMPLEMENTATION_001` contract package.
+Human review of `LCC_CROSS_THEORY_TOURNAMENT_CONTRACT`.
 
 Review decision options:
 
 ```text
-authorize_independent_reimplementation_execution_contract_only
-authorize_cross_theory_tournament_contract_only
+authorize_cross_theory_tournament_execution_contract_only
+revise_cross_theory_tournament_contract
 authorize_cycle_011_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
