@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T16:20:26-05:00
+Last updated: 2026-06-07T16:52:28-05:00
 
 ## Program Goal
 
@@ -997,17 +997,29 @@ CMBC free-input live-lab 003 reexecute behavior_only_replay_match_rate = 1.0.
 CMBC free-input live-lab 003 reexecute renderer_action_change_rate = 0.0.
 CMBC free-input live-lab 003 reexecute stop_conditions = [].
 CMBC free-input live-lab 003 reexecute claim_after_reexecute = bounded free-input causal-probe evidence under frozen 20-turn transcript and predeclared 003B probe pack only.
+CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-CONTRACT verdict = action_space_expansion_004_contract_ready.
+CMBC action-space expansion 004 authorized_scope = contract_only.
+CMBC action-space expansion 004 execution_authorized = false.
+CMBC action-space expansion 004 implementation_authorized = false.
+CMBC action-space expansion 004 candidate_action_count_min = 20.
+CMBC action-space expansion 004 semantic_label_visible_to_selector = false.
+CMBC action-space expansion 004 rendered_text_visible_to_selector = false.
+CMBC action-space expansion 004 requires label_permutation_change_rate = 0.0.
+CMBC action-space expansion 004 requires effect_swap_change_rate >= 0.8.
+CMBC action-space expansion 004 requires rag/strong/expanded contextual causal_probe_match_rate < 0.5.
+CMBC action-space expansion 004 requires behavior_only_replay_match_rate = 1.0 and renderer_action_change_rate = 0.0.
+CMBC action-space expansion 004 claim_ceiling = bounded action-space expansion contract readiness only; no execution evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-REEXECUTE passed the existing 003 gates using the frozen 20-turn human free-input transcript, stable outcome coding ledger, and predeclared 003B causal probe pack. This preserves the earlier 003-EXECUTE failure as probe-extraction negative evidence and treats 003B as the predeclared probe repair, not as new free-input text. The claim ceiling is bounded free-input causal-probe evidence only. RAG visible-action equivalence remains reported at 1.0, so this does not prove visible companion superiority over RAG, live robustness, product readiness, EGO readiness, real proactive messaging safety, or LLM renderer production safety.
+CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-CONTRACT is ready as contract/data only. It addresses the next alternative explanation after 003-REEXECUTE: CMBC may pass causal probes only because the current anonymous action set is small, fixed, and hand-shaped. No 004 execution, selector patch, threshold change, baseline weakening, EGO integration, real companion implementation, proactive messaging, or LLM action selection is authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-REEXECUTE`.
+Human review of `CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-CONTRACT`.
 
 Review decision options:
 
@@ -1032,6 +1044,8 @@ accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
 accept_free_input_live_lab_003_contract_no_next_implementation
 accept_free_input_causal_probe_pack_003b_no_next_implementation
 accept_free_input_live_lab_003_reexecute_bounded_pass_no_next_implementation
+accept_action_space_expansion_004_contract_no_next_implementation
+authorize_action_space_expansion_004_bounded_execution_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
