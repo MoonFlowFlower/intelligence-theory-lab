@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T16:52:28-05:00
+Last updated: 2026-06-07T17:04:38-05:00
 
 ## Program Goal
 
@@ -1009,17 +1009,25 @@ CMBC action-space expansion 004 requires effect_swap_change_rate >= 0.8.
 CMBC action-space expansion 004 requires rag/strong/expanded contextual causal_probe_match_rate < 0.5.
 CMBC action-space expansion 004 requires behavior_only_replay_match_rate = 1.0 and renderer_action_change_rate = 0.0.
 CMBC action-space expansion 004 claim_ceiling = bounded action-space expansion contract readiness only; no execution evidence.
+CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-EXECUTE verdict = small_action_set_only.
+CMBC action-space expansion 004 execute requested_candidate_action_count = 20.
+CMBC action-space expansion 004 execute selector_visible_candidate_action_count = 7.
+CMBC action-space expansion 004 execute stop_conditions = candidate_action_count < 20, frozen_selector_not_parametric_over_action_space.
+CMBC action-space expansion 004 execute semantic_label_leak_scan_passed = true.
+CMBC action-space expansion 004 execute renderer_action_change_rate = 0.0.
+CMBC action-space expansion 004 execute minimum_gates_satisfied = false.
+CMBC action-space expansion 004 execute claim_after_execution = small-action-set-only evidence; expanded action-space advantage not established.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-CONTRACT is ready as contract/data only. It addresses the next alternative explanation after 003-REEXECUTE: CMBC may pass causal probes only because the current anonymous action set is small, fixed, and hand-shaped. No 004 execution, selector patch, threshold change, baseline weakening, EGO integration, real companion implementation, proactive messaging, or LLM action selection is authorized.
+CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-EXECUTE stopped cleanly with verdict = small_action_set_only. The requested expanded anonymous option set had 20 handles, but the frozen selector exposes only the existing 7 ACTION_HANDLES and is not parametric over candidate action handles. This preserves 003-REEXECUTE as bounded small-action-set causal-probe evidence but does not establish expanded action-space advantage. No selector patch, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-CONTRACT`.
+Human review of `CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-EXECUTE`.
 
 Review decision options:
 
@@ -1046,6 +1054,7 @@ accept_free_input_causal_probe_pack_003b_no_next_implementation
 accept_free_input_live_lab_003_reexecute_bounded_pass_no_next_implementation
 accept_action_space_expansion_004_contract_no_next_implementation
 authorize_action_space_expansion_004_bounded_execution_contract_only
+authorize_action_space_expansion_004_rca_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
