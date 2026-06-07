@@ -194,6 +194,30 @@ surviving_theory_families:
       llm_action_selection: false
     latest_companion_claim_after_human_trial_redteam_001: scripted_lab_harness_evidence_only
     latest_companion_human_trial_redteam_001_stop_condition: contradictory_feedback_overfit
+    latest_companion_mixed_feedback_rca_000: artifacts/cmbc_companion_mixed_feedback_rca_000/cmbc_companion_mixed_feedback_rca_result.json
+    latest_companion_mixed_feedback_rca_000_verdict: negative_feedback_credit_assignment_too_coarse
+    latest_companion_mixed_feedback_rca_000_scope: rca_only_no_runtime_changes
+    latest_companion_mixed_feedback_rca_000_secondary_findings:
+      - feedback_admission_missing
+      - uncertainty_not_updated_before_policy_flip
+      - context_specificity_missing
+      - timing_feedback_crossed_to_boundary_family
+    latest_companion_mixed_feedback_rca_000_key_metrics:
+      pre_contradiction_selected_action: act_2
+      post_contradiction_selected_action: act_4
+      bad_timing_interruption_risk: 0.74
+      bad_timing_safety_delta: 0.0
+      act_2_utility_delta: -0.2525636363636362
+      act_4_utility_delta: 0.0
+      act_2_probability_delta: -0.21428770500442973
+      act_4_probability_delta: 0.12264610197672676
+      act4_rose_due_to_act2_drop_not_boundary_update: true
+      feedback_admission_gate_present: false
+      uncertainty_state_present: false
+      context_specificity_missing: true
+      single_noisy_negative_feedback_selected_action_changed: true
+      multi_sample_negative_feedback_selected_action: act_4
+    latest_companion_claim_after_mixed_feedback_rca_000: scripted_lab_harness_evidence_only
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false

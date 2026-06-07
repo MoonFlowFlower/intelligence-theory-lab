@@ -855,17 +855,31 @@ CMBC human trial redteam 001 supporting_prior_deletion_probability_drop = 0.5028
 CMBC human trial redteam 001 adversarial_renderer_action_change_rate = 0.0.
 CMBC human trial redteam 001 behavior-only replay match_rate = 1.0.
 CMBC human trial redteam 001 claim_after_redteam = scripted lab harness evidence only.
+CMBC-COMPANION-MIXED-FEEDBACK-RCA-000 verdict = negative_feedback_credit_assignment_too_coarse.
+CMBC mixed feedback RCA secondary findings = feedback_admission_missing, uncertainty_not_updated_before_policy_flip, context_specificity_missing, timing_feedback_crossed_to_boundary_family.
+CMBC mixed feedback RCA pre/post action = act_2 -> act_4.
+CMBC mixed feedback RCA bad_timing outcome interruption_risk = 0.74.
+CMBC mixed feedback RCA bad_timing outcome safety_delta = 0.0.
+CMBC mixed feedback RCA act_2 utility_delta = -0.2525636363636362.
+CMBC mixed feedback RCA act_4 utility_delta = 0.0.
+CMBC mixed feedback RCA act_2 probability_delta = -0.21428770500442973.
+CMBC mixed feedback RCA act_4 probability_delta = 0.12264610197672676.
+CMBC mixed feedback RCA act4_rose_due_to_act2_drop_not_boundary_update = true.
+CMBC mixed feedback RCA feedback_admission_gate_present = false.
+CMBC mixed feedback RCA uncertainty_state_present = false.
+CMBC mixed feedback RCA context_specificity_missing = true.
+CMBC mixed feedback RCA claim_after_rca = scripted lab harness evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-001 stopped on contradictory_feedback_overfit. A single contradictory bad_timing outcome in the focus/permission context changed the selected action from act_2 to act_4. The current claim is downgraded to scripted lab harness evidence only. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
+CMBC-COMPANION-MIXED-FEEDBACK-RCA-000 diagnosed the HUMAN-TRIAL-REDTEAM-001 failure as negative_feedback_credit_assignment_too_coarse with missing feedback admission, missing uncertainty-before-policy-flip, and missing context specificity. A single bad_timing outcome is admitted into an action-level act_2 prior; act_2 utility drops while act_4 utility does not change, so set_boundary rises by relative distribution reweighting. The current claim remains scripted lab harness evidence only. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-001`.
+Human review of `CMBC-COMPANION-MIXED-FEEDBACK-RCA-000`.
 
 Review decision options:
 
@@ -880,8 +894,9 @@ accept_bounded_longitudinal_redteam_003_evidence_no_next_implementation
 accept_lab_only_demo_000_evidence_no_next_implementation
 accept_lab_only_human_trial_v0_evidence_no_next_implementation
 accept_human_trial_redteam_001_clean_downgrade_no_next_implementation
-authorize_cmbc_companion_human_trial_redteam_001_rca_contract_only
+accept_mixed_feedback_rca_000_clean_diagnosis_no_next_implementation
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
+authorize_cmbc_companion_feedback_admission_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only
 authorize_cmbc_companion_demo_redteam_001_contract_only
 authorize_cmbc_companion_demo_generalization_001_contract_only
