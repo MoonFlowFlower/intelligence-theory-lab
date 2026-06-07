@@ -974,12 +974,21 @@ CMBC free-input live-lab 003 execute outcome_coding_stable = true.
 CMBC free-input live-lab 003 execute stop_condition = free_input_cannot_form_stable_causal_probes.
 CMBC free-input live-lab 003 execute minimum_gates_satisfied = false.
 CMBC free-input live-lab 003 execute claim_after_execution = bounded free-input live-lab execution attempted with outcome-coded transcript; no free-input causal-probe evidence because stable causal probes could not be formed.
+CMBC-COMPANION-FREE-INPUT-CAUSAL-PROBE-PACK-003B verdict = causal_probe_pack_ready_for_003_reexecute.
+CMBC free-input causal probe pack 003B task_type = contract/data only.
+CMBC free-input causal probe pack 003B execution_authorized = false.
+CMBC free-input causal probe pack 003B causal_probe_case_count = 10.
+CMBC free-input causal probe pack 003B required_probe_types_covered = true.
+CMBC free-input causal probe pack 003B every_probe_anchored_to_existing_human_turn = true.
+CMBC free-input causal probe pack 003B synthetic_user_turn_counted_as_free_input = false.
+CMBC free-input causal probe pack 003B post_result_probe_selection = false.
+CMBC free-input causal probe pack 003B claim_after_pack = causal probe pack ready only; no re-execution evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE was re-run with 20 user-supplied free-input turns and 20 feedback labels. The run produced all required execution artifacts and stopped cleanly with verdict = free_input_probe_extraction_failed and stop_condition = free_input_cannot_form_stable_causal_probes. free_input_turn_count = 20 and outcome_coding_ledger_count = 20, but causal_probe_case_count = 0, so no free-input causal-probe evidence was produced. This is not a CMBC mechanism failure and not a pass; it is a causal-probe formation failure. Existing evidence remains BLIND-HUMAN-TRIAL-002 bounded causal-probe-enriched prompt-sheet evidence, not free-input evidence. No EGO integration, real companion implementation, proactive messages, LLM action selection, selector patch, threshold change, or RAG weakening is authorized.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-EXECUTE was re-run with 20 user-supplied free-input turns and 20 feedback labels. That execution stopped cleanly with verdict = free_input_probe_extraction_failed because causal_probe_case_count = 0. CMBC-COMPANION-FREE-INPUT-CAUSAL-PROBE-PACK-003B now predeclares 10 causal intervention definitions covering all required probe types and anchors every probe to existing human free-input turns. This is contract/data readiness only, not re-execution evidence. Existing evidence remains BLIND-HUMAN-TRIAL-002 bounded causal-probe-enriched prompt-sheet evidence, not free-input causal-probe pass evidence. No EGO integration, real companion implementation, proactive messages, LLM action selection, selector patch, threshold change, RAG weakening, or 003 re-execution is authorized by the pack itself.
 ```
 
 ## Next Frontier
@@ -1007,8 +1016,8 @@ accept_blind_human_trial_001_clean_downgrade_no_next_implementation
 accept_blind_rca_001_clean_diagnosis_no_next_implementation
 accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
 accept_free_input_live_lab_003_contract_no_next_implementation
-accept_free_input_live_lab_003_execute_probe_extraction_stop_no_next_implementation
-provide_predeclared_causal_probe_pairs_for_003_reexecution
+accept_free_input_causal_probe_pack_003b_no_next_implementation
+authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
