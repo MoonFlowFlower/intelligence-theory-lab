@@ -344,6 +344,24 @@ surviving_theory_families:
       renderer_action_change_rate: 0.0
       llm_action_selection: false
     latest_companion_claim_after_blind_human_trial_002: bounded_causal_probe_enriched_blind_offline_human_trial_evidence_only
+    latest_companion_free_input_live_lab_003_contract: artifacts/cmbc_companion_free_input_live_lab_003_contract/contract_manifest.json
+    latest_companion_free_input_live_lab_003_contract_verdict: free_input_live_lab_003_contract_ready
+    latest_companion_free_input_live_lab_003_contract_scope: contract_only_no_execution
+    latest_companion_free_input_live_lab_003_contract_claim_ceiling: bounded_free_input_offline_live_lab_contract_readiness_only_no_execution_evidence
+    latest_companion_free_input_live_lab_003_contract_required_gates:
+      free_input_turn_count_min: 20
+      causal_probe_case_count_min: 8
+      rag_causal_probe_match_rate_max: 0.5
+      strong_heuristic_causal_probe_match_rate_max: 0.5
+      expanded_contextual_heuristic_causal_probe_match_rate_max: 0.5
+      renderer_action_change_rate: 0.0
+      behavior_only_replay_match_rate: 1.0
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+    latest_companion_free_input_live_lab_003_contract_retained_risks:
+      - RAG_visible_action_equivalence_retained
+      - not_live_human_trial_execution
+      - no_real_companion_readiness_claim
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false

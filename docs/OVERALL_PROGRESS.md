@@ -953,17 +953,29 @@ CMBC blind human trial 002 later_correction_context_narrows = true.
 CMBC blind human trial 002 behavior-only replay match_rate = 1.0.
 CMBC blind human trial 002 renderer_action_change_rate = 0.0.
 CMBC blind human trial 002 claim_after_trial = bounded causal-probe-enriched blind/offline human-trial evidence only.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-CONTRACT verdict = free_input_live_lab_003_contract_ready.
+CMBC free-input live-lab 003 authorized_scope = contract_only.
+CMBC free-input live-lab 003 execution_authorized = false.
+CMBC free-input live-lab 003 implementation_authorized = false.
+CMBC free-input live-lab 003 minimum free_input_turn_count = 20.
+CMBC free-input live-lab 003 minimum causal_probe_case_count = 8.
+CMBC free-input live-lab 003 max rag_causal_probe_match_rate = 0.5.
+CMBC free-input live-lab 003 max strong_heuristic_causal_probe_match_rate = 0.5.
+CMBC free-input live-lab 003 max expanded_contextual_heuristic_causal_probe_match_rate = 0.5.
+CMBC free-input live-lab 003 required behavior-only replay match_rate = 1.0.
+CMBC free-input live-lab 003 required renderer_action_change_rate = 0.0.
+CMBC free-input live-lab 003 claim_ceiling = bounded free-input offline/live-lab contract readiness only; no execution evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-BLIND-HUMAN-TRIAL-002 moved the RCA probes into the predeclared blind/offline trial contract. Visible decisions still remain RAG-matchable at 1.0, so BLIND-HUMAN-TRIAL-001 negative evidence is retained. Under causal probes, CMBC separated from RAG and strong heuristic baselines: causal_probe_pass_rate = 1.0, rag_causal_probe_match_rate = 0.0, strong_heuristic_causal_probe_match_rate = 0.0, behavior-only replay = 1.0, renderer_action_change_rate = 0.0. Verdict = cmbc_beats_rag_under_causal_probes_bounded. Claim is only bounded causal-probe-enriched blind/offline human-trial evidence; this does not authorize live human-trial robustness, companion readiness, EGO integration, proactive messages, or LLM action selection.
+CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-CONTRACT is ready as a contract-only next step. It does not execute a trial. It responds to BLIND-HUMAN-TRIAL-002 by asking whether CMBC's causal-probe advantage survives real free-input text rather than prompt-sheet text. The current retained evidence is: RAG still matches visible prompt-sheet behavior, while CMBC separated from RAG under predeclared causal probes in 002. The new contract requires at least 20 free-input turns, at least 8 causal probes, RAG/strong/expanded-heuristic causal probe match rates below 0.5, behavior-only replay = 1.0, renderer action change rate = 0.0, supporting-prior deletion effect, and outcome perturbation effect. Claim is contract readiness only; no execution evidence, live robustness, companion readiness, EGO integration, proactive messages, or LLM action selection is authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-BLIND-HUMAN-TRIAL-002`.
+Human review of `CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-CONTRACT`.
 
 Review decision options:
 
@@ -985,6 +997,8 @@ accept_human_trial_generalization_001_bounded_offline_no_next_implementation
 accept_blind_human_trial_001_clean_downgrade_no_next_implementation
 accept_blind_rca_001_clean_diagnosis_no_next_implementation
 accept_blind_human_trial_002_causal_probe_bounded_pass_no_next_implementation
+accept_free_input_live_lab_003_contract_no_next_implementation
+authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only
