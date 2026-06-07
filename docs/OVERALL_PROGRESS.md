@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T17:04:38-05:00
+Last updated: 2026-06-07T17:25:39-05:00
 
 ## Program Goal
 
@@ -8,40 +8,37 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Build a lab-only offline human-trial harness for companion learning:
+Diagnose the CMBC action-space expansion blocker without changing runtime behavior:
 
 ```text
-10-20 local console turns
--> manual feedback encoded as outcome
--> CMBC anonymous action selection
--> deterministic renderer
--> visible reply + developer trace
--> model update log
--> deletion / replay / renderer-isolation checks
+004-EXECUTE small_action_set_only
+-> static ACTION_HANDLES dependency audit
+-> selector / replay / renderer / baseline dependency separation
+-> minimal parametric interface proposal
+-> claim ceiling update
 ```
 
-Only the lab-only offline human-trial harness was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only RCA / contract-analysis was authorized. No selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-10-20 local/offline turns are recorded.
-Manual feedback is encoded as outcome, not raw text memory.
-Action distribution changes after trial feedback.
-Deleting the supporting prior regresses action probability or selected action.
-Renderer adversarial prompt cannot change selected action.
-Behavior-only replay reconstructs key decisions.
-Developer trace remains readable enough for a human to audit why an action was selected.
+004 source failure is frozen and cited.
+All static ACTION_HANDLES / fixed action-id dependencies are audited.
+Selector parametricity is separated from replay, renderer, and baseline dependencies.
+No selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
+Claim ceiling is reduced to current small 7-action anonymous action set.
+Next task is contract-only if authorized by human review.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-human_trial_v0_lab_only_bounded_pass
+selector_static_action_handle_bottleneck_confirmed
 ```
 
-This is not a real companion implementation or EGO signal. It means one offline local trial harness produced 12 turns with manual feedback encoded as outcomes, visible replies plus developer traces, post-trial action-distribution change, supporting-prior deletion regression, renderer isolation, and behavior-only replay.
+This is not a real companion implementation or EGO signal. It means 004-RCA confirmed that the current frozen selector is non-parametric over candidate action space and only supports the existing 7 anonymous action handles.
 
 Review status:
 
@@ -1017,17 +1014,26 @@ CMBC action-space expansion 004 execute semantic_label_leak_scan_passed = true.
 CMBC action-space expansion 004 execute renderer_action_change_rate = 0.0.
 CMBC action-space expansion 004 execute minimum_gates_satisfied = false.
 CMBC action-space expansion 004 execute claim_after_execution = small-action-set-only evidence; expanded action-space advantage not established.
+CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-RCA verdict = selector_static_action_handle_bottleneck_confirmed.
+CMBC action-space expansion 004 RCA source_failure = small_action_set_only.
+CMBC action-space expansion 004 RCA static_action_handle_count = 7.
+CMBC action-space expansion 004 RCA root_cause = CMBCGrowthLoopCandidate.choose iterates ACTION_HANDLES and has no candidate_options parameter.
+CMBC action-space expansion 004 RCA replay_contract_blocks_expansion = false, but upstream trace producer uses static handles.
+CMBC action-space expansion 004 RCA renderer_static_dependency_blocks_expansion = false, but a post-selection parametric renderer adapter is needed.
+CMBC action-space expansion 004 RCA baseline_contract_blocks_expansion = false, but expanded baselines need the same anonymous option list.
+CMBC action-space expansion 004 RCA claim_after_rca = bounded free-input causal-probe evidence under current small 7-action anonymous action set only; expanded action-space advantage is not established.
+CMBC action-space expansion 004 RCA next_recommended_task = CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-CONTRACT.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-EXECUTE stopped cleanly with verdict = small_action_set_only. The requested expanded anonymous option set had 20 handles, but the frozen selector exposes only the existing 7 ACTION_HANDLES and is not parametric over candidate action handles. This preserves 003-REEXECUTE as bounded small-action-set causal-probe evidence but does not establish expanded action-space advantage. No selector patch, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
+CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-RCA confirmed selector_static_action_handle_bottleneck_confirmed. The frozen selector exposes only the existing 7 ACTION_HANDLES, has no candidate_options parameter, and ignores arbitrary extra candidate options when constructing utilities/action_distribution. This preserves 003-REEXECUTE as bounded small-action-set causal-probe evidence but blocks any scalable companion behavior control claim. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-EXECUTE`.
+Human review of `CMBC-COMPANION-ACTION-SPACE-EXPANSION-004-RCA`.
 
 Review decision options:
 
@@ -1055,6 +1061,7 @@ accept_free_input_live_lab_003_reexecute_bounded_pass_no_next_implementation
 accept_action_space_expansion_004_contract_no_next_implementation
 authorize_action_space_expansion_004_bounded_execution_contract_only
 authorize_action_space_expansion_004_rca_contract_only
+authorize_cmbc_companion_parametric_action_interface_005_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only

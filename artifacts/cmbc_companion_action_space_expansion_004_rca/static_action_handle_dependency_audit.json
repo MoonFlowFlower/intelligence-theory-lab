@@ -1,0 +1,273 @@
+{
+  "blocking_dependencies": [
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 27,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "global tuple defines the only selector-visible action handles",
+      "source": "ACTION_HANDLES = (\"act_0\", \"act_1\", \"act_2\", \"act_3\", \"act_4\", \"act_5\", \"act_6\")",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 125,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "by_action: dict[str, list[OutcomeVector]] = {handle: [] for handle in ACTION_HANDLES}",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 130,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "for handle in ACTION_HANDLES:",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 149,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "for handle in ACTION_HANDLES",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 312,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "static action handle reference",
+      "source": "\"anonymous_actions\": list(ACTION_HANDLES),",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 346,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "static action handle reference",
+      "source": "\"anonymous_candidate_actions\": list(ACTION_HANDLES),",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 349,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "for handle in ACTION_HANDLES",
+      "symbol": "ACTION_HANDLES"
+    }
+  ],
+  "blocking_dependency_count": 7,
+  "dependencies": [
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 27,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "global tuple defines the only selector-visible action handles",
+      "source": "ACTION_HANDLES = (\"act_0\", \"act_1\", \"act_2\", \"act_3\", \"act_4\", \"act_5\", \"act_6\")",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "post_selection_renderer_dependency",
+      "line": 28,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "public action names are used after selection for rendering/reporting",
+      "source": "PUBLIC_ACTION_NAMES = {",
+      "symbol": "PUBLIC_ACTION_NAMES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 125,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "by_action: dict[str, list[OutcomeVector]] = {handle: [] for handle in ACTION_HANDLES}",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 130,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "for handle in ACTION_HANDLES:",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 149,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "for handle in ACTION_HANDLES",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "post_selection_renderer_dependency",
+      "line": 165,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "public action names are used after selection for rendering/reporting",
+      "source": "\"text\": f\"{style}:{PUBLIC_ACTION_NAMES[selected_action]}\",",
+      "symbol": "PUBLIC_ACTION_NAMES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 312,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "static action handle reference",
+      "source": "\"anonymous_actions\": list(ACTION_HANDLES),",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "post_selection_renderer_dependency",
+      "line": 313,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "public action names are used after selection for rendering/reporting",
+      "source": "\"public_action_names_for_reports_only\": PUBLIC_ACTION_NAMES,",
+      "symbol": "PUBLIC_ACTION_NAMES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 346,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "static action handle reference",
+      "source": "\"anonymous_candidate_actions\": list(ACTION_HANDLES),",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "primary_selector_bottleneck",
+      "line": 349,
+      "path": "cmbc_companion\\evals\\verify_growth_loop.py",
+      "reason": "selector or trace producer enumerates the fixed seven handles",
+      "source": "for handle in ACTION_HANDLES",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "consolidation_trace_and_prior_static_dependency",
+      "line": 11,
+      "path": "cmbc_companion\\evals\\consolidation_000.py",
+      "reason": "consolidated priors and deletion probes are keyed by existing action handles",
+      "source": "ACTION_HANDLES,",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "consolidation_trace_and_prior_static_dependency",
+      "line": 122,
+      "path": "cmbc_companion\\evals\\consolidation_000.py",
+      "reason": "consolidated priors and deletion probes are keyed by existing action handles",
+      "source": "by_action: dict[str, list[Experience]] = {handle: [] for handle in ACTION_HANDLES}",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "consolidation_trace_and_prior_static_dependency",
+      "line": 172,
+      "path": "cmbc_companion\\evals\\consolidation_000.py",
+      "reason": "consolidated priors and deletion probes are keyed by existing action handles",
+      "source": "return sum(abs(left[handle] - right[handle]) for handle in ACTION_HANDLES)",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "consolidation_trace_and_prior_static_dependency",
+      "line": 181,
+      "path": "cmbc_companion\\evals\\consolidation_000.py",
+      "reason": "consolidated priors and deletion probes are keyed by existing action handles",
+      "source": "for handle in ACTION_HANDLES",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "consolidation_trace_and_prior_static_dependency",
+      "line": 323,
+      "path": "cmbc_companion\\evals\\consolidation_000.py",
+      "reason": "consolidated priors and deletion probes are keyed by existing action handles",
+      "source": "\"anonymous_candidate_actions\": list(ACTION_HANDLES),",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "feedback_admission_import_static_handles",
+      "line": 18,
+      "path": "cmbc_companion\\evals\\feedback_admission_000.py",
+      "reason": "static action handle reference",
+      "source": "ACTION_HANDLES,",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "demo_trace_static_dependency",
+      "line": 25,
+      "path": "cmbc_companion\\demos\\lab_console_000.py",
+      "reason": "lab demo rendering and trace output assume existing action handles",
+      "source": "ACTION_HANDLES,",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "post_selection_renderer_dependency",
+      "line": 30,
+      "path": "cmbc_companion\\demos\\lab_console_000.py",
+      "reason": "public action names are used after selection for rendering/reporting",
+      "source": "PUBLIC_ACTION_NAMES,",
+      "symbol": "PUBLIC_ACTION_NAMES"
+    },
+    {
+      "classification": "post_selection_renderer_dependency",
+      "line": 72,
+      "path": "cmbc_companion\\demos\\lab_console_000.py",
+      "reason": "public action names are used after selection for rendering/reporting",
+      "source": "\"public_action_name\": PUBLIC_ACTION_NAMES[selected_action],",
+      "symbol": "PUBLIC_ACTION_NAMES"
+    },
+    {
+      "classification": "post_selection_renderer_dependency",
+      "line": 162,
+      "path": "cmbc_companion\\demos\\lab_console_000.py",
+      "reason": "public action names are used after selection for rendering/reporting",
+      "source": "name = PUBLIC_ACTION_NAMES[selected_action]",
+      "symbol": "PUBLIC_ACTION_NAMES"
+    },
+    {
+      "classification": "demo_trace_static_dependency",
+      "line": 591,
+      "path": "cmbc_companion\\demos\\lab_console_000.py",
+      "reason": "lab demo rendering and trace output assume existing action handles",
+      "source": "\"anonymous_action_handles\": list(ACTION_HANDLES),",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "diagnostic_execution_detects_static_selector",
+      "line": 16,
+      "path": "cmbc_companion\\demos\\action_space_expansion_004_execute.py",
+      "reason": "004 execution stopped after detecting the frozen static selector",
+      "source": "from cmbc_companion.evals.verify_growth_loop import ACTION_HANDLES, CMBCGrowthLoopCandidate",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "diagnostic_execution_detects_static_selector",
+      "line": 68,
+      "path": "cmbc_companion\\demos\\action_space_expansion_004_execute.py",
+      "reason": "004 execution stopped after detecting the frozen static selector",
+      "source": "selector_uses_static_handles = \"ACTION_HANDLES\" in selector_source",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "diagnostic_execution_detects_static_selector",
+      "line": 69,
+      "path": "cmbc_companion\\demos\\action_space_expansion_004_execute.py",
+      "reason": "004 execution stopped after detecting the frozen static selector",
+      "source": "selector_visible_handles = list(ACTION_HANDLES)",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "diagnostic_execution_detects_static_selector",
+      "line": 86,
+      "path": "cmbc_companion\\demos\\action_space_expansion_004_execute.py",
+      "reason": "004 execution stopped after detecting the frozen static selector",
+      "source": "\"selector is hard-wired to the existing ACTION_HANDLES tuple. Counting the \"",
+      "symbol": "ACTION_HANDLES"
+    },
+    {
+      "classification": "diagnostic_execution_detects_static_selector",
+      "line": 363,
+      "path": "cmbc_companion\\demos\\action_space_expansion_004_execute.py",
+      "reason": "004 execution stopped after detecting the frozen static selector",
+      "source": "\"The frozen selector exposes only the existing 7 ACTION_HANDLES. Expanding \"",
+      "symbol": "ACTION_HANDLES"
+    }
+  ],
+  "dependency_count": 26,
+  "summary": "Static ACTION_HANDLES references are concentrated in the frozen CMBCGrowthLoopCandidate selector and its trace producer. The 004 failure is therefore a selector/action-interface bottleneck, not a semantic-label leak."
+}
