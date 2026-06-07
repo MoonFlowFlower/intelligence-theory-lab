@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_consolidation_000_bounded_pass
+lab_status: cmbc_companion_consolidation_redteam_001_bounded_pass
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -77,6 +77,25 @@ surviving_theory_families:
       recency_only_deletion_selected_action_changed: false
       behavior_only_replay_match_rate: 1.0
     latest_companion_claim_after_consolidation: fixed_fixture_companion_growth_evidence_plus_bounded_consolidation_gate_only
+    latest_companion_consolidation_redteam: artifacts/cmbc_companion_consolidation_redteam_001/cmbc_companion_consolidation_redteam_001_result.json
+    latest_companion_consolidation_redteam_verdict: consolidation_redteam_bounded_pass
+    latest_companion_consolidation_redteam_scope: bounded_consolidation_redteam_only
+    latest_companion_consolidation_redteam_key_metrics:
+      conflicting_prior_contexts_tested: 3
+      conflicting_prior_distinct_selected_actions: 3
+      most_frequent_action: act_6
+      source_deletion_prior_confidence_drop: 0.6
+      source_deletion_final_action_probability_drop: 0.664623633897529
+      noisy_feedback_spurious_prior_admitted: false
+      delayed_prior_in_control_loop: true
+      final_prior_corruption_changes_action: true
+      irrelevant_prior_corruption_changes_action: false
+      recency_baseline_match_rate: 0.0
+      frequency_baseline_match_rate: 0.4
+      contextual_heuristic_match_rate: 0.6
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+    latest_companion_claim_after_consolidation_redteam: bounded_consolidation_redteam_evidence_only
     implementation_authorized: false
     next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:

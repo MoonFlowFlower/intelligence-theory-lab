@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T23:43:56-05:00
+Last updated: 2026-06-07T00:01:11-05:00
 
 ## Program Goal
 
@@ -8,26 +8,28 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Validate a bounded consolidation gate for longitudinal companion learning:
+Redteam the bounded consolidation gate for longitudinal companion learning:
 
 ```text
-repeated longitudinal outcomes -> consolidated causal prior
--> source episode/action support -> final-action support trace
--> targeted final-support deletion -> distribution/action regression
+fresh longitudinal histories -> competing consolidated priors
+-> source deletion / noisy outcomes / delayed outcomes / prior corruption
+-> recency-frequency-heuristic baselines -> renderer isolation
 -> behavior-only replay
 ```
 
-Only the bounded consolidation contract was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only the bounded consolidation redteam contract was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Consolidated causal prior records are created from repeated longitudinal outcomes.
-Source episodes and actions supporting each prior are recorded.
-Final selected action is traced to a specific consolidated prior.
-Relevant deletion deletes the actual final-action support, not unrelated action records.
-Deleting final-action causal support reduces selected action probability or flips action when margin permits.
-Raw episodic deletion, consolidated-prior deletion, irrelevant-prior deletion, and recency-only deletion are compared.
+Fresh longitudinal histories and multiple competing consolidated priors are evaluated.
+Conflicting priors select by public context/goal, not action frequency alone.
+Deleting source episodes reduces the consolidated prior confidence and action probability.
+Noisy outcomes do not form a strong spurious prior.
+Delayed outcomes are attributed to the source action and enter the control loop.
+Final-prior corruption changes action while irrelevant-prior corruption does not.
+Recency-only, frequency-only, and contextual heuristic baselines are not equivalent.
+Renderer prompts cannot change selected action.
 Behavior-only replay reconstructs prior -> prediction -> action distribution -> selected action.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
@@ -35,10 +37,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-consolidation_bounded_pass
+consolidation_redteam_bounded_pass
 ```
 
-This is not longitudinal companion-growth support. It means the RCA-exposed deletion-target problem was addressed inside a bounded consolidation gate: the final action can be traced to a consolidated prior, and deleting that actual support changes the action distribution and selected action.
+This is not longitudinal companion-growth support. It means the bounded consolidation gate survived one redteam covering competing priors, source deletion, noisy outcomes, delayed outcomes, prior corruption, stronger simple baselines, renderer isolation, and behavior-only replay.
 
 Review status:
 
@@ -264,6 +266,73 @@ artifacts/cmbc_companion_consolidation_000/CMBC_COMPANION_CONSOLIDATION_RESULT.m
 artifacts/cmbc_companion_consolidation_000/cmbc_companion_consolidation_result.json
 ```
 
+## Latest Companion Consolidation Redteam
+
+```text
+task = CMBC-COMPANION-CONSOLIDATION-REDTEAM-001
+verdict = consolidation_redteam_bounded_pass
+claim_boundary = bounded consolidation redteam only
+source_gate = CMBC-COMPANION-CONSOLIDATION-000
+```
+
+Key findings:
+
+```text
+conflicting_prior contexts_tested = 3
+conflicting_prior distinct_selected_actions = 3
+most_frequent_action = act_6
+selected_by_context = support_context: act_6, checkin_context: act_0, boundary_context: act_4
+
+source_deletion prior_confidence_drop = 0.6
+source_deletion final_action_probability_drop = 0.664623633897529
+source_deletion selected_action_changed = true
+
+noisy_feedback spurious_prior_admitted = false
+delayed_prior_in_control_loop = true
+misattributed_to_recent_action_rate = 0.0
+
+corrupting_final_prior_changes_action = true
+corrupting_irrelevant_prior_changes_action = false
+
+RecencyOnlyBaseline match_rate = 0.0
+FrequencyOnlyBaseline match_rate = 0.4
+ContextualHeuristicBaseline match_rate = 0.6
+adversarial_renderer_action_change_rate = 0.0
+behavior_only_replay_match_rate = 1.0
+```
+
+Interpretation:
+
+```text
+The consolidation gate was not immediately reducible to action frequency,
+recency-only choice, a simple contextual heuristic, renderer prompt control, or
+single noisy positive feedback. Source deletion also affected prior confidence
+and action probability, so the prior has traceable source support rather than
+being only a report-level summary.
+
+This remains bounded consolidation redteam evidence only. It does not authorize
+real companion implementation, proactive messaging, EGO integration, or any
+claim about emotion, self-awareness, AGI, life, or robust longitudinal growth.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_consolidation_redteam_001/REDTEAM_STATUS.md
+artifacts/cmbc_companion_consolidation_redteam_001/redteam_config.json
+artifacts/cmbc_companion_consolidation_redteam_001/fresh_history_sweep.json
+artifacts/cmbc_companion_consolidation_redteam_001/conflicting_prior_audit.json
+artifacts/cmbc_companion_consolidation_redteam_001/source_episode_deletion_audit.json
+artifacts/cmbc_companion_consolidation_redteam_001/noisy_outcome_audit.json
+artifacts/cmbc_companion_consolidation_redteam_001/delayed_outcome_audit.json
+artifacts/cmbc_companion_consolidation_redteam_001/prior_corruption_audit.json
+artifacts/cmbc_companion_consolidation_redteam_001/baseline_equivalence_report.md
+artifacts/cmbc_companion_consolidation_redteam_001/renderer_isolation_report.md
+artifacts/cmbc_companion_consolidation_redteam_001/behavior_only_replay.json
+artifacts/cmbc_companion_consolidation_redteam_001/CMBC_COMPANION_CONSOLIDATION_REDTEAM_001_RESULT.md
+artifacts/cmbc_companion_consolidation_redteam_001/cmbc_companion_consolidation_redteam_001_result.json
+```
+
 ## Validated Evidence
 
 ```text
@@ -439,17 +508,25 @@ CMBC consolidation final_action_probability_drop = 0.6277563150283809.
 CMBC consolidation distribution_kl = 0.8927925327180442.
 CMBC consolidation irrelevant/raw/recency deletion controls do not change selected action.
 CMBC consolidation behavior-only replay match_rate = 1.0.
+CMBC-COMPANION-CONSOLIDATION-REDTEAM-001 verdict = consolidation_redteam_bounded_pass.
+CMBC consolidation redteam conflicting_prior distinct_selected_actions = 3.
+CMBC consolidation redteam source_deletion final_action_probability_drop = 0.664623633897529.
+CMBC consolidation redteam noisy_feedback spurious_prior_admitted = false.
+CMBC consolidation redteam delayed_prior_in_control_loop = true.
+CMBC consolidation redteam final_prior_corruption_changes_action = true.
+CMBC consolidation redteam recency/frequency/contextual baselines are not equivalent.
+CMBC consolidation redteam behavior-only replay match_rate = 1.0.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-consolidation contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-consolidation-redteam contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-CONSOLIDATION-000`.
+Human review of `CMBC-COMPANION-CONSOLIDATION-REDTEAM-001`.
 
 Review decision options:
 
@@ -458,6 +535,7 @@ revise_lcc_as_operational_redteam_discipline
 authorize_causal_model_based_control_contract_only
 authorize_cmbc_companion_failure_rca_contract_only
 accept_bounded_consolidation_evidence_no_next_implementation
+accept_bounded_consolidation_redteam_evidence_no_next_implementation
 authorize_cmbc_companion_longitudinal_generalization_contract_only
 authorize_cmbc_companion_redesign_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
