@@ -1,0 +1,103 @@
+{
+  "claim_ceiling": "parametric action expansion 006 contract readiness only; no implementation or execution evidence",
+  "contract_id": "CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-CONTRACT",
+  "evidence_preservation": {
+    "preserve_003_as": "small-action-set free-input causal-probe evidence only",
+    "preserve_005_shadow_as": "N=7 shadow compatibility evidence only",
+    "rewrite_003_or_005_as_expanded_evidence": false
+  },
+  "expanded_action_space": {
+    "candidate_option_count_max": 50,
+    "candidate_option_count_min": 20,
+    "fixed_action_handles_20_forbidden": true,
+    "fixed_twenty_action_table_forbidden": true,
+    "forbidden_branch_patterns": [
+      "if N == 7",
+      "if N == 20"
+    ],
+    "no_n_specific_branches": true,
+    "variable_n_required": true
+  },
+  "expanded_baselines": {
+    "baseline_outputs_visible_to_selector": false,
+    "receive_same_anonymous_candidate_options": true,
+    "required_baselines": [
+      "RAGSummaryMemoryBaseline",
+      "StrongHumanLikeHeuristicBaseline",
+      "ExpandedContextualHeuristicBaseline",
+      "ExpandedActionFrequencyBaseline",
+      "ExpandedActionNearestNeighborBaseline"
+    ]
+  },
+  "forbidden_runtime_changes": [
+    "selector patch",
+    "threshold change",
+    "RAG baseline weakening",
+    "fixed ACTION_HANDLES = 20",
+    "renderer control of selected action",
+    "EGO integration",
+    "real companion implementation",
+    "real proactive messages",
+    "LLM action selection"
+  ],
+  "frozen_data_sources": {
+    "new_data_requires_human_review": true,
+    "reuse_003b_probe_pack": true,
+    "reuse_frozen_20_turn_transcript": true,
+    "reuse_stable_outcome_ledger": true
+  },
+  "minimum_future_execution_gates": {
+    "action_distribution_entropy_reported": true,
+    "behavior_only_replay_match_rate": 1.0,
+    "candidate_option_count_max": 50,
+    "candidate_option_count_min": 20,
+    "dominant_action_rate_reported": true,
+    "effect_swap_change_rate_min": 0.8,
+    "expanded_action_frequency_match_rate_max": 0.5,
+    "expanded_action_nearest_neighbor_match_rate_max": 0.5,
+    "expanded_contextual_heuristic_causal_probe_match_rate_max": 0.5,
+    "label_permutation_change_rate": 0.0,
+    "natural_language_description_visible_to_selector": false,
+    "public_action_name_visible_to_selector": false,
+    "rag_causal_probe_match_rate_max": 0.5,
+    "rendered_text_visible_to_selector": false,
+    "renderer_action_change_rate": 0.0,
+    "semantic_label_visible_to_selector": false,
+    "strong_heuristic_causal_probe_match_rate_max": 0.5
+  },
+  "recommended_next_task": "CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE",
+  "recommended_next_task_authorized": false,
+  "required_probe_types": [
+    "label_permutation_invariance",
+    "effect_swap_sensitivity",
+    "same_text_different_causal_history",
+    "supporting_prior_deletion",
+    "outcome_perturbation",
+    "feedback_admission_single_contradiction",
+    "feedback_admission_repeated_feedback",
+    "later_correction_context_narrowing",
+    "renderer_adversarial_isolation",
+    "behavior_only_replay_full_n_distribution"
+  ],
+  "selector_input_forbidden_fields": [
+    "semantic_action_labels",
+    "public_action_names",
+    "natural_language_descriptions",
+    "action_family_names",
+    "renderer_text",
+    "rendered_text",
+    "oracle_effects",
+    "oracle_action_to_effect_table",
+    "evaluator_metrics",
+    "baseline_outputs",
+    "hidden_future_state",
+    "hidden_latent_state",
+    "expected_outputs"
+  ],
+  "source_contracts": {
+    "candidate_option_schema_ref": "artifacts/cmbc_companion_parametric_action_interface_005_contract/candidate_option.schema.json",
+    "free_input_003_reexecute_ref": "artifacts/cmbc_companion_free_input_live_lab_003_reexecute/free_input_live_lab_003_reexecute_result.json",
+    "shadow_005_result_ref": "artifacts/cmbc_companion_parametric_action_interface_005_shadow/shadow_result.json"
+  },
+  "verdict": "parametric_action_expansion_006_contract_ready"
+}
