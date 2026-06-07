@@ -1,22 +1,22 @@
 {
     "program_goal":  "Build a falsifiable theory-elimination lab for intelligence-mechanism candidates.",
-    "current_stage_goal":  "Integrate the bounded feedback-admission gate back into the lab-only human-trial redteam and retest mixed / contradictory feedback without patching the selector or changing thresholds.",
+    "current_stage_goal":  "Validate bounded offline human-trial generalization across unseen paraphrases, context collision, multi-session mixed feedback, correction, boundary/timing separation, stronger baselines, renderer isolation, and replay without patching selector logic.",
     "stage_success_criteria":  [
-                                   "raw unfiltered path still reproduces the original single bad_timing act_2 to act_4 failure",
-                                   "admission-filtered path keeps the focus-context selected action at act_2 and records the single bad_timing item as pending counterevidence",
+                                   "unseen paraphrase pass rate is at least 0.85",
+                                   "same or similar surface text under different contexts is disambiguated",
+                                   "single contradictory bad_timing feedback does not produce an action-family flip in the admission-filtered path",
                                    "repeated consistent bad_timing admits context-specific counterevidence",
-                                   "focus-context bad_timing does not globally suppress free check-in or serious support contexts",
-                                   "true boundary/safety feedback remains responsive and does not get over-suppressed by admission",
                                    "later correction narrows scope to the class/focus context instead of creating a global preference rewrite",
-                                   "behavior-only replay reconstructs feedback attribution, admission status, action distribution, and selected action without hidden or forbidden fields",
-                                   "strong human-like heuristic baseline is not equivalent",
+                                   "true boundary/safety feedback remains responsive and is separated from timing feedback",
+                                   "strong human-like heuristic and RAG summary memory baselines are not equivalent",
                                    "adversarial renderer prompts cannot change selected action",
+                                   "behavior-only replay reconstructs feedback attribution, admission status, action distribution, and selected action without hidden or forbidden fields",
                                    "no selector patch, affection_score, long_term_memory_weight, threshold change, baseline weakening, EGO integration, LLM action selection, proactive messaging, or real companion agent is introduced",
                                    "no consciousness, AGI, self-awareness, life, real emotion, EGO readiness, robust support, or product-readiness claim is made"
                                ],
-    "next_decision_gate":  "Human review after HUMAN-TRIAL-REDTEAM-002 before any mixed-feedback generalization contract, broader human-trial robustness claim, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
-    "current_iteration":  "cmbc_companion_human_trial_redteam_002",
-    "reviewer_verdict":  "human_trial_redteam_002_bounded_pass",
+    "next_decision_gate":  "Human review after HUMAN-TRIAL-GENERALIZATION-001 before any broader human-trial robustness claim, open-ended mixed-feedback contract, real companion implementation, proactive messaging, LLM action selection, background autonomy, EGO migration, or theory claim.",
+    "current_iteration":  "cmbc_companion_human_trial_generalization_001",
+    "reviewer_verdict":  "human_trial_generalization_001_bounded_pass",
     "current_best_evidence":  [
                                   "VCCO/VCAC/FOPC lineage preserved as negative evidence",
                                   "Cycle 000 verdict = lcc_contract_pass_bounded",
@@ -293,9 +293,21 @@
                                   "CMBC human trial redteam 002 strong_human_like_heuristic_match_rate = 0.4",
                                   "CMBC human trial redteam 002 adversarial_renderer_action_change_rate = 0.0",
                                   "CMBC human trial redteam 002 behavior-only replay match_rate = 1.0",
-                                  "CMBC human trial redteam 002 claim_after_redteam = bounded feedback admission human-trial evidence only"
+                                  "CMBC human trial redteam 002 claim_after_redteam = bounded feedback admission human-trial evidence only",
+                                  "CMBC-COMPANION-HUMAN-TRIAL-GENERALIZATION-001 verdict = human_trial_generalization_001_bounded_pass",
+                                  "CMBC human trial generalization 001 unseen_paraphrase_pass_rate = 1.0",
+                                  "CMBC human trial generalization 001 context_collision_disambiguation = true",
+                                  "CMBC human trial generalization 001 single_contradiction_no_family_flip = true",
+                                  "CMBC human trial generalization 001 repeated_feedback_status = admitted_context_counterevidence",
+                                  "CMBC human trial generalization 001 later_correction_context_narrows = true",
+                                  "CMBC human trial generalization 001 true_boundary_feedback_still_works = true",
+                                  "CMBC human trial generalization 001 strong_human_like_heuristic_match_rate = 0.7777777777777778",
+                                  "CMBC human trial generalization 001 rag_summary_memory_match_rate = 0.7777777777777778",
+                                  "CMBC human trial generalization 001 renderer_action_change_rate = 0.0",
+                                  "CMBC human trial generalization 001 behavior-only replay match_rate = 1.0",
+                                  "CMBC human trial generalization 001 claim_after_generalization = bounded offline human-trial generalization evidence only"
                               ],
-    "next_frontier":  "Human reviewer decides whether to accept bounded feedback-admission human-trial redteam evidence, authorize a broader mixed-feedback generalization contract only, keep bounded evidence with no next implementation, or close current line.",
-    "status":  "cmbc_companion_human_trial_redteam_002_bounded_pass",
-    "updated_at":  "2026-06-07T07:10:01-05:00"
+    "next_frontier":  "Human reviewer decides whether to accept bounded offline human-trial generalization evidence, authorize a broader open-ended/offline robustness contract only, keep bounded evidence with no next implementation, or close current line.",
+    "status":  "cmbc_companion_human_trial_generalization_001_bounded_pass",
+    "updated_at":  "2026-06-07T09:26:49-05:00"
 }
