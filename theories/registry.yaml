@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_longitudinal_rca_000_action_distribution_saturated
+lab_status: cmbc_companion_consolidation_000_bounded_pass
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -60,6 +60,23 @@ surviving_theory_families:
       - deletion_target_wrong
       - recency_dominates_long_memory
     latest_companion_claim_after_rca: fixed_fixture_companion_growth_evidence_only
+    latest_companion_consolidation: artifacts/cmbc_companion_consolidation_000/cmbc_companion_consolidation_result.json
+    latest_companion_consolidation_verdict: consolidation_bounded_pass
+    latest_companion_consolidation_scope: bounded_consolidation_gate_only
+    latest_companion_consolidation_final_action_support:
+      final_action: act_6
+      supporting_prior_id: prior_act_6
+      prior_used_in_prediction: true
+      prior_used_in_action_distribution: true
+    latest_companion_consolidation_key_metrics:
+      consolidated_prior_deletion_selected_action_changed: true
+      consolidated_prior_deletion_final_action_probability_drop: 0.6277563150283809
+      consolidated_prior_deletion_distribution_kl: 0.8927925327180442
+      irrelevant_prior_deletion_selected_action_changed: false
+      raw_episodic_deletion_selected_action_changed: false
+      recency_only_deletion_selected_action_changed: false
+      behavior_only_replay_match_rate: 1.0
+    latest_companion_claim_after_consolidation: fixed_fixture_companion_growth_evidence_plus_bounded_consolidation_gate_only
     implementation_authorized: false
     next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:

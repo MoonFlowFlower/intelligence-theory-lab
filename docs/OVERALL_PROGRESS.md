@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T23:27:55-05:00
+Last updated: 2026-06-06T23:43:56-05:00
 
 ## Program Goal
 
@@ -8,38 +8,37 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Diagnose the CMBC companion longitudinal redteam failure:
+Validate a bounded consolidation gate for longitudinal companion learning:
 
 ```text
-freeze REDTEAM-001 failure -> compare short vs long deletion
--> trace experience/model/prediction/distribution/action path
--> separate score/distribution/action effects -> classify failure
+repeated longitudinal outcomes -> consolidated causal prior
+-> source episode/action support -> final-action support trace
+-> targeted final-support deletion -> distribution/action regression
+-> behavior-only replay
 ```
 
-Only bounded RCA was authorized. No selector patch, VERIFY-000 candidate modification, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only the bounded consolidation contract was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Contract was frozen before implementation.
-Shared runtime I/O gives every non-oracle competitor equal public information.
-All required competitors were implemented, with OracleDiagnosticUpperBound diagnostic-only.
-Blind holdout was generated after competitor freeze.
-Tournament was run once on predeclared families.
-Metrics/equivalence scoring used predeclared metrics.
-Shared redteam gates applied to every non-oracle competitor.
-Independent trace-only scoring matched primary scoring.
-Statistical replication was stable.
-No stronger theory claim is made.
+Consolidated causal prior records are created from repeated longitudinal outcomes.
+Source episodes and actions supporting each prior are recorded.
+Final selected action is traced to a specific consolidated prior.
+Relevant deletion deletes the actual final-action support, not unrelated action records.
+Deleting final-action causal support reduces selected action probability or flips action when margin permits.
+Raw episodic deletion, consolidated-prior deletion, irrelevant-prior deletion, and recency-only deletion are compared.
+Behavior-only replay reconstructs prior -> prediction -> action distribution -> selected action.
+No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-lcc_collapses_into_causal_model_based_control
+consolidation_bounded_pass
 ```
 
-This is not a theory-support verdict. It means LCC_v0 is better treated as an operational evidence discipline or special case of causal model-based control under this tournament contract.
+This is not longitudinal companion-growth support. It means the RCA-exposed deletion-target problem was addressed inside a bounded consolidation gate: the final action can be traced to a consolidated prior, and deleting that actual support changes the action distribution and selected action.
 
 Review status:
 
@@ -205,6 +204,64 @@ artifacts/cmbc_companion_longitudinal_rca_000/score_vs_distribution_delta.json
 artifacts/cmbc_companion_longitudinal_rca_000/deletion_target_audit.json
 artifacts/cmbc_companion_longitudinal_rca_000/CMBC_COMPANION_LONGITUDINAL_RCA_RESULT.md
 artifacts/cmbc_companion_longitudinal_rca_000/cmbc_companion_longitudinal_rca_result.json
+```
+
+## Latest Companion Consolidation Gate
+
+```text
+task = CMBC-COMPANION-CONSOLIDATION-000
+verdict = consolidation_bounded_pass
+claim_boundary = bounded consolidation gate only
+source_failure = CMBC-COMPANION-REDTEAM-001
+source_rca = CMBC-COMPANION-LONGITUDINAL-RCA-000
+```
+
+Key findings:
+
+```text
+final_action = act_6
+supporting_prior_id = prior_act_6
+prior_used_in_prediction = true
+prior_used_in_action_distribution = true
+
+consolidated_prior_deletion selected_action_changed = true
+consolidated_prior_deletion final_action_probability_drop = 0.6277563150283809
+consolidated_prior_deletion distribution_kl = 0.8927925327180442
+
+irrelevant_prior_deletion selected_action_changed = false
+raw_episodic_deletion selected_action_changed = false
+recency_only_deletion selected_action_changed = false
+behavior_only_replay_match_rate = 1.0
+```
+
+Interpretation:
+
+```text
+The bounded consolidation gate addresses the RCA failure mode: deletion now
+targets the actual consolidated prior supporting the final action rather than
+unrelated act_0/act_4 records. Removing prior_act_6 reduces act_6 probability
+from 0.9447822181553097 to 0.31702590312692874 and flips the selected action
+to act_4.
+
+This does not restore a longitudinal companion-growth claim. It only shows that
+within this bounded consolidation gate, repeated longitudinal outcomes can be
+compressed into a traceable causal prior consumed by the existing selector.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_consolidation_000/CONSOLIDATION_STATUS.md
+artifacts/cmbc_companion_consolidation_000/consolidation_config.json
+artifacts/cmbc_companion_consolidation_000/consolidated_priors.json
+artifacts/cmbc_companion_consolidation_000/prior_source_trace.jsonl
+artifacts/cmbc_companion_consolidation_000/decision_trace.jsonl
+artifacts/cmbc_companion_consolidation_000/deletion_comparison.json
+artifacts/cmbc_companion_consolidation_000/raw_vs_consolidated_deletion_report.md
+artifacts/cmbc_companion_consolidation_000/behavior_only_replay.json
+artifacts/cmbc_companion_consolidation_000/baseline_report.md
+artifacts/cmbc_companion_consolidation_000/CMBC_COMPANION_CONSOLIDATION_RESULT.md
+artifacts/cmbc_companion_consolidation_000/cmbc_companion_consolidation_result.json
 ```
 
 ## Validated Evidence
@@ -375,17 +432,24 @@ CMBC RCA long_rollout distribution_kl = 0.2290225238599821.
 CMBC RCA long_rollout deleted_rank_margin = 0.46510117838578136.
 CMBC RCA final act_6 records remaining after deletion = 9.
 CMBC RCA claim_after_rca = fixed-fixture companion growth evidence only.
+CMBC-COMPANION-CONSOLIDATION-000 verdict = consolidation_bounded_pass.
+CMBC consolidation final action act_6 is supported by prior_act_6.
+CMBC consolidation deleting prior_act_6 changes selected action to act_4.
+CMBC consolidation final_action_probability_drop = 0.6277563150283809.
+CMBC consolidation distribution_kl = 0.8927925327180442.
+CMBC consolidation irrelevant/raw/recency deletion controls do not change selected action.
+CMBC consolidation behavior-only replay match_rate = 1.0.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-RCA contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-consolidation contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-LONGITUDINAL-RCA-000`.
+Human review of `CMBC-COMPANION-CONSOLIDATION-000`.
 
 Review decision options:
 
@@ -393,7 +457,8 @@ Review decision options:
 revise_lcc_as_operational_redteam_discipline
 authorize_causal_model_based_control_contract_only
 authorize_cmbc_companion_failure_rca_contract_only
-authorize_cmbc_companion_consolidation_contract_only
+accept_bounded_consolidation_evidence_no_next_implementation
+authorize_cmbc_companion_longitudinal_generalization_contract_only
 authorize_cmbc_companion_redesign_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
