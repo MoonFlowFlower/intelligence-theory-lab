@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_longitudinal_002_bounded_pass
+lab_status: cmbc_companion_longitudinal_redteam_003_bounded_pass
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -119,6 +119,33 @@ surviving_theory_families:
       - strong_contextual_heuristic_near_equivalence_band
       - final_prior_deletion_distribution_regresses_without_selected_action_flip
     latest_companion_claim_after_longitudinal_002: bounded_longitudinal_growth_gate_only
+    latest_companion_longitudinal_redteam_003: artifacts/cmbc_companion_longitudinal_redteam_003/cmbc_companion_longitudinal_redteam_003_result.json
+    latest_companion_longitudinal_redteam_003_verdict: longitudinal_redteam_bounded_pass
+    latest_companion_longitudinal_redteam_003_scope: bounded_longitudinal_redteam_only
+    latest_companion_longitudinal_redteam_003_key_metrics:
+      adversarial_case_count: 12
+      candidate_success_rate: 1.0
+      expanded_contextual_heuristic_match_rate: 0.6666666666666666
+      expanded_contextual_heuristic_equivalent: false
+      expanded_contextual_heuristic_near_equivalence_risk: false
+      heuristic_failure_case_count: 4
+      same_context_different_history_action_divergence: true
+      low_margin_selected_action_changed: true
+      low_margin_probability_drop: 0.43565011757388705
+      low_margin_distribution_kl: 0.9313234807034552
+      medium_margin_selected_action_changed: true
+      medium_margin_probability_drop: 0.5421880378163385
+      medium_margin_distribution_kl: 1.302233686662696
+      high_margin_selected_action_changed: false
+      high_margin_saturation_reported: true
+      high_margin_probability_drop: 0.5878073250470084
+      high_margin_distribution_kl: 0.7875545084096682
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+    latest_companion_longitudinal_redteam_003_residual_risks:
+      - high_margin_final_prior_deletion_saturated_without_selected_action_flip
+      - bounded_fixture_not_product_or_ego_signal
+    latest_companion_claim_after_longitudinal_redteam_003: bounded_longitudinal_redteam_evidence_only
     implementation_authorized: false
     next_human_review_required_before: any_contract_or_implementation
 frozen_lineages:

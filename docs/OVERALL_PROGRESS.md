@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T00:20:51-05:00
+Last updated: 2026-06-07T00:35:04-05:00
 
 ## Program Goal
 
@@ -8,26 +8,28 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Validate a bounded longitudinal growth gate for companion learning:
+Redteam the bounded longitudinal growth gate for companion learning:
 
 ```text
-multi-session rollout -> consolidated priors
--> cross-context transfer -> prior conflict arbitration
--> consolidated-prior deletion/corruption/source deletion
--> strong baselines / renderer isolation / behavior-only replay
+LONGITUDINAL-002 residual risks
+-> expanded contextual heuristic
+-> adversarial same-context/different-history variants
+-> selected-action flip stress by margin band
+-> distribution-vs-decision separation
+-> renderer isolation / behavior-only replay
 ```
 
-Only the bounded longitudinal growth gate was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only the bounded longitudinal redteam was authorized. No selector patch, VERIFY-000 candidate modification, `long_term_memory_weight`, `affection_score`, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Multi-session rollout creates traceable consolidated priors across sessions.
-Cross-context transfer succeeds on unseen public contexts without scene lookup.
-Prior conflict arbitration selects by public context/goal, not fixed priority.
-Consolidated prior deletion and source deletion reduce final-action probability.
-Final-prior corruption changes action while irrelevant-prior corruption does not.
-Recency-only, RAG-summary, and strong contextual heuristic baselines are not equivalent.
+Expanded contextual heuristic baseline is not equivalent.
+Same public context with different causal histories can produce different actions.
+Same causal history under different public contexts can reweight actions.
+Misleading public context cue does not dominate causal prior support.
+Low/medium-margin final-prior deletion flips selected action.
+High-margin final-prior deletion reports saturation with distribution-level regression.
 Renderer prompts cannot change selected action.
 Behavior-only replay reconstructs prior -> prediction -> action distribution -> selected action.
 No stronger theory, product, companion-agent, or EGO claim is made.
@@ -36,10 +38,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-longitudinal_growth_bounded_pass
+longitudinal_redteam_bounded_pass
 ```
 
-This is not general longitudinal companion-growth support. It means one bounded multi-session gate passed: consolidated priors transferred across new contexts, arbitrated conflicts, and remained traceable/deletable/auditable under baseline, renderer, and behavior-replay checks.
+This is not general longitudinal companion-growth support. It means the bounded LONGITUDINAL-002 residual risks were redteamed: the expanded contextual heuristic did not reach equivalence, adversarial context variants followed causal prior support, and final-prior deletion produced flips when margin permitted while reporting high-margin saturation as distribution-level regression.
 
 Review status:
 
@@ -421,6 +423,77 @@ artifacts/cmbc_companion_longitudinal_002/CMBC_COMPANION_LONGITUDINAL_002_RESULT
 artifacts/cmbc_companion_longitudinal_002/cmbc_companion_longitudinal_002_result.json
 ```
 
+## Latest Companion Longitudinal Redteam 003
+
+```text
+task = CMBC-COMPANION-LONGITUDINAL-REDTEAM-003
+verdict = longitudinal_redteam_bounded_pass
+claim_boundary = bounded longitudinal redteam only
+source_gate = CMBC-COMPANION-LONGITUDINAL-002
+```
+
+Key findings:
+
+```text
+adversarial_context case_count = 12
+adversarial_context candidate_success_rate = 1.0
+heuristic_failure_case_count = 4
+same_context_different_history_action_divergence = true
+
+ExpandedContextualHeuristicBaseline match_rate = 0.6666666666666666
+ExpandedContextualHeuristicBaseline equivalence_band = 0.95
+ExpandedContextualHeuristicBaseline equivalent = false
+ExpandedContextualHeuristicBaseline near_equivalence_risk = false
+ExpandedContextualHeuristicBaseline forbidden_fields_used = []
+
+low_margin final_prior_deletion selected_action_changed = true
+low_margin final_prior_deletion probability_drop = 0.43565011757388705
+low_margin final_prior_deletion distribution_kl = 0.9313234807034552
+
+medium_margin final_prior_deletion selected_action_changed = true
+medium_margin final_prior_deletion probability_drop = 0.5421880378163385
+medium_margin final_prior_deletion distribution_kl = 1.302233686662696
+
+high_margin final_prior_deletion selected_action_changed = false
+high_margin final_prior_deletion saturation_reported = true
+high_margin final_prior_deletion probability_drop = 0.5878073250470084
+high_margin final_prior_deletion distribution_kl = 0.7875545084096682
+
+adversarial_renderer_action_change_rate = 0.0
+behavior_only_replay_match_rate = 1.0
+```
+
+Interpretation:
+
+```text
+The stronger contextual heuristic no longer sits near the 0.95 equivalence band,
+and the adversarial variants show that the candidate can change behavior under
+the same public context when causal history changes. Low and medium margin
+deletion cases flip the selected action; the high-margin case remains selected
+but is explicitly reported as saturation with a large probability drop and KL.
+
+This remains bounded longitudinal redteam evidence only. It does not authorize
+real companion implementation, proactive messaging, EGO integration, or any
+claim about emotion, self-awareness, AGI, life, or robust longitudinal growth.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_longitudinal_redteam_003/LONGITUDINAL_REDTEAM_003_STATUS.md
+artifacts/cmbc_companion_longitudinal_redteam_003/redteam_003_config.json
+artifacts/cmbc_companion_longitudinal_redteam_003/expanded_contextual_heuristic.json
+artifacts/cmbc_companion_longitudinal_redteam_003/adversarial_context_variants.json
+artifacts/cmbc_companion_longitudinal_redteam_003/selected_action_flip_stress.json
+artifacts/cmbc_companion_longitudinal_redteam_003/distribution_vs_decision.json
+artifacts/cmbc_companion_longitudinal_redteam_003/baseline_equivalence_report.md
+artifacts/cmbc_companion_longitudinal_redteam_003/renderer_isolation_report.md
+artifacts/cmbc_companion_longitudinal_redteam_003/behavior_only_replay.json
+artifacts/cmbc_companion_longitudinal_redteam_003/decision_trace.jsonl
+artifacts/cmbc_companion_longitudinal_redteam_003/CMBC_COMPANION_LONGITUDINAL_REDTEAM_003_RESULT.md
+artifacts/cmbc_companion_longitudinal_redteam_003/cmbc_companion_longitudinal_redteam_003_result.json
+```
+
 ## Validated Evidence
 
 ```text
@@ -616,17 +689,31 @@ CMBC longitudinal 002 RecencyOnlyBaseline match_rate = 0.14285714285714285.
 CMBC longitudinal 002 RAGSummaryBaseline match_rate = 0.5.
 CMBC longitudinal 002 StrongContextualHeuristicBaseline match_rate = 0.9285714285714286.
 CMBC longitudinal 002 behavior-only replay match_rate = 1.0.
+CMBC-COMPANION-LONGITUDINAL-REDTEAM-003 verdict = longitudinal_redteam_bounded_pass.
+CMBC longitudinal redteam 003 adversarial_context case_count = 12.
+CMBC longitudinal redteam 003 candidate_success_rate = 1.0.
+CMBC longitudinal redteam 003 ExpandedContextualHeuristicBaseline match_rate = 0.6666666666666666.
+CMBC longitudinal redteam 003 ExpandedContextualHeuristicBaseline equivalent = false.
+CMBC longitudinal redteam 003 heuristic_failure_case_count = 4.
+CMBC longitudinal redteam 003 same_context_different_history_action_divergence = true.
+CMBC longitudinal redteam 003 low_margin deletion selected_action_changed = true.
+CMBC longitudinal redteam 003 medium_margin deletion selected_action_changed = true.
+CMBC longitudinal redteam 003 high_margin deletion selected_action_changed = false but saturation_reported = true.
+CMBC longitudinal redteam 003 high_margin deletion probability_drop = 0.5878073250470084.
+CMBC longitudinal redteam 003 high_margin deletion distribution_kl = 0.7875545084096682.
+CMBC longitudinal redteam 003 adversarial_renderer_action_change_rate = 0.0.
+CMBC longitudinal redteam 003 behavior-only replay match_rate = 1.0.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-LONGITUDINAL-002 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-REDTEAM-003 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-LONGITUDINAL-002`.
+Human review of `CMBC-COMPANION-LONGITUDINAL-REDTEAM-003`.
 
 Review decision options:
 
@@ -637,7 +724,9 @@ authorize_cmbc_companion_failure_rca_contract_only
 accept_bounded_consolidation_evidence_no_next_implementation
 accept_bounded_consolidation_redteam_evidence_no_next_implementation
 accept_bounded_longitudinal_002_evidence_no_next_implementation
-authorize_cmbc_companion_longitudinal_redteam_003_contract_only
+accept_bounded_longitudinal_redteam_003_evidence_no_next_implementation
+authorize_cmbc_companion_longitudinal_redteam_004_contract_only
+authorize_cmbc_companion_longitudinal_generalization_004_contract_only
 authorize_cmbc_companion_longitudinal_generalization_contract_only
 authorize_cmbc_companion_redesign_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
