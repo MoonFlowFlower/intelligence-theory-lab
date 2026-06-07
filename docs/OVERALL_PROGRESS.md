@@ -911,12 +911,27 @@ CMBC human trial generalization 001 rag_summary_memory_match_rate = 0.7777777777
 CMBC human trial generalization 001 renderer_action_change_rate = 0.0.
 CMBC human trial generalization 001 behavior-only replay match_rate = 1.0.
 CMBC human trial generalization 001 claim_after_generalization = bounded offline human-trial generalization evidence only.
+CMBC-COMPANION-BLIND-HUMAN-TRIAL-001 verdict = heuristic_or_rag_equivalent.
+CMBC blind human trial 001 input_source = blind_prompt_sheet_not_live_human.
+CMBC blind human trial 001 turn_count = 24.
+CMBC blind human trial 001 paraphrase_pass_rate = 1.0.
+CMBC blind human trial 001 context_collision_disambiguation = true.
+CMBC blind human trial 001 single_contradiction_no_family_flip = true.
+CMBC blind human trial 001 feedback_changes_later_action_distribution = true.
+CMBC blind human trial 001 target_action_probability_delta = 0.12121444243278467.
+CMBC blind human trial 001 supporting_prior_deletion_probability_drop = 0.46048914178450356.
+CMBC blind human trial 001 strong_human_like_heuristic_match_rate = 0.9166666666666666.
+CMBC blind human trial 001 rag_summary_memory_match_rate = 1.0.
+CMBC blind human trial 001 behavior-only replay match_rate = 1.0.
+CMBC blind human trial 001 renderer_action_change_rate = 0.0.
+CMBC blind human trial 001 stop_condition = rag_summary_memory_equivalent.
+CMBC blind human trial 001 claim_after_trial = bounded offline human-trial generalization evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-HUMAN-TRIAL-GENERALIZATION-001 broadened the lab-only offline human-trial harness to unseen paraphrases, context collision, multi-session mixed feedback, correction after negative feedback, timing-vs-boundary separation, stronger RAG summary / human-like heuristic baselines, adversarial renderer isolation, and behavior-only replay. HUMAN-TRIAL-REDTEAM-001 remains preserved negative evidence for the original contradictory_feedback_overfit path; REDTEAM-002 locally closed that blocker under the admission-filtered path; GENERALIZATION-001 extends that bounded closure to the current offline human-like input suite. This is bounded offline human-trial generalization evidence only, not open-ended mixed-feedback robustness or product readiness. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
+CMBC-COMPANION-BLIND-HUMAN-TRIAL-001 froze selector/admission/consolidation/renderer hashes before generating a local blind prompt sheet, then ran 24 offline prompt-sheet turns. Core replay/renderer/deletion gates stayed intact, and feedback still changed later action distribution. However, this was not live human input, and RAGSummaryMemoryBaseline reproduced 24/24 candidate decisions with match_rate = 1.0. The correct verdict is heuristic_or_rag_equivalent, with stop_condition = rag_summary_memory_equivalent. Claim remains bounded offline human-trial generalization evidence only; do not upgrade to blind/live human-trial robustness or companion readiness. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
@@ -940,6 +955,7 @@ accept_mixed_feedback_rca_000_clean_diagnosis_no_next_implementation
 accept_feedback_admission_000_bounded_gate_no_next_implementation
 accept_human_trial_redteam_002_bounded_feedback_admission_no_next_implementation
 accept_human_trial_generalization_001_bounded_offline_no_next_implementation
+accept_blind_human_trial_001_clean_downgrade_no_next_implementation
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_feedback_admission_redteam_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only

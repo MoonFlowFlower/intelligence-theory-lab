@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_human_trial_generalization_001_bounded_pass
+lab_status: cmbc_companion_blind_human_trial_001_heuristic_or_rag_equivalent
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -276,6 +276,31 @@ surviving_theory_families:
       renderer_action_change_rate: 0.0
       llm_action_selection: false
     latest_companion_claim_after_human_trial_generalization_001: bounded_offline_human_trial_generalization_evidence_only
+    latest_companion_blind_human_trial_001: artifacts/cmbc_companion_blind_human_trial_001/cmbc_companion_blind_human_trial_001_result.json
+    latest_companion_blind_human_trial_001_verdict: heuristic_or_rag_equivalent
+    latest_companion_blind_human_trial_001_scope: frozen_offline_blind_prompt_sheet_trial_not_live_human_trial
+    latest_companion_blind_human_trial_001_stop_conditions:
+      - rag_summary_memory_equivalent
+    latest_companion_blind_human_trial_001_key_metrics:
+      input_source: blind_prompt_sheet_not_live_human
+      turn_count: 24
+      paraphrase_pass_rate: 1.0
+      context_collision_disambiguation: true
+      single_contradiction_no_family_flip: true
+      feedback_changes_later_action_distribution: true
+      target_action_probability_delta: 0.12121444243278467
+      supporting_prior_deletion_probability_drop: 0.46048914178450356
+      strong_human_like_heuristic_match_rate: 0.9166666666666666
+      rag_summary_memory_match_rate: 1.0
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      code_hashes_unchanged_after_trial: true
+      llm_action_selection: false
+    latest_companion_blind_human_trial_001_residual_risks:
+      - not_live_human_input
+      - strong_human_like_heuristic_near_equivalence_risk
+      - rag_summary_memory_near_or_full_equivalence_risk
+    latest_companion_claim_after_blind_human_trial_001: bounded_offline_human_trial_generalization_evidence_only
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false
