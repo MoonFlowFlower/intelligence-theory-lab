@@ -841,17 +841,31 @@ CMBC human trial v0 dominant_action_rate = 0.5.
 CMBC human trial v0 adversarial_renderer_action_change_rate = 0.0.
 CMBC human trial v0 llm_action_selection = false.
 CMBC human trial v0 behavior-only replay match_rate = 1.0.
+CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-001 verdict = contradictory_feedback_overfit.
+CMBC human trial redteam 001 paraphrase_group_pass_rate = 1.0.
+CMBC human trial redteam 001 context_disambiguation_passed = true.
+CMBC human trial redteam 001 pre_contradiction_selected_action = act_2.
+CMBC human trial redteam 001 post_contradiction_selected_action = act_4.
+CMBC human trial redteam 001 single_contradictory_feedback_probability_shift_abs = 0.21428770500442973.
+CMBC human trial redteam 001 mixed_feedback_distribution_kl = 0.09397546452829571.
+CMBC human trial redteam 001 dominant_action_rate = 0.3.
+CMBC human trial redteam 001 distinct_selected_actions = 4.
+CMBC human trial redteam 001 strong_human_like_heuristic_match_rate = 0.6666666666666666.
+CMBC human trial redteam 001 supporting_prior_deletion_probability_drop = 0.5028783160411764.
+CMBC human trial redteam 001 adversarial_renderer_action_change_rate = 0.0.
+CMBC human trial redteam 001 behavior-only replay match_rate = 1.0.
+CMBC human trial redteam 001 claim_after_redteam = scripted lab harness evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-HUMAN-TRIAL-V0 contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
+CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-001 stopped on contradictory_feedback_overfit. A single contradictory bad_timing outcome in the focus/permission context changed the selected action from act_2 to act_4. The current claim is downgraded to scripted lab harness evidence only. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, LLM action selection, background autonomy, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-HUMAN-TRIAL-V0`.
+Human review of `CMBC-COMPANION-HUMAN-TRIAL-REDTEAM-001`.
 
 Review decision options:
 
@@ -865,7 +879,9 @@ accept_bounded_longitudinal_002_evidence_no_next_implementation
 accept_bounded_longitudinal_redteam_003_evidence_no_next_implementation
 accept_lab_only_demo_000_evidence_no_next_implementation
 accept_lab_only_human_trial_v0_evidence_no_next_implementation
-authorize_cmbc_companion_human_trial_redteam_001_contract_only
+accept_human_trial_redteam_001_clean_downgrade_no_next_implementation
+authorize_cmbc_companion_human_trial_redteam_001_rca_contract_only
+authorize_cmbc_companion_mixed_feedback_stability_contract_only
 authorize_cmbc_companion_human_trial_generalization_001_contract_only
 authorize_cmbc_companion_demo_redteam_001_contract_only
 authorize_cmbc_companion_demo_generalization_001_contract_only

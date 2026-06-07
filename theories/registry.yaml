@@ -173,6 +173,27 @@ surviving_theory_families:
       llm_action_selection: false
       background_autonomy: false
     latest_companion_claim_after_human_trial_v0: lab_only_offline_human_trial_harness_evidence_only
+    latest_companion_human_trial_redteam_001: artifacts/cmbc_companion_human_trial_redteam_001/cmbc_companion_human_trial_redteam_001_result.json
+    latest_companion_human_trial_redteam_001_verdict: contradictory_feedback_overfit
+    latest_companion_human_trial_redteam_001_scope: lab_only_human_trial_redteam
+    latest_companion_human_trial_redteam_001_key_metrics:
+      turn_count: 20
+      paraphrase_group_pass_rate: 1.0
+      context_disambiguation_passed: true
+      contradictory_feedback_overfit: true
+      pre_contradiction_selected_action: act_2
+      post_contradiction_selected_action: act_4
+      single_contradictory_feedback_probability_shift_abs: 0.21428770500442973
+      mixed_feedback_distribution_kl: 0.09397546452829571
+      dominant_action_rate: 0.3
+      distinct_selected_actions: 4
+      strong_human_like_heuristic_match_rate: 0.6666666666666666
+      supporting_prior_deletion_probability_drop: 0.5028783160411764
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_human_trial_redteam_001: scripted_lab_harness_evidence_only
+    latest_companion_human_trial_redteam_001_stop_condition: contradictory_feedback_overfit
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false
