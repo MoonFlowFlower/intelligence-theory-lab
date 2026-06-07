@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-06T21:45:55-05:00
+Last updated: 2026-06-06T23:27:55-05:00
 
 ## Program Goal
 
@@ -8,14 +8,15 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Redteam the CMBC companion growth loop:
+Diagnose the CMBC companion longitudinal redteam failure:
 
 ```text
-parameter sweep -> stronger baselines -> longitudinal stress
--> adversarial renderer isolation -> downgrade or bounded survival verdict
+freeze REDTEAM-001 failure -> compare short vs long deletion
+-> trace experience/model/prediction/distribution/action path
+-> separate score/distribution/action effects -> classify failure
 ```
 
-Only bounded redteam execution was authorized. No real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, candidate patch-to-win, or theory-support claim is authorized.
+Only bounded RCA was authorized. No selector patch, VERIFY-000 candidate modification, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -154,6 +155,56 @@ artifacts/cmbc_companion_redteam_001/REDTEAM_STATUS.md
 artifacts/cmbc_companion_redteam_001/STOP_REPORT.md
 artifacts/cmbc_companion_redteam_001/metrics.json
 artifacts/cmbc_companion_redteam_001/cmbc_companion_redteam_001_result.json
+```
+
+## Latest Companion Longitudinal RCA
+
+```text
+task = CMBC-COMPANION-LONGITUDINAL-RCA-000
+verdict = action_distribution_saturated
+secondary_findings = [deletion_target_wrong, recency_dominates_long_memory]
+source_failure = CMBC-COMPANION-REDTEAM-001
+source_stop_condition = longitudinal_drift_failed
+claim_after_rca = fixed-fixture companion growth evidence only
+```
+
+Key RCA findings:
+
+```text
+short_fixture selected_action_changed = true
+short_fixture top_probability_delta = 0.5815332039693304
+short_fixture distribution_kl = 1.7817830834671684
+
+long_rollout selected_action_changed = false
+long_rollout top_probability_delta = 0.16050301346855989
+long_rollout distribution_kl = 0.2290225238599821
+long_rollout rank_margin_delta = 0.28216776580738345
+long_rollout deleted_rank_margin = 0.46510117838578136
+```
+
+Interpretation:
+
+```text
+Long-rollout deletion did affect the action distribution, so the failure is not
+pure score-only or no-encoding. It did not change the selected action because
+the final action act_6 remained top-ranked with a large post-deletion margin.
+
+The deletion target also did not remove the true causal records for the final
+action: all 9 act_6 outcome records remained after deletion. The final 8 rollout
+turns were all act_6, so recent repeated act_6 outcomes dominated the final
+policy state.
+```
+
+Artifacts:
+
+```text
+artifacts/cmbc_companion_longitudinal_rca_000/RCA_STATUS.md
+artifacts/cmbc_companion_longitudinal_rca_000/frozen_failure_manifest.json
+artifacts/cmbc_companion_longitudinal_rca_000/short_vs_long_deletion_comparison.json
+artifacts/cmbc_companion_longitudinal_rca_000/score_vs_distribution_delta.json
+artifacts/cmbc_companion_longitudinal_rca_000/deletion_target_audit.json
+artifacts/cmbc_companion_longitudinal_rca_000/CMBC_COMPANION_LONGITUDINAL_RCA_RESULT.md
+artifacts/cmbc_companion_longitudinal_rca_000/cmbc_companion_longitudinal_rca_result.json
 ```
 
 ## Validated Evidence
@@ -315,17 +366,26 @@ CMBC redteam adversarial_renderer_action_change_rate = 0.0.
 CMBC redteam behavior_only_replay_match = 1.0.
 CMBC redteam longitudinal_post_deletion_action_changed = false.
 CMBC redteam post-claim = fixed-fixture companion growth evidence only.
+CMBC-COMPANION-LONGITUDINAL-RCA-000 verdict = action_distribution_saturated.
+CMBC RCA secondary findings = deletion_target_wrong, recency_dominates_long_memory.
+CMBC RCA short_fixture selected_action_changed = true.
+CMBC RCA long_rollout selected_action_changed = false.
+CMBC RCA long_rollout top_probability_delta = 0.16050301346855989.
+CMBC RCA long_rollout distribution_kl = 0.2290225238599821.
+CMBC RCA long_rollout deleted_rank_margin = 0.46510117838578136.
+CMBC RCA final act_6 records remaining after deletion = 9.
+CMBC RCA claim_after_rca = fixed-fixture companion growth evidence only.
 ```
 
 ## Current Blocker
 
 ```text
-No successor implementation can proceed until a human reviewer explicitly authorizes a new post-redteam contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
+No successor implementation can proceed until a human reviewer explicitly authorizes a new post-RCA contract. Cycle 011, general LCC agent, autonomous theory search, real companion agent implementation, real proactive messages, causal model-based control implementation, and EGO migration remain not authorized.
 ```
 
 ## Next Frontier
 
-Human review of `CMBC-COMPANION-REDTEAM-001`.
+Human review of `CMBC-COMPANION-LONGITUDINAL-RCA-000`.
 
 Review decision options:
 
@@ -333,6 +393,7 @@ Review decision options:
 revise_lcc_as_operational_redteam_discipline
 authorize_causal_model_based_control_contract_only
 authorize_cmbc_companion_failure_rca_contract_only
+authorize_cmbc_companion_consolidation_contract_only
 authorize_cmbc_companion_redesign_contract_only
 keep_lcc_bounded_evidence_no_next_implementation
 close_current_line
