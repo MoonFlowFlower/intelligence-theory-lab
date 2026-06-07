@@ -87,3 +87,36 @@ def test_free_input_live_lab_003_execute_writes_required_artifacts(tmp_path):
         "thresholds_changed": False,
         "rag_baseline_weakened": False,
     }
+
+
+def test_free_input_live_lab_003_execute_stops_when_user_text_has_no_outcome_coding(tmp_path):
+    input_path = tmp_path / "free_input.jsonl"
+    with input_path.open("w", encoding="utf-8") as fh:
+        for idx in range(20):
+            row = {
+                "turn_id": f"free_{idx + 1:03d}",
+                "free_input_text": f"user free input {idx + 1}",
+                "input_source": "free_input_human_operator",
+                "feedback_label": "unspecified",
+                "context_hint": "unspecified",
+            }
+            fh.write(json.dumps(row, sort_keys=True) + "\n")
+
+    result = run_free_input_live_lab_003(tmp_path, input_path)
+
+    assert result["verdict"] == "outcome_coding_unstable"
+    assert result["stop_conditions"] == ["outcome_coding_unstable"]
+    assert result["free_input_capture"]["free_input_turn_count"] == 20
+    assert result["free_input_capture"]["input_source"] == "free_input_human_operator"
+    assert result["outcome_coding"]["outcome_coding_ledger_count"] == 0
+    assert result["outcome_coding"]["outcome_coding_stable"] is False
+    assert result["causal_probe_extraction"]["stable_causal_probes_formed"] is False
+    assert result["causal_probe_extraction"]["failure_reason"] == "outcome_coding_unstable"
+    assert result["claim_after_execution"] == (
+        "bounded free-input live-lab execution attempted; no causal-probe evidence "
+        "because feedback/outcome coding was unavailable or unstable"
+    )
+
+    with (tmp_path / "free_input_transcript.jsonl").open("r", encoding="utf-8") as fh:
+        transcript_rows = [json.loads(line) for line in fh if line.strip()]
+    assert len(transcript_rows) == 20

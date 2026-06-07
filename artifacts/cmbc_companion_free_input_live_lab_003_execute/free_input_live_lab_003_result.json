@@ -8,14 +8,30 @@
     "selector_patched": false,
     "thresholds_changed": false
   },
-  "claim_after_execution": "bounded free-input live-lab execution attempted; no free-input evidence because no human transcript was available",
+  "causal_probe_extraction": {
+    "causal_probe_case_count": 0,
+    "failure_reason": "outcome_coding_unstable",
+    "formed_probe_types": [],
+    "required_probe_types": [
+      "same_text_different_causal_history",
+      "same_history_different_feedback_outcome",
+      "supporting_prior_deletion",
+      "predicted_outcome_perturbation",
+      "feedback_admission_single_contradiction",
+      "feedback_admission_repeated_feedback",
+      "later_correction_context_narrowing",
+      "renderer_adversarial_isolation"
+    ],
+    "stable_causal_probes_formed": false
+  },
+  "claim_after_execution": "bounded free-input live-lab execution attempted; no causal-probe evidence because feedback/outcome coding was unavailable or unstable",
   "claim_boundary": "bounded free-input live-lab execution only; no real companion readiness",
   "free_input_capture": {
-    "capture_failed_reason": "no_free_input_human_operator_transcript_available",
-    "free_input_turn_count": 0,
-    "human_free_input_available": false,
-    "input_path": null,
-    "input_source": "missing_free_input_human_operator_transcript",
+    "capture_failed_reason": null,
+    "free_input_turn_count": 20,
+    "human_free_input_available": true,
+    "input_path": "artifacts\\cmbc_companion_free_input_live_lab_003_execute\\user_supplied_free_input_2026-06-07.jsonl",
+    "input_source": "free_input_human_operator",
     "local_offline": true,
     "synthetic_or_prompt_sheet_input_used": false
   },
@@ -24,7 +40,7 @@
     "causal_probe_case_count": 0,
     "expanded_contextual_heuristic_causal_probe_match_rate": null,
     "expanded_contextual_heuristic_visible_action_match_rate": null,
-    "free_input_turn_count": 0,
+    "free_input_turn_count": 20,
     "outcome_perturbation_effect": null,
     "rag_causal_probe_match_rate": null,
     "rag_visible_action_match_rate": null,
@@ -62,8 +78,17 @@
     "real love",
     "EGO readiness"
   ],
+  "outcome_coding": {
+    "coded_turn_ids": [],
+    "feedback_encoded_as_outcome": false,
+    "not_applicable_reason": "feedback_or_outcome_labels_missing_for_some_or_all_turns",
+    "outcome_coding_ledger_count": 0,
+    "outcome_coding_stable": false,
+    "raw_text_memory_only": false,
+    "uncoded_turn_count": 20
+  },
   "stop_conditions": [
-    "free_input_cannot_form_stable_causal_probes"
+    "outcome_coding_unstable"
   ],
-  "verdict": "free_input_probe_extraction_failed"
+  "verdict": "outcome_coding_unstable"
 }
