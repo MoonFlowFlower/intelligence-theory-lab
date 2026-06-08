@@ -1336,17 +1336,45 @@ CMBC candidate option generation 007 redteam execute renderer_action_change_rate
 CMBC candidate option generation 007 redteam execute baselines_weakened_or_incomparable = false.
 CMBC candidate option generation 007 redteam execute preserves failed 007-EXECUTE as failed generated-option execution evidence.
 CMBC candidate option generation 007 redteam execute claim_ceiling = bounded generated-option 007 redteam execution evidence only; not real companion readiness.
+CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-CONTRACT verdict = longitudinal_generated_options_008_contract_ready.
+CMBC longitudinal generated options 008 contract authorized_scope = contract_only.
+CMBC longitudinal generated options 008 contract execution_authorized = false.
+CMBC longitudinal generated options 008 contract implementation_authorized = false.
+CMBC longitudinal generated options 008 contract source_verdict = generated_option_007_redteam_bounded_pass.
+CMBC longitudinal generated options 008 contract required focus = multi-session generated option lifecycle, option creation and retirement, lineage source deletion, feedback inheritance across generated options, near-duplicate prevention over time, repeated/context-scoped feedback admission, generated option composition, longitudinal baselines, behavior/admission/lifecycle replay, renderer isolation.
+CMBC longitudinal generated options 008 contract future session_count >= 4.
+CMBC longitudinal generated options 008 contract future total_turn_count >= 24.
+CMBC longitudinal generated options 008 contract future generated_option_count_cumulative >= 20.
+CMBC longitudinal generated options 008 contract future admitted_option_count_current >= 20.
+CMBC longitudinal generated options 008 contract future option_lineage_coverage_rate = 1.0.
+CMBC longitudinal generated options 008 contract future feedback_inheritance_coverage_rate = 1.0.
+CMBC longitudinal generated options 008 contract future context_scoped_feedback_admission_rate = 1.0.
+CMBC longitudinal generated options 008 contract future near_duplicate_bypass_rate = 0.0.
+CMBC longitudinal generated options 008 contract future retired_option_selected_rate = 0.0.
+CMBC longitudinal generated options 008 contract future source_deletion_effect = true.
+CMBC longitudinal generated options 008 contract future outcome_perturbation_effect = true.
+CMBC longitudinal generated options 008 contract future rag_longitudinal_match_rate < 0.5.
+CMBC longitudinal generated options 008 contract future expanded_nearest_neighbor_longitudinal_match_rate < 0.5.
+CMBC longitudinal generated options 008 contract future frequency_longitudinal_match_rate < 0.5.
+CMBC longitudinal generated options 008 contract future recency_longitudinal_match_rate < 0.5.
+CMBC longitudinal generated options 008 contract future behavior_only_replay_match_rate = 1.0.
+CMBC longitudinal generated options 008 contract future admission_aware_replay_match_rate = 1.0.
+CMBC longitudinal generated options 008 contract future option_lifecycle_replay_match_rate = 1.0.
+CMBC longitudinal generated options 008 contract future renderer_action_change_rate = 0.0.
+CMBC longitudinal generated options 008 contract recommended_next_task = CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE.
+CMBC longitudinal generated options 008 contract recommended_next_task_authorized = false.
+CMBC longitudinal generated options 008 contract claim_ceiling = longitudinal generated-options 008 contract readiness only; no execution evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE passed as bounded redteam evidence, but this still does not establish real companion readiness, open-ended generated-option robustness, proactive messaging safety, LLM action selection safety, or EGO readiness.
+CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-CONTRACT is ready as contract-only, but no 008 longitudinal execution evidence exists. Current evidence still does not establish real companion readiness, open-ended generated-option robustness, proactive messaging safety, LLM action selection safety, or EGO readiness.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE` before any 008 longitudinal generated-options contract, independent replication, ablation/necessity audit, closeout, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-CONTRACT` before any 008 execution, independent replication, ablation/necessity audit, closeout, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
@@ -1379,6 +1407,7 @@ authorize_cmbc_companion_parametric_action_interface_005_shadow_implement_contra
 authorize_cmbc_companion_candidate_option_generation_007_shadow_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_redteam_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_redteam_execute_contract_only
+authorize_cmbc_companion_longitudinal_generated_options_008_execute_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_execute_rca_contract_only
 authorize_cmbc_companion_generated_option_feedback_admission_007b_contract_only
 authorize_cmbc_companion_generated_option_feedback_admission_007b_shadow_contract_only

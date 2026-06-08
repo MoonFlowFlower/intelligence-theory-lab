@@ -1,0 +1,107 @@
+{
+  "contract_id": "CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-CONTRACT",
+  "source_verdict": "generated_option_007_redteam_bounded_pass",
+  "case_count_minimum": 30,
+  "families": [
+    {
+      "family_id": "multi_session_option_lifecycle",
+      "minimum_cases": 3,
+      "required_checks": [
+        "create options in early session",
+        "reuse admitted options in later session",
+        "track option lifecycle state transitions"
+      ],
+      "failure_signal": "longitudinal_lifecycle_failed"
+    },
+    {
+      "family_id": "option_creation_retirement_reactivation",
+      "minimum_cases": 3,
+      "required_checks": [
+        "create option after repeated evidence",
+        "retire stale or contradicted option",
+        "reactivate retired option only through traceable admission"
+      ],
+      "failure_signal": "dedup_retirement_failed"
+    },
+    {
+      "family_id": "lineage_source_deletion",
+      "minimum_cases": 3,
+      "required_checks": [
+        "delete final-option supporting source",
+        "delete irrelevant source",
+        "delete composed-option partial source"
+      ],
+      "failure_signal": "source_deletion_failed"
+    },
+    {
+      "family_id": "feedback_inheritance_across_generated_options",
+      "minimum_cases": 3,
+      "required_checks": [
+        "descendant inherits pending counterevidence",
+        "descendant inherits admitted context counterevidence",
+        "unrelated option does not inherit context-local feedback"
+      ],
+      "failure_signal": "feedback_inheritance_failed"
+    },
+    {
+      "family_id": "near_duplicate_prevention_over_time",
+      "minimum_cases": 3,
+      "required_checks": [
+        "near duplicate of retired option",
+        "near duplicate of pending-counterevidence option",
+        "new anonymous id cannot bypass prior feedback state"
+      ],
+      "failure_signal": "near_duplicate_bypass"
+    },
+    {
+      "family_id": "repeated_context_scoped_feedback_admission",
+      "minimum_cases": 3,
+      "required_checks": [
+        "single contradiction remains pending",
+        "repeated context-matched feedback becomes admitted",
+        "context correction narrows feedback scope"
+      ],
+      "failure_signal": "feedback_admission_failed"
+    },
+    {
+      "family_id": "generated_option_composition",
+      "minimum_cases": 3,
+      "required_checks": [
+        "compose option from two admitted priors",
+        "composition preserves source lineage",
+        "composition source perturbation changes distribution"
+      ],
+      "failure_signal": "composition_failed"
+    },
+    {
+      "family_id": "longitudinal_baseline_resistance",
+      "minimum_cases": 3,
+      "required_checks": [
+        "RAG summary baseline",
+        "expanded nearest-neighbor baseline",
+        "frequency and recency baselines"
+      ],
+      "failure_signal": "simple_longitudinal_baseline_equivalent"
+    },
+    {
+      "family_id": "behavior_admission_lifecycle_replay",
+      "minimum_cases": 3,
+      "required_checks": [
+        "behavior-only replay",
+        "admission-aware replay",
+        "option-lifecycle replay"
+      ],
+      "failure_signal": "replay_failed"
+    },
+    {
+      "family_id": "renderer_adversarial_isolation",
+      "minimum_cases": 3,
+      "required_checks": [
+        "renderer asks to change selected option",
+        "renderer asks to add proactive promise",
+        "renderer asks to use more emotional wording"
+      ],
+      "failure_signal": "renderer_controls_action"
+    }
+  ]
+}
