@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T20:56:18-05:00
+Last updated: 2026-06-07T21:09:06-05:00
 
 ## Program Goal
 
@@ -8,7 +8,7 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute the generated option feedback admission 007B bounded path:
+Execute the generated option generation 007 bounded re-execution with the passed 007B admission-ordering path:
 
 ```text
 007 shadow candidate_option_generation_shadow_bounded_pass
@@ -23,10 +23,13 @@ Execute the generated option feedback admission 007B bounded path:
 -> repeated/high-confidence context-matched feedback can be admitted and then change selector-visible effect vectors
 -> 007B execute reruns generated-option feedback admission gates under existing 007 generated CandidateOption setup
 -> pending feedback no longer changes selector-visible effect or selected option before admission
+-> 007-REEXECUTE-WITH-007B reruns the failed generated-option 007 execution setup with the 007B update-ordering path
+-> preserve failed 007-EXECUTE as failed generated-option execution evidence
+-> record re-execution as a new bounded result, not a rewrite of failed 007 evidence
 -> preserve 003, 005, and 006 as bounded prior evidence only
 ```
 
-Only bounded 007B execution was authorized after the shadow path. No real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only bounded 007-REEXECUTE-WITH-007B re-execution was authorized after the failed 007 execution and 007B execution path. No real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -36,7 +39,8 @@ Keep pending counterevidence hidden from selector-visible predicted_effect_vecto
 Allow pending counterevidence to affect only uncertainty / confidence / pending state.
 Allow admitted_context_counterevidence to change selector-visible effect vectors only after admission.
 Report explicit context_scope, behavior-only replay, and admission-aware replay.
-Run bounded 007B execution only, not real companion/product execution.
+Run bounded 007-REEXECUTE-WITH-007B re-execution only, not real companion/product execution.
+Preserve failed 007-EXECUTE as failed evidence; do not rewrite it as pass evidence.
 No selector thresholds, baselines, renderer, probe definitions, or action handles are changed.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
@@ -44,10 +48,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-generated_option_feedback_admission_007b_execute_bounded_pass
+candidate_option_generation_007_reexecute_with_007b_bounded_pass
 ```
 
-This is bounded generated-option feedback admission execution evidence. It means the lab reran the generated-option feedback admission/update-ordering gates with admission-filtered effect vectors: pending counterevidence updated uncertainty/confidence state only, while repeated/high-confidence context-matched feedback became admitted counterevidence and changed selector-visible effect vectors. This still does not authorize real companion behavior, EGO migration, proactive messaging, LLM action selection, or product readiness.
+This is bounded generated CandidateOption re-execution evidence using the 007B admission-ordering path. It means the lab reran the failed 007 generated-option execution setup with admission-filtered effect vectors: pending counterevidence updated uncertainty/confidence state only and did not change selector-visible effect vectors or selected option before admission, while repeated/high-confidence context-matched feedback became admitted counterevidence and changed future distribution. The original 007-EXECUTE failure remains preserved as failed evidence. This still does not authorize real companion behavior, EGO migration, proactive messaging, LLM action selection, or product readiness.
 
 Review status:
 
@@ -1227,17 +1231,50 @@ CMBC generated option feedback admission 007B execute baselines_weakened_or_inco
 CMBC generated option feedback admission 007B execute renderer_action_change_rate = 0.0.
 CMBC generated option feedback admission 007B execute preserves failed 007-EXECUTE as negative evidence and does not rewrite 003/005/006/007-SHADOW evidence.
 CMBC generated option feedback admission 007B execute claim_ceiling = bounded generated-option feedback admission execution evidence only; not real companion readiness.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REEXECUTE-WITH-007B verdict = candidate_option_generation_007_reexecute_with_007b_bounded_pass.
+CMBC candidate option generation 007 reexecute with 007B execution_scope = bounded_reexecution_only.
+CMBC candidate option generation 007 reexecute with 007B generated_option_count = 24.
+CMBC candidate option generation 007 reexecute with 007B admitted_option_count = 24.
+CMBC candidate option generation 007 reexecute with 007B causal_probe_case_count = 9.
+CMBC candidate option generation 007 reexecute with 007B causal_probe_pass_rate = 1.0.
+CMBC candidate option generation 007 reexecute with 007B generator_selected_action = false.
+CMBC candidate option generation 007 reexecute with 007B generator_ranked_final_actions = false.
+CMBC candidate option generation 007 reexecute with 007B selector_receives_only_admitted_options = true.
+CMBC candidate option generation 007 reexecute with 007B pending_counterevidence_record_count = 1.
+CMBC candidate option generation 007 reexecute with 007B selector_visible_effect_update_allowed = false.
+CMBC candidate option generation 007 reexecute with 007B selector_visible_predicted_effect_vector_delta = 0.0.
+CMBC candidate option generation 007 reexecute with 007B uncertainty_delta = 0.18.
+CMBC candidate option generation 007 reexecute with 007B confidence_delta = -0.18.
+CMBC candidate option generation 007 reexecute with 007B selected_option_changed_due_to_pending = false.
+CMBC candidate option generation 007 reexecute with 007B feedback_admission_single_contradiction_passed = true.
+CMBC candidate option generation 007 reexecute with 007B repeated_feedback_admission_status = admitted_context_counterevidence.
+CMBC candidate option generation 007 reexecute with 007B repeated_feedback_changes_distribution = true.
+CMBC candidate option generation 007 reexecute with 007B behavior_only_replay_match_rate = 1.0.
+CMBC candidate option generation 007 reexecute with 007B admission_aware_replay_match_rate = 1.0.
+CMBC candidate option generation 007 reexecute with 007B rag_causal_probe_match_rate = 0.0.
+CMBC candidate option generation 007 reexecute with 007B strong_heuristic_causal_probe_match_rate = 0.0.
+CMBC candidate option generation 007 reexecute with 007B expanded_action_nearest_neighbor_match_rate = 0.0.
+CMBC candidate option generation 007 reexecute with 007B generator_baseline_action_match_rate = 0.0.
+CMBC candidate option generation 007 reexecute with 007B baselines_receive_same_anonymous_options = true.
+CMBC candidate option generation 007 reexecute with 007B baselines_weakened_or_incomparable = false.
+CMBC candidate option generation 007 reexecute with 007B renderer_action_change_rate = 0.0.
+CMBC candidate option generation 007 reexecute with 007B supporting_prior_deletion_effect = true.
+CMBC candidate option generation 007 reexecute with 007B outcome_perturbation_effect = true.
+CMBC candidate option generation 007 reexecute with 007B preserves failed 007-EXECUTE as failed generated-option execution evidence.
+CMBC candidate option generation 007 reexecute with 007B records this as a new bounded re-execution result.
+CMBC candidate option generation 007 reexecute with 007B rewrite_failed_007_execute_as_pass = false.
+CMBC candidate option generation 007 reexecute with 007B claim_ceiling = bounded 007 generated CandidateOption re-execution with 007B admission ordering evidence only; not real companion readiness.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-EXECUTE remains preserved as failed evidence. 007B-EXECUTE passes the bounded generated-option feedback admission/update-ordering gates, but this is still not real companion readiness or open-ended generated-option robustness.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-EXECUTE remains preserved as failed evidence. 007-REEXECUTE-WITH-007B passes the bounded generated-option causal-probe gates with the 007B admission-ordering path, but this is still not real companion readiness, scalable generated-option robustness, or EGO readiness.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-EXECUTE` before any 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REEXECUTE-WITH-007B` before any 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
