@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T21:36:00-05:00
+Last updated: 2026-06-07T21:48:58-05:00
 
 ## Program Goal
 
@@ -8,7 +8,7 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Design the generated option generation 007 redteam contract:
+Execute the generated option generation 007 redteam as bounded execution:
 
 ```text
 007 shadow candidate_option_generation_shadow_bounded_pass
@@ -27,10 +27,12 @@ Design the generated option generation 007 redteam contract:
 -> preserve failed 007-EXECUTE as failed generated-option execution evidence
 -> record re-execution as a new bounded result, not a rewrite of failed 007 evidence
 -> 007-REDTEAM-CONTRACT defines fake-generator, hidden-selector, admission, lineage, replay, semantic-leak, baseline, deletion, perturbation, and renderer-isolation kill tests
+-> 007-REDTEAM-EXECUTE runs all 12 redteam families with 36 cases
+-> redteam passes without fixed recipe, hidden selector, admission degeneracy, semantic leak, lineage/replay artifact, simple-baseline equivalence, or renderer control
 -> preserve 003, 005, and 006 as bounded prior evidence only
 ```
 
-Only bounded 007-REDTEAM-CONTRACT design was authorized after the accepted 007-REEXECUTE-WITH-007B result. No redteam execution, real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only bounded 007-REDTEAM-EXECUTE was authorized after the 007 redteam contract. No real companion behavior, selector patch, threshold change, baseline weakening, probe mutation, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -40,7 +42,7 @@ Keep pending counterevidence hidden from selector-visible predicted_effect_vecto
 Allow pending counterevidence to affect only uncertainty / confidence / pending state.
 Allow admitted_context_counterevidence to change selector-visible effect vectors only after admission.
 Report explicit context_scope, behavior-only replay, and admission-aware replay.
-Create a redteam contract only; do not execute it.
+Execute the approved redteam contract only.
 Preserve failed 007-EXECUTE as failed evidence; do not rewrite it as pass evidence.
 Require redteam families for fixed recipes, hidden generator selection, admission degeneracy, weak-evidence confidence, semantic leaks, lineage/replay artifacts, baseline equivalence, deletion/perturbation, and renderer isolation.
 No selector thresholds, baselines, renderer, probe definitions, or action handles are changed.
@@ -50,10 +52,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-generated_option_007_redteam_contract_ready
+generated_option_007_redteam_bounded_pass
 ```
 
-This is contract readiness only. It means the lab now has a predeclared redteam contract for the passed 007 re-execution path, including tests for fake generation, fixed recipe tables, hidden generator action selection, semantic leakage, admission gate degeneracy, weak-evidence high-confidence options, lineage/replay artifacts, RAG/heuristic/nearest-neighbor/frequency/recency collapse, deletion/perturbation causality, and renderer isolation. No redteam execution evidence exists yet. The original 007-EXECUTE failure remains preserved as failed evidence.
+This is bounded generated-option redteam execution evidence only. It means the lab ran the predeclared 12-family / 36-case redteam against the passed 007 re-execution path and did not detect fixed recipe generation, hidden generator selection, admission-gate degeneracy, weak-evidence high-confidence options, semantic leakage, lineage/replay artifacts, simple-baseline equivalence, deletion/perturbation failure, or renderer control. The original 007-EXECUTE failure remains preserved as failed evidence. This still does not authorize real companion behavior, EGO migration, proactive messaging, LLM action selection, or product readiness.
 
 Review status:
 
@@ -1296,17 +1298,55 @@ CMBC candidate option generation 007 redteam contract future renderer_action_cha
 CMBC candidate option generation 007 redteam contract recommended_next_task = CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE.
 CMBC candidate option generation 007 redteam contract recommended_next_task_authorized = false.
 CMBC candidate option generation 007 redteam contract claim_ceiling = generated option 007 redteam contract readiness only; no execution evidence.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE verdict = generated_option_007_redteam_bounded_pass.
+CMBC candidate option generation 007 redteam execute execution_scope = bounded_execution_only.
+CMBC candidate option generation 007 redteam execute redteam_family_count = 12.
+CMBC candidate option generation 007 redteam execute redteam_case_count = 36.
+CMBC candidate option generation 007 redteam execute passed_case_count = 36.
+CMBC candidate option generation 007 redteam execute failed_case_count = 0.
+CMBC candidate option generation 007 redteam execute stop_conditions = [].
+CMBC candidate option generation 007 redteam execute generated_option_count = 24.
+CMBC candidate option generation 007 redteam execute admitted_option_count = 24.
+CMBC candidate option generation 007 redteam execute fixed_recipe_detected = false.
+CMBC candidate option generation 007 redteam execute option_fingerprint_changes_with_allowed_history = true.
+CMBC candidate option generation 007 redteam execute generator_selected_action = false.
+CMBC candidate option generation 007 redteam execute generator_ranked_final_actions = false.
+CMBC candidate option generation 007 redteam execute generator_recommendation_visible_to_selector = false.
+CMBC candidate option generation 007 redteam execute admission_always_pass_detected = false.
+CMBC candidate option generation 007 redteam execute admission_always_reject_detected = false.
+CMBC candidate option generation 007 redteam execute weak_evidence_high_confidence_rate = 0.0.
+CMBC candidate option generation 007 redteam execute single_contradiction_status = pending_counterevidence.
+CMBC candidate option generation 007 redteam execute repeated_feedback_status = admitted_context_counterevidence.
+CMBC candidate option generation 007 redteam execute semantic_label_visible_to_selector = false.
+CMBC candidate option generation 007 redteam execute natural_language_description_visible_to_selector = false.
+CMBC candidate option generation 007 redteam execute near_duplicate_bypass_rate = 0.0.
+CMBC candidate option generation 007 redteam execute lineage_coverage_rate = 1.0.
+CMBC candidate option generation 007 redteam execute falsified_lineage_detected = true.
+CMBC candidate option generation 007 redteam execute missing_source_rejected_or_flagged = true.
+CMBC candidate option generation 007 redteam execute rag_hidden_shortcut_match_rate = 0.0.
+CMBC candidate option generation 007 redteam execute expanded_nearest_neighbor_match_rate = 0.0.
+CMBC candidate option generation 007 redteam execute frequency_baseline_match_rate = 0.0.
+CMBC candidate option generation 007 redteam execute recency_baseline_match_rate = 0.0.
+CMBC candidate option generation 007 redteam execute behavior_only_replay_match_rate = 1.0.
+CMBC candidate option generation 007 redteam execute admission_aware_replay_match_rate = 1.0.
+CMBC candidate option generation 007 redteam execute generated_option_perturbation_replay_match_rate = 1.0.
+CMBC candidate option generation 007 redteam execute supporting_prior_deletion_effect = true.
+CMBC candidate option generation 007 redteam execute outcome_perturbation_effect = true.
+CMBC candidate option generation 007 redteam execute renderer_action_change_rate = 0.0.
+CMBC candidate option generation 007 redteam execute baselines_weakened_or_incomparable = false.
+CMBC candidate option generation 007 redteam execute preserves failed 007-EXECUTE as failed generated-option execution evidence.
+CMBC candidate option generation 007 redteam execute claim_ceiling = bounded generated-option 007 redteam execution evidence only; not real companion readiness.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-CONTRACT is ready, but the redteam has not been executed. 007-REEXECUTE-WITH-007B remains bounded re-execution evidence only, and failed 007-EXECUTE remains preserved failed evidence.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE passed as bounded redteam evidence, but this still does not establish real companion readiness, open-ended generated-option robustness, proactive messaging safety, LLM action selection safety, or EGO readiness.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-CONTRACT` before any 007 redteam execution, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE` before any 008 longitudinal generated-options contract, independent replication, ablation/necessity audit, closeout, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
