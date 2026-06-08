@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T20:44:02-05:00
+Last updated: 2026-06-07T20:56:18-05:00
 
 ## Program Goal
 
@@ -8,7 +8,7 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Implement the generated option feedback admission 007B shadow path:
+Execute the generated option feedback admission 007B bounded path:
 
 ```text
 007 shadow candidate_option_generation_shadow_bounded_pass
@@ -21,10 +21,12 @@ Implement the generated option feedback admission 007B shadow path:
 -> 007B contract defines admission-filtered generated-option feedback updates
 -> 007B shadow blocks pending feedback from changing selector-visible effect vectors
 -> repeated/high-confidence context-matched feedback can be admitted and then change selector-visible effect vectors
+-> 007B execute reruns generated-option feedback admission gates under existing 007 generated CandidateOption setup
+-> pending feedback no longer changes selector-visible effect or selected option before admission
 -> preserve 003, 005, and 006 as bounded prior evidence only
 ```
 
-Only bounded 007B shadow implementation was authorized after the contract. No full 007B execution, real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only bounded 007B execution was authorized after the shadow path. No real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
@@ -34,7 +36,7 @@ Keep pending counterevidence hidden from selector-visible predicted_effect_vecto
 Allow pending counterevidence to affect only uncertainty / confidence / pending state.
 Allow admitted_context_counterevidence to change selector-visible effect vectors only after admission.
 Report explicit context_scope, behavior-only replay, and admission-aware replay.
-Do not run full 007B execution.
+Run bounded 007B execution only, not real companion/product execution.
 No selector thresholds, baselines, renderer, probe definitions, or action handles are changed.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
@@ -42,10 +44,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-generated_option_feedback_admission_007b_shadow_bounded_pass
+generated_option_feedback_admission_007b_execute_bounded_pass
 ```
 
-This is bounded shadow evidence, not full 007B execution. It means the lab now has a shadow path showing pending generated-option feedback updates uncertainty/confidence state without changing selector-visible effect vectors or action distribution before admission. 007-EXECUTE remains failed until a separately authorized 007B execution proves this ordering inside the full generated-option causal-probe suite.
+This is bounded generated-option feedback admission execution evidence. It means the lab reran the generated-option feedback admission/update-ordering gates with admission-filtered effect vectors: pending counterevidence updated uncertainty/confidence state only, while repeated/high-confidence context-matched feedback became admitted counterevidence and changed selector-visible effect vectors. This still does not authorize real companion behavior, EGO migration, proactive messaging, LLM action selection, or product readiness.
 
 Review status:
 
@@ -1202,17 +1204,40 @@ CMBC generated option feedback admission 007B shadow admission_aware_replay_matc
 CMBC generated option feedback admission 007B shadow renderer_action_change_rate = 0.0.
 CMBC generated option feedback admission 007B shadow preserves 007-EXECUTE as failed generated-option execution evidence.
 CMBC generated option feedback admission 007B shadow claim_ceiling = bounded generated-option feedback admission shadow evidence only; no full 007B execution or real companion readiness.
+CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-EXECUTE verdict = generated_option_feedback_admission_007b_execute_bounded_pass.
+CMBC generated option feedback admission 007B execute execution_scope = bounded_execution_only.
+CMBC generated option feedback admission 007B execute generated_option_count = 24.
+CMBC generated option feedback admission 007B execute admitted_option_count = 24.
+CMBC generated option feedback admission 007B execute causal_probe_pass_rate = 1.0.
+CMBC generated option feedback admission 007B execute pending_counterevidence_record_count = 1.
+CMBC generated option feedback admission 007B execute selector_visible_effect_update_allowed = false.
+CMBC generated option feedback admission 007B execute selector_visible_predicted_effect_vector_delta = 0.0.
+CMBC generated option feedback admission 007B execute uncertainty_delta = 0.18.
+CMBC generated option feedback admission 007B execute confidence_delta = -0.18.
+CMBC generated option feedback admission 007B execute selected_option_changed_due_to_pending = false.
+CMBC generated option feedback admission 007B execute feedback_admission_single_contradiction_passed = true.
+CMBC generated option feedback admission 007B execute repeated_feedback_admission_status = admitted_context_counterevidence.
+CMBC generated option feedback admission 007B execute repeated_feedback_changes_distribution = true.
+CMBC generated option feedback admission 007B execute behavior_only_replay_match_rate = 1.0.
+CMBC generated option feedback admission 007B execute admission_aware_replay_match_rate = 1.0.
+CMBC generated option feedback admission 007B execute rag_causal_probe_match_rate = 0.0.
+CMBC generated option feedback admission 007B execute strong_heuristic_causal_probe_match_rate = 0.0.
+CMBC generated option feedback admission 007B execute expanded_action_nearest_neighbor_match_rate = 0.0.
+CMBC generated option feedback admission 007B execute baselines_weakened_or_incomparable = false.
+CMBC generated option feedback admission 007B execute renderer_action_change_rate = 0.0.
+CMBC generated option feedback admission 007B execute preserves failed 007-EXECUTE as negative evidence and does not rewrite 003/005/006/007-SHADOW evidence.
+CMBC generated option feedback admission 007B execute claim_ceiling = bounded generated-option feedback admission execution evidence only; not real companion readiness.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-EXECUTE remains failed. 007B-SHADOW proves the update ordering in a bounded shadow path, but the full generated-option causal-probe execution has not been rerun under 007B admission filtering.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-EXECUTE remains preserved as failed evidence. 007B-EXECUTE passes the bounded generated-option feedback admission/update-ordering gates, but this is still not real companion readiness or open-ended generated-option robustness.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-SHADOW` before any 007B full execution, 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-EXECUTE` before any 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
