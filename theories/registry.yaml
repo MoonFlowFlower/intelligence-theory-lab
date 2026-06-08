@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_candidate_option_generation_007_execute_causal_probe_failed
+lab_status: cmbc_companion_candidate_option_generation_007_rca_outcome_update_ordering_bug_confirmed
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -661,6 +661,32 @@ surviving_theory_families:
       preserve_007_shadow_as: bounded generated-option shadow evidence only
       rewrite_prior_evidence_as_generated_option_evidence: false
     latest_companion_claim_after_candidate_option_generation_007_execute: bounded generated CandidateOption execution attempted; causal-probe gate failed
+    latest_companion_candidate_option_generation_007_rca: artifacts/cmbc_companion_candidate_option_generation_007_rca/RCA_RESULT.json
+    latest_companion_candidate_option_generation_007_rca_verdict: outcome_update_ordering_bug_confirmed
+    latest_companion_candidate_option_generation_007_rca_secondary_findings:
+      - feedback_admission_not_applied_to_generated_options
+      - weak_evidence_high_confidence_confirmed
+      - replay_trace_insufficient_for_generated_feedback_admission
+      - selector_scoring_not_primary_blocker
+    latest_companion_candidate_option_generation_007_rca_key_findings:
+      failed_probe: feedback_admission_single_contradiction
+      selected_option_before: generated_option_08_of_24
+      selected_option_after: generated_option_04_of_24
+      pending_counterevidence_status_recorded: true
+      selector_visible_effect_vector_changed_before_admission: true
+      selector_visible_effect_delta:
+        interruption_risk: 0.08
+        trust_delta: -0.02
+      confidence_before: 0.736
+      confidence_after: 0.736
+      same_option_id_set_before_after: true
+      near_duplicate_new_option_bypass_detected: false
+      context_scope_missing_for_feedback_admission: true
+      trace_sufficient_for_generated_feedback_admission: false
+      selector_scoring_not_primary_blocker: true
+    latest_companion_claim_after_candidate_option_generation_007_rca: bounded generated CandidateOption execution remains failed; failure localized to pending feedback admission/update ordering
+    latest_companion_candidate_option_generation_007_rca_next_recommended_task: CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-CONTRACT
+    latest_companion_candidate_option_generation_007b_authorized: false
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false
