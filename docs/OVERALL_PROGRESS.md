@@ -1364,17 +1364,46 @@ CMBC longitudinal generated options 008 contract future renderer_action_change_r
 CMBC longitudinal generated options 008 contract recommended_next_task = CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE.
 CMBC longitudinal generated options 008 contract recommended_next_task_authorized = false.
 CMBC longitudinal generated options 008 contract claim_ceiling = longitudinal generated-options 008 contract readiness only; no execution evidence.
+CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE verdict = longitudinal_generated_options_008_bounded_pass.
+CMBC longitudinal generated options 008 execute execution_scope = bounded_execution_only.
+CMBC longitudinal generated options 008 execute session_count = 4.
+CMBC longitudinal generated options 008 execute total_turn_count = 24.
+CMBC longitudinal generated options 008 execute generated_option_count_cumulative = 24.
+CMBC longitudinal generated options 008 execute admitted_option_count_current = 23.
+CMBC longitudinal generated options 008 execute option_creation_event_count = 24.
+CMBC longitudinal generated options 008 execute option_retirement_event_count = 2.
+CMBC longitudinal generated options 008 execute option_lineage_coverage_rate = 1.0.
+CMBC longitudinal generated options 008 execute feedback_inheritance_coverage_rate = 1.0.
+CMBC longitudinal generated options 008 execute context_scoped_feedback_admission_rate = 1.0.
+CMBC longitudinal generated options 008 execute near_duplicate_bypass_rate = 0.0.
+CMBC longitudinal generated options 008 execute retired_option_selected_rate = 0.0.
+CMBC longitudinal generated options 008 execute retired_option_reactivation_traceable = true.
+CMBC longitudinal generated options 008 execute source_deletion_effect = true.
+CMBC longitudinal generated options 008 execute outcome_perturbation_effect = true.
+CMBC longitudinal generated options 008 execute rag_longitudinal_match_rate = 0.25.
+CMBC longitudinal generated options 008 execute expanded_nearest_neighbor_longitudinal_match_rate = 0.17.
+CMBC longitudinal generated options 008 execute frequency_longitudinal_match_rate = 0.08.
+CMBC longitudinal generated options 008 execute recency_longitudinal_match_rate = 0.12.
+CMBC longitudinal generated options 008 execute strong_generated_option_heuristic_longitudinal_match_rate = 0.33.
+CMBC longitudinal generated options 008 execute behavior_only_replay_match_rate = 1.0.
+CMBC longitudinal generated options 008 execute admission_aware_replay_match_rate = 1.0.
+CMBC longitudinal generated options 008 execute option_lifecycle_replay_match_rate = 1.0.
+CMBC longitudinal generated options 008 execute renderer_action_change_rate = 0.0.
+CMBC longitudinal generated options 008 execute baselines_weakened_or_incomparable = false.
+CMBC longitudinal generated options 008 execute stop_conditions = [].
+CMBC longitudinal generated options 008 execute preserves 003 / 005 / 006 / 007 evidence boundaries.
+CMBC longitudinal generated options 008 execute claim_ceiling = bounded longitudinal generated-options 008 execution evidence only; not real companion readiness.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-CONTRACT is ready as contract-only, but no 008 longitudinal execution evidence exists. Current evidence still does not establish real companion readiness, open-ended generated-option robustness, proactive messaging safety, LLM action selection safety, or EGO readiness.
+CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE passed as bounded execution evidence, but this still does not establish real companion readiness, open-ended generated-option robustness, proactive messaging safety, LLM action selection safety, or EGO readiness.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-CONTRACT` before any 008 execution, independent replication, ablation/necessity audit, closeout, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE` before any independent replication, ablation/necessity audit, closeout, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
@@ -1408,6 +1437,9 @@ authorize_cmbc_companion_candidate_option_generation_007_shadow_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_redteam_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_redteam_execute_contract_only
 authorize_cmbc_companion_longitudinal_generated_options_008_execute_contract_only
+authorize_cmbc_companion_independent_replication_009_contract_only
+authorize_cmbc_companion_ablation_necessity_010_contract_only
+authorize_cmbc_companion_closeout_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_execute_rca_contract_only
 authorize_cmbc_companion_generated_option_feedback_admission_007b_contract_only
 authorize_cmbc_companion_generated_option_feedback_admission_007b_shadow_contract_only

@@ -966,6 +966,45 @@ surviving_theory_families:
     latest_companion_longitudinal_generated_options_008_recommended_next_task: CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE
     latest_companion_longitudinal_generated_options_008_recommended_next_task_authorized: false
     latest_companion_claim_after_longitudinal_generated_options_008_contract: longitudinal generated-options 008 contract readiness only; no execution evidence
+    latest_companion_longitudinal_generated_options_008_execute: artifacts/cmbc_companion_longitudinal_generated_options_008_execute/longitudinal_generated_options_008_result.json
+    latest_companion_longitudinal_generated_options_008_execute_verdict: longitudinal_generated_options_008_bounded_pass
+    latest_companion_longitudinal_generated_options_008_execute_scope: bounded_execution_only
+    latest_companion_longitudinal_generated_options_008_execute_key_metrics:
+      session_count: 4
+      total_turn_count: 24
+      generated_option_count_cumulative: 24
+      admitted_option_count_current: 23
+      option_creation_event_count: 24
+      option_retirement_event_count: 2
+      option_lineage_coverage_rate: 1.0
+      feedback_inheritance_coverage_rate: 1.0
+      context_scoped_feedback_admission_rate: 1.0
+      near_duplicate_bypass_rate: 0.0
+      retired_option_selected_rate: 0.0
+      retired_option_reactivation_traceable: true
+      source_deletion_effect: true
+      outcome_perturbation_effect: true
+      rag_longitudinal_match_rate: 0.25
+      expanded_nearest_neighbor_longitudinal_match_rate: 0.17
+      frequency_longitudinal_match_rate: 0.08
+      recency_longitudinal_match_rate: 0.12
+      strong_generated_option_heuristic_longitudinal_match_rate: 0.33
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      option_lifecycle_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      baselines_weakened_or_incomparable: false
+      stop_conditions: []
+    latest_companion_longitudinal_generated_options_008_execute_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 parametric shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      preserve_007_reexecute_with_007b_as: bounded re-execution evidence only
+      preserve_007_redteam_execute_as: bounded generated-option redteam evidence only
+      rewrite_prior_evidence_as_008_evidence: false
+    latest_companion_claim_after_longitudinal_generated_options_008_execute: bounded longitudinal generated-options 008 execution evidence only; not real companion readiness
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false
