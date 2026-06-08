@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_candidate_option_generation_007_shadow_bounded_pass
+lab_status: cmbc_companion_candidate_option_generation_007_execute_causal_probe_failed
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -629,6 +629,38 @@ surviving_theory_families:
       preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
       rewrite_prior_evidence_as_generated_option_evidence: false
     latest_companion_claim_after_candidate_option_generation_007_shadow: bounded generated CandidateOption shadow evidence only; not real companion readiness
+    latest_companion_candidate_option_generation_007_execute: artifacts/cmbc_companion_candidate_option_generation_007_execute/candidate_option_generation_007_execute_result.json
+    latest_companion_candidate_option_generation_007_execute_verdict: candidate_option_generation_execute_causal_probe_failed
+    latest_companion_candidate_option_generation_007_execute_scope: bounded_execution_only
+    latest_companion_candidate_option_generation_007_execute_stop_conditions:
+      - feedback_admission_single_contradiction_failed
+    latest_companion_candidate_option_generation_007_execute_key_metrics:
+      generated_option_count: 24
+      admitted_option_count: 24
+      generator_selected_action: false
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      option_lineage_coverage_rate: 1.0
+      option_replay_match_rate: 1.0
+      behavior_only_replay_match_rate: 1.0
+      generator_baseline_action_match_rate: 0.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_action_nearest_neighbor_match_rate: 0.0
+      renderer_action_change_rate: 0.0
+      outcome_update_changes_future_option_distribution: true
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+      causal_probe_case_count: 9
+      causal_probe_pass_rate: 0.8888888888888888
+      feedback_admission_single_contradiction_passed: false
+    latest_companion_candidate_option_generation_007_execute_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      rewrite_prior_evidence_as_generated_option_evidence: false
+    latest_companion_claim_after_candidate_option_generation_007_execute: bounded generated CandidateOption execution attempted; causal-probe gate failed
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false
