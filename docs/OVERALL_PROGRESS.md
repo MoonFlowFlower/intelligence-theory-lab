@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T19:24:56-05:00
+Last updated: 2026-06-07T19:38:00-05:00
 
 ## Program Goal
 
@@ -8,40 +8,41 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Define the CMBC candidate option generation 007 contract:
+Execute the CMBC candidate option generation 007 bounded shadow:
 
 ```text
-006 execution parametric_action_expansion_006_bounded_pass
--> 007 contract for generated anonymous CandidateOptions
--> proposal / admission / deduplication / composition / retirement contracts
--> generator-selector separation
--> generated-option replay and baseline contracts
+007 contract candidate_option_generation_contract_ready
+-> generated CandidateOptionProposal records
+-> admission gate produces admitted anonymous CandidateOptions
+-> lineage / replay / deduplication / retirement artifacts
+-> generator cannot select action
+-> selector receives only admitted anonymous payloads
 -> preserve 003, 005, and 006 as bounded prior evidence only
 ```
 
-Only contract definition was authorized. No generator implementation, selector patch, threshold change, baseline weakening, execution, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only bounded shadow implementation was authorized. No real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Define CandidateOptionProposal, OptionAdmissionGate, AdmittedCandidateOption, OptionLineageTrace, deduplication, retirement, composition, evidence support, replay, and generated-option baseline contracts.
+Generate at least 20 CandidateOptionProposal records and admit at least 20 anonymous CandidateOptions.
 Generator may propose options but cannot select actions.
 Selector receives only admitted anonymous CandidateOptions.
 Natural-language descriptions, semantic labels, renderer text, RAG text, LLM output, oracle effects, evaluator metrics, and baseline outputs remain forbidden selector inputs.
-Every admitted option must have lineage, evidence support, and uncertainty when evidence is weak.
-Future generated-option replay must reconstruct the option set and full option distribution.
-Retired options must be traceable and reversible.
-No generator, selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
+Every admitted option has lineage, evidence support, and uncertainty.
+Generated-option replay reconstructs the admitted option distribution.
+Outcome updates change future option admission or scoring.
+No selector thresholds, baselines, renderer, probe definitions, or action handles are changed.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-candidate_option_generation_contract_ready
+candidate_option_generation_shadow_bounded_pass
 ```
 
-This is generated-option contract readiness only, not generator implementation, shadow execution, open-ended action generation, real companion implementation, or an EGO signal. It means the lab now has a predeclared boundary for how generated options must be proposed, admitted, replayed, retired, and baseline-compared before any future 007 shadow can be authorized.
+This is bounded generated-option shadow evidence only, not real companion implementation, product readiness, open-ended option generation, or an EGO signal. It means the lab now has a shadow path where proposals are admitted into anonymous CandidateOptions and replayed without giving the generator selector authority.
 
 Review status:
 
@@ -1122,17 +1123,34 @@ CMBC candidate option generation 007 future outcome_update_changes_future_option
 CMBC candidate option generation 007 recommended_next_task = CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW.
 CMBC candidate option generation 007 recommended_next_task_authorized = false.
 CMBC candidate option generation 007 claim_after_contract = candidate option generation contract readiness only; no implementation or execution evidence.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW verdict = candidate_option_generation_shadow_bounded_pass.
+CMBC candidate option generation 007 shadow execution_scope = bounded_shadow_implementation_only.
+CMBC candidate option generation 007 shadow generated_option_count = 24.
+CMBC candidate option generation 007 shadow admitted_option_count = 24.
+CMBC candidate option generation 007 shadow generator_selected_action = false.
+CMBC candidate option generation 007 shadow semantic_label_visible_to_selector = false.
+CMBC candidate option generation 007 shadow natural_language_description_visible_to_selector = false.
+CMBC candidate option generation 007 shadow option_lineage_coverage_rate = 1.0.
+CMBC candidate option generation 007 shadow option_replay_match_rate = 1.0.
+CMBC candidate option generation 007 shadow generator_baseline_action_match_rate = 0.0.
+CMBC candidate option generation 007 shadow rag_causal_probe_match_rate = 0.0.
+CMBC candidate option generation 007 shadow strong_heuristic_causal_probe_match_rate = 0.0.
+CMBC candidate option generation 007 shadow expanded_action_nearest_neighbor_match_rate = 0.0.
+CMBC candidate option generation 007 shadow renderer_action_change_rate = 0.0.
+CMBC candidate option generation 007 shadow outcome_update_changes_future_option_distribution = true.
+CMBC candidate option generation 007 shadow evidence_preservation = preserve 003 as small-action-set evidence, 005 as N=7 shadow compatibility, and 006 as bounded N=24 prebuilt CandidateOption evidence.
+CMBC candidate option generation 007 shadow claim_after_shadow = bounded generated CandidateOption shadow evidence only; not real companion readiness.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-CONTRACT is ready, but no generator, admission runtime, shadow execution, selector patch, threshold change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection is authorized. The remaining blocker is whether generated CandidateOptions can be admitted and replayed without becoming a hidden action selector.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW passed the bounded shadow implementation, but this is not open-ended option generation or product readiness. The remaining blocker is whether generated CandidateOptions survive stronger redteam checks for generator shortcutting, fixed proposal recipes, weak lineage, baseline equivalence, and longer free-input drift.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-CONTRACT` before any 007 shadow execution, generator implementation, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW` before any 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
@@ -1163,6 +1181,7 @@ authorize_action_space_expansion_004_rca_contract_only
 authorize_cmbc_companion_parametric_action_interface_005_contract_only
 authorize_cmbc_companion_parametric_action_interface_005_shadow_implement_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_shadow_contract_only
+authorize_cmbc_companion_candidate_option_generation_007_redteam_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
