@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_parametric_action_expansion_006_bounded_pass
+lab_status: cmbc_companion_candidate_option_generation_007_contract_ready
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -574,6 +574,38 @@ surviving_theory_families:
       supporting_prior_deletion_effect: true
       outcome_perturbation_effect: true
     latest_companion_claim_after_parametric_action_expansion_006_execute: bounded parametric N>=20 action-space causal-probe execution evidence only; not real companion readiness
+    latest_companion_candidate_option_generation_007_contract: artifacts/cmbc_companion_candidate_option_generation_007_contract/contract_manifest.json
+    latest_companion_candidate_option_generation_007_contract_doc: docs/CMBC_COMPANION_CANDIDATE_OPTION_GENERATION_007_CONTRACT.md
+    latest_companion_candidate_option_generation_007_verdict: candidate_option_generation_contract_ready
+    latest_companion_candidate_option_generation_007_scope: contract_only_no_implementation_no_execution
+    latest_companion_candidate_option_generation_007_required_objects:
+      - CandidateOptionProposal
+      - OptionAdmissionGate
+      - AdmittedCandidateOption
+      - OptionLineageTrace
+      - OptionDeduplicationReport
+      - OptionRetirementReport
+      - OptionCompositionContract
+      - GeneratorSelectorSeparationContract
+      - OptionEvidenceSupportContract
+      - ReplayContractForGeneratedOptions
+      - BaselineContractForGeneratedOptions
+    latest_companion_candidate_option_generation_007_key_gates:
+      generated_option_count_min: 20
+      admitted_option_count_min: 20
+      generator_selected_action: false
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      option_lineage_coverage_rate: 1.0
+      option_replay_match_rate: 1.0
+      generator_baseline_action_match_rate_max: 0.5
+      rag_causal_probe_match_rate_max: 0.5
+      expanded_action_nearest_neighbor_match_rate_max: 0.5
+      renderer_action_change_rate: 0.0
+      outcome_update_changes_future_option_distribution: true
+    latest_companion_claim_after_candidate_option_generation_007: candidate option generation contract readiness only; no implementation or execution evidence
+    latest_companion_candidate_option_generation_007_next_recommended_task: CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW
+    latest_companion_candidate_option_generation_007_next_recommended_task_authorized: false
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false

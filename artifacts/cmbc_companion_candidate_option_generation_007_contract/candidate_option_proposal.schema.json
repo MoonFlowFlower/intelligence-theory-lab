@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CandidateOptionProposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["proposal_id", "generator_id", "proposed_option_id", "generator_visible_description", "proposed_effect_hypothesis", "source_context_refs", "proposal_uncertainty", "selector_visible_payload"],
+  "properties": {
+    "proposal_id": {"type": "string"},
+    "generator_id": {"type": "string"},
+    "proposed_option_id": {"type": "string"},
+    "generator_visible_description": {"type": "string"},
+    "proposed_effect_hypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["effect_vector", "uncertainty"],
+      "properties": {
+        "effect_vector": {"type": "object", "additionalProperties": {"type": "number"}},
+        "uncertainty": {"type": "number", "minimum": 0.0, "maximum": 1.0}
+      }
+    },
+    "source_context_refs": {"type": "array", "items": {"type": "string"}},
+    "proposal_uncertainty": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+    "selector_visible_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["option_id", "allowed_observation_features", "predicted_effect_vector", "uncertainty", "prior_support_refs", "cost_risk_budget_features"],
+      "properties": {
+        "option_id": {"type": "string"},
+        "allowed_observation_features": {"type": "object", "additionalProperties": {"type": "number"}},
+        "predicted_effect_vector": {"type": "object", "additionalProperties": {"type": "number"}},
+        "uncertainty": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+        "prior_support_refs": {"type": "array", "items": {"type": "string"}},
+        "cost_risk_budget_features": {"type": "object", "additionalProperties": {"type": "number"}}
+      }
+    }
+  }
+}

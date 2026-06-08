@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OptionLineageTrace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lineage_id", "proposal_id", "admitted_option_id", "source_context_refs", "source_outcome_refs", "admission_decision_ref", "deduplication_refs", "composition_refs", "retirement_refs"],
+  "properties": {
+    "lineage_id": {"type": "string"},
+    "proposal_id": {"type": "string"},
+    "admitted_option_id": {"type": "string"},
+    "source_context_refs": {"type": "array", "items": {"type": "string"}},
+    "source_outcome_refs": {"type": "array", "items": {"type": "string"}},
+    "admission_decision_ref": {"type": "string"},
+    "deduplication_refs": {"type": "array", "items": {"type": "string"}},
+    "composition_refs": {"type": "array", "items": {"type": "string"}},
+    "retirement_refs": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OptionDeduplicationReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["deduplication_id", "candidate_option_ids", "dedup_decision", "merge_target_option_id", "evidence_refs", "decision_reasons"],
+  "properties": {
+    "deduplication_id": {"type": "string"},
+    "candidate_option_ids": {"type": "array", "items": {"type": "string"}},
+    "dedup_decision": {"type": "string", "enum": ["merge", "keep_distinct", "reject_duplicate"]},
+    "merge_target_option_id": {"type": ["string", "null"]},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "decision_reasons": {"type": "array", "items": {"type": "string"}}
+  }
+}

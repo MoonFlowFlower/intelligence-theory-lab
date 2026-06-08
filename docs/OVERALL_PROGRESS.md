@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T19:00:15-05:00
+Last updated: 2026-06-07T19:24:56-05:00
 
 ## Program Goal
 
@@ -8,39 +8,40 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Execute the CMBC parametric action expansion 006 bounded lab-only N>=20 test:
+Define the CMBC candidate option generation 007 contract:
 
 ```text
-006 contract parametric_action_expansion_006_contract_ready
--> N=24 anonymous CandidateOptions
--> variable-N path without fixed twenty-action table
--> full N-option behavior replay
--> label/effect/probe/baseline/renderer gates
--> preserve 003 and 005 as bounded prior evidence only
+006 execution parametric_action_expansion_006_bounded_pass
+-> 007 contract for generated anonymous CandidateOptions
+-> proposal / admission / deduplication / composition / retirement contracts
+-> generator-selector separation
+-> generated-option replay and baseline contracts
+-> preserve 003, 005, and 006 as bounded prior evidence only
 ```
 
-Only bounded lab-only execution was authorized. No selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only contract definition was authorized. No generator implementation, selector patch, threshold change, baseline weakening, execution, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Use candidate_option_count between 20 and 50.
-Use variable-N path with no fixed twenty-action table and no N-specific branch.
-Reuse frozen 20-turn transcript, stable outcome ledger, and 003B probe pack lineage.
-Pass label permutation, effect swap, supporting-prior deletion, outcome perturbation, same-text different-causal-history, feedback admission, renderer isolation, behavior-only replay, entropy, and dominant-action reporting.
-Run expanded baselines on the same anonymous CandidateOption list.
-Preserve 003 as small-action-set evidence and 005 shadow as compatibility evidence only.
-No selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
+Define CandidateOptionProposal, OptionAdmissionGate, AdmittedCandidateOption, OptionLineageTrace, deduplication, retirement, composition, evidence support, replay, and generated-option baseline contracts.
+Generator may propose options but cannot select actions.
+Selector receives only admitted anonymous CandidateOptions.
+Natural-language descriptions, semantic labels, renderer text, RAG text, LLM output, oracle effects, evaluator metrics, and baseline outputs remain forbidden selector inputs.
+Every admitted option must have lineage, evidence support, and uncertainty when evidence is weak.
+Future generated-option replay must reconstruct the option set and full option distribution.
+Retired options must be traceable and reversible.
+No generator, selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
 ## Runner Verdict
 
 ```text
-parametric_action_expansion_006_bounded_pass
+candidate_option_generation_contract_ready
 ```
 
-This is bounded N>=20 action-space evidence, not open-ended action generation, real companion implementation, or an EGO signal. It means the current lab harness passed a 24-option anonymous CandidateOption execution under 006 gates.
+This is generated-option contract readiness only, not generator implementation, shadow execution, open-ended action generation, real companion implementation, or an EGO signal. It means the lab now has a predeclared boundary for how generated options must be proposed, admitted, replayed, retired, and baseline-compared before any future 007 shadow can be authorized.
 
 Review status:
 
@@ -1099,17 +1100,39 @@ CMBC parametric action expansion 006 execute supporting_prior_deletion_effect = 
 CMBC parametric action expansion 006 execute outcome_perturbation_effect = true.
 CMBC parametric action expansion 006 execute preserves 003 as small-action-set evidence and 005 shadow as N=7 compatibility evidence only.
 CMBC parametric action expansion 006 execute claim_after_execution = bounded parametric N>=20 action-space causal-probe execution evidence only; not real companion readiness.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-CONTRACT verdict = candidate_option_generation_contract_ready.
+CMBC candidate option generation 007 authorized_scope = contract_only.
+CMBC candidate option generation 007 execution_authorized = false.
+CMBC candidate option generation 007 implementation_authorized = false.
+CMBC candidate option generation 007 generator_implementation_authorized = false.
+CMBC candidate option generation 007 selector_patch_authorized = false.
+CMBC candidate option generation 007 threshold_change_authorized = false.
+CMBC candidate option generation 007 rag_baseline_weakening_authorized = false.
+CMBC candidate option generation 007 required objects defined = proposal, admission, admitted option, lineage, deduplication, retirement, composition, generator-selector separation, evidence support, replay, baseline.
+CMBC candidate option generation 007 future generated_option_count_min = 20.
+CMBC candidate option generation 007 future admitted_option_count_min = 20.
+CMBC candidate option generation 007 future generator_selected_action = false.
+CMBC candidate option generation 007 future option_lineage_coverage_rate = 1.0.
+CMBC candidate option generation 007 future option_replay_match_rate = 1.0.
+CMBC candidate option generation 007 future generator_baseline_action_match_rate < 0.5.
+CMBC candidate option generation 007 future rag_causal_probe_match_rate < 0.5.
+CMBC candidate option generation 007 future expanded_action_nearest_neighbor_match_rate < 0.5.
+CMBC candidate option generation 007 future renderer_action_change_rate = 0.0.
+CMBC candidate option generation 007 future outcome_update_changes_future_option_distribution = true.
+CMBC candidate option generation 007 recommended_next_task = CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW.
+CMBC candidate option generation 007 recommended_next_task_authorized = false.
+CMBC candidate option generation 007 claim_after_contract = candidate option generation contract readiness only; no implementation or execution evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE passed the bounded N=24 lab execution, but this is not open-ended action generation or product readiness. It remains bounded action-space causal-probe evidence under anonymous CandidateOption options. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-CONTRACT is ready, but no generator, admission runtime, shadow execution, selector patch, threshold change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection is authorized. The remaining blocker is whether generated CandidateOptions can be admitted and replayed without becoming a hidden action selector.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE` before any broader action-space test, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-CONTRACT` before any 007 shadow execution, generator implementation, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
@@ -1139,6 +1162,7 @@ authorize_action_space_expansion_004_bounded_execution_contract_only
 authorize_action_space_expansion_004_rca_contract_only
 authorize_cmbc_companion_parametric_action_interface_005_contract_only
 authorize_cmbc_companion_parametric_action_interface_005_shadow_implement_contract_only
+authorize_cmbc_companion_candidate_option_generation_007_shadow_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only
