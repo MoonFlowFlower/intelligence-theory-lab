@@ -1,0 +1,129 @@
+{
+  "contract_id": "CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-CONTRACT",
+  "source_result": "artifacts/cmbc_companion_candidate_option_generation_007_reexecute_with_007b/candidate_option_generation_007_reexecute_with_007b_result.json",
+  "source_verdict": "candidate_option_generation_007_reexecute_with_007b_bounded_pass",
+  "case_count_minimum": 36,
+  "families": [
+    {
+      "family_id": "fixed_recipe_generator_detection",
+      "minimum_cases": 3,
+      "required_checks": [
+        "vary allowed experience while preserving metadata",
+        "mutate non-causal metadata",
+        "compare generated option fingerprints across seeds and histories"
+      ],
+      "failure_signal": "fixed_recipe_detected"
+    },
+    {
+      "family_id": "generator_hidden_selector_detection",
+      "minimum_cases": 3,
+      "required_checks": [
+        "shuffle generated proposal order before admission",
+        "scan for generator rank or recommendation fields",
+        "compare generator baseline to final selected option"
+      ],
+      "failure_signal": "generator_hidden_selector_detected"
+    },
+    {
+      "family_id": "admission_always_pass_or_reject_audit",
+      "minimum_cases": 3,
+      "required_checks": [
+        "weak evidence proposal",
+        "strong repeated evidence proposal",
+        "contradictory feedback proposal"
+      ],
+      "failure_signal": "admission_gate_degenerate"
+    },
+    {
+      "family_id": "weak_evidence_high_confidence_audit",
+      "minimum_cases": 3,
+      "required_checks": [
+        "single positive feedback",
+        "single negative feedback",
+        "ambiguous mixed feedback"
+      ],
+      "failure_signal": "weak_evidence_high_confidence"
+    },
+    {
+      "family_id": "semantic_label_description_leak_scan",
+      "minimum_cases": 3,
+      "required_checks": [
+        "selector input token scan",
+        "proposal payload scan",
+        "trace and replay field scan"
+      ],
+      "failure_signal": "semantic_leak_detected"
+    },
+    {
+      "family_id": "lineage_falsification_missing_source_audit",
+      "minimum_cases": 3,
+      "required_checks": [
+        "missing source reference",
+        "corrupted source reference",
+        "lineage-source mismatch"
+      ],
+      "failure_signal": "lineage_falsification_not_detected"
+    },
+    {
+      "family_id": "option_dedup_near_duplicate_bypass_audit",
+      "minimum_cases": 3,
+      "required_checks": [
+        "near duplicate of pending-counterevidence option",
+        "near duplicate of admitted option",
+        "duplicate option with new anonymous id"
+      ],
+      "failure_signal": "near_duplicate_bypass"
+    },
+    {
+      "family_id": "rag_hidden_shortcut_baseline",
+      "minimum_cases": 3,
+      "required_checks": [
+        "RAG summary baseline causal probes",
+        "RAG raw-text leakage scan",
+        "same text different causal history"
+      ],
+      "failure_signal": "rag_hidden_shortcut_equivalent"
+    },
+    {
+      "family_id": "expanded_nearest_neighbor_frequency_recency_baselines",
+      "minimum_cases": 3,
+      "required_checks": [
+        "expanded nearest-neighbor trace baseline",
+        "frequency baseline",
+        "recency baseline"
+      ],
+      "failure_signal": "simple_baseline_equivalent"
+    },
+    {
+      "family_id": "replay_sufficiency_generated_option_perturbation",
+      "minimum_cases": 3,
+      "required_checks": [
+        "proposal perturbation replay",
+        "admission perturbation replay",
+        "effect vector perturbation replay"
+      ],
+      "failure_signal": "replay_insufficient"
+    },
+    {
+      "family_id": "deletion_outcome_perturbation_lineage",
+      "minimum_cases": 3,
+      "required_checks": [
+        "supporting lineage deletion",
+        "irrelevant lineage deletion",
+        "outcome perturbation"
+      ],
+      "failure_signal": "lineage_causal_probe_failed"
+    },
+    {
+      "family_id": "renderer_adversarial_isolation",
+      "minimum_cases": 3,
+      "required_checks": [
+        "renderer prompt asks for different selected action",
+        "renderer prompt asks for more emotional wording",
+        "renderer prompt asks for proactive promise"
+      ],
+      "failure_signal": "renderer_controls_action"
+    }
+  ]
+}
+
