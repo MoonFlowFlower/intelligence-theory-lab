@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T20:10:16-05:00
+Last updated: 2026-06-07T20:32:11-05:00
 
 ## Program Goal
 
@@ -8,7 +8,7 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Diagnose the CMBC candidate option generation 007 bounded execution failure:
+Define the generated option feedback admission 007B contract:
 
 ```text
 007 shadow candidate_option_generation_shadow_bounded_pass
@@ -18,19 +18,21 @@ Diagnose the CMBC candidate option generation 007 bounded execution failure:
 -> selector receives only admitted anonymous payloads
 -> feedback admission single-contradiction gate failed
 -> RCA localizes failure to pending feedback update ordering
+-> 007B contract defines admission-filtered generated-option feedback updates
 -> preserve 003, 005, and 006 as bounded prior evidence only
 ```
 
-Only RCA was authorized after bounded execution failed. No real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only contract definition was authorized after RCA. No 007B implementation, 007B execution, real companion behavior, selector patch, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Freeze 007-EXECUTE failure artifacts.
-Localize whether failure is proposal, admission, lineage, feedback mapping, context scope, uncertainty, distribution update, selector scoring, or replay.
-Report single-contradiction before/after trace, option confidence, effect deltas, selected option, and distribution.
-Audit generated-option lineage bypass, context scope, weak-evidence confidence, outcome-update ordering, and replay sufficiency.
-Do not retry 007 execution.
+Define PendingCounterevidenceRecord and FeedbackAdmissionState.
+Require pending counterevidence to remain hidden from selector-visible predicted_effect_vector.
+Allow pending counterevidence to affect only uncertainty / confidence / pending state.
+Allow admitted_context_counterevidence to change selector-visible effect vectors only after admission.
+Require explicit context_scope and admission-aware replay trace.
+Do not implement or execute 007B.
 No selector thresholds, baselines, renderer, probe definitions, or action handles are changed.
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
@@ -38,10 +40,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-outcome_update_ordering_bug_confirmed
+generated_option_feedback_admission_007b_contract_ready
 ```
 
-This is an RCA diagnosis, not a recovery. It means 007-EXECUTE remains failed: pending counterevidence was recorded, but its effect update reached the selector-visible generated option before feedback admission discipline blocked it. Selector scoring is not the primary blocker; it followed the altered effect vector.
+This is contract readiness, not a recovery. It means the lab now has a predeclared 007B admission/update ordering contract for generated CandidateOptions. 007-EXECUTE remains failed until a separately authorized shadow or execution proves the contract path.
 
 Review status:
 
@@ -1170,17 +1172,29 @@ CMBC candidate option generation 007 RCA near_duplicate_new_option_bypass_detect
 CMBC candidate option generation 007 RCA context_scope_missing_for_feedback_admission = true.
 CMBC candidate option generation 007 RCA trace_sufficient_for_generated_feedback_admission = false.
 CMBC candidate option generation 007 RCA claim_after_rca = bounded generated CandidateOption execution remains failed; failure localized to pending feedback admission/update ordering.
+CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-CONTRACT verdict = generated_option_feedback_admission_007b_contract_ready.
+CMBC generated option feedback admission 007B authorized_scope = contract_only.
+CMBC generated option feedback admission 007B execution_authorized = false.
+CMBC generated option feedback admission 007B implementation_authorized = false.
+CMBC generated option feedback admission 007B source_rca_verdict = outcome_update_ordering_bug_confirmed.
+CMBC generated option feedback admission 007B pending_counterevidence selector_visible_effect_update_allowed = false.
+CMBC generated option feedback admission 007B requires admission-filtered effect vector.
+CMBC generated option feedback admission 007B requires context_scope explicit and traceable.
+CMBC generated option feedback admission 007B requires behavior-only replay and admission-aware replay.
+CMBC generated option feedback admission 007B recommended_next_task = CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-SHADOW.
+CMBC generated option feedback admission 007B recommended_next_task_authorized = false.
+CMBC generated option feedback admission 007B claim_ceiling = contract readiness only; no implementation or execution evidence.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-EXECUTE remains failed. RCA shows the blocker is not generator action selection, semantic leakage, baseline equivalence, renderer control, or selector scoring itself. The blocker is that pending single-contradiction feedback changes a selector-visible generated-option effect vector before an admission/update-ordering discipline blocks or holds it.
+CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-EXECUTE remains failed. 007B is only a contract that specifies how pending generated-option feedback must be admitted before it can affect selector-visible effect vectors. The blocker is not resolved until a future 007B shadow/execution proves this ordering.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-RCA` before any 007B contract, 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-CONTRACT` before any 007B shadow implementation, 007B execution, 007 redteam, generator expansion, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
@@ -1214,6 +1228,7 @@ authorize_cmbc_companion_candidate_option_generation_007_shadow_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_redteam_contract_only
 authorize_cmbc_companion_candidate_option_generation_007_execute_rca_contract_only
 authorize_cmbc_companion_generated_option_feedback_admission_007b_contract_only
+authorize_cmbc_companion_generated_option_feedback_admission_007b_shadow_contract_only
 authorize_free_input_live_lab_003_reexecute_with_003b_contract_only
 authorize_free_input_live_lab_003_bounded_execution_contract_only
 authorize_cmbc_companion_mixed_feedback_stability_contract_only

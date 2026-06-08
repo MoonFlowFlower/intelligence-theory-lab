@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admission_status": {
+      "enum": [
+        "pending_counterevidence",
+        "admitted_context_counterevidence",
+        "rejected_counterevidence",
+        "retired_counterevidence"
+      ],
+      "type": "string"
+    },
+    "admitted_feedback_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "context_scope": {
+      "type": "string"
+    },
+    "option_id": {
+      "type": "string"
+    },
+    "pending_feedback_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "required_for_admission": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_confidence": {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        "minimum_repeated_count": {
+          "minimum": 2,
+          "type": "integer"
+        },
+        "requires_context_match": {
+          "const": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "minimum_repeated_count",
+        "minimum_confidence",
+        "requires_context_match"
+      ],
+      "type": "object"
+    },
+    "selector_visible_effect_update_allowed": {
+      "type": "boolean"
+    },
+    "state_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "state_id",
+    "option_id",
+    "admission_status",
+    "context_scope",
+    "pending_feedback_refs",
+    "admitted_feedback_refs",
+    "required_for_admission",
+    "selector_visible_effect_update_allowed"
+  ],
+  "title": "FeedbackAdmissionState",
+  "type": "object"
+}

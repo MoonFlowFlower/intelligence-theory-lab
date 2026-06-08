@@ -1,5 +1,5 @@
 schema_version: 0
-lab_status: cmbc_companion_candidate_option_generation_007_rca_outcome_update_ordering_bug_confirmed
+lab_status: cmbc_companion_generated_option_feedback_admission_007b_contract_ready
 active_theory: null
 clean_room_candidate_authorized: false
 implementation_authorized: false
@@ -687,6 +687,33 @@ surviving_theory_families:
     latest_companion_claim_after_candidate_option_generation_007_rca: bounded generated CandidateOption execution remains failed; failure localized to pending feedback admission/update ordering
     latest_companion_candidate_option_generation_007_rca_next_recommended_task: CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-CONTRACT
     latest_companion_candidate_option_generation_007b_authorized: false
+    latest_companion_generated_option_feedback_admission_007b_contract: artifacts/cmbc_companion_generated_option_feedback_admission_007b_contract/contract_manifest.json
+    latest_companion_generated_option_feedback_admission_007b_contract_doc: docs/CMBC_COMPANION_GENERATED_OPTION_FEEDBACK_ADMISSION_007B_CONTRACT.md
+    latest_companion_generated_option_feedback_admission_007b_verdict: generated_option_feedback_admission_007b_contract_ready
+    latest_companion_generated_option_feedback_admission_007b_scope: contract_only_no_implementation_no_execution
+    latest_companion_generated_option_feedback_admission_007b_source_rca_verdict: outcome_update_ordering_bug_confirmed
+    latest_companion_generated_option_feedback_admission_007b_required_objects:
+      - PendingCounterevidenceRecord
+      - FeedbackAdmissionState
+      - GeneratedOptionFeedbackUpdateLedger
+      - ContextScopedFeedbackAdmission
+      - AdmissionFilteredEffectVector
+      - SelectorVisibleEffectVectorContract
+      - GeneratedOptionUncertaintyUpdateContract
+      - AdmissionAwareReplayTrace
+      - FeedbackAdmissionOrderingProof
+    latest_companion_generated_option_feedback_admission_007b_core_rules:
+      pending_counterevidence_selector_visible_effect_update_allowed: false
+      pending_counterevidence_may_change_uncertainty: true
+      admitted_context_counterevidence_may_change_selector_visible_effect_vector: true
+      repeated_or_high_confidence_feedback_required_for_admission: true
+      context_scope_explicit_and_traceable: true
+      option_lineage_inherits_feedback_state: true
+      admission_aware_replay_required: true
+      behavior_only_replay_required: true
+    latest_companion_generated_option_feedback_admission_007b_recommended_next_task: CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-SHADOW
+    latest_companion_generated_option_feedback_admission_007b_recommended_next_task_authorized: false
+    latest_companion_claim_after_generated_option_feedback_admission_007b: generated option feedback admission 007B contract readiness only; no implementation or execution evidence
     real_companion_implementation: not_authorized
     proactive_messages: not_authorized
     llm_action_selection: false
