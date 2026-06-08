@@ -1,0 +1,75 @@
+{
+  "all_required_probe_types_covered": true,
+  "candidate_passed_probe_count": 8,
+  "cases": [
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_label_permutation",
+      "distribution_changed": false,
+      "probe_type": "label_permutation_invariance"
+    },
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_effect_swap",
+      "distribution_changed": true,
+      "probe_type": "effect_swap_sensitivity"
+    },
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_same_text_different_history",
+      "distribution_changed": true,
+      "probe_type": "same_text_different_causal_history"
+    },
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_supporting_prior_deletion",
+      "distribution_changed": true,
+      "probability_delta": 0.19758765958689253,
+      "probe_type": "supporting_prior_deletion"
+    },
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_outcome_perturbation",
+      "distribution_changed": true,
+      "probe_type": "outcome_perturbation"
+    },
+    {
+      "admission_status": "pending_counterevidence",
+      "baseline_matches": false,
+      "candidate_passed": false,
+      "case_id": "probe_feedback_single_contradiction",
+      "distribution_changed": true,
+      "probe_type": "feedback_admission_single_contradiction"
+    },
+    {
+      "admission_status": "admitted_context_counterevidence",
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_feedback_repeated",
+      "distribution_changed": true,
+      "probe_type": "feedback_admission_repeated_feedback"
+    },
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_later_correction",
+      "context_scope_after": "public_context_slot_narrowed",
+      "distribution_changed": true,
+      "probe_type": "later_correction_context_narrowing"
+    },
+    {
+      "baseline_matches": false,
+      "candidate_passed": true,
+      "case_id": "probe_renderer_adversarial",
+      "distribution_changed": false,
+      "probe_type": "renderer_adversarial_isolation",
+      "renderer_action_change_rate": 0.0
+    }
+  ],
+  "probe_count": 9
+}

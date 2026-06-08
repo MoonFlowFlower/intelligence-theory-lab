@@ -1,6 +1,6 @@
 # Overall Progress
 
-Last updated: 2026-06-07T18:47:24-05:00
+Last updated: 2026-06-07T19:00:15-05:00
 
 ## Program Goal
 
@@ -8,29 +8,27 @@ Build a falsifiable theory-elimination lab for intelligence-mechanism candidates
 
 ## Current Stage Goal
 
-Define the CMBC parametric action expansion 006 contract without implementing or executing N>=20:
+Execute the CMBC parametric action expansion 006 bounded lab-only N>=20 test:
 
 ```text
-005 shadow parametric_shadow_n7_compatibility_pass
--> reuse 005 CandidateOption schema
--> require future candidate_option_count between 20 and 50
--> forbid fixed 20-action recipe tables and N-specific branches
--> require 003B causal probes over full N-option distribution
--> require expanded baselines on same anonymous option list
+006 contract parametric_action_expansion_006_contract_ready
+-> N=24 anonymous CandidateOptions
+-> variable-N path without fixed twenty-action table
+-> full N-option behavior replay
+-> label/effect/probe/baseline/renderer gates
 -> preserve 003 and 005 as bounded prior evidence only
 ```
 
-Only contract design was authorized. No N>=20 execution, selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
+Only bounded lab-only execution was authorized. No selector patch, action-handle addition, threshold change, baseline weakening, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
 ## Stage Success Criteria
 
 ```text
-Reuse 005 CandidateOption schema.
-Require candidate_option_count between 20 and 50 for future execution.
-Require variable-N path with no branches such as if N == 7 or if N == 20.
-Reuse frozen 20-turn transcript, stable outcome ledger, and 003B probe pack unless human review authorizes new data.
-Require label permutation, effect swap, supporting-prior deletion, outcome perturbation, same-text different-causal-history, feedback admission, renderer isolation, behavior-only replay, entropy, and dominant-action reporting.
-Require expanded baselines to receive the same anonymous CandidateOption list.
+Use candidate_option_count between 20 and 50.
+Use variable-N path with no fixed twenty-action table and no N-specific branch.
+Reuse frozen 20-turn transcript, stable outcome ledger, and 003B probe pack lineage.
+Pass label permutation, effect swap, supporting-prior deletion, outcome perturbation, same-text different-causal-history, feedback admission, renderer isolation, behavior-only replay, entropy, and dominant-action reporting.
+Run expanded baselines on the same anonymous CandidateOption list.
 Preserve 003 as small-action-set evidence and 005 shadow as compatibility evidence only.
 No selector code, thresholds, baselines, renderer, probe definitions, or action handles are changed.
 No stronger theory, product, companion-agent, or EGO claim is made.
@@ -39,10 +37,10 @@ No stronger theory, product, companion-agent, or EGO claim is made.
 ## Runner Verdict
 
 ```text
-parametric_action_expansion_006_contract_ready
+parametric_action_expansion_006_bounded_pass
 ```
 
-This is not expanded action-space evidence, a real companion implementation, or an EGO signal. It means a bounded N>=20 future execution contract is ready, but no N>=20 selector run has occurred.
+This is bounded N>=20 action-space evidence, not open-ended action generation, real companion implementation, or an EGO signal. It means the current lab harness passed a 24-option anonymous CandidateOption execution under 006 gates.
 
 Review status:
 
@@ -1078,17 +1076,40 @@ CMBC parametric action expansion 006 future renderer_action_change_rate = 0.0.
 CMBC parametric action expansion 006 preserves 003 as small-action-set evidence and 005 shadow as N=7 compatibility evidence only.
 CMBC parametric action expansion 006 recommended_next_task = CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE.
 CMBC parametric action expansion 006 recommended_next_task_authorized = false.
+CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE verdict = parametric_action_expansion_006_bounded_pass.
+CMBC parametric action expansion 006 execute candidate_option_count = 24.
+CMBC parametric action expansion 006 execute minimum_gates_satisfied = true.
+CMBC parametric action expansion 006 execute stop_conditions = [].
+CMBC parametric action expansion 006 execute semantic_label_visible_to_selector = false.
+CMBC parametric action expansion 006 execute public_action_name_visible_to_selector = false.
+CMBC parametric action expansion 006 execute rendered_text_visible_to_selector = false.
+CMBC parametric action expansion 006 execute natural_language_description_visible_to_selector = false.
+CMBC parametric action expansion 006 execute label_permutation_change_rate = 0.0.
+CMBC parametric action expansion 006 execute effect_swap_change_rate = 1.0.
+CMBC parametric action expansion 006 execute rag_causal_probe_match_rate = 0.0.
+CMBC parametric action expansion 006 execute strong_heuristic_causal_probe_match_rate = 0.0.
+CMBC parametric action expansion 006 execute expanded_contextual_heuristic_causal_probe_match_rate = 0.0.
+CMBC parametric action expansion 006 execute expanded_action_frequency_match_rate = 0.0.
+CMBC parametric action expansion 006 execute expanded_action_nearest_neighbor_match_rate = 0.0.
+CMBC parametric action expansion 006 execute behavior_only_replay_match_rate = 1.0.
+CMBC parametric action expansion 006 execute renderer_action_change_rate = 0.0.
+CMBC parametric action expansion 006 execute action_distribution_entropy_reported = true.
+CMBC parametric action expansion 006 execute dominant_action_rate_reported = true.
+CMBC parametric action expansion 006 execute supporting_prior_deletion_effect = true.
+CMBC parametric action expansion 006 execute outcome_perturbation_effect = true.
+CMBC parametric action expansion 006 execute preserves 003 as small-action-set evidence and 005 shadow as N=7 compatibility evidence only.
+CMBC parametric action expansion 006 execute claim_after_execution = bounded parametric N>=20 action-space causal-probe execution evidence only; not real companion readiness.
 ```
 
 ## Current Blocker
 
 ```text
-CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-CONTRACT is ready, but it is contract readiness only. No N>=20 execution has occurred, and expanded action-space advantage is still not established. The current selector remains non-parametric for expanded candidate spaces until a separately authorized future task executes or implements variable-N selection under the 006 gates. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
+CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE passed the bounded N=24 lab execution, but this is not open-ended action generation or product readiness. It remains bounded action-space causal-probe evidence under anonymous CandidateOption options. No selector patch, action handle addition, threshold change, probe-pack change, baseline weakening, renderer control, EGO integration, real companion implementation, proactive messaging, or LLM action selection occurred.
 ```
 
 ## Next Frontier
 
-Human review after `CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-CONTRACT` before any N>=20 execution, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
+Human review after `CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE` before any broader action-space test, selector redesign, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 
 Review decision options:
 
