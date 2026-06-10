@@ -1,0 +1,499 @@
+{
+ "abl10_remove_uncertainty_logging": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 60,
+  "tolerance": 1e-09
+ },
+ "abl1_remove_action_input": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "abl2_shuffle_action_labels": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "abl3_freeze_theta_as": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "abl3b_freeze_theta_shift": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1200,
+  "tolerance": 1e-09
+ },
+ "abl4_freeze_belief_update": {
+  "applicable": true,
+  "hidden_state_needed": true,
+  "max_abs_diff": 0.643606906803138,
+  "mismatches": [
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.02230882942101875,
+    "t": 0
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5768216300849875,
+    "t": 1
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5867438091748922,
+    "t": 2
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.02805214233906883,
+    "t": 3
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.6275359159490224,
+    "t": 4
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5459409442109779,
+    "t": 5
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.6143459118547039,
+    "t": 6
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5827070251473851,
+    "t": 7
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5291512324207299,
+    "t": 8
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5405120142908855,
+    "t": 9
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.043885291577146754,
+    "t": 10
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.007138457571800094,
+    "t": 11
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5222948020030624,
+    "t": 12
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5842433285398404,
+    "t": 13
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.586947869749042,
+    "t": 14
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5928549109457028,
+    "t": 15
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5326664100088538,
+    "t": 16
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5686698603887228,
+    "t": 17
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.5833536796498158,
+    "t": 18
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.022944672872877672,
+    "t": 19
+   }
+  ],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": false,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "abl5_disable_precommit": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 60,
+  "tolerance": 1e-09
+ },
+ "abl7_remove_raw_all_action_preds": {
+  "applicable": true,
+  "error": "replay impossible from trace: KeyError('raw_pred_obs_by_action')",
+  "passed": false
+ },
+ "abl8_force_replay_event": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 60,
+  "tolerance": 1e-09
+ },
+ "abl9_delete_memory_reset": {
+  "applicable": true,
+  "hidden_state_needed": true,
+  "max_abs_diff": 0.7978071030919789,
+  "mismatches": [
+   {
+    "field": "belief_pre",
+    "max_abs_diff": 0.1579685516232927,
+    "t": 500
+   },
+   {
+    "field": "theta_T_pre",
+    "max_abs_diff": 0.41498918933452345,
+    "t": 500
+   },
+   {
+    "field": "theta_O_pre",
+    "max_abs_diff": 0.11208147331672658,
+    "t": 500
+   },
+   {
+    "field": "raw_pred_obs_by_action[0]",
+    "max_abs_diff": 0.19097537761676203,
+    "t": 500
+   },
+   {
+    "field": "raw_pred_belief_by_action[0]",
+    "max_abs_diff": 0.2924539288152277,
+    "t": 500
+   },
+   {
+    "field": "raw_pred_obs_by_action[1]",
+    "max_abs_diff": 0.19622039765050936,
+    "t": 500
+   },
+   {
+    "field": "raw_pred_belief_by_action[1]",
+    "max_abs_diff": 0.2475435353567793,
+    "t": 500
+   },
+   {
+    "field": "raw_pred_obs_by_action[2]",
+    "max_abs_diff": 0.10224632277998502,
+    "t": 500
+   },
+   {
+    "field": "raw_pred_belief_by_action[2]",
+    "max_abs_diff": 0.1704348507694335,
+    "t": 500
+   },
+   {
+    "field": "pred_prob_actual",
+    "max_abs_diff": 0.19622039765050936,
+    "t": 500
+   },
+   {
+    "field": "nll_error",
+    "max_abs_diff": 0.46261273307131157,
+    "t": 500
+   },
+   {
+    "field": "transition_responsibility",
+    "max_abs_diff": 0.344195212157564,
+    "t": 500
+   },
+   {
+    "field": "belief_post",
+    "max_abs_diff": 0.1920236498495279,
+    "t": 500
+   },
+   {
+    "field": "theta_T_post",
+    "max_abs_diff": 0.41498918933452345,
+    "t": 500
+   },
+   {
+    "field": "theta_O_post",
+    "max_abs_diff": 0.0864415716040089,
+    "t": 500
+   },
+   {
+    "field": "belief_pre",
+    "max_abs_diff": 0.1920236498495279,
+    "t": 501
+   },
+   {
+    "field": "theta_T_pre",
+    "max_abs_diff": 0.41498918933452345,
+    "t": 501
+   },
+   {
+    "field": "theta_O_pre",
+    "max_abs_diff": 0.0864415716040089,
+    "t": 501
+   },
+   {
+    "field": "raw_pred_obs_by_action[0]",
+    "max_abs_diff": 0.18184192894582524,
+    "t": 501
+   },
+   {
+    "field": "raw_pred_belief_by_action[0]",
+    "max_abs_diff": 0.2764485069495071,
+    "t": 501
+   }
+  ],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": false,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b2_shuffled_as": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b2_shuffled_null": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b2_shuffled_trap": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b6_frozen_theta_at300_as": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b6_frozen_theta_at_shift": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1200,
+  "tolerance": 1e-09
+ },
+ "b7_belief_only_as": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b9_coldstart_dup_a": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "b9_coldstart_dup_b": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "core_as": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "core_null": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "core_shift_reversal": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1200,
+  "tolerance": 1e-09
+ },
+ "core_trap": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_ambiguous_control": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_ambiguous_obs_shift": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_env_rule_swap": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_hidden_rule_change": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1200,
+  "tolerance": 1e-09
+ },
+ "pert_memdel_flush_reconstruct": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_memdel_twin_uninterrupted": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_obs_noise_high": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ },
+ "pert_obs_noise_low": {
+  "applicable": true,
+  "hidden_state_needed": false,
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "note": "behavior reconstructed from trace + frozen equations only",
+  "passed": true,
+  "steps_replayed": 1000,
+  "tolerance": 1e-09
+ }
+}

@@ -1,0 +1,509 @@
+{
+ "gates": [
+  {
+   "description": "Hidden-rule change produces trace-visible adaptation (NLL recovery + theta mass moves onto the new rule)",
+   "evidence_refs": [],
+   "gate_id": "P1_hidden_rule_adaptation",
+   "measured": {
+    "newrule_mass_gain": {
+     "mean_gain": 0.17710281869557262,
+     "mean_mass_at_end": 0.3376018002644302,
+     "mean_mass_at_shift": 0.16049898156885764,
+     "n_affected_cells": 9
+    },
+    "nll_recovery": 0.10892906017916482
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Transition reversal adapted (NLL recovery + new-rule mass gain); frozen-theta control does not match and gains nothing",
+   "evidence_refs": [],
+   "gate_id": "P2_transition_reversal_adaptation",
+   "measured": {
+    "frozen_gain": {
+     "mean_gain": 0.0,
+     "mean_mass_at_end": 0.16681281122992123,
+     "mean_mass_at_shift": 0.16681281122992123,
+     "n_affected_cells": 6
+    },
+    "frozen_gap": 0.20260855632031094,
+    "newrule_mass_gain": {
+     "mean_gain": 0.25184684372680094,
+     "mean_mass_at_end": 0.41865965495672214,
+     "mean_mass_at_shift": 0.16681281122992123,
+     "n_affected_cells": 6
+    },
+    "nll_recovery": 0.2241449032454027
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Observation noise raises uncertainty and NLL",
+   "evidence_refs": [],
+   "gate_id": "P3_obs_noise_affects_uncertainty",
+   "measured": {
+    "entropy_high": 1.0656070489230631,
+    "entropy_low": 0.678017603552074,
+    "nll_high": 0.9953808675871337,
+    "nll_low": 0.47023955595949685
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Ambiguous observation shift raises predictive entropy vs a matched-seed control without the shift (streams identical until onset)",
+   "evidence_refs": [],
+   "gate_id": "P4_ambiguous_shift_raises_uncertainty",
+   "measured": {
+    "entropy_ambig": 1.0147963459448777,
+    "entropy_control": 0.9445540218022902,
+    "nll_ambig": 1.0374777985487047,
+    "nll_control": 0.78622029906761,
+    "within_run_windows_reported": {
+     "ambig_t": 500,
+     "entropy_post_window": 1.0147963459448777,
+     "entropy_pre_window": 1.0117795601078416
+    }
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Trap: main learner shows no confident action separation; token baseline shows the spurious correlation exists (trap potency, raw)",
+   "evidence_refs": [],
+   "gate_id": "P5_spurious_trap_not_fooled",
+   "measured": {
+    "action_token_jsd_trap_raw": 0.20923191658742454,
+    "main_jsd_trap_confident": 0.0,
+    "main_jsd_trap_raw": 0.041990626366361604
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Null-control shows no false action separation",
+   "evidence_refs": [],
+   "gate_id": "P6_null_control_no_false_separation",
+   "measured": {
+    "jsd_null": 0.0022752766361612132
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "All-action predictions verified same-history via replay; separate in AS, collapse in null",
+   "evidence_refs": [],
+   "gate_id": "P7_same_history_counterfactuals_verified",
+   "measured": {
+    "jsd_as": 0.07383583627289214,
+    "jsd_null": 0.0022752766361612132
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Cache flush + trace-only reconstruction continues identically (no hidden memory); PRE/POST streams compared, RUN_META is the run's registry label and legitimately differs",
+   "evidence_refs": [],
+   "gate_id": "P8_cache_flush_reconstructs_exactly",
+   "measured": {
+    "first_diff_index": null,
+    "identical": true,
+    "n_a": 2000,
+    "n_b": 2000,
+    "stream_sha256_a": "7251720ded127b11332592887e71409a027bffbd4cf59fef39853541fae06ea7",
+    "stream_sha256_b": "7251720ded127b11332592887e71409a027bffbd4cf59fef39853541fae06ea7"
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": null
+  },
+  {
+   "description": "Swapped environment rule learned to comparable NLL",
+   "evidence_refs": [],
+   "gate_id": "P9_env_rule_swap_relearnable",
+   "measured": {
+    "nll_core_as": 0.8811638825373932,
+    "nll_swap": 0.8288495434785951
+   },
+   "note": null,
+   "status": "pass",
+   "threshold": "|diff| <= 0.1"
+  }
+ ],
+ "memdel_flush_comparison": {
+  "first_diff_index": null,
+  "identical": true,
+  "n_a": 2000,
+  "n_b": 2000,
+  "stream_sha256_a": "7251720ded127b11332592887e71409a027bffbd4cf59fef39853541fae06ea7",
+  "stream_sha256_b": "7251720ded127b11332592887e71409a027bffbd4cf59fef39853541fae06ea7"
+ },
+ "metrics": {
+  "pert_ambiguous_control": {
+   "brier_eval_window": 0.44329820977974327,
+   "brier_mean": 0.4969921470165274,
+   "delta_belief_l1_mean": 1.1609752624047676,
+   "delta_theta_l1_mean": 0.03051295062255778,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     121,
+     299,
+     332,
+     247,
+     1,
+     0,
+     0
+    ],
+    "ece_value": 0.1739427354953476,
+    "n_nonempty_bins": 5,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 0.9445540218022902,
+   "entropy_mean": 1.0017786624615186,
+   "env_rule_id": "AS-CYCLE-001",
+   "jsd_confident_eval_window": 0.06535290395534737,
+   "jsd_raw_eval_window": 0.1085950102499576,
+   "jsd_raw_mean": 0.06752044314576001,
+   "memdel_analysis": {
+    "nll_after_window": 0.833761539210149,
+    "nll_before_window": 0.7677993295640068
+   },
+   "nll_eval_window": 0.78622029906761,
+   "nll_mean": 0.860327294797709,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.7682154594612293,
+   "run_id": "pert_ambiguous_control",
+   "steps": 1000
+  },
+  "pert_ambiguous_obs_shift": {
+   "ambig_analysis": {
+    "ambig_t": 500,
+    "entropy_post_window": 1.0147963459448777,
+    "entropy_pre_window": 1.0117795601078416
+   },
+   "brier_eval_window": 0.6318890059839232,
+   "brier_mean": 0.5808982956652243,
+   "delta_belief_l1_mean": 1.1020714457268261,
+   "delta_theta_l1_mean": 0.03140474567624825,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     122,
+     434,
+     373,
+     71,
+     0,
+     0,
+     0
+    ],
+    "ece_value": 0.07211599240945714,
+    "n_nonempty_bins": 4,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 1.0147963459448777,
+   "entropy_mean": 1.0292394426956768,
+   "env_rule_id": "AMBIG-001",
+   "jsd_confident_eval_window": 0.0,
+   "jsd_raw_eval_window": 0.06092258039458305,
+   "jsd_raw_mean": 0.049041464794056466,
+   "memdel_analysis": {
+    "nll_after_window": 1.0637436270745328,
+    "nll_before_window": 0.7677993295640068
+   },
+   "nll_eval_window": 1.0374777985487047,
+   "nll_mean": 0.9715679317594709,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.9957563879940448,
+   "run_id": "pert_ambiguous_obs_shift",
+   "steps": 1000
+  },
+  "pert_env_rule_swap": {
+   "brier_eval_window": 0.4756329920980166,
+   "brier_mean": 0.5011250824330202,
+   "delta_belief_l1_mean": 1.1241941014413417,
+   "delta_theta_l1_mean": 0.030505552773758708,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     92,
+     291,
+     382,
+     235,
+     0,
+     0,
+     0
+    ],
+    "ece_value": 0.14851434002131003,
+    "n_nonempty_bins": 4,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 0.9444529954753559,
+   "entropy_mean": 1.0019421342154862,
+   "env_rule_id": "AS-SWAP-001",
+   "jsd_confident_eval_window": 0.05288599442762302,
+   "jsd_raw_eval_window": 0.10783424980409509,
+   "jsd_raw_mean": 0.06714119241891697,
+   "memdel_analysis": {
+    "nll_after_window": 0.796060914897573,
+    "nll_before_window": 0.9202101556303403
+   },
+   "nll_eval_window": 0.8288495434785951,
+   "nll_mean": 0.8660460246303386,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.8628887880560144,
+   "run_id": "pert_env_rule_swap",
+   "steps": 1000
+  },
+  "pert_hidden_rule_change": {
+   "brier_eval_window": 0.6887006448552607,
+   "brier_mean": 0.6811492492417521,
+   "delta_belief_l1_mean": 0.8908047302847403,
+   "delta_theta_l1_mean": 0.02873095527408147,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     441,
+     635,
+     115,
+     9,
+     0,
+     0,
+     0
+    ],
+    "ece_value": 0.16151633214873748,
+    "n_nonempty_bins": 4,
+    "n_samples": 1200,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 1.083948939004373,
+   "entropy_mean": 1.0682580114956683,
+   "env_rule_id": "HIDDEN-RULE-001",
+   "jsd_confident_eval_window": 0.0,
+   "jsd_raw_eval_window": 0.009666915257508884,
+   "jsd_raw_mean": 0.018775922129957257,
+   "memdel_analysis": {
+    "nll_after_window": 1.200726437257011,
+    "nll_before_window": 1.2303496248187629
+   },
+   "nll_eval_window": 1.1266648889611501,
+   "nll_mean": 1.1187597414681292,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 1.1351378123469522,
+   "run_id": "pert_hidden_rule_change",
+   "shift_analysis": {
+    "delta_theta_postshift_window_mean": 0.02514500932513497,
+    "delta_theta_preshift_window_mean": 0.028102900856612045,
+    "delta_theta_ratio": 0.8947478217081941,
+    "nll_immediate_postshift": 1.235593949140315,
+    "nll_postshift_eval_window": 1.1266648889611501,
+    "shift_t": 300
+   },
+   "steps": 1200
+  },
+  "pert_memdel_flush_reconstruct": {
+   "brier_eval_window": 0.4722590639431274,
+   "brier_mean": 0.514334353381554,
+   "delta_belief_l1_mean": 1.09720346402425,
+   "delta_theta_l1_mean": 0.03078033259199601,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     83,
+     312,
+     409,
+     196,
+     0,
+     0,
+     0
+    ],
+    "ece_value": 0.13236499033039675,
+    "n_nonempty_bins": 4,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 0.9585586844410945,
+   "entropy_mean": 1.0065744909064616,
+   "env_rule_id": "AS-CYCLE-001",
+   "jsd_confident_eval_window": 0.029605791250326998,
+   "jsd_raw_eval_window": 0.100156639996201,
+   "jsd_raw_mean": 0.06358191937215282,
+   "memdel_analysis": {
+    "nll_after_window": 0.7998243200867967,
+    "nll_before_window": 0.881127346538996
+   },
+   "nll_eval_window": 0.8262800768229287,
+   "nll_mean": 0.8839036985860352,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.8259121506308833,
+   "run_id": "pert_memdel_flush_reconstruct",
+   "steps": 1000
+  },
+  "pert_memdel_twin_uninterrupted": {
+   "brier_eval_window": 0.4722590639431274,
+   "brier_mean": 0.514334353381554,
+   "delta_belief_l1_mean": 1.09720346402425,
+   "delta_theta_l1_mean": 0.03078033259199601,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     83,
+     312,
+     409,
+     196,
+     0,
+     0,
+     0
+    ],
+    "ece_value": 0.13236499033039675,
+    "n_nonempty_bins": 4,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 0.9585586844410945,
+   "entropy_mean": 1.0065744909064616,
+   "env_rule_id": "AS-CYCLE-001",
+   "jsd_confident_eval_window": 0.029605791250326998,
+   "jsd_raw_eval_window": 0.100156639996201,
+   "jsd_raw_mean": 0.06358191937215282,
+   "memdel_analysis": {
+    "nll_after_window": 0.7998243200867967,
+    "nll_before_window": 0.881127346538996
+   },
+   "nll_eval_window": 0.8262800768229287,
+   "nll_mean": 0.8839036985860352,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.8259121506308833,
+   "run_id": "pert_memdel_twin_uninterrupted",
+   "steps": 1000
+  },
+  "pert_obs_noise_high": {
+   "brier_eval_window": 0.5934839678465549,
+   "brier_mean": 0.6140036586748796,
+   "delta_belief_l1_mean": 0.9376647220805642,
+   "delta_theta_l1_mean": 0.033252147750544025,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     423,
+     519,
+     58,
+     0,
+     0,
+     0,
+     0
+    ],
+    "ece_value": 0.1255240308491209,
+    "n_nonempty_bins": 3,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": false
+   },
+   "entropy_eval_window": 1.0656070489230631,
+   "entropy_mean": 1.076759327746556,
+   "env_rule_id": "AS-CYCLE-001",
+   "jsd_confident_eval_window": 0.0,
+   "jsd_raw_eval_window": 0.02419063749639613,
+   "jsd_raw_mean": 0.015135157067592388,
+   "memdel_analysis": {
+    "nll_after_window": 0.9906481608198281,
+    "nll_before_window": 1.0188101793296
+   },
+   "nll_eval_window": 0.9953808675871337,
+   "nll_mean": 1.0234674348224344,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.9622988264637593,
+   "run_id": "pert_obs_noise_high",
+   "steps": 1000
+  },
+  "pert_obs_noise_low": {
+   "brier_eval_window": 0.22880278766842252,
+   "brier_mean": 0.3040428998726847,
+   "delta_belief_l1_mean": 1.2245625005062453,
+   "delta_theta_l1_mean": 0.025735490397490228,
+   "ece": {
+    "bin_sizes": [
+     0,
+     0,
+     0,
+     50,
+     107,
+     145,
+     194,
+     420,
+     84,
+     0
+    ],
+    "ece_value": 0.18306560239576447,
+    "n_nonempty_bins": 6,
+    "n_samples": 1000,
+    "policy": "secondary metric; decisive use forbidden when unsuitable (task card 4.8, 12.2.15, stop condition 16)",
+    "primary": false,
+    "suitable": true
+   },
+   "entropy_eval_window": 0.678017603552074,
+   "entropy_mean": 0.8354717357651583,
+   "env_rule_id": "AS-CYCLE-001",
+   "jsd_confident_eval_window": 0.2745745108697652,
+   "jsd_raw_eval_window": 0.2847251899215296,
+   "jsd_raw_mean": 0.18047434668617066,
+   "memdel_analysis": {
+    "nll_after_window": 0.3775311612666757,
+    "nll_before_window": 0.6586362102085228
+   },
+   "nll_eval_window": 0.47023955595949685,
+   "nll_mean": 0.5855147596724237,
+   "nll_recompute_max_abs_diff": 0.0,
+   "predictor_id": "frozen_skeleton",
+   "rolling_nll_last": 0.4994526384554273,
+   "run_id": "pert_obs_noise_low",
+   "steps": 1000
+  }
+ }
+}
