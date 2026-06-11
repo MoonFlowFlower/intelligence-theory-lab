@@ -1,0 +1,182 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001B-TRACE-REPLAY-RCA-001A",
+  "layer": "bounded replay-control adjudication only",
+  "claim_ceiling": "bounded replay-control adjudication only",
+  "source_task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001B-EXECUTABLE-PREFLIGHT",
+  "historical_001b_verdict": "process_intervention_hard_distribution_001b_failed_fair_control_match",
+  "historical_001b_verdict_preserved": true,
+  "does_not_rewrite_001b_verdict": true,
+  "does_not_remove_trace_only_replay_from_historical_failure_condition": true,
+  "does_not_reinterpret_001b_as_pass": true,
+  "thresholds_changed": false,
+  "old_001b_artifacts_modified": false,
+  "frozen_001b_inputs_read": [
+    "artifacts/process_intervention_hard_distribution_001b/result.json",
+    "artifacts/process_intervention_hard_distribution_001b/control_comparison.json",
+    "artifacts/process_intervention_hard_distribution_001b/baseline_comparison.json",
+    "artifacts/process_intervention_hard_distribution_001b/ablation_report.json",
+    "artifacts/process_intervention_hard_distribution_001b/replay_report.json",
+    "artifacts/process_intervention_hard_distribution_001b/heldout_report.json",
+    "artifacts/process_intervention_hard_distribution_001b/failure_manifest.json",
+    "artifacts/process_intervention_hard_distribution_001b/trace.jsonl",
+    "artifacts/process_intervention_hard_distribution_001b/frozen_inputs.json",
+    "artifacts/process_intervention_hard_distribution_001b/claim_ceiling.txt"
+  ],
+  "frozen_001b_input_sha256": {
+    "artifacts/process_intervention_hard_distribution_001b/result.json": "faae66771e58023b728525c68555edf1b5f0d24f10273c9baf32df0327c741bf",
+    "artifacts/process_intervention_hard_distribution_001b/control_comparison.json": "f75a87dd2b834d5e710c7f2566e274d19924600ef777ab30a2d92c6d273743c2",
+    "artifacts/process_intervention_hard_distribution_001b/baseline_comparison.json": "21404a6c431c2f6453a0aa08afaa45a303d1dda9c72504a844456cf4cca6d8ba",
+    "artifacts/process_intervention_hard_distribution_001b/ablation_report.json": "07b170aa206e682cfa3691653eb5883445d97e4cb9ba6ba7b282b2ed5e7164b7",
+    "artifacts/process_intervention_hard_distribution_001b/replay_report.json": "93a8fc71689e11f3dafbe9deb0b9969e6dbc0757adde05de6bcbd8223d141135",
+    "artifacts/process_intervention_hard_distribution_001b/heldout_report.json": "e9945bd9d21d967877c0d4ee0ea6af1cdc8c6593a68bacdd1258948b63d396d4",
+    "artifacts/process_intervention_hard_distribution_001b/failure_manifest.json": "90ad5cb1d392a5d01e8f3573599b32400fa02e8af78a9636c070eb9a1bd23b80",
+    "artifacts/process_intervention_hard_distribution_001b/trace.jsonl": "9fe97cb1d8216e42b252d93e7858c1d0642903764dbff1be23237c3ba49e305b",
+    "artifacts/process_intervention_hard_distribution_001b/frozen_inputs.json": "e0e6a4ab0070c0fe391d6cc0560f5947b9f5a8db51e43ecc35f6f4a2d422770d",
+    "artifacts/process_intervention_hard_distribution_001b/claim_ceiling.txt": "975db490244f8a5ab6fd0d2e6cc9b6ad9a423cc0f031a08be718222c9eb482ed"
+  },
+  "authorization_flags": {
+    "gate1_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_tournament_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "verdict_rewrite_authorized": false,
+    "threshold_change_authorized": false
+  },
+  "classification_schema": {
+    "trace_integrity_hygiene": "A replay control that directly replays committed target trace records. It can verify trace integrity and replay plumbing, but it is not independent generative evidence.",
+    "behavioral_replay_baseline": "A replay baseline that copies observed target behavior. It can expose behavior-only equivalence, but without target-free process prediction it is not an independent mechanism challenger.",
+    "generative_replay_challenger": "A target-free replay or simulator baseline that predicts heldout outcomes and process-sensitive updates without direct access to target trace records."
+  },
+  "trace_only_replay_access_contract": {
+    "source_code_evidence": "src/process_intervention_hard_distribution_001b/core.py defines trace_only_replay with predictions=list(targets), future_predictions=list(futures), and update_predictions=list(signatures).",
+    "artifact_evidence": "control_comparison.json labels trace_only_replay as deterministic replay of the committed witness trace with match_rate=1.0, update_trace_match_rate=1.0, later_behavior_match_rate=1.0, and heldout_match_rate=1.0.",
+    "used_committed_target_trace_records": true,
+    "used_target_outcomes": true,
+    "used_target_future_behaviors": true,
+    "used_target_process_signatures": true,
+    "used_hidden_state_labels": false,
+    "made_heldout_generative_prediction_without_target_trace_access": false
+  },
+  "replay_control_classification": {
+    "trace_only_replay": {
+      "classification": "trace_integrity_hygiene",
+      "access_contract": "direct target-trace replay",
+      "used_committed_target_trace_records": true,
+      "used_target_outcomes": true,
+      "used_target_future_behaviors": true,
+      "used_target_process_signatures": true,
+      "made_heldout_generative_prediction_without_target_trace_access": false,
+      "valid_independent_mechanism_challenger": false,
+      "valid_trace_integrity_check": true,
+      "historical_failure_condition_preserved": true,
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "heldout_match_rate": 1.0,
+      "adjudication": "The 1.0 match is expected from replaying committed witness trace records. It should remain part of the historical 001B failure record, but future gates should separate trace-integrity hygiene from independent mechanism-equivalence challengers."
+    },
+    "behavior_only_replay": {
+      "classification": "behavioral_replay_baseline",
+      "access_contract": "observed behavior replay without process update evidence",
+      "used_observed_behavior_records": true,
+      "used_target_outcomes": true,
+      "used_target_future_behaviors": true,
+      "used_target_process_signatures": false,
+      "made_heldout_generative_prediction_without_target_trace_access": false,
+      "valid_independent_mechanism_challenger": false,
+      "match_rate": 1.0,
+      "update_trace_match_rate": 0.0,
+      "later_behavior_match_rate": 1.0,
+      "heldout_match_rate": 1.0,
+      "adjudication": "Behavior-only replay shows target behavior can be copied when behavior records are available, but it did not match the process/update trace metric and is not a target-free heldout predictor."
+    },
+    "generative_replay_challenger": {
+      "classification": "generative_replay_challenger",
+      "present_in_001b": false,
+      "minimum_future_access_contract": "No direct access to heldout target outcomes, target future behaviors, target process signatures, or committed target trace records for the evaluated examples.",
+      "required_future_evidence": [
+        "predeclared simulator or replay model before target trace emission",
+        "heldout predictions emitted before target outcomes are revealed",
+        "separate trace-integrity replay report kept out of equivalence-challenger matching"
+      ]
+    }
+  },
+  "non_replay_fair_control_summary": {
+    "best_non_replay_control": "count_table",
+    "best_non_replay_match_rate": 0.4166666666666667,
+    "best_non_replay_update_trace_match_rate": 0.0,
+    "best_non_replay_later_behavior_match_rate": 0.4166666666666667,
+    "best_non_replay_heldout_match_rate": 0.0,
+    "non_replay_controls_no_longer_perfectly_match": true,
+    "non_replay_controls": {
+      "online_count_statistic": {
+        "match_rate": 0.0,
+        "heldout_match_rate": 0.0,
+        "matches_equivalence_threshold": false
+      },
+      "count_table": {
+        "match_rate": 0.4166666666666667,
+        "heldout_match_rate": 0.0,
+        "matches_equivalence_threshold": false
+      },
+      "graph_cache": {
+        "match_rate": 0.4166666666666667,
+        "heldout_match_rate": 0.0,
+        "matches_equivalence_threshold": false
+      },
+      "summary_retrieval": {
+        "match_rate": 0.4166666666666667,
+        "heldout_match_rate": 0.0,
+        "matches_equivalence_threshold": false
+      }
+    }
+  },
+  "adjudication_result": {
+    "trace_only_replay_independent_challenger_status": "not_independent_mechanism_challenger",
+    "trace_only_replay_future_gate_role": "trace_integrity_hygiene_only_unless_reimplemented_as_target_free_generative_replay",
+    "historical_001b_failure_status": "preserved_failed_fair_control_match",
+    "001b_pass_status": "not_pass",
+    "interpretation": "001B remains a historical failure because its predeclared failure condition included any fair-control match and trace_only_replay matched. This RCA only adjudicates future gate design: target-trace replay should not be counted as independent mechanism-equivalence evidence."
+  },
+  "conditional_future_gate_recommendation": {
+    "authorization_granted_by_this_rca": false,
+    "gate1_authorized": false,
+    "bridge_authorized": false,
+    "ego_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "future_gate_if_authorized": "Split replay controls into trace_integrity_hygiene and target-free generative_replay_challenger classes. Count trace_only_replay only for trace integrity, and require any generative_replay_challenger to emit heldout predictions before target trace access.",
+    "forbidden_interpretations": [
+      "do not rewrite 001B as pass",
+      "do not remove trace_only_replay from historical 001B failure reasoning",
+      "do not authorize Gate1, bridge, EGO, model-class reset, or mechanism tournament",
+      "do not change thresholds after observing 001B"
+    ]
+  },
+  "acceptance_gate_status": {
+    "replay_control_adjudication_json_parseable": true,
+    "old_001b_artifacts_remain_unchanged": true,
+    "trace_only_replay_access_contract_explicitly_classified": true,
+    "trace_hygiene_vs_generative_replay_distinction_stated": true,
+    "future_gate_recommendation_conditional_only": true,
+    "authorization_flags_all_false": true,
+    "claim_ceiling_bounded_replay_control_adjudication_only": true
+  },
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "001B pass",
+    "theory validity",
+    "theory falsity",
+    "Gate1 readiness",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "companion readiness",
+    "model-class reset necessity"
+  ]
+}
