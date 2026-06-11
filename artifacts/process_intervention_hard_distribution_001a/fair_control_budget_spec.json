@@ -1,0 +1,145 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001A",
+  "layer": "bounded process-intervention task-distribution hardening only",
+  "claim_ceiling": "bounded process-intervention hard-distribution readiness only",
+  "fair_controls_weakened_or_removed": false,
+  "thresholds_changed_to_force_pass": false,
+  "control_budget_policy": {
+    "memory_budget": "at least equal to any future candidate; default 128 key-value entries unless a later task card freezes a stricter symmetric budget",
+    "state_budget": "at least equal to any future candidate; default 16 KiB serialized state per system step",
+    "lookup_budget": "at least equal to any future candidate; default 128 key reads or graph traversals per step",
+    "trace_storage_budget": "unbounded write-only audit trace for all systems",
+    "online_update_budget": "one update call per environment step for all online controls",
+    "heldout_split_visibility": "not visible to candidate or fair controls"
+  },
+  "fair_controls": [
+    {
+      "control_name": "online_count_statistic",
+      "family": "count_statistic",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May keep online counts keyed by observable context, intervention condition, action, and allowed prior history features.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "count_table",
+      "family": "count_statistic",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May use frozen support counts but not heldout outcomes or hidden-state labels.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "graph_cache",
+      "family": "graph_cache",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May cache observable graph transitions and intervention labels with the same history access as the candidate.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "transition_table",
+      "family": "graph_cache",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May table observable transitions but may not use hidden state or heldout answers.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "successor_map",
+      "family": "graph_cache",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May map observable successors and delayed links when recoverable from allowed history.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "trace_only_replay",
+      "family": "replay",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May replay committed prior trace records but may not replay future heldout answers.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "behavior_only_replay",
+      "family": "replay",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "May replay observed behavior from support traces only; heldout future behavior remains hidden before evaluation.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    },
+    {
+      "control_name": "summary_retrieval",
+      "family": "retrieval_summary",
+      "predeclared": true,
+      "resource_budget_within_fair_access": true,
+      "budget_note": "RAG/summary-equivalent retrieval control may summarize allowed support history under the same budget and access limits.",
+      "access_rules": {
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_use_allowed_history": true,
+        "may_use_committed_trace": true,
+        "may_use_future_outcomes": false,
+        "may_use_hidden_state_labels": false
+      }
+    }
+  ]
+}

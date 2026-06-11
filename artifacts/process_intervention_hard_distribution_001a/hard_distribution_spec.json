@@ -1,0 +1,354 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001A",
+  "layer": "bounded process-intervention task-distribution hardening only",
+  "status": "frozen_distribution_readiness",
+  "claim_ceiling": "bounded process-intervention hard-distribution readiness only",
+  "baseline": {
+    "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001B",
+    "collapse_summary": "001B collapsed to fair controls at match_rate = 1.0 because context/intervention/action keys were conflict-free and future behavior was directly recoverable from observed effects.",
+    "rca_task_id": "PROCESS-INTERVENTION-FAILURE-RCA-001A",
+    "rca_most_likely_failure_class": "task_distribution_weak"
+  },
+  "authorization_flags": {
+    "gate1_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "mechanism_training_authorized": false,
+    "threshold_change_authorized": false,
+    "old_artifact_repair_authorized": false
+  },
+  "freeze_policy": {
+    "freeze_before_any_execution": true,
+    "execution_authorized": false,
+    "all_inputs_frozen_before_execution": true,
+    "thresholds_inherited_without_change": true,
+    "old_001b_artifacts_edit_allowed": false
+  },
+  "observable_schema": {
+    "observable_context": "ambiguous public context alias",
+    "intervention_condition": "public intervention label available equally to fair controls and future candidate",
+    "action": "public action",
+    "actual_observation": "partial public observation after current step",
+    "future_behavior": "later behavior probe label, not a wrapper around current actual_observation"
+  },
+  "hidden_state_policy": {
+    "hidden_state_labels_visible_to_systems": false,
+    "hidden_state_labels_visible_to_verifier_after_freeze": true,
+    "history_dependence_required": true,
+    "same_observable_key_can_have_multiple_outcomes": true
+  },
+  "case_families": [
+    {
+      "case_id": "HD-001",
+      "split": "support",
+      "observable_context": "obs_A",
+      "intervention_condition": "state_deletion",
+      "action": "probe",
+      "prior_history_signature": "hist_alpha_state_loss_then_probe",
+      "hidden_state_family": "latent_need_restore",
+      "outcome": "restore_path_opened",
+      "actual_observation": "ambiguous_signal",
+      "future_behavior": "defer_probe_until_reconstruction",
+      "delay_steps": 2,
+      "delayed_effect": "restoration improves only after a later inspect action",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_A"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-002",
+      "split": "support",
+      "observable_context": "obs_A",
+      "intervention_condition": "state_deletion",
+      "action": "probe",
+      "prior_history_signature": "hist_beta_state_loss_after_false_restore",
+      "hidden_state_family": "latent_need_suppress",
+      "outcome": "suppression_path_opened",
+      "actual_observation": "ambiguous_signal",
+      "future_behavior": "commit_shift_after_suppression_check",
+      "delay_steps": 3,
+      "delayed_effect": "suppression benefit appears only after shift then hold",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_A"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-003",
+      "split": "support",
+      "observable_context": "obs_B",
+      "intervention_condition": "memory_deletion",
+      "action": "hold",
+      "prior_history_signature": "hist_gamma_recent_source_trustworthy",
+      "hidden_state_family": "latent_source_rebuild",
+      "outcome": "memory_rebuild_required",
+      "actual_observation": "partial_echo",
+      "future_behavior": "rebuild_memory_before_next_probe",
+      "delay_steps": 2,
+      "delayed_effect": "deletion effect is visible only after next source query",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_B"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-004",
+      "split": "support",
+      "observable_context": "obs_B",
+      "intervention_condition": "memory_deletion",
+      "action": "hold",
+      "prior_history_signature": "hist_delta_recent_source_poisoned",
+      "hidden_state_family": "latent_source_quarantine",
+      "outcome": "memory_quarantine_required",
+      "actual_observation": "partial_echo",
+      "future_behavior": "quarantine_memory_before_next_probe",
+      "delay_steps": 2,
+      "delayed_effect": "wrong update appears only after a later retrieval collision",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_B"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-005",
+      "split": "support",
+      "observable_context": "obs_C",
+      "intervention_condition": "representation_freezing",
+      "action": "inspect",
+      "prior_history_signature": "hist_epsilon_freeze_after_stable_chain",
+      "hidden_state_family": "latent_freeze_safe",
+      "outcome": "freeze_preserves_useful_state",
+      "actual_observation": "stable_mask",
+      "future_behavior": "continue_inspect_with_low_update",
+      "delay_steps": 1,
+      "delayed_effect": "freeze benefit appears on the next prediction-error check",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_C"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-006",
+      "split": "support",
+      "observable_context": "obs_C",
+      "intervention_condition": "representation_freezing",
+      "action": "inspect",
+      "prior_history_signature": "hist_zeta_freeze_after_drift",
+      "hidden_state_family": "latent_freeze_risk",
+      "outcome": "freeze_locks_bad_state",
+      "actual_observation": "stable_mask",
+      "future_behavior": "switch_probe_to_unfreeze_path",
+      "delay_steps": 3,
+      "delayed_effect": "freeze harm appears after a delayed distribution shift",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_C"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-007",
+      "split": "support",
+      "observable_context": "obs_D",
+      "intervention_condition": "prediction_error_injection",
+      "action": "shift",
+      "prior_history_signature": "hist_eta_error_injection_after_overfit",
+      "hidden_state_family": "latent_error_reweight",
+      "outcome": "error_reweighted",
+      "actual_observation": "shared_error",
+      "future_behavior": "seek_counterfactual_probe",
+      "delay_steps": 2,
+      "delayed_effect": "injection changes later action valuation, not current observation",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_D"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-008",
+      "split": "support",
+      "observable_context": "obs_D",
+      "intervention_condition": "prediction_error_injection",
+      "action": "probe",
+      "prior_history_signature": "hist_eta_error_injection_after_overfit",
+      "hidden_state_family": "latent_error_absorb",
+      "outcome": "error_absorbed_without_shift",
+      "actual_observation": "shared_error",
+      "future_behavior": "hold_policy_until_delayed_check",
+      "delay_steps": 2,
+      "delayed_effect": "counterfactual action changes later belief update under same history",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_D"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-009",
+      "split": "heldout",
+      "observable_context": "obs_E",
+      "intervention_condition": "history_preserving_causal_perturbation",
+      "action": "inspect",
+      "prior_history_signature": "hist_theta_chain_open",
+      "hidden_state_family": "latent_chain_open",
+      "outcome": "causal_chain_opened",
+      "actual_observation": "masked_signal_1",
+      "future_behavior": "delayed_branch_A_after_two_steps",
+      "delay_steps": 4,
+      "delayed_effect": "heldout composition effect appears after inspect then hold",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_E"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-010",
+      "split": "heldout",
+      "observable_context": "obs_E",
+      "intervention_condition": "history_preserving_causal_perturbation",
+      "action": "hold",
+      "prior_history_signature": "hist_theta_chain_open",
+      "hidden_state_family": "latent_chain_closed",
+      "outcome": "causal_chain_closed",
+      "actual_observation": "masked_signal_1",
+      "future_behavior": "delayed_branch_B_after_two_steps",
+      "delay_steps": 4,
+      "delayed_effect": "counterfactual action closes delayed branch under same observable history",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_E"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-011",
+      "split": "heldout",
+      "observable_context": "obs_F",
+      "intervention_condition": "online_distribution_shift",
+      "action": "probe",
+      "prior_history_signature": "hist_iota_shift_after_reliable_probe",
+      "hidden_state_family": "latent_shift_adapt",
+      "outcome": "distribution_shift_adapted",
+      "actual_observation": "ambiguous_signal",
+      "future_behavior": "delay_recovery_then_probe",
+      "delay_steps": 2,
+      "delayed_effect": "distribution shift is only visible after later recovery action",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_F"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    },
+    {
+      "case_id": "HD-012",
+      "split": "heldout",
+      "observable_context": "obs_F",
+      "intervention_condition": "online_distribution_shift",
+      "action": "probe",
+      "prior_history_signature": "hist_kappa_shift_after_unreliable_probe",
+      "hidden_state_family": "latent_shift_mislead",
+      "outcome": "distribution_shift_misleading",
+      "actual_observation": "ambiguous_signal",
+      "future_behavior": "reset_belief_then_hold",
+      "delay_steps": 2,
+      "delayed_effect": "misleading shift causes delayed rollback after the same current observation",
+      "partial_observability": {
+        "hidden_state_visible": false,
+        "observable_alias_collision": "obs_F"
+      },
+      "ambiguity_profile": {
+        "immediate_observation_sufficient": false,
+        "requires_history": true
+      }
+    }
+  ],
+  "counterfactual_action_pairs": [
+    {
+      "pair_id": "CF-001",
+      "shared_observation_history": "obs_D | prediction_error_injection | hist_eta_error_injection_after_overfit",
+      "branches": [
+        {
+          "case_id": "HD-007",
+          "action": "shift",
+          "required_belief_update": "increase counterfactual probe value after delayed error reweight"
+        },
+        {
+          "case_id": "HD-008",
+          "action": "probe",
+          "required_belief_update": "hold current policy until delayed consistency check"
+        }
+      ]
+    },
+    {
+      "pair_id": "CF-002",
+      "shared_observation_history": "obs_E | history_preserving_causal_perturbation | hist_theta_chain_open",
+      "branches": [
+        {
+          "case_id": "HD-009",
+          "action": "inspect",
+          "required_belief_update": "open latent causal chain after delayed branch evidence"
+        },
+        {
+          "case_id": "HD-010",
+          "action": "hold",
+          "required_belief_update": "close latent causal chain despite same masked observation"
+        }
+      ]
+    }
+  ],
+  "structural_properties": {
+    "context_intervention_action_conflicts_required": true,
+    "future_behavior_not_direct_observation_wrapper": true,
+    "delayed_effects_required": true,
+    "partial_observability_required": true,
+    "heldout_compositions_required": true,
+    "counterfactual_action_pairs_required": true,
+    "learning_freeze_ablation_hook_required": true,
+    "history_replacement_ablation_hook_required": true
+  }
+}

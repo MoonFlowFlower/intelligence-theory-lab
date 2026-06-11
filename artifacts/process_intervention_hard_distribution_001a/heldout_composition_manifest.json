@@ -1,0 +1,62 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001A",
+  "layer": "bounded process-intervention task-distribution hardening only",
+  "claim_ceiling": "bounded process-intervention hard-distribution readiness only",
+  "heldout_split_frozen_before_execution": true,
+  "heldout_split_missing": false,
+  "split_policy": "Support compositions establish single and paired intervention patterns; heldout compositions combine unseen intervention pairs and delayed histories. No execution is authorized by this manifest.",
+  "support_intervention_compositions": [
+    [
+      "state_deletion",
+      "memory_deletion"
+    ],
+    [
+      "representation_freezing",
+      "prediction_error_injection"
+    ],
+    [
+      "counterfactual_action_substitution",
+      "observation_perturbation"
+    ]
+  ],
+  "heldout_intervention_compositions": [
+    [
+      "state_deletion",
+      "prediction_error_injection"
+    ],
+    [
+      "memory_deletion",
+      "history_preserving_causal_perturbation"
+    ],
+    [
+      "representation_freezing",
+      "online_distribution_shift"
+    ],
+    [
+      "counterfactual_action_substitution",
+      "online_distribution_shift"
+    ]
+  ],
+  "heldout_case_ids": [
+    "HD-009",
+    "HD-010",
+    "HD-011",
+    "HD-012"
+  ],
+  "support_case_ids": [
+    "HD-001",
+    "HD-002",
+    "HD-003",
+    "HD-004",
+    "HD-005",
+    "HD-006",
+    "HD-007",
+    "HD-008"
+  ],
+  "leakage_controls": {
+    "heldout_split_label_visible_to_candidate_or_fair_controls": false,
+    "hidden_state_labels_visible_to_candidate_or_fair_controls": false,
+    "future_outcome_visible_to_candidate_or_fair_controls": false,
+    "split_selected_after_results": false
+  }
+}

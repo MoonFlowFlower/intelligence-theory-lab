@@ -1,0 +1,51 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001A",
+  "layer": "bounded process-intervention task-distribution hardening only",
+  "claim_ceiling": "bounded process-intervention hard-distribution readiness only",
+  "ablation_hooks": [
+    {
+      "hook_id": "learning_freeze",
+      "predeclared": true,
+      "executes_in_this_task": false,
+      "target_cases": [
+        "HD-005",
+        "HD-006",
+        "HD-011",
+        "HD-012"
+      ],
+      "intended_future_check": "Freeze updates after the ambiguous observation and verify whether delayed future behavior remains sensitive to the missing update.",
+      "forbidden_use": "Do not tune thresholds or choose freeze points after seeing future execution results."
+    },
+    {
+      "hook_id": "history_replacement",
+      "predeclared": true,
+      "executes_in_this_task": false,
+      "target_cases": [
+        "HD-001",
+        "HD-002",
+        "HD-003",
+        "HD-004",
+        "HD-009",
+        "HD-010"
+      ],
+      "intended_future_check": "Replace prior history while preserving the same observable context/intervention/action key and verify whether the outcome and delayed behavior change.",
+      "forbidden_use": "Do not expose replacement labels to the candidate or fair controls as hidden shortcut features."
+    },
+    {
+      "hook_id": "counterfactual_action_swap",
+      "predeclared": true,
+      "executes_in_this_task": false,
+      "target_cases": [
+        "HD-007",
+        "HD-008",
+        "HD-009",
+        "HD-010"
+      ],
+      "intended_future_check": "Swap action under the same observation history and verify that the required belief update changes.",
+      "forbidden_use": "Do not treat action-name differences as mechanism evidence without delayed belief-update sensitivity."
+    }
+  ],
+  "ablation_hooks_predeclared": true,
+  "mechanism_execution_authorized": false,
+  "mechanism_training_authorized": false
+}

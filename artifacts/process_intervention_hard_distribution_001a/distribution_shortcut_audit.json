@@ -1,0 +1,165 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001A",
+  "layer": "bounded process-intervention task-distribution hardening only",
+  "claim_ceiling": "bounded process-intervention hard-distribution readiness only",
+  "context_intervention_action_uniquely_determines_outcome": false,
+  "deterministic_key_conflict_count": 4,
+  "conflicting_observable_keys": [
+    {
+      "observable_key": [
+        "obs_A",
+        "state_deletion",
+        "probe"
+      ],
+      "case_ids": [
+        "HD-001",
+        "HD-002"
+      ],
+      "outcomes": [
+        "restore_path_opened",
+        "suppression_path_opened"
+      ],
+      "conflict_driver": "different prior history and hidden state under same observable key"
+    },
+    {
+      "observable_key": [
+        "obs_B",
+        "memory_deletion",
+        "hold"
+      ],
+      "case_ids": [
+        "HD-003",
+        "HD-004"
+      ],
+      "outcomes": [
+        "memory_rebuild_required",
+        "memory_quarantine_required"
+      ],
+      "conflict_driver": "source trust history is hidden behind the same partial echo"
+    },
+    {
+      "observable_key": [
+        "obs_C",
+        "representation_freezing",
+        "inspect"
+      ],
+      "case_ids": [
+        "HD-005",
+        "HD-006"
+      ],
+      "outcomes": [
+        "freeze_preserves_useful_state",
+        "freeze_locks_bad_state"
+      ],
+      "conflict_driver": "stable observable mask hides whether freeze follows stability or drift"
+    },
+    {
+      "observable_key": [
+        "obs_F",
+        "online_distribution_shift",
+        "probe"
+      ],
+      "case_ids": [
+        "HD-011",
+        "HD-012"
+      ],
+      "outcomes": [
+        "distribution_shift_adapted",
+        "distribution_shift_misleading"
+      ],
+      "conflict_driver": "same probe observation depends on prior reliability history"
+    }
+  ],
+  "future_behavior_directly_recoverable_from_actual_observation": false,
+  "actual_observation_ambiguity_examples": [
+    {
+      "actual_observation": "ambiguous_signal",
+      "future_behaviors": [
+        "defer_probe_until_reconstruction",
+        "commit_shift_after_suppression_check",
+        "delay_recovery_then_probe",
+        "reset_belief_then_hold"
+      ]
+    },
+    {
+      "actual_observation": "partial_echo",
+      "future_behaviors": [
+        "rebuild_memory_before_next_probe",
+        "quarantine_memory_before_next_probe"
+      ]
+    },
+    {
+      "actual_observation": "stable_mask",
+      "future_behaviors": [
+        "continue_inspect_with_low_update",
+        "switch_probe_to_unfreeze_path"
+      ]
+    },
+    {
+      "actual_observation": "masked_signal_1",
+      "future_behaviors": [
+        "delayed_branch_A_after_two_steps",
+        "delayed_branch_B_after_two_steps"
+      ]
+    }
+  ],
+  "delayed_effect_cases_exist": true,
+  "delayed_effect_case_ids": [
+    "HD-001",
+    "HD-002",
+    "HD-003",
+    "HD-004",
+    "HD-005",
+    "HD-006",
+    "HD-007",
+    "HD-008",
+    "HD-009",
+    "HD-010",
+    "HD-011",
+    "HD-012"
+  ],
+  "partial_observability_cases_exist": true,
+  "partial_observability_case_ids": [
+    "HD-001",
+    "HD-002",
+    "HD-003",
+    "HD-004",
+    "HD-005",
+    "HD-006",
+    "HD-007",
+    "HD-008",
+    "HD-009",
+    "HD-010",
+    "HD-011",
+    "HD-012"
+  ],
+  "heldout_split_missing": false,
+  "fair_controls_weakened_or_removed": false,
+  "thresholds_changed_to_force_pass": false,
+  "scale_increased_without_structural_shortcut_removal": false,
+  "old_001b_artifacts_edited": false,
+  "acceptance_gate_status": {
+    "new_distribution_frozen_before_any_execution": true,
+    "deterministic_key_conflict_audit_confirms_shortcut_breaking_conflicts": true,
+    "heldout_intervention_composition_split_exists": true,
+    "delayed_effect_cases_exist": true,
+    "partial_observability_cases_exist": true,
+    "fair_control_budget_and_access_rules_predeclared": true,
+    "ablation_hooks_predeclared": true,
+    "json_artifacts_parseable": true,
+    "authorization_flags_all_false": true,
+    "claim_ceiling_bounded_task_distribution_hardening_only": true
+  },
+  "what_this_audit_does_not_prove": [
+    "mechanism validity",
+    "theory validity",
+    "theory falsity",
+    "Gate1 readiness",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "companion readiness",
+    "model-class reset necessity"
+  ]
+}
