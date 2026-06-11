@@ -1,0 +1,69 @@
+{
+  "ablations": [
+    {
+      "affected_case_ids": [
+        "HD-005",
+        "HD-006",
+        "HD-011",
+        "HD-012"
+      ],
+      "changed_expected_process_sensitive_behavior": true,
+      "direction": "freezing suppresses delayed history-sensitive update paths",
+      "executed": true,
+      "hook_id": "learning_freeze"
+    },
+    {
+      "changed_expected_behavior": true,
+      "direction": "replacing prior history under same observable key changes expected future behavior",
+      "executed": true,
+      "hook_id": "history_replacement",
+      "replacement_results": [
+        {
+          "changed_expected_behavior": true,
+          "from_case_id": "HD-001",
+          "to_case_id": "HD-002"
+        },
+        {
+          "changed_expected_behavior": true,
+          "from_case_id": "HD-003",
+          "to_case_id": "HD-004"
+        },
+        {
+          "changed_expected_behavior": true,
+          "from_case_id": "HD-005",
+          "to_case_id": "HD-006"
+        },
+        {
+          "changed_expected_behavior": true,
+          "from_case_id": "HD-011",
+          "to_case_id": "HD-012"
+        }
+      ]
+    },
+    {
+      "contrast_detected": true,
+      "counterfactual_results": [
+        {
+          "branch_count": 2,
+          "contrast_detected": true,
+          "pair_id": "CF-001"
+        },
+        {
+          "branch_count": 2,
+          "contrast_detected": true,
+          "pair_id": "CF-002"
+        }
+      ],
+      "direction": "different actions under shared observation history require different belief updates",
+      "executed": true,
+      "hook_id": "counterfactual_action_contrast"
+    },
+    {
+      "executed": false,
+      "hook_id": "outcome_perturbation",
+      "skip_reason": "not_predeclared_in_001a_ablation_hooks"
+    }
+  ],
+  "claim_ceiling": "bounded hard-distribution process-intervention preflight evidence only",
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001B-EXECUTABLE-PREFLIGHT"
+}
