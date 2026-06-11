@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admitted_effect_delta": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "base_effect_vector": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "effect_vector_visibility_status": {
+      "enum": [
+        "base_only_pending_hidden",
+        "admitted_delta_visible"
+      ],
+      "type": "string"
+    },
+    "feedback_admission_status": {
+      "enum": [
+        "pending_counterevidence",
+        "admitted_context_counterevidence"
+      ],
+      "type": "string"
+    },
+    "option_id": {
+      "type": "string"
+    },
+    "ordering_proof_ref": {
+      "type": "string"
+    },
+    "pending_counterevidence_effect_delta": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "selector_visible_predicted_effect_vector": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "option_id",
+    "base_effect_vector",
+    "pending_counterevidence_effect_delta",
+    "admitted_effect_delta",
+    "selector_visible_predicted_effect_vector",
+    "feedback_admission_status",
+    "effect_vector_visibility_status",
+    "ordering_proof_ref"
+  ],
+  "title": "AdmissionFilteredEffectVector",
+  "type": "object"
+}

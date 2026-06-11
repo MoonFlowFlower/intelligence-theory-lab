@@ -1,0 +1,68 @@
+{
+  "task_id": "predictive_action_learning_contract_001c_canonical_freeze",
+  "task_card": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CANONICAL-FREEZE",
+  "date": "2026-06-10",
+  "verdict": "canonical_freeze_pass",
+  "branch": "audit/001c-canonical-freeze",
+  "freeze_commit": "4d07f4ec63096ad20e84010da74ee2690c98062b",
+  "freeze_tree": "499c0df241042c8a4b08e6eefcc69a8f28f59a33",
+  "base_commit": "5facf28c35b968a63792dda1c2890e8144ee4e7c",
+  "tag": "predictive-action-learning-contract-001c-canonical-freeze-2026-06-10",
+  "tag_object": "606db57f7096d08a5774853eb877171e0ef9a81c",
+  "tag_type": "annotated",
+  "tag_points_to": "freeze commit (first commit); post-state record files live in a second commit on the branch, per task card allowance",
+  "second_commit": "RECORDED_AFTER_CREATION_IN_freeze_commit2.txt",
+  "pushed": false,
+  "remote_note": "git remote -v is EMPTY in the local repo; the task card names https://github.com/MoonFlowFlower/intelligence-theory-lab.git but no remote is configured locally. No push was attempted (card forbids push without authorization). Remote configuration was NOT added (not authorized).",
+  "protected_files_changed": 0,
+  "non_mutation_proof": {
+    "pre_write_hash_snapshot": "311 files hashed before any task write; recomputed after doc creation and again after commit: 0 mismatches",
+    "manifest_recompute_post_commit": "313/313 identical",
+    "freeze_commit_vs_base": "git diff --diff-filter=MD HEAD..branch = 0 paths (no tracked file modified or deleted); 320 added paths, all within expected prefixes",
+    "committed_bytes_equal_disk_bytes": "index==commit diff empty; worktree==index diff restricted to freeze paths = 0; core.autocrlf unset so no content conversion on add"
+  },
+  "staged_path_count": 320,
+  "manifest": {
+    "files_covered": 313,
+    "sha256_manifest_json_self_hash": "0df15535f07905dd0ad2952e6d986130759fb7873002ee77f4bad946fa331d43",
+    "missing_expected_paths": []
+  },
+  "environment_deviations": [
+    "DEVIATION 1 (method): porcelain checkout/add/commit/tag could not run because a stale .git/index.lock (created 2026-06-10 12:54 by a read-only status call) exists and the execution environment forbids ALL file deletion in the mounted folder. The commit was built with git plumbing: GIT_INDEX_FILE=/tmp/freeze.idx, read-tree HEAD, git add (explicit paths), write-tree, commit-tree -p HEAD, update-ref refs/heads/audit/001c-canonical-freeze, tag -a on the commit. Resulting objects are ordinary git objects. User approved this route before execution.",
+    "DEVIATION 2 (branch not checked out): HEAD remains on codex/meta-theory-scaffold; the freeze branch exists as a ref. git_status_before/after therefore show the PAL paths as untracked relative to HEAD; the freeze lives on the branch.",
+    "DEVIATION 3 (working tree dirt): 711 tracked files show as modified in git status; verified EOL-presentation-only (git diff --ignore-cr-at-eol --numstat = 0 lines). They are NOT in the freeze commit (containment proof above). User approved proceeding over stop-condition-4's literal reading.",
+    "DEVIATION 4 (litter, disclosed): the no-deletion environment leaves inert files that could not be cleaned from this session: .git/objects/*/tmp_obj_* duplicates (~320, hardlink/copy leftovers of successfully stored objects), .git/objects/zz/testobj (empty probe), .git/write_test_2 (empty probe), .git/index.lock (stale), rmtest.tmp (empty probe in repo root). All are content-inert; none is referenced by any git object. Safe to delete from the Windows side; git fsck/gc will ignore or garbage-collect tmp_obj files.",
+    "DEVIATION 5 (git diff --check): reports pre-existing trailing whitespace inside frozen docs (e.g., docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001.txt). Not fixed: fixing would mutate frozen evidence."
+  ],
+  "clean_final_state_note": "git status cannot be clean in this environment: (a) HEAD is not the freeze branch, (b) 711 EOL-presentation diffs persist on tracked cmbc files, (c) stale index.lock prevents index refresh. The card's fallback (record explicitly in freeze_result.json) is used.",
+  "storage": {
+    "largest_file_bytes": 5306457,
+    "total_added_bytes_approx": 340000000,
+    "github_normal_limits": "all files well under 100MB hard limit and 50MB warning; no LFS plan needed",
+    "verdict_storage_caveat": false
+  },
+  "claim_ceiling": "001C is now post-audit canonically frozen in VCS from this commit/tag onward, with caveats. The frozen evidence claim ceiling is unchanged: 001C has passed-with-caveats the independent evidence audit for bounded isolated Gate 0 predictive-action mechanism evidence.",
+  "forbidden_claims_reaffirmed": [
+    "001C had VCS freeze before the original 001 run",
+    "001C proves predictive superiority over retrieval",
+    "001C proves agency, functional subject, consciousness, EGO readiness, companion readiness, AGI, electronic life, or a total theory"
+  ],
+  "stop_conditions_triggered": [],
+  "stop_condition_4_resolution": "literal trigger (unrelated dirty tracked changes) resolved by user decision: dirt proven EOL-only and mechanically excluded from the commit; analysis preserved in this file and git_status_before.txt",
+  "errata_recorded": ["C1", "C2", "C3", "L1"],
+  "files_created": [
+    "docs/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_CANONICAL_RECORD.md",
+    "docs/audits/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_ERRATA.md",
+    "artifacts/predictive_action_learning_contract_001c_canonical_freeze/ (sha256_manifest.json, sha256_manifest.txt, protected_paths_inventory.json, git_status_before.txt, git_status_after.txt, base_commit.txt, freeze_commit.txt, freeze_commit2.txt, freeze_tag_object.txt, freeze_result.json, claim_ceiling.txt, errata_summary.json)"
+  ],
+  "frozen_evidence_added_to_tracking_unchanged": [
+    "predictive_action_learning_contract_001/ (15 files)",
+    "predictive_action_learning_contract_001c/ (8 files)",
+    "artifacts/predictive_action_learning_contract_001/ (105 files)",
+    "artifacts/predictive_action_learning_contract_001c/ (156 files)",
+    "artifacts/predictive_action_learning_contract_001c_independent_audit/ (15 files)",
+    "docs/PREDICTIVE-* (8 files incl. this task's card)",
+    "docs/audits/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_INDEPENDENT_AUDIT.md",
+    "tests/test_predictive_action_learning_contract_001*.py (3 files)"
+  ]
+}

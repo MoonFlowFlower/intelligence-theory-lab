@@ -1,0 +1,81 @@
+schema_version: 0
+experiment_id: LCC_EFFECT_SWAP_001
+theory_id: LCC_v0
+status: completed_bounded_contract_run
+implementation_authorized: contract_runner_only_completed
+clean_room_candidate_authorized: false
+purpose: Test whether a future candidate can make action choices from learned causal effects rather than action labels, trace-only variables, score-only changes, or evaluator features.
+current_stage: pre_implementation_human_review
+hypothesis: If LCC_v0 is worth implementing, its first testbed must be able to separate effect identity from action-label identity before any performance benchmark is considered.
+non_goals:
+  - prove intelligence
+  - prove consciousness
+  - recover VCCO
+  - recover VCAC-Core
+  - recover FOPC
+  - optimize external reward
+  - build an autonomous theory search agent
+  - implement a new selector before review
+predecessor_failures_used_as_constraints:
+  - claim_id: full_vcco_necessity
+    constraint: Do not include no-op components as bottom-level claims.
+  - claim_id: vcac_core_control_loop
+    constraint: Do not claim trace-visible variables are control-loop components without selector perturbation evidence.
+  - claim_id: viability_compression_as_supported_core
+    constraint: Do not promote score deltas to causal control evidence unless action distributions change.
+  - claim_id: fopc_future_option_proxy
+    constraint: Do not use action labels or action-label-derived future-option proxies.
+required_design_properties:
+  - action labels and action effects must be independently permutable
+  - effect swaps must preserve label strings while changing transition consequences
+  - label permutations must preserve transition consequences while changing label strings
+  - candidate and baselines must receive identical observation limits
+  - behavior-only replay must not rely on trace-only explanatory fields
+  - metrics must be computed outside the selector input path
+primary_kill_tests:
+  - id: label_permutation_invariance
+    falsifies_if: action distribution changes when only action labels are renamed and learned effects are preserved
+  - id: effect_swap_sensitivity
+    falsifies_if: action distribution does not change when causal effects are swapped under unchanged labels and observations
+  - id: static_label_shortcut
+    falsifies_if: a static action-label safety table matches candidate behavior
+  - id: strong_heuristic_equivalence
+    falsifies_if: a risk-aware hand-coded heuristic matches candidate within the declared equivalence band
+  - id: score_only_causality
+    falsifies_if: internal scores change but action_distribution_delta remains below the predeclared effect-size floor
+  - id: metric_provenance_leak
+    falsifies_if: any evaluator metric, hidden future state, scenario id, or object name enters the candidate input path
+minimum_artifacts_required_if_implemented_later:
+  - artifacts/cycles/cycle_000_or_successor/contract_frozen.yaml
+  - artifacts/cycles/cycle_000_or_successor/label_permutation_report.md
+  - artifacts/cycles/cycle_000_or_successor/effect_swap_report.md
+  - artifacts/cycles/cycle_000_or_successor/baseline_equivalence_report.md
+  - artifacts/cycles/cycle_000_or_successor/metric_provenance_audit.md
+  - artifacts/cycles/cycle_000_or_successor/trace_replay_report.md
+  - artifacts/cycles/cycle_000_or_successor/verdict.json
+allowed_next_actions:
+  - human_review
+  - revise_contract
+  - reject_candidate
+  - close_current_line
+forbidden_next_actions:
+  - implement_agent
+  - implement_selector
+  - implement_environment
+  - implement_baseline
+  - change_metric_thresholds
+  - migrate_to_EGO
+  - claim_supported_theory
+human_review_required_before:
+  - any implementation file
+  - any experiment runner
+  - any benchmark result
+  - any successor cycle
+claim_boundary: Completed bounded contract run only; it provides no support for LCC_v0 as a general theory.
+latest_result:
+  verdict: lcc_contract_pass_bounded
+  artifact_dir: artifacts/cycles/cycle_000/LCC_EFFECT_SWAP_001
+  label_permutation_change_rate: 0.0
+  effect_swap_change_rate: 1.0
+  theory_support: not_claimed
+  next_human_review_required: true

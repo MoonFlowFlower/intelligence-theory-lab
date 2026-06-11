@@ -1,0 +1,35 @@
+{
+  "baselines": {
+    "ContextualHeuristicBaseline": {
+      "equivalent": false,
+      "match_rate": 0.33
+    },
+    "GreedyImmediateValuePolicy": {
+      "equivalent": false,
+      "match_rate": 0.25
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "match_rate": 0.58
+    },
+    "PassiveLearnerPolicy": {
+      "equivalent": false,
+      "match_rate": 0.2
+    },
+    "RandomDiagnosticPolicy": {
+      "equivalent": false,
+      "match_rate": 0.52
+    },
+    "StaticDiagnosticTableBaseline": {
+      "equivalent": false,
+      "match_rate": 0.62
+    }
+  },
+  "equivalence_band": "match_rate >= 0.95",
+  "oracle_diagnostic_upper_bound": {
+    "diagnostic_only": true,
+    "match_rate": 1.0
+  },
+  "stop_condition": null,
+  "verdict": "strong_baselines_not_equivalent"
+}

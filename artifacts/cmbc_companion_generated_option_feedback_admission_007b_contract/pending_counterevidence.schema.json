@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admission_requirements_remaining": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_repeated_count_remaining": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "minimum_confidence_remaining": {
+          "minimum": 0.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "minimum_repeated_count_remaining",
+        "minimum_confidence_remaining"
+      ],
+      "type": "object"
+    },
+    "context_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "scope_id": {
+          "type": "string"
+        },
+        "scope_kind": {
+          "enum": [
+            "local_context",
+            "session_context",
+            "narrowed_context"
+          ],
+          "type": "string"
+        },
+        "source_trace_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "scope_id",
+        "scope_kind",
+        "source_trace_refs"
+      ],
+      "type": "object"
+    },
+    "counterevidence_id": {
+      "type": "string"
+    },
+    "failure_mode": {
+      "enum": [
+        "timing_interruption",
+        "too_much",
+        "intrusive",
+        "boundary_discomfort",
+        "outcome_mismatch"
+      ],
+      "type": "string"
+    },
+    "option_id": {
+      "type": "string"
+    },
+    "selector_visible_effect_update_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "source_feedback_ref": {
+      "type": "string"
+    },
+    "status": {
+      "const": "pending_counterevidence",
+      "type": "string"
+    },
+    "uncertainty_delta": {
+      "minimum": 0.0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "counterevidence_id",
+    "option_id",
+    "source_feedback_ref",
+    "failure_mode",
+    "context_scope",
+    "status",
+    "selector_visible_effect_update_allowed",
+    "uncertainty_delta",
+    "admission_requirements_remaining"
+  ],
+  "title": "PendingCounterevidenceRecord",
+  "type": "object"
+}

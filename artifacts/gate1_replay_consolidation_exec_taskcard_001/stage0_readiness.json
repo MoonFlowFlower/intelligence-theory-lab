@@ -1,0 +1,55 @@
+{
+  "record_type": "stage0_margin_freeze_and_readiness_record",
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001",
+  "created_utc": "2026-06-11T01:13:16Z",
+  "executor": "Claude (Cowork session), acting under explicit human-owner instruction of 2026-06-10/11",
+
+  "task_card": {
+    "path": "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001.md",
+    "task_card_sha256": "5118f2a0edf2ead7917757cb465a41678c10431cb0b1887db70517fbbfde205d",
+    "file_bytes": 47202,
+    "verified_byte_identical_to_human_uploaded_copy": true,
+    "card_not_modified_by_executor": true
+  },
+
+  "margin_freeze": {
+    "margin_freeze_event": "stage0_margin_policy_anchor_for_conservative_zero_advantage_rule",
+    "margin_hash_sha256": "f21b82489d824bdd2473ac9150bc85e7ee0fa444b6e6484621aed177c489b0e8",
+    "margin_hash_extraction_rule": "sha256 over raw file bytes of section '## 7. Margin-freeze block' (byte offsets [10084,15009)) concatenated with the trailing '## Margin-freeze block' section (byte offset 37381 to EOF), CRLF preserved as stored",
+    "margin_policy": "conservative_zero_advantage_rule; all candidate-vs-control margins 0.0; acceptance conjunctive across all mandatory controls and all required slices",
+    "margin_provenance": "Phase4_001B_conservative_anti_fake_pass_policy (frozen inside the card before this record)",
+    "post_hoc_margin_setting": "forbidden",
+    "margin_freeze_completed": true
+  },
+
+  "preregistration": {
+    "environment_preregistration_file": "artifacts/gate1_replay_consolidation_exec_taskcard_001/environment_preregistration.json",
+    "environment_preregistration_sha256": "844b5dbfab75f73aec09d8bff6aec7f66225e9f56af9f250d90e9a662f7bf6ba",
+    "covers": ["card section 8 environment fields", "card section 11 parity fields", "card section 15 seed policy fields", "slice operationalization", "all model/candidate/control hyperparameters", "deletion and attestation protocol"],
+    "frozen_with_this_record": true
+  },
+
+  "provenance_chain": {
+    "meta_card_001B_sha256": "a9942256f200d2cfcc349563a19c4a1a240f09c252fbf1250941fc174d5d4d19",
+    "historical_card_001A_sha256": "5760f1a026fb7f026aae2c46cc5bea9b5315f60741f9848ec8e50cb87a8792f1",
+    "exec_draft_sha256": "9a1862e47f6714b85e7d6ad3b16b4920b9716917a0e19412378e3c08a4076b19",
+    "human_signoff_in_card": "approved_by_human_owner_2026-06-10 (card section 0); promotion draft->executable performed by human owner, not by this executor"
+  },
+
+  "external_time_anchor": {
+    "external_time_anchor_method": "repository_remote_push (origin = https://github.com/MoonFlowFlower/intelligence-theory-lab.git)",
+    "sandbox_constraint": "no push credentials in sandbox (known constraint); freeze commit is created locally by executor via git plumbing; human owner pushes from Windows; executor verifies via anonymous git ls-remote",
+    "margin_freeze_commit_hash": "to_be_recorded_in_stage0_external_anchor.json_after_commit",
+    "external_time_anchor_timestamp": "to_be_recorded_after_remote_verification",
+    "external_time_anchor_completed": false
+  },
+
+  "readiness_status": {
+    "margin_freeze_completed": true,
+    "external_time_anchor_completed": false,
+    "first_run_allowed": false,
+    "rule": "first_run_allowed flips true only in stage0_external_anchor.json after anonymous ls-remote shows the freeze commit reachable on origin; no run, training, evaluation, pilot, smoke test, calibration, benchmark, or data generation occurs before that record exists"
+  },
+
+  "ordering_rule": "margin_freeze_commit_time < first_run_start_time; first_run_start_time will be recorded in the run ledger and must postdate the anchor verification timestamp"
+}

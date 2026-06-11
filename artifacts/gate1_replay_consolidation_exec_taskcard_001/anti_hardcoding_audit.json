@@ -1,0 +1,23 @@
+{
+ "checks": {
+  "no_hand_coded_deletion_timing": "deletion arm preregistered; code uses it unconditionally",
+  "no_curated_replay_items_after_outcome_inspection": "items = full phase-1 buffer/chunks, fixed before runs",
+  "no_manually_tuned_salience_formula_after_outcome_inspection": "salience = NLL-proportional, preregistered",
+  "no_hand_picked_seeds": "seeds [11,13,17,19,23] preregistered rule-based",
+  "no_run_or_seed_dropping_after_outcome_inspection": "ledger complete; aggregate() reads all seeds unconditionally",
+  "no_hard_coded_graph_topology_in_candidate_path": "candidate model = generic trilinear factorization; OBS_LABEL is environment interface, used identically by candidate and belief-model controls",
+  "no_hand_curated_chunk_boundaries": "contiguous length-30 stride-30, preregistered",
+  "no_manually_tuned_burn_in_length": "burn_in=5 preregistered",
+  "no_hidden_if_else_behavior": "no candidate-specific branches in eval paths; shared eval code",
+  "no_test_only_logic_paths": "smoke test calls the same public functions",
+  "no_threshold_tuning_after_results": "margins frozen in card before Stage 0",
+  "no_post_hoc_margin_changes": "margin hash anchored; aggregate() hardcodes >0 rule",
+  "no_environment_design_that_trivially_favors_candidate": "controls at full power on seen-data slices; conjunctive rule forces candidate to face them there",
+  "no_environment_design_that_disables_controls_by_construction": "all stores built from full stream; predeclared fallbacks on miss only",
+  "no_control_sandbagging": "shared model class/init/lr for learner controls; lookup controls exact; competence floor enforced",
+  "no_pre_freeze_comparative_pilot_runs": "run ledger first entry postdates both anchors; no comparative metric exists before it",
+  "no_post_hoc_lineage_repair": "failure_manifest preserved; amendment recorded openly with new anchor before any run"
+ },
+ "all_pass": true,
+ "note": "the one detected violation candidate (lumpable observation map) was caught before any run, preserved in failure_manifest.json, and repaired under explicit human-owner approval with a new external anchor"
+}

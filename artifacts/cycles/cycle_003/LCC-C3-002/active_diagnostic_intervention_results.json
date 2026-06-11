@@ -1,0 +1,55 @@
+{
+  "baselines": {
+    "GreedyImmediateValuePolicy": {
+      "equivalent": false,
+      "match_rate": 0.0
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "match_rate": 0.5
+    },
+    "OracleDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "match_rate": 1.0
+    },
+    "PassiveLearnerPolicy": {
+      "control_success": 0.52,
+      "equivalent": false,
+      "posterior_uncertainty_reduction": 0.05
+    },
+    "RandomDiagnosticPolicy": {
+      "equivalent": false,
+      "match_rate": 0.5
+    }
+  },
+  "behavior_only_replay": {
+    "excluded_fields": [
+      "true_hypothesis_id",
+      "semantic_action_labels",
+      "evaluator_metric",
+      "hidden_state",
+      "scenario_id",
+      "self_report",
+      "agent_identity"
+    ],
+    "mismatches": [],
+    "passed": true,
+    "replayed_decisions": 40,
+    "total_decisions": 40,
+    "used_fields": [
+      "observations",
+      "own_intervention_history",
+      "observed_outcomes",
+      "learned_effect_model_uncertainty",
+      "intervention_budget"
+    ]
+  },
+  "diagnostic_action_rate_when_ambiguous": 1.0,
+  "diagnostic_action_rate_when_certain": 0.0,
+  "effect_swap_change_rate": 1.0,
+  "label_permutation_change_rate": 0.0,
+  "post_diagnostic_control_success": 0.91,
+  "posterior_uncertainty_reduction": 0.43,
+  "stop_condition": null,
+  "verdict": "active_diagnostic_intervention_passed"
+}

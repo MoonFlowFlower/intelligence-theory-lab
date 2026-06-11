@@ -1,0 +1,28 @@
+{
+  "baselines": {
+    "ContextBlindPolicy": {
+      "equivalent": false,
+      "match_rate": 0.38
+    },
+    "GlobalOverwriteModelPolicy": {
+      "catastrophic_forgetting_rate": 0.72,
+      "equivalent": false,
+      "match_rate": 0.41
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "match_rate": 0.61
+    },
+    "OracleContextModelDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    }
+  },
+  "catastrophic_forgetting_rate": 0.08,
+  "context_specific_prediction_accuracy": 0.91,
+  "new_context_control_success": 0.9,
+  "old_context_recovery_success": 0.88,
+  "relearning_cost_on_context_return": 0.12,
+  "stop_condition": null,
+  "verdict": "context_specific_revision_passed"
+}

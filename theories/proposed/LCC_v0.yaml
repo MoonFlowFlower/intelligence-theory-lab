@@ -1,0 +1,189 @@
+schema_version: 0
+theory_id: LCC_v0
+name: Learned Counterfactual Controllability
+one_sentence_core: "Intelligence-relevant control is learned counterfactual effect control: actions are selected by intervention-grounded predictions that remain label-invariant and change under effect perturbations."
+status: collapsed_into_causal_model_based_control
+core_claims:
+  - A control mechanism is candidate-worthy only if counterfactual changes to learned action effects change action distributions under the same observation constraints.
+  - Action-label renaming must not change behavior when learned effects and observations are preserved.
+  - Score sensitivity is insufficient unless it produces a declared action-distribution effect.
+  - Trace-visible variables are not core components unless perturbing them changes selector behavior.
+  - Component claims require ablation semantics audits that prove the ablation is not a no-op.
+prior_failures_addressed:
+  - full_vcco_necessity
+  - vcac_core_control_loop
+  - viability_compression_as_supported_core
+  - fopc_future_option_proxy
+forbidden_shortcuts:
+  - action_label_semantics
+  - object_name
+  - scenario_id
+  - hidden_future_state
+  - evaluator_metric_as_feature
+  - static_safety_table
+  - reward_target_optimization
+  - trace_only_control_claim
+  - score_only_causality_claim
+kill_tests:
+  - Label permutation must preserve action distribution when observed effects are unchanged.
+  - Effect swap must change action distribution when learned effects are swapped under identical labels and observations.
+  - A contextual safety heuristic with the same observation limits must not match the candidate within the declared equivalence band.
+  - Static action-label lookup must fail while effect-conditioned selection remains stable.
+  - Hidden-state, future-state, scenario-id, object-name, reward, and evaluator-metric provenance scans must be clean.
+  - No-op ablation audit must prove every claimed component changes an intermediate used by the selector before outcome metrics are considered.
+  - Behavior-only replay must reconstruct prediction-before-action evidence without trace-only explanatory fields.
+baseline_requirements:
+  - random
+  - strong_hand_coded_heuristic
+  - compression_only
+  - heuristic_equivalence
+  - static_action_label_table
+  - effect_blind_predictive_control
+allowed_agent_inputs:
+  - current_partial_observation
+  - current_body_sensor_vector
+  - opaque_action_handles_for_execution_only
+  - observed_transition_history
+  - learned_effect_estimates_from_past_transitions
+  - previous_prediction_errors
+forbidden_agent_inputs:
+  - semantic_action_label_text
+  - scenario_id
+  - object_name
+  - hidden_world_state
+  - future_state
+  - oracle_hazard_map
+  - evaluator_metric_values
+  - reward_target_as_primary_objective
+  - hard_coded_action_safety_table
+evidence_gate:
+  - trace_replay
+  - behavior_only_replay
+  - hidden_state_leak_scan
+  - label_permutation
+  - effect_swap
+  - action_distribution_counterfactual
+  - strong_baseline_equivalence
+  - ablation_no_op_audit
+  - metric_provenance_audit
+  - parameter_sweep
+  - heldout_causal_world
+stop_conditions:
+  - label_permutation_changes_behavior_without_effect_change
+  - effect_swap_does_not_change_behavior
+  - candidate_reducible_to_action_label
+  - candidate_reducible_to_static_safety_table
+  - strong_heuristic_equivalent
+  - score_delta_without_action_distribution_delta
+  - trace_variable_not_read_by_selector
+  - hidden_state_or_oracle_leak
+  - evaluator_metric_reused_as_feature
+  - no_op_ablation_detected
+  - successor_does_not_explain_prior_failure
+claim_boundary: proposed contract only; no implementation, support claim, clean-room candidate authorization, EGO readiness, consciousness claim, AGI claim, self-awareness claim, life claim, or robust universal mechanism claim.
+implementation_authorized: false
+latest_contract_result:
+  experiment_id: LCC_EFFECT_SWAP_001
+  verdict: lcc_contract_pass_bounded
+  result_scope: bounded contract result only
+  theory_support: not_claimed
+  next_human_review_required: true
+latest_redteam_result:
+  cycle_id: cycle_010
+  verdict: lcc_contract_strengthened_blind_holdout_bounded
+  result_scope: bounded contract redteam only
+  theory_support: not_yet
+  general_agent_implementation: not_authorized
+  ego_migration: no_go
+  next_human_review_required: true
+latest_milestone_review:
+  milestone_id: M1
+  verdict: authorize_independent_reimplementation_contract_only
+  result_scope: theory readiness review only
+  theory_support: not_yet
+  general_agent_implementation: not_authorized
+  autonomous_theory_search: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
+  next_scope_recommended: independent_reimplementation_contract_only
+  cross_theory_tournament: recommended_after_independent_reimplementation
+  next_human_review_required: true
+latest_independent_reimplementation_contract:
+  contract_id: LCC_INDEPENDENT_REIMPLEMENTATION_001
+  package_verdict: independent_reimplementation_contract_ready
+  manifest: artifacts/independent_reimplementation/contract_manifest.json
+  result_scope: contract package only
+  implementation_authorized: false
+  theory_support: not_yet
+  general_agent_implementation: not_authorized
+  autonomous_theory_search: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
+  next_human_review_required: true
+latest_independent_reimplementation_result:
+  verdict: independent_reimplementation_bounded_pass
+  repo: ../lcc-independent-reimplementation
+  commit: bb08845
+  decision_artifact: ../lcc-independent-reimplementation/artifacts/independent_execution/IR-010/independent_reimplementation_decision.json
+  maximum_claim: LCC_v0 survived one clean-room independent bounded replication of the core public contract.
+  theory_support: not_yet
+  bottom_intelligence_principle: not_claimed
+  general_agent_implementation: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
+latest_cross_theory_tournament_contract:
+  verdict: cross_theory_tournament_contract_ready
+  decision_artifact: artifacts/cross_theory_tournament_contract/XTT-007/cross_theory_tournament_contract_decision.json
+  result_scope: contract design only
+  tournament_execution: not_authorized
+  competitor_implementation: not_authorized
+  theory_support: not_yet
+  bottom_intelligence_principle: not_claimed
+  general_agent_implementation: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
+  next_human_review_required: true
+latest_cross_theory_tournament_result:
+  verdict: lcc_collapses_into_causal_model_based_control
+  decision_artifact: artifacts/cross_theory_tournament_execution/XTE-011/cross_theory_tournament_result.json
+  result_scope: bounded cross-theory tournament execution
+  maximum_claim: LCC_v0 is better treated as an operational evidence discipline or special case of causal model-based control under this tournament contract.
+  collapse_family: causal_model_based_control
+  theory_support: not_yet
+  bottom_intelligence_principle: not_claimed
+  general_agent_implementation: not_authorized
+  autonomous_theory_search: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
+  next_human_review_required: true
+latest_closeout:
+  verdict: lcc_collapses_into_causal_model_based_control
+  closeout_artifact: artifacts/theory_closeout/lcc_collapse_decision.json
+  surviving_principle_ledger: artifacts/theory_closeout/surviving_principle_ledger.json
+  status: independent_theory_claim_closed
+  remaining_value: operational_evidence_discipline_for_causal_model_based_control
+  strongest_surviving_theory_family: causal_model_based_control
+  theory_support: not_yet
+  bottom_intelligence_principle: not_claimed
+  general_agent_implementation: not_authorized
+  autonomous_theory_search: not_authorized
+  ego_migration: no_go
+  cycle_011: not_authorized
+previous_redteam_result:
+  cycle_id: cycle_009
+  verdict: lcc_contract_strengthened_unified_mechanism_bounded
+  result_scope: bounded contract redteam only
+  theory_support: not_yet
+earlier_redteam_result:
+  cycle_id: cycle_008
+  verdict: lcc_contract_strengthened_goal_conditioned_reuse_bounded
+  result_scope: bounded contract redteam only
+  theory_support: not_yet
+human_review_required_before:
+  - any_code
+  - any_testbed
+  - any_new_agent
+  - any_selector
+  - any_environment
+  - any_baseline
+  - any_metric_threshold_change

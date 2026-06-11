@@ -1,0 +1,37 @@
+{
+  "task": "REMOTE-PUBLISH (narrow, user-authorized follow-up to PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CANONICAL-FREEZE)",
+  "date": "2026-06-10",
+  "verdict": "remote_publish_pass",
+  "remote": "https://github.com/MoonFlowFlower/intelligence-theory-lab.git",
+  "push_executed_by": "user, from Windows terminal with own credentials (sandbox has no GitHub auth; approach approved by user)",
+  "verification_method": "anonymous git ls-remote from sandbox after user push",
+  "verified_refs": {
+    "refs/heads/audit/001c-canonical-freeze": {
+      "remote": "9e73c7cca2d04c1f217b1451828fe1258ad6aaeb",
+      "expected": "9e73c7cca2d04c1f217b1451828fe1258ad6aaeb",
+      "match": true
+    },
+    "refs/tags/predictive-action-learning-contract-001c-canonical-freeze-2026-06-10": {
+      "remote_tag_object": "606db57f7096d08a5774853eb877171e0ef9a81c",
+      "expected_tag_object": "606db57f7096d08a5774853eb877171e0ef9a81c",
+      "remote_peeled_commit": "4d07f4ec63096ad20e84010da74ee2690c98062b",
+      "expected_freeze_commit": "4d07f4ec63096ad20e84010da74ee2690c98062b",
+      "match": true
+    }
+  },
+  "mismatches": [],
+  "blockers": [],
+  "incident_during_task": {
+    "what": ".git/config destroyed by 'git remote add' under the no-delete mount (rename-replace zeroed target to 217 NUL bytes; config.lock left as empty husk)",
+    "recovery": "reconstructed via direct write from the exact local key list captured earlier in session (six standard core keys; no user/remote/branch sections existed) plus the authorized [remote \"origin\"] block; roundtrip-verified with git config --list",
+    "residual_uncertainty": "byte-identity of reconstructed config to the destroyed original is unprovable; semantic identity is supported by the captured key list and absence of any remote at capture time",
+    "frozen_evidence_impact": "none: refs, objects, frozen artifacts, and freeze branch contents untouched; protected paths were last verified 313/313 SHA256-identical after the freeze commits"
+  },
+  "constraints_respected": [
+    "freeze branch contents not modified (this report is intentionally left untracked)",
+    "no experiment rerun",
+    "annotated tag not rewritten",
+    "no frozen artifact edited"
+  ],
+  "note": "this file is untracked by design; a later authorized task may commit it"
+}

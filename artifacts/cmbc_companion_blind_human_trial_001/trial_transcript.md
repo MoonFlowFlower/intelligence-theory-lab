@@ -1,0 +1,26 @@
+# Blind Human Trial 001 Transcript
+
+- blind_turn_00: I am about to present; check before you interrupt. -> act_2 (ask_permission), feedback=good_timing, admission=not_required_positive_or_boundary_feedback
+- blind_turn_01: I have a loose moment if you want to check in. -> act_0 (check_in), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_02: Today hit hard; respond steadily. -> act_6 (serious_support), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_03: Do not help me bypass this boundary. -> act_4 (set_boundary), feedback=boundary_respected, admission=not_required_positive_or_boundary_feedback
+- blind_turn_04: Quiet focus sprint now, ask first if you need me. -> act_2 (ask_permission), feedback=good_timing, admission=not_required_positive_or_boundary_feedback
+- blind_turn_05: Open calendar slot; a tiny check-in is fine. -> act_0 (check_in), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_06: This is not a joking moment for me. -> act_6 (serious_support), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_07: That would cross a line; give me the safer route. -> act_4 (set_boundary), feedback=boundary_respected, admission=not_required_positive_or_boundary_feedback
+- blind_turn_08: I can respond later, but not without a timing check. -> act_2 (ask_permission), feedback=bad_timing, admission=pending_counterevidence
+- blind_turn_09: Nothing urgent right now, gentle contact is okay. -> act_0 (check_in), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_10: Please be grounded; I am overwhelmed. -> act_6 (serious_support), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_11: Keep the safety constraint intact. -> act_4 (set_boundary), feedback=boundary_respected, admission=not_required_positive_or_boundary_feedback
+- blind_turn_12: Study block started; permission first. -> act_2 (ask_permission), feedback=good_timing, admission=not_required_positive_or_boundary_feedback
+- blind_turn_13: I am available for a low-pressure hello. -> act_0 (check_in), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_14: I need you to stay with the serious part. -> act_6 (serious_support), feedback=too_much, admission=pending_counterevidence
+- blind_turn_15: I need a refusal and an alternative here. -> act_4 (set_boundary), feedback=boundary_respected, admission=not_required_positive_or_boundary_feedback
+- blind_turn_16: Can you check in before this block? -> act_2 (ask_permission), feedback=good_timing, admission=not_required_positive_or_boundary_feedback
+- blind_turn_17: Can you check in before this block? -> act_0 (check_in), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_18: Please check in before this gets worse. -> act_6 (serious_support), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_19: Please check in before this gets worse. -> act_4 (set_boundary), feedback=boundary_respected, admission=not_required_positive_or_boundary_feedback
+- blind_turn_20: I am in class; that last timing complaint was only because of class. -> act_2 (ask_permission), feedback=good_timing, admission=not_required_positive_or_boundary_feedback
+- blind_turn_21: Free afternoon, a brief check-in is still fine. -> act_0 (check_in), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_22: Rough evening again; take it seriously. -> act_6 (serious_support), feedback=helpful, admission=not_required_positive_or_boundary_feedback
+- blind_turn_23: Offer the safer alternative again. -> act_4 (set_boundary), feedback=boundary_respected, admission=not_required_positive_or_boundary_feedback

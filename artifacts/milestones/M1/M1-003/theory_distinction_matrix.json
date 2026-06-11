@@ -1,0 +1,43 @@
+{
+  "task_id": "M1-003",
+  "overall_assessment": "LCC is operationally distinct as a kill-test discipline, but not yet theoretically distinct from model-based causal control families.",
+  "theories": [
+    {
+      "name": "model_based_rl",
+      "overlap": "learned dynamics and planning",
+      "lcc_distinction": "label/effect split, intervention-grounded effect evidence, behavior-only replay, anti-shortcut scans",
+      "collapse_risk": "high",
+      "needed_test": "strong learned-dynamics planner under blind holdout and label/effect swaps"
+    },
+    {
+      "name": "causal_model_based_control",
+      "overlap": "intervention effects and causal planning",
+      "lcc_distinction": "selector-level action-distribution causality and provenance audit",
+      "collapse_risk": "high",
+      "needed_test": "causal graph learner plus planner with no oracle graph or role schema"
+    },
+    {
+      "name": "active_inference",
+      "overlap": "generative model control and uncertainty reduction",
+      "lcc_distinction": "explicit effect perturbation and label-invariance gates",
+      "collapse_risk": "medium_high",
+      "needed_test": "strong expected-free-energy implementation under the same observation restrictions"
+    },
+    {
+      "name": "empowerment",
+      "overlap": "future controllability and action-option value",
+      "lcc_distinction": "rejects action-label future-option proxy and requires goal-conditioned model reuse",
+      "collapse_risk": "medium",
+      "needed_test": "learned empowerment/information-gain planner against blind holdout and negative controls"
+    },
+    {
+      "name": "predictive_processing",
+      "overlap": "prediction error and model revision",
+      "lcc_distinction": "requires intervention-grounded action selection, not report-level prediction quality",
+      "collapse_risk": "medium",
+      "needed_test": "predictive-control implementation with counterfactual action-distribution perturbations"
+    }
+  ],
+  "theory_support_allowed": false,
+  "recommended_followup_after_m1": "independent_reimplementation_first_then_cross_theory_tournament"
+}

@@ -1,0 +1,41 @@
+{
+  "baselines": {
+    "AlwaysRediagnosePolicy": {
+      "equivalent": false,
+      "match_rate": 0.34,
+      "stable_probe_rate": 1.0
+    },
+    "NearestNeighborTracePolicy": {
+      "equivalent": false,
+      "match_rate": 0.57
+    },
+    "OracleChangePointDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    },
+    "StaticOldModelPolicy": {
+      "equivalent": false,
+      "post_update_control_success": 0.25
+    }
+  },
+  "behavior_only_replay": {
+    "passed": true,
+    "reconstructed_decisions": 60,
+    "replay_inputs": [
+      "observation",
+      "prediction_error",
+      "learned_effect_summary",
+      "uncertainty"
+    ],
+    "total_decisions": 60
+  },
+  "confidence_reduction_after_mismatch": 0.83,
+  "diagnostic_probe_rate_after_mismatch": 1.0,
+  "effect_swap_change_rate": 1.0,
+  "label_permutation_change_rate": 0.0,
+  "post_update_control_success": 1.0,
+  "prediction_error_spike_detected": true,
+  "stop_condition": null,
+  "unnecessary_probe_rate_in_stable_phase": 0.0,
+  "verdict": "model_invalidation_passed"
+}

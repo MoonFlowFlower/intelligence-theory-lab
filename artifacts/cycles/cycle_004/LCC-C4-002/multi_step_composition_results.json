@@ -1,0 +1,42 @@
+{
+  "baselines": {
+    "NearestNeighborSequencePolicy": {
+      "equivalent": false,
+      "match_rate": 0.58
+    },
+    "OneStepGreedyPolicy": {
+      "equivalent": false,
+      "match_rate": 0.0,
+      "novel_sequence_success_rate": 0.0
+    },
+    "OraclePlannerDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    },
+    "RandomRolloutPolicy": {
+      "equivalent": false,
+      "match_rate": 0.24
+    },
+    "SequenceLookupTablePolicy": {
+      "equivalent": false,
+      "match_rate": 0.46
+    }
+  },
+  "behavior_only_replay": {
+    "passed": true,
+    "reconstructed_decisions": 50,
+    "replay_inputs": [
+      "observation",
+      "learned_effect_summary",
+      "own intervention evidence class"
+    ],
+    "total_decisions": 50
+  },
+  "effect_swap_change_rate": 1.0,
+  "greedy_trap_avoidance_rate": 1.0,
+  "label_permutation_change_rate": 0.0,
+  "multi_step_success_rate": 1.0,
+  "novel_sequence_success_rate": 1.0,
+  "stop_condition": null,
+  "verdict": "multi_step_composition_passed"
+}

@@ -1,0 +1,66 @@
+{
+ "artifact_index": [
+  "CONFIG.json",
+  "FINAL_REPORT.md",
+  "README.md",
+  "TRACE_SCHEMA.json",
+  "ablation_results.json",
+  "attestation_report.json",
+  "baseline_results.json",
+  "commitment_report.json",
+  "failure_manifest.json",
+  "main_metrics.json",
+  "perturbation_results.json",
+  "replay_report.json",
+  "result.json",
+  "runs",
+  "stop_condition_report.json",
+  "trace.jsonl"
+ ],
+ "belief_claim": {
+  "belief_necessity_gap_nats": 0.22866378436623636,
+  "replay_validated": true,
+  "verdict": "supported"
+ },
+ "claim_ceiling": "The implementation instantiates the frozen contract, but evidence remains blocked by specified protocol requirements.",
+ "claim_mode": "belief_plus_theta",
+ "evidence_verdict": "protocol_blocked_by_T1_external_commit_missing",
+ "evidence_verdict_class": "protocol_blocked",
+ "failed_gates": [],
+ "implementation_verdict": "bounded_contract_pass",
+ "protocol_blockers": [
+  "T1_external_commit_missing"
+ ],
+ "stop_conditions_triggered": [],
+ "task_card": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001",
+ "task_id": "predictive_action_learning_contract_001",
+ "tests": {
+  "exit_code": 0,
+  "summary": "34 passed in 5.87s (pytest; trace-evidence assertions: skeleton math vs hand computation, pseudo-count updates, schema/chronology/hash-chain/commit-log, forced REPLAY_STEP blocking, tamper detection, missing-field rejection, retrieval-flag contradiction, full-trace replay, memdel reconstruction equality, cold-start duplicates, baseline execution, ablation/perturbation direction, oracle-leak floor, audit attestation)"
+ },
+ "theta_claim": {
+  "delta_theta_ratio_reversal_reported_ungated": 0.8901545568548944,
+  "frozen_init_theta_postshift_gap_nats": 0.1609843507958869,
+  "frozen_theta_postshift_gap_nats": 0.20260855632031094,
+  "newrule_mass_gain_frozen_control": {
+   "mean_gain": 0.0,
+   "mean_mass_at_end": 0.16681281122992123,
+   "mean_mass_at_shift": 0.16681281122992123,
+   "n_affected_cells": 6
+  },
+  "newrule_mass_gain_hidden_rule": {
+   "mean_gain": 0.17710281869557262,
+   "mean_mass_at_end": 0.3376018002644302,
+   "mean_mass_at_shift": 0.16049898156885764,
+   "n_affected_cells": 9
+  },
+  "newrule_mass_gain_reversal": {
+   "mean_gain": 0.25184684372680094,
+   "mean_mass_at_end": 0.41865965495672214,
+   "mean_mass_at_shift": 0.16681281122992123,
+   "n_affected_cells": 6
+  },
+  "verdict": "supported"
+ },
+ "verdict_precedence_rule": "Declared pre-run: if any mechanism/baseline/ablation/perturbation evidence gate fails, evidence_verdict = bounded_contract_fail. Otherwise, if external commitment is unavailable (commit_mode=local_mock), evidence_verdict = protocol_blocked_by_T1_external_commit_missing. Otherwise bounded_contract_pass. implementation_verdict is judged only on section 12.1 gates."
+}

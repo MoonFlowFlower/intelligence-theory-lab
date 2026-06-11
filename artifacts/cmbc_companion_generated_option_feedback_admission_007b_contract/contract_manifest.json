@@ -1,0 +1,51 @@
+{
+  "allowed_verdicts": [
+    "generated_option_feedback_admission_007b_contract_ready",
+    "contract_incomplete",
+    "pending_counterevidence_visibility_unresolved",
+    "context_scope_contract_incomplete",
+    "admission_aware_replay_contract_incomplete",
+    "uncertainty_update_contract_incomplete",
+    "boundary_violation"
+  ],
+  "authorized_scope": "contract_only",
+  "claim_ceiling": "generated option feedback admission 007B contract readiness only; no implementation or execution evidence",
+  "contract_id": "CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-CONTRACT",
+  "core_rules": [
+    "pending_counterevidence must not change selector-visible predicted_effect_vector",
+    "pending_counterevidence may change uncertainty / confidence / pending evidence state",
+    "admitted_context_counterevidence may change selector-visible predicted_effect_vector",
+    "repeated or high-confidence feedback is required for admission",
+    "context_scope must be explicit and traceable",
+    "option lineage must inherit pending/admitted feedback state",
+    "replay trace must include proposal_id, admission_decision_id, feedback_admission_status, context_scope, and effect-vector visibility status",
+    "selector must only see admission-filtered effect vectors",
+    "behavior-only replay and admission-aware replay must both be reported",
+    "no semantic labels or natural-language descriptions may enter selector input"
+  ],
+  "ego_migration": "no_go",
+  "execution_authorized": false,
+  "implementation_authorized": false,
+  "llm_action_selection": false,
+  "proactive_messages": "not_authorized",
+  "rag_baseline_weakening_authorized": false,
+  "real_companion_implementation": "not_authorized",
+  "recommended_next_task": "CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-SHADOW",
+  "recommended_next_task_authorized": false,
+  "required_contract_objects": [
+    "PendingCounterevidenceRecord",
+    "FeedbackAdmissionState",
+    "GeneratedOptionFeedbackUpdateLedger",
+    "ContextScopedFeedbackAdmission",
+    "AdmissionFilteredEffectVector",
+    "SelectorVisibleEffectVectorContract",
+    "GeneratedOptionUncertaintyUpdateContract",
+    "AdmissionAwareReplayTrace",
+    "FeedbackAdmissionOrderingProof"
+  ],
+  "selector_patch_authorized": false,
+  "source_rca": "artifacts/cmbc_companion_candidate_option_generation_007_rca/RCA_RESULT.json",
+  "source_rca_verdict": "outcome_update_ordering_bug_confirmed",
+  "threshold_change_authorized": false,
+  "verdict": "generated_option_feedback_admission_007b_contract_ready"
+}

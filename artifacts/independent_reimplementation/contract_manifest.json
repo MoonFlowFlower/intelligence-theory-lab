@@ -1,0 +1,119 @@
+{
+  "contract_id": "LCC_INDEPENDENT_REIMPLEMENTATION_001",
+  "package_verdict": "independent_reimplementation_contract_ready",
+  "created_at": "2026-06-06T18:38:21-05:00",
+  "task_scope": "contract_package_only",
+  "implementation_authorized": false,
+  "cycle_011_authorized": false,
+  "general_lcc_agent_authorized": false,
+  "autonomous_theory_search_authorized": false,
+  "ego_migration": "no_go",
+  "theory_support": "not_yet",
+  "bottom_intelligence_principle": "not_claimed",
+  "source_decision": {
+    "milestone_id": "M1",
+    "verdict": "authorize_independent_reimplementation_contract_only",
+    "artifact": "artifacts/milestones/M1/M1-006/milestone_001_decision.json"
+  },
+  "required_artifacts": [
+    "docs/LCC_INDEPENDENT_REIMPLEMENTATION_CONTRACT.md",
+    "docs/LCC_PUBLIC_THEORY_CARD.md",
+    "docs/LCC_PUBLIC_IO_SCHEMA.md",
+    "docs/LCC_PUBLIC_REDTEAM_GATES.md",
+    "docs/LCC_REPLICATION_CLAIM_BOUNDARY.md",
+    "artifacts/independent_reimplementation/REIMPLEMENTATION_AUTHORIZATION.md",
+    "artifacts/independent_reimplementation/contract_manifest.json"
+  ],
+  "minimum_replication_suite": [
+    "label_effect_decoupling",
+    "passive_observation_vs_own_intervention",
+    "active_diagnostic_intervention",
+    "sequential_closed_loop_replanning",
+    "blind_holdout_after_candidate_freeze"
+  ],
+  "required_baselines": [
+    "ActionLabelHeuristic",
+    "NearestNeighborTracePolicy",
+    "ContextualHeuristic",
+    "ModelBasedMPCBaseline",
+    "EmpowermentProxyBaseline",
+    "OracleDiagnosticUpperBound_diagnostic_only"
+  ],
+  "allowed_candidate_inputs": [
+    "observations",
+    "anonymous_action_ids",
+    "own_intervention_history",
+    "observed_outcomes",
+    "non_semantic_goal_vectors_when_applicable",
+    "non_semantic_constraint_vectors_when_applicable",
+    "public_horizon",
+    "public_budget"
+  ],
+  "forbidden_candidate_inputs": [
+    "semantic_action_labels",
+    "semantic_goal_names",
+    "object_names",
+    "entity_names",
+    "scenario_id",
+    "cycle_id",
+    "contract_id",
+    "task_id",
+    "goal_id",
+    "hidden_latent_state",
+    "hidden_future_state",
+    "oracle_transition_table",
+    "oracle_plan_table",
+    "evaluator_metric",
+    "expected_output_table",
+    "baseline_outputs",
+    "current_candidate_control_code",
+    "cycle_specific_runner_internals",
+    "current_scorer_internals"
+  ],
+  "required_gates": [
+    "hidden_state_leak_scan",
+    "evaluator_metric_leak_scan",
+    "action_label_use_scan",
+    "behavior_only_replay",
+    "label_permutation_invariance",
+    "effect_swap_sensitivity",
+    "passive_correlation_rejection",
+    "diagnostic_intervention_under_uncertainty",
+    "closed_loop_replanning_after_unexpected_observation",
+    "strong_baseline_non_equivalence",
+    "candidate_freeze_before_blind_holdout",
+    "no_candidate_control_changes_after_holdout_generation"
+  ],
+  "package_allowed_final_verdicts": [
+    "independent_reimplementation_contract_ready",
+    "contract_not_ready_due_to_underspecified_mechanism",
+    "contract_not_ready_due_to_baseline_gap",
+    "contract_not_ready_due_to_claim_ambiguity",
+    "contract_not_ready_due_to_lineage_dependency"
+  ],
+  "future_run_allowed_verdicts": [
+    "independent_reimplementation_bounded_pass",
+    "label_shortcut_detected",
+    "intervention_effect_not_learned",
+    "diagnostic_intervention_failed",
+    "closed_loop_replanning_failed",
+    "behavior_only_replay_failed",
+    "hidden_or_metric_leak_detected",
+    "strong_baseline_equivalent",
+    "freeze_integrity_violation",
+    "inconclusive_contract_needs_revision"
+  ],
+  "failure_consequence": "downgrade_to_bounded_single_lineage_evidence",
+  "not_proven": [
+    "LCC_theory_support",
+    "bottom_intelligence_principle",
+    "general_LCC_agent",
+    "AGI",
+    "consciousness",
+    "subjective_experience",
+    "self_awareness",
+    "life",
+    "EGO_readiness",
+    "robust_universal_support"
+  ]
+}

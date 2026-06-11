@@ -1,0 +1,56 @@
+{
+  "contract_id": "CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-CONTRACT",
+  "verdict": "candidate_option_generation_contract_ready",
+  "authorized_scope": "contract_only",
+  "required_contract_objects": [
+    "CandidateOptionProposal",
+    "OptionAdmissionGate",
+    "AdmittedCandidateOption",
+    "OptionLineageTrace",
+    "OptionDeduplicationReport",
+    "OptionRetirementReport",
+    "OptionCompositionContract",
+    "GeneratorSelectorSeparationContract",
+    "OptionEvidenceSupportContract",
+    "ReplayContractForGeneratedOptions",
+    "BaselineContractForGeneratedOptions"
+  ],
+  "core_gates": [
+    "Generator may propose options but cannot select actions.",
+    "Selector receives only admitted anonymous CandidateOptions.",
+    "Natural-language descriptions must not be selector-visible.",
+    "Semantic labels must not be selector-visible.",
+    "Every admitted option must have lineage and evidence support.",
+    "Generated options must carry uncertainty when evidence is weak.",
+    "Replay must reconstruct the option set and distribution.",
+    "RAG / heuristic / generator baselines must receive equivalent allowed inputs.",
+    "Outcome updates must affect future generated option admission or scoring.",
+    "Retired options must be traceable and reversible."
+  ],
+  "minimum_future_execution_gates": {
+    "generated_option_count_min": 20,
+    "admitted_option_count_min": 20,
+    "generator_selected_action": false,
+    "semantic_label_visible_to_selector": false,
+    "natural_language_description_visible_to_selector": false,
+    "option_lineage_coverage_rate": 1.0,
+    "option_replay_match_rate": 1.0,
+    "generator_baseline_action_match_rate_max": 0.5,
+    "rag_causal_probe_match_rate_max": 0.5,
+    "expanded_action_nearest_neighbor_match_rate_max": 0.5,
+    "renderer_action_change_rate": 0.0,
+    "outcome_update_changes_future_option_distribution": true
+  },
+  "forbidden_runtime_changes": [
+    "selector_patch",
+    "threshold_change",
+    "rag_baseline_weakening",
+    "ego_connection",
+    "real_companion_implementation",
+    "proactive_messages",
+    "llm_action_selection"
+  ],
+  "claim_ceiling": "candidate option generation 007 contract readiness only; no implementation or execution evidence",
+  "recommended_next_task": "CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW",
+  "recommended_next_task_authorized": false
+}

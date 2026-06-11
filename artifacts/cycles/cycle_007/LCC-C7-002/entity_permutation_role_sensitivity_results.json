@@ -1,0 +1,38 @@
+{
+  "baselines": {
+    "EntityIDPolicy": {
+      "equivalent": false,
+      "match_rate": 0.42
+    },
+    "RawNearestNeighborGraphPolicy": {
+      "equivalent": false,
+      "match_rate": 0.6
+    },
+    "RoleOracleDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    },
+    "VisualFeaturePolicy": {
+      "equivalent": false,
+      "match_rate": 0.46
+    }
+  },
+  "behavior_only_replay": {
+    "passed": true,
+    "reconstructed_decisions": 24,
+    "replay_inputs": [
+      "observations",
+      "own_intervention_history",
+      "observed_outcomes",
+      "learned_relation_uncertainty"
+    ],
+    "total_decisions": 24
+  },
+  "effect_swap_change_rate": 1.0,
+  "entity_permutation_behavior_change_rate": 0.0,
+  "label_permutation_change_rate": 0.0,
+  "role_swap_behavior_change_rate": 1.0,
+  "stop_condition": null,
+  "verdict": "entity_permutation_role_sensitivity_passed",
+  "visual_feature_shortcut_rate": 0.1
+}

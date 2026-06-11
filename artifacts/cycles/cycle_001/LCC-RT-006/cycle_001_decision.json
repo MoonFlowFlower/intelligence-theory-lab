@@ -1,0 +1,60 @@
+{
+  "allowed_verdict": true,
+  "cannot_prove": [
+    "LCC is proven",
+    "intelligence principle found",
+    "AGI",
+    "consciousness",
+    "self-awareness",
+    "life",
+    "EGO readiness",
+    "robust universal support"
+  ],
+  "claim_boundary": "bounded contract redteam only",
+  "cycle_000_verdict": "lcc_contract_pass_bounded",
+  "maximum_claim": "LCC_v0 survived a second bounded contract redteam focused on label/effect decoupling and learned-effect causality.",
+  "next_step_requires_human_review": true,
+  "required_gates": {
+    "action_label_use_scan": {
+      "candidate_read_fields": [
+        "state_features",
+        "action_handles",
+        "learned_effect_model"
+      ],
+      "passed": true
+    },
+    "behavior_only_trace_replay": {
+      "passed": true
+    },
+    "counterfactual_model_perturbation": {
+      "passed": true
+    },
+    "effect_swap_sensitivity": {
+      "passed": true
+    },
+    "evaluator_metric_leak_scan": {
+      "candidate_read_fields": [
+        "state_features",
+        "action_handles",
+        "learned_effect_model"
+      ],
+      "passed": true
+    },
+    "hidden_state_leak_scan": {
+      "candidate_read_fields": [
+        "state_features",
+        "action_handles",
+        "learned_effect_model"
+      ],
+      "passed": true
+    },
+    "label_permutation_invariance": {
+      "passed": true
+    },
+    "strong_heuristic_equivalence_test": {
+      "passed": true
+    }
+  },
+  "stop_conditions_triggered": [],
+  "verdict": "lcc_contract_strengthened_bounded"
+}

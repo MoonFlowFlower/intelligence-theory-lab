@@ -1,0 +1,26 @@
+{
+  "record_type": "stage0_external_time_anchor",
+  "task_id": "LATENT-MULTISTEP-CONSISTENCY-RESIDUE-001A",
+  "freeze_commit_hash": "6a7923b7d3fc8616e54255140ae56d77adc01e31",
+  "parent_commit": "d7ffc39394e8b53f0464aebed2fbf5d6c2b75011",
+  "anchored_refs": {
+    "refs/heads/codex/meta-theory-scaffold": "6a7923b7d3fc8616e54255140ae56d77adc01e31",
+    "refs/tags/residue-001a-stage0-freeze": "6a7923b7d3fc8616e54255140ae56d77adc01e31"
+  },
+  "anchored_content": [
+    "docs/LATENT-MULTISTEP-CONSISTENCY-RESIDUE-001A.md (sha256 661424d9...)",
+    "task_manifest.json (margin freeze + parent hashes)",
+    "environment_preregistration.json (sha256 e9ba27c2..., incl. interpretation locks, R4 w=3, k=4, seeds)",
+    "frozen harness code src/latent_multistep_consistency_residue/ + tests"
+  ],
+  "external_verification": "anonymous git ls-remote shows branch and tag at freeze commit",
+  "external_time_anchor_timestamp_utc": "2026-06-11T02:46:30Z",
+  "runs_executed_before_anchor": 0,
+  "pre_anchor_code_validation_disclosure": "import-time syntax checks and distribution-normalization assertions on placeholder constructs were executed during implementation (no stream training, no candidate-vs-control metrics); disclosed here for completeness",
+  "readiness_status": {
+    "margin_freeze_completed": true,
+    "external_time_anchor_completed": true,
+    "first_run_allowed": true,
+    "rule": "first_run_start_time must postdate 2026-06-11T02:46:30Z"
+  }
+}

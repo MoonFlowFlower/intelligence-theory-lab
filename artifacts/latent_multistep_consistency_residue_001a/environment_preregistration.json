@@ -1,0 +1,90 @@
+{
+  "record_type": "environment_and_protocol_preregistration",
+  "task_id": "LATENT-MULTISTEP-CONSISTENCY-RESIDUE-001A",
+  "created_utc": "2026-06-11T02:25:28Z",
+  "frozen_before_external_anchor": true,
+
+  "environment": {
+    "environment_id": "latent_alias_ring16_pomdp_v1",
+    "family": "latent_alias_sequence_or_pomdp_family",
+    "latent_states": 16, "actions": 3, "observations": 5,
+    "displacements_motif": [1, 5, 11], "slip_epsilon": 0.10,
+    "observation_map_OBS_LABEL": [0,1,2,3,4,2,0,3,1,4,1,3,0,4,2,0],
+    "observation_map_property_checks": {
+      "non_lumpable_for_all_actions": true,
+      "memory_needed_cells_KL_gt_0.01": "48/48 under behavior-stationary distribution"
+    },
+    "heldout_pairs_rule": "(3*s + 7*a) mod 11 == 0 -> {(0,0),(11,0),(5,1),(10,2)} (4/48)",
+    "heldout_semantics": "phase-1 behavior never takes heldout pairs (resample among allowed); evaluation behavior samples uniformly over ALL actions, so heldout transitions and heldout alias patterns occur at evaluation",
+    "phase1_stream": "800 steps, uniform-random over allowed actions, random start; rng = default_rng(seed)",
+    "eval_sequences": "60 sequences x 50 steps per seed; behavior uniform over all actions; rng = default_rng(seed*7919+202)",
+    "partial_observability": true,
+    "latent_state_not_directly_observed": true,
+    "multi_step_prediction_needed": "R_slice_5 horizon-4 targets diverge from horizon-1 targets (KL>0.01) on 100% of checked steps, all preregistered seeds",
+    "lookup_triviality_assessment": "not lookup-trivial: aliasing requires memory at every (o,a) cell; R4 restricts to never-seen 3-windows where window stores must miss; heldout transitions unseen by all stores",
+    "controls_disabled_by_construction_assessment": "not disabled: all stores receive the full phase-1 stream; window/cache/table controls answer every query with predeclared fallbacks on miss; retrieval is expected to be competent on seen windows (R1 contains ~56-58% seen-window steps)"
+  },
+
+  "slices": {
+    "R_slice_1": "cache_free_heldout_sequence_prediction: fresh recomputed state, burn-in 5, score steps 6..49, horizon-1 exact expected NLL vs true kernel",
+    "R_slice_2": "hidden_state_cache_removed: state reset at step 25 with 5-step burn-in, score steps 31..49 (no persistent state across the reset)",
+    "R_slice_3": "longer_context_retrieval_removed: prediction state recomputed from only the last 10 steps (sliding window, in-window burn-in), score steps >= 11",
+    "R_slice_4": "heldout_alias_or_state_disambiguation: R1 protocol, scored ONLY at steps whose preceding (o,a) window of length w=3 never occurred in the phase-1 stream; w=3 chosen pre-anchor by predeclared balance rule (unseen fraction closest to 0.5 among {2,3}; measured 0.419-0.453 across seeds)",
+    "R_slice_5": "nonredundant_long_horizon_prediction: at steps 6..45 predict o_{t+4} by action-conditioned rollout (actions a_t..a_{t+3} given, no intermediate observations); exact expected NLL vs 4-step kernel product",
+    "prerun_redundancy_check": {
+      "R4_not_equivalent_to_R1": "scored-step subset fraction in [0.419, 0.453] (within predeclared validity band [0.05, 0.95]) for every seed",
+      "R5_not_equivalent_to_R1": "different prediction target (horizon 4 vs 1); target distributions diverge (KL>0.01) on 100% of steps",
+      "postrun_recheck_required": true
+    }
+  },
+
+  "seed_policy": {
+    "seeds": [29, 31, 37, 41, 43],
+    "rule": "five consecutive primes starting at 29, disjoint from parent task seeds; fixed before any run; no reruns, no selection, no dropping",
+    "aggregation": "strict fallback rule: all metrics are exact expected NLL (deterministic given seed); candidate_advantage must be > 0 on every seed and every required slice against every mandatory control; ties or any nonpositive cell = control match"
+  },
+
+  "candidate_R": {
+    "architecture": "belief predictor: learned transition logits theta_T (16x3x16); observation map public interface; belief update b'(s') propto sum_s b(s) softmax(theta_T[s,a])(s') * 1[OBS_LABEL[s']=o']; init N(0,0.1) rng(seed*1000+13); SGD lr=0.05",
+    "training": "phase-1 online single-step (800 updates) -> frozen snapshot -> replay event: chunks = contiguous length 40 stride 40 (20 chunks, chronological), burn_in_length=5, multi_step_depth=4 (preregistered to cover R5 horizon; loss = sum over horizons j=1..4 of NLL of o_{t+j} under action-conditioned rollout without intermediate observation conditioning), 4 epochs, 35 scored positions per chunk = 2800 replay updates; total 3600 update_steps",
+    "evaluation": "isolated subprocess; forward path reads only [snapshot.npz, queries.json]; no chunk, cache, index, or store access; horizon-4 prediction by belief rollout"
+  },
+
+  "interpretation_locks": {
+    "original_order_control": "same_item_multiset_original_order is by definition the candidate's own configuration (identical multiset, loss, and order). A literally identical run has advantage exactly 0 and would make the card unsatisfiable. LOCKED READING (pre-anchor, before any run): original_order is implemented and reported as the candidate run itself; the order_geometry_collapse rule binds on the order-PERTURBED controls (shuffled / reverse / random), consistent with the card's acceptance list which names only shuffled_same_loss and reverse_order. This lock is recorded before any run and may not be reinterpreted after results.",
+    "retrieval_multistep_rollout": "cache/retrieval controls natively predict one step. For R_slice_5 they roll out by chaining their own store-derived (o,a)->o' conditional over given future actions (exact distribution propagation over the 5 observation symbols). Table controls chain their estimated per-action obs-transition matrices exactly. Window-model baselines propagate exact joints over their window contents. Each control class uses its own best tractable chaining; no control borrows the candidate's latent model.",
+    "uniform_vs_random_replay": "with iid item sampling these coincide up to belief-context reconstruction; both implemented from distinct seeded rngs; near-equivalence disclosed, not hidden"
+  },
+
+  "controls": {
+    "order_same_loss_2800_updates_k4": ["shuffled_same_loss_replay (per-epoch chunk permutation, rng seed*1000+88)", "reverse_order_same_loss (fixed reverse chunk order)", "random_order_same_loss (single global chunk permutation drawn once, fixed across epochs, rng seed*1000+89)", "original_order = candidate run (interpretation lock)"],
+    "generic_replay_candidate_arch": ["single_step_chunk_replay (chrono chunks, k=1, 2800)", "generic_chunk_replay (k=1, per-epoch uniform chunk order, rng seed*1000+90)", "random_replay (k=1 at 2800 uniform timesteps, 10-step local belief recompute, rng seed*1000+99)", "uniform_replay (k=1, iid item sampling, rng seed*1000+98)", "equal_compute_extra_training (4 updates/sample + 1 extra on first 400 samples = 3600, no storage)", "same_data_online_only (800)", "frozen_theta (0 updates)"],
+    "cache_retrieval": ["hidden_state_cache (longest-suffix 8->4->2 window match -> cached next-obs dist, uniform miss)", "prefix_cache (window-8 exact only, uniform miss)", "longer_context_retrieval (kNN k=5 Hamming over window-8)", "sequence_lookup (backoff 8->4->2->marginal)", "nearest_neighbor_sequence_retrieval (k=1)", "episodic_sequence_retrieval (longest exact suffix up to length 12, empirical dist, backoff to marginal)"],
+    "graph_table": ["count_table ((o,a)->o' Laplace alpha=1)", "transition_table (same keying; equivalence documented)", "graph_lookup (unsmoothed empirical, uniform fallback)", "compressed_map (rank-3 truncated SVD of 15x5 count matrix, clip>=0 +1e-6, renormalize)"],
+    "strong_function_approximation": [
+      "same_architecture_no_multistep_loss (candidate arch, online + chrono single-step chunk replay 2800; identical to single_step_chunk_replay by construction - equivalence disclosed, both names reported)",
+      "larger_capacity_single_step_model (belief arch + LEARNED observation logits theta_O 16x5, 848 params vs 768; obs map not given; online + single-step replay, 3600 updates)",
+      "equal_parameter_budget_model (order-2 window model: logits over (code_{t-1},code_t)->o', code=o*3+a, 1125 params; online SGD + replay-equivalent extra passes to 3600 updates)",
+      "equal_compute_model (candidate arch, single-step only, per-sample repeats to 3600 updates, no storage)",
+      "stronger_sequence_model_without_multistep_consistency (interpolated order-1/2/3 window model with learned softmax interpolation weights; trained single-step, 3600 updates; h=4 by exact joint propagation)"
+    ]
+  },
+
+  "control_parity": {
+    "tuning_budget": "none for candidate and all controls (all hyperparameters fixed in this record); control_tuning_budget >= candidate_tuning_budget satisfied",
+    "compute_matching_basis": "update_steps; candidate total 3600; all training-type controls matched to 3600 except where their definition fixes fewer (same_data_online_only 800, frozen_theta 0 - disclosed)",
+    "implementation": "shared model classes, shared init draws per seed, shared eval protocols; lookup/retrieval stores built from the identical phase-1 stream",
+    "competence_floors": {
+      "retrieval": "deterministic placeholder env (eps=0, seed 9001): sequence_lookup must achieve exact mode prediction on repeated patterns",
+      "generic_replay": "uniform replay must strictly reduce training NLL vs pre-replay snapshot (seed 9001)",
+      "table": "count_table must be exact-mode on deterministic placeholder",
+      "function_approximation": "each FA baseline must strictly reduce its training NLL during learning (seed 9001)"
+    }
+  },
+
+  "attestation_and_deletion": {
+    "candidate_evaluation": "isolated subprocess, argv allowlist [snapshot, queries, output], opened-file inventory + sha256; forbidden objects (chunks, caches, indices, buffers) not loaded and not reachable",
+    "mount_constraint_disclosure": "mount forbids unlink; runtime absence enforced by process construction; lineage snapshots persist as required",
+    "control_evaluations": "in-process WITH their defining stores (comparison purpose); store hashes recorded"
+  }
+}

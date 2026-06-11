@@ -1,0 +1,1018 @@
+schema_version: 0
+lab_status: cmbc_companion_candidate_option_generation_007_redteam_bounded_pass
+active_theory: null
+clean_room_candidate_authorized: false
+implementation_authorized: false
+last_human_review_required_before: any_post_collapse_theory_revision_or_implementation
+rules:
+  - no theory may be implemented before a theory card exists
+  - no experiment may be implemented before an experiment contract exists
+  - every successor theory must cite predecessor failures
+  - every theory must declare kill tests before implementation
+  - negative evidence must be preserved and cannot be overwritten
+  - score sensitivity is not control-loop causality
+  - trace visibility is not selector usage
+theories:
+  - theory_id: LCC_v0
+    name: Learned Counterfactual Controllability
+    status: collapsed_into_causal_model_based_control
+    card: theories/proposed/LCC_v0.yaml
+    experiment_contract: contracts/experiments/LCC_EFFECT_SWAP_001.yaml
+    latest_redteam: artifacts/cycles/cycle_010/cycle_010_decision.json
+    latest_milestone_review: artifacts/milestones/M1/M1-006/milestone_001_decision.json
+    latest_milestone_verdict: authorize_independent_reimplementation_contract_only
+    latest_contract_package: artifacts/independent_reimplementation/contract_manifest.json
+    latest_contract_package_verdict: independent_reimplementation_contract_ready
+    latest_independent_reimplementation_result: ../lcc-independent-reimplementation/artifacts/independent_execution/IR-010/independent_reimplementation_decision.json
+    latest_independent_reimplementation_verdict: independent_reimplementation_bounded_pass
+    latest_cross_theory_tournament_contract: artifacts/cross_theory_tournament_contract/XTT-007/cross_theory_tournament_contract_decision.json
+    latest_cross_theory_tournament_contract_verdict: cross_theory_tournament_contract_ready
+    latest_cross_theory_tournament_result: artifacts/cross_theory_tournament_execution/XTE-011/cross_theory_tournament_result.json
+    latest_cross_theory_tournament_verdict: lcc_collapses_into_causal_model_based_control
+    latest_closeout_decision: artifacts/theory_closeout/lcc_collapse_decision.json
+    latest_closeout_verdict: lcc_collapses_into_causal_model_based_control
+    collapse_family: causal_model_based_control
+    remaining_value: operational_evidence_discipline
+    theory_support: not_yet
+    implementation_authorized: false
+    clean_room_candidate_authorized: false
+    independent_reimplementation_contract: executed_bounded_pass
+    cross_theory_tournament: executed_lcc_collapsed
+    general_agent_implementation: not_authorized
+    ego_migration: no_go
+    human_review_required_before: any_post_collapse_theory_revision_or_implementation
+surviving_theory_families:
+  - family_id: causal_model_based_control
+    name: Causal Model-Based Control
+    status: strongest_surviving_family_under_current_tournament_not_theory_support
+    principle_doc: docs/CAUSAL_MODEL_BASED_CONTROL_MINIMAL_PRINCIPLE.md
+    ledger: artifacts/theory_closeout/surviving_principle_ledger.json
+    latest_companion_verification: artifacts/cmbc_companion_verify_000/cmbc_companion_verify_result.json
+    latest_companion_verification_verdict: cmbc_companion_growth_loop_bounded_pass
+    latest_companion_verification_scope: bounded_minimal_growth_loop_only
+    latest_companion_redteam: artifacts/cmbc_companion_redteam_001/cmbc_companion_redteam_001_result.json
+    latest_companion_redteam_verdict: longitudinal_drift_failed
+    latest_companion_redteam_stop_condition: longitudinal_drift_failed
+    latest_companion_claim_after_redteam: fixed_fixture_companion_growth_evidence_only
+    latest_companion_longitudinal_rca: artifacts/cmbc_companion_longitudinal_rca_000/cmbc_companion_longitudinal_rca_result.json
+    latest_companion_longitudinal_rca_verdict: action_distribution_saturated
+    latest_companion_longitudinal_rca_secondary_findings:
+      - deletion_target_wrong
+      - recency_dominates_long_memory
+    latest_companion_claim_after_rca: fixed_fixture_companion_growth_evidence_only
+    latest_companion_consolidation: artifacts/cmbc_companion_consolidation_000/cmbc_companion_consolidation_result.json
+    latest_companion_consolidation_verdict: consolidation_bounded_pass
+    latest_companion_consolidation_scope: bounded_consolidation_gate_only
+    latest_companion_consolidation_final_action_support:
+      final_action: act_6
+      supporting_prior_id: prior_act_6
+      prior_used_in_prediction: true
+      prior_used_in_action_distribution: true
+    latest_companion_consolidation_key_metrics:
+      consolidated_prior_deletion_selected_action_changed: true
+      consolidated_prior_deletion_final_action_probability_drop: 0.6277563150283809
+      consolidated_prior_deletion_distribution_kl: 0.8927925327180442
+      irrelevant_prior_deletion_selected_action_changed: false
+      raw_episodic_deletion_selected_action_changed: false
+      recency_only_deletion_selected_action_changed: false
+      behavior_only_replay_match_rate: 1.0
+    latest_companion_claim_after_consolidation: fixed_fixture_companion_growth_evidence_plus_bounded_consolidation_gate_only
+    latest_companion_consolidation_redteam: artifacts/cmbc_companion_consolidation_redteam_001/cmbc_companion_consolidation_redteam_001_result.json
+    latest_companion_consolidation_redteam_verdict: consolidation_redteam_bounded_pass
+    latest_companion_consolidation_redteam_scope: bounded_consolidation_redteam_only
+    latest_companion_consolidation_redteam_key_metrics:
+      conflicting_prior_contexts_tested: 3
+      conflicting_prior_distinct_selected_actions: 3
+      most_frequent_action: act_6
+      source_deletion_prior_confidence_drop: 0.6
+      source_deletion_final_action_probability_drop: 0.664623633897529
+      noisy_feedback_spurious_prior_admitted: false
+      delayed_prior_in_control_loop: true
+      final_prior_corruption_changes_action: true
+      irrelevant_prior_corruption_changes_action: false
+      recency_baseline_match_rate: 0.0
+      frequency_baseline_match_rate: 0.4
+      contextual_heuristic_match_rate: 0.6
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+    latest_companion_claim_after_consolidation_redteam: bounded_consolidation_redteam_evidence_only
+    latest_companion_longitudinal_002: artifacts/cmbc_companion_longitudinal_002/cmbc_companion_longitudinal_002_result.json
+    latest_companion_longitudinal_002_verdict: longitudinal_growth_bounded_pass
+    latest_companion_longitudinal_002_scope: bounded_longitudinal_growth_gate_only
+    latest_companion_longitudinal_002_key_metrics:
+      session_count: 4
+      episode_count: 16
+      transfer_success_rate: 1.0
+      conflict_distinct_selected_actions: 4
+      final_action: act_6
+      supporting_prior_id: prior_act_6
+      supporting_prior_source_session_count: 2
+      delete_final_prior_probability_drop: 0.5880154100448305
+      source_deletion_prior_confidence_drop: 1.0
+      source_deletion_final_action_probability_drop: 0.5880154100448305
+      recency_baseline_match_rate: 0.14285714285714285
+      rag_summary_baseline_match_rate: 0.5
+      strong_contextual_heuristic_match_rate: 0.9285714285714286
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+    latest_companion_longitudinal_002_residual_risks:
+      - strong_contextual_heuristic_near_equivalence_band
+      - final_prior_deletion_distribution_regresses_without_selected_action_flip
+    latest_companion_claim_after_longitudinal_002: bounded_longitudinal_growth_gate_only
+    latest_companion_longitudinal_redteam_003: artifacts/cmbc_companion_longitudinal_redteam_003/cmbc_companion_longitudinal_redteam_003_result.json
+    latest_companion_longitudinal_redteam_003_verdict: longitudinal_redteam_bounded_pass
+    latest_companion_longitudinal_redteam_003_scope: bounded_longitudinal_redteam_only
+    latest_companion_longitudinal_redteam_003_key_metrics:
+      adversarial_case_count: 12
+      candidate_success_rate: 1.0
+      expanded_contextual_heuristic_match_rate: 0.6666666666666666
+      expanded_contextual_heuristic_equivalent: false
+      expanded_contextual_heuristic_near_equivalence_risk: false
+      heuristic_failure_case_count: 4
+      same_context_different_history_action_divergence: true
+      low_margin_selected_action_changed: true
+      low_margin_probability_drop: 0.43565011757388705
+      low_margin_distribution_kl: 0.9313234807034552
+      medium_margin_selected_action_changed: true
+      medium_margin_probability_drop: 0.5421880378163385
+      medium_margin_distribution_kl: 1.302233686662696
+      high_margin_selected_action_changed: false
+      high_margin_saturation_reported: true
+      high_margin_probability_drop: 0.5878073250470084
+      high_margin_distribution_kl: 0.7875545084096682
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+    latest_companion_longitudinal_redteam_003_residual_risks:
+      - high_margin_final_prior_deletion_saturated_without_selected_action_flip
+      - bounded_fixture_not_product_or_ego_signal
+    latest_companion_claim_after_longitudinal_redteam_003: bounded_longitudinal_redteam_evidence_only
+    latest_companion_demo_000: artifacts/cmbc_companion_demo_000/cmbc_companion_demo_000_result.json
+    latest_companion_demo_000_verdict: demo_000_lab_only_bounded_pass
+    latest_companion_demo_000_scope: lab_only_human_observable_prototype_cut
+    latest_companion_demo_000_key_metrics:
+      human_observable_growth_signal: true
+      same_input_different_history_visible_behavior_changed: true
+      feedback_target_action_probability_delta: 0.7232480137291002
+      prior_deletion_final_action_probability_drop: 0.8096713918938775
+      prior_deletion_selected_action_changed: true
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_demo_000: lab_only_human_observable_prototype_evidence_only
+    latest_companion_human_trial_v0: artifacts/cmbc_companion_human_trial_v0/cmbc_companion_human_trial_v0_result.json
+    latest_companion_human_trial_v0_verdict: human_trial_v0_lab_only_bounded_pass
+    latest_companion_human_trial_v0_scope: lab_only_offline_human_trial_harness_v0
+    latest_companion_human_trial_v0_key_metrics:
+      turn_count: 12
+      target_action_probability_delta: 0.27352024642491246
+      supporting_prior_deletion_probability_drop: 0.6686579796069175
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      distinct_selected_actions: 4
+      dominant_action_rate: 0.5
+      llm_action_selection: false
+      background_autonomy: false
+    latest_companion_claim_after_human_trial_v0: lab_only_offline_human_trial_harness_evidence_only
+    latest_companion_human_trial_redteam_001: artifacts/cmbc_companion_human_trial_redteam_001/cmbc_companion_human_trial_redteam_001_result.json
+    latest_companion_human_trial_redteam_001_verdict: contradictory_feedback_overfit
+    latest_companion_human_trial_redteam_001_scope: lab_only_human_trial_redteam
+    latest_companion_human_trial_redteam_001_key_metrics:
+      turn_count: 20
+      paraphrase_group_pass_rate: 1.0
+      context_disambiguation_passed: true
+      contradictory_feedback_overfit: true
+      pre_contradiction_selected_action: act_2
+      post_contradiction_selected_action: act_4
+      single_contradictory_feedback_probability_shift_abs: 0.21428770500442973
+      mixed_feedback_distribution_kl: 0.09397546452829571
+      dominant_action_rate: 0.3
+      distinct_selected_actions: 4
+      strong_human_like_heuristic_match_rate: 0.6666666666666666
+      supporting_prior_deletion_probability_drop: 0.5028783160411764
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_human_trial_redteam_001: scripted_lab_harness_evidence_only
+    latest_companion_human_trial_redteam_001_stop_condition: contradictory_feedback_overfit
+    latest_companion_mixed_feedback_rca_000: artifacts/cmbc_companion_mixed_feedback_rca_000/cmbc_companion_mixed_feedback_rca_result.json
+    latest_companion_mixed_feedback_rca_000_verdict: negative_feedback_credit_assignment_too_coarse
+    latest_companion_mixed_feedback_rca_000_scope: rca_only_no_runtime_changes
+    latest_companion_mixed_feedback_rca_000_secondary_findings:
+      - feedback_admission_missing
+      - uncertainty_not_updated_before_policy_flip
+      - context_specificity_missing
+      - timing_feedback_crossed_to_boundary_family
+    latest_companion_mixed_feedback_rca_000_key_metrics:
+      pre_contradiction_selected_action: act_2
+      post_contradiction_selected_action: act_4
+      bad_timing_interruption_risk: 0.74
+      bad_timing_safety_delta: 0.0
+      act_2_utility_delta: -0.2525636363636362
+      act_4_utility_delta: 0.0
+      act_2_probability_delta: -0.21428770500442973
+      act_4_probability_delta: 0.12264610197672676
+      act4_rose_due_to_act2_drop_not_boundary_update: true
+      feedback_admission_gate_present: false
+      uncertainty_state_present: false
+      context_specificity_missing: true
+      single_noisy_negative_feedback_selected_action_changed: true
+      multi_sample_negative_feedback_selected_action: act_4
+    latest_companion_claim_after_mixed_feedback_rca_000: scripted_lab_harness_evidence_only
+    latest_companion_feedback_admission_000: artifacts/cmbc_companion_feedback_admission_000/cmbc_companion_feedback_admission_000_result.json
+    latest_companion_feedback_admission_000_verdict: feedback_admission_bounded_pass
+    latest_companion_feedback_admission_000_scope: bounded_feedback_admission_gate_only
+    latest_companion_feedback_admission_000_key_metrics:
+      single_contradiction_status: pending_counterevidence
+      single_contradiction_assigned_failure_mode: timing_interruption
+      single_contradiction_context_scope: feedback_focus_context
+      single_contradiction_uncertainty_delta: 0.18
+      single_contradiction_raw_unfiltered_action: act_4
+      single_contradiction_admission_filtered_action: act_2
+      single_contradiction_prior_source_count_before_gate: 10
+      single_contradiction_prior_source_count_after_gate: 10
+      single_feedback_prevented_action_family_flip: true
+      single_feedback_target_probability_drop: 0.0
+      repeated_feedback_status: admitted_context_counterevidence
+      repeated_feedback_admitted_evidence_count: 3
+      repeated_feedback_admission_reason: repeated_consistent_context_evidence
+      high_confidence_feedback_status: admitted_context_counterevidence
+      context_specificity_passed: true
+      bad_timing_mapped_to_boundary_or_safety: false
+      behavior_replay_match_rate: 1.0
+      selector_patched: false
+      thresholds_changed: false
+      affection_score_added: false
+      long_term_memory_weight_added: false
+    latest_companion_claim_after_feedback_admission_000: bounded_feedback_admission_gate_evidence_only
+    latest_companion_human_trial_redteam_002: artifacts/cmbc_companion_human_trial_redteam_002/cmbc_companion_human_trial_redteam_002_result.json
+    latest_companion_human_trial_redteam_002_verdict: human_trial_redteam_002_bounded_pass
+    latest_companion_human_trial_redteam_002_scope: bounded_feedback_admission_human_trial_redteam_only
+    latest_companion_human_trial_redteam_002_key_metrics:
+      single_contradiction_raw_unfiltered_action: act_4
+      single_contradiction_admission_filtered_action: act_2
+      single_contradiction_status: pending_counterevidence
+      repeated_feedback_status: admitted_context_counterevidence
+      context_specificity_passed: true
+      true_boundary_feedback_passed: true
+      later_correction_passed: true
+      strong_human_like_heuristic_match_rate: 0.4
+      behavior_only_replay_match_rate: 1.0
+      adversarial_renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_human_trial_redteam_002: bounded_feedback_admission_human_trial_evidence_only
+    latest_companion_human_trial_generalization_001: artifacts/cmbc_companion_human_trial_generalization_001/cmbc_companion_human_trial_generalization_001_result.json
+    latest_companion_human_trial_generalization_001_verdict: human_trial_generalization_001_bounded_pass
+    latest_companion_human_trial_generalization_001_scope: bounded_offline_human_trial_generalization_evidence_only
+    latest_companion_human_trial_generalization_001_key_metrics:
+      unseen_paraphrase_pass_rate: 1.0
+      context_collision_disambiguation: true
+      single_contradiction_no_family_flip: true
+      repeated_feedback_status: admitted_context_counterevidence
+      later_correction_context_narrows: true
+      true_boundary_feedback_still_works: true
+      strong_human_like_heuristic_match_rate: 0.7777777777777778
+      rag_summary_memory_match_rate: 0.7777777777777778
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_human_trial_generalization_001: bounded_offline_human_trial_generalization_evidence_only
+    latest_companion_blind_human_trial_001: artifacts/cmbc_companion_blind_human_trial_001/cmbc_companion_blind_human_trial_001_result.json
+    latest_companion_blind_human_trial_001_verdict: heuristic_or_rag_equivalent
+    latest_companion_blind_human_trial_001_scope: frozen_offline_blind_prompt_sheet_trial_not_live_human_trial
+    latest_companion_blind_human_trial_001_stop_conditions:
+      - rag_summary_memory_equivalent
+    latest_companion_blind_human_trial_001_key_metrics:
+      input_source: blind_prompt_sheet_not_live_human
+      turn_count: 24
+      paraphrase_pass_rate: 1.0
+      context_collision_disambiguation: true
+      single_contradiction_no_family_flip: true
+      feedback_changes_later_action_distribution: true
+      target_action_probability_delta: 0.12121444243278467
+      supporting_prior_deletion_probability_drop: 0.46048914178450356
+      strong_human_like_heuristic_match_rate: 0.9166666666666666
+      rag_summary_memory_match_rate: 1.0
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      code_hashes_unchanged_after_trial: true
+      llm_action_selection: false
+    latest_companion_blind_human_trial_001_residual_risks:
+      - not_live_human_input
+      - strong_human_like_heuristic_near_equivalence_risk
+      - rag_summary_memory_near_or_full_equivalence_risk
+    latest_companion_claim_after_blind_human_trial_001: bounded_offline_human_trial_generalization_evidence_only
+    latest_companion_blind_rca_001: artifacts/cmbc_companion_blind_rca_001/rag_equivalence_rca_result.json
+    latest_companion_blind_rca_001_verdict: rag_equivalent_on_behavior_but_not_causal_probes
+    latest_companion_blind_rca_001_scope: rca_only_no_runtime_changes
+    latest_companion_blind_rca_001_secondary_findings:
+      - blind_prompt_sheet_too_surface_level
+      - strong_heuristic_near_equivalence_due_to_weak_prompt_distribution
+    latest_companion_blind_rca_001_key_metrics:
+      rag_match_rate_on_original_turns: 1.0
+      strong_heuristic_match_rate_on_original_turns: 0.9166666666666666
+      candidate_rag_probe_match_rate: 0.0
+      rag_remains_equivalent_under_causal_probes: false
+      supporting_prior_deletion_candidate_action_changed: true
+      supporting_prior_deletion_rag_action_changed: false
+      effect_perturbation_candidate_distribution_changed: true
+      effect_perturbation_rag_action_changed: false
+      same_prompt_different_causal_history_candidate_action_changed: true
+      same_prompt_different_causal_history_rag_action_changed: false
+      feedback_outcome_swap_same_text_candidate_shift: true
+      rag_has_feedback_admission_state: false
+    latest_companion_claim_after_blind_rca_001: bounded_offline_human_trial_generalization_evidence_only
+    latest_companion_blind_human_trial_002: artifacts/cmbc_companion_blind_human_trial_002/cmbc_companion_blind_human_trial_002_result.json
+    latest_companion_blind_human_trial_002_verdict: cmbc_beats_rag_under_causal_probes_bounded
+    latest_companion_blind_human_trial_002_scope: causal_probe_enriched_blind_offline_trial_not_live_human_trial
+    latest_companion_blind_human_trial_002_stop_conditions: []
+    latest_companion_blind_human_trial_002_key_metrics:
+      input_source: blind_prompt_sheet_with_predeclared_causal_probes_not_live_human
+      turn_count: 24
+      visible_decision_pass_rate: 1.0
+      causal_probe_pass_rate: 1.0
+      rag_visible_action_match_rate: 1.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      supporting_prior_deletion_effect: true
+      perturbation_sensitivity: true
+      single_bad_timing_status: pending_counterevidence
+      single_bad_timing_no_family_flip: true
+      repeated_feedback_status: admitted_context_counterevidence
+      repeated_feedback_admits_context_counterevidence: true
+      later_correction_context_narrows: true
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      llm_action_selection: false
+    latest_companion_claim_after_blind_human_trial_002: bounded_causal_probe_enriched_blind_offline_human_trial_evidence_only
+    latest_companion_free_input_live_lab_003_contract: artifacts/cmbc_companion_free_input_live_lab_003_contract/contract_manifest.json
+    latest_companion_free_input_live_lab_003_contract_verdict: free_input_live_lab_003_contract_ready
+    latest_companion_free_input_live_lab_003_contract_scope: contract_only_no_execution
+    latest_companion_free_input_live_lab_003_contract_claim_ceiling: bounded_free_input_offline_live_lab_contract_readiness_only_no_execution_evidence
+    latest_companion_free_input_live_lab_003_contract_required_gates:
+      free_input_turn_count_min: 20
+      causal_probe_case_count_min: 8
+      rag_causal_probe_match_rate_max: 0.5
+      strong_heuristic_causal_probe_match_rate_max: 0.5
+      expanded_contextual_heuristic_causal_probe_match_rate_max: 0.5
+      renderer_action_change_rate: 0.0
+      behavior_only_replay_match_rate: 1.0
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+    latest_companion_free_input_live_lab_003_contract_retained_risks:
+      - RAG_visible_action_equivalence_retained
+      - not_live_human_trial_execution
+      - no_real_companion_readiness_claim
+    latest_companion_free_input_live_lab_003_execute: artifacts/cmbc_companion_free_input_live_lab_003_execute/free_input_live_lab_003_result.json
+    latest_companion_free_input_live_lab_003_execute_verdict: free_input_probe_extraction_failed
+    latest_companion_free_input_live_lab_003_execute_scope: bounded_execution_attempt_outcome_coded_free_input_without_stable_causal_probes
+    latest_companion_free_input_live_lab_003_execute_stop_conditions:
+      - free_input_cannot_form_stable_causal_probes
+    latest_companion_free_input_live_lab_003_execute_key_metrics:
+      input_source: free_input_human_operator
+      free_input_turn_count: 20
+      causal_probe_case_count: 0
+      outcome_coding_ledger_count: 20
+      outcome_coding_stable: true
+      rag_visible_action_match_rate: null
+      rag_causal_probe_match_rate: null
+      strong_heuristic_causal_probe_match_rate: null
+      expanded_contextual_heuristic_causal_probe_match_rate: null
+      behavior_only_replay_match_rate: null
+      renderer_action_change_rate: null
+      supporting_prior_deletion_effect: null
+      outcome_perturbation_effect: null
+      minimum_gates_satisfied: false
+    latest_companion_claim_after_free_input_live_lab_003_execute: bounded_free_input_live_lab_execution_attempted_outcome_coded_no_stable_causal_probe_evidence
+    latest_companion_free_input_causal_probe_pack_003b: artifacts/cmbc_companion_free_input_causal_probe_pack_003b/causal_probe_pack_003B.json
+    latest_companion_free_input_causal_probe_pack_003b_verdict: causal_probe_pack_ready_for_003_reexecute
+    latest_companion_free_input_causal_probe_pack_003b_scope: contract_data_only_no_execution
+    latest_companion_free_input_causal_probe_pack_003b_key_metrics:
+      causal_probe_case_count: 10
+      required_probe_types_covered: true
+      every_probe_anchored_to_existing_human_turn: true
+      synthetic_user_turn_counted_as_free_input: false
+      post_result_probe_selection: false
+      execution_authorized: false
+      implementation_authorized: false
+      selector_patched: false
+      thresholds_changed: false
+      rag_baseline_weakened: false
+    latest_companion_claim_after_free_input_causal_probe_pack_003b: causal_probe_pack_ready_only_no_reexecution_evidence
+    latest_companion_free_input_live_lab_003_reexecute: artifacts/cmbc_companion_free_input_live_lab_003_reexecute/free_input_live_lab_003_reexecute_result.json
+    latest_companion_free_input_live_lab_003_reexecute_verdict: free_input_causal_probe_bounded_pass
+    latest_companion_free_input_live_lab_003_reexecute_scope: bounded_reexecute_frozen_20_turn_transcript_stable_outcome_ledger_predeclared_003b_probe_pack
+    latest_companion_free_input_live_lab_003_reexecute_stop_conditions: []
+    latest_companion_free_input_live_lab_003_reexecute_key_metrics:
+      free_input_turn_count: 20
+      outcome_coding_ledger_count: 20
+      causal_probe_case_count: 10
+      causal_probe_pass_rate: 1.0
+      rag_visible_action_match_rate: 1.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_visible_action_match_rate: 0.8
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_contextual_heuristic_visible_action_match_rate: 0.7
+      expanded_contextual_heuristic_causal_probe_match_rate: 0.0
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      minimum_gates_satisfied: true
+    latest_companion_free_input_live_lab_003_reexecute_retained_risks:
+      - rag_visible_action_equivalence_retained
+      - bounded_probe_pack_reexecute_not_live_product_trial
+      - food_preference_probe_evaluated_as_action_prior_not_product_grade_memory
+      - no_real_companion_readiness_claim
+    latest_companion_claim_after_free_input_live_lab_003_reexecute: bounded_free_input_causal_probe_evidence_only
+    latest_companion_action_space_expansion_004_contract: artifacts/cmbc_companion_action_space_expansion_004_contract/contract_manifest.json
+    latest_companion_action_space_expansion_004_contract_verdict: action_space_expansion_004_contract_ready
+    latest_companion_action_space_expansion_004_contract_scope: contract_only_no_execution
+    latest_companion_action_space_expansion_004_contract_claim_ceiling: bounded_action_space_expansion_contract_readiness_only_no_execution_evidence
+    latest_companion_action_space_expansion_004_required_gates:
+      candidate_action_count_min: 20
+      semantic_label_visible_to_selector: false
+      rendered_text_visible_to_selector: false
+      action_distribution_entropy_reported: true
+      dominant_action_rate_reported: true
+      label_permutation_change_rate: 0.0
+      effect_swap_change_rate_min: 0.8
+      rag_causal_probe_match_rate_max: 0.5
+      strong_heuristic_causal_probe_match_rate_max: 0.5
+      expanded_contextual_heuristic_causal_probe_match_rate_max: 0.5
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+    latest_companion_action_space_expansion_004_retained_risks:
+      - no_execution_evidence
+      - current_003_pass_may_be_small_action_set_specific
+      - expanded_action_options_may_collapse_to_frequency_or_nearest_neighbor_baselines
+      - no_real_companion_readiness_claim
+    latest_companion_action_space_expansion_004_execute: artifacts/cmbc_companion_action_space_expansion_004_execute/action_space_expansion_004_result.json
+    latest_companion_action_space_expansion_004_execute_verdict: small_action_set_only
+    latest_companion_action_space_expansion_004_execute_scope: bounded_execution_no_selector_patch
+    latest_companion_action_space_expansion_004_execute_stop_conditions:
+      - candidate_action_count < 20
+      - frozen_selector_not_parametric_over_action_space
+    latest_companion_action_space_expansion_004_execute_key_metrics:
+      requested_candidate_action_count: 20
+      selector_visible_candidate_action_count: 7
+      candidate_action_count: 7
+      semantic_label_visible_to_selector: false
+      rendered_text_visible_to_selector: false
+      public_action_name_visible_to_selector: false
+      semantic_label_leak_scan_passed: true
+      renderer_action_change_rate: 0.0
+      minimum_gates_satisfied: false
+    latest_companion_claim_after_action_space_expansion_004_execute: small_action_set_only_evidence_expanded_action_space_advantage_not_established
+    latest_companion_action_space_expansion_004_rca: artifacts/cmbc_companion_action_space_expansion_004_rca/RCA_RESULT.json
+    latest_companion_action_space_expansion_004_rca_verdict: selector_static_action_handle_bottleneck_confirmed
+    latest_companion_action_space_expansion_004_rca_scope: rca_only_contract_analysis_no_runtime_changes
+    latest_companion_action_space_expansion_004_rca_key_findings:
+      static_action_handle_count: 7
+      selector_uses_static_action_handles: true
+      accepts_candidate_options_parameter: false
+      can_score_arbitrary_options: false
+      fit_effect_model_static_by_action: true
+      prediction_before_action_static_handles: true
+      replay_contract_blocks_expansion: false
+      upstream_trace_producer_uses_static_handles: true
+      renderer_static_dependency_blocks_expansion: false
+      baseline_contract_blocks_expansion: false
+    latest_companion_claim_after_action_space_expansion_004_rca: bounded_free_input_causal_probe_evidence_under_current_small_7_action_set_only_expanded_action_space_advantage_not_established
+    latest_companion_parametric_action_interface_005_contract: artifacts/cmbc_companion_parametric_action_interface_005_contract/contract_manifest.json
+    latest_companion_parametric_action_interface_005_contract_doc: docs/CMBC_COMPANION_PARAMETRIC_ACTION_INTERFACE_005_CONTRACT.md
+    latest_companion_parametric_action_interface_005_verdict: parametric_action_interface_contract_ready
+    latest_companion_parametric_action_interface_005_scope: contract_only_no_implementation_no_execution
+    latest_companion_parametric_action_interface_005_key_objects:
+      candidate_option_schema: artifacts/cmbc_companion_parametric_action_interface_005_contract/candidate_option.schema.json
+      parametric_selector_input_schema: artifacts/cmbc_companion_parametric_action_interface_005_contract/parametric_selector_input.schema.json
+      prediction_before_action_per_option_schema: artifacts/cmbc_companion_parametric_action_interface_005_contract/prediction_before_action_per_option.schema.json
+      action_distribution_over_options_schema: artifacts/cmbc_companion_parametric_action_interface_005_contract/action_distribution_over_options.schema.json
+      parametric_replay_trace_schema: artifacts/cmbc_companion_parametric_action_interface_005_contract/parametric_replay_trace.schema.json
+      shadow_7_action_adapter_contract: artifacts/cmbc_companion_parametric_action_interface_005_contract/shadow_7_action_adapter_contract.md
+      expanded_baseline_contract: artifacts/cmbc_companion_parametric_action_interface_005_contract/expanded_baseline_contract.md
+      renderer_adapter_contract: artifacts/cmbc_companion_parametric_action_interface_005_contract/renderer_adapter_contract.md
+      evidence_preservation_contract: artifacts/cmbc_companion_parametric_action_interface_005_contract/evidence_preservation_contract.md
+    latest_companion_parametric_action_interface_005_gates:
+      variable_n_option_list_supported: true
+      n7_shadow_adapter_defined: true
+      n_gte_20_future_execution_path_defined: true
+      replay_from_full_option_distribution_defined: true
+      baselines_receive_same_anonymous_options: true
+      renderer_strictly_post_selection: true
+      selector_patch_authorized: false
+      action_handles_patch_authorized: false
+      execution_authorized: false
+      implementation_authorized: false
+    latest_companion_claim_after_parametric_action_interface_005: parametric_action_interface_contract_readiness_only_no_implementation_or_execution_evidence
+    latest_companion_parametric_action_interface_005_next_recommended_task: CMBC-COMPANION-PARAMETRIC-ACTION-INTERFACE-005-SHADOW-IMPLEMENT
+    latest_companion_parametric_action_interface_005_next_recommended_task_authorized: false
+    latest_companion_parametric_action_interface_005_shadow: artifacts/cmbc_companion_parametric_action_interface_005_shadow/shadow_result.json
+    latest_companion_parametric_action_interface_005_shadow_verdict: parametric_shadow_n7_compatibility_pass
+    latest_companion_parametric_action_interface_005_shadow_scope: n7_shadow_compatibility_only_no_expanded_action_space_execution
+    latest_companion_parametric_action_interface_005_shadow_key_metrics:
+      candidate_option_count: 7
+      n_gte_20_executed: false
+      old_replay_match_rate: 1.0
+      parametric_replay_match_rate: 1.0
+      selected_action_mismatch_count: 0
+      max_probability_abs_delta: 0.0
+      max_distribution_kl: 0.0
+      semantic_leak_scan_passed: true
+      renderer_runs_after_selection: true
+      renderer_action_change_rate: 0.0
+      relabel_old_003_as_parametric_evidence: false
+    latest_companion_claim_after_parametric_action_interface_005_shadow: parametric interface N=7 shadow compatibility evidence only; no expanded action-space evidence
+    latest_companion_parametric_action_interface_005_shadow_next_review: human_review_required_before_any_n_gte_20_expansion_or_selector_redesign
+    latest_companion_parametric_action_expansion_006_contract: artifacts/cmbc_companion_parametric_action_expansion_006_contract/contract_manifest.json
+    latest_companion_parametric_action_expansion_006_contract_doc: docs/CMBC_COMPANION_PARAMETRIC_ACTION_EXPANSION_006_CONTRACT.md
+    latest_companion_parametric_action_expansion_006_verdict: parametric_action_expansion_006_contract_ready
+    latest_companion_parametric_action_expansion_006_scope: contract_only_no_implementation_no_execution
+    latest_companion_parametric_action_expansion_006_key_gates:
+      candidate_option_count_min: 20
+      candidate_option_count_max: 50
+      fixed_twenty_action_table_forbidden: true
+      fixed_action_handles_20_forbidden: true
+      no_n_specific_branches: true
+      reuses_005_candidate_option_schema: true
+      reuses_frozen_20_turn_transcript: true
+      reuses_003b_probe_pack: true
+      expanded_baselines_receive_same_anonymous_options: true
+      label_permutation_change_rate: 0.0
+      effect_swap_change_rate_min: 0.8
+      rag_causal_probe_match_rate_max: 0.5
+      strong_heuristic_causal_probe_match_rate_max: 0.5
+      expanded_contextual_heuristic_causal_probe_match_rate_max: 0.5
+      expanded_action_frequency_match_rate_max: 0.5
+      expanded_action_nearest_neighbor_match_rate_max: 0.5
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+    latest_companion_claim_after_parametric_action_expansion_006: parametric action expansion 006 contract readiness only; no implementation or execution evidence
+    latest_companion_parametric_action_expansion_006_next_recommended_task: CMBC-COMPANION-PARAMETRIC-ACTION-EXPANSION-006-EXECUTE
+    latest_companion_parametric_action_expansion_006_next_recommended_task_authorized: false
+    latest_companion_parametric_action_expansion_006_execute: artifacts/cmbc_companion_parametric_action_expansion_006_execute/parametric_action_expansion_006_result.json
+    latest_companion_parametric_action_expansion_006_execute_verdict: parametric_action_expansion_006_bounded_pass
+    latest_companion_parametric_action_expansion_006_execute_scope: bounded_lab_only_n24_anonymous_candidate_options
+    latest_companion_parametric_action_expansion_006_execute_key_metrics:
+      candidate_option_count: 24
+      minimum_gates_satisfied: true
+      stop_conditions: []
+      semantic_label_visible_to_selector: false
+      public_action_name_visible_to_selector: false
+      rendered_text_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      label_permutation_change_rate: 0.0
+      effect_swap_change_rate: 1.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_contextual_heuristic_causal_probe_match_rate: 0.0
+      expanded_action_frequency_match_rate: 0.0
+      expanded_action_nearest_neighbor_match_rate: 0.0
+      behavior_only_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      action_distribution_entropy_reported: true
+      dominant_action_rate_reported: true
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+    latest_companion_claim_after_parametric_action_expansion_006_execute: bounded parametric N>=20 action-space causal-probe execution evidence only; not real companion readiness
+    latest_companion_candidate_option_generation_007_contract: artifacts/cmbc_companion_candidate_option_generation_007_contract/contract_manifest.json
+    latest_companion_candidate_option_generation_007_contract_doc: docs/CMBC_COMPANION_CANDIDATE_OPTION_GENERATION_007_CONTRACT.md
+    latest_companion_candidate_option_generation_007_verdict: candidate_option_generation_contract_ready
+    latest_companion_candidate_option_generation_007_scope: contract_only_no_implementation_no_execution
+    latest_companion_candidate_option_generation_007_required_objects:
+      - CandidateOptionProposal
+      - OptionAdmissionGate
+      - AdmittedCandidateOption
+      - OptionLineageTrace
+      - OptionDeduplicationReport
+      - OptionRetirementReport
+      - OptionCompositionContract
+      - GeneratorSelectorSeparationContract
+      - OptionEvidenceSupportContract
+      - ReplayContractForGeneratedOptions
+      - BaselineContractForGeneratedOptions
+    latest_companion_candidate_option_generation_007_key_gates:
+      generated_option_count_min: 20
+      admitted_option_count_min: 20
+      generator_selected_action: false
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      option_lineage_coverage_rate: 1.0
+      option_replay_match_rate: 1.0
+      generator_baseline_action_match_rate_max: 0.5
+      rag_causal_probe_match_rate_max: 0.5
+      expanded_action_nearest_neighbor_match_rate_max: 0.5
+      renderer_action_change_rate: 0.0
+      outcome_update_changes_future_option_distribution: true
+    latest_companion_claim_after_candidate_option_generation_007: candidate option generation contract readiness only; no implementation or execution evidence
+    latest_companion_candidate_option_generation_007_next_recommended_task: CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-SHADOW
+    latest_companion_candidate_option_generation_007_next_recommended_task_authorized: false
+    latest_companion_candidate_option_generation_007_shadow: artifacts/cmbc_companion_candidate_option_generation_007_shadow/candidate_option_generation_007_shadow_result.json
+    latest_companion_candidate_option_generation_007_shadow_verdict: candidate_option_generation_shadow_bounded_pass
+    latest_companion_candidate_option_generation_007_shadow_scope: bounded_shadow_implementation_only
+    latest_companion_candidate_option_generation_007_shadow_key_metrics:
+      generated_option_count: 24
+      admitted_option_count: 24
+      generator_selected_action: false
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      option_lineage_coverage_rate: 1.0
+      option_replay_match_rate: 1.0
+      generator_baseline_action_match_rate: 0.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_action_nearest_neighbor_match_rate: 0.0
+      renderer_action_change_rate: 0.0
+      outcome_update_changes_future_option_distribution: true
+    latest_companion_candidate_option_generation_007_shadow_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      rewrite_prior_evidence_as_generated_option_evidence: false
+    latest_companion_claim_after_candidate_option_generation_007_shadow: bounded generated CandidateOption shadow evidence only; not real companion readiness
+    latest_companion_candidate_option_generation_007_execute: artifacts/cmbc_companion_candidate_option_generation_007_execute/candidate_option_generation_007_execute_result.json
+    latest_companion_candidate_option_generation_007_execute_verdict: candidate_option_generation_execute_causal_probe_failed
+    latest_companion_candidate_option_generation_007_execute_scope: bounded_execution_only
+    latest_companion_candidate_option_generation_007_execute_stop_conditions:
+      - feedback_admission_single_contradiction_failed
+    latest_companion_candidate_option_generation_007_execute_key_metrics:
+      generated_option_count: 24
+      admitted_option_count: 24
+      generator_selected_action: false
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      option_lineage_coverage_rate: 1.0
+      option_replay_match_rate: 1.0
+      behavior_only_replay_match_rate: 1.0
+      generator_baseline_action_match_rate: 0.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_action_nearest_neighbor_match_rate: 0.0
+      renderer_action_change_rate: 0.0
+      outcome_update_changes_future_option_distribution: true
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+      causal_probe_case_count: 9
+      causal_probe_pass_rate: 0.8888888888888888
+      feedback_admission_single_contradiction_passed: false
+    latest_companion_candidate_option_generation_007_execute_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      rewrite_prior_evidence_as_generated_option_evidence: false
+    latest_companion_claim_after_candidate_option_generation_007_execute: bounded generated CandidateOption execution attempted; causal-probe gate failed
+    latest_companion_candidate_option_generation_007_rca: artifacts/cmbc_companion_candidate_option_generation_007_rca/RCA_RESULT.json
+    latest_companion_candidate_option_generation_007_rca_verdict: outcome_update_ordering_bug_confirmed
+    latest_companion_candidate_option_generation_007_rca_secondary_findings:
+      - feedback_admission_not_applied_to_generated_options
+      - weak_evidence_high_confidence_confirmed
+      - replay_trace_insufficient_for_generated_feedback_admission
+      - selector_scoring_not_primary_blocker
+    latest_companion_candidate_option_generation_007_rca_key_findings:
+      failed_probe: feedback_admission_single_contradiction
+      selected_option_before: generated_option_08_of_24
+      selected_option_after: generated_option_04_of_24
+      pending_counterevidence_status_recorded: true
+      selector_visible_effect_vector_changed_before_admission: true
+      selector_visible_effect_delta:
+        interruption_risk: 0.08
+        trust_delta: -0.02
+      confidence_before: 0.736
+      confidence_after: 0.736
+      same_option_id_set_before_after: true
+      near_duplicate_new_option_bypass_detected: false
+      context_scope_missing_for_feedback_admission: true
+      trace_sufficient_for_generated_feedback_admission: false
+      selector_scoring_not_primary_blocker: true
+    latest_companion_claim_after_candidate_option_generation_007_rca: bounded generated CandidateOption execution remains failed; failure localized to pending feedback admission/update ordering
+    latest_companion_candidate_option_generation_007_rca_next_recommended_task: CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-CONTRACT
+    latest_companion_candidate_option_generation_007b_authorized: false
+    latest_companion_generated_option_feedback_admission_007b_contract: artifacts/cmbc_companion_generated_option_feedback_admission_007b_contract/contract_manifest.json
+    latest_companion_generated_option_feedback_admission_007b_contract_doc: docs/CMBC_COMPANION_GENERATED_OPTION_FEEDBACK_ADMISSION_007B_CONTRACT.md
+    latest_companion_generated_option_feedback_admission_007b_verdict: generated_option_feedback_admission_007b_contract_ready
+    latest_companion_generated_option_feedback_admission_007b_scope: contract_only_no_implementation_no_execution
+    latest_companion_generated_option_feedback_admission_007b_source_rca_verdict: outcome_update_ordering_bug_confirmed
+    latest_companion_generated_option_feedback_admission_007b_required_objects:
+      - PendingCounterevidenceRecord
+      - FeedbackAdmissionState
+      - GeneratedOptionFeedbackUpdateLedger
+      - ContextScopedFeedbackAdmission
+      - AdmissionFilteredEffectVector
+      - SelectorVisibleEffectVectorContract
+      - GeneratedOptionUncertaintyUpdateContract
+      - AdmissionAwareReplayTrace
+      - FeedbackAdmissionOrderingProof
+    latest_companion_generated_option_feedback_admission_007b_core_rules:
+      pending_counterevidence_selector_visible_effect_update_allowed: false
+      pending_counterevidence_may_change_uncertainty: true
+      admitted_context_counterevidence_may_change_selector_visible_effect_vector: true
+      repeated_or_high_confidence_feedback_required_for_admission: true
+      context_scope_explicit_and_traceable: true
+      option_lineage_inherits_feedback_state: true
+      admission_aware_replay_required: true
+      behavior_only_replay_required: true
+    latest_companion_generated_option_feedback_admission_007b_recommended_next_task: CMBC-COMPANION-GENERATED-OPTION-FEEDBACK-ADMISSION-007B-SHADOW
+    latest_companion_generated_option_feedback_admission_007b_recommended_next_task_authorized: false
+    latest_companion_claim_after_generated_option_feedback_admission_007b: generated option feedback admission 007B contract readiness only; no implementation or execution evidence
+    latest_companion_generated_option_feedback_admission_007b_shadow: artifacts/cmbc_companion_generated_option_feedback_admission_007b_shadow/generated_option_feedback_admission_007b_shadow_result.json
+    latest_companion_generated_option_feedback_admission_007b_shadow_verdict: generated_option_feedback_admission_007b_shadow_bounded_pass
+    latest_companion_generated_option_feedback_admission_007b_shadow_scope: bounded_shadow_implementation_only_no_full_execution
+    latest_companion_generated_option_feedback_admission_007b_shadow_key_metrics:
+      pending_counterevidence_record_count: 1
+      selector_visible_effect_update_allowed: false
+      selector_visible_predicted_effect_vector_delta: 0.0
+      uncertainty_delta: 0.18
+      confidence_delta: -0.18
+      selected_option_changed_due_to_pending: false
+      repeated_feedback_admission_status: admitted_context_counterevidence
+      admitted_context_counterevidence_effect_delta:
+        relationship_delta: -0.34
+        interruption_risk: 0.72
+        trust_delta: -0.28
+        safety_delta: 0.0
+        support_delta: -0.42
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+    latest_companion_generated_option_feedback_admission_007b_shadow_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_007_execute_as: failed generated-option execution evidence
+      rewrite_prior_evidence_as_007b_shadow_evidence: false
+    latest_companion_claim_after_generated_option_feedback_admission_007b_shadow: bounded generated-option feedback admission shadow evidence only; no full 007B execution or real companion readiness
+    latest_companion_generated_option_feedback_admission_007b_execute: artifacts/cmbc_companion_generated_option_feedback_admission_007b_execute/generated_option_feedback_admission_007b_execute_result.json
+    latest_companion_generated_option_feedback_admission_007b_execute_verdict: generated_option_feedback_admission_007b_execute_bounded_pass
+    latest_companion_generated_option_feedback_admission_007b_execute_scope: bounded_execution_only
+    latest_companion_generated_option_feedback_admission_007b_execute_key_metrics:
+      generated_option_count: 24
+      admitted_option_count: 24
+      causal_probe_case_count: 9
+      causal_probe_pass_rate: 1.0
+      pending_counterevidence_record_count: 1
+      selector_visible_effect_update_allowed: false
+      selector_visible_predicted_effect_vector_delta: 0.0
+      uncertainty_delta: 0.18
+      confidence_delta: -0.18
+      selected_option_changed_due_to_pending: false
+      feedback_admission_single_contradiction_passed: true
+      repeated_feedback_admission_status: admitted_context_counterevidence
+      repeated_feedback_changes_distribution: true
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_action_nearest_neighbor_match_rate: 0.0
+      baselines_weakened_or_incomparable: false
+      renderer_action_change_rate: 0.0
+    latest_companion_generated_option_feedback_admission_007b_execute_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      rewrite_prior_evidence_as_007b_execute_evidence: false
+    latest_companion_claim_after_generated_option_feedback_admission_007b_execute: bounded generated-option feedback admission execution evidence only; not real companion readiness
+    latest_companion_candidate_option_generation_007_reexecute_with_007b: artifacts/cmbc_companion_candidate_option_generation_007_reexecute_with_007b/candidate_option_generation_007_reexecute_with_007b_result.json
+    latest_companion_candidate_option_generation_007_reexecute_with_007b_verdict: candidate_option_generation_007_reexecute_with_007b_bounded_pass
+    latest_companion_candidate_option_generation_007_reexecute_with_007b_scope: bounded_reexecution_only
+    latest_companion_candidate_option_generation_007_reexecute_with_007b_key_metrics:
+      generated_option_count: 24
+      admitted_option_count: 24
+      causal_probe_case_count: 9
+      causal_probe_pass_rate: 1.0
+      generator_selected_action: false
+      generator_ranked_final_actions: false
+      selector_receives_only_admitted_options: true
+      pending_counterevidence_record_count: 1
+      selector_visible_effect_update_allowed: false
+      selector_visible_predicted_effect_vector_delta: 0.0
+      uncertainty_delta: 0.18
+      confidence_delta: -0.18
+      selected_option_changed_due_to_pending: false
+      feedback_admission_single_contradiction_passed: true
+      repeated_feedback_admission_status: admitted_context_counterevidence
+      repeated_feedback_changes_distribution: true
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      rag_causal_probe_match_rate: 0.0
+      strong_heuristic_causal_probe_match_rate: 0.0
+      expanded_action_nearest_neighbor_match_rate: 0.0
+      generator_baseline_action_match_rate: 0.0
+      baselines_receive_same_anonymous_options: true
+      baselines_weakened_or_incomparable: false
+      renderer_action_change_rate: 0.0
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+    latest_companion_candidate_option_generation_007_reexecute_with_007b_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      record_this_as_new_reexecution_result: true
+      rewrite_failed_007_execute_as_pass: false
+      rewrite_prior_evidence_as_reexecution_evidence: false
+    latest_companion_claim_after_candidate_option_generation_007_reexecute_with_007b: bounded 007 generated CandidateOption re-execution with 007B admission ordering evidence only; not real companion readiness
+    latest_companion_candidate_option_generation_007_redteam_contract: artifacts/cmbc_companion_candidate_option_generation_007_redteam_contract/contract_manifest.json
+    latest_companion_candidate_option_generation_007_redteam_contract_doc: docs/CMBC_COMPANION_CANDIDATE_OPTION_GENERATION_007_REDTEAM_CONTRACT.md
+    latest_companion_candidate_option_generation_007_redteam_contract_verdict: generated_option_007_redteam_contract_ready
+    latest_companion_candidate_option_generation_007_redteam_contract_scope: contract_only_no_implementation_no_execution
+    latest_companion_candidate_option_generation_007_redteam_contract_source_verdict: candidate_option_generation_007_reexecute_with_007b_bounded_pass
+    latest_companion_candidate_option_generation_007_redteam_contract_required_families:
+      - fixed_recipe_generator_detection
+      - generator_hidden_selector_detection
+      - admission_always_pass_or_reject_audit
+      - weak_evidence_high_confidence_audit
+      - semantic_label_description_leak_scan
+      - lineage_falsification_missing_source_audit
+      - option_dedup_near_duplicate_bypass_audit
+      - rag_hidden_shortcut_baseline
+      - expanded_nearest_neighbor_frequency_recency_baselines
+      - replay_sufficiency_generated_option_perturbation
+      - deletion_outcome_perturbation_lineage
+      - renderer_adversarial_isolation
+    latest_companion_candidate_option_generation_007_redteam_contract_future_gates:
+      redteam_family_coverage_rate: 1.0
+      redteam_case_count_minimum: 36
+      fixed_recipe_detected: false
+      generator_selected_action: false
+      generator_ranked_final_actions: false
+      generator_recommendation_visible_to_selector: false
+      admission_always_pass_detected: false
+      admission_always_reject_detected: false
+      weak_evidence_high_confidence_rate: 0.0
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      near_duplicate_bypass_rate: 0.0
+      lineage_coverage_rate: 1.0
+      falsified_lineage_detected: true
+      rag_hidden_shortcut_match_rate_max: 0.5
+      expanded_nearest_neighbor_match_rate_max: 0.5
+      frequency_baseline_match_rate_max: 0.5
+      recency_baseline_match_rate_max: 0.5
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+    latest_companion_candidate_option_generation_007_redteam_contract_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      preserve_007_reexecute_with_007b_as: bounded re-execution evidence only
+      rewrite_prior_evidence_as_redteam_evidence: false
+    latest_companion_candidate_option_generation_007_redteam_contract_recommended_next_task: CMBC-COMPANION-CANDIDATE-OPTION-GENERATION-007-REDTEAM-EXECUTE
+    latest_companion_candidate_option_generation_007_redteam_contract_recommended_next_task_authorized: false
+    latest_companion_claim_after_candidate_option_generation_007_redteam_contract: generated option 007 redteam contract readiness only; no execution evidence
+    latest_companion_candidate_option_generation_007_redteam_execute: artifacts/cmbc_companion_candidate_option_generation_007_redteam_execute/candidate_option_generation_007_redteam_execute_result.json
+    latest_companion_candidate_option_generation_007_redteam_execute_verdict: generated_option_007_redteam_bounded_pass
+    latest_companion_candidate_option_generation_007_redteam_execute_scope: bounded_execution_only
+    latest_companion_candidate_option_generation_007_redteam_execute_key_metrics:
+      redteam_family_count: 12
+      redteam_family_coverage_rate: 1.0
+      redteam_case_count: 36
+      passed_case_count: 36
+      failed_case_count: 0
+      stop_conditions: []
+      generated_option_count: 24
+      admitted_option_count: 24
+      fixed_recipe_detected: false
+      option_fingerprint_changes_with_allowed_history: true
+      generator_selected_action: false
+      generator_ranked_final_actions: false
+      generator_recommendation_visible_to_selector: false
+      admission_always_pass_detected: false
+      admission_always_reject_detected: false
+      weak_evidence_high_confidence_rate: 0.0
+      single_contradiction_status: pending_counterevidence
+      repeated_feedback_status: admitted_context_counterevidence
+      semantic_label_visible_to_selector: false
+      natural_language_description_visible_to_selector: false
+      near_duplicate_bypass_rate: 0.0
+      lineage_coverage_rate: 1.0
+      falsified_lineage_detected: true
+      missing_source_rejected_or_flagged: true
+      rag_hidden_shortcut_match_rate: 0.0
+      expanded_nearest_neighbor_match_rate: 0.0
+      frequency_baseline_match_rate: 0.0
+      recency_baseline_match_rate: 0.0
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      generated_option_perturbation_replay_match_rate: 1.0
+      supporting_prior_deletion_effect: true
+      outcome_perturbation_effect: true
+      renderer_action_change_rate: 0.0
+      baselines_weakened_or_incomparable: false
+    latest_companion_candidate_option_generation_007_redteam_execute_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      preserve_007_reexecute_with_007b_as: bounded re-execution evidence only
+      rewrite_failed_007_execute_as_pass: false
+      rewrite_prior_evidence_as_redteam_evidence: false
+    latest_companion_claim_after_candidate_option_generation_007_redteam_execute: bounded generated-option 007 redteam execution evidence only; not real companion readiness
+    latest_companion_longitudinal_generated_options_008_contract: artifacts/cmbc_companion_longitudinal_generated_options_008_contract/contract_manifest.json
+    latest_companion_longitudinal_generated_options_008_contract_doc: docs/CMBC_COMPANION_LONGITUDINAL_GENERATED_OPTIONS_008_CONTRACT.md
+    latest_companion_longitudinal_generated_options_008_contract_verdict: longitudinal_generated_options_008_contract_ready
+    latest_companion_longitudinal_generated_options_008_contract_scope: contract_only_no_implementation_no_execution
+    latest_companion_longitudinal_generated_options_008_contract_source_verdict: generated_option_007_redteam_bounded_pass
+    latest_companion_longitudinal_generated_options_008_required_focus:
+      - multi_session_generated_option_lifecycle
+      - option_creation_and_retirement
+      - lineage_source_deletion
+      - feedback_inheritance_across_generated_options
+      - near_duplicate_prevention_over_time
+      - repeated_context_scoped_feedback_admission
+      - generated_option_composition
+      - longitudinal_baseline_resistance
+      - behavior_admission_lifecycle_replay
+      - renderer_adversarial_isolation
+    latest_companion_longitudinal_generated_options_008_future_gates:
+      session_count_min: 4
+      total_turn_count_min: 24
+      generated_option_count_cumulative_min: 20
+      admitted_option_count_current_min: 20
+      option_creation_event_count_min: 4
+      option_retirement_event_count_min: 2
+      option_lineage_coverage_rate: 1.0
+      feedback_inheritance_coverage_rate: 1.0
+      context_scoped_feedback_admission_rate: 1.0
+      near_duplicate_bypass_rate: 0.0
+      retired_option_selected_rate: 0.0
+      retired_option_reactivation_traceable: true
+      source_deletion_effect: true
+      outcome_perturbation_effect: true
+      rag_longitudinal_match_rate_max: 0.5
+      expanded_nearest_neighbor_longitudinal_match_rate_max: 0.5
+      frequency_longitudinal_match_rate_max: 0.5
+      recency_longitudinal_match_rate_max: 0.5
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      option_lifecycle_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+    latest_companion_longitudinal_generated_options_008_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 parametric shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      preserve_007_reexecute_with_007b_as: bounded re-execution evidence only
+      preserve_007_redteam_execute_as: bounded generated-option redteam evidence only
+      rewrite_prior_evidence_as_008_evidence: false
+    latest_companion_longitudinal_generated_options_008_recommended_next_task: CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE
+    latest_companion_longitudinal_generated_options_008_recommended_next_task_authorized: false
+    latest_companion_claim_after_longitudinal_generated_options_008_contract: longitudinal generated-options 008 contract readiness only; no execution evidence
+    latest_companion_longitudinal_generated_options_008_execute: artifacts/cmbc_companion_longitudinal_generated_options_008_execute/longitudinal_generated_options_008_result.json
+    latest_companion_longitudinal_generated_options_008_execute_verdict: longitudinal_generated_options_008_bounded_pass
+    latest_companion_longitudinal_generated_options_008_execute_scope: bounded_execution_only
+    latest_companion_longitudinal_generated_options_008_execute_key_metrics:
+      session_count: 4
+      total_turn_count: 24
+      generated_option_count_cumulative: 24
+      admitted_option_count_current: 23
+      option_creation_event_count: 24
+      option_retirement_event_count: 2
+      option_lineage_coverage_rate: 1.0
+      feedback_inheritance_coverage_rate: 1.0
+      context_scoped_feedback_admission_rate: 1.0
+      near_duplicate_bypass_rate: 0.0
+      retired_option_selected_rate: 0.0
+      retired_option_reactivation_traceable: true
+      source_deletion_effect: true
+      outcome_perturbation_effect: true
+      rag_longitudinal_match_rate: 0.25
+      expanded_nearest_neighbor_longitudinal_match_rate: 0.17
+      frequency_longitudinal_match_rate: 0.08
+      recency_longitudinal_match_rate: 0.12
+      strong_generated_option_heuristic_longitudinal_match_rate: 0.33
+      behavior_only_replay_match_rate: 1.0
+      admission_aware_replay_match_rate: 1.0
+      option_lifecycle_replay_match_rate: 1.0
+      renderer_action_change_rate: 0.0
+      baselines_weakened_or_incomparable: false
+      stop_conditions: []
+    latest_companion_longitudinal_generated_options_008_execute_evidence_preservation:
+      preserve_003_as: small-action-set free-input causal-probe evidence only
+      preserve_005_as: N=7 parametric shadow compatibility evidence only
+      preserve_006_as: bounded N=24 prebuilt CandidateOption evidence only
+      preserve_007_shadow_as: bounded generated-option shadow evidence only
+      preserve_failed_007_execute_as: failed generated-option execution evidence
+      preserve_007_reexecute_with_007b_as: bounded re-execution evidence only
+      preserve_007_redteam_execute_as: bounded generated-option redteam evidence only
+      rewrite_prior_evidence_as_008_evidence: false
+    latest_companion_claim_after_longitudinal_generated_options_008_execute: bounded longitudinal generated-options 008 execution evidence only; not real companion readiness
+    real_companion_implementation: not_authorized
+    proactive_messages: not_authorized
+    llm_action_selection: false
+    implementation_authorized: false
+    next_human_review_required_before: any_contract_or_implementation
+frozen_lineages:
+  - lineage_id: vcco_vcac_fopc_negative_lineage
+    source_repo: ../VCCO_Lab
+    status: closed_as_negative_evidence
+    summary_doc: docs/VCCO_VCAC_FOPC_NEGATIVE_LINEAGE.md
+    failed_claims: theories/failed_claims.yaml

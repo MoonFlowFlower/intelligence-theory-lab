@@ -1,0 +1,48 @@
+{
+  "candidate_read_fields": [
+    "observation",
+    "own_intervention_history",
+    "observed_outcomes",
+    "learned_effect_model_outputs",
+    "uncertainty_estimate",
+    "optional_goal_vector",
+    "optional_constraint_vector",
+    "remaining_horizon_or_budget"
+  ],
+  "forbidden_selector_inputs": [
+    "cycle_id",
+    "task_id",
+    "contract_id",
+    "scenario_id",
+    "task_family",
+    "semantic_action_label",
+    "semantic_goal_name",
+    "object_name",
+    "entity_name",
+    "evaluator_metric",
+    "hidden_future_state",
+    "true_transition_table",
+    "oracle_plan_table"
+  ],
+  "interface": {
+    "observe": [
+      "observation",
+      "history"
+    ],
+    "predict_effect": [
+      "action",
+      "belief"
+    ],
+    "select_action": [
+      "candidate_actions",
+      "belief",
+      "optional_goal_vector",
+      "optional_constraint_vector"
+    ],
+    "update_from_intervention": [
+      "action",
+      "next_observation_or_outcome"
+    ]
+  },
+  "verdict": "unified_interface_contract_passed"
+}

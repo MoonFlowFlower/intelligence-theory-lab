@@ -1,0 +1,499 @@
+{
+  "behavior_only_replay_metric_present": true,
+  "equivalence": {
+    "T2_ModelBasedRL_WorldModelPlanner": {
+      "aggregate_score_diff_vs_lcc": -0.056429,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.31,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T3_CausalModelBasedControl": {
+      "aggregate_score_diff_vs_lcc": 0.0,
+      "collapse_candidate": true,
+      "max_metric_abs_diff": 0.0,
+      "overall": "tie",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T4_ActiveInference_EFE_Controller": {
+      "aggregate_score_diff_vs_lcc": -0.026429,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.15,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T5_Empowerment_ControllabilityPlanner": {
+      "aggregate_score_diff_vs_lcc": -0.050714,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.18,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T6_PredictiveProcessing_Control": {
+      "aggregate_score_diff_vs_lcc": -0.044286,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.21,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T7_MetaRL_RecurrentPolicy": {
+      "aggregate_score_diff_vs_lcc": -0.060714,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.25,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T8_ProgramSearch_Planner": {
+      "aggregate_score_diff_vs_lcc": -0.062143,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.2,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    },
+    "T9_StrongHeuristic_SafetyControl": {
+      "aggregate_score_diff_vs_lcc": -0.117143,
+      "collapse_candidate": false,
+      "max_metric_abs_diff": 0.39,
+      "overall": "loss",
+      "shortcut_resistance_comparison": "shared_gates_passed"
+    }
+  },
+  "equivalence_band": {
+    "aggregate_abs_diff_lte": 0.05,
+    "per_family_abs_diff_lte": 0.1
+  },
+  "metric_bias_toward_lcc": false,
+  "metrics": [
+    "label_permutation_change_rate",
+    "effect_swap_change_rate",
+    "intervention_alignment_rate",
+    "passive_correlation_rejection_rate",
+    "diagnostic_action_rate_when_ambiguous",
+    "diagnostic_overuse_when_certain",
+    "closed_loop_replanning_success",
+    "nonstationary_revision_success",
+    "representation_nuisance_invariance",
+    "relational_transfer_success",
+    "goal_conditioned_reuse_success",
+    "blind_holdout_success",
+    "negative_control_false_confidence_rate",
+    "behavior_only_replay_match"
+  ],
+  "per_competitor_metrics": {
+    "T10_OracleDiagnosticUpperBound": {
+      "aggregate_score": 1.0,
+      "diagnostic_only": true,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 1.0,
+        "closed_loop_replanning_success": 1.0,
+        "diagnostic_action_rate_when_ambiguous": 1.0,
+        "diagnostic_overuse_when_certain": 0.0,
+        "effect_swap_change_rate": 1.0,
+        "goal_conditioned_reuse_success": 1.0,
+        "intervention_alignment_rate": 1.0,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.0,
+        "nonstationary_revision_success": 1.0,
+        "passive_correlation_rejection_rate": 1.0,
+        "relational_transfer_success": 1.0,
+        "representation_nuisance_invariance": 1.0
+      },
+      "theory_family": "oracle_diagnostic_upper_bound",
+      "valid_competitor": false
+    },
+    "T1_LCC_v0": {
+      "aggregate_score": 0.925,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.91,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.96,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.94,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.02,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.93,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "learned_counterfactual_controllability",
+      "valid_competitor": true
+    },
+    "T2_ModelBasedRL_WorldModelPlanner": {
+      "aggregate_score": 0.868571,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.69,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.96,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.74,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.08,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.62,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "model_based_rl",
+      "valid_competitor": true
+    },
+    "T3_CausalModelBasedControl": {
+      "aggregate_score": 0.925,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.91,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.96,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.94,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.02,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.93,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "causal_model_based_control",
+      "valid_competitor": true
+    },
+    "T4_ActiveInference_EFE_Controller": {
+      "aggregate_score": 0.898571,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.93,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.86,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.82,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.06,
+        "nonstationary_revision_success": 0.88,
+        "passive_correlation_rejection_rate": 0.78,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "active_inference",
+      "valid_competitor": true
+    },
+    "T5_Empowerment_ControllabilityPlanner": {
+      "aggregate_score": 0.874286,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.87,
+        "diagnostic_action_rate_when_ambiguous": 0.91,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.82,
+        "goal_conditioned_reuse_success": 0.7,
+        "intervention_alignment_rate": 0.8,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.07,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.76,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "empowerment",
+      "valid_competitor": true
+    },
+    "T6_PredictiveProcessing_Control": {
+      "aggregate_score": 0.880714,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.91,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.78,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.76,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.06,
+        "nonstationary_revision_success": 0.84,
+        "passive_correlation_rejection_rate": 0.72,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.86
+      },
+      "theory_family": "predictive_processing_control",
+      "valid_competitor": true
+    },
+    "T7_MetaRL_RecurrentPolicy": {
+      "aggregate_score": 0.864286,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 0.92,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.91,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.76,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.72,
+        "label_permutation_change_rate": 0.03,
+        "negative_control_false_confidence_rate": 0.09,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.68,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "meta_rl",
+      "valid_competitor": true
+    },
+    "T8_ProgramSearch_Planner": {
+      "aggregate_score": 0.862857,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 1.0,
+        "blind_holdout_success": 0.78,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.91,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.83,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.78,
+        "label_permutation_change_rate": 0.0,
+        "negative_control_false_confidence_rate": 0.1,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.73,
+        "relational_transfer_success": 0.7,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "program_search",
+      "valid_competitor": true
+    },
+    "T9_StrongHeuristic_SafetyControl": {
+      "aggregate_score": 0.807857,
+      "diagnostic_only": false,
+      "metrics": {
+        "behavior_only_replay_match": 0.96,
+        "blind_holdout_success": 0.94,
+        "closed_loop_replanning_success": 0.9,
+        "diagnostic_action_rate_when_ambiguous": 0.52,
+        "diagnostic_overuse_when_certain": 0.04,
+        "effect_swap_change_rate": 0.58,
+        "goal_conditioned_reuse_success": 0.88,
+        "intervention_alignment_rate": 0.6,
+        "label_permutation_change_rate": 0.08,
+        "negative_control_false_confidence_rate": 0.05,
+        "nonstationary_revision_success": 0.86,
+        "passive_correlation_rejection_rate": 0.55,
+        "relational_transfer_success": 0.84,
+        "representation_nuisance_invariance": 0.85
+      },
+      "theory_family": "strong_heuristic_control",
+      "valid_competitor": true
+    }
+  },
+  "per_family_metrics": {
+    "active_diagnostic_intervention": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.91,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.72,
+      "T3_CausalModelBasedControl": 0.91,
+      "T4_ActiveInference_EFE_Controller": 0.93,
+      "T5_Empowerment_ControllabilityPlanner": 0.82,
+      "T6_PredictiveProcessing_Control": 0.78,
+      "T7_MetaRL_RecurrentPolicy": 0.74,
+      "T8_ProgramSearch_Planner": 0.75,
+      "T9_StrongHeuristic_SafetyControl": 0.52
+    },
+    "aliased_observation_plus_nonstationary_return": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.84,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.76,
+      "T3_CausalModelBasedControl": 0.84,
+      "T4_ActiveInference_EFE_Controller": 0.83,
+      "T5_Empowerment_ControllabilityPlanner": 0.71,
+      "T6_PredictiveProcessing_Control": 0.83,
+      "T7_MetaRL_RecurrentPolicy": 0.73,
+      "T8_ProgramSearch_Planner": 0.6799999999999999,
+      "T9_StrongHeuristic_SafetyControl": 0.61
+    },
+    "blind_holdout_after_freeze": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.94,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.89,
+      "T3_CausalModelBasedControl": 0.94,
+      "T4_ActiveInference_EFE_Controller": 0.86,
+      "T5_Empowerment_ControllabilityPlanner": 0.84,
+      "T6_PredictiveProcessing_Control": 0.82,
+      "T7_MetaRL_RecurrentPolicy": 0.78,
+      "T8_ProgramSearch_Planner": 0.78,
+      "T9_StrongHeuristic_SafetyControl": 0.66
+    },
+    "goal_conditioned_model_reuse": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.88,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.79,
+      "T3_CausalModelBasedControl": 0.88,
+      "T4_ActiveInference_EFE_Controller": 0.78,
+      "T5_Empowerment_ControllabilityPlanner": 0.68,
+      "T6_PredictiveProcessing_Control": 0.75,
+      "T7_MetaRL_RecurrentPolicy": 0.76,
+      "T8_ProgramSearch_Planner": 0.72,
+      "T9_StrongHeuristic_SafetyControl": 0.63
+    },
+    "goal_conditioned_plus_relational_tool_chain": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.83,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.72,
+      "T3_CausalModelBasedControl": 0.83,
+      "T4_ActiveInference_EFE_Controller": 0.71,
+      "T5_Empowerment_ControllabilityPlanner": 0.67,
+      "T6_PredictiveProcessing_Control": 0.7,
+      "T7_MetaRL_RecurrentPolicy": 0.72,
+      "T8_ProgramSearch_Planner": 0.69,
+      "T9_StrongHeuristic_SafetyControl": 0.59
+    },
+    "label_effect_decoupling": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.95,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.9,
+      "T3_CausalModelBasedControl": 0.95,
+      "T4_ActiveInference_EFE_Controller": 0.84,
+      "T5_Empowerment_ControllabilityPlanner": 0.8,
+      "T6_PredictiveProcessing_Control": 0.78,
+      "T7_MetaRL_RecurrentPolicy": 0.77,
+      "T8_ProgramSearch_Planner": 0.84,
+      "T9_StrongHeuristic_SafetyControl": 0.58
+    },
+    "negative_controls_unidentifiable_cases": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.98,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.9,
+      "T3_CausalModelBasedControl": 0.98,
+      "T4_ActiveInference_EFE_Controller": 0.92,
+      "T5_Empowerment_ControllabilityPlanner": 0.9,
+      "T6_PredictiveProcessing_Control": 0.91,
+      "T7_MetaRL_RecurrentPolicy": 0.88,
+      "T8_ProgramSearch_Planner": 0.85,
+      "T9_StrongHeuristic_SafetyControl": 0.93
+    },
+    "nonstationary_effect_revision": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.86,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.8,
+      "T3_CausalModelBasedControl": 0.86,
+      "T4_ActiveInference_EFE_Controller": 0.88,
+      "T5_Empowerment_ControllabilityPlanner": 0.76,
+      "T6_PredictiveProcessing_Control": 0.84,
+      "T7_MetaRL_RecurrentPolicy": 0.76,
+      "T8_ProgramSearch_Planner": 0.7,
+      "T9_StrongHeuristic_SafetyControl": 0.62
+    },
+    "nonstationary_plus_goal_conditioned": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.85,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.78,
+      "T3_CausalModelBasedControl": 0.85,
+      "T4_ActiveInference_EFE_Controller": 0.77,
+      "T5_Empowerment_ControllabilityPlanner": 0.67,
+      "T6_PredictiveProcessing_Control": 0.74,
+      "T7_MetaRL_RecurrentPolicy": 0.75,
+      "T8_ProgramSearch_Planner": 0.69,
+      "T9_StrongHeuristic_SafetyControl": 0.61
+    },
+    "passive_observation_vs_own_intervention": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.94,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.65,
+      "T3_CausalModelBasedControl": 0.94,
+      "T4_ActiveInference_EFE_Controller": 0.78,
+      "T5_Empowerment_ControllabilityPlanner": 0.76,
+      "T6_PredictiveProcessing_Control": 0.72,
+      "T7_MetaRL_RecurrentPolicy": 0.68,
+      "T8_ProgramSearch_Planner": 0.73,
+      "T9_StrongHeuristic_SafetyControl": 0.55
+    },
+    "relational_compositional_transfer": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.84,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.73,
+      "T3_CausalModelBasedControl": 0.84,
+      "T4_ActiveInference_EFE_Controller": 0.72,
+      "T5_Empowerment_ControllabilityPlanner": 0.75,
+      "T6_PredictiveProcessing_Control": 0.71,
+      "T7_MetaRL_RecurrentPolicy": 0.73,
+      "T8_ProgramSearch_Planner": 0.7,
+      "T9_StrongHeuristic_SafetyControl": 0.6
+    },
+    "relational_plus_delayed_effect": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.83,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.72,
+      "T3_CausalModelBasedControl": 0.83,
+      "T4_ActiveInference_EFE_Controller": 0.71,
+      "T5_Empowerment_ControllabilityPlanner": 0.74,
+      "T6_PredictiveProcessing_Control": 0.7,
+      "T7_MetaRL_RecurrentPolicy": 0.72,
+      "T8_ProgramSearch_Planner": 0.69,
+      "T9_StrongHeuristic_SafetyControl": 0.59
+    },
+    "representation_grounded_control": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.85,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.77,
+      "T3_CausalModelBasedControl": 0.85,
+      "T4_ActiveInference_EFE_Controller": 0.84,
+      "T5_Empowerment_ControllabilityPlanner": 0.72,
+      "T6_PredictiveProcessing_Control": 0.86,
+      "T7_MetaRL_RecurrentPolicy": 0.74,
+      "T8_ProgramSearch_Planner": 0.69,
+      "T9_StrongHeuristic_SafetyControl": 0.66
+    },
+    "representation_grounded_plus_active_diagnostic": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.84,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.71,
+      "T3_CausalModelBasedControl": 0.84,
+      "T4_ActiveInference_EFE_Controller": 0.83,
+      "T5_Empowerment_ControllabilityPlanner": 0.71,
+      "T6_PredictiveProcessing_Control": 0.77,
+      "T7_MetaRL_RecurrentPolicy": 0.73,
+      "T8_ProgramSearch_Planner": 0.6799999999999999,
+      "T9_StrongHeuristic_SafetyControl": 0.51
+    },
+    "sequential_closed_loop_replanning": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.9,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.93,
+      "T3_CausalModelBasedControl": 0.9,
+      "T4_ActiveInference_EFE_Controller": 0.83,
+      "T5_Empowerment_ControllabilityPlanner": 0.88,
+      "T6_PredictiveProcessing_Control": 0.8,
+      "T7_MetaRL_RecurrentPolicy": 0.78,
+      "T8_ProgramSearch_Planner": 0.79,
+      "T9_StrongHeuristic_SafetyControl": 0.7
+    },
+    "sequential_plus_stochastic_controllability": {
+      "T10_OracleDiagnosticUpperBound": 1.0,
+      "T1_LCC_v0": 0.89,
+      "T2_ModelBasedRL_WorldModelPlanner": 0.92,
+      "T3_CausalModelBasedControl": 0.89,
+      "T4_ActiveInference_EFE_Controller": 0.82,
+      "T5_Empowerment_ControllabilityPlanner": 0.87,
+      "T6_PredictiveProcessing_Control": 0.79,
+      "T7_MetaRL_RecurrentPolicy": 0.77,
+      "T8_ProgramSearch_Planner": 0.78,
+      "T9_StrongHeuristic_SafetyControl": 0.69
+    }
+  },
+  "stop_conditions": []
+}

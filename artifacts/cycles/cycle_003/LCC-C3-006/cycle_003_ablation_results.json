@@ -1,0 +1,31 @@
+{
+  "ablations": {
+    "NoCounterfactualQueryPolicy": {
+      "equivalent": false,
+      "failure_signature": "effect swap sensitivity collapses",
+      "match_rate": 0.36
+    },
+    "NoInterventionHistoryPolicy": {
+      "equivalent": false,
+      "failure_signature": "post-identification transfer collapses",
+      "match_rate": 0.42
+    },
+    "NoPosteriorUpdatePolicy": {
+      "equivalent": false,
+      "failure_signature": "posterior uncertainty remains high",
+      "match_rate": 0.31
+    },
+    "NoUncertaintyPolicy": {
+      "equivalent": false,
+      "failure_signature": "diagnostic timing collapses",
+      "match_rate": 0.38
+    },
+    "PassiveOnlyTrainingPolicy": {
+      "equivalent": false,
+      "failure_signature": "correlation mistaken for intervention",
+      "match_rate": 0.22
+    }
+  },
+  "stop_condition": null,
+  "verdict": "ablation_necessity_passed"
+}

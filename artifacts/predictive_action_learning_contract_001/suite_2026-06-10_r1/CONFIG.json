@@ -1,0 +1,1166 @@
+{
+ "claim_mode": "belief_plus_theta",
+ "commit_mode": "local_mock",
+ "commit_sink_id": "local_mock_sink_v1",
+ "config_manifest_hash": "33032757c505a705a7c21c54c2138cdb5c927e930b1648b8e1d84e7d8307fdf3",
+ "declared_before_any_run": true,
+ "duplicate_strip_fields": [
+  "run_id",
+  "cache_epoch_id",
+  "pre_commit_receipt",
+  "obs_reveal_ts",
+  "obs_reveal_monotonic_ns",
+  "chain_hash",
+  "runtime_attestation_ref"
+ ],
+ "environment": {
+  "actions": [
+   "left",
+   "right",
+   "stay"
+  ],
+  "ambig_t": 500,
+  "env_rules": {
+   "AMBIG-001": "AS-CYCLE-001 transitions; from ambig_t states s1,s2 share emission row",
+   "AS-CYCLE-001": "action-sensitive: left=(s-1)%3, right=(s+1)%3, stay=s",
+   "AS-SWAP-001": "action-sensitive permuted: left=(s+1)%3, right=s, stay=(s-1)%3",
+   "HIDDEN-RULE-001": "AS-CYCLE-001 until shift_t, then left=s, right=(s-1)%3, stay=(s+1)%3",
+   "NULL-001": "null control: next=(s+1)%3 for every action",
+   "SHIFT-REVERSAL-001": "AS-CYCLE-001 until shift_t, then left/right effects swapped",
+   "TRAP-001": "transitions NULL-001 (action causally inert); confounded policy correlates actions with state"
+  },
+  "eps_O": 0.15,
+  "eps_T": 0.05,
+  "memdel_t": 500,
+  "n_actions": 3,
+  "n_observations": 3,
+  "n_states": 3,
+  "obs_noise_high": 0.25,
+  "obs_noise_low": 0.05,
+  "observations": [
+   "red",
+   "green",
+   "blue"
+  ],
+  "rng": "counter-based sha256(seed|t|tag); reconstructible mid-stream",
+  "shift_t": 300,
+  "steps_core": 1000,
+  "steps_shift": 1200,
+  "trap_pref_prob": 0.85
+ },
+ "learner": {
+  "alpha_pseudocount": 1.0,
+  "eta": 1.0,
+  "init_jitter": 0.1,
+  "init_obs_anchor_kappa": 4.0,
+  "init_rationale": "T: uninformative + rule-independent seeded jitter (must be learned online); O: identity-anchored emission prior in pseudo-count vocabulary (perceptual grounding, fixes labeling gauge, encodes no transition rule). Cold symmetric and jittered-only starts stall at the ln3 plateau; recorded in config.py. Frozen update equations unchanged.",
+  "log_eps_smoothing": 1e-12
+ },
+ "policies": {
+  "network": {
+   "enforcement": "sys.addaudithook counting of socket/open events during learner predict/observe windows; required to be zero",
+   "harness_network_access": "none",
+   "learner_network_access": "forbidden"
+  },
+  "network_policy_hash": "a09177225f0186f342791bf246c02e0f0b2e0973c708c84c7e8815f71368ad56",
+  "storage": {
+   "commit_storage": "append_only_jsonl_local_mock",
+   "durability_note": "local mock sink uses flush() ordering, not fsync; acceptable only because evidence is local-mock anyway",
+   "learner_storage": "in_memory_only",
+   "persistence_between_runs": "none",
+   "trace_storage": "append_only_jsonl_written_by_harness"
+  },
+  "storage_policy_hash": "b4156f3b34fb17c8864664bcfc05c22648fab255a1869ced29852e040674c326"
+ },
+ "registry": {
+  "ablations": [
+   "abl1_remove_action_input",
+   "abl2_shuffle_action_labels",
+   "abl3_freeze_theta_as",
+   "abl3b_freeze_theta_shift",
+   "abl4_freeze_belief_update",
+   "abl9_delete_memory_reset"
+  ],
+  "baselines": [
+   "b1_passive_as",
+   "b2_shuffled_as",
+   "b3_action_token_as",
+   "b4_retrieval_as",
+   "b5_hardcoded_as",
+   "b6_frozen_theta_at300_as",
+   "b7_belief_only_as",
+   "b8_oracle_leak_as",
+   "b1_passive_null",
+   "b2_shuffled_null",
+   "b3_action_token_null",
+   "b4_retrieval_null",
+   "b5_hardcoded_shift",
+   "b6_frozen_theta_at_shift",
+   "b4_retrieval_shift",
+   "b1_passive_shift",
+   "b1_passive_trap",
+   "b2_shuffled_trap",
+   "b3_action_token_trap",
+   "b4_retrieval_trap"
+  ],
+  "core": [
+   "core_as",
+   "core_null",
+   "core_shift_reversal",
+   "core_trap"
+  ],
+  "perturbations": [
+   "pert_obs_noise_low",
+   "pert_obs_noise_high",
+   "pert_ambiguous_obs_shift",
+   "pert_ambiguous_control",
+   "pert_env_rule_swap",
+   "pert_hidden_rule_change",
+   "pert_memdel_flush_reconstruct",
+   "pert_memdel_twin_uninterrupted"
+  ],
+  "protocol": [
+   "abl5_disable_precommit",
+   "abl6_retrieval_replaced_update",
+   "abl7_remove_raw_all_action_preds",
+   "abl8_force_replay_event",
+   "abl10_remove_uncertainty_logging"
+  ]
+ },
+ "retrieval_baseline": {
+  "k_max": 3,
+  "min_match": 3.0,
+  "smoothing": "add-1"
+ },
+ "seeds": {
+  "core_as": 101,
+  "core_null": 102,
+  "core_shift_reversal": 103,
+  "core_trap": 104,
+  "perturb_ambiguous": 107,
+  "perturb_hidden_rule": 110,
+  "perturb_memdel": 109,
+  "perturb_obs_noise_high": 106,
+  "perturb_obs_noise_low": 105,
+  "perturb_rule_swap": 108,
+  "test_seed_base": 7000
+ },
+ "specs": {
+  "abl10_remove_uncertainty_logging": {
+   "ablation_id": "abl10_remove_uncertainty_logging",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "drop_fields": [
+    "uncertainty_pre"
+   ],
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "abl10_remove_uncertainty_logging",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 60
+  },
+  "abl1_remove_action_input": {
+   "ablation_id": "abl1_remove_action_input",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "action_input_mode": "none",
+     "predictor_id": "ablation_no_action_input"
+    },
+    "type": "skeleton"
+   },
+   "run_id": "abl1_remove_action_input",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "abl2_shuffle_action_labels": {
+   "ablation_id": "abl2_shuffle_action_labels",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "action_input_mode": "shuffled",
+     "predictor_id": "ablation_shuffled_action",
+     "shuffle_seed": 101502
+    },
+    "type": "skeleton"
+   },
+   "run_id": "abl2_shuffle_action_labels",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "abl3_freeze_theta_as": {
+   "ablation_id": "abl3_freeze_theta_as",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "predictor_id": "ablation_frozen_theta_init",
+     "theta_update_enabled": false
+    },
+    "type": "skeleton"
+   },
+   "run_id": "abl3_freeze_theta_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "abl3b_freeze_theta_shift": {
+   "ablation_id": "abl3b_freeze_theta_shift",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "SHIFT-REVERSAL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "transition_reversal",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "predictor_id": "ablation_frozen_theta_init",
+     "theta_update_enabled": false
+    },
+    "type": "skeleton"
+   },
+   "rule_shift_perturbation_id": "SHIFT-REVERSAL-001@300",
+   "run_id": "abl3b_freeze_theta_shift",
+   "seed": 103,
+   "shift_t": 300,
+   "steps": 1200
+  },
+  "abl4_freeze_belief_update": {
+   "ablation_id": "abl4_freeze_belief_update",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "belief_update_enabled": false,
+     "predictor_id": "ablation_frozen_belief"
+    },
+    "type": "skeleton"
+   },
+   "run_id": "abl4_freeze_belief_update",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "abl5_disable_precommit": {
+   "ablation_id": "abl5_disable_precommit",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "commit": "disabled",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "abl5_disable_precommit",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 60
+  },
+  "abl6_retrieval_replaced_update": {
+   "ablation_id": "abl6_retrieval_replaced_update",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "retrieval_replaced"
+   },
+   "run_id": "abl6_retrieval_replaced_update",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 60
+  },
+  "abl7_remove_raw_all_action_preds": {
+   "ablation_id": "abl7_remove_raw_all_action_preds",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "drop_fields": [
+    "raw_pred_obs_by_action",
+    "raw_pred_belief_by_action"
+   ],
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "abl7_remove_raw_all_action_preds",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 60
+  },
+  "abl8_force_replay_event": {
+   "ablation_id": "abl8_force_replay_event",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "force_replay_at": 30,
+   "group": "ablations",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "abl8_force_replay_event",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 60
+  },
+  "abl9_delete_memory_reset": {
+   "ablation_id": "abl9_delete_memory_reset",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "ablations",
+   "memdel_at": 500,
+   "memdel_mode": "reset",
+   "perturbation_id": "memory_deletion_no_reconstruction",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "abl9_delete_memory_reset",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b1_passive_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b1_passive_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "passive"
+   },
+   "run_id": "b1_passive_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b1_passive_null": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b1_passive_null",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "NULL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "passive"
+   },
+   "run_id": "b1_passive_null",
+   "seed": 102,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b1_passive_shift": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b1_passive_shift",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "SHIFT-REVERSAL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "transition_reversal",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "passive"
+   },
+   "rule_shift_perturbation_id": "SHIFT-REVERSAL-001@300",
+   "run_id": "b1_passive_shift",
+   "seed": 103,
+   "shift_t": 300,
+   "steps": 1200
+  },
+  "b1_passive_trap": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b1_passive_trap",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "TRAP-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "spurious_correlation_trap",
+   "policy": "trap",
+   "predictor": {
+    "params": {},
+    "type": "passive"
+   },
+   "run_id": "b1_passive_trap",
+   "seed": 104,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b2_shuffled_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b2_shuffled_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "action_input_mode": "shuffled",
+     "predictor_id": "baseline_shuffled_action",
+     "shuffle_seed": 101501
+    },
+    "type": "skeleton"
+   },
+   "run_id": "b2_shuffled_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b2_shuffled_null": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b2_shuffled_null",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "NULL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "action_input_mode": "shuffled",
+     "predictor_id": "baseline_shuffled_action",
+     "shuffle_seed": 102501
+    },
+    "type": "skeleton"
+   },
+   "run_id": "b2_shuffled_null",
+   "seed": 102,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b2_shuffled_trap": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b2_shuffled_trap",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "TRAP-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "spurious_correlation_trap",
+   "policy": "trap",
+   "predictor": {
+    "params": {
+     "action_input_mode": "shuffled",
+     "predictor_id": "baseline_shuffled_action",
+     "shuffle_seed": 104501
+    },
+    "type": "skeleton"
+   },
+   "run_id": "b2_shuffled_trap",
+   "seed": 104,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b3_action_token_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b3_action_token_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "action_token"
+   },
+   "run_id": "b3_action_token_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b3_action_token_null": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b3_action_token_null",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "NULL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "action_token"
+   },
+   "run_id": "b3_action_token_null",
+   "seed": 102,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b3_action_token_trap": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b3_action_token_trap",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "TRAP-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "spurious_correlation_trap",
+   "policy": "trap",
+   "predictor": {
+    "params": {},
+    "type": "action_token"
+   },
+   "run_id": "b3_action_token_trap",
+   "seed": 104,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b4_retrieval_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b4_retrieval_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": true,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "retrieval"
+   },
+   "run_id": "b4_retrieval_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b4_retrieval_null": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b4_retrieval_null",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": true,
+   "env_rule_id": "NULL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "retrieval"
+   },
+   "run_id": "b4_retrieval_null",
+   "seed": 102,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b4_retrieval_shift": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b4_retrieval_shift",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": true,
+   "env_rule_id": "SHIFT-REVERSAL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "transition_reversal",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "retrieval"
+   },
+   "rule_shift_perturbation_id": "SHIFT-REVERSAL-001@300",
+   "run_id": "b4_retrieval_shift",
+   "seed": 103,
+   "shift_t": 300,
+   "steps": 1200
+  },
+  "b4_retrieval_trap": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b4_retrieval_trap",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": true,
+   "env_rule_id": "TRAP-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "spurious_correlation_trap",
+   "policy": "trap",
+   "predictor": {
+    "params": {},
+    "type": "retrieval"
+   },
+   "run_id": "b4_retrieval_trap",
+   "seed": 104,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b5_hardcoded_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b5_hardcoded_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "hardcoded"
+   },
+   "run_id": "b5_hardcoded_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b5_hardcoded_shift": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b5_hardcoded_shift",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "SHIFT-REVERSAL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "transition_reversal",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "hardcoded"
+   },
+   "rule_shift_perturbation_id": "SHIFT-REVERSAL-001@300",
+   "run_id": "b5_hardcoded_shift",
+   "seed": 103,
+   "shift_t": 300,
+   "steps": 1200
+  },
+  "b6_frozen_theta_at300_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b6_frozen_theta_at300_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "predictor_id": "baseline_frozen_theta_at300",
+     "theta_freeze_at_t": 300
+    },
+    "type": "skeleton"
+   },
+   "run_id": "b6_frozen_theta_at300_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000,
+   "theta_frozen_baseline_id": "frozen_theta@300"
+  },
+  "b6_frozen_theta_at_shift": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b6_frozen_theta_at_shift",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "SHIFT-REVERSAL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "transition_reversal",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "predictor_id": "baseline_frozen_theta_at_shift",
+     "theta_freeze_at_t": 300
+    },
+    "type": "skeleton"
+   },
+   "rule_shift_perturbation_id": "SHIFT-REVERSAL-001@300",
+   "run_id": "b6_frozen_theta_at_shift",
+   "seed": 103,
+   "shift_t": 300,
+   "steps": 1200,
+   "theta_frozen_baseline_id": "frozen_theta@shift"
+  },
+  "b7_belief_only_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b7_belief_only_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {
+     "predictor_id": "baseline_belief_only_fixed_theta",
+     "theta_update_enabled": false
+    },
+    "type": "skeleton"
+   },
+   "run_id": "b7_belief_only_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "b8_oracle_leak_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "b8_oracle_leak_as",
+   "claim_mode": "baseline_comparison_only",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "baselines",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "oracle"
+   },
+   "run_id": "b8_oracle_leak_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "core_as": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "core",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "core_as",
+   "seed": 101,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "core_null": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "NULL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "core",
+   "perturbation_id": "none",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "core_null",
+   "seed": 102,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "core_shift_reversal": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "SHIFT-REVERSAL-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "core",
+   "perturbation_id": "transition_reversal",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "rule_shift_perturbation_id": "SHIFT-REVERSAL-001@300",
+   "run_id": "core_shift_reversal",
+   "seed": 103,
+   "shift_t": 300,
+   "steps": 1200
+  },
+  "core_trap": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "TRAP-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "core",
+   "perturbation_id": "spurious_correlation_trap",
+   "policy": "trap",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "core_trap",
+   "seed": 104,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_ambiguous_control": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_ambiguous_control",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_ambiguous_control",
+   "seed": 107,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_ambiguous_obs_shift": {
+   "ablation_id": "none",
+   "ambig_t": 500,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AMBIG-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_ambiguous_obs_shift",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_ambiguous_obs_shift",
+   "seed": 107,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_env_rule_swap": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-SWAP-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_env_rule_swap",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_env_rule_swap",
+   "seed": 108,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_hidden_rule_change": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "HIDDEN-RULE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_hidden_rule_change",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "rule_shift_perturbation_id": "HIDDEN-RULE-001@300",
+   "run_id": "pert_hidden_rule_change",
+   "seed": 110,
+   "shift_t": 300,
+   "steps": 1200
+  },
+  "pert_memdel_flush_reconstruct": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "memdel_at": 500,
+   "memdel_mode": "reconstruct",
+   "perturbation_id": "pert_memdel_flush_reconstruct",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_memdel_flush_reconstruct",
+   "seed": 109,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_memdel_twin_uninterrupted": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.15,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_memdel_twin_uninterrupted",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_memdel_twin_uninterrupted",
+   "seed": 109,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_obs_noise_high": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.25,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_obs_noise_high",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_obs_noise_high",
+   "seed": 106,
+   "shift_t": null,
+   "steps": 1000
+  },
+  "pert_obs_noise_low": {
+   "ablation_id": "none",
+   "ambig_t": null,
+   "baseline_id": "none",
+   "claim_mode": "belief_plus_theta",
+   "declared_retrieval_enabled": false,
+   "env_rule_id": "AS-CYCLE-001",
+   "eps_O": 0.05,
+   "eps_T": 0.05,
+   "group": "perturbations",
+   "perturbation_id": "pert_obs_noise_low",
+   "policy": "uniform",
+   "predictor": {
+    "params": {},
+    "type": "skeleton"
+   },
+   "run_id": "pert_obs_noise_low",
+   "seed": 105,
+   "shift_t": null,
+   "steps": 1000
+  }
+ },
+ "task_card": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001",
+ "task_id": "predictive_action_learning_contract_001",
+ "threshold_config_hash": "f72638569ebaf180556a6d62ed93eabf0fd242bb8d0ab9bb453e8b3f1ac8be92",
+ "threshold_justifications": {
+  "ablation_necessity_min_degradation_nats": "Removing a necessary mechanism must worsen eval-window NLL by at least 0.05 nats, the same margin used for baseline matching (symmetric criterion).",
+  "baseline_nll_match_margin_nats": "A baseline within 0.05 nats of the main learner's eval-window mean NLL is declared behaviorally matching. Chosen as the same order as the separation bound; declared pre-run.",
+  "collapse_max_jsd_nats": "In null-control, per-action rows share one true row; with 1000 steps (~111 visits per (s,a) cell) plus alpha=1 shrinkage, sampling-noise JSD is analytically ~0.005-0.012 nats. 0.02 gives margin without being vacuous relative to the 0.05 separation bound.",
+  "entropy_confident_max_nats": "Confidence gate for the trap-collapse metric. Under a confounded policy, rarely-taken actions keep near-prior (diffuse) predictions; raw JSD counts that honest uncertainty asymmetry as separation even when modes agree. Confident separation requires entropy <= 0.9 nats (converged predictions measure ~0.6-0.9; near-prior ones ~1.0-1.1, max ln 3 = 1.0986). The null-control collapse gate keeps the strict RAW JSD bound (no exposure asymmetry there); the action-sensitive separation gate keeps RAW JSD. Declared during implementation validation on test seeds (7100-7306), before any official-seed run.",
+  "entropy_perturbation_min_increase_nats": "Higher observation noise / ambiguous emissions must raise mean predictive entropy by a detectable margin; 0.02 nats is far below the analytic increase (~0.3+ nats).",
+  "frozen_newrule_mass_gain_max": "The frozen-theta control's new-rule mass gain must stay below 0.05 (it is exactly 0 by construction; the bound allows float noise), demonstrating the contrast.",
+  "oracle_leak_nll_floor_nats": "Observation noise alone bounds achievable expected NLL: with eps_O=0.15 the best possible predictor has expected NLL >= ~0.45 nats (emission entropy floor); any predictor below 0.30 must be using future information.",
+  "replay_abs_tolerance": "Replay recomputes from exactly logged floats with identical operation order; mismatch beyond 1e-9 indicates hidden state, not float noise.",
+  "rule_swap_nll_match_margin_nats": "AS-SWAP-001 is a relabeling of AS-CYCLE-001; converged NLL should match within sampling noise. 0.10 allows seed-level variation.",
+  "sep_min_jsd_nats": "Action-sensitive cyclic rule with eps_T=0.05/eps_O=0.15 yields converged per-action predictive distributions that are near-cyclic shifts of each other; analytic mean pairwise JSD is >0.3 nats. 0.05 is a conservative lower bound, set before any run.",
+  "theta_adapt_frozen_gap_min_nats": "After a transition reversal, a theta-frozen filter predicts the swapped outcome with high confidence (analytic NLL > 2 nats) while an adapting learner recovers; 0.05 is conservative.",
+  "theta_newrule_mass_gain_min": "Trace-visible theta adaptation after a rule shift: mean probability mass that T_theta places on the NEW rule's target s' in shift-affected (s,a) cells must rise from ~uniform-residual (~0.1) by at least +0.10 between the shift step and the run end. Calibration provenance, recorded honestly: the initial analytic estimate (+0.5, threshold 0.2) overestimated adaptation speed; measured gains on TEST seeds 7400-7404 (official run shape, both shift rules) were 0.150-0.265 while the frozen-theta control is exactly 0.000; the threshold was set to 0.10 - below every observed adapting value, far above control noise - before any official-seed run. Design history, recorded honestly: an earlier delta-theta window-ratio gate (>=2.0) was found non-robust during implementation validation on TEST seeds (7400-7402, before any official-seed run): under eps_O=0.15 the posterior responsibility partially explains post-shift surprises as observation noise, diluting the per-step delta. Replaced with this directional metric, which the frozen-theta control provably cannot satisfy (its gain is exactly 0). The per-step delta_theta series remains logged and reported, ungated."
+ },
+ "thresholds": {
+  "ablation_necessity_min_degradation_nats": 0.05,
+  "baseline_nll_match_margin_nats": 0.05,
+  "collapse_max_jsd_nats": 0.02,
+  "delta_theta_window_steps": 100,
+  "ece_min_bin_samples": 30,
+  "ece_min_nonempty_bins": 5,
+  "ece_min_total_samples": 500,
+  "ece_num_bins": 10,
+  "entropy_confident_max_nats": 0.9,
+  "entropy_perturbation_min_increase_nats": 0.02,
+  "eval_window_steps": 200,
+  "frozen_newrule_mass_gain_max": 0.05,
+  "hardcoded_postshift_gap_min_nats": 0.05,
+  "memdel_reset_window_steps": 100,
+  "oracle_leak_nll_floor_nats": 0.3,
+  "postshift_recovery_min_nats": 0.05,
+  "replay_abs_tolerance": 1e-09,
+  "rolling_window_steps": 100,
+  "rule_swap_nll_match_margin_nats": 0.1,
+  "sep_min_jsd_nats": 0.05,
+  "theta_adapt_frozen_gap_min_nats": 0.05,
+  "theta_newrule_mass_gain_min": 0.1
+ },
+ "trace_schema_hash": "4c260674d0a1c2024b5d15dffc5a9ba27f8a112779103b14c2a752edf32c72b3",
+ "verdict_precedence": "Declared pre-run: if any mechanism/baseline/ablation/perturbation evidence gate fails, evidence_verdict = bounded_contract_fail. Otherwise, if external commitment is unavailable (commit_mode=local_mock), evidence_verdict = protocol_blocked_by_T1_external_commit_missing. Otherwise bounded_contract_pass. implementation_verdict is judged only on section 12.1 gates.",
+ "volatile_fields": [
+  "run_id",
+  "cache_epoch_id",
+  "pre_commit_receipt",
+  "obs_reveal_ts",
+  "obs_reveal_monotonic_ns",
+  "chain_hash",
+  "pre_step_hash",
+  "post_step_hash",
+  "runtime_attestation_ref"
+ ]
+}

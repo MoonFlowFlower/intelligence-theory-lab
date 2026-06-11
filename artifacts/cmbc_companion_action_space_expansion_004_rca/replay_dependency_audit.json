@@ -1,0 +1,19 @@
+{
+  "behavior_only_replay_can_remain_parametric_if_trace_contains_distribution": true,
+  "current_replay_used_fields": [
+    "observation",
+    "anonymous_candidate_actions",
+    "prediction_before_action",
+    "action_distribution",
+    "selected_action",
+    "model_version"
+  ],
+  "current_static_points": [
+    "make_trace writes anonymous_candidate_actions from ACTION_HANDLES",
+    "make_trace writes prediction_before_action for ACTION_HANDLES",
+    "004 expanded action decisions were not produced, so no expanded replay existed"
+  ],
+  "interpretation": "Replay itself selects the max action from trace action_distribution keys. That can work for N options if the trace producer supplies N-option distributions. The blocking dependency is upstream trace generation.",
+  "replay_contract_blocks_expansion": false,
+  "upstream_trace_producer_uses_static_handles": true
+}

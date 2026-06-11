@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OptionRetirementReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["retirement_id", "option_id", "retirement_status", "reversible", "retirement_reasons", "supporting_evidence_refs", "restore_requirements"],
+  "properties": {
+    "retirement_id": {"type": "string"},
+    "option_id": {"type": "string"},
+    "retirement_status": {"type": "string", "enum": ["active", "retired", "reversible_retired"]},
+    "reversible": {"const": true},
+    "retirement_reasons": {"type": "array", "items": {"type": "string"}},
+    "supporting_evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "restore_requirements": {"type": "array", "items": {"type": "string"}}
+  }
+}

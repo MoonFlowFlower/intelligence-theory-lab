@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_options": {
+      "items": {
+        "$ref": "candidate_option.schema.json"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "goal_constraint_vector": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "observed_outcomes": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "observation": {
+      "type": "object"
+    },
+    "own_intervention_history": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "public_budget": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "public_horizon": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "variable_n_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "supports_n_7": {
+          "const": true,
+          "type": "boolean"
+        },
+        "supports_n_gte_20": {
+          "const": true,
+          "type": "boolean"
+        },
+        "supports_variable_n": {
+          "const": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "supports_n_7",
+        "supports_n_gte_20",
+        "supports_variable_n"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "observation",
+    "candidate_options",
+    "own_intervention_history",
+    "observed_outcomes",
+    "goal_constraint_vector",
+    "public_horizon",
+    "public_budget",
+    "variable_n_contract"
+  ],
+  "title": "ParametricSelectorInput",
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+{
+  "record_type": "stage0_amendment_external_time_anchor",
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001",
+  "amendment_commit_hash": "d0d0fa7588bee2e02e4c446bae9eae52f78e5434",
+  "parent": "d011e735012c15577e2ecbbc72e26d29e63e016e",
+  "anchored_refs": {
+    "refs/heads/codex/meta-theory-scaffold": "d0d0fa7588bee2e02e4c446bae9eae52f78e5434",
+    "refs/tags/gate1-amendment-freeze-001": "d0d0fa7588bee2e02e4c446bae9eae52f78e5434"
+  },
+  "anchored_content": [
+    "failure_manifest.json (F1 lumpability, preserved)",
+    "environment_preregistration_amendment_001.json (human-approved, 14 conditions)",
+    "frozen harness code: src/gate1_preflight/{__init__,core,eval_subprocess,runner}.py + tests/test_gate1_preflight_smoke.py",
+    "observation_map_sha256 51d68344a3e0471c528cb8f5a576ff80e4c5db203c2fcded33956bba51b1ece3"
+  ],
+  "external_verification": "anonymous git ls-remote shows branch and tag at amendment commit",
+  "external_time_anchor_timestamp_utc": "2026-06-11T01:44:40Z",
+  "runs_executed_before_this_anchor": 0,
+  "readiness_status": {
+    "margin_freeze_completed": true,
+    "external_time_anchor_completed": true,
+    "amendment_anchored": true,
+    "first_run_allowed": true,
+    "rule": "first_run_start_time must postdate 2026-06-11T01:44:40Z"
+  }
+}

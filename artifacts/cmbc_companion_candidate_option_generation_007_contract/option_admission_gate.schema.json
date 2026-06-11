@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OptionAdmissionGate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["admission_decision_id", "proposal_id", "gate_decision", "minimum_evidence_count", "weak_evidence_uncertainty_floor", "evidence_refs", "uncertainty_after_gate", "decision_reasons"],
+  "properties": {
+    "admission_decision_id": {"type": "string"},
+    "proposal_id": {"type": "string"},
+    "gate_decision": {"type": "string", "enum": ["admit", "pending_counterevidence", "reject", "retire"]},
+    "minimum_evidence_count": {"type": "integer", "minimum": 1},
+    "weak_evidence_uncertainty_floor": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "uncertainty_after_gate": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+    "decision_reasons": {"type": "array", "items": {"type": "string"}}
+  }
+}

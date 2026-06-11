@@ -1,0 +1,405 @@
+{
+ "gate_status": {
+  "ablation": [
+   [
+    "A1_remove_action_degrades",
+    "pass"
+   ],
+   [
+    "A2_shuffle_degrades",
+    "pass"
+   ],
+   [
+    "A3_freeze_theta_degrades",
+    "pass"
+   ],
+   [
+    "A4_freeze_belief_degrades",
+    "pass"
+   ],
+   [
+    "A5_disable_precommit_blocks_evidence",
+    "pass"
+   ],
+   [
+    "A6_retrieval_replacement_caught",
+    "pass"
+   ],
+   [
+    "A7_missing_raw_predictions_rejected",
+    "pass"
+   ],
+   [
+    "A8_forced_replay_triggers_protocol_failure",
+    "pass"
+   ],
+   [
+    "A9_memory_deletion_degrades",
+    "pass"
+   ],
+   [
+    "A10_missing_uncertainty_rejected",
+    "pass"
+   ]
+  ],
+  "baseline": [
+   [
+    "B8_oracle_leak_detector_works",
+    "pass"
+   ],
+   [
+    "B9_coldstart_duplicate_identical",
+    "pass"
+   ],
+   [
+    "B3_action_token_does_not_match",
+    "pass"
+   ],
+   [
+    "B7_belief_only_does_not_match",
+    "pass"
+   ]
+  ],
+  "evidence": [
+   [
+    "E1_precommit_before_reveal",
+    "pass"
+   ],
+   [
+    "E2_commitment_marking",
+    "pass"
+   ],
+   [
+    "E3_retrieval_replay_disabled_attested",
+    "pass"
+   ],
+   [
+    "E4_external_memory_access_zero",
+    "pass"
+   ],
+   [
+    "E5_no_replay_step_in_core",
+    "pass"
+   ],
+   [
+    "E6_action_sensitive_separation",
+    "pass"
+   ],
+   [
+    "E7_null_control_collapse",
+    "pass"
+   ],
+   [
+    "E8_passive_does_not_match",
+    "pass"
+   ],
+   [
+    "E9_shuffled_does_not_match",
+    "pass"
+   ],
+   [
+    "E10_retrieval_does_not_match",
+    "pass"
+   ],
+   [
+    "E11_hardcoded_fails_under_rule_shift",
+    "pass"
+   ],
+   [
+    "E12_frozen_theta_does_not_match",
+    "pass"
+   ],
+   [
+    "E13_separate_belief_and_theta_claims",
+    "pass"
+   ],
+   [
+    "E14_nll_brier_reported",
+    "pass"
+   ],
+   [
+    "E15_ece_secondary_only",
+    "pass"
+   ],
+   [
+    "E16_raw_all_action_predictions_present",
+    "pass"
+   ],
+   [
+    "E17_raw_theta_pre_post_present",
+    "pass"
+   ],
+   [
+    "E18_gates_from_canonical_raw_evidence",
+    "pass"
+   ],
+   [
+    "E19_stop_conditions_enforced",
+    "pass"
+   ]
+  ],
+  "implementation": [
+   [
+    "I1_runs_from_documented_command",
+    "pass"
+   ],
+   [
+    "I2_tests_pass",
+    "pass"
+   ],
+   [
+    "I3_learner_isolated",
+    "pass"
+   ],
+   [
+    "I4_no_ego_mainline_integration",
+    "pass"
+   ],
+   [
+    "I5_no_llm_rag_replay_in_learner",
+    "pass"
+   ],
+   [
+    "I6_frozen_skeleton_implemented",
+    "pass"
+   ],
+   [
+    "I7_trace_schema_implemented",
+    "pass"
+   ],
+   [
+    "I8_baselines_implemented",
+    "pass"
+   ],
+   [
+    "I9_ablations_implemented",
+    "pass"
+   ],
+   [
+    "I10_perturbations_implemented",
+    "pass"
+   ],
+   [
+    "I11_reports_generated",
+    "pass"
+   ],
+   [
+    "I12_artifacts_saved",
+    "pass"
+   ]
+  ],
+  "perturbation": [
+   [
+    "P1_hidden_rule_adaptation",
+    "pass"
+   ],
+   [
+    "P2_transition_reversal_adaptation",
+    "pass"
+   ],
+   [
+    "P3_obs_noise_affects_uncertainty",
+    "pass"
+   ],
+   [
+    "P4_ambiguous_shift_raises_uncertainty",
+    "pass"
+   ],
+   [
+    "P5_spurious_trap_not_fooled",
+    "pass"
+   ],
+   [
+    "P6_null_control_no_false_separation",
+    "pass"
+   ],
+   [
+    "P7_same_history_counterfactuals_verified",
+    "pass"
+   ],
+   [
+    "P8_cache_flush_reconstructs_exactly",
+    "pass"
+   ],
+   [
+    "P9_env_rule_swap_relearnable",
+    "pass"
+   ]
+  ]
+ },
+ "stop_conditions": [
+  {
+   "description": "Skeleton modification needed",
+   "evidence": "frozen equations implemented as specified",
+   "stop_condition_id": 1,
+   "triggered": false
+  },
+  {
+   "description": "PRE_STEP chronology unverifiable",
+   "evidence": null,
+   "stop_condition_id": 2,
+   "triggered": false
+  },
+  {
+   "description": "Local-only commitment reported as external",
+   "evidence": "commitment_report marks local_mock; evidence verdict blocked by T1",
+   "stop_condition_id": 3,
+   "triggered": false
+  },
+  {
+   "description": "Commit receipt unverifiable against sink log",
+   "evidence": null,
+   "stop_condition_id": 4,
+   "triggered": false
+  },
+  {
+   "description": "Trace schema ambiguous",
+   "evidence": null,
+   "stop_condition_id": 5,
+   "triggered": false
+  },
+  {
+   "description": "Retrieval/replay claims rely only on self-reported flags",
+   "evidence": "audit hook + replay + duplicates provide measured evidence",
+   "stop_condition_id": 6,
+   "triggered": false
+  },
+  {
+   "description": "Retrieval occurred in core run",
+   "evidence": null,
+   "stop_condition_id": 7,
+   "triggered": false
+  },
+  {
+   "description": "REPLAY_STEP occurred in core run",
+   "evidence": null,
+   "stop_condition_id": 8,
+   "triggered": false
+  },
+  {
+   "description": "Passive predictor matches action-sensitive slices",
+   "evidence": {
+    "nll_gap": 0.23632632750007632
+   },
+   "stop_condition_id": 9,
+   "triggered": false
+  },
+  {
+   "description": "Shuffled-action predictor matches action-sensitive slices",
+   "evidence": {
+    "nll_gap": 0.23205669798181694
+   },
+   "stop_condition_id": 10,
+   "triggered": false
+  },
+  {
+   "description": "Nearest-history retrieval matches core behavior",
+   "evidence": {
+    "as_nll_gap": 0.0041724483790755995,
+    "retrieval_jsd_as": 0.13352661386998915,
+    "retrieval_jsd_null": 0.029163805354506876,
+    "shift_postshift_nll_gap": -0.11189278716453976
+   },
+   "stop_condition_id": 11,
+   "triggered": false
+  },
+  {
+   "description": "Hard-coded rule baseline matches under rule shift",
+   "evidence": {
+    "postshift_nll_gap": 0.3992737227948674
+   },
+   "stop_condition_id": 12,
+   "triggered": false
+  },
+  {
+   "description": "All-action predictions do not separate in action-sensitive regime",
+   "evidence": {
+    "jsd_as": 0.07383583627289214
+   },
+   "stop_condition_id": 13,
+   "triggered": false
+  },
+  {
+   "description": "All-action predictions separate in null-control regime",
+   "evidence": {
+    "jsd_null": 0.0022752766361612132
+   },
+   "stop_condition_id": 14,
+   "triggered": false
+  },
+  {
+   "description": "Theta-learning claimed but frozen-theta control equivalent under rule shift",
+   "evidence": {
+    "delta_theta_ratio_reversal_reported_ungated": 0.8901545568548944,
+    "frozen_init_theta_postshift_gap_nats": 0.1609843507958869,
+    "frozen_theta_postshift_gap_nats": 0.20260855632031094,
+    "newrule_mass_gain_frozen_control": {
+     "mean_gain": 0.0,
+     "mean_mass_at_end": 0.16681281122992123,
+     "mean_mass_at_shift": 0.16681281122992123,
+     "n_affected_cells": 6
+    },
+    "newrule_mass_gain_hidden_rule": {
+     "mean_gain": 0.17710281869557262,
+     "mean_mass_at_end": 0.3376018002644302,
+     "mean_mass_at_shift": 0.16049898156885764,
+     "n_affected_cells": 9
+    },
+    "newrule_mass_gain_reversal": {
+     "mean_gain": 0.25184684372680094,
+     "mean_mass_at_end": 0.41865965495672214,
+     "mean_mass_at_shift": 0.16681281122992123,
+     "n_affected_cells": 6
+    },
+    "verdict": "supported"
+   },
+   "stop_condition_id": 15,
+   "triggered": false
+  },
+  {
+   "description": "ECE treated as decisive with inadequate support",
+   "evidence": null,
+   "stop_condition_id": 16,
+   "triggered": false
+  },
+  {
+   "description": "Raw all-action predictions absent",
+   "evidence": null,
+   "stop_condition_id": 17,
+   "triggered": false
+  },
+  {
+   "description": "Raw theta pre/post states absent",
+   "evidence": null,
+   "stop_condition_id": 18,
+   "triggered": false
+  },
+  {
+   "description": "Summaries replace canonical raw evidence",
+   "evidence": {
+    "nll_recompute_max_abs_diff": 0.0
+   },
+   "stop_condition_id": 19,
+   "triggered": false
+  },
+  {
+   "description": "Protocol tightening changed the mathematical skeleton",
+   "evidence": null,
+   "stop_condition_id": 20,
+   "triggered": false
+  },
+  {
+   "description": "Tests check behavior but not trace evidence",
+   "evidence": "tests assert on trace records, hashes, chronology, replay",
+   "stop_condition_id": 21,
+   "triggered": false
+  },
+  {
+   "description": "Report contains forbidden claims",
+   "evidence": "claim ceiling enforced in FINAL_REPORT.md",
+   "stop_condition_id": 22,
+   "triggered": false
+  }
+ ],
+ "triggered": []
+}

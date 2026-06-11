@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "distribution": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "option_id": {
+            "type": "string"
+          },
+          "probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number"
+          },
+          "rank": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "option_id",
+          "probability",
+          "rank"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "sum_to_one_tolerance": {
+      "const": 1e-06,
+      "type": "number"
+    }
+  },
+  "required": [
+    "distribution",
+    "sum_to_one_tolerance"
+  ],
+  "title": "ActionDistributionOverOptions",
+  "type": "object"
+}

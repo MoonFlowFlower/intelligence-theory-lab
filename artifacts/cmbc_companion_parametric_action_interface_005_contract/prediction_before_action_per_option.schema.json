@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "model_version": {
+      "type": "string"
+    },
+    "predictions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "option_id": {
+            "type": "string"
+          },
+          "predicted_effect_vector": {
+            "$ref": "candidate_option.schema.json#/properties/predicted_effect_vector"
+          },
+          "prior_support_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "uncertainty": {
+            "$ref": "candidate_option.schema.json#/properties/uncertainty"
+          }
+        },
+        "required": [
+          "option_id",
+          "predicted_effect_vector",
+          "uncertainty",
+          "prior_support_refs"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "model_version",
+    "predictions"
+  ],
+  "title": "PredictionBeforeActionPerOption",
+  "type": "object"
+}

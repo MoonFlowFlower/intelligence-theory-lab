@@ -1,0 +1,39 @@
+{
+  "baselines": {
+    "CausalOracleDiagnosticUpperBound": {
+      "diagnostic_only": true,
+      "success_rate": 1.0
+    },
+    "NuisanceHeuristicPolicy": {
+      "equivalent": false,
+      "match_rate": 0.42
+    },
+    "RawNearestNeighborPolicy": {
+      "equivalent": false,
+      "match_rate": 0.58
+    },
+    "StaticVisualTokenPolicy": {
+      "equivalent": false,
+      "heldout_failure_rate": 0.62,
+      "match_rate": 0.46
+    }
+  },
+  "behavior_only_replay": {
+    "passed": true,
+    "reconstructed_decisions": 20,
+    "replay_inputs": [
+      "raw_observation",
+      "own_intervention_history",
+      "observed_outcomes",
+      "learned_representation_uncertainty"
+    ],
+    "total_decisions": 20
+  },
+  "causal_swap_behavior_change_rate": 1.0,
+  "effect_swap_change_rate": 1.0,
+  "heldout_spurious_token_failure_rate": 0.08,
+  "label_permutation_change_rate": 0.0,
+  "nuisance_swap_behavior_change_rate": 0.0,
+  "stop_condition": null,
+  "verdict": "nuisance_invariance_causal_sensitivity_passed"
+}

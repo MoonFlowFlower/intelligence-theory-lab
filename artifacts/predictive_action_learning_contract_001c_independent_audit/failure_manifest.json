@@ -1,0 +1,46 @@
+{
+  "task_id": "predictive_action_learning_contract_001c_independent_audit",
+  "blocking_failures": [],
+  "stop_conditions_triggered": [],
+  "non_blocking_findings": [
+    {
+      "id": "C1",
+      "severity": "wording/report",
+      "summary": "001C suite derived headers (CONFIG.json, commitment_report.json) carry frozen 001 'local_mock' constants contradicted by all run-level records (rfc3161_anchored). Conservative direction: under-claims external verifiability. Not a silent local_mock fallback: zero evidence-run commits used the local mock sink (local_mock_scan.json; raw_evidence_inventory.json shows 44 runs rfc3161_anchored + 1 disabled-by-design).",
+      "raw_evidence": [
+        "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/commitment_report.json (header vs sample_receipts)",
+        "artifacts/predictive_action_learning_contract_001c_independent_audit/local_mock_scan.json",
+        "artifacts/predictive_action_learning_contract_001c_independent_audit/raw_evidence_inventory.json"
+      ]
+    },
+    {
+      "id": "C2",
+      "severity": "wording/derived-label",
+      "summary": "abl4_freeze_belief_update replay mismatch (max_abs_diff 0.6436, belief_post only) is a runner-logging vs replay-check field-semantics asymmetry (applied vs computed posterior), not hidden state; abl9 replay failure is the expected consequence of an un-traced mid-run deletion. Both transparently recorded in frozen 001 replay_report.json and reproduced bit-identically in 001C. No gate or claim depends on abl4/abl9 replay (E3 gates core runs only).",
+      "raw_evidence": [
+        "artifacts/predictive_action_learning_contract_001/suite_2026-06-10_r1/replay_report.json",
+        "artifacts/predictive_action_learning_contract_001c_independent_audit/validator_recheck.json",
+        "predictive_action_learning_contract_001/runner.py:251 (read-only inspection)",
+        "predictive_action_learning_contract_001/validator.py:214 (read-only inspection)"
+      ]
+    },
+    {
+      "id": "C3",
+      "severity": "wording/precision (optional)",
+      "summary": "'Anchors prove commitment before that step's own outcome reveal' at anchor steps additionally relies on sink synchronous control flow + internal monotonic ordering; the external token alone proves existence no later than genTime.",
+      "raw_evidence": [
+        "predictive_action_learning_contract_001c/sink.py:82-84 (read-only inspection)",
+        "artifacts/predictive_action_learning_contract_001c_independent_audit/chronology_support_map.json"
+      ]
+    },
+    {
+      "id": "L1",
+      "severity": "limitation (documented, not correctable by wording)",
+      "summary": "No version-control freeze evidence: all 001/001B/001C code, docs, and artifacts are untracked in git. 'Thresholds/seeds unchanged between 001 and 001C' is supported (deep-identical CONFIG.json, same config_manifest_hash, byte-identical masked behavior). 'Thresholds frozen before the original 001 run' rests on artifact-internal declarations (declared_before_any_run, threshold justifications) and file mtimes only.",
+      "raw_evidence": [
+        "git status --porcelain (untracked: predictive_action_learning_contract_001*/, artifacts/predictive_action_learning_contract_001*/, docs/PREDICTIVE-*)",
+        "artifacts/predictive_action_learning_contract_001c_independent_audit/audit_execution_summary.json"
+      ]
+    }
+  ]
+}

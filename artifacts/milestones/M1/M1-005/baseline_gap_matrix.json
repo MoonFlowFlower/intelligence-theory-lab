@@ -1,0 +1,59 @@
+{
+  "task_id": "M1-005",
+  "baseline_gap_blocks_theory_support": true,
+  "baseline_gap_blocks_independent_reimplementation": false,
+  "baseline_gaps": [
+    {
+      "baseline": "action_label_heuristic",
+      "coverage": "strong",
+      "gap": "low",
+      "reason": "Core label/effect split directly targets this failure."
+    },
+    {
+      "baseline": "static_safety_table",
+      "coverage": "strong",
+      "gap": "low_medium",
+      "reason": "Static shortcuts are repeatedly attacked, but independent implementation remains useful."
+    },
+    {
+      "baseline": "nearest_neighbor_trace_lookup",
+      "coverage": "moderate",
+      "gap": "medium",
+      "reason": "Covered in several toy contracts; richer continuous traces remain a risk."
+    },
+    {
+      "baseline": "model_based_rl_learned_dynamics",
+      "coverage": "proxy",
+      "gap": "medium_high",
+      "reason": "Cycle 010 included a generic model-based MPC proxy, not a full strong learned-dynamics implementation."
+    },
+    {
+      "baseline": "causal_graph_learner_plus_planner",
+      "coverage": "limited",
+      "gap": "high",
+      "reason": "LCC overlaps strongly with causal control and needs direct tournament testing."
+    },
+    {
+      "baseline": "active_inference_expected_free_energy",
+      "coverage": "proxy",
+      "gap": "high",
+      "reason": "A strong active-inference implementation has not been independently tested."
+    },
+    {
+      "baseline": "empowerment_or_information_gain_planner",
+      "coverage": "proxy",
+      "gap": "high",
+      "reason": "Current proxies are not enough to reject controllability-based explanations."
+    },
+    {
+      "baseline": "meta_rl_recurrent_policy",
+      "coverage": "limited",
+      "gap": "high",
+      "reason": "A recurrent learner may match behavior without explicit LCC framing."
+    }
+  ],
+  "recommended_sequence": [
+    "independent_reimplementation_contract",
+    "cross_theory_tournament_contract"
+  ]
+}

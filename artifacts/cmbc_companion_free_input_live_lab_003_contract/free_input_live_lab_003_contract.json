@@ -1,0 +1,106 @@
+{
+  "allowed_future_execution_verdicts": [
+    "free_input_causal_probe_bounded_pass",
+    "rag_equivalent_under_free_input_causal_probes",
+    "strong_heuristic_equivalent_under_free_input_causal_probes",
+    "expanded_contextual_heuristic_equivalent_under_free_input_causal_probes",
+    "free_input_probe_extraction_failed",
+    "outcome_coding_unstable",
+    "behavior_only_replay_failed",
+    "renderer_controls_action",
+    "inconclusive_revise_contract"
+  ],
+  "baseline_requirements": [
+    "RAGSummaryMemoryBaseline",
+    "StrongHumanLikeHeuristicBaseline",
+    "ExpandedContextualHeuristicBaseline"
+  ],
+  "claim_ceiling": "bounded free-input offline/live-lab contract readiness only; no execution evidence",
+  "contract_id": "CMBC-COMPANION-FREE-INPUT-LIVE-LAB-003-CONTRACT",
+  "evidence_classes": [
+    "free_input_capture",
+    "outcome_coding_discipline",
+    "causal_probe_extraction",
+    "baseline_comparison",
+    "replay_deletion_perturbation_proof"
+  ],
+  "forbidden": [
+    "EGO integration",
+    "real companion agent",
+    "real proactive messages",
+    "background autonomy",
+    "LLM action selection",
+    "selector patch to pass",
+    "RAG baseline weakening",
+    "threshold change after seeing results",
+    "real companion readiness claim",
+    "affection_score",
+    "long_term_memory_weight",
+    "semantic action labels exposed to candidate",
+    "raw text memory as learning state",
+    "hidden future state",
+    "evaluator metric as candidate input"
+  ],
+  "minimum_execution_gates": {
+    "behavior_only_replay_match_rate": 1.0,
+    "causal_probe_case_count_min": 8,
+    "expanded_contextual_heuristic_causal_probe_match_rate_max": 0.5,
+    "free_input_turn_count_min": 20,
+    "outcome_perturbation_effect": true,
+    "rag_causal_probe_match_rate_max": 0.5,
+    "renderer_action_change_rate": 0.0,
+    "strong_heuristic_causal_probe_match_rate_max": 0.5,
+    "supporting_prior_deletion_effect": true
+  },
+  "must_report_metrics": [
+    "free_input_turn_count",
+    "causal_probe_case_count",
+    "rag_visible_action_match_rate",
+    "rag_causal_probe_match_rate",
+    "strong_heuristic_causal_probe_match_rate",
+    "expanded_contextual_heuristic_causal_probe_match_rate",
+    "renderer_action_change_rate",
+    "behavior_only_replay_match_rate",
+    "supporting_prior_deletion_effect",
+    "outcome_perturbation_effect"
+  ],
+  "required_causal_probe_types": [
+    "same_text_different_causal_history",
+    "same_history_different_feedback_outcome",
+    "supporting_prior_deletion",
+    "predicted_outcome_perturbation",
+    "feedback_admission_single_contradiction",
+    "feedback_admission_repeated_feedback",
+    "later_correction_context_narrowing",
+    "renderer_adversarial_isolation"
+  ],
+  "required_future_execution_artifacts": [
+    "FREE_INPUT_LIVE_LAB_003_STATUS.md",
+    "freeze_manifest.json",
+    "free_input_transcript.jsonl",
+    "outcome_coding_ledger.jsonl",
+    "causal_probe_extraction_report.json",
+    "causal_probe_results.json",
+    "baseline_comparison_report.json",
+    "supporting_prior_deletion_report.json",
+    "outcome_perturbation_report.json",
+    "renderer_isolation_report.md",
+    "behavior_only_replay.json",
+    "free_input_live_lab_003_result.json"
+  ],
+  "stop_conditions": [
+    "rag_causal_probe_match_rate >= 0.95",
+    "strong_heuristic_causal_probe_match_rate >= 0.95",
+    "expanded_contextual_heuristic_causal_probe_match_rate >= 0.95",
+    "free_input_cannot_form_stable_causal_probes",
+    "supporting_prior_deletion_no_effect",
+    "outcome_perturbation_no_effect",
+    "feedback_admission_probe_failed",
+    "renderer_controls_action",
+    "behavior_only_replay_failed",
+    "outcome_coding_unstable",
+    "selector_patch_detected",
+    "rag_baseline_weakened",
+    "threshold_changed_after_results"
+  ]
+}

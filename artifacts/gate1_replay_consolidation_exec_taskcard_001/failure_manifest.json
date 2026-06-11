@@ -1,0 +1,17 @@
+{
+  "record_type": "failure_manifest",
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001",
+  "entries": [
+    {
+      "failure_id": "F1_env_prereg_lumpable_observation_map",
+      "detected_utc": "2026-06-11T01:48:00Z",
+      "detected_before_any_run": true,
+      "detection_method": "closed-form analysis of the frozen kernel; no data observed, no run executed (run ledger empty at detection time)",
+      "description": "The anchored environment_preregistration.json froze the B-variant observation map as o = s mod 4. Because the ring dynamics are additive (s' = s + d mod 12) and the observation map is a congruence, the observation process is lumpable: the next observation class is fully determined by the current observation class and action, for all three displacements. Consequently (a) belief over hidden states carries zero information beyond the current observation, so the latent-dynamics candidate B is structurally equivalent to a memoryless observation predictor in this environment, and (b) KL(P(o'|s,a) || P(o'|o,a)) = 0 for every state-action, so the preregistered B_slice_4 alias-disambiguation mask is empty (0/0, slice undefined).",
+      "classification": "executor design error in the Stage 0 preregistration record; environment fails its own preregistered purpose for the secondary candidate",
+      "consequence_if_run_as_frozen": "B_slice_4 comparison non-identifiable (margin-block section 3: verdict = comparison_nonidentifiable); candidate B cannot be meaningfully tested; B comparisons on other slices degenerate to memoryless-predictor comparisons",
+      "action_taken": "stopped before any run; amendment proposed to human owner (see environment_preregistration_amendment_001.json); margins, seeds, slices, controls, candidates, compute basis all untouched; this manifest is preserved as failure evidence per evidence contract",
+      "what_this_is_not": "not a margin change, not threshold tuning, not post-result patching — no results existed at detection time"
+    }
+  ]
+}
