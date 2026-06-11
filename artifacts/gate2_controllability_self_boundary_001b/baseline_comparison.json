@@ -1,0 +1,47 @@
+{
+  "baseline_names": [
+    "retrieval / summary retrieval",
+    "identity-tag lookup",
+    "actor-id table",
+    "action-outcome count table",
+    "transition table / successor map / graph cache",
+    "behavior-only imitation",
+    "trace-only replay as hygiene only",
+    "frozen-controllability model",
+    "random-action policy",
+    "oracle environment-label control"
+  ],
+  "best_fair_baseline": {
+    "baseline_name": "retrieval / summary retrieval",
+    "match_rate": 0.5
+  },
+  "candidate_match_rate": 1.0,
+  "claim_ceiling": "bounded Gate2 controllability / self-boundary executable preflight evidence only",
+  "fair_baseline_match_blocks_gate": false,
+  "graph_cache_family_variants": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal"
+  ],
+  "oracle_environment_label_control": {
+    "classification": "oracle_leakage_upper_bound",
+    "counts_as_fair_baseline": false,
+    "match_rate": 1.0
+  },
+  "task_id": "GATE2-CONTROLLABILITY-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B",
+  "thresholds": {
+    "controllability_error_equivalence_band": 0.05,
+    "later_action_selection_match_threshold": 0.95,
+    "match_rate_threshold": 0.95,
+    "self_boundary_update_match_threshold": 0.9
+  },
+  "trace_only_replay": {
+    "classification": "trace_integrity_hygiene",
+    "counts_as_fair_baseline": false,
+    "counts_as_mechanism_evidence": false,
+    "match_rate": 1.0
+  }
+}

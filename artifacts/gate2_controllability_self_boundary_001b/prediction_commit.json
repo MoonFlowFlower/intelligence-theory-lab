@@ -1,0 +1,58 @@
+{
+  "access_contract": {
+    "allowed_inputs": [
+      "support_cases",
+      "visible_heldout_queries",
+      "candidate_internal_state"
+    ],
+    "forbidden_access_used": false,
+    "forbidden_inputs": [
+      "heldout_observed_effects",
+      "heldout_later_actions",
+      "oracle_environment_labels",
+      "future_outcomes"
+    ]
+  },
+  "claim_ceiling": "bounded Gate2 controllability / self-boundary executable preflight evidence only",
+  "phase": "A_prediction_commit_before_reveal",
+  "predictions": [
+    {
+      "case_id": "G2-H-001",
+      "confidence": 1.0,
+      "predicted_control_effect": "move",
+      "predicted_later_action": "repeat_nudge"
+    },
+    {
+      "case_id": "G2-H-002",
+      "confidence": 1.0,
+      "predicted_control_effect": "stabilize",
+      "predicted_later_action": "repeat_shield"
+    },
+    {
+      "case_id": "G2-H-003",
+      "confidence": 1.0,
+      "predicted_control_effect": "drift",
+      "predicted_later_action": "inspect_external"
+    },
+    {
+      "case_id": "G2-H-004",
+      "confidence": 1.0,
+      "predicted_control_effect": "no_change",
+      "predicted_later_action": "choose_nudge"
+    },
+    {
+      "case_id": "G2-H-005",
+      "confidence": 1.0,
+      "predicted_control_effect": "drift",
+      "predicted_later_action": "inspect_external"
+    },
+    {
+      "case_id": "G2-H-006",
+      "confidence": 1.0,
+      "predicted_control_effect": "drift",
+      "predicted_later_action": "inspect_external"
+    }
+  ],
+  "target_prediction_count": 6,
+  "task_id": "GATE2-CONTROLLABILITY-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B"
+}
