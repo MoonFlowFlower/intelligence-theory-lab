@@ -1,0 +1,170 @@
+{
+  "task_id": "GATE0-PREDICTIVE-ACTION-POSTFREEZE-SHORTCUT-AUDIT-001A",
+  "layer": "bounded post-freeze evidence-risk audit only",
+  "mode": "read-only audit; no Gate0 rewrite; no old artifact repair; no Gate1, bridge, EGO, model-class reset, or new mechanism authorization",
+  "verdict": "gate0_postfreeze_shortcut_audit_medium_risk_with_claim_caveats",
+  "source_artifacts_read": [
+    "docs/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_CANONICAL_RECORD.md",
+    "docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CANONICAL-FREEZE.md",
+    "docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CLOSEOUT.md",
+    "docs/audits/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_INDEPENDENT_AUDIT.md",
+    "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/result_001c.json",
+    "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/result.json",
+    "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/baseline_results.json",
+    "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/ablation_results.json",
+    "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/perturbation_results.json",
+    "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1/replay_report.json",
+    "artifacts/predictive_action_learning_contract_001c_independent_audit/result.json",
+    "artifacts/predictive_action_learning_contract_001c_independent_audit/retrieval_recompute.json",
+    "artifacts/process_intervention_preflight_001b/result.json",
+    "artifacts/process_intervention_preflight_001b/baseline_comparison.json",
+    "artifacts/process_intervention_preflight_001b/control_comparison.json",
+    "artifacts/process_intervention_failure_rca_001a/result.json"
+  ],
+  "readonly_boundary": {
+    "old_gate0_artifacts_modified": false,
+    "gate0_verdict_rewritten": false,
+    "historical_evidence_reinterpreted_upward": false,
+    "thresholds_changed": false,
+    "new_mechanism_code_implemented": false
+  },
+  "shortcut_risk_classification": {
+    "overall": "medium",
+    "count_statistic_shortcut_risk": "medium",
+    "graph_cache_or_full_trace_cache_risk": "medium",
+    "metric_collapse_risk": "medium",
+    "replay_as_mechanism_evidence_risk": "high_if_misquoted",
+    "rationale": "Gate0 remains bounded evidence, but later 001B showed a closely related weak-distribution family can collapse to fair count/stat/cache/replay controls at 1.0. Gate0 did not run those fair control families."
+  },
+  "audit_questions": {
+    "count_statistic_shortcut_risk": {
+      "answer": "medium",
+      "evidence": "No Gate0 001C fair online_count_statistic/count_table family was found; later 001B best fair control was online_count_statistic with match_rate/update_trace_match_rate/later_behavior_match_rate all 1.0."
+    },
+    "action_context_observation_key_uniqueness": {
+      "answer": "mixed",
+      "evidence": {
+        "visible_env_obs_action_keys": "not target-deterministic in selected Gate0 traces",
+        "selected_steps": 8400,
+        "env_obs_action_key_groups": 63,
+        "env_obs_action_conflict_groups": 63,
+        "run_time_keys": "deterministic by construction; cache/replay shortcut surface"
+      }
+    },
+    "deterministic_key_conflicts_or_heldout_compositions": {
+      "answer": "visible-key conflicts present; formal heldout composition gate not found",
+      "evidence": "All 9 visible obs/action compositions were covered in selected env families; no heldout-composition non-equivalence evidence was found."
+    },
+    "fair_baselines_executed": {
+      "answer": "partial",
+      "executed": [
+        "passive_obs_markov",
+        "shuffled_action",
+        "action_token_only",
+        "nearest_history_retrieval",
+        "hardcoded_true_rule",
+        "frozen_theta",
+        "belief_only_fixed_theta",
+        "oracle_leak_sanity",
+        "coldstart_duplicate",
+        "action/belief/theta/memory ablations"
+      ],
+      "not_found": [
+        "online_count_statistic",
+        "count_table",
+        "transition_table",
+        "successor_map",
+        "graph_cache",
+        "fsm_planner",
+        "episodic_traversal"
+      ]
+    },
+    "baseline_match_or_near_match": {
+      "answer": "yes",
+      "evidence": {
+        "retrieval_as_nll_gap": 0.0041724483790755995,
+        "declared_nll_match_margin": 0.05,
+        "retrieval_shift_postshift_gap_core_minus_retrieval": -0.11189278716453976,
+        "hardcoded_as_nll": 0.788133767948799,
+        "core_as_nll": 0.8811638825373932
+      }
+    },
+    "update_metric_distinguishes_process_update_from_target_match": {
+      "answer": "partial",
+      "evidence": "Gate0 has theta/belief update traces and freeze/deletion ablations, but no fair count/stat/cache challenger re-derived an alternative update trace under the same metric. 001B showed update_trace_match_rate can collapse when predictions/targets match."
+    },
+    "counterfactual_action_contrasts_present": {
+      "answer": "yes_bounded",
+      "evidence": {
+        "P7_jsd_as": 0.07383583627289214,
+        "P7_jsd_null": 0.0022752766361612132,
+        "sep_min_jsd_nats": 0.05,
+        "collapse_max_jsd_nats": 0.02
+      }
+    },
+    "learning_freeze_history_replacement_source_deletion_ablations": {
+      "answer": "partial",
+      "present": [
+        "theta freeze",
+        "belief freeze",
+        "memory deletion/reset",
+        "cache flush reconstruction hygiene"
+      ],
+      "not_found": [
+        "full history replacement lineage",
+        "source-memory deletion lineage beyond reset",
+        "fair count/stat/cache deletion challenger"
+      ]
+    },
+    "replay_treated_only_as_hygiene": {
+      "answer": "must_remain_hygiene_only",
+      "evidence": "Gate0 replay max_abs_diff 0.0 supports trace/equation consistency; 001B trace_only_replay matched at 1.0, proving replay can be a shortcut surface."
+    },
+    "claim_ceiling_and_authorization": {
+      "answer": "bounded_no_authorization",
+      "evidence": "Gate0 claim remains bounded; all authorization flags emitted false."
+    }
+  },
+  "prior_negative_evidence": {
+    "process_intervention_001b_verdict": "process_intervention_preflight_001b_failed_control_separation_statistic_match",
+    "best_fair_control": "online_count_statistic",
+    "best_fair_control_family": "count_statistic",
+    "match_rate": 1.0,
+    "update_trace_match_rate": 1.0,
+    "later_behavior_match_rate": 1.0,
+    "matching_controls": [
+      "online_count_statistic",
+      "count_table",
+      "graph_cache",
+      "transition_table",
+      "successor_map",
+      "trace_only_replay",
+      "behavior_only_replay"
+    ],
+    "rca_most_likely_failure_class": "task_distribution_weak"
+  },
+  "acceptance_gate_status": {
+    "all_gate0_source_artifacts_read_only": true,
+    "shortcut_risk_classified_with_evidence": true,
+    "baseline_control_coverage_recorded": true,
+    "metric_risk_matrix_records_prediction_target_collapse_risk": true,
+    "claim_usage_caveat_emitted": true,
+    "authorization_flags_all_false": true,
+    "json_artifacts_parseable": true,
+    "claim_ceiling_bounded_postfreeze_audit_only": true
+  },
+  "stop_conditions_triggered": [],
+  "claim_ceiling": "bounded Gate0 post-freeze shortcut-risk audit only",
+  "what_this_does_not_prove": [
+    "Gate0 mechanism validity",
+    "Gate0 mechanism invalidity",
+    "theory validity",
+    "theory falsity",
+    "Gate1 readiness",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "companion readiness"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "task_id": "GATE0-PREDICTIVE-ACTION-POSTFREEZE-SHORTCUT-AUDIT-001A",
+  "gate0_executed_surfaces": [
+    {"surface": "passive_obs_markov", "coverage": "executed", "status": "weaker than core AS/shift; zero action-conditioned update"},
+    {"surface": "shuffled_action", "coverage": "executed", "status": "A2 nll_gap 0.23387227154304846"},
+    {"surface": "action_token_only", "coverage": "executed", "status": "B3 nll_gap 0.23405351830155674; trap raw JSD exposes spurious action correlation"},
+    {"surface": "nearest_history_retrieval", "coverage": "executed", "status": "AS near-match and shift stronger; binding retrieval caveat"},
+    {"surface": "hardcoded_true_rule", "coverage": "executed", "status": "stationary AS stronger than core but weak on shift/adaptation"},
+    {"surface": "frozen_theta", "coverage": "executed", "status": "A3 AS gap 0.2175036609329758; shift postshift gap 0.1609843507958869"},
+    {"surface": "belief_only_fixed_theta", "coverage": "executed", "status": "does not match core; AS gap 0.2175036609329758"},
+    {"surface": "oracle_leak_sanity", "coverage": "executed", "status": "future-label leak sanity floor breach caught"},
+    {"surface": "coldstart_duplicate", "coverage": "executed", "status": "duplicate streams identical after volatile stripping"}
+  ],
+  "gate0_missing_or_not_found_fair_controls": [
+    {"surface": "online_count_statistic", "risk": "medium", "reason": "001B best fair control matched at 1.0"},
+    {"surface": "count_table", "risk": "medium", "reason": "001B matched at 1.0"},
+    {"surface": "transition_table", "risk": "medium", "reason": "001B graph/cache family matched at 1.0"},
+    {"surface": "successor_map", "risk": "medium", "reason": "001B graph/cache family matched at 1.0"},
+    {"surface": "graph_cache", "risk": "medium", "reason": "001B intervention-labeled cache matched at 1.0"},
+    {"surface": "fsm_planner", "risk": "unknown", "reason": "not found as fair Gate0 challenger"},
+    {"surface": "episodic_traversal", "risk": "unknown_to_medium", "reason": "not found as fair Gate0 challenger"}
+  ],
+  "near_match_or_match_findings": {
+    "retrieval_as_nll": {"core": 0.8811638825373932, "retrieval": 0.8853363309164688, "gap": 0.0041724483790755995, "margin": 0.05, "status": "matched_within_margin"},
+    "retrieval_shift_nll": {"core": 0.9362315793189832, "retrieval": 0.8243387921544434, "core_minus_retrieval": -0.11189278716453976, "status": "retrieval_better_postshift"},
+    "retrieval_null_jsd": {"core": 0.0022752766361612132, "retrieval": 0.029163805354506876, "collapse_threshold": 0.02, "status": "retrieval_false_separation"},
+    "hardcoded_stationary_rule": {"core_as_nll": 0.8811638825373932, "hardcoded_as_nll": 0.788133767948799, "hardcoded_shift_nll": 1.3355053021138505, "status": "stationary shortcut strong but not adaptive"}
+  },
+  "matrix_verdict": "baseline_surface_partial_with_medium_claim_caveat"
+}

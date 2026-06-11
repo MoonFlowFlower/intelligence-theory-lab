@@ -1,0 +1,61 @@
+{
+  "task_id": "GATE0-PREDICTIVE-ACTION-POSTFREEZE-SHORTCUT-AUDIT-001A",
+  "metric_surfaces": [
+    {
+      "metric": "raw all-action prediction JSD",
+      "evidence": {"jsd_as": 0.07383583627289214, "jsd_null": 0.0022752766361612132, "sep_min": 0.05, "collapse_max": 0.02},
+      "strength": "bounded same-history action contrast",
+      "collapse_risk": "medium",
+      "reason": "does not rule out fair statistic/cache reproduction of the same prediction surface"
+    },
+    {
+      "metric": "NLL predictive performance",
+      "evidence": {"core_as": 0.8811638825373932, "retrieval_as": 0.8853363309164688, "retrieval_as_gap": 0.0041724483790755995, "core_shift": 0.9362315793189832, "retrieval_shift": 0.8243387921544434},
+      "strength": "bounded predictive behavior measure",
+      "collapse_risk": "high_if_used_as_superiority",
+      "reason": "retrieval matches AS within margin and is better post-shift"
+    },
+    {
+      "metric": "theta update / new-rule mass gain",
+      "evidence": {"hidden_rule_gain": 0.17710281869557262, "transition_reversal_gain": 0.25184684372680094, "frozen_gain": 0.0, "threshold": 0.1},
+      "strength": "trace-visible update evidence with frozen-theta contrast",
+      "collapse_risk": "medium",
+      "reason": "no fair count/stat/cache challenger re-derived alternative update trace under same metric"
+    },
+    {
+      "metric": "belief/theta freeze ablation",
+      "evidence": {"theta_freeze_as_gap": 0.2175036609329758, "theta_freeze_shift_gap": 0.1609843507958869, "belief_freeze_gap": 0.22866378436623636},
+      "strength": "necessity inside frozen skeleton",
+      "collapse_risk": "medium",
+      "reason": "component necessity is not process uniqueness against external fair controls"
+    },
+    {
+      "metric": "memory deletion/reset",
+      "evidence": {"nll_before": 0.9088971038387273, "nll_after": 1.0227613408213012, "nll_jump": 0.11386423698257386},
+      "strength": "learned-state dependence inside frozen run",
+      "collapse_risk": "medium",
+      "reason": "not equivalent to source-memory deletion lineage or full history replacement"
+    },
+    {
+      "metric": "replay / hash-chain / anchors",
+      "evidence": {"core_replay_max_abs_diff": 0.0, "anchor_tokens_verified": 257, "001b_trace_only_replay_match_rate": 1.0},
+      "strength": "hygiene, chronology, integrity",
+      "collapse_risk": "high_if_treated_as_mechanism_evidence",
+      "reason": "replay/hash-chain does not prove mechanism non-equivalence"
+    },
+    {
+      "metric": "deterministic key structure",
+      "evidence": {"selected_steps": 8400, "env_obs_action_conflict_groups": 63, "run_time_conflict_groups": 0, "obs_action_compositions": "9_of_9_per_selected_env"},
+      "strength": "visible keys conflict; full-trace keys deterministic",
+      "collapse_risk": "medium",
+      "reason": "formal heldout composition evidence not found"
+    }
+  ],
+  "summary": {
+    "does_update_metric_fully_distinguish_process_update_from_prediction_target_match": false,
+    "does_update_metric_partially_support_bounded_action_conditioned_update": true,
+    "can_gate0_be_used_as_full_process_update_uniqueness_evidence": false,
+    "can_gate0_be_used_as_bounded_predictive_action_evidence_with_caveats": true,
+    "metric_risk_verdict": "medium"
+  }
+}
