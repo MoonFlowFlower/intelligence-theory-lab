@@ -1,0 +1,75 @@
+{
+  "task_id": "EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A",
+  "record_type": "evidence-contract terminology amendment",
+  "created_utc": "2026-06-11T11:55:03Z",
+  "layer": "mechanism-hypothesis / evidence-contract governance",
+  "execution_type": "documentation-only governance amendment",
+  "verdict": "evidence_gate_interpretability_reframe_001a_documentation_ready",
+  "authorizations": {
+    "mechanism_implementation_authorized": false,
+    "mechanism_training_authorized": false,
+    "agent_training_authorized": false,
+    "model_class_reset_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_integration_authorized": false,
+    "llm_rag_companion_emotion_relationship_user_model_modules_authorized": false
+  },
+  "parent_inputs_read": [
+    "docs/NEGATIVE_EVIDENCE_LEDGER.md",
+    "theories/failed_claims.yaml",
+    "docs/GATE1-REPLAY-CONSOLIDATION-LINEAGE-CLOSEOUT-001.md",
+    "docs/THEORY-RESET-NEW-PROBLEM-DEFINITION-001A.md",
+    "docs/PROCESS-INTERVENTION-PREFLIGHT-001A.md",
+    "docs/codex/tasks/PROCESS-INTERVENTION-PREFLIGHT-001B-EXECUTABLE-PREFLIGHT-TASK-CARD.md",
+    "docs/research/SAME_AGENT_BRIDGE_PROTOCOL_001.md",
+    "docs/CLAIM_BOUNDARY.md"
+  ],
+  "external_sources_verified": [
+    {
+      "name": "OpenAI - Language models can explain neurons in language models",
+      "url": "https://openai.com/index/language-models-can-explain-neurons-in-language-models/",
+      "bounded_lesson": "automated neuron explanations are imperfect and internal model understanding remains limited"
+    },
+    {
+      "name": "Anthropic - Mapping the Mind of a Large Language Model",
+      "url": "https://www.anthropic.com/research/mapping-mind-language-model",
+      "bounded_lesson": "model internals are distributed and black-box-like; intervention on features is stronger causal evidence than correlation alone"
+    }
+  ],
+  "terminology_reframe": {
+    "explainability": "auditability",
+    "interpretable_state": "observable_state_evidence",
+    "human_readable_mechanism": "replayable_causal_trace",
+    "explain_why_it_chose_action": "show_intervention_sensitive_behavior",
+    "prove_internal_meaning": "prove_baseline_non_equivalence"
+  },
+  "black_box_allowance": {
+    "allowed": true,
+    "condition": "training/update history, evaluation boundary, state snapshots or hashes, counterfactual sensitivity, replay behavior, ablation sensitivity, leakage boundary, and baseline non-equivalence are auditable"
+  },
+  "entrypoint_integration": {
+    "AGENTS.md": {
+      "integrated": true,
+      "rule": "Future tasks involving explainability, interpretability, black-box learned components, neural or high-dimensional latent states, internal-state evidence, or claims that a mechanism is not explainable by a simpler route must apply and cite docs/EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A.md."
+    }
+  },
+  "acceptance_gate_fields": {
+    "explainability_not_used_as_hard_gate": true,
+    "human_semantic_latent_state_labels_not_required": true,
+    "black_box_learned_core_allowed_only_under_audit_contract": true,
+    "trace_required": true,
+    "replay_required": true,
+    "ablation_required": true,
+    "counterfactual_intervention_required": true,
+    "source_memory_deletion_or_equivalent_required": true,
+    "baseline_non_equivalence_required": true,
+    "graph_cache_family_controls_not_disabled": true,
+    "rag_or_summary_baseline_considered_when_memory_claim_exists": true,
+    "leakage_scan_required": true,
+    "claim_ceiling_enforced": true,
+    "no_consciousness_agency_emotion_or_EGO_readiness_claim": true
+  },
+  "stop_conditions_encountered": [],
+  "claim_ceiling": "evidence-contract terminology clarification only; not mechanism evidence, not black-box route validation, not model-class reset readiness, not Gate1 readiness, not same-agent bridge readiness, not EGO readiness"
+}
