@@ -1,0 +1,119 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A",
+  "layer": "bounded Gate1 task-card drafting only",
+  "verdict": "gate1_replay_consolidation_task_card_001a_bounded_pass",
+  "claim_ceiling": "bounded Gate1 replay/consolidation task-card readiness only",
+  "freeze_anchor": {
+    "artifact": "PI-HD-ADMISSION-001",
+    "commit": "6a83b9d"
+  },
+  "gate1_task_card_drafted": true,
+  "required_sections": [
+    "Problem definition",
+    "Current stage",
+    "Hypothesis",
+    "Baseline families",
+    "Ablations",
+    "Trace / replay requirement",
+    "Access and leakage controls",
+    "Acceptance gate",
+    "Claim ceiling",
+    "Stop conditions",
+    "Rollback plan",
+    "Non-claims"
+  ],
+  "baseline_families": [
+    "retrieval / summary retrieval",
+    "behavior-only replay",
+    "trace-only replay as hygiene only",
+    "online count/statistic controls",
+    "transition table / successor map / graph cache controls",
+    "target-free generative replay challenger",
+    "frozen-history control",
+    "no-consolidation control",
+    "shuffled-replay control",
+    "corrupted-replay control"
+  ],
+  "ablations": [
+    "learning freeze",
+    "history replacement",
+    "consolidation disabled",
+    "replay order shuffled",
+    "replay content corrupted",
+    "heldout composition",
+    "delayed-effect cases",
+    "observable-key conflict cases",
+    "partial-observability cases",
+    "counterfactual action contrast"
+  ],
+  "allowed_verdicts": [
+    "gate1_replay_consolidation_task_card_001a_bounded_pass",
+    "gate1_replay_consolidation_task_card_001a_failed_scope_leak",
+    "gate1_replay_consolidation_task_card_001a_failed_missing_baselines",
+    "gate1_replay_consolidation_task_card_001a_failed_missing_ablations",
+    "gate1_replay_consolidation_task_card_001a_failed_claim_inflation",
+    "gate1_replay_consolidation_task_card_001a_invalid_artifact_mutation"
+  ],
+  "acceptance_gate": {
+    "falsifiable_gate1_execution_plan_defined": true,
+    "explicit_baselines_defined": true,
+    "explicit_ablations_defined": true,
+    "trace_replay_requirements_defined": true,
+    "leakage_controls_defined": true,
+    "artifact_requirements_defined": true,
+    "verdict_set_defined": true,
+    "claim_ceiling_defined": true,
+    "stop_conditions_defined": true,
+    "rollback_plan_defined": true
+  },
+  "authorization_flags": {
+    "gate1_execution_authorized": false,
+    "gate1_implementation_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "mechanism_tournament_authorized": false,
+    "model_class_reset_authorized": false,
+    "new_mechanism_code_authorized": false,
+    "old_artifact_mutation_authorized": false,
+    "historical_001b_reclassification_authorized": false,
+    "001e_authorized": false,
+    "new_replay_taxonomy_authorized": false,
+    "new_baseline_implementation_authorized": false
+  },
+  "strongest_baseline_explanation": "Later behavior may be explainable by retrieval, trace replay hygiene, count/statistic controls, graph or transition controls, frozen histories, or behavior-only imitation without consolidation.",
+  "strongest_reason_this_task_may_be_invalid": "PI-HD-ADMISSION-001 authorizes drafting only. Any Gate1 execution, runtime implementation, old artifact mutation, or claim upgrade invalidates this task.",
+  "what_would_falsify_current_framing": [
+    "any old artifact mutation",
+    "any Gate1 execution side effect",
+    "any positive execution or implementation authorization flag",
+    "missing required baseline family",
+    "missing required ablation",
+    "claim stronger than task-card readiness"
+  ],
+  "evidence_still_insufficient_for": [
+    "Gate1 pass",
+    "mechanism validity",
+    "theory validity",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "emotion",
+    "companion readiness",
+    "stable user benefit"
+  ],
+  "task_tests_mechanism_or_behavioral_resemblance": "This artifact tests task-card completeness and boundary discipline only. A future Gate1 execution would test a replay/consolidation mechanism proxy, not consciousness or agency.",
+  "non_claims": [
+    "Gate1 pass",
+    "mechanism validity",
+    "theory validity",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "emotion",
+    "companion readiness",
+    "stable user benefit"
+  ]
+}

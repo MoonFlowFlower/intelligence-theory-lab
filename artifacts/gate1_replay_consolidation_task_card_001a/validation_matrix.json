@@ -1,0 +1,102 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A",
+  "layer": "bounded Gate1 task-card drafting only",
+  "verdict": "gate1_replay_consolidation_task_card_001a_bounded_pass",
+  "claim_ceiling": "bounded Gate1 replay/consolidation task-card readiness only",
+  "acceptance_gate_status": "bounded_pass",
+  "checks": [
+    {
+      "check_id": "required_sections_complete",
+      "passed": true,
+      "observed": [
+        "Problem definition",
+        "Current stage",
+        "Hypothesis",
+        "Baseline families",
+        "Ablations",
+        "Trace / replay requirement",
+        "Access and leakage controls",
+        "Acceptance gate",
+        "Claim ceiling",
+        "Stop conditions",
+        "Rollback plan",
+        "Non-claims"
+      ]
+    },
+    {
+      "check_id": "required_baselines_complete",
+      "passed": true,
+      "observed": [
+        "retrieval / summary retrieval",
+        "behavior-only replay",
+        "trace-only replay as hygiene only",
+        "online count/statistic controls",
+        "transition table / successor map / graph cache controls",
+        "target-free generative replay challenger",
+        "frozen-history control",
+        "no-consolidation control",
+        "shuffled-replay control",
+        "corrupted-replay control"
+      ]
+    },
+    {
+      "check_id": "required_ablations_complete",
+      "passed": true,
+      "observed": [
+        "learning freeze",
+        "history replacement",
+        "consolidation disabled",
+        "replay order shuffled",
+        "replay content corrupted",
+        "heldout composition",
+        "delayed-effect cases",
+        "observable-key conflict cases",
+        "partial-observability cases",
+        "counterfactual action contrast"
+      ]
+    },
+    {
+      "check_id": "trace_only_replay_hygiene_only",
+      "passed": true,
+      "counts_as_mechanism_evidence": false,
+      "may_block_trace_integrity": true,
+      "interpretation": "Trace-only replay can check trace integrity only and cannot support mechanism evidence."
+    },
+    {
+      "check_id": "access_firewall_defined",
+      "passed": true,
+      "allowlist_based": true,
+      "pre_reveal_forbidden_sources_defined": true,
+      "phase_b_no_rewrite_required": true
+    },
+    {
+      "check_id": "artifact_requirements_defined",
+      "passed": true,
+      "machine_readable_artifacts_required": true,
+      "failure_manifest_required_on_failure": true
+    },
+    {
+      "check_id": "scope_did_not_expand",
+      "passed": true,
+      "gate1_execution_performed": false,
+      "gate1_runtime_implemented": false,
+      "bridge_authorized": false,
+      "ego_authorized": false,
+      "mechanism_tournament_authorized": false,
+      "model_class_reset_authorized": false
+    },
+    {
+      "check_id": "old_artifact_mutation_forbidden",
+      "passed": true,
+      "old_artifacts_modified": false,
+      "historical_001b_reclassified_as_pass": false
+    },
+    {
+      "check_id": "claim_ceiling_bounded",
+      "passed": true,
+      "claim_ceiling": "bounded Gate1 replay/consolidation task-card readiness only",
+      "non_claims_explicit": true
+    }
+  ],
+  "stop_conditions_triggered": []
+}
