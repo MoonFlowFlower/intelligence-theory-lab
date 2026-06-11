@@ -1,0 +1,47 @@
+{
+  "record_type": "environment_preregistration_amendment",
+  "amendment_id": "ENV-PREREG-AMENDMENT-001",
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001",
+  "created_utc": "2026-06-11T01:50:00Z",
+  "status": "pending_human_owner_approval_and_new_external_anchor",
+  "amends": {
+    "file": "artifacts/gate1_replay_consolidation_exec_taskcard_001/environment_preregistration.json",
+    "anchored_sha256": "844b5dbfab75f73aec09d8bff6aec7f66225e9f56af9f250d90e9a662f7bf6ba",
+    "anchored_commit": "d011e735012c15577e2ecbbc72e26d29e63e016e"
+  },
+  "reason": "see failure_manifest.json entry F1_env_prereg_lumpable_observation_map: the frozen congruence observation map (o = s mod 4) is lumpable under additive ring dynamics, making belief useless and B_slice_4 empty. Detected by closed-form analysis BEFORE any run; run ledger was empty at detection time.",
+  "single_change": {
+    "field": "environment.observation_space_summary (B-variant observation map only)",
+    "old": "o = s mod 4 (congruence aliasing)",
+    "new": "o = OBS_LABEL[s] with fixed irregular labeling OBS_LABEL = [0,1,2,3,0,2,1,3,2,0,3,1] (4 observation classes of size 3: {0,4,9},{1,6,11},{2,5,8},{3,7,10}; classes are not arithmetic progressions, so the chain is not lumpable and alias disambiguation requires memory)",
+    "verified_property": "next-observation class is NOT determined by current class+action for all displacements; KL(P(o'|s,a)||P(o'|o,a)) > 0 on a nonempty step set, so B_slice_4 is well-defined"
+  },
+  "explicitly_unchanged": [
+    "all comparison margins (zero-advantage policy, untouched)",
+    "all slices and slice protocols (B_slice_4 rule text unchanged; only the obs map changes)",
+    "seeds [11,13,17,19,23], seed policy, aggregation fallback rule",
+    "all candidates, all controls, all hyperparameters, compute basis (update_steps)",
+    "A-variant entirely (fully observed; unaffected by the obs map)",
+    "heldout rule, kernels, stream lengths, chunk boundaries, burn-in",
+    "deletion timing, attestation protocol, lineage requirements"
+  ],
+  "ordering_integrity": "no candidate, control, smoke, or competence run has been executed before this amendment (run ledger empty); the amendment is re-anchored by a new freeze commit pushed to the external remote BEFORE the first run, preserving margin_freeze_commit_time < amendment_anchor_time < first_run_start_time",
+  "rollback_option_offered_to_owner": "run exactly as originally frozen, accepting B_slice_4 = comparison_nonidentifiable and a structurally memoryless B test; failure manifest preserved either way",
+  "human_owner_decision": "approved_2026-06-11: 'Approve option 1: apply the structural validity repair and re-anchor before any run. This approval is limited to the Stage 0 structural environment fix only.' (14 conditions; all enforced below)",
+  "owner_conditions_enforcement": {
+    "1_failure_manifest_preserved": true,
+    "2_no_comparative_run_before_fix": "run ledger did not exist at fix time (verified)",
+    "3_run_ledger_empty_confirmed": true,
+    "4_old_env_prereg_status": "invalidated_by_structural_degeneracy_not_evidence (original file preserved unmodified for lineage)",
+    "5_only_observation_map_changed": "OBS_LABEL = [0,1,2,3,0,2,1,3,2,0,3,1] in src/gate1_preflight/core.py and (deliberately duplicated) eval_subprocess.py",
+    "6_margins_seeds_slices_controls_hyperparams_claim_ceiling_unchanged": true,
+    "7_observation_map_sha256": "51d68344a3e0471c528cb8f5a576ff80e4c5db203c2fcded33956bba51b1ece3",
+    "8_non_lumpability_check": "deterministic check passed for d=1,4,9: next-observation class not determined by current class (recorded above pre-run)",
+    "9_B_slice_4_nonempty_after_repair": "1700/1700 scored steps qualify (KL > 0.01) for every preregistered seed; note: mask saturates, so B_slice_4 coincides with B_slice_1 in this environment — recorded as redundancy, not hidden",
+    "10_new_external_anchor": "this amendment + repaired code committed and pushed before first run (see stage0_amendment_anchor.json)",
+    "11_first_run_after_new_anchor": "enforced by runner readiness_gate()",
+    "12_pre_freeze_run_check": "no candidate/control comparative run before new anchor (ledger created only by runner after gate)",
+    "13_scope_check": "no margin/seed/slice/control/hyperparameter change in this amendment",
+    "14_environment_validity": "not lookup-trivial (heldout pairs + aliased sequences unsolvable by lookup alone); controls not disabled (full stream access, predeclared fallbacks)"
+  }
+}
