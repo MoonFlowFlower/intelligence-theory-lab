@@ -1,0 +1,41 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A-AMENDMENT-001-TRACE-REPLAY-CONTRACT-PATCH",
+  "audited_failure_source": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001B-INDEPENDENT-AUDIT",
+  "001b_anchor_commit": "4e3e9f2",
+  "001b_historical_verdict_preserved": "gate1_replay_consolidation_task_card_001b_failed_trace_replay_contract",
+  "001b_artifacts_modified": false,
+  "blockers": [
+    {
+      "blocker_id": "pre_post_replay_state_traces",
+      "001b_status": "failed",
+      "resolved_by_amendment": true,
+      "new_required_fields": [
+        "state_hash_before_replay",
+        "state_hash_after_replay",
+        "replay_start_time_or_step",
+        "replay_end_time_or_step"
+      ]
+    },
+    {
+      "blocker_id": "replay_to_behavior_linkage",
+      "001b_status": "failed",
+      "resolved_by_amendment": true,
+      "new_required_fields": [
+        "replay_to_behavior_linkage_key",
+        "linkage_key_derivation_rule",
+        "linkage_key_uniqueness_check",
+        "linkage_key_collision_report",
+        "replay_event_to_later_behavior_join_table"
+      ]
+    }
+  ],
+  "non_blocking_preserved": [
+    "required baselines remain required but not executed",
+    "required ablations remain required but not executed",
+    "trace_only_replay remains hygiene only",
+    "Gate1 execution remains unauthorized",
+    "bridge and EGO remain unauthorized",
+    "claim ceiling remains bounded to amendment only"
+  ],
+  "requires_reaudit_before_execution_preflight_authorization": true
+}

@@ -1,0 +1,46 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A-AMENDMENT-001-TRACE-REPLAY-CONTRACT-PATCH",
+  "replay_to_behavior_linkage_key": {
+    "required": true,
+    "deterministic": true,
+    "frozen_before_execution": true,
+    "frozen_before_later_behavior_evaluation": true,
+    "example_formula": "sha256(gate1_run_id + target_case_id + replay_event_id + consolidation_event_id + later_behavior_eval_id)",
+    "allowed_formula_inputs": [
+      "gate1_run_id",
+      "target_case_id",
+      "replay_event_id",
+      "consolidation_event_id",
+      "later_behavior_eval_id"
+    ],
+    "forbidden_formula_inputs": [
+      "heldout_outcome",
+      "target_heldout_outcome",
+      "future_behavior_label",
+      "target_future_behavior_label",
+      "witness_result",
+      "witness_match_result",
+      "post_evaluation_metric",
+      "post_evaluation_metrics"
+    ],
+    "must_not_include_target_labels": true,
+    "must_not_include_witness_results": true,
+    "must_not_include_post_evaluation_metrics": true
+  },
+  "linkage_key_derivation_rule": {
+    "required": true,
+    "predeclared": true,
+    "hash_frozen_before_execution": true,
+    "hash_frozen_before_later_behavior_evaluation": true
+  },
+  "linkage_key_uniqueness_check": {
+    "required": true,
+    "scope": "within each Gate1 run and target_case_id",
+    "failure_condition": "any duplicate replay_to_behavior_linkage_key for distinct replay/consolidation/evaluation tuples"
+  },
+  "linkage_key_collision_report": {
+    "required": true,
+    "must_report_zero_or_more_collisions": true,
+    "blocks_execution_claim_if_missing": true
+  }
+}
