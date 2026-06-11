@@ -1,0 +1,51 @@
+{
+  "best_non_replay_control": {
+    "accepted_for_equivalence_gate": true,
+    "control_name": "count_table",
+    "delayed_effect_match_rate": 0.4166666666666667,
+    "executed": true,
+    "family": "count_statistic",
+    "heldout_match_rate": 0.0,
+    "intervention_response_match_rate": 0.4166666666666667,
+    "later_behavior_match_rate": 0.4166666666666667,
+    "match_rate": 0.4166666666666667,
+    "matches_equivalence_threshold": false,
+    "observable_key_conflict_match_rate": 0.375,
+    "partial_observability_match_rate": 0.4166666666666667,
+    "predeclared": true,
+    "real_implementation": "support-only count table without heldout outcomes or hidden-state labels",
+    "resource_budget_within_limit": true,
+    "separation_margin": 0.583333,
+    "update_trace_match_rate": 0.0,
+    "uses_forbidden_access": false
+  },
+  "controls_present_in_001b": [
+    "behavior_only_replay",
+    "count_table",
+    "graph_cache",
+    "online_count_statistic",
+    "successor_map",
+    "summary_retrieval",
+    "trace_only_replay",
+    "transition_table"
+  ],
+  "fair_controls_weakened_or_removed": false,
+  "non_replay_fair_controls_preserved": true,
+  "preserved_controls": [
+    "online_count_statistic",
+    "count_table",
+    "graph_cache",
+    "transition_table",
+    "successor_map",
+    "behavior_only_replay",
+    "summary_retrieval",
+    "trace_only_replay"
+  ],
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001D-TARGET-FREE-GENERATIVE-REPLAY-CHALLENGER",
+  "trace_only_replay": {
+    "classification": "trace_integrity_hygiene",
+    "counts_as_mechanism_evidence": false,
+    "may_block_mechanism_evidence_when_successful": false,
+    "source_match_rate": 1.0
+  }
+}

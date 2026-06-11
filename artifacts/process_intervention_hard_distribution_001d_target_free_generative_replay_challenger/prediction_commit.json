@@ -1,0 +1,70 @@
+{
+  "access_contract": {
+    "allowed_inputs": [
+      "allowed_prefix",
+      "support_split",
+      "permitted_history"
+    ],
+    "forbidden_access_used": false,
+    "forbidden_inputs": [
+      "heldout_outcomes",
+      "target_future_behavior",
+      "witness_trace_rows_for_target_cases",
+      "process_signatures",
+      "post_ablation_target_results",
+      "failure_manifests",
+      "control_comparison_target_results"
+    ],
+    "target_future_behavior_access": false,
+    "target_outcome_access": false,
+    "target_process_signature_access": false,
+    "target_trace_access": false
+  },
+  "claim_ceiling": "bounded target-free generative replay challenger preflight evidence only",
+  "permitted_history_summary": {
+    "support_history_count": 7,
+    "target_history_count": 3
+  },
+  "phase": "A_target_free_prediction_commit",
+  "predictions": [
+    {
+      "case_id": "HD-009",
+      "confidence": 0.25,
+      "predicted_intervention_response": "freeze_preserves_useful_state",
+      "predicted_later_behavior": "continue_inspect_with_low_update",
+      "predicted_process_signature_hash": "20afe4477a0a3c19cb5288cc47e2a846cd6318bd551485b4584a916564db7e95",
+      "prediction_basis": "nearest_support_case:HD-005",
+      "split": "heldout"
+    },
+    {
+      "case_id": "HD-010",
+      "confidence": 0.25,
+      "predicted_intervention_response": "memory_rebuild_required",
+      "predicted_later_behavior": "rebuild_memory_before_next_probe",
+      "predicted_process_signature_hash": "696621f587af8cd8b6900d1648efc509542d2bf7f4f5f403101a8b6a8977425d",
+      "prediction_basis": "nearest_support_case:HD-003",
+      "split": "heldout"
+    },
+    {
+      "case_id": "HD-011",
+      "confidence": 0.25,
+      "predicted_intervention_response": "restore_path_opened",
+      "predicted_later_behavior": "defer_probe_until_reconstruction",
+      "predicted_process_signature_hash": "baa6b7d156a91017ef89974a628f511db518da128bac4f7c2defe43c26011a57",
+      "prediction_basis": "nearest_support_case:HD-001",
+      "split": "heldout"
+    },
+    {
+      "case_id": "HD-012",
+      "confidence": 0.25,
+      "predicted_intervention_response": "restore_path_opened",
+      "predicted_later_behavior": "defer_probe_until_reconstruction",
+      "predicted_process_signature_hash": "1ff0abd419a457ef5987ded685dc5e22739da2cf49f05b20398d30b34160f9ef",
+      "prediction_basis": "nearest_support_case:HD-001",
+      "split": "heldout"
+    }
+  ],
+  "support_case_count": 8,
+  "target_prediction_count": 4,
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001D-TARGET-FREE-GENERATIVE-REPLAY-CHALLENGER"
+}

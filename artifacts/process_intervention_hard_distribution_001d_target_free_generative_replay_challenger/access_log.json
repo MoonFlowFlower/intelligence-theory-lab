@@ -1,0 +1,45 @@
+{
+  "orchestrator_note": "The orchestrator derived a sanitized Phase A object from the frozen 001A distribution; the challenger itself read only AccessFirewall allowlist keys.",
+  "phase_a": {
+    "access_firewall_enforced": true,
+    "allowed_inputs_read": [
+      "allowed_prefix",
+      "support_split",
+      "permitted_history"
+    ],
+    "forbidden_access_used": false,
+    "forbidden_inputs_blocked": [
+      "heldout_outcomes",
+      "target_future_behavior",
+      "witness_trace_rows_for_target_cases",
+      "process_signatures",
+      "post_ablation_target_results",
+      "failure_manifests",
+      "control_comparison_target_results"
+    ],
+    "prediction_commit_hash_frozen_before_reveal": true,
+    "prediction_commit_sha256": "7697aa9e46cae6d8c1b77142ffa9ffc7ab577a1972311e71f089b1829784a523",
+    "target_future_behaviors_read": 0,
+    "target_heldout_outcomes_read": 0,
+    "target_process_signatures_read": 0,
+    "target_trace_rows_read": 0
+  },
+  "phase_b": {
+    "may_write_phase_a_prediction_commit": false,
+    "phase_a_prediction_commit_rewritten": false,
+    "prediction_commit_sha256_after_evaluation": "7697aa9e46cae6d8c1b77142ffa9ffc7ab577a1972311e71f089b1829784a523",
+    "revealed_inputs": [
+      "target_trace",
+      "heldout_labels",
+      "frozen_prediction_commit.json"
+    ],
+    "target_reveal_after_hash_freeze": true
+  },
+  "phase_order": [
+    "phase_a_prediction_commit_written",
+    "phase_a_prediction_commit_hash_frozen",
+    "phase_b_reveal_started",
+    "phase_b_evaluation_written"
+  ],
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001D-TARGET-FREE-GENERATIVE-REPLAY-CHALLENGER"
+}
