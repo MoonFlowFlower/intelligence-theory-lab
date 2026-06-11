@@ -1,0 +1,68 @@
+{
+  "task_id": "PI-HD-ADMISSION-001",
+  "layer": "bounded Gate1 task-card drafting admission decision only",
+  "verdict": "pi_hd_admission_001_gate1_drafting_admitted",
+  "claim_ceiling": "bounded Gate1 task-card drafting admission only",
+  "gate1_task_card_drafting_admitted": true,
+  "gate1_execution_authorized": false,
+  "gate1_implementation_authorized": false,
+  "source_evidence": {
+    "process_intervention_preflight_001b": "artifacts/process_intervention_preflight_001b/result.json",
+    "process_intervention_failure_rca_001a": "artifacts/process_intervention_failure_rca_001a/result.json",
+    "process_intervention_hard_distribution_001a": "artifacts/process_intervention_hard_distribution_001a/distribution_shortcut_audit.json",
+    "process_intervention_hard_distribution_001b": "artifacts/process_intervention_hard_distribution_001b/result.json",
+    "process_intervention_hard_distribution_001c_anchor": "afeff65",
+    "process_intervention_hard_distribution_001d_anchor": "f1fe667"
+  },
+  "decision_summary": "Current hard-distribution evidence permits drafting a Gate1 task card only. It does not authorize Gate1 execution, Gate1 implementation, bridge work, EGO mainline work, mechanism tournament work, new replay taxonomy, new baselines, or 001E.",
+  "strongest_baseline_explanation": "The admission can still be explained as improved gate hygiene and a target-free challenger mismatch, not as mechanism proof.",
+  "strongest_reason_this_task_may_be_invalid": "If 001D challenger metrics were treated as witness performance metrics, or if 001B were reclassified as pass, the admission would be invalid claim inflation.",
+  "what_would_falsify_this_admission": [
+    "001B historical verdict is rewritten as pass",
+    "001D prediction commit is mutable after reveal",
+    "001D Phase A reads target heldout outcomes, target future behavior, witness target trace rows, or process signatures",
+    "trace_only_replay is counted as mechanism evidence",
+    "non-replay fair controls match the hard-distribution witness under the current gate",
+    "old 001B / RCA / 001C / 001D artifacts are mutated"
+  ],
+  "acceptance_gate_status": {
+    "001b_historical_verdict_remains_failed": true,
+    "001d_did_not_rewrite_001b": true,
+    "old_artifacts_match_anchors": true,
+    "phase_a_access_firewall_target_free_allowlist_based": true,
+    "prediction_commit_hash_frozen_before_reveal_and_unchanged_after_evaluation": true,
+    "challenger_metrics_zero_not_witness_performance": true,
+    "trace_only_replay_hygiene_only": true,
+    "non_replay_fair_controls_non_equivalent": true,
+    "witness_ablation_heldout_process_checks_sufficient_under_current_gate": true,
+    "authorization_limited_to_gate1_task_card_drafting": true
+  },
+  "authorization_flags": {
+    "gate1_task_card_drafting_authorized": true,
+    "gate1_execution_authorized": false,
+    "gate1_implementation_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "mechanism_tournament_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "new_replay_taxonomy_authorized": false,
+    "new_baselines_authorized": false,
+    "001e_authorized": false,
+    "historical_001b_verdict_rewrite_authorized": false
+  },
+  "what_this_does_not_prove": [
+    "Gate1 pass",
+    "Gate1 readiness beyond task-card drafting",
+    "mechanism validity",
+    "001B pass",
+    "theory validity",
+    "theory falsity",
+    "same-agent bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "companion readiness"
+  ]
+}

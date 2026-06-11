@@ -1,0 +1,123 @@
+{
+  "task_id": "PI-HD-ADMISSION-001",
+  "claim_ceiling": "bounded Gate1 task-card drafting admission only",
+  "required_checks": [
+    {
+      "check_id": "001b_historical_verdict_remains_failed",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001b/result.json",
+      "evidence_value": "process_intervention_hard_distribution_001b_failed_fair_control_match",
+      "interpretation": "Historical 001B remains failed and is not treated as a pass."
+    },
+    {
+      "check_id": "001d_did_not_rewrite_001b",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/result.json",
+      "evidence_value": true,
+      "interpretation": "001D reports bounded replay-gate pass while preserving old artifacts and not reclassifying 001B."
+    },
+    {
+      "check_id": "old_artifacts_match_anchors",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/old_artifact_anchor_verification.json",
+      "evidence_value": true,
+      "interpretation": "001B / RCA / 001C artifacts match the afeff65 anchor; 001D evidence is frozen at f1fe667 for this admission."
+    },
+    {
+      "check_id": "phase_a_target_free_allowlist_firewall",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/access_log.json",
+      "evidence_value": {
+        "allowed_inputs_read": [
+          "allowed_prefix",
+          "support_split",
+          "permitted_history"
+        ],
+        "forbidden_access_used": false,
+        "target_trace_rows_read": 0,
+        "target_heldout_outcomes_read": 0,
+        "target_future_behaviors_read": 0,
+        "target_process_signatures_read": 0
+      },
+      "interpretation": "Phase A challenger access was allowlist-based and target-free."
+    },
+    {
+      "check_id": "prediction_commit_frozen_before_reveal_unchanged_after_evaluation",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/evaluation_report.json",
+      "evidence_value": {
+        "before_reveal_sha256": "7697aa9e46cae6d8c1b77142ffa9ffc7ab577a1972311e71f089b1829784a523",
+        "after_evaluation_sha256": "7697aa9e46cae6d8c1b77142ffa9ffc7ab577a1972311e71f089b1829784a523",
+        "hash_unchanged_after_phase_b": true
+      },
+      "interpretation": "Phase B reveal/evaluate did not mutate the Phase A prediction commit."
+    },
+    {
+      "check_id": "challenger_metrics_zero_not_witness_performance",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/evaluation_report.json",
+      "evidence_value": {
+        "intervention_response_match_rate": 0.0,
+        "later_behavior_match_rate": 0.0,
+        "update_process_signature_match_rate": 0.0,
+        "heldout_composition_match_rate": 0.0,
+        "delayed_effect_match_rate": 0.0,
+        "observable_key_conflict_match_rate": 0.0,
+        "partial_observability_match_rate": 0.0
+      },
+      "interpretation": "These are target-free challenger match metrics against witness/evaluation targets. They are not witness performance metrics."
+    },
+    {
+      "check_id": "trace_only_replay_hygiene_only",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/preserved_controls.json",
+      "evidence_value": {
+        "classification": "trace_integrity_hygiene",
+        "counts_as_mechanism_evidence": false,
+        "may_block_mechanism_evidence_when_successful": false
+      },
+      "interpretation": "Trace-only replay remains replay hygiene and is not treated as mechanism evidence."
+    },
+    {
+      "check_id": "non_replay_controls_non_equivalent",
+      "passed": true,
+      "source": "artifacts/process_intervention_hard_distribution_001b/control_comparison.json",
+      "evidence_value": {
+        "best_non_replay_control": "count_table",
+        "match_rate": 0.4166666666666667,
+        "heldout_match_rate": 0.0,
+        "update_trace_match_rate": 0.0,
+        "matches_equivalence_threshold": false
+      },
+      "interpretation": "Current non-replay fair controls remain below equivalence under the hard distribution."
+    },
+    {
+      "check_id": "witness_ablation_heldout_process_checks_sufficient_under_current_gate",
+      "passed": true,
+      "source": [
+        "artifacts/process_intervention_hard_distribution_001b/ablation_report.json",
+        "artifacts/process_intervention_hard_distribution_001b/heldout_report.json",
+        "artifacts/process_intervention_hard_distribution_001b/replay_report.json"
+      ],
+      "evidence_value": {
+        "learning_freeze_changed_expected_process_sensitive_behavior": true,
+        "history_replacement_changed_expected_behavior": true,
+        "counterfactual_action_contrast_detected": true,
+        "heldout_case_count": 4,
+        "heldout_composition_report_exists": true,
+        "hash_chain_valid": true,
+        "allowed_update_path_replay_valid": true,
+        "memory_key_fidelity_replay_valid": true
+      },
+      "interpretation": "Under the current hard-distribution gate, witness ablation, heldout, and process/replay prerequisites are sufficient for drafting a Gate1 task card."
+    },
+    {
+      "check_id": "authorization_limited_to_gate1_task_card_drafting",
+      "passed": true,
+      "source": "artifacts/pi_hd_admission_001/gate1_drafting_authorization.json",
+      "evidence_value": "Gate1 task-card drafting only",
+      "interpretation": "Admission authorizes only drafting a Gate1 task card, not executing or implementing Gate1."
+    }
+  ],
+  "overall_verdict": "pi_hd_admission_001_gate1_drafting_admitted"
+}

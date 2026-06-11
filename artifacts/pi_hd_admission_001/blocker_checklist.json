@@ -1,0 +1,55 @@
+{
+  "task_id": "PI-HD-ADMISSION-001",
+  "verdict": "pi_hd_admission_001_gate1_drafting_admitted",
+  "claim_ceiling": "bounded Gate1 task-card drafting admission only",
+  "blocking_items": [],
+  "stop_conditions_triggered": [],
+  "checks": [
+    {
+      "blocker_id": "historical_001b_rewritten_as_pass",
+      "status": "clear",
+      "evidence": "001B verdict remains process_intervention_hard_distribution_001b_failed_fair_control_match."
+    },
+    {
+      "blocker_id": "target_leakage_or_replay_backfill",
+      "status": "clear",
+      "evidence": "001D Phase A used target-free allowlist access; prediction commit hash stayed unchanged after Phase B."
+    },
+    {
+      "blocker_id": "trace_replay_treated_as_mechanism_evidence",
+      "status": "clear",
+      "evidence": "trace_only_replay remains classified as trace_integrity_hygiene."
+    },
+    {
+      "blocker_id": "non_replay_control_equivalence",
+      "status": "clear",
+      "evidence": "best non-replay control is count_table at 0.4166666666666667 match rate and 0.0 heldout match rate."
+    },
+    {
+      "blocker_id": "witness_or_ablation_check_failure",
+      "status": "clear",
+      "evidence": "learning_freeze, history_replacement, and counterfactual_action_contrast checks are present; heldout and replay checks are present."
+    },
+    {
+      "blocker_id": "old_artifact_mutation",
+      "status": "clear",
+      "evidence": "001D anchor verification reports old artifacts unchanged from anchor."
+    },
+    {
+      "blocker_id": "authorization_scope_expansion",
+      "status": "clear",
+      "evidence": "authorization is limited to Gate1 task-card drafting only."
+    }
+  ],
+  "what_this_does_not_authorize": [
+    "Gate1 execution",
+    "Gate1 implementation",
+    "001B pass reclassification",
+    "001E",
+    "new replay taxonomy",
+    "new baselines",
+    "same-agent bridge",
+    "EGO mainline",
+    "mechanism tournament"
+  ]
+}
