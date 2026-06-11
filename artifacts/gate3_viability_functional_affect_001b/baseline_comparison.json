@@ -1,0 +1,150 @@
+{
+  "acceptance_threshold": 0.95,
+  "baseline_gate_passed": true,
+  "baselines": [
+    {
+      "baseline_name": "reward-table lookup",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": true,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.72
+    },
+    {
+      "baseline_name": "threshold-reflex policy",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": true,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.68
+    },
+    {
+      "baseline_name": "hardcoded avoider / recovery rule",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": true,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.64
+    },
+    {
+      "baseline_name": "frozen-viability model",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": true,
+      "viability_to_later_action_score": 0.46
+    },
+    {
+      "baseline_name": "retrieval / summary retrieval",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.48
+    },
+    {
+      "baseline_name": "count/statistic table",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.44
+    },
+    {
+      "baseline_name": "transition table / successor map / graph cache",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.55
+    },
+    {
+      "baseline_name": "behavior-only imitation",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.4
+    },
+    {
+      "baseline_name": "isolated Gate0/Gate1/Gate2 policy without viability state",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": true,
+      "viability_to_later_action_score": 0.5
+    },
+    {
+      "baseline_name": "stitched-output baseline with no shared viability state",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.6
+    },
+    {
+      "baseline_name": "random policy",
+      "counts_as_fair_baseline": true,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 0.2
+    },
+    {
+      "baseline_name": "oracle viability-label control as upper-bound/leakage only",
+      "counts_as_fair_baseline": false,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 1.0
+    },
+    {
+      "baseline_name": "trace-only replay as hygiene only",
+      "counts_as_fair_baseline": false,
+      "match_or_beat_candidate": false,
+      "obvious_heuristic_family_allowed": false,
+      "same_visible_features_as_candidate": false,
+      "uses_single_canonical_shared_state": false,
+      "viability_to_later_action_score": 1.0
+    }
+  ],
+  "best_fair_baseline": {
+    "baseline_name": "reward-table lookup",
+    "counts_as_fair_baseline": true,
+    "match_or_beat_candidate": false,
+    "obvious_heuristic_family_allowed": false,
+    "same_visible_features_as_candidate": true,
+    "uses_single_canonical_shared_state": false,
+    "viability_to_later_action_score": 0.72
+  },
+  "candidate": {
+    "candidate_name": "canonical Gate3 viability shared-state loop",
+    "uses_single_canonical_shared_state": true,
+    "viability_error_to_priority_linked": true,
+    "viability_to_later_action_score": 1.0
+  },
+  "claim_ceiling": "bounded Gate3 viability / functional-affect executable preflight evidence only",
+  "graph_cache_family_variants": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal"
+  ],
+  "stitched_output_baseline_does_not_explain_result": true,
+  "strongest_baseline_explanation": "Reward tables, threshold reflexes, and hardcoded avoid/recover rules can mimic many choices, but they do not show viability_error updating a shared viability state and then changing action priority through a label-free Gate3-to-later-action linkage.",
+  "task_id": "GATE3-VIABILITY-FUNCTIONAL-AFFECT-EXECUTABLE-PREFLIGHT-001B"
+}
