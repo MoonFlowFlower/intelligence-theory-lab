@@ -317,9 +317,8 @@ def eval_hist_predictor(pred1, pred4, seqs):
         hist = []
         for t in range(50):
             hist.append((O[t], A[t]))
-            p = pred1(hist)
-            v = nll(p, seq["qtrue1"][t])
             if t >= 6:
+                v = nll(pred1(hist), seq["qtrue1"][t])
                 acc["R_slice_1"][0] += v; acc["R_slice_1"][1] += 1
                 if seq["mask_r4"][t]:
                     acc["R_slice_4"][0] += v; acc["R_slice_4"][1] += 1

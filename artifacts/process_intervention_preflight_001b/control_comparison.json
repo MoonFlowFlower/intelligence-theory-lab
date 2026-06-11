@@ -1,0 +1,129 @@
+{
+  "best_fair_control": {
+    "accepted_as_evidence": true,
+    "control_name": "online_count_statistic",
+    "family": "count_statistic",
+    "later_behavior_match_rate": 1.0,
+    "match_rate": 1.0,
+    "real_implementation": "online table count/statistic keyed by context, intervention, and action",
+    "resource_budget_within_limit": true,
+    "separation_margin": 0.0,
+    "update_trace_match_rate": 1.0,
+    "uses_forbidden_access": false
+  },
+  "controls": {
+    "behavior_only_replay": {
+      "accepted_as_evidence": true,
+      "control_name": "behavior_only_replay",
+      "family": "replay",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "deterministic closed-form decision procedure",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    },
+    "count_table": {
+      "accepted_as_evidence": true,
+      "control_name": "count_table",
+      "family": "count_statistic",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "deterministic closed-form decision procedure",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    },
+    "graph_cache": {
+      "accepted_as_evidence": true,
+      "control_name": "graph_cache",
+      "family": "graph_cache",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "intervention-labeled graph/cache keyed by context, intervention, and action",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    },
+    "online_count_statistic": {
+      "accepted_as_evidence": true,
+      "control_name": "online_count_statistic",
+      "family": "count_statistic",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "online table count/statistic keyed by context, intervention, and action",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    },
+    "posthoc_verdict_string": {
+      "accepted_as_evidence": false,
+      "control_name": "posthoc_verdict_string",
+      "family": "invalid_posthoc_verdict",
+      "later_behavior_match_rate": 0.0,
+      "match_rate": 0.0,
+      "real_implementation": "verdict string only; rejected as acceptance evidence",
+      "resource_budget_within_limit": true,
+      "separation_margin": 1.0,
+      "update_trace_match_rate": 0.0,
+      "uses_forbidden_access": false
+    },
+    "successor_map": {
+      "accepted_as_evidence": true,
+      "control_name": "successor_map",
+      "family": "graph_cache",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "deterministic closed-form decision procedure",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    },
+    "trace_only_replay": {
+      "accepted_as_evidence": true,
+      "control_name": "trace_only_replay",
+      "family": "replay",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "replay of committed trace records without future labels",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    },
+    "transition_table": {
+      "accepted_as_evidence": true,
+      "control_name": "transition_table",
+      "family": "graph_cache",
+      "later_behavior_match_rate": 1.0,
+      "match_rate": 1.0,
+      "real_implementation": "deterministic closed-form decision procedure",
+      "resource_budget_within_limit": true,
+      "separation_margin": 0.0,
+      "update_trace_match_rate": 1.0,
+      "uses_forbidden_access": false
+    }
+  },
+  "matching_controls": [
+    "online_count_statistic",
+    "count_table",
+    "graph_cache",
+    "transition_table",
+    "successor_map",
+    "trace_only_replay",
+    "behavior_only_replay"
+  ],
+  "required_control_families_present": true,
+  "thresholds": {
+    "equivalence_band": 0.05,
+    "later_behavior_match_threshold": 0.95,
+    "match_rate_threshold": 0.95,
+    "separation_margin_threshold": 0.1,
+    "update_trace_match_threshold": 0.9
+  }
+}

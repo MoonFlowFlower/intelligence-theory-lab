@@ -1,0 +1,94 @@
+{
+  "anchor": {
+    "anchor_method": "https_date_header_github_api",
+    "anchored_payload_hash": "54d7fecd45fe1c0acbbe4258969fe47086915107bc79140e60bc822279bc036d",
+    "external_url": "https://api.github.com/rate_limit",
+    "external_utc": "Thu, 11 Jun 2026 03:55:40 GMT",
+    "verification_status": "verified"
+  },
+  "first_run_start_time_after_anchor": "2026-06-11T03:55:40Z",
+  "stage0_anchor_pass": true,
+  "stage0_order": {
+    "anchor_verified_before_verifier": true,
+    "freeze_payload_before_anchor": true,
+    "verifier_started_before_anchor": false
+  },
+  "stage0_payload": {
+    "K_window_bound": 4,
+    "allowed_access_contract": {
+      "allowed_action_history": "full observed action history available as raw stream",
+      "allowed_agent_observation": [
+        "action_bit",
+        "observation_bit"
+      ],
+      "allowed_internal_state_updates": "future non-oracle agents may update internal state from allowed tokens",
+      "allowed_trace_fields": [
+        "episode_id",
+        "step_id",
+        "observation",
+        "action",
+        "prediction_target_after_episode"
+      ],
+      "fair_access_statement": "Controls, witnesses, and future non-oracle agents receive the same raw token stream; differences are representational restrictions, not hidden information removal.",
+      "forbidden_hidden_state_fields": [
+        "hidden_parity_label",
+        "future_target",
+        "seed_identity"
+      ],
+      "forbidden_label_oracle_fields": [
+        "hidden_state_label_for_verifier_only",
+        "heldout_variant_id_as_runtime_oracle"
+      ],
+      "heldout_variant_access_rules": "variant id recorded for verifier only, not available at runtime"
+    },
+    "control_family_definitions": {
+      "champion_challenger_ids": [
+        "C0_random_baseline",
+        "C1_majority_baseline",
+        "C2_frequency_heuristic",
+        "C3_count_table",
+        "C4_transition_table",
+        "C5_nearest_neighbor_trace_lookup",
+        "C6_bounded_order_window_model_K1",
+        "C7_bounded_order_window_model_K2",
+        "C8_bounded_order_window_model_K3",
+        "C9_bounded_order_window_model_K4",
+        "C10_summary_memory_baseline"
+      ],
+      "graph_cache_family_ids": [
+        "G0_graph_lookup",
+        "G1_transition_table_graph_variant",
+        "G2_successor_map",
+        "G3_count_table_graph_variant",
+        "G4_fsm_planner",
+        "G5_episodic_traversal"
+      ]
+    },
+    "environment_family_definition": {
+      "K_window_bound": 4,
+      "compositional_structure": "online parity accumulation, not horizon extension alone",
+      "controls_disabled_by_construction": false,
+      "environment_family": "ParityAliasGrid-v0",
+      "heldout_variant_rule": "withhold exact histories; evaluate compositional parity on unseen histories",
+      "ladder_level": "L1_partial_observable_causal_environment",
+      "not_lookup_trivial": true,
+      "sequence_length": 6,
+      "target_rule": "XOR over action_bit XOR observation_bit for all tokens",
+      "token_alphabet": [
+        "a0_o0",
+        "a0_o1",
+        "a1_o0",
+        "a1_o1"
+      ]
+    },
+    "task_card_hash": "cc1af28a3acd50ddb6ee84b2d2f97711034ad070e7c55ac0d123f170d22e97c9",
+    "task_id": "REPRESENTATIONAL-GAP-PREFLIGHT-001A",
+    "witness_model_class_definition": {
+      "W0": "finite latent parity state updated from allowed tokens",
+      "W1": "two-state automaton witness",
+      "W2": "factorized XOR rule witness"
+    }
+  },
+  "stage0_payload_hash": "54d7fecd45fe1c0acbbe4258969fe47086915107bc79140e60bc822279bc036d",
+  "task_id": "REPRESENTATIONAL-GAP-PREFLIGHT-001A"
+}

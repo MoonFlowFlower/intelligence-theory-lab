@@ -1,0 +1,536 @@
+# Claude Task Card: PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-T1-EXTERNAL-COMMIT
+
+Alias: R-G-PREDICTIVE-ACTION-KERNEL-001C-T1
+Stage: Protocol Repair Only
+Executor: Claude
+Mode: narrow protocol repair + frozen suite rerun
+
+## 0. Non-negotiable boundary
+
+This is not a theory task.
+
+This is not a new experiment design task.
+
+This is not a skeleton modification task.
+
+This is not an EGO integration task.
+
+This is not a companion / emotion / relationship / replay / LLM task.
+
+Your only job is to repair the T1 external pre-outcome commitment blocker from PREDICTIVE-ACTION-LEARNING-CONTRACT-001B.
+
+Do not modify the mathematical skeleton.
+
+Do not modify environment rules.
+
+Do not modify seeds.
+
+Do not modify thresholds.
+
+Do not modify baselines.
+
+Do not modify ablations.
+
+Do not modify perturbations.
+
+Do not modify claim ceiling except where the evidence verdict is legitimately upgraded by externally verifiable commitment.
+
+If external commitment cannot be implemented in the current environment, report `protocol_blocked_external_commit_unavailable` and stop.
+
+Do not fake external commitment.
+
+A correct protocol block is better than an unverifiable pass.
+
+---
+
+# 1. Problem definition
+
+PREDICTIVE-ACTION-LEARNING-CONTRACT-001B passed implementation gates but evidence remained blocked by:
+
+```text
+T1_external_commit_missing
+```
+
+The reason was:
+
+```text
+commit_mode = local_mock
+```
+
+Local mock commitment proves internal ordering only. It does not provide externally verifiable pre-outcome chronology.
+
+This task must replace or supplement the local mock commitment with an externally verifiable pre-outcome commitment mechanism, then rerun the frozen 001B suite unchanged.
+
+---
+
+# 2. Current phase
+
+Current phase:
+
+```text
+Protocol Repair after implementation_pass_but_evidence_protocol_blocked_by_T1
+```
+
+Allowed final verdicts:
+
+```text
+t1_external_commit_repair_pass
+t1_external_commit_repair_protocol_blocked
+t1_external_commit_repair_fail
+implementation_regression_fail
+```
+
+Do not invent stronger verdicts.
+
+---
+
+# 3. Hypothesis
+
+If each PRE_STEP record is committed to an external verifiable timestamp or transparency sink before actual_obs is revealed, and if the frozen 001B suite remains otherwise unchanged, then the evidence verdict may advance from:
+
+```text
+protocol_blocked_by_T1_external_commit_missing
+```
+
+to:
+
+```text
+bounded_contract_pass
+```
+
+only if all previous gates still pass.
+
+This hypothesis may fail.
+
+---
+
+# 4. Frozen inherited contract
+
+Use the existing PREDICTIVE-ACTION-LEARNING-CONTRACT-001B implementation as frozen input.
+
+Do not change:
+
+```text
+finite-state belief distribution b_t
+finite latent state set S
+finite observation alphabet O
+finite action set A
+T_theta(s' | s, a)
+O_theta(o | s')
+P_hat_t^(a)(o)
+NLL error definition
+Brier metric
+entropy uncertainty
+Bayes / POMDP-style belief update
+pseudo-count theta update
+same-history all-action JS divergence
+trace-only / replay-disabled core
+baselines
+ablations
+perturbations
+thresholds
+seeds
+environment rules
+claim_mode
+```
+
+Only T1 commitment plumbing may change.
+
+---
+
+# 5. Allowed scope
+
+You may implement:
+
+```text
+external timestamp commitment adapter
+RFC 3161 timestamp-token adapter if available
+transparency-log receipt adapter if available
+commit receipt verification
+commit sink configuration
+receipt type field
+receipt verifier key id field
+obs_reveal_ts trusted-clock handling
+pre_step_hash canonical serialization verification
+schema-hash verification
+tests for external commitment chronology
+tests for receipt verification failure
+tests for local mock being insufficient for evidence pass
+reporting update for T1 evidence verdict
+```
+
+You may keep local mock commitment only as:
+
+```text
+test fallback
+offline development mode
+explicitly blocked evidence mode
+```
+
+Local mock must never be reported as external evidence.
+
+---
+
+# 6. Forbidden scope
+
+Do not implement or modify:
+
+```text
+EGO mainline
+agent runtime
+LLM reasoning
+RAG
+retrieval
+replay
+long-term memory
+companion behavior
+emotion
+relationship learning
+UI
+policy optimization
+neural world model
+new baselines
+new ablations
+new perturbations
+new environment family
+new thresholds
+new theory claims
+```
+
+Do not tune results.
+
+Do not weaken stop conditions.
+
+Do not remove the retrieval caveat.
+
+Do not claim predictive superiority over retrieval.
+
+---
+
+# 7. T1 external commitment contract
+
+Every PRE_STEP must satisfy:
+
+```text
+serialized_PRE_STEP
+→ canonical serialization
+→ pre_step_hash
+→ external commit sink before actual_obs reveal
+→ pre_commit_receipt
+→ POST_STEP includes pre_step_hash_ref
+→ verifier confirms receipt timestamp / inclusion precedes obs_reveal_ts
+```
+
+Required fields:
+
+```text
+pre_step_hash
+pre_commit_receipt
+commit_sink_id
+receipt_type
+receipt_verifier_key_id
+obs_reveal_ts
+pre_step_hash_ref
+serializer_version
+trace_schema_hash
+```
+
+Allowed receipt types:
+
+```text
+rfc3161_timestamp_token
+transparency_log_receipt
+```
+
+Optional for tests only:
+
+```text
+local_mock
+```
+
+If receipt type is `local_mock`, evidence verdict must remain blocked.
+
+---
+
+# 8. Required verification logic
+
+Implement verifier checks:
+
+1. PRE_STEP canonical serialization matches `pre_step_hash`.
+2. `pre_commit_receipt` binds to `pre_step_hash`.
+3. `commit_sink_id` is non-empty and matches configured sink.
+4. `receipt_type` is one of the allowed external types for evidence pass.
+5. `receipt_verifier_key_id` is present for external receipt.
+6. `obs_reveal_ts` exists and comes from declared clock domain.
+7. receipt time / inclusion proof precedes `obs_reveal_ts`.
+8. POST_STEP `pre_step_hash_ref` equals committed PRE_STEP hash.
+9. Any missing or unverifiable receipt blocks evidence.
+10. Any local mock receipt blocks evidence upgrade.
+
+---
+
+# 9. Required tests
+
+Add tests without deleting old tests.
+
+Required tests:
+
+1. external receipt accepted when valid and pre-outcome
+2. external receipt rejected when after `obs_reveal_ts`
+3. external receipt rejected when hash mismatch
+4. external receipt rejected when verifier key missing
+5. external receipt rejected when commit sink mismatch
+6. local mock still blocks evidence pass
+7. disabled precommit still blocks evidence pass
+8. POST_STEP with wrong `pre_step_hash_ref` rejected
+9. schema hash mismatch rejected
+10. old 001B test suite still passes
+
+If real external service cannot be used in the sandbox, implement verifier interface and deterministic fake external receipt tests, but final evidence verdict must remain blocked unless a real externally verifiable receipt is actually produced.
+
+---
+
+# 10. Required rerun
+
+Rerun the full frozen 001B suite.
+
+Required commands:
+
+```text
+python -m pytest tests/test_predictive_action_learning_contract_001*.py
+python -m predictive_action_learning_contract_001 init
+python -m predictive_action_learning_contract_001 run --group core
+python -m predictive_action_learning_contract_001 run --group baselines
+python -m predictive_action_learning_contract_001 run --group ablations
+python -m predictive_action_learning_contract_001 run --group protocol
+python -m predictive_action_learning_contract_001 run --group perturbations
+python -m predictive_action_learning_contract_001 duplicates
+python -m predictive_action_learning_contract_001 finalize
+```
+
+Use the existing CLI if different, but document exact commands.
+
+Do not skip baselines, ablations, perturbations, protocol tests, or duplicates.
+
+---
+
+# 11. Acceptance gates
+
+## 11.1 Repair implementation pass
+
+Pass only if:
+
+```text
+T1 external commit adapter implemented
+receipt verifier implemented
+all old tests still pass
+new T1 tests pass
+trace schema remains compatible or versioned
+full suite reruns
+all non-T1 gates remain unchanged
+artifacts regenerated
+```
+
+## 11.2 Evidence pass
+
+Evidence verdict may become `bounded_contract_pass` only if:
+
+```text
+all mechanism gates pass
+all baseline gates pass
+all ablation gates pass
+all perturbation gates pass
+all stop conditions remain untriggered
+real external pre-outcome commitment is verified
+receipt is not local mock
+receipt binds to pre_step_hash
+receipt precedes obs_reveal_ts
+```
+
+If external commitment is unavailable, final evidence verdict must be:
+
+```text
+protocol_blocked_by_T1_external_commit_missing
+```
+
+or:
+
+```text
+protocol_blocked_external_commit_unavailable
+```
+
+Do not upgrade evidence based on local mock.
+
+---
+
+# 12. Stop conditions
+
+Stop and report failure if:
+
+```text
+mathematical skeleton changes
+thresholds change
+seeds change
+environment rules change
+baselines change
+ablations change
+perturbations change
+retrieval or replay enters core
+external commitment cannot be verified
+local mock is treated as external evidence
+commitment happens after actual_obs reveal
+trace schema becomes ambiguous
+old tests fail
+new T1 tests fail
+any previous evidence gate regresses
+claim ceiling is expanded
+report claims consciousness / agency / functional subject / electronic life / AGI
+```
+
+If a stop condition triggers, do not patch around it silently.
+
+---
+
+# 13. Required artifacts
+
+Create a new artifact directory:
+
+```text
+artifacts/predictive_action_learning_contract_001/t1_external_commit_<run_id>/
+```
+
+Required artifacts:
+
+```text
+CONFIG.json
+TRACE_SCHEMA.json
+trace.jsonl
+commitment_report.json
+attestation_report.json
+main_metrics.json
+baseline_results.json
+ablation_results.json
+perturbation_results.json
+stop_condition_report.json
+result.json
+FINAL_REPORT.md
+tests_report.txt
+t1_receipt_verification_report.json
+diff_from_001B_contract.md
+```
+
+`diff_from_001B_contract.md` must explicitly show:
+
+```text
+changed: T1 commitment plumbing only
+unchanged: skeleton, thresholds, seeds, env rules, baselines, ablations, perturbations, claim ceiling
+```
+
+---
+
+# 14. Required final report fields
+
+Final `result.json` must include:
+
+```json
+{
+  "task_id": "predictive_action_learning_contract_001c_t1_external_commit",
+  "previous_task_id": "predictive_action_learning_contract_001b",
+  "implementation_verdict": "...",
+  "evidence_verdict": "...",
+  "t1_repair_verdict": "...",
+  "receipt_type": "...",
+  "commit_sink_id": "...",
+  "external_commitment_verified": true,
+  "local_mock_used": false,
+  "old_tests_passed": true,
+  "new_t1_tests_passed": true,
+  "contract_diff_scope": "T1_commitment_plumbing_only",
+  "failed_gates": [],
+  "stop_conditions_triggered": [],
+  "claim_ceiling": "..."
+}
+```
+
+If external commitment is unavailable:
+
+```json
+{
+  "external_commitment_verified": false,
+  "local_mock_used": true,
+  "evidence_verdict": "protocol_blocked_by_T1_external_commit_missing"
+}
+```
+
+---
+
+# 15. Claim ceiling
+
+Maximum allowed claim if T1 repair succeeds:
+
+```text
+The frozen predictive-action learning contract passed the bounded evidence test with externally verifiable pre-outcome commitment.
+```
+
+Maximum allowed claim if T1 repair is implemented but external commitment is unavailable:
+
+```text
+The T1 repair interface was implemented, but full evidence remains blocked because externally verifiable pre-outcome commitment was unavailable.
+```
+
+Maximum allowed claim if repair fails:
+
+```text
+The T1 external commitment repair failed or regressed the frozen contract.
+```
+
+Forbidden claims:
+
+```text
+consciousness
+subjective experience
+real emotion
+self-awareness
+agency
+functional subject evidence
+electronic life achieved
+companion readiness
+AGI
+biological equivalence
+proof that transformers are wrong
+proof that Bayesian filtering is final
+proof that the local seed hypothesis is correct
+stable user benefit
+```
+
+---
+
+# 16. Required final response from Claude
+
+When done, respond with:
+
+1. Files changed
+2. Commands run
+3. Old tests result
+4. New T1 tests result
+5. Full suite result
+6. Artifact paths
+7. T1 repair verdict
+8. Implementation verdict
+9. Evidence verdict
+10. Stop conditions triggered
+11. Contract diff scope
+12. Claim ceiling
+13. Rollback recommendation
+
+Do not include motivational language.
+
+Do not claim theory success.
+
+Do not claim agency or electronic life.
+
+Do not claim functional subject evidence.
+
+Do not say the experiment proves the theory.
+
+Only report bounded protocol repair and evidence status.

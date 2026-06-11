@@ -1,0 +1,108 @@
+{
+  "task_id": "MODEL-INFLUENCE-POISONING-AUDIT-001A",
+  "layer": "evidence-infrastructure / model-output influence audit",
+  "generated_utc": "2026-06-11T10:29:38.2596070Z",
+  "mode": "bounded non-mutating audit; no experiment rerun; no old artifact repair; no 001C cleanup, normalization, repair, or refreeze",
+  "overall_verdict": "audit_completed_with_blocking_false_confidence_risks_detected",
+  "acceptance_gate": {
+    "every_flagged_issue_has_exact_path_and_snippet": true,
+    "every_flagged_issue_has_allowed_classification": true,
+    "old_artifacts_modified_by_this_audit": false,
+    "protected_001c_files_modified_by_this_audit": false,
+    "fable_causality_attributed": false,
+    "data_repair_attempted": false
+  },
+  "formal_input_count": 37,
+  "consulted_additional_prior_negative_evidence_count": 5,
+  "suspected_influence_point_count": 8,
+  "classification_counts": {
+    "no issue": 0,
+    "wording-only risk": 0,
+    "design-risk": 2,
+    "evidence-risk": 3,
+    "blocking false-confidence risk": 3
+  },
+  "dimension_results": [
+    {
+      "dimension": "baseline weakening",
+      "classification": "blocking false-confidence risk",
+      "finding_ids": ["MI-002", "MI-003", "MI-008"],
+      "summary": "Prior model-generated or model-mediated passes become false-confidence risks if later cards omit fair-control failures and graph-cache collapse evidence."
+    },
+    {
+      "dimension": "missing killer controls",
+      "classification": "blocking false-confidence risk",
+      "finding_ids": ["MI-003", "MI-004"],
+      "summary": "001B and process-intervention audit records show that actual fair controls and separation statistics are mandatory before executable authorization."
+    },
+    {
+      "dimension": "name-only controls treated as implemented controls",
+      "classification": "blocking false-confidence risk",
+      "finding_ids": ["MI-002", "MI-003", "MI-004"],
+      "summary": "001A was superseded for this family of failure; later process-intervention work explicitly carries the lesson forward."
+    },
+    {
+      "dimension": "claim ceiling upgrades",
+      "classification": "evidence-risk",
+      "finding_ids": ["MI-001", "MI-006", "MI-007"],
+      "summary": "The ceiling is bounded audit/evidence-infrastructure only; current worktree mismatch, post-audit freeze limits, and unresolved provenance prevent stronger claims."
+    },
+    {
+      "dimension": "stop condition softening",
+      "classification": "design-risk",
+      "finding_ids": ["MI-004", "MI-005"],
+      "summary": "Pass-with-caveats and verdict-string tests can soften stops if later summaries keep the pass token and drop caveats."
+    },
+    {
+      "dimension": "replay/trace insufficiency",
+      "classification": "evidence-risk",
+      "finding_ids": ["MI-004", "MI-008"],
+      "summary": "Replay verification alone is not enough when match criteria are undefined or collapse controls match."
+    },
+    {
+      "dimension": "model-provenance ambiguity",
+      "classification": "evidence-risk",
+      "finding_ids": ["MI-001", "MI-006", "MI-007"],
+      "summary": "There is unresolved model-provenance ambiguity, but no permitted causal attribution to Fable or any actor."
+    },
+    {
+      "dimension": "verdict language stronger than evidence",
+      "classification": "blocking false-confidence risk",
+      "finding_ids": ["MI-001", "MI-002", "MI-004", "MI-006", "MI-008"],
+      "summary": "Bounded_pass or pass_with_caveats language must be read with supersession, errata, and collapse controls attached."
+    },
+    {
+      "dimension": "task scope leak",
+      "classification": "design-risk",
+      "finding_ids": ["MI-004", "MI-005"],
+      "summary": "Current docs mostly contain explicit scope guards; the remaining risk is downstream model summaries converting draft/audit pass into executable authorization."
+    },
+    {
+      "dimension": "hidden dependency on LLM reasoning",
+      "classification": "evidence-risk",
+      "finding_ids": ["MI-005", "MI-007"],
+      "summary": "No audited mechanism result is validated by LLM reasoning here, but self-attested verdict representations and unresolved model-provenance hits remain false-confidence risks."
+    }
+  ],
+  "stop_conditions_triggered": [],
+  "claim_ceiling": "Bounded audit of possible model-output influence on research design and evidence interpretation; not proof of Fable-caused data poisoning, not proof of no poisoning, and not validation or invalidation of 001C mechanism evidence.",
+  "what_this_does_not_prove": [
+    "Fable caused any data poisoning",
+    "Fable did not cause any data poisoning",
+    "001C mechanism evidence is valid",
+    "001C mechanism evidence is invalid",
+    "001C evidence was repaired or refrozen",
+    "Gate 1 replay/consolidation evidence",
+    "same-agent bridge evidence",
+    "EGO mainline readiness",
+    "companion readiness",
+    "agency, consciousness, subjective experience, real emotion, self-awareness, functional-subject, electronic-life, or AGI evidence"
+  ],
+  "artifacts_generated": [
+    "artifacts/MODEL-INFLUENCE-POISONING-AUDIT-001A/model_influence_audit_result.json",
+    "artifacts/MODEL-INFLUENCE-POISONING-AUDIT-001A/suspected_influence_points.jsonl",
+    "artifacts/MODEL-INFLUENCE-POISONING-AUDIT-001A/false_confidence_risk_report.md",
+    "artifacts/MODEL-INFLUENCE-POISONING-AUDIT-001A/no_change_hash_assertion.json",
+    "artifacts/MODEL-INFLUENCE-POISONING-AUDIT-001A/claim_ceiling.json"
+  ]
+}

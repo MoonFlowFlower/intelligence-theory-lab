@@ -1,0 +1,66 @@
+{
+  "best_fair_control": {
+    "accepted_as_evidence": true,
+    "control_name": "online_count_statistic",
+    "family": "count_statistic",
+    "later_behavior_match_rate": 1.0,
+    "match_rate": 1.0,
+    "real_implementation": "online table count/statistic keyed by context, intervention, and action",
+    "resource_budget_within_limit": true,
+    "separation_margin": 0.0,
+    "update_trace_match_rate": 1.0,
+    "uses_forbidden_access": false
+  },
+  "bounded_pass": false,
+  "claim_ceiling": "bounded executable process-intervention preflight evidence only; not Gate1 evidence, not same-agent bridge evidence, not EGO readiness, not mechanism proof",
+  "ego_integration_authorized": false,
+  "ego_readiness_claimed": false,
+  "fable_or_poisoning_line_expanded": false,
+  "gate1_evidence_claimed": false,
+  "gate1_reopen_authorized": false,
+  "mechanism_evidence_claimed": false,
+  "model_class_reset_authorized": false,
+  "negative_evidence_admission": {
+    "checked_rules": [
+      "missing_001a_supersession",
+      "missing_001b_fair_control_failure",
+      "missing_001c_canonical_errata",
+      "process_intervention_draft_pass_treated_as_executable",
+      "verdict_string_tests_treated_as_acceptance",
+      "gate1_replay_pass_ignores_graph_cache_collapse",
+      "fable_causality_without_provenance_diff_mechanism"
+    ],
+    "claim_ceiling": "bounded successor-task admission guard against known false-confidence risks",
+    "failure_ids": [],
+    "passed": true,
+    "task_id": "NEGATIVE-EVIDENCE-ADMISSION-GATE-001A"
+  },
+  "negative_evidence_recorded": true,
+  "new_meta_audit_created": false,
+  "next_allowed_task": "record_negative_evidence_or_simplify_process_intervention_framing",
+  "nonblocking_caveats_spawned_new_tasks": false,
+  "old_artifacts_repaired": false,
+  "old_experiments_rerun": false,
+  "same_agent_bridge_authorized": false,
+  "same_agent_bridge_evidence_claimed": false,
+  "stop_conditions": [
+    "fair_count_statistic_control_matched",
+    "fair_graph_cache_control_matched",
+    "trace_only_replay_matched"
+  ],
+  "support_contract_classification": {
+    "backlog": [],
+    "blocking": [],
+    "nonblocking": []
+  },
+  "support_pack_or_semantic_audit_treated_as_mechanism_evidence": false,
+  "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001B",
+  "thresholds": {
+    "equivalence_band": 0.05,
+    "later_behavior_match_threshold": 0.95,
+    "match_rate_threshold": 0.95,
+    "separation_margin_threshold": 0.1,
+    "update_trace_match_threshold": 0.9
+  },
+  "verdict": "process_intervention_preflight_001b_failed_control_separation_statistic_match"
+}

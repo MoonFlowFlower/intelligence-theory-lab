@@ -1,0 +1,145 @@
+{
+  "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001A-AMENDMENT-001-INDEPENDENT-SEMANTIC-AUDIT",
+  "verdict": "semantic_audit_blocked_missing_amendment_support_artifacts",
+  "claim_ceiling": "bounded independent semantic audit of AMENDMENT-001 executable false-pass closure only",
+  "amendment_checks": {
+    "A1": {
+      "label": "real-control implementation rule",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/real_control_implementation_contract.md",
+      "support_exists": false,
+      "source_snippet": "Name-only controls are invalid.",
+      "semantic_finding": "The amendment states the rule, but the declared control implementation contract is absent, so name-only controls are not converted into executable definitions."
+    },
+    "A2": {
+      "label": "online trace commitment protocol",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/trace_commitment_contract.md",
+      "support_exists": false,
+      "source_snippet": "Future traces must be committed before later behavior probe result is known.",
+      "semantic_finding": "The amendment states trace commitment requirements, but the declared trace commitment contract is absent, so post-hoc trace generation detectability is not executable."
+    },
+    "A3": {
+      "label": "frozen match / reproduce definition",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/match_metric_contract.md",
+      "support_exists": false,
+      "source_snippet": "intervention_response_match",
+      "semantic_finding": "Metric names and threshold labels appear, but the declared match metric contract and amendment matrix are absent, so formulas, thresholds, and failure decision rules are not auditable as frozen executable definitions."
+    },
+    "A4": {
+      "label": "allowed update path definition",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/update_path_contract.md",
+      "support_exists": false,
+      "source_snippet": "Future replay must verify the update path by step-level recomputation, not schema inspection.",
+      "semantic_finding": "The amendment states the right semantic distinction, but the declared update-path contract is absent, so replay/schema-only substitutions remain unclosed."
+    },
+    "A5": {
+      "label": "witness-vs-online-control separation statistic",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/separation_statistic_contract.md",
+      "support_exists": false,
+      "source_snippet": "If the best fair online cheap control matches the witness on the frozen separation statistic, future authorization fails.",
+      "semantic_finding": "The amendment states a forced-failure rule, but the declared separation statistic contract is absent, so online-control match handling is not executable."
+    },
+    "A6": {
+      "label": "trace write-only / state accounting rule",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/state_accounting_contract.md",
+      "support_exists": false,
+      "source_snippet": "Trace fields are write-only audit outputs.",
+      "semantic_finding": "The amendment states trace/state accounting constraints, but the declared accounting contract is absent, so trace fields are not proven to be excluded from hidden working memory."
+    },
+    "A7": {
+      "label": "numeric or structural resource budgets",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/resource_budget_contract.md",
+      "support_exists": false,
+      "source_snippet": "resource budgets require numeric/structural values",
+      "semantic_finding": "The amendment requires budgets, but the declared budget contract is absent, so resource parity and starvation checks remain unimplemented."
+    },
+    "A8": {
+      "label": "per-intervention instantiation against frozen environment",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/environment_intervention_instantiation_contract.md",
+      "support_exists": false,
+      "source_snippet": "concrete per-intervention environment instantiation",
+      "semantic_finding": "The amendment requires per-intervention instantiation, but the declared instantiation contract is absent, so graph/cache intervention-label ambiguity remains open."
+    },
+    "A9": {
+      "label": "memory-key fidelity replay check",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/memory_key_fidelity_contract.md",
+      "support_exists": false,
+      "source_snippet": "A9 memory-key fidelity replay check",
+      "semantic_finding": "The amendment names the check, but the declared fidelity contract is absent, so keying and replay semantics are not executable."
+    },
+    "A10": {
+      "label": "behavior-probe protocol",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/behavior_probe_contract.md",
+      "support_exists": false,
+      "source_snippet": "For each behavior probe:",
+      "semantic_finding": "The amendment states behavior probe requirements, but the declared behavior probe contract is absent, so probes remain at risk of being metric names only."
+    },
+    "A11": {
+      "label": "Stage0 freeze / anchor and governance repair",
+      "semantic_status": "blocked_missing_support_artifacts",
+      "support_path": "docs/process_intervention_preflight_001a/stage0_freeze_anchor_contract.md",
+      "support_exists": false,
+      "source_snippet": "Executable-layer tests must not assert a pass verdict string.",
+      "semantic_finding": "The amendment rejects verdict-string tests and self-attestation, but the declared Stage0 freeze anchor contract and contract test are absent, so the executable prevention layer is not yet demonstrated."
+    }
+  },
+  "false_pass_channels": {
+    "name_only_controls": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "name-only controls and hardcoded attestations are invalid",
+      "amendment_snippet": "Name-only controls are invalid.",
+      "semantic_finding": "Stated as invalid, but not closed because the support contract for actual control implementations is missing."
+    },
+    "hardcoded_competence_or_fairness": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "name-only controls and hardcoded competence/fairness assertions remain invalid",
+      "amendment_snippet": "Name-only controls are invalid.",
+      "semantic_finding": "The language rejects the pattern, but no executable challenger definitions or fairness checks are present."
+    },
+    "undefined_match_metric": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "An undefined match criterion is a false-pass channel.",
+      "amendment_snippet": "intervention_response_match",
+      "semantic_finding": "Metric labels are present, but the frozen metric contract and result artifact are absent."
+    },
+    "per_intervention_instantiation_missing": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "per-intervention six-tuples instantiated against a frozen environment",
+      "amendment_snippet": "concrete per-intervention environment instantiation",
+      "semantic_finding": "The requirement is named, but the per-intervention instantiation contract is absent."
+    },
+    "graph_cache_intervention_label_ambiguity": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "graph/cache controls may key on `intervention_condition`",
+      "amendment_snippet": "intervention-labeled graph/cache absent",
+      "semantic_finding": "The audit cannot confirm closure because the frozen environment and intervention-label contract are absent."
+    },
+    "resource_budget_ambiguity": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "resource limits can starve controls",
+      "amendment_snippet": "resource budgets require numeric/structural values",
+      "semantic_finding": "The amendment requires budgets, but no numeric or structural budget contract exists."
+    },
+    "self_attested_acceptance": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "the acceptance gate is self-attested",
+      "amendment_snippet": "Executable acceptance gates must not be self-attested by the candidate system.",
+      "semantic_finding": "The prohibition is present, but the non-self-attested gate artifact and contract test are absent."
+    },
+    "verdict_string_tests": {
+      "status": "blocked_missing_support_artifacts",
+      "independent_audit_snippet": "Tests that encode the verdict string itself are invalid acceptance evidence.",
+      "amendment_snippet": "Executable-layer tests must not assert a pass verdict string.",
+      "semantic_finding": "The prohibition is present, but no replacement contract test or executable acceptance artifact exists."
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "challengers": {
+    "C0_random_baseline": {
+      "gap_verified": true
+    },
+    "C10_summary_memory_baseline": {
+      "gap_verified": true
+    },
+    "C1_majority_baseline": {
+      "gap_verified": true
+    },
+    "C2_frequency_heuristic": {
+      "gap_verified": true
+    },
+    "C3_count_table": {
+      "gap_verified": true
+    },
+    "C4_transition_table": {
+      "gap_verified": true
+    },
+    "C5_nearest_neighbor_trace_lookup": {
+      "gap_verified": true
+    },
+    "C6_bounded_order_window_model_K1": {
+      "gap_verified": true
+    },
+    "C7_bounded_order_window_model_K2": {
+      "gap_verified": true
+    },
+    "C8_bounded_order_window_model_K3": {
+      "gap_verified": true
+    },
+    "C9_bounded_order_window_model_K4": {
+      "gap_verified": true
+    }
+  },
+  "witnesses": {
+    "W0_finite_latent_state_model_with_memory": {
+      "can_represent": true,
+      "state": "one permitted internal parity bit updated from allowed action/observation tokens",
+      "uses_forbidden_oracle": false
+    },
+    "W1_automaton_or_state_machine_witness": {
+      "can_represent": true,
+      "states": [
+        "parity_0",
+        "parity_1"
+      ],
+      "uses_forbidden_oracle": false
+    },
+    "W2_factorized_rule_model_witness": {
+      "can_represent": true,
+      "rule": "next_state = previous_state XOR action_bit XOR observation_bit",
+      "uses_forbidden_oracle": false
+    }
+  }
+}

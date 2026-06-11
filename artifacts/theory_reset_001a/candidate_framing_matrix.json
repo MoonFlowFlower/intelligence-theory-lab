@@ -1,0 +1,53 @@
+{
+  "task_id": "THEORY-RESET-NEW-PROBLEM-DEFINITION-001A",
+  "families": {
+    "F1": {
+      "name": "Output Representational Gap",
+      "question": "Can a task separate a positive witness from cheap full-history controls by output accuracy?",
+      "verdict": "reject_or_demote",
+      "reason": "001B already showed that the K-window residue collapses under fair full-history controls."
+    },
+    "F2": {
+      "name": "Process / Intervention Gap",
+      "question": "Can a mechanism be distinguished by how its internal state changes under controlled interventions, even if cheap controls match output labels?",
+      "verdict": "survives_as_primary_candidate",
+      "required_probes": [
+        "state intervention",
+        "memory deletion",
+        "counterfactual action substitution",
+        "observation perturbation",
+        "prediction-error intervention",
+        "representation freezing",
+        "history-preserving causal perturbation"
+      ],
+      "primary_risk": "cheap controls may reproduce shallow traces"
+    },
+    "F3": {
+      "name": "Adaptation-Under-Distribution-Shift Gap",
+      "question": "Can a mechanism update from new experience in a way that cheap static controls cannot match without retraining or forbidden post-hoc access?",
+      "verdict": "survives_as_supporting_constraint",
+      "reason": "Viable only if cheap online controls with the same update access are included and fail."
+    },
+    "F4": {
+      "name": "Causal Model Update Gap",
+      "question": "Can the mechanism update an internal causal model from interventions rather than merely fitting observed correlations?",
+      "verdict": "survives_as_supporting_constraint",
+      "reason": "Viable only if full-history causal tables, graph cache, and model-based controls are included and fail."
+    },
+    "F5": {
+      "name": "Viability / Value-State Update Gap",
+      "question": "Can a bounded system update action preferences from internal viability/error signals rather than external labels alone?",
+      "verdict": "demote_to_later_only",
+      "reason": "Too close to value, affect, or subjectivity language unless a stricter non-companion contract exists."
+    },
+    "F6": {
+      "name": "Replay / Consolidation Reframing",
+      "question": "Is there any replay/consolidation problem that avoids the prior graph-cache collapse?",
+      "verdict": "reject_for_now",
+      "reason": "Gate1 lineage is closed and same-agent bridge is blocked."
+    }
+  },
+  "selected_primary_candidate": "F2",
+  "supporting_constraints": ["F3", "F4"],
+  "next_allowed_task": "NEW-PROBLEM-PREFLIGHT-001A task-card drafting"
+}

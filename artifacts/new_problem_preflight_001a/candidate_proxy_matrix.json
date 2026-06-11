@@ -1,0 +1,79 @@
+{
+  "task_id": "NEW-PROBLEM-PREFLIGHT-001A",
+  "candidates": {
+    "P1": {
+      "name": "Intervention-Sensitive State Update Proxy",
+      "verdict": "survives_as_primary_proxy_contract",
+      "role": "primary_axis",
+      "question": "When the same history is followed by different controlled interventions, does the system update internal state through different allowed paths, and do those differences causally affect later behavior?",
+      "required_probes": [
+        "state intervention",
+        "memory deletion",
+        "representation freezing",
+        "prediction-error injection",
+        "counterfactual action substitution",
+        "observation perturbation",
+        "history-preserving causal perturbation"
+      ],
+      "primary_risk": "graph/cache trace generator reproduces the same trace and future behavior"
+    },
+    "P2": {
+      "name": "Online Adaptation Under Distribution Shift Proxy",
+      "verdict": "survives_as_supporting_constraint",
+      "role": "supporting_constraint",
+      "required_controls": [
+        "online count/statistic learner",
+        "online FSM",
+        "online graph/cache",
+        "online kNN / episodic retrieval",
+        "online summary statistic",
+        "online causal table"
+      ],
+      "primary_risk": "cheap online controls match adaptation once given fair update access"
+    },
+    "P3": {
+      "name": "Causal Model Update Proxy",
+      "verdict": "survives_as_supporting_constraint",
+      "role": "supporting_constraint",
+      "required_controls": [
+        "full-history causal table",
+        "intervention-labeled graph cache",
+        "model-based control baseline",
+        "causal summary statistic",
+        "oracle causal-state probe"
+      ],
+      "primary_risk": "a graph/cache or causal table baseline matches all intervention probes"
+    },
+    "P4": {
+      "name": "Resource-Aware Process Proxy",
+      "verdict": "constraint_only",
+      "role": "symmetric_accounting_constraint",
+      "forbidden_use": "giving witness more memory, giving controls less memory, or banning cache/retrieval because they are strong"
+    },
+    "P5": {
+      "name": "Non-Affective Regulatory Scalar Boundary",
+      "verdict": "boundary_note_only",
+      "role": "non_affective_boundary",
+      "allowed_terms": [
+        "prediction-error budget",
+        "uncertainty pressure",
+        "internal cost estimate",
+        "resource depletion signal"
+      ],
+      "forbidden_terms": [
+        "emotion",
+        "desire",
+        "subjective preference",
+        "liking",
+        "happiness",
+        "suffering",
+        "viability claim",
+        "functional subjectivity",
+        "companion readiness"
+      ]
+    }
+  },
+  "selected_primary_proxy": "P1",
+  "supporting_constraints": ["P2", "P3", "P4", "P5"],
+  "next_allowed_task": "PROCESS-INTERVENTION-PREFLIGHT-001A task-card drafting"
+}

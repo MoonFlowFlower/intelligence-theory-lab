@@ -1,0 +1,39 @@
+{
+  "task_id": "NEW-PROBLEM-PREFLIGHT-001A",
+  "overall_collapse_audit_verdict": "survives_contract_only_with_mandatory_future_failure_gates",
+  "implementation_authorized": false,
+  "audit_questions": {
+    "full_history_count_statistic_controls": "mandatory future adversary; future proxy fails if this reproduces trace and future behavior",
+    "online_count_statistic_controls": "mandatory future adversary with same update access",
+    "fsm_automaton_controls": "mandatory future adversary; equivalent state capacity must not be forbidden",
+    "graph_cache_controls": "mandatory future adversary",
+    "online_graph_cache_controls": "mandatory future adversary with update access",
+    "knn_episodic_retrieval_controls": "mandatory future adversary",
+    "summary_statistic_controls": "mandatory future adversary; useful summaries cannot be banned",
+    "causal_table_controls": "mandatory where causal intervention probes are used",
+    "trace_only_replay": "future positive claim fails if trace-only replay reproduces both trace and future behavior",
+    "behavior_only_replay": "future positive claim fails if behavior-only replay reproduces intervention response",
+    "random_representation": "mandatory future adversary",
+    "shuffled_outcomes": "mandatory future adversary",
+    "deletion_no_future_behavior_effect": "future proxy fails if deletion/freezing has no defined behavioral consequence",
+    "counterfactual_action_no_update_path_change": "future proxy fails if counterfactual action does not affect update path where expected",
+    "posthoc_trace_generation": "future proxy fails if traces can be generated after the fact",
+    "resource_asymmetry": "future proxy fails if controls fail only from asymmetric resource limits"
+  },
+  "candidate_findings": {
+    "P1": "survives as contract only; requires future intervention and replay failure gates",
+    "P2": "survives as constraint only; online cheap controls are high-risk adversaries",
+    "P3": "survives as constraint only; causal table and graph/cache collapse risks remain",
+    "P4": "constraint only; resource advantage is not evidence",
+    "P5": "boundary only; affective/value-state claims remain out of scope"
+  },
+  "anti_hardcoding_audit_summary": {
+    "renamed_variable_risk": "must be tested in future executable preflight",
+    "if_else_policy_risk": "must be tested by intervention and counterfactual probes",
+    "trace_theater_risk": "must be tested by trace-only replay control",
+    "control_banning_risk": "blocked by carryforward adversary contract",
+    "resource_asymmetry_risk": "blocked by symmetric resource contract",
+    "oracle_or_seed_leakage_risk": "blocked by access contract and oracle probes",
+    "value_emotion_subjectivity_risk": "blocked by value-state boundary"
+  }
+}

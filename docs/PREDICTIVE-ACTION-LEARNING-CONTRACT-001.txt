@@ -1,0 +1,977 @@
+# Claude Task Card: PREDICTIVE-ACTION-LEARNING-CONTRACT-001
+
+Alias: R-G-PREDICTIVE-ACTION-KERNEL-001B
+Stage: Bounded Experiment Implementation
+Executor: Claude
+Mode: isolated implementation + evidence artifact generation only
+
+## 0. Non-negotiable boundary
+
+You are not doing theory research.
+
+You are not designing an EGO architecture.
+
+You are not implementing a companion agent.
+
+You are not implementing consciousness, agency, emotion, relationship learning, self-awareness, subjective experience, LLM integration, replay/consolidation, UI behavior, personality, or product behavior.
+
+You are implementing one isolated bounded experiment for a frozen predictive-action learning contract.
+
+Your job is to produce code, tests, traces, baselines, ablations, perturbations, and a bounded evidence report.
+
+You must not expand the theory.
+
+You must not alter the frozen mathematical skeleton.
+
+You must not claim electronic life, functional subject evidence, consciousness, agency, AGI, companion readiness, biological equivalence, or stable user benefit.
+
+If any requirement cannot be satisfied, report the exact blocked gate and stop. Do not silently weaken the contract.
+
+A beautiful skeleton that cannot be falsified must be treated as failure, not progress.
+
+---
+
+# 1. Problem definition
+
+Implement an isolated finite-state predictive-action learning experiment that tests whether a system can perform trace-visible action-conditioned belief/model update.
+
+The experiment must distinguish the frozen skeleton from fake-pass alternatives:
+
+* passive next-observation prediction
+* action-label memorization
+* RAG / nearest-history retrieval
+* hard-coded policy or if-else rules
+* static world model with no online update
+* post-hoc trace rendering
+* cosmetic uncertainty logging
+* decorative counterfactual action contrast
+* benchmark overfitting
+* hidden replay or hidden memory access
+
+The task is not to maximize behavior performance.
+
+The task is to generate falsifiable evidence that the frozen predictive-action learning contract either passes or fails under baselines, ablations, perturbations, and immutable trace requirements.
+
+---
+
+# 2. Current phase
+
+Current phase: `ENTER_BOUNDED_EXPERIMENT`.
+
+Previous research phases have already frozen the contract. Do not reopen them.
+
+Your implementation must instantiate the frozen contract exactly enough to test it.
+
+This task is an isolated bounded experiment only.
+
+Allowed outcome values:
+
+* `bounded_contract_pass`
+* `bounded_contract_fail`
+* `protocol_blocked`
+* `implementation_incomplete`
+
+Do not invent stronger verdicts.
+
+---
+
+# 3. Hypothesis
+
+Bounded hypothesis:
+
+A finite-state predictive-action learner using:
+
+* belief distribution (b_t)
+* action-conditioned transition model (T_\theta(s' \mid s,a))
+* observation model (O_\theta(o \mid s'))
+* next-observation prediction (\hat P_t^{(a)}(o))
+* pre-outcome prediction error
+* calibrated uncertainty diagnostics
+* online pseudo-count model updates
+* same-history all-action counterfactual prediction contrast
+
+will produce trace-visible evidence of action-conditioned learning that is not matched by passive predictors, shuffled-action predictors, nearest-history retrieval, hard-coded rules, static-theta baselines, or post-hoc traces.
+
+This hypothesis is allowed to fail.
+
+Failure is valid evidence.
+
+---
+
+# 4. Frozen mathematical skeleton
+
+Do not modify this skeleton.
+
+## 4.1 Sets
+
+Finite latent state set:
+
+[
+S = {s_0, s_1, ..., s_{n-1}}
+]
+
+Finite observation alphabet:
+
+[
+O = {o_0, o_1, ..., o_{m-1}}
+]
+
+Finite action set:
+
+[
+A = {a_0, a_1, ..., a_{k-1}}
+]
+
+## 4.2 Belief state
+
+The learner maintains a belief distribution:
+
+[
+b_t(s) = P(s_t=s \mid h_t)
+]
+
+where (h_t) is the history available before choosing or evaluating action (a_t).
+
+(b_t) must be logged before and after update.
+
+## 4.3 Action-conditioned transition model
+
+The learner maintains:
+
+[
+T_\theta(s' \mid s,a)
+]
+
+This must be represented by pseudo-counts or an equivalent explicit probability table.
+
+Do not replace this with a neural network, LLM, retrieval store, prompt, or heuristic policy.
+
+## 4.4 Observation model
+
+The learner maintains:
+
+[
+O_\theta(o \mid s')
+]
+
+This must also be represented by pseudo-counts or an equivalent explicit probability table.
+
+## 4.5 Prediction
+
+For each candidate action (a \in A), compute predicted next-state belief:
+
+[
+\hat b_t^{(a)}(s') = \sum_s b_t(s)T_\theta(s' \mid s,a)
+]
+
+Then compute next-observation predictive distribution:
+
+[
+\hat P_t^{(a)}(o) = \sum_{s'} \hat b_t^{(a)}(s')O_\theta(o \mid s')
+]
+
+You must log raw predictions for all actions before observing (o_{t+1}).
+
+## 4.6 Primary prediction target
+
+Primary prediction target:
+
+[
+o_{t+1}
+]
+
+Do not change the target after seeing results.
+
+## 4.7 Prediction error
+
+Primary error:
+
+[
+e_{t+1} = -\log \hat P_t^{(a_t)}(o_{t+1})
+]
+
+Use numerical smoothing only if pre-declared in config.
+
+## 4.8 Uncertainty
+
+Primary uncertainty diagnostic:
+
+[
+H(\hat P_t^{(a_t)})
+]
+
+Calibration metrics:
+
+* rolling NLL
+* Brier score
+* ECE only if sample size and binning policy are suitable
+
+NLL and Brier are primary. ECE is secondary.
+
+## 4.9 Belief update
+
+After observing (o_{t+1}), compute posterior responsibility:
+
+[
+\xi_t(s,s') \propto b_t(s)T_\theta(s' \mid s,a_t)O_\theta(o_{t+1}\mid s')
+]
+
+Normalize:
+
+[
+\sum_{s,s'} \xi_t(s,s') = 1
+]
+
+Then:
+
+[
+b_{t+1}(s') = \sum_s \xi_t(s,s')
+]
+
+Log `belief_pre`, `belief_post`, and `delta_belief`.
+
+## 4.10 Model learning
+
+If `claim_mode = belief_plus_theta`, update pseudo-counts:
+
+[
+C_T(s,a_t,s') \leftarrow C_T(s,a_t,s') + \eta \xi_t(s,s')
+]
+
+[
+C_O(s',o_{t+1}) \leftarrow C_O(s',o_{t+1}) + \eta b_{t+1}(s')
+]
+
+Then renormalize (T_\theta) and (O_\theta).
+
+If `claim_mode = belief_only`, do not claim theta-learning.
+
+Theta-learning claims require:
+
+* `theta_T_pre`
+* `theta_T_post`
+* `theta_O_pre`
+* `theta_O_post`
+* `delta_theta_derived`
+* frozen-theta baseline
+* rule-shift or transition-reversal perturbation
+
+## 4.11 Counterfactual action contrast
+
+For the same history (h_t), compute predictions for all (a \in A):
+
+[
+{\hat P_t^{(a)}(o)}_{a \in A}
+]
+
+Compute pairwise JS divergence or another pre-declared divergence metric.
+
+Raw all-action distributions are canonical evidence.
+
+`action_contrast` is only a derived summary.
+
+## 4.12 Memory / replay status
+
+Core experiment is trace-only.
+
+Replay is disabled.
+
+Retrieval is disabled.
+
+Any `REPLAY_STEP` in the core protocol is immediate protocol failure.
+
+---
+
+# 5. Allowed scope
+
+You may implement:
+
+* isolated finite-state simulator
+* finite hidden-state environment
+* finite action set
+* finite observation alphabet
+* belief distribution learner
+* pseudo-count transition model
+* pseudo-count observation model
+* online belief update
+* online pseudo-count theta update
+* next-observation prediction
+* NLL / Brier / entropy metrics
+* all-action counterfactual prediction logging
+* action-sensitive regime
+* null-control regime
+* hidden-rule change
+* transition reversal
+* observation noise perturbation
+* spurious action-observation correlation trap
+* baselines
+* ablations
+* perturbations
+* trace schema
+* trace hashing
+* pre-outcome commitment interface
+* local mock commit sink for tests only
+* optional external commit sink interface if available
+* final JSON / Markdown reports
+
+Use the repository’s existing conventions if they are obvious. Otherwise, create an isolated module/directory.
+
+Suggested names:
+
+* `predictive_action_learning_contract_001/`
+* `tests/test_predictive_action_learning_contract_001.py`
+* `artifacts/predictive_action_learning_contract_001/`
+
+If the repo already has a `theory_lab`, `vcco`, or `evals` convention, place the implementation there only if doing so does not touch EGO mainline behavior.
+
+---
+
+# 6. Forbidden scope
+
+Do not implement or modify:
+
+* EGO mainline
+* companion behavior
+* LLM agent loop
+* LLM inference
+* prompt behavior
+* personality
+* emotion
+* relationship learning
+* subjective experience claims
+* consciousness claims
+* agency claims
+* UI
+* product demo
+* replay / consolidation
+* long-term memory system
+* RAG
+* vector database
+* retrieval
+* web access
+* external tool use for the learner
+* policy optimization
+* model-free RL
+* neural network world model
+* large-scale training
+* open-ended autonomous agent
+
+Do not make the experiment more impressive by expanding its scope.
+
+Do not add mechanisms because they seem useful.
+
+Do not tune thresholds after seeing results.
+
+Do not delete baselines, ablations, perturbations, or stop conditions because they make passing harder.
+
+---
+
+# 7. Trace contract
+
+All traces must be machine-readable.
+
+Use JSONL or another explicit schema.
+
+Every run must include:
+
+* `RUN_META`
+* `PRE_STEP`
+* `POST_STEP`
+
+`REPLAY_STEP` is reserved only. Any occurrence in the core protocol is failure.
+
+## 7.1 RUN_META fields
+
+Required:
+
+* `run_id`
+* `random_seed`
+* `env_rule_id`
+* `action_schema`
+* `obs_schema`
+* `state_schema`
+* `serializer_version`
+* `trace_schema_hash`
+* `ablation_id`
+* `perturbation_id`
+* `retrieval_enabled=false`
+* `replay_enabled=false`
+* `runtime_attestation_ref`
+* `runtime_manifest_hash`
+* `config_manifest_hash`
+* `storage_policy_hash`
+* `network_policy_hash`
+* `claim_mode`
+* `commit_mode`
+* `commit_sink_id`
+* `threshold_config_hash`
+
+## 7.2 PRE_STEP fields
+
+Required:
+
+* `event_type="PRE_STEP"`
+* `t`
+* `obs_t`
+* `belief_pre`
+* `theta_T_pre`
+* `theta_O_pre`
+* `action_t`
+* `raw_pred_obs_by_action`
+* `raw_pred_belief_by_action`
+* `uncertainty_pre`
+* `action_sensitivity_metric`
+* `action_sensitive_regime_id`
+* `null_control_regime_id`
+* `action_sensitivity_acceptance_threshold`
+* `pre_step_hash`
+* `pre_commit_receipt`
+* `commit_sink_id`
+* `receipt_type`
+* `receipt_verifier_key_id`
+
+## 7.3 POST_STEP fields
+
+Required:
+
+* `event_type="POST_STEP"`
+* `t`
+* `actual_obs`
+* `obs_reveal_ts`
+* `pred_prob_actual`
+* `nll_error`
+* `brier_component`
+* `transition_responsibility`
+* `belief_post`
+* `delta_belief`
+* `theta_T_post`
+* `theta_O_post`
+* `delta_theta_derived`
+* `post_step_hash`
+* `pre_step_hash_ref`
+* `external_memory_access_count`
+* `replay_step_count`
+* `retrieval_event_log`
+* `cache_epoch_id`
+* `theta_frozen_baseline_id`
+* `rule_shift_perturbation_id`
+
+## 7.4 REPLAY_STEP rule
+
+`REPLAY_STEP` is reserved only.
+
+If any `REPLAY_STEP` appears in a core run:
+
+```text
+protocol_verdict = protocol_blocked
+reason = replay_contamination
+```
+
+## 7.5 Pre-outcome commitment
+
+Before revealing or computing `actual_obs`, the implementation must commit the complete serialized `PRE_STEP` record.
+
+Acceptable commitment modes:
+
+1. External RFC 3161-style timestamp token
+2. Transparency-log receipt with later inclusion proof
+3. Local mock commit sink only for implementation tests
+
+If only local mock commitment is available, the implementation may pass implementation tests but must not claim external-evidence pass.
+
+Report both:
+
+* `implementation_verdict`
+* `evidence_verdict`
+
+If external commitment is unavailable:
+
+```text
+implementation_verdict may pass
+evidence_verdict must be protocol_blocked_by_T1_external_commit_missing
+```
+
+Do not fake external commitment.
+
+---
+
+# 8. Experiment environment
+
+Implement at least three regimes.
+
+## 8.1 Action-sensitive regime
+
+Actions must affect hidden-state transition.
+
+Example acceptable structure:
+
+* (S = {0,1,2})
+* (A = {left,right,stay})
+* (O = {red,green,blue})
+
+Transition depends on action, with optional small noise.
+
+Observation depends on hidden state, with controlled observation noise.
+
+The exact environment rule must be declared in config and logged as `env_rule_id`.
+
+## 8.2 Null-control regime
+
+Actions must not affect next hidden state or next observation distribution.
+
+All-action predictions should collapse within a pre-declared tolerance.
+
+If action predictions separate in null-control regime, fail T3.
+
+## 8.3 Rule-shift / transition-reversal regime
+
+At a declared time or condition, environment transition rule changes.
+
+This is mandatory if `claim_mode = belief_plus_theta`.
+
+The learner must show trace-visible adaptation in theta or fail theta-learning claim.
+
+## 8.4 Spurious correlation trap
+
+Create a condition where action labels correlate with observations but do not causally control transition.
+
+Passive and shuffled-action baselines must be tested here.
+
+If the learner’s apparent action sensitivity survives only through spurious correlation, fail.
+
+---
+
+# 9. Baselines
+
+Implement and evaluate all required baselines.
+
+Each baseline must produce metrics comparable to the main skeleton.
+
+## 9.1 Required baselines
+
+1. Passive next-observation predictor without action input
+2. Shuffled-action predictor
+3. Action-token-only predictor with no causal transition semantics
+4. Nearest-history retrieval / RAG-like baseline
+5. Hard-coded rule baseline
+6. Frozen-theta baseline
+7. Belief-update-only baseline with fixed theta
+8. Oracle-leak sanity baseline
+9. Cold-start duplicate-run baseline
+
+## 9.2 Baseline failure logic
+
+The main skeleton cannot pass if:
+
+* passive predictor matches action-sensitive slices
+* shuffled-action predictor matches action-sensitive slices
+* nearest-history retrieval matches core behavior
+* hard-coded rule baseline matches under rule shift
+* frozen-theta baseline matches when theta-learning is claimed
+* oracle-leak sanity detects impossible predictive performance
+* cold-start duplicate-run reveals hidden cache or persistence
+
+---
+
+# 10. Ablations
+
+Implement all required ablations.
+
+## 10.1 Required ablations
+
+1. Remove action input
+2. Shuffle action labels
+3. Freeze (theta_T) and (theta_O)
+4. Freeze belief update
+5. Disable external pre-commit
+6. Replace internal update with retrieval
+7. Remove raw all-action predictions
+8. Force replay event
+9. Delete recent memory / hidden store
+10. Remove uncertainty logging
+
+## 10.2 Ablation failure logic
+
+The main skeleton cannot pass if removing or corrupting a supposedly necessary mechanism does not change the relevant evidence.
+
+Examples:
+
+* Removing action input does not degrade action-sensitive regime evidence
+* Freezing theta does not affect theta-learning claim under rule shift
+* Removing raw all-action predictions still allows action-sensitivity claim
+* Forcing replay event does not trigger protocol failure
+* Disabling pre-commit does not block evidence verdict
+
+---
+
+# 11. Perturbations
+
+Implement all required perturbations.
+
+## 11.1 Required perturbations
+
+1. Hidden-rule change
+2. Transition reversal
+3. Observation noise
+4. Ambiguous observation shift
+5. Spurious action-observation correlation trap
+6. Null-control regime
+7. Same-history counterfactual query
+8. Memory deletion / cache flush
+9. Environment rule swap
+
+## 11.2 Perturbation failure logic
+
+The main skeleton cannot pass if:
+
+* hidden-rule change produces no trace-visible adaptation
+* transition reversal is handled equally well by frozen-theta baseline when theta-learning is claimed
+* observation noise does not affect uncertainty or calibration
+* spurious correlation fools the model
+* null-control regime shows false action separation
+* same-history counterfactual predictions are identical in action-sensitive regimes
+* cache flush changes behavior in a way suggesting hidden memory contamination
+
+---
+
+# 12. Acceptance gates
+
+Separate implementation acceptance from evidence acceptance.
+
+## 12.1 Implementation acceptance gates
+
+Implementation can pass only if:
+
+1. Code runs from a documented command
+2. Tests pass
+3. Main learner is isolated
+4. No EGO mainline integration occurs
+5. No LLM, RAG, replay, retrieval, UI, companion behavior, or external tool use enters the learner
+6. Frozen skeleton is implemented
+7. Trace schema is implemented
+8. Baselines are implemented
+9. Ablations are implemented
+10. Perturbations are implemented
+11. Reports are generated
+12. Required artifacts are saved
+
+## 12.2 Evidence acceptance gates
+
+Evidence can pass only if:
+
+1. PRE_STEP predictions are committed before `actual_obs` reveal
+2. Commitment is externally verifiable or explicitly marked as local mock only
+3. Retrieval and replay are disabled and attested
+4. external memory access count is zero
+5. no REPLAY_STEP occurs in core
+6. action-sensitive regimes show all-action prediction separation
+7. null-control regimes show all-action prediction collapse
+8. passive predictor does not match action-sensitive slices
+9. shuffled-action predictor does not match action-sensitive slices
+10. RAG / nearest-history baseline does not match core behavior
+11. hard-coded baseline fails under rule shift
+12. frozen-theta baseline does not match when theta-learning is claimed
+13. belief update and theta update claims are judged separately
+14. rolling NLL and Brier are reported
+15. ECE is used only if suitable
+16. raw all-action predictions are present
+17. raw theta pre/post states are present
+18. summaries do not replace canonical raw evidence
+19. stop conditions are enforced
+
+## 12.3 Required verdict fields
+
+Final report must include:
+
+```json
+{
+  "implementation_verdict": "...",
+  "evidence_verdict": "...",
+  "claim_mode": "...",
+  "protocol_blockers": [],
+  "failed_gates": [],
+  "stop_conditions_triggered": [],
+  "claim_ceiling": "..."
+}
+```
+
+---
+
+# 13. Stop conditions
+
+Stop immediately and report failure if any of the following occur:
+
+1. You need to modify the mathematical skeleton to make the experiment work
+2. PRE_STEP chronology cannot be verified
+3. Commitment is local-only but reported as external evidence
+4. Commit receipt is unverifiable
+5. Trace schema is ambiguous
+6. Retrieval or replay claims rely only on self-reported flags
+7. Any retrieval occurs in core run
+8. Any REPLAY_STEP occurs in core run
+9. passive predictor matches action-sensitive slices
+10. shuffled-action predictor matches action-sensitive slices
+11. nearest-history retrieval / RAG baseline matches core behavior
+12. hard-coded rule baseline matches under rule shift
+13. same-history all-action predictions do not separate in action-sensitive regime
+14. same-history all-action predictions separate in null-control regime
+15. theta-learning is claimed but frozen-theta control performs equivalently under rule shift
+16. ECE is treated as decisive under inadequate sample support
+17. raw all-action predictions are absent
+18. raw theta pre/post states are absent
+19. summaries replace canonical raw evidence
+20. any protocol tightening changes the mathematical skeleton
+21. tests only check behavior but not trace evidence
+22. report contains consciousness, agency, functional-subject, AGI, electronic-life, or companion-readiness claims
+
+If a stop condition is triggered, do not patch around it silently.
+
+Record:
+
+* stop condition id
+* reason
+* affected artifact
+* rollback recommendation
+
+---
+
+# 14. Rollback plan
+
+If blocked, choose exactly one rollback target.
+
+## 14.1 Rollback to implementation repair
+
+Use this if:
+
+* code has bugs
+* tests fail
+* artifacts are missing
+* trace serialization is broken
+* baseline/ablation/perturbation is not implemented
+
+Do not change theory.
+
+## 14.2 Rollback to protocol repair
+
+Use this if:
+
+* pre-commit interface is incomplete
+* attestation fields are missing
+* trace schema is ambiguous
+* commit sink is local-only but needs external proof
+* no-retrieval/no-replay evidence is insufficient
+
+Do not change mathematical skeleton.
+
+## 14.3 Rollback to Phase 2 theory contract
+
+Use this only if:
+
+* the frozen skeleton cannot be implemented without mathematical change
+* action-conditioned prediction cannot be separated from passive prediction by design
+* belief/theta separation is impossible under this skeleton
+* counterfactual action contrast cannot be operationalized
+
+This is a serious failure.
+
+## 14.4 Do not roll forward
+
+Do not move to EGO mainline.
+
+Do not integrate into agent runtime.
+
+Do not add companion behavior.
+
+Do not add replay to rescue the result.
+
+Do not add LLM reasoning to rescue the result.
+
+---
+
+# 15. Claim ceiling
+
+Maximum allowed claim if evidence passes:
+
+```text
+The frozen predictive-action learning contract passed a bounded isolated experiment under the specified trace, baseline, ablation, perturbation, and stop-condition requirements.
+```
+
+Maximum allowed claim if implementation passes but evidence is blocked:
+
+```text
+The implementation instantiates the frozen contract, but evidence remains blocked by specified protocol requirements.
+```
+
+Maximum allowed claim if experiment fails:
+
+```text
+The frozen predictive-action learning contract failed the bounded evidence test under the specified conditions.
+```
+
+Forbidden claims:
+
+* consciousness
+* subjective experience
+* real emotion
+* self-awareness
+* agency
+* functional subject evidence
+* electronic life achieved
+* companion readiness
+* AGI
+* biological equivalence
+* proof that transformers are wrong
+* proof that Bayesian filtering is final
+* proof that the local seed hypothesis is correct
+* experiment success beyond bounded contract
+* stable user benefit
+
+Do not imply these indirectly.
+
+---
+
+# 16. Required artifacts
+
+Produce all artifacts under a single run directory, for example:
+
+```text
+artifacts/predictive_action_learning_contract_001/<run_id>/
+```
+
+Required artifacts:
+
+1. `README.md`
+
+   * what was implemented
+   * how to run
+   * what is explicitly out of scope
+
+2. `CONFIG.json`
+
+   * environment config
+   * thresholds
+   * smoothing constants
+   * random seeds
+   * claim mode
+   * commit mode
+   * baseline/ablation/perturbation registry
+
+3. `TRACE_SCHEMA.json`
+
+   * schema for RUN_META, PRE_STEP, POST_STEP, REPLAY_STEP
+
+4. `trace.jsonl`
+
+   * full trace
+
+5. `main_metrics.json`
+
+   * NLL
+   * Brier
+   * entropy
+   * action sensitivity metrics
+   * calibration metrics
+   * belief update metrics
+   * theta update metrics
+
+6. `baseline_results.json`
+
+   * all baseline results
+
+7. `ablation_results.json`
+
+   * all ablation results
+
+8. `perturbation_results.json`
+
+   * all perturbation results
+
+9. `commitment_report.json`
+
+   * commit sink type
+   * receipts
+   * verifier info
+   * whether evidence is externally valid or local mock only
+
+10. `attestation_report.json`
+
+* retrieval status
+* replay status
+* runtime/config/storage/network policy hashes
+* cache epoch / cold-start marker
+
+11. `stop_condition_report.json`
+
+* triggered stop conditions
+* non-triggered stop conditions
+* gate status
+
+12. `FINAL_REPORT.md`
+
+* implementation verdict
+* evidence verdict
+* claim mode
+* passed gates
+* failed gates
+* stop conditions
+* claim ceiling
+* rollback recommendation
+
+13. Tests
+
+* unit tests for belief update
+* unit tests for pseudo-count update
+* unit tests for pre/post trace chronology
+* unit tests for no replay failure
+* unit tests for baseline execution
+* unit tests for ablations
+* unit tests for perturbations
+* unit tests that forced fake-pass routes are caught
+
+---
+
+# 17. Required final response from Claude
+
+When done, respond with:
+
+1. Files changed
+2. Commands run
+3. Test results
+4. Artifact paths
+5. Implementation verdict
+6. Evidence verdict
+7. Stop conditions triggered
+8. Claim ceiling
+9. Rollback recommendation, if any
+
+Do not include motivational language.
+
+Do not claim theory success.
+
+Do not claim agency or electronic life.
+
+Do not say the system is a functional subject.
+
+Do not say the experiment proves the theory.
+
+Only report bounded engineering and evidence results.
+
+---
+
+# 18. Final instruction
+
+Implement the smallest isolated experiment that can fail cleanly.
+
+If you are tempted to make it more impressive, stop.
+
+If you need a larger architecture, stop.
+
+If you need EGO mainline integration, stop.
+
+If you need LLM reasoning, stop.
+
+If you need replay, stop.
+
+If you cannot satisfy the trace and baseline contract, report `protocol_blocked`.
+
+The correct failure is better than an unfalsifiable pass.

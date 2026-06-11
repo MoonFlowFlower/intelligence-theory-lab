@@ -1,0 +1,116 @@
+{
+  "task_id": "predictive_action_learning_contract_001c_independent_audit",
+  "task_card": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-INDEPENDENT-AUDIT",
+  "mode": "independent evidence audit only; no mechanism change, no repair, no new experiment",
+  "audited_artifact": "artifacts/predictive_action_learning_contract_001c/suite_001c_2026-06-10_t1",
+  "reference_artifact": "artifacts/predictive_action_learning_contract_001/suite_2026-06-10_r1",
+  "audit_date": "2026-06-10",
+  "executive_verdict": "independent_audit_pass_with_caveats",
+  "frozen_verdict_under_audit": {
+    "implementation_verdict": "bounded_contract_pass",
+    "evidence_verdict": "bounded_contract_pass",
+    "confirmed": true,
+    "downgrade_required": false
+  },
+  "acceptance_gate_results": {
+    "1_major_claims_supported_by_raw_canonical_evidence": "pass",
+    "2_prestep_commitments_covered_by_rfc3161_anchored_chain": "pass (257/257 tokens re-verified offline against independently recomputed chain heads; 0 uncovered commits)",
+    "3_external_anchoring_separated_from_internal_attestation": "pass (and quantified: 211 of 41,640 commits externally anchored at own step; 41,429 between-anchor internal attestation)",
+    "4_retrieval_caveat_preserved": "pass",
+    "5_no_predictive_superiority_over_retrieval_claim": "pass (none found; raw evidence shows retrieval matched AS NLL within margin and outperformed post-shift by 0.1119 nats)",
+    "6_no_agency_consciousness_functional_subject_ego_claim": "pass (230 term hits scanned; all inside forbidden-claim or does-not-support enumerations)",
+    "7_no_threshold_seed_env_baseline_validator_mutation": "pass with caveat (001 vs 001C CONFIG.json deep-identical incl. config_manifest_hash; masked behavioral equality byte-identical for 45/45 runs; validator outcomes identical run-by-run; CAVEAT: code and artifacts are untracked in git, so freeze-before-001 rests on artifact-internal declarations, not version control)",
+    "8_no_replay_retrieval_memory_leakage_in_gate0_path": "pass (retrieval_enabled=false mechanically attested, 0 REPLAY_STEP, core-run full-trace replay max_abs_diff 0.0)",
+    "9_residual_trust_assumptions_documented": "pass",
+    "10_limitations_represented_as_limitations": "pass with two wording-level findings (see required_corrections)"
+  },
+  "re_verification_summary": {
+    "anchor_tokens_verified_offline": 257,
+    "anchor_signers": {"https://freetsa.org/tsr": 254, "http://timestamp.digicert.com": 1, "suite_anchors_freetsa": 2},
+    "anchors_externally_valid": true,
+    "anchors_signed_by_test_ca": false,
+    "chain_recomputation_mismatches": 0,
+    "coverage_gaps": 0,
+    "gen_time_monotonic": true,
+    "masked_equality_vs_001_recheck": true,
+    "validator_recheck_45_runs_consistent_with_001": true,
+    "frozen_tests": "43 passed",
+    "independent_e10_recompute_max_diff_vs_gate_reported": 0.0,
+    "nll_recompute_from_raw_vs_logged_max_abs_diff": 0.0,
+    "local_mock_sink_used_in_001c_evidence_runs": false,
+    "raw_field_gaps_beyond_designed_ablation_drops": "none"
+  },
+  "chronology_support_classification": {
+    "externally_anchored_at_own_step": 211,
+    "between_anchor_internal_attestation": 41429,
+    "self_reported_timestamp_only": "all obs_reveal_ts wall-clock values (by design; consistency-checked against monotonic ordering)",
+    "unsupported_or_missing": 0,
+    "interval_anchor_monotonic_before_own_step_reveal": "true for all 44 anchored runs (internal monotonic clock)"
+  },
+  "retrieval_caveat_audit": {
+    "claim_allowed": "mechanism-distinguishability from retrieval under the frozen composite evidence rule",
+    "claim_forbidden": "predictive-performance superiority over retrieval",
+    "raw_numbers_recomputed_from_traces": {
+      "core_as_nll_eval": 0.881164,
+      "b4_retrieval_as_nll_eval": 0.885336,
+      "as_nll_gap": 0.004172,
+      "core_shift_reversal_nll_eval": 0.936232,
+      "b4_retrieval_shift_nll_eval": 0.824339,
+      "shift_postshift_nll_gap": -0.111893,
+      "retrieval_jsd_null": 0.029164,
+      "core_jsd_null": 0.002275,
+      "collapse_threshold": 0.02
+    },
+    "finding": "Retrieval matched action-sensitive NLL within the 0.05 margin and was predictively STRONGER post-shift by 0.1119 nats. Distinguishability rests on the composite rule (retrieval's false action-separation in null control, 0.0292 > 0.02, where the mechanism collapses to 0.0023, plus the post-shift NLL mismatch itself). The frozen closeout states this correctly; superiority is unsupported and not claimed."
+  },
+  "stop_conditions_triggered": [],
+  "required_corrections": [
+    {
+      "id": "C1",
+      "class": "wording/report correction only",
+      "finding": "In-suite derived headers (CONFIG.json commit_mode/commit_sink_id, commitment_report.json header block) carry the frozen 001 constants 'local_mock'/'externally_verifiable: false' while every run-level RUN_META, receipt, and anchor record shows rfc3161_anchored. Error direction is conservative (under-claims external verifiability). FINAL_REPORT_001C already flags this for result.json; the note does not explicitly cover commitment_report.json/CONFIG.json.",
+      "blocking": false
+    },
+    {
+      "id": "C2",
+      "class": "wording/report correction only",
+      "finding": "replay_report.json auto-label 'hidden_state_needed: true' for abl4_freeze_belief_update is misleading: the mismatch is a logging-vs-replay field-semantics asymmetry (runner logs applied belief at runner.py:251; replay compares the computed posterior), manifesting only when belief updating is ablated. abl9 replay failure is the structurally expected consequence of an un-traced mid-run deletion intervention. Both are transparently recorded as failures in the frozen 001 record and reproduced identically in 001C; no gate or claim depends on abl4/abl9 replay.",
+      "blocking": false
+    },
+    {
+      "id": "C3",
+      "class": "wording/report correction only (optional)",
+      "finding": "The closeout statement 'at anchor steps, anchors prove commitment before that step's own outcome reveal' relies on the token genTime PLUS the sink's synchronous control flow and internal monotonic ordering; the external token alone proves only 'committed content existed no later than genTime'. The result_001c.json residual-assumptions text subsumes this; making it explicit would remove any reading ambiguity.",
+      "blocking": false
+    }
+  ],
+  "residual_trust_assumptions": [
+    "Seeded deterministic simulation environment; outcomes are computable in advance by anyone holding the seed; anchors prove commitment time, not outcome unpredictability",
+    "Between-anchor reveal ordering (99.5% of steps) rests on internal attestation: append-only flushed chain, monotonic ns ordering validated per step, chain prefix bounded by the next anchor's genTime",
+    "obs_reveal_ts between anchors is self-reported wall-clock",
+    "TSA signer authenticity rests on token-embedded certificates and recorded fingerprints (trust_anchors/manifest.json); certificate chains to public roots were not validated by the verifier; out-of-band confirmation assumed",
+    "At-anchor-step pre-reveal ordering additionally relies on sink synchronous control flow (code-level argument)",
+    "No version-control freeze evidence: 001/001C code and artifacts are untracked in git; threshold/seed pre-declaration before the 001 run rests on artifact-internal declarations and file mtimes only",
+    "Anchor genTime granularity is 1 second; TSA clock vs local clock skew uncharacterized"
+  ],
+  "claim_ceiling": "001C has passed-with-caveats the independent evidence audit for bounded isolated Gate 0 predictive-action mechanism evidence. No stronger claim is allowed.",
+  "what_this_does_not_prove": "This audit does not prove consciousness, subjective experience, real emotion, self-awareness, agency, functional-subject status, electronic life, AGI, companion readiness, EGO mainline readiness, predictive superiority over retrieval, outcome unpredictability, open-world robustness, generalization beyond the 3-state/3-action/3-observation seeded family, or correctness of any total theory (Bio-CMBC, CVPSM, VCCO, CMBC, R/G). It also does not prove that thresholds were frozen before the original 001 run (no VCS evidence).",
+  "artifacts_generated": [
+    "anchor_reverification.json",
+    "masked_equality_recheck.json",
+    "validator_recheck.json",
+    "chronology_support_map.json",
+    "raw_evidence_inventory.json",
+    "local_mock_scan.json",
+    "retrieval_recompute.json",
+    "claim_language_scan.json",
+    "audit_execution_summary.json",
+    "tests_report.txt",
+    "result.json",
+    "claim_ceiling.txt",
+    "failure_manifest.json",
+    "audit_scripts/run_audit.py",
+    "audit_scripts/scan_claims.py"
+  ],
+  "frozen_artifacts_modified": []
+}

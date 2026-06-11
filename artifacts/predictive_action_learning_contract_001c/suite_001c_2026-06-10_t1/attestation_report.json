@@ -1,0 +1,503 @@
+{
+ "coldstart_duplicate_comparison": {
+  "first_diff_index": null,
+  "identical": true,
+  "n_a": 2001,
+  "n_b": 2001,
+  "stream_sha256_a": "bc4cd7d8388595c85468447a1d457d148a4ad1775f44477fe0b9d91ed92874e3",
+  "stream_sha256_b": "bc4cd7d8388595c85468447a1d457d148a4ad1775f44477fe0b9d91ed92874e3"
+ },
+ "import_isolation_scan": {
+  "imports_found": [
+   "argparse",
+   "collections",
+   "datetime",
+   "hashlib",
+   "json",
+   "math",
+   "os",
+   "predictive_action_learning_contract_001c",
+   "random",
+   "re",
+   "shutil",
+   "subprocess",
+   "sys",
+   "time",
+   "uuid"
+  ],
+  "isolated": false,
+  "non_stdlib_non_package": [
+   {
+    "file": "runner.py",
+    "import": "predictive_action_learning_contract_001c.sink"
+   }
+  ]
+ },
+ "limit_note": "audit-hook attestation is in-process instrumentation, not a hardware/OS attestation; combined with replay and duplicates it exceeds self-reported flags but is not externally verifiable",
+ "network_policy": {
+  "enforcement": "sys.addaudithook counting of socket/open events during learner predict/observe windows; required to be zero",
+  "harness_network_access": "none",
+  "learner_network_access": "forbidden"
+ },
+ "network_policy_hash": "a09177225f0186f342791bf246c02e0f0b2e0973c708c84c7e8815f71368ad56",
+ "runs": {
+  "abl10_remove_uncertainty_logging": {
+   "cache_epoch_id": "d64e9351-99e6-40c2-9a54-13b429f106e9",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl1_remove_action_input": {
+   "cache_epoch_id": "e730c927-ce0c-4791-bc34-6c39e054be2f",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl2_shuffle_action_labels": {
+   "cache_epoch_id": "38b44913-3b98-4555-82e9-ab6256c77bc2",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl3_freeze_theta_as": {
+   "cache_epoch_id": "e2fc1f59-d6b6-4ebb-8dc3-ee8e313c6d08",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl3b_freeze_theta_shift": {
+   "cache_epoch_id": "15ecdce2-9810-4ea6-8657-192f6c73d071",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl4_freeze_belief_update": {
+   "cache_epoch_id": "95bd2645-b2a0-4e76-bfae-e46368e5e8ac",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl5_disable_precommit": {
+   "cache_epoch_id": "897be76d-69c2-4b83-a3a0-60ef237c9bb2",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl6_retrieval_replaced_update": {
+   "cache_epoch_id": "59b9f300-87e7-4fbf-8f48-00e4f0f1e934",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 180,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl7_remove_raw_all_action_preds": {
+   "cache_epoch_id": "b3977a5c-67e6-499f-80b5-c572eb958337",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl8_force_replay_event": {
+   "cache_epoch_id": "9c33fb06-b68a-4727-adf8-4edcdaf727ae",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 1,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "abl9_delete_memory_reset": {
+   "cache_epoch_id": "d7c9eba1-19de-4acb-8e89-43bc0302f2b5",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b1_passive_as": {
+   "cache_epoch_id": "fdb3a6a5-2162-4fb2-b3f9-9db0a108aa66",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b1_passive_null": {
+   "cache_epoch_id": "297a2757-2262-4dfd-92cc-4bac84f24ebf",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b1_passive_shift": {
+   "cache_epoch_id": "ad4e4cc3-55a6-4ac2-abeb-48e6be633f8a",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b1_passive_trap": {
+   "cache_epoch_id": "8e5ee322-a10b-42ea-9e11-96d2d39cc5f7",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b2_shuffled_as": {
+   "cache_epoch_id": "937fed20-2221-4534-bcb1-f06e0d36cc18",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b2_shuffled_null": {
+   "cache_epoch_id": "d2ef7fb4-4b82-46d6-90cd-e1c99802b4bd",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b2_shuffled_trap": {
+   "cache_epoch_id": "18e016bb-720b-4bc3-858d-588b313480b7",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b3_action_token_as": {
+   "cache_epoch_id": "a671d4f5-9a9f-4e75-bbb4-50a9670d6a90",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b3_action_token_null": {
+   "cache_epoch_id": "8cc1d0a0-ee5c-47f1-a99b-a745e1c83d17",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b3_action_token_trap": {
+   "cache_epoch_id": "77d11bb9-efa5-4d07-a361-b2a7c39f6315",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b4_retrieval_as": {
+   "cache_epoch_id": "b79a198d-82a8-4e1b-a4ce-8c1711d60d31",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": true,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 3000,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b4_retrieval_null": {
+   "cache_epoch_id": "baa6854c-f05f-44be-93f4-13a90521e2bc",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": true,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 3000,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b4_retrieval_shift": {
+   "cache_epoch_id": "8886a3a1-cf89-4ac0-aad5-e24be92eb54c",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": true,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 3600,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b4_retrieval_trap": {
+   "cache_epoch_id": "c673f96d-9ebb-41e9-a53b-5cce1d1d7590",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": true,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 3000,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b5_hardcoded_as": {
+   "cache_epoch_id": "725db507-5d17-4e4e-8dfb-60292d1fadac",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b5_hardcoded_shift": {
+   "cache_epoch_id": "fc1b11ae-5a28-4a9f-854b-c04f3af83a06",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b6_frozen_theta_at300_as": {
+   "cache_epoch_id": "9f05dbe2-e166-4d1d-a979-a3606f11b90e",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b6_frozen_theta_at_shift": {
+   "cache_epoch_id": "4768bbcc-b159-4644-b218-bd3862bc3a13",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b7_belief_only_as": {
+   "cache_epoch_id": "0d8d3b8d-22e4-4707-b204-fec3df9cad71",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b8_oracle_leak_as": {
+   "cache_epoch_id": "37ecb8e4-437b-418a-9206-608b5aeeaa46",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b9_coldstart_dup_a": {
+   "cache_epoch_id": "2c81eae9-33d8-48b6-b538-978895e3fe78",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "b9_coldstart_dup_b": {
+   "cache_epoch_id": "42140fe8-2a5c-451b-8877-3c6a8a4f1eb9",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "core_as": {
+   "cache_epoch_id": "de386ad3-86d6-4dc6-9457-c1cea9e26392",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "core_null": {
+   "cache_epoch_id": "30465985-a619-4dc2-9a2b-e7821bceaa40",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "core_shift_reversal": {
+   "cache_epoch_id": "169067dc-a16f-4747-980e-0a14d0e17616",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "core_trap": {
+   "cache_epoch_id": "97fab2a9-efd4-4716-9270-00352706c8f9",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_ambiguous_control": {
+   "cache_epoch_id": "d2c9e40a-dad4-49a6-9adf-fe7486df8c7a",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_ambiguous_obs_shift": {
+   "cache_epoch_id": "41bd4b67-3457-4e7d-aaea-7e5a8227cc9e",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_env_rule_swap": {
+   "cache_epoch_id": "ac601fec-bccb-4534-bf1a-01c93531e1a3",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_hidden_rule_change": {
+   "cache_epoch_id": "c2c2f7c1-9aa1-4b1e-bb3d-28382eea0ab7",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_memdel_flush_reconstruct": {
+   "cache_epoch_id": "7248d42b-0f12-4b4c-8206-dccd72f7d39d",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_memdel_twin_uninterrupted": {
+   "cache_epoch_id": "382ab578-6362-4ca8-bd5b-8541e2c4050c",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_obs_noise_high": {
+   "cache_epoch_id": "9899de38-20ae-4eed-8537-5da63bc7810e",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  },
+  "pert_obs_noise_low": {
+   "cache_epoch_id": "ea3928ee-bcc6-4461-b875-914f3aaedc09",
+   "cold_start_marker": true,
+   "declared_replay_enabled": false,
+   "declared_retrieval_enabled": false,
+   "measured_external_memory_access_total": 0,
+   "replay_steps_in_trace": 0,
+   "retrieval_events_logged": 0,
+   "runtime_manifest_hash": "4757c0ea7d525cdb3407d560d65a4a1868a72e1e2626f7077b19af74e5294fde"
+  }
+ },
+ "storage_policy": {
+  "commit_storage": "append_only_jsonl_local_mock",
+  "durability_note": "local mock sink uses flush() ordering, not fsync; acceptable only because evidence is local-mock anyway",
+  "learner_storage": "in_memory_only",
+  "persistence_between_runs": "none",
+  "trace_storage": "append_only_jsonl_written_by_harness"
+ },
+ "storage_policy_hash": "b4156f3b34fb17c8864664bcfc05c22648fab255a1869ced29852e040674c326"
+}

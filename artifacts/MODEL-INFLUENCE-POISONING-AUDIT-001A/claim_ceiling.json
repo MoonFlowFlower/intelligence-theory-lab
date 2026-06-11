@@ -1,0 +1,46 @@
+{
+  "task_id": "MODEL-INFLUENCE-POISONING-AUDIT-001A",
+  "layer": "evidence-infrastructure / model-output influence audit",
+  "allowed_claim": "Bounded audit of possible model-output influence on research design and evidence interpretation.",
+  "claim_ceiling": "This audit may identify false-confidence, design, evidence, wording, provenance, and scope risks in model-generated or model-mediated task cards, audits, closeouts, verdict summaries, and selected manifests/results.",
+  "forbidden_claims": [
+    "proof of Fable-caused data poisoning",
+    "proof of no Fable-caused data poisoning",
+    "proof of any historical tampering cause",
+    "validation of 001C mechanism evidence",
+    "invalidation of 001C mechanism evidence",
+    "repair, normalization, cleanup, or refreeze of 001C evidence",
+    "Gate 1 replay/consolidation evidence",
+    "same-agent bridge evidence",
+    "EGO mainline readiness",
+    "companion readiness",
+    "agency, consciousness, subjective experience, real emotion, self-awareness, functional-subject, electronic-life, or AGI evidence"
+  ],
+  "source_boundary": {
+    "formal_input_globs": [
+      "docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001*.*",
+      "docs/*AUDIT*.md",
+      "docs/*CLOSEOUT*.md",
+      "docs/REPRESENTATIONAL-GAP-PREFLIGHT-*.md",
+      "docs/PROCESS-INTERVENTION-PREFLIGHT-*.md",
+      "artifacts/*/result.json",
+      "artifacts/*/failure_manifest.json",
+      "artifacts/*/claim_boundary.json",
+      "artifacts/*/contract_manifest.json",
+      "current canonical errata 001A"
+    ],
+    "additional_prior_negative_evidence_consulted": [
+      "docs/audits/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_ERRATA.md",
+      "docs/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_CANONICAL_RECORD.md",
+      "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+      "artifacts/fable5_data_integrity_preflight_001/model_provenance_term_summary.json",
+      "artifacts/fable5_data_integrity_preflight_001/model_provenance_scan.json"
+    ]
+  },
+  "stop_condition_guard": {
+    "old_artifacts_modified": false,
+    "protected_001c_files_modified": false,
+    "fable_causality_attributed": false,
+    "data_repair_attempted": false
+  }
+}

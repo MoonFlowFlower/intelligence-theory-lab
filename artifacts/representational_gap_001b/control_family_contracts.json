@@ -1,0 +1,128 @@
+{
+  "bounded_window_controls": {
+    "window_model_K1": {
+      "signature": "suffix tokens of length 1"
+    },
+    "window_model_K2": {
+      "signature": "suffix tokens of length 2"
+    },
+    "window_model_K3": {
+      "signature": "suffix tokens of length 3"
+    },
+    "window_model_K4": {
+      "signature": "suffix tokens of length 4"
+    }
+  },
+  "finite_state_automaton_controls": {
+    "capacity_16": {
+      "state_capacity": 16,
+      "transition_signature": "token-conditioned"
+    },
+    "capacity_2": {
+      "state_capacity": 2,
+      "transition_signature": "token-conditioned"
+    },
+    "capacity_4": {
+      "state_capacity": 4,
+      "transition_signature": "token-conditioned"
+    },
+    "capacity_8": {
+      "state_capacity": 8,
+      "transition_signature": "token-conditioned"
+    }
+  },
+  "full_history_count_statistic_controls": {
+    "frequency_heuristic_full_history": {
+      "signature": "global majority target over full finite family"
+    },
+    "full_history_n_gram_count_up_to_predeclared_n": {
+      "n": 2
+    },
+    "full_history_pair_count": {
+      "signature": "counts of action/observation token pairs"
+    },
+    "full_history_sufficient_statistic_search": {
+      "candidate_statistics": [
+        "parity_mod_2"
+      ]
+    },
+    "full_history_token_count": {
+      "signature": "counts of each full-history action/observation token"
+    },
+    "parity_or_modular_statistic_if_applicable": {
+      "modulus": 2
+    }
+  },
+  "graph_cache_controls": {
+    "episodic_graph_traversal": {
+      "signature": "exact full episode path traversal"
+    },
+    "finite_state_planner_with_allowed_state": {
+      "signature": "2-state allowed parity planner"
+    },
+    "history_graph_cache": {
+      "signature": "complete allowed full-history key cache"
+    },
+    "observation_transition_graph_cache": {
+      "signature": "observation transition graph"
+    },
+    "predecessor_map_cache": {
+      "signature": "full path predecessor traversal"
+    },
+    "successor_map_cache": {
+      "signature": "prefix successor map with accumulated allowed parity state"
+    },
+    "transition_graph_cache": {
+      "signature": "last-token transition graph"
+    }
+  },
+  "knn_episodic_controls": {
+    "episodic_composition_lookup": {
+      "signature": "composition over stored token contributions"
+    },
+    "episodic_exact_match": {
+      "signature": "full episode exact match"
+    },
+    "heldout_variant_retrieval_probe": {
+      "signature": "exact-match heldout probe"
+    },
+    "nearest_neighbor_full_trace": {
+      "signature": "exact full-trace nearest neighbor"
+    },
+    "nearest_neighbor_suffix_trace": {
+      "signature": "suffix trace nearest neighbor"
+    }
+  },
+  "oracle_leakage_controls": {
+    "future_outcome_oracle": {
+      "admissible_baseline": false
+    },
+    "heldout_variant_id_oracle": {
+      "admissible_baseline": false
+    },
+    "hidden_state_oracle": {
+      "admissible_baseline": false
+    },
+    "target_label_oracle": {
+      "admissible_baseline": false
+    }
+  },
+  "summary_controls": {
+    "full_history_summary_statistics": {
+      "statistics": [
+        "token counts",
+        "contribution parity"
+      ]
+    },
+    "human_named_summary_features_if_target_suggests_them": {
+      "features": [
+        "xor parity"
+      ]
+    },
+    "minimal_sufficient_statistic_search": {
+      "candidate_statistics": [
+        "parity_mod_2"
+      ]
+    }
+  }
+}

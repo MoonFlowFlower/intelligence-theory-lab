@@ -1,0 +1,167 @@
+{
+  "claims": [
+    {
+      "claim_id": "C002_PREFLIGHT_VERDICT",
+      "claim_text": "FABLE5-DATA-INTEGRITY-PREFLIGHT-001 ended with protected hash mismatch verdict.",
+      "source_refs": [
+        {
+          "extracted_value": "fable5_data_integrity_preflight_protected_hash_mismatch",
+          "path": "artifacts/fable5_data_integrity_preflight_001/result.json",
+          "section_or_json_pointer": "/verdict",
+          "source_sha256": "dc1c51a7b562a32377aa93b2e81643e05211e926c41700bbef3dca18450632bc"
+        }
+      ]
+    },
+    {
+      "claim_id": "C003_MISMATCH_PATH",
+      "claim_text": "The mismatched protected file is docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CLOSEOUT.md.",
+      "source_refs": [
+        {
+          "extracted_value": "docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CLOSEOUT.md",
+          "path": "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+          "section_or_json_pointer": "/path",
+          "source_sha256": "f996f2d7f4ff105372fc3b685b59743389612276ee9b4e0d0a8736437391d2ea"
+        },
+        {
+          "extracted_value": "docs/PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CLOSEOUT.md",
+          "path": "artifacts/fable5_data_integrity_preflight_001/protected_manifest_verification.json",
+          "section_or_json_pointer": "/mismatch_paths/0",
+          "source_sha256": "1d6d5cf944526cdcf3152d86f07ac09b0a29c95c387701b0c3d4ca982351301e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C004_EXPECTED_HASH",
+      "claim_text": "The frozen expected SHA-256 for CLOSEOUT.md is ae54f6b06e1411f2da535741b8005d6b1311a7cd357477b4df2ec92d18347f78.",
+      "source_refs": [
+        {
+          "extracted_value": "ae54f6b06e1411f2da535741b8005d6b1311a7cd357477b4df2ec92d18347f78",
+          "path": "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+          "section_or_json_pointer": "/expected_sha256_from_freeze_ref",
+          "source_sha256": "f996f2d7f4ff105372fc3b685b59743389612276ee9b4e0d0a8736437391d2ea"
+        },
+        {
+          "extracted_value": "ae54f6b06e1411f2da535741b8005d6b1311a7cd357477b4df2ec92d18347f78",
+          "path": "artifacts/predictive_action_learning_contract_001c_canonical_freeze/sha256_manifest.json",
+          "section_or_json_pointer": "/files/docs~1PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CLOSEOUT.md",
+          "source_sha256": "0df15535f07905dd0ad2952e6d986130759fb7873002ee77f4bad946fa331d43"
+        }
+      ]
+    },
+    {
+      "claim_id": "C005_CURRENT_HASH",
+      "claim_text": "The current worktree SHA-256 for CLOSEOUT.md is af35d51b8f0c5b49b029438d1115f6534ef68efc79706c0a492c747256b9fd84.",
+      "source_refs": [
+        {
+          "extracted_value": "af35d51b8f0c5b49b029438d1115f6534ef68efc79706c0a492c747256b9fd84",
+          "path": "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+          "section_or_json_pointer": "/actual_sha256_from_worktree",
+          "source_sha256": "f996f2d7f4ff105372fc3b685b59743389612276ee9b4e0d0a8736437391d2ea"
+        }
+      ]
+    },
+    {
+      "claim_id": "C006_TRAILING_NUL_FINDING",
+      "claim_text": "The frozen object has an 839-byte trailing NUL suffix after a 6976-byte common prefix; the current worktree suffix is 0 bytes.",
+      "source_refs": [
+        {
+          "extracted_value": {
+            "common_prefix_bytes": 6976,
+            "current_extra_suffix_bytes": 0,
+            "frozen_extra_suffix_bytes": 839,
+            "frozen_extra_suffix_nul_count": 839
+          },
+          "path": "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+          "section_or_json_pointer": "/common_prefix_bytes /frozen_extra_suffix_bytes /frozen_extra_suffix_nul_count /current_extra_suffix_bytes",
+          "source_sha256": "f996f2d7f4ff105372fc3b685b59743389612276ee9b4e0d0a8736437391d2ea"
+        }
+      ]
+    },
+    {
+      "claim_id": "C007_CANONICAL_SOURCE",
+      "claim_text": "Canonical 001C source remains the freeze commit/tag plus the SHA-256 manifest.",
+      "source_refs": [
+        {
+          "extracted_value": "canonical_vcs_state = post-audit freeze from this commit/tag onward",
+          "path": "docs/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_CANONICAL_RECORD.md",
+          "section_or_json_pointer": "Canonical status",
+          "source_sha256": "b2c077ffd8b9e38d34a6e918d4f36713b6affda0155f03aa5cc52189c54ceced"
+        },
+        {
+          "extracted_value": "artifacts/predictive_action_learning_contract_001c_canonical_freeze/sha256_manifest.json",
+          "path": "docs/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_CANONICAL_RECORD.md",
+          "section_or_json_pointer": "Protected frozen artifact paths",
+          "source_sha256": "b2c077ffd8b9e38d34a6e918d4f36713b6affda0155f03aa5cc52189c54ceced"
+        },
+        {
+          "extracted_value": "4d07f4ec63096ad20e84010da74ee2690c98062b",
+          "path": "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+          "section_or_json_pointer": "/freeze_ref",
+          "source_sha256": "f996f2d7f4ff105372fc3b685b59743389612276ee9b4e0d0a8736437391d2ea"
+        },
+        {
+          "extracted_value": "606db57f7096d08a5774853eb877171e0ef9a81c",
+          "path": "artifacts/predictive_action_learning_contract_001c_canonical_freeze/freeze_result.json",
+          "section_or_json_pointer": "/tag_object",
+          "source_sha256": "53a270fddba7007b1d716c58aad91b750bcb04735dfc014544116f46dffa3332"
+        }
+      ]
+    },
+    {
+      "claim_id": "C008_WORKTREE_NOT_CLEAN_CANONICAL",
+      "claim_text": "The current worktree evidence state cannot be classified clean.",
+      "source_refs": [
+        {
+          "extracted_value": false,
+          "path": "artifacts/fable5_data_integrity_preflight_001/result.json",
+          "section_or_json_pointer": "/acceptance_gate/protected_manifest_hashes_match",
+          "source_sha256": "dc1c51a7b562a32377aa93b2e81643e05211e926c41700bbef3dca18450632bc"
+        },
+        {
+          "extracted_value": "protected_hash_mismatch",
+          "path": "artifacts/fable5_data_integrity_preflight_001/result.json",
+          "section_or_json_pointer": "/stop_conditions/0/id",
+          "source_sha256": "dc1c51a7b562a32377aa93b2e81643e05211e926c41700bbef3dca18450632bc"
+        }
+      ]
+    },
+    {
+      "claim_id": "C009_NON_ATTRIBUTION",
+      "claim_text": "This errata does not attribute cause to Fable, Claude, Codex, an attacker, an editor, the OS, Git, or any other cause.",
+      "source_refs": [
+        {
+          "extracted_value": "bounded local data-integrity preflight result only; this does not identify an external attacker or Fable-caused mutation",
+          "path": "artifacts/fable5_data_integrity_preflight_001/mismatch_probe.json",
+          "section_or_json_pointer": "/claim_ceiling",
+          "source_sha256": "f996f2d7f4ff105372fc3b685b59743389612276ee9b4e0d0a8736437391d2ea"
+        },
+        {
+          "extracted_value": 0,
+          "path": "artifacts/fable5_data_integrity_preflight_001/model_provenance_term_summary.json",
+          "section_or_json_pointer": "/machine_evidence_term_counts_by_file_capped/Fable",
+          "source_sha256": "2b76b0230fde9e730bf0b63d1b2571048a50d930ba48508446002388e9462de2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C010_CLAIM_CEILING",
+      "claim_text": "The errata claim ceiling is bounded to one known 001C protected-file worktree-vs-freeze mismatch.",
+      "source_refs": [
+        {
+          "extracted_value": "bounded local data-integrity preflight result for current repository evidence state after Fable 5 safeguard concerns",
+          "path": "artifacts/fable5_data_integrity_preflight_001/result.json",
+          "section_or_json_pointer": "/claim_ceiling",
+          "source_sha256": "dc1c51a7b562a32377aa93b2e81643e05211e926c41700bbef3dca18450632bc"
+        },
+        {
+          "extracted_value": "001C has passed-with-caveats the independent evidence audit for bounded isolated Gate 0 predictive-action mechanism evidence.",
+          "path": "docs/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_CANONICAL_RECORD.md",
+          "section_or_json_pointer": "Exact claim ceiling",
+          "source_sha256": "b2c077ffd8b9e38d34a6e918d4f36713b6affda0155f03aa5cc52189c54ceced"
+        }
+      ]
+    }
+  ],
+  "generated_utc": "2026-06-11T10:13:27.0917700Z",
+  "task_id": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-CANONICAL-ERRATA-001A"
+}

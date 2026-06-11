@@ -1,0 +1,85 @@
+{
+  "claim_ceiling": "bounded executable process-intervention preflight evidence only; not Gate1 evidence, not same-agent bridge evidence, not EGO readiness, not mechanism proof",
+  "control_implementations_or_closed_form_procedures": [
+    "online_count_statistic",
+    "count_table",
+    "graph_cache",
+    "transition_table",
+    "successor_map",
+    "trace_only_replay",
+    "behavior_only_replay",
+    "posthoc_verdict_string_rejection"
+  ],
+  "environment_family_definition": {
+    "actions": [
+      "inspect",
+      "shift",
+      "hold",
+      "probe"
+    ],
+    "contexts": [
+      "context_0",
+      "context_1",
+      "context_2",
+      "context_3",
+      "context_4",
+      "context_5",
+      "context_6",
+      "context_7"
+    ],
+    "episode_count": 96,
+    "interventions": [
+      "state_deletion",
+      "memory_deletion",
+      "representation_freezing",
+      "prediction_error_injection",
+      "counterfactual_action_substitution",
+      "observation_perturbation",
+      "history_preserving_causal_perturbation",
+      "online_distribution_shift"
+    ],
+    "offline": true
+  },
+  "freeze_before_first_run": true,
+  "match_metrics": {
+    "equivalence_band": 0.05,
+    "later_behavior_match_threshold": 0.95,
+    "match_rate_threshold": 0.95,
+    "separation_margin_threshold": 0.1,
+    "update_trace_match_threshold": 0.9
+  },
+  "negative_evidence_admission": {
+    "checked_rules": [
+      "missing_001a_supersession",
+      "missing_001b_fair_control_failure",
+      "missing_001c_canonical_errata",
+      "process_intervention_draft_pass_treated_as_executable",
+      "verdict_string_tests_treated_as_acceptance",
+      "gate1_replay_pass_ignores_graph_cache_collapse",
+      "fable_causality_without_provenance_diff_mechanism"
+    ],
+    "claim_ceiling": "bounded successor-task admission guard against known false-confidence risks",
+    "failure_ids": [],
+    "passed": true,
+    "task_id": "NEGATIVE-EVIDENCE-ADMISSION-GATE-001A"
+  },
+  "semantic_audit_rerun_hash": "976558910ec31295e4f9c4394e8b48ba111deaf650730de081410956c1a711a1",
+  "stage0_payload_hash": "1edede2c052c29176cdc76bbaaccc1a6bee4721a5fa5613c88c402321599f09f",
+  "support_contract_hashes": {
+    "docs/process_intervention_preflight_001a/behavior_probe_contract.md": "4159cdae8f5d6ba0f0980f60d8d9817d7c931894c2dc0e0b76c3c687a3a56675",
+    "docs/process_intervention_preflight_001a/environment_intervention_instantiation_contract.md": "68cd66cdd78fafb8988598d5d3ff4249a052f2c3c4d7a5c64ca4a77b7806b10a",
+    "docs/process_intervention_preflight_001a/match_metric_contract.md": "90109d448d6997182fe5f0360b8f2c5d90150054f081b4ef6e7fd4990a6a1cc7",
+    "docs/process_intervention_preflight_001a/memory_key_fidelity_contract.md": "916796ca9313efe6b718f04ff575e853b1a6b467ee159a3777302c982ce6487e",
+    "docs/process_intervention_preflight_001a/real_control_implementation_contract.md": "144af1ae8e7a3f1edc208d9ea17eb1eca5929c444530920c0793a04f953aa6b9",
+    "docs/process_intervention_preflight_001a/resource_budget_contract.md": "6a056fa385afb46901c92097cb04075f5d5d8232c6f65d9f01785a087e32cb81",
+    "docs/process_intervention_preflight_001a/separation_statistic_contract.md": "d94f1beb0c1884f49deecf48e140b35571fa6b571f74cda56319d5f097d83e02",
+    "docs/process_intervention_preflight_001a/stage0_freeze_anchor_contract.md": "353ab55ff74c2e246e7d08a15c5670568de82129cbeed24feda7f677f45d7e69",
+    "docs/process_intervention_preflight_001a/state_accounting_contract.md": "142bd740b72ac7e0e3b20d02f0ffac475d625de46211881f0a5641ccfac5562d",
+    "docs/process_intervention_preflight_001a/trace_commitment_contract.md": "391a2fe42b5a3f79a8c3c9344f3d5b6d19f27d4badf0f679c79dd054d5e96f48",
+    "docs/process_intervention_preflight_001a/update_path_contract.md": "bb63d317bfd1bc5b2bbbe27c23d9475ff3e34b166d047b66357f282074d57b82"
+  },
+  "support_contracts_frozen": true,
+  "support_pack_hash": "451ffef6efbbd60c44dbd0c1e4598cfb9d90b9ef5a67a4f47b02dbba8d5155bf",
+  "task_card_hash": "ab54e4be7667f2aaea3597d969e210666d2c13cee403b5066fe30ba4100dcdd4",
+  "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001B"
+}

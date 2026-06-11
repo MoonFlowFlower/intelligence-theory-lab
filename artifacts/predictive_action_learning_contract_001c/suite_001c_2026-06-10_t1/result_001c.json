@@ -1,0 +1,30 @@
+{
+ "anchor_verification_ok_all_runs": true,
+ "anchors_externally_valid": true,
+ "anchors_signed_by_test_ca": false,
+ "claim_ceiling": "The frozen predictive-action learning contract passed the bounded isolated experiment, including externally verifiable RFC 3161 pre-outcome commitment anchoring, under the stated residual trust assumptions.",
+ "claim_mode": "belief_plus_theta",
+ "errors": [],
+ "evidence_verdict": "bounded_contract_pass",
+ "frozen_001_gate_outcome": {
+  "claim_ceiling": "The implementation instantiates the frozen contract, but evidence remains blocked by specified protocol requirements.",
+  "claim_mode": "belief_plus_theta",
+  "evidence_verdict": "protocol_blocked_by_T1_external_commit_missing",
+  "evidence_verdict_class": "protocol_blocked",
+  "failed_gates": [],
+  "implementation_verdict": "bounded_contract_pass",
+  "protocol_blockers": [
+   "T1_external_commit_missing"
+  ],
+  "stop_conditions_triggered": [],
+  "verdict_precedence_rule": "Declared pre-run: if any mechanism/baseline/ablation/perturbation evidence gate fails, evidence_verdict = bounded_contract_fail. Otherwise, if external commitment is unavailable (commit_mode=local_mock), evidence_verdict = protocol_blocked_by_T1_external_commit_missing. Otherwise bounded_contract_pass. implementation_verdict is judged only on section 12.1 gates."
+ },
+ "implementation_verdict": "bounded_contract_pass",
+ "masked_equality_vs_001": {
+  "all_identical": true
+ },
+ "predecessor": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001 / 001B closeout",
+ "residual_trust_assumptions": "Residual trust assumptions (001C card section 10): the environment is a seeded deterministic simulation - anchors prove that committed PRE_STEP content existed no later than the anchor genTime (and, at anchor steps, before that step's own outcome reveal); they do not prove outcome unpredictability. obs_reveal_ts between anchors remains self-reported. Signer authenticity rests on the certificate embedded in each token; fingerprints are reported for out-of-band confirmation.",
+ "task_card": "PREDICTIVE-ACTION-LEARNING-CONTRACT-001C-T1-EXTERNAL-COMMIT",
+ "task_id": "predictive_action_learning_contract_001c"
+}

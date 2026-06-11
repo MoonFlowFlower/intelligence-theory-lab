@@ -366,4 +366,18 @@ def stationary_distribution(T_true):
 
 def true_obs_dist(T_true, s, a):
     q = np.zeros(N_OBS)
-    for s2 in range(N_STATES)
+    for s2 in range(N_STATES):
+        q[obs_of(s2)] += T_true[s, a, s2]
+    return q
+
+
+def marginal_obs_dist(T_true, pi, o, a):
+    w = np.array([pi[s] if obs_of(s) == o else 0.0 for s in range(N_STATES)])
+    if w.sum() == 0:
+        return np.full(N_OBS, 1.0 / N_OBS)
+    w /= w.sum()
+    q = np.zeros(N_OBS)
+    for s in range(N_STATES):
+        if w[s] > 0:
+            q += w[s] * true_obs_dist(T_true, s, a)
+    return q

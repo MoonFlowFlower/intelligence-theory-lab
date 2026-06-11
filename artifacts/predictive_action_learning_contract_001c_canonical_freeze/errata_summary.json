@@ -1,0 +1,33 @@
+{
+  "task_id": "predictive_action_learning_contract_001c_canonical_freeze",
+  "errata_file": "docs/audits/PREDICTIVE_ACTION_LEARNING_CONTRACT_001C_ERRATA.md",
+  "mutating_corrections_applied_to_frozen_files": 0,
+  "errata": [
+    {
+      "id": "C1",
+      "title": "Derived headers in 001C suite CONFIG.json / commitment_report.json show frozen 001 local_mock constants",
+      "kind": "supersession note",
+      "reading_rule": "run-level records and result_001c.json / FINAL_REPORT_001C.md supersede derived headers for the commitment question",
+      "direction": "conservative under-claim; not evidence-run local_mock use"
+    },
+    {
+      "id": "C2",
+      "title": "replay_report hidden_state_needed=true for abl4 is a misleading auto-label",
+      "kind": "reading rule",
+      "cause": "runner logs applied belief (runner.py:251); replay compares computed posterior (validator.py:214); manifests only under belief-freeze ablation; abl9 failure is un-traced mid-run deletion",
+      "impact": "no gate or claim depends on abl4/abl9 replay; core replay exact"
+    },
+    {
+      "id": "C3",
+      "title": "Anchor-step 'before reveal' phrasing",
+      "kind": "precision note",
+      "content": "token genTime + sink synchronous control flow + internal monotonic ordering; token alone proves existence no later than genTime"
+    },
+    {
+      "id": "L1",
+      "title": "No pre-001 VCS freeze evidence",
+      "kind": "permanent limitation",
+      "content": "001/001B/001C were untracked until this post-audit freeze; pre-001 freeze rests on artifact-internal declarations only and is not claimed; not repairable retroactively"
+    }
+  ]
+}

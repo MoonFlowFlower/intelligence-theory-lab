@@ -1,0 +1,26 @@
+{
+  "allowed_action_history": "full observed action history available as raw stream",
+  "allowed_agent_observation": [
+    "action_bit",
+    "observation_bit"
+  ],
+  "allowed_internal_state_updates": "future non-oracle agents may update internal state from allowed tokens",
+  "allowed_trace_fields": [
+    "episode_id",
+    "step_id",
+    "observation",
+    "action",
+    "prediction_target_after_episode"
+  ],
+  "fair_access_statement": "Controls, witnesses, and future non-oracle agents receive the same raw token stream; differences are representational restrictions, not hidden information removal.",
+  "forbidden_hidden_state_fields": [
+    "hidden_parity_label",
+    "future_target",
+    "seed_identity"
+  ],
+  "forbidden_label_oracle_fields": [
+    "hidden_state_label_for_verifier_only",
+    "heldout_variant_id_as_runtime_oracle"
+  ],
+  "heldout_variant_access_rules": "variant id recorded for verifier only, not available at runtime"
+}

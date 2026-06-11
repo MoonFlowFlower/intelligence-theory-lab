@@ -1,0 +1,29 @@
+{
+  "allowed_action_history": "full observed token history",
+  "allowed_agent_observation": [
+    "action_bit",
+    "observation_bit"
+  ],
+  "allowed_trace_fields": [
+    "episode_id",
+    "step_id",
+    "observation",
+    "action",
+    "allowed_history",
+    "target_label_for_verifier_only",
+    "witness_state_trace_if_applicable",
+    "control_state_trace_if_applicable",
+    "heldout_variant_id_for_verifier_only",
+    "control_access_manifest",
+    "lineage_record_id"
+  ],
+  "fair_access_statement": "Controls and witnesses may compute any declared statistic from the same allowed full token history. Useful computable summaries are not banned as leakage.",
+  "forbidden_hidden_state_fields": [
+    "target_label_for_runtime",
+    "heldout_variant_id_for_runtime"
+  ],
+  "forbidden_label_oracle_fields": [
+    "target_label_oracle",
+    "future_outcome_oracle"
+  ]
+}

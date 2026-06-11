@@ -1,0 +1,284 @@
+{
+  "anchor": {
+    "anchor_method": "https_date_header_github_api",
+    "anchored_payload_hash": "90662382a4873a14506e3fc2d2e3ab47d14e7bfda3e792173a85a8abf31371c4",
+    "external_url": "https://api.github.com/rate_limit",
+    "external_utc": "Thu, 11 Jun 2026 04:33:34 GMT",
+    "verification_status": "verified"
+  },
+  "first_run_start_time_after_anchor": "2026-06-11T04:33:34Z",
+  "stage0_anchor_pass": true,
+  "stage0_order": {
+    "anchor_verified_before_verifier": true,
+    "freeze_payload_before_anchor": true,
+    "verifier_started_before_anchor": false
+  },
+  "stage0_payload": {
+    "allowed_access_contract": {
+      "allowed_action_history": "full observed token history",
+      "allowed_agent_observation": [
+        "action_bit",
+        "observation_bit"
+      ],
+      "allowed_trace_fields": [
+        "episode_id",
+        "step_id",
+        "observation",
+        "action",
+        "allowed_history",
+        "target_label_for_verifier_only",
+        "witness_state_trace_if_applicable",
+        "control_state_trace_if_applicable",
+        "heldout_variant_id_for_verifier_only",
+        "control_access_manifest",
+        "lineage_record_id"
+      ],
+      "fair_access_statement": "Controls and witnesses may compute any declared statistic from the same allowed full token history. Useful computable summaries are not banned as leakage.",
+      "forbidden_hidden_state_fields": [
+        "target_label_for_runtime",
+        "heldout_variant_id_for_runtime"
+      ],
+      "forbidden_label_oracle_fields": [
+        "target_label_oracle",
+        "future_outcome_oracle"
+      ]
+    },
+    "control_family_definitions": {
+      "bounded_window_controls": {
+        "window_model_K1": {
+          "signature": "suffix tokens of length 1"
+        },
+        "window_model_K2": {
+          "signature": "suffix tokens of length 2"
+        },
+        "window_model_K3": {
+          "signature": "suffix tokens of length 3"
+        },
+        "window_model_K4": {
+          "signature": "suffix tokens of length 4"
+        }
+      },
+      "finite_state_automaton_controls": {
+        "capacity_16": {
+          "state_capacity": 16,
+          "transition_signature": "token-conditioned"
+        },
+        "capacity_2": {
+          "state_capacity": 2,
+          "transition_signature": "token-conditioned"
+        },
+        "capacity_4": {
+          "state_capacity": 4,
+          "transition_signature": "token-conditioned"
+        },
+        "capacity_8": {
+          "state_capacity": 8,
+          "transition_signature": "token-conditioned"
+        }
+      },
+      "full_history_count_statistic_controls": {
+        "frequency_heuristic_full_history": {
+          "signature": "global majority target over full finite family"
+        },
+        "full_history_n_gram_count_up_to_predeclared_n": {
+          "n": 2
+        },
+        "full_history_pair_count": {
+          "signature": "counts of action/observation token pairs"
+        },
+        "full_history_sufficient_statistic_search": {
+          "candidate_statistics": [
+            "parity_mod_2"
+          ]
+        },
+        "full_history_token_count": {
+          "signature": "counts of each full-history action/observation token"
+        },
+        "parity_or_modular_statistic_if_applicable": {
+          "modulus": 2
+        }
+      },
+      "graph_cache_controls": {
+        "episodic_graph_traversal": {
+          "signature": "exact full episode path traversal"
+        },
+        "finite_state_planner_with_allowed_state": {
+          "signature": "2-state allowed parity planner"
+        },
+        "history_graph_cache": {
+          "signature": "complete allowed full-history key cache"
+        },
+        "observation_transition_graph_cache": {
+          "signature": "observation transition graph"
+        },
+        "predecessor_map_cache": {
+          "signature": "full path predecessor traversal"
+        },
+        "successor_map_cache": {
+          "signature": "prefix successor map with accumulated allowed parity state"
+        },
+        "transition_graph_cache": {
+          "signature": "last-token transition graph"
+        }
+      },
+      "knn_episodic_controls": {
+        "episodic_composition_lookup": {
+          "signature": "composition over stored token contributions"
+        },
+        "episodic_exact_match": {
+          "signature": "full episode exact match"
+        },
+        "heldout_variant_retrieval_probe": {
+          "signature": "exact-match heldout probe"
+        },
+        "nearest_neighbor_full_trace": {
+          "signature": "exact full-trace nearest neighbor"
+        },
+        "nearest_neighbor_suffix_trace": {
+          "signature": "suffix trace nearest neighbor"
+        }
+      },
+      "oracle_leakage_controls": {
+        "future_outcome_oracle": {
+          "admissible_baseline": false
+        },
+        "heldout_variant_id_oracle": {
+          "admissible_baseline": false
+        },
+        "hidden_state_oracle": {
+          "admissible_baseline": false
+        },
+        "target_label_oracle": {
+          "admissible_baseline": false
+        }
+      },
+      "summary_controls": {
+        "full_history_summary_statistics": {
+          "statistics": [
+            "token counts",
+            "contribution parity"
+          ]
+        },
+        "human_named_summary_features_if_target_suggests_them": {
+          "features": [
+            "xor parity"
+          ]
+        },
+        "minimal_sufficient_statistic_search": {
+          "candidate_statistics": [
+            "parity_mod_2"
+          ]
+        }
+      }
+    },
+    "environment_family_definition": {
+      "audit_note": "The family is intentionally the 001A residue under fair controls. Full-history controls solve it, so it is not a valid 001B representational-gap pass.",
+      "controls_disabled_by_construction": false,
+      "environment_family": "ParityAliasGridFairHistory-v1",
+      "environment_not_lookup_trivial": false,
+      "heldout_split_definition": "exhaustive finite family for closed-form verification; retrieval probes include a flagged exact-heldout variant, but main fair controls are not denied full-history statistics",
+      "ladder_level": "L1_partial_observable_causal_environment",
+      "sequence_length": 6,
+      "token_alphabet": [
+        "a0_o0",
+        "a0_o1",
+        "a1_o0",
+        "a1_o1"
+      ]
+    },
+    "fsm_family_definitions": {
+      "capacity_16": {
+        "state_capacity": 16,
+        "transition_signature": "token-conditioned"
+      },
+      "capacity_2": {
+        "state_capacity": 2,
+        "transition_signature": "token-conditioned"
+      },
+      "capacity_4": {
+        "state_capacity": 4,
+        "transition_signature": "token-conditioned"
+      },
+      "capacity_8": {
+        "state_capacity": 8,
+        "transition_signature": "token-conditioned"
+      }
+    },
+    "graph_cache_family_definitions": {
+      "episodic_graph_traversal": {
+        "signature": "exact full episode path traversal"
+      },
+      "finite_state_planner_with_allowed_state": {
+        "signature": "2-state allowed parity planner"
+      },
+      "history_graph_cache": {
+        "signature": "complete allowed full-history key cache"
+      },
+      "observation_transition_graph_cache": {
+        "signature": "observation transition graph"
+      },
+      "predecessor_map_cache": {
+        "signature": "full path predecessor traversal"
+      },
+      "successor_map_cache": {
+        "signature": "prefix successor map with accumulated allowed parity state"
+      },
+      "transition_graph_cache": {
+        "signature": "last-token transition graph"
+      }
+    },
+    "heldout_split_definition": "exhaustive finite family for closed-form verification; retrieval probes include a flagged exact-heldout variant, but main fair controls are not denied full-history statistics",
+    "positive_witness_class_definition": {
+      "one_bit_xor_witness": {
+        "class": "finite_latent_state_witness",
+        "family_membership_note": "This witness is automaton-like. Because the fair FSM control also solves, 001B cannot claim an FSM-family gap.",
+        "state_capacity": 2,
+        "uses_future_outcome": false,
+        "uses_heldout_variant_id": false,
+        "uses_hidden_labels": false,
+        "uses_only_allowed_access": true
+      }
+    },
+    "sequence_or_episode_length": 6,
+    "stage0_freeze_scope": [
+      "environment_family_definition",
+      "target_rule_definition",
+      "sequence_or_episode_length",
+      "heldout_split_definition",
+      "control_family_definitions",
+      "graph_cache_family_definitions",
+      "fsm_family_definitions",
+      "summary_family_definitions",
+      "allowed_access_contract",
+      "positive_witness_class_definition"
+    ],
+    "summary_family_definitions": {
+      "full_history_summary_statistics": {
+        "statistics": [
+          "token counts",
+          "contribution parity"
+        ]
+      },
+      "human_named_summary_features_if_target_suggests_them": {
+        "features": [
+          "xor parity"
+        ]
+      },
+      "minimal_sufficient_statistic_search": {
+        "candidate_statistics": [
+          "parity_mod_2"
+        ]
+      }
+    },
+    "target_rule_definition": {
+      "computable_from_allowed_history": true,
+      "target_rule": "XOR over action_bit XOR observation_bit for every token in the full history",
+      "target_rule_definition_frozen": true,
+      "verifier_only_target_label": "prediction_target"
+    },
+    "task_card_hash": "746c610d6a539705874f1fe4745edb3a6bcf6b4ef3191083b728453b8da29e73",
+    "task_id": "REPRESENTATIONAL-GAP-PREFLIGHT-001B"
+  },
+  "stage0_payload_hash": "90662382a4873a14506e3fc2d2e3ab47d14e7bfda3e792173a85a8abf31371c4",
+  "task_id": "REPRESENTATIONAL-GAP-PREFLIGHT-001B"
+}

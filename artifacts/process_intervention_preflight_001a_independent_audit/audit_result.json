@@ -1,0 +1,152 @@
+{
+  "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001A-INDEPENDENT-AUDIT",
+  "layer": "mechanism-hypothesis / independent task-card audit",
+  "execution_type": "independent audit only",
+  "audit_date": "2026-06-11",
+  "audited_object": "PROCESS-INTERVENTION-PREFLIGHT-001A executable-preflight task-card draft",
+  "final_verdict": "process_intervention_001a_independent_audit_pass_with_caveats",
+  "runner_up_verdict_considered": "process_intervention_001a_independent_audit_failed_underpowered_controls",
+  "runner_up_rejected_because": "control set is complete and fairness-protected; defect is missing enforcement specification (real-implementation rule, match criterion), repairable by amendment without changing the problem definition",
+  "claim_ceiling": "bounded independent audit evidence for a process/intervention executable-preflight task card only",
+  "protocol_file_deviation": {
+    "specified_output_path": "docs/PROCESS-INTERVENTION-PREFLIGHT-001A-INDEPENDENT-AUDIT.md",
+    "actual_output_path": "docs/PROCESS-INTERVENTION-PREFLIGHT-001A-INDEPENDENT-AUDIT-REPORT.md",
+    "reason": "specified path already contains the audit protocol itself; overwriting the rule source with its own result would be governance self-modification; protocol treated as read-only"
+  },
+  "scope_confirmation": {
+    "mechanism_implemented": false,
+    "src_code_created": false,
+    "training_performed": false,
+    "ego_mainline_modified": false,
+    "gate1_reopened": false,
+    "same_agent_bridge_drafted": false,
+    "model_class_reset_authorized": false,
+    "llm_rag_companion_emotion_relationship_user_model_modules_introduced": false,
+    "original_task_card_modified": false,
+    "files_created": [
+      "docs/PROCESS-INTERVENTION-PREFLIGHT-001A-INDEPENDENT-AUDIT-REPORT.md",
+      "artifacts/process_intervention_preflight_001a_independent_audit/audit_result.json"
+    ]
+  },
+  "parent_lineage_consistency": {
+    "consistent": true,
+    "no_parent_failure_reinterpreted": true,
+    "missing_inputs": [],
+    "verified_against": "artifacts/representational_gap_001b/result.json",
+    "lineage_regression_found": "001B real-implementation rule (name-only controls and hardcoded competence/fairness attestations invalid) not carried forward into 001A",
+    "deferral_regress_note": "third consecutive contract-drafting pass; falsifiable content still fully deferred; next card must be executable"
+  },
+  "section_verdicts": {
+    "problem_definition": "conjunction target correct in shape; later-behavior metrics, update-path definition, and replay verification under-specified",
+    "trace_theater": "major weakness: trace schema matchable by shallow generator; post-hoc gate unenforceable without online commitment protocol; match criterion undefined; trace-field state-smuggling loophole",
+    "intervention_contract": "incomplete: eight families frozen at name level; zero of eight six-tuples instantiated; when_applied and oracle/leakage-risk fields dropped relative to parent contract; no concrete environment",
+    "future_behavior_effect": "causal requirement and trace-changed-behavior-unchanged exclusion explicit and correct; probe protocol and effect sizes missing",
+    "fair_cheap_control": "weak: all sixteen families present and fairness-protected but name-listed only; no real-implementation requirement; intervention-labeled graph/cache not explicit; per-control access/resources/solve-criterion unanswered",
+    "online_adaptation": "distinctions declared but unenforceable without commitment protocol; shuffled-outcome and logged-but-unused gates adequate",
+    "causal_model_update": "causal table mandatory with failure gate; held-out intervention-composition environment requirement missing",
+    "resource_contract": "audit caveat: resource equality only verbal; budgets not numeric; trace-field hidden-state loophole; reporting and advantage-not-evidence rules adequate",
+    "anti_hardcoding": "name-level coverage good; self-attested acceptance gate and verdict-string-asserting tests flagged as governance smells",
+    "scope_leak": "pass: no leak found"
+  },
+  "major_strengths": [
+    "scope hygiene: all authorization flags false everywhere; dedicated leak failure verdicts; stop conditions and rollback complete",
+    "triple-conjunction target with predeclared rule that any fair cheap control reproducing all three forces failure",
+    "full adversary carryforward including graph/cache trace generator, trace-only replay, behavior-only replay, random representation, shuffled outcome, oracle probes, and mandatory online variants",
+    "trace-changed-but-behavior-unchanged explicitly excluded as evidence",
+    "honest lineage: parent failures stated as failures; online-control match predeclared as failure rather than argued around",
+    "value-state boundary kept non-affective"
+  ],
+  "major_weaknesses": [
+    "name-listing without specification across controls, metrics, budgets, and interventions",
+    "missing real-implementation rule for controls (regression against 001B; the REPRESENTATIONAL-GAP-PREFLIGHT-001A false-pass mechanism)",
+    "no online trace-commitment protocol; post-hoc trace generation undetectable in principle",
+    "reproduce/match undefined; cheap_control_trace_match_rate and all state-delta metrics are names without formulas or thresholds",
+    "allowed update path never operationalized; replay verification method unspecified",
+    "trace fields usable as hidden memory outside budget",
+    "no separation statistic distinguishing witness updates from honest online-control updates",
+    "self-attested acceptance gate; tests assert the pass verdict string"
+  ],
+  "missing_requirements": [
+    "M1 real-implementation rule for all cheap controls with concrete challenger signatures (graph_lookup, transition_table, successor_map, count_table, fsm_planner, episodic_traversal, online variants, intervention-labeled causal table)",
+    "M2 online trace-commitment protocol (append-only, step-interleaved, hash-chained or externally anchored)",
+    "M3 frozen quantitative match/reproduce definition with metric formulas, equivalence bands, decision rule, pre-run threshold-selection policy",
+    "M4 operational definition of allowed update path and step-level replay recomputation procedure",
+    "M5 frozen separation statistic for witness-vs-online-control update dynamics",
+    "M6 trace write-only rule with serialized state counted against memory_budget",
+    "M7 numeric or structural resource budgets plus control-competence starvation check",
+    "M8 per-intervention six-tuples instantiated against frozen environment with when_applied and oracle/leakage-risk fields restored and held-out intervention compositions",
+    "M9 memory-key fidelity verification in replay",
+    "M10 behavior-probe protocol (timing, horizon, contexts, paired design, minimum effect size)",
+    "M11 Stage-0 freeze-and-anchor for executable successor; decouple tests from verdict strings; forbid acceptance-gate self-attestation at executable layer"
+  ],
+  "required_amendments_blocking": ["A1=M1", "A2=M2", "A3=M3", "A4=M4", "A5=M5"],
+  "required_amendments_nonblocking": ["A6=M6", "A7=M7", "A8=M8", "A9=M9", "A10=M10", "A11=M11"],
+  "strongest_objection": "The triple target may be unable to separate mechanism from cheap control in principle, because every honest fair online cheap control (online count/statistic, FSM, graph/cache, kNN) is itself a process with real intervention-sensitive internal updates: intervene on its inputs and its response changes; its table delta is a real emittable internal update trace; delete or freeze its table and its later behavior really changes. The conjunction is therefore satisfied existence-wise by construction, and the only possible separator is a quantitative or structural signature of update dynamics — which the card does not freeze (no state-delta metric definitions, no match criterion, no thresholds, no separation statistic). The future executable task thus either fails immediately as a foregone negative or passes only via a post-hoc metric choice, i.e., trace theater relocated from the trace to the metric. Because no trace-commitment protocol exists, post-hoc trace generation cannot be distinguished from online emission, making the anti-theater gates unenforceable as specified; and because no real-implementation rule exists, the controls meant to force failure may never actually run — the exact false-pass mechanism of REPRESENTATIONAL-GAP-PREFLIGHT-001A. Unless A1–A5 are incorporated before authorization, the new proxy remains trace theater risk wrapped in stronger language.",
+  "verification": {
+    "commands_run": [
+      "python3 -m pytest tests/test_process_intervention_preflight_001a_contract.py -q"
+    ],
+    "test_result": "5 passed",
+    "note": "contract tests verify the drafting task's self-attested artifacts for internal consistency only; they do not constitute independent evidence of card adequacy"
+  },
+  "files_read": [
+    "docs/PROCESS-INTERVENTION-PREFLIGHT-001A.md",
+    "docs/process_intervention_preflight_001a/problem_contract.md",
+    "docs/process_intervention_preflight_001a/resource_contract.md",
+    "docs/process_intervention_preflight_001a/trace_replay_contract.md",
+    "docs/process_intervention_preflight_001a/control_adversary_contract.md",
+    "docs/process_intervention_preflight_001a/intervention_contract.md",
+    "docs/process_intervention_preflight_001a/collapse_audit.md",
+    "docs/process_intervention_preflight_001a/claim_ceiling.md",
+    "artifacts/process_intervention_preflight_001a/verdict_manifest.json",
+    "artifacts/process_intervention_preflight_001a/contract_summary.json",
+    "tests/test_process_intervention_preflight_001a_contract.py",
+    "docs/THEORY-RESET-NEW-PROBLEM-DEFINITION-001A.md",
+    "docs/new_problem_preflight_001a/proxy_contract.md",
+    "docs/new_problem_preflight_001a/candidate_proxy_matrix.md",
+    "docs/new_problem_preflight_001a/value_state_boundary.md",
+    "docs/new_problem_preflight_001a/collapse_audit.md",
+    "docs/new_problem_preflight_001a/intervention_contract.md",
+    "docs/REPRESENTATIONAL-GAP-PREFLIGHT-001B.md",
+    "artifacts/representational_gap_001b/result.json"
+  ],
+  "what_this_does_not_prove": [
+    "mechanism success",
+    "online adaptation success",
+    "causal model success",
+    "model-class reset readiness",
+    "Gate1 readiness",
+    "same-agent bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "functional subjectivity",
+    "emotion",
+    "relationship learning",
+    "companion readiness",
+    "AGI",
+    "that the future executable preflight will pass",
+    "that the triple target is achievable by any mechanism",
+    "that the required amendments are sufficient rather than merely necessary"
+  ],
+  "next_allowed_task_if_any": {
+    "recommended": "PROCESS-INTERVENTION-PREFLIGHT-001A amendment task-card (incorporate A1-A11)",
+    "alternative": "PROCESS-INTERVENTION-PREFLIGHT-001B executable-preflight authorization review only if A1-A5 are treated as hard authorization gates",
+    "not_authorized": [
+      "mechanism implementation",
+      "training",
+      "model-class reset",
+      "Gate1 reopening",
+      "same-agent bridge drafting",
+      "EGO integration"
+    ]
+  },
+  "authorization_state": {
+    "implementation_authorized": false,
+    "training_authorized": false,
+    "model_class_reset_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_integration_authorized": false
+  }
+}

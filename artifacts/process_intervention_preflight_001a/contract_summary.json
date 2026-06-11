@@ -1,0 +1,40 @@
+{
+  "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001A",
+  "parent_inputs_read": [
+    "Gate0 001C bounded isolated predictive-action mechanism evidence only",
+    "Gate1 replay/consolidation lineage closed",
+    "same-agent bridge blocked",
+    "REPRESENTATIONAL-GAP-PREFLIGHT-001A audit superseded",
+    "REPRESENTATIONAL-GAP-PREFLIGHT-001B fair controls solved target",
+    "THEORY-RESET-NEW-PROBLEM-DEFINITION-001A bounded pass",
+    "NEW-PROBLEM-PREFLIGHT-001A bounded pass"
+  ],
+  "future_problem_definition": "Can a bounded process/intervention mechanism show intervention-sensitive internal update and later behavior change that cannot be reproduced by fair full-history and online cheap controls under the same access contract?",
+  "intervention_contract_summary": "Future card must freeze state deletion, memory deletion, representation freezing, prediction-error injection, counterfactual action substitution, observation perturbation, history-preserving causal perturbation, and online distribution shift.",
+  "trace_replay_contract_summary": "Future traces must expose intervention condition, counterfactual probes, state before/after update, state_delta, memory reads/writes, retrieval hits, resource usage, output, future behavior probe, verifier outcome, access manifest, and lineage id.",
+  "control_adversary_summary": "Future task must include full-history and online count/statistic, FSM, graph/cache, kNN/episodic, summary/statistic, causal table, behavior-only replay, trace-only replay, graph/cache trace generator, random representation, shuffled label/outcome, and oracle/leakage probes.",
+  "resource_contract_summary": "Resource limits are symmetric accounting only; witness and controls receive comparable resource budgets and controls must not be starved.",
+  "collapse_audit_summary": "Future executable preflight fails if any fair cheap control reproduces intervention response, internal update trace, and later behavior change, or if traces are decorative.",
+  "anti_hardcoding_audit_summary": "Future task must reject renamed variables, if-else policy disguised as mechanism, decorative traces, control banning, resource asymmetry, and oracle access.",
+  "acceptance_gate": {
+    "no_mechanism_implementation": true,
+    "no_training": true,
+    "problem_is_not_output_level": true,
+    "intervention_response_required": true,
+    "internal_update_trace_required": true,
+    "later_behavior_change_required": true,
+    "trace_theater_failure_gate_defined": true,
+    "fair_online_controls_required": true,
+    "graph_cache_trace_generator_required": true,
+    "trace_only_replay_required": true,
+    "behavior_only_replay_required": true,
+    "random_representation_control_required": true,
+    "shuffled_outcome_control_required": true,
+    "resource_contract_symmetric": true,
+    "value_state_boundary_non_affective": true,
+    "claim_ceiling_enforced": true
+  },
+  "commands_required_for_verification": [
+    "python -m pytest tests/test_process_intervention_preflight_001a_contract.py -q"
+  ]
+}
