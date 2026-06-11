@@ -1,0 +1,67 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001B-INDEPENDENT-AUDIT",
+  "layer": "bounded independent task-card audit only",
+  "audited_task_card": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A",
+  "audit_anchor_commit": "b813651",
+  "verdict": "gate1_replay_consolidation_task_card_001b_failed_trace_replay_contract",
+  "claim_ceiling": "bounded independent Gate1 task-card audit evidence only",
+  "audit_passed": false,
+  "gate1_executed": false,
+  "gate1_runtime_implemented": false,
+  "new_mechanism_code_added": false,
+  "summary": "001A contains the required high-level task-card structure, baselines, ablations, leakage controls, claim ceiling, stop conditions, rollback plan, and non-claims, but it is not admitted for Gate1 executable preflight because the trace/replay contract does not explicitly require pre/post replay state traces or a replay-to-behavior linkage field.",
+  "strongest_baseline_explanation": "A future apparent later-behavior effect could still be explained by retrieval, summary retrieval, trace-only hygiene, count/statistic controls, graph or transition controls, frozen history, no-consolidation behavior, shuffled replay, or corrupted replay rather than consolidation.",
+  "strongest_reason_this_task_may_be_invalid": "If this audit admitted 001A despite ambiguous replay-state and replay-to-behavior trace requirements, it would convert a drafting artifact into an under-specified executable preflight authorization.",
+  "what_would_falsify_current_framing": [
+    "001A is edited during the audit",
+    "old Gate0 / 001B / RCA / 001C / 001D / admission artifacts are modified",
+    "Gate1 execution occurs",
+    "new mechanism code is added",
+    "the audit authorizes bridge, EGO, mechanism tournament, or model-class reset work",
+    "the audit claims Gate1 pass or mechanism validity"
+  ],
+  "evidence_still_insufficient_for": [
+    "Gate1 pass",
+    "mechanism validity",
+    "theory validity",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "emotion",
+    "companion readiness",
+    "stable user benefit"
+  ],
+  "authorization_flags": {
+    "gate1_executable_preflight_drafting_authorized": false,
+    "gate1_executable_preflight_execution_authorized": false,
+    "gate1_execution_authorized": false,
+    "gate1_implementation_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "mechanism_tournament_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_validity_claim_authorized": false,
+    "agency_claim_authorized": false,
+    "consciousness_claim_authorized": false,
+    "companion_readiness_claim_authorized": false
+  },
+  "artifact_mutation_audit": {
+    "old_artifacts_modified": false,
+    "001a_task_card_edited_during_audit": false,
+    "protected_paths_checked": [
+      "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A.md",
+      "artifacts/gate1_replay_consolidation_task_card_001a/task_card_result.json",
+      "artifacts/gate1_replay_consolidation_task_card_001a/validation_matrix.json",
+      "artifacts/gate1_replay_consolidation_task_card_001a/source_evidence_manifest.json",
+      "artifacts/gate1_replay_consolidation_task_card_001a/claim_ceiling.txt",
+      "artifacts/pi_hd_admission_001/admission_result.json",
+      "artifacts/process_intervention_hard_distribution_001d_target_free_generative_replay_challenger/result.json"
+    ]
+  },
+  "stop_conditions_triggered": [
+    "trace_replay_contract_blocker"
+  ],
+  "rollback_plan": "If artifact mutation occurs, restore to b813651 and rerun audit from a clean worktree. Because the audit failed, do not patch 001A inline; require a separate minimal amendment task."
+}

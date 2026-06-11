@@ -1,0 +1,42 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001B-INDEPENDENT-AUDIT",
+  "audited_task_card": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A",
+  "audit_anchor_commit": "b813651",
+  "verdict": "gate1_replay_consolidation_task_card_001b_failed_trace_replay_contract",
+  "inline_patch_allowed": false,
+  "requires_separate_minimal_amendment_task": true,
+  "blocking_requirements": [
+    {
+      "requirement_id": "pre_post_replay_state_traces",
+      "status": "ambiguous",
+      "evidence_in_001a": "001A requires replay event, consolidation event, state hash before update, state hash after update, and state hash after consolidation.",
+      "gap": "001A does not explicitly require state hash before replay and state hash after replay.",
+      "minimal_amendment_needed": [
+        "state_hash_before_replay",
+        "state_hash_after_replay"
+      ]
+    },
+    {
+      "requirement_id": "replay_to_behavior_linkage",
+      "status": "ambiguous",
+      "evidence_in_001a": "001A requires later behavior query and says the plan should test whether replay/consolidation affects later behavior.",
+      "gap": "001A does not define an explicit replay/consolidation event id to later behavior evaluation id join key.",
+      "minimal_amendment_needed": [
+        "replay_event_id",
+        "consolidation_event_id",
+        "later_behavior_evaluation_id",
+        "replay_or_consolidation_to_later_behavior_join_key"
+      ]
+    }
+  ],
+  "non_blocking_confirmed_requirements": [
+    "required section structure present",
+    "required baseline families present and not executed",
+    "required ablations present and not executed",
+    "target-free evaluation separation present",
+    "manifest hash/freeze requirement present",
+    "trace_only_replay remains hygiene only",
+    "old failed 001B is not used as pass evidence",
+    "claim ceiling is bounded"
+  ]
+}

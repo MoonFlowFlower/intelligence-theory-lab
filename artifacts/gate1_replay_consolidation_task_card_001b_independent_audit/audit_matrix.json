@@ -1,0 +1,133 @@
+{
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001B-INDEPENDENT-AUDIT",
+  "layer": "bounded independent task-card audit only",
+  "audited_task_card": "GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A",
+  "audit_anchor_commit": "b813651",
+  "verdict": "gate1_replay_consolidation_task_card_001b_failed_trace_replay_contract",
+  "claim_ceiling": "bounded independent Gate1 task-card audit evidence only",
+  "checks": [
+    {
+      "check_id": "section_structure_audit",
+      "passed": true,
+      "observed": [
+        "Problem definition",
+        "Current stage",
+        "Hypothesis",
+        "Baseline families",
+        "Ablations",
+        "Trace / replay requirement",
+        "Access and leakage controls",
+        "Acceptance gate",
+        "Claim ceiling",
+        "Stop conditions",
+        "Rollback plan",
+        "Non-claims"
+      ]
+    },
+    {
+      "check_id": "baseline_audit",
+      "passed": true,
+      "executed_any_baseline": false,
+      "observed": [
+        "retrieval / summary retrieval",
+        "behavior-only replay",
+        "trace-only replay as hygiene only",
+        "online count/statistic controls",
+        "transition table / successor map / graph cache controls",
+        "target-free generative replay challenger",
+        "frozen-history control",
+        "no-consolidation control",
+        "shuffled-replay control",
+        "corrupted-replay control"
+      ]
+    },
+    {
+      "check_id": "ablation_audit",
+      "passed": true,
+      "executed_any_ablation": false,
+      "observed": [
+        "learning freeze",
+        "history replacement",
+        "consolidation disabled",
+        "replay order shuffled",
+        "replay content corrupted",
+        "heldout composition",
+        "delayed-effect cases",
+        "observable-key conflict cases",
+        "partial-observability cases",
+        "counterfactual action contrast"
+      ]
+    },
+    {
+      "check_id": "trace_replay_requirement_audit",
+      "passed": false,
+      "requirements": [
+        "pre_post_replay_state_traces",
+        "replay_event_logs",
+        "consolidation_traces",
+        "later_behavior_evaluation",
+        "replay_to_behavior_linkage",
+        "target_free_evaluation_separation",
+        "hash_freeze_or_equivalent_artifact_integrity",
+        "trace_only_replay_hygiene_only"
+      ],
+      "satisfied_or_sufficient": [
+        "replay_event_logs",
+        "consolidation_traces",
+        "later_behavior_evaluation",
+        "target_free_evaluation_separation",
+        "hash_freeze_or_equivalent_artifact_integrity",
+        "trace_only_replay_hygiene_only"
+      ],
+      "failed_requirements": [
+        "pre_post_replay_state_traces",
+        "replay_to_behavior_linkage"
+      ],
+      "interpretation": "001A records replay and consolidation events plus update/consolidation state hashes, but does not explicitly require state hashes immediately before and after replay, nor an explicit join key from replay/consolidation events to later behavior evaluation."
+    },
+    {
+      "check_id": "access_leakage_audit",
+      "passed": true,
+      "controls": [
+        "target_trace_leakage_prevented",
+        "heldout_outcome_leakage_prevented",
+        "post_evaluation_mutation_prevented",
+        "baseline_access_asymmetry_prevented",
+        "replay_traces_not_used_as_mechanism_evidence",
+        "old_failed_001b_not_used_as_pass_evidence"
+      ],
+      "interpretation": "001A requires an allowlist-based access firewall, pre-reveal manifest freeze, no Phase B rewrite, trace_only_replay as hygiene only, and preservation of historical 001B failure."
+    },
+    {
+      "check_id": "scope_boundary_audit",
+      "passed": true,
+      "gate1_execution_performed": false,
+      "gate1_runtime_implemented": false,
+      "new_mechanism_code_added": false,
+      "bridge_authorized": false,
+      "ego_authorized": false,
+      "mechanism_tournament_authorized": false,
+      "model_class_reset_authorized": false
+    },
+    {
+      "check_id": "claim_ceiling_audit",
+      "passed": true,
+      "claim_ceiling": "bounded independent Gate1 task-card audit evidence only",
+      "gate1_pass_claimed": false,
+      "mechanism_validity_claimed": false,
+      "agency_claimed": false,
+      "consciousness_claimed": false,
+      "companion_readiness_claimed": false
+    },
+    {
+      "check_id": "artifact_mutation_audit",
+      "passed": true,
+      "001a_task_card_edited_during_audit": false,
+      "old_artifacts_modified": false
+    }
+  ],
+  "overall_passed": false,
+  "blocking_check_ids": [
+    "trace_replay_requirement_audit"
+  ]
+}
