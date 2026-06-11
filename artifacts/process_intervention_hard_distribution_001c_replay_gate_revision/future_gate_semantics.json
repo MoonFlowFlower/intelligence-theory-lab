@@ -1,0 +1,103 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001C-REPLAY-GATE-REVISION",
+  "layer": "bounded replay-gate taxonomy revision only",
+  "claim_ceiling": "bounded replay-gate taxonomy revision only",
+  "semantics_scope": "future process-intervention evidence-contract wording only",
+  "historical_verdict_policy": {
+    "historical_001b_verdict": "process_intervention_hard_distribution_001b_failed_fair_control_match",
+    "historical_001b_verdict_must_remain_unchanged": true,
+    "historical_001b_not_reclassified_as_pass": true,
+    "trace_only_replay_remains_part_of_historical_001b_failure_reasoning": true,
+    "post_hoc_threshold_change_forbidden": true
+  },
+  "future_pass_fail_semantics": {
+    "trace_only_replay_failure": "invalid_trace_replay_hygiene",
+    "trace_only_replay_success": "does_not_block_mechanism_evidence",
+    "behavioral_replay_match": "weak_behavioral_warning_not_update_process_equivalence",
+    "behavioral_replay_process_signature_match_only_if_target_free": "can_escalate_to_update_process_warning_only_when_process_signatures_are_generated_before_target_trace_access",
+    "target_free_generative_replay_challenger_match": "can_block_mechanism_evidence",
+    "target_free_generative_replay_challenger_missing_when_replay_baseline_is_claimed": "future_gate_invalid_or_incomplete"
+  },
+  "access_rules": {
+    "trace_integrity_hygiene": {
+      "may_read_committed_target_trace_records": true,
+      "purpose_limit": "verify replay integrity only",
+      "may_claim_independent_prediction": false,
+      "may_block_when_successful": false,
+      "must_remain_mandatory": true
+    },
+    "behavioral_replay_baseline": {
+      "may_copy_or_model_behavior_history": true,
+      "may_claim_update_process_equivalence": false,
+      "must_not_use_target_process_signatures_for_evaluated_predictions": true,
+      "interpretation_if_matched": "weak_behavioral_warning"
+    },
+    "target_free_generative_replay_challenger": {
+      "may_use_support_history_under_fair_budget": true,
+      "must_not_read_target_heldout_outcomes_before_prediction": true,
+      "must_not_read_target_future_behaviors_before_prediction": true,
+      "must_not_read_target_process_signatures_before_prediction": true,
+      "must_not_read_committed_target_trace_records_for_evaluated_examples_before_prediction": true,
+      "predictions_must_be_committed_before_target_reveal": true,
+      "may_block_mechanism_evidence_if_matched": true
+    }
+  },
+  "required_future_fair_controls": [
+    "online_count_statistic",
+    "count_table",
+    "graph_cache",
+    "transition_table",
+    "successor_map",
+    "summary_retrieval",
+    "behavior_only_replay",
+    "target_free_generative_replay_challenger"
+  ],
+  "required_future_ablations": [
+    "learning_freeze",
+    "history_replacement",
+    "counterfactual_action_contrast",
+    "outcome_perturbation_if_predeclared",
+    "heldout_composition_evaluation"
+  ],
+  "non_replay_control_preservation": {
+    "online_count_statistic": "preserved",
+    "count_table": "preserved",
+    "graph_cache": "preserved",
+    "transition_table": "preserved",
+    "successor_map": "preserved",
+    "summary_retrieval": "preserved"
+  },
+  "negative_checks": {
+    "fair_controls_weakened_or_removed": false,
+    "trace_replay_hygiene_weakened": false,
+    "thresholds_changed_post_hoc": false,
+    "old_001b_artifacts_edited": false,
+    "historical_verdict_rewritten": false,
+    "001b_reclassified_as_pass": false,
+    "trace_hygiene_treated_as_mechanism_evidence": false,
+    "target_free_generative_replay_challenger_omitted": false,
+    "new_mechanism_implemented": false
+  },
+  "fair_controls_weakened_or_removed": false,
+  "trace_replay_hygiene_weakened": false,
+  "thresholds_changed_post_hoc": false,
+  "new_mechanism_implemented": false,
+  "conditional_future_gate_recommendation": {
+    "authorization_granted_by_001c": false,
+    "condition": "Only a separately authorized future process-intervention gate may instantiate this taxonomy.",
+    "recommended_future_contract_wording": "Separate replay controls into trace_integrity_hygiene, behavioral_replay_baseline, and target_free_generative_replay_challenger. Count only target-free generative replay challenger matches as independent replay-control mechanism-equivalence blockers."
+  },
+  "authorization_flags": {
+    "gate1_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_tournament_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "mechanism_training_authorized": false,
+    "historical_verdict_rewrite_authorized": false,
+    "threshold_change_authorized": false
+  }
+}

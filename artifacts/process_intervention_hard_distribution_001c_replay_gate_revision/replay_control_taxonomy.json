@@ -1,0 +1,101 @@
+{
+  "task_id": "PROCESS-INTERVENTION-HARD-DISTRIBUTION-001C-REPLAY-GATE-REVISION",
+  "taxonomy_id": "process_intervention_replay_gate_taxonomy_001c",
+  "layer": "bounded replay-gate taxonomy revision only",
+  "claim_ceiling": "bounded replay-gate taxonomy revision only",
+  "taxonomy": {
+    "trace_integrity_hygiene": {
+      "definition": "A replay check that may read committed target trace records after trace commitment to verify trace integrity, hash-chain continuity, replay plumbing, and artifact hygiene.",
+      "examples": [
+        "trace_only_replay"
+      ],
+      "counts_as_trace_replay_hygiene": true,
+      "counts_as_independent_mechanism_challenger": false,
+      "counts_as_mechanism_equivalence_evidence": false,
+      "may_block_mechanism_evidence_when_successful": false,
+      "may_invalidate_evidence_when_failed": true,
+      "access_rules": {
+        "may_read_committed_target_trace_records": true,
+        "may_read_target_outcomes_after_commit_for_integrity": true,
+        "may_read_target_future_behaviors_after_commit_for_integrity": true,
+        "may_read_target_process_signatures_after_commit_for_integrity": true,
+        "may_use_target_trace_to_generate_predictions": false,
+        "may_claim_target_free_prediction": false,
+        "may_block_mechanism_evidence_when_successful": false
+      },
+      "pass_fail_semantics": {
+        "success": "trace_integrity_valid_not_mechanism_equivalence",
+        "failure": "invalid_trace_replay_hygiene"
+      },
+      "historical_001b_application": {
+        "trace_only_replay_matched": true,
+        "historical_failure_reasoning_preserved": true,
+        "future_role_reclassified_only_for_future_gates": true
+      }
+    },
+    "behavioral_replay_baseline": {
+      "definition": "A replay baseline that copies or models observed target behavior history. It can expose behavior-only recoverability, but cannot claim update-process equivalence without target-free process signatures.",
+      "examples": [
+        "behavior_only_replay"
+      ],
+      "counts_as_trace_replay_hygiene": false,
+      "counts_as_independent_mechanism_challenger": false,
+      "counts_as_behavioral_warning": true,
+      "may_claim_update_process_equivalence": false,
+      "access_rules": {
+        "may_copy_or_model_observed_behavior_history": true,
+        "may_read_committed_behavior_records_after_observation": true,
+        "may_read_target_process_signatures_before_prediction": false,
+        "may_claim_target_free_process_prediction": false
+      },
+      "pass_fail_semantics": {
+        "match": "weak_behavioral_warning_not_update_process_equivalence",
+        "mismatch": "behavior_only_replay_does_not_explain_observed_behavior"
+      },
+      "historical_001b_application": {
+        "match_rate": 1.0,
+        "update_trace_match_rate": 0.0,
+        "independent_mechanism_challenger": false
+      }
+    },
+    "target_free_generative_replay_challenger": {
+      "definition": "A replay or simulator challenger that emits heldout outcomes, future behaviors, and process-sensitive update signatures before access to target heldout outcomes, target future behaviors, target process signatures, or committed target trace records for evaluated examples.",
+      "examples": [],
+      "present_in_001b": false,
+      "counts_as_trace_replay_hygiene": false,
+      "counts_as_independent_mechanism_challenger": true,
+      "can_block_mechanism_evidence_if_it_matches": true,
+      "access_rules": {
+        "may_use_support_history_under_fair_budget": true,
+        "may_use_observable_context": true,
+        "may_use_intervention_condition": true,
+        "may_use_action": true,
+        "may_read_committed_target_trace_records_for_evaluated_examples": false,
+        "may_read_target_heldout_outcomes_before_prediction": false,
+        "may_read_target_future_behaviors_before_prediction": false,
+        "may_read_target_process_signatures_before_prediction": false,
+        "predictions_must_be_committed_before_target_reveal": true,
+        "target_trace_access_allowed_only_after_prediction_for_scoring": true
+      },
+      "required_outputs_before_target_reveal": [
+        "heldout_outcome_predictions",
+        "future_behavior_predictions",
+        "process_signature_predictions",
+        "confidence_or_margin_record",
+        "access_manifest"
+      ],
+      "pass_fail_semantics": {
+        "match": "independent_target_free_replay_challenger_can_block_mechanism_evidence",
+        "mismatch": "target_free_replay_does_not_explain_mechanism_evidence"
+      }
+    }
+  },
+  "authorization_flags": {
+    "gate1_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "historical_verdict_rewrite_authorized": false
+  }
+}
