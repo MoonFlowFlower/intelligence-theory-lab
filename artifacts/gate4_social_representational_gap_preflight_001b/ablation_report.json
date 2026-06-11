@@ -1,0 +1,104 @@
+{
+  "ablation_gate_passed": true,
+  "ablations": [
+    {
+      "ablation_name": "remove_history_beyond_order_1",
+      "candidate_accuracy_after_ablation": 0.25,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove_history_beyond_order_2",
+      "candidate_accuracy_after_ablation": 0.375,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "shuffle_history_same_loss",
+      "candidate_accuracy_after_ablation": 0.125,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "replace_history_with_same_visible_partner_context_keys",
+      "candidate_accuracy_after_ablation": 0.25,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "replace_history_with_different_hidden_social_dynamics",
+      "candidate_accuracy_after_ablation": 0.25,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove_partner_state_update",
+      "candidate_accuracy_after_ablation": 0.25,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "freeze_candidate_learning",
+      "candidate_accuracy_after_ablation": 0.25,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "freeze_social_latent_state",
+      "candidate_accuracy_after_ablation": 0.125,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "permute_partner_ids",
+      "candidate_accuracy_after_ablation": 0.5,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "permute_preference_table_keys",
+      "candidate_accuracy_after_ablation": 0.5,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "delete_transcript_memory",
+      "candidate_accuracy_after_ablation": 1.0,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "delete_summary_memory",
+      "candidate_accuracy_after_ablation": 1.0,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "delete_or_mask_partner_policy_labels",
+      "candidate_accuracy_after_ablation": 1.0,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "perturb_partner_policy",
+      "candidate_accuracy_after_ablation": 0.25,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "counterfactual_action_replacement",
+      "candidate_accuracy_after_ablation": 0.375,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    },
+    {
+      "ablation_name": "counterfactual_partner_response_replacement",
+      "candidate_accuracy_after_ablation": 0.375,
+      "failure_surface": "ordered_history_latent_state_update",
+      "sensitive": true
+    }
+  ],
+  "candidate_score": 1.0,
+  "claim_ceiling": "bounded Gate4 social representational-gap preflight evidence only",
+  "task_id": "GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-EXECUTABLE-001B"
+}
