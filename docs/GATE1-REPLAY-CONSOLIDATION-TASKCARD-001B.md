@@ -225,7 +225,7 @@ It cannot support:
 * predictive-performance superiority over retrieval
 * open-world robustness, outcome unpredictability
 * total theory proof (Bio-CMBC, CVPSM, VCCO, CMBC, R/G or any other)
-* exhaustiveness of controls: a future pass means "not matched by the listed controls under the predeclared rule in this setting", never "not explainable by retrieval in general"
+* exhaustiveness of controls: a future pass means "not reproduced by fair retrieval / summary / graph-cache / generic-replay baselines under frozen replay, counterfactual-intervention, ablation, and leakage-controlled evidence conditions in this setting"; it is never a general absence-of-retrieval-explanation claim
 
 ## Margin-freeze protocol (binding interpretation of "predeclared")
 

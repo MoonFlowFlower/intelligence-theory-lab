@@ -1,0 +1,145 @@
+{
+  "task_id": "EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001C-FORWARD-REPLACEMENT-PATCH",
+  "layer": "evidence-contract governance",
+  "task_type": "bounded terminology migration",
+  "verdict": "pass",
+  "source_documents_read": [
+    "docs/EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A.md",
+    "artifacts/evidence_gate_interpretability_reframe_001b_integration_audit/integration_matrix.json",
+    "artifacts/evidence_gate_interpretability_reframe_001b_integration_audit/admission_gate_result.json",
+    "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001B.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-DRAFT-001.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001A.md"
+  ],
+  "files_scanned": [
+    "docs/EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A.md",
+    "artifacts/evidence_gate_interpretability_reframe_001b_integration_audit/integration_matrix.json",
+    "artifacts/evidence_gate_interpretability_reframe_001b_integration_audit/admission_gate_result.json",
+    "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001B.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-DRAFT-001.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001A.md"
+  ],
+  "files_modified": [
+    "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001B.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-DRAFT-001.md",
+    "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001.md",
+    "artifacts/evidence_gate_interpretability_reframe_001c_forward_replacement_patch/forward_replacement_result.json",
+    "artifacts/evidence_gate_interpretability_reframe_001c_forward_replacement_patch/claim_ceiling.txt"
+  ],
+  "strings_replaced": [
+    {
+      "file_path": "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001B.md",
+      "old_string": "not explainable by retrieval in general",
+      "new_string": "not reproduced by fair retrieval / summary / graph-cache / generic-replay baselines under frozen replay, counterfactual-intervention, ablation, and leakage-controlled evidence conditions in this setting",
+      "reason": "Remove broad explainability wording from the active forward Gate1 meta-card and require fair-baseline non-equivalence under evidence controls."
+    },
+    {
+      "file_path": "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-DRAFT-001.md",
+      "old_string": "not_explainable_by_retrieval_in_general",
+      "new_string": "not reproduced by fair retrieval / summary baselines under frozen replay, counterfactual-intervention, ablation, and leakage-controlled evidence conditions, with only the bounded claim ceiling",
+      "reason": "Remove the legacy token from a near-future executable draft admission surface."
+    },
+    {
+      "file_path": "docs/GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001.md",
+      "old_string": "not_explainable_by_retrieval_in_general",
+      "new_string": "not reproduced by fair retrieval / summary baselines under frozen replay, counterfactual-intervention, ablation, and leakage-controlled evidence conditions, with only the bounded claim ceiling",
+      "reason": "Remove the legacy token from a near-future executable admission surface."
+    }
+  ],
+  "strings_intentionally_preserved_as_historical_records": [
+    {
+      "file_path": "docs/EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A.md",
+      "string": "not explainable by retrieval in general",
+      "status": "source_amendment_avoid_table",
+      "quarantine_rule": "Allowed only as the source amendment's avoid-term row; not admissible as future task-card evidence wording."
+    },
+    {
+      "file_path": "docs/GATE1-REPLAY-CONSOLIDATION-TASKCARD-001A.md",
+      "string": "interpretable only if",
+      "status": "superseded_historical_card",
+      "quarantine_rule": "Preserved because 001B says 001A is historical and not a forward reference. Future references must use observable state evidence and listed-control non-equivalence wording instead."
+    },
+    {
+      "file_path": "artifacts/evidence_gate_interpretability_reframe_001b_integration_audit/integration_matrix.json",
+      "string": "not_explainable_by_retrieval_in_general / not explainable by retrieval in general / interpretable only if",
+      "status": "prior_audit_record",
+      "quarantine_rule": "Preserved as the 001B machine-readable debt record; it is not a task-card admission surface."
+    }
+  ],
+  "replacement_contract": {
+    "fair_retrieval_summary_baseline_non_equivalence_required": true,
+    "replay_required": true,
+    "counterfactual_intervention_required": true,
+    "ablation_required": true,
+    "leakage_controlled_evaluation_required": true,
+    "bounded_claim_ceiling_required": true,
+    "schema_only_replay_rejected_as_sufficient": true
+  },
+  "authorization_flags": {
+    "gate1_authorized": false,
+    "bridge_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "mechanism_experiment_authorized": false,
+    "mechanism_training_authorized": false,
+    "learned_core_implementation_authorized": false,
+    "llm_rag_companion_emotion_relationship_user_model_modules_authorized": false
+  },
+  "negative_checks": [
+    {
+      "check": "future_facing_admission_surface_still_treats_not_explainable_as_sufficient_evidence",
+      "triggered": false
+    },
+    {
+      "check": "task_requires_full_human_readable_latent_state_semantics_as_hard_gate",
+      "triggered": false
+    },
+    {
+      "check": "black_box_learned_components_allowed_without_replay_intervention_baseline_ablation_constraints",
+      "triggered": false
+    },
+    {
+      "check": "claim_ceiling_exceeds_bounded_evidence_contract_governance",
+      "triggered": false
+    },
+    {
+      "check": "authorization_flag_became_true",
+      "triggered": false
+    },
+    {
+      "check": "mechanism_code_changed",
+      "triggered": false
+    },
+    {
+      "check": "prior_failed_evidence_or_old_failure_artifact_edited",
+      "triggered": false
+    }
+  ],
+  "stop_conditions_triggered": [],
+  "acceptance_gate": {
+    "forward_replacement_debt_replaced_or_historical_quarantined": true,
+    "updated_docs_no_longer_imply_not_explainable_by_retrieval_alone_is_mechanism_evidence": true,
+    "replacement_wording_requires_fair_baseline_non_equivalence_under_replay_intervention_ablation_leakage_controls": true,
+    "json_artifact_records_files_scanned_strings_replaced_preserved_strings_authorization_flags_and_claim_ceiling": true,
+    "all_authorization_flags_false": true,
+    "git_diff_check_passed": true,
+    "repository_status_clean_after_commit": true
+  },
+  "claim_ceiling": "bounded evidence-contract terminology migration only",
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "Gate1 readiness",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "real emotion",
+    "companion readiness",
+    "superiority of black-box learned cores"
+  ],
+  "rollback_plan": "If overreach is detected, revert only the 001C patch commit, affecting the three forward-facing Gate1 doc edits and artifacts/evidence_gate_interpretability_reframe_001c_forward_replacement_patch/."
+}

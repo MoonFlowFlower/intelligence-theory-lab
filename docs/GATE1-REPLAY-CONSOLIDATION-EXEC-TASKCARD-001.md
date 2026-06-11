@@ -299,10 +299,13 @@ A future pass means only:
 not_matched_by_listed_controls_under_predeclared_rule_in_this_setting
 ```
 
-It must never be rewritten as:
+It must never be rewritten as a broad absence-of-retrieval-explanation claim.
+The required forward wording is:
 
 ```text
-not_explainable_by_retrieval_in_general
+not reproduced by fair retrieval / summary baselines under frozen replay,
+counterfactual-intervention, ablation, and leakage-controlled evidence
+conditions, with only the bounded claim ceiling.
 ```
 
 ## 7. Margin-freeze block
@@ -1569,4 +1572,3 @@ The margin policy is intentionally conservative because Gate 0 did not establish
 margin_provenance = Phase 4 / 001B-derived conservative anti-fake-pass policy
 why_not_post_hoc = margins are fixed before execution and before any candidate-vs-control run
 ```
-
