@@ -1,0 +1,55 @@
+{
+  "record_type": "task_manifest_and_margin_freeze",
+  "task_id": "LATENT-MULTISTEP-CONSISTENCY-RESIDUE-001A",
+  "created_utc": "2026-06-11T02:25:28Z",
+  "executor": "Claude (Cowork session), under human-owner task card",
+
+  "task_card": {
+    "path": "docs/LATENT-MULTISTEP-CONSISTENCY-RESIDUE-001A.md",
+    "sha256": "661424d9f8501cdecd3fd980de2df407e5b1f3044f9930259b14f89d78f97edb"
+  },
+  "parent_inheritance": {
+    "parent_task": "GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001",
+    "parent_verdict": "gate1_preflight_failed_graph_cache_collapse",
+    "parent_final_report_sha256": "e4e47ae8a3c6a789d8f9dbd7032ad5b306c153c06864b921819f385af29616df",
+    "parent_result_json_sha256": "5e9a28ec1da9fcb0e5a6c6b4a877e60fef5d758aef13c08f496016b7616e3c7a",
+    "parent_baseline_comparison_sha256": "c7db255f0065581922caa98fd6ef5e2be46ab76e93a6aed4e533e7beb77fe212",
+    "parent_artifacts_access": "read-only citation; never modified"
+  },
+
+  "margin_freeze_record": {
+    "margin_policy": "conservative_zero_advantage_rule",
+    "orientation": "all metrics lower-is-better exact expected NLL; candidate_advantage = control_score - candidate_score",
+    "distinguishable_iff": "candidate_advantage > 0 on every preregistered seed and every required slice (strict fallback; metrics deterministic given seed)",
+    "ties_or_ambiguity": "control matches candidate",
+    "acceptance": "conjunctive across all mandatory controls and all five slices",
+    "post_hoc_margin_change": "forbidden",
+    "all_numeric_margins": 0.0
+  },
+
+  "frozen_at_stage0": {
+    "environment_preregistration_sha256": "e9ba27c2dc4f165d4b28af220e24b0e9ca26596c1bea8d88dd5b6b811055bb7a",
+    "seeds": [29, 31, 37, 41, 43],
+    "slices": ["R_slice_1", "R_slice_2", "R_slice_3", "R_slice_4(w=3)", "R_slice_5(h=4)"],
+    "baseline_list_frozen": true,
+    "hyperparameter_budgets_frozen": "all fixed, zero search, in environment_preregistration.json",
+    "compute_matching_basis": "update_steps (candidate total 3600)",
+    "multi_step_depth": 4,
+    "burn_in_length": 5,
+    "chunk_boundaries": "contiguous length 40 stride 40 (20 chunks)"
+  },
+
+  "interpretation_locks_reference": "environment_preregistration.json interpretation_locks (original_order = candidate's own configuration; collapse rule binds on perturbed orders; retrieval h>1 rollout via own-store chaining)",
+
+  "external_time_anchor": {
+    "method": "repository_remote_push + anonymous ls-remote verification",
+    "status": "pending; first run only after anchor verified",
+    "freeze_commit_hash": "to_be_recorded_in_external_anchor_record.json"
+  },
+
+  "readiness": {
+    "margin_freeze_completed": true,
+    "external_time_anchor_completed": false,
+    "first_run_allowed": false
+  }
+}
