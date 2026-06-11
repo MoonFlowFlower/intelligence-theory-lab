@@ -1,0 +1,398 @@
+{
+  "task_id": "PROCESS-INTERVENTION-FAILURE-RCA-001A",
+  "layer": "bounded failure attribution only",
+  "verdict": "process_intervention_failure_rca_001a_completed_bounded_failure_attribution",
+  "claim_ceiling": "bounded process-intervention 001B failure attribution only",
+  "source_evidence_read": {
+    "process_intervention_preflight_001b_result": "artifacts/process_intervention_preflight_001b/result.json",
+    "process_intervention_preflight_001b_failure_manifest": "artifacts/process_intervention_preflight_001b/failure_manifest.json",
+    "process_intervention_preflight_001b_control_comparison": "artifacts/process_intervention_preflight_001b/control_comparison.json",
+    "process_intervention_preflight_001b_baseline_comparison": "artifacts/process_intervention_preflight_001b/baseline_comparison.json",
+    "process_intervention_preflight_001b_replay_report": "artifacts/process_intervention_preflight_001b/replay_report.json",
+    "process_intervention_preflight_001b_trace": "artifacts/process_intervention_preflight_001b/trace.jsonl",
+    "process_intervention_preflight_001b_frozen_inputs": "artifacts/process_intervention_preflight_001b/frozen_inputs.json",
+    "support_pack_result": "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_result.json",
+    "support_pack_matrix": "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_matrix.json",
+    "support_pack_manifest": "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_manifest.json",
+    "support_pack_gate_status": "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_gate_status.json"
+  },
+  "frozen_input_sha256": {
+    "artifacts/process_intervention_preflight_001b/result.json": "791d8f52b26bba0523e96854abbe25c418905799e8f9172d767618bf063736e7",
+    "artifacts/process_intervention_preflight_001b/failure_manifest.json": "bd8fc0b79e481c5c79137f23fd8bddee0f483a702c16e055072506ba38f57e56",
+    "artifacts/process_intervention_preflight_001b/control_comparison.json": "97638c20455f0c9794873d085946e49cbd84a99459d39bb9f2752c54d2a6a0c3",
+    "artifacts/process_intervention_preflight_001b/baseline_comparison.json": "10dd7427c3f7d7e060d3bebfd7e9d88ec20975991f4033a55cd1e4cbbf6c8991",
+    "artifacts/process_intervention_preflight_001b/replay_report.json": "b68af250ed7724fedf798994ce8bea8623dc8495daa034375d3c08882097563c",
+    "artifacts/process_intervention_preflight_001b/trace.jsonl": "2f9f84d6700bea9e6b84ff111d9350383a5f5f226b8d63ff67e80dbc6ab65526",
+    "artifacts/process_intervention_preflight_001b/frozen_inputs.json": "dd051d2a8199d72c266bbcf2ecbcb99c6a0922c27389a8ed5d6374c598cc3578",
+    "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_result.json": "451ffef6efbbd60c44dbd0c1e4598cfb9d90b9ef5a67a4f47b02dbba8d5155bf",
+    "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_matrix.json": "14fad839750f8ebe236f9eeee98e4bc4da862ac80caafdb9efb92e00dbd49e1b",
+    "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_manifest.json": "8d8ffe2ae7576d6a7643f98d9ffc046896f72aa08dd165461d2396d1b9a633f7",
+    "artifacts/process_intervention_preflight_001a_amendment_001_support_pack_001/support_pack_gate_status.json": "97ba146caa9b90af6d5a801e8466aa26a99521a7cf91d446111a07306b9aa76e"
+  },
+  "authorization_flags": {
+    "gate1_authorized": false,
+    "gate1_reopen_authorized": false,
+    "same_agent_bridge_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_integration_authorized": false,
+    "model_class_reset_authorized": false,
+    "mechanism_implementation_authorized": false,
+    "mechanism_training_authorized": false,
+    "threshold_change_authorized": false,
+    "old_artifact_repair_authorized": false,
+    "reinterpret_failure_as_success_authorized": false
+  },
+  "support_pack_summary": {
+    "support_pack_task_id": "PROCESS-INTERVENTION-PREFLIGHT-001A-AMENDMENT-001-SUPPORT-PACK-001",
+    "support_pack_verdict": "support_pack_001_ready_for_single_semantic_audit_rerun",
+    "support_pack_claim_ceiling": "bounded executable-readiness support pack evidence for PROCESS-INTERVENTION-PREFLIGHT-001A-AMENDMENT-001 only",
+    "support_pack_categories_present": 13,
+    "semantic_audit_rerun_verdict": "semantic_audit_pass_support_pack_executable_readiness_only",
+    "support_pack_or_semantic_audit_treated_as_mechanism_evidence": false,
+    "old_artifacts_repaired": false
+  },
+  "predecessor_failure_summary": {
+    "task_id": "PROCESS-INTERVENTION-PREFLIGHT-001B",
+    "verdict": "process_intervention_preflight_001b_failed_control_separation_statistic_match",
+    "bounded_pass": false,
+    "failure_type": "fair_controls_matched_process_intervention",
+    "best_fair_control": "online_count_statistic",
+    "best_fair_control_family": "count_statistic",
+    "best_fair_control_match_rate": 1.0,
+    "best_fair_control_update_trace_match_rate": 1.0,
+    "best_fair_control_later_behavior_match_rate": 1.0,
+    "best_fair_control_separation_margin": 0.0,
+    "baseline_equivalence_verdict": "fair_controls_match_witness",
+    "stop_conditions": [
+      "fair_count_statistic_control_matched",
+      "fair_graph_cache_control_matched",
+      "trace_only_replay_matched"
+    ],
+    "negative_evidence_recorded": true,
+    "old_artifacts_repaired": false,
+    "mechanism_evidence_claimed": false,
+    "gate1_evidence_claimed": false,
+    "same_agent_bridge_evidence_claimed": false,
+    "ego_readiness_claimed": false
+  },
+  "matched_fair_controls": [
+    {
+      "control_name": "online_count_statistic",
+      "family": "count_statistic",
+      "real_implementation": "online table count/statistic keyed by context, intervention, and action",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    },
+    {
+      "control_name": "count_table",
+      "family": "count_statistic",
+      "real_implementation": "deterministic closed-form decision procedure",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    },
+    {
+      "control_name": "graph_cache",
+      "family": "graph_cache",
+      "real_implementation": "intervention-labeled graph/cache keyed by context, intervention, and action",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    },
+    {
+      "control_name": "transition_table",
+      "family": "graph_cache",
+      "real_implementation": "deterministic closed-form decision procedure",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    },
+    {
+      "control_name": "successor_map",
+      "family": "graph_cache",
+      "real_implementation": "deterministic closed-form decision procedure",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    },
+    {
+      "control_name": "trace_only_replay",
+      "family": "replay",
+      "real_implementation": "replay of committed trace records without future labels",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    },
+    {
+      "control_name": "behavior_only_replay",
+      "family": "replay",
+      "real_implementation": "deterministic closed-form decision procedure",
+      "match_rate": 1.0,
+      "update_trace_match_rate": 1.0,
+      "later_behavior_match_rate": 1.0,
+      "separation_margin": 0.0,
+      "matched_on": [
+        "intervention-response target/effect under frozen match metric",
+        "internal-update-trace proxy under frozen update_trace_match_rate",
+        "later behavior change under frozen later_behavior_match_rate",
+        "primary separation statistic with zero margin over witness"
+      ]
+    }
+  ],
+  "failure_channel_attribution": {
+    "primary_driver": "statistic_count_shortcut",
+    "behavior_level_equivalence": {
+      "present": true,
+      "decisive": true,
+      "evidence": "All seven accepted matching controls have later_behavior_match_rate = 1.0 and match_rate = 1.0; behavior_only_replay also matches at 1.0."
+    },
+    "state_delta_or_update_trace_equivalence": {
+      "present": "metric-level only",
+      "decisive": true,
+      "evidence": "All accepted matching controls have update_trace_match_rate = 1.0 and separation_margin = 0.0, while replay_report has hash_chain_valid = true and allowed_update_path_replay_valid = true.",
+      "limit": "001B does not prove independent raw control state identity; the frozen update-trace metric collapses when predictions equal targets."
+    },
+    "intervention_response_equivalence": {
+      "present": true,
+      "decisive": true,
+      "evidence": "The best fair control is keyed by context, intervention, and action and matches the intervention-conditioned target/effect at 1.0 without forbidden access."
+    },
+    "statistic_count_shortcut": {
+      "present": true,
+      "decisive": true,
+      "evidence": "online_count_statistic is the best fair control with match_rate = 1.0, update_trace_match_rate = 1.0, later_behavior_match_rate = 1.0, and separation_margin = 0.0."
+    }
+  },
+  "trace_distribution_observations": {
+    "record_count": 96,
+    "context_count": 8,
+    "action_count": 4,
+    "intervention_count": 8,
+    "actual_observation_values": [
+      0,
+      2
+    ],
+    "actual_observation_counts": {
+      "0": 48,
+      "2": 48
+    },
+    "future_behavior_values": [
+      "policy_choice_0",
+      "policy_choice_2"
+    ],
+    "future_behavior_counts": {
+      "policy_choice_0": 48,
+      "policy_choice_2": 48
+    },
+    "prediction_error_signal_counts": {
+      "match": 48,
+      "mismatch": 48
+    },
+    "unique_context_intervention_action_keys": 64,
+    "deterministic_key_conflict_count": 0,
+    "interpretation": "The frozen distribution is small and deterministic enough that fair table/count/cache controls can fully capture it under the allowed access contract."
+  },
+  "rca_matrix": [
+    {
+      "candidate_failure_class": "mechanism_absent",
+      "classification": "not_established",
+      "relative_likelihood": "low_to_unknown",
+      "evidence_for": [
+        "001B produced no surviving non-equivalence evidence after fair controls matched.",
+        "mechanism_evidence_claimed is false in the predecessor result."
+      ],
+      "evidence_against_or_limits": [
+        "A single bounded preflight collapse does not prove the mechanism is absent in general.",
+        "The task distribution and evaluator are small enough that a shortcut explanation is stronger than a theory-level absence claim."
+      ],
+      "rca_conclusion": "Do not classify 001B as mechanism_absent; the evidence ceiling is lower."
+    },
+    {
+      "candidate_failure_class": "implementation_underpowered",
+      "classification": "plausible_alternative",
+      "relative_likelihood": "medium",
+      "evidence_for": [
+        "The witness effect surface is fully captured by observable context, intervention, and action.",
+        "The future behavior is a direct policy_choice wrapper around the observed effect.",
+        "The update-trace metric reports equivalence when predictions equal targets."
+      ],
+      "evidence_against_or_limits": [
+        "Under the same weak distribution, even a stronger implementation might still be shortcut-solvable.",
+        "001B does not contain an alternate implementation run that isolates implementation power from task difficulty."
+      ],
+      "rca_conclusion": "Implementation revision is a plausible branch, but not authorized by this RCA."
+    },
+    {
+      "candidate_failure_class": "task_distribution_weak",
+      "classification": "most_likely",
+      "relative_likelihood": "high",
+      "evidence_for": [
+        "Seven accepted fair controls matched at 1.0 across behavior, update-trace proxy, and separation statistic.",
+        "online_count_statistic and graph_cache matched at 1.0 using fair intervention-labeled keys.",
+        "The trace has 96 records, 64 unique context/intervention/action keys, and only two actual observation/future behavior values.",
+        "No deterministic key conflicts were observed for context/intervention/action."
+      ],
+      "evidence_against_or_limits": [
+        "The implementation is also simple, so distribution weakness and implementation underpower are not fully separable from frozen 001B alone."
+      ],
+      "rca_conclusion": "The strongest attribution is that 001B's distribution and metric surface allowed a statistic/count shortcut to solve the witness."
+    },
+    {
+      "candidate_failure_class": "evidence_gate_mismatch",
+      "classification": "plausible_secondary",
+      "relative_likelihood": "medium_low",
+      "evidence_for": [
+        "The predecessor gate treats update_trace_match_rate as 1.0 whenever accepted predictions equal targets.",
+        "trace_only_replay matched at 1.0, which shows replayability but not mechanism uniqueness.",
+        "Support-pack and semantic-audit artifacts explicitly state they are not mechanism evidence."
+      ],
+      "evidence_against_or_limits": [
+        "The gate did not falsely pass; it stopped on fair-control match.",
+        "The mismatch is secondary because the failure was correctly caught as control equivalence."
+      ],
+      "rca_conclusion": "Evidence-gate mismatch may explain why the task could not distinguish deeper state process evidence, but it did not cause a false pass."
+    },
+    {
+      "candidate_failure_class": "mixed_or_ambiguous",
+      "classification": "retained_as_uncertainty",
+      "relative_likelihood": "medium",
+      "evidence_for": [
+        "Implementation simplicity, task distribution weakness, and update-trace metric design all point in the same collapse direction.",
+        "Frozen 001B does not contain factorial variants that isolate these causes."
+      ],
+      "evidence_against_or_limits": [
+        "The matched online_count_statistic gives a strong primary shortcut explanation."
+      ],
+      "rca_conclusion": "Ambiguity remains, but it is bounded under a primary task_distribution_weak attribution."
+    }
+  ],
+  "most_likely_failure_class": "task_distribution_weak",
+  "plausible_alternative_failure_classes": [
+    "implementation_underpowered",
+    "evidence_gate_mismatch",
+    "mixed_or_ambiguous"
+  ],
+  "distinguishing_evidence_needed": {
+    "model_class_reset": {
+      "would_require": [
+        "Multiple independently frozen stronger distributions and faithful implementations still collapse to fair controls.",
+        "Ablation/intervention evidence showing the current model class cannot express the required process-intervention residue even when shortcut distributions are removed.",
+        "Baseline non-equivalence failures that persist after implementation revision and task hardening."
+      ],
+      "insufficient_evidence": [
+        "001B count/statistic match alone",
+        "trace replay match alone",
+        "a failed toy preflight",
+        "a narrative claim that the theory is dead"
+      ],
+      "authorization_status": "not_authorized"
+    },
+    "implementation_revision": {
+      "would_require": [
+        "Same frozen or minimally changed distribution with a predeclared revised witness implementation.",
+        "No extra access, no threshold tuning, and no hidden labels.",
+        "Ablations change later behavior in predicted directions while fair count/table/cache controls no longer match."
+      ],
+      "insufficient_evidence": [
+        "Renaming the mechanism",
+        "adding behavior-only complexity",
+        "passing without fair controls",
+        "post-hoc selecting probes"
+      ],
+      "authorization_status": "not_authorized"
+    },
+    "harder_task_distribution": {
+      "would_require": [
+        "A separately authorized task card with frozen harder distribution before execution.",
+        "Heldout intervention compositions, delayed effects, ambiguity, partial observability, and action-conditioned interventions that cannot be enumerated by fair cheap controls within budget.",
+        "Competence-calibrated graph/cache/count/statistic controls that fail only because the distribution demands the claimed process evidence."
+      ],
+      "insufficient_evidence": [
+        "Increasing episode count without changing shortcut structure",
+        "adding labels that controls can also key on",
+        "weakening the fair controls",
+        "changing thresholds after seeing results"
+      ],
+      "authorization_status": "not_authorized"
+    }
+  },
+  "conditional_next_step_recommendation": {
+    "authorization_granted_by_this_rca": false,
+    "if_only_closure_is_needed": "Record this RCA as bounded negative evidence and stop.",
+    "if_a_future_task_card_authorizes_revision": "Prefer a task-distribution hardening card first, unless a minimal implementation-revision card can isolate implementation power without changing the distribution.",
+    "if_a_future_task_card_authorizes_model_class_reset_discussion": "Require evidence beyond 001B, including repeated collapse after distribution hardening and implementation revision; 001B alone is insufficient.",
+    "forbidden_as_next_step_from_this_artifact": [
+      "Gate1 authorization",
+      "same-agent bridge authorization",
+      "EGO mainline authorization",
+      "model-class reset authorization",
+      "new mechanism implementation",
+      "threshold changes to make 001B pass",
+      "reinterpretation of 001B failure as success"
+    ]
+  },
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "theory validity",
+    "theory falsity",
+    "Gate1 readiness",
+    "bridge readiness",
+    "EGO readiness",
+    "agency",
+    "consciousness",
+    "companion readiness",
+    "model-class reset necessity"
+  ],
+  "acceptance_gate_status": {
+    "rca_artifact_json_parseable": true,
+    "old_001b_artifacts_must_remain_unchanged": true,
+    "authorization_flags_all_false": true,
+    "most_likely_failure_class_stated": true,
+    "plausible_alternative_stated": true,
+    "distinguishing_evidence_for_reset_revision_distribution_stated": true,
+    "claim_ceiling_bounded_failure_attribution_only": true
+  }
+}
