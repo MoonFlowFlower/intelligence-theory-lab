@@ -425,8 +425,8 @@ def test_result_preserves_claim_ceiling_and_anti_sycophancy_audit(tmp_path):
         assert f"proves {forbidden}" not in serialized
 
 
-def test_default_run_writes_committed_artifact_directory():
-    result = run_preflight_001b(repo_root=ROOT)
+def test_committed_artifact_directory_contains_bounded_result_without_rewriting():
+    result = _read_json(ARTIFACT_DIR / "result.json")
 
     assert result["artifact_dir"] == "artifacts/gate3_viability_functional_affect_001b"
     assert ARTIFACT_DIR.exists()
