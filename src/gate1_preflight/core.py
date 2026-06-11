@@ -294,6 +294,11 @@ class SequenceStore:
         self.marginal /= self.marginal.sum()
         self.w8 = [(tuple(self.oa[t - 7:t + 1]), self.next_obs[t])
                    for t in range(7, len(self.oa))]
+        # vectorized window codes for kNN (pair (o,a) -> o*N_ACTIONS+a);
+        # identical distances and stable tie-break as the tuple version
+        self._w8_codes = np.array([[o * 3 + a for (o, a) in w]
+                                   for (w, _n) in self.w8], dtype=np.int16)
+        self._w8_next = np.array([n for (_w, n) in self.w8], dtype=np.int16)
 
     @staticmethod
     def _key_of(history, L):
@@ -323,15 +328,12 @@ class SequenceStore:
     def knn_retrieval(self, history, k=5):
         if len(history) < 8:
             return self.marginal.copy()
-        q = history[-8:]
-        scored = []
-        for w, nxt in self.w8:
-            dist = sum(1 for x, y in zip(w, q) if x != y)
-            scored.append((dist, nxt))
-        scored.sort(key=lambda t: t[0])
-        c = np.zeros(N_OBS)
-        for _d, nxt in scored[:k]:
-            c[nxt] += 1
+        q = np.array([o * 3 + a for (o, a) in history[-8:]], dtype=np.int16)
+        dist = (self._w8_codes != q).sum(axis=1)
+        idx = np.argsort(dist, kind="stable")[:k]   # stable = chronological
+        c = np.zeros(N_OBS)                          # tie-break, as before
+        for i in idx:
+            c[self._w8_next[i]] += 1
         return c / c.sum()
 
     def sequence_lookup(self, history):
@@ -364,18 +366,4 @@ def stationary_distribution(T_true):
 
 def true_obs_dist(T_true, s, a):
     q = np.zeros(N_OBS)
-    for s2 in range(N_STATES):
-        q[obs_of(s2)] += T_true[s, a, s2]
-    return q
-
-
-def marginal_obs_dist(T_true, pi, o, a):
-    w = np.array([pi[s] if obs_of(s) == o else 0.0 for s in range(N_STATES)])
-    if w.sum() == 0:
-        return np.full(N_OBS, 1.0 / N_OBS)
-    w /= w.sum()
-    q = np.zeros(N_OBS)
-    for s in range(N_STATES):
-        if w[s] > 0:
-            q += w[s] * true_obs_dist(T_true, s, a)
-    return q
+    for s2 in range(N_STATES)

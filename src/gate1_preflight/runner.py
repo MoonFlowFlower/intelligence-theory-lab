@@ -460,17 +460,77 @@ def eval_B_inproc(predict_fn, sequences):
     return results
 
 
-def belief_predict_fn(model):
-    def fn(hist):
-        # reconstruct belief over states from the (o,a) history given
+def eval_B_belief_inproc(theta, sequences):
+    """In-process belief-model evaluation using EXACTLY the same slice math
+    as eval_subprocess.eval_B (duplicated deliberately so learner controls
+    are scored under a protocol identical to the candidate's subprocess)."""
+    from gate1_preflight.core import obs_of as _obs
+
+    def softmax(z):
+        z = z - z.max()
+        p = np.exp(z)
+        return p / p.sum()
+
+    TM = [np.stack([softmax(theta[s, a]) for s in range(N_STATES)])
+          for a in range(3)]
+    mask_obs = np.stack([[1.0 if _obs(s2) == o else 0.0
+                          for s2 in range(N_STATES)] for o in range(N_OBS)])
+
+    def predict(belief, a):
+        m = belief @ TM[a]
+        return np.array([float(m @ mask_obs[o]) for o in range(N_OBS)]), m
+
+    def update(belief, a, o_next):
+        _p, m = predict(belief, a)
+        b = m * mask_obs[o_next]
+        t = b.sum()
+        return b / t if t > 0 else np.full(N_STATES, 1.0 / N_STATES)
+
+    def beliefs_full(seq):
         b = np.full(N_STATES, 1.0 / N_STATES)
-        for i in range(len(hist) - 1):
-            o_i, a_i = hist[i]
-            o_next = hist[i + 1][0]
-            b = model.belief_update(b, a_i, o_next)
-        p, _ = model.predict_obs(b, hist[-1][1])
-        return p
-    return fn
+        bs = [b.copy()]
+        for t in range(len(seq["actions"]) - 1):
+            b = update(b, seq["actions"][t], seq["obs"][t + 1])
+            bs.append(b.copy())
+        return bs
+
+    def nll_at(b, seq, t):
+        p, _ = predict(b, seq["actions"][t])
+        p = np.maximum(p, 1e-12)
+        return -float(np.array(seq["qtrue"][t]) @ np.log(p))
+
+    results = {}
+    tot, n = 0.0, 0
+    tot4, n4 = 0.0, 0
+    for seq in sequences:
+        bs = beliefs_full(seq)
+        for t in range(6, len(seq["actions"])):
+            v = nll_at(bs[t], seq, t)
+            tot += v; n += 1
+            if seq["mask_b4"][t]:
+                tot4 += v; n4 += 1
+    results["B_slice_1"] = tot / n
+    results["B_slice_4"] = tot4 / n4 if n4 else float("nan")
+
+    tot, n = 0.0, 0
+    for seq in sequences:
+        b = np.full(N_STATES, 1.0 / N_STATES)
+        for t in range(20, len(seq["actions"])):
+            if t >= 26:
+                tot += nll_at(b, seq, t); n += 1
+            if t + 1 < len(seq["obs"]):
+                b = update(b, seq["actions"][t], seq["obs"][t + 1])
+    results["B_slice_2"] = tot / n
+
+    tot, n = 0.0, 0
+    for seq in sequences:
+        for t in range(9, len(seq["actions"])):
+            b = np.full(N_STATES, 1.0 / N_STATES)
+            for u in range(t - 8, t):
+                b = update(b, seq["actions"][u], seq["obs"][u + 1])
+            tot += nll_at(b, seq, t); n += 1
+    results["B_slice_3"] = tot / n
+    return results
 
 
 def b_pipeline(seed):
@@ -612,7 +672,7 @@ def b_pipeline(seed):
     def build_online_only_B():
         m = BeliefPredictor(seed)
         online_phase(m, "oo_B")
-        return eval_B_inproc(belief_predict_fn(m), sequences)
+        return eval_B_belief_inproc(m.theta, sequences)
     b_learner("online_only_B", build_online_only_B)
 
     def build_chunk_replay_ss():
@@ -620,7 +680,7 @@ def b_pipeline(seed):
         online_phase(m, "crss_B")
         candidate_replay(m, lambda ep, mod: list(range(20)), "crss_B",
                          multistep=False)
-        return eval_B_inproc(belief_predict_fn(m), sequences)
+        return eval_B_belief_inproc(m.theta, sequences)
     b_learner("chunk_replay_ss", build_chunk_replay_ss)
 
     def build_shuffled_replay_B():
@@ -629,7 +689,7 @@ def b_pipeline(seed):
         sh_rng = np.random.default_rng(seed * 1000 + 88)
         candidate_replay(m, lambda ep, mod: list(sh_rng.permutation(20)),
                          "shf_B", multistep=True)
-        return eval_B_inproc(belief_predict_fn(m), sequences)
+        return eval_B_belief_inproc(m.theta, sequences)
     b_learner("shuffled_replay_B", build_shuffled_replay_B)
 
     def build_random_replay_B():
@@ -646,7 +706,7 @@ def b_pipeline(seed):
                 b = m.belief_update(b, a, obs_of(s2))
             s, a, s2 = stream1[t]
             m.sgd_step_obs(b, a, obs_of(s2))
-        return eval_B_inproc(belief_predict_fn(m), sequences)
+        return eval_B_belief_inproc(m.theta, sequences)
     b_learner("random_replay_B", build_random_replay_B)
 
     def build_equal_compute_B():
@@ -658,7 +718,7 @@ def b_pipeline(seed):
             for _ in range(reps):
                 m.sgd_step_obs(b, a, o2)
             b = m.belief_update(b, a, o2)
-        return eval_B_inproc(belief_predict_fn(m), sequences)
+        return eval_B_belief_inproc(m.theta, sequences)
     b_learner("equal_compute_B", build_equal_compute_B)
 
     out["nll"] = {k: {sl: v for sl, v in d.items() if not sl.startswith("_")}
@@ -839,16 +899,14 @@ def readiness_gate():
     return anchor, amend
 
 
-def main():
-    for d in ("attestation", "model_snapshots"):
+def stage_gate():
+    for d in ("attestation", "model_snapshots", "intermediate"):
         os.makedirs(os.path.join(ART, d), exist_ok=True)
     anchor, amend = readiness_gate()
     ledger_append({"run_id": "task_start", "kind": "gate",
                    "first_run_allowed": True,
                    "margin_freeze_commit": anchor["margin_freeze_commit_hash"],
-                   "amendment_anchor_commit": amend["amendment_commit_hash"],
-                   "note": "first_run_start_time = ts of this entry"})
-
+                   "amendment_anchor_commit": amend["amendment_commit_hash"]})
     smoke = run_logged("smoke_9001", "smoke_test", smoke_test)
     write_json("smoke_test_record.json", smoke)
     comp = run_logged("competence_9001", "competence_check", competence_checks)
@@ -860,15 +918,32 @@ def main():
             "claim_ceiling": CLAIM_CEILING})
         ledger_append({"run_id": "task_end", "kind": "gate",
                        "status": "stopped_control_incompetence"})
-        return
+        print("STOP: control incompetence")
+        return False
+    print("gate ok")
+    return True
 
+
+def stage_seed(which, seed):
+    fn = a_pipeline if which == "A" else b_pipeline
+    res = run_logged(f"{which}_pipeline_seed{seed}", "pipeline",
+                     lambda: fn(seed))
+    flush_trace()
+    with open(os.path.join(ART, "intermediate", f"{which}_{seed}.json"),
+              "w") as f:
+        json.dump(res, f)
+    print(f"{which} seed {seed} done")
+
+
+def stage_finalize():
     per_seed_A, per_seed_B = [], []
     for seed in SEEDS:
-        per_seed_A.append(run_logged(f"A_pipeline_seed{seed}", "pipeline",
-                                     lambda s=seed: a_pipeline(s)))
-        per_seed_B.append(run_logged(f"B_pipeline_seed{seed}", "pipeline",
-                                     lambda s=seed: b_pipeline(s)))
-        flush_trace()
+        with open(os.path.join(ART, "intermediate", f"A_{seed}.json")) as f:
+            per_seed_A.append(json.load(f))
+        with open(os.path.join(ART, "intermediate", f"B_{seed}.json")) as f:
+            per_seed_B.append(json.load(f))
+    with open(os.path.join(ART, "competence_report.json")) as f:
+        comp = json.load(f)
 
     # ---- verification: bit-exact replay + lineage NLL reconstruction
     replay_recs, lineage_checks = [], []
@@ -1090,4 +1165,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    cmd = sys.argv[1] if len(sys.argv) > 1 else "missing"
+    if cmd == "gate":
+        stage_gate()
+    elif cmd == "seedA":
+        stage_seed("A", int(sys.argv[2]))
+    elif cmd == "seedB":
+        stage_seed("B", int(sys.argv[2]))
+    elif cmd == "finalize":
+        stage_finalize()
+    else:
+        raise SystemExit(f"unknown stage: {cmd}")
