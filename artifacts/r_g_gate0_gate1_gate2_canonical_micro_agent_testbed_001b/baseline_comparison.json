@@ -1,0 +1,121 @@
+{
+  "acceptance_threshold": 0.95,
+  "baseline_gate_passed": true,
+  "baselines": [
+    {
+      "baseline_name": "isolated Gate0-only policy",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.42,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": true
+    },
+    {
+      "baseline_name": "isolated Gate1-only replay policy",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.38,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": true
+    },
+    {
+      "baseline_name": "isolated Gate2-only controllability policy",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.5,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": true
+    },
+    {
+      "baseline_name": "stitched-output baseline with no shared state",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.58,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "retrieval / summary retrieval",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.45,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "count/statistic table",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.4,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "transition table / successor map / graph cache",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.5,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "behavior-only imitation",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.35,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "frozen-memory model",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.3,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": true
+    },
+    {
+      "baseline_name": "frozen-controllability model",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.3,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": true
+    },
+    {
+      "baseline_name": "random policy",
+      "counts_as_fair_baseline": true,
+      "integrated_shared_state_score": 0.2,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "oracle environment-label control as upper-bound/leakage only",
+      "counts_as_fair_baseline": false,
+      "integrated_shared_state_score": 1.0,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    },
+    {
+      "baseline_name": "trace-only replay as hygiene only",
+      "counts_as_fair_baseline": false,
+      "integrated_shared_state_score": 1.0,
+      "match_or_beat_candidate": false,
+      "uses_single_canonical_shared_state": false
+    }
+  ],
+  "best_fair_baseline": {
+    "baseline_name": "stitched-output baseline with no shared state",
+    "counts_as_fair_baseline": true,
+    "integrated_shared_state_score": 0.58,
+    "match_or_beat_candidate": false,
+    "uses_single_canonical_shared_state": false
+  },
+  "candidate": {
+    "candidate_name": "canonical shared-state Gate0/Gate1/Gate2 micro-agent loop",
+    "integrated_shared_state_score": 1.0,
+    "uses_single_canonical_shared_state": true
+  },
+  "claim_ceiling": "bounded Gate0/Gate1/Gate2 canonical micro-agent testbed executable preflight evidence only",
+  "graph_cache_family_variants": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal"
+  ],
+  "stitched_output_baseline_does_not_explain_result": true,
+  "strongest_baseline_explanation": "The stitched-output baseline can imitate per-gate summaries, but it lacks a single shared-state hash lineage and does not carry Gate0 error through Gate1 replay and Gate2 boundary update into later action selection.",
+  "task_id": "R-G-GATE0-GATE1-GATE2-CANONICAL-MICRO-AGENT-TESTBED-EXECUTABLE-PREFLIGHT-001B"
+}
