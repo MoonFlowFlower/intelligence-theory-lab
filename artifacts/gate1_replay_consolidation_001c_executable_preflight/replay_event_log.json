@@ -1,0 +1,76 @@
+{
+  "all_events_have_linkage_key": true,
+  "all_events_have_state_hash_after_replay": true,
+  "all_events_have_state_hash_before_replay": true,
+  "events": [
+    {
+      "case_family": "heldout composition",
+      "consolidation_event_id": "consolidation_001",
+      "later_behavior_eval_id": "later_eval_001",
+      "linkage_key_derivation_rule": "gate1_001c_linkage_key_v1",
+      "replay_end_time_or_step": 13,
+      "replay_event_id": "replay_001",
+      "replay_start_time_or_step": 10,
+      "replay_to_behavior_linkage_key": "6ded66fda6a74b0223d02e7798427cda9a10ba7530f115981182b91d96675810",
+      "source_experience_ids": [
+        "support_intervention_A",
+        "support_update_B"
+      ],
+      "state_hash_after_replay": "ddf5e3b866d7e5656bf095da5eb1b999d87e7314951b7852fd592d06eb676e2e",
+      "state_hash_before_replay": "8b90525b43cac960e9371a88fffbd1745ffa8e96040b615dea88798e086ffbb1",
+      "target_case_id": "target_heldout_composition_001"
+    },
+    {
+      "case_family": "delayed-effect cases",
+      "consolidation_event_id": "consolidation_002",
+      "later_behavior_eval_id": "later_eval_002",
+      "linkage_key_derivation_rule": "gate1_001c_linkage_key_v1",
+      "replay_end_time_or_step": 23,
+      "replay_event_id": "replay_002",
+      "replay_start_time_or_step": 20,
+      "replay_to_behavior_linkage_key": "3b9becb683e28d5f850e8c6080a070e5cb477f4df8fe568b7052f3c5cf351cb0",
+      "source_experience_ids": [
+        "support_delay_marker",
+        "support_recovery_update"
+      ],
+      "state_hash_after_replay": "32f2da8da5b96878ca6567fd51ae7a5912e7b54b7f7014eb2c73d45c71a1f599",
+      "state_hash_before_replay": "b851069e7fa48d743f40d8c587ec0decc22741398b62784299b15dd9ad83e16c",
+      "target_case_id": "target_delayed_effect_002"
+    },
+    {
+      "case_family": "observable-key conflict cases",
+      "consolidation_event_id": "consolidation_003",
+      "later_behavior_eval_id": "later_eval_003",
+      "linkage_key_derivation_rule": "gate1_001c_linkage_key_v1",
+      "replay_end_time_or_step": 33,
+      "replay_event_id": "replay_003",
+      "replay_start_time_or_step": 30,
+      "replay_to_behavior_linkage_key": "873f9225d026002b47a49fb0b9526e248336961b711382e5ea47850c95491666",
+      "source_experience_ids": [
+        "support_conflict_key_A",
+        "support_context_resolver"
+      ],
+      "state_hash_after_replay": "77ef7acdd1c7faab0e997c14be2292459e032419e9a63bbaea146391d331c044",
+      "state_hash_before_replay": "4773559afc725a350483db540102b4385d2731a1b7804a3011f820fdd22b00d3",
+      "target_case_id": "target_observable_conflict_003"
+    },
+    {
+      "case_family": "partial-observability cases",
+      "consolidation_event_id": "consolidation_004",
+      "later_behavior_eval_id": "later_eval_004",
+      "linkage_key_derivation_rule": "gate1_001c_linkage_key_v1",
+      "replay_end_time_or_step": 43,
+      "replay_event_id": "replay_004",
+      "replay_start_time_or_step": 40,
+      "replay_to_behavior_linkage_key": "38f25a0a33fb46eba157c12730dc913483c8191f5a203be9fba45b9d399be082",
+      "source_experience_ids": [
+        "support_partial_obs_A",
+        "support_counterfactual_action"
+      ],
+      "state_hash_after_replay": "305d09cb20706ae8d9aef29ceb3ce912cca19acf8a89aadea7709fdfe4c4001a",
+      "state_hash_before_replay": "179a5d8c7f19120e3799be61327e2679a926e997d7749fc2c913ff408e38c012",
+      "target_case_id": "target_partial_observability_004"
+    }
+  ],
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-001C-EXECUTABLE-PREFLIGHT"
+}

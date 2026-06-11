@@ -1,0 +1,92 @@
+{
+  "authorization_flags": {
+    "agency_claim_authorized": false,
+    "companion_readiness_claim_authorized": false,
+    "consciousness_claim_authorized": false,
+    "ego_integration_authorized": false,
+    "ego_mainline_authorized": false,
+    "emotion_claim_authorized": false,
+    "formal_gate1_execution_authorized": false,
+    "gate1_runtime_implementation_authorized": false,
+    "mechanism_tournament_authorized": false,
+    "mechanism_validity_claim_authorized": false,
+    "model_class_reset_authorized": false,
+    "same_agent_bridge_authorized": false
+  },
+  "claim_ceiling": "bounded Gate1 replay/consolidation executable preflight evidence only",
+  "effective_contract": {
+    "amendment_001_commit": "5734dc8",
+    "gate1_task_card_001a_commit": "b813651"
+  },
+  "forbidden_pre_linkage_sources": [
+    "heldout outcomes",
+    "future behavior labels",
+    "witness results",
+    "post-evaluation metrics"
+  ],
+  "gate1_run_id": "gate1_replay_consolidation_001c_preflight_run_v1",
+  "layer": "bounded Gate1 executable preflight only",
+  "linkage_key_derivation_rule": {
+    "allowed_formula_inputs": [
+      "gate1_run_id",
+      "target_case_id",
+      "replay_event_id",
+      "consolidation_event_id",
+      "later_behavior_eval_id"
+    ],
+    "deterministic": true,
+    "example_formula": "sha256(gate1_run_id + target_case_id + replay_event_id + consolidation_event_id + later_behavior_eval_id)",
+    "forbidden_formula_inputs": [
+      "heldout_outcome",
+      "target_heldout_outcome",
+      "future_behavior_label",
+      "target_future_behavior_label",
+      "witness_result",
+      "witness_match_result",
+      "post_evaluation_metric",
+      "post_evaluation_metrics"
+    ],
+    "formula": "sha256('|'.join([gate1_run_id,target_case_id,replay_event_id,consolidation_event_id,later_behavior_eval_id]))",
+    "frozen_before_execution": true,
+    "frozen_before_later_behavior_evaluation": true,
+    "rule_id": "gate1_001c_linkage_key_v1"
+  },
+  "required_ablations": [
+    "learning freeze",
+    "history replacement",
+    "consolidation disabled",
+    "replay order shuffled",
+    "replay content corrupted",
+    "heldout composition",
+    "delayed-effect cases",
+    "observable-key conflict cases",
+    "partial-observability cases",
+    "counterfactual action contrast"
+  ],
+  "required_baselines": [
+    "retrieval / summary retrieval",
+    "behavior-only replay",
+    "trace-only replay as hygiene only",
+    "online count/statistic controls",
+    "transition table / successor map / graph cache controls",
+    "target-free generative replay challenger",
+    "frozen-history control",
+    "no-consolidation control",
+    "shuffled-replay control",
+    "corrupted-replay control"
+  ],
+  "required_execution_artifacts": [
+    "replay_event_log.json",
+    "consolidation_trace.json",
+    "state_hash_chain.json",
+    "replay_behavior_linkage_table.json",
+    "linkage_key_collision_report.json",
+    "later_behavior_evaluation.json",
+    "mutation_check_report.json",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "result.json",
+    "claim_ceiling.txt"
+  ],
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-001C-EXECUTABLE-PREFLIGHT"
+}
