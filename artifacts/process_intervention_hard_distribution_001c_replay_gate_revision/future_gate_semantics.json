@@ -42,6 +42,42 @@
       "may_block_mechanism_evidence_if_matched": true
     }
   },
+  "target_free_prediction_commit_protocol": {
+    "phase_a": {
+      "name": "target-free prediction commit",
+      "allowed_inputs": [
+        "allowed_prefix",
+        "support_split",
+        "permitted_history"
+      ],
+      "forbidden_inputs": [
+        "heldout_outcomes",
+        "target_future_behavior",
+        "witness_process_signatures",
+        "committed_target_trace_records_for_evaluated_examples"
+      ],
+      "must_generate_prediction_commit_json": true,
+      "must_hash_freeze_prediction_commit": true,
+      "may_read_target_trace": false,
+      "may_score_predictions": false
+    },
+    "phase_b": {
+      "name": "reveal and evaluate",
+      "allowed_inputs": [
+        "target_trace",
+        "heldout_labels",
+        "frozen_prediction_commit.json"
+      ],
+      "must_verify_prediction_commit_hash_before_scoring": true,
+      "must_report_challenger_match_rate": true,
+      "must_not_rewrite_phase_a_prediction": true
+    },
+    "failure_semantics": {
+      "phase_a_forbidden_access": "future_gate_invalid_leakage",
+      "prediction_commit_hash_mismatch": "future_gate_invalid_commit_mutation",
+      "phase_b_rewrites_prediction_commit": "future_gate_invalid_reveal_backfill"
+    }
+  },
   "required_future_fair_controls": [
     "online_count_statistic",
     "count_table",
@@ -85,7 +121,7 @@
   "conditional_future_gate_recommendation": {
     "authorization_granted_by_001c": false,
     "condition": "Only a separately authorized future process-intervention gate may instantiate this taxonomy.",
-    "recommended_future_contract_wording": "Separate replay controls into trace_integrity_hygiene, behavioral_replay_baseline, and target_free_generative_replay_challenger. Count only target-free generative replay challenger matches as independent replay-control mechanism-equivalence blockers."
+    "recommended_future_contract_wording": "Separate replay controls into trace_integrity_hygiene, behavioral_replay_baseline, and target_free_generative_replay_challenger. Count only target-free generative replay challenger matches as independent replay-control mechanism-equivalence blockers. A target-free generative challenger must run Phase A to generate prediction_commit.json from only allowed_prefix, support_split, and permitted_history; hash-freeze that commit; then run Phase B to reveal target_trace and heldout_labels for scoring without rewriting Phase A predictions."
   },
   "authorization_flags": {
     "gate1_authorized": false,

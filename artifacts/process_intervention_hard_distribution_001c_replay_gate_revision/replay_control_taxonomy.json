@@ -84,6 +84,47 @@
         "confidence_or_margin_record",
         "access_manifest"
       ],
+      "two_phase_prediction_commit_protocol": {
+        "required_artifact": "prediction_commit.json",
+        "prediction_commit_hash_freeze_required": true,
+        "prediction_commit_mutable_after_phase_a": false,
+        "phase_a_target_free_prediction_commit": {
+          "purpose": "Emit challenger predictions before any target reveal.",
+          "allowed_inputs": [
+            "allowed_prefix",
+            "support_split",
+            "permitted_history"
+          ],
+          "forbidden_inputs": [
+            "heldout_outcomes",
+            "target_future_behavior",
+            "witness_process_signatures",
+            "committed_target_trace_records_for_evaluated_examples"
+          ],
+          "required_outputs": [
+            "prediction_commit.json",
+            "prediction_commit_sha256",
+            "access_manifest"
+          ],
+          "may_read_target_trace": false,
+          "may_score_predictions": false
+        },
+        "phase_b_reveal_and_evaluate": {
+          "purpose": "Reveal target trace and heldout labels only after Phase A hash freeze, then score without mutating the prediction commit.",
+          "allowed_inputs": [
+            "target_trace",
+            "heldout_labels",
+            "frozen_prediction_commit.json"
+          ],
+          "required_outputs": [
+            "challenger_match_rate",
+            "evaluation_report",
+            "prediction_commit_sha256_verification"
+          ],
+          "may_write_phase_a_prediction_commit": false,
+          "score_only_after_hash_verification": true
+        }
+      },
       "pass_fail_semantics": {
         "match": "independent_target_free_replay_challenger_can_block_mechanism_evidence",
         "mismatch": "target_free_replay_does_not_explain_mechanism_evidence"

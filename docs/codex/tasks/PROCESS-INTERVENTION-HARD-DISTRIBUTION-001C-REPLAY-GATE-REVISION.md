@@ -106,6 +106,17 @@ mechanism challenger.
 4. Define future pass/fail semantics without changing historical 001B verdicts.
 5. Preserve non-replay fair controls and future ablation requirements.
 6. Keep all authorization flags false.
+7. Define a future two-phase prediction-commit protocol:
+   - Phase A target-free prediction commit may read only `allowed_prefix`,
+     `support_split`, and `permitted_history`.
+   - Phase A must not read heldout outcomes, target future behavior, witness
+     process signatures, or committed target trace records for evaluated
+     examples.
+   - Phase A must emit `prediction_commit.json` and a hash freeze before any
+     reveal.
+   - Phase B may read target trace and heldout labels only for scoring after the
+     frozen commit hash is verified.
+   - Phase B must not rewrite or backfill Phase A predictions.
 
 ## Required Artifacts
 
@@ -164,6 +175,8 @@ future generative replay challenger requirements are target-free
 historical 001B verdict remains unchanged
 no old artifacts are modified
 future gate semantics are machine-readable
+future target-free generative challenger requires prediction_commit hash freeze
+Phase B reveal/evaluate cannot mutate Phase A prediction_commit
 all authorization flags are false
 claim ceiling remains bounded replay-gate taxonomy revision only
 ```
@@ -175,8 +188,9 @@ removes `trace_only_replay` from historical failure reasoning, reclassifies 001B
 as pass, treats trace hygiene as mechanism evidence, omits a target-free
 generative replay challenger from future gate design, authorizes Gate1 / bridge
 / EGO / model-class reset / mechanism tournament, weakens fair controls, weakens
-replay integrity requirements, changes thresholds post hoc, or implements a new
-mechanism.
+replay integrity requirements, omits target-free prediction-commit hash freeze,
+allows Phase B to backfill Phase A predictions after reveal, changes thresholds
+post hoc, or implements a new mechanism.
 
 ## Claim Ceiling
 

@@ -107,6 +107,54 @@ def test_target_free_generative_replay_challenger_forbids_target_trace_access():
     assert access["target_trace_access_allowed_only_after_prediction_for_scoring"] is True
 
 
+def test_target_free_challenger_requires_two_phase_prediction_commit_freeze():
+    taxonomy = _read_json(ARTIFACT_DIR / "replay_control_taxonomy.json")
+    semantics = _read_json(ARTIFACT_DIR / "future_gate_semantics.json")
+
+    challenger = taxonomy["taxonomy"]["target_free_generative_replay_challenger"]
+    protocol = challenger["two_phase_prediction_commit_protocol"]
+    phase_a = protocol["phase_a_target_free_prediction_commit"]
+    phase_b = protocol["phase_b_reveal_and_evaluate"]
+
+    assert protocol["required_artifact"] == "prediction_commit.json"
+    assert protocol["prediction_commit_hash_freeze_required"] is True
+    assert protocol["prediction_commit_mutable_after_phase_a"] is False
+    assert phase_a["allowed_inputs"] == [
+        "allowed_prefix",
+        "support_split",
+        "permitted_history",
+    ]
+    assert phase_a["forbidden_inputs"] == [
+        "heldout_outcomes",
+        "target_future_behavior",
+        "witness_process_signatures",
+        "committed_target_trace_records_for_evaluated_examples",
+    ]
+    assert phase_a["required_outputs"] == [
+        "prediction_commit.json",
+        "prediction_commit_sha256",
+        "access_manifest",
+    ]
+    assert phase_b["allowed_inputs"] == [
+        "target_trace",
+        "heldout_labels",
+        "frozen_prediction_commit.json",
+    ]
+    assert phase_b["required_outputs"] == [
+        "challenger_match_rate",
+        "evaluation_report",
+        "prediction_commit_sha256_verification",
+    ]
+    assert phase_b["may_write_phase_a_prediction_commit"] is False
+    assert phase_b["score_only_after_hash_verification"] is True
+
+    future_protocol = semantics["target_free_prediction_commit_protocol"]
+    assert future_protocol["phase_a"]["must_generate_prediction_commit_json"] is True
+    assert future_protocol["phase_a"]["must_hash_freeze_prediction_commit"] is True
+    assert future_protocol["phase_b"]["must_verify_prediction_commit_hash_before_scoring"] is True
+    assert future_protocol["phase_b"]["must_not_rewrite_phase_a_prediction"] is True
+
+
 def test_future_gate_semantics_preserve_controls_ablations_and_thresholds():
     semantics = _read_json(ARTIFACT_DIR / "future_gate_semantics.json")
 
