@@ -1,0 +1,84 @@
+{
+  "record_type": "environment_and_protocol_preregistration",
+  "task_id": "GATE1-REPLAY-CONSOLIDATION-EXEC-TASKCARD-001",
+  "created_utc": "2026-06-10T18:55:00Z",
+  "fills_card_sections": ["8", "11 (parity fields)", "15 (seed policy fields)"],
+  "note": "Card sections 8/11 list fields to fill before execution. Per card 7.1 these are recorded as a separate auditable Stage 0 record, not edited into the card. Frozen before external time anchor; any change after anchor = post-hoc and invalid.",
+
+  "environment": {
+    "environment_id": "ring12_structured_stochastic_v1",
+    "environment_description": "Discrete ring of 12 states, 3 actions. Shared structure: action a displaces state by d[a] mod 12 with d=(1,4,9), slip probability epsilon=0.15 (on slip, next state uniform over all 12). Candidate-A variant: fully observed states. Candidate-B variant: aliased observation o = s mod 4 (3-fold aliasing; observation map is public interface available to all systems). Phase-1 experience: 600 steps, uniform-random behavior over allowed actions, random start. Phase-2 experience (stability pressure, slice A3): 300 further steps on variant kernel d2=(2,7,5), same epsilon, same heldout exclusion; all online learners and accumulating lookup controls continue updating in phase 2.",
+    "heldout_structure_description": "Heldout state-action pairs H = {(s,a) : (2*s + 5*a) mod 9 == 0} = {(0,0),(9,0),(2,1),(11,1),(4,2)} (5 of 36 pairs). Behavior policy never takes a heldout action in its state (resamples uniformly among non-heldout actions), so H never appears in any experience stream, fast store, buffer, or replay item, in either phase. Congruence rule fixed a priori; no tuning permitted.",
+    "state_space_summary": "S = {0..11}",
+    "observation_space_summary": "A-variant: o = s (12 symbols). B-variant: o = s mod 4 (4 symbols).",
+    "action_space_summary": "A = {0,1,2}; displacement motif d=(1,4,9) phase-1, d2=(2,7,5) phase-2",
+    "episode_or_sequence_length_rules": "Phase-1 stream: 600 steps. Phase-2 stream: 300 steps. B-variant eval sequences: 50 sequences x 40 steps per seed, generated with rng seed = run_seed*7919+101, uniform-random behavior with heldout exclusion.",
+    "environment_freeze_time": "2026-06-10T18:55:00Z (frozen at Stage 0, before external anchor, before any run)",
+    "environment_hash_or_generation_record": "spec = this JSON object; sha256 of this file recorded in stage0_readiness.json; generator source file hash appended to lineage at implementation time without changing this spec",
+    "environment_selection_rationale": "Smallest stochastic environment in which (a) every mandatory graph/cache control exercises its intended access pattern at full power on seen-data slices, (b) compositional structure exists that lookup cannot reach (heldout pairs), (c) aliasing forces latent state for the B-variant, (d) exact expected NLL is computable in closed form from the true kernel, making all comparisons deterministic given seed and the strict fallback aggregation rule applicable.",
+    "lookup_triviality_assessment": "Not lookup-trivial: heldout slice A2 and alias-disambiguation slice B4 cannot be solved by graph/cache, transition-table, count-table, or episodic lookup by construction (keys never observed / observation aliasing). Lookup controls are expected to be at or near-optimal on seen-data slices (A1/A3), which is intended and gives controls full power where their access pattern applies.",
+    "control_disabled_by_construction_assessment": "Not disabled: all lookup/cache controls receive the complete experience stream, build their stores without restriction, and answer every evaluation query with their predeclared fallback (uniform or backoff) on misses. Misses on heldout/aliased queries are the scientific question, not a disabled access pattern. Learner controls share the candidate architecture, data, and compute basis."
+  },
+
+  "evaluation_and_metrics": {
+    "metric": "Exact expected next-state (A) / next-observation (B) negative log-likelihood against the true phase-1 kernel: NLL(query) = -sum_x P_true(x|query) * ln p_model(x|query); model probabilities floored at 1e-12. Lower is better; candidate_advantage = control_NLL - candidate_NLL per card metric orientation.",
+    "A_slice_1": "slow_only_after_source_deletion: all 31 non-heldout (s,a) pairs, uniform weight, evaluated after phase-1 + transfer + source deletion, before phase-2.",
+    "A_slice_2": "slow_only_heldout_or_unreplayed_structure: the 5 heldout pairs, same time point as slice 1.",
+    "A_slice_3": "slow_only_post_deletion_stability: slice-1 query set re-evaluated after phase-2, scored against the phase-1 kernel.",
+    "B_slice_1": "cache_free_evaluation: candidate belief recomputed fresh per sequence (uniform init, 5-step burn-in), scored steps 6..39 on all 50 eval sequences.",
+    "B_slice_2": "hidden_state_cache_removed / no persistent state: belief re-initialized at step 20 with 5-step burn-in; scored steps 26..39. Verifies no dependence on persistent stored hidden state.",
+    "B_slice_3": "longer_context_retrieval_removed / truncated context: belief recomputed per scored step from only the last 8 steps (sliding window with in-window burn-in); scored steps 9..39.",
+    "B_slice_4": "heldout_sequence_or_alias_disambiguation: slice-1 protocol, scoring restricted to steps where KL(P_true(o'|s_t,a_t) || P_true_marginal(o'|o_t,a_t)) > 0.01 nats, i.e. where memory beyond the current observation is required.",
+    "control_evaluation_rule": "Forbidden-runtime-access lists bind the candidates. Each control is evaluated on identical queries/sequences/scoring steps with its own defining store active (that is the comparison's purpose). Controls degrade to predeclared fallbacks only where their stores have no entry."
+  },
+
+  "seed_policy": {
+    "seed_policy_predeclared": true,
+    "seed_count_predeclared": 5,
+    "seeds": [11, 13, 17, 19, 23],
+    "seed_selection_rule_predeclared": "first five primes >= 11, fixed before any run; no reruns, no seed additions, no seed removal; every initiated run logged",
+    "aggregation_rule_predeclared": "Card fallback rule (strict): all quantities are exact expected NLL, deterministic given seed, so the exact paired aggregate applies and the lower bound is the minimum over seeds. candidate_advantage must be strictly > 0 on every seed and every required slice against every mandatory control. Ties, overlaps, or any seed-slice cell <= 0 count as control match.",
+    "paired_unit": "environment_instance(seed) + evaluation_slice; identical streams, queries, init draws shared across candidate and all controls within a seed"
+  },
+
+  "control_parity": {
+    "candidate_implementation_standard": "single shared code path: identical model class, initialization draw, learning rate, and update rule reused by all learner-type systems; lookup-type controls implemented in the same module with predeclared fallbacks",
+    "control_implementation_standard": "same as candidate (shared classes, shared eval functions, shared rng discipline)",
+    "candidate_tuning_budget": "none: all hyperparameters fixed in this record before any run; zero search",
+    "control_tuning_budget": "none (same class); satisfies control_tuning_budget_class >= candidate_tuning_budget_class",
+    "compute_matching_basis": "update_steps",
+    "compute_accounting": "Candidate A total = 600 online + 2400 transfer = 3000 update steps. A-side replay/equal-compute controls matched to 3000. Candidate B total = 600 online + 2000 replay = 2600 update steps; B-side matched to 2600. Exact counts logged per run.",
+    "control_competence_tasks": {
+      "graph_cache": "deterministic variant (epsilon=0), placeholder seed 9001, 200 steps; criterion: runtime graph lookup achieves exact (100%) next-state mode prediction on all seen pairs - its own task-specific exact-success criterion",
+      "generic_replay": "placeholder seed 9001 phase-1 stream; criterion: uniform factual replay strictly reduces training NLL versus its pre-replay snapshot (nonzero loss reduction) under the same metric orientation"
+    },
+    "control_competence_results": "to_be_recorded_after_first_run_allowed; competence checks run before main comparisons and are logged as runs"
+  },
+
+  "models_candidates_controls": {
+    "shared_slow_model_A": "compositional factorization: logits(s'|s,a) = (e_s * w_a) . v_s' with e,w,v in R^8, elementwise product; init N(0,0.1) seeded per run (rng seed = run_seed*1000+7); plain SGD on cross-entropy, lr=0.05; 1 online update per experience step. No ring topology, displacement coding, or modular arithmetic anywhere in the model.",
+    "candidate_A": "fast episodic store = list of phase-1 (s,a,s') transitions; transfer event after phase-1 = 4 chronological epochs over fast store (2400 updates) into the slow model; then fast store deleted from runtime and evaluation runs slow-only in an isolated subprocess.",
+    "A_lookup_controls": "1 runtime graph lookup (empirical dist, uniform fallback); 2 transition-table lookup (same keying, documented equivalence); 3 successor-map cache (uniform over observed successor set); 4 predecessor-map cache (uniform over states whose predecessor set contains (s,a)); 5 finite-state transition planner (mode successor, Laplace alpha=0.01); 6 count-table predictor (Laplace alpha=1); 7 compressed predictive-map memory (rank-4 truncated SVD of 36x12 count matrix, clip>=0, +1e-6, renormalize); 8 direct episodic graph traversal (empirical dist over retrieved episodes; documented equivalence to 1). All accumulate through phase-2 (honest contamination).",
+    "A_memory_object_controls": "summary memory (per-(s,a) empirical distribution snapshot at phase-1 end); teacher-output cache (count-table predictions frozen at phase-1 end); generator-as-memory (count-table sampler used directly as eval distribution, frozen at phase-1 end); synthetic library lookup (2400 transitions sampled from count-table at transfer time; empirical dist per (s,a), uniform fallback); direct episodic retrieval (equivalent to lookup control 1, documented).",
+    "A_learner_controls": "frozen Gate 0 no-replay learner (online phase-1 only, frozen after); same-data online-only (online both phases, no transfer); uniform factual replay (online + 2400 uniform-with-replacement buffer updates, buffer deleted at same timing as candidate); salience-weighted factual replay (NLL-proportional sampling); generic chunk replay (chronological chunks of 30, 4 epochs); random replay (iid uniform, documented near-equivalence to uniform); shuffled replay (per-epoch permutation sweep, 4 epochs); equal-compute extra training (5 SGD steps per incoming sample, 3000 updates, no storage); frozen-theta control (init weights, never trained); post-hoc trace generator control (2400 synthetic samples drawn from count-table post hoc, 1 training epoch).",
+    "shared_model_B": "belief-state predictor: learned transition logits theta_T (12x3x12), public observation map o=s mod 4; belief update b'(s') propto sum_s b(s)*softmax(theta_T[s,a])(s') * 1[obs(s')=o']; predict p(o'|b,a) by marginalizing. Init N(0,0.1) seeded (run_seed*1000+13); SGD lr=0.05 on next-observation NLL, truncated one-step gradient; 1 online update per step.",
+    "candidate_B": "preregistered chunks = contiguous windows length 30, stride 30 over phase-1 stream (20 chunks, chronological ids); burn_in_length=5 (preregistered); replay event from frozen end-of-phase-1 snapshot: 4 chronological epochs over chunks; per scored position, multi-step consistency loss = sum over horizons j=1..3 of NLL of o_{t+j} under action-conditioned belief rollout without intermediate observation conditioning; 25 scored positions per chunk; 2000 updates. Latent traces exactly recomputable from raw chunk + frozen snapshot (deterministic update); evaluation forward path reads no raw chunks (fresh belief from live eval sequence only).",
+    "B_lookup_controls": "hidden-state cache (longest-suffix match up to length 8 over phase-1 (o,a) windows -> cached predictive distribution, uniform on miss); prefix cache (exact window-of-8 keying, documented near-equivalence); longer-context retrieval (k-NN k=5 Hamming over length-8 windows -> neighbor empirical next-obs); sequence lookup (exact match with predeclared backoff 8->4->2->marginal); nearest-neighbor sequence retrieval (k=1, documented near-equivalence to k-NN).",
+    "B_learner_controls": "generic chunk replay (single-step loss, uniform chunk order, 2000 updates from same snapshot); same-data online-only (600 online updates only); equal-compute extra training (4 SGD steps per incoming sample + 1 extra on final 200 samples = 2600 updates, no storage); random replay (2000 single-step updates at uniformly sampled timesteps); shuffled replay (candidate multi-step loss, chunk order shuffled per epoch, seeded).",
+    "salience_ablations": "no-salience (candidate default, uniform full sweep); prediction-error salience (sampling probability proportional to current-model item NLL, recomputed at each epoch start, seeded); uncertainty salience NOT RUN - epistemic vs aleatoric distinction is not separately logged by these tabular models, and the card permits it only if logged; salience-weighted generic replay baseline (included in A_learner_controls). Blocked saliences (reward/value/goal/preference/affect/user-model/semantic/relationship/viability) are absent: no such variables exist anywhere in the harness.",
+    "order_ablations": "matched item multiset / matched compute / matched optimizer state / matched seeds hold by construction (same buffer, same update counts, same init, same seeds); orders: candidate chronological, shuffled (per-epoch permutation), random (iid resample), reverse (preregistered here). No order selected after outcome inspection.",
+    "counterfactual_action_replay": "ABSENT in every role. No counterfactual items, no counterfactual generator, no counterfactual salience, no counterfactual ablation target anywhere in this protocol."
+  },
+
+  "deletion_and_attestation_protocol": {
+    "source_deletion_timing": "Candidate A evidential arm: fast store (and all A memory objects: summary memory, teacher-output cache, generator path, synthetic library, NN index) deleted from runtime after transfer, before evaluation. Candidate B: no hidden-state cache, prefix cache, chunk checkpoint, sequence/NN index ever constructed for the candidate; raw chunks accessible only to the offline verification replay, never to the evaluation forward path.",
+    "mount_constraint_disclosure": "The Cowork mount forbids file deletion. Lineage snapshots must persist anyway (deletion timing governs runtime access, not destruction of lineage records). Enforcement is therefore by process construction: evaluation runs in a separate subprocess whose argv allowlist names only the slow/parameter snapshot file and the query file; the eval module contains no code path that opens any other artifact; the attestation records the full argv manifest, every file opened (audited via opened-handle inventory), loaded object hashes, and the absence of forbidden objects from the subprocess.",
+    "attestation_method": "absence_by_construction_via_subprocess_argv_allowlist_plus_opened_file_inventory_and_hashes"
+  },
+
+  "interpretation_notes": {
+    "stage0_scope_interpretation": "Card 25 limits Stage 0 to creating the minimum readiness/margin-freeze/anchor records. first_run_allowed cannot honestly become true while card sections 8/11 and the seed policy are unfilled, and meta-card 001B requires environment selection before margin freeze. Therefore this preregistration is part of the Stage 0 readiness record and is frozen under the same external anchor. This is the stricter reading; it grants no new degrees of freedom after the anchor.",
+    "functional_equivalence_disclosure": "In this tabular setting several mandated controls are functionally equivalent or near-equivalent (documented per control above). They are implemented and run anyway as the card mandates; equivalences are reported, not hidden.",
+    "no_outcome_predictions": "This record intentionally contains no predicted outcomes. Margins are frozen in the card; this record adds operational definitions only."
+  }
+}
