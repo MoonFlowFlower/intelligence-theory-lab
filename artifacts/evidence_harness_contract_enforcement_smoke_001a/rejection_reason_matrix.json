@@ -1,0 +1,643 @@
+{
+  "bundles": {
+    "governance_anchor_scope_control": {
+      "admissibility_class": "governance_anchor_only",
+      "detected_pattern_categories": [],
+      "rejection_reasons": []
+    },
+    "known_gate4_001b_false_pass_boundary": {
+      "admissibility_class": "rejected_false_pass_risk",
+      "detected_pattern_categories": [
+        "ablation_sentinel_or_label_special_case",
+        "output_shape_only_test_assertion",
+        "pass_shaped_result_fields",
+        "static_score_or_perfect_score_literal",
+        "unconditional_verified_or_real_intervention_true"
+      ],
+      "rejection_reasons": [
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.ablation_result.ablation_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.baseline_result.baseline_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.baseline_result.best_fair_baseline.candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.bounded_pass is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.candidate_summary.candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.leakage_result.leakage_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.replay_result.replay_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.verdict contains pass-shaped verdict",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[0].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[1].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[2].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[3].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[4].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[5].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[6].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[7].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[8].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[9].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[10].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.rows[11].variant exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.ablation_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[0].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[0].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[0].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[1].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[1].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[1].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[2].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[2].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[2].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[3].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[3].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[3].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[4].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[4].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[4].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[5].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[5].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[5].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[6].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[6].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[6].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[7].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[7].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[7].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[8].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[8].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[8].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[9].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[9].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[9].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[10].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[10].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[10].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[11].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[11].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[11].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[12].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[12].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[12].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[13].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[13].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[13].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[14].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[14].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[14].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[15].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[15].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[15].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[16].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[16].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[16].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[17].ablation_name exposes label-driven ablation or variant field",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[17].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[17].real_intervention is real_intervention=true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.leakage_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/leakage_scan_report.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.replay_gate_passed is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/replay_recomputation_report.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$[2].candidate_score is perfect score literal 1.0",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/run_ledger.jsonl",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$[8].bounded_pass is true",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/run_ledger.jsonl",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$[8].verdict contains pass-shaped verdict",
+          "path": "artifacts/ego_mainline_gate4_preflight_executable_001b/run_ledger.jsonl",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "source contains variant or ablation sentinel branch",
+          "path": "src/ego_mainline_gate4_preflight_executable_001b/runner.py",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "output_shape_only_test_assertion",
+          "detail": "test surface asserts pass-shaped outputs, perfect scores, degradation, or existence",
+          "path": "tests/test_ego_mainline_gate4_preflight_executable_001b.py",
+          "rule_id": "detect_output_shape_only_test_assertion"
+        }
+      ]
+    },
+    "synthetic_positive_control_false_pass_fixture": {
+      "admissibility_class": "rejected_false_pass_risk",
+      "detected_pattern_categories": [
+        "ablation_sentinel_or_label_special_case",
+        "hash_or_stored_value_replay_shortcut",
+        "leakage_scan_gap_or_broad_whitelist",
+        "output_shape_only_test_assertion",
+        "pass_shaped_result_fields",
+        "static_score_or_perfect_score_literal",
+        "unconditional_verified_or_real_intervention_true"
+      ],
+      "rejection_reasons": [
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.verdict contains pass-shaped verdict",
+          "path": "synthetic_false_pass_fixture/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.bounded_pass is true",
+          "path": "synthetic_false_pass_fixture/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.verified is true",
+          "path": "synthetic_false_pass_fixture/result.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.verified is verified=true",
+          "path": "synthetic_false_pass_fixture/result.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.candidate_score is perfect score literal 1.0",
+          "path": "synthetic_false_pass_fixture/result.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.ablation_gate_passed is true",
+          "path": "synthetic_false_pass_fixture/ablation_report.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "ablation_sentinel_or_label_special_case",
+          "detail": "$.ablations[0].ablation_name exposes label-driven ablation or variant field",
+          "path": "synthetic_false_pass_fixture/ablation_report.json",
+          "rule_id": "detect_ablation_sentinel_or_label_special_case"
+        },
+        {
+          "category": "static_score_or_perfect_score_literal",
+          "detail": "$.ablations[0].candidate_score is perfect score literal 1.0",
+          "path": "synthetic_false_pass_fixture/ablation_report.json",
+          "rule_id": "detect_static_score_or_perfect_score_literal"
+        },
+        {
+          "category": "unconditional_verified_or_real_intervention_true",
+          "detail": "$.ablations[0].real_intervention is real_intervention=true",
+          "path": "synthetic_false_pass_fixture/ablation_report.json",
+          "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.replay_gate_passed is true",
+          "path": "synthetic_false_pass_fixture/replay_report.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "hash_or_stored_value_replay_shortcut",
+          "detail": "$.stored_actions_reused indicates replay shortcut",
+          "path": "synthetic_false_pass_fixture/replay_report.json",
+          "rule_id": "detect_hash_or_stored_value_replay_shortcut"
+        },
+        {
+          "category": "hash_or_stored_value_replay_shortcut",
+          "detail": "$.stored_verdicts_reused indicates replay shortcut",
+          "path": "synthetic_false_pass_fixture/replay_report.json",
+          "rule_id": "detect_hash_or_stored_value_replay_shortcut"
+        },
+        {
+          "category": "pass_shaped_result_fields",
+          "detail": "$.leakage_gate_passed is true",
+          "path": "synthetic_false_pass_fixture/leakage_report.json",
+          "rule_id": "detect_pass_shaped_result_fields"
+        },
+        {
+          "category": "leakage_scan_gap_or_broad_whitelist",
+          "detail": "$.broad_whitelist indicates leakage scan gap",
+          "path": "synthetic_false_pass_fixture/leakage_report.json",
+          "rule_id": "detect_leakage_scan_gap_or_broad_whitelist"
+        },
+        {
+          "category": "leakage_scan_gap_or_broad_whitelist",
+          "detail": "$.result_json_excluded indicates leakage scan gap",
+          "path": "synthetic_false_pass_fixture/leakage_report.json",
+          "rule_id": "detect_leakage_scan_gap_or_broad_whitelist"
+        },
+        {
+          "category": "leakage_scan_gap_or_broad_whitelist",
+          "detail": "$.positive_control_case_present is false",
+          "path": "synthetic_false_pass_fixture/leakage_report.json",
+          "rule_id": "detect_leakage_scan_gap_or_broad_whitelist"
+        },
+        {
+          "category": "output_shape_only_test_assertion",
+          "detail": "test surface asserts pass-shaped outputs, perfect scores, degradation, or existence",
+          "path": "synthetic_false_pass_fixture/tests/test_false_pass.py",
+          "rule_id": "detect_output_shape_only_test_assertion"
+        }
+      ]
+    }
+  },
+  "claim_ceiling": "bounded evidence-harness contract enforcement smoke only",
+  "task_id": "EVIDENCE-HARNESS-CONTRACT-ENFORCEMENT-SMOKE-001A"
+}

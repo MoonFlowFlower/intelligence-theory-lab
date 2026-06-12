@@ -1,0 +1,51 @@
+{
+  "admissibility_classes": [
+    "admissible_downstream_evidence",
+    "admissible_negative_evidence_only",
+    "reference_only",
+    "blocked_pending_audit",
+    "rejected_false_pass_risk",
+    "governance_anchor_only"
+  ],
+  "claim_ceiling": "bounded evidence-harness contract enforcement smoke only",
+  "decision_rule": "Reject only when detected evidence-pattern categories are present; task id alone can at most remain blocked pending audit.",
+  "rules": [
+    {
+      "category": "pass_shaped_result_fields",
+      "description": "Detect literal pass verdicts, bounded_pass=true, *_gate_passed=true, or verified=true fields.",
+      "rule_id": "detect_pass_shaped_result_fields"
+    },
+    {
+      "category": "static_score_or_perfect_score_literal",
+      "description": "Detect perfect score literals or score assertions that can make a pass structurally easy.",
+      "rule_id": "detect_static_score_or_perfect_score_literal"
+    },
+    {
+      "category": "unconditional_verified_or_real_intervention_true",
+      "description": "Detect verified=true or real_intervention=true fields when used as report literals.",
+      "rule_id": "detect_unconditional_verified_or_real_intervention_true"
+    },
+    {
+      "category": "ablation_sentinel_or_label_special_case",
+      "description": "Detect variant-name or ablation-name branch patterns and label-driven ablation report surfaces.",
+      "rule_id": "detect_ablation_sentinel_or_label_special_case"
+    },
+    {
+      "category": "hash_or_stored_value_replay_shortcut",
+      "description": "Detect replay reports or tests that can pass by stored actions, stored verdicts, or hash-only checks.",
+      "rule_id": "detect_hash_or_stored_value_replay_shortcut"
+    },
+    {
+      "category": "leakage_scan_gap_or_broad_whitelist",
+      "description": "Detect leakage reports with clean literal pass surfaces, broad whitelists, or missing positive-control coverage.",
+      "rule_id": "detect_leakage_scan_gap_or_broad_whitelist"
+    },
+    {
+      "category": "output_shape_only_test_assertion",
+      "description": "Detect tests asserting pass strings, perfect scores, artifact existence, or positive degradation.",
+      "rule_id": "detect_output_shape_only_test_assertion"
+    }
+  ],
+  "static_task_id_denylist_used": false,
+  "task_id": "EVIDENCE-HARNESS-CONTRACT-ENFORCEMENT-SMOKE-001A"
+}

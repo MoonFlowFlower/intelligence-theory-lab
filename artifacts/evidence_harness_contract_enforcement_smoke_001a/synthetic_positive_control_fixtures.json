@@ -1,0 +1,60 @@
+{
+  "bundle_id": "synthetic_positive_control_false_pass_fixture",
+  "path_payloads": [
+    {
+      "kind": "json",
+      "path": "synthetic_false_pass_fixture/result.json",
+      "payload": {
+        "bounded_pass": true,
+        "candidate_score": 1.0,
+        "task_id": "SYNTHETIC-FALSE-PASS-POSITIVE-CONTROL",
+        "verdict": "synthetic_bounded_pass",
+        "verified": true
+      }
+    },
+    {
+      "kind": "json",
+      "path": "synthetic_false_pass_fixture/ablation_report.json",
+      "payload": {
+        "ablation_gate_passed": true,
+        "ablations": [
+          {
+            "ablation_name": "remove latent state",
+            "candidate_score": 1.0,
+            "clipped_degradation": true,
+            "degradation": 1.0,
+            "real_intervention": true,
+            "score": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "json",
+      "path": "synthetic_false_pass_fixture/replay_report.json",
+      "payload": {
+        "replay_gate_passed": true,
+        "stored_actions_reused": true,
+        "stored_verdicts_reused": true
+      }
+    },
+    {
+      "kind": "json",
+      "path": "synthetic_false_pass_fixture/leakage_report.json",
+      "payload": {
+        "broad_whitelist": true,
+        "leakage_gate_passed": true,
+        "positive_control_case_present": false,
+        "result_json_excluded": true
+      }
+    },
+    {
+      "kind": "text",
+      "path": "synthetic_false_pass_fixture/tests/test_false_pass.py",
+      "payload": null,
+      "text": "assert result[\"verdict\"] == \"synthetic_bounded_pass\"\nassert result[\"candidate_score\"] == pytest.approx(1.0)\n"
+    }
+  ],
+  "positive_control_expected": true,
+  "task_id": "SYNTHETIC-FALSE-PASS-POSITIVE-CONTROL"
+}
