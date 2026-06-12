@@ -1,0 +1,501 @@
+{
+  "ablation_revalidation_result": {
+    "ablation_outputs_recomputed": true,
+    "ablation_revalidation_passed": true,
+    "code_path_hash": "197dcbacfdd9f4694d83cef5e7582ca2b0d51f985874468d5f9f9132f5f2bd28",
+    "insensitive_ablations": [],
+    "producer_function": "ego_mainline_admission_executable_001b.core.run_ablations",
+    "required_ablation_count": 16,
+    "reran_candidate_behavior": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "acceptance_gates": {
+    "001b_historical_block_status_preserved": true,
+    "001c_blocker_preserved": true,
+    "ablation_revalidation_passed": true,
+    "all_required_baselines_invoked": true,
+    "all_verdict_metrics_have_callable_provenance": true,
+    "baseline_legal_input_schema_defined": true,
+    "baseline_non_invocation_failure_control_passed": true,
+    "baseline_outputs_exist_before_aggregation": true,
+    "baseline_runtime_access_guard_passed": true,
+    "baseline_static_forbidden_reference_scan_passed": true,
+    "behavior_causal_replay_passed": true,
+    "computed_evidence_contract_loaded": true,
+    "equivalent_verifier_labels_excluded_from_baseline_inputs": true,
+    "frozen_inputs_consumed": true,
+    "leakage_revalidation_passed": true,
+    "manual_injection_revalidation_passed": true,
+    "metadata_whitelist_surface_scoped": true,
+    "missing_same_surface_positive_control_failure_control_passed": true,
+    "negative_evidence_preserved": true,
+    "no_Ego_repo_modification": true,
+    "no_claim_inflation": true,
+    "no_copied_old_001b_results": true,
+    "no_literal_metrics": true,
+    "no_runtime_or_product_work": true,
+    "no_scope_leak": true,
+    "no_static_metric_dictionaries": true,
+    "old_001b_artifacts_not_modified": true,
+    "old_001c_audit_artifacts_not_modified": true,
+    "parent_001o_anchor_verified": true,
+    "parent_001p_anchor_verified": true,
+    "parent_001q_anchor_verified": true,
+    "parent_001r_anchor_verified": true,
+    "repair_scope_exact": true,
+    "verifier_expected_action_id_excluded_from_baseline_inputs": true
+  },
+  "artifact_dir": "artifacts/ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d",
+  "authorization_flags": {
+    "bridge_runtime_authorized": false,
+    "companion_behavior_authorized": false,
+    "ego_mainline_runtime_authorized": false,
+    "ego_repository_modification_authorized": false,
+    "emotion_authorized": false,
+    "llm_rag_authorized": false,
+    "long_term_human_user_memory_authorized": false,
+    "persistent_profile_authorized": false,
+    "personalization_product_demo_authorized": false,
+    "real_user_data_authorized": false,
+    "relationship_authorized": false,
+    "romance_attachment_authorized": false,
+    "runtime_or_product_work_authorized": false,
+    "user_model_authorized": false
+  },
+  "baseline_forbidden_access_result": {
+    "baseline_accesses_forbidden_field": false,
+    "baseline_receives_verifier_expected_action_id": false,
+    "equivalent_verifier_label_leak_detected": false,
+    "forbidden_fields_accessed": [],
+    "negative_control_events": [
+      {
+        "baseline_id": "negative_control",
+        "episode_id": "negative_episode",
+        "field": "verifier_expected_action_id",
+        "forbidden": true
+      }
+    ],
+    "runtime_access_guard_negative_control_passed": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "baseline_invocation_result": {
+    "all_required_baselines_invoked": true,
+    "baseline_outputs_exist_before_aggregation": true
+  },
+  "baseline_legal_input_result": {
+    "baseline_legal_input_schema_defined": true,
+    "baseline_runtime_access_guard_passed": true,
+    "baseline_static_forbidden_reference_scan_passed": true
+  },
+  "baseline_non_invocation_failure_control_result": {
+    "baseline_non_invocation_failure_control_passed": true,
+    "detected_failure_id": "baseline_non_invocation_detected",
+    "expected_blocker": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d_block_baseline_non_invocation",
+    "missing_baselines": [
+      "random_policy"
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "bounded_pass": true,
+  "claim_ceiling": "bounded baseline-legal-input repair evidence for EGO-MAINLINE-ADMISSION-EXECUTABLE-001B under synthetic / controlled conditions only",
+  "frozen_input_consumption_result": {
+    "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+    "families": {
+      "ablation_definition_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "reset_all_memory",
+          "corrupt_serialized_state",
+          "replace_serialized_state",
+          "remove_replay_carryover",
+          "remove_self_boundary_carryover",
+          "remove_viability_carryover",
+          "remove_social_latent_carryover",
+          "remove_identity_continuity_state",
+          "remove_memory_carryover_state",
+          "time_shift_state",
+          "cross_agent_state_swap",
+          "duplicate_identity_token_contrast",
+          "freeze_post_bridge_learning",
+          "remove_post_bridge_observation_update",
+          "disable_action",
+          "invert_bridge_mapping"
+        ],
+        "declared": [
+          "reset_all_memory",
+          "corrupt_serialized_state",
+          "replace_serialized_state",
+          "remove_replay_carryover",
+          "remove_self_boundary_carryover",
+          "remove_viability_carryover",
+          "remove_social_latent_carryover",
+          "remove_identity_continuity_state",
+          "remove_memory_carryover_state",
+          "time_shift_state",
+          "cross_agent_state_swap",
+          "duplicate_identity_token_contrast",
+          "freeze_post_bridge_learning",
+          "remove_post_bridge_observation_update",
+          "disable_action",
+          "invert_bridge_mapping"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      },
+      "counterfactual_pair_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "counterfactual_pair_00",
+          "counterfactual_pair_01",
+          "counterfactual_pair_02",
+          "counterfactual_pair_03",
+          "counterfactual_pair_04",
+          "counterfactual_pair_05",
+          "counterfactual_pair_06",
+          "counterfactual_pair_07"
+        ],
+        "declared": [
+          "counterfactual_pair_00",
+          "counterfactual_pair_01",
+          "counterfactual_pair_02",
+          "counterfactual_pair_03",
+          "counterfactual_pair_04",
+          "counterfactual_pair_05",
+          "counterfactual_pair_06",
+          "counterfactual_pair_07"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      },
+      "cross_agent_swap_pair_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "cross_agent_swap_pair_00",
+          "cross_agent_swap_pair_01",
+          "cross_agent_swap_pair_02",
+          "cross_agent_swap_pair_03",
+          "cross_agent_swap_pair_04",
+          "cross_agent_swap_pair_05",
+          "cross_agent_swap_pair_06",
+          "cross_agent_swap_pair_07"
+        ],
+        "declared": [
+          "cross_agent_swap_pair_00",
+          "cross_agent_swap_pair_01",
+          "cross_agent_swap_pair_02",
+          "cross_agent_swap_pair_03",
+          "cross_agent_swap_pair_04",
+          "cross_agent_swap_pair_05",
+          "cross_agent_swap_pair_06",
+          "cross_agent_swap_pair_07"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      },
+      "duplicate_identity_token_contrast_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "duplicate_identity_token_contrast_00",
+          "duplicate_identity_token_contrast_01",
+          "duplicate_identity_token_contrast_02",
+          "duplicate_identity_token_contrast_03",
+          "duplicate_identity_token_contrast_04",
+          "duplicate_identity_token_contrast_05",
+          "duplicate_identity_token_contrast_06",
+          "duplicate_identity_token_contrast_07"
+        ],
+        "declared": [
+          "duplicate_identity_token_contrast_00",
+          "duplicate_identity_token_contrast_01",
+          "duplicate_identity_token_contrast_02",
+          "duplicate_identity_token_contrast_03",
+          "duplicate_identity_token_contrast_04",
+          "duplicate_identity_token_contrast_05",
+          "duplicate_identity_token_contrast_06",
+          "duplicate_identity_token_contrast_07"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      },
+      "heldout_context_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "heldout_ctx_00",
+          "heldout_ctx_01",
+          "heldout_ctx_02",
+          "heldout_ctx_03",
+          "heldout_ctx_04",
+          "heldout_ctx_05",
+          "heldout_ctx_06",
+          "heldout_ctx_07"
+        ],
+        "declared": [
+          "heldout_ctx_00",
+          "heldout_ctx_01",
+          "heldout_ctx_02",
+          "heldout_ctx_03",
+          "heldout_ctx_04",
+          "heldout_ctx_05",
+          "heldout_ctx_06",
+          "heldout_ctx_07"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      },
+      "seed_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "seed_00",
+          "seed_01",
+          "seed_02",
+          "seed_03"
+        ],
+        "declared": [
+          "seed_00",
+          "seed_01",
+          "seed_02",
+          "seed_03"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      },
+      "train_context_ids": {
+        "code_path_hash": "2ddfc477a4547e9afc5bfa38e767b3e490bb714abcfe7b5dd6b27c24784104cd",
+        "consumed": [
+          "train_ctx_00",
+          "train_ctx_01",
+          "train_ctx_02",
+          "train_ctx_03",
+          "train_ctx_04",
+          "train_ctx_05",
+          "train_ctx_06",
+          "train_ctx_07"
+        ],
+        "declared": [
+          "train_ctx_00",
+          "train_ctx_01",
+          "train_ctx_02",
+          "train_ctx_03",
+          "train_ctx_04",
+          "train_ctx_05",
+          "train_ctx_06",
+          "train_ctx_07"
+        ],
+        "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+        "unused": []
+      }
+    },
+    "frozen_inputs_consumed": true,
+    "producer_function": "ego_mainline_admission_executable_001b.core.frozen_input_consumption",
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D",
+    "unused_frozen_inputs": []
+  },
+  "layer": "bounded repair rerun for EGO-MAINLINE-ADMISSION-EXECUTABLE-001B baseline legality blocker only",
+  "leakage_revalidation_result": {
+    "baseline_access_log_clean_control": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": false,
+      "hits": [],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "baseline_access_log_positive_control": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": true,
+      "hits": [
+        {
+          "path": "baseline_legal_input_access_log.verifier_expected_action_id",
+          "token": "verifier_expected_action_id"
+        }
+      ],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "baseline_access_log_real_scan": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": false,
+      "hits": [],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "baseline_legal_input_guard_surface_scanned": true,
+    "claim_ceiling": "bounded baseline-legal-input repair evidence for EGO-MAINLINE-ADMISSION-EXECUTABLE-001B under synthetic / controlled conditions only",
+    "leakage_revalidation_passed": true,
+    "parent_surface_leakage_gate_passed": true,
+    "same_surface_clean_controls_pass": true,
+    "same_surface_positive_controls_detected": true,
+    "scanner_not_fail_able_distinguished_from_leakage_detected": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "manual_injection_result": {
+    "baseline_guard_manual_case": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": true,
+      "hits": [
+        {
+          "path": "baseline_legal_input_access_log.verifier_expected_action_id",
+          "token": "verifier_expected_action_id"
+        }
+      ],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "manual_case_count": 4,
+    "manual_injection_revalidation_passed": true,
+    "production_injector_only": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "metadata_whitelist_scope_result": {
+    "global_reserved_metadata_key_privilege": false,
+    "metadata_whitelist_surface_scoped": true,
+    "privileged_surface_forbidden_value_detected": true,
+    "reserved_key_value_scanned_on_unprivileged_surface": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "metric_provenance_result": {
+    "all_verdict_metrics_have_callable_provenance": true,
+    "metric_count": 12,
+    "no_literal_metrics": true
+  },
+  "missing_same_surface_positive_control_failure_control_result": {
+    "detected_failure_id": "missing_same_surface_positive_control_detected",
+    "expected_blocker": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d_block_same_surface_positive_control_gap",
+    "missing_same_surface_positive_control_failure_control_passed": true,
+    "surfaces_with_missing_positive_control": [
+      "baseline_legal_input_access_log"
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "negative_evidence_preservation_result": {
+    "001b_current_status": "blocked_by_independent_audit_baseline_gap_until_later_bounded_repair_survives_audit",
+    "001b_historical_block_status_preserved": true,
+    "001c_blocker_converted_to_caveat": false,
+    "001c_blocker_preserved": true,
+    "001c_stop_conditions": [
+      "baseline_illegal_verifier_label_consumption",
+      "failure_path_test_missing"
+    ],
+    "001c_verdict": "ego_mainline_admission_executable_001b_independent_audit_001c_block_baseline_gap",
+    "negative_evidence_rewrite_detected": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "old_artifact_mutation_result": {
+    "old_001b_artifacts_not_modified": true,
+    "old_001b_mutated_paths": [],
+    "old_001c_audit_artifacts_not_modified": true,
+    "old_001c_mutated_paths": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "repair_scope_result": {
+    "repair_scope_exact": true,
+    "repaired_blockers": [
+      "baseline_illegal_verifier_label_consumption",
+      "baseline_non_invocation",
+      "missing_same_surface_positive_control"
+    ]
+  },
+  "replay_result": {
+    "behavior_causal_replay_passed": true,
+    "code_path_hash": "81788592a0972473a5d1f0089122ae9292e0ad01398a55b60b36058fbf5374d2",
+    "hash_only_replay_for_behavior_claim": false,
+    "mismatches": [],
+    "recomputed_from_serialized_state_and_observation": true,
+    "replay_function": "ego_mainline_admission_executable_001b.core.behavior_causal_replay",
+    "replay_rows": [
+      {
+        "episode_id": "episode_00",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_01",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_02",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_03",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_04",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_05",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_06",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      },
+      {
+        "episode_id": "episode_07",
+        "match": true,
+        "recomputed_action_id": "halt_for_scope",
+        "recorded_action_id": "halt_for_scope"
+      }
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "scope_claim_ceiling_result": {
+    "authorization_flags": {
+      "bridge_runtime_authorized": false,
+      "companion_behavior_authorized": false,
+      "ego_mainline_runtime_authorized": false,
+      "ego_repository_modification_authorized": false,
+      "emotion_authorized": false,
+      "llm_rag_authorized": false,
+      "long_term_human_user_memory_authorized": false,
+      "persistent_profile_authorized": false,
+      "personalization_product_demo_authorized": false,
+      "real_user_data_authorized": false,
+      "relationship_authorized": false,
+      "romance_attachment_authorized": false,
+      "runtime_or_product_work_authorized": false,
+      "user_model_authorized": false
+    },
+    "claim_ceiling": "bounded baseline-legal-input repair evidence for EGO-MAINLINE-ADMISSION-EXECUTABLE-001B under synthetic / controlled conditions only",
+    "no_Ego_repo_modification": true,
+    "no_claim_inflation": true,
+    "no_runtime_or_product_work": true,
+    "no_scope_leak": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+  },
+  "stop_conditions_triggered": [],
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D",
+  "verdict": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d_pass",
+  "what_this_does_not_prove": [
+    "001B independent audit pass",
+    "EGO readiness",
+    "EGO mainline readiness",
+    "runtime admissibility",
+    "bridge readiness",
+    "companion readiness",
+    "mechanism validity",
+    "theory validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "real emotion",
+    "real relationship learning",
+    "stable user benefit",
+    "production readiness",
+    "correctness of any future EGO runtime"
+  ]
+}
