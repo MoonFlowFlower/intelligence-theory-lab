@@ -1,0 +1,342 @@
+{
+  "all_required_boundaries_resolved": true,
+  "all_required_remote_anchors_verified": true,
+  "blocked_old_canonicalization_001a": {
+    "commit": "2882f4796dd40cfd16a2c07b5c718d477876fb5f",
+    "status": "blocked and explicitly excluded",
+    "used_as_parent": false
+  },
+  "computed_evidence_provenance": {
+    "aggregation_rule": "resolve parent commits from git refs, remote tags, and path history",
+    "artifact_name": "parent_boundary_readback.json",
+    "code_path_hash": "6a5fcfc398d5a16ea387df58cef31eb919256d2411f0115ce0c41c721d8af1b0",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json",
+      "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+      "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+      "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+      "artifacts/post_bridge_admission_executable_001d/result.json",
+      "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md",
+      "artifacts/ego_mainline_readiness_audit_001b/result.json"
+    ],
+    "input_refs_tags_commits": [
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_tag": "remote-anchor-001n-c2f6c51",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "output_artifact_hash": "51aca84f45c60738b3edd19d2a744ca503dfd0bfc749e1c642dbb26c94db9ed8",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_parent_boundary_readback",
+    "run_id": "ego_mainline_admission_execution_preflight_001a_bc27a691ef9ba72c"
+  },
+  "parent_boundaries": [
+    {
+      "boundary_id": "alignment_001a",
+      "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "local_tag_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "local_verified": true,
+      "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "path_verified": true,
+      "paths": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed admission execution alignment contract",
+      "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    {
+      "boundary_id": "admission_coverage_reference_001a",
+      "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "local_tag_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "local_verified": true,
+      "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "path_verified": true,
+      "paths": [
+        "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed admission-side reference-only contract",
+      "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    {
+      "boundary_id": "canonicalization_provenance_repair_001b",
+      "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "local_tag_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "local_verified": true,
+      "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "path_verified": true,
+      "paths": [
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+        "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed canonicalization provenance repair",
+      "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    {
+      "boundary_id": "coverage_compression_001d",
+      "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "local_tag_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "local_verified": true,
+      "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "path_verified": true,
+      "paths": [
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed source-pinned / pre-canonicalization closure patch",
+      "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    {
+      "boundary_id": "post_bridge_admission_executable_001d",
+      "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "local_tag_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "local_verified": true,
+      "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "path_verified": true,
+      "paths": [
+        "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "remote_tag": "remote-anchor-001n-c2f6c51",
+      "remote_tag_required": false,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "caveated, not mechanism proof, not runtime authorization",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    {
+      "boundary_id": "prior_readiness_audit_reference_only",
+      "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+      "local_tag_resolved_commit": null,
+      "local_verified": true,
+      "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+      "path_verified": true,
+      "paths": [
+        "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": null,
+      "remote_tag": null,
+      "remote_tag_required": false,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "reference-only prior readiness audit / admission task-card drafting context",
+      "task_id": "prior readiness audit reference only",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    }
+  ],
+  "parent_boundaries_by_id": {
+    "admission_coverage_reference_001a": {
+      "boundary_id": "admission_coverage_reference_001a",
+      "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "local_tag_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "local_verified": true,
+      "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "path_verified": true,
+      "paths": [
+        "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+      "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed admission-side reference-only contract",
+      "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    "alignment_001a": {
+      "boundary_id": "alignment_001a",
+      "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "local_tag_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "local_verified": true,
+      "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "path_verified": true,
+      "paths": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+      "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed admission execution alignment contract",
+      "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    "canonicalization_provenance_repair_001b": {
+      "boundary_id": "canonicalization_provenance_repair_001b",
+      "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "local_tag_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "local_verified": true,
+      "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "path_verified": true,
+      "paths": [
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+        "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+      "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed canonicalization provenance repair",
+      "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    "coverage_compression_001d": {
+      "boundary_id": "coverage_compression_001d",
+      "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "local_tag_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "local_verified": true,
+      "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "path_verified": true,
+      "paths": [
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+      "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+      "remote_tag_required": true,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "sealed source-pinned / pre-canonicalization closure patch",
+      "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    "post_bridge_admission_executable_001d": {
+      "boundary_id": "post_bridge_admission_executable_001d",
+      "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "local_tag_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "local_verified": true,
+      "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "path_verified": true,
+      "paths": [
+        "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "remote_tag": "remote-anchor-001n-c2f6c51",
+      "remote_tag_required": false,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "caveated, not mechanism proof, not runtime authorization",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    },
+    "prior_readiness_audit_reference_only": {
+      "boundary_id": "prior_readiness_audit_reference_only",
+      "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+      "local_tag_resolved_commit": null,
+      "local_verified": true,
+      "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+      "path_verified": true,
+      "paths": [
+        "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md"
+      ],
+      "producer_function": "_boundary_row",
+      "remote_resolved_commit": null,
+      "remote_tag": null,
+      "remote_tag_required": false,
+      "remote_verified": true,
+      "resolved_exactly": true,
+      "status": "reference-only prior readiness audit / admission task-card drafting context",
+      "task_id": "prior readiness audit reference only",
+      "validation_rule": "local tag, remote tag when checked, and path last commit must match expected sealed commit"
+    }
+  },
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A",
+  "validation_rule": "required parent boundaries must resolve by git tags, remote tags, and repo paths"
+}

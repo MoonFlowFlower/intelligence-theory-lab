@@ -1,0 +1,272 @@
+{
+  "actionability_revalidation_required": true,
+  "actionability_source": {
+    "actionability_revalidation_required": true,
+    "computed_evidence_provenance": {
+      "aggregation_rule": "require future actionability revalidation before admission execution",
+      "artifact_name": "actionability_revalidation_matrix.json",
+      "code_path_hash": "5d5bc15d35209295866a3cbf834a8f0378c17f5b8e049d5f08a26cc39b9c3223",
+      "input_artifacts": [
+        "parent_evidence_boundary_manifest.json",
+        "evidence_usage_contract.json"
+      ],
+      "output_artifact_hash": "2de34a4074454ed22f05abd5b776186a085cfde42850643eff040a89503d3654",
+      "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+      "producer_function": "build_actionability_revalidation_matrix",
+      "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+      "validation_rule": "future execution remains blocked until revalidation rows are satisfied"
+    },
+    "revalidation_rows": [
+      {
+        "boundary_id": "admission_coverage_reference",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+      },
+      {
+        "boundary_id": "canonical_coverage_repair",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+      },
+      {
+        "boundary_id": "compression_source_boundary",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+      },
+      {
+        "boundary_id": "prior_readiness_audit",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+      },
+      {
+        "boundary_id": "computed_evidence_gate",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "future executable must derive verdicts from callable computation paths"
+      },
+      {
+        "boundary_id": "negative_evidence_handling",
+        "required": true,
+        "revalidation_required_before": "future admission execution",
+        "revalidation_rule": "001B and 001C remain non-positive; 001D remains caveated"
+      }
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+    "validation_rule": "all parent and guard rows require actionability revalidation before future execution"
+  },
+  "authorization_flags": {
+    "architecture_selected": false,
+    "bridge_authorized": false,
+    "companion_authorized": false,
+    "ego_mainline_runtime_authorized": false,
+    "emotion_authorized": false,
+    "hyperon_adopted": false,
+    "implementation_authorized": false,
+    "llm_rag_authorized": false,
+    "personalization_authorized": false,
+    "relationship_authorized": false,
+    "runtime_authorized": false,
+    "user_model_authorized": false
+  },
+  "commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+  "computed_evidence_gate_required_for_future_execution": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "parse alignment 001A artifacts for required future-execution preconditions",
+    "artifact_name": "alignment_contract_readback.json",
+    "code_path_hash": "79c09c8c125eb5e258fb9e9ed132dba04f10aeb26dcbb5fdc450cc4a696193f9",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json"
+    ],
+    "input_refs_tags_commits": [
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_tag": "remote-anchor-001n-c2f6c51",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "output_artifact_hash": "4e81f164a5f99b225c17c8f2ec57b3c640bdfa2f8a35b36482a0162c76beb7dd",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_alignment_contract_readback",
+    "run_id": "ego_mainline_admission_execution_preflight_001a_bc27a691ef9ba72c"
+  },
+  "computed_source": {
+    "computed_evidence_gate_required_for_future_execution": true,
+    "computed_evidence_provenance": {
+      "aggregation_rule": "carry forward computed-evidence provenance requirements for future admission execution",
+      "artifact_name": "computed_evidence_gate_contract.json",
+      "code_path_hash": "d936781512a683d7e5f6be835541ec9fcf245670c210025f9cca3b71015c81f1",
+      "input_artifacts": [
+        "docs/codex/contracts/COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A.md"
+      ],
+      "output_artifact_hash": "6ddb29abd8297c872e5aeca56d46ea268abea9a4413a712ae595bf8d1ef2685f",
+      "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+      "producer_function": "build_computed_evidence_gate_contract",
+      "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+      "validation_rule": "future execution verdicts must derive from callable computation paths"
+    },
+    "future_execution_must_include": [
+      "callable independent baselines",
+      "real ablation reruns",
+      "surface-specific leakage scanners with positive controls",
+      "behavior-causal replay where behavior claims are made",
+      "failure-path tests"
+    ],
+    "required_metadata_fields": [
+      "producer_function",
+      "input_artifacts",
+      "run_id",
+      "seed_or_context_ids",
+      "aggregation_rule",
+      "validation_rule",
+      "code_path_hash"
+    ],
+    "static_or_literal_verdicts_allowed": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+    "validation_rule": "future admission execution cannot use literals, static pass labels, or unconditional clean reports as verdict evidence"
+  },
+  "copied_45_row_matrix_detected": false,
+  "negative_evidence_handling_required": true,
+  "negative_source": {
+    "computed_evidence_provenance": {
+      "aggregation_rule": "preserve 001B/001C negative evidence handling and bound 001D use",
+      "artifact_name": "negative_evidence_handling_contract.json",
+      "code_path_hash": "d405a25792ed401e85de2f71f2019d7d66729d1bed4b5e6eb38cfc078b5f3a61",
+      "input_artifacts": [
+        "parent_evidence_boundary_manifest.json",
+        "docs\\codex\\audits\\EGO-MAINLINE-READINESS-AUDIT-001B.md"
+      ],
+      "output_artifact_hash": "a362da9f818e869200dadd091f4e6df3664c5b39a982f846d0fff6a238111864",
+      "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+      "producer_function": "build_negative_evidence_handling_contract",
+      "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+      "validation_rule": "negative evidence cannot be restored as positive evidence"
+    },
+    "negative_evidence_handling_required": true,
+    "negative_evidence_rows": [
+      {
+        "allowed_use": [
+          "negative evidence",
+          "evidence-custody context",
+          "false-positive artifact-generation context"
+        ],
+        "positive_evidence_allowed": false,
+        "status": "invalidated_as_downstream_positive_evidence",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B"
+      },
+      {
+        "allowed_use": [
+          "historical nominal pass with leakage fail-ability blocker caveat"
+        ],
+        "positive_evidence_allowed": false,
+        "status": "historical_suspended_as_downstream_positive_evidence",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C"
+      },
+      {
+        "caveats": [
+          "001D may still be invalid if the synthetic distribution and candidate hash-based state rule share a closed-world construction shortcut, or if future evidence relies on this bounded proxy as mechanism validity.",
+          "A bounded pass, computed metric provenance, behavior-causal replay, baseline non-equivalence, and ablation sensitivity remain insufficient for bridge readiness, EGO readiness, companion readiness, mechanism validity, theory validity, agency, selfhood, consciousness, real relationship learning, real emotion, subjective experience, or stable user benefit.",
+          "001D is a current bounded post-bridge positive candidate with caveats, not mechanism proof.",
+          "Future EGO-mainline admission must preserve surface-scoped leakage and computed-evidence requirements."
+        ],
+        "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+        "mechanism_proof_allowed": false,
+        "positive_evidence_allowed": true,
+        "status": "current_bounded_post_bridge_positive_candidate_with_caveats",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      }
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+    "validation_rule": "negative evidence must not be restored as positive evidence, and 001D must remain caveated"
+  },
+  "post_bridge_001d_mechanism_proof_allowed": false,
+  "resolved": true,
+  "schema_duplication_allowed": false,
+  "schema_source": {
+    "alignment_document_mode": "amendment_to_existing_admission_task_card_001a",
+    "complete_equivalent_contract_found": false,
+    "computed_evidence_provenance": {
+      "aggregation_rule": "enforce amendment mode and scan for copied 45-row matrix payloads",
+      "artifact_name": "schema_duplication_guard.json",
+      "code_path_hash": "a0d54c7ae4865c2fd5ffe4187eb8cc5d37a583e389886bface2140e04f8395d5",
+      "input_artifacts": [
+        "existing_admission_task_card_search_report.json",
+        "evidence_usage_contract.json"
+      ],
+      "output_artifact_hash": "92ed087ffa4bf723c847cea959021d86c33dfefe8aae4bc5e8397e7409922a0b",
+      "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+      "producer_function": "build_schema_duplication_guard",
+      "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+      "validation_rule": "no duplicate schema and no 45-row matrix copy may appear"
+    },
+    "copied_45_row_matrix_detected": false,
+    "duplicate_schema_created": false,
+    "matrix_duplication_allowed": false,
+    "partial_contract_found": true,
+    "row_like_lists": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+    "validation_rule": "partial existing admission card is amended by reference; no duplicate schema or copied matrix is allowed"
+  },
+  "static_or_literal_verdicts_allowed": false,
+  "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+  "validation_rule": "alignment 001A must require actionability revalidation, computed-evidence gates, negative-evidence preservation, and schema duplication blocks",
+  "verdict": "ego_mainline_admission_task_card_alignment_001a_pass"
+}

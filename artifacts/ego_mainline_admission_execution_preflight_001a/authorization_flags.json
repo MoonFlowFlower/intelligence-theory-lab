@@ -1,0 +1,92 @@
+{
+  "all_authorization_flags_false": true,
+  "authorization_flags": {
+    "architecture_implementation_authorized": false,
+    "architecture_selected": false,
+    "bridge_authorized": false,
+    "bridge_runtime_authorized": false,
+    "companion_authorized": false,
+    "companion_behavior_authorized": false,
+    "ego_mainline_authorized": false,
+    "ego_mainline_runtime_authorized": false,
+    "emotion_authorized": false,
+    "gate4_authorized": false,
+    "implementation_authorized": false,
+    "llm_rag_authorized": false,
+    "long_term_human_user_memory_authorized": false,
+    "mechanism_validation_authorized": false,
+    "persistent_profile_authorized": false,
+    "personalization_authorized": false,
+    "personalization_product_demo_authorized": false,
+    "relationship_authorized": false,
+    "romance_attachment_authorized": false,
+    "runtime_authorized": false,
+    "user_model_authorized": false
+  },
+  "computed_evidence_provenance": {
+    "aggregation_rule": "derive authorization flags from resolved alignment and post-bridge state",
+    "artifact_name": "authorization_flags.json",
+    "code_path_hash": "8e419cca1464e913dcd05f68805ff3bbb9fe3ea66c58f1c5709440520eac1085",
+    "input_artifacts": [
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+      "artifacts/post_bridge_admission_executable_001d/result.json"
+    ],
+    "input_refs_tags_commits": [
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_tag": "remote-anchor-001n-c2f6c51",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "output_artifact_hash": "c78154e945a64d69e0a87fbde65e8d925cb5e2e54937366397d4b8c841f69a03",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_authorization_flags",
+    "run_id": "ego_mainline_admission_execution_preflight_001a_bc27a691ef9ba72c"
+  },
+  "generated_from_resolved_state": true,
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A",
+  "validation_rule": "authorization flags are generated from resolved alignment and post-bridge state and must remain false"
+}

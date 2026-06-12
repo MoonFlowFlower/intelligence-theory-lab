@@ -1,0 +1,102 @@
+{
+  "computed_evidence_provenance": {
+    "aggregation_rule": "preserve negative-evidence rows without upgrading 001B/001C",
+    "artifact_name": "negative_evidence_preconditions.json",
+    "code_path_hash": "7ba485d22a5ba811f5cb6bc2e7287d101fdc0e5cec59fa20d1c9f208d8e6f98a",
+    "input_artifacts": [
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json"
+    ],
+    "input_refs_tags_commits": [
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_tag": "remote-anchor-001n-c2f6c51",
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "output_artifact_hash": "dff0fe2883ccc6190e3f0550d5d7b7e2154617243af999be13f2371270649951",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_negative_evidence_preconditions",
+    "run_id": "ego_mainline_admission_execution_preflight_001a_bc27a691ef9ba72c"
+  },
+  "negative_001b_001c_positive_downstream_use_allowed": false,
+  "negative_evidence_handling_required": true,
+  "negative_evidence_rows": [
+    {
+      "allowed_use": [
+        "negative evidence",
+        "evidence-custody context",
+        "false-positive artifact-generation context"
+      ],
+      "positive_evidence_allowed": false,
+      "status": "invalidated_as_downstream_positive_evidence",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B"
+    },
+    {
+      "allowed_use": [
+        "historical nominal pass with leakage fail-ability blocker caveat"
+      ],
+      "positive_evidence_allowed": false,
+      "status": "historical_suspended_as_downstream_positive_evidence",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C"
+    },
+    {
+      "caveats": [
+        "001D may still be invalid if the synthetic distribution and candidate hash-based state rule share a closed-world construction shortcut, or if future evidence relies on this bounded proxy as mechanism validity.",
+        "A bounded pass, computed metric provenance, behavior-causal replay, baseline non-equivalence, and ablation sensitivity remain insufficient for bridge readiness, EGO readiness, companion readiness, mechanism validity, theory validity, agency, selfhood, consciousness, real relationship learning, real emotion, subjective experience, or stable user benefit.",
+        "001D is a current bounded post-bridge positive candidate with caveats, not mechanism proof.",
+        "Future EGO-mainline admission must preserve surface-scoped leakage and computed-evidence requirements."
+      ],
+      "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+      "mechanism_proof_allowed": false,
+      "positive_evidence_allowed": true,
+      "status": "current_bounded_post_bridge_positive_candidate_with_caveats",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+    }
+  ],
+  "source_task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A",
+  "validation_rule": "001B/001C negative or suspended evidence must not become positive downstream evidence"
+}
