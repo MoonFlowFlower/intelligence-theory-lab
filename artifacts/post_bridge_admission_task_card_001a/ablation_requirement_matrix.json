@@ -1,0 +1,22 @@
+{
+  "claim_ceiling": "bounded post-bridge admission contract drafting evidence only",
+  "required_ablations": [
+    {"ablation_name": "reset all memory", "required_sensitivity": "later behavior and memory carryover metric must degrade"},
+    {"ablation_name": "corrupt serialized state", "required_sensitivity": "state replay and later behavior dependency must degrade"},
+    {"ablation_name": "replace serialized state", "required_sensitivity": "candidate must follow replacement state, not original token"},
+    {"ablation_name": "remove replay carryover", "required_sensitivity": "memory carryover and later behavior must weaken"},
+    {"ablation_name": "remove self-boundary carryover", "required_sensitivity": "self-boundary contribution to later behavior must weaken"},
+    {"ablation_name": "remove viability carryover", "required_sensitivity": "viability-conditioned later behavior must weaken"},
+    {"ablation_name": "remove social-latent carryover", "required_sensitivity": "social-latent conditioned later behavior must weaken"},
+    {"ablation_name": "remove identity_continuity_state", "required_sensitivity": "identity continuity metric and later linkage must weaken"},
+    {"ablation_name": "remove memory_carryover_state", "required_sensitivity": "memory carryover metric and later behavior must weaken"},
+    {"ablation_name": "time-shift state", "required_sensitivity": "temporal linkage must fail or degrade under shifted state"},
+    {"ablation_name": "cross-agent state swap", "required_sensitivity": "candidate must track swapped carried state rather than original agent token"},
+    {"ablation_name": "duplicate identity-token contrast", "required_sensitivity": "same token with different state must produce state-sensitive differences"},
+    {"ablation_name": "freeze post-bridge learning", "required_sensitivity": "post-bridge update dependency must weaken"},
+    {"ablation_name": "remove post-bridge observation update", "required_sensitivity": "later behavior must degrade when post-bridge observation cannot update state"},
+    {"ablation_name": "disable action", "required_sensitivity": "action-conditioned later behavior must degrade"},
+    {"ablation_name": "invert bridge mapping", "required_sensitivity": "bridge mapping inversion must break or substantially degrade admission metrics"}
+  ],
+  "task_id": "POST-BRIDGE-ADMISSION-TASK-CARD-001A"
+}

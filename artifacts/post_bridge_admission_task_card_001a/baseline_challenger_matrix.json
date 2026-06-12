@@ -1,0 +1,28 @@
+{
+  "claim_ceiling": "bounded post-bridge admission contract drafting evidence only",
+  "required_baselines": [
+    {"baseline_name": "snapshot reload", "risk_addressed": "state carryover may be passive reload instead of active post-bridge dependency", "required_status": "fair_baseline"},
+    {"baseline_name": "stitched-output baseline", "risk_addressed": "outputs may be stitched without one shared serialized state", "required_status": "fair_baseline"},
+    {"baseline_name": "state-table lookup", "risk_addressed": "serialized state may be a direct lookup key", "required_status": "fair_baseline"},
+    {"baseline_name": "identity-token lookup", "risk_addressed": "identity token may explain later behavior without carried state", "required_status": "fair_baseline"},
+    {"baseline_name": "memory-key lookup", "risk_addressed": "memory carryover may reduce to key lookup", "required_status": "fair_baseline"},
+    {"baseline_name": "summary retrieval", "risk_addressed": "summary memory may mimic continuity", "required_status": "fair_baseline"},
+    {"baseline_name": "transcript retrieval", "risk_addressed": "transcript lookup may mimic memory carryover", "required_status": "fair_baseline"},
+    {"baseline_name": "graph_lookup", "risk_addressed": "graph/cache collapse lineage remains live", "required_status": "first_class_fair_baseline"},
+    {"baseline_name": "transition_table", "risk_addressed": "transition lookup may solve deterministic bridge contexts", "required_status": "first_class_fair_baseline"},
+    {"baseline_name": "successor_map", "risk_addressed": "successor map may explain state transitions", "required_status": "first_class_fair_baseline"},
+    {"baseline_name": "count_table", "risk_addressed": "count/statistic shortcut may explain behavior", "required_status": "first_class_fair_baseline"},
+    {"baseline_name": "fsm_planner", "risk_addressed": "finite-state planner may mimic policy", "required_status": "first_class_fair_baseline"},
+    {"baseline_name": "episodic_traversal", "risk_addressed": "direct episode traversal may mimic continuity", "required_status": "first_class_fair_baseline"},
+    {"baseline_name": "bounded-order window model order-1", "risk_addressed": "short-window history may explain behavior", "required_status": "fair_baseline"},
+    {"baseline_name": "bounded-order window model order-2", "risk_addressed": "order-2 window model matched prior residue risk", "required_status": "fair_baseline"},
+    {"baseline_name": "shuffled-history same-loss control", "risk_addressed": "same-loss history may preserve apparent effect", "required_status": "fair_baseline"},
+    {"baseline_name": "behavior imitation", "risk_addressed": "surface behavior may be copied without state dependency", "required_status": "fair_baseline"},
+    {"baseline_name": "frozen-state carryover", "risk_addressed": "post-bridge update may be unnecessary", "required_status": "fair_baseline"},
+    {"baseline_name": "oracle control", "risk_addressed": "upper-bound and leakage detection", "required_status": "diagnostic_only_not_fair_pass_evidence"},
+    {"baseline_name": "trace-only replay", "risk_addressed": "replay hygiene must not become mechanism evidence", "required_status": "hygiene_only_not_fair_pass_evidence"},
+    {"baseline_name": "random policy", "risk_addressed": "sanity floor", "required_status": "sanity_baseline"},
+    {"baseline_name": "fresh-agent no-carryover", "risk_addressed": "carryover may be unnecessary", "required_status": "fair_baseline"}
+  ],
+  "task_id": "POST-BRIDGE-ADMISSION-TASK-CARD-001A"
+}
