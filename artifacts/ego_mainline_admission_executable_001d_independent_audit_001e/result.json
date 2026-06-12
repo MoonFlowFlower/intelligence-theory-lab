@@ -1,0 +1,491 @@
+{
+  "ablation_revalidation_audit_result": {
+    "ablation_revalidation_not_copied": true,
+    "ablation_revalidation_verified": true,
+    "insensitive_ablations": [],
+    "recomputed_required_ablation_count": 16,
+    "required_ablation_count": 16,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "acceptance_gates": {
+    "001c_blocker_preserved": true,
+    "001d_repair_scope_exact": true,
+    "ablation_revalidation_verified": true,
+    "all_required_baselines_invoked": true,
+    "all_verdict_metrics_have_callable_provenance": false,
+    "baseline_independence_verified": true,
+    "baseline_legal_input_schema_valid": true,
+    "baseline_non_invocation_failure_control_verified": true,
+    "baseline_outputs_exist_before_aggregation": true,
+    "baseline_runtime_guard_complete": true,
+    "baseline_static_scan_valid": true,
+    "behavior_causal_replay_verified": true,
+    "computed_evidence_contract_loaded": true,
+    "equivalent_label_negative_control_fail_able": true,
+    "equivalent_verifier_labels_excluded": true,
+    "forbidden_field_negative_control_fail_able": true,
+    "frozen_inputs_consumed": true,
+    "leakage_revalidation_verified": true,
+    "manual_injection_independence_verified": true,
+    "metadata_whitelist_surface_scoped": true,
+    "missing_same_surface_positive_control_failure_control_verified": true,
+    "negative_evidence_preserved": true,
+    "no_Ego_repo_modification": true,
+    "no_claim_inflation": true,
+    "no_copied_old_001b_results": true,
+    "no_literal_metrics": true,
+    "no_runtime_or_product_work": true,
+    "no_scope_leak": true,
+    "no_static_metric_dictionaries": true,
+    "old_001b_artifacts_not_modified": true,
+    "old_001c_artifacts_not_modified": true,
+    "old_001d_artifacts_not_modified": true,
+    "parent_001o_anchor_verified": true,
+    "parent_001p_anchor_verified": true,
+    "parent_001q_anchor_verified": true,
+    "parent_001r_anchor_verified": true,
+    "parent_001s_anchor_verified": true
+  },
+  "artifact_dir": "artifacts/ego_mainline_admission_executable_001d_independent_audit_001e",
+  "authorization_flags": {
+    "bridge_runtime_authorized": false,
+    "companion_behavior_authorized": false,
+    "ego_mainline_runtime_authorized": false,
+    "ego_repository_modification_authorized": false,
+    "emotion_authorized": false,
+    "llm_rag_authorized": false,
+    "long_term_human_user_memory_authorized": false,
+    "persistent_profile_authorized": false,
+    "personalization_product_demo_authorized": false,
+    "real_user_data_authorized": false,
+    "relationship_authorized": false,
+    "romance_attachment_authorized": false,
+    "runtime_or_product_work_authorized": false,
+    "user_model_authorized": false
+  },
+  "baseline_independence_result": {
+    "baseline_functions_are_not_candidate_aliases": true,
+    "baseline_functions_are_not_parent_001b_baseline_aliases": true,
+    "baseline_independence_verified": true,
+    "baseline_outputs_not_copied_from_candidate_outputs": true,
+    "equivalent_or_better_fair_baselines": [],
+    "old_001b_baseline_outputs_reused": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "baseline_invocation_result": {
+    "all_required_baselines_invoked": true,
+    "baseline_output_rows_recomputed_before_aggregation": true,
+    "baseline_outputs_are_not_static_dictionaries": true,
+    "baseline_outputs_exist_before_aggregation": true,
+    "missing_output_rows": [],
+    "producer_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.repaired_baseline_action",
+    "static_dictionary_baselines": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "baseline_legal_input_audit_result": {
+    "baseline_action_generation_receives_only_legal_inputs": true,
+    "baseline_aggregation_computed_from_per_row_outputs": true,
+    "baseline_legal_input_schema_valid": true,
+    "baseline_output_rows_generated_after_legal_filtering": true,
+    "baseline_visible_input_schema_excludes_equivalent_labels": true,
+    "baseline_visible_input_schema_excludes_verifier_expected_action_id": true,
+    "output_forbidden_keys": [],
+    "score_mismatches": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "bounded_pass": false,
+  "claim_ceiling": "bounded independent audit evidence for 001D baseline-legal-input repair under synthetic / controlled conditions only",
+  "equivalent_label_leakage_audit_result": {
+    "baseline_surface_forbidden_hits": [],
+    "equivalent_verifier_labels_excluded": true,
+    "notes": "comparison artifacts may contain expected_action_id for scoring; baseline-visible outputs and access logs are scanned here",
+    "sanitized_derivative_leakage_detected": false,
+    "source_forbidden_token_hits": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "exact_blocker_repair_audit_result": {
+    "001c_blocker_preserved": true,
+    "001c_stop_conditions": [
+      "baseline_illegal_verifier_label_consumption",
+      "failure_path_test_missing"
+    ],
+    "001d_repair_scope_exact": true,
+    "expected_repaired_blockers": [
+      "baseline_illegal_verifier_label_consumption",
+      "baseline_non_invocation",
+      "missing_same_surface_positive_control"
+    ],
+    "repaired_blockers": [
+      "baseline_illegal_verifier_label_consumption",
+      "baseline_non_invocation",
+      "missing_same_surface_positive_control"
+    ],
+    "scope_expansion_detected": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "failure_path_control_audit_result": {
+    "baseline_non_invocation_control": {
+      "baseline_non_invocation_failure_control_passed": true,
+      "detected_failure_id": "baseline_non_invocation_detected",
+      "expected_blocker": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d_block_baseline_non_invocation",
+      "missing_baselines": [
+        "random_policy"
+      ],
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+    },
+    "baseline_non_invocation_failure_control_verified": true,
+    "independent_failability_verified": true,
+    "missing_same_surface_positive_control": {
+      "detected_failure_id": "missing_same_surface_positive_control_detected",
+      "expected_blocker": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d_block_same_surface_positive_control_gap",
+      "missing_same_surface_positive_control_failure_control_passed": true,
+      "surfaces_with_missing_positive_control": [
+        "baseline_legal_input_access_log"
+      ],
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+    },
+    "missing_same_surface_positive_control_failure_control_verified": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "frozen_input_consumption_audit_result": {
+    "families_checked": [
+      "ablation_definition_ids",
+      "counterfactual_pair_ids",
+      "cross_agent_swap_pair_ids",
+      "duplicate_identity_token_contrast_ids",
+      "heldout_context_ids",
+      "seed_ids",
+      "train_context_ids"
+    ],
+    "frozen_inputs_consumed": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E",
+    "unused_frozen_inputs": []
+  },
+  "layer": "bounded independent audit / red-team audit of EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D only",
+  "leakage_revalidation_audit_result": {
+    "baseline_legal_input_guard_surface_scanned": true,
+    "clean_control": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": false,
+      "hits": [],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "leakage_revalidation_verified": true,
+    "positive_control": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": true,
+      "hits": [
+        {
+          "path": "baseline_legal_input_access_log.verifier_expected_action_id",
+          "token": "verifier_expected_action_id"
+        }
+      ],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "real_scan": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": false,
+      "hits": [],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "scanner_not_fail_able_distinguished_from_leakage_detected": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "manual_injection_audit_result": {
+    "independent_positive_control": {
+      "code_path_hash": "9e68b3e3b118ddbb5accf69e9cc94a6815d38c9d90c45cf2d9e2c76c7d668d54",
+      "detected": true,
+      "hits": [
+        {
+          "path": "baseline_legal_input_access_log.verifier_expected_action_id",
+          "token": "verifier_expected_action_id"
+        }
+      ],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.scan_for_forbidden_fields",
+      "surface_name": "baseline_legal_input_access_log"
+    },
+    "manual_case_count": 4,
+    "manual_injection_independence_verified": true,
+    "production_injector_only": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "metadata_whitelist_audit_result": {
+    "global_reserved_metadata_key_privilege": false,
+    "metadata_whitelist_surface_scoped": true,
+    "privileged_surface_forbidden_value_detected": true,
+    "reserved_key_value_scanned_on_unprivileged_surface": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "metric_provenance_audit_result": {
+    "all_verdict_metrics_have_callable_provenance": false,
+    "code_path_hash_mismatches": [],
+    "input_artifact_hash_mismatches": [],
+    "literal_metric_detected": false,
+    "metric_count": 12,
+    "metrics_missing_failure_path": [],
+    "missing_required_fields": [
+      {
+        "metric_id": "baseline_legal_input",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "baseline_invocation",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "baseline_non_invocation_failure_control",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "same_surface_positive_control_failure_control",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "ablation_revalidation",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "leakage_revalidation",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "manual_injection_revalidation",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "metadata_whitelist_scope",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "behavior_causal_replay",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "frozen_input_consumption",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "old_artifact_mutation",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      },
+      {
+        "metric_id": "negative_evidence_preservation",
+        "missing_fields": [
+          "counterfactual_pair_ids_consumed",
+          "heldout_context_ids_consumed",
+          "train_context_ids_consumed"
+        ]
+      }
+    ],
+    "no_copied_old_001b_results": true,
+    "no_literal_metrics": true,
+    "no_static_metric_dictionaries": true,
+    "reported_metric_schema_fields": [
+      "metric_id",
+      "metric_name",
+      "producer_function",
+      "producer_module",
+      "code_path_hash",
+      "run_id",
+      "episode_ids",
+      "seed_ids",
+      "input_artifact_paths",
+      "input_artifact_hashes",
+      "input_row_count",
+      "output_artifact_path",
+      "output_row_ids",
+      "aggregation_rule",
+      "threshold_used",
+      "threshold_frozen_before_run",
+      "computed_not_literal",
+      "failure_path_available"
+    ],
+    "required_metric_fields": [
+      "aggregation_rule",
+      "code_path_hash",
+      "computed_not_literal",
+      "counterfactual_pair_ids_consumed",
+      "episode_ids",
+      "failure_path_available",
+      "heldout_context_ids_consumed",
+      "input_artifact_hashes",
+      "input_artifact_paths",
+      "input_row_count",
+      "metric_id",
+      "metric_name",
+      "output_artifact_path",
+      "output_row_ids",
+      "producer_function",
+      "producer_module",
+      "run_id",
+      "seed_ids",
+      "threshold_frozen_before_run",
+      "threshold_used",
+      "train_context_ids_consumed"
+    ],
+    "static_metric_dictionary_detected": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E",
+    "uncallable_producers": [],
+    "wrapper_only_provenance_metrics": [
+      "old_artifact_mutation"
+    ]
+  },
+  "negative_evidence_preservation_result": {
+    "001b_remains_historically_blocked_by_001c": true,
+    "001c_blocker_converted_to_caveat": false,
+    "001c_remains_canonical_historical_blocker": true,
+    "001d_is_repair_evidence_only": true,
+    "negative_evidence_rewrite_detected": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "old_artifact_mutation_result": {
+    "old_001b_artifacts_not_modified": true,
+    "old_001b_mutated_paths": [],
+    "old_001c_artifacts_not_modified": true,
+    "old_001c_mutated_paths": [],
+    "old_001d_artifacts_not_modified": true,
+    "old_001d_mutated_paths": []
+  },
+  "parent_anchors_verified": true,
+  "parent_task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D",
+  "replay_audit_result": {
+    "behavior_causal_replay_verified": true,
+    "candidate_action_recomputed": true,
+    "hash_only_replay_for_behavior_claim": false,
+    "mismatches": [],
+    "observation_loaded_from_artifact": true,
+    "recomputed_action_matches_recorded_action": true,
+    "serialized_state_causal_consumption_verified": true,
+    "serialized_state_loaded_from_artifact": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E"
+  },
+  "runtime_access_guard_audit_result": {
+    "baseline_runtime_guard_complete": true,
+    "each_baseline_call_uses_guarded_input": true,
+    "equivalent_label_negative_control_fail_able": true,
+    "every_accessed_field_logged": true,
+    "forbidden_field_negative_control_fail_able": true,
+    "negative_control_events": [
+      {
+        "baseline_id": "audit_negative",
+        "episode_id": "episode_negative",
+        "field": "verifier_expected_action_id",
+        "forbidden": true
+      },
+      {
+        "baseline_id": "audit_negative",
+        "episode_id": "episode_negative",
+        "field": "gold_action",
+        "forbidden": true
+      }
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E",
+    "unmonitored_baseline_action_path_detected": false
+  },
+  "scope_claim_ceiling_result": {
+    "claim_ceiling_preserved": true,
+    "no_Ego_repo_modification": true,
+    "no_runtime_or_product_work": true,
+    "no_scope_leak": true
+  },
+  "static_scan_audit_result": {
+    "baseline_static_scan_valid": true,
+    "documentation_only_references_distinguished": true,
+    "old_001b_forbidden_reference_preserved_as_blocker_context": true,
+    "repaired_001d_baseline_source_forbidden_references": [],
+    "reported_scan": {
+      "baseline_static_forbidden_reference_scan_passed": true,
+      "code_path_hash": "d0eecd0162eeb84993944df8fe1b08b603db495bfb58f07b5f64c3a0827a7270",
+      "forbidden_references": [],
+      "parent_001b_forbidden_references_preserved_as_blocker_context": [
+        {
+          "function": "ego_mainline_admission_executable_001b.core.baseline_action",
+          "token": "verifier_expected_action_id"
+        },
+        {
+          "function": "ego_mainline_admission_executable_001b.core.baseline_action",
+          "token": "expected_action_id"
+        }
+      ],
+      "scanned_functions": [
+        "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.build_baseline_visible_input",
+        "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.repaired_baseline_action"
+      ],
+      "scanner_function": "ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d.core.static_forbidden_reference_scan",
+      "static_scan_negative_control_passed": true,
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D"
+    },
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E",
+    "test_only_negative_controls_distinguished": true
+  },
+  "stop_conditions_triggered": [
+    "metric_provenance_gap"
+  ],
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E",
+  "verdict": "ego_mainline_admission_executable_001d_independent_audit_001e_block_metric_provenance_gap",
+  "what_this_does_not_prove": [
+    "001B positive evidence restoration",
+    "EGO readiness",
+    "EGO mainline readiness",
+    "runtime admissibility",
+    "bridge readiness",
+    "companion readiness",
+    "mechanism validity",
+    "theory validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "real emotion",
+    "real relationship learning",
+    "stable user benefit",
+    "production readiness",
+    "correctness of any future EGO runtime"
+  ]
+}
