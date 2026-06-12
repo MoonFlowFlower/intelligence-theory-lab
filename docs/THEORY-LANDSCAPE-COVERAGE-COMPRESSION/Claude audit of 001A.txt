@@ -1,0 +1,59 @@
+审计完成。已核对:压缩文档全文、仓库内 lineage 记录(`EGO-MAINLINE-ADMISSION-TASK-CARD-001A`、graph_cache_collapse 负证据)、以及 Phase One 源报告在仓库中的存在性。
+
+---
+
+## 1. Verdict
+
+**block_adoption_language_confusion**
+
+(次级问题归入 evidence-governance gap,作为同一 patch 的一部分;未达独立 block 级别的维度见第 3 节。)
+
+## 2. Strongest objection
+
+**散文层是安全的,机器可读层不是——而 Codex canonicalization 只会消费机器可读层。**
+
+§9 的 `mandatory_reference_set.json` 把 §3 中刻意区分的五类(A 内部证据链 / B 治理方法 / C 机制参考 / D 架构覆盖 / E baseline)压平成单一数组 `must_include_in_ego_mainline_admission_task_card`,其中 `hyperon`、`soar`、`act_r`、`nars` 与 `causal_eval_ablation`、`red_team_evaluation` 并列、无角色字段区分。同时 §3A 的内部证据链(001B invalidation、001C suspension、negative evidence preservation)从该 JSON 中**整体消失**。所有防采用误读的护栏(§2 表头免责、§3C "Not adopted as architecture"、§7 not-allowed 清单)都只存在于散文中,不在 schema 里。canonicalization 后唯一存活的层恰好是不安全的那一层:读 JSON 的下游会得出"Hyperon 是 EGO mainline admission card 的 mandatory reference"。
+
+加重因素:仓库中 `EGO-MAINLINE-ADMISSION-TASK-CARD-001A` **已存在**(verdict=contract_drafted, execution_authorized=false,内含 `001B_executable_status=invalidated...`、`001C...=historical_suspended...`、`do_not_use_001B_or_001C_as_positive_evidence=true` 等 14 项非授权 flag)。压缩文档把它描述为未来文档并提议注入 mandatory set——这是对既有治理工件的侧信道修改提案,且未对照该 card 已有的 evidence dependency matrix。
+
+## 3. Concrete examples from the compression
+
+**Blocking(均属 adoption-language 家族):**
+
+- §9 JSON:`hyperon` 出现在 `must_include_in_ego_mainline_admission_task_card`,但表格中 Hyperon 的 safe_status 是 `comparative_audit_candidate`——同一文档内部自相矛盾。
+- §2 表格与 §7/§9:Hyperon 的 mapping 列含 "EGO-mainline integration"(JSON 为 `ego_mainline_integration`)。全表只有 Hyperon 和 Sigma 带 mainline 字样;给最早期、最高风险候选预置 mainline 路径,正是"看起来已被采用"的表面。
+- §9 Hyperon 示例行新增 `hardcoding_or_prompt_illusion_risk: "low_medium"`——该值在表格中不存在,源报告又不在仓库内,无法溯源;凭空给 Hyperon 一个有利评级。
+- safe_status 词汇多义:`include_as_reference` 在 §3C 指 "required mechanism families"(强),在 LangGraph/OpenHands 行指"工程参考"(弱);`mandatory_reference` 既是表格状态值又是 §9 容器名,而容器内容大半不是 mandatory_reference 状态。`use_as_baseline_only + include_as_reference` 自相矛盾("only" 之后又加项)。文档自己提议了 `status_renamed_to_avoid_adoption_confusion` 字段,等于承认问题,但未执行。
+
+**Evidence-governance gaps(并入 patch):**
+
+- Phase One 源报告不在仓库(全仓 grep "Hyperon"/"phase one"/"landscape" 零命中)。压缩多处写"the report explicitly says/warns"——不可验证。压缩对源的忠实性(是否漏掉源报告里的 family)我**无法审计,状态为 unknown**,不猜测。
+- 违反 CLAUDE.md "successor task must cite relevant prior negative evidence":Hyperon 是 graph-rewrite substrate、映射到 Gate1/bridge,而本仓库已有 GATE1 EXEC-001 `graph_cache_collapse` 判定与 RESIDUE-001A 关闭记录(graph_lookup/transition_table 挑战者家族对 Gate1 表征类主张是强制挑战项)。压缩对此零引用——这恰是评估 Hyperon 时最相关的本地负证据。
+
+**未达 block 的维度(逐项对 8 条):**
+
+1. 漏家族:无 blocking 级缺失。次要:MicroPsi/Psi-theory(动机-情感架构,Gate3 相关)、intrinsic motivation/curiosity/empowerment 家族未列;IIT/AST 未作显式排除而 GWT 被收录,排除边界不一致;substrate 层 n=1,Hyperon 无同层对照物。
+2. 层错分:无 blocking。8 层 taxonomy 与要求精确吻合(`layer_mapping.json` 八桶齐全)。
+3. 投机架构当证据:无行声称本实验室已有证据,§10 否定清单完整;但 ceiling 列多用 "can ..."(读起来像已确立能力),Sigma "can host multiple cognitive functions in bounded demos" 把外部 demo 当事实陈述,应统一为 "may ... pending bounded audit"。
+4. reference/audit-candidate vs 采用:散文已护栏,JSON 破口(即 block 项)。
+5. 具名系统膨胀:逐行 strongest-objection + §8 ≠-规则总体到位——Letta "memory store ≠ causal continuity"、Generative Agents "believability ≠ relationship learning"、affective "emotion label ≠ real emotion"、LIDA/GWT 行内注明 "no consciousness claim" 且 §8 有 "global workspace ≠ consciousness"。agent frameworks 正确地 baseline-only/reject_as_mainline,§5 的六个弱解释证伪问题是好设计。
+6. 治理遗漏:§3B 把治理方法列为 mandatory——正确;缺口在源报告未 pin、§9 丢 §3A、负证据未引用(上述)。
+7. ceiling 保全:散文层保全——§1 复述 001D ceiling(仅缺尾词 "only",措辞级)、§3A 标明 001B dead/001C suspended、§10 否定清单与给定 ceiling 一致、JSON `claim_ceiling.txt` 正确;但 §9 机器可读层丢失 001B/001C/001D lineage flag(block 项的一部分)。
+8. 层区分:满足。
+
+## 4. Whether the compression supports only the bounded claim
+
+**部分支持,整体不支持。** §1–§8、§10 的散文矩阵支持且仅支持 "Phase One theory coverage has been compressed into a bounded EGO-safe candidate matrix for later admission planning"。但文档整体(含 §9)额外走私了更强信号:"Hyperon/SOAR/ACT-R/NARS 是 mainline admission card 的 mandatory 项 + Hyperon 有 mainline integration 映射 + Hyperon 幻觉风险 low_medium"。在 §9 修补前,该 claim ceiling 对全文不成立。另:"已对 Phase One 忠实压缩"这一隐含主张在源报告入库前不可验证。
+
+## 5. Minimum patch
+
+仅改压缩文档本身,无新架构、无 Codex 运行、无新 Deep Research:
+
+1. §9 `mandatory_reference_set.json` 按 §3 A–E 拆为五个独立键,每条目加 `role` 字段;把 hyperon/soar/act_r/nars 从任何名含 "mandatory/reference" 的集合移入 `architecture_coverage_set`,role=`coverage_only_not_adoption_not_implementation`;把 §3A 证据链(001B invalidated-as-positive/citable-as-negative、001C suspended、001D ceiling 原文含 "only"、negative-evidence preservation)写回机器可读层。
+2. Hyperon 行:删除 `ego_mainline_integration` 映射(或改为 `future_integration_audit_target_only`);删除或标 `unknown` 无来源的 `hardcoding_or_prompt_illusion_risk` 值;把 §7 not-allowed 清单作为机器可读字段写入该行。
+3. 执行文档自己提议的 status 重命名:`include_as_reference`→`cite_only`(机制族另设 `required_mechanism_family_coverage`),`mandatory_reference`→`mandatory_methodology`,消解 `baseline_only + X` 复合矛盾。
+4. 将 Phase One 源报告以带 hash 的文件 pin 入 `docs/research/`,填 `source_report_reference`;入库前所有 "the report explicitly says" 标记为 unverified。
+5. 在 Hyperon/graph-substrate 及一切 Gate1 映射行加注本地负证据引用:GATE1 `graph_cache_collapse`、RESIDUE-001A、graph-cache 挑战者家族为该候选的强制对照。
+6. 改写 §3 对 `EGO-MAINLINE-ADMISSION-TASK-CARD-001A` 的指称:承认其已 drafted(execution_authorized=false),mandatory-set 提案须对照该 card 既有 evidence dependency matrix 以差异形式提出,而非当作空白未来文档。
+
+补丁后可重审;预期可达 pass_with_caveats。本审计不选优胜者、不授权任何实现、不授权 EGO mainline/bridge runtime/companion/LLM-RAG/user-model/relationship/emotion/personalization 工作。

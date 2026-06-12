@@ -1,0 +1,41 @@
+Document extracted (890 lines). Now cross-checking 001C's lineage and status claims against the actual repo evidence records.# THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001C 定向闭合审计
+
+仅审计闭合性,不做架构选择、不授权实现。审计层:engineering implementation(文档/schema 治理)。仓库零文件修改,只读核对了 `docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001A.md`、`docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-001A.md`、`artifacts/ego_mainline_readiness_audit_001b/result.json`。
+
+## 1. verdict
+
+**closure_pass_with_caveats**
+
+13 项检查全部实质通过;001B 的修复未回退,采纳语义未重开。caveats 见下,均为可一行级修补,不构成阻断,但必须随未来 Codex 规范化一并落地。
+
+逐项:① 001B 采纳语义修复保留(架构行全部 `architecture_coverage_only_not_adoption_not_implementation`,Hyperon/SOAR/ACT-R/NARS 不在 `mandatory_methodology.json`,顶层 5 个授权布尔全 false)② schema 基本安全(带 caveat)③ Hyperon 误读风险低(六重显式否定旗标 + `future_integration_audit_target_only` 已移出 `ego_layer_mapping`,delta_009 兑现)④ delta_manifest 结构充分、标注诚实;对 001B 的完整性**不可验证**(001B 未入库未钉定,仓库 grep 仅有 001A)⑤ 你点名的 10 个家族全部以行恢复且在 `family_accounting` 有理由 ⑥ `internal_evidence_chain` 恰好一份,`per_gate_lineage` 是互补结构而非第二份 schema,各 gate 状态字符串一致 ⑦ Gate0–Gate4 已逐 gate 展开,Gate1 含 graph_cache_collapse / RESIDUE-001A / challenger family,且 interpretation_boundary 表述正确("不构成对 graph/substrate 候选的否证,仅生成未来强制比较谱系"——与 RESIDUE-001A 关闭语义吻合);**但 challenger family 枚举 4/6,见第 2 条** ⑧ READINESS-AUDIT-001B 节点方向正确(仓库实况:该审计已提交,verdict=`authorize_admission_task_card`,仅授权起草;卡片 actionability 的再验证确实仍 pending),但措辞把"已提交的审计文档"和"未来 actionability 再验证要求"混为一个状态串 ⑨ 每行恰一个 role、无复合状态,001A 旧复合状态(`use_as_baseline_only + monitor_only`)已消除 ⑩ 五个候选集合均用 candidate_id;仅 `defer_reject_matrix.json` 混入非候选行的主题 id ⑪ 钉定状态诚实(`external_unpinned_input` / `unverified_until_pinned`,`canonical_source_claim_allowed:false`)⑫ 任务卡处理正确(`exists_as_bounded_contract_draft`、`is_blank_future_document:false`,与仓库实况一致:卡片已起草且 `execution_authorized = false`)⑬ claim ceiling 保留且 cannot-prove / does-not-authorize 清单覆盖全部禁区。
+
+## 2. strongest objection
+
+**Gate1 graph challenger family 被截断为 4/6,弱于本实验室的强制比较契约。** 001C 在 delta_005、Gate1 lineage caveats、Hyperon 行的 `local_negative_evidence_required_for_future_audit` 三处一致地只枚举 `graph_lookup / transition_table / successor_map / count_table`,缺 `fsm_planner` 和 `episodic_traversal`。而 CLAUDE.md 预检规则规定 Gate1 谱系六族强制,已提交的 EGO-MAINLINE-ADMISSION-TASK-CARD-001A 基线契约(第 240–245 行附近)也是完整六族。若按现状规范化,未来由 001C 谱系驱动的 Hyperon 有界比较审计只须面对 4 个挑战者——而对 Atomspace 式图遍历/情景记忆基底,**episodic_traversal 恰是最对口的假阳性挑战者**。这是典型的 gate fragmentation / baseline weakness:产生一份与任务卡并存但更弱的第二比较契约。不阻断的理由:更强的任务卡契约已提交且 001C 明确只能以 dependency_update 依附于它;修补只需补两个枚举名。
+
+## 3. concrete examples from 001C
+
+**Blocking 候选(已降为必须修补的 caveat):**
+- challenger family 三处均为 `"graph_lookup_transition_table_successor_map_count_table_challenger_family"`(Hyperon 行)及 `"graph_lookup / transition_table / successor_map / count_table challenger family"`(Gate1 lineage、delta_005)——无 fsm_planner、episodic_traversal。
+
+**Non-blocking caveats:**
+- `coverage_matrix.json` 的 `rows` 数组只含 Hyperon 一行,无"示例行/以第 5 节散文矩阵为行来源"声明。散文矩阵 45 行 vs 机读 1 行;直译规范化会产出"唯一完整序列化的候选恰是 Hyperon"的矩阵——结构性凸显了当初引发 001A 阻断的那个架构(尽管行内容本身全是否定旗标),且 `cite_only` 两行(enactive_embodied_cognition、society_of_mind)在机读层完全消失。
+- Hyperon 行在第 7 节与第 10 节重复出现,两份 `claim_ceiling` 字符串不一致(第 7 节缺"not runtime-authorized"措辞;布尔字段倒是双份一致)——这正是 001C 自己为 internal_evidence_chain 修掉的"重复带漂移"失效模式。
+- `ego_mainline_readiness_audit_001b_status: "required_or_pending_revalidation_before_admission_card_actionability"`:仓库实况是该审计**已提交**(verdict=`authorize_admission_task_card`,仅授权起草,31 tests passed,remote anchors verified)。状态串方向安全(欠声明而非过声明),但把已提交文档与未来再验证要求合并成一个节点,且未携带该审计的绑定下游 caveat(surface-scoped leakage metadata whitelist + 独立手工注入测试)。
+- `family_accounting` 只交付了 10 条 `restored_as_row`;delta_012 承诺的 merged/deferred/baseline-only/rejected 四类带理由账目未逐项出现——defer 7 项、reject 8 项、monitor 中的 `mine_dojo`、`hyperon_ecosystem_maturity_updates` 均无 per-item 理由(mine_dojo 自 001A 的"Voyager / MineDojo"合并行拆出后无行无账)。
+- `architecture_coverage_only.json` 内含 role 为 `monitor_only` 的 sigma,与文件 meaning 字段自述不符;`defer_reject_matrix.json` 混用 candidate_id 与非候选主题 id 而无类型判别字段。
+
+## 4. 是否仅支持声明上限
+
+**是。** 001C 仅支持:"Phase One theory coverage compression has been patched into a bounded EGO-safe candidate matrix for later admission planning only"。文中没有任何字段支持更强读法,第 13 节的 cannot-prove / does-not-authorize 清单显式封死了全部升级路径。一个诚实限定:在 Phase One 报告与 001B 钉定之前,"patched"只能相对于未钉定外部输入成立——001C 自己已用 `unverified_until_pinned` 把这一点标对了。
+
+## 5. minimum patch(未阻断;以下为随规范化绑定的最小修补,非新架构、非实现)
+
+1. 三处 challenger family 补全为六族(+fsm_planner、+episodic_traversal),或改为指向 CLAUDE.md / 任务卡基线契约的单一引用 id,消除第二弱契约。
+2. `coverage_matrix.json` 加一行声明:`rows` 为 schema 示例,规范化时行集以第 5 节矩阵全量生成;或直接补全 45 行。
+3. 删除第 7/10 节 Hyperon 行重复之一,或令两份 `claim_ceiling` 字符串逐字一致(以第 10 节较强版本为准)。
+4. READINESS-AUDIT-001B 节点拆为两字段:`committed_audit_reference`(指向已提交审计 + verdict + 001D 外部 caveat 原文)与 `actionability_revalidation_required: true`。
+5. `family_accounting` 按 delta_012 承诺补 deferred/rejected/monitor 非行项目的 per-item 理由;`defer_reject_matrix` 加 `id_type: candidate|topic` 判别字段。
+
+满足上述后方可进入 Codex 规范化;规范化前仍须完成第 12 节自列的六项钉定。此结论不证明任何机制有效性、任何架构适配性,不授权任何实现、运行时、伴侣、关系、情绪或记忆类工作。

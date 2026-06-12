@@ -1,0 +1,44 @@
+001B 已通读,并与 001A 缺陷清单及仓库 lineage(既有 admission card、graph_cache_collapse 记录)逐项核对。
+
+---
+
+## 1. Verdict
+
+**pass_with_caveats**
+
+## 2. Strongest objection
+
+**Blocker 本身已修复,但 001B 在"语言修复"名义下夹带了未声明的内容增删,且未声明自己相对 001A 是 delta 还是 replacement。**
+
+001B 的 Mode 自称 "adoption-language repair / machine-readable schema safety **only**",但 §4 矩阵实际做了三类超模式变更,均未标注:(a) 状态上调——autopoiesis 从 001A 的 `defer` 升为 `comparative_audit_candidate`,developmental robotics 从 `defer` 升入 `required_mechanism_family_coverage`;(b) 行删除——ToM/social-latent(在 Gate4 存在的前提下从 required coverage 中消失)、affective computing、companion memory、homeostasis/homeostatic RL、mech-interp、memory/autonomy benchmarks 等行不再出现;(c) §4 标题 "Corrected layered candidate matrix" 暗示替换语义,若下游把 001B 当 canonical 矩阵,这些 family 将无声退出 coverage。这些变更都**不引入采用风险**(无一进入授权通道,全部 flag 仍为 false),所以是 caveat 而非 block——但它们破坏的是 coverage 记账完整性,且与 patch 自我声明的范围矛盾。
+
+## 3. Concrete examples from 001B
+
+**八项检查的通过证据:**
+
+1. Schema 安全:`must_include_in_ego_mainline_admission_task_card` 已删除并明确标 "do not use"(§5);五集合分立;行结构带 `adopted=false / implementation_authorized=false / ego_mainline_authorized=false / runtime_authorized=false / must_not_be_used_as_positive_evidence_without_future_gate=true`。通过。
+2. Hyperon:不在 `mandatory_methodology.json`、不在 `required_mechanism_family_coverage.json`,只在 `architecture_coverage_only.json`;`ego_mainline_integration` 已换成 `future_integration_audit_target_only`;凭空的 `low_medium` 风险值已改 `unknown`;四个 `evidence_of_*=false`;claim_ceiling.txt 明文 "No Hyperon adoption is authorized"。通过。
+3. 五类分离:methodology 集合只含 7 个方法项,mechanism 集合只含 family,architecture 集合只含架构,baseline 集合只含框架,evidence chain 只含 lineage——无交叉污染。通过。
+4. Lineage:001B invalidated(含 allowed_use 四项)、001C suspended、001D bounded candidate、negative_evidence_preservation_required=true、do_not_use_001b_or_001c_as_positive_evidence=true 全部机器可读。通过。
+5. 源报告:`external_unpinned_input` / `unverified_until_pinned` 在 header 与每行重复,§11 明言 pin 前无法验证忠实性。诚实。通过。
+6. Graph 负证据:§8 caveat 含 applies_to、三项本地负证据、且 meaning 双向有界("required future comparator lineage only; **not a refutation** of Hyperon")。通过。
+7. 既有 card:`exists_as_bounded_contract_draft`、`is_blank_future_document=false`、`repo_modified_by_this_compression=false`、只允许 delta/addendum/dependency update。通过。
+8. Ceiling:目标 claim 原文、001D ceiling 原文(含 "only")、cannot-prove 清单、全量非授权清单(含 companion/LLM-RAG/relationship/emotion/romance/attachment/persistent profile/long-term memory)均在 claim_ceiling.txt。通过。
+
+**Caveats(canonicalization 前应修,均不阻断):**
+
+- 未声明的 delta(见第 2 节):需补 `delta_manifest`(相对 001A 的行增/删/状态变更清单及理由),并显式声明 001B 是 delta 还是 replacement;ToM 从 required coverage 消失需给出理由或恢复(Gate4 是本实验室自己的 gate)。
+- `internal_evidence_chain.json` 在 §7 和 §10 出现**两份且不一致**:001C 状态字符串一处 `suspended_as_downstream_positive_evidence`、一处 `suspended_as_positive_evidence`;§10 副本丢失 `post_bridge_001d_claim_ceiling` 字段(ceiling 在 claim_ceiling.txt 中仍存,故不失传)。需去重并统一 enum。
+- `gate0_to_gate4_status="bounded_parent_evidence_only"` 把五个 gate 压成单一聚合值,掩盖了 Gate1 的 `graph_cache_collapse` closeout 与 RESIDUE-001A 负结论——与 `negative_evidence_preservation_required=true` 的精神不符,应按 gate 逐项展开(§8 已为 graph 候选保留了该负证据,故仅 caveat)。
+- lineage 图缺 `EGO-MAINLINE-READINESS-AUDIT-001B` 节点——它正是授权 admission card drafting 的节点;且 `ego_mainline_readiness_audit_001a_status` 措辞与 card 内 "revalidated by 001B" 的记录未对齐。
+- §4 AutoGPT/BabyAGI 行 safe_status 写作 "`baseline_only` / `reject_as_mainline`"——违反 001B 自己 §3 的"单一 primary role、禁止混合短语"规则(两值均为限制性状态,无采用风险,故仅为自违例)。
+- enum 卫生:`cite_only` 在 safe_status 词表却不在 role enum;`baseline_only_family.json` 用显示名("Letta/MemGPT")而非 candidate_id,与其他集合不一致;Hyperon 行把限定词 `future_integration_audit_target_only` 放进 `ego_layer_mapping` 数组(在 architecture_coverage_only.json 中作布尔字段是更对的放法)。
+- 001B 头部自签 `Verdict: ..._patch_pass_with_caveats`——artifact 自我定级。verdict 应由独立审计产生;建议改为 `status: submitted_for_audit`。鉴于 001C 历史(自报 pass 后被 block),此习惯值得纠正。
+
+## 4. Whether 001B supports only the bounded claim
+
+**支持,带两个限定。** 001A 的 blocker(机器可读层采用语言混淆)已被实质修复:架构候选无法再从任何机器可读字段被读成 must-implement/must-adopt/mainline-dependency,Hyperon 的全部授权通道显式关闭。因此 "Phase One theory coverage compression has been patched into a bounded EGO-safe candidate matrix for later admission planning only" 成立。限定一:"patched" 隐含对 001A 内容的保持,而 001B 实际含未声明增删,该 claim 对"安全性"成立、对"覆盖保真"未完全成立,需 delta manifest 补齐。限定二:对 Phase One 源报告的忠实性在 pin 入仓库前仍为 unverified(001B 自己已如实声明)。
+
+## 5. Minimum patch if blocked
+
+不适用(未 block)。Codex canonicalization 可在完成第 3 节 caveats(至少:delta manifest + internal_evidence_chain 去重统一 + per-gate lineage 展开 + 自签 verdict 改 status)之后进行,且 canonicalization 仅限生成 `artifacts/` 下的机器可读工件,不修改 `EGO-MAINLINE-ADMISSION-TASK-CARD-001A`,不构成任何架构选择或实现授权。本审计不选优胜架构、不建议 Hyperon 采用、不授权 EGO mainline/bridge runtime/companion/LLM-RAG/user-model/relationship/emotion/personalization/product-demo/romance/attachment/persistent profile/long-term human-user memory 工作。
