@@ -1,0 +1,317 @@
+{
+  "aggregation_rule": "conditionally generate bounded Gate4 preflight task-card or contract-discovery task from route and source evidence",
+  "architecture_correctness_authorized": false,
+  "bridge_runtime_authorized": false,
+  "claim_ceiling": "bounded Gate4 preflight task-card drafting only",
+  "code_path_hash": "1eabfceea5c18cb185668e0077f59c759d6e0618e3f16c8ea6fe18a932b37e8e",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "compute conditional task-card generation decision",
+    "artifact_name": "gate4_task_card_generation_decision.json",
+    "code_path_hash": "1eabfceea5c18cb185668e0077f59c759d6e0618e3f16c8ea6fe18a932b37e8e",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "c11a1f8e7a4c1273e2476f771f48fb14d32c8596914e3ee52de3be341b77d1b4",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/gate4_task_card_generation_decision.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "compute_gate4_generation_decision",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "phase_a_allowed_and_gate4_source_sufficient"
+  ],
+  "ego_runtime_implementation_authorized": false,
+  "gate4_ablation_requirements": [
+    "remove social_latent_state",
+    "freeze social_latent_state",
+    "replace social history",
+    "remove social_prediction_error",
+    "invert partner response mapping",
+    "remove interaction feedback",
+    "remove Gate1 replay input to social update",
+    "remove Gate2 self-boundary input to social update",
+    "remove Gate3 viability/action-priority input to interaction policy",
+    "freeze shared state",
+    "disable action",
+    "delayed partner response",
+    "partial observability",
+    "heldout partner-context-action compositions",
+    "counterfactual interaction contrast",
+    "perturb partner policy",
+    "perturb social feedback channel",
+    "learning freeze"
+  ],
+  "gate4_baseline_requirements": [
+    "partner-ID lookup",
+    "static per-partner profile table",
+    "preference-table lookup",
+    "transcript retrieval",
+    "summary retrieval",
+    "bounded-order window model order-1",
+    "bounded-order window model order-2",
+    "shuffled-history same-loss control",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "behavior-only imitation",
+    "fixed social script / persona policy",
+    "frozen social-latent model",
+    "Gate0/Gate1/Gate2/Gate3 policy without social_latent_state",
+    "stitched-output baseline with no shared social state",
+    "random policy",
+    "oracle partner/social-label control as upper-bound/leakage only",
+    "trace-only replay as hygiene only"
+  ],
+  "gate4_claim_ceiling": "bounded Gate4 preflight task-card drafting only",
+  "gate4_computed_evidence_provenance_requirements": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed/context identifiers",
+    "aggregation_rule",
+    "code_path_hash",
+    "output_artifact_path"
+  ],
+  "gate4_contract_source_matrix": {
+    "aggregation_rule": "hash and classify existing Gate0-Gate4 source documents/artifacts",
+    "code_path_hash": "a7da62cb317b08ce51b57fe186f3bb0d2fb77eeea2ccbb63b9ae1acbf6f97aed",
+    "gate0_gate3_source_paths": [
+      "artifacts/GATE0-PREDICTIVE-ACTION-POSTFREEZE-SHORTCUT-AUDIT-001A/shortcut_audit_result.json",
+      "artifacts/gate3_viability_functional_affect_001b/result.json",
+      "artifacts/r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b/result.json",
+      "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A-AMENDMENT-001-TRACE-REPLAY-CONTRACT-PATCH.md",
+      "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A.md",
+      "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001B-INDEPENDENT-AUDIT.md",
+      "docs/codex/tasks/GATE2-CONTROLLABILITY-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B.md",
+      "docs/codex/tasks/GATE2-CONTROLLABILITY-SELF-BOUNDARY-TASK-CARD-001A.md",
+      "docs/codex/tasks/GATE3-VIABILITY-FUNCTIONAL-AFFECT-EXECUTABLE-PREFLIGHT-001B.md",
+      "docs/codex/tasks/GATE3-VIABILITY-FUNCTIONAL-AFFECT-TASK-CARD-001A.md",
+      "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3-CANONICAL-MICRO-AGENT-TESTBED-EXECUTABLE-PREFLIGHT-001B.md",
+      "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3-CANONICAL-MICRO-AGENT-TESTBED-TASK-CARD-001A.md"
+    ],
+    "gate0_to_gate3_source_present": true,
+    "gate4_contract_source_sufficient": true,
+    "gate4_scope_derived_from_existing_repo_evidence": true,
+    "gate4_semantics_invented": false,
+    "gate4_source_paths": [
+      "artifacts/gate4_social_latent_inference_001b/result.json",
+      "artifacts/gate4_social_representational_gap_preflight_001b/result.json",
+      "docs/GATE4-SOCIAL-LATENT-INFERENCE-EXECUTABLE-PREFLIGHT-001B.md",
+      "docs/GATE4-SOCIAL-LATENT-INFERENCE-TASK-CARD-001A.md",
+      "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-001A.md",
+      "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-EXECUTABLE-001B.md",
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md"
+    ],
+    "gate4_source_present": true,
+    "inventory_patterns": [
+      "docs/codex/tasks/GATE1*",
+      "docs/codex/tasks/GATE2*",
+      "docs/codex/tasks/GATE3*",
+      "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3*",
+      "docs/GATE4*",
+      "docs/codex/tasks/*GATE4*",
+      "artifacts/gate4_social_representational_gap_preflight_001b/result.json",
+      "artifacts/gate4_social_latent_inference_001b/result.json",
+      "artifacts/gate3_viability_functional_affect_001b/result.json",
+      "artifacts/r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b/result.json",
+      "artifacts/GATE0-PREDICTIVE-ACTION-POSTFREEZE-SHORTCUT-AUDIT-001A/shortcut_audit_result.json"
+    ],
+    "producer_function": "build_gate4_contract_source_matrix",
+    "source_rows": [
+      {
+        "category": "gate0",
+        "path": "artifacts/GATE0-PREDICTIVE-ACTION-POSTFREEZE-SHORTCUT-AUDIT-001A/shortcut_audit_result.json",
+        "sha256": "1e4c2f06c456803cbd03bf5c1f31a57424759f7c151202b8b34c1e3312b2315e",
+        "size_bytes": 7535
+      },
+      {
+        "category": "gate3",
+        "path": "artifacts/gate3_viability_functional_affect_001b/result.json",
+        "sha256": "e1af9e65e644f84c32692e5fd02989d92a43fcd5297b0537d1d5fead4b78e12c",
+        "size_bytes": 3457
+      },
+      {
+        "category": "gate4",
+        "path": "artifacts/gate4_social_latent_inference_001b/result.json",
+        "sha256": "e99c56f93013298904f006426b1347b9c4e657614a641b55b2ceb95b26756327",
+        "size_bytes": 4072
+      },
+      {
+        "category": "gate4",
+        "path": "artifacts/gate4_social_representational_gap_preflight_001b/result.json",
+        "sha256": "6b89f10618545c050daec2521b6c007b7edcdf01e2a5d53106f152494e1fcb40",
+        "size_bytes": 2909
+      },
+      {
+        "category": "micro_agent_gate0_3",
+        "path": "artifacts/r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b/result.json",
+        "sha256": "e110bcd245522d822ef4936825126052146f0c6efea0de302dc0a601b2e0e77d",
+        "size_bytes": 3197
+      },
+      {
+        "category": "gate4",
+        "path": "docs/GATE4-SOCIAL-LATENT-INFERENCE-EXECUTABLE-PREFLIGHT-001B.md",
+        "sha256": "b65ea7fd26d1ee05eeafb56e99798e77d171b92ecb556e4d1c5771f76e2e5434",
+        "size_bytes": 1935
+      },
+      {
+        "category": "gate4",
+        "path": "docs/GATE4-SOCIAL-LATENT-INFERENCE-TASK-CARD-001A.md",
+        "sha256": "a7471f678ce6a8d38990c21e12913df27f540da646f749d371023c7ad308af54",
+        "size_bytes": 21310
+      },
+      {
+        "category": "gate4",
+        "path": "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-001A.md",
+        "sha256": "1b79d4851b3d6a113669b7a20c558052202466596d218cbdfa3b19235170cafd",
+        "size_bytes": 21087
+      },
+      {
+        "category": "gate4",
+        "path": "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-EXECUTABLE-001B.md",
+        "sha256": "531a66b39a0a35c6477de1ea0ae41bda78d344413db52cb67fda6b1c6aebc664",
+        "size_bytes": 2461
+      },
+      {
+        "category": "gate4",
+        "path": "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+        "sha256": "2100aa40bcf0b3f7803b661f97bbb15ea358ae6d39ddc4cc52b7021ff6518191",
+        "size_bytes": 8959
+      },
+      {
+        "category": "gate1",
+        "path": "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A-AMENDMENT-001-TRACE-REPLAY-CONTRACT-PATCH.md",
+        "sha256": "c9d3732b37c5a1b56a3af70f49f7d01ead64ee97a8bb333aab0a1c0b23038a0c",
+        "size_bytes": 5175
+      },
+      {
+        "category": "gate1",
+        "path": "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001A.md",
+        "sha256": "8fd315c3fa7228ca00974b1d984e636f6f735340b6392c11d3d38881175f715f",
+        "size_bytes": 9054
+      },
+      {
+        "category": "gate1",
+        "path": "docs/codex/tasks/GATE1-REPLAY-CONSOLIDATION-TASK-CARD-001B-INDEPENDENT-AUDIT.md",
+        "sha256": "c6c710f2f805d82334e4679b848cb9357c765fdf09eeb77670f45ca01abffebe",
+        "size_bytes": 5117
+      },
+      {
+        "category": "gate2",
+        "path": "docs/codex/tasks/GATE2-CONTROLLABILITY-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B.md",
+        "sha256": "b31caf1af94b8a31c7321ebaad5e12542ca7cd700dd45e74b44efb5f712f3791",
+        "size_bytes": 5104
+      },
+      {
+        "category": "gate2",
+        "path": "docs/codex/tasks/GATE2-CONTROLLABILITY-SELF-BOUNDARY-TASK-CARD-001A.md",
+        "sha256": "3b7b02bc096826310674ee253f42127cb208730f186df96ea66f65d7d44ab0ad",
+        "size_bytes": 20873
+      },
+      {
+        "category": "gate3",
+        "path": "docs/codex/tasks/GATE3-VIABILITY-FUNCTIONAL-AFFECT-EXECUTABLE-PREFLIGHT-001B.md",
+        "sha256": "137a645fce948d7dfb387af6846b7e6f80c6986c5d3d143651daf47ac9669c9d",
+        "size_bytes": 3718
+      },
+      {
+        "category": "gate3",
+        "path": "docs/codex/tasks/GATE3-VIABILITY-FUNCTIONAL-AFFECT-TASK-CARD-001A.md",
+        "sha256": "8ab61737f0a9f5df216d56a073da13372c27f716e5e746027d0c9e97c11efc75",
+        "size_bytes": 24687
+      },
+      {
+        "category": "micro_agent_gate0_3",
+        "path": "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3-CANONICAL-MICRO-AGENT-TESTBED-EXECUTABLE-PREFLIGHT-001B.md",
+        "sha256": "a40fb8c15b38baa1b2fa1419abc7f46852cc509d4fded5e3002040eafe131b6f",
+        "size_bytes": 2851
+      },
+      {
+        "category": "micro_agent_gate0_3",
+        "path": "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3-CANONICAL-MICRO-AGENT-TESTBED-TASK-CARD-001A.md",
+        "sha256": "7598535d1199b3cec3cc9a6ae1c563fe7b88a0e0c96c7b044016149f2a8868f5",
+        "size_bytes": 27159
+      }
+    ],
+    "source_summary": "Gate4 scope is derived from existing social representational-gap and social-latent task cards plus Gate0-Gate3 canonical micro-agent and Gate3 viability contracts.",
+    "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+  },
+  "gate4_execution_authorized": false,
+  "gate4_execution_performed": false,
+  "gate4_non_authorization_flags": {
+    "agency_authorized": false,
+    "architecture_correctness_authorized": false,
+    "bridge_runtime_authorized": false,
+    "consciousness_authorized": false,
+    "ego_runtime_implementation_authorized": false,
+    "emotion_authorized": false,
+    "gate4_execution_authorized": false,
+    "implementation_authorized": false,
+    "mechanism_validity_authorized": false,
+    "relationship_learning_authorized": false,
+    "runtime_authorized": false,
+    "selfhood_authorized": false,
+    "stable_user_benefit_authorized": false,
+    "theory_validity_authorized": false
+  },
+  "gate4_rollback_plan": [
+    "preserve failure artifacts",
+    "keep old artifacts read-only",
+    "do not patch distribution to force pass",
+    "do not weaken baselines or claim ceiling"
+  ],
+  "gate4_stop_conditions": [
+    "Gate4 execution starts",
+    "runtime or bridge runtime starts",
+    "EGO runtime implementation starts",
+    "Gate4 semantics must be invented",
+    "baseline, ablation, leakage, replay, or provenance gate fails",
+    "old artifacts mutate",
+    "forbidden stronger claim appears"
+  ],
+  "gate4_trace_replay_requirements": [
+    "serialized_state plus observation replay",
+    "hash-chained trace rows",
+    "shared_state_hash_before_step and shared_state_hash_after_step",
+    "social_prediction_error to social_latent_state update linkage",
+    "social_latent_state update to interaction_policy update linkage"
+  ],
+  "generated_gate4_task_card_path": "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-TASK-CARD-001A.md",
+  "generated_task_card_sha256": "ed8b04957324e4eac84a9753de94177534c06544c96b618ddb89857d35e99b31",
+  "generated_task_card_text": "[omitted: see generated task card path]",
+  "generation_allowed": true,
+  "mechanism_validity_authorized": false,
+  "producer_function": "compute_gate4_generation_decision",
+  "runtime_authorized": false,
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+  "theory_validity_authorized": false
+}

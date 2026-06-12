@@ -1,0 +1,93 @@
+{
+  "aggregation_rule": "resolve required local commits and remote tags exactly",
+  "all_required_anchors_verified": true,
+  "anchors": {
+    "admission_execution": {
+      "anchor_verified": true,
+      "commit": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+      "commit_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+      "expected_verdict": "pass_bounded_admission_execution_001a",
+      "remote_tag": "remote-anchor-bounded-admission-execution-001a-98e51a4",
+      "remote_tag_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f"
+    },
+    "dependency_closure": {
+      "anchor_verified": true,
+      "commit": "01973a538fad9c33ca2c6119a0f2c6b384602f34",
+      "commit_resolved_hash": "01973a538fad9c33ca2c6119a0f2c6b384602f34",
+      "expected_verdict": "evidence_dependency_closure_001a_pass_with_blockers_classified",
+      "remote_tag": "remote-anchor-evidence-dependency-closure-001a-01973a",
+      "remote_tag_resolved_hash": "01973a538fad9c33ca2c6119a0f2c6b384602f34"
+    },
+    "known_failure_triage": {
+      "anchor_verified": true,
+      "commit": "c9bee968069f9d218c0c45a37efba092e4535156",
+      "commit_resolved_hash": "c9bee968069f9d218c0c45a37efba092e4535156",
+      "expected_verdict": "known_failure_triage_001a_pass_with_blockers_classified",
+      "remote_tag": "remote-anchor-known-failure-triage-001a-c9bee9",
+      "remote_tag_resolved_hash": "c9bee968069f9d218c0c45a37efba092e4535156"
+    },
+    "post_admission_routing": {
+      "anchor_verified": true,
+      "commit": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+      "commit_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+      "expected_verdict": "post_admission_routing_001a_pass_with_bounded_next_task",
+      "remote_tag": "remote-anchor-post-admission-routing-001a-4edf5c",
+      "remote_tag_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa"
+    },
+    "repair": {
+      "anchor_verified": true,
+      "commit": "b9fe4f60774cfd2321b3fe5d166123ff96b5f224",
+      "commit_resolved_hash": "b9fe4f60774cfd2321b3fe5d166123ff96b5f224",
+      "expected_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+      "remote_tag": "remote-anchor-old-artifact-side-effect-guard-repair-001a-b9fe4f",
+      "remote_tag_resolved_hash": "b9fe4f60774cfd2321b3fe5d166123ff96b5f224"
+    }
+  },
+  "branch": "codex/meta-theory-scaffold",
+  "code_path_hash": "d583dead88fb06f040f504fdcf8234992cc8ba447d265bfec212b318215a136e",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "verify local commits and remote tags exactly",
+    "artifact_name": "anchor_readback.json",
+    "code_path_hash": "d583dead88fb06f040f504fdcf8234992cc8ba447d265bfec212b318215a136e",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "53f466674c0de439aaf9447dc61b1a73f8007c1d614973297dc8e1e6478343cb",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/anchor_readback.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_anchor_readback",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "git_status_short_branch": [
+    "## codex/meta-theory-scaffold"
+  ],
+  "head": "b46101411af1c847d9edab5b70b344619e11744c",
+  "producer_function": "build_anchor_readback",
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+}

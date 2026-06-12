@@ -1,0 +1,108 @@
+{
+  "aggregation_rule": "materialize route permissions after repair",
+  "code_path_hash": "fadac5a516eb563bfad0aaa2143e58b89c69869a775a89bcb24162b7e8446742",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize post-repair route permissions",
+    "artifact_name": "route_permission_matrix_after_repair.json",
+    "code_path_hash": "fadac5a516eb563bfad0aaa2143e58b89c69869a775a89bcb24162b7e8446742",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "54bb707c3f2924d7036dd2a5df6e6fae0ecbc17ed2fea7ac1af164870b35f3e5",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/route_permission_matrix_after_repair.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_route_permission_matrix_after_repair",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_route_permission_matrix_after_repair",
+  "recommended_route_class": "Gate4_preflight_task_card_drafting_allowed_next",
+  "route_permissions": {
+    "EGO_runtime_implementation_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "Gate4_execution_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "Gate4_preflight_task_card_drafting_allowed_next": {
+      "permission": "allowed_bounded_planning",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "Gate4_preflight_task_card_drafting_blocked_missing_gate4_contract": {
+      "permission": "blocked_current",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure": {
+      "permission": "blocked_current",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "bridge_runtime_preflight_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "no_go_concrete_blocker": {
+      "permission": "blocked_current",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "product_or_companion_behavior_work_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "residual_known_failure_repair_required": {
+      "permission": "blocked_current",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    },
+    "theory_canonicalization_or_coverage_closure_required_only_if_specific_missing_artifact_identified": {
+      "permission": "blocked_current",
+      "reason_codes": [
+        "Gate4_preflight_task_card_drafting_allowed_next"
+      ]
+    }
+  },
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+}

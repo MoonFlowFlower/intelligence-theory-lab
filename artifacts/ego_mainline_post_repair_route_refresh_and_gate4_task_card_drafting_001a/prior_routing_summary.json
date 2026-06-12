@@ -1,0 +1,464 @@
+{
+  "aggregation_rule": "hash and summarize required prior evidence artifacts without mutation",
+  "all_required_files_present": true,
+  "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+  "code_path_hash": "5e94b8e5b9aa1c304492d4ae4e1b4b9baba9d7bcb3d825d13ec3933400206443",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "summarize prior post-admission routing evidence",
+    "artifact_name": "prior_routing_summary.json",
+    "code_path_hash": "5e94b8e5b9aa1c304492d4ae4e1b4b9baba9d7bcb3d825d13ec3933400206443",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "d6dc231c2bfdfce8016abab14d3e13808f450b218a7968f1077b982cab078f0f",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/prior_routing_summary.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "summarize_prior_artifacts",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "payload_extracts": {
+    "allowed_routes": {
+      "aggregation_rule": "copy candidate allowed routes after downstream authorization guard",
+      "allowed_next_routes": [
+        "governance_boundary_continuation",
+        "evidence_dependency_closure",
+        "theory_canonicalization_or_coverage_closure"
+      ],
+      "allowed_route_constraints": {
+        "evidence_dependency_closure": "close missing evidence dependencies without runtime entry",
+        "governance_boundary_continuation": "bounded governance continuation only",
+        "theory_canonicalization_or_coverage_closure": "docs/evidence coverage closure only"
+      },
+      "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+      "code_path_hash": "370b94a61544e5bcf7e1cf28ddab82d436c763c2e8be14b92c0a3cb842b8edac",
+      "computed_evidence_provenance": {
+        "aggregation_rule": "materialize bounded allowed route classes only",
+        "artifact_name": "allowed_routes.json",
+        "code_path_hash": "370b94a61544e5bcf7e1cf28ddab82d436c763c2e8be14b92c0a3cb842b8edac",
+        "input_artifacts": [
+          "routing_decision_matrix.json"
+        ],
+        "output_artifact_hash": "a4fcff014551d3bdd81b4a6bee2f9a9c7e2d354066136d7cb7c58d046d35f320",
+        "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_allowed_routes",
+        "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+          "episode_id": "post_admission_routing",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "producer_function": "build_allowed_routes",
+      "recommended_next_task_class": "evidence_dependency_closure",
+      "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+    },
+    "blocked_routes": {
+      "aggregation_rule": "copy candidate blocked routes and attach missing evidence reasons",
+      "blocked_route_reasons": {
+        "EGO_runtime_implementation": [
+          "runtime readiness evidence",
+          "bridge-runtime authorization evidence",
+          "implementation-specific safety and rollback contract"
+        ],
+        "Gate4_preflight_task_card_drafting": [
+          "separate explicit Gate4 drafting authorization outside this routing task",
+          "upstream evidence-dependency closure showing why Gate4 drafting is the next bounded boundary",
+          "predeclared task card that preserves no Gate4 execution authorization"
+        ],
+        "bridge_runtime_preflight": [
+          "same-agent bridge readiness evidence",
+          "canonical trace/replay contract evidence",
+          "baseline and ablation suite evidence that is not inherited from 001A admission pass"
+        ],
+        "no_go_until_missing_evidence_closed": [
+          "used only when required routing inputs or anchor verification are missing or corrupted"
+        ],
+        "product_or_companion_behavior_work": [
+          "explicit product or companion scope authorization",
+          "relationship/emotion/user-model boundary evidence",
+          "deployment and runtime safety gates outside this lab routing task"
+        ]
+      },
+      "blocked_routes": [
+        "Gate4_preflight_task_card_drafting",
+        "bridge_runtime_preflight",
+        "EGO_runtime_implementation",
+        "product_or_companion_behavior_work",
+        "no_go_until_missing_evidence_closed"
+      ],
+      "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+      "code_path_hash": "c040756551434f902348729293bce9c573b77703b2f7a3b8663ef5594bcfeb5f",
+      "computed_evidence_provenance": {
+        "aggregation_rule": "materialize blocked downstream route classes",
+        "artifact_name": "blocked_routes.json",
+        "code_path_hash": "c040756551434f902348729293bce9c573b77703b2f7a3b8663ef5594bcfeb5f",
+        "input_artifacts": [
+          "routing_decision_matrix.json"
+        ],
+        "output_artifact_hash": "22b9d9b85f18b5701174954b0e611721e079f7a40798cf26d5c8cab34aafb036",
+        "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_blocked_routes",
+        "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+          "episode_id": "post_admission_routing",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "producer_function": "build_blocked_routes",
+      "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+    },
+    "routing_decision_matrix": {
+      "aggregation_rule": "materialize candidate status for every required route class",
+      "baseline_contrast_summary": {
+        "candidate_exceeds_claim_ceiling_baseline": false,
+        "candidate_stricter_than_naive": true
+      },
+      "candidate_routing": {
+        "aggregation_rule": "select only bounded governance route unless every required governance input is present",
+        "allowed_next_routes": [
+          "governance_boundary_continuation",
+          "evidence_dependency_closure",
+          "theory_canonicalization_or_coverage_closure"
+        ],
+        "blocked_routes": [
+          "Gate4_preflight_task_card_drafting",
+          "bridge_runtime_preflight",
+          "EGO_runtime_implementation",
+          "product_or_companion_behavior_work",
+          "no_go_until_missing_evidence_closed"
+        ],
+        "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+        "code_path_hash": "8767b2471af5d2be0942f5aa11e6c8740e4efd7cb2c3376c616493f7439057f1",
+        "computed_reason_codes": [
+          "sealed_anchor_and_remote_tag_verified",
+          "prior_bounded_admission_pass_present",
+          "prior_claim_ceiling_governance_only",
+          "non_proven_list_blocks_readiness_inflation",
+          "artifact_inventory_digest_present",
+          "forbidden_authorization_list_present",
+          "repo_dirty_state_limited_to_intended_001a_paths",
+          "bounded_evidence_dependency_closure_is_next",
+          "runtime_bridge_gate4_routes_remain_blocked",
+          "verdict_only_over_route_blocked"
+        ],
+        "downstream_non_authorization_flags": {
+          "agency_authorized": false,
+          "architecture_correctness_authorized": false,
+          "bridge_runtime_authorized": false,
+          "consciousness_authorized": false,
+          "emotion_authorized": false,
+          "gate4_execution_authorized": false,
+          "implementation_authorized": false,
+          "mechanism_validity_authorized": false,
+          "relationship_learning_authorized": false,
+          "runtime_authorized": false,
+          "selfhood_authorized": false,
+          "stable_user_benefit_authorized": false,
+          "theory_validity_authorized": false
+        },
+        "prior_claim_ceiling_restatement": "bounded admission execution evidence at the governance layer only",
+        "producer_function": "compute_candidate_routing",
+        "recommended_next_task_class": "evidence_dependency_closure",
+        "required_missing_evidence": {
+          "EGO_runtime_implementation": [
+            "runtime readiness evidence",
+            "bridge-runtime authorization evidence",
+            "implementation-specific safety and rollback contract"
+          ],
+          "Gate4_preflight_task_card_drafting": [
+            "separate explicit Gate4 drafting authorization outside this routing task",
+            "upstream evidence-dependency closure showing why Gate4 drafting is the next bounded boundary",
+            "predeclared task card that preserves no Gate4 execution authorization"
+          ],
+          "bridge_runtime_preflight": [
+            "same-agent bridge readiness evidence",
+            "canonical trace/replay contract evidence",
+            "baseline and ablation suite evidence that is not inherited from 001A admission pass"
+          ],
+          "no_go_until_missing_evidence_closed": [
+            "used only when required routing inputs or anchor verification are missing or corrupted"
+          ],
+          "product_or_companion_behavior_work": [
+            "explicit product or companion scope authorization",
+            "relationship/emotion/user-model boundary evidence",
+            "deployment and runtime safety gates outside this lab routing task"
+          ]
+        },
+        "rollback_plan": [
+          "do not patch old artifacts",
+          "do not weaken claim ceiling",
+          "do not convert blocked route into pass",
+          "preserve generated failure artifacts under the 001A artifact directory",
+          "repair only the missing governance input or explicit bounded task card"
+        ],
+        "route_classes_considered": [
+          "governance_boundary_continuation",
+          "evidence_dependency_closure",
+          "Gate4_preflight_task_card_drafting",
+          "theory_canonicalization_or_coverage_closure",
+          "bridge_runtime_preflight",
+          "EGO_runtime_implementation",
+          "product_or_companion_behavior_work",
+          "no_go_until_missing_evidence_closed"
+        ],
+        "route_confidence": {
+          "aggregation_rule": "weighted governance-input support capped below runtime or mechanism confidence",
+          "cap": 0.68,
+          "claim_ceiling_bound": "bounded post-admission routing evidence at governance layer only",
+          "code_path_hash": "fb5b42612e3e228c92aa33e88c4b85b0e5eac33e08fb2868ae999601501d2d8f",
+          "producer_function": "compute_route_confidence",
+          "score": 0.68,
+          "signals": {
+            "anchor_verified": true,
+            "claim_ceiling_present": true,
+            "forbidden_list_present": true,
+            "inventory_present": true,
+            "no_unrelated_dirty_paths": true,
+            "non_proven_complete": true,
+            "prior_verdict_pass": true
+          },
+          "stop_condition_penalty": 0.0
+        },
+        "stop_conditions": [],
+        "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+      },
+      "code_path_hash": "03561f31446f9e53c447f92ed3f322688bf56c173d29907f7c285ba97f038765",
+      "computed_evidence_provenance": {
+        "aggregation_rule": "classify every required route class",
+        "artifact_name": "routing_decision_matrix.json",
+        "code_path_hash": "03561f31446f9e53c447f92ed3f322688bf56c173d29907f7c285ba97f038765",
+        "input_artifacts": [
+          "routing_state.json",
+          "baseline_comparison.json"
+        ],
+        "output_artifact_hash": "7bbc4faf9772543690af770dbd906eb4dd3488a40bc5da3d97d326ac99442a98",
+        "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_routing_decision_matrix",
+        "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+          "episode_id": "post_admission_routing",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "input_anchor_digest": "02ff92cbd1a716cb99f2ed90e7ab071b02e41e8b919cbedaeba7889e0c4e148b",
+      "producer_function": "build_routing_decision_matrix",
+      "route_rows": [
+        {
+          "candidate_status": "allowed",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [],
+          "route_class": "governance_boundary_continuation"
+        },
+        {
+          "candidate_status": "allowed",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [],
+          "route_class": "evidence_dependency_closure"
+        },
+        {
+          "candidate_status": "blocked",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [
+            "separate explicit Gate4 drafting authorization outside this routing task",
+            "upstream evidence-dependency closure showing why Gate4 drafting is the next bounded boundary",
+            "predeclared task card that preserves no Gate4 execution authorization"
+          ],
+          "route_class": "Gate4_preflight_task_card_drafting"
+        },
+        {
+          "candidate_status": "allowed",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [],
+          "route_class": "theory_canonicalization_or_coverage_closure"
+        },
+        {
+          "candidate_status": "blocked",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [
+            "same-agent bridge readiness evidence",
+            "canonical trace/replay contract evidence",
+            "baseline and ablation suite evidence that is not inherited from 001A admission pass"
+          ],
+          "route_class": "bridge_runtime_preflight"
+        },
+        {
+          "candidate_status": "blocked",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [
+            "runtime readiness evidence",
+            "bridge-runtime authorization evidence",
+            "implementation-specific safety and rollback contract"
+          ],
+          "route_class": "EGO_runtime_implementation"
+        },
+        {
+          "candidate_status": "blocked",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [
+            "explicit product or companion scope authorization",
+            "relationship/emotion/user-model boundary evidence",
+            "deployment and runtime safety gates outside this lab routing task"
+          ],
+          "route_class": "product_or_companion_behavior_work"
+        },
+        {
+          "candidate_status": "blocked",
+          "reason_codes": [
+            "sealed_anchor_and_remote_tag_verified",
+            "prior_bounded_admission_pass_present",
+            "prior_claim_ceiling_governance_only",
+            "non_proven_list_blocks_readiness_inflation",
+            "artifact_inventory_digest_present",
+            "forbidden_authorization_list_present",
+            "repo_dirty_state_limited_to_intended_001a_paths",
+            "bounded_evidence_dependency_closure_is_next",
+            "runtime_bridge_gate4_routes_remain_blocked",
+            "verdict_only_over_route_blocked"
+          ],
+          "required_missing_evidence": [
+            "used only when required routing inputs or anchor verification are missing or corrupted"
+          ],
+          "route_class": "no_go_until_missing_evidence_closed"
+        }
+      ],
+      "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+    }
+  },
+  "prior_key": "post_admission_routing",
+  "producer_function": "summarize_prior_artifacts",
+  "required_files": [
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "sha256": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "sha256": "2cca5f4dd43e4ab1ac9653519037e7085143a462715df5acd307d1930be31adf"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "sha256": "675e7302ad77fac710c4ea0f1f0ef81c62620e45db4c871d9401c0eb5877363a"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json",
+      "sha256": "664bd33310a8b0420da130decc93dba66509be48eab24d8fb53f218c30aae3f0"
+    }
+  ],
+  "result_verdict": "post_admission_routing_001a_pass_with_bounded_next_task",
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+}

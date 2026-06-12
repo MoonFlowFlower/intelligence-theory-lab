@@ -1,0 +1,245 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "remove_repair_remote_tag_verification",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "required_anchor_missing_or_mismatch",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "no_go_concrete_blocker",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_full_pytest_observation",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_not_green_or_not_observed",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "substitute_full_pytest_failure",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_not_green_or_not_observed",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_old_artifact_guard_hash_observation",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "old_artifact_guard_regression",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_repair_result_artifact",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "required_prior_artifact_missing",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_known_failure_triage_classification",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "required_prior_artifact_missing",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_previous_dependency_closure_matrix",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "required_prior_artifact_missing",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_claim_ceiling",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "claim_ceiling_missing_or_mismatched",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "substitute_stale_pre_repair_route_matrix_as_current",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_not_green_or_not_observed",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "substitute_targeted_green_full_pytest_fails",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_not_green_or_not_observed",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_gate0_gate3_source_evidence",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "gate4_contract_source_missing_or_ambiguous",
+        "missing_gate4_contract_source_generates_contract_discovery"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_missing_gate4_contract",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "remove_gate4_source_references",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "gate4_contract_source_missing_or_ambiguous",
+        "missing_gate4_contract_source_generates_contract_discovery"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_missing_gate4_contract",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "substitute_ambiguous_gate4_contract",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "gate4_contract_source_missing_or_ambiguous",
+        "missing_gate4_contract_source_generates_contract_discovery"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_missing_gate4_contract",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "substitute_positive_control_unauthorized_readiness_claim",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "unauthorized_positive_claim_control_present",
+        "phase_a_blocked_no_gate4_task_card_generated"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure",
+      "route_refresh_rerun": true
+    },
+    {
+      "ablation_id": "make_gate4_generator_attempt_to_authorize_execution",
+      "forbidden_downstream_authorized": false,
+      "gate4_generation_rerun": true,
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "generator_attempted_forbidden_gate4_execution_authorization"
+      ],
+      "resulting_generation_allowed": false,
+      "resulting_route_class": "Gate4_preflight_task_card_drafting_allowed_next",
+      "route_refresh_rerun": true
+    }
+  ],
+  "aggregation_rule": "rerun route refresh and conditional generation under real state interventions",
+  "all_ablations_reran_gate4_generation": true,
+  "all_ablations_reran_route_refresh": true,
+  "all_required_degradations_observed": true,
+  "code_path_hash": "6410f390abdd37753c45cc44dfee5e97db47f9f64dc0e576e4ddb6b4d9f9c690",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "rerun route and generation under interventions",
+    "artifact_name": "ablation_report.json",
+    "code_path_hash": "6410f390abdd37753c45cc44dfee5e97db47f9f64dc0e576e4ddb6b4d9f9c690",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "2b14dba6d58b00485f159bbf6b33c46db251ec599987fae9d528e92568b0ffbb",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/ablation_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "run_ablation_suite",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "no_ablation_authorized_forbidden_downstream": true,
+  "producer_function": "run_ablation_suite",
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+}

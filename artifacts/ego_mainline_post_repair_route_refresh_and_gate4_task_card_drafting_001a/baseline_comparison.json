@@ -1,0 +1,124 @@
+{
+  "aggregation_rule": "invoke five independent callable baselines and compare candidate route",
+  "baseline_results": {
+    "claim_ceiling_baseline": {
+      "blocks_gate4_execution": true,
+      "blocks_runtime": true,
+      "blocks_stronger_claims": true,
+      "claim_ceiling_preserved": true,
+      "downstream_non_authorization_flags": {
+        "agency_authorized": false,
+        "architecture_correctness_authorized": false,
+        "bridge_runtime_authorized": false,
+        "consciousness_authorized": false,
+        "ego_runtime_implementation_authorized": false,
+        "emotion_authorized": false,
+        "gate4_execution_authorized": false,
+        "implementation_authorized": false,
+        "mechanism_validity_authorized": false,
+        "relationship_learning_authorized": false,
+        "runtime_authorized": false,
+        "selfhood_authorized": false,
+        "stable_user_benefit_authorized": false,
+        "theory_validity_authorized": false
+      },
+      "producer_function": "claim_ceiling_baseline"
+    },
+    "gate_contract_source_baseline": {
+      "allows_gate4_task_card_drafting": true,
+      "gate4_semantics_invented": false,
+      "producer_function": "gate_contract_source_baseline",
+      "source_paths": [
+        "artifacts/gate4_social_latent_inference_001b/result.json",
+        "artifacts/gate4_social_representational_gap_preflight_001b/result.json",
+        "docs/GATE4-SOCIAL-LATENT-INFERENCE-EXECUTABLE-PREFLIGHT-001B.md",
+        "docs/GATE4-SOCIAL-LATENT-INFERENCE-TASK-CARD-001A.md",
+        "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-001A.md",
+        "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-EXECUTABLE-001B.md",
+        "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md"
+      ]
+    },
+    "naive_full_suite_green_baseline": {
+      "allows_gate4_task_card_drafting": true,
+      "producer_function": "naive_full_suite_green_baseline",
+      "unsafe_tendency": true,
+      "uses_only_full_pytest": true
+    },
+    "stale_pre_repair_matrix_baseline": {
+      "allows_gate4_task_card_drafting": false,
+      "producer_function": "stale_pre_repair_matrix_baseline",
+      "stale_conservative_tendency": true,
+      "uses_only_pre_repair_dependency_matrix": true
+    },
+    "strict_anchor_full_suite_guard_baseline": {
+      "allows_next_planning_task": true,
+      "prerequisites": {
+        "anchors": true,
+        "full_pytest": true,
+        "old_artifact_guard": true
+      },
+      "producer_function": "strict_anchor_full_suite_guard_baseline"
+    }
+  },
+  "baselines_invoked": [
+    "naive_full_suite_green_baseline",
+    "stale_pre_repair_matrix_baseline",
+    "strict_anchor_full_suite_guard_baseline",
+    "claim_ceiling_baseline",
+    "gate_contract_source_baseline"
+  ],
+  "candidate_decision": {
+    "gate4_generation_allowed": true,
+    "gate4_task_card_drafting_permission": true,
+    "post_repair_route_refresh_verdict": "Gate4_preflight_task_card_drafting_allowed_next"
+  },
+  "candidate_decision_looser_than_strict_baseline": false,
+  "candidate_exceeds_claim_ceiling_baseline": false,
+  "candidate_preserves_claim_ceiling": true,
+  "code_path_hash": "ed7560c5908c6f98c91212db0e04acb7a8cab9506200535bf40e73174b05ebcd",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "invoke five callable baselines",
+    "artifact_name": "baseline_comparison.json",
+    "code_path_hash": "ed7560c5908c6f98c91212db0e04acb7a8cab9506200535bf40e73174b05ebcd",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "73d6d3986165b54350e62be3a73840406160579884bcc733ed9831344650b855",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/baseline_comparison.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_baseline_comparison",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "claim_ceiling_blocks_execution_and_stronger_claims",
+    "naive_green_baseline_lacks_anchor_guard_source_checks"
+  ],
+  "producer_function": "build_baseline_comparison",
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+}

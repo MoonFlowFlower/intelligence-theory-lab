@@ -1,0 +1,431 @@
+{
+  "ablation_summary": {
+    "all_ablations_reran_gate4_generation": true,
+    "all_ablations_reran_route_refresh": true,
+    "no_ablation_authorized_forbidden_downstream": true
+  },
+  "aggregation_rule": "aggregate route, generation, baseline, ablation, leakage, replay, provenance, and old-artifact gates",
+  "anchor_readback": {
+    "aggregation_rule": "resolve required local commits and remote tags exactly",
+    "all_required_anchors_verified": true,
+    "anchors": {
+      "admission_execution": {
+        "anchor_verified": true,
+        "commit": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "commit_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "expected_verdict": "pass_bounded_admission_execution_001a",
+        "remote_tag": "remote-anchor-bounded-admission-execution-001a-98e51a4",
+        "remote_tag_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f"
+      },
+      "dependency_closure": {
+        "anchor_verified": true,
+        "commit": "01973a538fad9c33ca2c6119a0f2c6b384602f34",
+        "commit_resolved_hash": "01973a538fad9c33ca2c6119a0f2c6b384602f34",
+        "expected_verdict": "evidence_dependency_closure_001a_pass_with_blockers_classified",
+        "remote_tag": "remote-anchor-evidence-dependency-closure-001a-01973a",
+        "remote_tag_resolved_hash": "01973a538fad9c33ca2c6119a0f2c6b384602f34"
+      },
+      "known_failure_triage": {
+        "anchor_verified": true,
+        "commit": "c9bee968069f9d218c0c45a37efba092e4535156",
+        "commit_resolved_hash": "c9bee968069f9d218c0c45a37efba092e4535156",
+        "expected_verdict": "known_failure_triage_001a_pass_with_blockers_classified",
+        "remote_tag": "remote-anchor-known-failure-triage-001a-c9bee9",
+        "remote_tag_resolved_hash": "c9bee968069f9d218c0c45a37efba092e4535156"
+      },
+      "post_admission_routing": {
+        "anchor_verified": true,
+        "commit": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "commit_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "expected_verdict": "post_admission_routing_001a_pass_with_bounded_next_task",
+        "remote_tag": "remote-anchor-post-admission-routing-001a-4edf5c",
+        "remote_tag_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa"
+      },
+      "repair": {
+        "anchor_verified": true,
+        "commit": "b9fe4f60774cfd2321b3fe5d166123ff96b5f224",
+        "commit_resolved_hash": "b9fe4f60774cfd2321b3fe5d166123ff96b5f224",
+        "expected_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+        "remote_tag": "remote-anchor-old-artifact-side-effect-guard-repair-001a-b9fe4f",
+        "remote_tag_resolved_hash": "b9fe4f60774cfd2321b3fe5d166123ff96b5f224"
+      }
+    },
+    "branch": "codex/meta-theory-scaffold",
+    "code_path_hash": "d583dead88fb06f040f504fdcf8234992cc8ba447d265bfec212b318215a136e",
+    "git_status_short_branch": [
+      "## codex/meta-theory-scaffold"
+    ],
+    "head": "b46101411af1c847d9edab5b70b344619e11744c",
+    "producer_function": "build_anchor_readback",
+    "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+  },
+  "baseline_summary": {
+    "baselines_invoked": [
+      "naive_full_suite_green_baseline",
+      "stale_pre_repair_matrix_baseline",
+      "strict_anchor_full_suite_guard_baseline",
+      "claim_ceiling_baseline",
+      "gate_contract_source_baseline"
+    ],
+    "candidate_preserves_claim_ceiling": true
+  },
+  "blocker_resolution_summary": {
+    "anchors_verified": true,
+    "claim_ceiling_preserved": true,
+    "full_pytest_green": true,
+    "gate4_contract_source_sufficient": true,
+    "old_artifact_guard_clean": true,
+    "prior_artifacts_present": true,
+    "targeted_governance_tests_green": true
+  },
+  "branch": "codex/meta-theory-scaffold",
+  "claim_ceiling": "bounded post-repair route-refresh and Gate4 preflight task-card drafting evidence at governance/planning layer only",
+  "code_path_hash": "2d243ae2e876eadfd0283eefc3cc12621962fb59435a3d3b0b11dcd36b6e7b11",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "aggregate all gates into final verdict",
+    "artifact_name": "result.json",
+    "code_path_hash": "2d243ae2e876eadfd0283eefc3cc12621962fb59435a3d3b0b11dcd36b6e7b11",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "d11844c3f2eef93a7cb0123f1cf0fc99b00e2c14fb07f25fa36c3d6e51bafc9f",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/result.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_result",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "all_required_anchors_verified",
+    "targeted_governance_tests_green",
+    "full_pytest_green",
+    "old_artifact_guard_clean",
+    "required_prior_artifacts_present",
+    "gate4_contract_source_sufficient",
+    "claim_ceiling_preserved",
+    "phase_a_allowed_and_gate4_source_sufficient"
+  ],
+  "current_test_status_matrix": {
+    "aggregation_rule": "aggregate targeted repair, triage, dependency, routing, and full pytest observations",
+    "all_targeted_tests_passed": true,
+    "code_path_hash": "6c7e8c0c7f0b083aa6995b6ff7ab697943ab48f1a6f8d900323d46092319eb6e",
+    "full_pytest_mode": "executed",
+    "full_pytest_passed": true,
+    "producer_function": "build_current_test_status_matrix",
+    "targeted_tests": {
+      "evidence_dependency_closure": {
+        "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_evidence_dependency_closure_001a.py",
+        "exit_code": 0,
+        "label": "evidence_dependency_closure",
+        "mode": "executed",
+        "passed": true,
+        "producer_function": "_run_pytest_command",
+        "stderr_tail": "",
+        "stdout_tail": "...........                                                              [100%]\n11 passed in 0.37s\n",
+        "summary": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 11,
+          "skipped": 0,
+          "xfailed": 0
+        }
+      },
+      "known_failure_triage": {
+        "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_known_failure_triage_001a.py",
+        "exit_code": 0,
+        "label": "known_failure_triage",
+        "mode": "executed",
+        "passed": true,
+        "producer_function": "_run_pytest_command",
+        "stderr_tail": "",
+        "stdout_tail": "...........                                                              [100%]\n11 passed in 0.27s\n",
+        "summary": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 11,
+          "skipped": 0,
+          "xfailed": 0
+        }
+      },
+      "old_artifact_repair": {
+        "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+        "exit_code": 0,
+        "label": "old_artifact_repair",
+        "mode": "executed",
+        "passed": true,
+        "producer_function": "_run_pytest_command",
+        "stderr_tail": "",
+        "stdout_tail": "...                                                                      [100%]\n3 passed in 10.67s\n",
+        "summary": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 3,
+          "skipped": 0,
+          "xfailed": 0
+        }
+      },
+      "post_admission_routing": {
+        "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_post_admission_routing_001a.py",
+        "exit_code": 0,
+        "label": "post_admission_routing",
+        "mode": "executed",
+        "passed": true,
+        "producer_function": "_run_pytest_command",
+        "stderr_tail": "",
+        "stdout_tail": ".........                                                                [100%]\n9 passed in 0.23s\n",
+        "summary": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 9,
+          "skipped": 0,
+          "xfailed": 0
+        }
+      }
+    },
+    "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+  },
+  "downstream_non_authorization_flags": {
+    "agency_authorized": false,
+    "architecture_correctness_authorized": false,
+    "bridge_runtime_authorized": false,
+    "consciousness_authorized": false,
+    "ego_runtime_implementation_authorized": false,
+    "emotion_authorized": false,
+    "gate4_execution_authorized": false,
+    "implementation_authorized": false,
+    "mechanism_validity_authorized": false,
+    "relationship_learning_authorized": false,
+    "runtime_authorized": false,
+    "selfhood_authorized": false,
+    "stable_user_benefit_authorized": false,
+    "theory_validity_authorized": false
+  },
+  "explicit_non_authorization_statement": "Gate4 execution remains blocked. This planning artifact does not authorize runtime, bridge runtime, implementation, mechanism validity, theory validity, architecture correctness, agency, selfhood, consciousness, emotion, relationship learning, stable user benefit, or future runtime correctness.",
+  "full_pytest_report": {
+    "aggregation_rule": "materialize current full pytest command result",
+    "code_path_hash": "7416393a930e0f8350866552bdbdbf791c3936b6cc44b6bd01de990027d46543",
+    "full_pytest": {
+      "command": "C:\\Python313\\python.exe -m pytest -q",
+      "exit_code": 0,
+      "label": "full_pytest",
+      "mode": "executed",
+      "passed": true,
+      "producer_function": "_run_pytest_command",
+      "stderr_tail": "",
+      "stdout_tail": "........................................................................ [ 10%]\n........................................................................ [ 20%]\n........................................................................ [ 31%]\n........................................................................ [ 41%]\n........................................................................ [ 52%]\n........................................................................ [ 62%]\n........................................................................ [ 72%]\n........................................................................ [ 83%]\n........................................................................ [ 93%]\n............................................                             [100%]\n692 passed in 143.33s (0:02:23)\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 692,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    "passed": true,
+    "producer_function": "build_full_pytest_report",
+    "summary": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 692,
+      "skipped": 0,
+      "xfailed": 0
+    },
+    "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+  },
+  "gate4_contract_source_summary": "Gate4 scope is derived from existing social representational-gap and social-latent task cards plus Gate0-Gate3 canonical micro-agent and Gate3 viability contracts.",
+  "gate4_execution_performed": false,
+  "gate4_task_card_drafting_permission": true,
+  "gate4_task_card_generated": true,
+  "generated_gate4_task_card_path": "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-TASK-CARD-001A.md",
+  "head": "b46101411af1c847d9edab5b70b344619e11744c",
+  "layer": "evidence-governance / anti-Zeno route refresh plus conditional Gate4 preflight task-card drafting only",
+  "leakage_summary": {
+    "generated_artifact_unauthorized_positive_hits": [],
+    "positive_control_detected": true
+  },
+  "old_artifact_guard_status": {
+    "aggregation_rule": "compare protected old artifact hashes before and after current observations",
+    "changed_old_artifact_hashes": {},
+    "code_path_hash": "5e9c69a7db4fa497ef195a7d46987c1feeadd28b60e9809ef61d51765b8e543f",
+    "old_artifact_mutation_detected": false,
+    "old_sealed_artifacts_unchanged": true,
+    "producer_function": "build_old_artifact_guard_status",
+    "protected_old_artifact_hashes_after": {
+      "artifacts/ego_mainline_admission_execution_001a/result.json": "490d8fd671e22834bbbb519e07039a2c60df6bee48da643592675630683cf391",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json": "3472ce02472d3caff74a088c34c2c38cdfbdeb7015713e3777eb2c6ee1ab85fb",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json": "3e138928b188733cdecdf135671f08f5a66d4b7190a0799563beef36cf99ea0a",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json": "22dae43d6c01e500727f79526ebe4ebe2728aa47681d0ccb550e775189c2274d",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json": "82c757215680a1fd48cf6755492d9362dc4e513f9b83c799a896c41e85855a27",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json": "c3e77814d592dd75ea3f7ecb22cc2c0a417ef14ad1a0d90d3819006e38f5d714",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json": "2b26ae9f892aee570d9be8380286eb4d2b5e313d9b9953d35e1ee6a4cd2d0f8a",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json": "6997383007f3b6da9495abb6c8a81e76fa992d3f9b4f36b3b61bd25286bc6234",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json": "00c9eca2aef3620e9ad7359b09b0f2d994581df2e9b939b0d3acfdd80fb73f21",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json": "ae8361f8180d9c50ada991d2a080f971a2984290e36430773da541f2b31e22f1",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json": "4404521998e13bf82431a7ac3205a810f83f964e0620bdc301a10127df6379b8",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json": "dfd1ac5fe14db55d60383a33a9b3fa4ffbb06370d8fea12e4dbbec3af49ad4b2",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json": "da1fb32a87bbc0bf26f194b16eb63ab0493b873fc3ceef1328c5b6142c499635",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json": "ea959032bc73aa03de52865f89b6675c6dfd8eee337abc499b27a2a3fcf56db3",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json": "664bd33310a8b0420da130decc93dba66509be48eab24d8fb53f218c30aae3f0",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json": "675e7302ad77fac710c4ea0f1f0ef81c62620e45db4c871d9401c0eb5877363a",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json": "2cca5f4dd43e4ab1ac9653519037e7085143a462715df5acd307d1930be31adf",
+      "docs/GATE4-SOCIAL-LATENT-INFERENCE-TASK-CARD-001A.md": "a7471f678ce6a8d38990c21e12913df27f540da646f749d371023c7ad308af54",
+      "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-001A.md": "1b79d4851b3d6a113669b7a20c558052202466596d218cbdfa3b19235170cafd",
+      "docs/codex/tasks/GATE3-VIABILITY-FUNCTIONAL-AFFECT-TASK-CARD-001A.md": "8ab61737f0a9f5df216d56a073da13372c27f716e5e746027d0c9e97c11efc75",
+      "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3-CANONICAL-MICRO-AGENT-TESTBED-TASK-CARD-001A.md": "7598535d1199b3cec3cc9a6ae1c563fe7b88a0e0c96c7b044016149f2a8868f5"
+    },
+    "protected_old_artifact_hashes_before": {
+      "artifacts/ego_mainline_admission_execution_001a/result.json": "490d8fd671e22834bbbb519e07039a2c60df6bee48da643592675630683cf391",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json": "3472ce02472d3caff74a088c34c2c38cdfbdeb7015713e3777eb2c6ee1ab85fb",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json": "3e138928b188733cdecdf135671f08f5a66d4b7190a0799563beef36cf99ea0a",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json": "22dae43d6c01e500727f79526ebe4ebe2728aa47681d0ccb550e775189c2274d",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json": "82c757215680a1fd48cf6755492d9362dc4e513f9b83c799a896c41e85855a27",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json": "c3e77814d592dd75ea3f7ecb22cc2c0a417ef14ad1a0d90d3819006e38f5d714",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json": "2b26ae9f892aee570d9be8380286eb4d2b5e313d9b9953d35e1ee6a4cd2d0f8a",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json": "6997383007f3b6da9495abb6c8a81e76fa992d3f9b4f36b3b61bd25286bc6234",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json": "00c9eca2aef3620e9ad7359b09b0f2d994581df2e9b939b0d3acfdd80fb73f21",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json": "ae8361f8180d9c50ada991d2a080f971a2984290e36430773da541f2b31e22f1",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json": "4404521998e13bf82431a7ac3205a810f83f964e0620bdc301a10127df6379b8",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json": "dfd1ac5fe14db55d60383a33a9b3fa4ffbb06370d8fea12e4dbbec3af49ad4b2",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json": "da1fb32a87bbc0bf26f194b16eb63ab0493b873fc3ceef1328c5b6142c499635",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json": "ea959032bc73aa03de52865f89b6675c6dfd8eee337abc499b27a2a3fcf56db3",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json": "664bd33310a8b0420da130decc93dba66509be48eab24d8fb53f218c30aae3f0",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json": "675e7302ad77fac710c4ea0f1f0ef81c62620e45db4c871d9401c0eb5877363a",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json": "2cca5f4dd43e4ab1ac9653519037e7085143a462715df5acd307d1930be31adf",
+      "docs/GATE4-SOCIAL-LATENT-INFERENCE-TASK-CARD-001A.md": "a7471f678ce6a8d38990c21e12913df27f540da646f749d371023c7ad308af54",
+      "docs/GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-001A.md": "1b79d4851b3d6a113669b7a20c558052202466596d218cbdfa3b19235170cafd",
+      "docs/codex/tasks/GATE3-VIABILITY-FUNCTIONAL-AFFECT-TASK-CARD-001A.md": "8ab61737f0a9f5df216d56a073da13372c27f716e5e746027d0c9e97c11efc75",
+      "docs/codex/tasks/R-G-GATE0-GATE1-GATE2-GATE3-CANONICAL-MICRO-AGENT-TESTBED-TASK-CARD-001A.md": "7598535d1199b3cec3cc9a6ae1c563fe7b88a0e0c96c7b044016149f2a8868f5"
+    },
+    "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+  },
+  "post_repair_route_refresh_verdict": "Gate4_preflight_task_card_drafting_allowed_next",
+  "producer_function": "build_result",
+  "provenance_summary": {
+    "all_reported_values_have_callable_provenance": true
+  },
+  "recommended_next_bounded_task": "EGO-MAINLINE-GATE4-PREFLIGHT-TASK-CARD-001A",
+  "replay_summary": {
+    "recomputed_from_serialized_state_and_observation": true,
+    "replay_matches_original_decision": true
+  },
+  "residual_blocker_summary": [],
+  "rollback_plan": [
+    "do not repair tests inside this task",
+    "do not patch old sealed artifacts",
+    "do not weaken claim ceilings",
+    "do not execute Gate4",
+    "do not authorize runtime, bridge runtime, or EGO runtime implementation"
+  ],
+  "route_permission_matrix_summary": {
+    "route_permissions": {
+      "EGO_runtime_implementation_blocked": {
+        "permission": "blocked",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "Gate4_execution_blocked": {
+        "permission": "blocked",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "Gate4_preflight_task_card_drafting_allowed_next": {
+        "permission": "allowed_bounded_planning",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "Gate4_preflight_task_card_drafting_blocked_missing_gate4_contract": {
+        "permission": "blocked_current",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "Gate4_preflight_task_card_drafting_blocked_residual_governance_failure": {
+        "permission": "blocked_current",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "bridge_runtime_preflight_blocked": {
+        "permission": "blocked",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "no_go_concrete_blocker": {
+        "permission": "blocked_current",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "product_or_companion_behavior_work_blocked": {
+        "permission": "blocked",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "residual_known_failure_repair_required": {
+        "permission": "blocked_current",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      },
+      "theory_canonicalization_or_coverage_closure_required_only_if_specific_missing_artifact_identified": {
+        "permission": "blocked_current",
+        "reason_codes": [
+          "Gate4_preflight_task_card_drafting_allowed_next"
+        ]
+      }
+    }
+  },
+  "stop_conditions_triggered": [],
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+  "verdict": "post_repair_route_refresh_and_gate4_task_card_drafting_001a_pass_gate4_preflight_task_card_drafted",
+  "what_this_does_not_prove": [
+    "Gate4 readiness",
+    "runtime readiness",
+    "bridge readiness",
+    "EGO readiness",
+    "mechanism validity",
+    "theory validity",
+    "architecture correctness",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "relationship learning",
+    "stable user benefit",
+    "future runtime correctness"
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "aggregation_rule": "hash and summarize required prior evidence artifacts without mutation",
+  "all_required_files_present": true,
+  "claim_ceiling": "bounded evidence-hygiene repair evidence at governance layer only",
+  "code_path_hash": "5e94b8e5b9aa1c304492d4ae4e1b4b9baba9d7bcb3d825d13ec3933400206443",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "summarize prior repair evidence",
+    "artifact_name": "prior_repair_evidence_summary.json",
+    "code_path_hash": "5e94b8e5b9aa1c304492d4ae4e1b4b9baba9d7bcb3d825d13ec3933400206443",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A.md",
+      "git rev-parse",
+      "git ls-remote",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/blocker_severity_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/missing_dependencies.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+      "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json"
+    ],
+    "output_artifact_hash": "dc2a5c00979fd45889f15129ad4639902b2247bd8ab00e948944e4d5069a203b",
+    "output_artifact_path": "artifacts/ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a/prior_repair_evidence_summary.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "summarize_prior_artifacts",
+    "run_id": "ego_mainline_post_repair_route_refresh_and_gate4_task_card_drafting_001a_83b53e3421981663",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A",
+      "episode_id": "post_repair_route_refresh",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "payload_extracts": {
+    "before_after_hash_comparison": {
+      "aggregation_rule": "old sealed artifacts pass only when before/after sha256 maps match exactly",
+      "changed_old_artifact_paths": [],
+      "computed_evidence_provenance": {
+        "aggregation_rule": "compare protected old artifact hashes before and after repair checks",
+        "artifact_name": "before_after_hash_comparison.json",
+        "code_path_hash": "42f3b7139a40e78b8298b92afe9936db2517d1614beb079aac4e166853f78df0",
+        "input_artifacts": [
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+          "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+          "known failed pytest node ids",
+          "callable validators"
+        ],
+        "output_artifact_hash": "c5ca6b83cb00475645874034e8f9af08af655de06cd6cbb0d0bf67bc6b7a88a6",
+        "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_before_after_hash_comparison",
+        "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+          "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "old_sealed_artifacts_unchanged": true,
+      "producer_function": "build_before_after_hash_comparison",
+      "protected_hashes_after": {
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+        "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf",
+        "artifacts/ego_mainline_known_failure_triage_001a/result.json": "6997383007f3b6da9495abb6c8a81e76fa992d3f9b4f36b3b61bd25286bc6234",
+        "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f"
+      },
+      "protected_hashes_before": {
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+        "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf",
+        "artifacts/ego_mainline_known_failure_triage_001a/result.json": "6997383007f3b6da9495abb6c8a81e76fa992d3f9b4f36b3b61bd25286bc6234",
+        "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f"
+      },
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    },
+    "downstream_route_impact": {
+      "aggregation_rule": "preserve downstream non-authorization regardless of repair verdict",
+      "computed_evidence_provenance": {
+        "aggregation_rule": "derive downstream route impact and non-authorization flags",
+        "artifact_name": "downstream_route_impact_matrix.json",
+        "code_path_hash": "988fc22712b8aa7c00b64b90efd3cb374dd94021f930401c4d64cfd065d392e0",
+        "input_artifacts": [
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+          "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+          "known failed pytest node ids",
+          "callable validators"
+        ],
+        "output_artifact_hash": "ef76d48dabe9d0e5c989a352faed0773552d2a6714604a5d5573b9b18520fde5",
+        "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_downstream_route_impact_matrix",
+        "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+          "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "non_authorization_flags": {
+        "agency_authorized": false,
+        "architecture_correctness_authorized": false,
+        "bridge_runtime_authorized": false,
+        "consciousness_authorized": false,
+        "emotion_authorized": false,
+        "gate4_execution_authorized": false,
+        "implementation_authorized": false,
+        "mechanism_validity_authorized": false,
+        "relationship_learning_authorized": false,
+        "runtime_authorized": false,
+        "selfhood_authorized": false,
+        "stable_user_benefit_authorized": false,
+        "theory_validity_authorized": false
+      },
+      "producer_function": "build_downstream_route_impact_matrix",
+      "repair_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+      "route_impact": {
+        "EGO_runtime": "blocked",
+        "Gate4": "blocked",
+        "bounded_evidence_hygiene_followup": "allowed_bounded",
+        "bridge_runtime": "blocked",
+        "mechanism_validity": "blocked",
+        "theory_validity": "blocked"
+      },
+      "safe_next_bounded_task": "bounded_post_repair_dependency_closure_refresh_or_human_gate_review",
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    },
+    "full_pytest_summary": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 682,
+      "skipped": 0,
+      "xfailed": 0
+    },
+    "old_artifact_write_guard": {
+      "aggregation_rule": "declare and hash-verify old sealed artifact write exclusion",
+      "computed_evidence_provenance": {
+        "aggregation_rule": "prove output paths exclude old sealed artifact paths",
+        "artifact_name": "old_artifact_write_guard_report.json",
+        "code_path_hash": "8ad14bae4922e35a39aeb8fe8a02c8adeca218bae5a95457be9b710ba4a8e524",
+        "input_artifacts": [
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+          "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+          "known failed pytest node ids",
+          "callable validators"
+        ],
+        "output_artifact_hash": "d21f005b1c9fecc6fe823f8fc3b6bb0200035854518e37b3c15c1e76e36e9535",
+        "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_old_artifact_write_guard_report",
+        "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+          "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "guard_enabled": true,
+      "old_artifact_write_allowed": false,
+      "producer_function": "build_old_artifact_write_guard_report",
+      "repair_output_is_current_task_artifact_dir": true,
+      "repair_output_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a",
+      "sealed_artifact_paths_guarded": [
+        "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+        "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+        "artifacts/ego_mainline_known_failure_triage_001a/result.json"
+      ],
+      "sealed_output_paths_written": [],
+      "strict_no_old_artifact_write_guard_passed": true,
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    },
+    "residual_failure_classification": {
+      "aggregation_rule": "classify residual failures from isolated, targeted, and full-suite observations",
+      "computed_evidence_provenance": {
+        "aggregation_rule": "classify residual failures from observed test reports",
+        "artifact_name": "residual_failure_classification.json",
+        "code_path_hash": "af33ef390d821716f036454b514f1d729a89aad27662a90ba55978ff15d9e710",
+        "input_artifacts": [
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+          "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+          "known failed pytest node ids",
+          "callable validators"
+        ],
+        "output_artifact_hash": "a0fa6a41e03e95d35a3cb920044dafe2fab69ae9a6b7123cd86c0974389e4358",
+        "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+        "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+        "producer_function": "build_residual_failure_classification",
+        "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+        "seed_context_episode_ids": {
+          "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+          "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+          "seed": "not_used",
+          "unused_seed_blocking_check": "no stochastic seed used"
+        }
+      },
+      "full_pytest_status": "passed",
+      "known_failure_node_rows": [
+        {
+          "exit_code": 0,
+          "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+          "status": "passed"
+        },
+        {
+          "exit_code": 0,
+          "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+          "status": "passed"
+        },
+        {
+          "exit_code": 0,
+          "nodeid": "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+          "status": "passed"
+        },
+        {
+          "exit_code": 0,
+          "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+          "status": "passed"
+        }
+      ],
+      "producer_function": "build_residual_failure_classification",
+      "residual_blockers": [],
+      "targeted_suite_status": "passed",
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green"
+    }
+  },
+  "prior_key": "repair",
+  "producer_function": "summarize_prior_artifacts",
+  "required_files": [
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+      "sha256": "ea959032bc73aa03de52865f89b6675c6dfd8eee337abc499b27a2a3fcf56db3"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "sha256": "4404521998e13bf82431a7ac3205a810f83f964e0620bdc301a10127df6379b8"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "sha256": "da1fb32a87bbc0bf26f194b16eb63ab0493b873fc3ceef1328c5b6142c499635"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "sha256": "ae8361f8180d9c50ada991d2a080f971a2984290e36430773da541f2b31e22f1"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "sha256": "dfd1ac5fe14db55d60383a33a9b3fa4ffbb06370d8fea12e4dbbec3af49ad4b2"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "sha256": "00c9eca2aef3620e9ad7359b09b0f2d994581df2e9b939b0d3acfdd80fb73f21"
+    }
+  ],
+  "result_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+  "task_id": "EGO-MAINLINE-POST-REPAIR-ROUTE-REFRESH-AND-GATE4-PREFLIGHT-TASK-CARD-DRAFTING-001A"
+}
