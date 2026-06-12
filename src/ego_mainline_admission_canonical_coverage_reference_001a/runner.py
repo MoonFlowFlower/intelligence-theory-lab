@@ -721,6 +721,7 @@ def search_existing_reference_contract(root: Path) -> dict[str, Any]:
         and row["blocks_implementation_authorization"]
         and row["prevents_matrix_duplication"]
         and row["requires_actionability_revalidation"]
+        and not _is_downstream_readback_or_trace(row["path"])
     ]
     return {
         "task_id": TASK_ID,
@@ -731,6 +732,16 @@ def search_existing_reference_contract(root: Path) -> dict[str, Any]:
         "excluded_paths": [str(DOC_PATH), str(ARTIFACT_DIR)],
         "validation_rule": "equivalent contract requires sealed commit/tag, implementation block, matrix duplication block, and actionability revalidation",
     }
+
+
+def _is_downstream_readback_or_trace(path: str) -> bool:
+    normalized = path.replace("\\", "/").lower()
+    name = normalized.rsplit("/", 1)[-1]
+    return (
+        "admission_execution" in normalized
+        or "execution_preflight" in normalized
+        or any(token in name for token in ["trace", "readback", "evaluation"])
+    )
 
 
 def validate_reference_contract(

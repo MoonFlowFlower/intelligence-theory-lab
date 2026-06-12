@@ -1,0 +1,83 @@
+{
+  "aggregation_rule": "compare candidate against targeted-only, restore-after-mutation, strict write guard, and claim ceiling baselines",
+  "baseline_results": {
+    "claim_ceiling_baseline": {
+      "aggregation_rule": "downstream claims remain blocked regardless of repair status",
+      "blocks_downstream_authorization": true,
+      "claim_ceiling": "bounded evidence-hygiene repair evidence at governance layer only",
+      "non_authorization_flags": {
+        "agency_authorized": false,
+        "architecture_correctness_authorized": false,
+        "bridge_runtime_authorized": false,
+        "consciousness_authorized": false,
+        "emotion_authorized": false,
+        "gate4_execution_authorized": false,
+        "implementation_authorized": false,
+        "mechanism_validity_authorized": false,
+        "relationship_learning_authorized": false,
+        "runtime_authorized": false,
+        "selfhood_authorized": false,
+        "stable_user_benefit_authorized": false,
+        "theory_validity_authorized": false
+      },
+      "producer_function": "claim_ceiling_baseline"
+    },
+    "naive_restore_after_mutation_baseline": {
+      "aggregation_rule": "classify restore-after-mutation as unsafe baseline",
+      "allows_old_artifact_mutation_then_restore": true,
+      "candidate_prevents_instead": true,
+      "producer_function": "naive_restore_after_mutation_baseline",
+      "unsafe_tendency": true
+    },
+    "naive_targeted_repair_baseline": {
+      "aggregation_rule": "targeted known-node result only",
+      "misses_full_suite_order_effects": true,
+      "producer_function": "naive_targeted_repair_baseline",
+      "unsafe_tendency": true,
+      "would_pass_if_isolated_nodes_pass": true
+    },
+    "strict_no_old_artifact_write_baseline": {
+      "aggregation_rule": "pass only with no sealed output paths written and unchanged hashes",
+      "passes": true,
+      "producer_function": "strict_no_old_artifact_write_baseline",
+      "sealed_output_paths_written": []
+    }
+  },
+  "baselines_invoked": [
+    "naive_targeted_repair_baseline",
+    "naive_restore_after_mutation_baseline",
+    "strict_no_old_artifact_write_baseline",
+    "claim_ceiling_baseline"
+  ],
+  "candidate_exceeds_claim_ceiling_baseline": false,
+  "candidate_result": {
+    "stop_conditions": [],
+    "verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green"
+  },
+  "candidate_stricter_than_naive": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "invoke four independent baselines",
+    "artifact_name": "baseline_comparison.json",
+    "code_path_hash": "04f3a6c4652013ab8dd05df8fa8cf2e86f3c2b3857083cb76c7cffcc4fef7ef7",
+    "input_artifacts": [
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+      "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "known failed pytest node ids",
+      "callable validators"
+    ],
+    "output_artifact_hash": "6eea911119b9398a302a23ffd3e3f0a100a4fcfed41c16f9ac727e5ab4bac9a3",
+    "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/baseline_comparison.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_baseline_comparison",
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_baseline_comparison",
+  "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+}

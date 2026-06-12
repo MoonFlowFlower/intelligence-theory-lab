@@ -1,0 +1,408 @@
+{
+  "ablation_result": {
+    "ablations": [
+      {
+        "ablation_id": "disable_old_artifact_write_guard",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_disable_old_artifact_write_guard",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "old_artifact_write_guard_disabled_or_failed"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_failed_provenance_gate"
+      },
+      {
+        "ablation_id": "replace_temp_copy_path_with_real_sealed_artifact_path",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_replace_temp_copy_with_sealed_path",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "old_artifact_side_effect_detected"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect"
+      },
+      {
+        "ablation_id": "make_temp_run_validator_call_different_dummy_validator",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_make_dummy_validator",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": true,
+        "stop_conditions_after": [
+          "shared_validator_equivalence_not_proven"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_unrepaired_redundancy_contract"
+      },
+      {
+        "ablation_id": "remove_before_after_hash_check",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_remove_hash_check",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "old_sealed_artifact_hash_changed"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect"
+      },
+      {
+        "ablation_id": "remove_side_effect_cleanup",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_remove_side_effect_cleanup",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "old_artifact_side_effect_detected"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect"
+      },
+      {
+        "ablation_id": "substitute_corrupted_positive_control_artifact",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_substitute_corrupted_positive_control",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "unauthorized_claim_input_detected"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_failed_provenance_gate"
+      },
+      {
+        "ablation_id": "run_targeted_tests_without_full_suite_observation",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_targeted_without_full_suite",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "full_pytest_not_observed"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_full_suite_not_observed"
+      },
+      {
+        "ablation_id": "substitute_unauthorized_readiness_claim",
+        "authorizes_downstream_routes": false,
+        "candidate_rerun": true,
+        "intervention_function": "ablation_substitute_unauthorized_readiness_claim",
+        "passes_while_mutating_old_artifacts": false,
+        "producer_function": "run_ablation_suite",
+        "required_degradation_observed": true,
+        "skips_validator_equivalence": false,
+        "stop_conditions_after": [
+          "unauthorized_claim_input_detected"
+        ],
+        "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_failed_provenance_gate"
+      }
+    ],
+    "aggregation_rule": "rerun repair verification under each declared intervention",
+    "all_ablations_reran_candidate": true,
+    "all_required_degradations_observed": true,
+    "no_ablation_authorized_forbidden_downstream": true,
+    "no_ablation_passed_while_mutating_old_artifacts": true,
+    "producer_function": "run_ablation_suite",
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "aggregation_rule": "aggregate repair, baseline, ablation, leakage, replay, residual, route, and provenance gates",
+  "baseline_result": {
+    "aggregation_rule": "compare candidate against targeted-only, restore-after-mutation, strict write guard, and claim ceiling baselines",
+    "baseline_results": {
+      "claim_ceiling_baseline": {
+        "aggregation_rule": "downstream claims remain blocked regardless of repair status",
+        "blocks_downstream_authorization": true,
+        "claim_ceiling": "bounded evidence-hygiene repair evidence at governance layer only",
+        "non_authorization_flags": {
+          "agency_authorized": false,
+          "architecture_correctness_authorized": false,
+          "bridge_runtime_authorized": false,
+          "consciousness_authorized": false,
+          "emotion_authorized": false,
+          "gate4_execution_authorized": false,
+          "implementation_authorized": false,
+          "mechanism_validity_authorized": false,
+          "relationship_learning_authorized": false,
+          "runtime_authorized": false,
+          "selfhood_authorized": false,
+          "stable_user_benefit_authorized": false,
+          "theory_validity_authorized": false
+        },
+        "producer_function": "claim_ceiling_baseline"
+      },
+      "naive_restore_after_mutation_baseline": {
+        "aggregation_rule": "classify restore-after-mutation as unsafe baseline",
+        "allows_old_artifact_mutation_then_restore": true,
+        "candidate_prevents_instead": true,
+        "producer_function": "naive_restore_after_mutation_baseline",
+        "unsafe_tendency": true
+      },
+      "naive_targeted_repair_baseline": {
+        "aggregation_rule": "targeted known-node result only",
+        "misses_full_suite_order_effects": true,
+        "producer_function": "naive_targeted_repair_baseline",
+        "unsafe_tendency": true,
+        "would_pass_if_isolated_nodes_pass": true
+      },
+      "strict_no_old_artifact_write_baseline": {
+        "aggregation_rule": "pass only with no sealed output paths written and unchanged hashes",
+        "passes": true,
+        "producer_function": "strict_no_old_artifact_write_baseline",
+        "sealed_output_paths_written": []
+      }
+    },
+    "baselines_invoked": [
+      "naive_targeted_repair_baseline",
+      "naive_restore_after_mutation_baseline",
+      "strict_no_old_artifact_write_baseline",
+      "claim_ceiling_baseline"
+    ],
+    "candidate_exceeds_claim_ceiling_baseline": false,
+    "candidate_result": {
+      "stop_conditions": [],
+      "verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green"
+    },
+    "candidate_stricter_than_naive": true,
+    "producer_function": "build_baseline_comparison",
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "claim_ceiling": "bounded evidence-hygiene repair evidence at governance layer only",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "aggregate repair gates",
+    "artifact_name": "result.json",
+    "code_path_hash": "b0eff67e9b6f9d61b3a42b81adb9d05e48bd1bb4cb61cafa4f40809e3a8a3b9a",
+    "input_artifacts": [
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+      "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "known failed pytest node ids",
+      "callable validators"
+    ],
+    "output_artifact_hash": "a4160da14c7845feeb9e04b31da8b00f5bccf40bca3c7943fbfd8cd8af7154b4",
+    "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/result.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_result",
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "triage_anchor_verified",
+    "known_failed_node_ids_accounted_for_from_sealed_triage",
+    "temp_run_uses_same_callable_validator_contracts",
+    "old_artifact_write_guard_enabled",
+    "old_artifact_side_effect_prevented",
+    "before_after_hashes_match",
+    "all_known_failed_nodes_pass_after_repair",
+    "targeted_suites_pass",
+    "full_pytest_passed"
+  ],
+  "downstream_route_impact_after_repair": {
+    "aggregation_rule": "preserve downstream non-authorization regardless of repair verdict",
+    "non_authorization_flags": {
+      "agency_authorized": false,
+      "architecture_correctness_authorized": false,
+      "bridge_runtime_authorized": false,
+      "consciousness_authorized": false,
+      "emotion_authorized": false,
+      "gate4_execution_authorized": false,
+      "implementation_authorized": false,
+      "mechanism_validity_authorized": false,
+      "relationship_learning_authorized": false,
+      "runtime_authorized": false,
+      "selfhood_authorized": false,
+      "stable_user_benefit_authorized": false,
+      "theory_validity_authorized": false
+    },
+    "producer_function": "build_downstream_route_impact_matrix",
+    "repair_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+    "route_impact": {
+      "EGO_runtime": "blocked",
+      "Gate4": "blocked",
+      "bounded_evidence_hygiene_followup": "allowed_bounded",
+      "bridge_runtime": "blocked",
+      "mechanism_validity": "blocked",
+      "theory_validity": "blocked"
+    },
+    "safe_next_bounded_task": "bounded_post_repair_dependency_closure_refresh_or_human_gate_review",
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "explicit_non_authorization_statement": "No old verdict rewrite, old sealed artifact patching, Gate4, runtime, bridge runtime, implementation, mechanism validity, theory validity, architecture correctness, agency, selfhood, consciousness, emotion, relationship learning, or stable user benefit is authorized.",
+  "layer": "evidence-governance / bounded repair only",
+  "leakage_result": {
+    "aggregation_rule": "scan generated markdown, JSON, and text artifacts plus positive control",
+    "generated_artifact_unauthorized_positive_hits": [],
+    "positive_control_detected": true,
+    "positive_control_pattern_ids": [
+      "ego_ready"
+    ],
+    "producer_function": "build_leakage_scan_report",
+    "scan_invocation_count": 22,
+    "scanned_artifact_paths": [
+      "docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/anchor_readback.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_repair_failure_reproduction.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/repair_change_inventory.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/shared_validator_contract_evidence.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/temp_run_validator_equivalence_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/old_artifact_write_guard_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/side_effect_prevention_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/before_after_hash_comparison.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/isolated_rerun_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/targeted_suite_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/full_pytest_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/residual_failure_classification.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/downstream_route_impact_matrix.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/baseline_comparison.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/ablation_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/replay_report.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/repair_state.json",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/claim_ceiling.txt",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/future_task_recommendation.txt",
+      "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/rollback_plan.txt"
+    ],
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "old_artifact_side_effect_guard_result": {
+    "old_sealed_artifacts_unchanged": true,
+    "sealed_output_paths_written": [],
+    "write_guard_enabled": true
+  },
+  "producer_function": "build_result",
+  "recommended_next_bounded_task": "bounded_post_repair_dependency_closure_refresh_or_human_gate_review",
+  "replay_result": {
+    "aggregation_rule": "recompute repair verification from serialized state and observation",
+    "original_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+    "producer_function": "build_replay_report",
+    "recomputed_from_serialized_state_and_observation": true,
+    "replay_function": "replay_repair_from_state",
+    "replay_matches_original_decision": true,
+    "replay_only_compares_hashes_or_stored_verdict_strings": false,
+    "replayed_verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "residual_failure_classification": {
+    "aggregation_rule": "classify residual failures from isolated, targeted, and full-suite observations",
+    "full_pytest_status": "passed",
+    "known_failure_node_rows": [
+      {
+        "exit_code": 0,
+        "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+        "status": "passed"
+      },
+      {
+        "exit_code": 0,
+        "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+        "status": "passed"
+      },
+      {
+        "exit_code": 0,
+        "nodeid": "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+        "status": "passed"
+      },
+      {
+        "exit_code": 0,
+        "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+        "status": "passed"
+      }
+    ],
+    "producer_function": "build_residual_failure_classification",
+    "residual_blockers": [],
+    "targeted_suite_status": "passed",
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+    "verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green"
+  },
+  "stop_conditions_triggered": [],
+  "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+  "temp_run_vs_canonical_validator_equivalence": {
+    "aggregation_rule": "run temp outputs and compare result validator rows with direct callable validators",
+    "alignment_direct_validator_names": [
+      "validate_parent_references",
+      "validate_authorization_guards",
+      "validate_actionability_revalidation",
+      "validate_prior_readiness_audit_reference_only",
+      "validate_post_bridge_not_mechanism_proof",
+      "validate_hyperon_non_adoption",
+      "validate_matrix_duplication_blocked",
+      "validate_computed_evidence_gate",
+      "validate_negative_evidence_handling",
+      "validate_claim_ceiling"
+    ],
+    "alignment_temp_validator_names": [
+      "validate_parent_references",
+      "validate_authorization_guards",
+      "validate_actionability_revalidation",
+      "validate_prior_readiness_audit_reference_only",
+      "validate_post_bridge_not_mechanism_proof",
+      "validate_hyperon_non_adoption",
+      "validate_matrix_duplication_blocked",
+      "validate_computed_evidence_gate",
+      "validate_negative_evidence_handling",
+      "validate_claim_ceiling"
+    ],
+    "alignment_temp_verdict": "ego_mainline_admission_task_card_alignment_001a_pass",
+    "downstream_readback_blocked_temp_run": false,
+    "equivalent": true,
+    "producer_function": "build_temp_run_validator_equivalence",
+    "reference_direct_validator_names": [
+      "validate_sealed_anchor_reference",
+      "validate_source_anchor_reference",
+      "validate_prior_admission_audit_reference",
+      "validate_no_matrix_duplication",
+      "validate_authorization_guards",
+      "validate_hyperon_non_adoption",
+      "validate_claim_ceiling",
+      "validate_actionability_revalidation_required"
+    ],
+    "reference_temp_validator_names": [
+      "validate_sealed_anchor_reference",
+      "validate_source_anchor_reference",
+      "validate_prior_admission_audit_reference",
+      "validate_no_matrix_duplication",
+      "validate_authorization_guards",
+      "validate_hyperon_non_adoption",
+      "validate_claim_ceiling",
+      "validate_actionability_revalidation_required"
+    ],
+    "reference_temp_verdict": "ego_mainline_admission_canonical_coverage_reference_001a_pass",
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "verdict": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+  "what_this_does_not_prove": [
+    "EGO readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "Gate4 readiness",
+    "mechanism validity",
+    "theory validity",
+    "architecture correctness",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "relationship learning",
+    "stable user benefit",
+    "future runtime correctness"
+  ]
+}

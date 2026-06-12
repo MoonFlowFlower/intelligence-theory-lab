@@ -1,0 +1,96 @@
+{
+  "aggregation_rule": "rerun each known failure node after repair",
+  "all_known_failure_nodes_passed": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "rerun four known failure nodes",
+    "artifact_name": "isolated_rerun_report.json",
+    "code_path_hash": "364be93cd10dcbe73968a3066ae733c0c379a459af6711328bea2d496e5e41de",
+    "input_artifacts": [
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+      "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "known failed pytest node ids",
+      "callable validators"
+    ],
+    "output_artifact_hash": "572389aab990778bcc4a428070682f7b7f82f3363a4d8f6390987d64d8f37f48",
+    "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/isolated_rerun_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_isolated_rerun_report",
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "execute": true,
+  "isolated_reruns": [
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "exit_code": 0,
+      "label": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": ".                                                                        [100%]\n1 passed in 1.88s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 1,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "exit_code": 0,
+      "label": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": ".                                                                        [100%]\n1 passed in 1.27s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 1,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+      "exit_code": 0,
+      "label": "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": ".                                                                        [100%]\n1 passed in 0.54s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 1,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+      "exit_code": 0,
+      "label": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": ".                                                                        [100%]\n1 passed in 0.32s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 1,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    }
+  ],
+  "producer_function": "build_isolated_rerun_report",
+  "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+}

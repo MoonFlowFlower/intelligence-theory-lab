@@ -436,6 +436,10 @@ def produce_scope_leak_report(repo_root: Path) -> dict[str, Any]:
         "src/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/",
         "tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py",
         core.ARTIFACT_DIR_REL + "/",
+        "docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md",
+        "src/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+        "tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+        "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
         core.KNOWN_THEORY_FILE_REL,
         core.KNOWN_THEORY_SIDECAR_DIR_REL + "/",
     ]

@@ -332,6 +332,7 @@ def search_existing_admission_contracts(root: Path) -> dict[str, Any]:
         and row["blocks_runtime"]
         and row["blocks_implementation"]
         and row["blocks_matrix_duplication"]
+        and not _is_downstream_readback_or_trace(row["path"])
     ]
     partial = [
         row
@@ -351,6 +352,16 @@ def search_existing_admission_contracts(root: Path) -> dict[str, Any]:
         "candidate_contracts": candidates,
         "validation_rule": "complete equivalent must cover admission coverage reference, canonical repair, post-bridge 001D, actionability, computed gate, runtime/implementation blocks, and matrix duplication block",
     }
+
+
+def _is_downstream_readback_or_trace(path: str) -> bool:
+    normalized = path.replace("\\", "/").lower()
+    name = normalized.rsplit("/", 1)[-1]
+    return (
+        "admission_execution" in normalized
+        or "execution_preflight" in normalized
+        or any(token in name for token in ["trace", "readback", "evaluation"])
+    )
 
 
 def resolve_post_bridge_boundary(root: Path) -> dict[str, Any]:

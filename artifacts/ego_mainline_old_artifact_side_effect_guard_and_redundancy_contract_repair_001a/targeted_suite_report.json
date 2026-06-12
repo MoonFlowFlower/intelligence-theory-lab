@@ -1,0 +1,96 @@
+{
+  "aggregation_rule": "run routing, dependency-closure, known-failure-triage, and repair targeted suites",
+  "all_targeted_suites_passed": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "run targeted routing, dependency, triage, and repair suites when requested",
+    "artifact_name": "targeted_suite_report.json",
+    "code_path_hash": "3697c0e62707c5725b277c9bbf2a6804a26412a4f4b4a3ad5303133e467bcd16",
+    "input_artifacts": [
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+      "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "known failed pytest node ids",
+      "callable validators"
+    ],
+    "output_artifact_hash": "6e98f951a74faa633fe30b4fe59fef9e5773cbf2740f1691b3f52bca7d846630",
+    "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/targeted_suite_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_targeted_suite_report",
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "execute": true,
+  "producer_function": "build_targeted_suite_report",
+  "targeted_suites": [
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_post_admission_routing_001a.py",
+      "exit_code": 0,
+      "label": "routing",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": ".........                                                                [100%]\n9 passed in 0.39s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 9,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_evidence_dependency_closure_001a.py",
+      "exit_code": 0,
+      "label": "dependency_closure",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": "...........                                                              [100%]\n11 passed in 0.50s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 11,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_known_failure_triage_001a.py",
+      "exit_code": 0,
+      "label": "known_failure_triage",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": "...........                                                              [100%]\n11 passed in 0.39s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 11,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    {
+      "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+      "exit_code": 0,
+      "label": "repair_001a",
+      "passed": true,
+      "producer_function": "_run_pytest",
+      "stderr_tail": "",
+      "stdout_tail": "...                                                                      [100%]\n3 passed in 12.93s\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 3,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    }
+  ],
+  "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+}

@@ -254,17 +254,20 @@ def test_old_artifact_hashes_and_known_theory_file_boundary_are_enforced(tmp_pat
     )["stop_conditions"]
 
 
-def test_materialized_artifact_dir_verifies_remote_anchors_and_git_boundary():
+def test_materialized_artifact_dir_verifies_remote_anchors_and_git_boundary(tmp_path):
     runner = _module()
+    out = tmp_path / "materialized_001f"
+    scope_before = hashlib.sha256((ARTIFACT_DIR / "scope_leak_report.json").read_bytes()).hexdigest()
 
-    result = runner.run_repair(repo_root=ROOT, output_dir=ARTIFACT_DIR, verify_remote=True)
-    parents = _read_json(ARTIFACT_DIR / "parent_anchor_verification.json")
+    result = runner.run_repair(repo_root=ROOT, output_dir=out, verify_remote=True)
+    parents = _read_json(out / "parent_anchor_verification.json")
 
-    assert REQUIRED_ARTIFACTS.issubset({path.name for path in ARTIFACT_DIR.iterdir()})
+    assert REQUIRED_ARTIFACTS.issubset({path.name for path in out.iterdir()})
     assert result["verdict"] == VERDICT_PASS
     assert result["parent_anchors_verified"] is True
     assert all(row["local_verified"] and row["remote_verified"] for row in parents["anchors"])
-    assert (ARTIFACT_DIR / "claim_ceiling.txt").read_text(encoding="utf-8").strip() == CLAIM_CEILING
+    assert (out / "claim_ceiling.txt").read_text(encoding="utf-8").strip() == CLAIM_CEILING
+    assert hashlib.sha256((ARTIFACT_DIR / "scope_leak_report.json").read_bytes()).hexdigest() == scope_before
 
     cached = subprocess.run(
         ["git", "diff", "--cached", "--name-only"],

@@ -1,0 +1,668 @@
+{
+  "aggregation_rule": "serialize repair inputs and observations for replay recomputation",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "serialize repair state and observation",
+    "artifact_name": "repair_state.json",
+    "code_path_hash": "937d98eade1d6f270cd2ba07e9c114d66d91fbe481ac3557136d9a129d54167f",
+    "input_artifacts": [
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+      "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "known failed pytest node ids",
+      "callable validators"
+    ],
+    "output_artifact_hash": "3e1845938d3832933b3c90fe17b402b1c55498ef3a10b959c963a5c128ddaacd",
+    "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/repair_state.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_repair_state_artifact",
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "observation": {
+    "full_pytest_result": {
+      "aggregation_rule": "run full pytest after repair",
+      "command": "C:\\Python313\\python.exe -m pytest -q",
+      "exit_code": 0,
+      "label": "full_pytest",
+      "mode": "full_pytest_rerun",
+      "passed": true,
+      "producer_function": "build_full_pytest_report",
+      "stderr_tail": "",
+      "stdout_tail": "........................................................................ [ 10%]\n........................................................................ [ 21%]\n........................................................................ [ 31%]\n........................................................................ [ 42%]\n........................................................................ [ 52%]\n........................................................................ [ 63%]\n........................................................................ [ 73%]\n........................................................................ [ 84%]\n........................................................................ [ 95%]\n..................................                                       [100%]\n682 passed in 156.69s (0:02:36)\n",
+      "summary": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 682,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    },
+    "known_failed_node_ids": [
+      "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+      "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+    ],
+    "old_artifact_write_guard_result": {
+      "aggregation_rule": "declare and hash-verify old sealed artifact write exclusion",
+      "guard_enabled": true,
+      "old_artifact_write_allowed": false,
+      "producer_function": "build_old_artifact_write_guard_report",
+      "repair_output_is_current_task_artifact_dir": true,
+      "repair_output_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a",
+      "sealed_artifact_paths_guarded": [
+        "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+        "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+        "artifacts/ego_mainline_known_failure_triage_001a/result.json"
+      ],
+      "sealed_output_paths_written": [],
+      "strict_no_old_artifact_write_guard_passed": true,
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    },
+    "side_effect_prevention_result": {
+      "aggregation_rule": "run side-effect-prone 001F repair in temp output and compare protected hashes",
+      "cleanup_required": false,
+      "corruption_tests_operate_on_temp_output": true,
+      "old_sealed_artifacts_unchanged": true,
+      "producer_function": "build_side_effect_prevention_result",
+      "side_effect_artifact_hash_after": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+      "side_effect_artifact_hash_before": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+      "side_effect_artifact_path": "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "side_effect_runner_bounded_pass": true,
+      "side_effect_runner_verdict": "ego_mainline_admission_executable_001d_metric_provenance_repair_001f_pass",
+      "side_effect_temp_scope_report_created": true,
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    },
+    "temp_run_vs_canonical_validator_equivalence": {
+      "aggregation_rule": "run temp outputs and compare result validator rows with direct callable validators",
+      "alignment_direct_validator_names": [
+        "validate_parent_references",
+        "validate_authorization_guards",
+        "validate_actionability_revalidation",
+        "validate_prior_readiness_audit_reference_only",
+        "validate_post_bridge_not_mechanism_proof",
+        "validate_hyperon_non_adoption",
+        "validate_matrix_duplication_blocked",
+        "validate_computed_evidence_gate",
+        "validate_negative_evidence_handling",
+        "validate_claim_ceiling"
+      ],
+      "alignment_temp_validator_names": [
+        "validate_parent_references",
+        "validate_authorization_guards",
+        "validate_actionability_revalidation",
+        "validate_prior_readiness_audit_reference_only",
+        "validate_post_bridge_not_mechanism_proof",
+        "validate_hyperon_non_adoption",
+        "validate_matrix_duplication_blocked",
+        "validate_computed_evidence_gate",
+        "validate_negative_evidence_handling",
+        "validate_claim_ceiling"
+      ],
+      "alignment_temp_verdict": "ego_mainline_admission_task_card_alignment_001a_pass",
+      "downstream_readback_blocked_temp_run": false,
+      "equivalent": true,
+      "producer_function": "build_temp_run_validator_equivalence",
+      "reference_direct_validator_names": [
+        "validate_sealed_anchor_reference",
+        "validate_source_anchor_reference",
+        "validate_prior_admission_audit_reference",
+        "validate_no_matrix_duplication",
+        "validate_authorization_guards",
+        "validate_hyperon_non_adoption",
+        "validate_claim_ceiling",
+        "validate_actionability_revalidation_required"
+      ],
+      "reference_temp_validator_names": [
+        "validate_sealed_anchor_reference",
+        "validate_source_anchor_reference",
+        "validate_prior_admission_audit_reference",
+        "validate_no_matrix_duplication",
+        "validate_authorization_guards",
+        "validate_hyperon_non_adoption",
+        "validate_claim_ceiling",
+        "validate_actionability_revalidation_required"
+      ],
+      "reference_temp_verdict": "ego_mainline_admission_canonical_coverage_reference_001a_pass",
+      "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+    }
+  },
+  "producer_function": "build_repair_state_artifact",
+  "serialized_state": {
+    "candidate_repair_inputs": {
+      "anchor_readback": {
+        "aggregation_rule": "resolve local triage commit and remote tag exactly",
+        "branch": "codex/meta-theory-scaffold",
+        "head": "c9bee968069f9d218c0c45a37efba092e4535156",
+        "known_failure_triage_anchor_verified": true,
+        "known_failure_triage_commit": "c9bee968069f9d218c0c45a37efba092e4535156",
+        "known_failure_triage_commit_resolved_hash": "c9bee968069f9d218c0c45a37efba092e4535156",
+        "known_failure_triage_remote_tag": "remote-anchor-known-failure-triage-001a-c9bee9",
+        "known_failure_triage_remote_tag_resolved_hash": "c9bee968069f9d218c0c45a37efba092e4535156",
+        "known_failure_triage_verdict": "known_failure_triage_001a_pass_with_blockers_classified",
+        "prior_recommended_next_bounded_task": "bounded_old_artifact_side_effect_guard_and_redundancy_contract_repair_task",
+        "producer_function": "build_anchor_readback",
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "before_after_hash_comparison": {
+        "aggregation_rule": "old sealed artifacts pass only when before/after sha256 maps match exactly",
+        "changed_old_artifact_paths": [],
+        "old_sealed_artifacts_unchanged": true,
+        "producer_function": "build_before_after_hash_comparison",
+        "protected_hashes_after": {
+          "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+          "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+          "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf",
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json": "6997383007f3b6da9495abb6c8a81e76fa992d3f9b4f36b3b61bd25286bc6234",
+          "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f"
+        },
+        "protected_hashes_before": {
+          "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+          "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+          "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf",
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json": "6997383007f3b6da9495abb6c8a81e76fa992d3f9b4f36b3b61bd25286bc6234",
+          "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f"
+        },
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "before_repair_failure_reproduction": {
+        "aggregation_rule": "read sealed triage before-repair observation and side-effect matrix",
+        "all_known_failed_node_ids_accounted_for": true,
+        "known_failed_node_ids": [
+          "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+          "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+          "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+          "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+        ],
+        "observation_source": "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+        "producer_function": "build_before_repair_failure_reproduction",
+        "side_effect_artifact_path": "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+        "side_effect_recorded": true,
+        "side_effect_restored": true,
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+        "triage_failure_cause_classification": {
+          "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": {
+            "failure_categories": [
+              "reproducible_current_failure",
+              "redundancy_contract_failure",
+              "sealed_artifact_consistency_failure",
+              "temp_run_or_ephemeral_artifact_failure"
+            ],
+            "new_001A_regression": false,
+            "producer_function": "classify_failure_causes"
+          },
+          "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": {
+            "failure_categories": [
+              "reproducible_current_failure",
+              "redundancy_contract_failure",
+              "sealed_artifact_consistency_failure",
+              "temp_run_or_ephemeral_artifact_failure"
+            ],
+            "new_001A_regression": false,
+            "producer_function": "classify_failure_causes"
+          },
+          "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": {
+            "failure_categories": [
+              "old_artifact_mutation_failure",
+              "order_dependent_failure",
+              "repo_hygiene_blocker"
+            ],
+            "new_001A_regression": false,
+            "producer_function": "classify_failure_causes"
+          },
+          "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": {
+            "failure_categories": [
+              "old_artifact_mutation_failure",
+              "order_dependent_failure",
+              "repo_hygiene_blocker"
+            ],
+            "new_001A_regression": false,
+            "producer_function": "classify_failure_causes"
+          }
+        },
+        "triage_failure_reproducibility_matrix": {
+          "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": {
+            "clean_targeted_suite_after_restore": null,
+            "isolated_rerun_exit_code": 1,
+            "producer_function": "classify_failure_reproducibility",
+            "reproducibility_category": "reproducible_current_failure"
+          },
+          "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": {
+            "clean_targeted_suite_after_restore": null,
+            "isolated_rerun_exit_code": 1,
+            "producer_function": "classify_failure_reproducibility",
+            "reproducibility_category": "reproducible_current_failure"
+          },
+          "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": {
+            "clean_targeted_suite_after_restore": "passed",
+            "isolated_rerun_exit_code": 1,
+            "producer_function": "classify_failure_reproducibility",
+            "reproducibility_category": "old_artifact_mutation_failure"
+          },
+          "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": {
+            "clean_targeted_suite_after_restore": "passed",
+            "isolated_rerun_exit_code": 1,
+            "producer_function": "classify_failure_reproducibility",
+            "reproducibility_category": "old_artifact_mutation_failure"
+          }
+        },
+        "triage_recorded_failed_node_ids": [
+          "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+          "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+          "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+          "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+        ]
+      },
+      "claim_ceiling": "bounded evidence-hygiene repair evidence at governance layer only",
+      "full_pytest_result": {
+        "aggregation_rule": "run full pytest after repair",
+        "command": "C:\\Python313\\python.exe -m pytest -q",
+        "exit_code": 0,
+        "label": "full_pytest",
+        "mode": "full_pytest_rerun",
+        "passed": true,
+        "producer_function": "build_full_pytest_report",
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [ 10%]\n........................................................................ [ 21%]\n........................................................................ [ 31%]\n........................................................................ [ 42%]\n........................................................................ [ 52%]\n........................................................................ [ 63%]\n........................................................................ [ 73%]\n........................................................................ [ 84%]\n........................................................................ [ 95%]\n..................................                                       [100%]\n682 passed in 156.69s (0:02:36)\n",
+        "summary": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 682,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "intervention_markers": [],
+      "isolated_rerun_result_for_each_known_failure": {
+        "aggregation_rule": "rerun each known failure node after repair",
+        "all_known_failure_nodes_passed": true,
+        "execute": true,
+        "isolated_reruns": [
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+            "exit_code": 0,
+            "label": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": ".                                                                        [100%]\n1 passed in 1.88s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 1,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          },
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+            "exit_code": 0,
+            "label": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": ".                                                                        [100%]\n1 passed in 1.27s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 1,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          },
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+            "exit_code": 0,
+            "label": "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": ".                                                                        [100%]\n1 passed in 0.54s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 1,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          },
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+            "exit_code": 0,
+            "label": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": ".                                                                        [100%]\n1 passed in 0.32s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 1,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          }
+        ],
+        "producer_function": "build_isolated_rerun_report",
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "old_artifact_write_guard_result": {
+        "aggregation_rule": "declare and hash-verify old sealed artifact write exclusion",
+        "guard_enabled": true,
+        "old_artifact_write_allowed": false,
+        "producer_function": "build_old_artifact_write_guard_report",
+        "repair_output_is_current_task_artifact_dir": true,
+        "repair_output_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a",
+        "sealed_artifact_paths_guarded": [
+          "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+          "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+          "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+          "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+          "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+          "artifacts/ego_mainline_known_failure_triage_001a/result.json"
+        ],
+        "sealed_output_paths_written": [],
+        "strict_no_old_artifact_write_guard_passed": true,
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "repair_change_inventory": {
+        "aggregation_rule": "classify dirty paths against exact bounded repair scope",
+        "change_rows": [
+          {
+            "intended_repair_path": true,
+            "path": "src/ego_mainline_admission_canonical_coverage_reference_001a/runner.py",
+            "raw": "M src/ego_mainline_admission_canonical_coverage_reference_001a/runner.py"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "src/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/runner.py",
+            "raw": " M src/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/runner.py"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "src/ego_mainline_admission_task_card_alignment_001a/runner.py",
+            "raw": " M src/ego_mainline_admission_task_card_alignment_001a/runner.py"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "src/ego_mainline_evidence_dependency_closure_001a/runner.py",
+            "raw": " M src/ego_mainline_evidence_dependency_closure_001a/runner.py"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "src/ego_mainline_post_admission_routing_001a/runner.py",
+            "raw": " M src/ego_mainline_post_admission_routing_001a/runner.py"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py",
+            "raw": " M tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+            "raw": "?? artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md",
+            "raw": "?? docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "src/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+            "raw": "?? src/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/"
+          },
+          {
+            "intended_repair_path": true,
+            "path": "tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+            "raw": "?? tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py"
+          }
+        ],
+        "git_diff_name_only": [
+          "src/ego_mainline_admission_canonical_coverage_reference_001a/runner.py",
+          "src/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/runner.py",
+          "src/ego_mainline_admission_task_card_alignment_001a/runner.py",
+          "src/ego_mainline_evidence_dependency_closure_001a/runner.py",
+          "src/ego_mainline_post_admission_routing_001a/runner.py",
+          "tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py"
+        ],
+        "git_status_short": [
+          "M src/ego_mainline_admission_canonical_coverage_reference_001a/runner.py",
+          " M src/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/runner.py",
+          " M src/ego_mainline_admission_task_card_alignment_001a/runner.py",
+          " M src/ego_mainline_evidence_dependency_closure_001a/runner.py",
+          " M src/ego_mainline_post_admission_routing_001a/runner.py",
+          " M tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py",
+          "?? artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+          "?? docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md",
+          "?? src/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+          "?? tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py"
+        ],
+        "producer_function": "build_repair_change_inventory",
+        "repair_scope_paths": [
+          "docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md",
+          "src/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+          "tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+          "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/"
+        ],
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+        "unexpected_dirty_paths": []
+      },
+      "shared_validator_contract_evidence": {
+        "aggregation_rule": "introspect callable validator lists used by canonical and temp runs",
+        "alignment_validator_contract": {
+          "callable": "validate_alignment_contract",
+          "code_path_hash": "bc7568bde81096d169962509c77735f93559f0800f981c6bd07643f07a83a475",
+          "validators": [
+            "validate_parent_references",
+            "validate_authorization_guards",
+            "validate_actionability_revalidation",
+            "validate_prior_readiness_audit_reference_only",
+            "validate_post_bridge_not_mechanism_proof",
+            "validate_hyperon_non_adoption",
+            "validate_matrix_duplication_blocked",
+            "validate_computed_evidence_gate",
+            "validate_negative_evidence_handling",
+            "validate_claim_ceiling"
+          ]
+        },
+        "producer_function": "build_shared_validator_contract_evidence",
+        "reference_validator_contract": {
+          "callable": "validate_reference_contract",
+          "code_path_hash": "8b9759c689ad4bc6c14002dbf3f15ea356ed94494319a9e1b696cb9307d0b2fc",
+          "validators": [
+            "validate_sealed_anchor_reference",
+            "validate_source_anchor_reference",
+            "validate_prior_admission_audit_reference",
+            "validate_no_matrix_duplication",
+            "validate_authorization_guards",
+            "validate_hyperon_non_adoption",
+            "validate_claim_ceiling",
+            "validate_actionability_revalidation_required"
+          ]
+        },
+        "shared_callable_contracts_present": true,
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "side_effect_prevention_result": {
+        "aggregation_rule": "run side-effect-prone 001F repair in temp output and compare protected hashes",
+        "cleanup_required": false,
+        "corruption_tests_operate_on_temp_output": true,
+        "old_sealed_artifacts_unchanged": true,
+        "producer_function": "build_side_effect_prevention_result",
+        "side_effect_artifact_hash_after": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+        "side_effect_artifact_hash_before": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807",
+        "side_effect_artifact_path": "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+        "side_effect_runner_bounded_pass": true,
+        "side_effect_runner_verdict": "ego_mainline_admission_executable_001d_metric_provenance_repair_001f_pass",
+        "side_effect_temp_scope_report_created": true,
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "targeted_suite_result": {
+        "aggregation_rule": "run routing, dependency-closure, known-failure-triage, and repair targeted suites",
+        "all_targeted_suites_passed": true,
+        "execute": true,
+        "producer_function": "build_targeted_suite_report",
+        "targeted_suites": [
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_post_admission_routing_001a.py",
+            "exit_code": 0,
+            "label": "routing",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": ".........                                                                [100%]\n9 passed in 0.39s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 9,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          },
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_evidence_dependency_closure_001a.py",
+            "exit_code": 0,
+            "label": "dependency_closure",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": "...........                                                              [100%]\n11 passed in 0.50s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 11,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          },
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_known_failure_triage_001a.py",
+            "exit_code": 0,
+            "label": "known_failure_triage",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": "...........                                                              [100%]\n11 passed in 0.39s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 11,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          },
+          {
+            "command": "C:\\Python313\\python.exe -m pytest -q tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+            "exit_code": 0,
+            "label": "repair_001a",
+            "passed": true,
+            "producer_function": "_run_pytest",
+            "stderr_tail": "",
+            "stdout_tail": "...                                                                      [100%]\n3 passed in 12.93s\n",
+            "summary": {
+              "errors": 0,
+              "failed": 0,
+              "passed": 3,
+              "skipped": 0,
+              "xfailed": 0
+            }
+          }
+        ],
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "temp_run_vs_canonical_validator_equivalence": {
+        "aggregation_rule": "run temp outputs and compare result validator rows with direct callable validators",
+        "alignment_direct_validator_names": [
+          "validate_parent_references",
+          "validate_authorization_guards",
+          "validate_actionability_revalidation",
+          "validate_prior_readiness_audit_reference_only",
+          "validate_post_bridge_not_mechanism_proof",
+          "validate_hyperon_non_adoption",
+          "validate_matrix_duplication_blocked",
+          "validate_computed_evidence_gate",
+          "validate_negative_evidence_handling",
+          "validate_claim_ceiling"
+        ],
+        "alignment_temp_validator_names": [
+          "validate_parent_references",
+          "validate_authorization_guards",
+          "validate_actionability_revalidation",
+          "validate_prior_readiness_audit_reference_only",
+          "validate_post_bridge_not_mechanism_proof",
+          "validate_hyperon_non_adoption",
+          "validate_matrix_duplication_blocked",
+          "validate_computed_evidence_gate",
+          "validate_negative_evidence_handling",
+          "validate_claim_ceiling"
+        ],
+        "alignment_temp_verdict": "ego_mainline_admission_task_card_alignment_001a_pass",
+        "downstream_readback_blocked_temp_run": false,
+        "equivalent": true,
+        "producer_function": "build_temp_run_validator_equivalence",
+        "reference_direct_validator_names": [
+          "validate_sealed_anchor_reference",
+          "validate_source_anchor_reference",
+          "validate_prior_admission_audit_reference",
+          "validate_no_matrix_duplication",
+          "validate_authorization_guards",
+          "validate_hyperon_non_adoption",
+          "validate_claim_ceiling",
+          "validate_actionability_revalidation_required"
+        ],
+        "reference_temp_validator_names": [
+          "validate_sealed_anchor_reference",
+          "validate_source_anchor_reference",
+          "validate_prior_admission_audit_reference",
+          "validate_no_matrix_duplication",
+          "validate_authorization_guards",
+          "validate_hyperon_non_adoption",
+          "validate_claim_ceiling",
+          "validate_actionability_revalidation_required"
+        ],
+        "reference_temp_verdict": "ego_mainline_admission_canonical_coverage_reference_001a_pass",
+        "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+      },
+      "unauthorized_claim_injected": false
+    },
+    "repair_parameters": {
+      "allowed_verdicts": [
+        "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_full_suite_green",
+        "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_pass_with_residual_blockers_classified",
+        "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_unrepaired_redundancy_contract",
+        "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect",
+        "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_full_suite_not_observed"
+      ],
+      "claim_ceiling": "bounded evidence-hygiene repair evidence at governance layer only",
+      "known_failed_node_ids": [
+        "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+        "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+        "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+        "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+      ]
+    },
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    },
+    "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+  },
+  "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+}

@@ -1,0 +1,146 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "disable_old_artifact_write_guard",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_disable_old_artifact_write_guard",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "old_artifact_write_guard_disabled_or_failed"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "replace_temp_copy_path_with_real_sealed_artifact_path",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_replace_temp_copy_with_sealed_path",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "old_artifact_side_effect_detected"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect"
+    },
+    {
+      "ablation_id": "make_temp_run_validator_call_different_dummy_validator",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_make_dummy_validator",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": true,
+      "stop_conditions_after": [
+        "shared_validator_equivalence_not_proven"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_unrepaired_redundancy_contract"
+    },
+    {
+      "ablation_id": "remove_before_after_hash_check",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_remove_hash_check",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "old_sealed_artifact_hash_changed"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect"
+    },
+    {
+      "ablation_id": "remove_side_effect_cleanup",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_remove_side_effect_cleanup",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "old_artifact_side_effect_detected"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_old_artifact_side_effect"
+    },
+    {
+      "ablation_id": "substitute_corrupted_positive_control_artifact",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_substitute_corrupted_positive_control",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "unauthorized_claim_input_detected"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "run_targeted_tests_without_full_suite_observation",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_targeted_without_full_suite",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "full_pytest_not_observed"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_blocked_full_suite_not_observed"
+    },
+    {
+      "ablation_id": "substitute_unauthorized_readiness_claim",
+      "authorizes_downstream_routes": false,
+      "candidate_rerun": true,
+      "intervention_function": "ablation_substitute_unauthorized_readiness_claim",
+      "passes_while_mutating_old_artifacts": false,
+      "producer_function": "run_ablation_suite",
+      "required_degradation_observed": true,
+      "skips_validator_equivalence": false,
+      "stop_conditions_after": [
+        "unauthorized_claim_input_detected"
+      ],
+      "verdict_after": "old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_failed_provenance_gate"
+    }
+  ],
+  "aggregation_rule": "rerun repair verification under each declared intervention",
+  "all_ablations_reran_candidate": true,
+  "all_required_degradations_observed": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "rerun repair verification under interventions",
+    "artifact_name": "ablation_report.json",
+    "code_path_hash": "fdd276039ec690c92e1e5aa07271c694e72393e830303541ad12b1e9af209383",
+    "input_artifacts": [
+      "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+      "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+      "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "known failed pytest node ids",
+      "callable validators"
+    ],
+    "output_artifact_hash": "2940eaaa9e80e813fd74f59545c03237f054d2f5297a7e0567ab738c0699a6a3",
+    "output_artifact_path": "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/ablation_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "run_ablation_suite",
+    "run_id": "ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a_c698cbab544fb6d6",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A",
+      "episode_id": "old_artifact_side_effect_guard_and_redundancy_contract_repair",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "no_ablation_authorized_forbidden_downstream": true,
+  "no_ablation_passed_while_mutating_old_artifacts": true,
+  "producer_function": "run_ablation_suite",
+  "task_id": "EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A"
+}

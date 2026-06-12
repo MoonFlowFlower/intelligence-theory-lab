@@ -237,10 +237,19 @@ PROTECTED_OLD_PATHS = [
 INTENDED_DIR_PREFIXES = [
     "artifacts/ego_mainline_post_admission_routing_001a/",
     "src/ego_mainline_post_admission_routing_001a/",
+    "artifacts/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
+    "src/ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a/",
 ]
 INTENDED_FILES = {
     "docs/codex/tasks/EGO-MAINLINE-POST-ADMISSION-ROUTING-001A.md",
     "tests/test_ego_mainline_post_admission_routing_001a.py",
+    "docs/codex/tasks/EGO-MAINLINE-OLD-ARTIFACT-SIDE-EFFECT-GUARD-AND-REDUNDANCY-CONTRACT-REPAIR-001A.md",
+    "src/ego_mainline_admission_canonical_coverage_reference_001a/runner.py",
+    "src/ego_mainline_admission_task_card_alignment_001a/runner.py",
+    "src/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/runner.py",
+    "src/ego_mainline_evidence_dependency_closure_001a/runner.py",
+    "tests/test_ego_mainline_old_artifact_side_effect_guard_and_redundancy_contract_repair_001a.py",
+    "tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py",
 }
 
 
@@ -1306,7 +1315,12 @@ def _is_intended_task_path(path: str) -> bool:
 
 
 def _status_path(line: str) -> str:
-    path = line[3:] if len(line) > 3 else line
+    if len(line) >= 3 and line[2] == " ":
+        path = line[3:]
+    elif len(line) >= 2 and line[1] == " ":
+        path = line[2:]
+    else:
+        path = line[3:] if len(line) > 3 else line
     if " -> " in path:
         path = path.split(" -> ", 1)[1]
     return path.replace("\\", "/")
