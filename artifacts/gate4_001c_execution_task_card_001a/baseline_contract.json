@@ -1,0 +1,57 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "same_heldout_episode_set_required": true,
+  "baselines_must_be_independent_callable_implementations": true,
+  "wrappers_around_candidate_allowed": false,
+  "failure_verdict_if_missing_or_not_invoked": "failed_missing_independent_baseline",
+  "required_baselines": [
+    {
+      "baseline_id": "frozen_state_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "test whether candidate updates matter"
+    },
+    {
+      "baseline_id": "order2_history_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "test whether short history explains behavior"
+    },
+    {
+      "baseline_id": "partner_id_table_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "test direct partner-id lookup shortcut"
+    },
+    {
+      "baseline_id": "context_only_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "test context-only explanation"
+    },
+    {
+      "baseline_id": "preference_table_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "test static preference-table explanation"
+    },
+    {
+      "baseline_id": "retrieval_imitation_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "test nearest-neighbor or imitation explanation"
+    },
+    {
+      "baseline_id": "trace_only_hygiene_baseline",
+      "competitor_baseline": true,
+      "ground_truth_latent_label_access_allowed": false,
+      "purpose": "separate trace hygiene from mechanism evidence"
+    },
+    {
+      "baseline_id": "oracle_label_positive_control",
+      "competitor_baseline": false,
+      "ground_truth_latent_label_access_allowed": true,
+      "purpose": "sanity upper bound only; does not support admission"
+    }
+  ]
+}

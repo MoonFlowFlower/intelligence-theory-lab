@@ -1,0 +1,23 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "challenger_required": true,
+  "challenger_module": "evidence_harness_contract_enforcement_smoke_001a.runner",
+  "challenger_function": "evaluate_bundle",
+  "challenger_source_path": "src/evidence_harness_contract_enforcement_smoke_001a/runner.py",
+  "function_signature_observed": "def evaluate_bundle(bundle: dict[str, Any]) -> dict[str, Any]",
+  "source_line_observed": 288,
+  "anchor_tag": "remote-anchor-evidence-harness-contract-enforcement-smoke-001a-5b4cdbe",
+  "anchor_commit": "5b4cdbeedb380aafa8da9ead827e1b40b04d8153",
+  "future_input_bundle": "artifacts/gate4_001c_failure_preserving_repair_001c/harness_challenger_input_bundle.json",
+  "future_output_report": "artifacts/gate4_001c_failure_preserving_repair_001c/harness_challenger_report.json",
+  "challenger_command": "python -c \"import json, pathlib; from evidence_harness_contract_enforcement_smoke_001a.runner import evaluate_bundle; bundle=json.loads(pathlib.Path('artifacts/gate4_001c_failure_preserving_repair_001c/harness_challenger_input_bundle.json').read_text(encoding='utf-8')); pathlib.Path('artifacts/gate4_001c_failure_preserving_repair_001c/harness_challenger_report.json').write_text(json.dumps(evaluate_bundle(bundle), indent=2, sort_keys=True), encoding='utf-8')\"",
+  "blocking_results": [
+    "rejected_false_pass_risk",
+    "blocked_pending_audit",
+    "insufficient_visibility",
+    "equivalent_non_clean_risk"
+  ],
+  "clean_result_authorizes_downstream": false,
+  "failure_verdict_if_blocked": "blocked_by_evidence_harness_challenger",
+  "failure_verdict_if_entrypoint_missing": "blocked_missing_harness_challenger_entrypoint"
+}

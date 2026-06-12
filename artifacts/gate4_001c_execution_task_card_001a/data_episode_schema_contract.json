@@ -1,0 +1,69 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "episode_record_required_fields": [
+    "episode_id",
+    "seed",
+    "context_id",
+    "partner_id",
+    "train_or_heldout",
+    "observation_t",
+    "candidate_serialized_state_before",
+    "candidate_action_t",
+    "environment_feedback_t",
+    "candidate_serialized_state_after",
+    "ground_truth_latent_label",
+    "ground_truth_latent_label_access_allowed",
+    "counterfactual_pair_id",
+    "counterfactual_source_episode_id",
+    "metric_eligibility"
+  ],
+  "ground_truth_latent_label_access_allowed": {
+    "candidate": false,
+    "non_oracle_baselines": false,
+    "oracle_label_positive_control": true
+  },
+  "seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105
+  ],
+  "contexts": [
+    "ctx_stable_preference",
+    "ctx_shifted_preference",
+    "ctx_ambiguous_signal",
+    "ctx_conflicting_feedback"
+  ],
+  "partners": [
+    "partner_a",
+    "partner_b",
+    "partner_c",
+    "partner_d"
+  ],
+  "minimum_train_episodes_per_seed_context_partner": 10,
+  "minimum_heldout_episodes_per_seed_context_partner": 10,
+  "minimum_total_train_episodes": 800,
+  "minimum_total_heldout_episodes": 800,
+  "split_function_contract": {
+    "deterministic_from": [
+      "seed",
+      "context_id",
+      "partner_id",
+      "episode_index"
+    ],
+    "handwritten_split_list_allowed": false,
+    "producer_function_required": true
+  },
+  "counterfactual_pair_contract": {
+    "applies_to": "every heldout episode",
+    "same_seed": true,
+    "same_context_family": true,
+    "same_observable_prefix_length": true,
+    "different_latent_partner_condition": true,
+    "matched_surface_observation_length": true,
+    "no_direct_partner_id_shortcut": true,
+    "pair_construction_function_provenance_required": true,
+    "failure_verdict_if_missing": "blocked_incomplete_counterfactual_pairs"
+  }
+}

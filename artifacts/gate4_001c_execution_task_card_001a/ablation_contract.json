@@ -1,0 +1,27 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "ablations_must_rerun_episodes_under_real_interventions": true,
+  "post_hoc_filters_over_existing_outputs_allowed": false,
+  "failure_verdict_if_no_independent_rerun": "failed_ablation_not_real_intervention",
+  "required_ablations": [
+    "no_state_update_ablation",
+    "shuffled_feedback_ablation",
+    "partner_identity_masked_ablation",
+    "context_shift_removed_ablation",
+    "counterfactual_pair_swapped_ablation",
+    "serialized_state_zeroed_before_action_ablation"
+  ],
+  "required_ablation_artifact_fields": [
+    "ablation_id",
+    "producer_function",
+    "intervention_path",
+    "rerun_episode_ids",
+    "same_seed_set_as_candidate",
+    "same_heldout_set_as_candidate",
+    "candidate_metric_before",
+    "candidate_metric_after",
+    "behavior_changed_under_intervention",
+    "input_artifact_hashes",
+    "code_path_hash"
+  ]
+}

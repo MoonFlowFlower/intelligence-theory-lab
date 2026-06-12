@@ -1,0 +1,31 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "future_stop_conditions": [
+    "prerequisite anchor mismatch",
+    "candidate uses old or quarantined evidence as positive support",
+    "provisional Gate4 001C contamination",
+    "missing required independent baseline",
+    "ablation is not a real intervention rerun",
+    "replay is not behavioral recomputation",
+    "leakage positive control missed",
+    "unconditional clean leakage report",
+    "evidence-harness challenger blocks",
+    "protected artifact mutation",
+    "posthoc threshold selection",
+    "any downstream authorization flag becomes true"
+  ],
+  "future_rollback_allowed_delete_paths": [
+    "src/gate4_001c_failure_preserving_repair_001c/",
+    "tests/test_gate4_001c_failure_preserving_repair_001c.py",
+    "artifacts/gate4_001c_failure_preserving_repair_001c/"
+  ],
+  "future_rollback_forbidden_mutation_paths": [
+    "historical evidence",
+    "old Gate artifacts",
+    "evidence-harness artifacts",
+    "amendment artifacts",
+    "Claude audit reports"
+  ],
+  "rollback_must_preserve_failure_artifacts_if_within_future_artifact_dir": true,
+  "claim_ceiling_after_failure": "bounded failure evidence only"
+}

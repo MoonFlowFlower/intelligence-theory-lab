@@ -1,0 +1,36 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "required_provenance_fields_for_every_metric": [
+    "producer_function",
+    "producer_module",
+    "code_path_hash",
+    "input_artifacts",
+    "input_artifact_hashes",
+    "run_id",
+    "seed",
+    "episode_ids",
+    "train_context_ids",
+    "heldout_context_ids",
+    "counterfactual_pair_ids",
+    "aggregation_rule",
+    "threshold_rule",
+    "created_at_utc"
+  ],
+  "literal_json_metric_without_callable_producer_allowed": false,
+  "failure_verdict_if_missing_callable_provenance": "failed_metric_without_callable_provenance",
+  "thresholds": {
+    "candidate_margin_over_best_non_oracle_baseline": 0.2,
+    "candidate_must_beat_best_non_oracle_baseline_in_every_context_class": true,
+    "candidate_must_beat_best_non_oracle_baseline_in_seed_count": "5/5",
+    "minimum_context_class_score": 0.7,
+    "replay_recomputation_exact_match_rate": 1.0,
+    "leakage_positive_control_detection_rate": 1.0,
+    "protected_artifact_mutation_violations": 0,
+    "harness_challenger_must_not_block": true
+  },
+  "threshold_selection_rule": {
+    "predeclared_before_execution": true,
+    "posthoc_threshold_changes_allowed": false,
+    "failure_verdict_if_changed_after_execution_begins": "failed_posthoc_threshold_selection"
+  }
+}

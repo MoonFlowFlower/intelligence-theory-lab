@@ -1,0 +1,28 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "required_replay_inputs": [
+    "serialized_state_before",
+    "observation_t",
+    "candidate_code_path_hash",
+    "config_hash",
+    "seed",
+    "episode_id"
+  ],
+  "behavior_recomputation_required": true,
+  "stored_hash_or_stored_action_comparison_only_allowed": false,
+  "required_exact_match_rate": 1.0,
+  "failure_verdict_if_not_behavioral_recomputation": "failed_replay_not_behavioral_recomputation",
+  "required_replay_artifact_fields": [
+    "episode_id",
+    "seed",
+    "serialized_state_before_hash",
+    "observation_hash",
+    "recomputed_action_t",
+    "original_candidate_action_t",
+    "exact_match",
+    "producer_function",
+    "producer_module",
+    "code_path_hash",
+    "config_hash"
+  ]
+}

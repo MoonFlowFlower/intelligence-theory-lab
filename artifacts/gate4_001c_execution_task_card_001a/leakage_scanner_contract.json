@@ -1,0 +1,39 @@
+{
+  "task_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "callable_leakage_scanner_required": true,
+  "included_path_classes": [
+    "result.json",
+    "reports",
+    "matrices",
+    "tests",
+    "manifests",
+    "output bundles",
+    "candidate traces",
+    "replay reports",
+    "baseline reports",
+    "ablation reports"
+  ],
+  "excluded_path_rule": {
+    "excluded_paths_must_be_marked": "not_scanned",
+    "excluded_paths_must_never_be_marked": "clean",
+    "reason_required": true
+  },
+  "broad_exemptions_forbidden": [
+    "whitelist",
+    "allowlist",
+    "trusted-prefix",
+    "known-safe-directory"
+  ],
+  "positive_control_placements": [
+    "normal_included_path",
+    "whitelist_looking_path",
+    "allowlist_looking_path",
+    "trusted_prefix_looking_path",
+    "excluded_looking_path"
+  ],
+  "clean_controls_use_same_scanner_path": true,
+  "missed_positive_control_is_failure": true,
+  "unconditional_clean_report_is_failure": true,
+  "any_broad_exemption_is_failure": true,
+  "failure_verdict": "failed_leakage_scanner_not_fail_able"
+}
