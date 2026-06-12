@@ -1,0 +1,38 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001A",
+  "claim_ceiling": "bounded EGO-mainline readiness audit evidence for admission-contract authorization only",
+  "post_bridge_admission_001b": {
+    "nominal_commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "remote_tag": "remote-anchor-001h-bd0e715",
+    "nominal_verdict": "post_bridge_admission_executable_001b_pass",
+    "current_status": "invalidated_as_downstream_positive_evidence",
+    "positive_evidence_used_by_this_audit": false,
+    "allowed_uses": [
+      "negative evidence",
+      "false-positive artifact-generation evidence",
+      "custody-hermeticity evidence",
+      "historical anchor evidence"
+    ]
+  },
+  "redteam_failure_admission": {
+    "commit": "1157c8dec0f0fc1299f7d64454545af161a97cd3",
+    "verdict": "post_bridge_admission_executable_001b_redteam_failure_admission_001a_block_hardcoding_or_lookup_admitted",
+    "binding_blockers": [
+      "hardcoding_or_lookup_block_admitted",
+      "replay_not_behavior_causal",
+      "distribution_overfit_or_unconsumed_distribution_surfaces"
+    ]
+  },
+  "replacement_positive_candidate": {
+    "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+    "commit": "df0e3e545db56f302f4c27f5e39b549470972b33",
+    "remote_tag": "remote-anchor-001k-df0e3e5",
+    "verdict": "post_bridge_admission_executable_001c_pass",
+    "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract only"
+  },
+  "audit_gate": {
+    "legacy_001b_positive_evidence_usage_blocker": "ego_mainline_readiness_audit_001a_block_001b_misused_as_positive_evidence",
+    "legacy_001b_positive_evidence_misuse_detected": false,
+    "negative_evidence_preserved": true
+  }
+}

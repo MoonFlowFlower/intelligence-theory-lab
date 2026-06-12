@@ -1,0 +1,156 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001A",
+  "claim_ceiling": "bounded EGO-mainline readiness audit evidence for admission-contract authorization only",
+  "records": [
+    {
+      "id": "gate0_predictive_action",
+      "required": true,
+      "status": "present_with_caveats",
+      "path": "artifacts/predictive_action_learning_contract_001c_independent_audit/result.json",
+      "task_id": "predictive_action_learning_contract_001c_independent_audit",
+      "verdict": "independent_audit_pass_with_caveats",
+      "claim_ceiling": "001C has passed-with-caveats the independent evidence audit for bounded isolated Gate 0 predictive-action mechanism evidence. No stronger claim is allowed.",
+      "caveats": [
+        "retrieval caveat preserved",
+        "no predictive superiority over retrieval claim",
+        "no EGO mainline readiness claim",
+        "no VCS freeze evidence for original 001 run"
+      ],
+      "remote_anchor_status": "not specified by this audit input"
+    },
+    {
+      "id": "gate1_replay_consolidation",
+      "required": true,
+      "status": "present",
+      "path": "artifacts/gate1_replay_consolidation_001c_executable_preflight/result.json",
+      "task_id": "GATE1-REPLAY-CONSOLIDATION-001C-EXECUTABLE-PREFLIGHT",
+      "verdict": "gate1_replay_consolidation_001c_bounded_preflight_pass",
+      "claim_ceiling": "bounded Gate1 replay/consolidation executable preflight evidence only",
+      "related_remote_anchor_verified": {
+        "tag": "remote-anchor-001a-6b362e0",
+        "commit": "6b362e0f2fe002dcc15d1d23ea5be0849af64d2c"
+      }
+    },
+    {
+      "id": "gate2_controllability_self_boundary",
+      "required": true,
+      "status": "present",
+      "path": "artifacts/gate2_controllability_self_boundary_001b/result.json",
+      "task_id": "GATE2-CONTROLLABILITY-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B",
+      "verdict": "gate2_controllability_self_boundary_001b_bounded_preflight_pass",
+      "claim_ceiling": "bounded Gate2 controllability / self-boundary executable preflight evidence only",
+      "related_remote_anchor_verified": {
+        "tag": "remote-anchor-001a-7046d6f",
+        "commit": "7046d6fdf69e90154e6a0abe9a6ec6e6eda88051"
+      }
+    },
+    {
+      "id": "gate3_viability_functional_affect",
+      "required": true,
+      "status": "present",
+      "path": "artifacts/gate3_viability_functional_affect_001b/result.json",
+      "task_id": "GATE3-VIABILITY-FUNCTIONAL-AFFECT-EXECUTABLE-PREFLIGHT-001B",
+      "verdict": "gate3_viability_functional_affect_001b_bounded_preflight_pass",
+      "claim_ceiling": "bounded Gate3 viability / functional-affect executable preflight evidence only",
+      "related_remote_anchor_verified": {
+        "tag": "remote-anchor-001a-3f36ca0",
+        "commit": "3f36ca020adeebdc3ccbd2343b1208c4fedb2f64"
+      }
+    },
+    {
+      "id": "gate4_social_latent",
+      "required": true,
+      "status": "present",
+      "path": "artifacts/gate4_social_latent_inference_001b/result.json",
+      "task_id": "GATE4-SOCIAL-LATENT-INFERENCE-EXECUTABLE-PREFLIGHT-001B",
+      "verdict": "gate4_social_latent_inference_001b_bounded_pass",
+      "claim_ceiling": "bounded Gate4 social-latent inference executable preflight evidence only",
+      "related_remote_anchors_verified": [
+        "remote-anchor-001a-3f36ca0",
+        "remote-anchor-001a-693c215",
+        "remote-anchor-001a-6b362e0",
+        "remote-anchor-001a-7046d6f",
+        "remote-anchor-001a-724bde8",
+        "remote-anchor-001b-a083db2",
+        "remote-anchor-001b-eec2bb1"
+      ]
+    },
+    {
+      "id": "gate4_social_representational_gap",
+      "required": true,
+      "status": "present",
+      "path": "artifacts/gate4_social_representational_gap_preflight_001b/result.json",
+      "task_id": "GATE4-SOCIAL-REPRESENTATIONAL-GAP-PREFLIGHT-EXECUTABLE-001B",
+      "verdict": "gate4_social_rep_gap_001b_bounded_pass",
+      "claim_ceiling": "bounded Gate4 social representational-gap preflight evidence only",
+      "remote_anchor_verification_pass": true
+    },
+    {
+      "id": "same_agent_bridge_001b",
+      "required": true,
+      "status": "present_and_remote_anchored",
+      "path": "artifacts/same_agent_bridge_001b/result.json",
+      "task_id": "SAME-AGENT-BRIDGE-EXECUTABLE-PREFLIGHT-001B",
+      "commit": "59ad22246823da107b9df4beb977fdfa34b7f986",
+      "remote_tag": "remote-anchor-001f-59ad222",
+      "verdict": "same_agent_bridge_001b_bounded_preflight_pass",
+      "claim_ceiling": "bounded same-agent bridge executable preflight evidence only"
+    },
+    {
+      "id": "post_bridge_admission_001b_nominal",
+      "required": true,
+      "status": "present_but_invalidated_as_positive_evidence",
+      "path": "artifacts/post_bridge_admission_executable_001b/result.json",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B",
+      "commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+      "remote_tag": "remote-anchor-001h-bd0e715",
+      "verdict": "post_bridge_admission_executable_001b_pass",
+      "allowed_use": [
+        "negative evidence",
+        "false-positive artifact-generation evidence",
+        "custody-hermeticity evidence",
+        "historical anchor evidence"
+      ],
+      "positive_downstream_evidence_authorized": false
+    },
+    {
+      "id": "post_bridge_admission_001b_redteam_failure_admission",
+      "required": true,
+      "status": "present",
+      "path": "artifacts/post_bridge_admission_executable_001b_redteam_failure_admission_001a/result.json",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B-REDTEAM-FAILURE-ADMISSION-001A",
+      "commit": "1157c8dec0f0fc1299f7d64454545af161a97cd3",
+      "verdict": "post_bridge_admission_executable_001b_redteam_failure_admission_001a_block_hardcoding_or_lookup_admitted"
+    },
+    {
+      "id": "computed_evidence_provenance_contract_001a",
+      "required": true,
+      "status": "present_and_remote_anchored",
+      "path": "docs/codex/contracts/COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A.md",
+      "commit": "09cff85ac377aaa99f913c30e3d31f85264d1344",
+      "remote_tag": "remote-anchor-001i-09cff85"
+    },
+    {
+      "id": "agents_computed_evidence_instruction_canonicalization",
+      "required": true,
+      "status": "present_and_remote_anchored",
+      "commit": "0a3babb40bd9b4ada3f01d3752ae43105596fb72",
+      "remote_tag": "remote-anchor-001j-0a3babb"
+    },
+    {
+      "id": "post_bridge_admission_001c",
+      "required": true,
+      "status": "present_and_remote_anchored_current_positive_candidate",
+      "path": "artifacts/post_bridge_admission_executable_001c/result.json",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+      "commit": "df0e3e545db56f302f4c27f5e39b549470972b33",
+      "remote_tag": "remote-anchor-001k-df0e3e5",
+      "verdict": "post_bridge_admission_executable_001c_pass",
+      "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract only",
+      "computed_evidence_provenance_gate_passed": true,
+      "unused_frozen_inputs": []
+    }
+  ],
+  "missing_required_records": [],
+  "missing_required_remote_anchors": []
+}
