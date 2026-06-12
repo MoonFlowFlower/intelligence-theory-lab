@@ -1,0 +1,134 @@
+{
+  "ablation_gate_passed": true,
+  "ablations": [
+    {
+      "ablation_name": "remove social_latent_state",
+      "candidate_score": 1.0,
+      "failure_surface": "social_latent_state_update",
+      "score": 0.3,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "freeze social_latent_state",
+      "candidate_score": 1.0,
+      "failure_surface": "social_latent_state_update",
+      "score": 0.4,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "replace social history",
+      "candidate_score": 1.0,
+      "failure_surface": "social_history_lineage",
+      "score": 0.5,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove social_prediction_error",
+      "candidate_score": 1.0,
+      "failure_surface": "social_latent_state_update",
+      "score": 0.3,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "invert partner response mapping",
+      "candidate_score": 1.0,
+      "failure_surface": "partner_response_prediction",
+      "score": 0.2,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove interaction feedback",
+      "candidate_score": 1.0,
+      "failure_surface": "interaction_feedback",
+      "score": 0.4,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove Gate1 replay input to social update",
+      "candidate_score": 1.0,
+      "failure_surface": "gate1_replay_to_social_update",
+      "score": 0.5,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove Gate2 self-boundary input to social update",
+      "candidate_score": 1.0,
+      "failure_surface": "gate2_boundary_to_social_update",
+      "score": 0.5,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove Gate3 viability/action-priority input to interaction policy",
+      "candidate_score": 1.0,
+      "failure_surface": "interaction_policy_update",
+      "score": 0.3,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "freeze shared state",
+      "candidate_score": 1.0,
+      "failure_surface": "canonical_shared_state",
+      "score": 0.2,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "disable action",
+      "candidate_score": 1.0,
+      "failure_surface": "action_conditioning",
+      "score": 0.2,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "delayed partner response",
+      "candidate_score": 1.0,
+      "failure_surface": "delayed_response_sensitivity",
+      "score": 0.6,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "partial observability",
+      "candidate_score": 1.0,
+      "failure_surface": "partial_observability",
+      "score": 0.6,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "heldout partner-context-action compositions",
+      "candidate_score": 1.0,
+      "failure_surface": "heldout_composition",
+      "score": 0.7,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "counterfactual interaction contrast",
+      "candidate_score": 1.0,
+      "failure_surface": "counterfactual_interaction",
+      "score": 0.5,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "perturb partner policy",
+      "candidate_score": 1.0,
+      "failure_surface": "scripted_process_perturbation",
+      "score": 0.6,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "perturb social feedback channel",
+      "candidate_score": 1.0,
+      "failure_surface": "social_feedback_channel",
+      "score": 0.4,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "learning freeze",
+      "candidate_score": 1.0,
+      "failure_surface": "learning_update",
+      "score": 0.3,
+      "sensitive": true
+    }
+  ],
+  "candidate_score": 1.0,
+  "claim_ceiling": "bounded Gate4 social-latent inference executable preflight evidence only",
+  "task_id": "GATE4-SOCIAL-LATENT-INFERENCE-EXECUTABLE-PREFLIGHT-001B"
+}

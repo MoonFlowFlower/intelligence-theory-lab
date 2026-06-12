@@ -1,0 +1,223 @@
+{
+  "acceptance_threshold": 0.95,
+  "baseline_gate_passed": true,
+  "baselines": [
+    {
+      "baseline_name": "partner-ID lookup",
+      "control_family": "static process key",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.4,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "static per-partner profile table",
+      "control_family": "static process-context key",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "preference-table lookup",
+      "control_family": "action preference key",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "transcript retrieval",
+      "control_family": "nearest transcript",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.6,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "summary retrieval",
+      "control_family": "summary bucket",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "bounded-order window model order-1",
+      "control_family": "order-1 response window",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": true,
+      "uses_social_latent_state": true
+    },
+    {
+      "baseline_name": "bounded-order window model order-2",
+      "control_family": "order-2 response window",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.6,
+      "uses_single_canonical_shared_state": true,
+      "uses_social_latent_state": true
+    },
+    {
+      "baseline_name": "shuffled-history same-loss control",
+      "control_family": "history order removed",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.4,
+      "uses_single_canonical_shared_state": true,
+      "uses_social_latent_state": true
+    },
+    {
+      "baseline_name": "graph_lookup",
+      "control_family": "graph cache",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.6,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "transition_table",
+      "control_family": "transition table",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "successor_map",
+      "control_family": "successor map",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "count_table",
+      "control_family": "count statistic",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.4,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "fsm_planner",
+      "control_family": "finite-state challenger",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "episodic_traversal",
+      "control_family": "episodic traversal",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.6,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "behavior-only imitation",
+      "control_family": "imitates selected actions",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "fixed social script/persona policy",
+      "control_family": "fixed scripted policy",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.4,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "frozen social-latent model",
+      "control_family": "no social update",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.5,
+      "uses_single_canonical_shared_state": true,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "Gate0/Gate1/Gate2/Gate3 policy without social_latent_state",
+      "control_family": "base loop only",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.6,
+      "uses_single_canonical_shared_state": true,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "stitched-output baseline with no shared social state",
+      "control_family": "stitched outputs",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.7,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "random policy",
+      "control_family": "random policy",
+      "counts_as_fair_baseline": true,
+      "matches_or_beats_candidate": false,
+      "score": 0.2,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "oracle partner/social-label control as upper-bound/leakage only",
+      "control_family": "upper-bound only",
+      "counts_as_fair_baseline": false,
+      "matches_or_beats_candidate": false,
+      "score": 1.0,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    },
+    {
+      "baseline_name": "trace-only replay as hygiene only",
+      "control_family": "hygiene only",
+      "counts_as_fair_baseline": false,
+      "matches_or_beats_candidate": false,
+      "score": 1.0,
+      "uses_single_canonical_shared_state": false,
+      "uses_social_latent_state": false
+    }
+  ],
+  "best_fair_baseline": {
+    "baseline_name": "stitched-output baseline with no shared social state",
+    "control_family": "stitched outputs",
+    "counts_as_fair_baseline": true,
+    "matches_or_beats_candidate": false,
+    "score": 0.7,
+    "uses_single_canonical_shared_state": false,
+    "uses_social_latent_state": false
+  },
+  "candidate": {
+    "score": 1.0,
+    "uses_single_canonical_shared_state": true,
+    "uses_social_latent_state": true
+  },
+  "claim_ceiling": "bounded Gate4 social-latent inference executable preflight evidence only",
+  "oracle_used_only_as_upper_bound": true,
+  "strongest_baseline_explanation": "Static process keys, bounded windows, retrieval, graph/cache controls, behavior imitation, fixed scripts, or stitched outputs could mimic the later-action pattern without one shared social_latent_state update chain.",
+  "task_id": "GATE4-SOCIAL-LATENT-INFERENCE-EXECUTABLE-PREFLIGHT-001B",
+  "trace_only_replay_used_only_as_hygiene": true
+}
