@@ -1,0 +1,75 @@
+{
+  "artifact_dir": "artifacts/post_bridge_admission_executable_001b_redteam_failure_admission_001a",
+  "claim_ceiling": "bounded external red-team failure admission evidence only",
+  "commands_run": [
+    "git rev-parse bd0e715",
+    "git ls-remote origin refs/tags/remote-anchor-001h-bd0e715",
+    "git status --short --branch",
+    "git log -1 --format=\"%H %s\"",
+    "rg -n \"def baseline_comparison|scores = \\{|def ablation_report|def leakage_report|def build_admission_run|for index, context|pre_state =|action = candidate_action_id|serialized_state =|state_replacement_delta|token_equivalence_delta|memory_carryover_delta|def _find_counterfactual_state|def trace_replay_report|def state_replay_report|def serialized_state_replay_report|source_trace_ids|post_bridge_observation_hash|train_contexts|seed_families|heldout_bridge_contexts\" src\\post_bridge_admission_executable_001b\\core.py",
+    "rg -n \"baseline_comparison\\(|ablation_report\\(|leakage_report\\(|build_admission_run\\(|distribution\\[|stage0|run_admission_001b|trace_replay_report|state_replay_report|serialized_state_replay_report|provenance_replay_report\" src\\post_bridge_admission_executable_001b\\runner.py",
+    "python artifact inspection for trace/provenance/distribution summaries"
+  ],
+  "downstream_use": {
+    "001b_may_be_cited_as_evidence_custody_or_hermeticity_evidence": true,
+    "001b_may_be_cited_as_false_positive_artifact_generation_evidence": true,
+    "001b_may_be_cited_as_negative_evidence": true,
+    "001b_usable_as_downstream_positive_evidence": false
+  },
+  "external_redteam_verdict": "block_hardcoding_or_lookup",
+  "final_git_scope_intent": {
+    "allowed_outputs_only": true,
+    "do_not_modify_old_001b_artifacts": true,
+    "do_not_rerun_001b": true,
+    "do_not_rewrite_001b_result": true
+  },
+  "layer": "bounded external red-team failure admission only",
+  "next_allowed_task": "new bounded rerun or replacement executable, likely POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+  "nominal_001b": {
+    "commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "nominal_verdict": "post_bridge_admission_executable_001b_pass",
+    "remote_tag": "remote-anchor-001h-bd0e715"
+  },
+  "parent_anchor_verification": {
+    "remote_anchor_actual": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "remote_anchor_expected": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "remote_anchor_ref": "refs/tags/remote-anchor-001h-bd0e715",
+    "remote_anchor_verified": true,
+    "rev_parse_actual": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "rev_parse_expected": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "rev_parse_verified": true
+  },
+  "scope_check": {
+    "bridge_runtime_created": false,
+    "companion_behavior_created": false,
+    "ego_mainline_touched": false,
+    "llm_rag_added": false,
+    "old_001b_artifacts_modified": false,
+    "old_001b_result_modified": false,
+    "post_bridge_admission_001b_rerun": false,
+    "product_demo_or_romance_or_attachment_added": false,
+    "relationship_or_emotion_or_personalization_added": false,
+    "user_model_or_persistent_profile_or_long_term_memory_added": false
+  },
+  "stop_conditions_triggered": [
+    "hardcoding_or_lookup_block_admitted",
+    "replay_not_behavior_causal",
+    "distribution_overfit_or_unconsumed_distribution_surfaces"
+  ],
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B-REDTEAM-FAILURE-ADMISSION-001A",
+  "verdict": "post_bridge_admission_executable_001b_redteam_failure_admission_001a_block_hardcoding_or_lookup_admitted",
+  "what_this_does_not_prove": [
+    "bridge readiness",
+    "EGO readiness",
+    "companion readiness",
+    "mechanism validity",
+    "theory validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "real relationship learning",
+    "real emotion",
+    "subjective experience",
+    "stable user benefit"
+  ]
+}

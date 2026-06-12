@@ -1,0 +1,106 @@
+{
+  "claim_ceiling": "bounded external red-team failure admission evidence only",
+  "evidence_items": [
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:750-819 defines fixed baseline scores and fixed candidate score/claims.",
+        "src/post_bridge_admission_executable_001b/runner.py:392 calls baseline_comparison() without passing measured run data.",
+        "artifacts/post_bridge_admission_executable_001b/baseline_comparison.json reports candidate score 1.0 and best fair baseline stitched-output baseline 0.82 from those constants."
+      ],
+      "finding": "baseline_scores_generated_by_actual_baseline_implementations_or_constants",
+      "result": "constants"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:822-885 defines fixed ablation score table and fixed contrast results.",
+        "src/post_bridge_admission_executable_001b/runner.py:393 calls ablation_report() without intervention rerun inputs."
+      ],
+      "finding": "ablation_scores_generated_by_actual_reruns_or_constants",
+      "result": "constants"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:888-911 emits every leakage check as clean and every equivalence flag as false.",
+        "src/post_bridge_admission_executable_001b/core.py:616-620 writes per-trace leakage_scan_result as clean/false."
+      ],
+      "finding": "leakage_checks_real_scans_or_unconditional_clean_reports",
+      "result": "unconditional_clean_reports"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:610-612 writes state_replacement_delta=1.0, token_equivalence_delta=0.0, and memory_carryover_delta=1.0.",
+        "artifact inspection found all 48 trace rows share delta tuple (1.0, 0.0, 1.0)."
+      ],
+      "finding": "trace_deltas_measured_or_constant",
+      "result": "constant"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:548 loops over distribution[\"heldout_bridge_contexts\"].",
+        "src/post_bridge_admission_executable_001b/core.py:465-470 uses _find_counterfactual_state() rejection search over generated state variants.",
+        "distribution_manifest.json contains counterfactual_state_pairs, but build_admission_run() does not consume them."
+      ],
+      "finding": "counterfactual_pairs_consumed_from_frozen_manifest_or_selected_by_rejection_search",
+      "result": "selected_by_rejection_search"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:646-673 recomputes trace hashes from existing row fields.",
+        "src/post_bridge_admission_executable_001b/core.py:676-689 checks state_replay_hash equals post_bridge_state_hash.",
+        "src/post_bridge_admission_executable_001b/core.py:692-710 hashes serialized_state and compares precomputed candidate/counterfactual action ids in snapshots.",
+        "No replay function reconstructs observation and deserialized serialized_state to recompute candidate_action_id."
+      ],
+      "finding": "replay_recomputes_candidate_action_from_serialized_state_plus_observation",
+      "result": "no_hash_consistency_only"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "trace.jsonl stores post_bridge_observation_hash only.",
+        "serialized_state_snapshots.jsonl stores serialized_state but no observation object.",
+        "artifact inspection found has_observation_object_in_trace=false and has_observation_object_in_snapshots=false."
+      ],
+      "finding": "observations_available_in_artifacts_for_behavior_causal_replay",
+      "result": "not_available"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:522-524 generates source_trace_ids/source_event_ids as strings.",
+        "trace rows do not contain source_trace_000 or equivalent resolvable trace objects.",
+        "provenance_replay_report.json checks required fields and clean flags, not source trace resolution."
+      ],
+      "finding": "provenance_source_trace_ids_real_resolvable_trace_objects",
+      "result": "not_resolvable"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "distribution_manifest.json has train_contexts=24 and seed_families=4.",
+        "src/post_bridge_admission_executable_001b/core.py:548 only iterates heldout_bridge_contexts.",
+        "No inspected causal path consumes train_contexts or seed family state for training, scoring, baselines, or ablations."
+      ],
+      "finding": "train_contexts_and_seed_families_consumed_by_run",
+      "result": "not_meaningfully_consumed"
+    },
+    {
+      "admission": "redteam_supported",
+      "evidence": [
+        "src/post_bridge_admission_executable_001b/core.py:554-556 creates pre_state and computes candidate_action_id(pre_state, observation).",
+        "src/post_bridge_admission_executable_001b/core.py:567-572 constructs serialized_state after action selection.",
+        "No deserialize function or deserialized serialized_state action path was found."
+      ],
+      "finding": "candidate_action_consumes_deserialized_serialized_state_in_causal_path",
+      "result": "no_pre_state_used_before_serialization"
+    }
+  ],
+  "nominal_001b_positive_evidence_status": "blocked",
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B-REDTEAM-FAILURE-ADMISSION-001A",
+  "verdict": "post_bridge_admission_executable_001b_redteam_failure_admission_001a_block_hardcoding_or_lookup_admitted"
+}

@@ -1,0 +1,33 @@
+{
+  "claim_ceiling": "bounded external red-team failure admission evidence only",
+  "do_not_patch": [
+    "Do not modify old 001B artifacts.",
+    "Do not modify old 001B result.json.",
+    "Do not rerun 001B.",
+    "Do not patch thresholds after results.",
+    "Do not weaken baselines.",
+    "Do not delete negative evidence.",
+    "Do not enter EGO mainline.",
+    "Do not create bridge runtime or companion behavior."
+  ],
+  "minimum_next_task": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+  "required_001c_properties": [
+    "Fresh Stage0 freeze.",
+    "Measured baseline implementations that execute legal-input competitors and produce scores from their outputs.",
+    "Measured ablation reruns under interventions, not source score tables.",
+    "Leakage scans over actual candidate inputs, serialized state, observations, traces, filenames, artifact paths, split labels, future fields, and verifier-only fields with fail-able outputs.",
+    "Behavior-causal replay that deserializes serialized_state, reloads replayable observation objects, recomputes candidate_action_id, and compares to stored actions.",
+    "Trace artifacts that store replayable observation objects, not only hashes.",
+    "Provenance source_trace_ids that resolve to concrete trace row IDs or event IDs.",
+    "Frozen counterfactual_state_pairs consumed directly from the manifest.",
+    "Train contexts and seed families used in a measurable training, calibration, or heldout protocol, or removed from the claim surface.",
+    "Candidate action path consumes deserialized serialized_state, not pre-serialization in-memory state.",
+    "Oracle and trace-only replay remain diagnostic or hygiene controls only."
+  ],
+  "rollback": {
+    "preserve_001b_artifacts": true,
+    "preserve_001h_remote_anchor": true,
+    "preserve_this_failure_admission": true
+  },
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B-REDTEAM-FAILURE-ADMISSION-001A"
+}

@@ -1,0 +1,47 @@
+{
+  "admitted_blockers": [
+    {
+      "blocker": "hardcoding_or_lookup_block",
+      "severity": "blocking",
+      "summary": "Baseline scores, ablation scores, contrast results, candidate score, and clean leakage status are source-generated constants or self-consistent artifact values rather than measured executions."
+    },
+    {
+      "blocker": "replay_not_behavior_causal",
+      "severity": "blocking",
+      "summary": "Replay verifies hash and field consistency but cannot recompute behavior from serialized_state plus observation because observations are not stored as replayable objects and the replay code does not execute the candidate causal path."
+    },
+    {
+      "blocker": "distribution_overfit_or_unconsumed_distribution_surfaces",
+      "severity": "blocking",
+      "summary": "Train contexts, seed families, and frozen counterfactual pairs exist in the manifest but are not meaningfully consumed by the run; counterfactual behavior is selected by rejection search."
+    },
+    {
+      "blocker": "provenance_not_resolvable_to_trace_objects",
+      "severity": "blocking",
+      "summary": "Provenance source_trace_ids are generated identifiers and are not resolvable to trace objects in trace.jsonl."
+    }
+  ],
+  "claim_ceiling": "bounded external red-team failure admission evidence only",
+  "downstream_authorization": {
+    "bridge_readiness_authorized": false,
+    "companion_readiness_authorized": false,
+    "ego_mainline_readiness_authorized": false,
+    "mechanism_validity_authorized": false,
+    "positive_downstream_evidence_authorized": false
+  },
+  "nominal_001b": {
+    "commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+    "remote_anchor": "remote-anchor-001h-bd0e715",
+    "verdict": "post_bridge_admission_executable_001b_pass"
+  },
+  "preserve_as": [
+    "negative evidence",
+    "false-positive artifact-generation evidence",
+    "evidence-custody evidence",
+    "hermeticity evidence",
+    "historical anchor evidence"
+  ],
+  "redteam_verdict": "block_hardcoding_or_lookup",
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B-REDTEAM-FAILURE-ADMISSION-001A",
+  "verdict": "post_bridge_admission_executable_001b_redteam_failure_admission_001a_block_hardcoding_or_lookup_admitted"
+}
