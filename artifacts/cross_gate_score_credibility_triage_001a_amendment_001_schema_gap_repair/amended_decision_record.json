@@ -1,0 +1,193 @@
+{
+  "amended_verdict": "schema_gap_repaired_downstream_entry_blocked_risk_findings_preserved",
+  "amendment_record_status": {
+    "historical_risk_findings_preserved": true,
+    "old_artifacts_modified": false,
+    "old_verdicts_rewritten": false,
+    "schema_gap_repaired_by_separate_record": true
+  },
+  "amends_task_id": "CROSS-GATE-SCORE-CREDIBILITY-TRIAGE-001A",
+  "branch": "codex/meta-theory-scaffold",
+  "claim_ceiling": "bounded triage acceptance-schema repair only",
+  "claim_ceiling_enforced": true,
+  "current_head": "393ebe5b03a07b2a6b5b91c46479b0cf92cb93c9",
+  "downstream_decision_reasons": {
+    "safe_to_continue_gate4_001c": [
+      "original_001a_result_omitted_required_downstream_safety_field",
+      "original_001a_triage_found_critical_or_high_or_blocked_score_bearing_risks"
+    ],
+    "safe_to_enter_admission": [
+      "original_001a_result_omitted_required_downstream_safety_field",
+      "original_001a_triage_found_critical_or_high_or_blocked_score_bearing_risks",
+      "original_001a_recommended_repair_order_does_not_authorize_admission"
+    ],
+    "safe_to_enter_gate5": [
+      "original_001a_result_omitted_required_downstream_safety_field",
+      "original_001a_triage_found_critical_or_high_or_blocked_score_bearing_risks",
+      "original_001a_recommended_repair_order_does_not_authorize_gate5"
+    ],
+    "safe_to_enter_runtime": [
+      "original_001a_result_omitted_required_downstream_safety_field",
+      "original_001a_triage_found_critical_or_high_or_blocked_score_bearing_risks",
+      "original_001a_recommended_repair_order_does_not_authorize_runtime"
+    ]
+  },
+  "downstream_safety_decisions": {
+    "safe_to_continue_gate4_001c": false,
+    "safe_to_enter_admission": false,
+    "safe_to_enter_gate5": false,
+    "safe_to_enter_runtime": false
+  },
+  "generated_utc": "2026-06-12T21:07:15Z",
+  "known_limitations_preserved": [
+    "This is a text/static triage, not an independent rerun or repair.",
+    "Medium or low risk does not prove a task valid; it only means the visible scan did not detect the known false-pass cluster.",
+    "Admission, bridge, runtime, and provisional Gate4 001C references are inventory/reference boundaries only, not scored canonical evidence."
+  ],
+  "layer": "engineering implementation plus acceptance-schema repair; not mechanism validation",
+  "original_001a_record_status": {
+    "acceptance_schema_complete_for_downstream_decisions": false,
+    "consume_policy": "Treat original 001A as incomplete for downstream decision use unless consumed together with this amendment record.",
+    "incomplete_reason": "missing required downstream safety decision fields: safe_to_continue_gate4_001c, safe_to_enter_gate5, safe_to_enter_admission, safe_to_enter_runtime",
+    "must_not_be_rewritten_in_place": true,
+    "result_path": "artifacts/cross_gate_score_credibility_triage_001a/result.json",
+    "result_sha256": "13ecce0594533ba7ec6e9c2b9ae5e8ff72b498bb837e9aa3758b053c6e007cdc",
+    "verdict": "triage_complete_gate_validity_not_claimed"
+  },
+  "producer_function": "inline_python_cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair",
+  "purpose": "preserve 001A risk findings while repairing the missing downstream decision record as a separate amendment",
+  "required_start_commit": "393ebe5b03a07b2a6b5b91c46479b0cf92cb93c9",
+  "risk_findings_preserved": {
+    "blocked_task_count": 6,
+    "blocked_task_ids": [
+      "gate1_replay_consolidation_001b",
+      "gate1_replay_consolidation_exec_001",
+      "new_problem_preflight_001a",
+      "process_intervention_preflight_001a",
+      "representational_gap_001a",
+      "representational_gap_001b"
+    ],
+    "critical_risk_task_count": 9,
+    "critical_risk_task_ids": [
+      "ego_mainline_gate4_preflight_001b",
+      "gate2_controllability_self_boundary_001b",
+      "gate3_viability_functional_affect_001b",
+      "gate4_social_latent_inference_001b",
+      "gate4_social_representational_gap_preflight_001b",
+      "r_g_gate0_gate1_gate2_canonical_micro_agent_testbed_001b",
+      "r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b",
+      "representational_gap_preflight",
+      "representational_gap_preflight_001b"
+    ],
+    "high_risk_task_count": 3,
+    "high_risk_task_ids": [
+      "gate1_replay_consolidation_001c",
+      "process_intervention_hard_distribution_001b",
+      "process_intervention_hard_distribution_001b_trace_replay_rca_001a"
+    ],
+    "original_claim_ceiling": "bounded cross-gate score-credibility triage evidence only",
+    "original_verdict": "triage_complete_gate_validity_not_claimed",
+    "recommended_immediate_deep_audit_targets": [
+      {
+        "minimum_next_audit": "independent source-level audit of score production, baseline callability, ablation intervention path, replay recomputation, leakage scanner positive controls, and tests that can fail",
+        "reason": "Gate4 001B is the known rejected bounded pass and visible source/tests/artifacts show static score/pass-shaped harness patterns",
+        "risk_class": "critical_risk_false_pass_pattern_detected",
+        "task_id": "gate4_social_latent_inference_001b"
+      },
+      {
+        "minimum_next_audit": "independent source-level audit of score production, baseline callability, ablation intervention path, replay recomputation, leakage scanner positive controls, and tests that can fail",
+        "reason": "mechanism-executable score task has static score specs, pass-shaped tests, clean literals, and replay/leakage pass patterns",
+        "risk_class": "critical_risk_false_pass_pattern_detected",
+        "task_id": "gate4_social_representational_gap_preflight_001b"
+      },
+      {
+        "minimum_next_audit": "independent source-level audit of score production, baseline callability, ablation intervention path, replay recomputation, leakage scanner positive controls, and tests that can fail",
+        "reason": "mechanism-executable score task has static score specs, pass-shaped tests, clean literals, and replay/leakage pass patterns",
+        "risk_class": "critical_risk_false_pass_pattern_detected",
+        "task_id": "r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b"
+      }
+    ],
+    "recommended_repair_order": [
+      {
+        "action": "Keep historical artifacts immutable; mark as critical-risk input only until a separate bounded repair task exists.",
+        "not_authorized_here": [
+          "repair",
+          "rerun",
+          "claim Gate4 validity"
+        ],
+        "order": 1,
+        "target_family": "Gate4 001B rejected bounded pass quarantine",
+        "task_ids": [
+          "gate4_social_latent_inference_001b"
+        ]
+      },
+      {
+        "action": "Audit parent score harnesses before any downstream Gate4/Gate5/admission/bridge use.",
+        "not_authorized_here": [
+          "Gate5",
+          "admission",
+          "runtime",
+          "bridge"
+        ],
+        "order": 2,
+        "target_family": "Gate4 parent and shared canonical ancestor audit",
+        "task_ids": [
+          "gate4_social_representational_gap_preflight_001b",
+          "r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b"
+        ]
+      },
+      {
+        "action": "After immediate targets, run bounded independent audits in dependency order; do not rewrite old verdicts.",
+        "not_authorized_here": [
+          "historical verdict rewrite",
+          "old artifact mutation"
+        ],
+        "order": 3,
+        "target_family": "Earlier Gate0-Gate3 score-bearing preflights",
+        "task_ids": [
+          "gate1_replay_consolidation_001c",
+          "process_intervention_hard_distribution_001b",
+          "process_intervention_hard_distribution_001b_trace_replay_rca_001a"
+        ]
+      }
+    ],
+    "source_result_path": "artifacts/cross_gate_score_credibility_triage_001a/result.json",
+    "source_result_sha256": "13ecce0594533ba7ec6e9c2b9ae5e8ff72b498bb837e9aa3758b053c6e007cdc",
+    "top_5_recurring_evidence_risks": [
+      {
+        "affected_task_count": 24,
+        "risk_category": "baseline_fairness"
+      },
+      {
+        "affected_task_count": 24,
+        "risk_category": "variant_sentinel"
+      },
+      {
+        "affected_task_count": 21,
+        "risk_category": "unconditional_clean_reports"
+      },
+      {
+        "affected_task_count": 17,
+        "risk_category": "replay_integrity"
+      },
+      {
+        "affected_task_count": 15,
+        "risk_category": "test_integrity"
+      }
+    ]
+  },
+  "task_id": "CROSS-GATE-SCORE-CREDIBILITY-TRIAGE-001A-AMENDMENT-001-SCHEMA-GAP-REPAIR",
+  "what_this_does_not_prove": [
+    "any Gate validity",
+    "mechanism validity",
+    "theory validity",
+    "architecture correctness",
+    "EGO-mainline readiness",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "relationship learning",
+    "stable user benefit"
+  ]
+}

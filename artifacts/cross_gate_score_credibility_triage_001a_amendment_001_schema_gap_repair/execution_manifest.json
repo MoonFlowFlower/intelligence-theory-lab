@@ -1,0 +1,74 @@
+{
+  "amends_task_id": "CROSS-GATE-SCORE-CREDIBILITY-TRIAGE-001A",
+  "branch": "codex/meta-theory-scaffold",
+  "claim_ceiling": "bounded triage acceptance-schema repair only",
+  "creation_mode": "isolated_new_artifact_directory",
+  "current_head": "393ebe5b03a07b2a6b5b91c46479b0cf92cb93c9",
+  "expected_output_files": [
+    "schema_gap_report.json",
+    "amended_decision_record.json",
+    "downstream_safety_decision.json",
+    "result.json",
+    "claim_ceiling.txt",
+    "execution_manifest.json",
+    "json_parse_verification.json"
+  ],
+  "generated_utc": "2026-06-12T21:07:15Z",
+  "input_artifacts": [
+    {
+      "path": "artifacts/cross_gate_score_credibility_triage_001a/result.json",
+      "role": "source_001a_artifact",
+      "sha256": "13ecce0594533ba7ec6e9c2b9ae5e8ff72b498bb837e9aa3758b053c6e007cdc"
+    },
+    {
+      "path": "artifacts/cross_gate_score_credibility_triage_001a/risk_matrix.json",
+      "role": "source_001a_artifact",
+      "sha256": "36dfac6369d25848ddd8372f4ecf689ae79d7ad1396192919123edccec72e859"
+    },
+    {
+      "path": "artifacts/cross_gate_score_credibility_triage_001a/high_risk_task_list.json",
+      "role": "source_001a_artifact",
+      "sha256": "4be476ab8eadbf1a154adc53de5a17521dd8271bf3ebeab4d4bbec867f7ffadc"
+    },
+    {
+      "path": "artifacts/cross_gate_score_credibility_triage_001a/recommended_repair_order.json",
+      "role": "source_001a_artifact",
+      "sha256": "9624fd12610dece746ff5e76e63627b9c1cd14ad731551bc7e7eca1801e5a373"
+    },
+    {
+      "path": "artifacts/cross_gate_score_credibility_triage_001a/recommended_deep_audit_targets.json",
+      "role": "source_001a_artifact",
+      "sha256": "7cc7273597b6784d6ae58fbd24727e9aa9b470d55bcf6bc3757bb51163a3d7c3"
+    },
+    {
+      "path": "artifacts/cross_gate_score_credibility_triage_001a/claim_ceiling.txt",
+      "role": "source_001a_artifact",
+      "sha256": "5207bb4c67eda3c991551bad701eaeb221613bedc4440aea5732732c44de121c"
+    }
+  ],
+  "layer": "engineering implementation plus acceptance-schema repair; not mechanism validation",
+  "output_directory": "artifacts/cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair",
+  "producer_function": "inline_python_cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair",
+  "producer_notes": [
+    "No separate committed 001A task card was found; schema comparison is against committed 001A result.json and the required downstream fields specified for this amendment.",
+    "Downstream booleans are computed conservatively from critical/high/blocked risks and the original missing-field schema gap."
+  ],
+  "protected_scope": {
+    "gate5_admission_runtime_bridge_paths_modified": false,
+    "old_gate_artifacts_modified": false,
+    "old_tests_modified": false,
+    "old_verdicts_rewritten": false,
+    "original_001a_result_rewritten_in_place": false,
+    "provisional_gate4_001c_modified": false
+  },
+  "required_start_commit": "393ebe5b03a07b2a6b5b91c46479b0cf92cb93c9",
+  "run_id": "cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair_run_001",
+  "source_result_summary": {
+    "current_head_used_for_amendment": "393ebe5b03a07b2a6b5b91c46479b0cf92cb93c9",
+    "original_actual_head_recorded_inside_result": "90dc4b9082593fabf06197b03eaf66c9c64014a2",
+    "original_result_path": "artifacts/cross_gate_score_credibility_triage_001a/result.json",
+    "original_result_sha256": "13ecce0594533ba7ec6e9c2b9ae5e8ff72b498bb837e9aa3758b053c6e007cdc",
+    "original_verdict": "triage_complete_gate_validity_not_claimed"
+  },
+  "task_id": "CROSS-GATE-SCORE-CREDIBILITY-TRIAGE-001A-AMENDMENT-001-SCHEMA-GAP-REPAIR"
+}
