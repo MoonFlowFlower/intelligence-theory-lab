@@ -1,0 +1,71 @@
+{
+  "task_id": "COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A",
+  "source_failure_family": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B external red-team false-positive pattern",
+  "anti_patterns": [
+    {
+      "anti_pattern_id": "constants_as_metrics",
+      "blocked_by": ["computed-evidence provenance rule", "required metric provenance schema"],
+      "required_blocker_verdict": "failed_literal_metric_detected"
+    },
+    {
+      "anti_pattern_id": "static_baseline_dictionaries",
+      "blocked_by": ["baseline implementation requirements", "baseline invocation tests"],
+      "required_blocker_verdict": "failed_static_baseline_detected"
+    },
+    {
+      "anti_pattern_id": "static_ablation_dictionaries",
+      "blocked_by": ["ablation implementation requirements", "ablation invocation tests"],
+      "required_blocker_verdict": "failed_ablation_not_rerun"
+    },
+    {
+      "anti_pattern_id": "unconditional_leakage_clean_reports",
+      "blocked_by": ["leakage scanner requirements", "positive-control scanner tests"],
+      "required_blocker_verdict": "failed_unconditional_leakage_clean"
+    },
+    {
+      "anti_pattern_id": "hash_only_replay",
+      "blocked_by": ["behavior-causal replay requirements"],
+      "required_blocker_verdict": "failed_replay_not_behavior_causal"
+    },
+    {
+      "anti_pattern_id": "unused_frozen_inputs",
+      "blocked_by": ["frozen input consumption requirements"],
+      "required_blocker_verdict": "failed_unused_frozen_input"
+    },
+    {
+      "anti_pattern_id": "candidate_behavior_not_consuming_serialized_state",
+      "blocked_by": ["candidate serialized-state causal path requirements"],
+      "required_blocker_verdict": "failed_candidate_not_using_serialized_state"
+    },
+    {
+      "anti_pattern_id": "missing_metric_provenance",
+      "blocked_by": ["required metric provenance schema"],
+      "required_blocker_verdict": "failed_missing_metric_provenance"
+    },
+    {
+      "anti_pattern_id": "missing_positive_control",
+      "blocked_by": ["leakage scanner requirements", "test requirements"],
+      "required_blocker_verdict": "failed_positive_control_missing"
+    },
+    {
+      "anti_pattern_id": "baseline_not_invoked",
+      "blocked_by": ["baseline implementation requirements", "test requirements"],
+      "required_blocker_verdict": "failed_baseline_invocation_missing"
+    },
+    {
+      "anti_pattern_id": "ablation_not_invoked",
+      "blocked_by": ["ablation implementation requirements", "test requirements"],
+      "required_blocker_verdict": "failed_ablation_invocation_missing"
+    },
+    {
+      "anti_pattern_id": "claim_inflation",
+      "blocked_by": ["claim ceiling"],
+      "required_blocker_verdict": "failed_claim_inflation"
+    },
+    {
+      "anti_pattern_id": "scope_leak",
+      "blocked_by": ["scope and non-authorization flags"],
+      "required_blocker_verdict": "failed_scope_leak"
+    }
+  ]
+}
