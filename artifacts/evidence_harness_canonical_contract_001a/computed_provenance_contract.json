@@ -1,0 +1,33 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "computed_evidence_provenance",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "scope": "future score, baseline, ablation, replay, leakage scan, and verdict producers",
+  "required_record_fields": [
+    "producer_function",
+    "source_file_path",
+    "source_code_hash",
+    "input_artifact_paths",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "raw_outputs",
+    "transformed_outputs",
+    "final_decision_path",
+    "failure_path_tested"
+  ],
+  "required_property": "Evidence must be derived from callable computation paths.",
+  "reject_if_present": [
+    "literal_pass_verdict",
+    "static_score_dictionary",
+    "unconditional_verified_true",
+    "unconditional_real_intervention_true",
+    "hard_coded_degradation",
+    "hard_coded_clean_report",
+    "post_hoc_json_summary_without_producer_path"
+  ],
+  "admissibility_rule": "A score-bearing artifact is not downstream-admissible unless each reported score, baseline, ablation, replay, leakage result, and verdict can be traced to a callable producer with input artifacts and code hash.",
+  "failure_path_requirement": "At least one relevant failure path must be tested and recorded for every producer class."
+}

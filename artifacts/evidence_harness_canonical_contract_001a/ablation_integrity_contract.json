@@ -1,0 +1,30 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "ablation_integrity_contract",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "required_evidence": [
+    "affected_episodes_rerun",
+    "intervention_target",
+    "pre_state_snapshot_or_hash",
+    "post_state_snapshot_or_hash",
+    "pre_post_state_difference",
+    "raw_ablation_scores",
+    "unclipped_degradation",
+    "causal_degradation_classification",
+    "ablation_invocation_record"
+  ],
+  "reject_conditions": [
+    "variant_name_sentinel_branch",
+    "ablation_name_special_case",
+    "label_only_ablation",
+    "threshold_forced_degradation",
+    "clipping_non_degradation_into_degradation",
+    "report_text_only_ablation"
+  ],
+  "admissibility_rule": "Ablation evidence is downstream-admissible only when it reruns affected episodes under a real intervention and records whether the measured degradation is causal.",
+  "known_false_pass_family_rejected": [
+    "hard_coded_degradation",
+    "unconditional_real_intervention_true",
+    "ablation_gate_passed_literal"
+  ]
+}

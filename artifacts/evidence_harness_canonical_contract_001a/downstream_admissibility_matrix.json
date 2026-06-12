@@ -1,0 +1,52 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "downstream_admissibility_matrix",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "states": {
+    "admissible_downstream_evidence": {
+      "meaning": "Evidence satisfies computed provenance, score, baseline, ablation, replay, leakage, test, and mutability contracts.",
+      "can_support_downstream_mechanism_claim": true,
+      "can_authorize_gate5_alone": false
+    },
+    "admissible_negative_evidence_only": {
+      "meaning": "Failure or blocker evidence can inform repair order but cannot support mechanism validity.",
+      "can_support_downstream_mechanism_claim": false,
+      "can_authorize_gate5_alone": false
+    },
+    "reference_only": {
+      "meaning": "Artifact may be cited for history or context but not consumed as score-bearing evidence.",
+      "can_support_downstream_mechanism_claim": false,
+      "can_authorize_gate5_alone": false
+    },
+    "blocked_pending_audit": {
+      "meaning": "Evidence has unresolved high or critical admissibility risk.",
+      "can_support_downstream_mechanism_claim": false,
+      "can_authorize_gate5_alone": false
+    },
+    "rejected_false_pass_risk": {
+      "meaning": "Evidence matches known false-pass patterns and is not admissible except as negative or risk evidence.",
+      "can_support_downstream_mechanism_claim": false,
+      "can_authorize_gate5_alone": false
+    },
+    "governance_anchor_only": {
+      "meaning": "Commit or tag proves publication or integrity boundary only, not evidence strength.",
+      "can_support_downstream_mechanism_claim": false,
+      "can_authorize_gate5_alone": false
+    }
+  },
+  "downstream_rules": {
+    "gate5": "Gate5 requires upstream Gate0-Gate4 score-bearing evidence to be admissible or explicitly quarantined with replacement evidence.",
+    "admission": "Admission requires no unresolved critical or high upstream score-bearing evidence.",
+    "runtime_or_bridge": "Runtime and bridge require admission plus a separate runtime safety contract.",
+    "negative_evidence": "Negative evidence can inform repair order but cannot support mechanism validity.",
+    "anchor_verification": "Anchor verification does not raise evidence strength."
+  },
+  "current_authorization_values": {
+    "downstream_entry_authorized": false,
+    "gate4_001c_authorized": false,
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "runtime_authorized": false,
+    "bridge_authorized": false
+  }
+}

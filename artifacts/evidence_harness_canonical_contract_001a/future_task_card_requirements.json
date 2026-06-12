@@ -1,0 +1,40 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "artifact_type": "future_task_card_requirements",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "required_fields_for_future_gate_repairs_or_deep_audits": [
+    "task_id",
+    "problem_definition",
+    "current_stage",
+    "hypothesis",
+    "baseline",
+    "ablation",
+    "trace_replay_recomputation_requirement",
+    "acceptance_gate",
+    "computed_provenance_requirement",
+    "baseline_fairness_requirement",
+    "ablation_integrity_requirement",
+    "leakage_positive_control_requirement",
+    "test_failure_path_requirement",
+    "artifact_mutability_requirement",
+    "claim_ceiling",
+    "stop_condition",
+    "rollback_plan",
+    "downstream_admissibility_target"
+  ],
+  "required_preimplementation_audit_fields": [
+    "strongest_baseline_explanation",
+    "strongest_reason_task_may_be_invalid",
+    "result_that_would_falsify_current_framing",
+    "evidence_that_would_still_be_insufficient",
+    "whether_task_tests_mechanism_or_behavioral_resemblance"
+  ],
+  "authorization_defaults": {
+    "gate4_001c_authorized": false,
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "runtime_authorized": false,
+    "bridge_authorized": false
+  },
+  "stop_if_missing": "Do not implement the future experiment; create or request the bounded task card first."
+}

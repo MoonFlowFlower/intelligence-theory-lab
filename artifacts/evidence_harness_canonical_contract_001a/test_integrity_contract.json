@@ -1,0 +1,33 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "test_integrity_contract",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "required_test_properties": [
+    "invokes_candidate_producer",
+    "invokes_baseline_producer",
+    "invokes_ablation_path",
+    "invokes_replay_recomputation",
+    "invokes_leakage_scanner",
+    "tests_at_least_one_failure_path",
+    "tests_positive_controls",
+    "fails_if_pass_strings_are_hard_coded",
+    "fails_if_scores_are_static_literals",
+    "fails_if_ablation_degradation_is_clipped_or_patched",
+    "fails_if_baseline_is_not_called"
+  ],
+  "reject_tests_that_only_assert": [
+    "artifact_exists",
+    "json_parses",
+    "verdict_equals_pass",
+    "score_equals_1_0",
+    "degradation_is_positive",
+    "required_field_exists",
+    "claim_ceiling_exists"
+  ],
+  "admissibility_rule": "Test pass is downstream-relevant only when tests exercise producer paths and can fail for false-pass mechanisms.",
+  "known_false_pass_family_rejected": [
+    "tests_asserting_pass_strings",
+    "artifact_existence_tests_only",
+    "perfect_score_tests_only"
+  ]
+}

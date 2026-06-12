@@ -1,0 +1,28 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "artifact_type": "json_parse_verification",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "parse_status": "all_required_json_parsed",
+  "required_json_files": [
+    "contract_schema.json",
+    "computed_provenance_contract.json",
+    "score_metric_contract.json",
+    "baseline_fairness_contract.json",
+    "ablation_integrity_contract.json",
+    "replay_recomputation_contract.json",
+    "leakage_scan_contract.json",
+    "test_integrity_contract.json",
+    "artifact_mutability_contract.json",
+    "downstream_admissibility_matrix.json",
+    "existing_risk_migration_policy.json",
+    "false_pass_rejection_rules.json",
+    "future_task_card_requirements.json",
+    "result.json",
+    "execution_manifest.json",
+    "json_parse_verification.json"
+  ],
+  "parser": "PowerShell ConvertFrom-Json",
+  "verification_command": "Get-ChildItem -LiteralPath artifacts/evidence_harness_canonical_contract_001a -Filter *.json | ConvertFrom-Json per file",
+  "verification_result": "all_required_json_parsed",
+  "non_evidence_statement": "JSON parsing verifies syntax only; it does not prove Gate validity or mechanism validity."
+}

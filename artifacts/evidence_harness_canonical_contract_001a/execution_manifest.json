@@ -1,0 +1,55 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "artifact_type": "execution_manifest",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "mode": "canonical evidence-harness contract drafting only",
+  "branch": "codex/meta-theory-scaffold",
+  "starting_head": "7557beccbe5b89b919c61838b6688765d723fd7f",
+  "starting_head_oneline": "7557bec Add schema gap repair amendment for cross-gate triage",
+  "starting_anchor_tag": "remote-anchor-cross-gate-triage-schema-gap-amendment-001-7557bec",
+  "precondition_commands": [
+    "git status --short --branch",
+    "git rev-parse HEAD",
+    "git log -1 --oneline HEAD",
+    "git tag --points-at HEAD"
+  ],
+  "precondition_result": {
+    "branch_matches": true,
+    "worktree_clean_before_generation": true,
+    "head_matches": true,
+    "anchor_tag_present_on_head": true
+  },
+  "located_input_artifacts": [
+    "artifacts/cross_gate_score_credibility_triage_001a/result.json",
+    "artifacts/cross_gate_score_credibility_triage_001a/recommended_deep_audit_targets.json",
+    "artifacts/cross_gate_score_credibility_triage_001a/recommended_repair_order.json",
+    "artifacts/cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair/result.json",
+    "artifacts/cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair/downstream_safety_decision.json",
+    "artifacts/cross_gate_score_credibility_triage_001a_amendment_001_schema_gap_repair/schema_gap_report.json"
+  ],
+  "created_paths": [
+    "docs/evidence_harness/EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A.md",
+    "docs/codex/tasks/EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A.md",
+    "artifacts/evidence_harness_canonical_contract_001a/"
+  ],
+  "forbidden_actions_not_taken": [
+    "Gate repair",
+    "Gate execution",
+    "Gate4 001C continuation",
+    "Gate5 entry",
+    "admission entry",
+    "runtime entry",
+    "bridge entry",
+    "old artifact modification",
+    "old test modification",
+    "historical verdict rewrite"
+  ],
+  "downstream_authorization": {
+    "downstream_entry_authorized": false,
+    "gate4_001c_authorized": false,
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "runtime_authorized": false,
+    "bridge_authorized": false
+  }
+}

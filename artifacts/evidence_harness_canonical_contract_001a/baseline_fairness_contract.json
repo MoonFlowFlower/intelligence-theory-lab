@@ -1,0 +1,31 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "baseline_fairness_contract",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "minimum_baseline_classes": [
+    "constant_predictor_baseline",
+    "random_or_null_action_baseline",
+    "heuristic_baseline",
+    "feedback_copy_or_observed_response_copy_baseline_when_candidate_sees_feedback",
+    "blind_ex_ante_baseline_when_candidate_is_ex_ante"
+  ],
+  "required_evidence": [
+    "independent_callable_baseline_producer",
+    "baseline_invocation_record",
+    "baseline_input_artifact_paths",
+    "baseline_information_boundary",
+    "candidate_information_boundary",
+    "parity_or_invalidity_classification",
+    "baseline_raw_outputs",
+    "baseline_scores"
+  ],
+  "reject_conditions": [
+    "dead_code_baseline",
+    "strawman_baseline",
+    "baseline_cannot_tie_by_construction",
+    "baseline_has_less_information_than_candidate",
+    "baseline_declared_but_not_invoked"
+  ],
+  "admissibility_rule": "If a fair baseline can tie or beat the candidate, report baseline equivalence or failure; do not patch around equivalence.",
+  "asymmetry_rule": "If information parity cannot be provided, the asymmetry must be classified as invalid for mechanism evidence."
+}

@@ -1,0 +1,22 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "artifact_mutability_contract",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "historical_artifact_rule": "Historical artifacts are immutable evidence records.",
+  "future_repair_requirements": [
+    "create_new_artifact_directories",
+    "preserve_old_verdicts",
+    "classify_old_evidence_as_rejected_blocked_or_reference_when_needed",
+    "never_rewrite_old_pass_into_valid_pass",
+    "never_silently_mutate_old_artifacts",
+    "record_before_after_inventory_if_old_path_must_be_inspected"
+  ],
+  "reject_conditions": [
+    "old_artifact_modified_without_explicit_errata_authority",
+    "old_test_modified_to_make_failure_disappear",
+    "old_verdict_rewritten",
+    "historical_failure_patched_into_pass",
+    "silent_mutation_of_protected_path"
+  ],
+  "admissibility_rule": "A repair may supersede old evidence only through a new artifact path and explicit migration record; it must not mutate historical evidence."
+}

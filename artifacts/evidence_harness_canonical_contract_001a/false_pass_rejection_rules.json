@@ -1,0 +1,50 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "artifact_type": "false_pass_rejection_rules",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "known_gate4_001b_false_pass_patterns_rejected": [
+    "static_score_fields",
+    "pass_shaped_json",
+    "pass_shaped_tests",
+    "clean_literals_in_leakage_reports",
+    "baseline_declarations_without_callable_invocation_evidence",
+    "ablation_reports_without_real_intervention_and_rerun_evidence",
+    "replay_by_stored_hashes_actions_or_verdicts"
+  ],
+  "global_rejection_rules": [
+    {
+      "rule_id": "reject_literal_pass_verdict",
+      "reject_when": "verdict is asserted without computed decision path provenance"
+    },
+    {
+      "rule_id": "reject_static_score",
+      "reject_when": "score is a literal or dictionary value without callable producer provenance"
+    },
+    {
+      "rule_id": "reject_dead_baseline",
+      "reject_when": "baseline is declared but no independent producer invocation is recorded"
+    },
+    {
+      "rule_id": "reject_label_only_ablation",
+      "reject_when": "ablation label exists but affected episodes are not rerun under a real intervention"
+    },
+    {
+      "rule_id": "reject_hash_only_replay",
+      "reject_when": "replay compares hashes or stored actions without recomputing behavior"
+    },
+    {
+      "rule_id": "reject_leakage_scanner_without_positive_control",
+      "reject_when": "scanner has no positive-control leakage case or excludes result.json"
+    },
+    {
+      "rule_id": "reject_output_shape_only_tests",
+      "reject_when": "tests only assert fields, files, parse success, pass verdict, or perfect score"
+    },
+    {
+      "rule_id": "reject_anchor_as_evidence_strength",
+      "reject_when": "commit or tag verification is used to raise mechanism evidence strength"
+    }
+  ],
+  "classification_on_rejection": "rejected_false_pass_risk",
+  "allowed_use_after_rejection": "negative_or_risk_input_only"
+}

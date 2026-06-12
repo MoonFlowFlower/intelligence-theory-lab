@@ -1,0 +1,33 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "score_metric_contract",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "required_distinctions": [
+    "ex_ante_prediction",
+    "post_hoc_explanation",
+    "observed_feedback_copying",
+    "candidate_action_generation",
+    "reference_action_generation"
+  ],
+  "required_storage": [
+    "raw_scores",
+    "transformed_scores",
+    "score_transformation_rule",
+    "threshold_rule",
+    "candidate_information_boundary",
+    "reference_information_boundary"
+  ],
+  "reject_conditions": [
+    "candidate_and_reference_derived_from_same_observed_feedback_path",
+    "constant_predictor_can_tie_candidate_and_is_not_reported",
+    "feedback_copy_baseline_can_tie_candidate_and_is_not_included",
+    "perfect_score_structurally_guaranteed",
+    "score_clipped_min_max_forced_or_patched_to_satisfy_threshold"
+  ],
+  "admissibility_rule": "A metric is downstream-admissible only if it separates prediction from explanation and proves that the score is not guaranteed by the artifact construction.",
+  "known_false_pass_family_rejected": [
+    "static_score_fields",
+    "pass_shaped_score_json",
+    "perfect_score_assertion_tests"
+  ]
+}

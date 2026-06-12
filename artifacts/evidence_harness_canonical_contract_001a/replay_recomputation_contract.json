@@ -1,0 +1,32 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "replay_recomputation_contract",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "required_recompute_inputs": [
+    "serialized_state",
+    "observation",
+    "allowed_context",
+    "deterministic_seed_when_applicable"
+  ],
+  "required_evidence": [
+    "replay_producer_function",
+    "replay_source_file_path",
+    "replay_source_code_hash",
+    "serialized_state_artifact_path",
+    "observation_artifact_path",
+    "allowed_context_boundary",
+    "recomputed_behavior",
+    "comparison_to_original_behavior",
+    "mismatch_policy",
+    "failure_path_tested"
+  ],
+  "insufficient_replay_forms": [
+    "reuse_stored_actions",
+    "reuse_stored_verdicts",
+    "hash_comparison_only",
+    "artifact_existence_check_only",
+    "final_report_string_check_only"
+  ],
+  "hash_chain_rule": "Hash chains may support replay provenance but cannot replace behavior recomputation.",
+  "admissibility_rule": "Replay evidence is downstream-admissible only when behavior is recomputed from state and observation under the allowed context boundary."
+}

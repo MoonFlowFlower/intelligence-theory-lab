@@ -1,0 +1,47 @@
+{
+  "task_id": "EVIDENCE-HARNESS-CANONICAL-CONTRACT-001A",
+  "contract_section": "existing_risk_migration_policy",
+  "claim_ceiling": "bounded canonical evidence-harness contract only",
+  "input_records": [
+    {
+      "name": "Gate4 001B sealed rejected boundary",
+      "commit": "90dc4b9082593fabf06197b03eaf66c9c64014a2",
+      "tag": "remote-anchor-gate4-preflight-executable-001b-90dc4b9",
+      "migration_state": "rejected_false_pass_risk",
+      "downstream_use": "negative_or_risk_input_only"
+    },
+    {
+      "name": "Cross-gate score credibility triage",
+      "commit": "393ebe5b03a07b2a6b5b91c46479b0cf92cb93c9",
+      "migration_state": "governance_anchor_only",
+      "downstream_use": "bounded triage reference; Gate validity not claimed"
+    },
+    {
+      "name": "Triage schema-gap amendment",
+      "commit": "7557beccbe5b89b919c61838b6688765d723fd7f",
+      "tag": "remote-anchor-cross-gate-triage-schema-gap-amendment-001-7557bec",
+      "migration_state": "governance_anchor_only",
+      "downstream_use": "downstream safety decisions remain false"
+    },
+    {
+      "name": "Provisional Gate4 001C",
+      "migration_state": "reference_only",
+      "downstream_use": "local reference only; not canonical evidence"
+    }
+  ],
+  "policy_rules": [
+    "Gate4 001B remains rejected or critical-risk input only.",
+    "Provisional Gate4 001C remains local reference only, not canonical evidence.",
+    "Critical-risk earlier Gate2, Gate3, and testbed tasks block Gate4 continuation until repaired or quarantined with replacement evidence under this contract.",
+    "If a task is high or critical, future repair must satisfy this canonical contract before downstream use.",
+    "If many tasks are high or critical, prefer evidence-harness repair over individual pass-seeking patches."
+  ],
+  "blocked_downstream_entries": {
+    "safe_to_continue_gate4_001c": false,
+    "safe_to_enter_gate5": false,
+    "safe_to_enter_admission": false,
+    "safe_to_enter_runtime": false,
+    "safe_to_enter_bridge": false
+  },
+  "replacement_evidence_requirement": "Replacement evidence must be produced in a new artifact directory and satisfy the computed provenance, fair baseline, real ablation, replay recomputation, leakage positive-control, test failure-path, and mutability contracts."
+}
