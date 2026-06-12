@@ -1,0 +1,1152 @@
+{
+  "all_required_outputs_have_callable_provenance": true,
+  "artifact_provenance_rows": [
+    {
+      "aggregation_rule": "aggregate validators, ablations, protected hashes, and claim ceiling into final verdict",
+      "artifact_name": "result.json",
+      "code_path_hash": "72e0a6e45ea6bf6799e5fe257af80b88b2a116609f35e3accdf62c9415042967",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "parent_boundary_readback.json",
+        "admission_contract_evaluation.json",
+        "post_bridge_caveat_revalidation.json",
+        "actionability_revalidation.json",
+        "computed_evidence_provenance.json",
+        "negative_evidence_handling.json",
+        "forbidden_claims_and_actions.json",
+        "admission_decision_trace.json",
+        "ablation_report.json",
+        "authorization_flags.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_result",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "resolve sealed parent commits from git path history and remote tags",
+      "artifact_name": "parent_boundary_readback.json",
+      "code_path_hash": "bc1057eb780fb53cfe17c7c0599f6ce70aeec1e2cf5ef53ed3c2a114ca9c5622",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/result.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt",
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json",
+        "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json",
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+        "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json",
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+        "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+        "artifacts/post_bridge_admission_executable_001d/result.json",
+        "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md",
+        "artifacts/ego_mainline_readiness_audit_001b/result.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_parent_boundary_readback",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "aggregate callable gate outcomes for admission contract execution",
+      "artifact_name": "admission_contract_evaluation.json",
+      "code_path_hash": "e946d69b0c258393c79522b670c03e8d8f67a5f353440b15519ad75506151e4a",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "artifacts/ego_mainline_admission_execution_preflight_001a/result.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_admission_contract_evaluation",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "re-read post-bridge 001D verdict, caveats, claim ceiling, and authorization flags",
+      "artifact_name": "post_bridge_caveat_revalidation.json",
+      "code_path_hash": "40f843c3322ffa3e574a28fcafc305f01f0305ed41c8cf8abfcd23bb6b1a23f2",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_post_bridge_caveat_revalidation",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "revalidate required actionability rows against resolved parent boundaries",
+      "artifact_name": "actionability_revalidation.json",
+      "code_path_hash": "f4cec8791b954312aa4c97d3ae4a5bf3b99fc06d81c1242f0e18e90aa85fd3c8",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_actionability_revalidation",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "record callable provenance for every verdict-bearing output",
+      "artifact_name": "computed_evidence_provenance.json",
+      "code_path_hash": "10b92d04d52981dba65d71b42a487fe6280815e038f3799e17b991410686eae4",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_computed_evidence_provenance_report",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "preserve 001B/001C negative evidence without downstream upgrade",
+      "artifact_name": "negative_evidence_handling.json",
+      "code_path_hash": "16369c00ee64f8a25f904f60c101664ea009aab0bfadef4582601250d6f25a99",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_negative_evidence_handling",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "enumerate forbidden claims/actions and inserted-claim checks",
+      "artifact_name": "forbidden_claims_and_actions.json",
+      "code_path_hash": "2ff1509807ba9cc8e44a1a412fa9f515e4552feb1f3435bacd092a1825d520b3",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-001A.md",
+        "AGENTS.md"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_forbidden_claims_and_actions",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "serialize input state and replay final verdict through callable functions",
+      "artifact_name": "admission_decision_trace.json",
+      "code_path_hash": "f2fb817ab0517280d00ac6ec9b3f3e82e2f335bbbd0c1714c9448671a4cfcae2",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "serialized admission state",
+        "callable validators",
+        "ablation controls"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_admission_decision_trace",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "run invalid-state negative controls through callable validators",
+      "artifact_name": "ablation_report.json",
+      "code_path_hash": "26685fb582aabd87fffed93496b94a829ff17538722d282795457a49ec2009b4",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "serialized admission state",
+        "callable validators"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "run_ablation_controls",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    },
+    {
+      "aggregation_rule": "derive admission authorization flags from resolved contracts and keep all false",
+      "artifact_name": "authorization_flags.json",
+      "code_path_hash": "d0c786f1f8a5d12ce1f42647d15ccc19059925bd3394ea483e6fbeeddf174d34",
+      "failure_reasons": [],
+      "gate_outcomes": [
+        "validate_parent_boundaries",
+        "validate_remote_anchors",
+        "validate_alignment_contract",
+        "validate_preflight_contract",
+        "validate_post_bridge_caveats",
+        "validate_actionability_revalidation",
+        "validate_computed_evidence_provenance",
+        "validate_negative_evidence_handling",
+        "validate_duplicate_schema_and_matrix",
+        "validate_authorization_flags",
+        "validate_forbidden_claims_and_actions",
+        "validate_computed_verdict_source"
+      ],
+      "input_artifacts": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "input_commits_tags_refs": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "task_id": "prior readiness audit reference only"
+        }
+      ],
+      "producer_function": "build_authorization_flags",
+      "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+    }
+  ],
+  "computed_evidence_provenance": {
+    "aggregation_rule": "record callable provenance for every verdict-bearing output",
+    "artifact_name": "computed_evidence_provenance.json",
+    "code_path_hash": "10b92d04d52981dba65d71b42a487fe6280815e038f3799e17b991410686eae4",
+    "failure_reasons": [],
+    "gate_outcomes": [
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "102e025a001d4b4dcb3932926f7186f98e2bfd0500553b2d41d753c9552d844d",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_parent_boundaries",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_parent_boundaries"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1fa03799aadc1dc74d7a4484e1f36367bcf59a057fefc34af0ff5952f44e3437",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_remote_anchors",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_remote_anchors"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "8c85b54c0d31566dd3c1b3f7c5dd9cb59b938d4497a2309f2dfa98d6a7fae0db",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_alignment_contract",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_alignment_contract"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1e76e72a78c95802587ec15669df80a3863edeb6215909706d42ec87c4188389",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_preflight_contract",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_preflight_contract"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "105b1b664b6be586a668f6484439c3c22ed16d253029b4c364c1f16546a160a5",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_post_bridge_caveats",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_post_bridge_caveats"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "ef4e78f2f8bb57e85731c4822972e9f2c3dafac7a1067b5535c0564dd0be5829",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_actionability_revalidation",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_actionability_revalidation"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "531726391d0a9ef010059e747a06482f9ffd8c1aa6393bfe93fd6219c68cbd98",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_computed_evidence_provenance",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_computed_evidence_provenance"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "96fd7806042ed44b6acd9d519d7a8870a5577986ec33db8184f998ea59822c6f",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_negative_evidence_handling",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_negative_evidence_handling"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1900182efa8f77a03b131d0d6db67fdb705f20a427c9ec3ca72648fd79f48a0f",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_duplicate_schema_and_matrix",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_duplicate_schema_and_matrix"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "c332a10d74fb36108d16f698b2ab694785eb237ecb08d3a9712c174796a10296",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_authorization_flags",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_authorization_flags"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "06213b5ac94d7600a48a325c517ee9bfc76df201009db4d31273735864a36988",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_forbidden_claims_and_actions",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_forbidden_claims_and_actions"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1117e954bd2d1f2c2a8550f125a6c535e81c4cf847111c32bdd1d476a20502a7",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_computed_verdict_source",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_computed_verdict_source"
+      }
+    ],
+    "input_artifacts": [
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json"
+    ],
+    "input_commits_tags_refs": [
+      {
+        "boundary_id": "preflight_001a",
+        "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+        "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+      },
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "output_artifact_hash": "bf8f617d045cbbef8d5b1450a8d08e72d6737df0049e2dec9bb6eebdb95af6fe",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_computed_evidence_provenance_report",
+    "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+  },
+  "computed_evidence_provenance_passed": true,
+  "static_or_literal_verdicts_allowed": false,
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+  "validation_rule": "every JSON output records callable provenance and input refs"
+}

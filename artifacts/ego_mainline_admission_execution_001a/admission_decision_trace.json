@@ -1,0 +1,1828 @@
+{
+  "ablation_trace": {
+    "aggregation_rule": "all required ablation controls must fail through callable validators",
+    "all_negative_controls_failed": true,
+    "controls": [
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_parent_boundaries",
+        "failing_validators": [
+          "validate_parent_boundaries",
+          "validate_remote_anchors"
+        ],
+        "mutation_id": "missing_preflight_001a_anchor",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_parent_boundaries",
+        "failing_validators": [
+          "validate_parent_boundaries",
+          "validate_remote_anchors"
+        ],
+        "mutation_id": "missing_alignment_001a_anchor",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_post_bridge_caveats",
+        "failing_validators": [
+          "validate_post_bridge_caveats"
+        ],
+        "mutation_id": "missing_post_bridge_001d_verdict_caveat_claim_ceiling",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_parent_boundaries",
+        "failing_validators": [
+          "validate_parent_boundaries",
+          "validate_remote_anchors"
+        ],
+        "mutation_id": "blocked_old_canonicalization_001a_used_as_parent",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_authorization_flags",
+        "failing_validators": [
+          "validate_authorization_flags"
+        ],
+        "mutation_id": "authorization_flag_true",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_computed_verdict_source",
+        "failing_validators": [
+          "validate_computed_evidence_provenance",
+          "validate_computed_verdict_source"
+        ],
+        "mutation_id": "static_pass_without_callable_gate_logic",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_duplicate_schema_and_matrix",
+        "failing_validators": [
+          "validate_duplicate_schema_and_matrix"
+        ],
+        "mutation_id": "copied_45_row_matrix_or_duplicate_schema",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_negative_evidence_handling",
+        "failing_validators": [
+          "validate_negative_evidence_handling"
+        ],
+        "mutation_id": "negative_001b_001c_upgraded_to_positive_downstream_evidence",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_post_bridge_caveats",
+        "failing_validators": [
+          "validate_post_bridge_caveats"
+        ],
+        "mutation_id": "post_bridge_001d_caveat_removed",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      },
+      {
+        "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+        "expected_validator": "validate_forbidden_claims_and_actions",
+        "failing_validators": [
+          "validate_forbidden_claims_and_actions"
+        ],
+        "mutation_id": "runtime_gate4_ego_authorization_claim_inserted",
+        "producer_function": "run_ablation_controls",
+        "validation_failed": true
+      }
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A"
+  },
+  "computed_evidence_provenance": {
+    "aggregation_rule": "serialize input state and replay final verdict through callable functions",
+    "artifact_name": "admission_decision_trace.json",
+    "code_path_hash": "f2fb817ab0517280d00ac6ec9b3f3e82e2f335bbbd0c1714c9448671a4cfcae2",
+    "failure_reasons": [],
+    "gate_outcomes": [
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "102e025a001d4b4dcb3932926f7186f98e2bfd0500553b2d41d753c9552d844d",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_parent_boundaries",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_parent_boundaries"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1fa03799aadc1dc74d7a4484e1f36367bcf59a057fefc34af0ff5952f44e3437",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_remote_anchors",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_remote_anchors"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "8c85b54c0d31566dd3c1b3f7c5dd9cb59b938d4497a2309f2dfa98d6a7fae0db",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_alignment_contract",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_alignment_contract"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1e76e72a78c95802587ec15669df80a3863edeb6215909706d42ec87c4188389",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_preflight_contract",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_preflight_contract"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "105b1b664b6be586a668f6484439c3c22ed16d253029b4c364c1f16546a160a5",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_post_bridge_caveats",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_post_bridge_caveats"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "ef4e78f2f8bb57e85731c4822972e9f2c3dafac7a1067b5535c0564dd0be5829",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_actionability_revalidation",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_actionability_revalidation"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "531726391d0a9ef010059e747a06482f9ffd8c1aa6393bfe93fd6219c68cbd98",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_computed_evidence_provenance",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_computed_evidence_provenance"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "96fd7806042ed44b6acd9d519d7a8870a5577986ec33db8184f998ea59822c6f",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_negative_evidence_handling",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_negative_evidence_handling"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1900182efa8f77a03b131d0d6db67fdb705f20a427c9ec3ca72648fd79f48a0f",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_duplicate_schema_and_matrix",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_duplicate_schema_and_matrix"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "c332a10d74fb36108d16f698b2ab694785eb237ecb08d3a9712c174796a10296",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_authorization_flags",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_authorization_flags"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "06213b5ac94d7600a48a325c517ee9bfc76df201009db4d31273735864a36988",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_forbidden_claims_and_actions",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_forbidden_claims_and_actions"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1117e954bd2d1f2c2a8550f125a6c535e81c4cf847111c32bdd1d476a20502a7",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_computed_verdict_source",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_computed_verdict_source"
+      }
+    ],
+    "input_artifacts": [
+      "serialized admission state",
+      "callable validators",
+      "ablation controls"
+    ],
+    "input_commits_tags_refs": [
+      {
+        "boundary_id": "preflight_001a",
+        "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+        "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+      },
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "output_artifact_hash": "e240b6b5ce60232404048ade36a1917af4d03ce1815e14039911cadd205f727a",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_admission_decision_trace",
+    "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0"
+  },
+  "final_aggregation_trace": {
+    "aggregation_rule": "PASS only when every callable validator passes, every ablation control fails, and sealed parent hashes are unchanged",
+    "all_gates_passed": true,
+    "producer_function": "build_result",
+    "stop_conditions_triggered": [],
+    "verdict": "pass_bounded_admission_execution_001a"
+  },
+  "gate_by_gate_decision_trace": [
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "102e025a001d4b4dcb3932926f7186f98e2bfd0500553b2d41d753c9552d844d",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_parent_boundaries",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_parent_boundaries"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "1fa03799aadc1dc74d7a4484e1f36367bcf59a057fefc34af0ff5952f44e3437",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_remote_anchors",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_remote_anchors"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "8c85b54c0d31566dd3c1b3f7c5dd9cb59b938d4497a2309f2dfa98d6a7fae0db",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_alignment_contract",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_alignment_contract"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "1e76e72a78c95802587ec15669df80a3863edeb6215909706d42ec87c4188389",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_preflight_contract",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_preflight_contract"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "105b1b664b6be586a668f6484439c3c22ed16d253029b4c364c1f16546a160a5",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_post_bridge_caveats",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_post_bridge_caveats"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "ef4e78f2f8bb57e85731c4822972e9f2c3dafac7a1067b5535c0564dd0be5829",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_actionability_revalidation",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_actionability_revalidation"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "531726391d0a9ef010059e747a06482f9ffd8c1aa6393bfe93fd6219c68cbd98",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_computed_evidence_provenance",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_computed_evidence_provenance"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "96fd7806042ed44b6acd9d519d7a8870a5577986ec33db8184f998ea59822c6f",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_negative_evidence_handling",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_negative_evidence_handling"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "1900182efa8f77a03b131d0d6db67fdb705f20a427c9ec3ca72648fd79f48a0f",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_duplicate_schema_and_matrix",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_duplicate_schema_and_matrix"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "c332a10d74fb36108d16f698b2ab694785eb237ecb08d3a9712c174796a10296",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_authorization_flags",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_authorization_flags"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "06213b5ac94d7600a48a325c517ee9bfc76df201009db4d31273735864a36988",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_forbidden_claims_and_actions",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_forbidden_claims_and_actions"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "1117e954bd2d1f2c2a8550f125a6c535e81c4cf847111c32bdd1d476a20502a7",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_computed_verdict_source",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_computed_verdict_source"
+    }
+  ],
+  "replay_function": "replay_admission_verdict",
+  "replay_result": {
+    "ablation_report": {
+      "aggregation_rule": "all required ablation controls must fail through callable validators",
+      "all_negative_controls_failed": true,
+      "controls": [
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_parent_boundaries",
+          "failing_validators": [
+            "validate_parent_boundaries",
+            "validate_remote_anchors"
+          ],
+          "mutation_id": "missing_preflight_001a_anchor",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_parent_boundaries",
+          "failing_validators": [
+            "validate_parent_boundaries",
+            "validate_remote_anchors"
+          ],
+          "mutation_id": "missing_alignment_001a_anchor",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_post_bridge_caveats",
+          "failing_validators": [
+            "validate_post_bridge_caveats"
+          ],
+          "mutation_id": "missing_post_bridge_001d_verdict_caveat_claim_ceiling",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_parent_boundaries",
+          "failing_validators": [
+            "validate_parent_boundaries",
+            "validate_remote_anchors"
+          ],
+          "mutation_id": "blocked_old_canonicalization_001a_used_as_parent",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_authorization_flags",
+          "failing_validators": [
+            "validate_authorization_flags"
+          ],
+          "mutation_id": "authorization_flag_true",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_computed_verdict_source",
+          "failing_validators": [
+            "validate_computed_evidence_provenance",
+            "validate_computed_verdict_source"
+          ],
+          "mutation_id": "static_pass_without_callable_gate_logic",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_duplicate_schema_and_matrix",
+          "failing_validators": [
+            "validate_duplicate_schema_and_matrix"
+          ],
+          "mutation_id": "copied_45_row_matrix_or_duplicate_schema",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_negative_evidence_handling",
+          "failing_validators": [
+            "validate_negative_evidence_handling"
+          ],
+          "mutation_id": "negative_001b_001c_upgraded_to_positive_downstream_evidence",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_post_bridge_caveats",
+          "failing_validators": [
+            "validate_post_bridge_caveats"
+          ],
+          "mutation_id": "post_bridge_001d_caveat_removed",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        },
+        {
+          "aggregation_rule": "each negative mutation must fail through its expected callable validator",
+          "expected_validator": "validate_forbidden_claims_and_actions",
+          "failing_validators": [
+            "validate_forbidden_claims_and_actions"
+          ],
+          "mutation_id": "runtime_gate4_ego_authorization_claim_inserted",
+          "producer_function": "run_ablation_controls",
+          "validation_failed": true
+        }
+      ],
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A"
+    },
+    "actionability_revalidation_passed": true,
+    "aggregation_rule": "PASS only when every callable validator passes, every ablation control fails, and sealed parent hashes are unchanged",
+    "all_gates_passed": true,
+    "artifacts_generated": [
+      "artifacts/ego_mainline_admission_execution_001a/result.json",
+      "artifacts/ego_mainline_admission_execution_001a/parent_boundary_readback.json",
+      "artifacts/ego_mainline_admission_execution_001a/admission_contract_evaluation.json",
+      "artifacts/ego_mainline_admission_execution_001a/post_bridge_caveat_revalidation.json",
+      "artifacts/ego_mainline_admission_execution_001a/actionability_revalidation.json",
+      "artifacts/ego_mainline_admission_execution_001a/computed_evidence_provenance.json",
+      "artifacts/ego_mainline_admission_execution_001a/negative_evidence_handling.json",
+      "artifacts/ego_mainline_admission_execution_001a/forbidden_claims_and_actions.json",
+      "artifacts/ego_mainline_admission_execution_001a/admission_decision_trace.json",
+      "artifacts/ego_mainline_admission_execution_001a/ablation_report.json",
+      "artifacts/ego_mainline_admission_execution_001a/authorization_flags.json",
+      "artifacts/ego_mainline_admission_execution_001a/claim_ceiling.txt"
+    ],
+    "authorization_flags": {
+      "authorize_architecture_implementation": false,
+      "authorize_bridge_runtime": false,
+      "authorize_companion_behavior": false,
+      "authorize_ego_runtime": false,
+      "authorize_gate4": false,
+      "authorize_llm_rag": false,
+      "authorize_mechanism_validity_claim": false,
+      "authorize_personalization": false,
+      "authorize_relationship_or_emotion": false,
+      "authorize_runtime_correctness_claim": false,
+      "authorize_user_model": false
+    },
+    "callable_gate_logic_executed": true,
+    "claim_ceiling": "bounded admission execution evidence at the governance layer only",
+    "code_path_hash": "72e0a6e45ea6bf6799e5fe257af80b88b2a116609f35e3accdf62c9415042967",
+    "computed_evidence_provenance_passed": true,
+    "copied_45_row_matrix_detected": false,
+    "duplicate_admission_schema_created": false,
+    "failure_reasons": [],
+    "final_git_status_policy": "final clean git status is verified after generated outputs are committed",
+    "gate_outcomes": [
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "102e025a001d4b4dcb3932926f7186f98e2bfd0500553b2d41d753c9552d844d",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_parent_boundaries",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_parent_boundaries"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1fa03799aadc1dc74d7a4484e1f36367bcf59a057fefc34af0ff5952f44e3437",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_remote_anchors",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_remote_anchors"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "8c85b54c0d31566dd3c1b3f7c5dd9cb59b938d4497a2309f2dfa98d6a7fae0db",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_alignment_contract",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_alignment_contract"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1e76e72a78c95802587ec15669df80a3863edeb6215909706d42ec87c4188389",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_preflight_contract",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_preflight_contract"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "105b1b664b6be586a668f6484439c3c22ed16d253029b4c364c1f16546a160a5",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_post_bridge_caveats",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_post_bridge_caveats"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "ef4e78f2f8bb57e85731c4822972e9f2c3dafac7a1067b5535c0564dd0be5829",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_actionability_revalidation",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_actionability_revalidation"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "531726391d0a9ef010059e747a06482f9ffd8c1aa6393bfe93fd6219c68cbd98",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_computed_evidence_provenance",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_computed_evidence_provenance"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "96fd7806042ed44b6acd9d519d7a8870a5577986ec33db8184f998ea59822c6f",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_negative_evidence_handling",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_negative_evidence_handling"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1900182efa8f77a03b131d0d6db67fdb705f20a427c9ec3ca72648fd79f48a0f",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_duplicate_schema_and_matrix",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_duplicate_schema_and_matrix"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "c332a10d74fb36108d16f698b2ab694785eb237ecb08d3a9712c174796a10296",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_authorization_flags",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_authorization_flags"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "06213b5ac94d7600a48a325c517ee9bfc76df201009db4d31273735864a36988",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_forbidden_claims_and_actions",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_forbidden_claims_and_actions"
+      },
+      {
+        "aggregation_rule": "collect explicit validation failures",
+        "code_path_hash": "1117e954bd2d1f2c2a8550f125a6c535e81c4cf847111c32bdd1d476a20502a7",
+        "failures": [],
+        "passed": true,
+        "producer_function": "validate_computed_verdict_source",
+        "validation_rule": "validator passes only with zero failures",
+        "validator": "validate_computed_verdict_source"
+      }
+    ],
+    "input_artifacts": [
+      "parent_boundary_readback.json",
+      "admission_contract_evaluation.json",
+      "post_bridge_caveat_revalidation.json",
+      "actionability_revalidation.json",
+      "computed_evidence_provenance.json",
+      "negative_evidence_handling.json",
+      "forbidden_claims_and_actions.json",
+      "admission_decision_trace.json",
+      "ablation_report.json",
+      "authorization_flags.json"
+    ],
+    "input_commits_tags_refs": [
+      {
+        "boundary_id": "preflight_001a",
+        "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+        "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+        "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A"
+      },
+      {
+        "boundary_id": "alignment_001a",
+        "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+        "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A"
+      },
+      {
+        "boundary_id": "admission_coverage_reference_001a",
+        "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+        "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+        "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A"
+      },
+      {
+        "boundary_id": "canonicalization_provenance_repair_001b",
+        "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+        "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
+      },
+      {
+        "boundary_id": "coverage_compression_001d",
+        "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+        "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+        "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D"
+      },
+      {
+        "boundary_id": "post_bridge_admission_executable_001d",
+        "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+      },
+      {
+        "boundary_id": "prior_readiness_audit_reference_only",
+        "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+        "remote_resolved_commit": null,
+        "remote_tag": null,
+        "task_id": "prior readiness audit reference only"
+      }
+    ],
+    "layer": "evidence-governance / bounded admission execution only",
+    "negative_evidence_non_positive": true,
+    "parent_boundaries_resolved": true,
+    "post_bridge_caveats_binding": true,
+    "producer_function": "build_result",
+    "protected_sealed_artifacts_modified": false,
+    "protected_sealed_hashes_after": {
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json": "a1b37a22301d7cfc52bcd024326de4fd4751ce830f9c04caf086ad5e87d98f17",
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json": "576d13d4ceea1a9bce20dd3e4255bfd5f901d4630f596a70c399016e9eadc5d3",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json": "5f2b30e9c978b69b4c81a24a7b2d7b8ad758bff3edb070d06505002979a6cd0e",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json": "69e185998714fcbeee810bf0e149903650cdbe1607b5b576c903f446f0d70f04",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt": "57104f713f1f7d544b04902516a71edb6075bf4ffe449b21dc42febcd1f497e7",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json": "fc987add74fedf7526ffc5ec72f4a04f5945648ec97d8e3fdb0d55b832838058",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json": "4cb30e9fa64e7f435fc614273378587a38d9dbe5cedc291b6ef8aedf7224f926",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json": "197500a59b25777e34127a69dbf930c7b9042061e3f5ec74e07c29ba6b13047b",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json": "15bfdbebc357e918d316201b4ab936d101f7d69ab0531701290c19d53f870413",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/result.json": "6377255e051d3d980601ebc2808ccd5174f827ef91a88e98cf4d56f04fa3768a",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json": "2d3eb1eab4cc09ade3f572d40db370231a41c851b3aabae2aedd2f062c30000f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json": "a928821e554fc9192d62a8f2dfbdea0da6aedce75806612c61f5ab1cbc2b155f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json": "e668ecdaf4d3956f4536656e34f415a120027548bc53ef99f202d04fc90e0766",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json": "833ff264df557be4b9c35a610eca6f7dc09146be1ad76bc8a4affd8fd78ba42f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json": "b18a9a3189a84ea7e83ed7218615cbcbc1d357fd7e8eae913fa3cda722c5e083",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json": "b87e16edc026ed7a19a8170348039b0c6e05b7415806fb95893577059d20bde1",
+      "artifacts/ego_mainline_readiness_audit_001b/result.json": "56f97fe626f9f9fe120a7f81f553f1226d2f33f3ed9de4452147f55849a448a1",
+      "artifacts/post_bridge_admission_executable_001d/result.json": "388a6eccaef19d38090a57f0086921b323cfe66d0d02308412385a9be03f1985",
+      "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+      "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md": "21b505e716930692c718417490c6ef2067f5b2c57c04097a26ca2b587679e3fd",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md": "14790782811db2af1269e9c59f3731dd3c544c0b445c41b50fe3f9b7d67ad608",
+      "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md": "27312a83568abd39b1d31daab88eb68d281ff5b1500b0bcaa7f42f1a7e20bd75",
+      "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md": "83a31d953402f0e4f24826bed28a1c858e0975e6e21e997b7be5296aa35cd07a",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md": "8c6c4f4d5fa7dfcbf9237b2ca35fd56a463ab09c334cf2f23ce886c572122d01",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+    },
+    "protected_sealed_hashes_before": {
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json": "a1b37a22301d7cfc52bcd024326de4fd4751ce830f9c04caf086ad5e87d98f17",
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json": "576d13d4ceea1a9bce20dd3e4255bfd5f901d4630f596a70c399016e9eadc5d3",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json": "5f2b30e9c978b69b4c81a24a7b2d7b8ad758bff3edb070d06505002979a6cd0e",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json": "69e185998714fcbeee810bf0e149903650cdbe1607b5b576c903f446f0d70f04",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt": "57104f713f1f7d544b04902516a71edb6075bf4ffe449b21dc42febcd1f497e7",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json": "fc987add74fedf7526ffc5ec72f4a04f5945648ec97d8e3fdb0d55b832838058",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json": "4cb30e9fa64e7f435fc614273378587a38d9dbe5cedc291b6ef8aedf7224f926",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json": "197500a59b25777e34127a69dbf930c7b9042061e3f5ec74e07c29ba6b13047b",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json": "15bfdbebc357e918d316201b4ab936d101f7d69ab0531701290c19d53f870413",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/result.json": "6377255e051d3d980601ebc2808ccd5174f827ef91a88e98cf4d56f04fa3768a",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json": "2d3eb1eab4cc09ade3f572d40db370231a41c851b3aabae2aedd2f062c30000f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json": "a928821e554fc9192d62a8f2dfbdea0da6aedce75806612c61f5ab1cbc2b155f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json": "e668ecdaf4d3956f4536656e34f415a120027548bc53ef99f202d04fc90e0766",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json": "833ff264df557be4b9c35a610eca6f7dc09146be1ad76bc8a4affd8fd78ba42f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json": "b18a9a3189a84ea7e83ed7218615cbcbc1d357fd7e8eae913fa3cda722c5e083",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json": "b87e16edc026ed7a19a8170348039b0c6e05b7415806fb95893577059d20bde1",
+      "artifacts/ego_mainline_readiness_audit_001b/result.json": "56f97fe626f9f9fe120a7f81f553f1226d2f33f3ed9de4452147f55849a448a1",
+      "artifacts/post_bridge_admission_executable_001d/result.json": "388a6eccaef19d38090a57f0086921b323cfe66d0d02308412385a9be03f1985",
+      "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+      "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md": "21b505e716930692c718417490c6ef2067f5b2c57c04097a26ca2b587679e3fd",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md": "14790782811db2af1269e9c59f3731dd3c544c0b445c41b50fe3f9b7d67ad608",
+      "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md": "27312a83568abd39b1d31daab88eb68d281ff5b1500b0bcaa7f42f1a7e20bd75",
+      "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md": "83a31d953402f0e4f24826bed28a1c858e0975e6e21e997b7be5296aa35cd07a",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md": "8c6c4f4d5fa7dfcbf9237b2ca35fd56a463ab09c334cf2f23ce886c572122d01",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+    },
+    "remote_anchors_verified": true,
+    "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0",
+    "static_pass_result": false,
+    "stop_conditions_triggered": [],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+    "verdict": "pass_bounded_admission_execution_001a",
+    "what_this_does_not_prove": [
+      "EGO readiness",
+      "bridge readiness",
+      "runtime readiness",
+      "Gate4 readiness",
+      "mechanism validity",
+      "theory validity",
+      "architecture correctness",
+      "agency",
+      "selfhood",
+      "consciousness",
+      "emotion",
+      "relationship learning",
+      "stable user benefit",
+      "future runtime correctness",
+      "runtime authorization"
+    ]
+  },
+  "replay_result_matches_result_json": true,
+  "serialized_input_state": {
+    "actionability_revalidation": {
+      "actionability_revalidation_passed": true,
+      "all_required_rows_revalidated": true,
+      "input_artifacts": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json"
+      ],
+      "revalidation_rows": [
+        {
+          "boundary_id": "admission_coverage_reference",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "admission_coverage_reference_001a",
+          "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row",
+          "satisfied": true
+        },
+        {
+          "boundary_id": "canonical_coverage_repair",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "canonicalization_provenance_repair_001b",
+          "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row",
+          "satisfied": true
+        },
+        {
+          "boundary_id": "compression_source_boundary",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "coverage_compression_001d",
+          "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row",
+          "satisfied": true
+        },
+        {
+          "boundary_id": "prior_readiness_audit",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "prior_readiness_audit_reference_only",
+          "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row",
+          "satisfied": true
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "post_bridge_admission_executable_001d",
+          "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row",
+          "satisfied": true
+        },
+        {
+          "boundary_id": "computed_evidence_gate",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "alignment_001a",
+          "revalidation_rule": "future executable must derive verdicts from callable computation paths",
+          "satisfied": true
+        },
+        {
+          "boundary_id": "negative_evidence_handling",
+          "producer_function": "build_actionability_revalidation",
+          "required": true,
+          "resolved_boundary_id": "alignment_001a",
+          "revalidation_rule": "001B and 001C remain non-positive; 001D remains caveated",
+          "satisfied": true
+        }
+      ],
+      "source_task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+      "validation_rule": "all alignment actionability rows must be revalidated against resolved parent boundaries"
+    },
+    "alignment_contract": {
+      "actionability_revalidation_required": true,
+      "actionability_source": {
+        "actionability_revalidation_required": true,
+        "computed_evidence_provenance": {
+          "aggregation_rule": "require future actionability revalidation before admission execution",
+          "artifact_name": "actionability_revalidation_matrix.json",
+          "code_path_hash": "5d5bc15d35209295866a3cbf834a8f0378c17f5b8e049d5f08a26cc39b9c3223",
+          "input_artifacts": [
+            "parent_evidence_boundary_manifest.json",
+            "evidence_usage_contract.json"
+          ],
+          "output_artifact_hash": "2de34a4074454ed22f05abd5b776186a085cfde42850643eff040a89503d3654",
+          "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+          "producer_function": "build_actionability_revalidation_matrix",
+          "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+          "validation_rule": "future execution remains blocked until revalidation rows are satisfied"
+        },
+        "revalidation_rows": [
+          {
+            "boundary_id": "admission_coverage_reference",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+          },
+          {
+            "boundary_id": "canonical_coverage_repair",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+          },
+          {
+            "boundary_id": "compression_source_boundary",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+          },
+          {
+            "boundary_id": "prior_readiness_audit",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+          },
+          {
+            "boundary_id": "post_bridge_admission_executable_001d",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+          },
+          {
+            "boundary_id": "computed_evidence_gate",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "future executable must derive verdicts from callable computation paths"
+          },
+          {
+            "boundary_id": "negative_evidence_handling",
+            "required": true,
+            "revalidation_required_before": "future admission execution",
+            "revalidation_rule": "001B and 001C remain non-positive; 001D remains caveated"
+          }
+        ],
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+        "validation_rule": "all parent and guard rows require actionability revalidation before future execution"
+      },
+      "all_validators_passed": true,
+      "authorization_flags": {
+        "architecture_selected": false,
+        "bridge_authorized": false,
+        "companion_authorized": false,
+        "ego_mainline_runtime_authorized": false,
+        "emotion_authorized": false,
+        "hyperon_adopted": false,
+        "implementation_authorized": false,
+        "llm_rag_authorized": false,
+        "personalization_authorized": false,
+        "relationship_authorized": false,
+        "runtime_authorized": false,
+        "user_model_authorized": false
+      },
+      "computed_evidence_gate_required_for_future_execution": true,
+      "computed_source": {
+        "computed_evidence_gate_required_for_future_execution": true,
+        "computed_evidence_provenance": {
+          "aggregation_rule": "carry forward computed-evidence provenance requirements for future admission execution",
+          "artifact_name": "computed_evidence_gate_contract.json",
+          "code_path_hash": "d936781512a683d7e5f6be835541ec9fcf245670c210025f9cca3b71015c81f1",
+          "input_artifacts": [
+            "docs/codex/contracts/COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A.md"
+          ],
+          "output_artifact_hash": "6ddb29abd8297c872e5aeca56d46ea268abea9a4413a712ae595bf8d1ef2685f",
+          "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+          "producer_function": "build_computed_evidence_gate_contract",
+          "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+          "validation_rule": "future execution verdicts must derive from callable computation paths"
+        },
+        "future_execution_must_include": [
+          "callable independent baselines",
+          "real ablation reruns",
+          "surface-specific leakage scanners with positive controls",
+          "behavior-causal replay where behavior claims are made",
+          "failure-path tests"
+        ],
+        "required_metadata_fields": [
+          "producer_function",
+          "input_artifacts",
+          "run_id",
+          "seed_or_context_ids",
+          "aggregation_rule",
+          "validation_rule",
+          "code_path_hash"
+        ],
+        "static_or_literal_verdicts_allowed": false,
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+        "validation_rule": "future admission execution cannot use literals, static pass labels, or unconditional clean reports as verdict evidence"
+      },
+      "copied_45_row_matrix_detected": false,
+      "negative_evidence_handling_required": true,
+      "negative_source": {
+        "computed_evidence_provenance": {
+          "aggregation_rule": "preserve 001B/001C negative evidence handling and bound 001D use",
+          "artifact_name": "negative_evidence_handling_contract.json",
+          "code_path_hash": "d405a25792ed401e85de2f71f2019d7d66729d1bed4b5e6eb38cfc078b5f3a61",
+          "input_artifacts": [
+            "parent_evidence_boundary_manifest.json",
+            "docs\\codex\\audits\\EGO-MAINLINE-READINESS-AUDIT-001B.md"
+          ],
+          "output_artifact_hash": "a362da9f818e869200dadd091f4e6df3664c5b39a982f846d0fff6a238111864",
+          "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+          "producer_function": "build_negative_evidence_handling_contract",
+          "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+          "validation_rule": "negative evidence cannot be restored as positive evidence"
+        },
+        "negative_evidence_handling_required": true,
+        "negative_evidence_rows": [
+          {
+            "allowed_use": [
+              "negative evidence",
+              "evidence-custody context",
+              "false-positive artifact-generation context"
+            ],
+            "positive_evidence_allowed": false,
+            "status": "invalidated_as_downstream_positive_evidence",
+            "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B"
+          },
+          {
+            "allowed_use": [
+              "historical nominal pass with leakage fail-ability blocker caveat"
+            ],
+            "positive_evidence_allowed": false,
+            "status": "historical_suspended_as_downstream_positive_evidence",
+            "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C"
+          },
+          {
+            "caveats": [
+              "001D may still be invalid if the synthetic distribution and candidate hash-based state rule share a closed-world construction shortcut, or if future evidence relies on this bounded proxy as mechanism validity.",
+              "A bounded pass, computed metric provenance, behavior-causal replay, baseline non-equivalence, and ablation sensitivity remain insufficient for bridge readiness, EGO readiness, companion readiness, mechanism validity, theory validity, agency, selfhood, consciousness, real relationship learning, real emotion, subjective experience, or stable user benefit.",
+              "001D is a current bounded post-bridge positive candidate with caveats, not mechanism proof.",
+              "Future EGO-mainline admission must preserve surface-scoped leakage and computed-evidence requirements."
+            ],
+            "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+            "mechanism_proof_allowed": false,
+            "positive_evidence_allowed": true,
+            "status": "current_bounded_post_bridge_positive_candidate_with_caveats",
+            "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+          }
+        ],
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+        "validation_rule": "negative evidence must not be restored as positive evidence, and 001D must remain caveated"
+      },
+      "resolved": true,
+      "schema_duplication_allowed": false,
+      "schema_source": {
+        "alignment_document_mode": "amendment_to_existing_admission_task_card_001a",
+        "complete_equivalent_contract_found": false,
+        "computed_evidence_provenance": {
+          "aggregation_rule": "enforce amendment mode and scan for copied 45-row matrix payloads",
+          "artifact_name": "schema_duplication_guard.json",
+          "code_path_hash": "a0d54c7ae4865c2fd5ffe4187eb8cc5d37a583e389886bface2140e04f8395d5",
+          "input_artifacts": [
+            "existing_admission_task_card_search_report.json",
+            "evidence_usage_contract.json"
+          ],
+          "output_artifact_hash": "92ed087ffa4bf723c847cea959021d86c33dfefe8aae4bc5e8397e7409922a0b",
+          "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+          "producer_function": "build_schema_duplication_guard",
+          "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+          "validation_rule": "no duplicate schema and no 45-row matrix copy may appear"
+        },
+        "copied_45_row_matrix_detected": false,
+        "duplicate_schema_created": false,
+        "matrix_duplication_allowed": false,
+        "partial_contract_found": true,
+        "row_like_lists": [],
+        "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+        "validation_rule": "partial existing admission card is amended by reference; no duplicate schema or copied matrix is allowed"
+      },
+      "static_or_literal_verdicts_allowed": false,
+      "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+      "validation_rule": "alignment 001A must preserve actionability, computed-evidence, negative-evidence, authorization, and schema guards",
+      "verdict": "ego_mainline_admission_task_card_alignment_001a_pass"
+    },
+    "authorization_flags": {
+      "all_authorization_flags_false": true,
+      "authorization_flags": {
+        "authorize_architecture_implementation": false,
+        "authorize_bridge_runtime": false,
+        "authorize_companion_behavior": false,
+        "authorize_ego_runtime": false,
+        "authorize_gate4": false,
+        "authorize_llm_rag": false,
+        "authorize_mechanism_validity_claim": false,
+        "authorize_personalization": false,
+        "authorize_relationship_or_emotion": false,
+        "authorize_runtime_correctness_claim": false,
+        "authorize_user_model": false
+      },
+      "generated_from_resolved_state": true,
+      "source_authorization_flags": {
+        "alignment": {
+          "architecture_selected": false,
+          "bridge_authorized": false,
+          "companion_authorized": false,
+          "ego_mainline_runtime_authorized": false,
+          "emotion_authorized": false,
+          "hyperon_adopted": false,
+          "implementation_authorized": false,
+          "llm_rag_authorized": false,
+          "personalization_authorized": false,
+          "relationship_authorized": false,
+          "runtime_authorized": false,
+          "user_model_authorized": false
+        },
+        "post_bridge": {
+          "baseline_weakening": false,
+          "bridge_runtime_authorized": false,
+          "companion_behavior_authorized": false,
+          "ego_mainline_authorized": false,
+          "emotion_authorized": false,
+          "llm_rag_authorized": false,
+          "long_term_human_user_memory_authorized": false,
+          "negative_evidence_rewrite": false,
+          "old_result_json_modification": false,
+          "persistent_profile_authorized": false,
+          "personalization_product_demo_authorized": false,
+          "post_bridge_admission_001b_artifact_modification": false,
+          "relationship_authorized": false,
+          "romance_attachment_authorized": false,
+          "threshold_patch": false,
+          "user_model_authorized": false
+        },
+        "preflight": {
+          "architecture_implementation_authorized": false,
+          "architecture_selected": false,
+          "bridge_authorized": false,
+          "bridge_runtime_authorized": false,
+          "companion_authorized": false,
+          "companion_behavior_authorized": false,
+          "ego_mainline_authorized": false,
+          "ego_mainline_runtime_authorized": false,
+          "emotion_authorized": false,
+          "gate4_authorized": false,
+          "implementation_authorized": false,
+          "llm_rag_authorized": false,
+          "long_term_human_user_memory_authorized": false,
+          "mechanism_validation_authorized": false,
+          "persistent_profile_authorized": false,
+          "personalization_authorized": false,
+          "personalization_product_demo_authorized": false,
+          "relationship_authorized": false,
+          "romance_attachment_authorized": false,
+          "runtime_authorized": false,
+          "user_model_authorized": false
+        }
+      },
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+      "validation_rule": "all admission execution authorization flags remain false"
+    },
+    "callable_gate_logic_executed": true,
+    "duplicate_schema": {
+      "copied_45_row_matrix_detected": false,
+      "copied_matrix_hits": [],
+      "duplicate_admission_schema_created": false,
+      "matrix_duplication_allowed": false,
+      "scanned_payloads": [
+        "alignment schema guard",
+        "admission forbidden claims/actions"
+      ],
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+      "validation_rule": "no duplicate schema and no copied 45-row matrix is introduced"
+    },
+    "forbidden_claims_and_actions": {
+      "allowed_verdicts": [
+        "pass_bounded_admission_execution_001a",
+        "blocked_bounded_admission_execution_001a"
+      ],
+      "copied_45_row_matrix_detected": false,
+      "duplicate_admission_schema_created": false,
+      "forbidden_actions": [
+        "runtime authorization",
+        "Gate4 execution",
+        "bridge runtime",
+        "EGO runtime",
+        "companion behavior",
+        "LLM/RAG",
+        "user-model",
+        "relationship",
+        "emotion",
+        "personalization",
+        "architecture implementation",
+        "mechanism validation"
+      ],
+      "forbidden_claims": [
+        "EGO readiness",
+        "bridge readiness",
+        "runtime readiness",
+        "Gate4 readiness",
+        "mechanism validity",
+        "theory validity",
+        "architecture correctness",
+        "agency",
+        "selfhood",
+        "consciousness",
+        "emotion",
+        "relationship learning",
+        "stable user benefit",
+        "future runtime correctness",
+        "runtime authorization"
+      ],
+      "forbidden_verdicts": [
+        "EGO ready",
+        "bridge ready",
+        "runtime ready",
+        "Gate4 authorized",
+        "mechanism proven",
+        "architecture valid",
+        "agency proven",
+        "selfhood proven",
+        "consciousness proven",
+        "companion authorized",
+        "relationship/emotion learning proven"
+      ],
+      "inserted_claims": [],
+      "runtime_or_mechanism_claims_introduced": false,
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+      "validation_rule": "output may claim only bounded governance-layer admission execution evidence"
+    },
+    "input_artifacts_by_output": {
+      "ablation_report.json": [
+        "serialized admission state",
+        "callable validators"
+      ],
+      "actionability_revalidation.json": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json"
+      ],
+      "admission_contract_evaluation.json": [
+        "artifacts/ego_mainline_admission_execution_preflight_001a/result.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "admission_decision_trace.json": [
+        "serialized admission state",
+        "callable validators",
+        "ablation controls"
+      ],
+      "authorization_flags.json": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "computed_evidence_provenance.json": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json"
+      ],
+      "forbidden_claims_and_actions.json": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-001A.md",
+        "AGENTS.md"
+      ],
+      "negative_evidence_handling.json": [
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json"
+      ],
+      "parent_boundary_readback.json": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/result.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json",
+        "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt",
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json",
+        "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json",
+        "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+        "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json",
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+        "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json",
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+        "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+        "artifacts/post_bridge_admission_executable_001d/result.json",
+        "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md",
+        "artifacts/ego_mainline_readiness_audit_001b/result.json"
+      ],
+      "post_bridge_caveat_revalidation.json": [
+        "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+        "artifacts/post_bridge_admission_executable_001d/result.json"
+      ],
+      "result.json": [
+        "parent_boundary_readback.json",
+        "admission_contract_evaluation.json",
+        "post_bridge_caveat_revalidation.json",
+        "actionability_revalidation.json",
+        "computed_evidence_provenance.json",
+        "negative_evidence_handling.json",
+        "forbidden_claims_and_actions.json",
+        "admission_decision_trace.json",
+        "ablation_report.json",
+        "authorization_flags.json"
+      ]
+    },
+    "negative_evidence_handling": {
+      "negative_001b_001c_positive_downstream_use_allowed": false,
+      "negative_evidence_handling_required": true,
+      "negative_evidence_non_positive": true,
+      "negative_evidence_rows": [
+        {
+          "allowed_use": [
+            "negative evidence",
+            "evidence-custody context",
+            "false-positive artifact-generation context"
+          ],
+          "positive_evidence_allowed": false,
+          "status": "invalidated_as_downstream_positive_evidence",
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B"
+        },
+        {
+          "allowed_use": [
+            "historical nominal pass with leakage fail-ability blocker caveat"
+          ],
+          "positive_evidence_allowed": false,
+          "status": "historical_suspended_as_downstream_positive_evidence",
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C"
+        },
+        {
+          "caveats": [
+            "001D may still be invalid if the synthetic distribution and candidate hash-based state rule share a closed-world construction shortcut, or if future evidence relies on this bounded proxy as mechanism validity.",
+            "A bounded pass, computed metric provenance, behavior-causal replay, baseline non-equivalence, and ablation sensitivity remain insufficient for bridge readiness, EGO readiness, companion readiness, mechanism validity, theory validity, agency, selfhood, consciousness, real relationship learning, real emotion, subjective experience, or stable user benefit.",
+            "001D is caveated bounded post-bridge evidence, not mechanism proof.",
+            "001D does not authorize runtime, bridge readiness, EGO readiness, or companion behavior."
+          ],
+          "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+          "mechanism_proof_allowed": false,
+          "positive_evidence_allowed": true,
+          "status": "current_bounded_post_bridge_positive_candidate_with_caveats",
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D"
+        }
+      ],
+      "source_task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+      "validation_rule": "001B/001C negative evidence remains non-positive; 001D remains caveated and not mechanism proof"
+    },
+    "output_dir": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/ego_mainline_admission_execution_001a",
+    "parent_boundary_readback": {
+      "all_required_boundaries_resolved": true,
+      "all_required_remote_anchors_verified": true,
+      "blocked_old_canonicalization_001a": {
+        "commit": "2882f4796dd40cfd16a2c07b5c718d477876fb5f",
+        "status": "blocked and explicitly excluded",
+        "used_as_parent": false
+      },
+      "parent_boundaries": [
+        {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "local_tag_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "local_verified": true,
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md",
+            "artifacts/ego_mainline_admission_execution_preflight_001a/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed admission execution readiness preflight",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "local_tag_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "local_verified": true,
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+            "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed admission execution alignment contract",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "local_tag_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "local_verified": true,
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_verified": true,
+          "paths": [
+            "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+            "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed admission-side reference-only contract",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "local_tag_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "local_verified": true,
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_verified": true,
+          "paths": [
+            "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+            "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed canonicalization provenance repair",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "local_tag_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "local_verified": true,
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_verified": true,
+          "paths": [
+            "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed source-pinned / pre-canonicalization closure patch",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "local_tag_resolved_commit": null,
+          "local_verified": true,
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+            "artifacts/post_bridge_admission_executable_001d/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "caveated, not mechanism proof, not runtime authorization",
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "local_tag_resolved_commit": null,
+          "local_verified": true,
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "reference-only prior readiness audit / admission drafting context",
+          "task_id": "prior readiness audit reference only",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        }
+      ],
+      "parent_boundaries_by_id": {
+        "admission_coverage_reference_001a": {
+          "boundary_id": "admission_coverage_reference_001a",
+          "expected_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "local_tag_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "local_verified": true,
+          "path_last_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "path_verified": true,
+          "paths": [
+            "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md",
+            "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "c5b067faea764657bd24cd75415a6ceb59905dab",
+          "remote_tag": "remote-anchor-admission-coverage-reference-001a-c5b067f",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed admission-side reference-only contract",
+          "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        "alignment_001a": {
+          "boundary_id": "alignment_001a",
+          "expected_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "local_tag_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "local_verified": true,
+          "path_last_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+            "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "095a1fcb644dc21e5f59636f9cf5a183e6989537",
+          "remote_tag": "remote-anchor-admission-alignment-001a-095a1fc",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed admission execution alignment contract",
+          "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        "canonicalization_provenance_repair_001b": {
+          "boundary_id": "canonicalization_provenance_repair_001b",
+          "expected_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "local_tag_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "local_verified": true,
+          "path_last_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "path_verified": true,
+          "paths": [
+            "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+            "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+          "remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed canonicalization provenance repair",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        "coverage_compression_001d": {
+          "boundary_id": "coverage_compression_001d",
+          "expected_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "local_tag_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "local_verified": true,
+          "path_last_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "path_verified": true,
+          "paths": [
+            "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+          "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed source-pinned / pre-canonicalization closure patch",
+          "task_id": "THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        "post_bridge_admission_executable_001d": {
+          "boundary_id": "post_bridge_admission_executable_001d",
+          "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "local_tag_resolved_commit": null,
+          "local_verified": true,
+          "path_last_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+            "artifacts/post_bridge_admission_executable_001d/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "caveated, not mechanism proof, not runtime authorization",
+          "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        "preflight_001a": {
+          "boundary_id": "preflight_001a",
+          "expected_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "local_tag_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "local_verified": true,
+          "path_last_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md",
+            "artifacts/ego_mainline_admission_execution_preflight_001a/result.json"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": "1b56bb658857ed53c1d94cc94d908cc43990f2c7",
+          "remote_tag": "remote-anchor-admission-execution-preflight-001a-1b56bb6",
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "sealed admission execution readiness preflight",
+          "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        },
+        "prior_readiness_audit_reference_only": {
+          "boundary_id": "prior_readiness_audit_reference_only",
+          "expected_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "local_tag_resolved_commit": null,
+          "local_verified": true,
+          "path_last_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+          "path_verified": true,
+          "paths": [
+            "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md"
+          ],
+          "producer_function": "_boundary_row",
+          "remote_resolved_commit": null,
+          "remote_tag": null,
+          "remote_verified": true,
+          "resolved_exactly": true,
+          "status": "reference-only prior readiness audit / admission drafting context",
+          "task_id": "prior readiness audit reference only",
+          "validation_rule": "path history, local tag, and remote tag when declared must match expected sealed commit"
+        }
+      },
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+      "validation_rule": "required sealed parent boundaries must resolve exactly by path history and remote tags when declared"
+    },
+    "post_bridge_caveat_revalidation": {
+      "artifact_path": "artifacts/post_bridge_admission_executable_001d/result.json",
+      "authorization_flags": {
+        "baseline_weakening": false,
+        "bridge_runtime_authorized": false,
+        "companion_behavior_authorized": false,
+        "ego_mainline_authorized": false,
+        "emotion_authorized": false,
+        "llm_rag_authorized": false,
+        "long_term_human_user_memory_authorized": false,
+        "negative_evidence_rewrite": false,
+        "old_result_json_modification": false,
+        "persistent_profile_authorized": false,
+        "personalization_product_demo_authorized": false,
+        "post_bridge_admission_001b_artifact_modification": false,
+        "relationship_authorized": false,
+        "romance_attachment_authorized": false,
+        "threshold_patch": false,
+        "user_model_authorized": false
+      },
+      "blocked_reason": null,
+      "bounded_pass": true,
+      "bridge_ready_claim_allowed": false,
+      "caveats": [
+        "001D may still be invalid if the synthetic distribution and candidate hash-based state rule share a closed-world construction shortcut, or if future evidence relies on this bounded proxy as mechanism validity.",
+        "A bounded pass, computed metric provenance, behavior-causal replay, baseline non-equivalence, and ablation sensitivity remain insufficient for bridge readiness, EGO readiness, companion readiness, mechanism validity, theory validity, agency, selfhood, consciousness, real relationship learning, real emotion, subjective experience, or stable user benefit.",
+        "001D is caveated bounded post-bridge evidence, not mechanism proof.",
+        "001D does not authorize runtime, bridge readiness, EGO readiness, or companion behavior."
+      ],
+      "caveats_binding": true,
+      "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+      "commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "ego_ready_claim_allowed": false,
+      "mechanism_proof_allowed": false,
+      "resolved": true,
+      "runtime_authorized": false,
+      "task_card_path": "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+      "treat_as_mechanism_proof": false,
+      "validation_rule": "001D verdict, caveats, artifact path, and claim ceiling are re-read and remain binding",
+      "verdict": "post_bridge_admission_executable_001d_pass",
+      "what_this_does_not_prove": [
+        "bridge readiness",
+        "EGO readiness",
+        "companion readiness",
+        "mechanism validity",
+        "theory validity",
+        "agency",
+        "selfhood",
+        "consciousness",
+        "real relationship learning",
+        "real emotion",
+        "subjective experience",
+        "stable user benefit",
+        "correctness of any future EGO runtime"
+      ]
+    },
+    "preflight_contract": {
+      "actionability_revalidation_required": true,
+      "all_authorization_flags_false": true,
+      "all_gates_passed": true,
+      "authorization_flags": {
+        "architecture_implementation_authorized": false,
+        "architecture_selected": false,
+        "bridge_authorized": false,
+        "bridge_runtime_authorized": false,
+        "companion_authorized": false,
+        "companion_behavior_authorized": false,
+        "ego_mainline_authorized": false,
+        "ego_mainline_runtime_authorized": false,
+        "emotion_authorized": false,
+        "gate4_authorized": false,
+        "implementation_authorized": false,
+        "llm_rag_authorized": false,
+        "long_term_human_user_memory_authorized": false,
+        "mechanism_validation_authorized": false,
+        "persistent_profile_authorized": false,
+        "personalization_authorized": false,
+        "personalization_product_demo_authorized": false,
+        "relationship_authorized": false,
+        "romance_attachment_authorized": false,
+        "runtime_authorized": false,
+        "user_model_authorized": false
+      },
+      "claim_ceiling": "bounded admission execution readiness preflight only",
+      "computed_evidence_gate_required": true,
+      "negative_evidence_non_positive": true,
+      "resolved": true,
+      "stop_conditions_triggered": [],
+      "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A",
+      "validation_rule": "preflight 001A must remain a sealed readiness preflight and not admission execution",
+      "verdict": "pass_admission_execution_may_be_tasked_separately"
+    },
+    "protected_sealed_hashes_after": {
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json": "a1b37a22301d7cfc52bcd024326de4fd4751ce830f9c04caf086ad5e87d98f17",
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json": "576d13d4ceea1a9bce20dd3e4255bfd5f901d4630f596a70c399016e9eadc5d3",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json": "5f2b30e9c978b69b4c81a24a7b2d7b8ad758bff3edb070d06505002979a6cd0e",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json": "69e185998714fcbeee810bf0e149903650cdbe1607b5b576c903f446f0d70f04",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt": "57104f713f1f7d544b04902516a71edb6075bf4ffe449b21dc42febcd1f497e7",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json": "fc987add74fedf7526ffc5ec72f4a04f5945648ec97d8e3fdb0d55b832838058",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json": "4cb30e9fa64e7f435fc614273378587a38d9dbe5cedc291b6ef8aedf7224f926",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json": "197500a59b25777e34127a69dbf930c7b9042061e3f5ec74e07c29ba6b13047b",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json": "15bfdbebc357e918d316201b4ab936d101f7d69ab0531701290c19d53f870413",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/result.json": "6377255e051d3d980601ebc2808ccd5174f827ef91a88e98cf4d56f04fa3768a",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json": "2d3eb1eab4cc09ade3f572d40db370231a41c851b3aabae2aedd2f062c30000f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json": "a928821e554fc9192d62a8f2dfbdea0da6aedce75806612c61f5ab1cbc2b155f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json": "e668ecdaf4d3956f4536656e34f415a120027548bc53ef99f202d04fc90e0766",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json": "833ff264df557be4b9c35a610eca6f7dc09146be1ad76bc8a4affd8fd78ba42f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json": "b18a9a3189a84ea7e83ed7218615cbcbc1d357fd7e8eae913fa3cda722c5e083",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json": "b87e16edc026ed7a19a8170348039b0c6e05b7415806fb95893577059d20bde1",
+      "artifacts/ego_mainline_readiness_audit_001b/result.json": "56f97fe626f9f9fe120a7f81f553f1226d2f33f3ed9de4452147f55849a448a1",
+      "artifacts/post_bridge_admission_executable_001d/result.json": "388a6eccaef19d38090a57f0086921b323cfe66d0d02308412385a9be03f1985",
+      "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+      "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md": "21b505e716930692c718417490c6ef2067f5b2c57c04097a26ca2b587679e3fd",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md": "14790782811db2af1269e9c59f3731dd3c544c0b445c41b50fe3f9b7d67ad608",
+      "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md": "27312a83568abd39b1d31daab88eb68d281ff5b1500b0bcaa7f42f1a7e20bd75",
+      "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md": "83a31d953402f0e4f24826bed28a1c858e0975e6e21e997b7be5296aa35cd07a",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md": "8c6c4f4d5fa7dfcbf9237b2ca35fd56a463ab09c334cf2f23ce886c572122d01",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+    },
+    "protected_sealed_hashes_before": {
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json": "a1b37a22301d7cfc52bcd024326de4fd4751ce830f9c04caf086ad5e87d98f17",
+      "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json": "576d13d4ceea1a9bce20dd3e4255bfd5f901d4630f596a70c399016e9eadc5d3",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json": "5f2b30e9c978b69b4c81a24a7b2d7b8ad758bff3edb070d06505002979a6cd0e",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json": "69e185998714fcbeee810bf0e149903650cdbe1607b5b576c903f446f0d70f04",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt": "57104f713f1f7d544b04902516a71edb6075bf4ffe449b21dc42febcd1f497e7",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json": "fc987add74fedf7526ffc5ec72f4a04f5945648ec97d8e3fdb0d55b832838058",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json": "4cb30e9fa64e7f435fc614273378587a38d9dbe5cedc291b6ef8aedf7224f926",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json": "197500a59b25777e34127a69dbf930c7b9042061e3f5ec74e07c29ba6b13047b",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json": "15bfdbebc357e918d316201b4ab936d101f7d69ab0531701290c19d53f870413",
+      "artifacts/ego_mainline_admission_execution_preflight_001a/result.json": "6377255e051d3d980601ebc2808ccd5174f827ef91a88e98cf4d56f04fa3768a",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json": "2d3eb1eab4cc09ade3f572d40db370231a41c851b3aabae2aedd2f062c30000f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json": "a928821e554fc9192d62a8f2dfbdea0da6aedce75806612c61f5ab1cbc2b155f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json": "e668ecdaf4d3956f4536656e34f415a120027548bc53ef99f202d04fc90e0766",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json": "833ff264df557be4b9c35a610eca6f7dc09146be1ad76bc8a4affd8fd78ba42f",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json": "b18a9a3189a84ea7e83ed7218615cbcbc1d357fd7e8eae913fa3cda722c5e083",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+      "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json": "b87e16edc026ed7a19a8170348039b0c6e05b7415806fb95893577059d20bde1",
+      "artifacts/ego_mainline_readiness_audit_001b/result.json": "56f97fe626f9f9fe120a7f81f553f1226d2f33f3ed9de4452147f55849a448a1",
+      "artifacts/post_bridge_admission_executable_001d/result.json": "388a6eccaef19d38090a57f0086921b323cfe66d0d02308412385a9be03f1985",
+      "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+      "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md": "21b505e716930692c718417490c6ef2067f5b2c57c04097a26ca2b587679e3fd",
+      "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md": "14790782811db2af1269e9c59f3731dd3c544c0b445c41b50fe3f9b7d67ad608",
+      "docs/codex/tasks/POST-BRIDGE-ADMISSION-EXECUTABLE-001D.md": "27312a83568abd39b1d31daab88eb68d281ff5b1500b0bcaa7f42f1a7e20bd75",
+      "docs/research/EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A.md": "83a31d953402f0e4f24826bed28a1c858e0975e6e21e997b7be5296aa35cd07a",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md": "8c6c4f4d5fa7dfcbf9237b2ca35fd56a463ab09c334cf2f23ce886c572122d01",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+    },
+    "repo_root": "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+    "run_id": "ego_mainline_admission_execution_001a_f901b07c34db66b0",
+    "static_pass_result": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+    "verify_remote": true
+  },
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A"
+}
