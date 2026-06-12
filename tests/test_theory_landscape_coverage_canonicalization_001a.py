@@ -10,8 +10,10 @@ sys.path.insert(0, str(ROOT / "src"))
 from theory_landscape_coverage_canonicalization_001a.runner import (  # noqa: E402
     EXPECTED_COMMIT,
     EXPECTED_REMOTE_TAG,
+    KNOWN_BLOCKED_TRACE_HASH,
     REQUIRED_GRAPH_CHALLENGERS,
     canonicalize_coverage_001a,
+    compute_trace_artifact_provenance_entry,
     load_inputs,
     run_ablation_failure_checks,
     run_baseline_validation,
@@ -258,6 +260,29 @@ def test_schema_validation_requires_computed_paths_not_literal_pass_labels(tmp_p
     assert provenance["code_path_hash"]
     assert result["baseline_validator_invoked"] is True
     assert result["ablation_validators_invoked"] is True
+
+
+def test_canonicalization_provenance_records_trace_artifact_hash_from_callable_path(tmp_path):
+    canonicalize_coverage_001a(repo_root=ROOT, output_dir=tmp_path)
+
+    provenance = _read_json(tmp_path / "canonicalization_provenance.json")
+    entry = provenance["trace_artifact_provenance"]["source_to_canonical_trace.json"]
+    actual_trace_hash = _file_sha(tmp_path / "source_to_canonical_trace.json")
+    recomputed_entry = compute_trace_artifact_provenance_entry(tmp_path)
+
+    assert entry["artifact_name"] == "source_to_canonical_trace.json"
+    assert entry["output_artifact_hash"] == actual_trace_hash
+    assert recomputed_entry["output_artifact_hash"] == actual_trace_hash
+    assert entry["producer_function"]
+    assert entry["producer_function"] == recomputed_entry["producer_function"]
+    assert entry["artifact_producer_function"] == "_build_trace"
+    assert entry["run_id"]
+    assert entry["code_path_hash"]
+    assert entry["aggregation_rule"]
+    assert entry["validation_rule"]
+    assert entry["proof_source"] == "computed_sha256_from_trace_artifact_bytes"
+    assert entry["known_blocked_hash_consistency_check"]["known_hash"] == KNOWN_BLOCKED_TRACE_HASH
+    assert entry["known_blocked_hash_consistency_check"]["used_as_proof"] is False
 
 
 def test_no_old_source_artifacts_are_mutated(tmp_path):

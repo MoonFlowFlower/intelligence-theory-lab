@@ -11,16 +11,24 @@ from typing import Any
 
 
 TASK_ID = "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A"
+REPAIR_TASK_ID = "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B"
 EXPECTED_COMMIT = "614b147d14cc4bb02b7c6afa2c90661cdce15e4c"
 EXPECTED_REMOTE_TAG = "remote-anchor-coverage-compression-001d-614b147"
 SOURCE_DOC = Path("docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md")
 SOURCE_ARTIFACT_DIR = Path("artifacts/theory_landscape_coverage_precanonical_closure_patch_001b")
 OUTPUT_DIR = Path("artifacts/theory_landscape_coverage_canonicalization_001a")
+REPAIR_OUTPUT_DIR = Path("artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b")
 DOC_PATH = Path("docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A.md")
+REPAIR_DOC_PATH = Path(
+    "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md"
+)
 CLAIM_CEILING = (
     "bounded repo-canonicalization evidence for already source-pinned theory coverage only"
 )
+REPAIR_CLAIM_CEILING = "bounded provenance repair for repo-canonicalized theory coverage only"
 VERDICT = "theory_landscape_coverage_canonicalization_001a_pass"
+REPAIR_VERDICT = "theory_landscape_coverage_canonicalization_provenance_repair_001b_pass"
+KNOWN_BLOCKED_TRACE_HASH = "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb"
 REQUIRED_GRAPH_CHALLENGERS = [
     "graph_lookup",
     "transition_table",
@@ -182,8 +190,359 @@ def canonicalize_coverage_001a(
     # Schema content changed after final validation, so refresh that trace hash.
     trace = _build_trace(inputs, out, {**reports, "schema_validation_report.json": final_schema}, run_id, code_path_hash)
     _write_json(out / "source_to_canonical_trace.json", trace)
+    _attach_trace_provenance_to_materialized_output(out)
 
     return result
+
+
+def compute_trace_artifact_provenance_entry(
+    canonical_dir: Path | str, run_id: str | None = None, code_path_hash: str | None = None
+) -> dict[str, Any]:
+    out = Path(canonical_dir)
+    trace_path = out / "source_to_canonical_trace.json"
+    trace = _read_json(trace_path)
+    computed_hash = _file_sha(trace_path)
+    resolved_run_id = run_id or trace.get("run_id")
+    resolved_code_path_hash = code_path_hash or _file_sha(Path(__file__))
+    return {
+        "artifact_name": "source_to_canonical_trace.json",
+        "canonical_artifact": "source_to_canonical_trace.json",
+        "producer_function": "compute_trace_artifact_provenance_entry",
+        "artifact_producer_function": trace.get("producer_function"),
+        "input_artifacts": trace.get("input_artifacts", []),
+        "generation_input_references": [
+            "source_to_canonical_trace.json materialized bytes",
+            "source_to_canonical_trace.json top-level generation metadata",
+        ],
+        "run_id": resolved_run_id,
+        "output_artifact_hash": computed_hash,
+        "code_path_hash": resolved_code_path_hash,
+        "aggregation_rule": "compute SHA256 from materialized source_to_canonical_trace.json bytes",
+        "validation_rule": "recorded output_artifact_hash must equal callable SHA256 of source_to_canonical_trace.json",
+        "proof_source": "computed_sha256_from_trace_artifact_bytes",
+        "known_blocked_hash_consistency_check": {
+            "known_hash": KNOWN_BLOCKED_TRACE_HASH,
+            "computed_hash": computed_hash,
+            "matches_known_hash": computed_hash == KNOWN_BLOCKED_TRACE_HASH,
+            "used_as_proof": False,
+        },
+    }
+
+
+def repair_canonicalization_provenance_001b(
+    repo_root: Path | str | None = None,
+    canonical_dir: Path | str | None = None,
+    repair_dir: Path | str | None = None,
+) -> dict[str, Any]:
+    root = Path(repo_root or Path.cwd()).resolve()
+    canonical = _resolve_under_root(root, canonical_dir or OUTPUT_DIR)
+    repair = _resolve_under_root(root, repair_dir or REPAIR_OUTPUT_DIR)
+    repair.mkdir(parents=True, exist_ok=True)
+
+    source_hashes_before = _protected_source_hashes(root)
+    canonical_hashes_before = _canonical_artifact_hashes(canonical)
+    provenance_path = canonical / "canonicalization_provenance.json"
+    provenance_before = _read_json(provenance_path)
+    provenance_hash_before = _file_sha(provenance_path)
+    trace_hash_before = _file_sha(canonical / "source_to_canonical_trace.json")
+    blocker_report = _build_repair_blocker_report(provenance_before, trace_hash_before)
+
+    entry = compute_trace_artifact_provenance_entry(canonical)
+    repaired_provenance = _with_trace_artifact_provenance(provenance_before, entry)
+    _write_json(provenance_path, repaired_provenance)
+
+    source_hashes_after = _protected_source_hashes(root)
+    canonical_hashes_after = _canonical_artifact_hashes(canonical)
+    provenance_hash_after = _file_sha(provenance_path)
+    trace_hash_after = _file_sha(canonical / "source_to_canonical_trace.json")
+    validation = _validate_provenance_repair(
+        canonical,
+        source_hashes_before,
+        source_hashes_after,
+        canonical_hashes_before,
+        canonical_hashes_after,
+    )
+    delta = {
+        "task_id": REPAIR_TASK_ID,
+        "canonicalization_provenance_hash_before": provenance_hash_before,
+        "canonicalization_provenance_hash_after": provenance_hash_after,
+        "source_to_canonical_trace_hash_before": trace_hash_before,
+        "source_to_canonical_trace_hash_after": trace_hash_after,
+        "trace_artifact_hash_computed_by_callable_code": True,
+        "trace_artifact_provenance_entry_added": blocker_report["trace_provenance_missing_before_repair"],
+        "known_blocked_hash_used_as_proof": False,
+        "producer_function": "repair_canonicalization_provenance_001b",
+        "code_path_hash": _file_sha(Path(__file__)),
+        "aggregation_rule": "add computed trace artifact provenance entry without changing trace artifact bytes",
+        "validation_rule": "source artifacts unchanged and canonicalization invariants preserved",
+    }
+    result = {
+        "task_id": REPAIR_TASK_ID,
+        "verdict": REPAIR_VERDICT if validation["passed"] else "theory_landscape_coverage_canonicalization_provenance_repair_001b_failed",
+        "layer": "evidence-governance / canonicalization provenance repair only",
+        "blocked_commit": "2882f4796dd40cfd16a2c07b5c718d477876fb5f",
+        "source_anchor_commit": EXPECTED_COMMIT,
+        "source_anchor_remote_tag": EXPECTED_REMOTE_TAG,
+        "claim_ceiling": REPAIR_CLAIM_CEILING,
+        "canonical_claim_ceiling": CLAIM_CEILING,
+        "trace_artifact_hash": entry["output_artifact_hash"],
+        "known_blocked_hash_consistency_check": entry["known_blocked_hash_consistency_check"],
+        "old_source_artifacts_modified": validation["source_artifacts_modified"],
+        "implementation_authorized": False,
+        "repair_validation_passed": validation["passed"],
+        "stop_conditions_triggered": validation["failures"],
+        "producer_function": "repair_canonicalization_provenance_001b",
+        "code_path_hash": _file_sha(Path(__file__)),
+        "what_this_does_not_prove": FORBIDDEN_CLAIMS,
+    }
+
+    _write_json(repair / "blocker_report.json", blocker_report)
+    _write_json(
+        repair / "old_artifact_hashes_before.json",
+        {
+            "task_id": REPAIR_TASK_ID,
+            "source_artifact_hashes_before": source_hashes_before,
+            "canonical_artifact_hashes_before": canonical_hashes_before,
+        },
+    )
+    _write_json(
+        repair / "repaired_artifact_hashes_after.json",
+        {
+            "task_id": REPAIR_TASK_ID,
+            "source_artifact_hashes_after": source_hashes_after,
+            "canonical_artifact_hashes_after": canonical_hashes_after,
+        },
+    )
+    _write_json(repair / "provenance_repair_delta.json", delta)
+    _write_json(repair / "trace_artifact_provenance_entry.json", entry)
+    _write_json(repair / "repair_validation_report.json", validation)
+    _write_json(repair / "result.json", result)
+    _write_text(repair / "claim_ceiling.txt", REPAIR_CLAIM_CEILING + "\n")
+    _write_repair_doc(root / REPAIR_DOC_PATH, result, delta, validation)
+    return result
+
+
+def _attach_trace_provenance_to_materialized_output(output_dir: Path) -> None:
+    provenance_path = output_dir / "canonicalization_provenance.json"
+    provenance = _read_json(provenance_path)
+    entry = compute_trace_artifact_provenance_entry(output_dir)
+    _write_json(provenance_path, _with_trace_artifact_provenance(provenance, entry))
+
+
+def _with_trace_artifact_provenance(
+    provenance: dict[str, Any], entry: dict[str, Any]
+) -> dict[str, Any]:
+    repaired = copy.deepcopy(provenance)
+    repaired.setdefault("trace_artifact_provenance", {})[
+        "source_to_canonical_trace.json"
+    ] = entry
+    artifact_entries = [
+        item
+        for item in repaired.get("canonical_artifact_provenance", [])
+        if item.get("artifact_name") != "source_to_canonical_trace.json"
+    ]
+    artifact_entries.append(entry)
+    repaired["canonical_artifact_provenance"] = artifact_entries
+    repaired["provenance_repair_note"] = (
+        "source_to_canonical_trace.json intentionally excludes tracing itself; "
+        "this provenance entry records the trace artifact hash through callable computation."
+    )
+    return repaired
+
+
+def _resolve_under_root(root: Path, path: Path | str) -> Path:
+    resolved = Path(path)
+    if not resolved.is_absolute():
+        resolved = root / resolved
+    return resolved.resolve()
+
+
+def _protected_source_artifacts(root: Path) -> list[Path]:
+    candidates = [root / path for path in REQUIRED_INPUT_ARTIFACTS]
+    candidates.extend(
+        [
+            root / "docs/research/PHASE-ONE-THEORY-LANDSCAPE-COVERAGE-AUDIT.md",
+            root / "artifacts/phase_one_theory_landscape_source_pin_001a/source_pin_manifest.json",
+        ]
+    )
+    return sorted({path for path in candidates if path.exists()})
+
+
+def _protected_source_hashes(root: Path) -> dict[str, str]:
+    return {
+        str(path.relative_to(root)).replace("\\", "/"): _file_sha(path)
+        for path in _protected_source_artifacts(root)
+    }
+
+
+def _canonical_artifact_hashes(canonical_dir: Path) -> dict[str, str]:
+    return {
+        name: _file_sha(canonical_dir / name)
+        for name in EXPECTED_ARTIFACT_NAMES
+        if (canonical_dir / name).exists()
+    }
+
+
+def _build_repair_blocker_report(
+    provenance_before: dict[str, Any], trace_hash_before: str
+) -> dict[str, Any]:
+    entry = provenance_before.get("trace_artifact_provenance", {}).get(
+        "source_to_canonical_trace.json"
+    )
+    return {
+        "task_id": REPAIR_TASK_ID,
+        "blocked_commit": "2882f4796dd40cfd16a2c07b5c718d477876fb5f",
+        "known_blocker": (
+            "canonicalization_provenance.json did not cover "
+            "source_to_canonical_trace.json with artifact name and output hash"
+        ),
+        "trace_provenance_missing_before_repair": entry is None,
+        "trace_hash_before_repair": trace_hash_before,
+        "known_blocked_hash": KNOWN_BLOCKED_TRACE_HASH,
+        "known_blocked_hash_matches_computed_before_repair": trace_hash_before
+        == KNOWN_BLOCKED_TRACE_HASH,
+        "known_blocked_hash_used_as_proof": False,
+        "producer_function": "_build_repair_blocker_report",
+        "code_path_hash": _file_sha(Path(__file__)),
+    }
+
+
+def _validate_provenance_repair(
+    canonical_dir: Path,
+    source_hashes_before: dict[str, str],
+    source_hashes_after: dict[str, str],
+    canonical_hashes_before: dict[str, str],
+    canonical_hashes_after: dict[str, str],
+) -> dict[str, Any]:
+    failures: list[str] = []
+    provenance = _read_json(canonical_dir / "canonicalization_provenance.json")
+    matrix = _read_json(canonical_dir / "canonical_theory_coverage_matrix.json")
+    family = _read_json(canonical_dir / "canonical_family_accounting.json")
+    auth = _read_json(canonical_dir / "canonical_authorization_flags.json")
+    hyperon = _read_json(canonical_dir / "hyperon_non_adoption_guard.json")
+    admission = _read_json(canonical_dir / "admission_reference_guard.json")
+    claim_hash_before = canonical_hashes_before.get("canonical_claim_ceiling.txt")
+    claim_hash_after = canonical_hashes_after.get("canonical_claim_ceiling.txt")
+    entry = provenance.get("trace_artifact_provenance", {}).get(
+        "source_to_canonical_trace.json"
+    )
+    actual_trace_hash = _file_sha(canonical_dir / "source_to_canonical_trace.json")
+    rows = matrix.get("rows", [])
+    family_items = family.get("family_accounting", [])
+    hyperon_rows = _hyperon_rows(rows)
+
+    if source_hashes_before != source_hashes_after:
+        failures.append("source_artifacts_modified")
+    if entry is None:
+        failures.append("trace_artifact_provenance_missing")
+    elif entry.get("output_artifact_hash") != actual_trace_hash:
+        failures.append("trace_artifact_hash_mismatch")
+    if matrix.get("source_commit") != EXPECTED_COMMIT:
+        failures.append("source_anchor_commit_changed")
+    if matrix.get("remote_tag") != EXPECTED_REMOTE_TAG:
+        failures.append("source_anchor_remote_tag_changed")
+    if matrix.get("row_count") != 45 or len(rows) != 45:
+        failures.append("matrix_row_count_changed")
+    if family.get("item_count") != 30 or len(family_items) != 30:
+        failures.append("family_accounting_count_changed")
+    if set(family.get("graph_substrate_challenger_family", [])) != set(
+        REQUIRED_GRAPH_CHALLENGERS
+    ):
+        failures.append("graph_challenger_family_changed")
+    if len(hyperon_rows) != 1 or hyperon.get("canonical_hyperon_row_count") != 1:
+        failures.append("hyperon_row_count_changed")
+    if hyperon.get("hyperon_not_adopted") is not True:
+        failures.append("hyperon_adopted")
+    if hyperon.get("hyperon_not_runtime_authorized") is not True:
+        failures.append("hyperon_runtime_authorized")
+    if hyperon.get("hyperon_not_implementation_authorized") is not True:
+        failures.append("hyperon_implementation_authorized")
+    if hyperon.get("hyperon_not_ego_mainline_dependency") is not True:
+        failures.append("hyperon_ego_mainline_dependency")
+    if not _all_impl_false(rows, family_items):
+        failures.append("implementation_authorized_true_detected")
+    if not all(value is False for value in auth.get("non_authorization_flags", {}).values()):
+        failures.append("authorization_flag_true_detected")
+    if admission.get("committed_audit_reference_only") is not True:
+        failures.append("admission_reference_not_reference_only")
+    if admission.get("actionability_revalidation_required") is not True:
+        failures.append("admission_actionability_revalidation_missing")
+    if claim_hash_before != claim_hash_after:
+        failures.append("canonical_claim_ceiling_changed")
+
+    return {
+        "task_id": REPAIR_TASK_ID,
+        "passed": not failures,
+        "failures": failures,
+        "source_artifacts_modified": source_hashes_before != source_hashes_after,
+        "canonical_claim_ceiling_unchanged": claim_hash_before == claim_hash_after,
+        "trace_artifact_provenance_present": entry is not None,
+        "trace_artifact_hash_verified": bool(entry)
+        and entry.get("output_artifact_hash") == actual_trace_hash,
+        "matrix_row_count": len(rows),
+        "family_accounting_count": len(family_items),
+        "graph_challenger_family": family.get("graph_substrate_challenger_family", []),
+        "hyperon_row_count": len(hyperon_rows),
+        "all_implementation_authorized_false": _all_impl_false(rows, family_items),
+        "source_anchor_preserved": matrix.get("source_commit") == EXPECTED_COMMIT
+        and matrix.get("remote_tag") == EXPECTED_REMOTE_TAG,
+        "producer_function": "_validate_provenance_repair",
+        "code_path_hash": _file_sha(Path(__file__)),
+    }
+
+
+def _write_repair_doc(
+    path: Path, result: dict[str, Any], delta: dict[str, Any], validation: dict[str, Any]
+) -> None:
+    text = f"""# {REPAIR_TASK_ID}
+
+Mode: bounded provenance repair for `THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A` only.
+
+Verdict: `{result["verdict"]}`
+
+Layer: evidence-governance / canonicalization provenance repair only.
+
+## Repair Summary
+
+The repair adds computed provenance for `source_to_canonical_trace.json` into `canonicalization_provenance.json`.
+
+Trace artifact hash: `{result["trace_artifact_hash"]}`
+
+Known blocked hash consistency check: `{result["known_blocked_hash_consistency_check"]["matches_known_hash"]}`
+
+Known blocked hash used as proof: `{result["known_blocked_hash_consistency_check"]["used_as_proof"]}`
+
+## Before / After
+
+Canonicalization provenance hash before: `{delta["canonicalization_provenance_hash_before"]}`
+
+Canonicalization provenance hash after: `{delta["canonicalization_provenance_hash_after"]}`
+
+Trace artifact hash before: `{delta["source_to_canonical_trace_hash_before"]}`
+
+Trace artifact hash after: `{delta["source_to_canonical_trace_hash_after"]}`
+
+## Invariant Preservation
+
+Validation passed: `{validation["passed"]}`
+
+Source artifacts modified: `{validation["source_artifacts_modified"]}`
+
+Canonical claim ceiling unchanged: `{validation["canonical_claim_ceiling_unchanged"]}`
+
+Matrix row count: `{validation["matrix_row_count"]}`
+
+Family accounting count: `{validation["family_accounting_count"]}`
+
+All implementation authorization flags false: `{validation["all_implementation_authorized_false"]}`
+
+## Claim Ceiling
+
+{REPAIR_CLAIM_CEILING}
+
+This repair cannot prove EGO readiness, AGI readiness, bridge readiness, companion readiness, mechanism validity, theory validity, architecture correctness, agency, selfhood, consciousness, subjective experience, real emotion, real relationship learning, stable user benefit, or future EGO runtime correctness.
+"""
+    _write_text(path, text.rstrip() + "\n")
 
 
 def load_inputs(repo_root: Path | str) -> dict[str, Any]:

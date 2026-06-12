@@ -4,6 +4,38 @@
   "aggregation_rule": "mechanical source-to-canonical split with no theory expansion",
   "baseline_validator_function": "run_baseline_validation",
   "baseline_validator_invoked": true,
+  "canonical_artifact_provenance": [
+    {
+      "aggregation_rule": "compute SHA256 from materialized source_to_canonical_trace.json bytes",
+      "artifact_name": "source_to_canonical_trace.json",
+      "artifact_producer_function": "_build_trace",
+      "canonical_artifact": "source_to_canonical_trace.json",
+      "code_path_hash": "09fc8579963300d42128e835968293798257c182d8e00ff7e96330c9ad1103f9",
+      "generation_input_references": [
+        "source_to_canonical_trace.json materialized bytes",
+        "source_to_canonical_trace.json top-level generation metadata"
+      ],
+      "input_artifacts": [
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/source_pin_readback.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/delta_manifest.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/closure_caveat_resolution_matrix.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/schema_safety_check.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/claim_ceiling.txt"
+      ],
+      "known_blocked_hash_consistency_check": {
+        "computed_hash": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+        "known_hash": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+        "matches_known_hash": true,
+        "used_as_proof": false
+      },
+      "output_artifact_hash": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+      "producer_function": "compute_trace_artifact_provenance_entry",
+      "proof_source": "computed_sha256_from_trace_artifact_bytes",
+      "run_id": "theory_landscape_coverage_canonicalization_001a_c8ce9962b28e76a7",
+      "validation_rule": "recorded output_artifact_hash must equal callable SHA256 of source_to_canonical_trace.json"
+    }
+  ],
   "claim_ceiling": "bounded repo-canonicalization evidence for already source-pinned theory coverage only",
   "code_path_hash": "daa0d95b352f6f4df74c0cacb85cbf035f460bffd845322e3e5bbf4133ad2a53",
   "context": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A",
@@ -17,6 +49,7 @@
     "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
   },
   "producer_function": "canonicalize_coverage_001a",
+  "provenance_repair_note": "source_to_canonical_trace.json intentionally excludes tracing itself; this provenance entry records the trace artifact hash through callable computation.",
   "remote_tag": "remote-anchor-coverage-compression-001d-614b147",
   "required_input_artifacts": [
     "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
@@ -31,5 +64,37 @@
   "source_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
   "source_tag_resolved_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
   "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A",
+  "trace_artifact_provenance": {
+    "source_to_canonical_trace.json": {
+      "aggregation_rule": "compute SHA256 from materialized source_to_canonical_trace.json bytes",
+      "artifact_name": "source_to_canonical_trace.json",
+      "artifact_producer_function": "_build_trace",
+      "canonical_artifact": "source_to_canonical_trace.json",
+      "code_path_hash": "09fc8579963300d42128e835968293798257c182d8e00ff7e96330c9ad1103f9",
+      "generation_input_references": [
+        "source_to_canonical_trace.json materialized bytes",
+        "source_to_canonical_trace.json top-level generation metadata"
+      ],
+      "input_artifacts": [
+        "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/source_pin_readback.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/delta_manifest.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/closure_caveat_resolution_matrix.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/schema_safety_check.json",
+        "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/claim_ceiling.txt"
+      ],
+      "known_blocked_hash_consistency_check": {
+        "computed_hash": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+        "known_hash": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+        "matches_known_hash": true,
+        "used_as_proof": false
+      },
+      "output_artifact_hash": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+      "producer_function": "compute_trace_artifact_provenance_entry",
+      "proof_source": "computed_sha256_from_trace_artifact_bytes",
+      "run_id": "theory_landscape_coverage_canonicalization_001a_c8ce9962b28e76a7",
+      "validation_rule": "recorded output_artifact_hash must equal callable SHA256 of source_to_canonical_trace.json"
+    }
+  },
   "validation_rule": "all canonical and negative-control validators must pass"
 }
