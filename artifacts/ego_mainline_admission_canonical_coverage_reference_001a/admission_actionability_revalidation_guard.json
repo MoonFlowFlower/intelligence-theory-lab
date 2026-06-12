@@ -1,0 +1,27 @@
+{
+  "actionability_revalidation_required": true,
+  "canonical_admission_reference_only": true,
+  "committed_audit_reference_only": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "preserve prior admission audit as reference-only and require future actionability revalidation",
+    "artifact_name": "admission_actionability_revalidation_guard.json",
+    "code_path_hash": "6717fcf4cdf3a3117e05685dc9f4dca774d51be48e32a821f769c427d193b495",
+    "input_artifacts": [
+      "reference_contract.json",
+      "artifacts\\theory_landscape_coverage_canonicalization_001a\\admission_reference_guard.json",
+      "docs\\codex\\audits\\EGO-MAINLINE-READINESS-AUDIT-001B.md"
+    ],
+    "output_artifact_hash": "08bf4effafaa3c7db862845ab984125b89bab9b5df8df8d16a526c01cfe367af",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_actionability_revalidation_guard",
+    "run_id": "ego_mainline_admission_canonical_coverage_reference_001a_c79e1b1ed6f4c75c",
+    "validation_rule": "future admission must require actionability revalidation"
+  },
+  "implementation_authorized": false,
+  "prior_admission_audit": "EGO-MAINLINE-READINESS-AUDIT-001B",
+  "prior_admission_audit_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+  "prior_admission_audit_status": "committed audit reference only; authorizes admission task-card drafting only; does not authorize runtime, bridge runtime, companion behavior, or implementation",
+  "runtime_authorized": false,
+  "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+  "validation_rule": "prior admission audit remains reference-only and future actionability revalidation remains required"
+}

@@ -1,0 +1,300 @@
+{
+  "ablation_negative_controls": {
+    "aggregation_rule": "each declared mutation must trigger its expected validator failure",
+    "all_negative_controls_failed": true,
+    "negative_controls": [
+      {
+        "expected_validator": "validate_authorization_guards",
+        "failing_validators": [
+          "validate_authorization_guards"
+        ],
+        "mutation_id": "implementation_authorized_true",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_authorization_guards",
+        "failing_validators": [
+          "validate_authorization_guards"
+        ],
+        "mutation_id": "runtime_authorized_true",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_hyperon_non_adoption",
+        "failing_validators": [
+          "validate_authorization_guards",
+          "validate_hyperon_non_adoption"
+        ],
+        "mutation_id": "hyperon_adopted_true",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_sealed_anchor_reference",
+        "failing_validators": [
+          "validate_sealed_anchor_reference"
+        ],
+        "mutation_id": "sealed_coverage_commit_removed",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_sealed_anchor_reference",
+        "failing_validators": [
+          "validate_sealed_anchor_reference"
+        ],
+        "mutation_id": "sealed_remote_tag_removed",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_no_matrix_duplication",
+        "failing_validators": [
+          "validate_no_matrix_duplication"
+        ],
+        "mutation_id": "matrix_duplication_allowed_true",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_actionability_revalidation_required",
+        "failing_validators": [
+          "validate_actionability_revalidation_required"
+        ],
+        "mutation_id": "actionability_revalidation_removed",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      },
+      {
+        "expected_validator": "validate_claim_ceiling",
+        "failing_validators": [
+          "validate_claim_ceiling"
+        ],
+        "mutation_id": "forbidden_claim_list_removed",
+        "producer_function": "run_ablation_negative_controls",
+        "validation_failed": true,
+        "validation_rule": "mutated invalid contract must fail through callable validators"
+      }
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+    "validation_rule": "negative controls must fail, not pass as clean reports"
+  },
+  "actionability_revalidation_required": true,
+  "all_validators_passed": true,
+  "architecture_adopted": false,
+  "artifact_payload_hashes": {
+    "admission_actionability_revalidation_guard.json": "08bf4effafaa3c7db862845ab984125b89bab9b5df8df8d16a526c01cfe367af",
+    "downstream_usage_matrix.json": "ace4563dce76969b7cd9499353aaf6f66fa911fc225ae98b8edb1b4bfa99d2cd",
+    "duplication_prevention_report.json": "99b873b6b7d06c15f4417411fcc6db3dae4c26917cf14b8786b6069f3b397980",
+    "existing_reference_search_report.json": "da48ebce720fdda0917c981fdc1a0eecfc5c945ca6d2b550c8d8f27fb2e17fa1",
+    "forbidden_claims_matrix.json": "f069ab74b07dad18b1b5f9222761c92a1b99566aa6eba14ba84bd59216f7c6fc",
+    "hyperon_non_adoption_guard.json": "a4da70cb86986df24e9cbe0a025bdacf00ebb890a3fe86c8177cdb626eb81a24",
+    "implementation_authorization_guard.json": "f33af98faf837c2f0b2a826fc3a862b7be829bae195d775ff78540a8f46da7ac",
+    "reference_contract.json": "81f2fd4be882e7959f1c8b44710a85c17e00b7093c01c3351faf0eb5c68157d2",
+    "sealed_input_anchor_manifest.json": "7664bea20e1807794add971879d34acecf4c5cffe947fc99cc7d9b31ffe51ad8"
+  },
+  "artifacts_generated": [
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\result.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\reference_contract.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\sealed_input_anchor_manifest.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\downstream_usage_matrix.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\forbidden_claims_matrix.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\implementation_authorization_guard.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\hyperon_non_adoption_guard.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\admission_actionability_revalidation_guard.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\duplication_prevention_report.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\existing_reference_search_report.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\source_trace_report.json",
+    "artifacts\\ego_mainline_admission_canonical_coverage_reference_001a\\claim_ceiling.txt"
+  ],
+  "bridge_authorized": false,
+  "claim_ceiling": "bounded admission-side reference integration for sealed canonical theory coverage only",
+  "companion_authorized": false,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "aggregate callable validators, negative controls, and source immutability checks",
+    "artifact_name": "result.json",
+    "code_path_hash": "5dac60d5d19c40cf01c92f34c095c2de8b97c5f976d9f5f898e46efc699eed00",
+    "input_artifacts": [
+      "admission_actionability_revalidation_guard.json",
+      "downstream_usage_matrix.json",
+      "duplication_prevention_report.json",
+      "existing_reference_search_report.json",
+      "forbidden_claims_matrix.json",
+      "hyperon_non_adoption_guard.json",
+      "implementation_authorization_guard.json",
+      "reference_contract.json",
+      "sealed_input_anchor_manifest.json"
+    ],
+    "output_artifact_hash": "c70846434c8b3aa4112780fe223303cc152be8523d07d6036501948703ace404",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_result",
+    "run_id": "ego_mainline_admission_canonical_coverage_reference_001a_c79e1b1ed6f4c75c",
+    "validation_rule": "accept only when reference contract is bounded, non-duplicative, and all mutation controls fail"
+  },
+  "existing_reference_contract_found": false,
+  "hyperon_adopted": false,
+  "implementation_authorized": false,
+  "layer": "evidence-governance / admission-planning reference contract only",
+  "matrix_duplication_allowed": false,
+  "new_deep_research_allowed": false,
+  "prior_admission_audit_commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+  "prior_admission_audit_status": "committed audit reference only; authorizes admission task-card drafting only; does not authorize runtime, bridge runtime, companion behavior, or implementation",
+  "protected_input_hashes_after": {
+    "artifacts/ego_mainline_readiness_audit_001b/downstream_authorization_matrix.json": "2b72630125a27a9b3717edee5f1bc797cb0176b1ed44fad3a2fa11ee56a9f97f",
+    "artifacts/ego_mainline_readiness_audit_001b/result.json": "56f97fe626f9f9fe120a7f81f553f1226d2f33f3ed9de4452147f55849a448a1",
+    "artifacts/phase_one_theory_landscape_source_pin_001a/source_pin_manifest.json": "670e6ac3a76da664c848633c7e7ac5bc991c8892991f685e7cc5013e0a2a318d",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/admission_reference_guard.json": "279b089317def6c518ea7850b1a0aa987f9f4bd5d41c1445388465543bb93eff",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_authorization_flags.json": "713146786b866706dba170bd9eb091679a59defeb6f6fdcf3ca7f81cca4cefd3",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_claim_ceiling.txt": "46d62075207833cdda82045ace481b188eb08f303dbae598127d68f4147c41d8",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_family_accounting.json": "3375d23e8a5e32c0d3a0bcfdc2cb6d197a0b51f1d417799c71eb3bc0af46e9da",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_theory_coverage_matrix.json": "eb73daafd0bd25bb9df7081567b767e4983fbe9b95cf6e245cb4d015bd37fe85",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonicalization_provenance.json": "349322b19e92a9e9b48d2feeb30608b697065f32f9de357c3299832f3c4c4f81",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/hyperon_non_adoption_guard.json": "1bf1e29a43b6799c9714e167ad5c2d7346cdbbcdb840f8484e2730d6416189e7",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/source_to_canonical_trace.json": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+    "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/repair_validation_report.json": "dfeeacee751b3eecc2b7f47ad0f1d587830205dd673db062d786fa90a5ee60b2",
+    "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+    "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/trace_artifact_provenance_entry.json": "ade55685b9006c9bae7d7a643dcb9c23a4634cab4a29815dfd11394d1f586b7d",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/claim_ceiling.txt": "fed05fc459e66ed73dc054deebd8cf9990895497247c2c7f0678b9c4d5934935",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/closure_caveat_resolution_matrix.json": "641610f0d3ef81996aebe5446c79e333e2d68f3dab4f870a78ceda672043aa33",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/delta_manifest.json": "b18c69e3db1df217eb09e4ce9408d8d9405d63ae1c05c6154a0256ed370dad64",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/schema_safety_check.json": "67b315eda48080acf96fcf9932e2ccc754e9543fc6005de3e2b86cc9704e2739",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/source_pin_readback.json": "a65149fb485805487ee0ffcc8588852ff4bc604ef7450dc0c7e9d6fd71ac69cf",
+    "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+    "docs/research/PHASE-ONE-THEORY-LANDSCAPE-COVERAGE-AUDIT.md": "c5e509a23f575c547186eec2a5a4bd6c506578a8bb10cf1e147b0be44d9ddfcc",
+    "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+  },
+  "protected_input_hashes_before": {
+    "artifacts/ego_mainline_readiness_audit_001b/downstream_authorization_matrix.json": "2b72630125a27a9b3717edee5f1bc797cb0176b1ed44fad3a2fa11ee56a9f97f",
+    "artifacts/ego_mainline_readiness_audit_001b/result.json": "56f97fe626f9f9fe120a7f81f553f1226d2f33f3ed9de4452147f55849a448a1",
+    "artifacts/phase_one_theory_landscape_source_pin_001a/source_pin_manifest.json": "670e6ac3a76da664c848633c7e7ac5bc991c8892991f685e7cc5013e0a2a318d",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/admission_reference_guard.json": "279b089317def6c518ea7850b1a0aa987f9f4bd5d41c1445388465543bb93eff",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_authorization_flags.json": "713146786b866706dba170bd9eb091679a59defeb6f6fdcf3ca7f81cca4cefd3",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_claim_ceiling.txt": "46d62075207833cdda82045ace481b188eb08f303dbae598127d68f4147c41d8",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_family_accounting.json": "3375d23e8a5e32c0d3a0bcfdc2cb6d197a0b51f1d417799c71eb3bc0af46e9da",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_theory_coverage_matrix.json": "eb73daafd0bd25bb9df7081567b767e4983fbe9b95cf6e245cb4d015bd37fe85",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/canonicalization_provenance.json": "349322b19e92a9e9b48d2feeb30608b697065f32f9de357c3299832f3c4c4f81",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/hyperon_non_adoption_guard.json": "1bf1e29a43b6799c9714e167ad5c2d7346cdbbcdb840f8484e2730d6416189e7",
+    "artifacts/theory_landscape_coverage_canonicalization_001a/source_to_canonical_trace.json": "8ee1ad1fb16a6b2d54262776df3d1ab827b3e0d57f529414670c97c6cf9cdfcb",
+    "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/repair_validation_report.json": "dfeeacee751b3eecc2b7f47ad0f1d587830205dd673db062d786fa90a5ee60b2",
+    "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+    "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/trace_artifact_provenance_entry.json": "ade55685b9006c9bae7d7a643dcb9c23a4634cab4a29815dfd11394d1f586b7d",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/claim_ceiling.txt": "fed05fc459e66ed73dc054deebd8cf9990895497247c2c7f0678b9c4d5934935",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/closure_caveat_resolution_matrix.json": "641610f0d3ef81996aebe5446c79e333e2d68f3dab4f870a78ceda672043aa33",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/delta_manifest.json": "b18c69e3db1df217eb09e4ce9408d8d9405d63ae1c05c6154a0256ed370dad64",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/schema_safety_check.json": "67b315eda48080acf96fcf9932e2ccc754e9543fc6005de3e2b86cc9704e2739",
+    "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/source_pin_readback.json": "a65149fb485805487ee0ffcc8588852ff4bc604ef7450dc0c7e9d6fd71ac69cf",
+    "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+    "docs/research/PHASE-ONE-THEORY-LANDSCAPE-COVERAGE-AUDIT.md": "c5e509a23f575c547186eec2a5a4bd6c506578a8bb10cf1e147b0be44d9ddfcc",
+    "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+  },
+  "runtime_authorized": false,
+  "sealed_coverage_commit": "df6ad31ed58d2e3772e3f53b35ad926ab995d582",
+  "sealed_coverage_remote_tag": "remote-anchor-coverage-canonicalization-repair-001b-df6ad31",
+  "sealed_source_or_canonical_artifacts_modified": false,
+  "stop_conditions_triggered": [],
+  "task_id": "EGO-MAINLINE-ADMISSION-CANONICAL-COVERAGE-REFERENCE-001A",
+  "theory_expansion_allowed": false,
+  "underlying_source_commit": "614b147d14cc4bb02b7c6afa2c90661cdce15e4c",
+  "underlying_source_remote_tag": "remote-anchor-coverage-compression-001d-614b147",
+  "validators": [
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "e57704ac73ff026827ba65d771cd9196ffc54a5885ce8ebb15f20ceee2a974c2",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_sealed_anchor_reference",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_sealed_anchor_reference"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "974affaf06e14f342185d8accfbc7c99483f4c9c697ed769221a648bd99e76e1",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_source_anchor_reference",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_source_anchor_reference"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "73bca6c7874fbe2f2f4324056f58795e0a84eb83be66b0c4829eb92d251e2a86",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_prior_admission_audit_reference",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_prior_admission_audit_reference"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "682e3a848e8b0a56d8d6862b5c2e85cc51acb86cd0be639bd9ea422e44238f58",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_no_matrix_duplication",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_no_matrix_duplication"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "3537ecc266d8169cf618aebcd2ffaca3a64f67c93380c9bc395ad544c846477c",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_authorization_guards",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_authorization_guards"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "64975d969c58f2bfb543c6de20209ee9f5af0d17721bee1905c6002cf71f69b6",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_hyperon_non_adoption",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_hyperon_non_adoption"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "ecf028c62eb7d3e5b001ee2cb56cd13079571fc126fdba21e3dce2cc2b0c14fd",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_claim_ceiling",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_claim_ceiling"
+    },
+    {
+      "aggregation_rule": "collect explicit validation failures",
+      "code_path_hash": "327988774d071d7836a0a45c0158689f2054521880007d3dd22dc6ce856a61c9",
+      "failures": [],
+      "passed": true,
+      "producer_function": "validate_actionability_revalidation_required",
+      "validation_rule": "validator passes only with zero failures",
+      "validator": "validate_actionability_revalidation_required"
+    }
+  ],
+  "verdict": "ego_mainline_admission_canonical_coverage_reference_001a_pass",
+  "what_this_does_not_prove": [
+    "EGO readiness",
+    "AGI readiness",
+    "bridge readiness",
+    "companion readiness",
+    "mechanism validity",
+    "theory validity",
+    "architecture correctness",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "subjective experience",
+    "real emotion",
+    "real relationship learning",
+    "stable user benefit",
+    "future EGO runtime correctness"
+  ]
+}
