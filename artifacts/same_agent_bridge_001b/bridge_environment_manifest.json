@@ -1,0 +1,32 @@
+{
+  "bridge_boundary_definition": {
+    "boundary_id": "canonical_bridge_boundary_v1",
+    "post_bridge_step": "deserialize same state and update under post-bridge observation",
+    "pre_bridge_step": "serialize canonical shared state"
+  },
+  "environment_claim": "bounded generated state-transfer preflight only",
+  "environment_family": "SyntheticBridgeGrid-v0",
+  "heldout_split": {
+    "heldout_bridge_seeds": [
+      201,
+      203,
+      205,
+      207
+    ],
+    "rule": "even seeds train/context, odd seeds heldout bridge-context compositions",
+    "train_context_seeds": [
+      200,
+      202,
+      204,
+      206
+    ]
+  },
+  "leakage_controls": [
+    "no labels in observations",
+    "no filenames or artifact paths in candidate inputs",
+    "no future observations in serialization",
+    "no oracle partner or identity labels",
+    "no verifier-only state in policy inputs"
+  ],
+  "task_id": "SAME-AGENT-BRIDGE-EXECUTABLE-PREFLIGHT-001B"
+}

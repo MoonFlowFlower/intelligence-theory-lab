@@ -1,0 +1,341 @@
+{
+  "ablation_implementation_signatures": {
+    "corrupt serialized state": "a5afdcd4a2962ce19966d0070973cc43b2fe18be9c39385a6c3d286a6a33c240",
+    "counterfactual bridge contrast": "264dde324788c200e923d724ca016d4a24a078785643c5c55cb10026ea166ec3",
+    "delayed post-bridge effect": "1bc23b87c8122baccace74d0483766b5bbd35082a5cb5901aed87ed46aa4bf99",
+    "disable action": "49f1572fa13b181b544ef56310cec047edcb7c065f67ad6d561878eeffe003ac",
+    "freeze post-bridge learning": "d7f9819b28ffc03d59339ec9f9663f4426616e725866c6a2d060d0a3f6fd5a7d",
+    "heldout bridge-context compositions": "51d038b9bd32d3cd526381beea39e7c0b6406c3cb76529bc26aca3a43436af44",
+    "invert bridge mapping": "5d65f6141b2187ce1ae24425ed3c3840c99b634ac28ca3cea931a8fe76223be4",
+    "learning freeze": "defbdac2c4831fb7fac38ca10bb11c00fb15543581e262047b3eaacbe2dc5cc1",
+    "partial observability": "3c24cf345cccf386a62fd914de29348dce6480a2e8a5a3da3dbe465a6285ab05",
+    "perturb post-bridge environment": "73f1889916e4c1d38666e56ba9a0207dc0c53cef518165b79891ab09a013bfd7",
+    "remove bridge state": "33bdc9849a26925611978ec57667891c7ae2be4b37a2bcfe5a4c7aaef59af188",
+    "remove identity_continuity_state": "08f4fc1ba30725ad2d9fa86e1527f1b168109eaa0c7157a1d65b9bac55ed5fcb",
+    "remove replay/consolidation carryover": "5450c30de7ea29be9b353cca961812f8d6392832b0c5a1aa3520d578cf91fdda",
+    "remove self-boundary carryover": "be23a58a438db2f8e9a724fb4453c51f2ddb39060504965ae71777291bff9770",
+    "remove social-latent carryover": "91c013805c00dfba314f7fb48f4f5c5f4d4b4de7075f786ea632677f874d68ab",
+    "remove viability carryover": "63328649844b8df221a5b0f7e49d1aeacb4929799b29ffe0c69de7eb5c8831f9",
+    "replace history before bridge": "d7b2a820997b7301303bc0b44f6a69593c58888ef5e054e41cf713a45147b6d3",
+    "replace serialized state with wrong episode state": "663e25230790513e00fe45b4d91d42677ca03636fa904aeb7e3bc15a29358a8c",
+    "reset all memory at bridge": "ff8c99bbdf4ae99a0668b6f9b51febdccc6b17fde5ed569ec802578e4fed86ec"
+  },
+  "allowed_persistence_manifest": {
+    "allowed_persistence": [
+      "canonical_serialized_shared_state",
+      "state_lineage_hash_chain",
+      "trace_rows",
+      "run_ledger",
+      "frozen_stage0_manifest"
+    ],
+    "external_services_allowed": false,
+    "only_within_artifact_dir": "artifacts/same_agent_bridge_001b",
+    "task_id": "SAME-AGENT-BRIDGE-EXECUTABLE-PREFLIGHT-001B"
+  },
+  "artifact_schema": [
+    "stage0_freeze_manifest.json",
+    "execution_manifest.json",
+    "execution_manifest.sha256",
+    "run_ledger.jsonl",
+    "bridge_environment_manifest.json",
+    "canonical_agent_state_schema.json",
+    "allowed_persistence_manifest.json",
+    "forbidden_persistence_manifest.json",
+    "trace.jsonl",
+    "serialized_state_trace.jsonl",
+    "shared_state_trace.jsonl",
+    "linkage_report.json",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "leakage_report.json",
+    "replay_integrity_report.json",
+    "mutation_check_report.json",
+    "protected_artifact_inventory_before.json",
+    "protected_artifact_hashes_before.json",
+    "protected_artifact_hashes_after.json",
+    "tracked_old_artifact_mutation_report.json",
+    "result.json",
+    "claim_ceiling.txt"
+  ],
+  "authorization_flags": {
+    "bridge_runtime_authorized": false,
+    "companion_behavior_authorized": false,
+    "ego_mainline_authorized": false,
+    "emotion_authorized": false,
+    "llm_rag_authorized": false,
+    "long_term_human_user_memory_authorized": false,
+    "persistent_personal_profile_authorized": false,
+    "personalization_product_demo_authorized": false,
+    "relationship_authorized": false,
+    "romance_attachment_authorized": false,
+    "user_model_authorized": false
+  },
+  "baseline_implementation_signatures": {
+    "behavior-only imitation": "1d99017fafcca0c49e1d98502fdf323d085c140f48488327a597ea2215cd39df",
+    "bounded-order window model order-1": "aa919ebb7d6f4be5e3f945e34cfa28a8cfcfd71f166a108efa58031acdfb3562",
+    "bounded-order window model order-2": "2657ae604218dcfccc0a570c7ddbdeb2314bb1ff8024e3bc3c28a482ff7a15ed",
+    "count_table": "ef79dd4a6e725c3abd44797896a14304f6dba0e888e1f40341cf28182d338a06",
+    "episodic_traversal": "1280fafbf3d89fb381fb44a504d6887b4abbe65f9bb2fe4aa817099b8e127359",
+    "fresh-agent baseline with no carryover": "5e9ea973dac61c736528654972e338f575dea210293f2130c643c9ae53f9c876",
+    "frozen-state bridge baseline": "398048f658b24e34958d4225dae01359e65440b9d1bc26eebbab7eb21ee4408d",
+    "fsm_planner": "4505da3ee0a927ade7cfe194bdaad8735ee65a3582d9f7b3d3df8dea6912e299",
+    "graph_lookup": "8f361bdb0fcf3b192587496edbbaa416e7e44dd4da156eb7722ad9f943232a70",
+    "identity-token lookup": "b52162b2ead341b246f2ee4d79d43acbb0e1879ecd96588dc72719df91007323",
+    "memory-key lookup": "8e3b24e147cf742236f1ea3bb62fb2adf006055550b9139391145267a537a5a9",
+    "oracle bridge-state control as upper-bound/leakage only": "4d4765f19cb635a88287c7b918a62cfcf8b13f8853ad7eee87a9b140f1fd94a3",
+    "partner/profile table": "5d42b5c51707b41e4e4bfa3b9cd2062ae4cc7ef55cc34f358bdae023e0f54e7d",
+    "random policy": "267acc24dda93c50666be8283ca940a8560ed434f83765083f1ff0b1d55e0242",
+    "shuffled-history same-loss control": "0d7bb198023482998e4475e548d37ebd1a8d9f3bfa81a413a850b6425ae62b30",
+    "snapshot-reload baseline without active state update": "360be6f71354a6661aa83320012804b40ae0ecea75efde3f26b9a8e5bb1366f0",
+    "state-table lookup": "9692a255841680128e759ab2b178dd5a066955139ae69485db08ec780839edb7",
+    "static profile table": "9b1cb26ae343caa124cf5f6e5b622a80a4d208224a53a8250fe7c831efac689f",
+    "stitched-output baseline with no single shared state": "30bed78dc56cdae568452d6a72b62489c09a1ab62347fdd75ffd50aa33cc8831",
+    "successor_map": "5664330866c7b2591b7191af833b996e14a4eedb8d8361b6566c236bb8bce444",
+    "summary retrieval": "89405550c10488548a488fa2fb4272c45033a21348710aa169226df497a67a6b",
+    "trace-only replay as hygiene only": "591489f1515b23795c803f44caec4e0f09d2b2a81584274a015523b0f15d1509",
+    "transcript retrieval": "23fbc75ed616ab26f6348bc87a6b5054053c222bfc821a0c7074819c36a6d29b",
+    "transition_table": "c5e7ac4141c526a24174e26b8dc494eec5c965b51f685d92e06edd3408af68b3"
+  },
+  "bridge_boundary_definition": {
+    "boundary_id": "canonical_bridge_boundary_v1",
+    "post_bridge_step": "deserialize same state and update under post-bridge observation",
+    "pre_bridge_step": "serialize canonical shared state"
+  },
+  "bridge_environment_family": "SyntheticBridgeGrid-v0",
+  "bridge_run_started_before_stage0": false,
+  "canonical_agent_state_schema": {
+    "forbidden_side_channels": [
+      "hidden_profile_table",
+      "transcript_index",
+      "summary_index",
+      "external_memory_database",
+      "identity_token_lookup_table",
+      "user_profile",
+      "relationship_cache",
+      "persona_script",
+      "prompt_only_identity_statement",
+      "second_hidden_policy_layer"
+    ],
+    "required_fields": [
+      "belief_state",
+      "prediction_error_state",
+      "replay_memory",
+      "consolidation_state",
+      "controllability_model",
+      "self_boundary_state",
+      "viability_state",
+      "viability_model",
+      "action_priority_state",
+      "recovery_policy_state",
+      "resource_budget_state",
+      "social_latent_state",
+      "partner_model_state",
+      "social_prediction_error_state",
+      "interaction_policy_state",
+      "bridge_state_metadata",
+      "identity_continuity_state",
+      "memory_carryover_state",
+      "reset_boundary_state"
+    ],
+    "schema_id": "same_agent_bridge_001b_canonical_shared_state_v1",
+    "serialization_format": "canonical-json-sha256-v1",
+    "shared_agent_id_string_alone_is_insufficient": true,
+    "single_canonical_serialized_shared_state_required": true,
+    "task_id": "SAME-AGENT-BRIDGE-EXECUTABLE-PREFLIGHT-001B"
+  },
+  "claim_ceiling": "bounded same-agent bridge executable preflight evidence only",
+  "created_utc": "2026-06-12T01:44:04Z",
+  "equivalence_thresholds": {
+    "acceptance_threshold": 0.95
+  },
+  "external_anchor": {
+    "current_task_anchor": "local_preflight_artifacts_only_until_commit",
+    "parent_anchor_tags": [
+      "remote-anchor-001a-6b362e0",
+      "remote-anchor-001a-7046d6f",
+      "remote-anchor-001a-3f36ca0",
+      "remote-anchor-001a-693c215",
+      "remote-anchor-001a-724bde8",
+      "remote-anchor-001b-a083db2",
+      "remote-anchor-001b-eec2bb1",
+      "remote-anchor-001c-a57fa2e",
+      "remote-anchor-001d-b1cafc2",
+      "remote-anchor-001d-977fab2",
+      "remote-anchor-001e-5c67f94"
+    ]
+  },
+  "forbidden_persistence_manifest": {
+    "forbidden_persistence": [
+      "hidden_profile_table",
+      "transcript_index",
+      "summary_index",
+      "external_memory_database",
+      "identity_token_lookup_table",
+      "user_profile",
+      "relationship_cache",
+      "persona_script",
+      "prompt_only_identity_statement",
+      "second_hidden_policy_layer"
+    ],
+    "task_id": "SAME-AGENT-BRIDGE-EXECUTABLE-PREFLIGHT-001B"
+  },
+  "frozen_fields": [
+    "task_card_hash",
+    "bridge_environment_family",
+    "bridge_boundary_definition",
+    "canonical_agent_state_schema",
+    "serialization_format",
+    "allowed_persistence_manifest",
+    "forbidden_persistence_manifest",
+    "reset_boundary_definition",
+    "memory_carryover_boundary_definition",
+    "identity_continuity_metric",
+    "state_lineage_hash_contract",
+    "replay_contract",
+    "leakage_controls",
+    "baseline_implementation_signatures",
+    "ablation_implementation_signatures",
+    "metric_formulas",
+    "equivalence_thresholds",
+    "heldout_split",
+    "seed_schedule",
+    "artifact_schema",
+    "rollback_policy",
+    "claim_ceiling",
+    "external_anchor"
+  ],
+  "heldout_split": {
+    "heldout_bridge_seeds": [
+      201,
+      203,
+      205,
+      207
+    ],
+    "rule": "even seeds train/context, odd seeds heldout bridge-context compositions",
+    "train_context_seeds": [
+      200,
+      202,
+      204,
+      206
+    ]
+  },
+  "hidden_profile_tables_forbidden": true,
+  "identity_continuity_metric": {
+    "metric": "lineage hash continuity plus identity_continuity_state delta",
+    "shared_agent_id_alone_sufficient": false
+  },
+  "leakage_controls": [
+    "no labels in observations",
+    "no filenames or artifact paths in candidate inputs",
+    "no future observations in serialization",
+    "no oracle partner or identity labels",
+    "no verifier-only state in policy inputs"
+  ],
+  "memory_carryover_boundary_definition": {
+    "only_canonical_serialized_shared_state_crosses": true,
+    "transcript_summary_carryover_forbidden": true
+  },
+  "metric_formulas": {
+    "baseline_equivalence": "fair baseline score >= acceptance_threshold",
+    "bridge_continuity_score": "mean(identity_continuity, memory_carryover, post_bridge_update, later_behavior_linkage)"
+  },
+  "old_artifact_mutation_is_failure": true,
+  "parent_anchors": {
+    "exec_001_graph_cache_collapse": "d7ffc393",
+    "gate0_gate1_gate2_gate3_micro_agent_integration_preflight": "693c215",
+    "gate1_lineage_closeout": "307da77",
+    "gate1_replay_consolidation_executable_preflight": "6b362e0",
+    "gate2_controllability_self_boundary_executable_preflight": "7046d6f",
+    "gate3_viability_functional_affect_executable_preflight": "3f36ca0",
+    "gate4_social_latent_inference_preflight": "a57fa2e",
+    "gate4_social_representational_gap_preflight": "a083db2",
+    "residue_001a_shuffled_same_loss_order2_window": "495300cb",
+    "same_agent_bridge_readiness_audit_001a": "b1cafc2",
+    "same_agent_bridge_readiness_audit_001a_amendment_001": "977fab2",
+    "same_agent_bridge_task_card_001a": "5c67f94"
+  },
+  "replay_contract": {
+    "state_replay_required": true,
+    "trace_only_replay_counts_as_hygiene_only": true,
+    "trace_replay_required": true
+  },
+  "required_ablations": [
+    "remove bridge state",
+    "reset all memory at bridge",
+    "freeze post-bridge learning",
+    "corrupt serialized state",
+    "replace serialized state with wrong episode state",
+    "remove replay/consolidation carryover",
+    "remove self-boundary carryover",
+    "remove viability carryover",
+    "remove social-latent carryover",
+    "remove identity_continuity_state",
+    "invert bridge mapping",
+    "perturb post-bridge environment",
+    "delayed post-bridge effect",
+    "partial observability",
+    "heldout bridge-context compositions",
+    "counterfactual bridge contrast",
+    "replace history before bridge",
+    "learning freeze",
+    "disable action"
+  ],
+  "required_baselines": [
+    "fresh-agent baseline with no carryover",
+    "snapshot-reload baseline without active state update",
+    "transcript retrieval",
+    "summary retrieval",
+    "state-table lookup",
+    "identity-token lookup",
+    "memory-key lookup",
+    "static profile table",
+    "partner/profile table",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "bounded-order window model order-1",
+    "bounded-order window model order-2",
+    "shuffled-history same-loss control",
+    "behavior-only imitation",
+    "stitched-output baseline with no single shared state",
+    "frozen-state bridge baseline",
+    "oracle bridge-state control as upper-bound/leakage only",
+    "trace-only replay as hygiene only",
+    "random policy"
+  ],
+  "reset_boundary_definition": {
+    "reset_allowed_during_bridge": false,
+    "reset_requires_new_task_card": true
+  },
+  "rollback_policy": {
+    "baseline_equivalence": "preserve failure artifacts and do not patch thresholds",
+    "leakage_or_mutation": "preserve failure manifest and require new freeze"
+  },
+  "seed_schedule": {
+    "heldout_bridge_seeds": [
+      201,
+      203,
+      205,
+      207
+    ],
+    "train_context_seeds": [
+      200,
+      202,
+      204,
+      206
+    ]
+  },
+  "serialization_format": "canonical-json-sha256-v1",
+  "single_canonical_serialized_shared_state_required": true,
+  "stage0_frozen_before_bridge_run": true,
+  "stage0_payload_hash": "f3dfb50b787f696b119f4eea5eb6f34562caff9ba257addd9b8d3a37b95f29e9",
+  "state_lineage_hash_contract": {
+    "hash_function": "sha256(canonical_json)",
+    "parent_child_hash_required": true
+  },
+  "task_card_hash": "ffb6051bf46aa952b4a87273c564de3bfc7eb97961894baabeb2c59c34e3881b",
+  "task_id": "SAME-AGENT-BRIDGE-EXECUTABLE-PREFLIGHT-001B"
+}
