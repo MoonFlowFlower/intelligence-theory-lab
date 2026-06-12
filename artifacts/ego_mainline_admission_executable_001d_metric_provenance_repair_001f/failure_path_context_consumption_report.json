@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "case_id": "missing_train_context_ids_consumed",
+      "detected": true,
+      "stop_conditions": [
+        "metric_provenance_field_missing",
+        "train_context_ids_consumed_missing",
+        "context_consumption_decorative"
+      ]
+    },
+    {
+      "case_id": "missing_heldout_context_ids_consumed",
+      "detected": true,
+      "stop_conditions": [
+        "metric_provenance_field_missing",
+        "heldout_context_ids_consumed_missing",
+        "context_consumption_decorative"
+      ]
+    },
+    {
+      "case_id": "missing_counterfactual_pair_ids_consumed",
+      "detected": true,
+      "stop_conditions": [
+        "metric_provenance_field_missing",
+        "counterfactual_pair_ids_consumed_missing",
+        "context_consumption_decorative"
+      ]
+    },
+    {
+      "case_id": "empty_context_consumption_when_frozen_inputs_exist",
+      "detected": true,
+      "stop_conditions": [
+        "context_consumption_decorative"
+      ]
+    },
+    {
+      "case_id": "decorative_context_ids_not_consumed_by_producer",
+      "detected": true,
+      "stop_conditions": [
+        "context_consumption_decorative"
+      ]
+    }
+  ],
+  "code_path_hash": "800d6948cfe3eeb6b1191b006dd5e3ba9beb8f2921b89163d4ad26620b8c9ba3",
+  "failure_path_context_consumption_passed": true,
+  "producer_function": "ego_mainline_admission_executable_001d_metric_provenance_repair_001f.runner.produce_failure_path_context_consumption_report",
+  "producer_module": "ego_mainline_admission_executable_001d_metric_provenance_repair_001f.runner",
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-METRIC-PROVENANCE-REPAIR-001F"
+}
