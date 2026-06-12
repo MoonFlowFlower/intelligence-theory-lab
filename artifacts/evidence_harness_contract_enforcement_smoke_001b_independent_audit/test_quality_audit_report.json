@@ -1,0 +1,40 @@
+{
+  "assert_count": 44,
+  "bounded_interpretation": "001A tests exercise the callable and rule outputs, but they do not prove broad semantic coverage or inject a fake static-denylist-only implementation as a failure-path control.",
+  "checks": {
+    "callable_enforcer_invocation": {
+      "covered": true,
+      "evidence": "tests call runner.evaluate_bundle directly"
+    },
+    "failure_path_when_positive_controls_absent": {
+      "covered": false,
+      "evidence": "no test forces positive_control_expected=True with no detectable categories and expects failure"
+    },
+    "failure_path_when_static_denylist_only_logic_is_used": {
+      "covered": "partial",
+      "evidence": "task-id-only control is present, but no mutated static-denylist implementation is injected"
+    },
+    "real_gate4_001b_rejection_path": {
+      "covered": true,
+      "evidence": "real Gate4 001B inventory is evaluated"
+    },
+    "scope_negative_control": {
+      "covered": true,
+      "evidence": "governance anchor control is evaluated"
+    },
+    "synthetic_positive_control": {
+      "covered": true,
+      "evidence": "positive-control builder is invoked"
+    }
+  },
+  "claim_ceiling": "bounded independent audit of evidence-harness enforcement smoke only",
+  "exact_pass_reject_string_without_rule_checks": false,
+  "final_verdict_assert_count": 2,
+  "mostly_asserts_artifact_existence": false,
+  "mostly_asserts_final_verdict_only": false,
+  "mostly_asserts_json_parsing_only": false,
+  "task_id": "EVIDENCE-HARNESS-CONTRACT-ENFORCEMENT-SMOKE-001B-INDEPENDENT-AUDIT",
+  "test_file": "tests/test_evidence_harness_contract_enforcement_smoke_001a.py",
+  "test_file_sha256": "8b9549e7512499092d250d63a8f70fca6b9c27cdd2b6d0b2b811c395dff6b914",
+  "test_quality_risk": "medium"
+}

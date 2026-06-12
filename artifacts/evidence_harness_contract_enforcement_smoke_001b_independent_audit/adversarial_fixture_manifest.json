@@ -1,0 +1,156 @@
+{
+  "adversarial_fixture_ids": [
+    "renamed_pass_fields_fixture",
+    "result_json_leakage_fixture",
+    "soft_claim_language_fixture",
+    "baseline_shadow_fixture",
+    "ablation_label_only_fixture",
+    "hash_only_replay_fixture",
+    "whitelist_bypass_fixture"
+  ],
+  "claim_ceiling": "bounded independent audit of evidence-harness enforcement smoke only",
+  "fixture_records": [
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/renamed_pass_fields_fixture/result.json",
+          "sha256": "844b5771cb61813f16a20c85d90f5ad3d4be2e6df86b9940242ecc04e7f28070"
+        }
+      ],
+      "fixture_id": "renamed_pass_fields_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "renamed pass/readiness fields imply downstream admissibility"
+    },
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/result_json_leakage_fixture/result.json",
+          "sha256": "f14bdd0fed70af0f05607089b917d4c9b9700f9bf0227c10a5b99db62f7bc03c"
+        }
+      ],
+      "fixture_id": "result_json_leakage_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "unauthorized readiness claim appears only in result.json"
+    },
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "text",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/soft_claim_language_fixture/summary.md",
+          "sha256": "d5c18d2f8974b06061e507f8702b73ffebf94f9a43a4d4998fd8c53ee4563a93"
+        },
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/soft_claim_language_fixture/metadata.json",
+          "sha256": "5bab68be80b9e8f712071bfed248ae5b977e63f9fbb75d77328b06ae10597b47"
+        }
+      ],
+      "fixture_id": "soft_claim_language_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "soft natural-language mechanism/readiness claims"
+    },
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/baseline_shadow_fixture/baseline_report.json",
+          "sha256": "d58d7d8d85b493db7e7bc8386c665c6e364fc256afb6010e0e488024eb2d260c"
+        }
+      ],
+      "fixture_id": "baseline_shadow_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "declared baselines with no independent callable invocation"
+    },
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/ablation_label_only_fixture/intervention_report.json",
+          "sha256": "7e9570ccdc3f926fb6c4d4035a84709a6bb31291461ec8e936efed5f8d041d8f"
+        }
+      ],
+      "fixture_id": "ablation_label_only_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "ablation claim changes labels/report fields only"
+    },
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/hash_only_replay_fixture/replay_report.json",
+          "sha256": "890c82f9f373f916daf22538ef833a7bdf6d76a8edbff47098485d7b619ad49f"
+        }
+      ],
+      "fixture_id": "hash_only_replay_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "replay claim uses stored digest/action/verdict comparisons"
+    },
+    {
+      "allowed_classes": [
+        "blocked_pending_audit",
+        "rejected_false_pass_risk"
+      ],
+      "expected_class": "rejected_false_pass_risk_or_blocked_pending_audit",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/whitelist_bypass_fixture/leakage_scan_report.json",
+          "sha256": "c6dce7a31bb1d2d23b7c7feaf8062397c3ba9a30e40654614b91b0dbb8f0bbd0"
+        }
+      ],
+      "fixture_id": "whitelist_bypass_fixture",
+      "governance_anchor_only": false,
+      "violation_class": "unauthorized claims hidden behind restraint or allowlist context"
+    },
+    {
+      "allowed_classes": [
+        "governance_anchor_only"
+      ],
+      "expected_class": "governance_anchor_only",
+      "files": [
+        {
+          "kind": "json",
+          "path": "artifacts/evidence_harness_contract_enforcement_smoke_001b_independent_audit/fixtures/governance_anchor_negative_control/anchor_record.json",
+          "sha256": "9a13bdd2e340872b48f9d07806ba67e5bff7cb8a51b73d52862123dc265258d7"
+        }
+      ],
+      "fixture_id": "governance_anchor_negative_control",
+      "governance_anchor_only": true,
+      "violation_class": "none: governance anchor without score, baseline, ablation, replay, or readiness claim"
+    }
+  ],
+  "negative_control_fixture_id": "governance_anchor_negative_control",
+  "task_id": "EVIDENCE-HARNESS-CONTRACT-ENFORCEMENT-SMOKE-001B-INDEPENDENT-AUDIT"
+}
