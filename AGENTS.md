@@ -110,6 +110,8 @@ Before and after implementation, check whether the solution:
 
 If any of these happen, stop and report failure.
 
+For every EGO/Codex executable evidence task, require a computed-evidence provenance gate. Reported result, baseline, ablation, contrast, leakage, and replay metrics must be derived from callable computation paths, not literals, static dictionaries, unconditional clean reports, or tests that assert pass. Every score must record producer_function, input artifacts, run_id, seed/context/episode IDs, aggregation rule, and code path hash. Baselines must be independent callable implementations. Ablations must rerun episodes under real interventions. Leakage scans must be real scanners with at least one positive-control case. Replay must recompute candidate behavior from serialized_state + observation, not only replay hashes. Tests must verify computation paths, failure paths, and baseline/ablation invocation, not just pass verdicts. Any unused frozen seed, train context, heldout context, or counterfactual pair must block.
+
 ## Evidence-Gate Interpretability Reframe
 
 For future tasks involving explainability, interpretability, black-box learned
