@@ -1,0 +1,55 @@
+{
+  "bounded_interpretation": "001B found semantic/renamed-claim gaps. Therefore blocked targets are quarantined rather than upgraded to positive admissibility.",
+  "claim_ceiling": "bounded conservative application of evidence-harness enforcement to historical critical-risk targets only",
+  "inherited_001b_gap_ids": [
+    {
+      "affected_fixtures": [
+        "renamed_pass_fields_fixture",
+        "result_json_leakage_fixture",
+        "soft_claim_language_fixture",
+        "baseline_shadow_fixture",
+        "ablation_label_only_fixture",
+        "hash_only_replay_fixture",
+        "whitelist_bypass_fixture"
+      ],
+      "bounded_effect": "No downstream admission observed, but rejection reasons are absent for renamed/semantic violations.",
+      "gap_id": "renamed_or_semantic_claims_default_to_blocked_visibility",
+      "severity": "medium"
+    },
+    {
+      "affected_fixtures": [
+        "result_json_leakage_fixture",
+        "soft_claim_language_fixture"
+      ],
+      "bounded_effect": "Unauthorized claims in general string fields are blocked by visibility default rather than specific rules.",
+      "gap_id": "result_json_general_string_claims_not_pattern_rejected",
+      "severity": "medium"
+    },
+    {
+      "affected_fixtures": [
+        "baseline_shadow_fixture"
+      ],
+      "bounded_effect": "The audit did not observe admission, but the rule set does not directly verify callable baseline invocation.",
+      "gap_id": "baseline_callable_absence_not_detected_without_pass_shaped_fields",
+      "severity": "medium"
+    },
+    {
+      "affected_fixtures": [
+        "hash_only_replay_fixture"
+      ],
+      "bounded_effect": "Renamed digest-only replay fields can avoid a specific replay shortcut reason.",
+      "gap_id": "renamed_hash_replay_shortcut_not_pattern_rejected",
+      "severity": "medium"
+    }
+  ],
+  "semantic_gap_limitations_propagated": true,
+  "source_pattern_audit_summary": {
+    "baseline_invocation_gap": true,
+    "hash_only_replay_gap": true,
+    "renamed_field_gap": true,
+    "result_json_claim_gap": true,
+    "soft_claim_language_gap": true
+  },
+  "targets_impacted_by_non_admission_default": [],
+  "task_id": "EVIDENCE-HARNESS-CRITICAL-RISK-TARGET-APPLICATION-001A"
+}
