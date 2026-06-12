@@ -1,0 +1,106 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001B",
+  "layer": "bounded EGO-mainline readiness revalidation audit for admission-contract authorization only",
+  "verdict": "ego_mainline_readiness_audit_001b_authorize_admission_task_card",
+  "audit_question": "Does the current bounded evidence chain, now using 001D rather than 001C as the post-bridge positive candidate, authorize drafting a future EGO-mainline admission contract?",
+  "answer": "yes, only EGO-MAINLINE-ADMISSION-TASK-CARD-001A drafting is authorized",
+  "claim_ceiling": "bounded EGO-mainline readiness revalidation audit evidence for admission-contract authorization only",
+  "remote_anchors_verified": true,
+  "required_checks": {
+    "required_remote_anchors_verified": true,
+    "post_bridge_admission_executable_001b_remains_invalidated_as_downstream_positive_evidence": true,
+    "post_bridge_admission_executable_001c_remains_historical_suspended": true,
+    "post_bridge_admission_executable_001d_replaces_001c_as_current_post_bridge_positive_candidate": true,
+    "post_bridge_admission_executable_001d_claim_ceiling_preserved": true,
+    "ego_mainline_readiness_audit_001a_not_used_directly_as_actionable_authorization": true,
+    "external_001d_redteam_pass_with_caveats_accepted": true,
+    "external_001d_caveat_preserved": true,
+    "authorization_limited_to_admission_task_card_drafting": true,
+    "runtime_or_product_work_unauthorized": true
+  },
+  "current_evidence_status": {
+    "ego_mainline_readiness_audit_001a": "historical_context_only_revalidated_here_not_direct_actionable_authorization",
+    "post_bridge_admission_executable_001b": "invalidated_as_downstream_positive_evidence",
+    "post_bridge_admission_executable_001c": "historical_suspended_as_downstream_positive_evidence_due_to_leakage_failability_blocker",
+    "post_bridge_admission_executable_001d": "current_bounded_post_bridge_positive_candidate_with_caveats_preserved",
+    "computed_evidence_provenance_contract_001a": "required_downstream_contract_inheritance"
+  },
+  "external_001d_redteam": {
+    "verdict": "pass_with_caveats",
+    "accepted_for_this_audit": true,
+    "blocking_for_001b": false,
+    "caveat": "leakage metadata whitelist is global; values under reserved metadata keys such as metric_name or surface_label may be skipped on surfaces where those keys should not be privileged",
+    "downstream_requirement": "future EGO-mainline admission contracts must require surface-scoped metadata whitelist behavior and independent manual leakage injection tests"
+  },
+  "anti_sycophancy_audit": {
+    "strongest_baseline_explanation": "A hidden lookup over serialized state hashes, identity tokens, memory keys, state tables, transcripts, summaries, graph/cache structures, snapshots, or stitched outputs could mimic continuity without testing carried-state causality.",
+    "strongest_reason_task_may_be_invalid": "A readiness audit can create false confidence if it treats bounded synthetic post-bridge evidence as EGO readiness or drops the external red-team caveat during downstream admission-contract drafting.",
+    "result_that_would_falsify_current_framing": "Missing required remote anchors, reuse of 001B or 001C as downstream positive evidence, rejection or omission of the external 001D caveat, claim inflation beyond admission-contract drafting, or any authorization of runtime/product work.",
+    "evidence_that_would_still_be_insufficient": "A clean audit, remote anchors, 001D bounded pass, computed-evidence provenance, baseline non-equivalence, ablation sensitivity, behavior-causal replay, and pass_with_caveats external red-team result remain insufficient for EGO readiness, bridge readiness, companion readiness, mechanism validity, theory validity, agency, selfhood, consciousness, or stable user benefit.",
+    "tests_mechanism_or_behavioral_resemblance": "tests authorization-boundary hygiene over bounded evidence; does not test mechanism validity and does not produce behavioral resemblance"
+  },
+  "admission_task_card_authorized": true,
+  "authorized_next_task": "EGO-MAINLINE-ADMISSION-TASK-CARD-001A drafting only",
+  "runtime_or_product_work_authorized": false,
+  "forbidden_downstream_work_authorized": false,
+  "minimum_next_task_requirements": [
+    "COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A",
+    "callable baselines",
+    "real ablation reruns",
+    "leakage scanners with same-surface positive controls",
+    "behavior-causal replay where applicable",
+    "frozen input consumption checks",
+    "source/artifact hash integrity checks",
+    "negative evidence preservation",
+    "no 001B positive-evidence usage",
+    "no 001C positive-evidence usage",
+    "001D caveat preservation",
+    "surface-scoped leakage metadata whitelist",
+    "independent manual leakage injection tests, not only production injector tests",
+    "specific stop condition reporting for leakage detected vs scanner not fail-able",
+    "strict claim ceiling"
+  ],
+  "stop_conditions_triggered": [],
+  "verification": {
+    "json_parse_ok": true,
+    "git_diff_check_ok": true,
+    "targeted_pytest_passed": true,
+    "targeted_pytest_summary": "31 passed in 30.97s"
+  },
+  "what_this_does_not_prove": [
+    "EGO readiness",
+    "bridge readiness",
+    "companion readiness",
+    "mechanism validity",
+    "theory validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "real relationship learning",
+    "real emotion",
+    "subjective experience",
+    "stable user benefit",
+    "correctness of any future EGO runtime"
+  ],
+  "artifacts_generated": [
+    "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md",
+    "artifacts/ego_mainline_readiness_audit_001b/result.json",
+    "artifacts/ego_mainline_readiness_audit_001b/evidence_inventory.json",
+    "artifacts/ego_mainline_readiness_audit_001b/negative_evidence_handling.json",
+    "artifacts/ego_mainline_readiness_audit_001b/post_bridge_candidate_replacement.json",
+    "artifacts/ego_mainline_readiness_audit_001b/external_redteam_caveat_matrix.json",
+    "artifacts/ego_mainline_readiness_audit_001b/downstream_authorization_matrix.json",
+    "artifacts/ego_mainline_readiness_audit_001b/claim_ceiling.txt"
+  ],
+  "commands_run": [
+    "git status --short",
+    "git tag --list 'remote-anchor-001*'",
+    "git rev-parse remote-anchor-001l-ed9355b remote-anchor-001m-557b61e remote-anchor-001n-c2f6c51 remote-anchor-001i-09cff85 remote-anchor-001j-0a3babb",
+    "git ls-remote --tags origin remote-anchor-001l-ed9355b remote-anchor-001m-557b61e remote-anchor-001n-c2f6c51 remote-anchor-001i-09cff85 remote-anchor-001j-0a3babb",
+    "git rev-parse remote-anchor-001k-df0e3e5 remote-anchor-001h-bd0e715",
+    "git ls-remote --tags origin remote-anchor-001k-df0e3e5 remote-anchor-001h-bd0e715",
+    "ConvertFrom-Json over all new JSON artifacts",
+    "git diff --check",
+    "python -m pytest tests/test_computed_evidence_provenance_contract_001a.py tests/test_post_bridge_admission_executable_001b.py tests/test_post_bridge_admission_executable_001c.py tests/test_post_bridge_admission_executable_001d.py"
+  ]
+}

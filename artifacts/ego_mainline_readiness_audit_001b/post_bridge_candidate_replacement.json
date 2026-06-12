@@ -1,0 +1,37 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001B",
+  "claim_ceiling": "bounded EGO-mainline readiness revalidation audit evidence for admission-contract authorization only",
+  "replacement_decision": "001D replaces 001C as the current post-bridge positive evidence candidate for admission-contract authorization only",
+  "previous_candidate": {
+    "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+    "commit": "df0e3e545db56f302f4c27f5e39b549470972b33",
+    "remote_tag": "remote-anchor-001k-df0e3e5",
+    "nominal_verdict": "post_bridge_admission_executable_001c_pass",
+    "current_status": "historical_suspended_as_downstream_positive_evidence_due_to_leakage_failability_blocker",
+    "used_as_positive_evidence": false
+  },
+  "replacement_candidate": {
+    "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+    "commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+    "remote_tag": "remote-anchor-001n-c2f6c51",
+    "verdict": "post_bridge_admission_executable_001d_pass",
+    "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+    "accepted_as_current_post_bridge_positive_candidate": true,
+    "accepted_as_bridge_readiness": false,
+    "accepted_as_ego_readiness": false,
+    "accepted_as_mechanism_validity": false
+  },
+  "replacement_basis": {
+    "001c_leakage_blocker_addressed_by_001d": true,
+    "001d_computed_evidence_provenance_gate_passed": true,
+    "001d_baseline_gate_passed": true,
+    "001d_ablation_gate_passed": true,
+    "001d_behavior_causal_replay_passed": true,
+    "001d_leakage_full_real_surfaces_scanned": true,
+    "001d_same_surface_positive_controls_present": true,
+    "external_001d_redteam_pass_with_caveats_accepted": true,
+    "external_001d_caveat_preserved": true
+  },
+  "claim_inflation_detected": false,
+  "scope_leak_detected": false
+}

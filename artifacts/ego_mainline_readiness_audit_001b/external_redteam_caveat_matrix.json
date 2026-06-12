@@ -1,0 +1,44 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001B",
+  "claim_ceiling": "bounded EGO-mainline readiness revalidation audit evidence for admission-contract authorization only",
+  "external_redteam_result": {
+    "source": "user_supplied_external_001d_redteam_result",
+    "verdict": "pass_with_caveats",
+    "accepted_for_this_audit": true,
+    "acceptance_scope": "admission-contract drafting authorization only"
+  },
+  "caveats": [
+    {
+      "caveat_id": "001d_repaired_demonstrated_real_surface_failure_class",
+      "status": "accepted",
+      "blocking_for_this_audit": false,
+      "preserved_text": "001D repaired the 001C leakage fail-ability blocker for the demonstrated real-surface failure class.",
+      "downstream_requirement": "cite 001D as repair evidence only within its bounded claim ceiling"
+    },
+    {
+      "caveat_id": "global_metadata_whitelist",
+      "status": "preserved_as_future_requirement",
+      "blocking_for_this_audit": false,
+      "preserved_text": "Leakage metadata whitelist is global; values under reserved metadata keys such as metric_name or surface_label may be skipped on surfaces where those keys should not be privileged.",
+      "downstream_requirement": "future admission contract must require surface-scoped metadata whitelist behavior"
+    },
+    {
+      "caveat_id": "independent_manual_injection_tests",
+      "status": "preserved_as_future_requirement",
+      "blocking_for_this_audit": false,
+      "preserved_text": "Future EGO-mainline admission contracts must require independent manual injection tests.",
+      "downstream_requirement": "manual leakage injection tests must be independent of production injector tests"
+    },
+    {
+      "caveat_id": "stop_condition_granularity",
+      "status": "preserved_as_future_requirement",
+      "blocking_for_this_audit": false,
+      "preserved_text": "Future contracts must distinguish leakage detected from scanner not fail-able.",
+      "downstream_requirement": "specific stop condition reporting for leakage_detected versus scanner_not_fail_able"
+    }
+  ],
+  "caveat_preserved": true,
+  "caveat_blocks_001d_current_bounded_candidate": false,
+  "caveat_blocks_runtime_or_product_work": true,
+  "claim_inflation_detected": false
+}

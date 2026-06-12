@@ -1,0 +1,130 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001B",
+  "claim_ceiling": "bounded EGO-mainline readiness revalidation audit evidence for admission-contract authorization only",
+  "required_remote_anchor_verification": {
+    "remote-anchor-001l-ed9355b": {
+      "expected_commit": "ed9355b464162065dfbba77a6a6ebfad22cb1767",
+      "local_rev_parse": "ed9355b464162065dfbba77a6a6ebfad22cb1767",
+      "remote_ref": "refs/tags/remote-anchor-001l-ed9355b",
+      "remote_commit": "ed9355b464162065dfbba77a6a6ebfad22cb1767",
+      "verified": true
+    },
+    "remote-anchor-001m-557b61e": {
+      "expected_commit": "557b61ed94b3580128ccbc8f9c164eedbbbcb462",
+      "local_rev_parse": "557b61ed94b3580128ccbc8f9c164eedbbbcb462",
+      "remote_ref": "refs/tags/remote-anchor-001m-557b61e",
+      "remote_commit": "557b61ed94b3580128ccbc8f9c164eedbbbcb462",
+      "verified": true
+    },
+    "remote-anchor-001n-c2f6c51": {
+      "expected_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "local_rev_parse": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "remote_ref": "refs/tags/remote-anchor-001n-c2f6c51",
+      "remote_commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "verified": true
+    },
+    "remote-anchor-001i-09cff85": {
+      "expected_commit": "09cff85ac377aaa99f913c30e3d31f85264d1344",
+      "local_rev_parse": "09cff85ac377aaa99f913c30e3d31f85264d1344",
+      "remote_ref": "refs/tags/remote-anchor-001i-09cff85",
+      "remote_commit": "09cff85ac377aaa99f913c30e3d31f85264d1344",
+      "verified": true
+    },
+    "remote-anchor-001j-0a3babb": {
+      "expected_commit": "0a3babb40bd9b4ada3f01d3752ae43105596fb72",
+      "local_rev_parse": "0a3babb40bd9b4ada3f01d3752ae43105596fb72",
+      "remote_ref": "refs/tags/remote-anchor-001j-0a3babb",
+      "remote_commit": "0a3babb40bd9b4ada3f01d3752ae43105596fb72",
+      "verified": true
+    }
+  },
+  "supporting_anchor_verification": {
+    "remote-anchor-001h-bd0e715": {
+      "commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+      "remote_ref": "refs/tags/remote-anchor-001h-bd0e715",
+      "verified": true,
+      "reason": "supports 001B negative-evidence lineage"
+    },
+    "remote-anchor-001k-df0e3e5": {
+      "commit": "df0e3e545db56f302f4c27f5e39b549470972b33",
+      "remote_ref": "refs/tags/remote-anchor-001k-df0e3e5",
+      "verified": true,
+      "reason": "supports 001C historical suspended lineage"
+    }
+  },
+  "source_records": [
+    {
+      "task_id": "COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A",
+      "path": "artifacts/computed_evidence_provenance_contract_001a/result.json",
+      "commit": "09cff85ac377aaa99f913c30e3d31f85264d1344",
+      "remote_tag": "remote-anchor-001i-09cff85",
+      "verdict": "computed_evidence_provenance_contract_001a_created",
+      "used_as": "required downstream inheritance contract"
+    },
+    {
+      "task_id": "AGENTS computed-evidence instruction canonicalization",
+      "path": "AGENTS.md",
+      "commit": "0a3babb40bd9b4ada3f01d3752ae43105596fb72",
+      "remote_tag": "remote-anchor-001j-0a3babb",
+      "used_as": "repo-level computed-evidence governance"
+    },
+    {
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B",
+      "path": "artifacts/post_bridge_admission_executable_001b/result.json",
+      "commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+      "remote_tag": "remote-anchor-001h-bd0e715",
+      "nominal_verdict": "post_bridge_admission_executable_001b_pass",
+      "current_status": "invalidated_as_downstream_positive_evidence",
+      "used_as": "negative lineage only"
+    },
+    {
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B-REDTEAM-FAILURE-ADMISSION-001A",
+      "path": "artifacts/post_bridge_admission_executable_001b_redteam_failure_admission_001a/result.json",
+      "verdict": "post_bridge_admission_executable_001b_redteam_failure_admission_001a_block_hardcoding_or_lookup_admitted",
+      "used_as": "reason 001B remains invalidated as downstream positive evidence"
+    },
+    {
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+      "path": "artifacts/post_bridge_admission_executable_001c/result.json",
+      "commit": "df0e3e545db56f302f4c27f5e39b549470972b33",
+      "remote_tag": "remote-anchor-001k-df0e3e5",
+      "nominal_verdict": "post_bridge_admission_executable_001c_pass",
+      "current_status": "historical_suspended_as_downstream_positive_evidence_due_to_leakage_failability_blocker",
+      "used_as": "historical lineage only"
+    },
+    {
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C-REDTEAM-LEAKAGE-BLOCKER-ADMISSION-001A",
+      "path": "artifacts/post_bridge_admission_executable_001c_redteam_leakage_blocker_admission_001a/result.json",
+      "commit": "557b61ed94b3580128ccbc8f9c164eedbbbcb462",
+      "remote_tag": "remote-anchor-001m-557b61e",
+      "verdict": "post_bridge_admission_executable_001c_redteam_leakage_blocker_admission_001a_block_leakage_scanner_not_fail_able_admitted",
+      "used_as": "reason 001C remains suspended and 001A direct actionability is non-actionable"
+    },
+    {
+      "task_id": "EGO-MAINLINE-READINESS-AUDIT-001A",
+      "path": "artifacts/ego_mainline_readiness_audit_001a/result.json",
+      "commit": "ed9355b464162065dfbba77a6a6ebfad22cb1767",
+      "remote_tag": "remote-anchor-001l-ed9355b",
+      "verdict": "ego_mainline_readiness_audit_001a_authorize_admission_task_card",
+      "current_status": "conditional_non_actionable_after_001c_leakage_blocker_admission",
+      "used_as": "historical parent audit requiring revalidation"
+    },
+    {
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+      "path": "artifacts/post_bridge_admission_executable_001d/result.json",
+      "commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "remote_tag": "remote-anchor-001n-c2f6c51",
+      "verdict": "post_bridge_admission_executable_001d_pass",
+      "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+      "used_as": "current bounded post-bridge positive candidate with caveats"
+    },
+    {
+      "task_id": "external 001D red-team result",
+      "path": "user_supplied_external_redteam_result",
+      "verdict": "pass_with_caveats",
+      "used_as": "caveated support for admission-contract drafting authorization only"
+    }
+  ],
+  "all_required_records_present": true,
+  "old_artifacts_rewritten": false
+}

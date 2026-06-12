@@ -1,0 +1,77 @@
+{
+  "task_id": "EGO-MAINLINE-READINESS-AUDIT-001B",
+  "claim_ceiling": "bounded EGO-mainline readiness revalidation audit evidence for admission-contract authorization only",
+  "downstream_authorization": {
+    "EGO-MAINLINE-ADMISSION-TASK-CARD-001A": {
+      "authorized": true,
+      "scope": "draft bounded admission contract only",
+      "must_inherit": [
+        "COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A",
+        "callable baselines",
+        "real ablation reruns",
+        "leakage scanners with same-surface positive controls",
+        "behavior-causal replay where applicable",
+        "frozen input consumption checks",
+        "source/artifact hash integrity checks",
+        "negative evidence preservation",
+        "no 001B positive-evidence usage",
+        "no 001C positive-evidence usage",
+        "001D caveat preservation",
+        "surface-scoped leakage metadata whitelist",
+        "independent manual leakage injection tests, not only production injector tests",
+        "specific stop condition reporting for leakage detected vs scanner not fail-able",
+        "strict claim ceiling"
+      ]
+    },
+    "EGO mainline runtime": {
+      "authorized": false
+    },
+    "bridge runtime": {
+      "authorized": false
+    },
+    "companion behavior": {
+      "authorized": false
+    },
+    "LLM/RAG integration": {
+      "authorized": false
+    },
+    "user model": {
+      "authorized": false
+    },
+    "relationship learning": {
+      "authorized": false
+    },
+    "emotion system": {
+      "authorized": false
+    },
+    "personalization": {
+      "authorized": false
+    },
+    "product demo": {
+      "authorized": false
+    },
+    "romance": {
+      "authorized": false
+    },
+    "attachment": {
+      "authorized": false
+    },
+    "persistent profile": {
+      "authorized": false
+    },
+    "long-term human-user memory": {
+      "authorized": false
+    }
+  },
+  "scope_leak_detected": false,
+  "future_task_card_block_conditions": [
+    "uses 001B as downstream positive evidence",
+    "uses 001C as downstream positive evidence",
+    "omits 001D caveat preservation",
+    "omits surface-scoped metadata whitelist",
+    "omits independent manual leakage injection tests",
+    "weakens computed-evidence provenance contract",
+    "authorizes runtime or product work",
+    "inflates claim beyond admission-contract drafting"
+  ]
+}
