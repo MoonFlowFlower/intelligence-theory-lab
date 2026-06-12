@@ -1,0 +1,106 @@
+{
+  "ablation_validators_invoked": true,
+  "ablations": {
+    "change_any_implementation_authorized_true": {
+      "aggregation_rule": "mutate extracted input then rerun independent validator",
+      "expected_failure_observed": true,
+      "failure_reasons": [
+        "implementation_authorized_true_detected"
+      ],
+      "mutated_input_hash": "674ea41bebea3c6c49fff75e7696993b27cf0877d3af87edb848af0176d62a19",
+      "original_input_hash": "df515a22cd483cebcfe6ffd388f7007f151fb23b3abf5778f05390ceffe28e13",
+      "producer_function": "_mutate_any_impl_true",
+      "validation_rule": "mutated input must fail at least one canonicalization invariant",
+      "validator_invoked": true
+    },
+    "change_hyperon_adoption_flag_true": {
+      "aggregation_rule": "mutate extracted input then rerun independent validator",
+      "expected_failure_observed": true,
+      "failure_reasons": [
+        "hyperon_selected_or_adopted"
+      ],
+      "mutated_input_hash": "e9643199938c2413a1ce7485de31b0b7472c4aa884de86d5472a1acb4e680d47",
+      "original_input_hash": "df515a22cd483cebcfe6ffd388f7007f151fb23b3abf5778f05390ceffe28e13",
+      "producer_function": "_mutate_hyperon_adoption_true",
+      "validation_rule": "mutated input must fail at least one canonicalization invariant",
+      "validator_invoked": true
+    },
+    "drop_source_pin_remote_anchor_reference": {
+      "aggregation_rule": "mutate extracted input then rerun independent validator",
+      "expected_failure_observed": true,
+      "failure_reasons": [
+        "source_pin_remote_anchor_missing"
+      ],
+      "mutated_input_hash": "2676f0e9fa2b10a434eb1df9be2430a2e54936f899540317b5ad51d39053acef",
+      "original_input_hash": "df515a22cd483cebcfe6ffd388f7007f151fb23b3abf5778f05390ceffe28e13",
+      "producer_function": "_mutate_drop_source_pin_anchor",
+      "validation_rule": "mutated input must fail at least one canonicalization invariant",
+      "validator_invoked": true
+    },
+    "reduce_45_row_matrix_to_partial_matrix": {
+      "aggregation_rule": "mutate extracted input then rerun independent validator",
+      "expected_failure_observed": true,
+      "failure_reasons": [
+        "matrix_row_count_not_45",
+        "hyperon_row_count_not_one"
+      ],
+      "mutated_input_hash": "199e51d9658c596ff479549547e37b2c32c27dd4adc499aa3752d112e78583aa",
+      "original_input_hash": "df515a22cd483cebcfe6ffd388f7007f151fb23b3abf5778f05390ceffe28e13",
+      "producer_function": "_mutate_reduce_matrix",
+      "validation_rule": "mutated input must fail at least one canonicalization invariant",
+      "validator_invoked": true
+    },
+    "remove_claim_ceiling": {
+      "aggregation_rule": "mutate extracted input then rerun independent validator",
+      "expected_failure_observed": true,
+      "failure_reasons": [
+        "claim_ceiling_missing"
+      ],
+      "mutated_input_hash": "570ba9114639f98e817faa549222bcd0d6de065a1b1ca1028bc83674dbfa081c",
+      "original_input_hash": "df515a22cd483cebcfe6ffd388f7007f151fb23b3abf5778f05390ceffe28e13",
+      "producer_function": "_mutate_remove_claim_ceiling",
+      "validation_rule": "mutated input must fail at least one canonicalization invariant",
+      "validator_invoked": true
+    },
+    "remove_graph_challenger_family_item": {
+      "aggregation_rule": "mutate extracted input then rerun independent validator",
+      "expected_failure_observed": true,
+      "failure_reasons": [
+        "graph_challenger_family_incomplete"
+      ],
+      "mutated_input_hash": "6780e8bf90a8bec52808f20bbb6fde3b508a95666b4858196b57dc1f38feefb9",
+      "original_input_hash": "df515a22cd483cebcfe6ffd388f7007f151fb23b3abf5778f05390ceffe28e13",
+      "producer_function": "_mutate_remove_graph_item",
+      "validation_rule": "mutated input must fail at least one canonicalization invariant",
+      "validator_invoked": true
+    }
+  },
+  "all_negative_controls_failed": true,
+  "provenance": {
+    "aggregation_rule": "six in-memory negative controls rerun through validator",
+    "code_path_hash": "daa0d95b352f6f4df74c0cacb85cbf035f460bffd845322e3e5bbf4133ad2a53",
+    "context": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A",
+    "input_artifact_hashes": {
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/claim_ceiling.txt": "fed05fc459e66ed73dc054deebd8cf9990895497247c2c7f0678b9c4d5934935",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/closure_caveat_resolution_matrix.json": "641610f0d3ef81996aebe5446c79e333e2d68f3dab4f870a78ceda672043aa33",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/delta_manifest.json": "b18c69e3db1df217eb09e4ce9408d8d9405d63ae1c05c6154a0256ed370dad64",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/schema_safety_check.json": "67b315eda48080acf96fcf9932e2ccc754e9543fc6005de3e2b86cc9704e2739",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/source_pin_readback.json": "a65149fb485805487ee0ffcc8588852ff4bc604ef7450dc0c7e9d6fd71ac69cf",
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3"
+    },
+    "input_artifacts": [
+      "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/source_pin_readback.json",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/delta_manifest.json",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/closure_caveat_resolution_matrix.json",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/schema_safety_check.json",
+      "artifacts/theory_landscape_coverage_precanonical_closure_patch_001b/claim_ceiling.txt"
+    ],
+    "output_artifact": "ablation_failure_report.json",
+    "output_artifact_hash": "computed_after_write_in_source_to_canonical_trace",
+    "producer_function": "run_ablation_failure_checks",
+    "run_id": "theory_landscape_coverage_canonicalization_001a_c8ce9962b28e76a7",
+    "seed": "not_applicable"
+  },
+  "task_id": "THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A"
+}
