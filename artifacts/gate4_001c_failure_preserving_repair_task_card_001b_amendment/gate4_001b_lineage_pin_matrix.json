@@ -1,0 +1,36 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001B-AMENDMENT",
+  "canonical_rejected_gate4_001b": {
+    "task_family": "ego_mainline_gate4_preflight_executable_001b",
+    "artifact_family": "artifacts/ego_mainline_gate4_preflight_executable_001b/",
+    "task_card": "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B.md",
+    "source_family": "src/ego_mainline_gate4_preflight_executable_001b/",
+    "test_family": "tests/test_ego_mainline_gate4_preflight_executable_001b.py",
+    "commit": "90dc4b9082593fabf06197b03eaf66c9c64014a2",
+    "known_role": [
+      "sealed rejected boundary",
+      "negative evidence",
+      "positive-control false-pass case"
+    ],
+    "forbidden_role": [
+      "pass evidence",
+      "Gate validity evidence",
+      "mechanism validity evidence",
+      "architecture correctness evidence",
+      "downstream admission evidence"
+    ]
+  },
+  "sibling_gate4_001b_families_quarantined": [
+    {
+      "task_family": "gate4_social_latent_inference_001b",
+      "future_gate4_001c_positive_support_allowed": false,
+      "reason": "sibling Gate4 001B family remains quarantined by 241d69c critical-risk target application"
+    },
+    {
+      "task_family": "gate4_social_representational_gap_preflight_001b",
+      "future_gate4_001c_positive_support_allowed": false,
+      "reason": "sibling Gate4 001B family remains quarantined by 241d69c critical-risk target application"
+    }
+  ],
+  "future_execution_card_test_must_fail_on_ambiguous_gate4_001b_reference": true
+}

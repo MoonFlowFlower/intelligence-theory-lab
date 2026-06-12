@@ -1,0 +1,27 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001B-AMENDMENT",
+  "future_gate4_001c_execution_card_must_run_challenger": true,
+  "challenger_family": "anchored evidence harness / 001A evaluate_bundle-style challenger",
+  "minimum_anchor": {
+    "anchor_id": "evidence_harness_contract_enforcement_smoke_001a",
+    "remote_tag": "remote-anchor-evidence-harness-contract-enforcement-smoke-001a-5b4cdbe",
+    "observed_hash": "5b4cdbeedb380aafa8da9ead827e1b40b04d8153"
+  },
+  "input_scope": "future Gate4 001C output bundle",
+  "challenger_claim_ceiling": "blocker only, not positive admission discriminator",
+  "blocking_results": [
+    "rejected_false_pass_risk",
+    "blocked_pending_audit",
+    "insufficient_visibility",
+    "equivalent_non_clean_risk"
+  ],
+  "clean_result_authorizes_downstream": false,
+  "forbidden_inference_from_clean_result": [
+    "Gate4 001C authorization",
+    "Gate5 authorization",
+    "admission authorization",
+    "runtime authorization",
+    "bridge authorization",
+    "EGO mainline authorization"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001B-AMENDMENT",
+  "future_execution_card_must_define": [
+    "predeclared scanner scope",
+    "explicit included path classes",
+    "explicit excluded path classes with reasons",
+    "excluded paths are not_scanned never clean",
+    "prohibition on broad whitelist allowlist trusted-prefix known-safe-directory behavior",
+    "positive control behind a whitelist-like context",
+    "positive control in an excluded-looking path",
+    "clean control through the same callable scanner path",
+    "failure if a positive control is missed",
+    "failure if scanner output is an unconditional clean report",
+    "failure if broad exemption bypasses result.json reports matrices tests manifests or output bundles"
+  ],
+  "included_path_classes_minimum": [
+    "result.json",
+    "reports",
+    "matrices",
+    "tests",
+    "manifests",
+    "output bundles"
+  ],
+  "excluded_path_rule": {
+    "allowed_state": "not_scanned_with_reason",
+    "forbidden_state": "clean",
+    "required_effect_on_required_path_class": "block unless a narrower predeclared reason is reviewed"
+  },
+  "positive_controls": [
+    {
+      "control_id": "whitelist_like_context_positive_control",
+      "placement": "behind whitelist-like or restraint-marker context",
+      "expected_result": "detected"
+    },
+    {
+      "control_id": "excluded_looking_path_positive_control",
+      "placement": "path shaped like excluded, trusted, known-safe, or allowlisted directory",
+      "expected_result": "detected_or_blocked_as_not_scanned"
+    }
+  ],
+  "clean_control_same_callable_path_required": true,
+  "unconditional_clean_report_allowed": false
+}

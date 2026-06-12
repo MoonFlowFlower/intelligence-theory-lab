@@ -1,0 +1,27 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001B-AMENDMENT",
+  "future_execution_card_forbidden_patterns": [
+    "non-fail-able clean fields",
+    "unconditional clean reports",
+    "literal empty arrays presented as scan results",
+    "manifest literals presented as metrics",
+    "tests that only assert final pass"
+  ],
+  "empty_array_rule": {
+    "example": "static_dependency=[]",
+    "allowed_only_if": "computed by a callable scanner with positive controls",
+    "otherwise_required_status": "not_tested",
+    "reason_required": true
+  },
+  "scanner_result_rule": {
+    "positive_control_required": true,
+    "same_callable_path_for_clean_and_positive_controls": true,
+    "missed_positive_control_blocks": true
+  },
+  "artifact_hash_requirements": [
+    "input artifact hashes",
+    "protected-artifact before hashes",
+    "protected-artifact after hashes",
+    "before/after comparison result"
+  ]
+}
