@@ -1,0 +1,372 @@
+{
+  "ablation_call_paths_verified": true,
+  "all_required_artifact_provenance_present": true,
+  "all_scores_have_metric_provenance": true,
+  "baseline_call_paths_verified": true,
+  "claim_ceiling": "bounded Gate4 executable preflight evidence over synthetic partner-process proxy only",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "verify provenance metadata for artifacts, scores, baselines, ablations, leakage, and replay",
+    "code_path_hash": "e0e9f0714367c431c9f5aab8a352c2fbc02bfd103aaaa25252e86eefa324e6ed",
+    "input_artifacts": [
+      "anchor_verification.json",
+      "source_contract_readback.json",
+      "old_artifact_inventory_before.json",
+      "execution_manifest.json",
+      "synthetic_partner_processes.json",
+      "episode_manifest.json",
+      "candidate_metric_report.json",
+      "baseline_invocation_report.json",
+      "baseline_metric_report.json",
+      "ablation_report.json",
+      "contrast_report.json",
+      "replay_recomputation_report.json",
+      "leakage_positive_control_report.json",
+      "leakage_scan_report.json",
+      "old_artifact_inventory_after.json",
+      "old_artifact_hash_comparison.json",
+      "old_artifact_mutation_report.json",
+      "result.json"
+    ],
+    "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/computed_evidence_provenance_report.json",
+    "producer_function": "build_computed_evidence_provenance_report",
+    "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+      "episode_id": "all",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed": "deterministic_fixture_001b"
+    }
+  },
+  "leakage_scanner_call_paths_verified": true,
+  "no_literal_verdict_only_reports": true,
+  "provenance_rows": [
+    {
+      "aggregation_rule": "verify branch and sealed remote tag hash",
+      "artifact_name": "anchor_verification.json",
+      "code_path_hash": "39e372b081a8f1b85011fe98973bcf7bd362ee55f825bc6e4c60d552c519e322",
+      "input_artifacts": [
+        "git branch --show-current",
+        "git ls-remote origin refs/tags/remote-anchor-post-repair-gate4-task-card-001a-fe22693"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/anchor_verification.json",
+      "producer_function": "verify_anchor",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "read controlling source card and classify bounded executability",
+      "artifact_name": "source_contract_readback.json",
+      "code_path_hash": "603cfa9ff64757b27565cf9235e49a148bd16cbc2f0a22f64a6b94892530538c",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-TASK-CARD-001A.md",
+        "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B.md"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/source_contract_readback.json",
+      "producer_function": "read_source_contract",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "inventory tracked prior sealed artifacts before execution",
+      "artifact_name": "old_artifact_inventory_before.json",
+      "code_path_hash": "2b028ac46d31420d24cb176a46e4e7829886cb99515b5c4a6bb2c7bc99d1166d",
+      "input_artifacts": [
+        "git ls-files artifacts"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/old_artifact_inventory_before.json",
+      "producer_function": "inventory_old_artifacts",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "freeze execution contract before candidate and controls",
+      "artifact_name": "execution_manifest.json",
+      "code_path_hash": "3f6dbca5a8794cfa35d2f285e7084568f780ec3474d4c021175f121910df9f39",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B.md",
+        "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-TASK-CARD-001A.md"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/execution_manifest.json",
+      "producer_function": "run_preflight_001b",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "generate deterministic synthetic scripted partner processes",
+      "artifact_name": "synthetic_partner_processes.json",
+      "code_path_hash": "32f637dc514069ed355c8b501e0ba3c9cf85a13082f816ffb729ac32afb0cb81",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B.md",
+        "docs/codex/tasks/EGO-MAINLINE-GATE4-PREFLIGHT-TASK-CARD-001A.md"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/synthetic_partner_processes.json",
+      "producer_function": "build_synthetic_partner_processes",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "summarize frozen episode splits and identifiers",
+      "artifact_name": "episode_manifest.json",
+      "code_path_hash": "32f637dc514069ed355c8b501e0ba3c9cf85a13082f816ffb729ac32afb0cb81",
+      "input_artifacts": [
+        "synthetic_partner_processes.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/episode_manifest.json",
+      "producer_function": "build_synthetic_partner_processes",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "derive candidate score from trace rows",
+      "artifact_name": "candidate_metric_report.json",
+      "code_path_hash": "a0f273cee51d9c5827c0866a4ab0a9e2b38623d182e59d26e963de53bf1f7dfa",
+      "input_artifacts": [
+        "candidate_trace.jsonl",
+        "candidate_state_snapshots.jsonl"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/candidate_metric_report.json",
+      "producer_function": "build_candidate_metric_report",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "invoke each required independent callable baseline",
+      "artifact_name": "baseline_invocation_report.json",
+      "code_path_hash": "b504d68a3b9487c736d40c7179ef915fd20eef53df794a4419d7a19e09b764f6",
+      "input_artifacts": [
+        "synthetic_partner_processes.json",
+        "episode_manifest.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/baseline_invocation_report.json",
+      "producer_function": "invoke_baselines",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "compute baseline scores from callable predictions",
+      "artifact_name": "baseline_metric_report.json",
+      "code_path_hash": "b504d68a3b9487c736d40c7179ef915fd20eef53df794a4419d7a19e09b764f6",
+      "input_artifacts": [
+        "baseline_invocation_report.json",
+        "synthetic_partner_processes.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/baseline_metric_report.json",
+      "producer_function": "invoke_baselines",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "rerun candidate episodes under required interventions",
+      "artifact_name": "ablation_report.json",
+      "code_path_hash": "297f1ef55b179bd19f10ac5bc445d285709da869099c0f63fc1b58dfc5eb1294",
+      "input_artifacts": [
+        "synthetic_partner_processes.json",
+        "candidate_trace.jsonl"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/ablation_report.json",
+      "producer_function": "run_ablation_suite",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "compare candidate, best baseline, and ablation degradation",
+      "artifact_name": "contrast_report.json",
+      "code_path_hash": "ba7c2f6d4757840e62d211f19bb104d73dfc28531036fed0c6deec15319d13aa",
+      "input_artifacts": [
+        "candidate_metric_report.json",
+        "baseline_metric_report.json",
+        "ablation_report.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/contrast_report.json",
+      "producer_function": "build_contrast_report",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "recompute behavior from serialized_state plus observation",
+      "artifact_name": "replay_recomputation_report.json",
+      "code_path_hash": "6ec8d902eb9d3c10a19a9f7b4bf16fc1950fda25af9d7a4abca49e06dd52a333",
+      "input_artifacts": [
+        "candidate_trace.jsonl"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/replay_recomputation_report.json",
+      "producer_function": "build_replay_reports",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "run leakage scanner against required positive controls",
+      "artifact_name": "leakage_positive_control_report.json",
+      "code_path_hash": "9fb1243f6db3ec15f54e4d21856af96e3a21fa27564e15f17ef7effca202d87a",
+      "input_artifacts": [
+        "positive_control_payloads"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/leakage_positive_control_report.json",
+      "producer_function": "build_positive_control_report",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "scan real generated surfaces for unauthorized positive leakage",
+      "artifact_name": "leakage_scan_report.json",
+      "code_path_hash": "675ef9db3ebf0c4fc06a3809cf204f58f628fdabc78abc45647e009a4236576b",
+      "input_artifacts": [
+        "generated artifacts",
+        "candidate_trace.jsonl"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/leakage_scan_report.json",
+      "producer_function": "build_leakage_scan_report",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "inventory tracked prior sealed artifacts after execution",
+      "artifact_name": "old_artifact_inventory_after.json",
+      "code_path_hash": "2b028ac46d31420d24cb176a46e4e7829886cb99515b5c4a6bb2c7bc99d1166d",
+      "input_artifacts": [
+        "git ls-files artifacts"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/old_artifact_inventory_after.json",
+      "producer_function": "inventory_old_artifacts",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "compare before and after hashes for prior sealed artifacts",
+      "artifact_name": "old_artifact_hash_comparison.json",
+      "code_path_hash": "e44bd92148cd3b2ac4a36a6df9d2dcc9298f4330d700a5ec69f259add2b0953b",
+      "input_artifacts": [
+        "old_artifact_inventory_before.json",
+        "old_artifact_inventory_after.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/old_artifact_hash_comparison.json",
+      "producer_function": "compare_old_artifact_hashes",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "classify unexpected old artifact mutation as hard failure",
+      "artifact_name": "old_artifact_mutation_report.json",
+      "code_path_hash": "c8619c30bbcf6dcd3736e9375034ab7bb8b0c027325a8f59a028c2b1231d6ffb",
+      "input_artifacts": [
+        "old_artifact_hash_comparison.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/old_artifact_mutation_report.json",
+      "producer_function": "build_old_artifact_mutation_report",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    },
+    {
+      "aggregation_rule": "aggregate all evidence gates into bounded verdict",
+      "artifact_name": "result.json",
+      "code_path_hash": "ff21961d4d65d9e36ff79ef1d8a84cb2a87f50ad021a6aa87bb5e2eb21c14750",
+      "input_artifacts": [
+        "anchor_verification.json",
+        "source_contract_readback.json",
+        "candidate_metric_report.json",
+        "baseline_metric_report.json",
+        "ablation_report.json",
+        "leakage_scan_report.json",
+        "replay_recomputation_report.json",
+        "old_artifact_mutation_report.json"
+      ],
+      "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/result.json",
+      "producer_function": "aggregate_result_from_reports",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+        "episode_id": "all",
+        "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+        "seed": "deterministic_fixture_001b"
+      }
+    }
+  ],
+  "replay_call_paths_verified": true,
+  "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+  "task_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B"
+}

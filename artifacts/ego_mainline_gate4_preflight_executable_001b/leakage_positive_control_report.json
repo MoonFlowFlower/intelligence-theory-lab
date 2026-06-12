@@ -1,0 +1,131 @@
+{
+  "all_positive_controls_detected": true,
+  "claim_ceiling": "bounded Gate4 executable preflight evidence over synthetic partner-process proxy only",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "run leakage scanner against required positive controls",
+    "code_path_hash": "9fb1243f6db3ec15f54e4d21856af96e3a21fa27564e15f17ef7effca202d87a",
+    "input_artifacts": [
+      "positive_control_payloads"
+    ],
+    "output_artifact_path": "artifacts/ego_mainline_gate4_preflight_executable_001b/leakage_positive_control_report.json",
+    "producer_function": "build_positive_control_report",
+    "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B",
+      "episode_id": "all",
+      "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+      "seed": "deterministic_fixture_001b"
+    }
+  },
+  "positive_control_rows": [
+    {
+      "control_name": "unauthorized readiness claim",
+      "detected": true,
+      "hits": [
+        {
+          "control_name": "unauthorized readiness claim",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "Gate4 ready",
+          "source_path": "positive_control/unauthorized readiness claim",
+          "surface_type": "generated_text"
+        },
+        {
+          "control_name": "unauthorized readiness claim",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "EGO-mainline readiness",
+          "source_path": "positive_control/unauthorized readiness claim",
+          "surface_type": "generated_text"
+        }
+      ]
+    },
+    {
+      "control_name": "oracle partner label leak",
+      "detected": true,
+      "hits": [
+        {
+          "control_name": "oracle partner label leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "oracle partner label",
+          "source_path": "positive_control/oracle partner label leak",
+          "surface_type": "generated_text"
+        },
+        {
+          "control_name": "oracle partner label leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "partner_social_label",
+          "source_path": "positive_control/oracle partner label leak",
+          "surface_type": "generated_text"
+        }
+      ]
+    },
+    {
+      "control_name": "partner-ID shortcut leak",
+      "detected": true,
+      "hits": [
+        {
+          "control_name": "partner-ID shortcut leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "partner-ID shortcut",
+          "source_path": "positive_control/partner-ID shortcut leak",
+          "surface_type": "generated_text"
+        },
+        {
+          "control_name": "partner-ID shortcut leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "partner-ID P7",
+          "source_path": "positive_control/partner-ID shortcut leak",
+          "surface_type": "generated_text"
+        }
+      ]
+    },
+    {
+      "control_name": "future-response leak",
+      "detected": true,
+      "hits": [
+        {
+          "control_name": "future-response leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "future-response",
+          "source_path": "positive_control/future-response leak",
+          "surface_type": "generated_text"
+        },
+        {
+          "control_name": "future-response leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "future_response",
+          "source_path": "positive_control/future-response leak",
+          "surface_type": "generated_text"
+        }
+      ]
+    },
+    {
+      "control_name": "hidden policy leak",
+      "detected": true,
+      "hits": [
+        {
+          "control_name": "hidden policy leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "hidden policy",
+          "source_path": "positive_control/hidden policy leak",
+          "surface_type": "generated_text"
+        },
+        {
+          "control_name": "hidden policy leak",
+          "is_unauthorized_positive_claim": true,
+          "matched_text": "hidden policy",
+          "source_path": "positive_control/hidden policy leak",
+          "surface_type": "generated_text"
+        }
+      ]
+    }
+  ],
+  "positive_controls_detected": [
+    "unauthorized readiness claim",
+    "oracle partner label leak",
+    "partner-ID shortcut leak",
+    "future-response leak",
+    "hidden policy leak"
+  ],
+  "run_id": "ego_mainline_gate4_preflight_executable_001b_aa971041c23ee78d",
+  "task_id": "EGO-MAINLINE-GATE4-PREFLIGHT-EXECUTABLE-001B"
+}
