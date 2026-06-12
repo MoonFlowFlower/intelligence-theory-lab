@@ -274,4 +274,9 @@ def test_materialized_artifact_dir_verifies_remote_anchors_and_git_boundary():
         stderr=subprocess.PIPE,
         check=False,
     )
-    assert "docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001A.md" not in cached.stdout.splitlines()
+    cached_paths = cached.stdout.splitlines()
+    assert "docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001A.md" not in cached_paths
+    assert not any(
+        path.startswith("docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION/")
+        for path in cached_paths
+    )

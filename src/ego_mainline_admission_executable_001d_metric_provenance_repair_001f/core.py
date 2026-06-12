@@ -21,6 +21,7 @@ PARENT_001C_ARTIFACT_DIR_REL = "artifacts/ego_mainline_admission_executable_001b
 PARENT_001D_ARTIFACT_DIR_REL = "artifacts/ego_mainline_admission_executable_001b_baseline_legal_input_repair_001d"
 PARENT_001E_ARTIFACT_DIR_REL = "artifacts/ego_mainline_admission_executable_001d_independent_audit_001e"
 KNOWN_THEORY_FILE_REL = "docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001A.md"
+KNOWN_THEORY_SIDECAR_DIR_REL = "docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION"
 
 VERDICT_PASS = "ego_mainline_admission_executable_001d_metric_provenance_repair_001f_pass"
 VERDICT_BLOCK_PARENT = "ego_mainline_admission_executable_001d_metric_provenance_repair_001f_block_missing_parent_anchor"

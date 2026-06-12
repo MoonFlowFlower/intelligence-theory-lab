@@ -437,19 +437,36 @@ def produce_scope_leak_report(repo_root: Path) -> dict[str, Any]:
         "tests/test_ego_mainline_admission_executable_001d_metric_provenance_repair_001f.py",
         core.ARTIFACT_DIR_REL + "/",
         core.KNOWN_THEORY_FILE_REL,
+        core.KNOWN_THEORY_SIDECAR_DIR_REL + "/",
     ]
     unexpected_untracked = []
+    sidecar_rows = []
     for row in rows:
         path = row[3:] if len(row) > 3 else ""
+        if path.startswith(core.KNOWN_THEORY_SIDECAR_DIR_REL + "/") or path == core.KNOWN_THEORY_SIDECAR_DIR_REL:
+            sidecar_rows.append(row)
         if row.startswith("??") and not any(path.startswith(prefix) for prefix in allowed_prefixes):
             unexpected_untracked.append(path)
     known = _known_theory_file_status(repo_root)
+    sidecar_staged = any(row and row[0] not in {" ", "?"} for row in sidecar_rows)
+    sidecar_modified = any(row.startswith(" M") or row.startswith("MM") for row in sidecar_rows)
+    known_boundary_clean = (
+        known["known_theory_file_left_unstaged_and_unmodified"]
+        and not sidecar_staged
+        and not sidecar_modified
+    )
     return {
         "task_id": core.TASK_ID,
-        "known_theory_file_left_unstaged_and_unmodified": known[
-            "known_theory_file_left_unstaged_and_unmodified"
-        ],
+        "known_theory_file_left_unstaged_and_unmodified": known_boundary_clean,
         "known_theory_file_status": known,
+        "known_theory_sidecar_dir_status": {
+            "path": core.KNOWN_THEORY_SIDECAR_DIR_REL,
+            "status_rows": sidecar_rows,
+            "known_theory_sidecar_dir_staged": sidecar_staged,
+            "known_theory_sidecar_dir_modified": sidecar_modified,
+            "known_theory_sidecar_dir_left_unstaged_and_unmodified": not sidecar_staged
+            and not sidecar_modified,
+        },
         "unexpected_untracked_files": unexpected_untracked,
         "no_scope_leak": not unexpected_untracked and all(value is False for value in core.AUTHORIZATION_FLAGS.values()),
         "no_claim_inflation": True,
@@ -1007,4 +1024,8 @@ def run_repair(*, repo_root: Path, output_dir: Path, verify_remote: bool = True)
                 "minimum_patch": "repair only the exact new 001F blocker in a later bounded task",
             },
         )
+    else:
+        blocker_path = output_dir / "blocker_report.json"
+        if blocker_path.exists():
+            blocker_path.unlink()
     return result

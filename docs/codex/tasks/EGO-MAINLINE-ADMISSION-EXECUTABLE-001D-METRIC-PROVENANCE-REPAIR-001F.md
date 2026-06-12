@@ -23,6 +23,12 @@ This task does not rewrite old 001B, 001C, 001D, or 001E artifacts. It does not
 restore 001B positive evidence status and does not convert the 001E blocker into
 a caveat.
 
+The unrelated local theory-landscape/compression stream is outside 001F scope.
+If `docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001A.md` or its sibling
+`docs/THEORY-LANDSCAPE-COVERAGE-COMPRESSION/` sidecar directory is present, it
+must remain unstaged, uncommitted, unread as evidence, and excluded from 001F
+artifacts.
+
 ## Current Stage
 
 001E is the canonical blocker:
