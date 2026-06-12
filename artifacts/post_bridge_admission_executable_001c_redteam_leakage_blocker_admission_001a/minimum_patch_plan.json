@@ -1,0 +1,68 @@
+{
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C-REDTEAM-LEAKAGE-BLOCKER-ADMISSION-001A",
+  "not_executed_in_this_task": true,
+  "recommended_next_executable": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+  "patch_plan": [
+    {
+      "step": 1,
+      "action": "Replace sanitized trace-row scanning with full trace-row scanning.",
+      "acceptance": "A forbidden field injected into a copy of an actual trace row blocks the leakage gate."
+    },
+    {
+      "step": 2,
+      "action": "Add full candidate input scanning over serialized_state text plus observation object.",
+      "acceptance": "Forbidden fields injected into candidate input copies block the leakage gate."
+    },
+    {
+      "step": 3,
+      "action": "Add observation artifact and observation row scanners.",
+      "acceptance": "Forbidden future/oracle fields in observation rows or artifacts are detected."
+    },
+    {
+      "step": 4,
+      "action": "Scan actual artifact filename and path inventory.",
+      "acceptance": "Forbidden label, oracle, future, and test-only tokens in artifact names or paths are detected."
+    },
+    {
+      "step": 5,
+      "action": "Add metric provenance scanning over full metric_provenance.jsonl rows.",
+      "acceptance": "Forbidden fields injected into metric provenance row copies block the leakage gate."
+    },
+    {
+      "step": 6,
+      "action": "Remove or replace per-row forbidden_source_scan_result clean=true constants.",
+      "acceptance": "Source scan results are computed by callable scanner paths with failure paths."
+    },
+    {
+      "step": 7,
+      "action": "Couple positive controls to the same real scanned surfaces.",
+      "acceptance": "Each scanner has a positive control produced by mutating a copy of the real surface it scans."
+    },
+    {
+      "step": 8,
+      "action": "Add clean controls on the same real surface classes.",
+      "acceptance": "Clean control copies of the same surfaces do not trigger false positives."
+    },
+    {
+      "step": 9,
+      "action": "Fix leakage metric provenance to record real consumed surface IDs and input artifact paths.",
+      "acceptance": "Metric provenance identifies scanner name, surface class, consumed row IDs, input artifact hashes, and output row IDs."
+    },
+    {
+      "step": 10,
+      "action": "Derive candidate_score from replay or candidate output scoring if a source literal remains.",
+      "acceptance": "Candidate score provenance points to the callable scoring path and consumed rows."
+    },
+    {
+      "step": 11,
+      "action": "Add regression tests that fail before the leakage scanner fix and pass after it.",
+      "acceptance": "Tests cover injected forbidden fields on trace rows, candidate inputs, observations, artifact paths, and metric provenance rows."
+    }
+  ],
+  "scope_boundaries": [
+    "Do not modify old 001C artifacts in place.",
+    "Do not rerun 001C as part of this admission.",
+    "Do not enter EGO mainline.",
+    "Do not create bridge runtime, LLM/RAG, user-model, relationship, emotion, personalization, companion behavior, product demo, romance, attachment, persistent profile, or long-term human-user memory work."
+  ]
+}

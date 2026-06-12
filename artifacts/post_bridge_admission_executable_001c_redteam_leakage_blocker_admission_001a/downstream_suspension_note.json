@@ -1,0 +1,33 @@
+{
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C-REDTEAM-LEAKAGE-BLOCKER-ADMISSION-001A",
+  "suspension_reason": "001C leakage scanner gate is not sufficiently fail-able on full real leakage surfaces.",
+  "post_bridge_admission_executable_001c": {
+    "nominal_verdict_record_status": "preserved_as_historical_artifact",
+    "downstream_positive_evidence_status": "suspended",
+    "may_be_cited_as": [
+      "historical 001C nominal result",
+      "evidence of existing baseline/ablation/replay/frozen-input/mutation work subject to leakage-gate blocker"
+    ],
+    "must_not_be_cited_as": [
+      "current positive evidence that leakage boundary is clean",
+      "bridge readiness",
+      "EGO readiness",
+      "companion readiness",
+      "mechanism validity"
+    ]
+  },
+  "ego_mainline_readiness_audit_001a": {
+    "status": "conditional_non_actionable",
+    "reason": "Its actionability depended on 001C being usable as downstream positive evidence; that use is now suspended until a bounded repair and rerun.",
+    "must_not_trigger": [
+      "EGO mainline admission",
+      "EGO runtime work",
+      "EGO-MAINLINE-ADMISSION-TASK-CARD-001A creation"
+    ]
+  },
+  "next_allowed_path": {
+    "preferred_task": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+    "created_by_this_admission": false,
+    "scope": "bounded leakage scanner repair and executable rerun only"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C-REDTEAM-LEAKAGE-BLOCKER-ADMISSION-001A",
+  "matrix": [
+    {
+      "surface": "candidate_inputs",
+      "committed_scanner_surface": "Projection containing serialized_state_hash and observation_hash only.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:1376-1379",
+        "src/post_bridge_admission_executable_001c/core.py:1405-1407"
+      ]
+    },
+    {
+      "surface": "trace_rows",
+      "committed_scanner_surface": "Projection containing episode_id, candidate_input_hash, and forbidden_candidate_inputs_absent.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "read_only_probe": "A copied trace row with future_observation injected is detected by leakage_scan_surface, but canonical 001C does not scan that full mutated row.",
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:1380-1387",
+        "artifacts/post_bridge_admission_executable_001c/trace.jsonl"
+      ]
+    },
+    {
+      "surface": "serialized_state",
+      "committed_scanner_surface": "Snapshot rows containing episode_id and serialized_state.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": "partial",
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "partial_gap_admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:1388-1391",
+        "src/post_bridge_admission_executable_001c/core.py:1405-1407"
+      ]
+    },
+    {
+      "surface": "provenance_rows",
+      "committed_scanner_surface": "Serialized-state provenance rows are scanned, but forbidden_source_scan_result is emitted as clean=true constant.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": "partial",
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:671",
+        "src/post_bridge_admission_executable_001c/core.py:1392"
+      ]
+    },
+    {
+      "surface": "artifact_paths",
+      "committed_scanner_surface": "Constant object with artifact_dir and candidate_visible=false.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:1393"
+      ]
+    },
+    {
+      "surface": "fixture_names_labels_verifier_only_future_posthoc_test_schema",
+      "committed_scanner_surface": "Boolean constant surfaces rather than real candidate-visible input or artifact surfaces.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:1394-1401"
+      ]
+    },
+    {
+      "surface": "metric_provenance_rows",
+      "committed_scanner_surface": "No dedicated leakage scanner.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/core.py:163-177",
+        "artifacts/post_bridge_admission_executable_001c/metric_provenance.jsonl"
+      ]
+    },
+    {
+      "surface": "leakage_metric_provenance",
+      "committed_scanner_surface": "Broad input artifacts are recorded, not actual consumed sanitized surface IDs.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "src/post_bridge_admission_executable_001c/runner.py:576-584"
+      ]
+    },
+    {
+      "surface": "tests",
+      "committed_scanner_surface": "Tests assert positive control, clean control, and clean real scan status.",
+      "positive_control_coupled_to_real_surface": false,
+      "full_real_surface_scanned": false,
+      "injected_forbidden_field_on_real_surface_required": true,
+      "blocker_status": "admitted",
+      "evidence_refs": [
+        "tests/test_post_bridge_admission_executable_001c.py:288-301"
+      ]
+    }
+  ],
+  "overall_result": "redteam_leakage_scanner_not_fail_able_blocker_admitted"
+}
