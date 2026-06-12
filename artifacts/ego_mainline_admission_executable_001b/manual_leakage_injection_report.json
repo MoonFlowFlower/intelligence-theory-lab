@@ -1,0 +1,34 @@
+{
+  "independent_manual_leakage_injection_tests_passed": true,
+  "manual_cases": [
+    {
+      "case_id": "manual_candidate_input_forbidden_metric_name_value",
+      "code_path_hash": "1f3b32f77c06750b93a107920b6461d5cda0e24c863887b56ba3b268e7d457d7",
+      "detected": true,
+      "expected_detected": true,
+      "passed": true,
+      "scanner_function": "ego_mainline_admission_executable_001b.core.leakage_scan_surface",
+      "surface_name": "candidate_inputs"
+    },
+    {
+      "case_id": "manual_metric_surface_safe_metric_name",
+      "code_path_hash": "1f3b32f77c06750b93a107920b6461d5cda0e24c863887b56ba3b268e7d457d7",
+      "detected": false,
+      "expected_detected": false,
+      "passed": true,
+      "scanner_function": "ego_mainline_admission_executable_001b.core.leakage_scan_surface",
+      "surface_name": "metric_provenance_rows"
+    },
+    {
+      "case_id": "manual_metric_surface_forbidden_metric_name_value",
+      "code_path_hash": "1f3b32f77c06750b93a107920b6461d5cda0e24c863887b56ba3b268e7d457d7",
+      "detected": true,
+      "expected_detected": true,
+      "passed": true,
+      "scanner_function": "ego_mainline_admission_executable_001b.core.leakage_scan_surface",
+      "surface_name": "metric_provenance_rows"
+    }
+  ],
+  "production_injector_only": false,
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B"
+}
