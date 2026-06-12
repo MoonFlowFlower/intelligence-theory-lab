@@ -1,0 +1,164 @@
+{
+  "ablation_audit_result": {
+    "ablation_outputs_recomputed": true,
+    "ablation_sensitivity_verified": true,
+    "required_ablations_rerun": true
+  },
+  "artifact_dir": "artifacts/ego_mainline_admission_executable_001b_independent_audit_001c",
+  "authorization_flags": {
+    "bridge_runtime_authorized": false,
+    "companion_behavior_authorized": false,
+    "ego_mainline_runtime_authorized": false,
+    "ego_repository_modification_authorized": false,
+    "emotion_authorized": false,
+    "llm_rag_authorized": false,
+    "long_term_human_user_memory_authorized": false,
+    "persistent_profile_authorized": false,
+    "personalization_product_demo_authorized": false,
+    "relationship_authorized": false,
+    "romance_attachment_authorized": false,
+    "runtime_or_product_work_authorized": false,
+    "user_model_authorized": false
+  },
+  "baseline_audit_result": {
+    "baseline_functions_invoked": true,
+    "baseline_independence_verified": false,
+    "baseline_outputs_exist_before_aggregation": true,
+    "illegal_verifier_label_consumption_detected": true
+  },
+  "bounded_pass": false,
+  "claim_ceiling": "bounded independent audit evidence for EGO-MAINLINE-ADMISSION-EXECUTABLE-001B under synthetic / controlled conditions only",
+  "contract_coverage_result": {
+    "all_contract_requirements_accounted_for": true,
+    "contract_coverage_complete": false
+  },
+  "failure_path_audit_result": {
+    "failure_path_tests_verified": false,
+    "missing_failure_controls": [
+      "baseline_non_invocation",
+      "missing_same_surface_positive_control"
+    ],
+    "observed_failure_controls": [
+      "001b_positive_evidence_leak",
+      "001c_positive_evidence_leak",
+      "001d_caveat_missing",
+      "ablation_not_rerun",
+      "ablation_output_copied",
+      "claim_inflation",
+      "ego_repository_modification",
+      "hash_only_replay_for_behavior_claim",
+      "literal_metric_detected",
+      "manual_injection_test_missing",
+      "metadata_whitelist_not_surface_scoped",
+      "scanner_not_fail_able",
+      "scope_leak",
+      "static_baseline_dictionary_detected",
+      "unused_frozen_input"
+    ],
+    "reported_failure_path_tests_passed": true,
+    "required_failure_controls": [
+      "001B_positive_evidence_leak",
+      "001C_positive_evidence_leak",
+      "001D_caveat_missing",
+      "Ego_repo_modification",
+      "ablation_not_rerun",
+      "baseline_non_invocation",
+      "claim_inflation",
+      "copied_ablation_output",
+      "global_metadata_whitelist",
+      "hash_only_replay_for_behavior_claim",
+      "literal_metric",
+      "missing_same_surface_positive_control",
+      "scanner_not_fail_able",
+      "scope_leak",
+      "static_baseline_dictionary",
+      "unused_frozen_input"
+    ],
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C",
+    "tests_only_assert_pass": false
+  },
+  "frozen_input_consumption_audit_result": {
+    "families_checked": [
+      "ablation_definition_ids",
+      "counterfactual_pair_ids",
+      "cross_agent_swap_pair_ids",
+      "duplicate_identity_token_contrast_ids",
+      "heldout_context_ids",
+      "seed_ids",
+      "train_context_ids"
+    ],
+    "frozen_inputs_consumed": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C",
+    "unused_frozen_inputs": []
+  },
+  "layer": "bounded independent audit / red-team audit of EGO-MAINLINE-ADMISSION-EXECUTABLE-001B only",
+  "leakage_audit_result": {
+    "leakage_real_surfaces_scanned": true,
+    "same_surface_positive_controls_detected": true,
+    "scanner_failability_verified": true
+  },
+  "manual_injection_audit_result": {
+    "manual_case_count": 3,
+    "manual_injection_independence_verified": true,
+    "production_injector_only": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C"
+  },
+  "metadata_whitelist_audit_result": {
+    "global_reserved_metadata_key_privilege": false,
+    "metadata_whitelist_surface_scoped": true
+  },
+  "metric_provenance_audit_result": {
+    "all_verdict_metrics_have_callable_provenance": true,
+    "literal_metric_detected": false,
+    "metric_count": 59
+  },
+  "negative_evidence_preservation_result": {
+    "001b_invalidation_preserved": true,
+    "001c_suspension_preserved": true,
+    "001d_caveat_preserved": true,
+    "negative_evidence_rewrite_detected": false,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C"
+  },
+  "parent_anchors_verified": true,
+  "parent_task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B",
+  "replay_audit_result": {
+    "behavior_causal_replay_verified": true,
+    "candidate_action_recomputed": true,
+    "hash_only_replay_not_used_for_behavior_claim": true,
+    "mismatches": [],
+    "observation_loaded_from_artifact": true,
+    "recomputed_action_matches_recorded_action": true,
+    "serialized_state_causal_consumption_verified": true,
+    "serialized_state_loaded_from_artifact": true,
+    "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C"
+  },
+  "scope_claim_ceiling_result": {
+    "claim_ceiling_preserved": true,
+    "no_Ego_repo_modification": true,
+    "no_runtime_or_product_work": true,
+    "no_scope_leak": true
+  },
+  "stop_conditions_triggered": [
+    "baseline_illegal_verifier_label_consumption",
+    "failure_path_test_missing"
+  ],
+  "task_id": "EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C",
+  "verdict": "ego_mainline_admission_executable_001b_independent_audit_001c_block_baseline_gap",
+  "what_this_does_not_prove": [
+    "EGO readiness",
+    "bridge readiness",
+    "EGO-mainline admission readiness",
+    "runtime admissibility",
+    "mechanism validity",
+    "theory validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "real emotion",
+    "real relationship learning",
+    "companion readiness",
+    "stable user benefit",
+    "production readiness",
+    "correctness of any future EGO runtime"
+  ]
+}
