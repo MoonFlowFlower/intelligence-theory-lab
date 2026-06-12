@@ -1,0 +1,24 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "replay_requirements",
+  "required_replay_contract": {
+    "input_state": "serialized_state artifact",
+    "input_observation": "observation artifact",
+    "required_function": "recompute candidate behavior from serialized_state plus observation",
+    "required_outputs": [
+      "recomputed_action_or_behavior",
+      "original_action_or_behavior",
+      "comparison_result",
+      "mismatch_reason_if_any",
+      "code_path_hash"
+    ]
+  },
+  "forbidden_replay_substitutes": [
+    "hash_only_replay",
+    "action_only_replay",
+    "verdict_only_replay",
+    "trace_only_replay",
+    "report_text_replay"
+  ],
+  "pass_condition": "replay recomputation must be callable and behavior-level; hash or verdict match alone blocks"
+}

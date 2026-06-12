@@ -1,0 +1,21 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "leakage_requirements",
+  "required_scanners": [
+    "partner_id_leakage",
+    "target_label_leakage",
+    "oracle_outcome_leakage",
+    "direct_answer_table_leakage",
+    "fixture_name_task_id_leakage",
+    "train_heldout_contamination",
+    "counterfactual_pair_leakage"
+  ],
+  "scanner_contract": {
+    "positive_control_required": true,
+    "clean_control_required": true,
+    "same_callable_path_for_positive_and_clean_controls": true,
+    "non_fail_able_clean_outputs_allowed": false,
+    "literal_empty_scan_allowed": false
+  },
+  "pass_condition": "every scanner must detect its positive control and produce a fail-able clean-control result"
+}

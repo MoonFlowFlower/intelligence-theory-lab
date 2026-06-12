@@ -1,0 +1,43 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "future_test_requirements",
+  "required_tests": [
+    {
+      "test_id": "reject_gate4_001b_pass_evidence",
+      "must_fail_if": "Gate4 001B is used as pass evidence"
+    },
+    {
+      "test_id": "reject_provisional_001c_use",
+      "must_fail_if": "provisional Gate4 001C is read, restored, copied, imported, or used"
+    },
+    {
+      "test_id": "reject_literal_metric_or_verdict",
+      "must_fail_if": "a metric or verdict is produced from a literal, constant, or static dictionary"
+    },
+    {
+      "test_id": "require_baseline_invocation",
+      "must_fail_if": "a baseline is declared but not invoked"
+    },
+    {
+      "test_id": "require_episode_rerun_ablation",
+      "must_fail_if": "an ablation changes labels without rerunning episodes"
+    },
+    {
+      "test_id": "require_behavior_replay_recompute",
+      "must_fail_if": "replay does not recompute behavior from serialized state plus observation"
+    },
+    {
+      "test_id": "require_leakage_positive_controls",
+      "must_fail_if": "leakage positive controls are not detected"
+    },
+    {
+      "test_id": "require_used_frozen_inputs",
+      "must_fail_if": "frozen seeds, train/heldout contexts, or counterfactual pairs are declared but unused"
+    },
+    {
+      "test_id": "reject_downstream_authorization",
+      "must_fail_if": "any downstream authorization field becomes true"
+    }
+  ],
+  "forbidden_test_pattern": "tests that only assert final pass"
+}

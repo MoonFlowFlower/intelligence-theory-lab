@@ -1,0 +1,42 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "baseline_requirements",
+  "baselines": [
+    {
+      "baseline_id": "identity_partner_id_lookup",
+      "purpose": "detect partner-id shortcut explanations",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    },
+    {
+      "baseline_id": "preference_table",
+      "purpose": "detect static preference-table equivalence",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    },
+    {
+      "baseline_id": "order_1_history",
+      "purpose": "detect one-step history explanation",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    },
+    {
+      "baseline_id": "order_2_history",
+      "purpose": "detect short-window sequence explanation",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    },
+    {
+      "baseline_id": "retrieval_imitation",
+      "purpose": "detect nearest-neighbor or trace imitation equivalence",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    },
+    {
+      "baseline_id": "frozen_policy",
+      "purpose": "test whether updates are necessary for observed behavior",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    },
+    {
+      "baseline_id": "oracle_label_or_label_leakage_control",
+      "purpose": "detect target label or oracle outcome leakage where applicable",
+      "required_record": "implementation path, invocation record, input artifacts, output artifact, aggregation rule, code path hash"
+    }
+  ],
+  "pass_condition": "candidate must be non-equivalent to simpler callable baselines under predeclared metrics; baseline invocation omission blocks"
+}

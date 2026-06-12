@@ -1,0 +1,30 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "computed_evidence_contract",
+  "future_gate4_001c_required_fields": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed_context_episode_ids",
+    "aggregation_rule",
+    "source_code_path_hash",
+    "baseline_implementation_path",
+    "ablation_intervention_path",
+    "replay_recomputation_path",
+    "leakage_scanner_path",
+    "leakage_positive_control_result"
+  ],
+  "future_gate4_001c_forbidden_patterns": [
+    "constants_as_metrics",
+    "static_dictionaries_as_verdict_sources",
+    "unconditional_clean_reports",
+    "tests_that_only_assert_final_pass",
+    "non_fail_able_scanner_outputs",
+    "unused_frozen_seeds",
+    "unused_train_heldout_contexts",
+    "unused_counterfactual_pairs",
+    "claiming_pass_from_artifact_shape_alone"
+  ],
+  "minimum_future_verdict_rule": "Every verdict must aggregate callable candidate, baseline, ablation, replay, leakage, and provenance results; missing invocation blocks rather than passes.",
+  "future_execution_authorized_by_this_task": false
+}

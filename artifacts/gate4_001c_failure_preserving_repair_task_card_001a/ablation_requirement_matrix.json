@@ -1,0 +1,37 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "ablation_requirements",
+  "ablations": [
+    {
+      "ablation_id": "remove_social_latent_state",
+      "required_intervention": "disable or remove social latent state update/read path",
+      "forbidden_substitute": "renaming or relabeling the report field without rerunning episodes"
+    },
+    {
+      "ablation_id": "remove_partner_specific_history",
+      "required_intervention": "remove partner-specific historical state from candidate computation",
+      "forbidden_substitute": "masking display fields only"
+    },
+    {
+      "ablation_id": "shuffle_partner_context_mapping",
+      "required_intervention": "rerun episodes with partner/context associations shuffled",
+      "forbidden_substitute": "post-hoc label shuffle without candidate recomputation"
+    },
+    {
+      "ablation_id": "freeze_update_path",
+      "required_intervention": "disable learning/update writes during episode rerun",
+      "forbidden_substitute": "reporting a frozen flag without enforcing it in code"
+    },
+    {
+      "ablation_id": "remove_prediction_error_update_signal",
+      "required_intervention": "rerun without prediction-error/update signal contribution",
+      "forbidden_substitute": "zeroing a summary metric only"
+    },
+    {
+      "ablation_id": "remove_memory_write_read_path_if_used",
+      "required_intervention": "rerun with memory write/read path removed if the candidate uses memory",
+      "forbidden_substitute": "leaving cached memory available while changing the label"
+    }
+  ],
+  "pass_condition": "ablation effects must be computed from rerun episode behavior; label-only ablations block"
+}

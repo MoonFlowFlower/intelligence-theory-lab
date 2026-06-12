@@ -1,0 +1,31 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "prohibited_evidence_use",
+  "prohibited_uses": [
+    {
+      "source": "Gate4 001B",
+      "prohibited_use": "pass evidence",
+      "future_check": "test fails if any Gate4 001C result cites Gate4 001B as pass premise"
+    },
+    {
+      "source": "provisional Gate4 001C d7b5b7a33cc68cbe7e3ca0960b99e0082e1ac728",
+      "prohibited_use": "restore, cherry-pick, merge, push, anchor, import, copy, read, or use as canonical evidence",
+      "future_check": "test fails if source paths, commit content, or artifact lineage reference the provisional commit"
+    },
+    {
+      "source": "critical-risk targets 11-12",
+      "prohibited_use": "confirmed false-pass contamination evidence",
+      "future_check": "test fails if targets 11-12 are counted as confirmed contamination rather than blocked_pending_audit"
+    },
+    {
+      "source": "non-fail-able clean fields",
+      "prohibited_use": "unconditional clean report, literal empty dependency result, or static metric",
+      "future_check": "test fails unless scanner output has a callable fail path and positive-control failure"
+    },
+    {
+      "source": "artifact shape alone",
+      "prohibited_use": "claiming pass from expected files, keys, hashes, or report fields",
+      "future_check": "test fails unless scores and verdicts derive from callable computation paths"
+    }
+  ]
+}

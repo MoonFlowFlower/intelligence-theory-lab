@@ -1,0 +1,69 @@
+{
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-TASK-CARD-001A",
+  "matrix_type": "inherited_negative_evidence",
+  "entries": [
+    {
+      "evidence_id": "gate4_001b",
+      "status": "sealed_independently_rejected",
+      "admissibility": "non_admissible_as_positive_evidence",
+      "allowed_future_use": [
+        "rejected_boundary",
+        "negative_evidence_input",
+        "positive_control_false_pass_case"
+      ],
+      "forbidden_future_use": [
+        "pass_evidence",
+        "Gate_validity_evidence",
+        "mechanism_validity_evidence",
+        "architecture_correctness_evidence",
+        "downstream_admission_evidence"
+      ],
+      "required_future_handling": "preserve as negative evidence and verify no report converts it into a pass premise"
+    },
+    {
+      "evidence_id": "evidence_harness_001a_001b",
+      "status": "conservative_blocker_only",
+      "admissibility": "not_positive_admission_discriminator",
+      "allowed_future_use": [
+        "non_admission_filter",
+        "contract_enforcement_challenger",
+        "false_pass_positive_control_source"
+      ],
+      "forbidden_future_use": [
+        "positive_Gate4_admission",
+        "mechanism_validity_proof",
+        "theory_validity_proof"
+      ],
+      "required_future_handling": "future 001C must generate its own computed evidence rather than relying on blocker output"
+    },
+    {
+      "evidence_id": "critical_risk_targets_11_12",
+      "status": "blocked_pending_audit",
+      "admissibility": "not_confirmed_false_pass_contamination",
+      "allowed_future_use": [
+        "label_inflation_caveat",
+        "test_surface_only_signal_warning"
+      ],
+      "forbidden_future_use": [
+        "confirmed_false_pass_contamination_claim",
+        "twelve_independent_false_pass_confirmations_claim"
+      ],
+      "required_future_handling": "inherit caveat exactly and avoid citing targets 11-12 as confirmed contamination"
+    },
+    {
+      "evidence_id": "non_fail_able_clean_fields",
+      "status": "prohibited_pattern",
+      "admissibility": "not_evidence_without_fail_path",
+      "allowed_future_use": [
+        "negative_design_constraint",
+        "test_failure_target"
+      ],
+      "forbidden_future_use": [
+        "unconditional_clean_report",
+        "literal_empty_dependency_scan",
+        "manifest_literal_as_metric"
+      ],
+      "required_future_handling": "replace with callable scanners that include positive controls and can fail"
+    }
+  ]
+}
