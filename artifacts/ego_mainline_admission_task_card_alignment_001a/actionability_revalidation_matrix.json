@@ -1,0 +1,63 @@
+{
+  "actionability_revalidation_required": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "require future actionability revalidation before admission execution",
+    "artifact_name": "actionability_revalidation_matrix.json",
+    "code_path_hash": "5d5bc15d35209295866a3cbf834a8f0378c17f5b8e049d5f08a26cc39b9c3223",
+    "input_artifacts": [
+      "parent_evidence_boundary_manifest.json",
+      "evidence_usage_contract.json"
+    ],
+    "output_artifact_hash": "2de34a4074454ed22f05abd5b776186a085cfde42850643eff040a89503d3654",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_actionability_revalidation_matrix",
+    "run_id": "ego_mainline_admission_task_card_alignment_001a_5694199bc20e19c8",
+    "validation_rule": "future execution remains blocked until revalidation rows are satisfied"
+  },
+  "revalidation_rows": [
+    {
+      "boundary_id": "admission_coverage_reference",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+    },
+    {
+      "boundary_id": "canonical_coverage_repair",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+    },
+    {
+      "boundary_id": "compression_source_boundary",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+    },
+    {
+      "boundary_id": "prior_readiness_audit",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+    },
+    {
+      "boundary_id": "post_bridge_admission_executable_001d",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "confirm this parent still supports only the allowed-use row and no forbidden-use row"
+    },
+    {
+      "boundary_id": "computed_evidence_gate",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "future executable must derive verdicts from callable computation paths"
+    },
+    {
+      "boundary_id": "negative_evidence_handling",
+      "required": true,
+      "revalidation_required_before": "future admission execution",
+      "revalidation_rule": "001B and 001C remain non-positive; 001D remains caveated"
+    }
+  ],
+  "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A",
+  "validation_rule": "all parent and guard rows require actionability revalidation before future execution"
+}
