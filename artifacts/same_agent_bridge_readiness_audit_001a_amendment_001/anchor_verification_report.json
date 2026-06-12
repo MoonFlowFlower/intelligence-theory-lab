@@ -1,0 +1,59 @@
+{
+  "task_id": "SAME-AGENT-BRIDGE-READINESS-AUDIT-001A-AMENDMENT-001",
+  "claim_ceiling": "bounded same-agent bridge readiness audit amendment evidence only",
+  "verification_method": "git rev-parse and git ls-remote origin refs/tags/<tag>",
+  "pre_commit_anchor_verification_passed": true,
+  "post_commit_remote_anchor_publication_required": true,
+  "verified_inputs": [
+    {
+      "name": "GATE1-REPLAY-CONSOLIDATION-LINEAGE-CLOSEOUT-001",
+      "anchor": "307da77",
+      "intended_full_hash": "307da776b20de615d73b54b4e28f3f97da98a816",
+      "remote_ref": "refs/tags/gate1-lineage-closeout-001",
+      "remote_hash": "307da776b20de615d73b54b4e28f3f97da98a816",
+      "match": true
+    },
+    {
+      "name": "SAME-AGENT-BRIDGE-READINESS-AUDIT-001A",
+      "anchor": "b1cafc2",
+      "intended_full_hash": "b1cafc20b5a03d41bbcc908152738d43ff1b14d2",
+      "remote_ref_required_after_commit": "refs/tags/remote-anchor-001d-b1cafc2",
+      "match": "pending_post_commit_publication"
+    },
+    {
+      "name": "Gate4 social representational-gap executable preflight",
+      "anchor": "a083db2",
+      "intended_full_hash": "a083db23a437f0c72538b49115c6d76d32d78b2d",
+      "remote_ref": "refs/tags/remote-anchor-001b-a083db2",
+      "remote_hash": "a083db23a437f0c72538b49115c6d76d32d78b2d",
+      "match": true
+    },
+    {
+      "name": "Gate4 social-latent inference task card",
+      "anchor": "eec2bb1",
+      "intended_full_hash": "eec2bb1a297a3ad6439005343415768befaf54a7",
+      "remote_ref": "refs/tags/remote-anchor-001b-eec2bb1",
+      "remote_hash": "eec2bb1a297a3ad6439005343415768befaf54a7",
+      "match": true
+    },
+    {
+      "name": "Gate4 social-latent inference executable preflight",
+      "anchor": "a57fa2e",
+      "intended_full_hash": "a57fa2e68549f75bc821690f6cf04338d81e2197",
+      "remote_ref": "refs/tags/remote-anchor-001c-a57fa2e",
+      "remote_hash": "a57fa2e68549f75bc821690f6cf04338d81e2197",
+      "match": true
+    }
+  ],
+  "post_commit_required_tags": [
+    "remote-anchor-001d-b1cafc2",
+    "remote-anchor-001d-<amendment-short-hash>"
+  ],
+  "does_not_prove": [
+    "bridge readiness",
+    "EGO readiness",
+    "companion readiness",
+    "mechanism validity",
+    "theory validity"
+  ]
+}
