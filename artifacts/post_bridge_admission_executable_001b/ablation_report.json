@@ -1,0 +1,166 @@
+{
+  "ablation_gate_passed": true,
+  "ablations": [
+    {
+      "ablation_name": "reset all memory",
+      "candidate_score": 1.0,
+      "failure_surface": "memory_carryover_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.32,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "corrupt serialized state",
+      "candidate_score": 1.0,
+      "failure_surface": "serialization_integrity",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.18,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "replace serialized state",
+      "candidate_score": 1.0,
+      "failure_surface": "state_replacement_delta",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.22,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove replay carryover",
+      "candidate_score": 1.0,
+      "failure_surface": "replay_carryover_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.43,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove self-boundary carryover",
+      "candidate_score": 1.0,
+      "failure_surface": "self_boundary_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.5,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove viability carryover",
+      "candidate_score": 1.0,
+      "failure_surface": "viability_carryover_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.48,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove social-latent carryover",
+      "candidate_score": 1.0,
+      "failure_surface": "social_latent_carryover_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.46,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove identity_continuity_state",
+      "candidate_score": 1.0,
+      "failure_surface": "identity_continuity_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.27,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove memory_carryover_state",
+      "candidate_score": 1.0,
+      "failure_surface": "memory_carryover_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.3,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "time-shift state",
+      "candidate_score": 1.0,
+      "failure_surface": "state_lineage_time",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.38,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "cross-agent state swap",
+      "candidate_score": 1.0,
+      "failure_surface": "self_boundary_and_identity_continuity",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.24,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "duplicate identity-token contrast",
+      "candidate_score": 1.0,
+      "failure_surface": "identity_token_control",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.34,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "freeze post-bridge learning",
+      "candidate_score": 1.0,
+      "failure_surface": "post_bridge_learning_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.42,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "remove post-bridge observation update",
+      "candidate_score": 1.0,
+      "failure_surface": "post_bridge_observation_update",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.4,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "disable action",
+      "candidate_score": 1.0,
+      "failure_surface": "action_path",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.12,
+      "sensitive": true
+    },
+    {
+      "ablation_name": "invert bridge mapping",
+      "candidate_score": 1.0,
+      "failure_surface": "bridge_mapping_state",
+      "later_behavior_degraded": true,
+      "post_bridge_admission_score": 0.2,
+      "sensitive": true
+    }
+  ],
+  "candidate_score": 1.0,
+  "claim_ceiling": "bounded post-bridge admission evidence under the frozen contract only",
+  "contrast_results": {
+    "cross_agent_state_swap": {
+      "action_delta": 1.0,
+      "sensitive": true
+    },
+    "different_identity_equivalent_state": {
+      "action_delta": 0.0,
+      "control_passed": true
+    },
+    "duplicate_identity_token_contrast": {
+      "action_delta": 0.0,
+      "control_passed": true
+    },
+    "equivalent_memory_without_original_token": {
+      "action_delta": 0.0,
+      "control_passed": true
+    },
+    "same_identity_different_state": {
+      "action_delta": 1.0,
+      "sensitive": true
+    },
+    "same_memory_key_corrupted_memory": {
+      "action_delta": 1.0,
+      "sensitive": true
+    },
+    "state_replacement_with_wrong_episode": {
+      "action_delta": 1.0,
+      "sensitive": true
+    }
+  },
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B"
+}

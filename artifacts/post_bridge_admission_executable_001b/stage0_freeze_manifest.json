@@ -1,0 +1,248 @@
+{
+  "artifact_schema": [
+    "stage0_freeze_manifest.json",
+    "execution_manifest.json",
+    "execution_manifest.sha256",
+    "run_ledger.jsonl",
+    "distribution_manifest.json",
+    "serialized_state_provenance.jsonl",
+    "trace.jsonl",
+    "state_replay_report.json",
+    "serialized_state_replay_report.json",
+    "provenance_replay_report.json",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "leakage_report.json",
+    "mutation_check_report.json",
+    "protected_artifact_inventory_before.json",
+    "protected_artifact_hashes_before.json",
+    "protected_artifact_hashes_after.json",
+    "tracked_old_artifact_mutation_report.json",
+    "result.json",
+    "claim_ceiling.txt"
+  ],
+  "authorization_flags": {
+    "bridge_runtime_authorized": false,
+    "companion_behavior_authorized": false,
+    "ego_mainline_authorized": false,
+    "emotion_authorized": false,
+    "llm_rag_authorized": false,
+    "long_term_human_user_memory_authorized": false,
+    "persistent_personal_profile_authorized": false,
+    "personalization_product_demo_authorized": false,
+    "relationship_authorized": false,
+    "romance_attachment_authorized": false,
+    "user_model_authorized": false
+  },
+  "claim_ceiling": "bounded post-bridge admission evidence under the frozen contract only",
+  "created_utc": "2026-06-12T02:32:32Z",
+  "distribution_manifest_hash": "692011be5865c47240dd23760c4be24f4ba106c944b7583e45a3ab414ef20d47",
+  "executable_run_started_before_stage0": false,
+  "extra_artifacts": [
+    "trace_replay_report.json",
+    "serialized_state_snapshots.jsonl"
+  ],
+  "frozen_contract_items": [
+    "task_card_hash",
+    "thresholds",
+    "metrics",
+    "required_baselines",
+    "required_ablations",
+    "distribution_manifest_hash",
+    "seed_families",
+    "artifact_schema",
+    "stop_conditions",
+    "rollback_policy",
+    "claim_ceiling"
+  ],
+  "metrics": {
+    "counterfactual_state_dependency_metric": "heldout action delta under carried-state replacement",
+    "identity_continuity_metric": "same carried state remains behaviorally equivalent under identity-token substitution",
+    "memory_carryover_metric": "later behavior changes when memory_carryover_state is removed or corrupted",
+    "state_replacement_delta_metric": "candidate action delta under counterfactual serialized state replacement",
+    "token_equivalence_control_metric": "zero action delta under token-only change with equivalent serialized state"
+  },
+  "parent_contract_verification": {
+    "command": "git rev-parse 9e39fee",
+    "expected_hash": "9e39feeae8c6974110832e6902bd28614d2d3b19",
+    "failure": "",
+    "rev_parse_output": "9e39feeae8c6974110832e6902bd28614d2d3b19",
+    "verified": true
+  },
+  "parent_evidence": {
+    "parent_contract": {
+      "commit": "9e39feeae8c6974110832e6902bd28614d2d3b19",
+      "task_id": "POST-BRIDGE-ADMISSION-TASK-CARD-001A",
+      "verdict": "post_bridge_admission_task_card_001a_contract_drafted"
+    },
+    "same_agent_bridge_executable_preflight_001b": {
+      "commit": "59ad222",
+      "full_hash": "59ad22246823da107b9df4beb977fdfa34b7f986",
+      "remote_tag": "remote-anchor-001f-59ad222",
+      "verdict": "same_agent_bridge_001b_bounded_preflight_pass"
+    },
+    "same_agent_bridge_preflight_result_audit_001a": {
+      "commit": "797fced1f1409897d7c02bef5ebfb51a92533a3a",
+      "remote_tag": "remote-anchor-001g-797fced",
+      "verdict": "same_agent_bridge_preflight_result_audit_001a_authorize_next_contract"
+    }
+  },
+  "parent_remote_anchor_verification": {
+    "actual_hashes": {
+      "remote-anchor-001f-59ad222": "59ad22246823da107b9df4beb977fdfa34b7f986",
+      "remote-anchor-001g-797fced": "797fced1f1409897d7c02bef5ebfb51a92533a3a"
+    },
+    "commands": [
+      "git ls-remote origin refs/tags/remote-anchor-001f-59ad222",
+      "git ls-remote origin refs/tags/remote-anchor-001g-797fced"
+    ],
+    "expected_hashes": {
+      "remote-anchor-001f-59ad222": "59ad22246823da107b9df4beb977fdfa34b7f986",
+      "remote-anchor-001g-797fced": "797fced1f1409897d7c02bef5ebfb51a92533a3a"
+    },
+    "failures": {},
+    "raw_outputs": {
+      "remote-anchor-001f-59ad222": "59ad22246823da107b9df4beb977fdfa34b7f986\trefs/tags/remote-anchor-001f-59ad222",
+      "remote-anchor-001g-797fced": "797fced1f1409897d7c02bef5ebfb51a92533a3a\trefs/tags/remote-anchor-001g-797fced"
+    },
+    "verified": true
+  },
+  "required_ablations": [
+    "reset all memory",
+    "corrupt serialized state",
+    "replace serialized state",
+    "remove replay carryover",
+    "remove self-boundary carryover",
+    "remove viability carryover",
+    "remove social-latent carryover",
+    "remove identity_continuity_state",
+    "remove memory_carryover_state",
+    "time-shift state",
+    "cross-agent state swap",
+    "duplicate identity-token contrast",
+    "freeze post-bridge learning",
+    "remove post-bridge observation update",
+    "disable action",
+    "invert bridge mapping"
+  ],
+  "required_baselines": [
+    "snapshot reload",
+    "stitched-output baseline",
+    "state-table lookup",
+    "identity-token lookup",
+    "memory-key lookup",
+    "summary retrieval",
+    "transcript retrieval",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "bounded-order window model order-1",
+    "bounded-order window model order-2",
+    "shuffled-history same-loss control",
+    "behavior imitation",
+    "frozen-state carryover",
+    "oracle control as upper-bound/leakage only",
+    "trace-only replay as hygiene only",
+    "random policy",
+    "fresh-agent no-carryover"
+  ],
+  "required_contrasts": [
+    "same_identity_different_state",
+    "different_identity_equivalent_state",
+    "same_memory_key_corrupted_memory",
+    "equivalent_memory_without_original_token",
+    "state_replacement_with_wrong_episode",
+    "cross_agent_state_swap",
+    "duplicate_identity_token_contrast"
+  ],
+  "required_leakage_checks": [
+    "hidden bridge labels",
+    "identity labels",
+    "memory labels",
+    "split IDs",
+    "fixture names",
+    "artifact paths",
+    "filenames",
+    "future observations",
+    "future partner responses",
+    "later-action labels",
+    "post-hoc metrics",
+    "verifier-only state",
+    "renderer-visible behavior",
+    "test-only schema paths"
+  ],
+  "rollback_policy": {
+    "do_not_create_bridge_runtime": true,
+    "do_not_delete_negative_evidence": true,
+    "do_not_enter_ego_mainline": true,
+    "do_not_patch_thresholds_after_results": true,
+    "do_not_weaken_baselines": true,
+    "minimum_patch": "repair exact blocker in a new bounded task or rerun with a new freeze",
+    "preserve_failure_artifacts": true
+  },
+  "scope_boundary": {
+    "do_not_add_llm_rag": true,
+    "do_not_create_companion_behavior": true,
+    "do_not_create_user_model_relationship_emotion_personalization_demo": true,
+    "do_not_enter_ego_mainline": true,
+    "do_not_implement_bridge_runtime": true
+  },
+  "seed_families": [
+    {
+      "base_seed": 9100,
+      "candidate_visible": false,
+      "family_id": "seed_family_0"
+    },
+    {
+      "base_seed": 9197,
+      "candidate_visible": false,
+      "family_id": "seed_family_1"
+    },
+    {
+      "base_seed": 9294,
+      "candidate_visible": false,
+      "family_id": "seed_family_2"
+    },
+    {
+      "base_seed": 9391,
+      "candidate_visible": false,
+      "family_id": "seed_family_3"
+    }
+  ],
+  "stage0_freeze_before_any_executable_run": true,
+  "stage0_payload_hash": "d54eb43d08e1feac1a9dc57299e23856705cfa262c493d103c93b005af6492f8",
+  "stop_conditions": [
+    "parent_anchor_missing",
+    "remote_anchor_missing_or_hash_mismatch",
+    "scope_leak",
+    "claim_inflation",
+    "baseline_equivalence",
+    "ablation_insensitive",
+    "trace_replay_failure",
+    "state_replay_failure",
+    "serialized_state_provenance_gap",
+    "distribution_too_small_or_deterministic",
+    "hidden_lookup_suspicion",
+    "identity_token_lookup_equivalence",
+    "memory_key_lookup_equivalence",
+    "snapshot_reload_equivalence",
+    "state_table_equivalence",
+    "transcript_or_summary_retrieval_equivalence",
+    "graph_cache_equivalence",
+    "oracle_leakage",
+    "artifact_mutation",
+    "threshold_tuning_after_results"
+  ],
+  "task_card_hash": "f150d3d956c09fd3320867b6d9d840dede054ffb1bd0efa8ee8d75ea8aeebd48",
+  "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B",
+  "thresholds": {
+    "acceptance_threshold": 0.95,
+    "candidate_required_score": 1.0,
+    "fair_baseline_must_be_below": 0.95,
+    "required_ablation_must_be_below": 0.95,
+    "threshold_selection": "frozen_before_first_run"
+  }
+}
