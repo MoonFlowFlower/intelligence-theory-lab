@@ -1,0 +1,54 @@
+{
+  "aggregation_rule": "map failure classifications to bounded repair task classes",
+  "code_path_hash": "03209562ee496768487a44c55deace28710a3100f734b2524b877f8df05d397d",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "compute safe repair task classes",
+    "artifact_name": "required_repair_tasks.json",
+    "code_path_hash": "03209562ee496768487a44c55deace28710a3100f734b2524b877f8df05d397d",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "846f9989edd37c7731890cea792a5a5eb2e71fb094c19464a3168f38aefb7857",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/required_repair_tasks.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_required_repair_tasks",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_required_repair_tasks",
+  "required_repair_tasks": [
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "repair_task_class": "bounded_redundancy_contract_repair_task"
+    },
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "repair_task_class": "bounded_redundancy_contract_repair_task"
+    },
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+      "repair_task_class": "bounded_old_artifact_side_effect_guard_task"
+    },
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+      "repair_task_class": "bounded_old_artifact_side_effect_guard_task"
+    }
+  ],
+  "safe_next_bounded_task_recommendation": "bounded_old_artifact_side_effect_guard_and_redundancy_contract_repair_task",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

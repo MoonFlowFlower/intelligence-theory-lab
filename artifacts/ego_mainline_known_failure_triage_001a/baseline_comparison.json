@@ -1,0 +1,74 @@
+{
+  "aggregation_rule": "compare candidate against four independent callable baselines",
+  "baseline_results": {
+    "claim_ceiling_baseline": {
+      "blocks_downstream_authorization": true,
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "non_proven_count": 15,
+      "producer_function": "claim_ceiling_baseline"
+    },
+    "naive_targeted_tests_green_baseline": {
+      "producer_function": "naive_targeted_tests_green_baseline",
+      "recommended_route": "Gate4_task_card_drafting",
+      "targeted_green": true,
+      "unsafe_tendency": true
+    },
+    "naive_unrelated_old_failure_baseline": {
+      "failed_count": 4,
+      "producer_function": "naive_unrelated_old_failure_baseline",
+      "recommended_route": "advance_with_record_only",
+      "treats_failures_as_unrelated": true,
+      "unsafe_tendency": true
+    },
+    "strict_full_suite_failure_baseline": {
+      "blocks_downstream_advancement": true,
+      "failed_count": 4,
+      "producer_function": "strict_full_suite_failure_baseline",
+      "recommended_route": "no_go_until_full_suite_clean"
+    }
+  },
+  "baselines_invoked": [
+    "naive_targeted_tests_green_baseline",
+    "naive_unrelated_old_failure_baseline",
+    "strict_full_suite_failure_baseline",
+    "claim_ceiling_baseline"
+  ],
+  "candidate_exceeds_claim_ceiling_baseline": false,
+  "candidate_looser_than_strict_full_suite_only_for_triage": true,
+  "candidate_stricter_than_targeted_green_baseline": true,
+  "candidate_stricter_than_unrelated_old_failure_baseline": true,
+  "code_path_hash": "57684e7d10db3361e2b8bf92eb051e39ad9747a0ef67fd79762aac5350e7be17",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "compare with independent baselines",
+    "artifact_name": "baseline_comparison.json",
+    "code_path_hash": "57684e7d10db3361e2b8bf92eb051e39ad9747a0ef67fd79762aac5350e7be17",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "e073a32b66865d822de90ddc86c360af3a1b8959c5aa2bc4c63206dbaa09545d",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/baseline_comparison.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_baseline_comparison",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "targeted_green_baseline_overroutes",
+    "old_failure_baseline_underclassifies",
+    "strict_full_suite_blocks_candidate_only_classifies",
+    "claim_ceiling_preserved"
+  ],
+  "producer_function": "build_baseline_comparison",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

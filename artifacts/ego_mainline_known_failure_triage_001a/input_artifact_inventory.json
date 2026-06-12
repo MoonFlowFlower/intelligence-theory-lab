@@ -1,0 +1,78 @@
+{
+  "aggregation_rule": "hash prior dependency-closure artifacts, relevant tests, and side-effect target",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "hash relevant prior artifacts and tests",
+    "artifact_name": "input_artifact_inventory.json",
+    "code_path_hash": "237fa47c7033e7d4c069e000d4e4b87b8142cc135a53a1c3238e7b3941e8359f",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "9e636eb386d40d46e842aee573812e3620f6d121e20fd93236c2f7184fd3640d",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/input_artifact_inventory.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_input_artifact_inventory",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "inventory_digest": "b0a0bd0aa996702c1d0b8ab543db0ac191a3071c76757be70d13104b0fdea210",
+  "inventory_rows": [
+    {
+      "exists": true,
+      "path": "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "sha256": "cc742f7a704524c615a68fb32eae937fb7e1693c70bdf137467d8639ada6bef3"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "sha256": "fbecd2de2a80bc8a4c2770f6a55e5b44f201b2307741ee9bdcde131b65716aaf"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "sha256": "12c67f1d01c14d6f68a45711df1a121ae6518faf1c3285e550c7a32348d36822"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "sha256": "22dae43d6c01e500727f79526ebe4ebe2728aa47681d0ccb550e775189c2274d"
+    },
+    {
+      "exists": true,
+      "path": "tests/test_ego_mainline_post_admission_routing_001a.py",
+      "sha256": "f8f1b059f74f261afc7c5a96aa12aabc2a86d9da7f5a5a4db26cdd40caf54c27"
+    },
+    {
+      "exists": true,
+      "path": "tests/test_ego_mainline_evidence_dependency_closure_001a.py",
+      "sha256": "370b0238d329e9455d37ce76667cdc35dcd5be6d89287fd5690d11af794f1f45"
+    },
+    {
+      "exists": true,
+      "path": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py",
+      "sha256": "543b02ad61495452d580b7d1644ad4e12e3e1df7602a1adeabc83acb984bc2df"
+    },
+    {
+      "exists": true,
+      "path": "tests/test_ego_mainline_admission_task_card_alignment_001a.py",
+      "sha256": "350a2772160980f1e9c46fc6baf5a54d47e95dc48ae21cb03bf8bb038c5e6e63"
+    },
+    {
+      "exists": true,
+      "path": "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json",
+      "sha256": "fd1be3d372db4dedf7a48d63b3dfe546f7b7f94d68c13495ad8160cb02d87807"
+    }
+  ],
+  "producer_function": "build_input_artifact_inventory",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

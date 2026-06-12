@@ -1,0 +1,312 @@
+{
+  "ablation_summary": {
+    "all_ablations_reran_candidate": true,
+    "all_required_degradations_observed": true,
+    "no_ablation_authorized_forbidden_downstream": true
+  },
+  "aggregation_rule": "aggregate triage, baseline, ablation, leakage, replay, and non-authorization gates",
+  "baseline_summary": {
+    "candidate_looser_than_strict_full_suite_only_for_triage": true,
+    "candidate_stricter_than_targeted_green_baseline": true,
+    "candidate_stricter_than_unrelated_old_failure_baseline": true
+  },
+  "blocker_severity_matrix": {
+    "blocker_counts_by_severity": {
+      "blocks_Gate4_execution_only": 0,
+      "blocks_Gate4_task_card_drafting": 2,
+      "blocks_all_downstream": 0,
+      "blocks_readiness_claim_only": 0,
+      "non_blocking_but_must_record": 0,
+      "repo_hygiene_blocker": 2,
+      "unknown_blocker": 0
+    },
+    "blocker_severity_rows": {
+      "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": {
+        "failure_categories": [
+          "reproducible_current_failure",
+          "redundancy_contract_failure",
+          "sealed_artifact_consistency_failure",
+          "temp_run_or_ephemeral_artifact_failure"
+        ],
+        "producer_function": "compute_blocker_severity",
+        "severity": "blocks_Gate4_task_card_drafting"
+      },
+      "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": {
+        "failure_categories": [
+          "reproducible_current_failure",
+          "redundancy_contract_failure",
+          "sealed_artifact_consistency_failure",
+          "temp_run_or_ephemeral_artifact_failure"
+        ],
+        "producer_function": "compute_blocker_severity",
+        "severity": "blocks_Gate4_task_card_drafting"
+      },
+      "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": {
+        "failure_categories": [
+          "old_artifact_mutation_failure",
+          "order_dependent_failure",
+          "repo_hygiene_blocker"
+        ],
+        "producer_function": "compute_blocker_severity",
+        "severity": "repo_hygiene_blocker"
+      },
+      "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": {
+        "failure_categories": [
+          "old_artifact_mutation_failure",
+          "order_dependent_failure",
+          "repo_hygiene_blocker"
+        ],
+        "producer_function": "compute_blocker_severity",
+        "severity": "repo_hygiene_blocker"
+      }
+    },
+    "highest_blocker_severity": "blocks_Gate4_task_card_drafting",
+    "producer_function": "compute_blocker_severity"
+  },
+  "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+  "code_path_hash": "03a5fc2b15cf505cfe443c8ac5804a767827e753388a2b6e6ad492ea27c5c461",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "aggregate final triage gates",
+    "artifact_name": "result.json",
+    "code_path_hash": "03a5fc2b15cf505cfe443c8ac5804a767827e753388a2b6e6ad492ea27c5c461",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "8a4f3982efd2a335611e6c192e3398480f3a99068bf099be41b128bcc5c0406c",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/result.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_result",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "all_required_anchors_verified",
+    "full_pytest_observed_with_exact_failed_node_ids",
+    "exact_failed_node_ids_captured",
+    "isolated_reruns_recorded_for_each_failed_node",
+    "traceback_summaries_captured",
+    "old_artifact_side_effect_recorded_and_restored",
+    "targeted_routing_and_dependency_tests_green_after_restore",
+    "prior_dependency_closure_classification_present",
+    "prior_route_permission_matrix_present",
+    "claim_ceiling_and_non_proven_list_preserved"
+  ],
+  "downstream_route_impact_matrix": {
+    "EGO_runtime_implementation": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    },
+    "Gate4_execution": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    },
+    "Gate4_task_card_drafting": {
+      "reason_codes": [
+        "reproducible_redundancy_contract_failures_remain"
+      ],
+      "status": "blocked_current"
+    },
+    "bridge_runtime": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    },
+    "producer_function": "compute_downstream_route_impact",
+    "product_or_companion_behavior": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    }
+  },
+  "exact_failed_node_ids": [
+    "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+    "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+    "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+    "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+  ],
+  "explicit_non_authorization_statement": "No test repair, old artifact patching, Gate4, runtime, bridge runtime, implementation, mechanism validity, theory validity, architecture correctness, agency, selfhood, consciousness, emotion, relationship learning, or stable user benefit is authorized.",
+  "failure_cause_classification": {
+    "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": {
+      "failure_categories": [
+        "reproducible_current_failure",
+        "redundancy_contract_failure",
+        "sealed_artifact_consistency_failure",
+        "temp_run_or_ephemeral_artifact_failure"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    },
+    "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": {
+      "failure_categories": [
+        "reproducible_current_failure",
+        "redundancy_contract_failure",
+        "sealed_artifact_consistency_failure",
+        "temp_run_or_ephemeral_artifact_failure"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    },
+    "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": {
+      "failure_categories": [
+        "old_artifact_mutation_failure",
+        "order_dependent_failure",
+        "repo_hygiene_blocker"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    },
+    "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": {
+      "failure_categories": [
+        "old_artifact_mutation_failure",
+        "order_dependent_failure",
+        "repo_hygiene_blocker"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    }
+  },
+  "failure_discrepancy_explanation": {
+    "current_full_pytest_failed_count": 4,
+    "current_persistent_blocker_count_after_side_effect_restore": 2,
+    "current_side_effect_sensitive_failure_count": 2,
+    "discrepancy_explained": true,
+    "explanation": "Current full pytest reported four failures: two reproducible redundancy/temp-run blockers and two clean-state candidate tests that fail when old-artifact side effects contaminate repository status. After restoring the old artifact side effect, targeted routing and dependency-closure suites pass, leaving two persistent blockers.",
+    "prior_full_pytest_failed_count": 3,
+    "prior_known_failure_probe_failed_count": 2,
+    "prior_known_failure_probe_passed_count": 1,
+    "producer_function": "explain_failure_discrepancy"
+  },
+  "failure_reproducibility_matrix": {
+    "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": {
+      "clean_targeted_suite_after_restore": null,
+      "isolated_rerun_exit_code": 1,
+      "producer_function": "classify_failure_reproducibility",
+      "reproducibility_category": "reproducible_current_failure"
+    },
+    "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": {
+      "clean_targeted_suite_after_restore": null,
+      "isolated_rerun_exit_code": 1,
+      "producer_function": "classify_failure_reproducibility",
+      "reproducibility_category": "reproducible_current_failure"
+    },
+    "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": {
+      "clean_targeted_suite_after_restore": "passed",
+      "isolated_rerun_exit_code": 1,
+      "producer_function": "classify_failure_reproducibility",
+      "reproducibility_category": "old_artifact_mutation_failure"
+    },
+    "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": {
+      "clean_targeted_suite_after_restore": "passed",
+      "isolated_rerun_exit_code": 1,
+      "producer_function": "classify_failure_reproducibility",
+      "reproducibility_category": "old_artifact_mutation_failure"
+    }
+  },
+  "layer": "evidence-governance / known-failure triage only",
+  "leakage_summary": {
+    "generated_artifact_unauthorized_positive_hits": [],
+    "positive_control_detected": true
+  },
+  "non_authorization_flags": {
+    "agency_authorized": false,
+    "architecture_correctness_authorized": false,
+    "bridge_runtime_authorized": false,
+    "consciousness_authorized": false,
+    "emotion_authorized": false,
+    "gate4_execution_authorized": false,
+    "implementation_authorized": false,
+    "mechanism_validity_authorized": false,
+    "relationship_learning_authorized": false,
+    "runtime_authorized": false,
+    "selfhood_authorized": false,
+    "stable_user_benefit_authorized": false,
+    "theory_validity_authorized": false
+  },
+  "old_artifact_side_effect_matrix": {
+    "final_tracked_state_clean_after_restore": true,
+    "old_artifact_side_effect_detected": true,
+    "old_artifact_side_effect_restored": true,
+    "side_effect_rows": [
+      {
+        "committed_blob_prefix_before_restore": "ebaf45f",
+        "mutated_blob_prefix_before_restore": "4c5dc17",
+        "mutation_class": "old_artifact_mutation_failure",
+        "observed_diff_summary": "status_rows changed from historical untracked theory paths to empty rows",
+        "path": "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json"
+      }
+    ]
+  },
+  "producer_function": "build_result",
+  "recommended_next_bounded_task": "bounded_old_artifact_side_effect_guard_and_redundancy_contract_repair_task",
+  "replay_summary": {
+    "recomputed_from_serialized_state_and_observation": true,
+    "replay_matches_original_decision": true
+  },
+  "required_repair_tasks": [
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "repair_task_class": "bounded_redundancy_contract_repair_task"
+    },
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "repair_task_class": "bounded_redundancy_contract_repair_task"
+    },
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+      "repair_task_class": "bounded_old_artifact_side_effect_guard_task"
+    },
+    {
+      "claim_ceiling": "bounded known-failure triage evidence at governance layer only",
+      "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+      "repair_task_class": "bounded_old_artifact_side_effect_guard_task"
+    }
+  ],
+  "rollback_plan": [
+    "do not repair tests",
+    "do not patch old artifacts",
+    "do not weaken claim ceiling",
+    "do not convert blocked routes into pass",
+    "preserve generated triage artifacts under the 001A artifact directory"
+  ],
+  "stop_conditions_triggered": [],
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+  "triage_verdict": "known_failure_triage_001a_pass_with_blockers_classified",
+  "verdict": "known_failure_triage_001a_pass_with_blockers_classified",
+  "what_this_does_not_prove": [
+    "EGO readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "Gate4 readiness",
+    "mechanism validity",
+    "theory validity",
+    "architecture correctness",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "relationship learning",
+    "stable user benefit",
+    "future runtime correctness",
+    "runtime authorization"
+  ]
+}

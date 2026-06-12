@@ -1,0 +1,35 @@
+{
+  "aggregation_rule": "recompute triage from serialized state and observation",
+  "code_path_hash": "30b90c18168ec3083bcb885dacf8faa063177f02bdb7e8fd8ee66989cf57b8dd",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "recompute triage from serialized state",
+    "artifact_name": "replay_report.json",
+    "code_path_hash": "30b90c18168ec3083bcb885dacf8faa063177f02bdb7e8fd8ee66989cf57b8dd",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "d34d4bb4af7f5f6024d517cfe7b82a25f708962bb0cd30f792fc44a74af3f5c0",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/replay_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_replay_report",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_replay_report",
+  "recomputed_from_serialized_state_and_observation": true,
+  "replay_function": "replay_triage_from_state",
+  "replay_matches_original_decision": true,
+  "replay_only_compares_hashes_or_stored_verdict_strings": false,
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

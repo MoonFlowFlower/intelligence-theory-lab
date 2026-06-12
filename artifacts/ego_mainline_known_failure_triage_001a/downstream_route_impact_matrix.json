@@ -1,0 +1,64 @@
+{
+  "aggregation_rule": "materialize downstream route impact from blocker severity",
+  "code_path_hash": "8aebf6ee6f23364ea66b418ad5a6d577aa23d0b107821f9bf4e998ff33b8f97b",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "compute downstream route impact",
+    "artifact_name": "downstream_route_impact_matrix.json",
+    "code_path_hash": "8aebf6ee6f23364ea66b418ad5a6d577aa23d0b107821f9bf4e998ff33b8f97b",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "77f37bcbe15b6832b4ca6e23de730031b0c4424bda04dc9cc711ad99cec0e995",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/downstream_route_impact_matrix.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_downstream_route_impact_matrix",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "downstream_route_impact_matrix": {
+    "EGO_runtime_implementation": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    },
+    "Gate4_execution": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    },
+    "Gate4_task_card_drafting": {
+      "reason_codes": [
+        "reproducible_redundancy_contract_failures_remain"
+      ],
+      "status": "blocked_current"
+    },
+    "bridge_runtime": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    },
+    "producer_function": "compute_downstream_route_impact",
+    "product_or_companion_behavior": {
+      "reason_codes": [
+        "not_authorized_by_triage"
+      ],
+      "status": "blocked"
+    }
+  },
+  "producer_function": "build_downstream_route_impact_matrix",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

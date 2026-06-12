@@ -1,0 +1,192 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "remove_full_pytest_observation",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_full_pytest_observation",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_observation_missing_or_incomplete",
+        "intervention_marker_full_pytest_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "remove_exact_failed_node_ids",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_exact_failed_node_ids",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_observation_missing_or_incomplete",
+        "exact_failed_node_ids_missing_or_changed",
+        "isolated_reruns_missing",
+        "intervention_marker_failed_node_ids_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_blocked_unexplained_failure_discrepancy"
+    },
+    {
+      "ablation_id": "remove_isolated_rerun_results",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_isolated_rerun_results",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "isolated_reruns_missing",
+        "intervention_marker_isolated_reruns_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_blocked_unexplained_failure_discrepancy"
+    },
+    {
+      "ablation_id": "remove_traceback_text",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_traceback_text",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "traceback_summaries_missing",
+        "intervention_marker_tracebacks_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "remove_before_after_hash_inventory",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_before_after_hash_inventory",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "intervention_marker_hash_inventory_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_pass_with_blockers_classified"
+    },
+    {
+      "ablation_id": "remove_side_effect_report",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_side_effect_report",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "no_old_artifact_side_effect_reported",
+        "intervention_marker_side_effect_report_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_pass_with_blockers_classified"
+    },
+    {
+      "ablation_id": "remove_prior_dependency_closure_classification",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_prior_dependency_closure_classification",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "prior_dependency_closure_classification_missing",
+        "intervention_marker_prior_closure_classification_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "remove_claim_ceiling",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_claim_ceiling",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "claim_ceiling_missing_or_non_proven_incomplete",
+        "intervention_marker_claim_ceiling_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "remove_route_permission_matrix",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_route_permission_matrix",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "prior_route_permission_matrix_missing",
+        "intervention_marker_route_permission_matrix_removed"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_failed_provenance_gate"
+    },
+    {
+      "ablation_id": "substitute_clean_targeted_only_observation_while_full_suite_failures_remain",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_clean_targeted_only_observation_while_full_suite_failures_remain",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "intervention_marker_clean_targeted_only_substituted"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_pass_with_blockers_classified"
+    },
+    {
+      "ablation_id": "substitute_failure_caused_by_new_001a_files",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_failure_caused_by_new_001a_files",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "exact_failed_node_ids_missing_or_changed",
+        "intervention_marker_new_001a_failure_substituted"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_blocked_unexplained_failure_discrepancy"
+    },
+    {
+      "ablation_id": "substitute_failure_that_mutates_old_sealed_artifacts",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_failure_that_mutates_old_sealed_artifacts",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "old_artifact_side_effect_not_restored",
+        "intervention_marker_unrestored_old_artifact_mutation_substituted"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_blocked_old_artifact_side_effect"
+    },
+    {
+      "ablation_id": "substitute_positive_control_unauthorized_readiness_claim",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_positive_control_unauthorized_readiness_claim",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "unauthorized_positive_claim_input_detected",
+        "intervention_marker_positive_control_unauthorized_claim_substituted"
+      ],
+      "triage_verdict_after": "known_failure_triage_001a_failed_provenance_gate"
+    }
+  ],
+  "aggregation_rule": "rerun candidate triage under structured input interventions",
+  "all_ablations_reran_candidate": true,
+  "all_required_degradations_observed": true,
+  "code_path_hash": "3a75d20ddfc16bad0d0ad999eed7d7afcd65e40cfe867ad3af8c7beae9cf3900",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "rerun candidate under interventions",
+    "artifact_name": "ablation_report.json",
+    "code_path_hash": "3a75d20ddfc16bad0d0ad999eed7d7afcd65e40cfe867ad3af8c7beae9cf3900",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "409dc30d94909b3ed6cadf421b385fc662f58375b9f6c2f187d283d607d6b5de",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/ablation_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "run_ablation_suite",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "no_ablation_authorized_forbidden_downstream": true,
+  "producer_function": "run_ablation_suite",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

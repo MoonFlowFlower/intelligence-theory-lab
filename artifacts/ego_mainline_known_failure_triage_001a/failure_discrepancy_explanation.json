@@ -1,0 +1,39 @@
+{
+  "aggregation_rule": "explain prior/current failure-count difference from computed classification",
+  "code_path_hash": "18228a00a0d403d164bbfa126aba2eadc2c2f41cc5dab6aacb695bbfc6977363",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "explain prior/current failure-count discrepancy",
+    "artifact_name": "failure_discrepancy_explanation.json",
+    "code_path_hash": "18228a00a0d403d164bbfa126aba2eadc2c2f41cc5dab6aacb695bbfc6977363",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "a9ed3fca6da1ab40ee6cbd896a500a4b615d8adb9810ce37915c08bfc3f199e6",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/failure_discrepancy_explanation.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_failure_discrepancy_explanation",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "current_full_pytest_failed_count": 4,
+  "current_persistent_blocker_count_after_side_effect_restore": 2,
+  "current_side_effect_sensitive_failure_count": 2,
+  "discrepancy_explained": true,
+  "explanation": "Current full pytest reported four failures: two reproducible redundancy/temp-run blockers and two clean-state candidate tests that fail when old-artifact side effects contaminate repository status. After restoring the old artifact side effect, targeted routing and dependency-closure suites pass, leaving two persistent blockers.",
+  "prior_full_pytest_failed_count": 3,
+  "prior_known_failure_probe_failed_count": 2,
+  "prior_known_failure_probe_passed_count": 1,
+  "producer_function": "explain_failure_discrepancy",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

@@ -1,0 +1,58 @@
+{
+  "aggregation_rule": "materialize full pytest failure observation and exact failed node IDs",
+  "code_path_hash": "7f506a1e698d2f606a017e011bbecee6a12b16ff402553b2b7648af96a848920",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "record full pytest failure report",
+    "artifact_name": "full_pytest_failure_report.json",
+    "code_path_hash": "7f506a1e698d2f606a017e011bbecee6a12b16ff402553b2b7648af96a848920",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "cfc328930343ae43728b7cceb138af290eda9f160e771821ab941f44f5705386",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/full_pytest_failure_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_full_pytest_failure_report",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "exact_failed_node_ids": [
+    "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+    "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+    "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+    "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+  ],
+  "full_pytest_observation": {
+    "command": "pytest -q",
+    "exact_failed_node_ids": [
+      "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream",
+      "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream"
+    ],
+    "exit_code": 1,
+    "observation_source": "live_preimplementation_command_readback",
+    "summary": {
+      "failed": 4,
+      "passed": 664
+    }
+  },
+  "producer_function": "build_full_pytest_failure_report",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+  "traceback_summaries": {
+    "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": "Expected pass verdict but got redundant_reference_contract_blocked.",
+    "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": "Expected pass verdict but got redundant_alignment_contract_blocked.",
+    "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": "Expected known_failure_triage_required or bounded_repair_task_required but got no_go_until_dependency_gap_closed.",
+    "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": "Expected evidence_dependency_closure but got no_go_until_missing_evidence_closed."
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "aggregation_rule": "collect callable provenance rows for triage, baseline, ablation, leakage, and replay metrics",
+  "all_reported_values_have_callable_provenance": true,
+  "code_path_hash": "8c9089e22649e3dbc4a9d04097b7df1e2add5ed48fe07cf084d062c951fdc35b",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "collect callable provenance",
+    "artifact_name": "computed_evidence_provenance.json",
+    "code_path_hash": "8c9089e22649e3dbc4a9d04097b7df1e2add5ed48fe07cf084d062c951fdc35b",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "9566dbd998d74276a99bb9a152b6a8885f26b766120e761a60c9284942f10454",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/computed_evidence_provenance.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_computed_evidence_provenance_report",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_computed_evidence_provenance_report",
+  "provenance_rows": [
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "739c8c7aaa9627e89576a3870e36b34889841cefb558f8f287bfbd31776e69ad",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+        "pytest -q",
+        "isolated pytest reruns",
+        "targeted routing/dependency tests"
+      ],
+      "input_digest": "5b1ea49c2dcd961145dd0dfd3449c5e70afb8210019250f1d4a8240634ec78da",
+      "label": "candidate_triage",
+      "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/candidate_triage.json",
+      "output_digest": "6c5901c505dc5aa01e38c3eb4db5fcaa4ae34d0a4216cff05adb5f5aeba41d43",
+      "producer_function": "compute_candidate_triage",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+        "episode_id": "known_failure_triage",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "57684e7d10db3361e2b8bf92eb051e39ad9747a0ef67fd79762aac5350e7be17",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+        "pytest -q",
+        "isolated pytest reruns",
+        "targeted routing/dependency tests"
+      ],
+      "input_digest": "5b1ea49c2dcd961145dd0dfd3449c5e70afb8210019250f1d4a8240634ec78da",
+      "label": "baseline_comparison",
+      "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/baseline_comparison.json",
+      "output_digest": "e073a32b66865d822de90ddc86c360af3a1b8959c5aa2bc4c63206dbaa09545d",
+      "producer_function": "build_baseline_comparison",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+        "episode_id": "known_failure_triage",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "3a75d20ddfc16bad0d0ad999eed7d7afcd65e40cfe867ad3af8c7beae9cf3900",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+        "pytest -q",
+        "isolated pytest reruns",
+        "targeted routing/dependency tests"
+      ],
+      "input_digest": "5b1ea49c2dcd961145dd0dfd3449c5e70afb8210019250f1d4a8240634ec78da",
+      "label": "ablation_report",
+      "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/ablation_report.json",
+      "output_digest": "409dc30d94909b3ed6cadf421b385fc662f58375b9f6c2f187d283d607d6b5de",
+      "producer_function": "run_ablation_suite",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+        "episode_id": "known_failure_triage",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "30b90c18168ec3083bcb885dacf8faa063177f02bdb7e8fd8ee66989cf57b8dd",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+        "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+        "pytest -q",
+        "isolated pytest reruns",
+        "targeted routing/dependency tests"
+      ],
+      "input_digest": "5b1ea49c2dcd961145dd0dfd3449c5e70afb8210019250f1d4a8240634ec78da",
+      "label": "replay_report",
+      "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/replay_report.json",
+      "output_digest": "d34d4bb4af7f5f6024d517cfe7b82a25f708962bb0cd30f792fc44a74af3f5c0",
+      "producer_function": "build_replay_report",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+        "episode_id": "known_failure_triage",
+        "seed": "not_used"
+      }
+    }
+  ],
+  "seed_context_episode_ids": {
+    "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+    "episode_id": "known_failure_triage",
+    "seed": "not_used",
+    "unused_seed_blocking_check": "no stochastic seed used"
+  },
+  "static_literal_or_unconditional_pass_detected": false,
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+  "unused_frozen_seed_train_heldout_or_counterfactual_pair_detected": false
+}

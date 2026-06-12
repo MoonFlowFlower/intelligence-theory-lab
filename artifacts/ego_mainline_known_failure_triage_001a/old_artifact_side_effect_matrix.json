@@ -1,0 +1,43 @@
+{
+  "aggregation_rule": "record old-artifact mutation side effects and restoration status",
+  "code_path_hash": "a193a5d73a447c3583b5383ca26f3769ca420a8459a64bfce07338ac1c22d928",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "record old-artifact side effect and restoration",
+    "artifact_name": "old_artifact_side_effect_matrix.json",
+    "code_path_hash": "a193a5d73a447c3583b5383ca26f3769ca420a8459a64bfce07338ac1c22d928",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "a3c26fae512b724ed1ac81c08207ee6a463d69614c31a98defab222d88b7ca15",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/old_artifact_side_effect_matrix.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_old_artifact_side_effect_matrix",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "final_tracked_state_clean_after_restore": true,
+  "old_artifact_side_effect_detected": true,
+  "old_artifact_side_effect_restored": true,
+  "producer_function": "build_old_artifact_side_effect_matrix",
+  "side_effect_rows": [
+    {
+      "committed_blob_prefix_before_restore": "ebaf45f",
+      "mutated_blob_prefix_before_restore": "4c5dc17",
+      "mutation_class": "old_artifact_mutation_failure",
+      "observed_diff_summary": "status_rows changed from historical untracked theory paths to empty rows",
+      "path": "artifacts/ego_mainline_admission_executable_001d_metric_provenance_repair_001f/scope_leak_report.json"
+    }
+  ],
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}

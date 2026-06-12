@@ -1,0 +1,72 @@
+{
+  "aggregation_rule": "map reproducibility rows to required failure categories",
+  "all_failures_classified": true,
+  "code_path_hash": "9616aeddeaebcd722ca235ac5adb9c60872a9f4ff93af0dd1b9ab09ec43137d4",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "classify failure causes per failed node",
+    "artifact_name": "failure_cause_classification.json",
+    "code_path_hash": "9616aeddeaebcd722ca235ac5adb9c60872a9f4ff93af0dd1b9ab09ec43137d4",
+    "input_artifacts": [
+      "docs/codex/tasks/EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A.md",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/result.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+      "pytest -q",
+      "isolated pytest reruns",
+      "targeted routing/dependency tests"
+    ],
+    "output_artifact_hash": "016f850dd1cb9ec4e2bbb1942df56839bb6477759b2e6fda6102fb45d3b60b56",
+    "output_artifact_path": "artifacts/ego_mainline_known_failure_triage_001a/failure_cause_classification.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_failure_cause_classification",
+    "run_id": "ego_mainline_known_failure_triage_001a_8c2a28aefd86a13e",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A",
+      "episode_id": "known_failure_triage",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "failure_cause_classification": {
+    "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency": {
+      "failure_categories": [
+        "reproducible_current_failure",
+        "redundancy_contract_failure",
+        "sealed_artifact_consistency_failure",
+        "temp_run_or_ephemeral_artifact_failure"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    },
+    "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators": {
+      "failure_categories": [
+        "reproducible_current_failure",
+        "redundancy_contract_failure",
+        "sealed_artifact_consistency_failure",
+        "temp_run_or_ephemeral_artifact_failure"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    },
+    "tests/test_ego_mainline_evidence_dependency_closure_001a.py::test_callable_candidate_rejects_corrupted_inputs_without_authorizing_downstream": {
+      "failure_categories": [
+        "old_artifact_mutation_failure",
+        "order_dependent_failure",
+        "repo_hygiene_blocker"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    },
+    "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream": {
+      "failure_categories": [
+        "old_artifact_mutation_failure",
+        "order_dependent_failure",
+        "repo_hygiene_blocker"
+      ],
+      "new_001A_regression": false,
+      "producer_function": "classify_failure_causes"
+    }
+  },
+  "producer_function": "build_failure_cause_classification",
+  "task_id": "EGO-MAINLINE-KNOWN-FAILURE-TRIAGE-001A"
+}
