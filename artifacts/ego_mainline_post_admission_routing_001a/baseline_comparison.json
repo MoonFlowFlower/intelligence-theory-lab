@@ -1,0 +1,105 @@
+{
+  "aggregation_rule": "compare candidate route set against independent verdict-only and claim-ceiling baselines",
+  "baseline_results": {
+    "claim_ceiling_baseline": {
+      "aggregation_rule": "block downstream authorization when claim ceiling and non-proven list are governance-only",
+      "allowed_next_routes": [
+        "governance_boundary_continuation",
+        "evidence_dependency_closure"
+      ],
+      "blocked_routes": [
+        "Gate4_preflight_task_card_drafting",
+        "bridge_runtime_preflight",
+        "EGO_runtime_implementation",
+        "product_or_companion_behavior_work"
+      ],
+      "blocks_downstream_authorization": true,
+      "claim_ceiling": "bounded admission execution evidence at the governance layer only",
+      "code_path_hash": "abb26048dce8c9dcab810eeac56fcf324b4166836460762694661d89c8f65854",
+      "computed_reason_codes": [
+        "claim_ceiling_blocks_downstream_authorization"
+      ],
+      "input_scope": "claim ceiling and non-proven list only",
+      "non_proven_count": 15,
+      "producer_function": "claim_ceiling_baseline"
+    },
+    "naive_pass_to_advance_baseline": {
+      "aggregation_rule": "if prior verdict is pass then advance without checking claim ceiling",
+      "code_path_hash": "fe7c7e33fd145d9bf9bc4f0f4d566eeebadc40b741c850a4a5b15c4ad41d9bb2",
+      "computed_reason_codes": [
+        "verdict_only_pass_to_advance"
+      ],
+      "input_scope": "prior verdict only",
+      "over_routes_from_pass_to_advance": true,
+      "prior_verdict": "pass_bounded_admission_execution_001a",
+      "producer_function": "naive_pass_to_advance_baseline",
+      "recommended_next_task_class": "Gate4_preflight_task_card_drafting",
+      "unsafe_advanced_routes": [
+        "Gate4_preflight_task_card_drafting",
+        "bridge_runtime_preflight",
+        "EGO_runtime_implementation",
+        "product_or_companion_behavior_work"
+      ]
+    }
+  },
+  "baselines_invoked": [
+    "naive_pass_to_advance_baseline",
+    "claim_ceiling_baseline"
+  ],
+  "candidate_exceeds_claim_ceiling_baseline": false,
+  "candidate_result": {
+    "allowed_next_routes": [
+      "governance_boundary_continuation",
+      "evidence_dependency_closure",
+      "theory_canonicalization_or_coverage_closure"
+    ],
+    "blocked_routes": [
+      "Gate4_preflight_task_card_drafting",
+      "bridge_runtime_preflight",
+      "EGO_runtime_implementation",
+      "product_or_companion_behavior_work",
+      "no_go_until_missing_evidence_closed"
+    ],
+    "computed_reason_codes": [
+      "sealed_anchor_and_remote_tag_verified",
+      "prior_bounded_admission_pass_present",
+      "prior_claim_ceiling_governance_only",
+      "non_proven_list_blocks_readiness_inflation",
+      "artifact_inventory_digest_present",
+      "forbidden_authorization_list_present",
+      "repo_dirty_state_limited_to_intended_001a_paths",
+      "bounded_evidence_dependency_closure_is_next",
+      "runtime_bridge_gate4_routes_remain_blocked",
+      "verdict_only_over_route_blocked"
+    ],
+    "recommended_next_task_class": "evidence_dependency_closure"
+  },
+  "candidate_stricter_than_naive": true,
+  "code_path_hash": "4face645653a1ee89eeed51423fe0ca7afea2f35da8ec52c67fb040b936fcccd",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "compare candidate against independent callable baselines",
+    "artifact_name": "baseline_comparison.json",
+    "code_path_hash": "4face645653a1ee89eeed51423fe0ca7afea2f35da8ec52c67fb040b936fcccd",
+    "input_artifacts": [
+      "candidate_routing_inputs",
+      "callable baselines"
+    ],
+    "output_artifact_hash": "084a81eef51ed0a1dcd39f38ef7bd7b81118a04780f1074374a824ae0df7b83d",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/baseline_comparison.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_baseline_comparison",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "verdict_only_over_route_blocked",
+    "claim_ceiling_blocks_downstream_authorization"
+  ],
+  "producer_function": "build_baseline_comparison",
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+}

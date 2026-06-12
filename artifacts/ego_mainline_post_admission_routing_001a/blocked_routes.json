@@ -1,0 +1,58 @@
+{
+  "aggregation_rule": "copy candidate blocked routes and attach missing evidence reasons",
+  "blocked_route_reasons": {
+    "EGO_runtime_implementation": [
+      "runtime readiness evidence",
+      "bridge-runtime authorization evidence",
+      "implementation-specific safety and rollback contract"
+    ],
+    "Gate4_preflight_task_card_drafting": [
+      "separate explicit Gate4 drafting authorization outside this routing task",
+      "upstream evidence-dependency closure showing why Gate4 drafting is the next bounded boundary",
+      "predeclared task card that preserves no Gate4 execution authorization"
+    ],
+    "bridge_runtime_preflight": [
+      "same-agent bridge readiness evidence",
+      "canonical trace/replay contract evidence",
+      "baseline and ablation suite evidence that is not inherited from 001A admission pass"
+    ],
+    "no_go_until_missing_evidence_closed": [
+      "used only when required routing inputs or anchor verification are missing or corrupted"
+    ],
+    "product_or_companion_behavior_work": [
+      "explicit product or companion scope authorization",
+      "relationship/emotion/user-model boundary evidence",
+      "deployment and runtime safety gates outside this lab routing task"
+    ]
+  },
+  "blocked_routes": [
+    "Gate4_preflight_task_card_drafting",
+    "bridge_runtime_preflight",
+    "EGO_runtime_implementation",
+    "product_or_companion_behavior_work",
+    "no_go_until_missing_evidence_closed"
+  ],
+  "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+  "code_path_hash": "c040756551434f902348729293bce9c573b77703b2f7a3b8663ef5594bcfeb5f",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize blocked downstream route classes",
+    "artifact_name": "blocked_routes.json",
+    "code_path_hash": "c040756551434f902348729293bce9c573b77703b2f7a3b8663ef5594bcfeb5f",
+    "input_artifacts": [
+      "routing_decision_matrix.json"
+    ],
+    "output_artifact_hash": "22b9d9b85f18b5701174954b0e611721e079f7a40798cf26d5c8cab34aafb036",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_blocked_routes",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_blocked_routes",
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+}

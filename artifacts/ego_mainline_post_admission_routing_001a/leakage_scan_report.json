@@ -1,0 +1,52 @@
+{
+  "aggregation_rule": "scan generated markdown, JSON, and text payloads with a positive control",
+  "code_path_hash": "de982900cf4edd8e3a06b4aa83c4d0dad922cde17bf21e524509a5eb41d6d83a",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "scan generated artifacts and positive-control text",
+    "artifact_name": "leakage_scan_report.json",
+    "code_path_hash": "de982900cf4edd8e3a06b4aa83c4d0dad922cde17bf21e524509a5eb41d6d83a",
+    "input_artifacts": [
+      "generated markdown/json/text payloads",
+      "positive control"
+    ],
+    "output_artifact_hash": "9b010e68f1f5126985af0fa6ce5865c4b1205939393654ec772fdf6ada7983b2",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/leakage_scan_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_leakage_scan_report",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "generated_artifact_unauthorized_positive_hits": [],
+  "positive_control_detected": true,
+  "positive_control_pattern_ids": [
+    "ego_ready"
+  ],
+  "producer_function": "build_leakage_scan_report",
+  "restraint_language_supported": true,
+  "scan_invocation_count": 18,
+  "scanned_artifact_paths": [
+    "docs/codex/tasks/EGO-MAINLINE-POST-ADMISSION-ROUTING-001A.md",
+    "artifacts/ego_mainline_post_admission_routing_001a/anchor_readback.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/input_artifact_inventory.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/routing_state.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/missing_evidence_matrix.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/downstream_non_authorization_flags.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/baseline_comparison.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/ablation_report.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/replay_report.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/computed_evidence_provenance.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+    "artifacts/ego_mainline_post_admission_routing_001a/claim_ceiling.txt",
+    "artifacts/ego_mainline_post_admission_routing_001a/next_task_recommendation.txt",
+    "artifacts/ego_mainline_post_admission_routing_001a/rollback_plan.txt"
+  ],
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+}

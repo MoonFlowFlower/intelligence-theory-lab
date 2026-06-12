@@ -1,0 +1,91 @@
+{
+  "aggregation_rule": "collect callable provenance rows for result, baseline, ablation, leakage, and replay metrics",
+  "all_reported_values_have_callable_provenance": true,
+  "code_path_hash": "67f3c7f6ec8ba1da232f151a840cd085245d0e5debc42d9aa05fae66046aa329",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "collect callable provenance for verdict-like outputs",
+    "artifact_name": "computed_evidence_provenance.json",
+    "code_path_hash": "67f3c7f6ec8ba1da232f151a840cd085245d0e5debc42d9aa05fae66046aa329",
+    "input_artifacts": [
+      "candidate, baseline, ablation, leakage, replay outputs"
+    ],
+    "output_artifact_hash": "02c95c69dc6ccca62e269c8404f1a07010b29735a29601c7a3206e7733935696",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/computed_evidence_provenance.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_computed_evidence_provenance_report",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_computed_evidence_provenance_report",
+  "provenance_rows": [
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "8767b2471af5d2be0942f5aa11e6c8740e4efd7cb2c3376c616493f7439057f1",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-001A.md",
+        "artifacts/ego_mainline_admission_execution_001a/result.json",
+        "artifacts/ego_mainline_admission_execution_001a/admission_contract_evaluation.json",
+        "artifacts/ego_mainline_admission_execution_001a/admission_decision_trace.json",
+        "docs/codex/tasks/EGO-MAINLINE-POST-ADMISSION-ROUTING-001A.md"
+      ],
+      "input_digest": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "label": "candidate_routing",
+      "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/candidate_routing.json",
+      "output_digest": "778b3872b3b4e6a18f30869db36ddebcfc039db0c7ffefea6f897d52b0db8b33",
+      "producer_function": "compute_candidate_routing"
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "4face645653a1ee89eeed51423fe0ca7afea2f35da8ec52c67fb040b936fcccd",
+      "input_artifacts": [
+        "candidate_routing_inputs",
+        "callable baselines"
+      ],
+      "input_digest": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "label": "baseline_comparison",
+      "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/baseline_comparison.json",
+      "output_digest": "084a81eef51ed0a1dcd39f38ef7bd7b81118a04780f1074374a824ae0df7b83d",
+      "producer_function": "build_baseline_comparison"
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "ff66d475d34e49dfcc3fb4074dd16a984a320ba2436af582b06cb6636cd9dd70",
+      "input_artifacts": [
+        "candidate_routing_inputs",
+        "intervention functions"
+      ],
+      "input_digest": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "label": "ablation_report",
+      "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/ablation_report.json",
+      "output_digest": "173df89fe581bd5c55d5012a921bed28123fe3ff3953839d07b6a7e0503f165e",
+      "producer_function": "run_ablation_suite"
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "9b3486a74119a12f9272cb742223f0881e610c38777cbc2d17defb7bf1c4c829",
+      "input_artifacts": [
+        "routing_state.json",
+        "replay_routing_from_state"
+      ],
+      "input_digest": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "label": "replay_report",
+      "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/replay_report.json",
+      "output_digest": "f7b525743e74f5e3752caa674b780b3ac381295afd8a5393438c364ee8e9b970",
+      "producer_function": "build_replay_report"
+    }
+  ],
+  "seed_context_episode_ids": {
+    "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+    "episode_id": "post_admission_routing",
+    "seed": "not_used",
+    "unused_seed_blocking_check": "no stochastic seed used"
+  },
+  "static_literal_or_unconditional_pass_detected": false,
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+  "unused_frozen_seed_train_heldout_or_counterfactual_pair_detected": false
+}

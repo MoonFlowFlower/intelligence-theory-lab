@@ -1,0 +1,51 @@
+{
+  "aggregation_rule": "report evidence boundaries still missing before downstream route classes can be considered",
+  "code_path_hash": "db5d15ba0b200476acfabc57c361eef8024d3461448682e02474f0c481031b72",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "map blocked route classes to missing upstream evidence",
+    "artifact_name": "missing_evidence_matrix.json",
+    "code_path_hash": "db5d15ba0b200476acfabc57c361eef8024d3461448682e02474f0c481031b72",
+    "input_artifacts": [
+      "routing_decision_matrix.json"
+    ],
+    "output_artifact_hash": "06ff3ffd47da1cab158814637463aa32bb06fd14981f4d4518fcc01df7f56c3b",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/missing_evidence_matrix.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_missing_evidence_matrix",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_missing_evidence_matrix",
+  "recommended_next_task_class": "evidence_dependency_closure",
+  "required_missing_evidence": {
+    "EGO_runtime_implementation": [
+      "runtime readiness evidence",
+      "bridge-runtime authorization evidence",
+      "implementation-specific safety and rollback contract"
+    ],
+    "Gate4_preflight_task_card_drafting": [
+      "separate explicit Gate4 drafting authorization outside this routing task",
+      "upstream evidence-dependency closure showing why Gate4 drafting is the next bounded boundary",
+      "predeclared task card that preserves no Gate4 execution authorization"
+    ],
+    "bridge_runtime_preflight": [
+      "same-agent bridge readiness evidence",
+      "canonical trace/replay contract evidence",
+      "baseline and ablation suite evidence that is not inherited from 001A admission pass"
+    ],
+    "no_go_until_missing_evidence_closed": [
+      "used only when required routing inputs or anchor verification are missing or corrupted"
+    ],
+    "product_or_companion_behavior_work": [
+      "explicit product or companion scope authorization",
+      "relationship/emotion/user-model boundary evidence",
+      "deployment and runtime safety gates outside this lab routing task"
+    ]
+  },
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+}

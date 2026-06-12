@@ -1,0 +1,229 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "remove_prior_verdict",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_prior_verdict",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "no_go_until_missing_evidence_closed_selected",
+        "prior_verdict_not_sufficient_for_advancement"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.56,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "a3c6c5b67d816b5beb781431cf73fc41b30cff3d626b5642ccfdbe9cb972d8ee",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "prior_verdict_missing_or_not_pass"
+      ]
+    },
+    {
+      "ablation_id": "remove_claim_ceiling",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_claim_ceiling",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "claim_ceiling_blocks_downstream_authorization",
+        "no_go_until_missing_evidence_closed_selected"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.56,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "030e07303e1a5454b961224563da3aa2acc47e357a2ac279b9a395c6a8c2c5d2",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "claim_ceiling_missing_or_inconsistent"
+      ]
+    },
+    {
+      "ablation_id": "remove_remote_tag_verification",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_remote_tag_verification",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "missing_or_unverified_anchor_blocks_advancement",
+        "no_go_until_missing_evidence_closed_selected"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.48,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "a59f5c3e0da59adb31bafcc4352ea449ff090410e81e6db5ca7f5211bc4ea332",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "required_anchor_or_remote_tag_unverified"
+      ]
+    },
+    {
+      "ablation_id": "remove_non_proven_list",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_non_proven_list",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "no_go_until_missing_evidence_closed_selected",
+        "non_proven_constraints_absent"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "a83892b6b39fb002d784f3e2b4a1013bd07a60652c2570c25bf5f1e72d177aaa",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "non_proven_list_missing_or_incomplete"
+      ]
+    },
+    {
+      "ablation_id": "remove_repository_inventory",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_repository_inventory",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "inventory_absent_blocks_routing",
+        "no_go_until_missing_evidence_closed_selected"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.6,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "3980485ff1b46f31f8660ed411c2168b9449b11bbf1142f6dd0489ab10beb037",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "repository_inventory_missing"
+      ]
+    },
+    {
+      "ablation_id": "remove_forbidden_authorization_list",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_forbidden_authorization_list",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "forbidden_list_absent_blocks_routing",
+        "no_go_until_missing_evidence_closed_selected"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.6,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "ce64d55ede95f8748cd18e98fc2d7509995a820a74798a3ee34742e210bac22d",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "forbidden_authorization_list_missing"
+      ]
+    },
+    {
+      "ablation_id": "substitute_failing_prior_verdict",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_failing_prior_verdict",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "no_go_until_missing_evidence_closed_selected",
+        "prior_verdict_not_sufficient_for_advancement"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.56,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "130a9ba619cfd1fea2b4143f1c4725be972e68cd3b7e3caf030a481eff3e6974",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "prior_verdict_missing_or_not_pass"
+      ]
+    },
+    {
+      "ablation_id": "substitute_unverified_remote_tag",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_unverified_remote_tag",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "missing_or_unverified_anchor_blocks_advancement",
+        "no_go_until_missing_evidence_closed_selected"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.48,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "36efa75d69999145cd8f93e6a8a6625c09b3693f4c49357ef36bc86c40158f69",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "required_anchor_or_remote_tag_unverified"
+      ]
+    },
+    {
+      "ablation_id": "substitute_positive_control_unauthorized_readiness_claim",
+      "aggregation_rule": "rerun candidate route after mutating one governance input",
+      "candidate_rerun": true,
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_positive_control_unauthorized_readiness_claim",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "no_go_until_missing_evidence_closed_selected",
+        "unauthorized_claim_input_blocks_advancement"
+      ],
+      "recommended_next_task_class_after": "no_go_until_missing_evidence_closed",
+      "recommended_next_task_class_before": "evidence_dependency_closure",
+      "route_confidence_after": 0.68,
+      "route_confidence_before": 0.68,
+      "state_changed_by_intervention": true,
+      "state_digest_after": "cd0b3d9ca552c5e58aeb00546bdc48c8a8444055b21f26b641dff929b5d86d75",
+      "state_digest_before": "b453e08ac48541a9fd77d8afea45378c9bc842a9b96e778b8c91899ff987e561",
+      "stop_conditions_after": [
+        "unauthorized_claim_positive_control_detected_in_candidate_inputs"
+      ]
+    }
+  ],
+  "aggregation_rule": "all ablations must rerun candidate and preserve downstream non-authorization",
+  "all_ablations_reran_candidate": true,
+  "all_required_degradations_observed": true,
+  "code_path_hash": "ff66d475d34e49dfcc3fb4074dd16a984a320ba2436af582b06cb6636cd9dd70",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "rerun candidate under real input interventions",
+    "artifact_name": "ablation_report.json",
+    "code_path_hash": "ff66d475d34e49dfcc3fb4074dd16a984a320ba2436af582b06cb6636cd9dd70",
+    "input_artifacts": [
+      "candidate_routing_inputs",
+      "intervention functions"
+    ],
+    "output_artifact_hash": "173df89fe581bd5c55d5012a921bed28123fe3ff3953839d07b6a7e0503f165e",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/ablation_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "run_ablation_suite",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "no_ablation_authorized_forbidden_downstream": true,
+  "producer_function": "run_ablation_suite",
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+}

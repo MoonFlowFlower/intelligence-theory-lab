@@ -1,0 +1,37 @@
+{
+  "aggregation_rule": "copy candidate allowed routes after downstream authorization guard",
+  "allowed_next_routes": [
+    "governance_boundary_continuation",
+    "evidence_dependency_closure",
+    "theory_canonicalization_or_coverage_closure"
+  ],
+  "allowed_route_constraints": {
+    "evidence_dependency_closure": "close missing evidence dependencies without runtime entry",
+    "governance_boundary_continuation": "bounded governance continuation only",
+    "theory_canonicalization_or_coverage_closure": "docs/evidence coverage closure only"
+  },
+  "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+  "code_path_hash": "370b94a61544e5bcf7e1cf28ddab82d436c763c2e8be14b92c0a3cb842b8edac",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize bounded allowed route classes only",
+    "artifact_name": "allowed_routes.json",
+    "code_path_hash": "370b94a61544e5bcf7e1cf28ddab82d436c763c2e8be14b92c0a3cb842b8edac",
+    "input_artifacts": [
+      "routing_decision_matrix.json"
+    ],
+    "output_artifact_hash": "a4fcff014551d3bdd81b4a6bee2f9a9c7e2d354066136d7cb7c58d046d35f320",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_allowed_routes",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_allowed_routes",
+  "recommended_next_task_class": "evidence_dependency_closure",
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+}

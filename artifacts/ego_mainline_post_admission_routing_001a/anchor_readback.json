@@ -1,0 +1,59 @@
+{
+  "claim_ceiling": "bounded admission execution evidence at the governance layer only",
+  "claim_ceiling_matches_required": true,
+  "computed_evidence_provenance": {
+    "aggregation_rule": "resolve required commit, remote tag, prior verdict, claim ceiling, and non-proven list",
+    "artifact_name": "anchor_readback.json",
+    "code_path_hash": "a006cc8006aaf199f275990c87618d26814926784a1c20ac10268b08fdb88b6a",
+    "input_artifacts": [
+      "artifacts/ego_mainline_admission_execution_001a/result.json",
+      "artifacts/ego_mainline_admission_execution_001a/claim_ceiling.txt",
+      "git rev-parse",
+      "git ls-remote"
+    ],
+    "output_artifact_hash": "02ff92cbd1a716cb99f2ed90e7ab071b02e41e8b919cbedaeba7889e0c4e148b",
+    "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/anchor_readback.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_anchor_readback",
+    "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+      "episode_id": "post_admission_routing",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "current_head": "9619e03862a69f4d83a934545e42add6eb511c00",
+  "non_proven_list": [
+    "EGO readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "Gate4 readiness",
+    "mechanism validity",
+    "theory validity",
+    "architecture correctness",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "relationship learning",
+    "stable user benefit",
+    "future runtime correctness",
+    "runtime authorization"
+  ],
+  "non_proven_list_complete": true,
+  "prior_result_exists": true,
+  "prior_result_path": "artifacts/ego_mainline_admission_execution_001a/result.json",
+  "prior_task_id": "EGO-MAINLINE-ADMISSION-EXECUTION-001A",
+  "prior_verdict": "pass_bounded_admission_execution_001a",
+  "prior_verdict_matches_required": true,
+  "producer_function": "build_anchor_readback",
+  "remote_tag": "remote-anchor-bounded-admission-execution-001a-98e51a4",
+  "remote_tag_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+  "remote_tag_resolves_exactly": true,
+  "required_commit": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+  "required_commit_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+  "required_commit_resolves_exactly": true,
+  "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+  "validation_rule": "required commit and remote tag must resolve exactly while prior admission stays bounded"
+}
