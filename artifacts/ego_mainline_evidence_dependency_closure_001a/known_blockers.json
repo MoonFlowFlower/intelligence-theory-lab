@@ -1,0 +1,44 @@
+{
+  "aggregation_rule": "extract current still-failing known blockers from classification rows",
+  "code_path_hash": "118eec8c9ec5440940e720bfe6673ce156df237cf49c939f84cf96c4fdafb520",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize still-failing known blockers",
+    "artifact_name": "known_blockers.json",
+    "code_path_hash": "118eec8c9ec5440940e720bfe6673ce156df237cf49c939f84cf96c4fdafb520",
+    "input_artifacts": [
+      "known_failure_classification.json"
+    ],
+    "output_artifact_hash": "83a0e972056efb271a745ec402b534e4e691170e365d0c8db380e4f5f810eed9",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/known_blockers.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_known_blockers",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "known_blocker_count": 2,
+  "known_blockers": [
+    {
+      "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+      "current_status": "still_failing_in_bounded_observation",
+      "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+      "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "prior_failure_kind": "redundant_reference_contract_blocked",
+      "producer_function": "build_known_failure_classification"
+    },
+    {
+      "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+      "current_status": "still_failing_in_bounded_observation",
+      "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+      "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "prior_failure_kind": "redundant_alignment_contract_blocked",
+      "producer_function": "build_known_failure_classification"
+    }
+  ],
+  "producer_function": "build_known_blockers",
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

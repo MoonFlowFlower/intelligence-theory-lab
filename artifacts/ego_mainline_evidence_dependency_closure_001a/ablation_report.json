@@ -1,0 +1,269 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "remove_remote_routing_tag_verification",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "490e19b964e376468d897cab6ab1830c5f40ca4fca039fe89fdbec2b52b10004",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_remote_routing_tag_verification",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "anchor_verification_missing_or_corrupted",
+        "intervention_marker_remote_routing_tag_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "required_anchor_verification_missing"
+      ]
+    },
+    {
+      "ablation_id": "remove_admission_execution_anchor_verification",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "48749eb84029df9fd4dd8a9a8fde2a5b45395102142952b9e1bed316c59ab1d2",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_admission_execution_anchor_verification",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "anchor_verification_missing_or_corrupted",
+        "intervention_marker_admission_anchor_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "required_anchor_verification_missing"
+      ]
+    },
+    {
+      "ablation_id": "remove_full_pytest_observation",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "412f6de13d2f468fcab6930a80483902594fe5c6f8069b5c87caecb6dd0e3941",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_full_pytest_observation",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "full_pytest_observation_missing_or_unrecognized",
+        "intervention_marker_full_pytest_observation_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "full_pytest_observation_missing_or_unrecognized"
+      ]
+    },
+    {
+      "ablation_id": "remove_known_three_failure_classification",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "726b83d5d0628961dcb2b1d7b185b602911a58faf8bb22fd41a37a433bab7f79",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_known_three_failure_classification",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "known_three_failures_unclassified",
+        "no_known_failure_blockers_detected",
+        "intervention_marker_known_three_classification_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "known_three_failures_unclassified"
+      ]
+    },
+    {
+      "ablation_id": "remove_artifact_inventory",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "2e2a5bc919eb9b2c7db6ebe80ef33ba83f3fec35ab2a5b210896538b6b69cd28",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_artifact_inventory",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "artifact_inventory_missing_or_incomplete",
+        "intervention_marker_artifact_inventory_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "artifact_inventory_missing_or_incomplete"
+      ]
+    },
+    {
+      "ablation_id": "remove_old_artifact_non_mutation_evidence",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "7a48e4c2e3cb0bb18d94089a82ebd047619f7532c87549d23f69443becf4a8ad",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_old_artifact_non_mutation_evidence",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "old_artifact_non_mutation_evidence_missing",
+        "intervention_marker_old_artifact_non_mutation_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "old_artifact_non_mutation_evidence_missing"
+      ]
+    },
+    {
+      "ablation_id": "remove_claim_ceiling",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "5e17a76e01ff1ac9ff3ae13731806c700b73e4ca337e86981ea678009c7d94bc",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_claim_ceiling",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "claim_ceiling_missing_or_inconsistent",
+        "intervention_marker_claim_ceiling_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "claim_ceiling_missing_or_inconsistent"
+      ]
+    },
+    {
+      "ablation_id": "remove_blocked_route_matrix",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "996c17bb2d615039784603cde19ba10987bb18f59c77c63d670db0bd6db4aaa3",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_remove_blocked_route_matrix",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "prior_blocked_route_matrix_missing_or_incomplete",
+        "intervention_marker_blocked_route_matrix_removed"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "prior_blocked_route_matrix_missing_or_incomplete"
+      ]
+    },
+    {
+      "ablation_id": "substitute_failing_routing_verdict",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "81437b2d60df0484f5d00089620457c544e88184e56ff1f5e96181e6d8c6c7a7",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_failing_routing_verdict",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "prior_routing_boundary_missing_or_inconsistent",
+        "intervention_marker_failing_routing_verdict_substituted"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "prior_routing_boundary_missing_or_inconsistent"
+      ]
+    },
+    {
+      "ablation_id": "substitute_unverified_routing_commit",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "7c982a58a353b4a46cf49c62b4ea7f4f3bbfa7052d0452fa2d9240b60229c21d",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_unverified_routing_commit",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "anchor_verification_missing_or_corrupted",
+        "intervention_marker_unverified_routing_commit_substituted"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "required_anchor_verification_missing"
+      ]
+    },
+    {
+      "ablation_id": "substitute_positive_control_unauthorized_readiness_claim",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "9eaa9d542ed0a3da2316eb6f26bb022575487cc7e9fdda817c155614db732eb2",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_positive_control_unauthorized_readiness_claim",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "unauthorized_positive_claim_input_detected",
+        "intervention_marker_positive_control_unauthorized_claim_substituted"
+      ],
+      "recommended_next_task_class_after": "no_go_until_dependency_gap_closed",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.58,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": [
+        "unauthorized_positive_claim_input_detected"
+      ]
+    },
+    {
+      "ablation_id": "substitute_clean_targeted_result_while_full_suite_failures_remain",
+      "aggregation_rule": "rerun compute_candidate_closure after real structured input intervention",
+      "candidate_rerun": true,
+      "code_path_hash": "cb5ec4f73f5d4b77f544252ccc5a7ce311d9e7f4e97addcd8ed3e804e714066d",
+      "forbidden_downstream_authorized": false,
+      "intervention_function": "intervention_substitute_clean_targeted_result_while_full_suite_failures_remain",
+      "producer_function": "run_ablation_suite",
+      "reason_codes_added": [
+        "intervention_marker_clean_targeted_result_while_suite_failures_remain"
+      ],
+      "recommended_next_task_class_after": "known_failure_triage_required",
+      "recommended_next_task_class_before": "known_failure_triage_required",
+      "route_confidence_after": 0.62,
+      "route_confidence_before": 0.64,
+      "stop_conditions_after": []
+    }
+  ],
+  "aggregation_rule": "run required closure ablations through candidate closure function",
+  "all_ablations_reran_candidate": true,
+  "all_required_degradations_observed": true,
+  "code_path_hash": "3bc5ea32d8c4351ee23e9dbf207a5e08e0cd0ebbf4cfba76a2b327b2e512044d",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "rerun candidate under structured input interventions",
+    "artifact_name": "ablation_report.json",
+    "code_path_hash": "3bc5ea32d8c4351ee23e9dbf207a5e08e0cd0ebbf4cfba76a2b327b2e512044d",
+    "input_artifacts": [
+      "candidate_closure_inputs",
+      "intervention functions"
+    ],
+    "output_artifact_hash": "dc6b3aa685bd207f03788ac9c23347d5830949fc18a506bdc0aca205662586ad",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/ablation_report.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "run_ablation_suite",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "no_ablation_authorized_forbidden_downstream": true,
+  "producer_function": "run_ablation_suite",
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

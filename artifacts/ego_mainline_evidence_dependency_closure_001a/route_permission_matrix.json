@@ -1,0 +1,82 @@
+{
+  "aggregation_rule": "materialize route permissions from candidate closure",
+  "code_path_hash": "12c874f5403b146b5de624ab485d92b08c40bfc98d3835d072c3263599d4db2a",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize route permissions from candidate closure",
+    "artifact_name": "route_permission_matrix.json",
+    "code_path_hash": "12c874f5403b146b5de624ab485d92b08c40bfc98d3835d072c3263599d4db2a",
+    "input_artifacts": [
+      "candidate_closure"
+    ],
+    "output_artifact_hash": "a979efe441dbb79eb795d7fa0318184b12047387284695e8665bff857b4540ee",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/route_permission_matrix.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_route_permission_matrix",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_route_permission_matrix",
+  "recommended_next_task_class": "known_failure_triage_required",
+  "route_permissions": {
+    "EGO_runtime_implementation_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "ego_runtime_implementation_not_authorized"
+      ]
+    },
+    "Gate4_preflight_task_card_drafting_allowed_future_only": {
+      "permission": "blocked_current_future_only",
+      "reason_codes": [
+        "current_task_does_not_authorize_gate4_and_dependency_gap_remains"
+      ]
+    },
+    "bounded_repair_task_required": {
+      "permission": "allowed_bounded",
+      "reason_codes": [
+        "bounded_repair_or_triage_allowed_without_downstream_authorization"
+      ]
+    },
+    "bridge_runtime_preflight_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "bridge_runtime_preflight_not_authorized"
+      ]
+    },
+    "evidence_dependency_closure_complete": {
+      "permission": "blocked_current",
+      "reason_codes": [
+        "closure_not_complete_due_to_blockers_or_suite_gap"
+      ]
+    },
+    "known_failure_triage_required": {
+      "permission": "allowed_bounded",
+      "reason_codes": [
+        "known_failure_blockers_require_triage"
+      ]
+    },
+    "no_go_until_dependency_gap_closed": {
+      "permission": "blocked_contingent",
+      "reason_codes": [
+        "no_stop_condition_but_dependency_gap_remains_classified"
+      ]
+    },
+    "product_or_companion_behavior_work_blocked": {
+      "permission": "blocked",
+      "reason_codes": [
+        "product_or_companion_behavior_work_not_authorized"
+      ]
+    },
+    "theory_canonicalization_or_coverage_closure_required": {
+      "permission": "allowed_bounded",
+      "reason_codes": [
+        "bounded_theory_coverage_or_canonicalization_closure_may_be_task_carded"
+      ]
+    }
+  },
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

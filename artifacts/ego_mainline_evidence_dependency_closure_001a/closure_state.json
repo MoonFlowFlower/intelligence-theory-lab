@@ -1,0 +1,1085 @@
+{
+  "aggregation_rule": "serialize closure inputs and observation for recomputation",
+  "code_path_hash": "5bb61c467427ce8566631ab5519aeaf802ec579234a4f72776fc69b9012e7cfe",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "serialize closure state and observation for replay",
+    "artifact_name": "closure_state.json",
+    "code_path_hash": "5bb61c467427ce8566631ab5519aeaf802ec579234a4f72776fc69b9012e7cfe",
+    "input_artifacts": [
+      "candidate_closure_inputs",
+      "test_suite_observation"
+    ],
+    "output_artifact_hash": "344b06c88a3cb285e6b32954d7c178ba45cc19cacf202ac498d5faa691bf2df7",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/closure_state.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_closure_state_artifact",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "observation": {
+    "known_failure_classification": {
+      "aggregation_rule": "map known three failure identities to bounded clean-worktree observation counts",
+      "all_known_three_accounted_for": true,
+      "code_path_hash": "1546cb9da66d8a2660cfbcafa3be679f0409ce5b20f3bde7e251e0cef657a93b",
+      "known_failure_classifications": [
+        {
+          "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+          "current_status": "still_failing_in_bounded_observation",
+          "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+          "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+          "prior_failure_kind": "redundant_reference_contract_blocked",
+          "producer_function": "build_known_failure_classification"
+        },
+        {
+          "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+          "current_status": "still_failing_in_bounded_observation",
+          "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+          "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+          "prior_failure_kind": "redundant_alignment_contract_blocked",
+          "producer_function": "build_known_failure_classification"
+        },
+        {
+          "blocker_classification": "resolved_in_clean_bounded_observation",
+          "current_status": "resolved_in_clean_bounded_observation",
+          "downstream_implication": "does not remain a current blocker in clean bounded observation",
+          "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+          "prior_failure_kind": "dirty_state_contamination_or_prior_observation_mismatch",
+          "producer_function": "build_known_failure_classification"
+        }
+      ],
+      "producer_function": "build_known_failure_classification",
+      "resolved_in_clean_bounded_observation_count": 1,
+      "still_failing_count": 2,
+      "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "unclassified_count": 0
+    },
+    "test_suite_observation": {
+      "aggregation_rule": "classify bounded pytest command results without entering runtime or repairing old tests",
+      "code_path_hash": "7d06152427e577490137aff26e42e977255925330777d89c69d429e958768aaa",
+      "full_pytest_observation": {
+        "mode": "bounded_not_rerun",
+        "prior_readback": "654 passed, 3 failed",
+        "reason": "Full pytest was not rerun in this closure task because prior readback reported old artifact write side effects; bounded clean-worktree probes are used and unresolved suite cleanliness stays blocked.",
+        "status": "not_cleanly_closed"
+      },
+      "known_failure_probe": {
+        "command": "pytest tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+        "exit_code": 1,
+        "observation_source": "preimplementation_clean_worktree_readback",
+        "passed": false,
+        "summary": {
+          "failed": 2,
+          "passed": 1
+        }
+      },
+      "observation_boundary": "clean routing-anchor worktree for bounded prior-suite probes",
+      "producer_function": "build_test_suite_observation",
+      "targeted_routing_test": {
+        "command": "pytest tests/test_ego_mainline_post_admission_routing_001a.py",
+        "exit_code": 0,
+        "observation_source": "preimplementation_clean_worktree_readback",
+        "passed": true,
+        "summary": {
+          "failed": 0,
+          "passed": 9
+        }
+      },
+      "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+    }
+  },
+  "producer_function": "build_closure_state_artifact",
+  "serialized_state": {
+    "candidate_closure_inputs": {
+      "anchor_readback": {
+        "admission_anchor_verified": true,
+        "admission_commit": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "admission_commit_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "admission_remote_tag": "remote-anchor-bounded-admission-execution-001a-98e51a4",
+        "admission_remote_tag_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "current_branch": "codex/meta-theory-scaffold",
+        "current_head": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "prior_admission_result_exists": true,
+        "prior_admission_verdict": "pass_bounded_admission_execution_001a",
+        "prior_routing_boundary_verified": true,
+        "prior_routing_claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+        "prior_routing_non_proven_list": [
+          "EGO readiness",
+          "bridge readiness",
+          "runtime readiness",
+          "Gate4 readiness",
+          "mechanism validity",
+          "theory validity",
+          "architecture correctness",
+          "agency",
+          "selfhood",
+          "consciousness",
+          "emotion",
+          "relationship learning",
+          "stable user benefit",
+          "future runtime correctness",
+          "runtime authorization"
+        ],
+        "prior_routing_recommendation": "evidence_dependency_closure",
+        "prior_routing_result_exists": true,
+        "prior_routing_result_path": "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+        "prior_routing_verdict": "post_admission_routing_001a_pass_with_bounded_next_task",
+        "producer_function": "build_anchor_readback",
+        "routing_anchor_verified": true,
+        "routing_commit": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "routing_commit_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "routing_remote_tag": "remote-anchor-post-admission-routing-001a-4edf5c",
+        "routing_remote_tag_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "validation_rule": "routing and admission commits plus remote tags must resolve exactly; prior routing must remain bounded"
+      },
+      "artifact_inventory": {
+        "aggregation_rule": "hash relevant routing, admission, readiness, gate, theory, source, and test inventory",
+        "artifact_count": 82,
+        "has_gate_inventory": false,
+        "has_prior_admission_artifacts": true,
+        "has_prior_routing_artifacts": true,
+        "has_readiness_inventory": true,
+        "has_theory_inventory": true,
+        "inventory_digest": "3774f8c226506c03f032a302cf5c24c309a6930de1c0641b974caa969640018a",
+        "inventory_patterns": [
+          "docs/codex/tasks/EGO-MAINLINE-POST-ADMISSION-ROUTING-001A.md",
+          "docs/codex/tasks/EGO-MAINLINE-ADMISSION*",
+          "docs/codex/audits/EGO-MAINLINE-READINESS*",
+          "docs/codex/tasks/*GATE4*",
+          "docs/research/*GATE*",
+          "docs/research/*THEORY*",
+          "artifacts/ego_mainline_post_admission_routing_001a/*",
+          "artifacts/ego_mainline_admission_execution_001a/*",
+          "artifacts/ego_mainline_admission_execution_preflight_001a/*",
+          "artifacts/ego_mainline_admission_task_card_alignment_001a/*",
+          "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/*",
+          "src/ego_mainline_post_admission_routing_001a/*",
+          "tests/test_ego_mainline_post_admission_routing_001a.py"
+        ],
+        "inventory_rows": [
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/admission_actionability_revalidation_guard.json",
+            "sha256": "144e2f0d76410eee2f9ca05ec1a5764c568a10724f3ab1ed3efe5def238bef63",
+            "size_bytes": 1758
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/claim_ceiling.txt",
+            "sha256": "76eb217dc6d5daef3fb83ad1781ba924c2152ffbee531777ae2029f095fc7579",
+            "size_bytes": 88
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/downstream_usage_matrix.json",
+            "sha256": "25785cc55ad6e2b66c6fe2aa2d63d63978e5da4bf8b646e55ceed95f5037805c",
+            "size_bytes": 5138
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/duplication_prevention_report.json",
+            "sha256": "ca7e66f5b388f1702c98c5f8867881e7e34d2daa158a6a63b5c0106e00bb1190",
+            "size_bytes": 1315
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/existing_reference_search_report.json",
+            "sha256": "a01da53bcff915d9a0b8b4691106486c1335e518f58da2ab7bd3387aa86a3efe",
+            "size_bytes": 1544
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/forbidden_claims_matrix.json",
+            "sha256": "913c3c1bc16b136d2ce58401cd553672a2e9873dbb1368f33327cf8add356ed0",
+            "size_bytes": 3343
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/hyperon_non_adoption_guard.json",
+            "sha256": "7bd9d9c758d96d5d7b674a69e92d46d8fdab7ca7f62450d1c5e7d15a8a978e75",
+            "size_bytes": 1659
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/implementation_authorization_guard.json",
+            "sha256": "b749f764e39eb8c206cbacdc7e5438e1907da66fc0fd30ff096e605b632c36c0",
+            "size_bytes": 1441
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/reference_contract.json",
+            "sha256": "a1b37a22301d7cfc52bcd024326de4fd4751ce830f9c04caf086ad5e87d98f17",
+            "size_bytes": 4755
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json",
+            "sha256": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+            "size_bytes": 19747
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/sealed_input_anchor_manifest.json",
+            "sha256": "6bbca514ef875162665e8dc937295c314643bde0beb9d9964c7c16ff84c11a5f",
+            "size_bytes": 3413
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/source_trace_report.json",
+            "sha256": "db143d4c6e5cc9a8b92f5eb1f6a9e5e166a1d031c315061c0a9b2bd8505c7dad",
+            "size_bytes": 38109
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/ablation_report.json",
+            "sha256": "ea8efa594128766e787309df3b0874bb308524dbf88d7d1722a92bd62441aaee",
+            "size_bytes": 13402
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/actionability_revalidation.json",
+            "sha256": "18c8287b008037e9237ebda99fcfd1cad08792d426936ee46e2552003dde4f88",
+            "size_bytes": 12145
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/admission_contract_evaluation.json",
+            "sha256": "a88bab5da02a3af3bdd786af88efc21e140526e047289e7b7fe79d11e8d758d7",
+            "size_bytes": 14534
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/admission_decision_trace.json",
+            "sha256": "f397b18fd1e9de88d50b5264c885dec16a64e55710e48ebe90bbd5f67b42d62a",
+            "size_bytes": 103131
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/authorization_flags.json",
+            "sha256": "3e19eee0ef3542355649139ad81aa395a0f388e3325683a25b00addd44397d3e",
+            "size_bytes": 12021
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/claim_ceiling.txt",
+            "sha256": "c7023277b4b338cd339182812181bdb5eed9940472658d66d50b0c3c2b36593c",
+            "size_bytes": 67
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/computed_evidence_provenance.json",
+            "sha256": "b81c67643770b13aff3f22b545611eb6ec97533a264570b21e83e91bbb263827",
+            "size_bytes": 59647
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/forbidden_claims_and_actions.json",
+            "sha256": "7fe8b5096404001c2cc2e6adae0e1cde1469704a6b0d980bee2bf690a9a14413",
+            "size_bytes": 10403
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/negative_evidence_handling.json",
+            "sha256": "14286a6db81a37946eb912076d35f5813a669dfe3f5bceab809bd30519fbb960",
+            "size_bytes": 11289
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/parent_boundary_readback.json",
+            "sha256": "e7a757a5d723fe773d703667baf3e17c636be46200dc416358166710af4f6a60",
+            "size_bytes": 26164
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/post_bridge_caveat_revalidation.json",
+            "sha256": "7a53a89f8c49fe9d48655b8fd896dbd1cda7b888ea5e8580f7115023bec12b90",
+            "size_bytes": 11731
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_001a/result.json",
+            "sha256": "490d8fd671e22834bbbb519e07039a2c60df6bee48da643592675630683cf391",
+            "size_bytes": 34321
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/actionability_revalidation_preconditions.json",
+            "sha256": "576d13d4ceea1a9bce20dd3e4255bfd5f901d4630f596a70c399016e9eadc5d3",
+            "size_bytes": 5636
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/alignment_contract_readback.json",
+            "sha256": "5f2b30e9c978b69b4c81a24a7b2d7b8ad758bff3edb070d06505002979a6cd0e",
+            "size_bytes": 14722
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/authorization_flags.json",
+            "sha256": "69e185998714fcbeee810bf0e149903650cdbe1607b5b576c903f446f0d70f04",
+            "size_bytes": 4628
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/claim_ceiling.txt",
+            "sha256": "57104f713f1f7d544b04902516a71edb6075bf4ffe449b21dc42febcd1f497e7",
+            "size_bytes": 54
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/computed_evidence_preconditions.json",
+            "sha256": "fc987add74fedf7526ffc5ec72f4a04f5945648ec97d8e3fdb0d55b832838058",
+            "size_bytes": 4230
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/forbidden_claims_and_actions.json",
+            "sha256": "e5995209f0aa3b5f378603e0b1243e0d248321acfc61b9f3a62d7be4296213c8",
+            "size_bytes": 4702
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/negative_evidence_preconditions.json",
+            "sha256": "4cb30e9fa64e7f435fc614273378587a38d9dbe5cedc291b6ef8aedf7224f926",
+            "size_bytes": 5650
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/parent_boundary_readback.json",
+            "sha256": "197500a59b25777e34127a69dbf930c7b9042061e3f5ec74e07c29ba6b13047b",
+            "size_bytes": 18242
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/post_bridge_001d_readback.json",
+            "sha256": "15bfdbebc357e918d316201b4ab936d101f7d69ab0531701290c19d53f870413",
+            "size_bytes": 6021
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_execution_preflight_001a/result.json",
+            "sha256": "6377255e051d3d980601ebc2808ccd5174f827ef91a88e98cf4d56f04fa3768a",
+            "size_bytes": 25046
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/actionability_revalidation_matrix.json",
+            "sha256": "2d3eb1eab4cc09ade3f572d40db370231a41c851b3aabae2aedd2f062c30000f",
+            "size_bytes": 3012
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/authorization_guard.json",
+            "sha256": "a928821e554fc9192d62a8f2dfbdea0da6aedce75806612c61f5ab1cbc2b155f",
+            "size_bytes": 1649
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/claim_ceiling.txt",
+            "sha256": "cf43e4fca0a8fc959b8f06c26ffd749786280a862bbfbd8120d0be61ac3f4f03",
+            "size_bytes": 73
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/computed_evidence_gate_contract.json",
+            "sha256": "e668ecdaf4d3956f4536656e34f415a120027548bc53ef99f202d04fc90e0766",
+            "size_bytes": 1656
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/evidence_usage_contract.json",
+            "sha256": "1aa2f86276279730132a773a81eb88a1921a1422ae79ec9eeb4d2e3660f3bc3c",
+            "size_bytes": 4206
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/existing_admission_task_card_search_report.json",
+            "sha256": "30f062bfd5a7e4dcd78786ed0b5adbff44a4d42f5dafcfa8047c7d72946ed307",
+            "size_bytes": 62177
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/negative_evidence_handling_contract.json",
+            "sha256": "833ff264df557be4b9c35a610eca6f7dc09146be1ad76bc8a4affd8fd78ba42f",
+            "size_bytes": 2994
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/parent_evidence_boundary_manifest.json",
+            "sha256": "b18a9a3189a84ea7e83ed7218615cbcbc1d357fd7e8eae913fa3cda722c5e083",
+            "size_bytes": 5468
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/post_bridge_boundary_resolution_report.json",
+            "sha256": "3b7d45fe7c5c309e98ed245c5b3bc654f4ff7c95a3f8d3e2091d334320a3e06a",
+            "size_bytes": 2954
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json",
+            "sha256": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+            "size_bytes": 17321
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/schema_duplication_guard.json",
+            "sha256": "b87e16edc026ed7a19a8170348039b0c6e05b7415806fb95893577059d20bde1",
+            "size_bytes": 1342
+          },
+          {
+            "category": "admission",
+            "path": "artifacts/ego_mainline_admission_task_card_alignment_001a/source_trace_report.json",
+            "sha256": "782a1896be40ce5be4c28255380a2f45cfdf12c1b079721e71e2a3917e689a98",
+            "size_bytes": 56365
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/ablation_report.json",
+            "sha256": "00eb9fb2609ba56fe7b526c2d2e0ae567c03ca2893afe4c4ec03782166a84124",
+            "size_bytes": 11328
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json",
+            "sha256": "664bd33310a8b0420da130decc93dba66509be48eab24d8fb53f218c30aae3f0",
+            "size_bytes": 1909
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/anchor_readback.json",
+            "sha256": "21d68bcba0c10ed37863441bfccd1583fbc0c4ebe3b961cab026ee9593831b2e",
+            "size_bytes": 2716
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/baseline_comparison.json",
+            "sha256": "388759d4b2b837679c54bd8c372484239557b09a60670157d5e4cad69858196a",
+            "size_bytes": 4569
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+            "sha256": "675e7302ad77fac710c4ea0f1f0ef81c62620e45db4c871d9401c0eb5877363a",
+            "size_bytes": 2774
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/claim_ceiling.txt",
+            "sha256": "e06fa52c64cc7a9d7e6e05a10784f445e862e5a30c1a7befd9af39b740151dd8",
+            "size_bytes": 66
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/computed_evidence_provenance.json",
+            "sha256": "e90f742a1583cdf9137af5367d4a71f61459ebde252d841134e9d02f77b0c849",
+            "size_bytes": 4918
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/downstream_non_authorization_flags.json",
+            "sha256": "a600b1d7eed40090c4812c05410ec28e94c26b0405e853a1dddda6b67edf82a7",
+            "size_bytes": 1998
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/input_artifact_inventory.json",
+            "sha256": "250ec12aa0288a1b44155050d964d7a703163cfb67140d4ee6f9d95750d4415e",
+            "size_bytes": 15740
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/leakage_scan_report.json",
+            "sha256": "d0fbc9990428c7a61bfe7feb20f28447d3a9f0c526fe984a95b44238a5c9af6c",
+            "size_bytes": 3012
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/missing_evidence_matrix.json",
+            "sha256": "c7b46182c30bd1cc65ff4c40b7a354f76cfe2c2b5195446780ccbd0fadbeb7f6",
+            "size_bytes": 2600
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/next_task_recommendation.txt",
+            "sha256": "68ade30d7c1b615a5d2645445b9ae3f7b19ecb6b0aa45caa743fe77582a09f56",
+            "size_bytes": 454
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/replay_report.json",
+            "sha256": "f989fee752072cd54e1ab4b4f6396eea73c54fba70aad5ed8e77a74278eee4d7",
+            "size_bytes": 2700
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+            "sha256": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f",
+            "size_bytes": 14000
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/rollback_plan.txt",
+            "sha256": "3af2b6d57f9f84d44aa8dea76e2f9a0024788051e4af6d77b9250778cc7aa3a6",
+            "size_bytes": 241
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json",
+            "sha256": "2cca5f4dd43e4ab1ac9653519037e7085143a462715df5acd307d1930be31adf",
+            "size_bytes": 13013
+          },
+          {
+            "category": "routing",
+            "path": "artifacts/ego_mainline_post_admission_routing_001a/routing_state.json",
+            "sha256": "a3bd6679a8ac9fe0c1cd82f5fbcc0aef462c3d370f821dd3c4af484051819f8e",
+            "size_bytes": 27228
+          },
+          {
+            "category": "readiness",
+            "path": "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001A.md",
+            "sha256": "4d3ff1c4442d9c80aab13cc120a24b726ec547936e733079f45346369eb7e2c2",
+            "size_bytes": 6480
+          },
+          {
+            "category": "readiness",
+            "path": "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001B.md",
+            "sha256": "9b39fa91a422169b8b540968d88077cb0c5debf0b08380bf0ef2fecadd702fd9",
+            "size_bytes": 6534
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-BASELINE-LEGAL-INPUT-REPAIR-001D.md",
+            "sha256": "d89454810ba6453a962a37dcad342015d9d880e994d3788925286a6e6ff16720",
+            "size_bytes": 1813
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTABLE-001B-INDEPENDENT-AUDIT-001C.md",
+            "sha256": "ad0cced23e40b1f163a622d7aab5a5fd5a14b73cadf7555670196d6e7f444d3a",
+            "size_bytes": 1865
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTABLE-001B.md",
+            "sha256": "e70ebf5afb6363ba5a2be42bfae6a72ab2250a476ed1b70d8f8f0f99702ff23d",
+            "size_bytes": 1898
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-INDEPENDENT-AUDIT-001E.md",
+            "sha256": "f6c2dc4cf0281d104b9326c6c8e91f98e3ce65c98122ce6d47f93bd2fd81fae5",
+            "size_bytes": 5151
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTABLE-001D-METRIC-PROVENANCE-REPAIR-001F.md",
+            "sha256": "0d75593f7c62c79fe2a98e0c8acfe8fef1c24e41887eee1b14df9bd50998b988",
+            "size_bytes": 4423
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-001A.md",
+            "sha256": "860ee78834b3ddb6515ce5eee204dd44ff0b6673a3c4d2429170d7c5cca77f1e",
+            "size_bytes": 9433
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-PREFLIGHT-001A.md",
+            "sha256": "21b505e716930692c718417490c6ef2067f5b2c57c04097a26ca2b587679e3fd",
+            "size_bytes": 7970
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-001A.md",
+            "sha256": "0355da0edaa03def28935ee7f9bb5229de1c82930d98fe28d34674a172aa9c7b",
+            "size_bytes": 17357
+          },
+          {
+            "category": "admission",
+            "path": "docs/codex/tasks/EGO-MAINLINE-ADMISSION-TASK-CARD-ALIGNMENT-001A.md",
+            "sha256": "14790782811db2af1269e9c59f3731dd3c544c0b445c41b50fe3f9b7d67ad608",
+            "size_bytes": 3941
+          },
+          {
+            "category": "routing",
+            "path": "docs/codex/tasks/EGO-MAINLINE-POST-ADMISSION-ROUTING-001A.md",
+            "sha256": "daaa68f2ffbfc8082e8592b0795faf59185ff3d26b73bf0c1b8747582517bc8e",
+            "size_bytes": 9263
+          },
+          {
+            "category": "theory",
+            "path": "docs/research/PHASE-ONE-THEORY-LANDSCAPE-COVERAGE-AUDIT.md",
+            "sha256": "c5e509a23f575c547186eec2a5a4bd6c506578a8bb10cf1e147b0be44d9ddfcc",
+            "size_bytes": 73061
+          },
+          {
+            "category": "theory",
+            "path": "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-001A.md",
+            "sha256": "fba105e1588e395c379a3bd9c93d7e01a7edbaff5a8857afce11137f379bebfd",
+            "size_bytes": 2275
+          },
+          {
+            "category": "theory",
+            "path": "docs/research/THEORY-LANDSCAPE-COVERAGE-CANONICALIZATION-PROVENANCE-REPAIR-001B.md",
+            "sha256": "8c6c4f4d5fa7dfcbf9237b2ca35fd56a463ab09c334cf2f23ce886c572122d01",
+            "size_bytes": 1744
+          },
+          {
+            "category": "theory",
+            "path": "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+            "sha256": "f778df2c48718d7a33fc5aeb32f91695ea03588c7f24fe88c36cfef2b7e77fa3",
+            "size_bytes": 80171
+          },
+          {
+            "category": "routing",
+            "path": "src/ego_mainline_post_admission_routing_001a/__init__.py",
+            "sha256": "646f34c6046cf2453abd1acc166d99a2dc3db75dfc3b304e2153f1a183bb251e",
+            "size_bytes": 57
+          },
+          {
+            "category": "routing",
+            "path": "src/ego_mainline_post_admission_routing_001a/runner.py",
+            "sha256": "42c3a35791d2c96a7fb184dba2fed56e73c49d3bdbae793c2b509e3eae7167b0",
+            "size_bytes": 63281
+          },
+          {
+            "category": "routing",
+            "path": "tests/test_ego_mainline_post_admission_routing_001a.py",
+            "sha256": "f8f1b059f74f261afc7c5a96aa12aabc2a86d9da7f5a5a4db26cdd40caf54c27",
+            "size_bytes": 11194
+          }
+        ],
+        "producer_function": "build_input_artifact_inventory",
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+      },
+      "artifact_inventory_digest": "3774f8c226506c03f032a302cf5c24c309a6930de1c0641b974caa969640018a",
+      "claim_ceiling": "bounded evidence dependency closure evidence at governance layer only",
+      "forbidden_downstream_authorization_list": [
+        "runtime",
+        "bridge_runtime",
+        "Gate4_execution",
+        "implementation",
+        "mechanism_validity",
+        "theory_validity",
+        "architecture_correctness",
+        "agency",
+        "selfhood",
+        "consciousness",
+        "emotion",
+        "relationship_learning",
+        "stable_user_benefit"
+      ],
+      "intervention_markers": [],
+      "known_failure_classification": {
+        "aggregation_rule": "map known three failure identities to bounded clean-worktree observation counts",
+        "all_known_three_accounted_for": true,
+        "code_path_hash": "1546cb9da66d8a2660cfbcafa3be679f0409ce5b20f3bde7e251e0cef657a93b",
+        "known_failure_classifications": [
+          {
+            "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+            "current_status": "still_failing_in_bounded_observation",
+            "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+            "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+            "prior_failure_kind": "redundant_reference_contract_blocked",
+            "producer_function": "build_known_failure_classification"
+          },
+          {
+            "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+            "current_status": "still_failing_in_bounded_observation",
+            "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+            "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+            "prior_failure_kind": "redundant_alignment_contract_blocked",
+            "producer_function": "build_known_failure_classification"
+          },
+          {
+            "blocker_classification": "resolved_in_clean_bounded_observation",
+            "current_status": "resolved_in_clean_bounded_observation",
+            "downstream_implication": "does not remain a current blocker in clean bounded observation",
+            "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+            "prior_failure_kind": "dirty_state_contamination_or_prior_observation_mismatch",
+            "producer_function": "build_known_failure_classification"
+          }
+        ],
+        "producer_function": "build_known_failure_classification",
+        "resolved_in_clean_bounded_observation_count": 1,
+        "still_failing_count": 2,
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "unclassified_count": 0
+      },
+      "non_proven_list": [
+        "EGO readiness",
+        "bridge readiness",
+        "runtime readiness",
+        "Gate4 readiness",
+        "mechanism validity",
+        "theory validity",
+        "architecture correctness",
+        "agency",
+        "selfhood",
+        "consciousness",
+        "emotion",
+        "relationship learning",
+        "stable user benefit",
+        "future runtime correctness",
+        "runtime authorization"
+      ],
+      "old_artifact_non_mutation_evidence": {
+        "evidence_present": true,
+        "old_artifact_mutation_allowed": false,
+        "protected_old_artifact_hashes": {
+          "artifacts/ego_mainline_admission_canonical_coverage_reference_001a/result.json": "f906597a9239c392cd1a6e2ab4bf85a7a871984dc250b7e7cb1bece0f5ccb800",
+          "artifacts/ego_mainline_admission_execution_001a/admission_contract_evaluation.json": "a88bab5da02a3af3bdd786af88efc21e140526e047289e7b7fe79d11e8d758d7",
+          "artifacts/ego_mainline_admission_execution_001a/admission_decision_trace.json": "f397b18fd1e9de88d50b5264c885dec16a64e55710e48ebe90bbd5f67b42d62a",
+          "artifacts/ego_mainline_admission_execution_001a/claim_ceiling.txt": "c7023277b4b338cd339182812181bdb5eed9940472658d66d50b0c3c2b36593c",
+          "artifacts/ego_mainline_admission_execution_001a/result.json": "490d8fd671e22834bbbb519e07039a2c60df6bee48da643592675630683cf391",
+          "artifacts/ego_mainline_admission_execution_preflight_001a/result.json": "6377255e051d3d980601ebc2808ccd5174f827ef91a88e98cf4d56f04fa3768a",
+          "artifacts/ego_mainline_admission_task_card_alignment_001a/result.json": "d106c2fb089df36565c8ff6c42ab7a61389cb1a69ff62a1b11c328414bd0b6cd",
+          "artifacts/ego_mainline_post_admission_routing_001a/ablation_report.json": "00eb9fb2609ba56fe7b526c2d2e0ae567c03ca2893afe4c4ec03782166a84124",
+          "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json": "664bd33310a8b0420da130decc93dba66509be48eab24d8fb53f218c30aae3f0",
+          "artifacts/ego_mainline_post_admission_routing_001a/baseline_comparison.json": "388759d4b2b837679c54bd8c372484239557b09a60670157d5e4cad69858196a",
+          "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json": "675e7302ad77fac710c4ea0f1f0ef81c62620e45db4c871d9401c0eb5877363a",
+          "artifacts/ego_mainline_post_admission_routing_001a/leakage_scan_report.json": "d0fbc9990428c7a61bfe7feb20f28447d3a9f0c526fe984a95b44238a5c9af6c",
+          "artifacts/ego_mainline_post_admission_routing_001a/replay_report.json": "f989fee752072cd54e1ab4b4f6396eea73c54fba70aad5ed8e77a74278eee4d7",
+          "artifacts/ego_mainline_post_admission_routing_001a/result.json": "a1da0bfd48b1c7d236a8b2d6927ce2b87a3d41020a5f8fcaaf65995490047f3f",
+          "artifacts/ego_mainline_post_admission_routing_001a/routing_decision_matrix.json": "2cca5f4dd43e4ab1ac9653519037e7085143a462715df5acd307d1930be31adf",
+          "artifacts/post_bridge_admission_executable_001d/result.json": "388a6eccaef19d38090a57f0086921b323cfe66d0d02308412385a9be03f1985",
+          "artifacts/theory_landscape_coverage_canonicalization_provenance_repair_001b/result.json": "19ea8779ea15369d215fb0ab908a7644315f5a499c55fc7b0b709d75dfef6f1b",
+          "docs/codex/tasks/EGO-MAINLINE-ADMISSION-EXECUTION-001A.md": "860ee78834b3ddb6515ce5eee204dd44ff0b6673a3c4d2429170d7c5cca77f1e",
+          "docs/codex/tasks/EGO-MAINLINE-POST-ADMISSION-ROUTING-001A.md": "daaa68f2ffbfc8082e8592b0795faf59185ff3d26b73bf0c1b8747582517bc8e"
+        }
+      },
+      "positive_control_artifact": null,
+      "prior_allowed_route_matrix": {
+        "aggregation_rule": "copy candidate allowed routes after downstream authorization guard",
+        "allowed_next_routes": [
+          "governance_boundary_continuation",
+          "evidence_dependency_closure",
+          "theory_canonicalization_or_coverage_closure"
+        ],
+        "allowed_route_constraints": {
+          "evidence_dependency_closure": "close missing evidence dependencies without runtime entry",
+          "governance_boundary_continuation": "bounded governance continuation only",
+          "theory_canonicalization_or_coverage_closure": "docs/evidence coverage closure only"
+        },
+        "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+        "code_path_hash": "370b94a61544e5bcf7e1cf28ddab82d436c763c2e8be14b92c0a3cb842b8edac",
+        "computed_evidence_provenance": {
+          "aggregation_rule": "materialize bounded allowed route classes only",
+          "artifact_name": "allowed_routes.json",
+          "code_path_hash": "370b94a61544e5bcf7e1cf28ddab82d436c763c2e8be14b92c0a3cb842b8edac",
+          "input_artifacts": [
+            "routing_decision_matrix.json"
+          ],
+          "output_artifact_hash": "a4fcff014551d3bdd81b4a6bee2f9a9c7e2d354066136d7cb7c58d046d35f320",
+          "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/allowed_routes.json",
+          "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+          "producer_function": "build_allowed_routes",
+          "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+          "seed_context_episode_ids": {
+            "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+            "episode_id": "post_admission_routing",
+            "seed": "not_used",
+            "unused_seed_blocking_check": "no stochastic seed used"
+          }
+        },
+        "producer_function": "build_allowed_routes",
+        "recommended_next_task_class": "evidence_dependency_closure",
+        "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+      },
+      "prior_blocked_route_matrix": {
+        "aggregation_rule": "copy candidate blocked routes and attach missing evidence reasons",
+        "blocked_route_reasons": {
+          "EGO_runtime_implementation": [
+            "runtime readiness evidence",
+            "bridge-runtime authorization evidence",
+            "implementation-specific safety and rollback contract"
+          ],
+          "Gate4_preflight_task_card_drafting": [
+            "separate explicit Gate4 drafting authorization outside this routing task",
+            "upstream evidence-dependency closure showing why Gate4 drafting is the next bounded boundary",
+            "predeclared task card that preserves no Gate4 execution authorization"
+          ],
+          "bridge_runtime_preflight": [
+            "same-agent bridge readiness evidence",
+            "canonical trace/replay contract evidence",
+            "baseline and ablation suite evidence that is not inherited from 001A admission pass"
+          ],
+          "no_go_until_missing_evidence_closed": [
+            "used only when required routing inputs or anchor verification are missing or corrupted"
+          ],
+          "product_or_companion_behavior_work": [
+            "explicit product or companion scope authorization",
+            "relationship/emotion/user-model boundary evidence",
+            "deployment and runtime safety gates outside this lab routing task"
+          ]
+        },
+        "blocked_routes": [
+          "Gate4_preflight_task_card_drafting",
+          "bridge_runtime_preflight",
+          "EGO_runtime_implementation",
+          "product_or_companion_behavior_work",
+          "no_go_until_missing_evidence_closed"
+        ],
+        "claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+        "code_path_hash": "c040756551434f902348729293bce9c573b77703b2f7a3b8663ef5594bcfeb5f",
+        "computed_evidence_provenance": {
+          "aggregation_rule": "materialize blocked downstream route classes",
+          "artifact_name": "blocked_routes.json",
+          "code_path_hash": "c040756551434f902348729293bce9c573b77703b2f7a3b8663ef5594bcfeb5f",
+          "input_artifacts": [
+            "routing_decision_matrix.json"
+          ],
+          "output_artifact_hash": "22b9d9b85f18b5701174954b0e611721e079f7a40798cf26d5c8cab34aafb036",
+          "output_artifact_path": "artifacts/ego_mainline_post_admission_routing_001a/blocked_routes.json",
+          "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+          "producer_function": "build_blocked_routes",
+          "run_id": "ego_mainline_post_admission_routing_001a_56c575327b8a27f1",
+          "seed_context_episode_ids": {
+            "context_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A",
+            "episode_id": "post_admission_routing",
+            "seed": "not_used",
+            "unused_seed_blocking_check": "no stochastic seed used"
+          }
+        },
+        "producer_function": "build_blocked_routes",
+        "task_id": "EGO-MAINLINE-POST-ADMISSION-ROUTING-001A"
+      },
+      "prior_routing_claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+      "repository_constraints": {
+        "dirty_paths": [
+          {
+            "intended_task_path": true,
+            "path": "artifacts/ego_mainline_evidence_dependency_closure_001a/",
+            "raw": "?? artifacts/ego_mainline_evidence_dependency_closure_001a/"
+          },
+          {
+            "intended_task_path": true,
+            "path": "docs/codex/tasks/EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A.md",
+            "raw": "?? docs/codex/tasks/EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A.md"
+          },
+          {
+            "intended_task_path": true,
+            "path": "src/ego_mainline_evidence_dependency_closure_001a/",
+            "raw": "?? src/ego_mainline_evidence_dependency_closure_001a/"
+          },
+          {
+            "intended_task_path": true,
+            "path": "tests/test_ego_mainline_evidence_dependency_closure_001a.py",
+            "raw": "?? tests/test_ego_mainline_evidence_dependency_closure_001a.py"
+          }
+        ],
+        "git_status_short": [
+          "?? artifacts/ego_mainline_evidence_dependency_closure_001a/",
+          "?? docs/codex/tasks/EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A.md",
+          "?? src/ego_mainline_evidence_dependency_closure_001a/",
+          "?? tests/test_ego_mainline_evidence_dependency_closure_001a.py"
+        ],
+        "old_artifact_mutation_allowed": false,
+        "producer_function": "build_repository_constraints",
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "unrelated_dirty_paths": [],
+        "validation_rule": "dirty paths must be limited to new dependency-closure task/source/test/artifact files"
+      },
+      "test_suite_observation": {
+        "aggregation_rule": "classify bounded pytest command results without entering runtime or repairing old tests",
+        "code_path_hash": "7d06152427e577490137aff26e42e977255925330777d89c69d429e958768aaa",
+        "full_pytest_observation": {
+          "mode": "bounded_not_rerun",
+          "prior_readback": "654 passed, 3 failed",
+          "reason": "Full pytest was not rerun in this closure task because prior readback reported old artifact write side effects; bounded clean-worktree probes are used and unresolved suite cleanliness stays blocked.",
+          "status": "not_cleanly_closed"
+        },
+        "known_failure_probe": {
+          "command": "pytest tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+          "exit_code": 1,
+          "observation_source": "preimplementation_clean_worktree_readback",
+          "passed": false,
+          "summary": {
+            "failed": 2,
+            "passed": 1
+          }
+        },
+        "observation_boundary": "clean routing-anchor worktree for bounded prior-suite probes",
+        "producer_function": "build_test_suite_observation",
+        "targeted_routing_test": {
+          "command": "pytest tests/test_ego_mainline_post_admission_routing_001a.py",
+          "exit_code": 0,
+          "observation_source": "preimplementation_clean_worktree_readback",
+          "passed": true,
+          "summary": {
+            "failed": 0,
+            "passed": 9
+          }
+        },
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+      }
+    },
+    "closure_parameters": {
+      "claim_ceiling": "bounded evidence dependency closure evidence at governance layer only",
+      "dependency_categories": [
+        "anchor_integrity",
+        "routing_boundary_integrity",
+        "admission_execution_integrity",
+        "artifact_inventory_continuity",
+        "old_artifact_non_mutation",
+        "test_suite_status",
+        "known_failure_classification",
+        "provenance_gate_continuity",
+        "replay_gate_continuity",
+        "leakage_gate_continuity",
+        "baseline_independence_continuity",
+        "ablation_intervention_continuity",
+        "theory_coverage_or_canonicalization_dependencies",
+        "Gate0_Gate1_Gate2_Gate3_dependency_state",
+        "Gate4_preflight_prerequisites",
+        "bridge_runtime_prerequisites",
+        "EGO_runtime_prerequisites",
+        "downstream_non_authorization_preservation"
+      ],
+      "governance_confidence_cap": 0.64,
+      "prior_suite_state": "routing target 9 passed; prior full pytest 654 passed, 3 failed",
+      "required_routing_recommendation": "evidence_dependency_closure",
+      "required_routing_verdict": "post_admission_routing_001a_pass_with_bounded_next_task",
+      "route_classes_considered": [
+        "evidence_dependency_closure_complete",
+        "bounded_repair_task_required",
+        "known_failure_triage_required",
+        "Gate4_preflight_task_card_drafting_allowed_future_only",
+        "theory_canonicalization_or_coverage_closure_required",
+        "bridge_runtime_preflight_blocked",
+        "EGO_runtime_implementation_blocked",
+        "product_or_companion_behavior_work_blocked",
+        "no_go_until_dependency_gap_closed"
+      ]
+    },
+    "input_observations": {
+      "anchor_readback": {
+        "admission_anchor_verified": true,
+        "admission_commit": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "admission_commit_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "admission_remote_tag": "remote-anchor-bounded-admission-execution-001a-98e51a4",
+        "admission_remote_tag_resolved_hash": "98e51a46cd7f28f60b1851c616d4351c1cd6272f",
+        "current_branch": "codex/meta-theory-scaffold",
+        "current_head": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "prior_admission_result_exists": true,
+        "prior_admission_verdict": "pass_bounded_admission_execution_001a",
+        "prior_routing_boundary_verified": true,
+        "prior_routing_claim_ceiling": "bounded post-admission routing evidence at governance layer only",
+        "prior_routing_non_proven_list": [
+          "EGO readiness",
+          "bridge readiness",
+          "runtime readiness",
+          "Gate4 readiness",
+          "mechanism validity",
+          "theory validity",
+          "architecture correctness",
+          "agency",
+          "selfhood",
+          "consciousness",
+          "emotion",
+          "relationship learning",
+          "stable user benefit",
+          "future runtime correctness",
+          "runtime authorization"
+        ],
+        "prior_routing_recommendation": "evidence_dependency_closure",
+        "prior_routing_result_exists": true,
+        "prior_routing_result_path": "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+        "prior_routing_verdict": "post_admission_routing_001a_pass_with_bounded_next_task",
+        "producer_function": "build_anchor_readback",
+        "routing_anchor_verified": true,
+        "routing_commit": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "routing_commit_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "routing_remote_tag": "remote-anchor-post-admission-routing-001a-4edf5c",
+        "routing_remote_tag_resolved_hash": "4edf5cff7f89cf2cf1c6dbb15a478bbada0432aa",
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "validation_rule": "routing and admission commits plus remote tags must resolve exactly; prior routing must remain bounded"
+      },
+      "artifact_inventory_digest": "3774f8c226506c03f032a302cf5c24c309a6930de1c0641b974caa969640018a",
+      "known_failure_classification": {
+        "aggregation_rule": "map known three failure identities to bounded clean-worktree observation counts",
+        "all_known_three_accounted_for": true,
+        "code_path_hash": "1546cb9da66d8a2660cfbcafa3be679f0409ce5b20f3bde7e251e0cef657a93b",
+        "known_failure_classifications": [
+          {
+            "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+            "current_status": "still_failing_in_bounded_observation",
+            "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+            "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+            "prior_failure_kind": "redundant_reference_contract_blocked",
+            "producer_function": "build_known_failure_classification"
+          },
+          {
+            "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+            "current_status": "still_failing_in_bounded_observation",
+            "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+            "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+            "prior_failure_kind": "redundant_alignment_contract_blocked",
+            "producer_function": "build_known_failure_classification"
+          },
+          {
+            "blocker_classification": "resolved_in_clean_bounded_observation",
+            "current_status": "resolved_in_clean_bounded_observation",
+            "downstream_implication": "does not remain a current blocker in clean bounded observation",
+            "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+            "prior_failure_kind": "dirty_state_contamination_or_prior_observation_mismatch",
+            "producer_function": "build_known_failure_classification"
+          }
+        ],
+        "producer_function": "build_known_failure_classification",
+        "resolved_in_clean_bounded_observation_count": 1,
+        "still_failing_count": 2,
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "unclassified_count": 0
+      },
+      "test_suite_observation": {
+        "aggregation_rule": "classify bounded pytest command results without entering runtime or repairing old tests",
+        "code_path_hash": "7d06152427e577490137aff26e42e977255925330777d89c69d429e958768aaa",
+        "full_pytest_observation": {
+          "mode": "bounded_not_rerun",
+          "prior_readback": "654 passed, 3 failed",
+          "reason": "Full pytest was not rerun in this closure task because prior readback reported old artifact write side effects; bounded clean-worktree probes are used and unresolved suite cleanliness stays blocked.",
+          "status": "not_cleanly_closed"
+        },
+        "known_failure_probe": {
+          "command": "pytest tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+          "exit_code": 1,
+          "observation_source": "preimplementation_clean_worktree_readback",
+          "passed": false,
+          "summary": {
+            "failed": 2,
+            "passed": 1
+          }
+        },
+        "observation_boundary": "clean routing-anchor worktree for bounded prior-suite probes",
+        "producer_function": "build_test_suite_observation",
+        "targeted_routing_test": {
+          "command": "pytest tests/test_ego_mainline_post_admission_routing_001a.py",
+          "exit_code": 0,
+          "observation_source": "preimplementation_clean_worktree_readback",
+          "passed": true,
+          "summary": {
+            "failed": 0,
+            "passed": 9
+          }
+        },
+        "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+      }
+    },
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    },
+    "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+  },
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

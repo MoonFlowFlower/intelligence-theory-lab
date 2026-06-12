@@ -1,0 +1,168 @@
+{
+  "aggregation_rule": "compare candidate closure against independent callable baselines",
+  "baseline_results": {
+    "claim_ceiling_baseline": {
+      "aggregation_rule": "block downstream authorization when claim ceiling and non-proven list are governance-only",
+      "blocked_routes": [
+        "Gate4_preflight_task_card_drafting_allowed_future_only",
+        "bridge_runtime_preflight_blocked",
+        "EGO_runtime_implementation_blocked",
+        "product_or_companion_behavior_work_blocked"
+      ],
+      "blocks_downstream_authorization": true,
+      "claim_ceiling": "bounded evidence dependency closure evidence at governance layer only",
+      "code_path_hash": "f131f64734c73a73e9a3c233294653987f329847e8597d7090f3654f89d1c132",
+      "computed_reason_codes": [
+        "claim_ceiling_blocks_downstream_authorization"
+      ],
+      "input_scope": "claim ceiling and non-proven list only",
+      "non_proven_count": 15,
+      "producer_function": "claim_ceiling_baseline"
+    },
+    "full_suite_strict_baseline": {
+      "aggregation_rule": "block advancement when suite cleanliness is missing or failures remain",
+      "blocks_downstream_advancement": true,
+      "code_path_hash": "10f876fda8dc0fa60011ea6735e7da2bf1f4d23db4c934007bdaaf2d041c02ce",
+      "computed_reason_codes": [
+        "full_suite_not_clean_blocks_advancement"
+      ],
+      "full_suite_clean": false,
+      "input_scope": "full-suite status and bounded known-failure probe only",
+      "known_probe_failed": true,
+      "producer_function": "full_suite_strict_baseline",
+      "recommended_next_task_class": "no_go_until_dependency_gap_closed"
+    },
+    "naive_clean_targeted_test_baseline": {
+      "aggregation_rule": "if targeted routing test passes then advance without checking suite blockers",
+      "code_path_hash": "c0324a8234b6ba1e4234f64b9e36b380cc8c4751cd966e36d8ce7738a4ca240e",
+      "computed_reason_codes": [
+        "targeted_only_over_route"
+      ],
+      "ignored_inputs": [
+        "full_pytest_observation",
+        "known_failure_classification",
+        "claim_ceiling",
+        "blocked_route_matrix"
+      ],
+      "input_scope": "targeted routing test result only",
+      "producer_function": "naive_clean_targeted_test_baseline",
+      "recommended_next_task_class": "Gate4_preflight_task_card_drafting_allowed_future_only",
+      "targeted_routing_test_passed": true,
+      "unsafe_advancement_tendency": true
+    }
+  },
+  "baselines_invoked": [
+    "naive_clean_targeted_test_baseline",
+    "full_suite_strict_baseline",
+    "claim_ceiling_baseline"
+  ],
+  "candidate_exceeds_claim_ceiling_baseline": false,
+  "candidate_looser_than_full_suite_strict_only_for_classification": true,
+  "candidate_result": {
+    "computed_reason_codes": [
+      "routing_and_admission_anchors_verified",
+      "prior_routing_boundary_verified",
+      "claim_ceiling_preserved",
+      "non_proven_list_preserves_claim_restraint",
+      "artifact_inventory_continuity_present",
+      "repo_dirty_state_limited_to_intended_001a_paths",
+      "old_artifact_non_mutation_evidence_present",
+      "targeted_routing_test_clean_in_bounded_observation",
+      "full_pytest_not_rerun_remains_dependency_gap",
+      "known_three_failures_classified",
+      "known_failure_blockers_remain_present",
+      "prior_blocked_route_matrix_preserves_downstream_boundary",
+      "forbidden_authorization_list_present"
+    ],
+    "recommended_next_task_class": "known_failure_triage_required",
+    "route_permission_matrix": {
+      "recommended_next_task_class": "known_failure_triage_required",
+      "route_permissions": {
+        "EGO_runtime_implementation_blocked": {
+          "permission": "blocked",
+          "reason_codes": [
+            "ego_runtime_implementation_not_authorized"
+          ]
+        },
+        "Gate4_preflight_task_card_drafting_allowed_future_only": {
+          "permission": "blocked_current_future_only",
+          "reason_codes": [
+            "current_task_does_not_authorize_gate4_and_dependency_gap_remains"
+          ]
+        },
+        "bounded_repair_task_required": {
+          "permission": "allowed_bounded",
+          "reason_codes": [
+            "bounded_repair_or_triage_allowed_without_downstream_authorization"
+          ]
+        },
+        "bridge_runtime_preflight_blocked": {
+          "permission": "blocked",
+          "reason_codes": [
+            "bridge_runtime_preflight_not_authorized"
+          ]
+        },
+        "evidence_dependency_closure_complete": {
+          "permission": "blocked_current",
+          "reason_codes": [
+            "closure_not_complete_due_to_blockers_or_suite_gap"
+          ]
+        },
+        "known_failure_triage_required": {
+          "permission": "allowed_bounded",
+          "reason_codes": [
+            "known_failure_blockers_require_triage"
+          ]
+        },
+        "no_go_until_dependency_gap_closed": {
+          "permission": "blocked_contingent",
+          "reason_codes": [
+            "no_stop_condition_but_dependency_gap_remains_classified"
+          ]
+        },
+        "product_or_companion_behavior_work_blocked": {
+          "permission": "blocked",
+          "reason_codes": [
+            "product_or_companion_behavior_work_not_authorized"
+          ]
+        },
+        "theory_canonicalization_or_coverage_closure_required": {
+          "permission": "allowed_bounded",
+          "reason_codes": [
+            "bounded_theory_coverage_or_canonicalization_closure_may_be_task_carded"
+          ]
+        }
+      },
+      "stop_conditions": []
+    }
+  },
+  "candidate_stricter_than_naive": true,
+  "code_path_hash": "c8aace865aa9df51e9f56cd1cdd5e51cd021f034027bbc83a1d5009dd87e2d46",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "compare candidate against independent callable baselines",
+    "artifact_name": "baseline_comparison.json",
+    "code_path_hash": "c8aace865aa9df51e9f56cd1cdd5e51cd021f034027bbc83a1d5009dd87e2d46",
+    "input_artifacts": [
+      "candidate_closure_inputs",
+      "callable baselines"
+    ],
+    "output_artifact_hash": "77cab99647333afe64d018444260e68949b18ed66048898f24b966ea92f6de3e",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/baseline_comparison.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_baseline_comparison",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "computed_reason_codes": [
+    "targeted_only_over_route_blocked",
+    "full_suite_strict_blocks_advancement_candidate_only_classifies",
+    "candidate_does_not_exceed_claim_ceiling_baseline"
+  ],
+  "producer_function": "build_baseline_comparison",
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

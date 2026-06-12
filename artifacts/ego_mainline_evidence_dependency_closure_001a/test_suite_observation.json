@@ -1,0 +1,52 @@
+{
+  "aggregation_rule": "classify bounded pytest command results without entering runtime or repairing old tests",
+  "code_path_hash": "7d06152427e577490137aff26e42e977255925330777d89c69d429e958768aaa",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "record bounded clean-worktree test observations and full-suite limitation",
+    "artifact_name": "test_suite_observation.json",
+    "code_path_hash": "7d06152427e577490137aff26e42e977255925330777d89c69d429e958768aaa",
+    "input_artifacts": [
+      "bounded pytest invocations in clean routing-anchor worktree"
+    ],
+    "output_artifact_hash": "63da7c74173774cd938e56f120feaa1df18de497d50926017b6e0b68ee7a348c",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/test_suite_observation.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_test_suite_observation",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "full_pytest_observation": {
+    "mode": "bounded_not_rerun",
+    "prior_readback": "654 passed, 3 failed",
+    "reason": "Full pytest was not rerun in this closure task because prior readback reported old artifact write side effects; bounded clean-worktree probes are used and unresolved suite cleanliness stays blocked.",
+    "status": "not_cleanly_closed"
+  },
+  "known_failure_probe": {
+    "command": "pytest tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+    "exit_code": 1,
+    "observation_source": "preimplementation_clean_worktree_readback",
+    "passed": false,
+    "summary": {
+      "failed": 2,
+      "passed": 1
+    }
+  },
+  "observation_boundary": "clean routing-anchor worktree for bounded prior-suite probes",
+  "producer_function": "build_test_suite_observation",
+  "targeted_routing_test": {
+    "command": "pytest tests/test_ego_mainline_post_admission_routing_001a.py",
+    "exit_code": 0,
+    "observation_source": "preimplementation_clean_worktree_readback",
+    "passed": true,
+    "summary": {
+      "failed": 0,
+      "passed": 9
+    }
+  },
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

@@ -1,0 +1,150 @@
+{
+  "aggregation_rule": "collect callable provenance rows for result, baseline, ablation, leakage, replay, blocker, and route values",
+  "all_reported_values_have_callable_provenance": true,
+  "code_path_hash": "c82205f40bd9818abb3f39e57d4bfe20ac1bbafd2237abb0949e89acc32673ac",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "collect callable provenance for all verdict-like outputs",
+    "artifact_name": "computed_evidence_provenance.json",
+    "code_path_hash": "c82205f40bd9818abb3f39e57d4bfe20ac1bbafd2237abb0949e89acc32673ac",
+    "input_artifacts": [
+      "result, baseline, ablation, leakage, replay, blocker, route outputs"
+    ],
+    "output_artifact_hash": "fad4f42a8c30d5b5f6f18f1475f48dfe50702de617bf0aef4ea27cc166bfda88",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/computed_evidence_provenance.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_computed_evidence_provenance_report",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_computed_evidence_provenance_report",
+  "provenance_rows": [
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "f92494baf1c6df62a42a92941e590ec7e4530444843dd646b483aa6c7bcb94d6",
+      "input_artifacts": [
+        "docs/codex/tasks/EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A.md",
+        "artifacts/ego_mainline_post_admission_routing_001a/result.json",
+        "artifacts/ego_mainline_admission_execution_001a/result.json"
+      ],
+      "input_digest": "bc4109039a40f260b2749df8bda24bfa717803cc27eaebf5f8aac64047bccd4e",
+      "label": "candidate_closure",
+      "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/candidate_closure.json",
+      "output_digest": "f4a2bd648a3fc5bb21ed9b60e96fbba6a55cb36f8f63ba0feca019fe72308ed4",
+      "producer_function": "compute_candidate_closure",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "episode_id": "evidence_dependency_closure",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "7d06152427e577490137aff26e42e977255925330777d89c69d429e958768aaa",
+      "input_artifacts": [
+        "bounded pytest invocations in clean routing-anchor worktree"
+      ],
+      "input_digest": "19097dceccc1df5b37ee052466e168c5d3e7ab023e23b0aaf9b84c168bb24d57",
+      "label": "test_suite_observation",
+      "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/test_suite_observation.json",
+      "output_digest": "63da7c74173774cd938e56f120feaa1df18de497d50926017b6e0b68ee7a348c",
+      "producer_function": "build_test_suite_observation",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "episode_id": "evidence_dependency_closure",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "1546cb9da66d8a2660cfbcafa3be679f0409ce5b20f3bde7e251e0cef657a93b",
+      "input_artifacts": [
+        "test_suite_observation.json",
+        "known prior failure list"
+      ],
+      "input_digest": "63da7c74173774cd938e56f120feaa1df18de497d50926017b6e0b68ee7a348c",
+      "label": "known_failure_classification",
+      "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/known_failure_classification.json",
+      "output_digest": "1e1ddf92befbc0e9b81afe6ea84d898738903400da6ceb8590227a57ebd41a9e",
+      "producer_function": "build_known_failure_classification",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "episode_id": "evidence_dependency_closure",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "c8aace865aa9df51e9f56cd1cdd5e51cd021f034027bbc83a1d5009dd87e2d46",
+      "input_artifacts": [
+        "candidate_closure_inputs",
+        "callable baselines"
+      ],
+      "input_digest": "bc4109039a40f260b2749df8bda24bfa717803cc27eaebf5f8aac64047bccd4e",
+      "label": "baseline_comparison",
+      "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/baseline_comparison.json",
+      "output_digest": "77cab99647333afe64d018444260e68949b18ed66048898f24b966ea92f6de3e",
+      "producer_function": "build_baseline_comparison",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "episode_id": "evidence_dependency_closure",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "3bc5ea32d8c4351ee23e9dbf207a5e08e0cd0ebbf4cfba76a2b327b2e512044d",
+      "input_artifacts": [
+        "candidate_closure_inputs",
+        "intervention functions"
+      ],
+      "input_digest": "bc4109039a40f260b2749df8bda24bfa717803cc27eaebf5f8aac64047bccd4e",
+      "label": "ablation_report",
+      "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/ablation_report.json",
+      "output_digest": "dc6b3aa685bd207f03788ac9c23347d5830949fc18a506bdc0aca205662586ad",
+      "producer_function": "run_ablation_suite",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "episode_id": "evidence_dependency_closure",
+        "seed": "not_used"
+      }
+    },
+    {
+      "aggregation_rule": "callable producer derives output from structured inputs",
+      "code_path_hash": "5e883495c5ef7188068dc191bf0fec14cfe9081ce19105f9dbaf13d4806b9b49",
+      "input_artifacts": [
+        "closure_state.json",
+        "replay_closure_from_state"
+      ],
+      "input_digest": "bc4109039a40f260b2749df8bda24bfa717803cc27eaebf5f8aac64047bccd4e",
+      "label": "replay_report",
+      "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/replay_report.json",
+      "output_digest": "378160cd163fa48ccc62880e591af99c5d40e6dc92c2f3fa395bdc67aa9ede55",
+      "producer_function": "build_replay_report",
+      "run_id": null,
+      "seed_context_episode_ids": {
+        "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+        "episode_id": "evidence_dependency_closure",
+        "seed": "not_used"
+      }
+    }
+  ],
+  "seed_context_episode_ids": {
+    "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+    "episode_id": "evidence_dependency_closure",
+    "seed": "not_used",
+    "unused_seed_blocking_check": "no stochastic seed used"
+  },
+  "static_literal_or_unconditional_pass_detected": false,
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+  "unused_frozen_seed_train_heldout_or_counterfactual_pair_detected": false
+}

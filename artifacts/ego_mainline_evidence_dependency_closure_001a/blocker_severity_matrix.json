@@ -1,0 +1,58 @@
+{
+  "aggregation_rule": "assign severity from blocker implication and unresolved suite status",
+  "blocker_severity_rows": [
+    {
+      "blocks": [
+        "evidence_dependency_closure_complete",
+        "Gate4_preflight_task_card_drafting_allowed_future_only",
+        "bridge_runtime_preflight_blocked",
+        "EGO_runtime_implementation_blocked"
+      ],
+      "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+      "reason": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+      "severity": "high"
+    },
+    {
+      "blocks": [
+        "evidence_dependency_closure_complete",
+        "Gate4_preflight_task_card_drafting_allowed_future_only",
+        "bridge_runtime_preflight_blocked",
+        "EGO_runtime_implementation_blocked"
+      ],
+      "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+      "reason": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+      "severity": "high"
+    },
+    {
+      "blocks": [
+        "evidence_dependency_closure_complete"
+      ],
+      "nodeid": "full_pytest_observation",
+      "reason": "full pytest not rerun in this task; cleanliness remains unresolved",
+      "severity": "medium"
+    }
+  ],
+  "code_path_hash": "9e0b050bd6748ade98ddd8a99f11a133ad25c06a4dbff436070ec451bbebee17",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "score blocker severity from computed blocker implications",
+    "artifact_name": "blocker_severity_matrix.json",
+    "code_path_hash": "9e0b050bd6748ade98ddd8a99f11a133ad25c06a4dbff436070ec451bbebee17",
+    "input_artifacts": [
+      "known_blockers.json",
+      "test_suite_observation.json"
+    ],
+    "output_artifact_hash": "836095c548b4898e9f213c560632b41301fa285addb5b4cfe324d43b2fa8c86c",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/blocker_severity_matrix.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_blocker_severity_matrix",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_blocker_severity_matrix",
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

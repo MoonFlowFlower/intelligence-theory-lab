@@ -1,0 +1,125 @@
+{
+  "aggregation_rule": "filter candidate dependency rows to satisfied categories",
+  "code_path_hash": "a96b1695d6385a4252f93b4a6d999c6700896ce73750a9b6480eecbcb49fe06c",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize satisfied dependency rows",
+    "artifact_name": "satisfied_dependencies.json",
+    "code_path_hash": "a96b1695d6385a4252f93b4a6d999c6700896ce73750a9b6480eecbcb49fe06c",
+    "input_artifacts": [
+      "dependency_closure_matrix.json"
+    ],
+    "output_artifact_hash": "27ac4fc14b01042b92d655f0aedc0dc148b3dd55844e6e3378e2b66d7bc2f9f4",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/satisfied_dependencies.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_satisfied_dependencies",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_satisfied_dependencies",
+  "satisfied_dependencies": {
+    "ablation_intervention_continuity": {
+      "reason_codes": [
+        "ablation_reruns_configured"
+      ],
+      "status": "satisfied"
+    },
+    "admission_execution_integrity": {
+      "reason_codes": [
+        "admission_anchor_verified"
+      ],
+      "status": "satisfied"
+    },
+    "anchor_integrity": {
+      "reason_codes": [
+        "anchors_verified"
+      ],
+      "status": "satisfied"
+    },
+    "artifact_inventory_continuity": {
+      "reason_codes": [
+        "artifact_inventory_digest_present"
+      ],
+      "status": "satisfied"
+    },
+    "baseline_independence_continuity": {
+      "reason_codes": [
+        "independent_baselines_configured"
+      ],
+      "status": "satisfied"
+    },
+    "downstream_non_authorization_preservation": {
+      "reason_codes": [
+        "downstream_flags_forced_false"
+      ],
+      "status": "satisfied"
+    },
+    "known_failure_classification": {
+      "known_failure_classifications": [
+        {
+          "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+          "current_status": "still_failing_in_bounded_observation",
+          "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+          "nodeid": "tests/test_ego_mainline_admission_canonical_coverage_reference_001a.py::test_temp_run_uses_same_validators_without_remote_dependency",
+          "prior_failure_kind": "redundant_reference_contract_blocked",
+          "producer_function": "build_known_failure_classification"
+        },
+        {
+          "blocker_classification": "existing_redundancy_guard_blocks_on_current_sealed_admission_artifacts",
+          "current_status": "still_failing_in_bounded_observation",
+          "downstream_implication": "blocks downstream advancement until bounded repair or triage closes the old redundancy guard",
+          "nodeid": "tests/test_ego_mainline_admission_task_card_alignment_001a.py::test_temp_run_uses_same_validators",
+          "prior_failure_kind": "redundant_alignment_contract_blocked",
+          "producer_function": "build_known_failure_classification"
+        },
+        {
+          "blocker_classification": "resolved_in_clean_bounded_observation",
+          "current_status": "resolved_in_clean_bounded_observation",
+          "downstream_implication": "does not remain a current blocker in clean bounded observation",
+          "nodeid": "tests/test_ego_mainline_post_admission_routing_001a.py::test_callable_candidate_rejects_corrupted_governance_inputs_without_authorizing_downstream",
+          "prior_failure_kind": "dirty_state_contamination_or_prior_observation_mismatch",
+          "producer_function": "build_known_failure_classification"
+        }
+      ],
+      "reason_codes": [
+        "known_three_failures_classified"
+      ],
+      "status": "satisfied"
+    },
+    "leakage_gate_continuity": {
+      "reason_codes": [
+        "leakage_scan_with_positive_control_configured"
+      ],
+      "status": "satisfied"
+    },
+    "old_artifact_non_mutation": {
+      "reason_codes": [
+        "old_artifact_hash_guard_present"
+      ],
+      "status": "satisfied"
+    },
+    "provenance_gate_continuity": {
+      "reason_codes": [
+        "callable_provenance_gate_configured"
+      ],
+      "status": "satisfied"
+    },
+    "replay_gate_continuity": {
+      "reason_codes": [
+        "replay_recomputation_configured"
+      ],
+      "status": "satisfied"
+    },
+    "routing_boundary_integrity": {
+      "reason_codes": [
+        "prior_routing_boundary_verified"
+      ],
+      "status": "satisfied"
+    }
+  },
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}

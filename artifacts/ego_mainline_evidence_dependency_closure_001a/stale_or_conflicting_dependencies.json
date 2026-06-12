@@ -1,0 +1,33 @@
+{
+  "aggregation_rule": "record stale or conflicting prior observations separately from current blockers",
+  "code_path_hash": "7dab4547aa17cb65257d69cd6b6940b48b001080eda25a8d8de8748a354a2dc9",
+  "computed_evidence_provenance": {
+    "aggregation_rule": "materialize stale or conflicting observation rows",
+    "artifact_name": "stale_or_conflicting_dependencies.json",
+    "code_path_hash": "7dab4547aa17cb65257d69cd6b6940b48b001080eda25a8d8de8748a354a2dc9",
+    "input_artifacts": [
+      "known_failure_classification.json"
+    ],
+    "output_artifact_hash": "7e2a7b18cf55776400376accc4337ebad1e4678939da7867d8e404b485771a25",
+    "output_artifact_path": "artifacts/ego_mainline_evidence_dependency_closure_001a/stale_or_conflicting_dependencies.json",
+    "output_hash_scope": "canonical JSON payload before computed_evidence_provenance envelope",
+    "producer_function": "build_stale_or_conflicting_dependencies",
+    "run_id": "ego_mainline_evidence_dependency_closure_001a_9a88d466dda2836b",
+    "seed_context_episode_ids": {
+      "context_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A",
+      "episode_id": "evidence_dependency_closure",
+      "seed": "not_used",
+      "unused_seed_blocking_check": "no stochastic seed used"
+    }
+  },
+  "producer_function": "build_stale_or_conflicting_dependencies",
+  "stale_or_conflicting_dependencies": {
+    "prior_dirty_state_failure": {
+      "reason_codes": [
+        "routing_candidate_failure_passed_in_clean_bounded_probe"
+      ],
+      "status": "resolved_in_clean_bounded_observation"
+    }
+  },
+  "task_id": "EGO-MAINLINE-EVIDENCE-DEPENDENCY-CLOSURE-001A"
+}
