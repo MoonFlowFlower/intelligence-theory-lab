@@ -1,0 +1,27 @@
+{
+  "acceptance_threshold": 0.95,
+  "candidate_score": 1.0,
+  "claim_ceiling": "bounded same-agent bridge preflight result audit evidence only",
+  "rows": [
+    {"ablation_name": "remove bridge state", "failure_surface": "bridge_state_metadata", "later_behavior_degraded": true, "score": 0.3, "sensitive": true},
+    {"ablation_name": "reset all memory at bridge", "failure_surface": "memory_carryover_state", "later_behavior_degraded": false, "score": 0.36, "sensitive": true},
+    {"ablation_name": "freeze post-bridge learning", "failure_surface": "post_bridge_update", "later_behavior_degraded": true, "score": 0.42, "sensitive": true},
+    {"ablation_name": "corrupt serialized state", "failure_surface": "serialization_integrity", "later_behavior_degraded": false, "score": 0.2, "sensitive": true},
+    {"ablation_name": "replace serialized state with wrong episode state", "failure_surface": "state_lineage", "later_behavior_degraded": false, "score": 0.22, "sensitive": true},
+    {"ablation_name": "remove replay/consolidation carryover", "failure_surface": "replay_memory", "later_behavior_degraded": false, "score": 0.45, "sensitive": true},
+    {"ablation_name": "remove self-boundary carryover", "failure_surface": "self_boundary_state", "later_behavior_degraded": false, "score": 0.55, "sensitive": true},
+    {"ablation_name": "remove viability carryover", "failure_surface": "viability_state", "later_behavior_degraded": false, "score": 0.5, "sensitive": true},
+    {"ablation_name": "remove social-latent carryover", "failure_surface": "social_latent_state", "later_behavior_degraded": false, "score": 0.48, "sensitive": true},
+    {"ablation_name": "remove identity_continuity_state", "failure_surface": "identity_continuity_state", "later_behavior_degraded": true, "score": 0.28, "sensitive": true},
+    {"ablation_name": "invert bridge mapping", "failure_surface": "bridge_mapping", "later_behavior_degraded": false, "score": 0.25, "sensitive": true},
+    {"ablation_name": "perturb post-bridge environment", "failure_surface": "post_bridge_environment", "later_behavior_degraded": false, "score": 0.52, "sensitive": true},
+    {"ablation_name": "delayed post-bridge effect", "failure_surface": "temporal_linkage", "later_behavior_degraded": false, "score": 0.54, "sensitive": true},
+    {"ablation_name": "partial observability", "failure_surface": "observation_boundary", "later_behavior_degraded": false, "score": 0.58, "sensitive": true},
+    {"ablation_name": "heldout bridge-context compositions", "failure_surface": "heldout_generalization", "later_behavior_degraded": false, "score": 0.6, "sensitive": true},
+    {"ablation_name": "counterfactual bridge contrast", "failure_surface": "counterfactual_sensitivity", "later_behavior_degraded": false, "score": 0.46, "sensitive": true},
+    {"ablation_name": "replace history before bridge", "failure_surface": "history_dependence", "later_behavior_degraded": false, "score": 0.4, "sensitive": true},
+    {"ablation_name": "learning freeze", "failure_surface": "post_bridge_learning", "later_behavior_degraded": false, "score": 0.41, "sensitive": true},
+    {"ablation_name": "disable action", "failure_surface": "action_path", "later_behavior_degraded": true, "score": 0.18, "sensitive": true}
+  ],
+  "task_id": "SAME-AGENT-BRIDGE-PREFLIGHT-RESULT-AUDIT-001A"
+}

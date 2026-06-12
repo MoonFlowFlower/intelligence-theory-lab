@@ -1,0 +1,72 @@
+{
+  "claim_ceiling": "bounded same-agent bridge preflight result audit evidence only",
+  "dimensions": [
+    {
+      "decision": "pass",
+      "dimension": "scope_and_authorization_flags",
+      "evidence": "Parent result authorization flags for bridge runtime, EGO mainline, companion behavior, LLM/RAG, user-model, relationship, emotion, personalization/product-demo, romance/attachment, persistent personal profile, and long-term human-user memory are false."
+    },
+    {
+      "decision": "pass",
+      "dimension": "claim_ceiling",
+      "evidence": "Parent claim ceiling is bounded same-agent bridge executable preflight evidence only; audit claim ceiling is bounded same-agent bridge preflight result audit evidence only."
+    },
+    {
+      "decision": "pass",
+      "dimension": "remote_anchor",
+      "evidence": "remote-anchor-001f-59ad222 resolves to 59ad22246823da107b9df4beb977fdfa34b7f986, matching git rev-parse 59ad222."
+    },
+    {
+      "decision": "pass",
+      "dimension": "stage0_freeze",
+      "evidence": "stage0_frozen_before_bridge_run=true; bridge_run_started_before_stage0=false; frozen fields include schemas, metrics, baselines, ablations, heldout split, seed schedule, artifact schema, rollback, and claim ceiling."
+    },
+    {
+      "decision": "pass",
+      "dimension": "serialized_shared_state_lineage",
+      "evidence": "serialized_state_trace.jsonl and shared_state_trace.jsonl each contain 8 rows; canonical schema has 19 required fields; serialization format is canonical-json-sha256-v1."
+    },
+    {
+      "decision": "pass_with_ceiling",
+      "dimension": "identity_memory_continuity",
+      "evidence": "identity_continuity_state and memory_carryover_state are in canonical state and change across bridge rows; forbidden side-channel detections are false. This is artifact-contract evidence only, not general mechanism proof."
+    },
+    {
+      "decision": "pass_with_ceiling",
+      "dimension": "post_bridge_dependency",
+      "evidence": "later_behavior_report.json reports heldout_later_behavior_accuracy=1.0 and depends_on_carried_state_under_heldout_conditions=true."
+    },
+    {
+      "decision": "pass_with_live_challengers",
+      "dimension": "baselines",
+      "evidence": "24 baselines reported; best fair baseline is stitched-output baseline with no single shared state at 0.78 below threshold 0.95; oracle and trace-only controls are excluded as fair pass evidence and remain diagnostics."
+    },
+    {
+      "decision": "pass",
+      "dimension": "ablations",
+      "evidence": "19 required ablations are sensitive; scores range from 0.18 to 0.60 against candidate score 1.0 and threshold 0.95."
+    },
+    {
+      "decision": "pass",
+      "dimension": "leakage",
+      "evidence": "leakage_gate_passed=true; forbidden_access_detected=false; oracle labels, future observations, identity-token lookup leakage, artifact-path leakage, hidden profile table, and second hidden policy layer are false."
+    },
+    {
+      "decision": "pass",
+      "dimension": "replay_mutation_hermeticity",
+      "evidence": "trace_hash_chain_replayed=true; serialized_state_hash_chain_replayed=true; state_replay_passed=true; mutation and old-artifact mutation are false."
+    },
+    {
+      "decision": "risk_live",
+      "dimension": "distribution_risk",
+      "evidence": "The pass uses 8 trace rows in a small deterministic synthetic bridge distribution. Lookup, window, graph/cache, state-table, identity-token, memory-key, retrieval, behavior imitation, frozen-state, and stitched-output risks remain live for the next contract."
+    },
+    {
+      "decision": "authorize_contract_draft_only",
+      "dimension": "downstream_authorization",
+      "evidence": "Evidence is sufficient to draft the next downstream bounded contract only; it does not authorize execution, integration, runtime, EGO, companion, LLM/RAG, user-model, relationship, emotion, personalization, or product-demo work."
+    }
+  ],
+  "task_id": "SAME-AGENT-BRIDGE-PREFLIGHT-RESULT-AUDIT-001A",
+  "verdict": "same_agent_bridge_preflight_result_audit_001a_authorize_next_contract"
+}
