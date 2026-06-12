@@ -1,0 +1,160 @@
+{
+  "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-001A",
+  "claim_ceiling": "bounded EGO-mainline admission contract drafting evidence only",
+  "requirements": [
+    {
+      "requirement_id": "computed_evidence_provenance_contract",
+      "required": true,
+      "source": "docs/codex/contracts/COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A.md",
+      "future_blocker_if_missing": "failed_missing_computed_evidence_contract"
+    },
+    {
+      "requirement_id": "callable_baselines",
+      "required": true,
+      "minimum_families": [
+        "random policy",
+        "majority or no-action baseline where applicable",
+        "snapshot reload",
+        "stitched-output baseline",
+        "state-table lookup",
+        "identity-token lookup",
+        "memory-key lookup",
+        "summary retrieval",
+        "transcript retrieval",
+        "observation-only baseline",
+        "nearest-neighbor or lookup baseline",
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal",
+        "bounded-order window model order-1",
+        "bounded-order window model order-2",
+        "shuffled-history same-loss control",
+        "behavior imitation",
+        "frozen-state carryover",
+        "fresh-agent no-carryover",
+        "oracle control as upper-bound/leakage diagnostic only",
+        "trace-only replay as integrity hygiene only"
+      ],
+      "future_blocker_if_missing": "failed_baseline_invocation_missing"
+    },
+    {
+      "requirement_id": "real_ablation_reruns",
+      "required": true,
+      "minimum_ablations": [
+        "reset all memory",
+        "corrupt serialized state",
+        "replace serialized state",
+        "remove replay carryover",
+        "remove self-boundary carryover",
+        "remove viability carryover",
+        "remove social-latent carryover",
+        "remove identity_continuity_state",
+        "remove memory_carryover_state",
+        "time-shift state",
+        "cross-agent state swap",
+        "duplicate identity-token contrast",
+        "freeze post-bridge learning",
+        "remove post-bridge observation update",
+        "disable action",
+        "invert bridge mapping"
+      ],
+      "future_blocker_if_missing": "failed_ablation_not_rerun"
+    },
+    {
+      "requirement_id": "leakage_scanners_same_surface_positive_controls",
+      "required": true,
+      "minimum_surfaces": [
+        "candidate inputs",
+        "trace rows",
+        "observation objects or rows",
+        "serialized state snapshots",
+        "serialized_state_provenance rows",
+        "metric_provenance rows",
+        "artifact path inventories",
+        "fixture names",
+        "labels",
+        "verifier-only fields",
+        "future observations",
+        "future partner responses",
+        "later-action labels",
+        "post-hoc metrics",
+        "test-only schema paths",
+        "renderer-visible behavior where applicable"
+      ],
+      "future_blocker_if_missing": "failed_same_surface_positive_control_missing"
+    },
+    {
+      "requirement_id": "surface_scoped_metadata_whitelist",
+      "required": true,
+      "rationale": "Preserves the 001D external red-team caveat that 001D used a global metadata whitelist.",
+      "future_blocker_if_missing": "failed_metadata_whitelist_not_surface_scoped"
+    },
+    {
+      "requirement_id": "independent_manual_leakage_injection_tests",
+      "required": true,
+      "rationale": "Manual injection tests must be independent of production injector tests.",
+      "future_blocker_if_missing": "failed_manual_injection_test_missing"
+    },
+    {
+      "requirement_id": "behavior_causal_replay_where_applicable",
+      "required": true,
+      "rationale": "Behavior claims must be recomputed from serialized_state + observation, not only hash replay.",
+      "future_blocker_if_missing": "failed_replay_not_behavior_causal"
+    },
+    {
+      "requirement_id": "frozen_input_consumption",
+      "required": true,
+      "rationale": "Every frozen seed, context, pair, and ablation definition must be consumed or absent before execution.",
+      "future_blocker_if_missing": "failed_unused_frozen_input"
+    },
+    {
+      "requirement_id": "source_artifact_hash_integrity",
+      "required": true,
+      "rationale": "Source and artifact hashes must be verified before and after evaluation.",
+      "future_blocker_if_missing": "failed_source_hash_mismatch"
+    },
+    {
+      "requirement_id": "old_artifact_mutation_protection",
+      "required": true,
+      "rationale": "Historical artifacts must not be rewritten.",
+      "future_blocker_if_missing": "failed_old_artifact_mutation"
+    },
+    {
+      "requirement_id": "metric_provenance_schema",
+      "required": true,
+      "minimum_fields": [
+        "metric_id",
+        "metric_name",
+        "producer_function",
+        "producer_module",
+        "code_path_hash",
+        "run_id",
+        "episode_ids",
+        "seed_ids",
+        "train_context_ids_consumed",
+        "heldout_context_ids_consumed",
+        "counterfactual_pair_ids_consumed",
+        "input_artifact_paths",
+        "input_artifact_hashes",
+        "input_row_count",
+        "output_artifact_path",
+        "output_row_ids",
+        "aggregation_rule",
+        "threshold_used",
+        "threshold_frozen_before_run",
+        "computed_not_literal",
+        "failure_path_available"
+      ],
+      "future_blocker_if_missing": "failed_metric_provenance_missing"
+    },
+    {
+      "requirement_id": "strict_claim_ceiling",
+      "required": true,
+      "future_blocker_if_missing": "failed_claim_inflation"
+    }
+  ],
+  "contract_acceptance_gates_all_present": true
+}

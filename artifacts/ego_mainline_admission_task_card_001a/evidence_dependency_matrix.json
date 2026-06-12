@@ -1,0 +1,76 @@
+{
+  "task_id": "EGO-MAINLINE-ADMISSION-TASK-CARD-001A",
+  "claim_ceiling": "bounded EGO-mainline admission contract drafting evidence only",
+  "dependencies": [
+    {
+      "dependency_id": "ego_mainline_readiness_audit_001b",
+      "task_id": "EGO-MAINLINE-READINESS-AUDIT-001B",
+      "commit": "f648dac4bfbcdc7a98c1edea5a97dbef4101d83a",
+      "remote_tag": "remote-anchor-001o-f648dac",
+      "verdict": "ego_mainline_readiness_audit_001b_authorize_admission_task_card",
+      "used_as": "parent authorization for drafting this task card only",
+      "positive_evidence_for_runtime": false,
+      "verified_remote_anchor": true
+    },
+    {
+      "dependency_id": "computed_evidence_provenance_contract_001a",
+      "task_id": "COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A",
+      "commit": "09cff85ac377aaa99f913c30e3d31f85264d1344",
+      "remote_tag": "remote-anchor-001i-09cff85",
+      "path": "docs/codex/contracts/COMPUTED-EVIDENCE-PROVENANCE-CONTRACT-001A.md",
+      "used_as": "mandatory inherited standard for any future executable admission test",
+      "positive_evidence_for_runtime": false
+    },
+    {
+      "dependency_id": "post_bridge_admission_executable_001b",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001B",
+      "commit": "bd0e7158237671c1a5e527b64c8e06ca0ae4e5b3",
+      "remote_tag": "remote-anchor-001h-bd0e715",
+      "nominal_verdict": "post_bridge_admission_executable_001b_pass",
+      "current_status": "invalidated_as_downstream_positive_evidence",
+      "used_as": "negative lineage only",
+      "positive_evidence_for_future_admission": false
+    },
+    {
+      "dependency_id": "post_bridge_admission_executable_001c",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001C",
+      "commit": "df0e3e545db56f302f4c27f5e39b549470972b33",
+      "remote_tag": "remote-anchor-001k-df0e3e5",
+      "nominal_verdict": "post_bridge_admission_executable_001c_pass",
+      "current_status": "historical_suspended_as_downstream_positive_evidence",
+      "used_as": "historical suspended lineage only",
+      "positive_evidence_for_future_admission": false
+    },
+    {
+      "dependency_id": "post_bridge_admission_executable_001d",
+      "task_id": "POST-BRIDGE-ADMISSION-EXECUTABLE-001D",
+      "commit": "c2f6c5184a119202dd0a7efc23d3bfe3317af890",
+      "remote_tag": "remote-anchor-001n-c2f6c51",
+      "verdict": "post_bridge_admission_executable_001d_pass",
+      "claim_ceiling": "bounded post-bridge admission evidence under computed-evidence provenance contract after leakage-gate repair only",
+      "used_as": "current bounded post-bridge positive candidate with caveats",
+      "positive_evidence_for_runtime": false
+    },
+    {
+      "dependency_id": "external_001d_redteam",
+      "task_id": "external 001D red-team result",
+      "verdict": "pass_with_caveats",
+      "used_as": "source of mandatory future leakage caveat requirements",
+      "positive_evidence_for_runtime": false
+    },
+    {
+      "dependency_id": "ego_mainline_readiness_audit_001a",
+      "task_id": "EGO-MAINLINE-READINESS-AUDIT-001A",
+      "commit": "ed9355b464162065dfbba77a6a6ebfad22cb1767",
+      "remote_tag": "remote-anchor-001l-ed9355b",
+      "prior_verdict": "ego_mainline_readiness_audit_001a_authorize_admission_task_card",
+      "current_status": "historical context only, revalidated by 001B, not direct actionable authorization",
+      "used_as": "historical context only",
+      "positive_evidence_for_runtime": false
+    }
+  ],
+  "all_required_dependencies_present": true,
+  "missing_parent_authorization": false,
+  "missing_remote_anchor": false,
+  "claim_inflation_detected": false
+}
