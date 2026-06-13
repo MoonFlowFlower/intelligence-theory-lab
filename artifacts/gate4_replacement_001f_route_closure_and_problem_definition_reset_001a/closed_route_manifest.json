@@ -1,0 +1,58 @@
+{
+  "task_id": "GATE4-REPLACEMENT-001F-ROUTE-CLOSURE-AND-PROBLEM-DEFINITION-RESET-001A",
+  "producer_function": "manual_governance_source_readback_route_closure",
+  "closed_route_family": "001D-derived Gate4 replacement puzzle/bundle repair attempts",
+  "closure_basis": {
+    "source_task": "gate4_replacement_001e_baseline_equivalence_adjudication_001a",
+    "source_verdict": "baseline_equivalence_preserved_negative_evidence",
+    "baseline_equivalence": true,
+    "strongest_faithful_baseline": "pair_count_table",
+    "stop_condition": "pair_count_table_tied_candidate"
+  },
+  "closed_routes": [
+    {
+      "route_id": "continue_patching_001d",
+      "status": "closed",
+      "reason": "001E shows the route is baseline-equivalent under faithful non-mechanism decoders."
+    },
+    {
+      "route_id": "001d_derived_feedback_or_bundle_repair",
+      "status": "closed",
+      "reason": "A repair that keeps target-bearing bundle/state/feedback recoverability does not reset the failed problem definition."
+    },
+    {
+      "route_id": "001d_derived_puzzle_variant",
+      "status": "closed_unless_preceded_by_problem_definition_reset",
+      "reason": "A variant remains invalid if it only hides or relabels the same recoverable target."
+    },
+    {
+      "route_id": "candidate_specific_puzzle_construction",
+      "status": "closed",
+      "reason": "Candidate-specific construction can create a second logic path and inflate mechanism claims."
+    },
+    {
+      "route_id": "candidate_access_without_baseline_parity",
+      "status": "closed",
+      "reason": "Candidate-only access to target-bearing fields invalidates baseline non-equivalence."
+    }
+  ],
+  "preserved_as_historical_evidence": [
+    {
+      "task_id": "gate4_replacement_discriminative_social_latent_001d",
+      "status": "historical_bounded_001d_evidence_preserved_but_not_repaired"
+    },
+    {
+      "task_id": "gate4_replacement_001e_baseline_equivalence_adjudication_001a",
+      "status": "negative_evidence_preserved_and_controls_future_gate4_problem_definition"
+    }
+  ],
+  "downstream_authorization": {
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "bridge_authorized": false,
+    "runtime_authorized": false,
+    "ego_mainline_authorized": false,
+    "future_gate4_experiment_authorized": false,
+    "future_gate4_design_card_drafting_allowed": true
+  }
+}

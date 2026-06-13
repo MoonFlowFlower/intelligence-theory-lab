@@ -1,0 +1,51 @@
+{
+  "task_id": "GATE4-REPLACEMENT-001F-ROUTE-CLOSURE-AND-PROBLEM-DEFINITION-RESET-001A",
+  "producer_function": "manual_governance_decision_matrix",
+  "decision_criterion": "preserve 001E negative evidence, avoid in-place 001D repair, prevent claim inflation, and keep a reversible governance-only path",
+  "options": [
+    {
+      "option_id": "continue_patching_001d",
+      "status": "rejected",
+      "route_score": 0,
+      "benefit": "Lowest immediate effort if the goal were only to recover a passing harness.",
+      "fatal_problem": "This optimizes the collapsed route after 001E showed faithful non-mechanism baselines tie the candidate.",
+      "risk": "Zeno trap, threshold tuning, baseline weakening, claim inflation.",
+      "rollback": "Stop patching and preserve 001E as negative evidence."
+    },
+    {
+      "option_id": "design_001f_puzzle_variant",
+      "status": "rejected_as_next_route",
+      "route_score": 1,
+      "benefit": "Could explore a new construction surface.",
+      "fatal_problem": "A puzzle variant before problem-definition reset risks reintroducing target-bearing encodings under different names.",
+      "risk": "Obfuscation, candidate-specific puzzle design, second logic path.",
+      "rollback": "Require a reset Gate4 design card before any puzzle construction."
+    },
+    {
+      "option_id": "close_001d_route_and_reset_gate4_problem_definition",
+      "status": "recommended",
+      "route_score": 4,
+      "benefit": "Preserves negative evidence, stops in-place repair, and defines minimum constraints for any future Gate4.",
+      "fatal_problem": null,
+      "risk": "Does not itself produce new mechanism evidence.",
+      "rollback": "If source readback is later falsified, replace this closure with a blocked provenance correction record.",
+      "next_route": "Draft a future Gate4 design card only under the reset minimum requirements; do not implement an experiment in this task."
+    },
+    {
+      "option_id": "defer_gate4_and_return_to_cross_gate_theory_coverage",
+      "status": "not_recommended_as_immediate_next_route",
+      "route_score": 2,
+      "benefit": "Avoids more Gate4 local optimization and may improve theory coverage.",
+      "fatal_problem": "Does not close the 001D route or encode future Gate4 constraints by itself.",
+      "risk": "Leaves the failed route ambiguous for successor tasks.",
+      "rollback": "First close 001D and reset Gate4 problem definition, then separately decide whether to defer Gate4."
+    }
+  ],
+  "recommended_next_route": "close_001d_route_and_reset_gate4_problem_definition",
+  "exactly_one_recommended_next_route": true,
+  "non_recommended_routes": [
+    "continue_patching_001d",
+    "design_001f_puzzle_variant",
+    "defer_gate4_and_return_to_cross_gate_theory_coverage"
+  ]
+}

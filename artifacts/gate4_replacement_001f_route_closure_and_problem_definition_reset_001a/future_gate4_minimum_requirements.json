@@ -1,0 +1,69 @@
+{
+  "task_id": "GATE4-REPLACEMENT-001F-ROUTE-CLOSURE-AND-PROBLEM-DEFINITION-RESET-001A",
+  "producer_function": "manual_governance_future_gate4_minimum_requirements",
+  "scope": "minimum constraints for any future Gate4 replacement after 001E route closure",
+  "minimum_requirements": [
+    {
+      "requirement_id": "target_non_recoverability",
+      "required": true,
+      "text": "The target must not be recoverable by faithful pair-count, full-bundle, serialized-state, trace-only lookup, or equivalent non-mechanism decoders."
+    },
+    {
+      "requirement_id": "fair_information_access",
+      "required": true,
+      "text": "Baselines must receive fair access to every information surface available to the candidate, including state, observation, legal history, feedback, query outputs, and trace surfaces where relevant."
+    },
+    {
+      "requirement_id": "query_feedback_baseline_parity",
+      "required": true,
+      "text": "Query-capable and feedback baselines must be strong enough to match candidate affordances, budgets, timing, and access boundaries."
+    },
+    {
+      "requirement_id": "positive_control_leakage_scanners",
+      "required": true,
+      "text": "Positive-control leakage scanners must fail when leakage is injected into the same candidate-visible surfaces used by the candidate."
+    },
+    {
+      "requirement_id": "replay_recomputation",
+      "required": true,
+      "text": "Replay must recompute candidate behavior from serialized state plus observation, and from any candidate-visible feedback/query history when those surfaces are part of the task."
+    },
+    {
+      "requirement_id": "real_intervention_ablations",
+      "required": true,
+      "text": "Ablations must rerun episodes under real interventions rather than editing reports or returning static failure flags."
+    },
+    {
+      "requirement_id": "computed_provenance",
+      "required": true,
+      "text": "Reported result, baseline, ablation, contrast, leakage, and replay metrics must record callable producers, source artifacts, run IDs, seed/context/episode IDs, aggregation rules, and code path hashes."
+    },
+    {
+      "requirement_id": "independent_callable_baselines",
+      "required": true,
+      "text": "Baselines must be independent callable implementations, not static score dictionaries or test-only pass verdicts."
+    },
+    {
+      "requirement_id": "claim_ceiling_enforcement",
+      "required": true,
+      "text": "A pass may claim only bounded offline mechanism-proxy evidence for the named test. It must not claim consciousness, selfhood, agency, autonomy, emotion, EGO readiness, or user benefit."
+    },
+    {
+      "requirement_id": "negative_evidence_inheritance",
+      "required": true,
+      "text": "Any future Gate4 design must cite 001E as negative evidence and explain why the new task is not a 001D-derived repair."
+    }
+  ],
+  "blocking_conditions_for_future_design": [
+    "target recoverable by pair-count table",
+    "target recoverable by full-bundle decoder",
+    "target recoverable by serialized-state decoder",
+    "target recoverable by trace-only lookup",
+    "candidate receives access denied to fair baselines",
+    "query-capable baseline is weaker than candidate affordances",
+    "positive-control leakage scan does not fail on injected leakage",
+    "replay does not recompute from serialized state plus observation",
+    "ablations do not rerun episodes under intervention",
+    "provenance lacks callable producers or code path hashes"
+  ]
+}

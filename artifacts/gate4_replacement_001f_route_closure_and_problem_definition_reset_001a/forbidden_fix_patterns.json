@@ -1,0 +1,58 @@
+{
+  "task_id": "GATE4-REPLACEMENT-001F-ROUTE-CLOSURE-AND-PROBLEM-DEFINITION-RESET-001A",
+  "producer_function": "manual_governance_forbidden_fix_pattern_matrix",
+  "scope": "future Gate4 replacement design constraints after 001E baseline-equivalence negative evidence",
+  "forbidden_fix_patterns": [
+    {
+      "pattern_id": "encryption",
+      "status": "forbidden",
+      "reason": "Encryption blocks inspection rather than proving a mechanism. It can convert auditability failure into apparent non-recoverability."
+    },
+    {
+      "pattern_id": "obfuscation",
+      "status": "forbidden",
+      "reason": "Obfuscation hides target leakage instead of removing it and weakens trace/replay evidence."
+    },
+    {
+      "pattern_id": "language_or_runtime_switching",
+      "status": "forbidden",
+      "reason": "Changing language/runtime does not change the evidence problem and can create unreviewed second logic paths."
+    },
+    {
+      "pattern_id": "field_renaming",
+      "status": "forbidden",
+      "reason": "Renaming target-bearing fields is cosmetic if faithful baselines can still recover the target."
+    },
+    {
+      "pattern_id": "hide_target_bearing_serialized_fields_from_baselines",
+      "status": "forbidden",
+      "reason": "Baselines must receive fair information access. Candidate-only equivalent access invalidates baseline comparison."
+    },
+    {
+      "pattern_id": "weaken_query_capable_or_feedback_baselines",
+      "status": "forbidden",
+      "reason": "Baselines must match candidate query and feedback affordances. Weakening them manufactures candidate advantage."
+    },
+    {
+      "pattern_id": "candidate_specific_puzzle_construction",
+      "status": "forbidden",
+      "reason": "Candidate-specific construction risks fitting the benchmark to the candidate instead of testing mechanism non-equivalence."
+    },
+    {
+      "pattern_id": "threshold_tuning_after_result",
+      "status": "forbidden",
+      "reason": "Post-hoc tuning patches outcomes rather than fixing the collapsed problem definition."
+    },
+    {
+      "pattern_id": "trace_only_static_lookup_relabeling",
+      "status": "forbidden",
+      "reason": "A trace-only lookup with renamed keys remains a non-mechanism explanation unless the future task precludes it under fair access."
+    }
+  ],
+  "allowed_only_if_separately_authorized": [
+    {
+      "pattern_id": "new_gate4_design_card",
+      "condition": "Must be a bounded task card under the reset requirements and must not implement or run a new experiment."
+    }
+  ]
+}
