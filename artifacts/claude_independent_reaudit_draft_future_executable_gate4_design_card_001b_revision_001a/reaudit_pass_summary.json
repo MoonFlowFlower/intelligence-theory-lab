@@ -1,0 +1,42 @@
+{
+  "task_id": "PRESERVE-CLAUDE-INDEPENDENT-REAUDIT-DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-001A",
+  "artifact_id": "reaudit_pass_summary",
+  "claude_reaudit_verdict": "claude_independent_reaudit_draft_future_executable_gate4_design_card_001b_revision_001a_pass",
+  "claude_reaudit_recommendation": "remote_anchor_claude_reaudit_pass",
+  "f1_closure_graph_cache_family_restored": {
+    "status": "closed_by_reaudit",
+    "summary": "graph_cache_family and all six members are present in binding baseline, stop-condition, equivalence, provenance, replay, and leakage contracts",
+    "members": [
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal"
+    ]
+  },
+  "f2_closure_query_capable_imitation_baseline_restored": {
+    "status": "closed_by_reaudit",
+    "summary": "query_capable_imitation_baseline is present with same query budget, same observation access, no claimed belief-update mechanism, and hard-stop conditions"
+  },
+  "f3_closure_equivalence_provenance_hard_gate_closed": {
+    "status": "closed_by_reaudit_at_design_layer",
+    "summary": "tie, candidate_equivalent, and candidate_advantage are defined; equivalence rule must be frozen before any future run; post-run changes hard-stop; equivalence_rule_hash is required in provenance",
+    "implementation_block_if_metric_specific_margin_missing": true
+  },
+  "regression_result": {
+    "no_weakening_found_by_reaudit": true,
+    "leakage_protections": "strengthened from 9 to 10 positive controls according to re-audit",
+    "replay_protections": "strengthened from 4 to 5 failure paths according to re-audit",
+    "split_ablation_claim_ceiling_anti_zeno": "no weakening reported"
+  },
+  "remaining_blockers": [],
+  "forward_obligations": [
+    "future implementation card must freeze metric-specific equivalence margin before any run",
+    "future implementation must faithfully invoke all challengers",
+    "baseline function-class and fitting-budget parity must be frozen before run",
+    "production result.json self-pass is not itself evidence"
+  ],
+  "claim_boundary": "This pass means the 001B design contract is audit-passed as a future implementation basis; it does not prove future Gate4, mechanism validity, social-latent inference, or any readiness claim.",
+  "claim_ceiling": "re-audit pass summary only; no implementation or mechanism claim"
+}

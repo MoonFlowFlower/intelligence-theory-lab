@@ -1,0 +1,35 @@
+{
+  "task_id": "PRESERVE-CLAUDE-INDEPENDENT-REAUDIT-DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-001A",
+  "artifact_id": "routing_recommendation",
+  "exactly_one_next_route_recommended": true,
+  "recommended_route": {
+    "route_id": "remote_anchor_claude_independent_reaudit_draft_future_executable_gate4_design_card_001b_revision_001a_pass",
+    "route_type": "remote_anchor_this_reaudit_preservation_package",
+    "solution_grade": "recommended_governance_next_step",
+    "allowed_now": true,
+    "implementation_authorized": false,
+    "experiment_authorized": false,
+    "recommendation": "Remote-anchor this Claude independent re-audit preservation package in a separate publication/verification task."
+  },
+  "rejected_routes": [
+    {
+      "route_id": "immediate_implementation",
+      "solution_grade": "rejected",
+      "reason": "This task preserves independent re-audit evidence only; implementation requires a separate authorized implementation card.",
+      "allowed_later": "only_after_remote_anchor_and_separate_bounded_implementation_card"
+    },
+    {
+      "route_id": "draft_001c_revision_required_before_anchor",
+      "solution_grade": "not_recommended_by_reaudit",
+      "reason": "The re-audit reports no remaining true blockers in 001B.",
+      "allowed_later_if_new_blocker_found": true
+    },
+    {
+      "route_id": "create_002e_or_same_family_patch",
+      "solution_grade": "rejected",
+      "reason": "Same-family patching and 002E creation remain forbidden by the governance route.",
+      "allowed_later": false
+    }
+  ],
+  "claim_ceiling": "routing recommendation only; no implementation authorization"
+}
