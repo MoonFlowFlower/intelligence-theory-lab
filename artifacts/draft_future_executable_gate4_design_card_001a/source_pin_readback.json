@@ -1,0 +1,101 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001A",
+  "artifact_id": "source_pin_readback",
+  "run_id": "draft_future_executable_gate4_design_card_001a_20260613T120042-0500",
+  "git_readback": {
+    "current_branch": {
+      "command": "git branch --show-current",
+      "value": "codex/meta-theory-scaffold",
+      "expected": "codex/meta-theory-scaffold",
+      "matches_expected": true
+    },
+    "current_head": {
+      "command": "git rev-parse HEAD",
+      "value": "e9d9969ee3b0370f20771c808042693b9d47e26e",
+      "expected": "e9d9969ee3b0370f20771c808042693b9d47e26e",
+      "matches_expected": true
+    },
+    "worktree_index_status_before_generation": {
+      "command": "git status --short",
+      "value": "",
+      "clean": true
+    },
+    "latest_sealed_tag_resolution": {
+      "command": "git rev-parse refs/tags/remote-anchor-gate4-task-family-theory-coverage-redesign-001a-e9d9969",
+      "tag": "remote-anchor-gate4-task-family-theory-coverage-redesign-001a-e9d9969",
+      "value": "e9d9969ee3b0370f20771c808042693b9d47e26e",
+      "expected": "e9d9969ee3b0370f20771c808042693b9d47e26e",
+      "matches_expected": true
+    },
+    "local_tag_type": {
+      "command": "git cat-file -t refs/tags/remote-anchor-gate4-task-family-theory-coverage-redesign-001a-e9d9969",
+      "value": "commit",
+      "expected": "commit",
+      "matches_expected": true
+    },
+    "remote_readback": {
+      "command": "git ls-remote origin refs/heads/codex/meta-theory-scaffold refs/tags/remote-anchor-gate4-task-family-theory-coverage-redesign-001a-e9d9969",
+      "refs": [
+        {
+          "ref": "refs/heads/codex/meta-theory-scaffold",
+          "hash": "e9d9969ee3b0370f20771c808042693b9d47e26e",
+          "matches_expected": true
+        },
+        {
+          "ref": "refs/tags/remote-anchor-gate4-task-family-theory-coverage-redesign-001a-e9d9969",
+          "hash": "e9d9969ee3b0370f20771c808042693b9d47e26e",
+          "matches_expected": true
+        }
+      ]
+    }
+  },
+  "inspected_sources": [
+    {
+      "path": "docs/research/GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A.md",
+      "sha256": "395ed92753e0b148544826f66547ee1b0558ed1a368acdb852b771d207934401",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/result.json",
+      "sha256": "33db961928f009d82af9b1eb333f6509f77b8e2a84955ca6dfe0c588df49caeb",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/source_pin_readback.json",
+      "sha256": "55c9ba484adeda123d84efb0175a160b098a3548dc6f95c681645d1bd2c8c522",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/gate4_failure_mode_map.json",
+      "sha256": "8379b7c30854e98494280f076f8fafa405ab41ed7a73cda8bc523f231f8aaca3",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/theory_coverage_map.json",
+      "sha256": "e366945c0e804b346f90734f91178f39abd0669992bb5779d99fd7c4fa45be7d",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/gate4_evidence_target_spec.json",
+      "sha256": "3baa07ab3d94ed42765b964091e310a3c1c3cf515ae3245efbb887c378785640",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/baseline_collapse_guardrails.json",
+      "sha256": "ff69b0f525a85cf0745667bd4b2a2a69e782aa16e113f60e175e56ab0e1688dd",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/candidate_task_family_options.json",
+      "sha256": "5cd571cd6d4f78b0282fe7846bb55d7bb22c4c05dc1c802f54edf3d16647186d",
+      "inspected": true
+    },
+    {
+      "path": "artifacts/gate4_task_family_theory_coverage_redesign_001a/routing_recommendation.json",
+      "sha256": "f7ddac8a0930d8ea45d662c17c47d3ab03bfb3589c75404306729f8e4b290b14",
+      "inspected": true
+    }
+  ],
+  "source_verification_status": "passed",
+  "claim_ceiling": "Git/source readback only; no mechanism or Gate4 validity claim"
+}

@@ -1,0 +1,69 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001A",
+  "artifact_id": "future_gate4_stop_condition_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "hard_negative_evidence_stops": [
+    {
+      "stop_id": "faithful_non_oracle_baseline_ties_or_beats_candidate",
+      "condition": "Any faithful non-oracle baseline ties or beats candidate on primary heldout metric.",
+      "required_verdict_class": "baseline_equivalent_negative_evidence"
+    },
+    {
+      "stop_id": "serialized_state_decoder_candidate_equivalent",
+      "condition": "serialized_state_decoder reaches candidate-equivalent performance.",
+      "required_verdict_class": "serialized_state_decoder_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "full_bundle_decoder_candidate_equivalent",
+      "condition": "full_bundle_decoder reaches candidate-equivalent performance.",
+      "required_verdict_class": "full_bundle_decoder_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "static_belief_table_candidate_equivalent",
+      "condition": "static_belief_table reaches candidate-equivalent performance.",
+      "required_verdict_class": "static_belief_table_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "trace_or_retrieval_candidate_equivalent",
+      "condition": "ngram_trace_lookup or nearest_neighbor_trace_retrieval reaches candidate-equivalent performance.",
+      "required_verdict_class": "trace_retrieval_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "leakage_positive_control_failure",
+      "condition": "Any leakage positive control fails to detect injected leakage.",
+      "required_verdict_class": "blocked_leakage_scanner_invalid"
+    },
+    {
+      "stop_id": "stored_output_or_hash_replay_passes",
+      "condition": "Replay can pass from stored outputs, stored actions, trace-only comparison, or hashes.",
+      "required_verdict_class": "blocked_replay_recomputation_invalid"
+    },
+    {
+      "stop_id": "declared_inputs_unused",
+      "condition": "Any declared heldout split, counterfactual pair, frozen seed, context ID, or episode ID is unused.",
+      "required_verdict_class": "blocked_declared_input_unused"
+    },
+    {
+      "stop_id": "schema_config_id_leakage_explains_candidate",
+      "condition": "Candidate score improves but only through schema, config, ID, prompt, filename, path, or scoring-artifact leakage.",
+      "required_verdict_class": "leakage_explained_negative_evidence"
+    },
+    {
+      "stop_id": "ablation_drop_but_faithful_baselines_solve",
+      "condition": "Ablation drop exists but faithful baselines still solve the task.",
+      "required_verdict_class": "ablation_diagnostic_only_baseline_collapse"
+    },
+    {
+      "stop_id": "unfair_baseline_access",
+      "condition": "Candidate advantage depends on denying faithful baselines candidate-equivalent visible information.",
+      "required_verdict_class": "blocked_unfair_baseline_access"
+    },
+    {
+      "stop_id": "same_family_002c_patch_or_002e_route",
+      "condition": "Task becomes a same-family 002C patch, 002E variant, or local toy hardening route.",
+      "required_verdict_class": "blocked_anti_zeno_violation"
+    }
+  ],
+  "closure_rule": "A hard negative-evidence stop must preserve the failed result and must not be repaired by threshold tuning, field hiding, rerun selection, or same-family patching inside the same task.",
+  "claim_ceiling": "future stop-condition contract only; no future execution verdict is claimed by this task"
+}

@@ -1,0 +1,175 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001A",
+  "artifact_id": "future_gate4_baseline_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "baselines_must_be_independent_callable_implementations": true,
+  "baseline_claim_rule": "No future candidate claim is allowed if any faithful non-oracle baseline ties or beats candidate under fair access on the primary heldout metric.",
+  "required_per_baseline_fields": [
+    "baseline_id",
+    "access_rights",
+    "producer_function",
+    "input_artifacts",
+    "expected_failure_mode",
+    "positive_control_or_sanity_check",
+    "stop_condition"
+  ],
+  "baselines": [
+    {
+      "baseline_id": "serialized_state_decoder",
+      "access_rights": "candidate-equivalent serialized_state snapshots plus public observation metadata; no scorer target",
+      "producer_function": "future_gate4_baselines.serialized_state_decoder",
+      "input_artifacts": [
+        "serialized_state_snapshots",
+        "observation_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode": "cannot decode heldout/counterfactual target from replay/audit state if state is non-leaking",
+      "positive_control_or_sanity_check": "must decode injected target-bearing serialized_state positive control",
+      "stop_condition": "ties_or_beats_candidate_on_primary_heldout_metric"
+    },
+    {
+      "baseline_id": "full_bundle_decoder",
+      "access_rights": "full candidate-visible input bundle; no scorer target",
+      "producer_function": "future_gate4_baselines.full_bundle_decoder",
+      "input_artifacts": [
+        "candidate_visible_bundle",
+        "split_manifest"
+      ],
+      "expected_failure_mode": "cannot recover target from full visible bundle under heldout schema parity",
+      "positive_control_or_sanity_check": "must decode injected target-bearing bundle positive control",
+      "stop_condition": "ties_or_beats_candidate_on_primary_heldout_metric"
+    },
+    {
+      "baseline_id": "static_belief_table",
+      "access_rights": "train split observations, public partner/context features, and declared schema fields",
+      "producer_function": "future_gate4_baselines.static_belief_table",
+      "input_artifacts": [
+        "train_episode_manifest",
+        "heldout_episode_manifest",
+        "candidate_visible_observations"
+      ],
+      "expected_failure_mode": "fails on unseen partner causal families and heldout task schemas",
+      "positive_control_or_sanity_check": "must solve a table-recoverable positive-control split",
+      "stop_condition": "ties_or_beats_candidate_on_primary_heldout_metric"
+    },
+    {
+      "baseline_id": "pair_count_frequency_baseline",
+      "access_rights": "train observations, public split metadata, and candidate-visible feature pairs",
+      "producer_function": "future_gate4_baselines.pair_count_frequency_baseline",
+      "input_artifacts": [
+        "train_observations",
+        "heldout_observations",
+        "split_manifest"
+      ],
+      "expected_failure_mode": "fails when heldout partner families require causal transfer rather than frequency recovery",
+      "positive_control_or_sanity_check": "must solve injected pair-count shortcut positive control",
+      "stop_condition": "ties_or_beats_candidate_on_primary_heldout_metric"
+    },
+    {
+      "baseline_id": "ngram_trace_lookup",
+      "access_rights": "training traces and candidate-visible observation fragments only",
+      "producer_function": "future_gate4_baselines.ngram_trace_lookup",
+      "input_artifacts": [
+        "train_trace_records",
+        "heldout_trace_records",
+        "counterfactual_trace_records"
+      ],
+      "expected_failure_mode": "fails when heldout/counterfactual cases require recomputation not trace-fragment matching",
+      "positive_control_or_sanity_check": "must solve injected repeated-trace positive control",
+      "stop_condition": "ties_or_beats_candidate_on_primary_heldout_metric"
+    },
+    {
+      "baseline_id": "nearest_neighbor_trace_retrieval",
+      "access_rights": "training traces and candidate-visible observations only",
+      "producer_function": "future_gate4_baselines.nearest_neighbor_trace_retrieval",
+      "input_artifacts": [
+        "train_trace_records",
+        "heldout_observations",
+        "distance_feature_contract"
+      ],
+      "expected_failure_mode": "fails on unseen causal families where nearest trace similarity is not sufficient",
+      "positive_control_or_sanity_check": "must solve injected nearest-neighbor recoverable positive control",
+      "stop_condition": "ties_or_beats_candidate_on_primary_heldout_metric"
+    },
+    {
+      "baseline_id": "label_config_leakage_scanner",
+      "access_rights": "all non-secret labels, configs, manifests, prompts, paths, filenames, and scoring artifacts",
+      "producer_function": "future_gate4_leakage.label_config_leakage_scanner",
+      "input_artifacts": [
+        "config_manifest",
+        "label_manifest",
+        "path_manifest",
+        "scoring_artifacts"
+      ],
+      "expected_failure_mode": "detects injected target/config leakage and reports none in clean artifacts",
+      "positive_control_or_sanity_check": "target label and config leakage injections must be detected",
+      "stop_condition": "positive_control_not_detected_or_clean_artifacts_leak_target"
+    },
+    {
+      "baseline_id": "trace_id_episode_order_leakage_scanner",
+      "access_rights": "trace IDs, episode IDs, context IDs, row order, split names, and manifests",
+      "producer_function": "future_gate4_leakage.trace_id_episode_order_leakage_scanner",
+      "input_artifacts": [
+        "trace_manifest",
+        "episode_manifest",
+        "context_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode": "detects order/ID leakage positive controls and reports none in clean artifacts",
+      "positive_control_or_sanity_check": "episode-order and context-ID leakage injections must be detected",
+      "stop_condition": "positive_control_not_detected_or_id_order_leakage_detected"
+    },
+    {
+      "baseline_id": "schema_split_leakage_scanner",
+      "access_rights": "train/heldout/counterfactual schemas, field names, field presence, ID formats, paths, and artifact names",
+      "producer_function": "future_gate4_leakage.schema_split_leakage_scanner",
+      "input_artifacts": [
+        "schema_manifest",
+        "split_manifest",
+        "artifact_manifest"
+      ],
+      "expected_failure_mode": "detects schema split leakage positive controls and reports field/ID/path parity in clean artifacts",
+      "positive_control_or_sanity_check": "schema-split leakage injection must be detected",
+      "stop_condition": "positive_control_not_detected_or_schema_split_leakage_detected"
+    },
+    {
+      "baseline_id": "majority_baseline",
+      "access_rights": "action/label set and train target distribution only",
+      "producer_function": "future_gate4_baselines.majority_baseline",
+      "input_artifacts": [
+        "train_target_distribution",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode": "sets a minimal sanity floor and should remain below candidate",
+      "positive_control_or_sanity_check": "must match known majority label on a simple synthetic sanity case",
+      "stop_condition": "candidate_not_above_majority_under_frozen_acceptance_rule"
+    },
+    {
+      "baseline_id": "random_baseline",
+      "access_rights": "action/label set and seed manifest only",
+      "producer_function": "future_gate4_baselines.random_baseline",
+      "input_artifacts": [
+        "label_set",
+        "seed_manifest",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode": "sets a minimal random sanity floor and detects broken scoring if unexpectedly high",
+      "positive_control_or_sanity_check": "seeded random reproducibility check",
+      "stop_condition": "candidate_not_above_random_under_frozen_acceptance_rule"
+    },
+    {
+      "baseline_id": "oracle_upper_bound",
+      "optional": true,
+      "access_rights": "explicit oracle target access",
+      "producer_function": "future_gate4_baselines.oracle_upper_bound",
+      "input_artifacts": [
+        "scorer_target_manifest",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode": "not a faithful non-oracle baseline; only estimates task solvability",
+      "positive_control_or_sanity_check": "must reach expected oracle upper-bound behavior on sanity cases",
+      "stop_condition": "must_not_be_used_as_candidate_mechanism_evidence"
+    }
+  ],
+  "claim_ceiling": "future baseline contract only; no baseline implemented or executed by this task"
+}

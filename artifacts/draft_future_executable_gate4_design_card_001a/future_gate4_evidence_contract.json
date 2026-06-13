@@ -1,0 +1,82 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001A",
+  "artifact_id": "future_gate4_evidence_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "draft_only_not_authorized_for_implementation": true,
+  "working_definition": "A future candidate must infer and update partner-relevant hidden causal state from partial observations, then use that update for counterfactual partner prediction or action under heldout partner-family and task-schema transfer, in a way faithful decoder, table, count, trace, retrieval, and leakage baselines cannot match under fair callable access.",
+  "bounded_evidence_claims_allowed_if_future_execution_passes": [
+    "hidden partner-relevant state inference under uncertainty",
+    "belief update from partial observations",
+    "counterfactual partner modeling",
+    "cross-family transfer",
+    "intervention sensitivity",
+    "replayable state update dependence",
+    "baseline-non-equivalence under fair access"
+  ],
+  "primary_future_metric": {
+    "metric_id": "cross_family_counterfactual_transfer_score",
+    "must_be_callable": true,
+    "producer_function_required": true,
+    "input_artifacts_required": true,
+    "run_id_required": true,
+    "seed_required": true,
+    "context_ids_required": true,
+    "episode_ids_required": true,
+    "aggregation_rule_required": true,
+    "code_path_hash_required": true,
+    "threshold_must_be_frozen_before_run": true,
+    "literal_score_forbidden": true
+  },
+  "required_evidence_targets": [
+    {
+      "target": "hidden_partner_relevant_state_inference_under_uncertainty",
+      "future_claim_limit": "bounded state-inference proxy only",
+      "minimum_evidence": "candidate uses partial observations to update hidden partner-relevant state and beats faithful baselines on heldout families"
+    },
+    {
+      "target": "belief_update_from_partial_observations",
+      "future_claim_limit": "bounded belief-update proxy only",
+      "minimum_evidence": "state update changes behavior and degrades under remove-update and freeze-memory ablations"
+    },
+    {
+      "target": "counterfactual_partner_modeling",
+      "future_claim_limit": "bounded counterfactual prediction/action proxy only",
+      "minimum_evidence": "candidate recomputes under counterfactual partner interventions not present as trace fragments"
+    },
+    {
+      "target": "cross_family_transfer",
+      "future_claim_limit": "bounded transfer evidence only",
+      "minimum_evidence": "heldout partner families and heldout task schemas are consumed and not schema-leaking"
+    },
+    {
+      "target": "intervention_sensitivity",
+      "future_claim_limit": "bounded intervention sensitivity only",
+      "minimum_evidence": "real ablation reruns under intervention degrade the claimed update path"
+    },
+    {
+      "target": "replayable_state_update_dependence",
+      "future_claim_limit": "auditability and replay evidence only",
+      "minimum_evidence": "replay recomputes behavior from serialized_state plus observation and stale-cache failure path blocks"
+    },
+    {
+      "target": "baseline_non_equivalence_under_fair_access",
+      "future_claim_limit": "baseline non-equivalence inside this task family only",
+      "minimum_evidence": "strongest faithful non-oracle baseline remains below candidate under frozen acceptance rule"
+    }
+  ],
+  "forbidden_future_claims": [
+    "valid Gate4",
+    "social-latent inference success",
+    "mechanism validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "EGO readiness",
+    "runtime readiness",
+    "companion readiness",
+    "user benefit"
+  ],
+  "claim_ceiling": "future evidence target contract only; no execution or mechanism claim"
+}

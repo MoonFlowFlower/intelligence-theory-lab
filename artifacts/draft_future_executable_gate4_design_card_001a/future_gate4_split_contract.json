@@ -1,0 +1,117 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001A",
+  "artifact_id": "future_gate4_split_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "declared_split_use_is_mandatory": true,
+  "block_if_any_declared_split_seed_context_episode_or_counterfactual_pair_unused": true,
+  "train_partner_families": [
+    {
+      "family_id": "train_partner_family_alpha",
+      "role": "train",
+      "latent_causal_pattern": "observation reliability depends on hidden partner state",
+      "must_not_share_answer_table_with_heldout": true
+    },
+    {
+      "family_id": "train_partner_family_beta",
+      "role": "train",
+      "latent_causal_pattern": "delayed consequence depends on updated partner belief",
+      "must_not_share_answer_table_with_heldout": true
+    }
+  ],
+  "heldout_partner_families": [
+    {
+      "family_id": "heldout_partner_family_gamma",
+      "role": "heldout_partner_family",
+      "latent_causal_pattern": "counterfactual intervention changes partner response rule",
+      "must_be_unseen_during_training": true
+    },
+    {
+      "family_id": "heldout_partner_family_delta",
+      "role": "heldout_partner_family",
+      "latent_causal_pattern": "active probe usefulness depends on posterior uncertainty",
+      "must_be_unseen_during_training": true
+    }
+  ],
+  "train_task_schemas": [
+    {
+      "schema_id": "train_task_schema_observation_action",
+      "role": "train_schema",
+      "required_field_equivalence_class": "partner_observation_state_action_outcome"
+    }
+  ],
+  "heldout_task_schemas": [
+    {
+      "schema_id": "heldout_task_schema_counterfactual_query",
+      "role": "heldout_task_schema",
+      "must_be_schema_equivalent_not_label_leaking": true
+    },
+    {
+      "schema_id": "heldout_task_schema_delayed_outcome",
+      "role": "heldout_task_schema",
+      "must_be_schema_equivalent_not_label_leaking": true
+    }
+  ],
+  "counterfactual_partner_interventions": [
+    {
+      "counterfactual_id": "counterfactual_partner_intervention_policy_shift",
+      "intervention_target": "partner_response_policy",
+      "must_require_recomputation_not_trace_lookup": true
+    },
+    {
+      "counterfactual_id": "counterfactual_partner_intervention_observation_reliability_shift",
+      "intervention_target": "observation_reliability",
+      "must_require_recomputation_not_trace_lookup": true
+    },
+    {
+      "counterfactual_id": "counterfactual_partner_intervention_hidden_preference_reversal",
+      "intervention_target": "hidden_partner_preference",
+      "must_require_recomputation_not_trace_lookup": true
+    }
+  ],
+  "distribution_shift_conditions": [
+    "shifted_observation_reliability",
+    "shifted_delayed_outcome_mapping",
+    "shifted_partner_response_to_active_probe",
+    "shifted_task_schema_with_equivalent_fields"
+  ],
+  "frozen_seed_requirements": {
+    "seed_manifest_required": true,
+    "minimum_seed_ids": [
+      "seed_train_alpha_000",
+      "seed_train_beta_001",
+      "seed_heldout_gamma_002",
+      "seed_heldout_delta_003",
+      "seed_counterfactual_004"
+    ],
+    "block_if_seed_declared_but_unused": true
+  },
+  "context_id_requirements": {
+    "context_manifest_required": true,
+    "context_ids_must_not_encode_target": true,
+    "context_ids_must_be_schema_parity_checked": true,
+    "block_if_context_id_declared_but_unused": true
+  },
+  "episode_id_requirements": {
+    "episode_manifest_required": true,
+    "episode_ids_must_not_encode_target": true,
+    "episode_order_randomization_or_control_required": true,
+    "block_if_episode_id_declared_but_unused": true
+  },
+  "schema_equivalence_checks": [
+    "field_presence_parity",
+    "field_name_no_target_alias",
+    "id_format_parity",
+    "file_path_pattern_parity",
+    "artifact_name_pattern_parity",
+    "split_metadata_no_answer_feature"
+  ],
+  "required_consumers": [
+    "candidate_scoring",
+    "baseline_scoring",
+    "ablation_scoring",
+    "leakage_scanning",
+    "replay_recomputation",
+    "provenance_report"
+  ],
+  "claim_ceiling": "future split contract only; no split generated or executed by this task"
+}
