@@ -1,0 +1,61 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_recommended_next_task",
+  "exactly_one_next_executable_task_card_recommended": true,
+  "recommended_next_task_card_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "recommended_route": "dynamic_partner_belief_pomdp",
+  "recommended_scope": "Draft a bounded executable task card for an isolated Dynamic Partner-Belief POMDP Gate4 replacement harness. The card must freeze environment generation, baselines, ablations, leakage scans, replay, provenance, claim ceiling, stop conditions, and rollback before any source code is edited.",
+  "execution_authorized_by_002a": false,
+  "task_card_creation_authorized_only_if_separately_requested": true,
+  "minimum_task_card_sections": [
+    "task_id",
+    "problem_definition",
+    "current_stage",
+    "hypothesis",
+    "baseline",
+    "ablation",
+    "trace_replay_requirement",
+    "acceptance_gate",
+    "claim_ceiling",
+    "stop_condition",
+    "rollback_plan"
+  ],
+  "must_include_future_baselines": [
+    "random_control",
+    "pair_count_baseline",
+    "n_gram_trace_lookup_baseline",
+    "partner_id_baseline",
+    "preference_table_baseline",
+    "full_bundle_decoder",
+    "serialized_state_decoder",
+    "finite_state_policy_baseline",
+    "query_capable_imitation_baseline",
+    "belief_table_baseline",
+    "oracle_access_upper_bound",
+    "ablated_candidate_social_latent_disabled",
+    "non_social_world_model_baseline"
+  ],
+  "must_include_future_controls": [
+    "heldout_partner_dynamics",
+    "partner_policy_shift_after_history",
+    "counterfactual_partner_response_tests",
+    "candidate_social_latent_state_intervention",
+    "partner_observation_stream_intervention",
+    "positive_control_leakage_case",
+    "negative_control_no_signal_case"
+  ],
+  "stop_if": [
+    "environment requires partner_id_lookup to succeed",
+    "target leaks through observations, serialized state, bundle fields, context IDs, fixture names, paths, or answer labels",
+    "candidate receives target-bearing information denied to baselines",
+    "task reduces to a static social puzzle",
+    "no fair baseline-resistant route can be specified at bounded complexity"
+  ],
+  "fallback_if_blocked": "defer_gate4_return_to_cross_gate_theory_coverage",
+  "what_002a_does_not_do": [
+    "does_not_create_the_002b_task_card",
+    "does_not_implement_harness_code",
+    "does_not_run_tests_or_experiments",
+    "does_not_authorize_gate5_admission_bridge_runtime_or_ego_mainline"
+  ]
+}

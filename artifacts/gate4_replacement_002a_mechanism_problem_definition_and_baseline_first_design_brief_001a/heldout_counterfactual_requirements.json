@@ -1,0 +1,66 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_heldout_counterfactual_requirements",
+  "requirements": [
+    {
+      "requirement_id": "heldout_partner_dynamics",
+      "required": true,
+      "description": "Heldout split must contain unseen partner dynamics or policy-update rules, not only hidden labels or renamed partners."
+    },
+    {
+      "requirement_id": "partner_policy_shift_after_history",
+      "required": true,
+      "description": "At least one evaluation family must shift partner policy after interaction history so the candidate must update other_state from behavior."
+    },
+    {
+      "requirement_id": "counterfactual_partner_response_tests",
+      "required": true,
+      "description": "Counterfactual tests must alter partner response structure while holding non-causal surfaces constant where possible."
+    },
+    {
+      "requirement_id": "candidate_social_latent_state_intervention",
+      "required": true,
+      "description": "Future task must intervene on candidate social-latent state or update path through freeze, deletion, shuffle, replacement, corruption, or controlled perturbation."
+    },
+    {
+      "requirement_id": "partner_observation_stream_intervention",
+      "required": true,
+      "description": "Future task must intervene on partner observation stream or history to test whether predicted behavior changes in the predeclared direction."
+    },
+    {
+      "requirement_id": "train_heldout_counterfactual_context_ids",
+      "required": true,
+      "description": "Every train, heldout, and counterfactual context must have IDs, but IDs must be audited so they cannot carry target or partner-type labels."
+    },
+    {
+      "requirement_id": "positive_control_leakage_case",
+      "required": true,
+      "description": "At least one deliberately injected leakage case must be detected by the leakage scanner and treated as a required scanner failure."
+    },
+    {
+      "requirement_id": "negative_control_no_signal_case",
+      "required": true,
+      "description": "At least one no-signal case must show that the candidate and non-oracle baselines cannot legitimately exceed chance or declared prior performance."
+    }
+  ],
+  "split_contract": {
+    "train_context_ids_required": true,
+    "heldout_context_ids_required": true,
+    "counterfactual_context_ids_required": true,
+    "episode_ids_required": true,
+    "partner_id_target_leakage_audit_required": true,
+    "context_id_target_leakage_audit_required": true,
+    "fixture_name_target_leakage_audit_required": true,
+    "path_name_target_leakage_audit_required": true
+  },
+  "minimum_future_reports": [
+    "heldout_partner_dynamics_report.json",
+    "partner_shift_report.json",
+    "counterfactual_response_report.json",
+    "social_latent_intervention_report.json",
+    "observation_stream_intervention_report.json",
+    "leakage_positive_control_report.json",
+    "no_signal_negative_control_report.json"
+  ],
+  "claim_if_missing": "blocked_no_heldout_counterfactual_gate"
+}

@@ -1,0 +1,111 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "artifact_id": "gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a",
+  "producer_function": "manual_governance_result",
+  "mode": "mechanism_problem_definition_and_baseline_first_design_brief_only",
+  "layer": "mechanism-hypothesis design + engineering-governance",
+  "verdict": "gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a_pass",
+  "expected_verdict_matched": true,
+  "sealed_boundary": "0d101228459c08a58b50d95a4611a69c6e40e85d",
+  "branch": "codex/meta-theory-scaffold",
+  "remote_tag": "remote-anchor-gate4-replacement-001f-route-closure-problem-definition-reset-001a-0d10122",
+  "source_readback": {
+    "local_head": "0d101228459c08a58b50d95a4611a69c6e40e85d",
+    "remote_branch": "0d101228459c08a58b50d95a4611a69c6e40e85d",
+    "local_tag": "0d101228459c08a58b50d95a4611a69c6e40e85d",
+    "remote_tag": "0d101228459c08a58b50d95a4611a69c6e40e85d",
+    "all_match_sealed_boundary": true
+  },
+  "closure_inheritance": {
+    "001e_negative_evidence_inherited_explicitly": true,
+    "001f_route_closure_inherited_explicitly": true,
+    "001d_derived_repair_remains_closed": true,
+    "candidate_score": 1.0,
+    "pair_count_table_score": 1.0,
+    "full_bundle_decoder_score": 1.0,
+    "serialized_state_decoder_score": 1.0,
+    "strongest_faithful_baseline": "pair_count_table",
+    "stop_condition": "pair_count_table_tied_candidate"
+  },
+  "design_output": {
+    "new_gate4_mechanism_target_defined": true,
+    "explicit_non_targets_defined": true,
+    "baseline_first_adversarial_design_defined": true,
+    "candidate_mechanism_contract_defined": true,
+    "heldout_counterfactual_structure_defined": true,
+    "replay_provenance_contract_defined": true,
+    "failure_routing_policy_defined": true,
+    "route_decision_matrix_defined": true,
+    "exactly_one_next_executable_task_card_recommended": true,
+    "recommended_next_task_card_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+    "recommended_route": "dynamic_partner_belief_pomdp"
+  },
+  "acceptance_gate_readback": {
+    "001e_001f_negative_evidence_inherited_explicitly": true,
+    "001d_derived_repair_remains_closed": true,
+    "new_experiment_harness_source_scoring_code_implemented": false,
+    "tests_or_experiments_run": false,
+    "only_lightweight_json_readback_checks_allowed": true,
+    "future_baselines_specified_before_candidate_success_criteria": true,
+    "at_least_one_route_rejected_for_puzzle_decoder_collapse_risk": true,
+    "exactly_one_next_executable_route_recommended": true,
+    "claim_ceiling_and_non_claims_explicit": true,
+    "gate5_admission_bridge_runtime_ego_mainline_changes": false,
+    "working_tree_index_clean_after_commit_requires_post_commit_verification": true
+  },
+  "baseline_results": {
+    "status": "not_executed_design_only",
+    "future_baselines_required": [
+      "random_control",
+      "pair_count_baseline",
+      "n_gram_trace_lookup_baseline",
+      "partner_id_baseline",
+      "preference_table_baseline",
+      "full_bundle_decoder",
+      "serialized_state_decoder",
+      "finite_state_policy_baseline",
+      "query_capable_imitation_baseline",
+      "belief_table_baseline",
+      "oracle_access_upper_bound",
+      "ablated_candidate_social_latent_disabled",
+      "non_social_world_model_baseline"
+    ]
+  },
+  "ablation_results": {
+    "status": "not_executed_design_only",
+    "future_ablation_requirement": "real rerun interventions on social-latent update path, other-state history, partner observation stream, and no-signal controls"
+  },
+  "replay_result": {
+    "status": "not_executed_design_only",
+    "future_replay_requirement": "recompute candidate behavior from serialized_state plus observation; hash-only trace replay is insufficient"
+  },
+  "created_files": [
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/result.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/design_brief.md",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/closure_inheritance_manifest.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/mechanism_target_definition.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/non_targets.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/baseline_first_matrix.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/heldout_counterfactual_requirements.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/replay_provenance_contract.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/route_decision_matrix.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/recommended_next_task.json",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/claim_ceiling.txt",
+    "artifacts/gate4_replacement_002a_mechanism_problem_definition_and_baseline_first_design_brief_001a/source_pin_readback.json",
+    "docs/research/GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A.md"
+  ],
+  "stop_conditions_triggered": [],
+  "claim_ceiling": "bounded Gate4 replacement problem-definition reset; baseline-first design constraints; recommendation for a future executable task card",
+  "what_this_does_not_prove": [
+    "valid Gate4",
+    "social-latent inference evidence",
+    "mechanism validity",
+    "agency",
+    "selfhood",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "EGO readiness",
+    "stable user benefit"
+  ]
+}

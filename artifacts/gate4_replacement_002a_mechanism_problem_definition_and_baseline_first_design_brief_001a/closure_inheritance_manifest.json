@@ -1,0 +1,76 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_closure_inheritance_manifest",
+  "inherited_sources": [
+    {
+      "source_id": "gate4_replacement_001e_baseline_equivalence_adjudication_001a",
+      "source_type": "negative_evidence",
+      "path": "artifacts/gate4_replacement_001e_baseline_equivalence_adjudication_001a/result.json",
+      "sha256": "8D19ED4B9BA3356435A2F236C4E0ECE04208BE4D1F5C26039278BFAE54F6C518",
+      "verdict": "baseline_equivalence_preserved_negative_evidence",
+      "baseline_equivalence": true,
+      "candidate_score": 1.0,
+      "pair_count_table_score": 1.0,
+      "full_bundle_decoder_score": 1.0,
+      "serialized_state_decoder_score": 1.0,
+      "strongest_faithful_baseline": "pair_count_table",
+      "stop_condition": "pair_count_table_tied_candidate"
+    },
+    {
+      "source_id": "gate4_replacement_001e_baseline_equivalence_report",
+      "source_type": "baseline_collapse_detail",
+      "path": "artifacts/gate4_replacement_001e_baseline_equivalence_adjudication_001a/baseline_equivalence_report.json",
+      "sha256": "5A4BC348064733ACA3AE53A689331FA7D5D5A91BBD6EAB3E016EC439DB332D9B",
+      "invoked_baselines_include": [
+        "pair_count_table",
+        "full_candidate_visible_bundle_decoder",
+        "serialized_state_after_update_decoder",
+        "count_table",
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "fsm_planner",
+        "episodic_traversal"
+      ],
+      "all_listed_scores_tied_candidate": true
+    },
+    {
+      "source_id": "gate4_replacement_001f_route_closure_and_problem_definition_reset_001a",
+      "source_type": "route_closure",
+      "path": "artifacts/gate4_replacement_001f_route_closure_and_problem_definition_reset_001a/result.json",
+      "sha256": "3732E715D3D7A3117042D0F4443949863BCA7AD82C0594DFB967145337A3B27C",
+      "verdict": "gate4_replacement_001f_route_closure_and_problem_definition_reset_001a_pass",
+      "closed_route_family": "001D-derived Gate4 replacement puzzle/bundle repair attempts",
+      "future_gate4_experiment_authorized": false,
+      "future_gate4_design_card_drafting_allowed": true
+    },
+    {
+      "source_id": "evidence_gate_interpretability_reframe_001a",
+      "source_type": "auditability_contract",
+      "path": "docs/EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A.md",
+      "sha256": "1E299CB46F0EE529A855BCC0CA53DAB45DE34F6538129C80E67878EFE0A692BE",
+      "applied_to_002a": true,
+      "rule": "Do not require complete human semantic interpretation of every latent state as a pass condition; require auditability, trace/replay, intervention sensitivity, ablation, leakage resistance, and baseline non-equivalence."
+    }
+  ],
+  "closed_routes_preserved": [
+    "continue_patching_001d",
+    "001d_derived_feedback_or_bundle_repair",
+    "001d_derived_puzzle_variant_without_problem_definition_reset",
+    "candidate_specific_puzzle_construction",
+    "candidate_access_without_baseline_parity",
+    "field_hiding_or_obfuscation_fix"
+  ],
+  "route_inheritance_readback": {
+    "001e_negative_evidence_inherited_explicitly": true,
+    "001f_route_closure_inherited_explicitly": true,
+    "001d_derived_repair_remains_closed": true,
+    "old_artifacts_rewritten": false,
+    "positive_mechanism_evidence_claimed": false,
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "bridge_authorized": false,
+    "runtime_authorized": false,
+    "ego_mainline_authorized": false
+  }
+}

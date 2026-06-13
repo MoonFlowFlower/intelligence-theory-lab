@@ -1,0 +1,104 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_route_decision_matrix",
+  "score_scale": "1 low / 5 high; for leakage_risk and puzzle_task_risk, 1 is low risk and 5 is high risk",
+  "decision_criteria": [
+    "mechanism_relevance",
+    "baseline_resistance",
+    "implementation_cost",
+    "leakage_risk",
+    "replayability",
+    "ablation_clarity",
+    "transfer_potential",
+    "puzzle_task_risk"
+  ],
+  "routes": [
+    {
+      "route_id": "dynamic_partner_belief_pomdp",
+      "status": "recommended",
+      "scores": {
+        "mechanism_relevance": 5,
+        "baseline_resistance": 4,
+        "implementation_cost": 3,
+        "leakage_risk": 3,
+        "replayability": 5,
+        "ablation_clarity": 5,
+        "transfer_potential": 4,
+        "puzzle_task_risk": 2
+      },
+      "reason": "Best bounded next route for self/other latent updates, partner-policy shifts, heldout dynamics, counterfactual partner response, replay, and social-latent update ablation.",
+      "required_guard": "Partner identity, context IDs, and observations must not encode target dynamics; baselines must receive fair candidate-visible access."
+    },
+    {
+      "route_id": "active_inference_self_other_belief",
+      "status": "not_recommended_as_next_route",
+      "scores": {
+        "mechanism_relevance": 5,
+        "baseline_resistance": 3,
+        "implementation_cost": 4,
+        "leakage_risk": 3,
+        "replayability": 3,
+        "ablation_clarity": 3,
+        "transfer_potential": 4,
+        "puzzle_task_risk": 3
+      },
+      "reason": "Mechanism-relevant but too likely to become an abstract notation layer before a concrete baseline-resistant environment is frozen.",
+      "required_guard": "Only revisit after a dynamic partner-belief task clarifies environment, baselines, and intervention surfaces."
+    },
+    {
+      "route_id": "predictive_world_model_social_transition",
+      "status": "rejected_as_next_route_without_social_latent_primary_gate",
+      "scores": {
+        "mechanism_relevance": 4,
+        "baseline_resistance": 3,
+        "implementation_cost": 3,
+        "leakage_risk": 4,
+        "replayability": 5,
+        "ablation_clarity": 4,
+        "transfer_potential": 5,
+        "puzzle_task_risk": 4
+      },
+      "reason": "Replayable and useful, but can collapse into non-social transition prediction unless self/other state and partner-latent interventions are primary.",
+      "required_guard": "Use only as a component or baseline inside a partner-belief route, not as a standalone Gate4 target."
+    },
+    {
+      "route_id": "causal_intervention_social_latent",
+      "status": "not_recommended_as_next_route",
+      "scores": {
+        "mechanism_relevance": 5,
+        "baseline_resistance": 4,
+        "implementation_cost": 4,
+        "leakage_risk": 3,
+        "replayability": 4,
+        "ablation_clarity": 5,
+        "transfer_potential": 3,
+        "puzzle_task_risk": 3
+      },
+      "reason": "Strong evidence discipline, but too narrow as a problem definition unless anchored to dynamic partner-belief environment and heldout dynamics.",
+      "required_guard": "Fold its intervention discipline into the recommended POMDP route."
+    },
+    {
+      "route_id": "defer_gate4_return_to_cross_gate_theory_coverage",
+      "status": "fallback_if_recommended_route_cannot_be_specified_without_collapse",
+      "scores": {
+        "mechanism_relevance": 3,
+        "baseline_resistance": 5,
+        "implementation_cost": 1,
+        "leakage_risk": 1,
+        "replayability": 2,
+        "ablation_clarity": 2,
+        "transfer_potential": 3,
+        "puzzle_task_risk": 1
+      },
+      "reason": "Correct fallback if bounded Gate4 remains decoder-collapsible, but premature before one dynamic route is specified at task-card level.",
+      "required_guard": "Use if 002B cannot avoid compact target leakage at reasonable complexity."
+    }
+  ],
+  "rejected_for_puzzle_or_decoder_collapse_risk": [
+    "predictive_world_model_social_transition_without_social_latent_primary_gate",
+    "001d_derived_static_puzzle_variant",
+    "field_hiding_or_obfuscation_repair"
+  ],
+  "recommended_route": "dynamic_partner_belief_pomdp",
+  "exactly_one_recommended_route": true
+}

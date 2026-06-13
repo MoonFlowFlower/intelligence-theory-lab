@@ -1,0 +1,78 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_replay_provenance_contract",
+  "applies_to_future_executable_task": true,
+  "current_task_executed_replay": false,
+  "current_task_executed_experiment": false,
+  "computed_evidence_provenance_gate": {
+    "required": true,
+    "reported_result_must_be_computed": true,
+    "static_dictionary_results_forbidden": true,
+    "unconditional_clean_reports_forbidden": true,
+    "tests_that_assert_pass_forbidden": true,
+    "required_fields_per_metric": [
+      "producer_function",
+      "input_artifacts",
+      "run_id",
+      "seed_ids",
+      "context_ids",
+      "episode_ids",
+      "aggregation_rule",
+      "code_path_hash",
+      "candidate_access_manifest",
+      "baseline_access_manifest"
+    ]
+  },
+  "replay_contract": {
+    "recompute_from_serialized_state_plus_observation": true,
+    "hash_only_trace_replay_sufficient": false,
+    "schema_inspection_only_sufficient": false,
+    "replay_inputs_required": [
+      "serialized_state",
+      "observation",
+      "legal_actions",
+      "update_history",
+      "random_seed_or_sampling_manifest",
+      "model_snapshot_or_code_hash_if_applicable"
+    ],
+    "replay_outputs_required": [
+      "predicted_action_or_distribution",
+      "predicted_partner_response_or_distribution",
+      "state_delta_or_state_delta_hash",
+      "recomputed_metric"
+    ]
+  },
+  "ablation_contract": {
+    "rerun_episodes_under_real_intervention": true,
+    "static_ablation_flags_forbidden": true,
+    "minimum_interventions": [
+      "freeze_social_latent_update_path",
+      "delete_or_null_other_state_history",
+      "shuffle_partner_observation_history",
+      "replace_other_state_with_random_or_no_signal_state",
+      "corrupt_prediction_error_or_update_signal"
+    ]
+  },
+  "interpretability_reframe_applied": {
+    "source": "docs/EVIDENCE-GATE-INTERPRETABILITY-REFRAME-001A.md",
+    "complete_human_semantic_latent_labels_required": false,
+    "auditability_required": true,
+    "trace_required": true,
+    "replay_required": true,
+    "ablation_required": true,
+    "counterfactual_intervention_required": true,
+    "source_memory_deletion_or_equivalent_required": true,
+    "baseline_non_equivalence_required": true,
+    "leakage_scan_required": true,
+    "claim_ceiling_enforced": true
+  },
+  "failure_verdicts": [
+    "gate4_replacement_002b_failed_replay_missing",
+    "gate4_replacement_002b_failed_static_report",
+    "gate4_replacement_002b_failed_ablation_no_degradation",
+    "gate4_replacement_002b_failed_baseline_equivalence",
+    "gate4_replacement_002b_failed_leakage_positive_control",
+    "gate4_replacement_002b_failed_access_parity",
+    "gate4_replacement_002b_failed_claim_inflation"
+  ]
+}

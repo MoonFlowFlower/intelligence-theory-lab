@@ -1,0 +1,59 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_mechanism_target_definition",
+  "target_name": "dynamic_partner_belief_pomdp_social_latent_mechanism_target",
+  "target_layer": "mechanism-hypothesis design",
+  "not_an_executed_mechanism_test": true,
+  "problem_definition": "Test whether a future candidate can maintain and update bounded self/other latent state under partial observability, then use that latent state to predict and act under heldout partner dynamics, partner shifts, counterfactual partner responses, and interventions.",
+  "target_conditions": [
+    {
+      "condition_id": "separate_self_and_other_state",
+      "required": true,
+      "description": "Candidate must maintain distinguishable self_state and other_state representations or auditable state partitions."
+    },
+    {
+      "condition_id": "behavior_based_other_update",
+      "required": true,
+      "description": "Other-state updates must be derived from observed partner behavior and interaction history, not partner ID, labels, filenames, fixture names, or explicit preference tokens."
+    },
+    {
+      "condition_id": "prediction_under_changed_conditions",
+      "required": true,
+      "description": "Candidate must predict partner behavior before observation under changed context, partner policy shift, or preference shift."
+    },
+    {
+      "condition_id": "adaptation_after_partner_shift",
+      "required": true,
+      "description": "Candidate behavior must adapt after a partner policy or preference shift using new evidence."
+    },
+    {
+      "condition_id": "action_conditioned_on_inferred_other_state",
+      "required": true,
+      "description": "Candidate action selection must depend on inferred other_state rather than static partner lookup."
+    },
+    {
+      "condition_id": "traceable_latent_updates",
+      "required": true,
+      "description": "Future evidence must expose state snapshots, hashes, deltas, update events, or equivalent auditable latent-update records."
+    },
+    {
+      "condition_id": "replay_from_state_plus_observation",
+      "required": true,
+      "description": "Replay must recompute behavior from serialized_state plus observation, not only compare trace hashes."
+    },
+    {
+      "condition_id": "social_update_ablation_degrades",
+      "required": true,
+      "description": "A real ablation disabling the social-latent update path must fail or degrade the claimed behavior under rerun episodes."
+    }
+  ],
+  "candidate_success_ordering": [
+    "define faithful non-mechanism baselines and access rights first",
+    "freeze heldout and counterfactual partner dynamics",
+    "freeze leakage positive-control and no-signal negative-control cases",
+    "define candidate metrics only after baseline collapse channels are explicit",
+    "treat strongest faithful baseline tie as negative evidence, not as a repair TODO"
+  ],
+  "mechanism_claim_ceiling_for_future_task": "bounded offline mechanism-proxy evidence for the named future task only, if and only if all baseline, ablation, replay, leakage, provenance, and claim-ceiling gates pass",
+  "current_task_claim_ceiling": "problem-definition reset and future task-card recommendation only"
+}

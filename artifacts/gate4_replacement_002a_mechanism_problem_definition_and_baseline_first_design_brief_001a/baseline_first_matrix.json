@@ -1,0 +1,116 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002A-MECHANISM-PROBLEM-DEFINITION-AND-BASELINE-FIRST-DESIGN-BRIEF-001A",
+  "producer_function": "manual_governance_baseline_first_matrix",
+  "baseline_first_rule": "Future baselines, access rights, and collapse interpretations must be specified before candidate success metrics.",
+  "candidate_success_metric_defined_after_baselines": true,
+  "baselines": [
+    {
+      "baseline_id": "random_control",
+      "required": true,
+      "expected_access_rights": "Same action space and episode schedule, no partner history beyond random seed and legal actions.",
+      "rules_out": "Trivial environment imbalance or action-prior advantage.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "pair_count_baseline",
+      "required": true,
+      "expected_access_rights": "Candidate-visible pairs over observation tokens, feedback tokens, action tokens, context IDs allowed to candidate, and prior partner-response pairs.",
+      "rules_out": "001E-style recovery from shallow pair statistics.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "n_gram_trace_lookup_baseline",
+      "required": true,
+      "expected_access_rights": "Candidate-visible ordered interaction traces, bounded n-gram windows, legal history, feedback history, and train traces.",
+      "rules_out": "Trace memorization, suffix lookup, and episodic traversal without latent social update.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "partner_id_baseline",
+      "required": true,
+      "expected_access_rights": "Any partner identifier, source ID, fixture ID, or equivalent identity surface visible to the candidate or leaked through paths, seeds, or context names.",
+      "rules_out": "Partner-specific lookup masquerading as other-state inference.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "preference_table_baseline",
+      "required": true,
+      "expected_access_rights": "Observed or inferred menu/preferences and partner response frequencies from train histories under the same observation budget.",
+      "rules_out": "Static preference memorization rather than dynamic partner-belief updating.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "full_bundle_decoder",
+      "required": true,
+      "expected_access_rights": "All candidate-visible bundle fields, serialized metadata, observations, feedback, legal actions, history, query outputs, and state summaries available to the candidate.",
+      "rules_out": "Target recoverability from full candidate-visible task encoding.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "serialized_state_decoder",
+      "required": true,
+      "expected_access_rights": "Serialized candidate state after updates, state hashes where reversible, logged state summaries, and observation stream available to replay.",
+      "rules_out": "Answer-bearing state encoding or direct target leakage through serialized state.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "finite_state_policy_baseline",
+      "required": true,
+      "expected_access_rights": "Visible tokens, legal history, recent observations, feedback, and bounded memory budget comparable to candidate's declared finite control capacity.",
+      "rules_out": "If-else behavior tree or FSM controller keyed by visible tokens.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "query_capable_imitation_baseline",
+      "required": true,
+      "expected_access_rights": "Same query budget, timing, feedback, observation stream, and candidate-visible surfaces as the candidate.",
+      "rules_out": "Candidate advantage caused by exclusive query affordance or feedback access.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "belief_table_baseline",
+      "required": true,
+      "expected_access_rights": "Tabular belief updates over observable partner behavior classes, without privileged partner labels or hidden targets.",
+      "rules_out": "Compact tabular Bayesian/count update sufficient for apparent social latent behavior.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "oracle_access_upper_bound",
+      "required": true,
+      "expected_access_rights": "Explicit oracle access to hidden partner dynamics for an upper-bound only; not a fair competitor and not used as mechanism evidence.",
+      "rules_out": "Task impossibility or metric ceiling ambiguity.",
+      "collapse_if_ties_candidate": false
+    },
+    {
+      "baseline_id": "ablated_candidate_social_latent_disabled",
+      "required": true,
+      "expected_access_rights": "Same candidate implementation and all non-social paths intact, but the social-latent update path is frozen, deleted, shuffled, or replaced by null updates under a real rerun.",
+      "rules_out": "Candidate behavior independent of the claimed social-latent update.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "non_social_world_model_baseline",
+      "required": true,
+      "expected_access_rights": "Same environment observations and transition history, but no partner-specific latent state; models non-social context transitions only.",
+      "rules_out": "Success from ordinary world transition modeling rather than other-state inference.",
+      "collapse_if_ties_candidate": true
+    }
+  ],
+  "collapse_family_extensions": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "nearest_neighbor",
+    "rag_summary_memory",
+    "shuffled_history_control",
+    "observation_only_control",
+    "no_signal_control"
+  ],
+  "strongest_baseline_selection_rule": "Report the strongest faithful baseline by heldout and counterfactual score. If any faithful baseline ties or exceeds the candidate on the accepted metric, classify as baseline-equivalence negative evidence.",
+  "baseline_access_parity_required": true,
+  "static_score_dictionary_forbidden": true,
+  "tests_that_assert_pass_forbidden": true
+}
