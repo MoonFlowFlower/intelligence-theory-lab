@@ -1,0 +1,52 @@
+{
+  "task_id": "MECHANISM-SEARCH-PROCESS-OPTIMIZATION-001A",
+  "policy_name": "discovery_admission_separation_policy",
+  "process_baseline": {
+    "name": "status_quo_single_route_gate_repair",
+    "description": "Generate one Gate task family, run or draft one candidate path, audit after construction, repair same-family failures, preserve negative evidence, and repeat until blocked or anchored.",
+    "latest_failure_readback": "The current generated Gate4 task family closed because partner_id_lookup_baseline scored 1.0 against threshold 0.8 before candidate code existed."
+  },
+  "policy_change": "Future Gate4 replacement work must separate cheap-baseline preflight, discovery-mode candidate-family comparison, and admission-grade computed-evidence validation.",
+  "modes": [
+    {
+      "mode": "discovery",
+      "purpose": "Rapidly compare mechanism families before admission-grade evidence.",
+      "documentation_burden": "lower than admission mode, but still source-pinned and claim-ceiling bounded",
+      "remote_anchor_rule": "no remote anchor unless a route boundary or boundary-worthy negative evidence is created",
+      "mainline_claims_allowed": false,
+      "same_family_repair_after_cheap_baseline_closure_allowed": false,
+      "minimum_candidate_family_count_before_new_gate4_replacement_design": 3,
+      "cheap_baseline_first_preflight_required": true,
+      "discriminative_mechanism_signal_definition": "A family produces a signal only if the target cannot be matched by faithful cheap lookup, table, decoder, retrieval, imitation, graph/cache, or label-generator baselines under fair access and if an intended update/control/replay path changes behavior under real ablation."
+    },
+    {
+      "mode": "admission",
+      "purpose": "Only for candidates that survive discovery-mode family comparison.",
+      "computed_evidence_provenance_required": true,
+      "independent_callable_baselines_required": true,
+      "real_ablations_required": true,
+      "leakage_scanner_positive_controls_required": true,
+      "replay_requirement": "Replay must recompute behavior from serialized state plus observation where applicable.",
+      "remote_anchor_rule": "allowed only for stable downstream-cited boundaries after acceptance gates pass",
+      "claim_rule": "No mechanism or readiness claim unless computed evidence supports the bounded claim."
+    }
+  ],
+  "forbidden_upgrades": [
+    "Gate4 validity",
+    "replacement Gate4 success",
+    "mechanism validity",
+    "social understanding",
+    "intelligence",
+    "agency",
+    "subjectivity",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "runtime readiness",
+    "bridge readiness",
+    "admission readiness",
+    "companion readiness",
+    "user benefit",
+    "EGO readiness"
+  ]
+}

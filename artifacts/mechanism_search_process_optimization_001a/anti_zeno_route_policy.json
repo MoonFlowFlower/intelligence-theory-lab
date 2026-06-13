@@ -1,0 +1,46 @@
+{
+  "task_id": "MECHANISM-SEARCH-PROCESS-OPTIMIZATION-001A",
+  "policy_name": "anti_zeno_route_policy",
+  "automatic_route_actions": [
+    {
+      "condition": "best_faithful_cheap_baseline >= task_threshold",
+      "action": "close_family_no_same_family_repair",
+      "claim_ceiling": "negative evidence and route closure only"
+    },
+    {
+      "condition": "two_consecutive_tasks_governance_only_or_hygiene_only_without_new_mechanism_signal_or_negative_signal",
+      "action": "trigger_route_review",
+      "claim_ceiling": "process-risk review only"
+    },
+    {
+      "condition": "candidate_score_equals_label_generator_or_oracle_shortcut",
+      "action": "mark_invalid_rather_than_repair",
+      "claim_ceiling": "invalid self-report or baseline-equivalence negative evidence only"
+    },
+    {
+      "condition": "leakage_scanner_has_no_positive_control",
+      "action": "block_admission_usage",
+      "claim_ceiling": "scanner insufficiency only"
+    },
+    {
+      "condition": "replay_compares_stored_hashes_without_recomputation",
+      "action": "block_admission_usage",
+      "claim_ceiling": "replay insufficiency only"
+    },
+    {
+      "condition": "task_produces_only_cleaner_reports_or_anchors_without_route_decision_change",
+      "action": "classify_governance_only",
+      "claim_ceiling": "governance-only artifact hygiene"
+    },
+    {
+      "condition": "negative_evidence_closes_family",
+      "action": "future_tasks_must_cite_and_cannot_reopen_without_new_problem_definition_and_stronger_baseline_separation",
+      "claim_ceiling": "negative-evidence inheritance and route policy only"
+    }
+  ],
+  "closed_family_current_task": {
+    "family": "current generated Gate4 replacement task family blocked by partner-ID lookup baseline",
+    "same_family_repair_allowed": false,
+    "required_future_reopen_condition": "explicit new problem definition plus stronger baseline separation; not a field-removal patch"
+  }
+}

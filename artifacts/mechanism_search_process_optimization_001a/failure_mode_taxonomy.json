@@ -1,0 +1,74 @@
+[
+  {
+    "failure_mode": "partner_id_lookup_equivalence",
+    "definition": "A stable partner identity or anonymized partner key is sufficient to recover the target.",
+    "observed_or_inferred_from_source": "observed",
+    "source_task_or_doc": "GATE4-REPLACEMENT-NO-CANDIDATE-BASELINE-PREFLIGHT-001A and GATE4-REPLACEMENT-BASELINE-BLOCKED-ROUTING-AND-REDESIGN-CRITERIA-001A",
+    "prevention_rule": "Run partner-ID and identity-permutation cheap baselines before candidate implementation.",
+    "stop_condition": "best faithful partner-ID or partner-key baseline reaches or exceeds the task threshold"
+  },
+  {
+    "failure_mode": "label_generator_equivalence",
+    "definition": "Candidate behavior is equivalent to the label generator, oracle-shaped rules, or target-producing helper logic.",
+    "observed_or_inferred_from_source": "observed",
+    "source_task_or_doc": "GATE4-REPLACEMENT-TASK-FALSIFICATION-AND-SOCIAL-CAUSAL-TRANSFER-DESIGN-001A",
+    "prevention_rule": "Isolate candidate code from generator code and run independent oracle-shape and label-generator equivalence challengers.",
+    "stop_condition": "candidate score equals label-generator or oracle-shaped shortcut score"
+  },
+  {
+    "failure_mode": "cheap_history_or_lookup_baseline_dominance",
+    "definition": "Trace lookup, pair counts, n-gram history, graph/cache families, or table baselines match the candidate.",
+    "observed_or_inferred_from_source": "observed",
+    "source_task_or_doc": "GATE4-001C-NEGATIVE-EVIDENCE-ROUTING-RECORD-001A, GATE4-REPLACEMENT-001E, and GATE4-REPLACEMENT-002C",
+    "prevention_rule": "Make lookup and graph/cache challengers primary contrasts in preflight and discovery mode.",
+    "stop_condition": "any faithful lookup/history/cache baseline ties or beats candidate or reaches no-candidate invalidation threshold"
+  },
+  {
+    "failure_mode": "leakage_scanner_not_fail_able",
+    "definition": "A leakage scanner can report clean without proving it catches injected leakage.",
+    "observed_or_inferred_from_source": "inferred_from_source",
+    "source_task_or_doc": "GATE4-REPLACEMENT-NO-CANDIDATE-BASELINE-PREFLIGHT-001A and GATE4-REPLACEMENT-TASK-FALSIFICATION-AND-SOCIAL-CAUSAL-TRANSFER-DESIGN-001A",
+    "prevention_rule": "Require at least one positive-control leakage case for every admission-grade scanner.",
+    "stop_condition": "leakage scanner lacks positive control or fails to detect injected leakage"
+  },
+  {
+    "failure_mode": "candidate_before_baseline",
+    "definition": "A candidate path is built before cheap baselines establish whether the task family is already shortcut-solvable.",
+    "observed_or_inferred_from_source": "observed",
+    "source_task_or_doc": "GATE4-REPLACEMENT-NO-CANDIDATE-BASELINE-PREFLIGHT-001A",
+    "prevention_rule": "Run no-candidate baseline preflight before candidate code or task-family repair.",
+    "stop_condition": "candidate code is proposed or created before cheap-baseline preflight completes"
+  },
+  {
+    "failure_mode": "same_family_repair_zeno",
+    "definition": "The process repeatedly patches the same collapsed task family instead of changing the evidence target.",
+    "observed_or_inferred_from_source": "observed",
+    "source_task_or_doc": "GATE4-REPLACEMENT-001F and GATE4-REPLACEMENT-002D",
+    "prevention_rule": "Close the family after faithful baseline equivalence and require a new problem definition before reopening.",
+    "stop_condition": "a proposed next task repairs a closed family without explicit new problem definition and stronger baseline separation"
+  },
+  {
+    "failure_mode": "pass_shaped_artifact_without_discriminative_signal",
+    "definition": "Reports, schemas, anchors, or clean checks are produced without a route decision or new mechanism-discriminative evidence.",
+    "observed_or_inferred_from_source": "inferred_from_source",
+    "source_task_or_doc": "GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A and GATE4-REPLACEMENT-BASELINE-BLOCKED-ROUTING-AND-REDESIGN-CRITERIA-001A",
+    "prevention_rule": "Classify artifacts that do not change route decisions as governance-only, not evidence of mechanism progress.",
+    "stop_condition": "task output produces only cleaner reports or anchors without changing route decision or preserving negative evidence"
+  },
+  {
+    "failure_mode": "governance_only_loop",
+    "definition": "Consecutive governance or hygiene tasks accumulate without new mechanism signal, negative signal, or route closure.",
+    "observed_or_inferred_from_source": "inferred_from_source",
+    "source_task_or_doc": "MECHANISM-SEARCH-PROCESS-OPTIMIZATION-001A source inventory",
+    "prevention_rule": "Trigger route review after two consecutive governance-only or hygiene-only tasks without new signal.",
+    "stop_condition": "two consecutive tasks are governance_only or hygiene_only and neither changes a downstream route"
+  },
+  {
+    "failure_mode": "source_pin_or_claim_ceiling_gap",
+    "definition": "Task conclusions are made without current source pins or with claims exceeding available computed evidence.",
+    "observed_or_inferred_from_source": "observed",
+    "source_task_or_doc": "AGENTS.md operating contract and source-pin readbacks across Gate4 records",
+    "prevention_rule": "Require current repo readback, source pins, claim ceiling, and no downstream authorization flags before closeout.",
+    "stop_condition": "source boundary is missing, remote/local anchor cannot be verified, or claim ceiling is absent"
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "task_id": "MECHANISM-SEARCH-PROCESS-OPTIMIZATION-001A",
+  "scope": "entry criteria only; this file does not design or implement the tournament",
+  "minimum_candidate_family_count": 3,
+  "global_entry_requirements": [
+    "must cite prior partner-ID lookup and decoder/table negative evidence",
+    "must run cheap-baseline-first preflight before candidate implementation",
+    "must predeclare transfer, ablation, leakage, replay, and provenance requirements",
+    "must preserve no mainline, runtime, bridge, admission, Gate5, or EGO-mainline authorization"
+  ],
+  "candidate_family_categories": [
+    {
+      "family": "causal_world_model_control",
+      "proposed_observable": "prediction and action under heldout causal partner/environment interventions",
+      "strongest_cheap_baseline": "transition_table_or_successor_map_with_fair_access",
+      "required_ablation": "remove causal intervention feedback and rerun heldout episodes",
+      "leakage_risk": "context IDs, transition labels, or generator structure may encode the target",
+      "minimum_transfer_condition": "heldout causal families with unseen intervention response mappings",
+      "not_lookup_shortcut_reason": "must require causal update under changed interventions, not repeated key recovery"
+    },
+    {
+      "family": "jepa_like_latent_prediction_world_model_substrate",
+      "proposed_observable": "latent prediction error reduction under heldout dynamics with action-conditioned observations",
+      "strongest_cheap_baseline": "nearest_neighbor_latent_or_ngram_trace_lookup",
+      "required_ablation": "freeze latent update path and rerun prediction/action episodes",
+      "leakage_risk": "latent target may be reconstructable from serialized state or visible bundle",
+      "minimum_transfer_condition": "unseen dynamics and observation aliases not present in training traces",
+      "not_lookup_shortcut_reason": "must show update-sensitive latent prediction beyond trace retrieval"
+    },
+    {
+      "family": "replay_consolidation_based_adaptation",
+      "proposed_observable": "post-replay behavior changes from serialized experience without direct target labels",
+      "strongest_cheap_baseline": "episodic_traversal_or_trace_only_replay_baseline",
+      "required_ablation": "corrupt replay state or remove consolidation update and recompute behavior",
+      "leakage_risk": "stored traces may include answer-bearing actions or labels",
+      "minimum_transfer_condition": "heldout contexts requiring recomposition from replayed state, not exact trace reuse",
+      "not_lookup_shortcut_reason": "must recompute from state plus observation and fail under replay corruption"
+    },
+    {
+      "family": "self_boundary_controllability_model",
+      "proposed_observable": "separate prediction of self-caused versus external changes under controllability interventions",
+      "strongest_cheap_baseline": "action_context_lookup_or_fsm_planner",
+      "required_ablation": "swap controllability mapping and remove self-action linkage",
+      "leakage_risk": "action names or context IDs may directly reveal self/external boundary",
+      "minimum_transfer_condition": "unseen controllability regimes with matched surface observations",
+      "not_lookup_shortcut_reason": "must distinguish intervention-sensitive self-boundary state from action lookup"
+    },
+    {
+      "family": "viability_value_gated_prediction_action_loop",
+      "proposed_observable": "action selection changes when predicted viability/value consequences change under partial observability",
+      "strongest_cheap_baseline": "majority_value_policy_or_context_conditioned_table",
+      "required_ablation": "remove value gate or scramble feedback and rerun episodes",
+      "leakage_risk": "reward labels, filenames, or observation order may expose correct action",
+      "minimum_transfer_condition": "heldout value dynamics and delayed consequence windows",
+      "not_lookup_shortcut_reason": "must require prediction-action feedback, not static value-table selection"
+    },
+    {
+      "family": "social_latent_inference_without_partner_id_lookup",
+      "proposed_observable": "counterfactual partner response prediction after partner identity permutation and unseen-partner transfer",
+      "strongest_cheap_baseline": "partner_id_lookup_plus_preference_table_plus_query_capable_imitation",
+      "required_ablation": "permute partner identities and remove social-latent update history",
+      "leakage_risk": "partner key, preference table, trace order, or query pattern may encode the answer",
+      "minimum_transfer_condition": "unseen partners and same-ID/different-latent plus different-ID/same-latent counterfactual pairs",
+      "not_lookup_shortcut_reason": "must make partner identity nuisance rather than answer key"
+    }
+  ]
+}
