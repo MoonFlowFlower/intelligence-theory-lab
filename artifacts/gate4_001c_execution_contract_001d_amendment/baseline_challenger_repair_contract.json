@@ -1,0 +1,23 @@
+{
+  "ablation_semantic_alignment": {
+    "failure_verdict": "failed_ablation_semantic_mismatch",
+    "partner_identity_masked_ablation": "must mask identity fields, not merely set feedback to None",
+    "renamed_ablation_rule": "new name must reflect actual intervention",
+    "shuffled_feedback_ablation": "must actually shuffle feedback, not deterministically invert rewards"
+  },
+  "count_table_challenger": {
+    "failure_verdict": "blocked_candidate_count_table_equivalence",
+    "minimum_variants": [
+      "(seed, context_id, partner_id)",
+      "(context_id, partner_id)",
+      "(context_id, observable_prefix_without_phase_token)",
+      "(seed, context_id, partner_id, observable_prefix_without_phase_token)"
+    ],
+    "required": true
+  },
+  "retrieval_baseline_repair": {
+    "failure_verdict": "failed_retrieval_baseline_degenerate_by_design",
+    "normalization_required": "remove train/heldout phase tokens before comparing observable prefixes"
+  },
+  "task_id": "GATE4-001C-EXECUTION-CONTRACT-001D-AMENDMENT"
+}
