@@ -1,0 +1,72 @@
+{
+  "task_id": "GATE4-001C-NEGATIVE-EVIDENCE-ROUTING-RECORD-001A",
+  "chosen_verdict": "route_replace_gate4_with_stronger_discriminative_task",
+  "evidence_rows": [
+    {
+      "evidence": "001E final verdict",
+      "observed_value": "blocked_by_evidence_harness_challenger",
+      "interpretation": "The 001E run is bounded negative evidence and cannot be used as a positive Gate4 pass.",
+      "routing_weight": "blocking"
+    },
+    {
+      "evidence": "real-bundle harness",
+      "observed_value": "rejected_false_pass_risk",
+      "interpretation": "The real bundle triggered harness false-pass-risk rejection.",
+      "routing_weight": "blocking"
+    },
+    {
+      "evidence": "candidate score",
+      "observed_value": 1.0,
+      "interpretation": "Candidate action-target accuracy is perfect under current split.",
+      "routing_weight": "not_positive_without_baseline_separation"
+    },
+    {
+      "evidence": "stream-keyed count-table challenger score",
+      "observed_value": 1.0,
+      "interpretation": "A shallow non-oracle stream-keyed challenger ties the candidate.",
+      "routing_weight": "blocking"
+    },
+    {
+      "evidence": "candidate advantage collapsed",
+      "observed_value": true,
+      "interpretation": "Current 001C does not distinguish candidate behavior from stream-keyed lookup.",
+      "routing_weight": "blocking"
+    },
+    {
+      "evidence": "train/heldout key family",
+      "observed_value": "80 of 80 heldout seed/context/partner keys overlap train keys",
+      "interpretation": "The split is structurally table-solvable by repeated key lookup.",
+      "routing_weight": "blocking"
+    }
+  ],
+  "route_options": [
+    {
+      "option": "close_001c_as_non_discriminative_negative_evidence",
+      "decision": "accepted",
+      "reason": "The known count-table challenger ties the candidate and the harness blocks the bundle."
+    },
+    {
+      "option": "repair_001c_again",
+      "decision": "rejected",
+      "reason": "Further repair would chase a pass on a structurally non-discriminative task."
+    },
+    {
+      "option": "replace_with_stronger_gate4_definition",
+      "decision": "accepted",
+      "reason": "A future Gate4 must change the discriminative contract and heldout axes."
+    },
+    {
+      "option": "escalate_to_gate5_admission_runtime_bridge_or_ego_mainline",
+      "decision": "rejected",
+      "reason": "No downstream authorization is supported by this evidence."
+    }
+  ],
+  "what_result_would_falsify_current_routing": "A bounded replacement Gate4 split where repeated-key count-table challengers fail and the candidate retains a predeclared advantage under replayable, leakage-resistant, provenance-bound evidence.",
+  "what_evidence_would_still_be_insufficient": [
+    "Perfect action-target accuracy on repeated seed/context/partner keys",
+    "A candidate win produced by adding surface keys or removing the known challenger",
+    "Replay-only evidence without baseline non-equivalence",
+    "A harness report that does not test the real bundle",
+    "Any claim that treats bounded negative evidence as Gate4 validity"
+  ]
+}

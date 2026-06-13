@@ -1,0 +1,49 @@
+{
+  "task_id": "GATE4-001C-NEGATIVE-EVIDENCE-ROUTING-RECORD-001A",
+  "status": "requirement_seed_only_not_implementation",
+  "replacement_direction": "Future Gate4 must use stronger discriminative conditions that cannot be solved by the known stream-keyed count-table challenger.",
+  "minimum_discriminative_axes": [
+    "unseen_partners",
+    "unseen_contexts",
+    "unseen_preference_transitions",
+    "unseen_counterfactual_interventions",
+    "active_information_seeking",
+    "intervention_response"
+  ],
+  "minimum_future_problem_definition": "A future Gate4 must evaluate whether behavior depends on inferred latent structure and update history under heldout causal axes, not repeated seed/context/partner key lookup.",
+  "mandatory_future_baselines": [
+    "stream_keyed_count_tables",
+    "normalized_retrieval",
+    "nearest_neighbor_lookup",
+    "context_partner_tables",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "no_state_ablation",
+    "no_feedback_ablation",
+    "no_action_ablation",
+    "oracle_label_positive_control_only"
+  ],
+  "minimum_validation_requirements": [
+    "predeclared heldout axes",
+    "callable independent baselines",
+    "real ablation reruns",
+    "trace and full-state replay",
+    "leakage scan over real bundle",
+    "claim ceiling enforcement",
+    "stop condition if count-table equivalence recurs"
+  ],
+  "non_authorizations": {
+    "task_card_created": false,
+    "replacement_implemented": false,
+    "gate4_execution_authorized": false,
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "runtime_authorized": false,
+    "bridge_authorized": false,
+    "ego_mainline_authorized": false
+  }
+}

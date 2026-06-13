@@ -1,0 +1,68 @@
+{
+  "task_id": "GATE4-001C-NEGATIVE-EVIDENCE-ROUTING-RECORD-001A",
+  "repository": "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+  "branch": {
+    "command": "git branch --show-current",
+    "actual": "codex/meta-theory-scaffold",
+    "expected": "codex/meta-theory-scaffold",
+    "exact_match": true
+  },
+  "starting_head": {
+    "command": "git rev-parse HEAD",
+    "actual": "2b167fb8ca5b9e942e313647d11bd337cc6fadf8",
+    "expected": "2b167fb8ca5b9e942e313647d11bd337cc6fadf8",
+    "exact_match": true
+  },
+  "pre_record_status": {
+    "command": "git status --short",
+    "stdout": "",
+    "clean": true
+  },
+  "required_remote_anchor": {
+    "command": "git ls-remote origin refs/tags/remote-anchor-gate4-001c-execution-repair-rerun-001e-negative-evidence-2b167fb",
+    "tag": "remote-anchor-gate4-001c-execution-repair-rerun-001e-negative-evidence-2b167fb",
+    "actual": "2b167fb8ca5b9e942e313647d11bd337cc6fadf8",
+    "expected": "2b167fb8ca5b9e942e313647d11bd337cc6fadf8",
+    "exact_match": true
+  },
+  "remote_branch": {
+    "command": "git ls-remote origin refs/heads/codex/meta-theory-scaffold",
+    "actual": "2b167fb8ca5b9e942e313647d11bd337cc6fadf8",
+    "expected": "2b167fb8ca5b9e942e313647d11bd337cc6fadf8",
+    "exact_match": true
+  },
+  "source_evidence_files": [
+    {
+      "path": "artifacts/gate4_001c_execution_repair_rerun_001e/result.json",
+      "sha256": "c8ded4039ba3d05aeacc59ba72471699777c7303be9f51788f955326721a92b5"
+    },
+    {
+      "path": "artifacts/gate4_001c_execution_repair_rerun_001e/count_table_challenger_report.json",
+      "sha256": "8551890b225c0d1d555e7a1a76af2b49d6082fe8c281effd943033823422a955"
+    },
+    {
+      "path": "artifacts/gate4_001c_execution_repair_rerun_001e/harness_report.json",
+      "sha256": "eae105edae429633cc9507c43324e65d5879f432427161d07b8703c37839d5c7"
+    },
+    {
+      "path": "artifacts/gate4_001c_execution_repair_rerun_001e/config.json",
+      "sha256": "27a2c453d44666b6d0282827c6a8392a2671cd64c3cfc113d5977c3a556c1613"
+    },
+    {
+      "path": "src/gate4_001c_failure_preserving_repair_001c/core.py",
+      "sha256": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3"
+    }
+  ],
+  "read_only_overlap_summary": {
+    "train_keys": 80,
+    "heldout_keys": 80,
+    "overlapping_seed_context_partner_keys": 80,
+    "train_episodes": 800,
+    "heldout_episodes": 800,
+    "heldout_label_mismatches_vs_train_key": 0,
+    "diagnosis": "Current train and heldout repeat the same seed/context/partner key family."
+  },
+  "gate4_001c_rerun_occurred": false,
+  "old_artifacts_modified": false,
+  "remote_anchor_created": false
+}
