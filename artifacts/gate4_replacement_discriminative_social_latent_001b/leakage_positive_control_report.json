@@ -1,0 +1,64 @@
+{
+  "bundle_path_scanned": "in_memory_run_payloads",
+  "detected_categories": [
+    "ID leakage",
+    "answer key leakage",
+    "bundle path leakage",
+    "deterministic-order leakage",
+    "future outcome leakage",
+    "oracle latent label leakage",
+    "phase token leakage",
+    "split label leakage"
+  ],
+  "detections": [
+    {
+      "category": "ID leakage",
+      "pattern": "\"seed\"",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "phase token leakage",
+      "pattern": "phase_token",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "bundle path leakage",
+      "pattern": "bundle_path",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "oracle latent label leakage",
+      "pattern": "oracle_latent_label",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "answer key leakage",
+      "pattern": "answer_key",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "deterministic-order leakage",
+      "pattern": "deterministic_order_key",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "future outcome leakage",
+      "pattern": "future_outcome",
+      "source": "positive_control.json"
+    },
+    {
+      "category": "split label leakage",
+      "pattern": "split_label",
+      "source": "positive_control.json"
+    }
+  ],
+  "excluded_paths": [],
+  "positive_control_bundle": "deliberately_contaminated_in_memory_bundle",
+  "positive_control_detected": true,
+  "producer_function": "scan_payload_bundle",
+  "scanned_files": [
+    "positive_control.json"
+  ],
+  "unconditional_clean_report": false,
+  "verdict": "blocked_by_leakage_scan"
+}

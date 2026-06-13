@@ -1,0 +1,41 @@
+{
+  "aggregate": {
+    "baseline_id": "transition_table",
+    "computed_from_scores": {
+      "baseline_id": "transition_table",
+      "score": 0.2857142857142857
+    },
+    "score": 0.2857142857142857
+  },
+  "per_split": {
+    "active_query_required_episodes": {
+      "baseline_id": "normalized_retrieval",
+      "score": 0.4
+    },
+    "counterfactual_intervention": {
+      "baseline_id": "successor_map",
+      "score": 0.6
+    },
+    "heldout_episodes_with_remapped_ids": {
+      "baseline_id": "nearest_neighbor_lookup",
+      "score": 0.4
+    },
+    "seen_partner_unseen_context": {
+      "baseline_id": "successor_map",
+      "score": 0.6
+    },
+    "unseen_partner_seen_context": {
+      "baseline_id": "fsm_planner",
+      "score": 0.4
+    },
+    "unseen_partner_unseen_context": {
+      "baseline_id": "nearest_neighbor_lookup",
+      "score": 0.4
+    },
+    "unseen_preference_transition": {
+      "baseline_id": "nearest_neighbor_lookup",
+      "score": 0.6
+    }
+  },
+  "producer_function": "select_strongest_baselines"
+}

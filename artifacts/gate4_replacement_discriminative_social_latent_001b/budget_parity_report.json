@@ -1,0 +1,149 @@
+{
+  "covered_by_computed_evidence_provenance": true,
+  "input_artifacts": [
+    "episode_manifest.json",
+    "trace_records.jsonl",
+    "candidate_results.json",
+    "baseline_results.json"
+  ],
+  "linked_to_scored_run_artifacts": true,
+  "producer_function": "gate4_replacement_discriminative_social_latent_001b.budget_parity.compute_budget_parity_report",
+  "rows": [
+    {
+      "candidate": 35,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "episode_count",
+      "oracle_positive_control": 35,
+      "ordinary_baselines": 35
+    },
+    {
+      "candidate": 7,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "train_context_count",
+      "oracle_positive_control": 7,
+      "ordinary_baselines": 7
+    },
+    {
+      "candidate": 0,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "dev_context_count",
+      "oracle_positive_control": 0,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": 7,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "heldout_context_count",
+      "oracle_positive_control": 7,
+      "ordinary_baselines": 7
+    },
+    {
+      "candidate": 7,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "counterfactual_context_count",
+      "oracle_positive_control": 7,
+      "ordinary_baselines": 7
+    },
+    {
+      "candidate": 35,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "observation_count",
+      "oracle_positive_control": 35,
+      "ordinary_baselines": 35
+    },
+    {
+      "candidate": 35,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "active_query_count",
+      "oracle_positive_control": 35,
+      "ordinary_baselines": 35
+    },
+    {
+      "candidate": 0,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "oracle_label_access_count",
+      "oracle_positive_control": 35,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": 70,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "environment_step_count",
+      "oracle_positive_control": 70,
+      "ordinary_baselines": 70
+    },
+    {
+      "candidate": 35,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "memory_write_count",
+      "oracle_positive_control": 35,
+      "ordinary_baselines": 35
+    },
+    {
+      "candidate": 35,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "memory_read_count",
+      "oracle_positive_control": 35,
+      "ordinary_baselines": 35
+    },
+    {
+      "candidate": 0,
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "training_step_count",
+      "oracle_positive_control": 0,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": "bounded_state_capacity_35_episode_belief_slots",
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "parameter_count_or_model_capacity",
+      "oracle_positive_control": "bounded_state_capacity_35_episode_belief_slots",
+      "ordinary_baselines": "bounded_state_capacity_35_episode_belief_slots"
+    },
+    {
+      "candidate": "capacity_match_by_episode_count_and_history_window",
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "capacity_match_or_capacity_sweep",
+      "oracle_positive_control": "capacity_match_by_episode_count_and_history_window",
+      "ordinary_baselines": "capacity_match_by_episode_count_and_history_window"
+    },
+    {
+      "candidate": "legal_observation_only",
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "preprocessing_access",
+      "oracle_positive_control": "legal_observation_only",
+      "ordinary_baselines": "legal_observation_only"
+    },
+    {
+      "candidate": "split ids excluded from decision interface",
+      "classification": "equal",
+      "derived_from": "run episodes, traces, baseline invocations, and split manifest",
+      "field": "split_access",
+      "oracle_positive_control": "split ids excluded from decision interface",
+      "ordinary_baselines": "split ids excluded from decision interface"
+    }
+  ],
+  "verification": {
+    "blocking_classifications": [],
+    "blocking_reasons": [],
+    "missing_fields": [],
+    "passed": true,
+    "producer_function": "verify_budget_parity"
+  },
+  "verifier_function": "gate4_replacement_discriminative_social_latent_001b.budget_parity.verify_budget_parity"
+}
