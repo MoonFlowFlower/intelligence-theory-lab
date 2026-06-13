@@ -1,0 +1,27 @@
+{
+  "inherited_negative_evidence": {
+    "blocker": "baseline_hint deterministically encoded target as cyclic target+1 and hint_inverter scored 1.0",
+    "source_implementation_commit": "ec11f88cf90f7ff1efe77a91830cd7d42f598dc4",
+    "source_implementation_tag": "remote-anchor-gate4-replacement-discriminative-social-latent-implementation-001b-ec11f88",
+    "source_verdict": "gate4_replacement_001b_blocked_split_design_failure_preserved"
+  },
+  "producer_function": "build_repair_delta_from_001b",
+  "repairs": [
+    "removed baseline_hint from the real observation surface",
+    "balanced observation cells so observation-only lookup cannot recover target above ceiling",
+    "added observation-only decoder challenger suite and positive controls",
+    "made candidate success depend on active-query feedback update",
+    "made budget parity classifications computed and organically fail-able",
+    "made corrupted replay mutate serialized state and recompute action/state",
+    "bound provenance hashes to real producer functions",
+    "scanned unsanitized decision-observation evidence before scrubbing"
+  ],
+  "unchanged_boundaries": [
+    "src/gate4_replacement_discriminative_social_latent_001b",
+    "tests/test_gate4_replacement_discriminative_social_latent_001b.py",
+    "artifacts/gate4_replacement_discriminative_social_latent_001b",
+    "artifacts/gate4_replacement_discriminative_social_latent_001b_blocked_routing_001a",
+    "artifacts/gate4_001c_execution_repair_rerun_001e",
+    "artifacts/gate4_001c_negative_evidence_routing_record_001a"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "covered_by_computed_evidence_provenance": true,
+  "linked_to_scored_run_artifacts": true,
+  "producer_function": "compute_budget_parity_report",
+  "rows": [
+    {
+      "candidate": 56,
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "episode_count",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 56
+    },
+    {
+      "candidate": 56,
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "observation_count",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 56
+    },
+    {
+      "candidate": 56,
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "active_query_budget",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 56
+    },
+    {
+      "candidate": 56,
+      "classification": "candidate_advantaged",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "feedback_access_count",
+      "justification": "declared active-query feedback path under test; no-query and shuffled-feedback ablations must collapse",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": 0,
+      "classification": "oracle_expected_disparity",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "oracle_label_access_count",
+      "justification": "oracle positive-control is allowed label access only as a harness competence check",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": 56,
+      "classification": "candidate_advantaged",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "memory_write_count",
+      "justification": "declared active-query feedback path under test; no-query and shuffled-feedback ablations must collapse",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": 56,
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "memory_read_count",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": 56,
+      "ordinary_baselines": 56
+    },
+    {
+      "candidate": 0,
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "training_step_count",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": 0,
+      "ordinary_baselines": 0
+    },
+    {
+      "candidate": "bounded_one-episode_belief_slot",
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "parameter_count_or_model_capacity",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": "bounded_one-episode_belief_slot",
+      "ordinary_baselines": "bounded_one-episode_belief_slot"
+    },
+    {
+      "candidate": "observation_only_no_target",
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "preprocessing_access",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": "observation_only_no_target",
+      "ordinary_baselines": "observation_only_no_target"
+    },
+    {
+      "candidate": "split labels excluded from decision observation",
+      "classification": "equal",
+      "derived_from": "episode_records, trace_records, baseline invocations, and explicit oracle-control boundary",
+      "field": "split_access",
+      "justification": "computed values match across candidate, ordinary baselines, and oracle control",
+      "oracle_positive_control": "split labels excluded from decision observation",
+      "ordinary_baselines": "split labels excluded from decision observation"
+    }
+  ],
+  "verification": {
+    "blocking_classifications": [],
+    "blocking_reasons": [],
+    "missing_justification_fields": [],
+    "passed": true,
+    "producer_function": "verify_budget_parity"
+  },
+  "verifier_function": "verify_budget_parity"
+}

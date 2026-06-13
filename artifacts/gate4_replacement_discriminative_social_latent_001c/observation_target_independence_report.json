@@ -1,0 +1,51 @@
+{
+  "allowed_recoverability_ceiling": 0.35,
+  "deterministic_or_near_deterministic_features": [],
+  "feature_recoverability_scores": {
+    "full_lookup_table": 0.25,
+    "pairwise_feature:legal_history_length+observable_context": 0.25,
+    "pairwise_feature:legal_history_length+observable_partner": 0.25,
+    "pairwise_feature:legal_history_length+prompt_features.interaction_band": 0.25,
+    "pairwise_feature:legal_history_length+prompt_features.neutral_marker": 0.25,
+    "pairwise_feature:legal_history_length+prompt_features.query_available": 0.25,
+    "pairwise_feature:legal_history_length+prompt_features.topic_group": 0.25,
+    "pairwise_feature:observable_context+observable_partner": 0.25,
+    "pairwise_feature:observable_context+prompt_features.interaction_band": 0.25,
+    "pairwise_feature:observable_context+prompt_features.neutral_marker": 0.25,
+    "pairwise_feature:observable_context+prompt_features.query_available": 0.25,
+    "pairwise_feature:observable_context+prompt_features.topic_group": 0.25,
+    "pairwise_feature:observable_partner+prompt_features.interaction_band": 0.25,
+    "pairwise_feature:observable_partner+prompt_features.neutral_marker": 0.25,
+    "pairwise_feature:observable_partner+prompt_features.query_available": 0.25,
+    "pairwise_feature:observable_partner+prompt_features.topic_group": 0.25,
+    "pairwise_feature:prompt_features.interaction_band+prompt_features.neutral_marker": 0.25,
+    "pairwise_feature:prompt_features.interaction_band+prompt_features.query_available": 0.25,
+    "pairwise_feature:prompt_features.interaction_band+prompt_features.topic_group": 0.25,
+    "pairwise_feature:prompt_features.neutral_marker+prompt_features.query_available": 0.25,
+    "pairwise_feature:prompt_features.neutral_marker+prompt_features.topic_group": 0.25,
+    "pairwise_feature:prompt_features.query_available+prompt_features.topic_group": 0.25,
+    "single_feature:legal_history_length": 0.25,
+    "single_feature:observable_context": 0.25,
+    "single_feature:observable_partner": 0.25,
+    "single_feature:prompt_features.interaction_band": 0.25,
+    "single_feature:prompt_features.neutral_marker": 0.25,
+    "single_feature:prompt_features.query_available": 0.25,
+    "single_feature:prompt_features.topic_group": 0.25
+  },
+  "max_observation_only_recoverability": 0.25,
+  "passed": true,
+  "positive_controls": {
+    "cyclic_baseline_hint": {
+      "detected": true,
+      "score": 1.0,
+      "strongest_decoder_id": "hint_inverter_regression_control"
+    },
+    "direct_target_label": {
+      "detected": true,
+      "score": 1.0,
+      "strongest_decoder_id": "target_label_lookup"
+    }
+  },
+  "producer_function": "observation_target_independence_check",
+  "strongest_decoder_id": "full_lookup_table"
+}

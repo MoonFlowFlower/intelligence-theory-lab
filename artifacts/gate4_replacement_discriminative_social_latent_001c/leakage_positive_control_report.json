@@ -1,0 +1,41 @@
+{
+  "detected_categories": [
+    "answer key leakage",
+    "baseline hint field leakage",
+    "feedback value leakage",
+    "future outcome leakage",
+    "oracle latent label leakage",
+    "target label field leakage"
+  ],
+  "detections": [
+    {
+      "category": "baseline hint field leakage",
+      "pattern": "\"baseline_hint\""
+    },
+    {
+      "category": "target label field leakage",
+      "pattern": "\"target_label\""
+    },
+    {
+      "category": "answer key leakage",
+      "pattern": "\"answer_key\""
+    },
+    {
+      "category": "oracle latent label leakage",
+      "pattern": "\"oracle_latent_label\""
+    },
+    {
+      "category": "future outcome leakage",
+      "pattern": "\"future_outcome\""
+    },
+    {
+      "category": "feedback value leakage",
+      "pattern": "prefers:direct_response"
+    }
+  ],
+  "positive_control_detected": true,
+  "pre_scrubbed_before_scan": false,
+  "producer_function": "scan_raw_evidence_bundle",
+  "scanned_unsanitized_evidence": true,
+  "verdict": "blocked_by_leakage_scan"
+}
