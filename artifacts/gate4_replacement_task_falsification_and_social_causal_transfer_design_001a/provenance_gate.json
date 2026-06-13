@@ -1,0 +1,79 @@
+{
+  "task_id": "GATE4-REPLACEMENT-TASK-FALSIFICATION-AND-SOCIAL-CAUSAL-TRANSFER-DESIGN-001A",
+  "computed_evidence_required": true,
+  "scope": [
+    "candidate scores",
+    "baseline scores",
+    "ablation results",
+    "leakage scans",
+    "replay metrics",
+    "contrast metrics"
+  ],
+  "required_score_fields": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash"
+  ],
+  "required_trace_replay_fields": [
+    "run_id",
+    "seed",
+    "context_id",
+    "episode_id",
+    "partner_id_or_anonymized_partner_key",
+    "observation",
+    "serialized_state_before",
+    "candidate_prediction",
+    "serialized_state_after",
+    "target",
+    "score_contribution",
+    "producer_function",
+    "code_path_hash",
+    "aggregation_rule"
+  ],
+  "forbidden_evidence_forms": [
+    "static verdict JSON",
+    "literal pass reports",
+    "unconditional clean reports",
+    "tests that only assert pass",
+    "hard-coded expected metrics",
+    "hand-filled score files",
+    "candidate importing generator code",
+    "candidate sharing helper functions with target generation",
+    "candidate mirroring target rule",
+    "intentionally weakened baselines",
+    "leakage scanner without positive control",
+    "replay that only compares stored hashes"
+  ],
+  "required_independence": [
+    "candidate predictor must not import, call, mirror, or share logic with target generator",
+    "label generator and candidate predictor must not share rules, tables, literals, or helper functions",
+    "baselines must be callable independent implementations",
+    "ablations must rerun episodes under real interventions",
+    "leakage scanner must include at least one injected positive-control case and must fail when leakage is injected",
+    "replay must recompute from serialized_state plus observation"
+  ],
+  "unused_data_blocker": [
+    "unused frozen seed",
+    "unused train context",
+    "unused heldout context",
+    "unused counterfactual pair",
+    "unused ablation condition",
+    "unused declared baseline"
+  ],
+  "replay_acceptance": [
+    "recompute candidate prediction from serialized state and observation",
+    "recompute score from prediction and target",
+    "verify replayed score matches original score",
+    "verify changing serialized state can change prediction when state dependence is required",
+    "verify replay fails when serialized state, observation, or linkage is corrupted",
+    "re-invoke baselines under replay when baseline replay is claimed"
+  ],
+  "leakage_positive_control_required": true,
+  "computed_evidence_executed_by_this_task": false,
+  "claim_ceiling": "future computed-evidence provenance gate specification only"
+}

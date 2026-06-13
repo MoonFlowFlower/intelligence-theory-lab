@@ -1,0 +1,68 @@
+{
+  "task_id": "GATE4-REPLACEMENT-TASK-FALSIFICATION-AND-SOCIAL-CAUSAL-TRANSFER-DESIGN-001A",
+  "stop_immediately_and_preserve_as_negative_evidence_if": [
+    {
+      "id": "candidate_needed_to_validate_baselines",
+      "condition": "The task design requires candidate implementation to determine whether cheap baselines are valid."
+    },
+    {
+      "id": "visible_field_recovery",
+      "condition": "Target labels can be recovered from visible fields by simple rules."
+    },
+    {
+      "id": "partner_id_or_preference_table_recovery",
+      "condition": "Target labels can be recovered from partner ID or preference table."
+    },
+    {
+      "id": "shared_generator_candidate_logic",
+      "condition": "Label generator and candidate predictor would need to share helper functions, tables, or literals."
+    },
+    {
+      "id": "cheap_baseline_reaches_threshold",
+      "condition": "Any cheap baseline reaches the proposed candidate threshold."
+    },
+    {
+      "id": "missing_leakage_positive_control",
+      "condition": "Leakage scanner has no positive-control failure case."
+    },
+    {
+      "id": "non_recomputable_replay",
+      "condition": "Replay cannot recompute behavior from serialized_state plus observation."
+    },
+    {
+      "id": "non_interventional_ablations",
+      "condition": "Ablations do not require real episode reruns."
+    },
+    {
+      "id": "gate4_pass_seeking_drift",
+      "condition": "The card drifts toward make Gate4 pass."
+    },
+    {
+      "id": "weakening_best_faithful_baseline",
+      "condition": "The design requires weakening the best faithful baseline."
+    }
+  ],
+  "unauthorized_route_stop_conditions": [
+    "candidate code creation",
+    "experiment execution",
+    "same-family 002E patch",
+    "invalid commit direct repair",
+    "Gate5 entry",
+    "admission entry",
+    "bridge entry",
+    "runtime entry",
+    "EGO-mainline entry",
+    "LLM/RAG integration",
+    "companion or productization route"
+  ],
+  "rollback_plan": [
+    "preserve the invalid design as negative evidence",
+    "record the exact reason for invalidation",
+    "do not patch it into a pass-shaped task",
+    "do not reuse affected thresholds, schemas, or helper functions without audit",
+    "restore repo to previous clean anchored state if implementation side effects occurred",
+    "open a new replacement-design task only if it changes the task family or falsification route"
+  ],
+  "stop_conditions_triggered_by_this_task": [],
+  "claim_ceiling": "future stop-condition and rollback contract only"
+}

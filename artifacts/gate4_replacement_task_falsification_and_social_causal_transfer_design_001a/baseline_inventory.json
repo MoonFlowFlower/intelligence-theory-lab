@@ -1,0 +1,91 @@
+{
+  "task_id": "GATE4-REPLACEMENT-TASK-FALSIFICATION-AND-SOCIAL-CAUSAL-TRANSFER-DESIGN-001A",
+  "baselines_must_run_before_candidate_implementation": true,
+  "baseline_independence_required": true,
+  "baseline_invalidation_rule": "If any cheap faithful baseline reaches or exceeds the planned candidate threshold, the task family is invalid; do not implement candidate, weaken the baseline, or revise the threshold after seeing baseline results.",
+  "best_faithful_baseline_rule": "The strongest baseline faithful to the available information must be the primary contrast and must not be artificially weakened.",
+  "required_cheap_baselines": [
+    {
+      "id": "partner_id_lookup",
+      "description": "Predicts using partner identity or stable partner index only.",
+      "collapse_condition": "reaches_or_exceeds_planned_candidate_threshold"
+    },
+    {
+      "id": "preference_table",
+      "description": "Learns or reconstructs partner-choice tables from observed history.",
+      "collapse_condition": "reaches_or_exceeds_planned_candidate_threshold"
+    },
+    {
+      "id": "retrieval",
+      "description": "Predicts by nearest-neighbor or exact-match retrieval over prior traces.",
+      "collapse_condition": "reaches_or_exceeds_planned_candidate_threshold"
+    },
+    {
+      "id": "imitation",
+      "description": "Predicts from observed action frequencies or demonstrated behavior without latent causal update.",
+      "collapse_condition": "reaches_or_exceeds_planned_candidate_threshold"
+    },
+    {
+      "id": "order_k_history",
+      "description": "Uses bounded recent history without causal latent inference.",
+      "collapse_condition": "reaches_or_exceeds_planned_candidate_threshold"
+    },
+    {
+      "id": "static_majority_marginal",
+      "description": "Predicts global or context-conditioned marginal target.",
+      "collapse_condition": "candidate_not_above_random_or_majority_under_predeclared_margin"
+    },
+    {
+      "id": "generator_proxy",
+      "description": "Attempts to infer labels from exposed generator-correlated fields.",
+      "collapse_condition": "target_recoverable_from_exposed_generator_correlated_fields"
+    },
+    {
+      "id": "oracle_shape",
+      "description": "Uses candidate-like rule templates without learned state update.",
+      "collapse_condition": "task_solvable_by_handwritten_if_else_structure"
+    },
+    {
+      "id": "shuffled_linkage_control",
+      "description": "Breaks partner/context/episode linkage while preserving superficial distributions.",
+      "collapse_condition": "planned_candidate_level_performance_survives_shuffled_linkage"
+    },
+    {
+      "id": "counterfactual_pair",
+      "description": "Tests whether paired observations with changed latent cause but similar surface fields force different predictions.",
+      "collapse_condition": "surface_similar_counterfactual_pairs_remain_shortcut_solvable"
+    }
+  ],
+  "current_repo_inherited_challengers": [
+    "serialized_state_decoder",
+    "full_bundle_decoder",
+    "ngram_trace_lookup",
+    "pair_count_frequency_baseline",
+    "static_belief_table",
+    "nearest_neighbor_trace_retrieval",
+    "query_capable_imitation_baseline",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal"
+  ],
+  "required_per_baseline_provenance": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "train_context_ids",
+    "heldout_context_ids",
+    "counterfactual_context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "access_rights_declaration",
+    "failure_mode_ruled_out_or_triggered"
+  ],
+  "baselines_executed_by_this_task": false,
+  "candidate_implemented_by_this_task": false,
+  "claim_ceiling": "baseline inventory and future invalidation contract only; no baseline was executed"
+}
