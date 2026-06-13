@@ -1,0 +1,98 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A",
+  "mode": "future_leakage_risk_contract_only",
+  "scanner_requirements": {
+    "real_bundle_scan_required": true,
+    "positive_control_required": true,
+    "scanner_that_cannot_fail_blocks": true,
+    "synthetic_control_substitution_forbidden": true,
+    "excluded_paths_must_be_not_scanned_not_clean": true,
+    "must_record_scanned_path_hash_rule_and_function": true
+  },
+  "risk_rows": [
+    {
+      "risk_id": "seed_leakage",
+      "surface": "raw seed or seed-derived deterministic key",
+      "required_control": "hide raw seed from candidate and baselines unless explicit ID baselines are included",
+      "required_scanner": "ID leakage scan",
+      "block_condition": "seed identifies target or joins to answer key"
+    },
+    {
+      "risk_id": "context_id_leakage",
+      "surface": "raw context_id",
+      "required_control": "remap context IDs in heldout and test table baselines over any legal IDs",
+      "required_scanner": "ID leakage scan",
+      "block_condition": "context_id alone or with partner_id identifies answer"
+    },
+    {
+      "risk_id": "partner_id_leakage",
+      "surface": "raw partner_id",
+      "required_control": "remap partner IDs and include context-partner table baselines",
+      "required_scanner": "ID leakage scan",
+      "block_condition": "partner_id alone or joined with context identifies answer"
+    },
+    {
+      "risk_id": "phase_token_leakage",
+      "surface": "phase_train, phase_heldout, split labels, or equivalent tokens",
+      "required_control": "normalize or remove phase tokens before retrieval and nearest-neighbor baselines",
+      "required_scanner": "phase-token scan",
+      "block_condition": "phase token changes baseline matching or encodes split"
+    },
+    {
+      "risk_id": "split_label_leakage",
+      "surface": "train_or_heldout or split_id visible to policy",
+      "required_control": "hide split labels from model inputs and scan serialized observations",
+      "required_scanner": "phase-token scan",
+      "block_condition": "split label is visible in candidate input"
+    },
+    {
+      "risk_id": "oracle_latent_label_leakage",
+      "surface": "ground_truth_latent_label or equivalent answer label",
+      "required_control": "forbid oracle latent labels except in positive-control-only baseline",
+      "required_scanner": "oracle-label scan",
+      "block_condition": "oracle label is present in candidate or non-oracle baseline input"
+    },
+    {
+      "risk_id": "artifact_path_leakage",
+      "surface": "file path, fixture name, or artifact directory naming the answer",
+      "required_control": "remove answer-bearing paths from runtime inputs and scan output bundle",
+      "required_scanner": "bundle-path scan",
+      "block_condition": "path names encode answer, split, or policy target"
+    },
+    {
+      "risk_id": "bundle_path_leakage",
+      "surface": "bundle manifest paths or synthetic-control path names",
+      "required_control": "real-bundle scan and no synthetic-control substitution",
+      "required_scanner": "bundle-path scan",
+      "block_condition": "scanner reports synthetic control as substitute for real bundle"
+    },
+    {
+      "risk_id": "answer_key_leakage",
+      "surface": "target action, reward oracle, answer table, or latent-action mapping in legal input",
+      "required_control": "scan observations, histories, manifests, traces, configs, and generated fixtures",
+      "required_scanner": "answer-key scan",
+      "block_condition": "answer key is visible before prediction"
+    },
+    {
+      "risk_id": "deterministic_order_leakage",
+      "surface": "episode order, slot index, filename order, or stable sorting that encodes answer",
+      "required_control": "shuffle and counterbalance order; include deterministic-order scanner",
+      "required_scanner": "deterministic-order scan",
+      "block_condition": "ordering predicts target above baseline"
+    },
+    {
+      "risk_id": "raw_id_memorization",
+      "surface": "any deterministic key that identifies the answer",
+      "required_control": "heldout remapping and explicit table-family baselines using legal IDs",
+      "required_scanner": "ID leakage scan",
+      "block_condition": "table family over legal IDs ties or exceeds candidate"
+    },
+    {
+      "risk_id": "synthetic_control_substitution",
+      "surface": "scanner or harness only tests artificial clean or positive-control files",
+      "required_control": "real-bundle scan must be primary and positive controls only supplemental",
+      "required_scanner": "real-bundle scan",
+      "block_condition": "real bundle is not scanned or bundle argument is ignored"
+    }
+  ]
+}

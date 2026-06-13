@@ -1,0 +1,65 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A",
+  "inherits_from": [
+    "GATE4-001C-EXECUTION-REPAIR-RERUN-001E",
+    "GATE4-001C-NEGATIVE-EVIDENCE-ROUTING-RECORD-001A",
+    "GATE4-001C-EXECUTION-CONTRACT-001D-AMENDMENT"
+  ],
+  "verdict": "inherits_001e_as_negative_evidence_only",
+  "negative_evidence_facts": {
+    "001e_verdict": "blocked_by_evidence_harness_challenger",
+    "real_bundle_harness_result": "rejected_false_pass_risk",
+    "candidate_score": 1.0,
+    "stream_keyed_count_table_challenger_score": 1.0,
+    "candidate_advantage_collapsed": true,
+    "leakage_real_bundle_scan": "clean",
+    "leakage_positive_control_detected": true,
+    "protected_artifacts_unchanged": true,
+    "bbbb66c_repaired": false,
+    "bbbb66c_reinterpreted_as_pass": false,
+    "bbbb66c_used_as_positive_gate4_support": false
+  },
+  "strongest_baseline_explanation": {
+    "family": "stream_keyed_count_table",
+    "key": [
+      "seed",
+      "context_id",
+      "partner_id"
+    ],
+    "explanation": "The prior Gate4 001C split repeats the same stream key family across train and heldout, allowing a shallow non-oracle count table to tie the candidate at 1.0."
+  },
+  "allowed_uses_of_001e": [
+    "bounded negative evidence",
+    "routing evidence",
+    "non-discriminative task evidence",
+    "future replacement requirements seed"
+  ],
+  "disallowed_uses_of_001e": [
+    "Gate4 validity evidence",
+    "mechanism validity evidence",
+    "theory validity evidence",
+    "architecture correctness evidence",
+    "Gate5 authorization",
+    "admission authorization",
+    "runtime authorization",
+    "bridge authorization",
+    "EGO-mainline readiness",
+    "agency claim",
+    "selfhood claim",
+    "consciousness claim",
+    "real emotion claim",
+    "relationship learning claim",
+    "stable autonomy claim"
+  ],
+  "source_files": [
+    "artifacts/gate4_001c_execution_repair_rerun_001e/result.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/count_table_challenger_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/harness_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/leakage_scan_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/leakage_positive_control_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/protected_artifact_guard.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/negative_evidence_policy_application.json",
+    "artifacts/gate4_001c_negative_evidence_routing_record_001a/routing_decision_matrix.json",
+    "artifacts/gate4_001c_negative_evidence_routing_record_001a/closed_path_policy.json"
+  ]
+}

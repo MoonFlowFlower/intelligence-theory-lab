@@ -1,0 +1,105 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A",
+  "mode": "future_requirement_matrix_only",
+  "replacement_target": "Future Gate4 must test social-latent generalization and intervention-response in a way that cannot be explained by lookup, retrieval, table, transition, or graph-cache families.",
+  "wrong_problem_definition_rejected": "Make Gate4 pass.",
+  "correct_problem_definition": "Define a future Gate4 task where social-latent success cannot be explained by lookup, retrieval, table, transition, or graph-cache families.",
+  "requirements": [
+    {
+      "id": "unseen_partners",
+      "must_require": true,
+      "evidence_required": "heldout partners not present in training under remapped IDs and identical legal candidate/baseline interface",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "agency_or_selfhood"
+    },
+    {
+      "id": "unseen_contexts",
+      "must_require": true,
+      "evidence_required": "heldout contexts not present in training under remapped IDs",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "mechanism_validity"
+    },
+    {
+      "id": "unseen_partner_unseen_context_cross",
+      "must_require": true,
+      "evidence_required": "episodes where both partner and context are held out together",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "theory_validity"
+    },
+    {
+      "id": "unseen_preference_transitions",
+      "must_require": true,
+      "evidence_required": "predeclared latent transition episodes where train-visible stream keys cannot directly identify the target action",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "real_relationship_learning"
+    },
+    {
+      "id": "unseen_counterfactual_interventions",
+      "must_require": true,
+      "evidence_required": "counterfactual intervention pairs with changed social latent conditions and unchanged leakage-safe surface fields",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "agency"
+    },
+    {
+      "id": "active_information_seeking",
+      "must_require": true,
+      "evidence_required": "episodes where correct behavior requires a legal query or probe action before final action",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "autonomy"
+    },
+    {
+      "id": "intervention_response",
+      "must_require": true,
+      "evidence_required": "candidate behavior changes under real intervention while simpler table/retrieval baselines fail",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "subjectivity"
+    },
+    {
+      "id": "feedback_dependent_update",
+      "must_require": true,
+      "evidence_required": "state and behavior differ after observed feedback compared with no-feedback and shuffled-feedback ablations",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "consciousness"
+    },
+    {
+      "id": "behavior_change_after_observation",
+      "must_require": true,
+      "evidence_required": "predeclared metric showing action policy changes after legal observations, not after hidden labels or deterministic IDs",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "stable_autonomy"
+    },
+    {
+      "id": "serialized_state_replay",
+      "must_require": true,
+      "evidence_required": "action and state update recomputation from serialized_state, observation, policy path, update path, and feedback history",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "mechanism_truth"
+    },
+    {
+      "id": "independent_baseline_contrast",
+      "must_require": true,
+      "evidence_required": "candidate advantage over all mandatory independent callable baselines and ablations",
+      "blocks_if_absent": true,
+      "not_sufficient_for": "Gate4_validity_without_other_gates"
+    }
+  ],
+  "split_requirements": [
+    "seen_partner_unseen_context",
+    "unseen_partner_seen_context",
+    "unseen_partner_unseen_context",
+    "unseen_preference_transition",
+    "counterfactual_intervention",
+    "active_query_required_episodes",
+    "heldout_episodes_with_remapped_ids"
+  ],
+  "explicit_rejections": [
+    "train_test_leakage_through_stable_ids",
+    "phase_label_leakage",
+    "deterministic_ordering_leakage",
+    "oracle_latent_label_access",
+    "artifact_path_or_bundle_path_answer_keys",
+    "candidate_only_redaction",
+    "baseline_only_handicap",
+    "post_hoc_baseline_omission"
+  ]
+}

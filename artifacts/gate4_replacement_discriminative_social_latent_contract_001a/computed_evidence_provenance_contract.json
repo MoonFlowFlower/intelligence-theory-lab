@@ -1,0 +1,79 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A",
+  "mode": "future_computed_evidence_provenance_contract_only",
+  "core_rule": "All reported metrics in a future replacement Gate4 execution must be computed by callable paths, not literals, static dictionaries, unconditional clean reports, or tests that assert pass.",
+  "required_score_fields": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed_ids",
+    "context_ids",
+    "partner_ids",
+    "episode_ids",
+    "split_id",
+    "aggregation_rule",
+    "code_path_hash",
+    "baseline_invocation_path",
+    "ablation_invocation_path",
+    "leakage_scanner_path",
+    "replay_recompute_path"
+  ],
+  "reported_objects_requiring_provenance": [
+    "candidate_score",
+    "baseline_score",
+    "baseline_contrast",
+    "ablation_effect",
+    "leakage_result",
+    "leakage_positive_control_result",
+    "replay_action_recompute_rate",
+    "replay_state_update_recompute_rate",
+    "intervention_response_metric",
+    "feedback_update_metric",
+    "final_verdict"
+  ],
+  "callable_path_requirements": {
+    "candidate_metric": "must invoke candidate scoring over declared split episodes",
+    "baseline_metric": "must invoke each independent callable baseline over the same legal interface",
+    "ablation_metric": "must rerun episodes under intervention functions",
+    "leakage_metric": "must run scanner over real bundle plus positive controls",
+    "replay_metric": "must recompute action and state update from serialized state, observation, policy path, update path, and feedback history",
+    "verdict": "must aggregate computed results by predeclared rules"
+  },
+  "forbidden_patterns": [
+    "hardcoded_scores",
+    "unconditional_clean_reports",
+    "static_dictionaries_as_metric_source",
+    "self_reported_pass_fail_labels",
+    "tests_that_only_assert_pass_verdicts",
+    "post_hoc_score_edits",
+    "renderer_visible_behavior_as_causal_evidence",
+    "hash_only_replay",
+    "stored_action_replay",
+    "candidate_only_hidden_input",
+    "baseline_only_handicap",
+    "unused_frozen_seed_or_context_or_counterfactual_pair"
+  ],
+  "blocking_conditions": [
+    "missing_required_provenance_field",
+    "producer_function_not_called",
+    "baseline_invocation_missing",
+    "ablation_invocation_missing",
+    "leakage_scanner_positive_control_missing",
+    "replay_state_update_not_recomputed",
+    "score_source_is_static_json_literal",
+    "final_verdict_not_derived_from_computed_metrics"
+  ],
+  "minimum_invocation_logs": [
+    "candidate_invocation_log",
+    "baseline_invocation_log",
+    "ablation_invocation_log",
+    "leakage_scanner_invocation_log",
+    "replay_recompute_invocation_log",
+    "verdict_aggregation_log"
+  ],
+  "claim_ceiling_enforcement": {
+    "passing_computed_provenance_does_not_prove_gate4_validity": true,
+    "passing_computed_provenance_does_not_prove_mechanism_validity": true,
+    "passing_computed_provenance_does_not_authorize_downstream_work": true
+  }
+}

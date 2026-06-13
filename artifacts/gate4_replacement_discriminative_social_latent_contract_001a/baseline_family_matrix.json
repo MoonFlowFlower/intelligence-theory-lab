@@ -1,0 +1,172 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A",
+  "mode": "future_baseline_family_contract_only",
+  "shared_requirements": {
+    "callable": true,
+    "independently_implemented": true,
+    "same_observation_action_reward_history_interface_as_candidate": true,
+    "static_json_only_forbidden": true,
+    "hardcoded_scores_forbidden": true,
+    "self_reported_pass_fail_forbidden": true,
+    "tests_that_assert_pass_forbidden": true,
+    "must_record_invocation_path": true,
+    "must_record_code_path_hash": true
+  },
+  "baseline_families": [
+    {
+      "id": "stream_keyed_count_table",
+      "required": true,
+      "role": "strongest known 001C collapse challenger",
+      "minimum_keys": [
+        "seed_context_partner",
+        "context_partner",
+        "context_observable_prefix_without_phase",
+        "seed_context_partner_observable_prefix_without_phase"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "normalized_retrieval",
+      "required": true,
+      "role": "retrieval after phase-token and split-token normalization",
+      "minimum_controls": [
+        "phase_token_removed",
+        "deterministic_id_removed",
+        "constant_prediction_degeneracy_check"
+      ],
+      "block_condition": "ties_or_exceeds_candidate_or_degenerates_by_design"
+    },
+    {
+      "id": "nearest_neighbor_lookup",
+      "required": true,
+      "role": "surface similarity and history similarity lookup challenger",
+      "minimum_controls": [
+        "same_legal_observations",
+        "heldout_remapped_ids",
+        "distance_metric_predeclared"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "context_partner_table",
+      "required": true,
+      "role": "direct context-partner memorization challenger",
+      "minimum_controls": [
+        "raw_id_variant_if_ids_are_legal",
+        "remapped_id_variant",
+        "heldout_join_attempt_record"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "graph_lookup",
+      "required": true,
+      "role": "graph-cache family challenger",
+      "minimum_controls": [
+        "nodes_from_legal_observations_only",
+        "heldout_node_remapping",
+        "no_oracle_latent_nodes"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "transition_table",
+      "required": true,
+      "role": "transition memorization challenger",
+      "minimum_controls": [
+        "predeclared_transition_state",
+        "heldout_transition_axis",
+        "no_future_observation_access"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "successor_map",
+      "required": true,
+      "role": "successor-state cache challenger",
+      "minimum_controls": [
+        "legal_history_only",
+        "unseen_transition_eval",
+        "counterfactual_pair_eval"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "count_table",
+      "required": true,
+      "role": "general count table family beyond the known stream-keyed variant",
+      "minimum_controls": [
+        "multiple_key_sets",
+        "predeclared_tie_policy",
+        "heldout_key_overlap_report"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "fsm_planner",
+      "required": true,
+      "role": "finite-state policy planner over legal observations",
+      "minimum_controls": [
+        "predeclared_state_budget",
+        "no_hidden_labels",
+        "same_action_space"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "episodic_traversal",
+      "required": true,
+      "role": "episode-memory traversal and replay challenger",
+      "minimum_controls": [
+        "train_episode_memory_only",
+        "heldout_remapped_ids",
+        "no_artifact_path_keys"
+      ],
+      "block_condition": "ties_or_exceeds_candidate"
+    },
+    {
+      "id": "no_state_ablation",
+      "required": true,
+      "role": "candidate ablation without carried state",
+      "minimum_controls": [
+        "real_episode_rerun",
+        "state_fields_zeroed_or_reinitialized",
+        "post_hoc_score_edit_forbidden"
+      ],
+      "block_condition": "no_material_drop_when_state_dependency_claimed"
+    },
+    {
+      "id": "no_feedback_ablation",
+      "required": true,
+      "role": "candidate ablation without feedback update",
+      "minimum_controls": [
+        "feedback_removed_before_update",
+        "real_episode_rerun",
+        "same_observations_otherwise"
+      ],
+      "block_condition": "no_material_drop_when_feedback_dependency_claimed"
+    },
+    {
+      "id": "no_action_ablation",
+      "required": true,
+      "role": "candidate ablation without action-conditioning",
+      "minimum_controls": [
+        "action_input_removed_from_update",
+        "real_episode_rerun",
+        "same_feedback_interface"
+      ],
+      "block_condition": "no_material_drop_when_action_conditioning_claimed"
+    },
+    {
+      "id": "oracle_label_positive_control_only",
+      "required": true,
+      "role": "positive control proving the task is learnable if forbidden labels leak",
+      "minimum_controls": [
+        "clearly_marked_oracle_only",
+        "excluded_from_candidate_margin",
+        "must_not_be_used_as_baseline_to_beat"
+      ],
+      "block_condition": "oracle_access_available_to_candidate_or_non_oracle_baseline"
+    }
+  ]
+}

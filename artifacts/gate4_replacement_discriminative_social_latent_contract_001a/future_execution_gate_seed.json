@@ -1,0 +1,71 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A",
+  "mode": "future_execution_gate_seed_only_not_task_card_not_implementation",
+  "status": "seed_for_future_bounded_task_card",
+  "future_task_card_placeholder": {
+    "candidate_task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-001B",
+    "problem_definition": "Evaluate whether a candidate social-latent mechanism can generalize and respond to interventions across heldout social latent axes where lookup, retrieval, table, transition, and graph-cache families cannot explain success.",
+    "current_stage": "not_authorized_by_this_contract",
+    "hypothesis": "A future Gate4 task may become discriminative if it forces unseen-partner, unseen-context, unseen-transition, counterfactual-intervention, active-information-seeking, and feedback-dependent-update evidence under leakage-resistant splits.",
+    "strongest_baseline_explanation_to_defeat": "stream-keyed count table over seed, context_id, and partner_id",
+    "baseline": [
+      "stream_keyed_count_table",
+      "normalized_retrieval",
+      "nearest_neighbor_lookup",
+      "context_partner_table",
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal",
+      "oracle_label_positive_control_only"
+    ],
+    "ablation": [
+      "no_state",
+      "no_feedback",
+      "no_action",
+      "no_partner_history",
+      "no_active_query",
+      "shuffled_feedback",
+      "counterfactual_partner_transition"
+    ],
+    "trace_replay_requirement": "Recompute both candidate action and serialized state update from serialized_state, observation, action policy path, update path, and feedback history.",
+    "acceptance_gate": [
+      "candidate beats all required independent callable non-oracle baselines",
+      "known count-table and graph-cache families fail under heldout axes",
+      "all scores record computed-evidence provenance",
+      "leakage real-bundle scan and positive controls pass",
+      "replay recomputes action and state update",
+      "ablations rerun real interventions",
+      "claim ceiling is enforced"
+    ],
+    "claim_ceiling": "Future execution, if separately authorized, may at most claim bounded offline replacement Gate4 evidence under the declared split and baseline suite. It must not claim Gate4 validity, mechanism validity, theory validity, architecture correctness, downstream authorization, agency, selfhood, consciousness, real emotion, relationship learning, or stable autonomy.",
+    "stop_condition": [
+      "count-table or graph-cache family ties or exceeds candidate",
+      "candidate advantage depends on raw IDs or deterministic keys",
+      "leakage positive control fails",
+      "real bundle is not scanned",
+      "replay does not recompute state update",
+      "ablation is post-hoc score edit",
+      "implementation is needed to justify the contract",
+      "old 001C artifacts would need modification",
+      "Gate5/admission/runtime/bridge/EGO-mainline would be needed"
+    ],
+    "rollback_plan": "If a future task over-scopes, revert only files created by that future task and preserve all old Gate4 001C artifacts and anchors unchanged."
+  },
+  "non_authorizations": {
+    "future_task_card_created": false,
+    "replacement_gate4_implemented": false,
+    "datasets_created": false,
+    "environments_created": false,
+    "agents_created": false,
+    "harnesses_created": false,
+    "tests_created": false,
+    "gate5_authorized": false,
+    "admission_authorized": false,
+    "runtime_authorized": false,
+    "bridge_authorized": false,
+    "ego_mainline_authorized": false
+  }
+}
