@@ -1,0 +1,103 @@
+{
+  "authorization_flags": {
+    "admission_authorized": false,
+    "agency_claim_authorized": false,
+    "bridge_authorized": false,
+    "consciousness_claim_authorized": false,
+    "ego_mainline_authorized": false,
+    "gate4_validity_authorized": false,
+    "gate5_authorized": false,
+    "mechanism_validity_authorized": false,
+    "real_emotion_claim_authorized": false,
+    "relationship_learning_authorized": false,
+    "runtime_authorized": false,
+    "selfhood_claim_authorized": false,
+    "stable_autonomy_claim_authorized": false,
+    "theory_validity_authorized": false
+  },
+  "claim_ceiling": "Bounded Gate4 001C execution preflight evidence only. No Gate4 validity claim. No mechanism validity claim. No theory validity claim. No Gate5 authorization. No admission authorization. No runtime authorization. No bridge authorization. No EGO-mainline readiness claim. No agency, selfhood, consciousness, real emotion, relationship learning, or stable autonomy claim.",
+  "command_adjustment_policy": "When invoked from repo root, PowerShell commands must set PYTHONPATH=src because this repository stores task packages under src/ and pyproject only configures pytest.",
+  "contexts": [
+    "ctx_stable_preference",
+    "ctx_shifted_preference",
+    "ctx_ambiguous_signal",
+    "ctx_conflicting_feedback"
+  ],
+  "episodes_per_split_per_seed_context_partner": 10,
+  "failure_taxonomy": [
+    "passed_bounded_gate4_001c_execution_preflight",
+    "failed_metric_without_callable_provenance",
+    "failed_missing_independent_baseline",
+    "failed_ablation_not_real_intervention",
+    "failed_replay_not_behavioral_recomputation",
+    "failed_leakage_scanner_not_fail_able",
+    "blocked_by_evidence_harness_challenger",
+    "blocked_missing_harness_challenger_entrypoint",
+    "failed_old_artifact_mutation",
+    "failed_posthoc_threshold_selection",
+    "blocked_prerequisite_anchor_mismatch",
+    "blocked_incomplete_counterfactual_pairs",
+    "blocked_quarantined_evidence_reuse",
+    "failed_provisional_commit_contamination"
+  ],
+  "minimum_total_heldout_episodes": 800,
+  "minimum_total_train_episodes": 800,
+  "partners": [
+    "partner_a",
+    "partner_b",
+    "partner_c",
+    "partner_d"
+  ],
+  "provisional_commit": "d7b5b7a33cc68cbe7e3ca0960b99e0082e1ac728",
+  "provisional_commit_use": {
+    "cherry_picked": false,
+    "copied": false,
+    "imported": false,
+    "merged": false,
+    "read": false,
+    "restored": false,
+    "used": false
+  },
+  "required_ablations": [
+    "no_state_update_ablation",
+    "shuffled_feedback_ablation",
+    "partner_identity_masked_ablation",
+    "context_shift_removed_ablation",
+    "counterfactual_pair_swapped_ablation",
+    "serialized_state_zeroed_before_action_ablation"
+  ],
+  "required_baselines": [
+    "frozen_state_baseline",
+    "order2_history_baseline",
+    "partner_id_table_baseline",
+    "context_only_baseline",
+    "preference_table_baseline",
+    "retrieval_imitation_baseline",
+    "trace_only_hygiene_baseline",
+    "oracle_label_positive_control"
+  ],
+  "seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105
+  ],
+  "task_card_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-001C-EXECUTION",
+  "threshold_selection_rule": {
+    "posthoc_threshold_changes_allowed": false,
+    "predeclared_before_execution": true
+  },
+  "thresholds": {
+    "candidate_margin_over_best_non_oracle_baseline": 0.2,
+    "candidate_must_beat_best_non_oracle_baseline_in_every_context_class": true,
+    "candidate_must_beat_best_non_oracle_baseline_in_seed_count": "5/5",
+    "harness_challenger_must_not_block": true,
+    "leakage_positive_control_detection_rate": 1.0,
+    "minimum_context_class_score": 0.7,
+    "protected_artifact_mutation_violations": 0,
+    "replay_recomputation_exact_match_rate": 1.0
+  },
+  "thresholds_predeclared": true
+}

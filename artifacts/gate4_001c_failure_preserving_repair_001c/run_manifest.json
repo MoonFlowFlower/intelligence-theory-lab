@@ -1,0 +1,43 @@
+{
+  "claim_ceiling": "Bounded Gate4 001C execution preflight evidence only. No Gate4 validity claim. No mechanism validity claim. No theory validity claim. No Gate5 authorization. No admission authorization. No runtime authorization. No bridge authorization. No EGO-mainline readiness claim. No agency, selfhood, consciousness, real emotion, relationship learning, or stable autonomy claim.",
+  "code_path_hash": "180fd6638c4faee4971db592da871767e8c68ec33faba7a98e67127729c50d4d",
+  "command_adjustments": [
+    {
+      "adjustment": "set PYTHONPATH=src before python -m and python -c commands",
+      "evidence_contract_changed": false,
+      "reason": "module import path"
+    }
+  ],
+  "created_at_utc": "2026-06-13T00:29:34Z",
+  "preflight_anchor_readback_verdict": "anchors_exact_match",
+  "producer_function": "build_run_manifest",
+  "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+  "provisional_commit": "d7b5b7a33cc68cbe7e3ca0960b99e0082e1ac728",
+  "provisional_commit_use": {
+    "cherry_picked": false,
+    "copied": false,
+    "imported": false,
+    "merged": false,
+    "read": false,
+    "restored": false,
+    "used": false
+  },
+  "required_commands": [
+    "git status --short --branch",
+    "python -m gate4_001c_failure_preserving_repair_001c.protected_artifacts --phase before --config artifacts/gate4_001c_failure_preserving_repair_001c/config.json --out artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_before.json",
+    "python -m gate4_001c_failure_preserving_repair_001c.run --config artifacts/gate4_001c_failure_preserving_repair_001c/config.json",
+    "python -m pytest tests/test_gate4_001c_failure_preserving_repair_001c.py -q",
+    "python -m gate4_001c_failure_preserving_repair_001c.validate_json --artifact-dir artifacts/gate4_001c_failure_preserving_repair_001c",
+    "python -m gate4_001c_failure_preserving_repair_001c.leakage_scan --config artifacts/gate4_001c_failure_preserving_repair_001c/config.json --bundle artifacts/gate4_001c_failure_preserving_repair_001c/output_bundle_manifest.json --out artifacts/gate4_001c_failure_preserving_repair_001c/leakage_scan_report.json",
+    "python -c \"import json, pathlib; from evidence_harness_contract_enforcement_smoke_001a.runner import evaluate_bundle; bundle=json.loads(pathlib.Path('artifacts/gate4_001c_failure_preserving_repair_001c/harness_challenger_input_bundle.json').read_text(encoding='utf-8')); pathlib.Path('artifacts/gate4_001c_failure_preserving_repair_001c/harness_challenger_report.json').write_text(json.dumps(evaluate_bundle(bundle), indent=2, sort_keys=True), encoding='utf-8')\"",
+    "python -m gate4_001c_failure_preserving_repair_001c.protected_artifacts --phase after --config artifacts/gate4_001c_failure_preserving_repair_001c/config.json --out artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_after.json",
+    "python -m gate4_001c_failure_preserving_repair_001c.protected_artifacts --phase compare --before artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_before.json --after artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_after.json --out artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_mutation_report.json",
+    "git status --short --branch"
+  ],
+  "starting_head": "43284ae960d08a2a3f8094f16b76e519ef451899",
+  "starting_status": "## codex/meta-theory-scaffold",
+  "task_card_id": "GATE4-001C-EXECUTION-TASK-CARD-001A",
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-001C-EXECUTION",
+  "thresholds_changed_after_execution_began": false,
+  "thresholds_predeclared": true
+}

@@ -1,0 +1,964 @@
+{
+  "baselines": [
+    {
+      "baseline_id": "frozen_state_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_frozen_state",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "frozen_state_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "order2_history_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_order2_history",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "order2_history_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "partner_id_table_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_partner_id_table",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "partner_id_table_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "context_only_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_context_only",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "context_only_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "preference_table_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_preference_table",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "preference_table_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "retrieval_imitation_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_retrieval_imitation",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "retrieval_imitation_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "trace_only_hygiene_baseline",
+      "competitor_baseline": true,
+      "correct": 400,
+      "ground_truth_latent_label_access_allowed": false,
+      "per_context": {
+        "ctx_ambiguous_signal": 0.5,
+        "ctx_conflicting_feedback": 0.5,
+        "ctx_shifted_preference": 0.5,
+        "ctx_stable_preference": 0.5
+      },
+      "per_seed": {
+        "4101": 0.5,
+        "4102": 0.5,
+        "4103": 0.5,
+        "4104": 0.5,
+        "4105": 0.5
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_trace_only_hygiene",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "trace_only_hygiene_baseline_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 0.5
+      },
+      "total": 800
+    },
+    {
+      "baseline_id": "oracle_label_positive_control",
+      "competitor_baseline": false,
+      "correct": 800,
+      "ground_truth_latent_label_access_allowed": true,
+      "per_context": {
+        "ctx_ambiguous_signal": 1.0,
+        "ctx_conflicting_feedback": 1.0,
+        "ctx_shifted_preference": 1.0,
+        "ctx_stable_preference": 1.0
+      },
+      "per_seed": {
+        "4101": 1.0,
+        "4102": 1.0,
+        "4103": 1.0,
+        "4104": 1.0,
+        "4105": 1.0
+      },
+      "score": {
+        "provenance": {
+          "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+          "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+          "counterfactual_pair_ids": [
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+            "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+          ],
+          "created_at_utc": "2026-06-13T00:29:30Z",
+          "episode_ids": [
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+            "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+          ],
+          "heldout_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ],
+          "input_artifact_hashes": {
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+          },
+          "input_artifacts": [
+            "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+          ],
+          "producer_function": "baseline_oracle_label",
+          "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+          "run_id": "oracle_label_positive_control_run",
+          "seed": "all",
+          "threshold_rule": "baseline score is competitor only if non-oracle",
+          "train_context_ids": [
+            "ctx_stable_preference",
+            "ctx_shifted_preference",
+            "ctx_ambiguous_signal",
+            "ctx_conflicting_feedback"
+          ]
+        },
+        "value": 1.0
+      },
+      "total": 800
+    }
+  ],
+  "best_non_oracle_baseline": {
+    "baseline_id": "frozen_state_baseline",
+    "per_context": {
+      "ctx_ambiguous_signal": 0.5,
+      "ctx_conflicting_feedback": 0.5,
+      "ctx_shifted_preference": 0.5,
+      "ctx_stable_preference": 0.5
+    },
+    "per_seed": {
+      "4101": 0.5,
+      "4102": 0.5,
+      "4103": 0.5,
+      "4104": 0.5,
+      "4105": 0.5
+    },
+    "score": {
+      "provenance": {
+        "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+        "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+        "counterfactual_pair_ids": [
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+        ],
+        "created_at_utc": "2026-06-13T00:29:30Z",
+        "episode_ids": [
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+        ],
+        "heldout_context_ids": [
+          "ctx_stable_preference",
+          "ctx_shifted_preference",
+          "ctx_ambiguous_signal",
+          "ctx_conflicting_feedback"
+        ],
+        "input_artifact_hashes": {
+          "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+        },
+        "input_artifacts": [
+          "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+        ],
+        "producer_function": "baseline_frozen_state",
+        "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+        "run_id": "frozen_state_baseline_run",
+        "seed": "all",
+        "threshold_rule": "baseline score is competitor only if non-oracle",
+        "train_context_ids": [
+          "ctx_stable_preference",
+          "ctx_shifted_preference",
+          "ctx_ambiguous_signal",
+          "ctx_conflicting_feedback"
+        ]
+      },
+      "value": 0.5
+    }
+  },
+  "invoked_baselines": [
+    "frozen_state_baseline",
+    "order2_history_baseline",
+    "partner_id_table_baseline",
+    "context_only_baseline",
+    "preference_table_baseline",
+    "retrieval_imitation_baseline",
+    "trace_only_hygiene_baseline",
+    "oracle_label_positive_control"
+  ],
+  "missing_baselines": [],
+  "oracle_label_positive_control": {
+    "baseline_id": "oracle_label_positive_control",
+    "competitor_baseline": false,
+    "correct": 800,
+    "ground_truth_latent_label_access_allowed": true,
+    "per_context": {
+      "ctx_ambiguous_signal": 1.0,
+      "ctx_conflicting_feedback": 1.0,
+      "ctx_shifted_preference": 1.0,
+      "ctx_stable_preference": 1.0
+    },
+    "per_seed": {
+      "4101": 1.0,
+      "4102": 1.0,
+      "4103": 1.0,
+      "4104": 1.0,
+      "4105": 1.0
+    },
+    "score": {
+      "provenance": {
+        "aggregation_rule": "mean exact action-label consistency over heldout episodes",
+        "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+        "counterfactual_pair_ids": [
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_00",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_01",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_02",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_03",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_04",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_05",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_06",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_07",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_08",
+          "cf_seed4101_ctx_ambiguous_signal_partner_a_partner_b_heldout_09",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_00",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_01",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_02",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_03",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_04",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_05",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_06",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_07",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_08",
+          "cf_seed4101_ctx_ambiguous_signal_partner_c_partner_d_heldout_09"
+        ],
+        "created_at_utc": "2026-06-13T00:29:30Z",
+        "episode_ids": [
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+          "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+          "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+        ],
+        "heldout_context_ids": [
+          "ctx_stable_preference",
+          "ctx_shifted_preference",
+          "ctx_ambiguous_signal",
+          "ctx_conflicting_feedback"
+        ],
+        "input_artifact_hashes": {
+          "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl": "d41c7804670354543d43bd0042fbb1dac558b91b33144f74707bfb3fe8d516c4"
+        },
+        "input_artifacts": [
+          "artifacts/gate4_001c_failure_preserving_repair_001c/episodes_train.jsonl"
+        ],
+        "producer_function": "baseline_oracle_label",
+        "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+        "run_id": "oracle_label_positive_control_run",
+        "seed": "all",
+        "threshold_rule": "baseline score is competitor only if non-oracle",
+        "train_context_ids": [
+          "ctx_stable_preference",
+          "ctx_shifted_preference",
+          "ctx_ambiguous_signal",
+          "ctx_conflicting_feedback"
+        ]
+      },
+      "value": 1.0
+    },
+    "total": 800
+  },
+  "same_heldout_episode_set": true,
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-001C-EXECUTION",
+  "verdict": "baseline_invocation_passed"
+}

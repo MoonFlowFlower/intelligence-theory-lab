@@ -1,0 +1,45 @@
+{
+  "added_protected_files": [],
+  "after_phase": "after",
+  "before_phase": "before",
+  "changed_protected_files": [],
+  "created_at_utc": "2026-06-13T00:30:12Z",
+  "mutation_violation_count": {
+    "provenance": {
+      "aggregation_rule": "count added, removed, or changed protected files",
+      "code_path_hash": "a821f098baac7f9324564d8cc249f5740d96769630bc8a3d8cc7cdcc0cc96bf3",
+      "counterfactual_pair_ids": [],
+      "created_at_utc": "2026-06-13T00:30:12Z",
+      "episode_ids": [],
+      "heldout_context_ids": [
+        "ctx_stable_preference",
+        "ctx_shifted_preference",
+        "ctx_ambiguous_signal",
+        "ctx_conflicting_feedback"
+      ],
+      "input_artifact_hashes": {
+        "artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_after.json": "f9bb9c5d03b90ec8f7a335afa8fe8a5c85230525ee8ad7879dcda55e36284b17",
+        "artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_before.json": "556ef982a193d2088a8fca6173764491008261d4b070290139765462226ccc87"
+      },
+      "input_artifacts": [
+        "artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_before.json",
+        "artifacts/gate4_001c_failure_preserving_repair_001c/protected_artifact_hashes_after.json"
+      ],
+      "producer_function": "compare_hash_inventories",
+      "producer_module": "gate4_001c_failure_preserving_repair_001c.core",
+      "run_id": "protected_artifact_compare_run",
+      "seed": "all",
+      "threshold_rule": "protected artifact mutation violations must equal 0",
+      "train_context_ids": [
+        "ctx_stable_preference",
+        "ctx_shifted_preference",
+        "ctx_ambiguous_signal",
+        "ctx_conflicting_feedback"
+      ]
+    },
+    "value": 0
+  },
+  "removed_protected_files": [],
+  "task_id": "GATE4-001C-FAILURE-PRESERVING-REPAIR-001C-EXECUTION",
+  "verdict": "protected_artifacts_unchanged"
+}
