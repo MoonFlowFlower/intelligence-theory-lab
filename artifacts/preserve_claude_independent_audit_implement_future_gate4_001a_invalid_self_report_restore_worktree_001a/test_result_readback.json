@@ -1,0 +1,32 @@
+{
+  "full_suite_rerun_performed": false,
+  "safe_targeted_checks": [
+    {
+      "command": "python json parse for new artifact JSON files",
+      "result": "pass",
+      "summary": "json_parse_ok 12"
+    },
+    {
+      "command": "Get-FileHash source audit and preserved audit",
+      "result": "pass",
+      "summary": "audit_verbatim_match=True; sha256=66e7a1cf846679d9a1d51e3fe60220035b96741b6af3056c516fa609e1044e0c"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass",
+      "summary": "no whitespace errors"
+    },
+    {
+      "command": "AGENTS.md governance grep and diff readback",
+      "result": "pass",
+      "summary": "governance block present; no AGENTS.md diff"
+    },
+    {
+      "command": "git status --short allowed-path check",
+      "result": "pass",
+      "summary": "unexpected_status_count=0"
+    }
+  ],
+  "status": "targeted_checks_passed",
+  "task_id": "PRESERVE-CLAUDE-INDEPENDENT-AUDIT-IMPLEMENT-FUTURE-GATE4-001A-INVALID-SELF-REPORT-AND-RESTORE-WORKTREE-001A"
+}
