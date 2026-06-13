@@ -1,0 +1,96 @@
+{
+  "producer_function": "manual_summary_from_preflight_baseline_results",
+  "primary_blocking_baseline": {
+    "baseline_name": "partner_id_lookup_baseline",
+    "score": 1.0,
+    "threshold": 0.8,
+    "threshold_reached": true,
+    "producer_function": "partner_id_lookup_baseline",
+    "input_artifacts": [
+      "preflight_config_locked_before_results.json",
+      "generated_task_family"
+    ],
+    "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+    "seed": [
+      4101,
+      4102
+    ],
+    "train_context_ids": [
+      "train_context_4101_0",
+      "train_context_4101_1",
+      "train_context_4102_0",
+      "train_context_4102_1"
+    ],
+    "heldout_context_ids": [
+      "heldout_context_4101_0",
+      "heldout_context_4101_1",
+      "heldout_context_4101_2",
+      "heldout_context_4101_3",
+      "heldout_context_4102_0",
+      "heldout_context_4102_1",
+      "heldout_context_4102_2",
+      "heldout_context_4102_3"
+    ],
+    "counterfactual_pair_ids": [
+      "cf_pair_4101_0",
+      "cf_pair_4101_1",
+      "cf_pair_4101_2",
+      "cf_pair_4101_3",
+      "cf_pair_4102_0",
+      "cf_pair_4102_1",
+      "cf_pair_4102_2",
+      "cf_pair_4102_3"
+    ],
+    "episode_ids": [
+      "heldout_4101_partner_alpha_0",
+      "heldout_4101_partner_beta_1",
+      "heldout_4101_partner_gamma_2",
+      "heldout_4101_partner_delta_3",
+      "heldout_4102_partner_alpha_0",
+      "heldout_4102_partner_beta_1",
+      "heldout_4102_partner_gamma_2",
+      "heldout_4102_partner_delta_3"
+    ],
+    "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+    "code_path_hash": "e14935689a9be5c8f8df96a8c25afda2fb2a99f64164bb93b1004034dfc91556",
+    "artifact_path": "artifacts/gate4_replacement_no_candidate_baseline_preflight_001a/baseline_results.json",
+    "serialized_baseline_state_summary": {
+      "strategy": "partner_id_lookup",
+      "field": "partner_id",
+      "map": {
+        "partner_alpha": "support",
+        "partner_beta": "challenge",
+        "partner_gamma": "defer",
+        "partner_delta": "summarize"
+      },
+      "fallback": "support"
+    }
+  },
+  "all_baseline_scores": [
+    {"baseline_id": "partner_id_lookup_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "preference_table_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "retrieval_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "imitation_frequency_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "order_k_history_baseline_k1", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "order_k_history_baseline_k2", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "static_majority_marginal_baseline", "score": 0.25, "threshold": 0.8, "reached_threshold": false},
+    {"baseline_id": "generator_proxy_baseline", "score": 0.25, "threshold": 0.8, "reached_threshold": false},
+    {"baseline_id": "oracle_shape_rule_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "shuffled_linkage_control", "score": 0.0, "threshold": 0.8, "reached_threshold": false},
+    {"baseline_id": "counterfactual_pair_baseline", "score": 0.25, "threshold": 0.8, "reached_threshold": false},
+    {"baseline_id": "serialized_state_decoder", "score": 0.25, "threshold": 0.8, "reached_threshold": false},
+    {"baseline_id": "full_bundle_decoder", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "ngram_trace_lookup", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "pair_count_frequency_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "graph_lookup", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "transition_table", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "successor_map", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "count_table", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "fsm_planner", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "episodic_traversal", "score": 1.0, "threshold": 0.8, "reached_threshold": true},
+    {"baseline_id": "query_capable_imitation_baseline", "score": 1.0, "threshold": 0.8, "reached_threshold": true}
+  ],
+  "declared_baselines": 22,
+  "run_baselines": 22,
+  "baseline_rerun_performed_in_this_routing_task": false
+}

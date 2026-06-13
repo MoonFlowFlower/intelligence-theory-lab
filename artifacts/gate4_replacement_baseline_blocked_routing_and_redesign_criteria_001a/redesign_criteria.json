@@ -1,0 +1,80 @@
+{
+  "producer_function": "manual_redesign_criteria_extraction",
+  "criteria_are_constraints_not_implementation": true,
+  "mandatory_constraints": [
+    {
+      "id": "partner_identity_nuisance_not_answer_key",
+      "constraint": "Same partner ID must not determine target across context, seed, or counterfactual splits."
+    },
+    {
+      "id": "identity_permutation_test",
+      "constraint": "Re-label partner IDs; a valid route should be invariant or recover through history while ID lookup fails."
+    },
+    {
+      "id": "unseen_partner_split",
+      "constraint": "Heldout must include partners absent from training if the claim involves cross-partner transfer."
+    },
+    {
+      "id": "unseen_context_split",
+      "constraint": "Heldout contexts must not be reducible to training context lookup."
+    },
+    {
+      "id": "same_id_different_latent_counterfactual",
+      "constraint": "Same partner key with changed latent cause must force different target behavior."
+    },
+    {
+      "id": "different_id_same_latent_counterfactual",
+      "constraint": "Different partner keys with the same latent cause must force shared target behavior."
+    },
+    {
+      "id": "break_preference_table_shortcut",
+      "constraint": "History volume and table construction must not be enough to solve heldout."
+    },
+    {
+      "id": "break_retrieval_shortcut",
+      "constraint": "Surface-nearest trace retrieval must fail on heldout and counterfactual pairs."
+    },
+    {
+      "id": "break_order_k_history_shortcut",
+      "constraint": "Bounded local history must fail when latent update or intervention is required."
+    },
+    {
+      "id": "block_generator_proxy_decoding",
+      "constraint": "Target cannot be decoded from generated fields, row order, filenames, context IDs, serialized state, or helper literals."
+    },
+    {
+      "id": "intervention_feedback_necessary",
+      "constraint": "Removing or shuffling intervention feedback must change future correct predictions."
+    },
+    {
+      "id": "transfer_phase_necessary",
+      "constraint": "Removing transfer phase must block the claimed evidence target."
+    },
+    {
+      "id": "baseline_first_mandatory",
+      "constraint": "Cheap baselines must run before candidate code in any future task family."
+    },
+    {
+      "id": "positive_control_leakage_mandatory",
+      "constraint": "Leakage scanner must detect injected visible-label, partner-ID, preference-table, serialized-state, filename/order, and helper-literal leaks."
+    },
+    {
+      "id": "replay_recomputation_mandatory",
+      "constraint": "Replay must recompute behavior from serialized state plus observation, not compare stored hashes."
+    },
+    {
+      "id": "thresholds_locked_before_results",
+      "constraint": "Thresholds and baseline inventory must be locked before baseline results."
+    },
+    {
+      "id": "best_faithful_baseline_primary_contrast",
+      "constraint": "The strongest faithful baseline must be the primary contrast; weaker baselines cannot be selected as main comparison."
+    }
+  ],
+  "forbidden_future_shortcuts": [
+    "same-family partner_id removal patch",
+    "candidate implementation before stronger baseline-first design",
+    "threshold revision after results",
+    "weakening partner-ID or preference-table baselines"
+  ]
+}

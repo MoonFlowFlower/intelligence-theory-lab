@@ -1,0 +1,26 @@
+{
+  "producer_function": "manual_route_decision_from_artifact_readback",
+  "selected_route": "Route A: Close current generated task family",
+  "selected_verdict": "close_current_generated_gate4_task_family_partner_id_lookup_negative_evidence_001a",
+  "rejected_routes": [
+    {
+      "route": "Route B: Block pending artifact inconsistency",
+      "rejected_because": "required preflight artifacts were readable and internally consistent for the routing decision"
+    },
+    {
+      "route": "Route C: Authorize separate redesign-card only",
+      "rejected_because": "this task closes the current generated task family and extracts criteria; it does not itself authorize or create a separate redesign card"
+    },
+    {
+      "route": "Route D: No-op preservation only",
+      "rejected_because": "additional routing value exists: the current generated family is explicitly closed and same-family patching is rejected"
+    }
+  ],
+  "reason_for_rejecting_same_family_patch": "Removing partner_id and rerunning would not address partner-key, context, row-order, preference-table, query-key, retrieval, n-gram, pair-count, or graph-cache leakage. A future task must change the evidence target, not patch this generated family into a pass.",
+  "future_redesign_card_authorized": false,
+  "future_redesign_card_recommended_only_if_separately_authorized": true,
+  "implementation_authorized": false,
+  "candidate_authorized": false,
+  "same_family_patch_authorized": false,
+  "gate5_admission_bridge_runtime_mainline_authorized": false
+}

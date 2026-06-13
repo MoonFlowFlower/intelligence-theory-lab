@@ -1,0 +1,54 @@
+{
+  "producer_function": "manual_shortcut_analysis_from_preflight_artifacts",
+  "analysis_questions": {
+    "what_partner_id_lookup_used": "The baseline serialized state used strategy=partner_id_lookup, field=partner_id, and a direct map from partner_alpha/beta/gamma/delta to support/challenge/defer/summarize.",
+    "partner_identity_exposed_recoverable_or_reconstructable": "directly_exposed",
+    "target_collapsed_onto_partner_identity_or_key": true,
+    "heldout_split_unseen_partners_or_known_interpolation": "known-partner interpolation; heldout episode IDs and partner_id map show the same stable partner IDs as the train-derived map",
+    "context_split_breaks_identity_lookup": false,
+    "counterfactual_pairs_force_identity_conflict": false,
+    "other_shortcuts_approached_threshold": [
+      "preference_table_baseline",
+      "retrieval_baseline",
+      "imitation_frequency_baseline",
+      "order_k_history_baseline_k1",
+      "order_k_history_baseline_k2",
+      "oracle_shape_rule_baseline",
+      "full_bundle_decoder",
+      "ngram_trace_lookup",
+      "pair_count_frequency_baseline",
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal",
+      "query_capable_imitation_baseline"
+    ],
+    "primary_shortcut_family": "stable partner identity and partner-key lookup",
+    "unresolved_shortcut_families": [
+      "preference-table reconstruction",
+      "retrieval over prior traces",
+      "order-k partner history",
+      "full-bundle partner decoding",
+      "pair-count and graph-cache lookup",
+      "query-conditioned imitation"
+    ],
+    "current_generated_task_family_status": "closable as invalid for positive mechanism evidence because a faithful cheap partner-ID baseline reached threshold before any candidate existed",
+    "minimal_redesign_constraints_required": "partner identity must become nuisance rather than answer key, with identity permutation, unseen-partner/context splits, same-ID/different-latent and different-ID/same-latent counterfactuals, leakage controls, replay recomputation, and baseline-first execution"
+  },
+  "direct_artifact_readbacks": {
+    "partner_id_lookup_score": 1.0,
+    "threshold": 0.8,
+    "preference_table_score": 1.0,
+    "retrieval_score": 1.0,
+    "order_k_history_k1_score": 1.0,
+    "order_k_history_k2_score": 1.0,
+    "generator_proxy_score": 0.25,
+    "full_bundle_score": 1.0,
+    "serialized_state_decoder_score": 0.25,
+    "counterfactual_pair_baseline_score": 0.25,
+    "shuffled_linkage_control_score": 0.0
+  },
+  "strongest_non_mechanism_explanation": "The generated task family made stable partner identity the answer key. A table mapping visible partner_id, anonymized partner key, query key, or partner trace/cache features to target action solves heldout without any social-causal mechanism."
+}
