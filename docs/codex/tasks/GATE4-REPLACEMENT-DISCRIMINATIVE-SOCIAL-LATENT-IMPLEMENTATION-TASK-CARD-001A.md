@@ -2,73 +2,94 @@
 
 Task ID: GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-IMPLEMENTATION-TASK-CARD-001A
 
-Mode: Evidence-governance / future implementation-task-card drafting only.
+Mode: Evidence-governance / source-pin lineage audit + future
+implementation-task-card drafting only.
 
 Layer: Engineering implementation planning + mechanism-hypothesis test
 definition. This task card is not mechanism evidence.
 
-This task card does not implement replacement Gate4, run experiments, create
-source modules, create tests, create datasets, create harnesses, create
-environments, compute metrics, or authorize downstream work.
+This card does not implement replacement Gate4, run experiments, create source
+modules, create tests, create datasets, create harnesses, create environments,
+or execute metric computation. It does not authorize replacement Gate4.
 
-`safe_to_implement_replacement_gate4` remains `false`.
+`safe_to_implement_replacement_gate4=false`.
 
-## Sealed Starting Boundary
+## Source-Pin Lineage Boundary
 
-This card is drafted from the sealed execution-card anchor:
+Required sealed source anchor:
 
-- Branch: `codex/meta-theory-scaffold`
-- Required commit: `55e8e2513977bfbb0f5de8dffc043cff7483048f`
-- Required remote tag:
-  `remote-anchor-gate4-replacement-discriminative-social-latent-execution-card-001a-55e8e25`
-- Required source card:
-  `docs/codex/tasks/GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A.md`
+`55e8e2513977bfbb0f5de8dffc043cff7483048f`
 
-Pre-drafting readback on this task confirmed:
+Required source tag:
 
-- local `HEAD`: `55e8e2513977bfbb0f5de8dffc043cff7483048f`
-- local sealed tag:
-  `55e8e2513977bfbb0f5de8dffc043cff7483048f`
-- remote branch `refs/heads/codex/meta-theory-scaffold`:
-  `55e8e2513977bfbb0f5de8dffc043cff7483048f`
-- remote tag:
-  `55e8e2513977bfbb0f5de8dffc043cff7483048f`
+`remote-anchor-gate4-replacement-discriminative-social-latent-execution-card-001a-55e8e25`
 
-These anchors prove only the drafting boundary. They do not prove replacement
-Gate4 validity.
+Observed pre-drafting HEAD:
+
+`b10be4b795ea5050ea4f1a7d02c644cda3d56a51`
+
+Correct invariant:
+
+- the local sealed source tag resolves exactly to
+  `55e8e2513977bfbb0f5de8dffc043cff7483048f`;
+- the remote sealed source tag resolves exactly to
+  `55e8e2513977bfbb0f5de8dffc043cff7483048f`;
+- pre-drafting HEAD is a descendant of the sealed source anchor;
+- the sealed execution-card path and sealed execution-card artifacts were not
+  modified between the sealed source anchor and pre-drafting HEAD;
+- the source execution-card is read from the tag, not from memory and not from
+  the branch copy.
+
+Source execution-card path:
+
+`docs/codex/tasks/GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A.md`
+
+Source read mode:
+
+`tag_pinned`
+
+Branch advance from source anchor to pre-drafting HEAD:
+
+- `b10be4b docs: draft replacement Gate4 implementation task card`
+
+Classification: branch advanced after the sealed source anchor, but the sealed
+source execution-card and its artifact directory are unchanged across
+`55e8e2513977bfbb0f5de8dffc043cff7483048f..b10be4b795ea5050ea4f1a7d02c644cda3d56a51`.
+Drafting may proceed because the source input is tag-pinned and not mutated by
+the branch advance.
 
 ## Bounded Deep Audit
 
 Current layer: evidence-governance drafting for a future engineering
-implementation task. It is not performance simulation, not learning/adaptation
-evidence, not subjectivity validation, and not philosophical consciousness.
+implementation task. This is not performance simulation, not executed
+mechanism evidence, not learning/adaptation evidence, not
+subjectivity-validation evidence, and not philosophical consciousness.
 
 Strongest baseline explanation: prior Gate4 001C collapsed because a
 stream-keyed count-table challenger over `(seed, context_id, partner_id)` tied
 the candidate. The strongest explanation remains lookup/table equivalence, not
 social-latent inference.
 
-Strongest reason this task may be invalid: a future implementation card can
-create procedural momentum without mechanism separation if it names modules and
-artifacts before locking the discriminative splits, baseline parity,
-active-query causality, leakage controls, replay recomputation, and computed
-provenance failure paths.
+Strongest reason this task may be invalid: a future implementation task card can
+create procedural momentum while failing to make future failure mandatory when
+baseline parity, active-query causality, leakage positive controls, replay
+recomputation, or computed provenance fail.
 
-What would falsify the current framing: if a future implementation can pass
-while any critical split fails, while a non-oracle baseline ties, while
-active-query ablations do not drop, while replay uses stored actions, while
-leakage positive controls are missed, or while metrics are inserted as static
-JSON instead of being produced by callable paths.
+What would falsify the current framing: a later implementation can pass while
+any critical split fails, a non-oracle baseline ties or beats the candidate,
+active-query ablations do not drop, replay uses stored actions or hashes,
+leakage positive controls are missed, or scores are inserted as literals rather
+than produced by callable paths.
 
-Evidence still insufficient: a task card, a clean anchor, generated modules,
-passing tests, pretty traces, static JSON reports, or behavior that appears
+Evidence still insufficient: this task card, clean lineage, generated modules,
+passing tests, static JSON reports, pretty traces, or behavior that appears
 socially adaptive. None of these proves a social-latent mechanism.
 
-Whether this tests mechanism or behavioral resemblance: this card defines a
-future mechanism-discrimination test. It does not test the mechanism now. A
-future execution must distinguish active stateful social-latent inference from
-behavioral resemblance produced by lookup, retrieval, graph-cache, transition,
-or FSM baselines.
+Whether this tests mechanism or behavioral resemblance: this card only defines
+a future mechanism-discrimination test. The future test must distinguish active
+stateful social-latent inference from behavioral resemblance produced by lookup,
+retrieval, graph-cache, transition, successor, count-table, FSM, or episodic
+traversal baselines.
 
 ## Wrong Problem Definition
 
@@ -78,18 +99,17 @@ Reject this framing:
 
 Use this framing:
 
-> Implement a bounded replacement Gate4 test that fails unless the candidate
-> beats independent lookup, retrieval, table, traversal, FSM, transition, and
-> graph-cache baselines on critical splits that require active information
-> acquisition, feedback-dependent state update, and replay recomputation from
-> serialized state plus observation.
+> Define a bounded future implementation task that fails unless a candidate
+> beats independent lookup, retrieval, table, traversal, FSM, transition,
+> successor-map, and graph-cache baselines on critical splits requiring active
+> information acquisition, feedback-dependent state update, and replay
+> recomputation from serialized state plus observation.
 
 ## Most Likely Wrong Abstraction
 
-The likely wrong abstraction is treating "social latent" as a small set of
-explicit labels or fixture keys. The future implementation must not turn
-latent social state into hand-authored variables that make the answer directly
-recoverable.
+The likely wrong abstraction is treating "social latent" as a few explicit
+labels, stable fixture keys, or hand-authored variables. That would turn a
+mechanism test into a key-recovery task.
 
 Allowed proxy: a bounded toy mechanism with serialized state, uncertainty,
 query policy, feedback update, counterfactual state transitions, and replayable
@@ -111,12 +131,11 @@ This future card must cite and preserve the following negative-evidence chain:
 - `docs/research/GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-CONTRACT-001A.md`
   - Replacement Gate4 is a contract only, not implementation evidence.
 - `docs/codex/tasks/GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A.md`
-  - The sealed execution-card authorizes only drafting of this future
-    implementation task card.
+  - The sealed source-pinned execution card authorizes only drafting of this
+    future implementation task card.
 - `artifacts/gate4_replacement_discriminative_social_latent_execution_card_001a/negative_evidence_inheritance.json`
   - Gate4 001C 001E candidate score and stream-keyed count-table challenger
-    score both read as `1.0` in prior negative evidence, collapsing candidate
-    advantage.
+    score both read as `1.0`, collapsing candidate advantage.
 
 Required remote negative-evidence anchors:
 
@@ -127,24 +146,24 @@ Required remote negative-evidence anchors:
 - `remote-anchor-gate4-001c-execution-contract-001d-amendment-31881e4`
   at `31881e4defae968bc4bdebc6e3903c0b01970d26`
 
-001E is usable only as negative evidence, routing evidence, and a requirement
+001E is usable only as negative evidence, routing evidence, and requirement
 seed. It is not Gate4 validity evidence.
 
 ## Problem Definition
 
 Draft the future implementation boundary for replacement Gate4 without
-executing it. The future implementation, when separately authorized, must build
+executing it. The future implementation, if separately authorized, must build
 an isolated discriminative evidence harness that can fail for:
 
-- baseline parity
-- critical split failure
-- active-query causal failure
-- leakage positive-control failure
-- replay recomputation failure
-- computed provenance failure
-- budget parity failure
-- quarantined evidence reuse
-- old Gate4 001C artifact mutation
+- baseline parity;
+- critical split failure;
+- active-query causal failure;
+- leakage positive-control failure;
+- replay recomputation failure;
+- computed provenance failure;
+- budget parity failure;
+- quarantined evidence reuse;
+- old Gate4 001C artifact mutation.
 
 ## Current Stage
 
@@ -155,9 +174,9 @@ Task-card drafting only. No code or experiment is authorized in this task.
 A replacement Gate4 implementation can become more discriminative than Gate4
 001C only if success requires active information acquisition and
 feedback-dependent serialized-state update across heldout social/preference
-structure, while independent lookup, retrieval, table, traversal, FSM,
-transition, and graph-cache baselines use the same legal interface and still
-fail to tie.
+structure while independent lookup, retrieval, table, traversal, FSM,
+transition, successor-map, and graph-cache baselines use the same legal
+interface and still fail to tie.
 
 This is a future implementation hypothesis, not an evidence result.
 
@@ -169,16 +188,16 @@ minimal isolated harness, schemas, candidate proxy, baselines, ablations,
 leakage scanner, replay recomputation, and provenance writer under exact file
 boundaries.
 
-The future run must stop before claiming positive evidence if any critical
-gate fails.
+The future run must stop before claiming positive evidence if any critical gate
+fails.
 
 ## Better Framing Outside The Current Track
 
-The stronger framing is: first prove the test is discriminative before asking
-whether the candidate is good. That means the future implementation should make
-the strongest table/retrieval/graph-cache baselines dangerous by construction
-and should treat baseline parity as a successful falsification, not as an
-implementation failure to tune around.
+The stronger framing is to prove the test is discriminative before asking
+whether the candidate is good. The future implementation should make the
+strongest table, retrieval, graph-cache, transition, FSM, and episodic
+baselines dangerous by construction and treat baseline parity as successful
+falsification, not as an implementation failure to tune around.
 
 ## Future Allowed File Boundary
 
@@ -203,23 +222,21 @@ implementation paths are:
 
 Forbidden future paths unless a later explicit task card amends this card:
 
-- EGO mainline runtime
-- UI or companion behavior
-- LLM integration
-- AIRI integration
-- relationship learning
-- emotion systems
-- proactive behavior
-- deployment
-- API keys
-- external services
-- global schema migrations
-- old Gate4 001C artifacts
-- old Gate4 001C source or tests
+- EGO mainline runtime;
+- UI or companion behavior;
+- LLM integration;
+- AIRI integration;
+- relationship learning;
+- emotion systems;
+- proactive behavior;
+- deployment;
+- API keys;
+- external services;
+- global schema migrations;
+- old Gate4 001C artifacts;
+- old Gate4 001C source or tests.
 
 ## Future Implementation Units
-
-Future implementation must be split into these units:
 
 1. Schema and episode contract.
    - Define serializable observation, action, feedback, state, split, and
@@ -266,8 +283,8 @@ Future implementation must be split into these units:
    - Include corrupted-state and corrupted-feedback failure-path replay cases.
 8. Metrics and provenance.
    - Compute every score through callable paths.
-   - Record producer function, input artifacts, run id, seed/context/partner
-     and episode IDs, split id, aggregation rule, code path hash, baseline
+   - Record producer function, input artifacts, run ID, seed/context/partner
+     and episode IDs, split ID, aggregation rule, code path hash, baseline
      invocation path, ablation invocation path, leakage scanner path, and replay
      recomputation path.
 9. Runner and artifacts.
@@ -275,54 +292,9 @@ Future implementation must be split into these units:
      `artifacts/gate4_replacement_discriminative_social_latent_001b/`.
    - Never read old Gate4 001C artifacts as positive support evidence.
 
-## Baseline
+## Required Future Gates
 
-The strongest baseline family remains the prior stream-keyed count-table
-challenger over `(seed, context_id, partner_id)`.
-
-Future positive evidence is blocked if any strongest non-oracle baseline ties
-or beats the candidate on aggregate, on any critical split, or on active
-query-required episodes.
-
-The oracle-label baseline is a positive control only. It must not count as an
-ordinary challenger to beat.
-
-## Ablation
-
-Required future ablation drops:
-
-- `no_active_query`: at least `0.20` drop on active query-required episodes.
-- `shuffled_feedback`: at least `0.20` drop on active query-required episodes.
-- `counterfactual_transition`: at least `0.15` drop on counterfactual
-  intervention and active query-required episodes.
-
-If an ablation name does not match the actual intervention path, the future
-execution must block.
-
-## Trace And Replay Requirement
-
-Future traces must include:
-
-- pre-query observation
-- uncertainty representation or legal uncertainty proxy
-- selected query or action
-- received feedback
-- serialized state before update
-- serialized state after update
-- later action under updated state
-- later action under no-query counterfactual
-- later action under shuffled-feedback counterfactual
-- producer function
-- invocation path
-- run id
-- seed/context/partner/episode IDs
-- code path hash
-
-Replay must recompute both action and state update. Stored-action replay,
-hash-only replay, verdict-only replay, report-text replay, or artifact-stability
-replay is insufficient.
-
-## Metric Threshold Gate
+### Metric Threshold Gate
 
 Future pass/fail thresholds:
 
@@ -340,116 +312,140 @@ Future pass/fail thresholds:
   non-oracle baseline on active query-required episodes; no critical split may
   fail in the seed-aggregated result.
 
-## Budget Parity Gate
+### Budget Parity Gate
 
-Candidate and baselines must share:
+Candidate and baselines must share observation, action, reward/feedback,
+history, legal input access, comparable episode count, comparable
+training/update exposure, comparable query budget, comparable update budget,
+comparable history window, and comparable state capacity or explicit capacity
+sweep. Candidate-only hidden information, baseline-only handicaps, or metrics
+computed from hidden labels unavailable at decision time block positive
+evidence.
 
-- observation interface
-- action interface
-- reward/feedback interface
-- history interface
-- legal input access
-- comparable episode count
-- comparable training/update exposure
-- comparable query budget
-- comparable update budget
-- comparable history window
-- comparable state capacity or explicit capacity sweep
+### Active-Query Causal Gate
 
-Candidate-only hidden information, baseline-only handicaps, or metrics computed
-from hidden labels unavailable at decision time block positive evidence.
+Future active-query evidence must show uncertainty before query/action, query
+or action chosen by the candidate policy path, query-changing observation or
+feedback, feedback-dependent serialized-state update, later-action or policy
+distribution change relative to no-query or shuffled-feedback counterfactuals,
+required ablation drops, and replay recomputation of action and state update.
 
-## Anti-Hardcoding Audit
+### Baseline Independence Gate
 
-Before and after future implementation, check whether the system:
+Each mandatory baseline must be an independent callable implementation invoked
+at least once per required split. Disabling any mandatory baseline must cause
+future harness failure. The strongest baseline must be selected by computed
+metric, not static declaration.
 
-- replaces latent social state with explicit keys
-- disguises lookup, retrieval, transition tables, graph caches, or FSM planning
-  as social-latent inference
-- hard-codes expected actions or scores
-- leaks labels through observations, filenames, action names, fixture names,
-  phase labels, or bundle paths
-- tunes thresholds after seeing results
-- creates a second logic path only used by tests
-- changes schemas to make failures disappear
-- treats renderer-visible behavior as causal evidence
-- cannot replay from serialized state and feedback history
-- passes because the distribution is too weak
+### Split Design Gate
 
-If any item is true, the future implementation must stop with a blocked result.
+Every mandatory split family must be generated, used, and represented in
+metric aggregation. No unused frozen seed, train context, heldout context,
+counterfactual pair, or remapped-ID episode is allowed.
+
+### Leakage Positive-Control Gate
+
+The future leakage scanner must scan the real output bundle and at least one
+deliberately contaminated positive-control bundle. The positive-control bundle
+must fail through the same callable scanner path. Excluded paths must be
+`not_scanned`, never `clean`.
+
+### Replay Recompute Gate
+
+Replay must recompute action and state update from `serialized_state`,
+observation, action policy path, update path, and feedback history. Stored
+action replay, hash-only replay, verdict-only replay, report-text replay, and
+artifact-stability replay are insufficient.
+
+### Computed-Evidence Provenance Gate
+
+Every score must record `producer_function`, `input_artifacts`, `run_id`,
+`seed_ids`, `context_ids`, `partner_ids`, `episode_ids`, `split_id`,
+`aggregation_rule`, `code_path_hash`, `baseline_invocation_path`,
+`ablation_invocation_path`, `leakage_scanner_path`, and
+`replay_recompute_path`. Static scores, self-reported pass/fail files, and tests
+that merely assert pass block positive evidence.
 
 ## Acceptance Gate For This Drafting Task
 
 This drafting task passes only if:
 
-1. The sealed starting boundary resolves to
+1. The source tag resolves exactly to
    `55e8e2513977bfbb0f5de8dffc043cff7483048f`.
-2. Created files are limited to this task-card doc and governance artifacts
-   under
-   `artifacts/gate4_replacement_discriminative_social_latent_implementation_task_card_001a/`.
-3. No source module, test, dataset, harness, environment, or metric computation
-   is created.
-4. Required prior negative evidence is cited.
-5. Future allowed and forbidden file paths are explicit.
-6. Baseline, ablation, trace/replay, leakage, provenance, and metric gates are
-   preserved from the sealed execution card.
-7. `safe_to_implement_replacement_gate4` remains `false`.
-8. No Gate4 validity, social-latent mechanism validity, active-query causality,
-   replay validity, baseline defeat, Gate5 readiness, admission readiness,
-   bridge readiness, or EGO-mainline readiness is claimed.
+2. Current HEAD ancestry relative to the source anchor is verified.
+3. Branch advance from `55e8e25` to pre-drafting HEAD is classified.
+4. The sealed execution-card is read from the tag or proven unchanged.
+5. No requirement is inferred from memory.
+6. All eight future gate families are mapped.
+7. Metric thresholds are copied from the sealed execution-card or the task
+   blocks.
+8. Baseline independence requires independent callable implementations.
+9. Active-query causal evidence requires real rerun interventions.
+10. Leakage scanning requires at least one positive-control failure.
+11. Replay requires recomputation from serialized state plus observation.
+12. Computed-evidence provenance requires producer function, input artifacts,
+    run ID, seed/context/episode IDs, aggregation rule, and code path hash for
+    every score.
+13. `safe_to_implement_replacement_gate4=false` is present in the task card and
+    result artifacts.
+14. No implementation files are created.
+15. No experiments are run.
+16. Final git status is clean after commit.
 
 ## Acceptance Gate For A Separate Future Implementation Task
 
 A later task that explicitly implements this card may produce only bounded
 offline evidence. It passes only if all of the following are true:
 
-- all mandatory split families are generated and used
-- all mandatory baselines are independently callable and invoked per split
-- disabling any mandatory baseline causes harness failure
-- strongest baseline is selected by computed metric
-- no non-oracle baseline ties or beats the candidate
+- all mandatory split families are generated and used;
+- all mandatory baselines are independently callable and invoked per split;
+- disabling any mandatory baseline causes harness failure;
+- strongest baseline is selected by computed metric;
+- no non-oracle baseline ties or beats the candidate;
 - aggregate, split, confidence or repeated-seed, and active-query thresholds
-  pass
-- leakage positive control is flagged through the same callable scanner path
-- replay recomputes action and state update
-- ablations rerun real interventions and meet predeclared drops
-- every score has computed-evidence provenance
-- old Gate4 001C artifacts remain unmodified
-- no quarantined old evidence is used as positive support
-- no downstream authorization field is true
+  pass;
+- leakage positive control is flagged through the same callable scanner path;
+- replay recomputes action and state update;
+- ablations rerun real interventions and meet predeclared drops;
+- every score has computed-evidence provenance;
+- old Gate4 001C artifacts remain unmodified;
+- no quarantined old evidence is used as positive support;
+- no downstream authorization field is true.
 
 ## Stop Conditions
 
-Stop this drafting task if:
+This drafting task must stop with a blocked result if:
 
-- sealed anchor verification fails
-- drafting requires source, tests, datasets, harnesses, environments, or metric
-  computation
-- old Gate4 001C artifacts would be modified
-- `safe_to_implement_replacement_gate4` would become true
-- the task card cannot preserve the sealed execution-card gates
-- prior negative evidence cannot be cited without reinterpretation
+- current HEAD is not descendant of the source anchor;
+- local or remote source tag does not resolve to the required hash;
+- the sealed execution-card or its artifacts changed after the source anchor
+  and the source cannot be safely read from the tag;
+- thresholds cannot be extracted from the sealed execution-card;
+- source, tests, datasets, harnesses, environments, or runtime files are
+  created;
+- any output implies replacement Gate4 validity or implementation
+  authorization.
 
-Stop a later future implementation task if:
+Future implementation must stop if:
 
-- any mandatory split is missing or unused
+- any mandatory split is missing or unused;
 - any frozen seed, train context, heldout context, remapped-ID episode, or
-  counterfactual pair is unused
+  counterfactual pair is unused;
 - any mandatory baseline is missing, uninvoked, non-independent, or tied with
-  the candidate
-- active-query causal evidence is decorative rather than state-changing
-- any ablation is a post-hoc score edit
-- replay does not recompute both action and state update
-- leakage positive controls are missed
-- scores are hardcoded or inserted as static JSON
+  the candidate;
+- active-query causal evidence is decorative rather than state-changing;
+- any ablation is a post-hoc score edit;
+- replay does not recompute both action and state update;
+- leakage positive controls are missed;
+- scores are hardcoded or inserted as static JSON;
 - EGO mainline, runtime, bridge, Gate5, admission, UI, LLM, AIRI, relationship
-  learning, emotion systems, or deployment become necessary
+  learning, emotion systems, or deployment become necessary.
 
 ## Rollback Plan
 
 For this drafting task:
 
-1. Revert only files created by this task.
+1. Revert only files created or modified by this task.
 2. Do not modify old Gate4 001C artifacts.
 3. Do not continue into implementation.
 4. Report blocked status and exact changed paths.
@@ -463,83 +459,82 @@ For a later future implementation task:
 4. Revert unintended out-of-bound files only.
 5. Keep the failed result as negative evidence.
 
-## Claim Ceiling
-
-Allowed claim for this task:
-
-`replacement_gate4_implementation_task_card_001a_drafted_from_sealed_execution_card`
-
-Forbidden claims:
-
-- Gate4 validity
-- replacement Gate4 validity
-- social-latent mechanism validity
-- active-query causality evidence
-- replay validity evidence
-- baseline defeat evidence
-- theory validity
-- architecture correctness
-- agency
-- selfhood
-- consciousness
-- real emotion
-- relationship learning
-- stable autonomy
-- runtime readiness
-- bridge readiness
-- EGO-mainline readiness
-- Gate5 readiness
-- admission readiness
-
-## Safe Flags
+## Mandatory Safe Flags
 
 - `safe_to_implement_replacement_gate4`: false
-- `safe_to_execute_replacement_gate4`: false
+- `implementation_authorized`: false
+- `experiment_authorized`: false
+- `source_creation_authorized`: false
+- `test_creation_authorized`: false
+- `dataset_creation_authorized`: false
+- `harness_creation_authorized`: false
 - `safe_to_enter_gate5`: false
-- `safe_to_enter_admission`: false
+- `safe_to_use_for_admission`: false
+- `safe_to_use_for_bridge`: false
+- `safe_to_use_for_ego_mainline`: false
+- `safe_to_execute_replacement_gate4`: false
 - `safe_to_enter_runtime`: false
-- `safe_to_enter_bridge`: false
-- `safe_to_enter_ego_mainline`: false
 
 ## Minimum Future Validation Action
 
-The lowest-cost future validation is not full evidence execution. It is a
-pre-implementation audit that checks whether the proposed episode schema and
-legal observation interface actually make stream-keyed count tables,
-context-partner tables, normalized retrieval, graph lookup, transition tables,
-successor maps, FSM planners, and episodic traversal baselines dangerous enough
-to falsify the candidate.
+The lowest-cost future validation is a pre-implementation audit that checks
+whether the proposed episode schema and legal observation interface actually
+make stream-keyed count tables, context-partner tables, normalized retrieval,
+graph lookup, transition tables, successor maps, FSM planners, and episodic
+traversal baselines dangerous enough to falsify the candidate.
 
 ## Failure Signals
 
 Future failure is informative if:
 
-- table/retrieval/graph-cache baselines tie or beat the candidate
-- active-query ablations do not drop
-- remapped IDs do not weaken lookup baselines
-- counterfactual interventions do not change later actions
-- replay recomputation fails from serialized state plus observation
-- leakage scanner misses contaminated positive controls
-- provenance cannot identify the callable producer for every score
+- table, retrieval, graph-cache, transition, FSM, successor, or episodic
+  baselines tie or beat the candidate;
+- active-query ablations do not drop;
+- remapped IDs do not weaken lookup baselines;
+- counterfactual interventions do not change later actions;
+- replay recomputation fails from serialized state plus observation;
+- leakage scanner misses contaminated positive controls;
+- provenance cannot identify the callable producer for every score.
+
+## Claim Ceiling
+
+Allowed claim:
+
+`replacement_gate4_implementation_task_card_001a_drafted_with_source_pin_lineage_verified`
+
+This task can only claim that a bounded future implementation task card was
+drafted from the sealed source-pinned execution card after verifying branch
+lineage and preserving non-implementation safeguards.
+
+Forbidden claims:
+
+- Gate4 validity;
+- replacement Gate4 validity;
+- social-latent mechanism validity;
+- active-query causality evidence;
+- replay validity evidence;
+- baseline defeat evidence;
+- computed evidence validity;
+- theory validity;
+- architecture correctness;
+- agency;
+- selfhood;
+- consciousness;
+- real emotion;
+- relationship learning;
+- stable autonomy;
+- runtime readiness;
+- bridge readiness;
+- EGO-mainline readiness;
+- Gate5 readiness;
+- admission readiness.
 
 ## What This Does Not Prove
 
-This task card does not prove Gate4 validity.
-
-It does not prove replacement Gate4 validity.
-
-It does not prove social-latent mechanism validity.
-
-It does not prove active-query causality.
-
-It does not prove replay validity.
-
-It does not prove baseline defeat.
-
-It does not prove theory validity or architecture correctness.
-
-It does not authorize implementation, Gate5, admission, runtime, bridge, or
-EGO-mainline work.
-
-It does not prove agency, selfhood, consciousness, real emotion, relationship
-learning, stable autonomy, or functional subject success.
+This task card does not prove Gate4 validity, replacement Gate4 validity,
+social-latent mechanism validity, active-query causality, replay validity,
+baseline defeat, computed evidence validity, theory validity, architecture
+correctness, agency, selfhood, consciousness, real emotion, relationship
+learning, stable autonomy, functional subject success, Gate5 readiness,
+admission readiness, bridge readiness, runtime readiness, or EGO-mainline
+readiness.

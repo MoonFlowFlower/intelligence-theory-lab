@@ -1,0 +1,35 @@
+{
+  "gate_id": "future_metric_threshold_gate",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "source_read_mode": "tag_pinned",
+  "source_anchor_hash": "55e8e2513977bfbb0f5de8dffc043cff7483048f",
+  "positive_evidence_blockers": {
+    "candidate_ties_strongest_non_oracle_baseline": true,
+    "aggregate_delta_below_0_15": true,
+    "any_critical_split_delta_below_0_10": true,
+    "aggregate_success_used_to_rescue_split_failure": true,
+    "lower_bound_95pct_not_greater_than_0_05_without_predeclared_repeated_seed_replacement": true,
+    "fewer_than_5_independent_seeds": true,
+    "fewer_than_4_of_5_seeds_satisfy_aggregate_margin": true,
+    "any_seed_candidate_below_strongest_non_oracle_on_active_query_required": true,
+    "any_critical_split_fails_seed_aggregated_result": true
+  },
+  "thresholds": {
+    "aggregate_candidate_minus_strongest_non_oracle_baseline_min": 0.15,
+    "critical_split_candidate_minus_strongest_non_oracle_baseline_min": 0.1,
+    "lower_bound_95pct_candidate_minus_strongest_baseline_min_exclusive": 0.05,
+    "minimum_independent_seeds": 5,
+    "minimum_seeds_satisfying_aggregate_margin": 4
+  },
+  "oracle_label_positive_control_role": "positive_control_only_not_ordinary_baseline"
+}

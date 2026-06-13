@@ -1,0 +1,38 @@
+{
+  "gate_id": "future_split_design_gate",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "source_read_mode": "tag_pinned",
+  "mandatory_split_families": [
+    "seen_partner_unseen_context",
+    "unseen_partner_seen_context",
+    "unseen_partner_unseen_context",
+    "unseen_preference_transition",
+    "counterfactual_intervention",
+    "active_query_required_episodes",
+    "heldout_episodes_with_remapped_ids"
+  ],
+  "requirements": [
+    "all_mandatory_split_families_generated",
+    "all_mandatory_split_families_used",
+    "failure_on_any_critical_split_blocks_positive_evidence",
+    "aggregate_success_cannot_override_critical_split_failure",
+    "at_least_5_independent_seeds_predeclared"
+  ],
+  "unused_material_blocks_positive_evidence": [
+    "frozen_seed",
+    "train_context",
+    "heldout_context",
+    "counterfactual_pair",
+    "remapped_id_episode"
+  ]
+}

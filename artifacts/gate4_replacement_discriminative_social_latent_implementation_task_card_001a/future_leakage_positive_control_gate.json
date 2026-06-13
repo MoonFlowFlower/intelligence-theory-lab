@@ -1,0 +1,31 @@
+{
+  "gate_id": "future_leakage_positive_control_gate",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "source_read_mode": "tag_pinned",
+  "required_scans": [
+    "real_bundle_scan",
+    "deliberately_contaminated_positive_control_bundle_scan",
+    "id_leakage_scan",
+    "phase_token_scan",
+    "bundle_path_scan",
+    "oracle_label_scan",
+    "answer_key_scan",
+    "deterministic_order_scan"
+  ],
+  "requirements": [
+    "positive_control_bundle_must_be_flagged_through_same_callable_scanner_path",
+    "synthetic_control_scans_may_supplement_but_not_replace_real_bundle_scans",
+    "excluded_paths_recorded_as_not_scanned_never_clean"
+  ],
+  "block_if_positive_control_not_flagged": true
+}

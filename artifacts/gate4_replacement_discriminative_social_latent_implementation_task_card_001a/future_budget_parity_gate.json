@@ -1,0 +1,35 @@
+{
+  "gate_id": "future_budget_parity_gate",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "source_read_mode": "tag_pinned",
+  "required_parity_dimensions": [
+    "observation_interface",
+    "action_interface",
+    "reward_feedback_interface",
+    "history_interface",
+    "legal_input_access",
+    "episode_count",
+    "training_update_exposure",
+    "query_budget",
+    "update_budget",
+    "history_window",
+    "state_capacity_or_explicit_capacity_sweep"
+  ],
+  "blockers": [
+    "candidate_only_hidden_information",
+    "baseline_only_handicap",
+    "baseline_denial_of_legal_feedback_available_to_candidate",
+    "candidate_access_to_latent_labels_not_available_to_baselines",
+    "metrics_computed_from_hidden_labels_unavailable_at_decision_time"
+  ]
+}

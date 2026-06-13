@@ -1,0 +1,50 @@
+{
+  "gate_id": "future_baseline_independence_gate",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "source_read_mode": "tag_pinned",
+  "mandatory_baselines": [
+    "stream_keyed_count_table",
+    "normalized_retrieval",
+    "nearest_neighbor_lookup",
+    "context_partner_table",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "no_state_ablation",
+    "no_feedback_ablation",
+    "no_action_ablation",
+    "oracle_label_positive_control"
+  ],
+  "requirements": [
+    "each_baseline_callable_invoked_at_least_once_per_required_split",
+    "disabling_any_mandatory_baseline_causes_future_harness_failure",
+    "strongest_baseline_selected_by_computed_metric_not_static_declaration",
+    "oracle_label_positive_control_invoked_separately_from_non_oracle_baselines",
+    "baseline_outputs_generated_from_legal_input_artifacts_not_literals",
+    "baseline_code_path_hash_recorded",
+    "baseline_scores_cannot_be_manually_inserted_into_result_json"
+  ],
+  "allowed_sharing": [
+    "io_schemas",
+    "metric_utilities"
+  ],
+  "forbidden_sharing_with_candidate": [
+    "candidate_policy_code",
+    "candidate_update_logic",
+    "candidate_latent_inference_code",
+    "candidate_state_transition_code"
+  ]
+}

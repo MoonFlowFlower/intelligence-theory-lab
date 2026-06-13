@@ -1,0 +1,46 @@
+{
+  "gate_id": "future_computed_evidence_provenance_gate",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "source_read_mode": "tag_pinned",
+  "every_score_must_record": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed_ids",
+    "context_ids",
+    "partner_ids",
+    "episode_ids",
+    "split_id",
+    "aggregation_rule",
+    "code_path_hash",
+    "baseline_invocation_path",
+    "ablation_invocation_path",
+    "leakage_scanner_path",
+    "replay_recompute_path"
+  ],
+  "forbidden_score_sources": [
+    "static_json",
+    "hardcoded_constants",
+    "static_dictionaries",
+    "self_reported_pass_fail_files",
+    "tests_that_merely_assert_pass",
+    "unconditional_clean_reports"
+  ],
+  "unused_material_blocks_positive_evidence": [
+    "frozen_seed",
+    "train_context",
+    "heldout_context",
+    "counterfactual_pair",
+    "remapped_id_episode"
+  ]
+}
