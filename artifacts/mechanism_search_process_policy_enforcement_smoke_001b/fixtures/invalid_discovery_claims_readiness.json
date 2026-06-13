@@ -1,0 +1,31 @@
+{
+  "fixture_id": "invalid_discovery_claims_readiness",
+  "expected_verdict": "block",
+  "process_mode": "discovery_mode",
+  "claim_ceiling": "runtime readiness and EGO readiness",
+  "mainline_integration_claim": "mainline_integrated",
+  "enabled_status_claim": "runtime_enabled",
+  "runtime_or_trigger_enabled": true,
+  "candidate_code_created": false,
+  "baseline_preflight_completed": true,
+  "best_faithful_baseline_score": 0.0,
+  "task_threshold": 0.8,
+  "requested_route_action": "discovery_policy_boundary",
+  "same_family_repair_requested": false,
+  "target_source_type": "policy_fixture",
+  "target_mechanism_claim": "none",
+  "computed_evidence_provenance_present": true,
+  "independent_callable_baselines_present": true,
+  "real_ablations_present": true,
+  "leakage_positive_control_present": true,
+  "replay_recomputes_from_serialized_state": true,
+  "replay_compares_only_stored_hash": false,
+  "llm_used_in_evaluation_time_scoring": false,
+  "remote_anchor_requested": false,
+  "remote_anchor_boundary_reason": "none",
+  "cited_closed_family_negative_evidence": true,
+  "expected_block_reasons": [
+    "claim_ceiling_missing_or_inflated",
+    "discovery_claim_inflation"
+  ]
+}
