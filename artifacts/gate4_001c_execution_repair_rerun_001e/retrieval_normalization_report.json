@@ -1,0 +1,47 @@
+{
+  "after": {
+    "degenerate_prediction": false,
+    "distinct_prediction_count": 2,
+    "score": 0.5
+  },
+  "before": {
+    "degenerate_prediction": true,
+    "distinct_prediction_count": 1,
+    "score": 0.5
+  },
+  "degeneration_check": {
+    "after_has_normalized_matches": true,
+    "before_exact_match_failed_due_phase_token": true,
+    "phase_token_mismatch_removed": true
+  },
+  "degeneration_unresolved": false,
+  "independent_callable_baseline_path": "gate4_001c_execution_repair_rerun_001e.runner.evaluate_retrieval_normalization",
+  "normalized_observable_prefix": [
+    "ctx_ambiguous_signal|slot_0",
+    "ctx_ambiguous_signal|slot_1",
+    "ctx_ambiguous_signal|slot_2",
+    "ctx_ambiguous_signal|slot_3",
+    "ctx_ambiguous_signal|slot_4",
+    "ctx_conflicting_feedback|slot_0",
+    "ctx_conflicting_feedback|slot_1",
+    "ctx_conflicting_feedback|slot_2",
+    "ctx_conflicting_feedback|slot_3",
+    "ctx_conflicting_feedback|slot_4"
+  ],
+  "phase_token_handling_rule": "remove train_or_heldout phase token from observable_prefix",
+  "producer_function": "evaluate_retrieval_normalization",
+  "raw_observable_prefix": [
+    "ctx_ambiguous_signal|phase_heldout|slot_0",
+    "ctx_ambiguous_signal|phase_heldout|slot_1",
+    "ctx_ambiguous_signal|phase_heldout|slot_2",
+    "ctx_ambiguous_signal|phase_heldout|slot_3",
+    "ctx_ambiguous_signal|phase_heldout|slot_4",
+    "ctx_conflicting_feedback|phase_heldout|slot_0",
+    "ctx_conflicting_feedback|phase_heldout|slot_1",
+    "ctx_conflicting_feedback|phase_heldout|slot_2",
+    "ctx_conflicting_feedback|phase_heldout|slot_3",
+    "ctx_conflicting_feedback|phase_heldout|slot_4"
+  ],
+  "task_id": "GATE4-001C-EXECUTION-REPAIR-RERUN-001E",
+  "verdict": "retrieval_phase_token_normalization_applied"
+}

@@ -1,0 +1,110 @@
+{
+  "ablation_semantic_binding_result": "ablation_semantic_binding_passed",
+  "authorizations": {
+    "admission_authorized": false,
+    "agency_claim_authorized": false,
+    "bridge_authorized": false,
+    "consciousness_claim_authorized": false,
+    "ego_mainline_authorized": false,
+    "gate4_validity_authorized": false,
+    "gate5_authorized": false,
+    "mechanism_validity_authorized": false,
+    "real_emotion_claim_authorized": false,
+    "relationship_learning_authorized": false,
+    "runtime_authorized": false,
+    "selfhood_claim_authorized": false,
+    "stable_autonomy_claim_authorized": false,
+    "theory_validity_authorized": false
+  },
+  "branch": "codex/meta-theory-scaffold",
+  "branch_hash": "31881e4defae968bc4bdebc6e3903c0b01970d26",
+  "candidate_advantage_collapsed": true,
+  "candidate_score": {
+    "provenance": {
+      "aggregation_rule": "mean heldout candidate action-target match",
+      "code_path_hash": "5af003b6079bd1c23b25464d031e0b0881cbc67c45542441f9aab70269b41639",
+      "context_ids": [
+        "ctx_stable_preference",
+        "ctx_shifted_preference",
+        "ctx_ambiguous_signal",
+        "ctx_conflicting_feedback"
+      ],
+      "episode_ids": [
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_00",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_01",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_02",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_03",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_04",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_05",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_06",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_07",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_08",
+        "ep_seed4101_ctx_stable_preference_partner_a_heldout_09",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_00",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_01",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_02",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_03",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_04",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_05",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_06",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_07",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_08",
+        "ep_seed4101_ctx_stable_preference_partner_b_heldout_09"
+      ],
+      "input_artifact_hashes": {
+        "artifacts/gate4_001c_execution_repair_rerun_001e/episodes_heldout.jsonl": "c6c9d0017c1397a8d5304188d002072055af099fb6d92a11a101142fcbd672b7"
+      },
+      "input_artifacts": [
+        "artifacts/gate4_001c_execution_repair_rerun_001e/episodes_heldout.jsonl"
+      ],
+      "partner_ids": [
+        "partner_a",
+        "partner_b",
+        "partner_c",
+        "partner_d"
+      ],
+      "producer_function": "score_predictions",
+      "run_id": "candidate_run_001e",
+      "seed_ids": "all"
+    },
+    "value": 1.0
+  },
+  "claim_ceiling": "Bounded Gate4 001C execution-repair / rerun under anchored 001D contract only. No Gate4 validity. No mechanism validity. No theory validity. No Gate5 authorization. No admission authorization. No runtime authorization. No bridge authorization. No EGO-mainline readiness. No agency, selfhood, consciousness, real emotion, relationship learning, or stable autonomy claim.",
+  "computed_provenance_result": "computed_provenance_passed",
+  "count_table_challenger_score": 1.0,
+  "gate5_admission_runtime_bridge_ego_mainline_authorized": false,
+  "harness_positive_control_result": true,
+  "harness_real_bundle_result": "rejected_false_pass_risk",
+  "layer": "engineering implementation + mechanism hypothesis evidence testing",
+  "leakage_positive_control_result": {
+    "detected": true
+  },
+  "leakage_real_bundle_scan_result": "clean",
+  "negative_evidence_policy": {
+    "bbbb66c_modified": false,
+    "bbbb66c_reinterpreted_as_pass": false,
+    "bbbb66c_use": "negative evidence only"
+  },
+  "protected_artifact_guard_result": "protected_artifacts_unchanged",
+  "replay_full_state_result": "replay_full_state_recomputation_passed",
+  "required_anchor": "remote-anchor-gate4-001c-execution-contract-001d-amendment-31881e4",
+  "required_anchor_hash": "31881e4defae968bc4bdebc6e3903c0b01970d26",
+  "retrieval_baseline_normalization_result": "retrieval_phase_token_normalization_applied",
+  "starting_head": "31881e4defae968bc4bdebc6e3903c0b01970d26",
+  "stop_conditions_triggered": [
+    "blocked_by_evidence_harness_challenger"
+  ],
+  "task_id": "GATE4-001C-EXECUTION-REPAIR-RERUN-001E",
+  "verdict": "blocked_by_evidence_harness_challenger",
+  "what_this_does_not_prove": [
+    "Gate4 validity",
+    "mechanism validity",
+    "theory validity",
+    "Gate5 authorization",
+    "admission authorization",
+    "runtime authorization",
+    "bridge authorization",
+    "EGO-mainline readiness",
+    "agency, selfhood, consciousness, real emotion, relationship learning, or stable autonomy"
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "exact_file_list_passed_to_harness": [
+    "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/baseline_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/count_table_challenger_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/harness_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/leakage_scan_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/negative_evidence_policy_application.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/protected_artifact_guard.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/computed_provenance.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/replay_full_state_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/result.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/retrieval_normalization_report.json",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/test_report.json",
+    "tests/test_gate4_001c_execution_repair_rerun_001e.py",
+    "artifacts/gate4_001c_execution_repair_rerun_001e/trace.jsonl"
+  ],
+  "harness_code_path_hash": "5114ff277b0d2e076a789845ef2c4d8707b83d84035148d2bbbebf6202a514f7",
+  "harness_input_bundle_digest": "8014e00293ee24d00391cfc742ce1a541b6433cdda2d897a5e63261b29faa5fa",
+  "harness_input_bundle_path": "artifacts/gate4_001c_execution_repair_rerun_001e/harness_input_bundle.json",
+  "harness_producer_function": "evaluate_bundle",
+  "positive_control_rejection_result": true,
+  "real_bundle_evaluation_result": {
+    "admissibility_class": "rejected_false_pass_risk",
+    "bundle_id": "gate4_001c_execution_repair_rerun_001e_real_output_bundle",
+    "decision_basis": "detected_evidence_pattern_features",
+    "detected_pattern_categories": [
+      "ablation_sentinel_or_label_special_case",
+      "hash_or_stored_value_replay_shortcut",
+      "output_shape_only_test_assertion",
+      "pass_shaped_result_fields",
+      "static_score_or_perfect_score_literal"
+    ],
+    "inspected_paths": [
+      "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+      "artifacts",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/baseline_report.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/count_table_challenger_report.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/harness_report.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/leakage_scan_report.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/negative_evidence_policy_application.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/protected_artifact_guard.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/computed_provenance.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/replay_full_state_report.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/result.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/retrieval_normalization_report.json",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/test_report.json",
+      "tests/test_gate4_001c_execution_repair_rerun_001e.py",
+      "tests",
+      "artifacts/gate4_001c_execution_repair_rerun_001e/trace.jsonl"
+    ],
+    "positive_controls_detected": false,
+    "producer_function": "evaluate_bundle",
+    "producer_source_path": "src/evidence_harness_contract_enforcement_smoke_001a/runner.py",
+    "rejection_reasons": [
+      {
+        "category": "ablation_sentinel_or_label_special_case",
+        "detail": "$.ablations[0].ablation_name exposes label-driven ablation or variant field",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_ablation_sentinel_or_label_special_case"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.ablations[0].measured_effect.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "ablation_sentinel_or_label_special_case",
+        "detail": "$.ablations[1].ablation_name exposes label-driven ablation or variant field",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_ablation_sentinel_or_label_special_case"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.ablations[1].measured_effect.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "ablation_sentinel_or_label_special_case",
+        "detail": "$.ablations[2].ablation_name exposes label-driven ablation or variant field",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_ablation_sentinel_or_label_special_case"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.ablations[2].measured_effect.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "ablation_sentinel_or_label_special_case",
+        "detail": "$.ablations[3].ablation_name exposes label-driven ablation or variant field",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_ablation_sentinel_or_label_special_case"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.ablations[3].measured_effect.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "ablation_sentinel_or_label_special_case",
+        "detail": "$.ablations[4].ablation_name exposes label-driven ablation or variant field",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_ablation_sentinel_or_label_special_case"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.ablations[4].measured_effect.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "ablation_sentinel_or_label_special_case",
+        "detail": "$.ablations[5].ablation_name exposes label-driven ablation or variant field",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_ablation_sentinel_or_label_special_case"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.ablations[5].measured_effect.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "pass_shaped_result_fields",
+        "detail": "$.verdict contains pass-shaped verdict",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/ablation_semantic_binding_report.json",
+        "rule_id": "detect_pass_shaped_result_fields"
+      },
+      {
+        "category": "pass_shaped_result_fields",
+        "detail": "$.baseline_comparison.verdict contains pass-shaped verdict",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/baseline_report.json",
+        "rule_id": "detect_pass_shaped_result_fields"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.candidate_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/count_table_challenger_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.challenger_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/count_table_challenger_report.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "pass_shaped_result_fields",
+        "detail": "$.verdict contains pass-shaped verdict",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/leakage_scan_report.json",
+        "rule_id": "detect_pass_shaped_result_fields"
+      },
+      {
+        "category": "pass_shaped_result_fields",
+        "detail": "$.verdict contains pass-shaped verdict",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/computed_provenance.json",
+        "rule_id": "detect_pass_shaped_result_fields"
+      },
+      {
+        "category": "hash_or_stored_value_replay_shortcut",
+        "detail": "$.negative_control.hash_only_replay indicates replay shortcut",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/replay_full_state_report.json",
+        "rule_id": "detect_hash_or_stored_value_replay_shortcut"
+      },
+      {
+        "category": "pass_shaped_result_fields",
+        "detail": "$.verdict contains pass-shaped verdict",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/replay_full_state_report.json",
+        "rule_id": "detect_pass_shaped_result_fields"
+      },
+      {
+        "category": "static_score_or_perfect_score_literal",
+        "detail": "$.count_table_challenger_score is perfect score literal 1.0",
+        "path": "artifacts/gate4_001c_execution_repair_rerun_001e/result.json",
+        "rule_id": "detect_static_score_or_perfect_score_literal"
+      },
+      {
+        "category": "output_shape_only_test_assertion",
+        "detail": "test surface asserts pass-shaped outputs, perfect scores, degradation, or existence",
+        "path": "tests/test_gate4_001c_execution_repair_rerun_001e.py",
+        "rule_id": "detect_output_shape_only_test_assertion"
+      },
+      {
+        "category": "hash_or_stored_value_replay_shortcut",
+        "detail": "text mentions stored action/verdict or hash-only replay shortcut",
+        "path": "tests/test_gate4_001c_execution_repair_rerun_001e.py",
+        "rule_id": "detect_hash_or_stored_value_replay_shortcut"
+      }
+    ],
+    "rule_ids_invoked": [
+      "detect_pass_shaped_result_fields",
+      "detect_static_score_or_perfect_score_literal",
+      "detect_unconditional_verified_or_real_intervention_true",
+      "detect_ablation_sentinel_or_label_special_case",
+      "detect_hash_or_stored_value_replay_shortcut",
+      "detect_leakage_scan_gap_or_broad_whitelist",
+      "detect_output_shape_only_test_assertion"
+    ],
+    "source_code_hash": "5114ff277b0d2e076a789845ef2c4d8707b83d84035148d2bbbebf6202a514f7",
+    "static_denylist_only": false,
+    "task_id": "GATE4-001C-EXECUTION-REPAIR-RERUN-001E"
+  },
+  "task_id": "GATE4-001C-EXECUTION-REPAIR-RERUN-001E",
+  "verdict": "blocked_by_evidence_harness_challenger"
+}
