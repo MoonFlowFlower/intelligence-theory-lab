@@ -1,0 +1,469 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "future_gate4_baseline_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "baselines_must_be_independent_callable_implementations": true,
+  "baseline_claim_rule": "No future candidate claim is allowed if any faithful non-oracle baseline ties, beats, or is candidate-equivalent to candidate under the frozen equivalence rule on the primary heldout metric or required counterfactual metric.",
+  "equivalence_contract_required": "artifacts/draft_future_executable_gate4_design_card_001b_revision_from_claude_audit_001a/future_gate4_equivalence_contract.json",
+  "required_per_baseline_fields": [
+    "baseline_id",
+    "access_rights",
+    "producer_function",
+    "input_artifacts",
+    "expected_failure_mode_or_shortcut",
+    "why_it_challenges_cross_family_social_causal_transfer",
+    "positive_control_or_sanity_check",
+    "function_class",
+    "fitting_budget",
+    "data_access_boundary",
+    "oracle_status",
+    "required_failure_or_tie_condition",
+    "stop_condition",
+    "hard_stop_if_ties_or_beats_candidate"
+  ],
+  "baseline_function_class_compute_budget_parity": {
+    "must_declare_model_or_algorithm_class": true,
+    "must_declare_fitting_budget": true,
+    "must_declare_data_access_rights": true,
+    "must_declare_train_heldout_access_boundaries": true,
+    "must_declare_fair_challenger_or_oracle_upper_bound": true,
+    "candidate_advantage_must_not_depend_on_unstated_capacity_difference": true
+  },
+  "baseline_ids": [
+    "serialized_state_decoder",
+    "full_bundle_decoder",
+    "static_belief_table",
+    "pair_count_frequency_baseline",
+    "ngram_trace_lookup",
+    "nearest_neighbor_trace_retrieval",
+    "label_config_leakage_scanner",
+    "trace_id_episode_order_leakage_scanner",
+    "schema_split_leakage_scanner",
+    "majority_baseline",
+    "random_baseline",
+    "oracle_upper_bound",
+    "graph_cache_family",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "query_capable_imitation_baseline"
+  ],
+  "baselines": [
+    {
+      "baseline_id": "serialized_state_decoder",
+      "access_rights": "candidate-equivalent serialized_state snapshots plus public observation metadata; no scorer target",
+      "producer_function": "future_gate4_baselines.serialized_state_decoder",
+      "input_artifacts": [
+        "serialized_state_snapshots",
+        "observation_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "answer recovery from replay or audit state",
+      "why_it_challenges_cross_family_social_causal_transfer": "If serialized state alone recovers the target, the candidate may be storing answers rather than updating hidden partner-relevant state.",
+      "positive_control_or_sanity_check": "must decode injected target-bearing serialized_state positive control",
+      "function_class": "must be frozen before future run",
+      "fitting_budget": "must be frozen before future run",
+      "data_access_boundary": "train only for fitting; heldout/counterfactual for evaluation only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "ties_beats_or_candidate_equivalent_on_primary_heldout_metric",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "full_bundle_decoder",
+      "access_rights": "full candidate-visible input bundle; no scorer target",
+      "producer_function": "future_gate4_baselines.full_bundle_decoder",
+      "input_artifacts": [
+        "candidate_visible_bundle",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "target recovery from full candidate-visible bundle",
+      "why_it_challenges_cross_family_social_causal_transfer": "If the visible bundle solves the task, apparent transfer may be leakage or surface decoding.",
+      "positive_control_or_sanity_check": "must decode injected target-bearing bundle positive control",
+      "function_class": "must be frozen before future run",
+      "fitting_budget": "must be frozen before future run",
+      "data_access_boundary": "candidate-visible artifacts only; no scorer target",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "ties_beats_or_candidate_equivalent_on_primary_heldout_metric",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "static_belief_table",
+      "access_rights": "train split observations, public partner/context features, and declared schema fields",
+      "producer_function": "future_gate4_baselines.static_belief_table",
+      "input_artifacts": [
+        "train_episode_manifest",
+        "heldout_episode_manifest",
+        "candidate_visible_observations"
+      ],
+      "expected_failure_mode_or_shortcut": "static partner belief table or learned lookup",
+      "why_it_challenges_cross_family_social_causal_transfer": "If static partner/context tables solve heldout families, the candidate need not perform online belief update.",
+      "positive_control_or_sanity_check": "must solve a table-recoverable positive-control split",
+      "function_class": "must be frozen before future run",
+      "fitting_budget": "must be frozen before future run",
+      "data_access_boundary": "train split fitting only; no heldout target fitting",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "ties_beats_or_candidate_equivalent_on_primary_heldout_metric",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "pair_count_frequency_baseline",
+      "access_rights": "train observations, public split metadata, and candidate-visible feature pairs",
+      "producer_function": "future_gate4_baselines.pair_count_frequency_baseline",
+      "input_artifacts": [
+        "train_observations",
+        "heldout_observations",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "pair-count, co-occurrence, and frequency shortcut recovery",
+      "why_it_challenges_cross_family_social_causal_transfer": "If co-occurrence counts solve heldout/counterfactual cases, the task does not require causal partner-state transfer.",
+      "positive_control_or_sanity_check": "must solve injected pair-count shortcut positive control",
+      "function_class": "must be frozen before future run",
+      "fitting_budget": "must be frozen before future run",
+      "data_access_boundary": "train observations and public metadata only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "ties_beats_or_candidate_equivalent_on_primary_heldout_metric",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "ngram_trace_lookup",
+      "access_rights": "training traces and candidate-visible observation fragments only",
+      "producer_function": "future_gate4_baselines.ngram_trace_lookup",
+      "input_artifacts": [
+        "train_trace_records",
+        "heldout_trace_records",
+        "counterfactual_trace_records"
+      ],
+      "expected_failure_mode_or_shortcut": "trace-fragment matching or local sequence lookup",
+      "why_it_challenges_cross_family_social_causal_transfer": "If trace fragments solve the task, candidate behavior may be retrieval rather than recomputation.",
+      "positive_control_or_sanity_check": "must solve injected repeated-trace positive control",
+      "function_class": "must be frozen before future run",
+      "fitting_budget": "must be frozen before future run",
+      "data_access_boundary": "training traces only for lookup construction",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "ties_beats_or_candidate_equivalent_on_primary_heldout_metric",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "nearest_neighbor_trace_retrieval",
+      "access_rights": "training traces and candidate-visible observations only",
+      "producer_function": "future_gate4_baselines.nearest_neighbor_trace_retrieval",
+      "input_artifacts": [
+        "train_trace_records",
+        "heldout_observations",
+        "distance_feature_contract"
+      ],
+      "expected_failure_mode_or_shortcut": "nearest-neighbor retrieval of similar prior episodes",
+      "why_it_challenges_cross_family_social_causal_transfer": "If similar prior traces transfer, candidate advantage may be retrieval rather than hidden causal-state inference.",
+      "positive_control_or_sanity_check": "must solve injected nearest-neighbor recoverable positive control",
+      "function_class": "must be frozen before future run",
+      "fitting_budget": "must be frozen before future run",
+      "data_access_boundary": "training traces only; no heldout target fitting",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "ties_beats_or_candidate_equivalent_on_primary_heldout_metric",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "graph_cache_family",
+      "access_rights": "family declaration only; every member below must declare member-specific access rights",
+      "producer_function": "future_gate4_baselines.graph_cache_family",
+      "input_artifacts": [
+        "train_transition_records",
+        "train_trace_records",
+        "environment_graph_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "graph/cache recovery from lookup, transition table, successor map, count table, FSM plan, or episodic traversal",
+      "why_it_challenges_cross_family_social_causal_transfer": "Graph/cache challengers test whether delayed consequences, successors, and task transitions are recoverable without the claimed partner-state update mechanism.",
+      "required_members": [
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal"
+      ],
+      "positive_control_or_sanity_check": "each member must solve its injected graph/cache-recoverable positive control",
+      "function_class": "each member must freeze its algorithm class before future run",
+      "fitting_budget": "each member must freeze fitting/search budget before future run",
+      "data_access_boundary": "train graph/cache construction only; heldout/counterfactual evaluation only",
+      "oracle_status": "faithful_non_oracle_family",
+      "required_failure_or_tie_condition": "every required member must remain below candidate under frozen equivalence rule",
+      "stop_condition": "any_graph_cache_family_member_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true,
+      "hard_stop_if_any_member_omitted": true
+    },
+    {
+      "baseline_id": "graph_lookup",
+      "access_rights": "train-observed graph nodes, public observations, and candidate-visible state descriptors only",
+      "producer_function": "future_gate4_baselines.graph_lookup",
+      "input_artifacts": [
+        "train_graph_manifest",
+        "heldout_observation_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "direct graph node or edge lookup",
+      "why_it_challenges_cross_family_social_causal_transfer": "If graph lookup solves heldout decisions, the task may expose a recoverable graph key instead of requiring partner causal transfer.",
+      "positive_control_or_sanity_check": "must solve injected graph-key positive control",
+      "function_class": "frozen graph lookup implementation",
+      "fitting_budget": "frozen graph construction budget",
+      "data_access_boundary": "train graph only; no heldout target edge labels",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "graph_lookup_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "transition_table",
+      "access_rights": "train transition observations and candidate-visible current observation/action fields only",
+      "producer_function": "future_gate4_baselines.transition_table",
+      "input_artifacts": [
+        "train_transition_records",
+        "heldout_episode_manifest",
+        "counterfactual_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "transition table recovery",
+      "why_it_challenges_cross_family_social_causal_transfer": "If a transition table predicts delayed consequences, candidate behavior may be table recovery rather than causal partner-state update.",
+      "positive_control_or_sanity_check": "must solve injected transition-table positive control",
+      "function_class": "frozen transition-table estimator",
+      "fitting_budget": "frozen table size and smoothing rule",
+      "data_access_boundary": "train transitions only; no heldout/counterfactual target transitions for fitting",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "transition_table_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "successor_map",
+      "access_rights": "train successor relations, public observations, and candidate-visible action/state descriptors only",
+      "producer_function": "future_gate4_baselines.successor_map",
+      "input_artifacts": [
+        "train_successor_records",
+        "heldout_observation_manifest",
+        "counterfactual_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "successor relation recovery",
+      "why_it_challenges_cross_family_social_causal_transfer": "If successor maps solve counterfactual outcomes, apparent transfer may be successor lookup rather than belief update.",
+      "positive_control_or_sanity_check": "must solve injected successor-map positive control",
+      "function_class": "frozen successor-map estimator",
+      "fitting_budget": "frozen successor-map budget",
+      "data_access_boundary": "train successor records only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "successor_map_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "count_table",
+      "access_rights": "train observations and countable candidate-visible keys only",
+      "producer_function": "future_gate4_baselines.count_table",
+      "input_artifacts": [
+        "train_observations",
+        "heldout_observations",
+        "counterfactual_observations",
+        "key_contract"
+      ],
+      "expected_failure_mode_or_shortcut": "stream-keyed or feature-keyed count table recovery",
+      "why_it_challenges_cross_family_social_causal_transfer": "This directly challenges the prior count-table collapse family by testing whether counts reproduce candidate performance.",
+      "positive_control_or_sanity_check": "must solve injected count-table positive control",
+      "function_class": "frozen count-table estimator",
+      "fitting_budget": "frozen key budget and smoothing rule",
+      "data_access_boundary": "train counts only; heldout/counterfactual evaluation only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "count_table_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "fsm_planner",
+      "access_rights": "train transition observations, public action set, and candidate-visible observations only",
+      "producer_function": "future_gate4_baselines.fsm_planner",
+      "input_artifacts": [
+        "train_transition_records",
+        "action_manifest",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "finite-state-machine plan recovery",
+      "why_it_challenges_cross_family_social_causal_transfer": "If an FSM planner solves heldout behavior, the candidate may exploit deterministic task automata instead of partner-state inference.",
+      "positive_control_or_sanity_check": "must solve injected FSM-recoverable positive control",
+      "function_class": "frozen FSM induction and planning rule",
+      "fitting_budget": "frozen state/action budget",
+      "data_access_boundary": "train transition fitting only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "fsm_planner_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "episodic_traversal",
+      "access_rights": "train episodes, candidate-visible observations, and public episode structure only",
+      "producer_function": "future_gate4_baselines.episodic_traversal",
+      "input_artifacts": [
+        "train_episode_manifest",
+        "heldout_episode_manifest",
+        "trace_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "episode graph traversal or replay of prior episode paths",
+      "why_it_challenges_cross_family_social_causal_transfer": "If episodic traversal solves heldout/counterfactual cases, apparent transfer may be path replay rather than state update.",
+      "positive_control_or_sanity_check": "must solve injected episodic-traversal positive control",
+      "function_class": "frozen traversal rule",
+      "fitting_budget": "frozen traversal depth and tie-break rule",
+      "data_access_boundary": "train episode graph only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "episodic_traversal_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "query_capable_imitation_baseline",
+      "access_rights": "same query budget and same observation access as candidate; no claimed belief-update mechanism; no scorer target",
+      "producer_function": "future_gate4_baselines.query_capable_imitation_baseline",
+      "input_artifacts": [
+        "candidate_query_budget_manifest",
+        "candidate_visible_observations",
+        "query_action_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "scripted active querying, prompt-level social behavior, or imitation-based probing",
+      "why_it_challenges_cross_family_social_causal_transfer": "It detects whether active probes can be scripted or imitated without a replayable belief-update mechanism.",
+      "positive_control_or_sanity_check": "must solve injected scripted-query positive control",
+      "function_class": "frozen imitation/probing policy class",
+      "fitting_budget": "same query budget as candidate and frozen fitting budget",
+      "data_access_boundary": "same observation access as candidate; train-only fitting; heldout/counterfactual evaluation only",
+      "oracle_status": "faithful_non_oracle",
+      "required_failure_or_tie_condition": "must remain below candidate under frozen equivalence rule",
+      "stop_condition": "query_capable_imitation_baseline_ties_beats_or_candidate_equivalent",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "label_config_leakage_scanner",
+      "access_rights": "all non-secret labels, configs, manifests, prompts, paths, filenames, and scoring artifacts",
+      "producer_function": "future_gate4_leakage.label_config_leakage_scanner",
+      "input_artifacts": [
+        "config_manifest",
+        "label_manifest",
+        "path_manifest",
+        "scoring_artifacts"
+      ],
+      "expected_failure_mode_or_shortcut": "target/config leakage",
+      "why_it_challenges_cross_family_social_causal_transfer": "If labels or configs leak target features, candidate success is not mechanism evidence.",
+      "positive_control_or_sanity_check": "target label and config leakage injections must be detected",
+      "function_class": "frozen leakage scanner",
+      "fitting_budget": "not applicable; scanner rule and positive controls frozen",
+      "data_access_boundary": "scanner-visible artifacts only",
+      "oracle_status": "leakage_scanner_not_candidate_baseline",
+      "required_failure_or_tie_condition": "must detect positive controls and report clean-artifact findings",
+      "stop_condition": "positive_control_not_detected_or_clean_artifacts_leak_target",
+      "hard_stop_if_ties_or_beats_candidate": false
+    },
+    {
+      "baseline_id": "trace_id_episode_order_leakage_scanner",
+      "access_rights": "trace IDs, episode IDs, context IDs, row order, split names, and manifests",
+      "producer_function": "future_gate4_leakage.trace_id_episode_order_leakage_scanner",
+      "input_artifacts": [
+        "trace_manifest",
+        "episode_manifest",
+        "context_manifest",
+        "split_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "episode order, ID, or split-name leakage",
+      "why_it_challenges_cross_family_social_causal_transfer": "If ID/order features predict target, transfer evidence is contaminated.",
+      "positive_control_or_sanity_check": "episode-order and context-ID leakage injections must be detected",
+      "function_class": "frozen leakage scanner",
+      "fitting_budget": "not applicable; scanner rule and positive controls frozen",
+      "data_access_boundary": "scanner-visible artifacts only",
+      "oracle_status": "leakage_scanner_not_candidate_baseline",
+      "required_failure_or_tie_condition": "must detect positive controls and report clean-artifact findings",
+      "stop_condition": "positive_control_not_detected_or_id_order_leakage_detected",
+      "hard_stop_if_ties_or_beats_candidate": false
+    },
+    {
+      "baseline_id": "schema_split_leakage_scanner",
+      "access_rights": "train/heldout/counterfactual schemas, field names, field presence, ID formats, paths, and artifact names",
+      "producer_function": "future_gate4_leakage.schema_split_leakage_scanner",
+      "input_artifacts": [
+        "schema_manifest",
+        "split_manifest",
+        "artifact_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "schema split leakage",
+      "why_it_challenges_cross_family_social_causal_transfer": "If schema differences reveal targets, heldout transfer is not meaningful.",
+      "positive_control_or_sanity_check": "schema-split leakage injection must be detected",
+      "function_class": "frozen leakage scanner",
+      "fitting_budget": "not applicable; scanner rule and positive controls frozen",
+      "data_access_boundary": "scanner-visible artifacts only",
+      "oracle_status": "leakage_scanner_not_candidate_baseline",
+      "required_failure_or_tie_condition": "must detect positive controls and report clean-artifact findings",
+      "stop_condition": "positive_control_not_detected_or_schema_split_leakage_detected",
+      "hard_stop_if_ties_or_beats_candidate": false
+    },
+    {
+      "baseline_id": "majority_baseline",
+      "access_rights": "action/label set and train target distribution only",
+      "producer_function": "future_gate4_baselines.majority_baseline",
+      "input_artifacts": [
+        "train_target_distribution",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "minimal majority-label sanity floor",
+      "why_it_challenges_cross_family_social_causal_transfer": "If candidate cannot beat majority under frozen rule, scoring or task design is invalid.",
+      "positive_control_or_sanity_check": "must match known majority label on a simple synthetic sanity case",
+      "function_class": "frozen majority rule",
+      "fitting_budget": "train distribution only",
+      "data_access_boundary": "train target distribution only",
+      "oracle_status": "faithful_non_oracle_sanity_floor",
+      "required_failure_or_tie_condition": "candidate must exceed majority under frozen acceptance rule",
+      "stop_condition": "candidate_not_above_majority_under_frozen_equivalence_rule",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "random_baseline",
+      "access_rights": "action/label set and seed manifest only",
+      "producer_function": "future_gate4_baselines.random_baseline",
+      "input_artifacts": [
+        "label_set",
+        "seed_manifest",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "minimal random sanity floor",
+      "why_it_challenges_cross_family_social_causal_transfer": "Unexpectedly strong random performance indicates broken scoring or weak task structure.",
+      "positive_control_or_sanity_check": "seeded random reproducibility check",
+      "function_class": "frozen random rule",
+      "fitting_budget": "none",
+      "data_access_boundary": "label/action set only",
+      "oracle_status": "faithful_non_oracle_sanity_floor",
+      "required_failure_or_tie_condition": "candidate must exceed random under frozen acceptance rule",
+      "stop_condition": "candidate_not_above_random_under_frozen_equivalence_rule",
+      "hard_stop_if_ties_or_beats_candidate": true
+    },
+    {
+      "baseline_id": "oracle_upper_bound",
+      "optional": true,
+      "access_rights": "explicit oracle target access",
+      "producer_function": "future_gate4_baselines.oracle_upper_bound",
+      "input_artifacts": [
+        "scorer_target_manifest",
+        "heldout_episode_manifest"
+      ],
+      "expected_failure_mode_or_shortcut": "task solvability upper bound",
+      "why_it_challenges_cross_family_social_causal_transfer": "It separates task solvability from mechanism evidence and must not be counted as candidate support.",
+      "positive_control_or_sanity_check": "must reach expected oracle upper-bound behavior on sanity cases",
+      "function_class": "frozen oracle rule",
+      "fitting_budget": "not applicable",
+      "data_access_boundary": "explicit oracle target access",
+      "oracle_status": "oracle_upper_bound_not_faithful_non_oracle",
+      "required_failure_or_tie_condition": "not used as candidate evidence",
+      "stop_condition": "must_not_be_used_as_candidate_mechanism_evidence",
+      "hard_stop_if_ties_or_beats_candidate": false
+    }
+  ],
+  "claim_ceiling": "future baseline contract only; no baseline implemented or executed by this task"
+}

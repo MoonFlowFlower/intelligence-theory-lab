@@ -1,0 +1,99 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "future_gate4_leakage_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "leakage_rule": "Future leakage scanners must include positive controls and must scan candidate-visible, baseline-visible, graph-cache-visible, imitation-baseline-visible, provenance, replay, config, prompt, path, and scoring artifacts.",
+  "positive_control_requirements": [
+    {
+      "positive_control_id": "target_label_leakage",
+      "injected_leak_type": "target label or answer alias appears in candidate-visible artifact",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "partner_id_leakage",
+      "injected_leak_type": "partner ID maps directly to target or hidden causal family",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "context_id_leakage",
+      "injected_leak_type": "context ID encodes target, split, or hidden variable",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "episode_order_leakage",
+      "injected_leak_type": "episode order or row index predicts target",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "file_path_name_leakage",
+      "injected_leak_type": "file name, path, directory, or artifact name encodes answer feature",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "config_leakage",
+      "injected_leak_type": "config field or config value exposes target or hidden variable",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "schema_split_leakage",
+      "injected_leak_type": "train/heldout/counterfactual schema differs in target-correlated field presence, name, or ID format",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "scoring_artifact_leakage",
+      "injected_leak_type": "scoring artifact includes target, answer key, metric shortcut, expected output, or candidate-derived scoring rule",
+      "scanner_must_detect": true
+    },
+    {
+      "positive_control_id": "prompt_text_leakage",
+      "injected_leak_type": "text prompt or instruction includes target, partner type, answer key, or scoring hint",
+      "scanner_must_detect": true,
+      "required_if_text_prompts_used": true
+    },
+    {
+      "positive_control_id": "equivalence_rule_leakage",
+      "injected_leak_type": "equivalence or metric rule encodes candidate-specific output schema or post-hoc candidate explanation",
+      "scanner_must_detect": true
+    }
+  ],
+  "scanner_requirements": [
+    "scan_candidate_visible_observations",
+    "scan_serialized_state",
+    "scan_candidate_visible_bundle",
+    "scan_baseline_inputs",
+    "scan_graph_cache_family_inputs",
+    "scan_query_capable_imitation_inputs",
+    "scan_trace_records",
+    "scan_context_episode_split_manifests",
+    "scan_file_paths_and_artifact_names",
+    "scan_config_and_prompt_text",
+    "scan_scoring_artifacts",
+    "scan_equivalence_rule_artifacts",
+    "scan_replay_artifacts",
+    "scan_provenance_artifacts"
+  ],
+  "required_scanner_provenance": [
+    "producer_function",
+    "input_artifacts",
+    "positive_control_artifacts",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "equivalence_rule_hash",
+    "detected_positive_controls",
+    "clean_artifact_findings"
+  ],
+  "stop_conditions": [
+    "any_positive_control_not_detected",
+    "target_label_leakage_detected_in_clean_artifacts",
+    "partner_id_leakage_detected_in_clean_artifacts",
+    "context_or_episode_order_leakage_detected_in_clean_artifacts",
+    "file_path_config_schema_prompt_or_scoring_leakage_detected",
+    "equivalence_rule_or_metric_is_candidate_specific",
+    "scanner_not_callable_or_not_invoked"
+  ],
+  "claim_ceiling": "future leakage contract only; no leakage scanner implemented or run by this task"
+}

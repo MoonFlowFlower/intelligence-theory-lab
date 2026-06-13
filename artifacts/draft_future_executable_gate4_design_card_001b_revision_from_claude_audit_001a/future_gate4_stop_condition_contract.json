@@ -1,0 +1,112 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "future_gate4_stop_condition_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "hard_negative_evidence_stops": [
+    {
+      "stop_id": "faithful_non_oracle_baseline_ties_or_beats_candidate",
+      "condition": "Any faithful non-oracle baseline ties or beats candidate on primary heldout metric under the frozen equivalence rule.",
+      "required_verdict_class": "baseline_equivalent_negative_evidence"
+    },
+    {
+      "stop_id": "faithful_non_oracle_baseline_candidate_equivalent",
+      "condition": "Any faithful non-oracle baseline is candidate-equivalent under the frozen equivalence rule.",
+      "required_verdict_class": "baseline_equivalent_negative_evidence"
+    },
+    {
+      "stop_id": "graph_cache_family_member_ties_or_beats_candidate",
+      "condition": "Any graph_cache_family member ties, beats, or is candidate-equivalent to candidate.",
+      "members": [
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal"
+      ],
+      "required_verdict_class": "graph_cache_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "declared_graph_cache_member_not_executed",
+      "condition": "Any required graph_cache_family member is missing, not callable, or not invoked.",
+      "required_verdict_class": "blocked_graph_cache_challenger_missing"
+    },
+    {
+      "stop_id": "query_capable_imitation_baseline_ties_or_beats_candidate",
+      "condition": "query_capable_imitation_baseline ties, beats, or is candidate-equivalent to candidate on primary heldout or counterfactual metrics.",
+      "required_verdict_class": "query_imitation_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "query_capable_imitation_baseline_not_executed",
+      "condition": "query_capable_imitation_baseline is missing, not callable, not given same query budget, or not invoked.",
+      "required_verdict_class": "blocked_query_imitation_challenger_missing"
+    },
+    {
+      "stop_id": "equivalence_rule_missing_or_changed",
+      "condition": "Equivalence rule is missing, not frozen before run, changed after run, selectively applied, or not recorded in provenance.",
+      "required_verdict_class": "blocked_equivalence_rule_invalid"
+    },
+    {
+      "stop_id": "ablation_drop_but_faithful_baseline_still_solves",
+      "condition": "Ablation drop exists but any faithful baseline still solves the task or is candidate-equivalent.",
+      "required_verdict_class": "ablation_diagnostic_only_baseline_collapse"
+    },
+    {
+      "stop_id": "serialized_state_decoder_candidate_equivalent",
+      "condition": "serialized_state_decoder reaches candidate-equivalent performance.",
+      "required_verdict_class": "serialized_state_decoder_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "full_bundle_decoder_candidate_equivalent",
+      "condition": "full_bundle_decoder reaches candidate-equivalent performance.",
+      "required_verdict_class": "full_bundle_decoder_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "static_belief_table_candidate_equivalent",
+      "condition": "static_belief_table reaches candidate-equivalent performance.",
+      "required_verdict_class": "static_belief_table_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "trace_or_retrieval_candidate_equivalent",
+      "condition": "ngram_trace_lookup or nearest_neighbor_trace_retrieval reaches candidate-equivalent performance.",
+      "required_verdict_class": "trace_retrieval_collapse_negative_evidence"
+    },
+    {
+      "stop_id": "leakage_positive_control_failure",
+      "condition": "Any leakage positive control fails to detect injected leakage.",
+      "required_verdict_class": "blocked_leakage_scanner_invalid"
+    },
+    {
+      "stop_id": "stored_output_or_hash_replay_passes",
+      "condition": "Replay can pass from stored outputs, stored actions, trace-only comparison, or hashes.",
+      "required_verdict_class": "blocked_replay_recomputation_invalid"
+    },
+    {
+      "stop_id": "declared_inputs_unused",
+      "condition": "Any declared heldout split, counterfactual pair, frozen seed, context ID, or episode ID is unused.",
+      "required_verdict_class": "blocked_declared_input_unused"
+    },
+    {
+      "stop_id": "schema_config_id_leakage_explains_candidate",
+      "condition": "Candidate score improves but only through schema, config, ID, prompt, filename, path, or scoring-artifact leakage.",
+      "required_verdict_class": "leakage_explained_negative_evidence"
+    },
+    {
+      "stop_id": "unfair_baseline_access",
+      "condition": "Candidate advantage depends on denying faithful baselines candidate-equivalent visible information or same query budget where applicable.",
+      "required_verdict_class": "blocked_unfair_baseline_access"
+    },
+    {
+      "stop_id": "metric_defined_from_candidate_schema_or_internals",
+      "condition": "Primary metric is defined in terms of candidate output schema, candidate internals, or post-hoc candidate explanations.",
+      "required_verdict_class": "blocked_candidate_agnostic_metric_violation"
+    },
+    {
+      "stop_id": "same_family_002c_patch_or_002e_route",
+      "condition": "Task becomes a same-family 002C patch, 002E variant, or local toy hardening route.",
+      "required_verdict_class": "blocked_anti_zeno_violation"
+    }
+  ],
+  "closure_rule": "A hard negative-evidence stop must preserve the failed result and must not be repaired by threshold tuning, equivalence-margin changes, field hiding, rerun selection, or same-family patching inside the same task.",
+  "claim_ceiling": "future stop-condition contract only; no future execution verdict is claimed by this task"
+}

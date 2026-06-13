@@ -1,0 +1,87 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "claude_blocker_revision_map",
+  "claude_audit_verdict": "claude_independent_audit_draft_future_executable_gate4_design_card_001a_blocked_requires_revision",
+  "blockers": [
+    {
+      "blocker_id": "F1",
+      "audit_issue": "graph_cache_family was removed from binding baseline and stop-condition contracts",
+      "status": "fixed_in_001b",
+      "revised_files_and_fields": [
+        "future_gate4_baseline_contract.json:baseline_ids",
+        "future_gate4_baseline_contract.json:baselines[graph_cache_family]",
+        "future_gate4_baseline_contract.json:baselines[graph_lookup]",
+        "future_gate4_baseline_contract.json:baselines[transition_table]",
+        "future_gate4_baseline_contract.json:baselines[successor_map]",
+        "future_gate4_baseline_contract.json:baselines[count_table]",
+        "future_gate4_baseline_contract.json:baselines[fsm_planner]",
+        "future_gate4_baseline_contract.json:baselines[episodic_traversal]",
+        "future_gate4_stop_condition_contract.json:hard_negative_evidence_stops[graph_cache_family_member_ties_or_beats_candidate]",
+        "future_gate4_stop_condition_contract.json:hard_negative_evidence_stops[declared_graph_cache_member_not_executed]",
+        "future_gate4_design_card.md:F1 section"
+      ]
+    },
+    {
+      "blocker_id": "F2",
+      "audit_issue": "query_capable_imitation_baseline was removed from binding baseline contract",
+      "status": "fixed_in_001b",
+      "revised_files_and_fields": [
+        "future_gate4_baseline_contract.json:baseline_ids",
+        "future_gate4_baseline_contract.json:baselines[query_capable_imitation_baseline]",
+        "future_gate4_stop_condition_contract.json:hard_negative_evidence_stops[query_capable_imitation_baseline_ties_or_beats_candidate]",
+        "future_gate4_stop_condition_contract.json:hard_negative_evidence_stops[query_capable_imitation_baseline_not_executed]",
+        "future_gate4_design_card.md:F2 section"
+      ]
+    },
+    {
+      "blocker_id": "F3",
+      "audit_issue": "candidate-vs-baseline equivalence margin and candidate-equivalent rule were undefined and not frozen",
+      "status": "fixed_in_001b",
+      "revised_files_and_fields": [
+        "future_gate4_equivalence_contract.json:definitions",
+        "future_gate4_equivalence_contract.json:pre_run_freeze_requirement",
+        "future_gate4_equivalence_contract.json:hard_stops",
+        "future_gate4_provenance_contract.json:required_fields[equivalence_rule_hash]",
+        "future_gate4_stop_condition_contract.json:hard_negative_evidence_stops[equivalence_rule_missing_or_changed]",
+        "future_gate4_design_card.md:F3 section"
+      ],
+      "implementation_block_if_metric_specific_margin_missing": true
+    }
+  ],
+  "nonfatal_concerns_addressed": [
+    {
+      "concern_id": "NF1",
+      "audit_issue": "baseline function-class and compute-budget parity not pinned",
+      "status": "addressed_without_implementation",
+      "revised_files_and_fields": [
+        "future_gate4_baseline_contract.json:baseline_function_class_compute_budget_parity",
+        "future_gate4_baseline_contract.json:required_per_baseline_fields",
+        "future_gate4_provenance_contract.json:required_fields"
+      ]
+    },
+    {
+      "concern_id": "NF2",
+      "audit_issue": "primary metric lacked explicit anti-tautology candidate-agnostic rule",
+      "status": "addressed_without_implementation",
+      "revised_files_and_fields": [
+        "future_gate4_evidence_contract.json:primary_future_metric",
+        "future_gate4_design_card.md:Candidate-Agnostic Metric Rule",
+        "future_gate4_stop_condition_contract.json:hard_negative_evidence_stops[metric_defined_from_candidate_schema_or_internals]",
+        "future_gate4_leakage_contract.json:positive_control_requirements[equivalence_rule_leakage]"
+      ]
+    }
+  ],
+  "unresolved_concerns": [
+    {
+      "concern_id": "NF3",
+      "status": "preserved_context_not_fixed_by_this_revision",
+      "reason": "External theory scan question is upstream context and not required by the audit for this revision."
+    },
+    {
+      "concern_id": "NF4",
+      "status": "audit_limitation_preserved",
+      "reason": "Claude audit could not independently verify remote-side 7685f9c; Codex verified remote branch and tag before this revision."
+    }
+  ],
+  "claim_ceiling": "blocker-to-revision map only; no implementation or mechanism claim"
+}

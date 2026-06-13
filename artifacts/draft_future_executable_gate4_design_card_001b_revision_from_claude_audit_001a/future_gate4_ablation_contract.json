@@ -1,0 +1,91 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "future_gate4_ablation_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "ablation_rule": "Every future ablation must rerun episodes under real intervention; post-hoc score edits, static dictionaries, stored-output substitutions, and equivalence-rule changes are invalid.",
+  "ablation_cannot_rescue_baseline_equivalence": true,
+  "required_per_ablation_provenance": [
+    "ablation_id",
+    "intervention_function",
+    "intervention_target",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "equivalence_rule_hash",
+    "pre_intervention_state_hash",
+    "post_intervention_state_hash",
+    "intervention_applied",
+    "reran_candidate_behavior",
+    "reran_relevant_baselines"
+  ],
+  "ablations": [
+    {
+      "ablation_id": "remove_partner_social_latent_update_path",
+      "intervention_target": "partner/social latent update path",
+      "required_effect": "candidate cross-family counterfactual transfer score must degrade if the claimed path is necessary",
+      "must_rerun_episodes": true,
+      "stop_if": "no_degradation_and_claimed_path_still_used_as_evidence_or_baseline_equivalence_present"
+    },
+    {
+      "ablation_id": "freeze_memory_update",
+      "intervention_target": "memory/state update after initial observation",
+      "required_effect": "candidate should lose benefit from partial-observation belief revision",
+      "must_rerun_episodes": true,
+      "stop_if": "freeze_not_applied_or_no_behavior_recomputation"
+    },
+    {
+      "ablation_id": "remove_counterfactual_branch",
+      "intervention_target": "counterfactual partner intervention branch",
+      "required_effect": "counterfactual prediction/action should degrade",
+      "must_rerun_episodes": true,
+      "stop_if": "counterfactual_branch_removed_without_metric_change_and_baselines_solve"
+    },
+    {
+      "ablation_id": "shuffle_partner_identities",
+      "intervention_target": "partner identity mapping",
+      "required_effect": "candidate should remain robust if not using IDs as answer keys, while leakage scanners detect ID shortcuts if present",
+      "must_rerun_episodes": true,
+      "stop_if": "partner_id_shuffle_explains_candidate_success"
+    },
+    {
+      "ablation_id": "scramble_observation_order",
+      "intervention_target": "observation sequence order",
+      "required_effect": "candidate should degrade where ordered evidence is necessary and trace lookup or graph-cache traversal should not gain unfair advantage",
+      "must_rerun_episodes": true,
+      "stop_if": "episode_order_trace_order_or_graph_cache_is_sufficient_shortcut"
+    },
+    {
+      "ablation_id": "hold_out_partner_families",
+      "intervention_target": "partner causal family exposure",
+      "required_effect": "candidate must be evaluated on unseen partner families and not only same-family labels",
+      "must_rerun_episodes": true,
+      "stop_if": "heldout_partner_family_declared_but_unused"
+    },
+    {
+      "ablation_id": "hold_out_task_schemas",
+      "intervention_target": "task schema exposure",
+      "required_effect": "candidate must be evaluated on schema-equivalent heldout task schemas",
+      "must_rerun_episodes": true,
+      "stop_if": "heldout_task_schema_declared_but_unused_or_schema_leaking"
+    },
+    {
+      "ablation_id": "disable_replay_recomputation_path",
+      "intervention_target": "replay recomputation path",
+      "required_effect": "replay validation must fail when recomputation is disabled",
+      "must_rerun_episodes": true,
+      "stop_if": "replay_still_passes_from_stored_outputs_or_hashes"
+    },
+    {
+      "ablation_id": "remove_active_belief_update_preserve_observation_access",
+      "intervention_target": "active belief update while preserving observation inputs and query budget",
+      "required_effect": "candidate advantage should degrade if active belief update is the claimed mechanism",
+      "must_rerun_episodes": true,
+      "stop_if": "observation_access_query_access_or_imitation_baseline_solves_or_ties_candidate"
+    }
+  ],
+  "claim_ceiling": "future ablation contract only; no ablation executed by this task"
+}

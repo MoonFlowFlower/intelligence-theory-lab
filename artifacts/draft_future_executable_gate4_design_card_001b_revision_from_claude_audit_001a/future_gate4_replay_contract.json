@@ -1,0 +1,90 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "future_gate4_replay_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "replay_rule": "Future replay must recompute behavior from recorded inputs; replay success is auditability evidence only and not mechanism success.",
+  "candidate_replay_requirements": {
+    "must_recompute_from": [
+      "serialized_state",
+      "observation"
+    ],
+    "must_recompute_outputs": [
+      "candidate_state_update",
+      "candidate_counterfactual_prediction_or_action",
+      "candidate_metric_contribution"
+    ],
+    "must_not_use": [
+      "stored_outputs",
+      "stored_actions",
+      "trace_only_comparison",
+      "hash_only_comparison",
+      "static_dictionary",
+      "unconditional_pass_report"
+    ]
+  },
+  "baseline_replay_requirements": {
+    "must_recompute_from_declared_baseline_inputs": true,
+    "must_record_access_rights": true,
+    "must_record_function_class_and_budget": true,
+    "must_recompute_each_baseline_metric_contribution": true,
+    "must_recompute_graph_cache_family_members": true,
+    "must_recompute_query_capable_imitation_baseline": true,
+    "must_apply_frozen_equivalence_rule": true
+  },
+  "failure_path_tests": [
+    {
+      "failure_test_id": "stale_cache_output_injection",
+      "description": "Inject stale cached candidate outputs and verify replay rejects them.",
+      "must_fail_when_cache_used": true
+    },
+    {
+      "failure_test_id": "hash_only_replay_substitution",
+      "description": "Replace recomputation with hash comparison only and verify replay rejects it.",
+      "must_fail_when_hash_only": true
+    },
+    {
+      "failure_test_id": "stored_action_replay_substitution",
+      "description": "Use stored actions without recomputation and verify replay rejects it.",
+      "must_fail_when_stored_actions_used": true
+    },
+    {
+      "failure_test_id": "baseline_cached_metric_substitution",
+      "description": "Use cached baseline metrics without baseline invocation and verify validation rejects it.",
+      "must_fail_when_baseline_not_invoked": true
+    },
+    {
+      "failure_test_id": "equivalence_rule_hash_removed",
+      "description": "Remove equivalence rule hash from replay/provenance and verify validation rejects the run.",
+      "must_fail_when_equivalence_rule_hash_missing": true
+    }
+  ],
+  "required_replay_provenance": [
+    "producer_function",
+    "input_artifacts",
+    "input_artifact_hashes",
+    "run_id",
+    "seed",
+    "train_context_ids",
+    "heldout_context_ids",
+    "counterfactual_context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "equivalence_rule_hash",
+    "recomputed_output_hash",
+    "stored_output_accessed_boolean",
+    "failure_path_test_results"
+  ],
+  "stop_conditions": [
+    "candidate_replay_not_from_serialized_state_plus_observation",
+    "baseline_replay_not_from_declared_inputs",
+    "graph_cache_family_member_not_recomputed",
+    "query_capable_imitation_baseline_not_recomputed",
+    "equivalence_rule_not_applied_in_replay",
+    "stored_output_replay_can_pass",
+    "hash_only_replay_can_pass",
+    "stale_cache_failure_path_not_present_or_not_failing",
+    "declared_episode_not_replayed"
+  ],
+  "claim_ceiling": "future replay contract only; no replay executed by this task"
+}

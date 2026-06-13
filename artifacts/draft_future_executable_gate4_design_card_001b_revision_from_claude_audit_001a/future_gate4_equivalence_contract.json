@@ -1,0 +1,90 @@
+{
+  "task_id": "DRAFT-FUTURE-EXECUTABLE-GATE4-DESIGN-CARD-001B-REVISION-FROM-CLAUDE-AUDIT-001A",
+  "artifact_id": "future_gate4_equivalence_contract",
+  "future_target": "cross_family_social_causal_transfer",
+  "draft_only_not_authorized_for_implementation": true,
+  "purpose": "Freeze candidate-vs-baseline equivalence judgment before any future run so baseline-collapse cannot be reinterpreted post hoc.",
+  "applies_to": [
+    "all_faithful_non_oracle_baselines",
+    "graph_cache_family",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "query_capable_imitation_baseline"
+  ],
+  "definitions": {
+    "tie": "candidate_score minus baseline_score is inside the pre-run frozen equivalence margin or the frozen statistical rule does not establish candidate advantage",
+    "candidate_equivalent": "baseline ties candidate, beats candidate, or remains indistinguishable from candidate under the frozen equivalence rule on the primary heldout metric or required counterfactual metric",
+    "candidate_advantage": "candidate exceeds the baseline on the primary heldout metric under the frozen equivalence rule and also satisfies all required heldout, counterfactual, leakage, replay, ablation, and provenance gates"
+  },
+  "minimum_rule": {
+    "candidate_clears_faithful_baseline_only_if": "candidate exceeds that baseline on the primary heldout metric under the frozen equivalence rule",
+    "negative_evidence_if": [
+      "faithful_non_oracle_baseline_ties_candidate",
+      "faithful_non_oracle_baseline_beats_candidate",
+      "candidate_equivalent_result",
+      "graph_cache_family_member_ties_or_beats_candidate",
+      "query_capable_imitation_baseline_ties_or_beats_candidate"
+    ],
+    "ablation_drop_does_not_rescue_claim_if": "any faithful non-oracle baseline still solves the task or is candidate-equivalent"
+  },
+  "pre_run_freeze_requirement": {
+    "equivalence_rule_must_be_frozen_before_any_future_run": true,
+    "metric_specific_margin_required_before_run": true,
+    "implementation_card_must_define_numeric_or_statistical_rule": true,
+    "allowed_rule_types": [
+      "fixed_epsilon_margin",
+      "bootstrap_confidence_interval_rule",
+      "predeclared_nonparametric_confidence_rule",
+      "other_explicitly_frozen_statistical_rule"
+    ],
+    "if_future_metric_is_not_yet_implemented": "block implementation until the executable implementation card freezes a metric-specific equivalence margin or statistical rule before any run"
+  },
+  "uniform_application": {
+    "same_rule_for_all_faithful_non_oracle_baselines": true,
+    "post_run_rule_change_forbidden": true,
+    "selective_margin_by_baseline_forbidden": true,
+    "candidate_internal_explanation_cannot_override_equivalence": true
+  },
+  "provenance_requirements": [
+    "equivalence_rule_source_artifact",
+    "equivalence_rule_hash",
+    "equivalence_margin_or_statistical_rule",
+    "threshold_freeze_timestamp_or_source_artifact",
+    "baseline_id",
+    "candidate_score",
+    "baseline_score",
+    "candidate_minus_baseline_delta",
+    "tie_boolean",
+    "candidate_equivalent_boolean",
+    "candidate_advantage_boolean",
+    "aggregation_rule",
+    "confidence_interval_or_margin_readback_if_applicable"
+  ],
+  "hard_stops": [
+    {
+      "stop_id": "equivalence_rule_missing_before_run",
+      "condition": "Future execution starts without a frozen equivalence rule.",
+      "required_verdict_class": "blocked_equivalence_rule_missing"
+    },
+    {
+      "stop_id": "equivalence_rule_changed_after_run",
+      "condition": "The equivalence rule, margin, or statistical test differs from the pre-run frozen artifact.",
+      "required_verdict_class": "blocked_posthoc_equivalence_rule_change"
+    },
+    {
+      "stop_id": "equivalence_rule_not_recorded_in_provenance",
+      "condition": "Future result lacks equivalence rule hash or source pin.",
+      "required_verdict_class": "blocked_equivalence_provenance_missing"
+    },
+    {
+      "stop_id": "candidate_equivalent_to_faithful_baseline",
+      "condition": "Any faithful non-oracle baseline is candidate-equivalent under the frozen rule.",
+      "required_verdict_class": "baseline_equivalent_negative_evidence"
+    }
+  ],
+  "claim_ceiling": "future equivalence judgment contract only; no metric, baseline, or experiment is implemented by this task"
+}
