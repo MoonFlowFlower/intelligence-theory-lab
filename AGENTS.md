@@ -243,6 +243,83 @@ Do not use future observations during prediction.
 
 Do not add broad architecture proposals to code comments, docs, or final reports.
 
+## Auto-Remote-Anchor Policy
+
+Codex must not automatically push or tag after every task.
+
+Codex may perform auto-remote-anchor only when the task card explicitly contains:
+
+`Auto-Remote-Anchor: authorized`
+
+or
+
+`Auto-Remote-Anchor: conditional`
+
+If the task card says `Auto-Remote-Anchor: forbidden`, or does not mention auto-remote-anchor, Codex must not push or tag.
+
+### Auto-anchor is allowed only if all gates pass
+
+Codex may auto-anchor in the same session only if all conditions below are true:
+
+1. The task verdict is `pass`, or the task card explicitly designates the result as boundary-worthy negative evidence.
+2. The task card explicitly authorizes auto-remote-anchor.
+3. Worktree and index are clean after commit.
+4. The committed changes are limited to the authorized task scope.
+5. No stop condition, blocker, unresolved audit requirement, or pending independent review remains.
+6. The result is intended to become a canonical boundary for future tasks.
+7. Remote credential hygiene can be checked without printing secrets.
+8. Push, tag creation, tag push, and readback can be completed safely.
+9. The task does not require Claude/GPT independent audit before canonicalization.
+10. The task does not involve provisional implementation or experiment results whose validity still needs review.
+
+### Required auto-anchor procedure
+
+If auto-anchor is authorized and all gates pass, Codex must:
+
+1. Resolve local HEAD full hash.
+2. Verify current branch.
+3. Verify worktree and index are clean.
+4. Verify ahead/behind relative to origin.
+5. Check credential hygiene without printing credentials or full secret-bearing remote URLs.
+6. Push the branch.
+7. Create a lightweight tag using the task name and short hash.
+8. Push only that tag ref.
+9. Read back:
+   - local HEAD full hash
+   - remote branch full hash
+   - local tag full hash
+   - remote tag full hash
+   - exact match yes/no
+   - local tag type
+   - final ahead/behind
+   - final git status
+   - final `git diff --name-status`
+10. Report the claim ceiling as remote-anchor publication and verification only.
+
+### Auto-anchor must be forbidden when
+
+Codex must not auto-anchor if:
+
+- the task is blocked;
+- the task card says auto-anchor is forbidden;
+- the task card is silent about auto-anchor;
+- the result is provisional;
+- the result requires Claude/GPT independent audit before canonicalization;
+- the task involved implementation or experiment results whose validity has not been reviewed;
+- remote push would require rebase, reset, amend, or conflict repair;
+- any credential hygiene issue cannot be handled safely;
+- any unauthorized file modification appears;
+- any source/harness/test change appears outside the task scope;
+- the task enters Gate5, admission, bridge, runtime, or EGO-mainline without explicit authorization.
+
+### Claim ceiling
+
+Auto-anchor does not upgrade the claim.
+
+It only seals the current bounded result as a remote-verifiable boundary.
+
+It must never be used to claim valid Gate4, mechanism validity, social-latent inference, agency, selfhood, consciousness, emotion, autonomy, EGO readiness, runtime readiness, companion readiness, or user benefit.
+
 ## Required Final Report
 
 End each task with:
