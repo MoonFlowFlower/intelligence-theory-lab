@@ -1,0 +1,18 @@
+{
+  "audit_document_path": "docs/research/CLAUDE-INDEPENDENT-EVIDENCE-AUDIT-GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-001C.md",
+  "audit_source_attachment": "C:/Users/LEO/.codex/attachments/61bfa614-3b9c-443e-aee1-c0bd1dfbb3f7/pasted-text.txt",
+  "audit_source_attachment_sha256": "EE13DA57BD0D7E525B65AA4BFB74638308593F4693E82AA77B906A66D736CEE3",
+  "blocked_commit": "fec4b7f8847c26116918ee9871851543515fdd6a",
+  "blocker_classification_preserved_exact": "B \u2014 blocked_split_design_leakage_not_repaired",
+  "core_evidence_preserved": [
+    "query_feedback carries target verbatim",
+    "candidate extracts target through split(\":\")[1]",
+    "scanner defines feedback leakage patterns but scans only observation",
+    "trace_records contains prefers:<action> while leakage_report says clean",
+    "candidate score equals oracle positive control",
+    "no query-and-follow-feedback baseline"
+  ],
+  "producer_function": "manual_audit_preservation_manifest",
+  "verbatim_audit_preserved": true,
+  "verdict_preserved_exact": "B \u2014 blocked_split_design_leakage_not_repaired"
+}
