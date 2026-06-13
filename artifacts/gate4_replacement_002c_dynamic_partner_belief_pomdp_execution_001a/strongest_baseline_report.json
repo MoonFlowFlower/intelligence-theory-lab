@@ -1,0 +1,23 @@
+{
+  "baseline_equivalence": true,
+  "candidate_score": 1.0,
+  "faithful_baselines_tied_or_beat_candidate": [
+    "pair_count",
+    "ngram_trace_lookup",
+    "full_bundle_decoder",
+    "serialized_state_decoder",
+    "belief_table"
+  ],
+  "producer_function": "select_strongest_baseline",
+  "strongest_any_including_oracle": {
+    "baseline_id": "serialized_state_decoder",
+    "producer_function": "baseline_serialized_state_decoder",
+    "score": 1.0
+  },
+  "strongest_faithful_non_oracle": {
+    "access_rights_declaration": "candidate serialized other-state after update, no scorer target",
+    "baseline_id": "serialized_state_decoder",
+    "producer_function": "baseline_serialized_state_decoder",
+    "score": 1.0
+  }
+}
