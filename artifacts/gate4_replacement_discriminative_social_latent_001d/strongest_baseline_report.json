@@ -1,0 +1,39 @@
+{
+  "cherry_pick_guard": {
+    "ordinary_candidate_pool": [
+      "count_table",
+      "direct_stated_preference_copier",
+      "episodic_traversal",
+      "feedback_aware_decoder_challenger",
+      "feedback_token_lookup",
+      "fsm_planner",
+      "graph_lookup",
+      "history_order_cache",
+      "observation_only_decoder_challenger",
+      "stream_keyed_count_table",
+      "successor_map",
+      "transition_table"
+    ],
+    "query_capable_candidate_pool": [
+      "query_and_follow_feedback"
+    ]
+  },
+  "computed_from_all_baselines": true,
+  "leakage_positive_control": {
+    "baseline_id": "leakage_positive_control",
+    "score": 1.0
+  },
+  "oracle_positive_control": {
+    "baseline_id": "oracle_label_positive_control",
+    "score": 1.0
+  },
+  "producer_function": "select_strongest_baselines",
+  "strongest_ordinary": {
+    "baseline_id": "feedback_token_lookup",
+    "score": 0.5
+  },
+  "strongest_query_capable": {
+    "baseline_id": "query_and_follow_feedback",
+    "score": 0.5
+  }
+}

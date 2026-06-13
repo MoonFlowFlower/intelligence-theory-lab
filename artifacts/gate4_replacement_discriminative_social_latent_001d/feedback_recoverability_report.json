@@ -1,0 +1,46 @@
+{
+  "blocking_reasons": [],
+  "passed": true,
+  "positive_control_direct_feedback_answer_injected": false,
+  "predeclared_recoverability_ceiling": 0.6,
+  "producer_function": "build_feedback_recoverability_report",
+  "strongest_recoverability_score": 0.5,
+  "strongest_recoverability_surface": "feedback_history_only",
+  "surfaces": {
+    "feedback_history_only": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_single_feedback_token",
+      "score": 0.5
+    },
+    "full_candidate_visible_bundle": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_single_feedback_token",
+      "score": 0.5
+    },
+    "legal_history_plus_feedback": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_single_feedback_token",
+      "score": 0.5
+    },
+    "observation_only": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_majority",
+      "score": 0.25
+    },
+    "observation_plus_feedback": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_single_feedback_token",
+      "score": 0.5
+    },
+    "query_action_plus_feedback": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_single_feedback_token",
+      "score": 0.5
+    },
+    "serialized_state_only": {
+      "decoder_limit": "no candidate update rule or multi-token slot integration",
+      "producer_function": "_recover_by_state_shape_only",
+      "score": 0.25
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "clean_case": {
+    "detected_categories": [],
+    "detections": [],
+    "feedback_history_events_scanned": 3,
+    "feedback_history_records_scanned": 1,
+    "pre_scrubbed_before_scan": false,
+    "producer_function": "scan_candidate_visible_bundle",
+    "scanned_paths": [
+      "observation",
+      "legal_history",
+      "feedback_history",
+      "query_action",
+      "serialized_state_before_update",
+      "serialized_state_after_update",
+      "final_prediction"
+    ],
+    "scanned_unsanitized_candidate_visible_bundle": true,
+    "verdict": "clean"
+  },
+  "feedback_path_positive_control": {
+    "detected_categories": [
+      "direct_action_token_feedback",
+      "target_label_or_class_name"
+    ],
+    "detections": [
+      {
+        "category": "direct_action_token_feedback",
+        "path": "records[0].feedback_history[0].token",
+        "pattern": "direct_response"
+      },
+      {
+        "category": "target_label_or_class_name",
+        "path": "records[0].feedback_history[0].token",
+        "pattern": "direct_response"
+      }
+    ],
+    "feedback_history_events_scanned": 3,
+    "feedback_history_records_scanned": 1,
+    "pre_scrubbed_before_scan": false,
+    "producer_function": "scan_candidate_visible_bundle",
+    "scanned_paths": [
+      "observation",
+      "legal_history",
+      "feedback_history",
+      "query_action",
+      "serialized_state_before_update",
+      "serialized_state_after_update",
+      "final_prediction"
+    ],
+    "scanned_unsanitized_candidate_visible_bundle": true,
+    "verdict": "blocked_by_leakage_scan"
+  },
+  "observation_positive_control": {
+    "detected_categories": [
+      "scorer_only_or_answer_field",
+      "target_label_or_class_name"
+    ],
+    "detections": [
+      {
+        "category": "scorer_only_or_answer_field",
+        "path": "records[0].observation.answer_key",
+        "pattern": "answer_key"
+      },
+      {
+        "category": "target_label_or_class_name",
+        "path": "records[0].observation.answer_key",
+        "pattern": "direct_response"
+      }
+    ],
+    "feedback_history_events_scanned": 3,
+    "feedback_history_records_scanned": 1,
+    "pre_scrubbed_before_scan": false,
+    "producer_function": "scan_candidate_visible_bundle",
+    "scanned_paths": [
+      "observation",
+      "legal_history",
+      "feedback_history",
+      "query_action",
+      "serialized_state_before_update",
+      "serialized_state_after_update",
+      "final_prediction"
+    ],
+    "scanned_unsanitized_candidate_visible_bundle": true,
+    "verdict": "blocked_by_leakage_scan"
+  },
+  "positive_control_detected": true,
+  "producer_function": "build_leakage_positive_control_report",
+  "serialized_state_positive_control": {
+    "detected_categories": [
+      "scorer_only_or_answer_field",
+      "target_label_or_class_name"
+    ],
+    "detections": [
+      {
+        "category": "scorer_only_or_answer_field",
+        "path": "records[0].serialized_state_after_update.answer_key",
+        "pattern": "answer_key"
+      },
+      {
+        "category": "target_label_or_class_name",
+        "path": "records[0].serialized_state_after_update.answer_key",
+        "pattern": "boundary_option"
+      }
+    ],
+    "feedback_history_events_scanned": 3,
+    "feedback_history_records_scanned": 1,
+    "pre_scrubbed_before_scan": false,
+    "producer_function": "scan_candidate_visible_bundle",
+    "scanned_paths": [
+      "observation",
+      "legal_history",
+      "feedback_history",
+      "query_action",
+      "serialized_state_before_update",
+      "serialized_state_after_update",
+      "final_prediction"
+    ],
+    "scanned_unsanitized_candidate_visible_bundle": true,
+    "verdict": "blocked_by_leakage_scan"
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "baseline_ids": [
+    "observation_only_decoder_challenger",
+    "feedback_aware_decoder_challenger",
+    "query_and_follow_feedback",
+    "direct_stated_preference_copier",
+    "feedback_token_lookup",
+    "history_order_cache",
+    "stream_keyed_count_table",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "oracle_label_positive_control",
+    "leakage_positive_control"
+  ],
+  "independence_check": {
+    "passed": true,
+    "producer_function": "verify_baseline_independence",
+    "rows": [
+      {
+        "baseline_id": "observation_only_decoder_challenger",
+        "independent_callable": true,
+        "producer_function": "baseline_observation_only_decoder",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "feedback_aware_decoder_challenger",
+        "independent_callable": true,
+        "producer_function": "baseline_feedback_aware_decoder",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "query_and_follow_feedback",
+        "independent_callable": true,
+        "producer_function": "baseline_query_and_follow_feedback",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "direct_stated_preference_copier",
+        "independent_callable": true,
+        "producer_function": "baseline_direct_stated_preference_copier",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "feedback_token_lookup",
+        "independent_callable": true,
+        "producer_function": "baseline_feedback_token_lookup",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "history_order_cache",
+        "independent_callable": true,
+        "producer_function": "baseline_history_order_cache",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "stream_keyed_count_table",
+        "independent_callable": true,
+        "producer_function": "baseline_stream_keyed_count_table",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "graph_lookup",
+        "independent_callable": true,
+        "producer_function": "baseline_graph_lookup",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "transition_table",
+        "independent_callable": true,
+        "producer_function": "baseline_transition_table",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "successor_map",
+        "independent_callable": true,
+        "producer_function": "baseline_successor_map",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "count_table",
+        "independent_callable": true,
+        "producer_function": "baseline_count_table",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "fsm_planner",
+        "independent_callable": true,
+        "producer_function": "baseline_fsm_planner",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "episodic_traversal",
+        "independent_callable": true,
+        "producer_function": "baseline_episodic_traversal",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "oracle_label_positive_control",
+        "independent_callable": true,
+        "producer_function": "baseline_oracle_label_positive_control",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      },
+      {
+        "baseline_id": "leakage_positive_control",
+        "independent_callable": true,
+        "producer_function": "baseline_leakage_positive_control",
+        "shares_candidate_prediction": false,
+        "shares_candidate_update": false
+      }
+    ]
+  },
+  "invocation_check": {
+    "missing_baselines": [],
+    "passed": true,
+    "producer_function": "verify_baseline_invocations"
+  },
+  "invoked_baselines": [
+    "observation_only_decoder_challenger",
+    "feedback_aware_decoder_challenger",
+    "query_and_follow_feedback",
+    "direct_stated_preference_copier",
+    "feedback_token_lookup",
+    "history_order_cache",
+    "stream_keyed_count_table",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "oracle_label_positive_control",
+    "leakage_positive_control"
+  ],
+  "producer_function": "run_baselines",
+  "rows": [
+    {
+      "baseline_id": "observation_only_decoder_challenger",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_observation_only_decoder",
+      "query_budget": 0,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "feedback_aware_decoder_challenger",
+      "feedback_interface_access": true,
+      "positive_control": false,
+      "producer_function": "baseline_feedback_aware_decoder",
+      "query_budget": 1,
+      "score": 0.5
+    },
+    {
+      "baseline_id": "query_and_follow_feedback",
+      "feedback_interface_access": true,
+      "positive_control": false,
+      "producer_function": "baseline_query_and_follow_feedback",
+      "query_budget": 1,
+      "score": 0.5
+    },
+    {
+      "baseline_id": "direct_stated_preference_copier",
+      "feedback_interface_access": true,
+      "positive_control": false,
+      "producer_function": "baseline_direct_stated_preference_copier",
+      "query_budget": 1,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "feedback_token_lookup",
+      "feedback_interface_access": true,
+      "positive_control": false,
+      "producer_function": "baseline_feedback_token_lookup",
+      "query_budget": 1,
+      "score": 0.5
+    },
+    {
+      "baseline_id": "history_order_cache",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_history_order_cache",
+      "query_budget": 0,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "stream_keyed_count_table",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_stream_keyed_count_table",
+      "query_budget": 0,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "graph_lookup",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_graph_lookup",
+      "query_budget": 0,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "transition_table",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_transition_table",
+      "query_budget": 0,
+      "score": 0.2857142857142857
+    },
+    {
+      "baseline_id": "successor_map",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_successor_map",
+      "query_budget": 0,
+      "score": 0.2857142857142857
+    },
+    {
+      "baseline_id": "count_table",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_count_table",
+      "query_budget": 0,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "fsm_planner",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_fsm_planner",
+      "query_budget": 0,
+      "score": 0.25
+    },
+    {
+      "baseline_id": "episodic_traversal",
+      "feedback_interface_access": false,
+      "positive_control": false,
+      "producer_function": "baseline_episodic_traversal",
+      "query_budget": 0,
+      "score": 0.2857142857142857
+    },
+    {
+      "baseline_id": "oracle_label_positive_control",
+      "feedback_interface_access": false,
+      "positive_control": true,
+      "producer_function": "baseline_oracle_label_positive_control",
+      "query_budget": 0,
+      "score": 1.0
+    },
+    {
+      "baseline_id": "leakage_positive_control",
+      "feedback_interface_access": false,
+      "positive_control": true,
+      "producer_function": "baseline_leakage_positive_control",
+      "query_budget": 0,
+      "score": 1.0
+    }
+  ],
+  "scores": {
+    "count_table": 0.25,
+    "direct_stated_preference_copier": 0.25,
+    "episodic_traversal": 0.2857142857142857,
+    "feedback_aware_decoder_challenger": 0.5,
+    "feedback_token_lookup": 0.5,
+    "fsm_planner": 0.25,
+    "graph_lookup": 0.25,
+    "history_order_cache": 0.25,
+    "leakage_positive_control": 1.0,
+    "observation_only_decoder_challenger": 0.25,
+    "oracle_label_positive_control": 1.0,
+    "query_and_follow_feedback": 0.5,
+    "stream_keyed_count_table": 0.25,
+    "successor_map": 0.2857142857142857,
+    "transition_table": 0.2857142857142857
+  }
+}

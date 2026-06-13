@@ -1,0 +1,25 @@
+{
+  "candidate_id": "multi_event_nonlabel_feedback_integrator",
+  "parses_target_token_from_feedback": false,
+  "per_split_scores": {
+    "active_query_required_episodes": 1.0,
+    "counterfactual_intervention": 1.0,
+    "heldout_episodes_with_remapped_ids": 1.0,
+    "seen_partner_unseen_context": 1.0,
+    "unseen_partner_seen_context": 1.0,
+    "unseen_partner_unseen_context": 1.0,
+    "unseen_preference_transition": 1.0
+  },
+  "producer_function": "summarize_candidate",
+  "score": 1.0,
+  "single_feedback_token_control": {
+    "candidate_single_token_score": 0.5,
+    "single_feedback_token_can_determine_target": false,
+    "single_token_ceiling": 0.6
+  },
+  "uses_feedback_history": true,
+  "uses_legal_history": true,
+  "uses_observation": true,
+  "uses_query_action": true,
+  "uses_serialized_state": true
+}
