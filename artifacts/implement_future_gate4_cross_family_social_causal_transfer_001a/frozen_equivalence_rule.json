@@ -1,0 +1,30 @@
+{
+  "ablation_drop_is_diagnostic_only": true,
+  "aggregation_rule": "mean_accuracy_over_heldout_partner_family_and_task_schema_counterfactual_units",
+  "candidate_advantage_definition": "candidate primary score > best faithful baseline primary score + frozen margin, with all provenance, leakage, replay, baseline invocation, split, and ablation gates passing",
+  "candidate_equivalent_definition": "best faithful baseline ties, beats, or remains within the frozen margin of the candidate; ablation drop cannot rescue this result",
+  "created_before_run": true,
+  "faithful_baseline_equivalence_is_hard_failure": true,
+  "metric_specific_margins": {
+    "counterfactual_pair_accuracy": 0.05,
+    "heldout_counterfactual_action_accuracy": 0.05,
+    "heldout_partner_family_accuracy": 0.05,
+    "heldout_task_schema_accuracy": 0.05
+  },
+  "primary_metric_name": "heldout_counterfactual_action_accuracy",
+  "producer_function": "future_gate4_cross_family_social_causal_transfer_001a.core.build_frozen_equivalence_rule",
+  "required_sample_unit_level": "episode_id_and_counterfactual_pair_id",
+  "rule_id": "frozen_equivalence_rule_cross_family_social_causal_transfer_001a",
+  "run_block_if_missing": true,
+  "run_block_if_modified_after_execution_start": true,
+  "secondary_metric_names": [
+    "heldout_partner_family_accuracy",
+    "heldout_task_schema_accuracy",
+    "counterfactual_pair_accuracy"
+  ],
+  "source_file_hash": "4274592d37a2b8eff93d00cb3fae297930685045e09a66bb7dec75545d7fb6f4",
+  "source_file_path": "src/future_gate4_cross_family_social_causal_transfer_001a/core.py",
+  "statistical_rule": "paired_margin_rule_no_candidate_advantage_if_gap_less_than_or_equal_margin",
+  "task_id": "implement_future_gate4_cross_family_social_causal_transfer_001a",
+  "tie_equivalence_definition": "Candidate and faithful baseline are equivalent when the candidate-baseline primary score gap is less than or equal to the frozen margin, or the paired confidence rule does not support an advantage beyond that margin."
+}

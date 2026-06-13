@@ -1,0 +1,157 @@
+{
+  "aggregation_rule": "all_replay_records_recompute_same_candidate_action_from_serialized_state_and_observation",
+  "baseline_callable_paths": [
+    "belief_table",
+    "count_table",
+    "episodic_trace_retrieval",
+    "episodic_traversal",
+    "fsm_planner",
+    "full_bundle_decoder",
+    "graph_lookup",
+    "nearest_neighbor_retrieval",
+    "ngram_trace_lookup",
+    "pair_count",
+    "partner_id_decoder",
+    "query_capable_imitation_baseline",
+    "serialized_state_decoder",
+    "successor_map",
+    "table_lookup",
+    "target_label_oracle_leak_check",
+    "transition_table"
+  ],
+  "candidate_callable_path": "future_gate4_cross_family_social_causal_transfer_001a.core.candidate_predict",
+  "code_path_hash": "4274592d37a2b8eff93d00cb3fae297930685045e09a66bb7dec75545d7fb6f4",
+  "context_ids": [
+    "heldout_context_delta",
+    "heldout_context_epsilon",
+    "heldout_context_zeta",
+    "heldout_context_delta",
+    "heldout_context_epsilon",
+    "heldout_context_zeta",
+    "heldout_context_delta",
+    "heldout_context_epsilon"
+  ],
+  "episode_ids": [
+    "episode_000",
+    "episode_001",
+    "episode_002",
+    "episode_003",
+    "episode_004",
+    "episode_005",
+    "episode_006",
+    "episode_007"
+  ],
+  "failure_controls": {
+    "corrupted_serialized_state_detected": true
+  },
+  "input_artifact_hashes": {
+    "trace_replay_inputs": "c797b3a84759ae5c6eee1e69d2752605d0efda897cb1b44f8d917e3108f822bb"
+  },
+  "output_artifact_hashes": {
+    "replay_recomputed_outputs": "1e732948ec5d874229c2596cd0e28082a9ecc9122bef0ce6141053c561a6ecf4"
+  },
+  "passed": true,
+  "producer_function": "future_gate4_cross_family_social_causal_transfer_001a.replay.build_replay_recomputation_report",
+  "recomputed_from": [
+    "serialized_state",
+    "current_observation",
+    "allowed_query_context",
+    "seed_episode_context_ids"
+  ],
+  "rows": [
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "partner_specific_support",
+      "recomputed_state": {
+        "belief_logit": 2,
+        "online_update_count": 2,
+        "partner_memory_hash": "a5171073c2aea149"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "clarifying_probe",
+      "recomputed_state": {
+        "belief_logit": 0,
+        "online_update_count": 2,
+        "partner_memory_hash": "2134853dee93585f"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "clarifying_probe",
+      "recomputed_state": {
+        "belief_logit": 0,
+        "online_update_count": 2,
+        "partner_memory_hash": "8a96281bcaea9348"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "partner_specific_support",
+      "recomputed_state": {
+        "belief_logit": 2,
+        "online_update_count": 2,
+        "partner_memory_hash": "b86af90508640ec9"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "partner_specific_support",
+      "recomputed_state": {
+        "belief_logit": 2,
+        "online_update_count": 2,
+        "partner_memory_hash": "85775fad224e6f35"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "clarifying_probe",
+      "recomputed_state": {
+        "belief_logit": 0,
+        "online_update_count": 2,
+        "partner_memory_hash": "886efb60a7222bfb"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "clarifying_probe",
+      "recomputed_state": {
+        "belief_logit": 0,
+        "online_update_count": 2,
+        "partner_memory_hash": "440e708b54765e44"
+      }
+    },
+    {
+      "failure_reason": null,
+      "passed": true,
+      "recomputed_action": "partner_specific_support",
+      "recomputed_state": {
+        "belief_logit": 2,
+        "online_update_count": 2,
+        "partner_memory_hash": "157ce52044ecc900"
+      }
+    }
+  ],
+  "seeds": [
+    "seed_000",
+    "seed_001",
+    "seed_002",
+    "seed_003",
+    "seed_004",
+    "seed_005",
+    "seed_006",
+    "seed_007"
+  ],
+  "task_id": "implement_future_gate4_cross_family_social_causal_transfer_001a",
+  "uses_hash_only_comparison": false,
+  "uses_stored_baseline_output": false,
+  "uses_stored_candidate_output": false
+}
