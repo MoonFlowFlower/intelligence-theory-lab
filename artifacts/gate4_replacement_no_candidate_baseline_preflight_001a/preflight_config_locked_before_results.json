@@ -1,0 +1,121 @@
+{
+  "allowed_code_paths": [
+    "src/gate4_replacement_no_candidate_baseline_preflight_001a/**",
+    "tests/test_gate4_replacement_no_candidate_baseline_preflight_001a.py",
+    "artifacts/gate4_replacement_no_candidate_baseline_preflight_001a/**",
+    "docs/research/GATE4-REPLACEMENT-NO-CANDIDATE-BASELINE-PREFLIGHT-001A.md"
+  ],
+  "baseline_inventory": [
+    "partner_id_lookup_baseline",
+    "preference_table_baseline",
+    "retrieval_baseline",
+    "imitation_frequency_baseline",
+    "order_k_history_baseline_k1",
+    "order_k_history_baseline_k2",
+    "static_majority_marginal_baseline",
+    "generator_proxy_baseline",
+    "oracle_shape_rule_baseline",
+    "shuffled_linkage_control",
+    "counterfactual_pair_baseline",
+    "serialized_state_decoder",
+    "full_bundle_decoder",
+    "ngram_trace_lookup",
+    "pair_count_frequency_baseline",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "query_capable_imitation_baseline"
+  ],
+  "candidate_absent_fields_required": true,
+  "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+  "counterfactual_pair_ids": [
+    "cf_pair_4101_0",
+    "cf_pair_4101_1",
+    "cf_pair_4101_2",
+    "cf_pair_4101_3",
+    "cf_pair_4102_0",
+    "cf_pair_4102_1",
+    "cf_pair_4102_2",
+    "cf_pair_4102_3"
+  ],
+  "created_before_results": true,
+  "forbidden_code_paths": [
+    "src/ego_mainline*",
+    "src/same_agent_bridge*",
+    "src/post_bridge*",
+    "src/*candidate*",
+    "runtime",
+    "admission",
+    "bridge",
+    "Gate5",
+    "LLM/RAG",
+    "UI",
+    "companion/product"
+  ],
+  "generated_dataset_ids": [
+    "gate4_no_candidate_preflight_dataset_4101",
+    "gate4_no_candidate_preflight_dataset_4102"
+  ],
+  "heldout_context_ids": [
+    "heldout_context_4101_0",
+    "heldout_context_4101_1",
+    "heldout_context_4101_2",
+    "heldout_context_4101_3",
+    "heldout_context_4102_0",
+    "heldout_context_4102_1",
+    "heldout_context_4102_2",
+    "heldout_context_4102_3"
+  ],
+  "leakage_positive_control_definition": [
+    "injected_visible_label_leak",
+    "injected_partner_id_leak",
+    "injected_preference_table_leak",
+    "injected_serialized_state_leak",
+    "injected_filename_order_leak",
+    "injected_helper_literal_leak"
+  ],
+  "predeclared_aggregation_rule": "mean exact-match accuracy over heldout episodes",
+  "predeclared_invalidation_threshold": 0.8,
+  "predeclared_metrics": [
+    "heldout_action_accuracy"
+  ],
+  "predeclared_minimum_candidate_margin": null,
+  "replay_corruption_test_definition": [
+    "corrupt_serialized_baseline_state",
+    "corrupt_observation",
+    "corrupt_linkage"
+  ],
+  "run_command": "$env:PYTHONPATH='src'; python -m gate4_replacement_no_candidate_baseline_preflight_001a --write-report",
+  "seeds": [
+    4101,
+    4102
+  ],
+  "split_ids": [
+    "train",
+    "heldout",
+    "counterfactual_pair"
+  ],
+  "structural_control_inventory": [
+    "remove_partner_context_linkage",
+    "shuffle_intervention_feedback",
+    "swap_heldout_partner_context_mappings",
+    "inject_misleading_retrieval_matches",
+    "remove_transfer_phase",
+    "replace_causal_feedback_with_non_causal_correlated_cue",
+    "counterfactual_pair_split",
+    "positive_control_leakage_injection",
+    "corrupt_replay_state",
+    "corrupt_observation"
+  ],
+  "task_family_proposal_id": "GATE4-REPLACEMENT-NO-CANDIDATE-BASELINE-PREFLIGHT-001A",
+  "task_id": "gate4_replacement_no_candidate_baseline_preflight_001a",
+  "train_context_ids": [
+    "train_context_4101_0",
+    "train_context_4101_1",
+    "train_context_4102_0",
+    "train_context_4102_1"
+  ]
+}

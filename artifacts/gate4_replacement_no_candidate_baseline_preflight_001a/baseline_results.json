@@ -1,0 +1,1881 @@
+{
+  "declared_baselines": [
+    "partner_id_lookup_baseline",
+    "preference_table_baseline",
+    "retrieval_baseline",
+    "imitation_frequency_baseline",
+    "order_k_history_baseline_k1",
+    "order_k_history_baseline_k2",
+    "static_majority_marginal_baseline",
+    "generator_proxy_baseline",
+    "oracle_shape_rule_baseline",
+    "shuffled_linkage_control",
+    "counterfactual_pair_baseline",
+    "serialized_state_decoder",
+    "full_bundle_decoder",
+    "ngram_trace_lookup",
+    "pair_count_frequency_baseline",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "query_capable_imitation_baseline"
+  ],
+  "declared_count": 22,
+  "invoked_baselines": [
+    "partner_id_lookup_baseline",
+    "preference_table_baseline",
+    "retrieval_baseline",
+    "imitation_frequency_baseline",
+    "order_k_history_baseline_k1",
+    "order_k_history_baseline_k2",
+    "static_majority_marginal_baseline",
+    "generator_proxy_baseline",
+    "oracle_shape_rule_baseline",
+    "shuffled_linkage_control",
+    "counterfactual_pair_baseline",
+    "serialized_state_decoder",
+    "full_bundle_decoder",
+    "ngram_trace_lookup",
+    "pair_count_frequency_baseline",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "query_capable_imitation_baseline"
+  ],
+  "missing_baselines": [],
+  "passed_invocation_gate": true,
+  "producer_function": "run_baselines",
+  "results": [
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "partner_id_lookup_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "partner_id_lookup_baseline",
+      "code_path_hash": "e14935689a9be5c8f8df96a8c25afda2fb2a99f64164bb93b1004034dfc91556",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "partner_id_lookup_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "partner_id_lookup_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "partner_id_lookup"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "preference_table_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "preference_table_baseline",
+      "code_path_hash": "05ca873ed4b20dfaa47e11cb2f5416ee7286d1297cc3d93e37e6c9c657431c8c",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "preference_table_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "preference_table_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "anonymized_partner_key",
+        "map": {
+          "anon_partner_0": "support",
+          "anon_partner_1": "challenge",
+          "anon_partner_2": "defer",
+          "anon_partner_3": "summarize"
+        },
+        "strategy": "preference_table"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "retrieval_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "retrieval_baseline",
+      "code_path_hash": "3af262e83742ed3557fecc7e452a780621065a21d4789f9bb0e29693a9f09f3e",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "retrieval_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "retrieval_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "retrieval"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "imitation_frequency_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "imitation_frequency_baseline",
+      "code_path_hash": "504429553e0287365aa0c60ee8ca6d2c9de2b4f9a8ab09c0ed467e348092b0ae",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "imitation_frequency_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "imitation_frequency_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "imitation_frequency"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "order_k_history_baseline_k1",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "order_k_history_baseline_k1",
+      "code_path_hash": "0b8b1b00ac90ff74a293c03858d1f438ec1a98ce7435f53287ecc22278423e3c",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "order_k_history_baseline_k1 invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "order_k_history_baseline_k1",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "k": 1,
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "order_k_history_1"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "order_k_history_baseline_k2",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "order_k_history_baseline_k2",
+      "code_path_hash": "05315ffa3287b2c3cb619e397147fdf47c0cc5cb9f84f3f6fad94e1b56916f1a",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "order_k_history_baseline_k2 invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "order_k_history_baseline_k2",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "k": 2,
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "order_k_history_2"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "static_majority_marginal_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "static_majority_marginal_baseline",
+      "code_path_hash": "d85d97226d19f35797add8768c3fc4f702e596ff657f329e92099d5baceee88f",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "static_majority_marginal_baseline did not reach the predeclared invalidation threshold",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "support",
+        "heldout_4101_partner_delta_3": "support",
+        "heldout_4101_partner_gamma_2": "support",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "support",
+        "heldout_4102_partner_delta_3": "support",
+        "heldout_4102_partner_gamma_2": "support"
+      },
+      "producer_function": "static_majority_marginal_baseline",
+      "reached_threshold": false,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 0.25,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "strategy": "static_majority"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "below_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "generator_proxy_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "generator_proxy_baseline",
+      "code_path_hash": "61c04c1fe8f0a036e7851f87e5593b785d91aeed3fb42e0f4d5fdcc9acf58920",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "generator_proxy_baseline did not reach the predeclared invalidation threshold",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "support",
+        "heldout_4101_partner_delta_3": "support",
+        "heldout_4101_partner_gamma_2": "support",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "support",
+        "heldout_4102_partner_delta_3": "support",
+        "heldout_4102_partner_gamma_2": "support"
+      },
+      "producer_function": "generator_proxy_baseline",
+      "reached_threshold": false,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 0.25,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "surface_prompt_id",
+        "map": {
+          "shared_surface_prompt_0": "support",
+          "shared_surface_prompt_1": "support"
+        },
+        "strategy": "surface_prompt"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "below_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "oracle_shape_rule_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "oracle_shape_rule_baseline",
+      "code_path_hash": "3d7cf86c840747c82f2de147ccfd14bf7469b5687376eb8ef94be670819f3d88",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "oracle_shape_rule_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "oracle_shape_rule_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "oracle_shape_rule"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "shuffled_linkage_control",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "shuffled_linkage_control",
+      "code_path_hash": "e21e86f6a67111a3ed7a1e949e110262a10985d8f412bd7e2176b39c9b510e9f",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "shuffled_linkage_control did not reach the predeclared invalidation threshold",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "challenge",
+        "heldout_4101_partner_beta_1": "defer",
+        "heldout_4101_partner_delta_3": "support",
+        "heldout_4101_partner_gamma_2": "summarize",
+        "heldout_4102_partner_alpha_0": "challenge",
+        "heldout_4102_partner_beta_1": "defer",
+        "heldout_4102_partner_delta_3": "support",
+        "heldout_4102_partner_gamma_2": "summarize"
+      },
+      "producer_function": "shuffled_linkage_control",
+      "reached_threshold": false,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 0.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "shuffle_map": {
+          "partner_alpha": "partner_beta",
+          "partner_beta": "partner_gamma",
+          "partner_delta": "partner_alpha",
+          "partner_gamma": "partner_delta"
+        },
+        "strategy": "shuffled_linkage"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "below_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "counterfactual_pair_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "counterfactual_pair_baseline",
+      "code_path_hash": "9f180e1e7e2aabebe399a7cf9f8ffcfa2f9139419876f48ab7c7421b81943821",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "counterfactual_pair_baseline did not reach the predeclared invalidation threshold",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "support",
+        "heldout_4101_partner_delta_3": "support",
+        "heldout_4101_partner_gamma_2": "support",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "support",
+        "heldout_4102_partner_delta_3": "support",
+        "heldout_4102_partner_gamma_2": "support"
+      },
+      "producer_function": "counterfactual_pair_baseline",
+      "reached_threshold": false,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 0.25,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "surface_prompt_id",
+        "map": {
+          "shared_surface_prompt_0": "support",
+          "shared_surface_prompt_1": "support"
+        },
+        "strategy": "surface_prompt"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "below_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "serialized_state_decoder",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "serialized_state_decoder",
+      "code_path_hash": "70ddbf8cddb99699287482f87fcaba353dbc6defa93d3028411e80526d60adf4",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "serialized_state_decoder did not reach the predeclared invalidation threshold",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "support",
+        "heldout_4101_partner_delta_3": "support",
+        "heldout_4101_partner_gamma_2": "support",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "support",
+        "heldout_4102_partner_delta_3": "support",
+        "heldout_4102_partner_gamma_2": "support"
+      },
+      "producer_function": "serialized_state_decoder",
+      "reached_threshold": false,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 0.25,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "state_fields_used": [
+          "seen_partner_count"
+        ],
+        "strategy": "serialized_state_only"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "below_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "full_bundle_decoder",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "full_bundle_decoder",
+      "code_path_hash": "4bdc2510c8f7f33ed512e6724f3e16413bd6e2920b67f482400ad51f034906d9",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "full_bundle_decoder invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "full_bundle_decoder",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "full_bundle"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "ngram_trace_lookup",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "ngram_trace_lookup",
+      "code_path_hash": "7692b97f5c1573491a04170c06ae2fa32c89aa8c5074f47877ba225f112bc45a",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "ngram_trace_lookup invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "ngram_trace_lookup",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer",
+          "seed_bucket_0": "support",
+          "seed_bucket_1": "support",
+          "shared_surface_prompt_0": "support",
+          "shared_surface_prompt_1": "support"
+        },
+        "strategy": "ngram_trace"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "pair_count_frequency_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "pair_count_frequency_baseline",
+      "code_path_hash": "b8df18aaea3bdca116886af26acbd5005e7f6cc4ae89b1bf265fb004219ae5f8",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "pair_count_frequency_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "pair_count_frequency_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "map": {
+          "partner_alpha::shared_surface_prompt_0": "support",
+          "partner_alpha::shared_surface_prompt_1": "support",
+          "partner_beta::shared_surface_prompt_0": "challenge",
+          "partner_beta::shared_surface_prompt_1": "challenge",
+          "partner_delta::shared_surface_prompt_0": "summarize",
+          "partner_delta::shared_surface_prompt_1": "summarize",
+          "partner_gamma::shared_surface_prompt_0": "defer",
+          "partner_gamma::shared_surface_prompt_1": "defer"
+        },
+        "strategy": "pair_count_frequency"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "graph_lookup",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "graph_lookup",
+      "code_path_hash": "4ad42f6afe8a1570177f157be56acdb0ca2532728dce50d2d3a7552da985a945",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "graph_lookup invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "graph_lookup",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "graph_lookup"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "transition_table",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "transition_table",
+      "code_path_hash": "af950ac44abc7292c17d376312f60433df20583fab7267b79e474198727a937b",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "transition_table invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "transition_table",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "transition_table"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "successor_map",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "successor_map",
+      "code_path_hash": "2b8ca5656ad99c9f057cf939e8b296a5c27789b5b05ae150ab17cacb27a16bf8",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "successor_map invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "successor_map",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "successor_map"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "count_table",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "count_table",
+      "code_path_hash": "1b48044275eeb7ba57cf2b8a18e6f143b170914458a7b4fa8b42494d140d269e",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "count_table invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "count_table",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "count_table"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "fsm_planner",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "fsm_planner",
+      "code_path_hash": "b2e241c67a1d02c199cdb78a467b6241b21e7bde48e0650a95a3eba2ddbb5da8",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "fsm_planner invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "fsm_planner",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "fsm_planner"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "episodic_traversal",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "episodic_traversal",
+      "code_path_hash": "61e2c34fa0bcbe3227f3d7f18836cebd7ed7cd4214234a3a0f8723b5ef158105",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "episodic_traversal invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "episodic_traversal",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "partner_id",
+        "map": {
+          "partner_alpha": "support",
+          "partner_beta": "challenge",
+          "partner_delta": "summarize",
+          "partner_gamma": "defer"
+        },
+        "strategy": "episodic_traversal"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    },
+    {
+      "aggregation_rule": "mean exact-match accuracy over heldout episodes",
+      "baseline_id": "query_capable_imitation_baseline",
+      "callable_invoked": true,
+      "candidate_or_baseline_id": "query_capable_imitation_baseline",
+      "code_path_hash": "084f812d4cf201f9cea154d7448d0bf42ef7dd5c108332ce3e65ef747be87615",
+      "config_hash": "534c618e9e363e9ac6203b1887511ccd18b659cba5fe85ed6ca37be8eaef7a2e",
+      "counterfactual_pair_ids": [
+        "cf_pair_4101_0",
+        "cf_pair_4101_1",
+        "cf_pair_4101_2",
+        "cf_pair_4101_3",
+        "cf_pair_4102_0",
+        "cf_pair_4102_1",
+        "cf_pair_4102_2",
+        "cf_pair_4102_3"
+      ],
+      "created_at": "2026-06-13T20:59:38+00:00",
+      "episode_ids": [
+        "heldout_4101_partner_alpha_0",
+        "heldout_4101_partner_beta_1",
+        "heldout_4101_partner_gamma_2",
+        "heldout_4101_partner_delta_3",
+        "heldout_4102_partner_alpha_0",
+        "heldout_4102_partner_beta_1",
+        "heldout_4102_partner_gamma_2",
+        "heldout_4102_partner_delta_3"
+      ],
+      "failure_mode_interpretation": "query_capable_imitation_baseline invalidates the task family before candidate implementation",
+      "heldout_context_ids": [
+        "heldout_context_4101_0",
+        "heldout_context_4101_1",
+        "heldout_context_4101_2",
+        "heldout_context_4101_3",
+        "heldout_context_4102_0",
+        "heldout_context_4102_1",
+        "heldout_context_4102_2",
+        "heldout_context_4102_3"
+      ],
+      "input_artifacts": [
+        "generated_task_family.train",
+        "generated_task_family.heldout"
+      ],
+      "metric": "accuracy",
+      "predictions": {
+        "heldout_4101_partner_alpha_0": "support",
+        "heldout_4101_partner_beta_1": "challenge",
+        "heldout_4101_partner_delta_3": "summarize",
+        "heldout_4101_partner_gamma_2": "defer",
+        "heldout_4102_partner_alpha_0": "support",
+        "heldout_4102_partner_beta_1": "challenge",
+        "heldout_4102_partner_delta_3": "summarize",
+        "heldout_4102_partner_gamma_2": "defer"
+      },
+      "producer_function": "query_capable_imitation_baseline",
+      "reached_threshold": true,
+      "run_id": "gate4_replacement_no_candidate_baseline_preflight_001a_534c618e9e363e9a",
+      "score": 1.0,
+      "seed": [
+        4101,
+        4102
+      ],
+      "serialized_baseline_state": {
+        "fallback": "support",
+        "field": "query_key",
+        "map": {
+          "query_partner_alpha": "support",
+          "query_partner_beta": "challenge",
+          "query_partner_delta": "summarize",
+          "query_partner_gamma": "defer"
+        },
+        "strategy": "query_imitation"
+      },
+      "static_score_injection": false,
+      "threshold": 0.8,
+      "train_context_ids": [
+        "train_context_4101_0",
+        "train_context_4101_1",
+        "train_context_4102_0",
+        "train_context_4102_1"
+      ],
+      "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+    }
+  ],
+  "run_count": 22
+}

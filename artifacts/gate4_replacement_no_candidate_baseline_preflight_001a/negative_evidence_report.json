@@ -1,0 +1,18 @@
+{
+  "best_faithful_baseline": {
+    "baseline_id": "partner_id_lookup_baseline",
+    "producer_baseline_function": "partner_id_lookup_baseline",
+    "producer_function": "select_best_faithful_baseline",
+    "reached_threshold": true,
+    "score": 1.0,
+    "threshold": 0.8,
+    "verdict_reason": "cheap_baseline_reached_invalidation_threshold"
+  },
+  "do_not_patch_to_pass": true,
+  "negative_evidence_preserved": true,
+  "producer_function": "build_negative_evidence_report",
+  "stop_conditions_triggered": [
+    "cheap_baseline_reached_threshold:partner_id_lookup_baseline"
+  ],
+  "verdict": "no_candidate_baseline_preflight_blocked_by_cheap_baseline_001a"
+}
