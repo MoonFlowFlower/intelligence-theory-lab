@@ -1,0 +1,58 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_leakage_positive_control_contract",
+  "positive_control_required": true,
+  "negative_control_required": true,
+  "leakage_positive_control_rule": "002C must deliberately inject target or partner-latent information into candidate-visible surfaces and prove the scanner detects it. If the scanner misses injected leakage, the result is blocked.",
+  "negative_control_no_signal_rule": "002C must include a no-signal condition. If the candidate or a non-oracle baseline exceeds allowed chance or declared prior performance under no-signal, the result is blocked.",
+  "minimum_positive_control_injection_surfaces": [
+    "partner_id",
+    "context_id",
+    "fixture_name",
+    "file_path",
+    "visible_label",
+    "action_name",
+    "reward_signal",
+    "bundle_field",
+    "serialized_state",
+    "trace_ordering",
+    "menu_preference_table",
+    "answer_label"
+  ],
+  "scanner_required_outputs": [
+    "scanner_id",
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "injection_surface",
+    "expected_detection",
+    "actual_detection",
+    "false_negative_count",
+    "false_positive_count",
+    "aggregation_rule",
+    "code_path_hash"
+  ],
+  "minimum_reports_for_002c": [
+    "leakage_surface_inventory.json",
+    "leakage_positive_control_report.json",
+    "target_non_recoverability_scan.json",
+    "context_id_leakage_audit.json",
+    "serialized_state_leakage_audit.json",
+    "negative_control_no_signal_report.json"
+  ],
+  "blocking_conditions": [
+    "positive-control leakage case absent",
+    "scanner misses injected leakage",
+    "scanner has no callable producer",
+    "scanner results are static literals",
+    "target recoverable from candidate-visible surface",
+    "no-signal condition absent",
+    "candidate succeeds in no-signal condition beyond declared prior",
+    "non-oracle baseline succeeds in no-signal condition beyond declared prior"
+  ],
+  "claim_if_missing": "blocked_missing_leakage_positive_control_or_no_signal_negative_control"
+}

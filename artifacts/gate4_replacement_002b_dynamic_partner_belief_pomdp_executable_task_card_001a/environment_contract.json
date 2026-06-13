@@ -1,0 +1,69 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_environment_contract",
+  "environment_family": "dynamic_partner_belief_pomdp",
+  "required_properties": {
+    "partial_observability": true,
+    "minimum_partner_latent_types": 2,
+    "partner_policy_shift_after_interaction_history": true,
+    "heldout_partner_dynamics": true,
+    "counterfactual_partner_response_probes": true,
+    "candidate_social_latent_state_intervention": true,
+    "partner_observation_stream_intervention": true,
+    "negative_control_no_signal_condition": true,
+    "positive_control_leakage_condition": true,
+    "explicit_train_context_ids": true,
+    "explicit_heldout_context_ids": true,
+    "explicit_counterfactual_context_ids": true,
+    "explicit_ablation_context_ids": true
+  },
+  "target_non_recoverability_requirements": [
+    "partner_id",
+    "visible_labels",
+    "pair_counts",
+    "bundle_fields",
+    "serialized_state",
+    "trace_ordering_alone",
+    "menu_preference_tables",
+    "fixed_finite_state_scripts",
+    "answer_labels",
+    "context_ids",
+    "fixture_names",
+    "file_paths",
+    "action_names",
+    "reward_signal_labels"
+  ],
+  "split_contract": {
+    "train_context_ids_required": true,
+    "heldout_context_ids_required": true,
+    "counterfactual_context_ids_required": true,
+    "ablation_context_ids_required": true,
+    "episode_ids_required": true,
+    "context_ids_must_not_encode_partner_type": true,
+    "context_ids_must_not_encode_target_label": true,
+    "context_ids_must_not_encode_policy_shift": true,
+    "heldout_must_cover_partner_dynamics_not_only_labels": true
+  },
+  "minimum_environment_reports_for_002c": [
+    "environment_generation_manifest.json",
+    "train_context_manifest.json",
+    "heldout_partner_dynamics_manifest.json",
+    "counterfactual_probe_manifest.json",
+    "ablation_context_manifest.json",
+    "positive_control_leakage_manifest.json",
+    "negative_control_no_signal_manifest.json",
+    "target_non_recoverability_scan.json"
+  ],
+  "blocking_conditions": [
+    "partner latent type recoverable from partner ID or context ID",
+    "policy shift recoverable from trace order without behavior update",
+    "target label visible in observation, action, reward, filename, path, serialized state, or bundle field",
+    "environment uses candidate-specific puzzle construction",
+    "environment success depends on encryption, obfuscation, or field hiding",
+    "heldout split only renames labels instead of changing partner dynamics",
+    "negative-control no-signal condition is absent",
+    "positive-control leakage condition is absent"
+  ],
+  "claim_if_missing": "blocked_invalid_environment_contract"
+}

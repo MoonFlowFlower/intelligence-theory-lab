@@ -1,0 +1,68 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_heldout_counterfactual_contract",
+  "requirements": [
+    {
+      "requirement_id": "train_heldout_counterfactual_ablation_context_ids",
+      "required": true,
+      "description": "Every train, heldout, counterfactual, and ablation context must be explicitly identified and audited for leakage."
+    },
+    {
+      "requirement_id": "heldout_partner_dynamics_not_only_labels",
+      "required": true,
+      "description": "Heldout split must contain unseen partner dynamics or update rules, not only renamed labels or hidden answers."
+    },
+    {
+      "requirement_id": "partner_policy_shift_after_history",
+      "required": true,
+      "description": "At least one family must shift partner policy after interaction history so other-state updates are required."
+    },
+    {
+      "requirement_id": "counterfactual_partner_response_probes",
+      "required": true,
+      "description": "Counterfactual probes must alter partner response structure while controlling non-causal surfaces where possible."
+    },
+    {
+      "requirement_id": "social_latent_state_intervention",
+      "required": true,
+      "description": "Counterfactual evaluation must include interventions on candidate social-latent state or update path."
+    },
+    {
+      "requirement_id": "partner_observation_stream_intervention",
+      "required": true,
+      "description": "Counterfactual evaluation must intervene on the partner-observation stream or history and check predicted changes."
+    },
+    {
+      "requirement_id": "positive_control_leakage_context",
+      "required": true,
+      "description": "At least one context must deliberately inject leakage and must be detected by scanners."
+    },
+    {
+      "requirement_id": "negative_control_no_signal_context",
+      "required": true,
+      "description": "At least one context must remove social signal and block false positive success."
+    }
+  ],
+  "minimum_reports_for_002c": [
+    "split_manifest.json",
+    "heldout_partner_dynamics_report.json",
+    "counterfactual_response_report.json",
+    "social_latent_state_intervention_report.json",
+    "partner_observation_stream_intervention_report.json",
+    "context_id_leakage_audit.json",
+    "positive_control_leakage_report.json",
+    "negative_control_no_signal_report.json"
+  ],
+  "blocking_conditions": [
+    "heldout context IDs encode target or partner type",
+    "heldout split contains only label renaming",
+    "counterfactual probes are not invoked",
+    "partner policy shift is absent",
+    "social-latent intervention is absent",
+    "partner-observation stream intervention is absent",
+    "no-signal negative control is absent",
+    "positive-control leakage context is absent"
+  ],
+  "claim_if_missing": "blocked_missing_heldout_counterfactual_contract"
+}

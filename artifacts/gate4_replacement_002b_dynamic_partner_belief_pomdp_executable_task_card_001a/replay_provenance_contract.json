@@ -1,0 +1,86 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_replay_provenance_contract",
+  "computed_evidence_provenance_gate": {
+    "required": true,
+    "reported_result_must_be_computed": true,
+    "baseline_metrics_must_be_computed": true,
+    "ablation_metrics_must_be_computed": true,
+    "leakage_scan_metrics_must_be_computed": true,
+    "replay_metrics_must_be_computed": true,
+    "static_dictionary_results_forbidden": true,
+    "literal_score_results_forbidden": true,
+    "unconditional_clean_reports_forbidden": true,
+    "tests_that_assert_pass_forbidden": true,
+    "declared_but_uninvoked_baselines_block": true,
+    "declared_but_unrerun_ablations_block": true,
+    "unused_seed_blocks": true,
+    "unused_train_context_blocks": true,
+    "unused_heldout_context_blocks": true,
+    "unused_counterfactual_context_blocks": true,
+    "unused_ablation_context_blocks": true
+  },
+  "required_fields_per_score": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash"
+  ],
+  "replay_contract": {
+    "recompute_candidate_behavior_from_serialized_state_plus_observation": true,
+    "recompute_baseline_behavior_from_serialized_state_plus_observation_where_applicable": true,
+    "hash_only_trace_replay_sufficient": false,
+    "stored_action_replay_sufficient": false,
+    "stored_metric_replay_sufficient": false,
+    "schema_inspection_only_sufficient": false,
+    "required_fields_per_replay_row": [
+      "serialized_state_path",
+      "observation_path",
+      "recomputation_function",
+      "replay_run_id",
+      "seed",
+      "context_id",
+      "episode_id",
+      "expected_action_or_prediction",
+      "actual_recomputed_action_or_prediction",
+      "comparison_rule",
+      "code_path_hash",
+      "replay_failure_path_test"
+    ],
+    "minimum_replay_inputs": [
+      "serialized_state",
+      "observation",
+      "legal_actions",
+      "update_history",
+      "random_seed_or_sampling_manifest",
+      "model_snapshot_or_code_hash_if_applicable"
+    ]
+  },
+  "minimum_reports_for_002c": [
+    "computed_evidence_provenance.json",
+    "candidate_metric_report.json",
+    "baseline_metric_report.json",
+    "ablation_metric_report.json",
+    "leakage_scan_report.json",
+    "replay_recomputation_report.json",
+    "failure_path_test_report.json"
+  ],
+  "blocking_conditions": [
+    "score literal used as result",
+    "static dictionary used as report source",
+    "unconditional clean report emitted",
+    "declared baseline not invoked",
+    "declared ablation not rerun",
+    "seed declared but unused",
+    "context ID declared but unused",
+    "leakage scanner lacks positive-control case",
+    "replay compares only hashes",
+    "replay reuses stored action or stored metric"
+  ],
+  "claim_if_missing": "blocked_missing_computed_evidence_provenance_or_replay_recomputation"
+}

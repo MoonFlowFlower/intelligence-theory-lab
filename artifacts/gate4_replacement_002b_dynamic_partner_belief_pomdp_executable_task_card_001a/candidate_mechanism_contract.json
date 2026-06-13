@@ -1,0 +1,84 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_candidate_mechanism_contract",
+  "candidate_requirements": [
+    {
+      "requirement_id": "separate_self_and_other_state",
+      "required": true,
+      "description": "Candidate must maintain distinguishable self-state and other-state representations or auditable state components."
+    },
+    {
+      "requirement_id": "other_state_updated_from_observed_behavior",
+      "required": true,
+      "description": "Other-state must update from observed partner behavior rather than partner ID, labels, fixture names, or evaluator-only fields."
+    },
+    {
+      "requirement_id": "traceable_latent_updates",
+      "required": true,
+      "description": "Candidate must expose update traces, state snapshots, or hashes sufficient for replay and intervention audit."
+    },
+    {
+      "requirement_id": "predict_changed_partner_behavior",
+      "required": true,
+      "description": "Candidate must predict partner behavior under changed conditions before observing the response."
+    },
+    {
+      "requirement_id": "adapt_after_partner_policy_shift",
+      "required": true,
+      "description": "Candidate must update behavior after partner policy or preference shifts following interaction history."
+    },
+    {
+      "requirement_id": "action_conditioned_on_inferred_partner_state",
+      "required": true,
+      "description": "Candidate action selection must depend on inferred other-state and not only on visible tokens or static lookup."
+    },
+    {
+      "requirement_id": "replayable_from_serialized_state_plus_observation",
+      "required": true,
+      "description": "Candidate behavior must be recomputable from serialized state plus observation under the declared replay inputs."
+    },
+    {
+      "requirement_id": "degrades_under_social_latent_ablation",
+      "required": true,
+      "description": "Candidate must degrade meaningfully when the social-latent update path is disabled, frozen, shuffled, or corrupted under real rerun."
+    }
+  ],
+  "candidate_forbidden_access": [
+    "privileged_target_labels",
+    "evaluator_only_partner_type",
+    "evaluator_only_policy_shift",
+    "answer_labels",
+    "hidden_reward_oracle",
+    "baseline_denied_query_outputs",
+    "baseline_denied_feedback_history",
+    "baseline_denied_serialized_state",
+    "baseline_denied_observation_history"
+  ],
+  "candidate_trace_required_fields": [
+    "run_id",
+    "seed",
+    "context_id",
+    "episode_id",
+    "step_id",
+    "observation_ref",
+    "self_state_ref_or_hash",
+    "other_state_ref_or_hash",
+    "update_function",
+    "update_input_refs",
+    "prediction_before_response",
+    "action_or_action_distribution",
+    "serialized_state_path",
+    "code_path_hash"
+  ],
+  "allowed_representation_note": "Explicit, learned, or high-dimensional latent states are allowed only if update history, state snapshots or hashes, replay inputs, intervention effects, leakage boundary, and baseline comparisons are auditable.",
+  "blocking_conditions": [
+    "other-state is keyed by partner ID",
+    "candidate receives evaluator-only target or partner-type fields",
+    "candidate has query or feedback access denied to fair baselines",
+    "candidate state cannot be serialized for replay recomputation",
+    "candidate behavior is unaffected by social-latent update ablation",
+    "candidate behavior is a fixed behavior tree over visible tokens only"
+  ],
+  "claim_if_missing": "blocked_invalid_candidate_mechanism_contract"
+}

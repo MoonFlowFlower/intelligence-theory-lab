@@ -1,0 +1,77 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_failure_path_test_requirements",
+  "current_task_creates_tests": false,
+  "future_002c_failure_path_tests_required": true,
+  "required_failure_path_tests": [
+    {
+      "test_id": "missing_baseline_invocation_blocks",
+      "required": true,
+      "failure_condition": "A required baseline is declared but not invoked.",
+      "expected_verdict": "blocked_missing_baseline_invocation"
+    },
+    {
+      "test_id": "missing_ablation_rerun_blocks",
+      "required": true,
+      "failure_condition": "A required ablation is declared but not rerun under intervention.",
+      "expected_verdict": "blocked_missing_ablation_rerun"
+    },
+    {
+      "test_id": "static_score_dictionary_blocks",
+      "required": true,
+      "failure_condition": "Reported score comes from literal, static dictionary, or unconditional clean report.",
+      "expected_verdict": "blocked_static_score_source"
+    },
+    {
+      "test_id": "unused_seed_blocks",
+      "required": true,
+      "failure_condition": "Seed is declared but not used in candidate, baseline, ablation, leakage, or replay computation.",
+      "expected_verdict": "blocked_unused_seed"
+    },
+    {
+      "test_id": "unused_context_blocks",
+      "required": true,
+      "failure_condition": "Train, heldout, counterfactual, or ablation context ID is declared but unused.",
+      "expected_verdict": "blocked_unused_context"
+    },
+    {
+      "test_id": "leakage_positive_control_miss_blocks",
+      "required": true,
+      "failure_condition": "Injected leakage is not detected by the scanner.",
+      "expected_verdict": "blocked_leakage_positive_control_miss"
+    },
+    {
+      "test_id": "no_signal_false_success_blocks",
+      "required": true,
+      "failure_condition": "Candidate or non-oracle baseline exceeds allowed prior in no-signal condition.",
+      "expected_verdict": "blocked_no_signal_false_success"
+    },
+    {
+      "test_id": "hash_only_replay_blocks",
+      "required": true,
+      "failure_condition": "Replay compares stored hashes without recomputing action or prediction.",
+      "expected_verdict": "blocked_hash_only_replay"
+    },
+    {
+      "test_id": "stored_action_or_metric_replay_blocks",
+      "required": true,
+      "failure_condition": "Replay reuses stored action, stored prediction, or stored metric instead of recomputation.",
+      "expected_verdict": "blocked_stored_replay"
+    },
+    {
+      "test_id": "candidate_only_privileged_access_blocks",
+      "required": true,
+      "failure_condition": "Candidate receives target, partner-state, query, feedback, state, or observation access denied to fair baselines.",
+      "expected_verdict": "blocked_candidate_only_privileged_access"
+    },
+    {
+      "test_id": "faithful_baseline_tie_blocks_pass",
+      "required": true,
+      "failure_condition": "Any faithful non-oracle baseline ties or beats the candidate under accepted metrics.",
+      "expected_verdict": "baseline_equivalence_preserved_negative_evidence"
+    }
+  ],
+  "minimum_report_for_002c": "failure_path_test_report.json",
+  "claim_if_missing": "blocked_missing_failure_path_tests"
+}

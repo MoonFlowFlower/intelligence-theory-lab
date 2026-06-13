@@ -1,0 +1,98 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_ablation_contract",
+  "ablation_rule": "All ablations must rerun candidate and relevant baselines under real interventions. Report-only edits, static flags, and post-hoc metric changes are invalid.",
+  "required_fields_per_ablation": [
+    "ablation_id",
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_ids",
+    "episode_ids",
+    "intervention_manifest",
+    "candidate_invoked",
+    "relevant_baselines_invoked",
+    "aggregation_rule",
+    "code_path_hash",
+    "predeclared_degradation_rule",
+    "observed_degradation"
+  ],
+  "ablations": [
+    {
+      "ablation_id": "disable_social_latent_update_path",
+      "required": true,
+      "intervention": "Disable, delete, or null the candidate social-latent update path while preserving non-social paths.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_no_meaningful_degradation": true
+    },
+    {
+      "ablation_id": "freeze_other_state_after_initial_observation",
+      "required": true,
+      "intervention": "Freeze other-state after the initial observation and evaluate after partner policy shifts.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_no_meaningful_degradation": true
+    },
+    {
+      "ablation_id": "shuffle_partner_observation_history",
+      "required": true,
+      "intervention": "Shuffle partner-observation history while holding noncausal surfaces constant where possible.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_claimed_state_is_order_sensitive_but_no_effect": true
+    },
+    {
+      "ablation_id": "remove_partner_policy_shift",
+      "required": true,
+      "intervention": "Remove partner policy shift to verify that claimed update sensitivity is tied to dynamic partner behavior.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_shift_claim_survives_without_shift": true
+    },
+    {
+      "ablation_id": "swap_partner_latent_dynamics",
+      "required": true,
+      "intervention": "Swap partner latent dynamics across contexts without leaking partner type through IDs.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_candidate_tracks_ids_rather_than_behavior": true
+    },
+    {
+      "ablation_id": "mask_partner_id_and_explicit_labels",
+      "required": true,
+      "intervention": "Mask partner ID, explicit labels, fixture names, and path surfaces.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_result_depends_on_identity_surface": true
+    },
+    {
+      "ablation_id": "inject_target_leakage_positive_control",
+      "required": true,
+      "intervention": "Inject target or partner-latent information into candidate-visible surfaces to prove leakage scanners can detect collapse.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_leakage_not_detected": true
+    },
+    {
+      "ablation_id": "remove_social_signal_negative_control",
+      "required": true,
+      "intervention": "Remove social signal while preserving legal action and non-social transition structure.",
+      "must_rerun_candidate": true,
+      "must_rerun_relevant_baselines": true,
+      "blocks_if_candidate_or_non_oracle_baseline_exceeds_allowed_prior": true
+    }
+  ],
+  "blocking_conditions": [
+    "ablation declared but not rerun",
+    "candidate not invoked under intervention",
+    "relevant baselines not invoked under intervention",
+    "static ablation report used instead of computation",
+    "social-latent ablation does not degrade claimed behavior",
+    "negative-control no-signal condition admits false success",
+    "positive-control leakage injection is not detected"
+  ],
+  "claim_if_missing": "blocked_invalid_ablation_contract"
+}

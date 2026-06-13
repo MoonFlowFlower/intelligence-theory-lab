@@ -1,0 +1,89 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_acceptance_gate",
+  "pass_conditions_for_future_002c": [
+    {
+      "condition_id": "candidate_beats_strongest_faithful_baseline",
+      "required": true,
+      "description": "Candidate beats the strongest faithful non-mechanism baseline on heldout and counterfactual partner dynamics."
+    },
+    {
+      "condition_id": "bundle_and_state_decoders_fail_below_candidate",
+      "required": true,
+      "description": "Full-bundle decoder and serialized-state decoder fail below candidate under fair access."
+    },
+    {
+      "condition_id": "lookup_and_table_baselines_fail_below_candidate",
+      "required": true,
+      "description": "Pair-count, partner-ID, trace-lookup, finite-state, and belief-table baselines fail below candidate."
+    },
+    {
+      "condition_id": "ablated_candidate_degrades",
+      "required": true,
+      "description": "Ablated candidate degrades meaningfully under real social-latent update intervention."
+    },
+    {
+      "condition_id": "positive_control_leakage_detected",
+      "required": true,
+      "description": "Positive-control leakage is detected by callable scanner."
+    },
+    {
+      "condition_id": "negative_control_no_signal_blocks_false_success",
+      "required": true,
+      "description": "Negative-control no-signal condition blocks false candidate or baseline success."
+    },
+    {
+      "condition_id": "replay_recomputes_behavior",
+      "required": true,
+      "description": "Replay recomputes candidate and baseline behavior from serialized state plus observation."
+    },
+    {
+      "condition_id": "all_baselines_and_ablations_callable_and_invoked",
+      "required": true,
+      "description": "All required baselines and ablations are callable and invoked."
+    },
+    {
+      "condition_id": "provenance_complete",
+      "required": true,
+      "description": "Every score records producer function, input artifacts, run ID, seed, context IDs, episode IDs, aggregation rule, and code path hash."
+    },
+    {
+      "condition_id": "failure_path_tests_present",
+      "required": true,
+      "description": "Failure-path tests are present and verify blocked conditions."
+    },
+    {
+      "condition_id": "forbidden_paths_unchanged",
+      "required": true,
+      "description": "No Gate5, admission, bridge, runtime, EGO-mainline, UI, companion, integration, deployment, API key, or external-service files are changed."
+    }
+  ],
+  "automatic_block_conditions": [
+    "faithful non-oracle baseline ties or beats candidate",
+    "full-bundle decoder recovers target",
+    "serialized-state decoder recovers target",
+    "positive-control leakage not detected",
+    "negative-control no-signal condition admits false success",
+    "social-latent ablation does not degrade candidate behavior",
+    "replay does not recompute behavior",
+    "baselines or ablations declared but uninvoked",
+    "provenance missing producer function, input artifacts, run ID, seed, context IDs, episode IDs, aggregation rule, or code path hash",
+    "candidate receives privileged access unavailable to baselines",
+    "forbidden scope files changed",
+    "claim exceeds bounded offline mechanism-proxy evidence"
+  ],
+  "allowed_pass_verdict": "gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a_pass",
+  "blocked_verdict_family": [
+    "blocked_baseline_equivalence",
+    "blocked_decoder_recoverability",
+    "blocked_leakage_positive_control",
+    "blocked_no_signal_false_success",
+    "blocked_ablation_no_degradation",
+    "blocked_replay_not_recomputed",
+    "blocked_provenance_gap",
+    "blocked_access_parity_failure",
+    "blocked_forbidden_scope_change"
+  ],
+  "claim_if_pass": "bounded offline mechanism-proxy evidence for the named 002C dynamic partner-belief POMDP experiment only"
+}

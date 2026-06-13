@@ -1,0 +1,146 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002B-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTABLE-TASK-CARD-001A",
+  "future_task_id": "GATE4-REPLACEMENT-002C-DYNAMIC-PARTNER-BELIEF-POMDP-EXECUTION-001A",
+  "producer_function": "manual_governance_baseline_contract_matrix",
+  "baseline_first_rule": "002C baselines, access rights, invocation requirements, and collapse interpretations must be implemented before candidate scoring and before candidate success metrics are accepted.",
+  "required_fields_per_baseline_result": [
+    "baseline_id",
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "train_context_ids",
+    "heldout_context_ids",
+    "counterfactual_context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "access_rights_declaration",
+    "failure_mode_ruled_out",
+    "callable_invoked",
+    "static_score_injection"
+  ],
+  "baselines": [
+    {
+      "baseline_id": "random_control_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Legal action space, episode schedule, seed, and action constraints; no hidden partner state.",
+      "failure_mode_ruled_out": "Trivial action-prior or environment imbalance.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "pair_count_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Candidate-visible observation, action, feedback, context, and partner-response pairs under the same train budget.",
+      "failure_mode_ruled_out": "001E-style recovery from shallow pair statistics or stream-keyed counts.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "n_gram_trace_lookup_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Candidate-visible ordered traces, bounded n-gram windows, legal history, feedback history, and train traces.",
+      "failure_mode_ruled_out": "Trace memorization, suffix lookup, and episodic traversal without latent social update.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "partner_id_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Every partner identifier, source ID, fixture ID, context name, path surface, or identity-like field visible to the candidate.",
+      "failure_mode_ruled_out": "Partner-specific lookup masquerading as other-state inference.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "preference_table_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Observed or inferred menu, preference, response, and feedback frequencies from train histories under the same observation budget.",
+      "failure_mode_ruled_out": "Static preference memorization rather than dynamic partner-belief updating.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "full_bundle_decoder",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "All candidate-visible bundle fields, observations, legal actions, query outputs, feedback, histories, state summaries, and metadata.",
+      "failure_mode_ruled_out": "Target recoverability from full candidate-visible task encoding.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "serialized_state_decoder",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Serialized candidate state after updates, state summaries, reversible state hashes where applicable, and replay observation stream.",
+      "failure_mode_ruled_out": "Answer-bearing state encoding or target leakage through serialized state.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "finite_state_policy_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Visible tokens, legal history, recent observations, feedback, and bounded memory comparable to candidate finite control capacity.",
+      "failure_mode_ruled_out": "If-else behavior tree, FSM planner, or fixed script keyed by visible tokens.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "query_capable_imitation_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Same query budget, timing, feedback, observation stream, and candidate-visible surfaces as the candidate.",
+      "failure_mode_ruled_out": "Candidate advantage caused by exclusive query affordance, feedback timing, or observation access.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "belief_table_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Tabular belief updates over observable partner behavior classes without privileged partner labels or hidden targets.",
+      "failure_mode_ruled_out": "Compact tabular Bayesian or count update sufficient for apparent social-latent behavior.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "oracle_access_upper_bound",
+      "required": true,
+      "oracle": true,
+      "required_access_rights": "Explicit oracle access to hidden partner dynamics for upper-bound calibration only.",
+      "failure_mode_ruled_out": "Task impossibility or ambiguous metric ceiling.",
+      "collapse_if_ties_candidate": false
+    },
+    {
+      "baseline_id": "ablated_candidate_social_latent_disabled",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Same candidate implementation and non-social paths intact, but social-latent update disabled under a real rerun.",
+      "failure_mode_ruled_out": "Candidate behavior independent of the claimed social-latent update path.",
+      "collapse_if_ties_candidate": true
+    },
+    {
+      "baseline_id": "non_social_world_model_baseline",
+      "required": true,
+      "oracle": false,
+      "required_access_rights": "Same environment observations and transition history, but no partner-specific latent state.",
+      "failure_mode_ruled_out": "Success from ordinary world-transition modeling rather than other-state inference.",
+      "collapse_if_ties_candidate": true
+    }
+  ],
+  "collapse_family_extensions_required_when_relevant": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "nearest_neighbor",
+    "observation_only_control",
+    "shuffled_history_control",
+    "no_signal_control"
+  ],
+  "strongest_baseline_selection_rule": "Report the strongest faithful non-oracle baseline on heldout and counterfactual metrics. If any faithful baseline ties or exceeds the candidate on an accepted metric, classify as baseline-equivalence negative evidence.",
+  "static_score_dictionary_forbidden": true,
+  "declared_but_uninvoked_baseline_blocks": true,
+  "candidate_access_without_baseline_parity_blocks": true,
+  "claim_if_missing": "blocked_missing_faithful_callable_baselines"
+}
