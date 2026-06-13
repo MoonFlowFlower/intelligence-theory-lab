@@ -1,0 +1,96 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002D-POST-RESULT-AUDIT-ANTI-ZENO-ROUTING-001A",
+  "facts_from_artifacts": [
+    {
+      "id": "fact_001",
+      "statement": "002C verdict is baseline-equivalent negative evidence.",
+      "source": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/result.json"
+    },
+    {
+      "id": "fact_002",
+      "statement": "Candidate score is 1.0.",
+      "source": "result.json"
+    },
+    {
+      "id": "fact_003",
+      "statement": "Serialized-state decoder score is 1.0 and is the strongest faithful non-oracle baseline.",
+      "source": "strongest_baseline_report.json"
+    },
+    {
+      "id": "fact_004",
+      "statement": "Pair-count, ngram trace lookup, full-bundle decoder, serialized-state decoder, and belief-table baselines tied or beat the candidate.",
+      "source": "strongest_baseline_report.json"
+    },
+    {
+      "id": "fact_005",
+      "statement": "Disabling the social-latent update path reduced candidate score to 0.25.",
+      "source": "ablation_results.json"
+    },
+    {
+      "id": "fact_006",
+      "statement": "Positive-control leakage was detected, negative no-signal false success was blocked, replay passed, and static-score guard passed.",
+      "source": "leakage_positive_control_results.json; negative_control_results.json; replay_results.json; static_score_guard_report.json"
+    }
+  ],
+  "inferences": [
+    {
+      "id": "inference_001",
+      "statement": "Candidate 1.0 cannot be treated as mechanism advantage because faithful non-mechanism baselines also reached 1.0.",
+      "basis": [
+        "fact_002",
+        "fact_003",
+        "fact_004"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "inference_002",
+      "statement": "The ablation drop shows dependence on the candidate update path but not task necessity for that path.",
+      "basis": [
+        "fact_004",
+        "fact_005"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "inference_003",
+      "statement": "Further 002C local repair would likely become puzzle hardening or field hiding unless the task family is redesigned from a higher-level target.",
+      "basis": [
+        "fact_003",
+        "fact_004",
+        "fact_005"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "assumption_001",
+      "statement": "Gate4 remains theoretically important, but this audit does not authorize a new Gate4 experiment."
+    },
+    {
+      "id": "assumption_002",
+      "statement": "A higher-level redesign task card could materially change target design, but that remains untested in this task."
+    }
+  ],
+  "value_judgments": [
+    {
+      "id": "value_001",
+      "statement": "Avoiding anti-Zeno local patching is more valuable than extracting another toy variant from a collapsed family."
+    },
+    {
+      "id": "value_002",
+      "statement": "Preserving negative evidence without repair is preferable to hiding recoverable surfaces."
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "unknown_001",
+      "statement": "Whether a redesigned Gate4 task family can produce baseline-non-equivalent mechanism evidence is unknown."
+    },
+    {
+      "id": "unknown_002",
+      "statement": "Whether a transfer or scaling probe can be specified without recoverability by serialized-state, full-bundle, belief-table, pair-count, trace, or partner-ID baselines is unknown."
+    }
+  ]
+}

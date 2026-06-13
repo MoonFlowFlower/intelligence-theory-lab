@@ -1,0 +1,22 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002D-POST-RESULT-AUDIT-ANTI-ZENO-ROUTING-001A",
+  "source_ablation": "disable_social_latent_update",
+  "candidate_score": 1.0,
+  "ablated_candidate_score": 0.25,
+  "drop": 0.75,
+  "diagnostic_value": {
+    "shows_candidate_update_path_is_used": true,
+    "shows_task_requires_candidate_update_path": false,
+    "shows_mechanism_advantage": false,
+    "supports_gate4_continuation_by_itself": false
+  },
+  "limiting_facts": [
+    "serialized_state_decoder_score_1_0",
+    "full_bundle_decoder_score_1_0",
+    "belief_table_score_1_0",
+    "pair_count_score_1_0",
+    "ngram_trace_lookup_score_1_0"
+  ],
+  "assessment": "The ablation drop is useful as a dependency diagnostic only. It does not rescue the task family because fair non-mechanism baselines still solve the target perfectly.",
+  "claim_ceiling": "residual diagnostic value only; no positive mechanism evidence"
+}

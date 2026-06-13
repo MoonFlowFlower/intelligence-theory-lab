@@ -1,0 +1,45 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002D-POST-RESULT-AUDIT-ANTI-ZENO-ROUTING-001A",
+  "checks": [
+    {
+      "question": "Are we repeatedly repairing weak Gate4 tasks?",
+      "answer": "yes",
+      "basis": "001D route closed, 001E preserved baseline equivalence, 001F reset problem definition, and 002C still collapsed to faithful baselines."
+    },
+    {
+      "question": "Are we increasing discriminative mechanism evidence?",
+      "answer": "no",
+      "basis": "002C produced candidate 1.0 but faithful baselines also reached 1.0."
+    },
+    {
+      "question": "Are repairs becoming obfuscation or puzzle hardening?",
+      "answer": "risk_high",
+      "basis": "The remaining apparent repairs would need to prevent serialized-state, full-bundle, belief-table, pair-count, and trace recovery."
+    },
+    {
+      "question": "Is the route consuming effort without escaping baseline equivalence?",
+      "answer": "yes",
+      "basis": "002C still triggered baseline-equivalence stop conditions."
+    },
+    {
+      "question": "Does ablation drop override baseline equivalence?",
+      "answer": "no",
+      "basis": "Ablation shows candidate dependence on its update path, not uniqueness or necessity of that path for solving the task."
+    }
+  ],
+  "closure_rules_triggered": [
+    "faithful_baselines_tied_candidate_at_1_0",
+    "full_bundle_decoder_reached_candidate_equivalent_performance",
+    "serialized_state_decoder_reached_candidate_equivalent_performance",
+    "belief_table_or_trace_lookup_reached_candidate_equivalent_performance",
+    "no_clear_mechanism_discriminative_gap_remains"
+  ],
+  "small_probe_rules_satisfied": {
+    "tests_transfer_scaling_robustness_not_puzzle_difficulty": "unknown",
+    "target_not_recoverable_by_faithful_baselines": false,
+    "strict_stop_condition": "possible_but_not_defined",
+    "lower_cost_than_full_redesign": "unknown",
+    "can_produce_negative_evidence_without_repair": "unknown"
+  },
+  "anti_zeno_conclusion": "Close the 002C toy POMDP family. Do not create 002E as a same-family patch, local hardening exercise, or small probe from the collapsed 002C surface."
+}

@@ -1,0 +1,51 @@
+{
+  "task_id": "GATE4-REPLACEMENT-002D-POST-RESULT-AUDIT-ANTI-ZENO-ROUTING-001A",
+  "source_task_id": "gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+  "source_artifact_directory": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+  "source_verdict": "gate4_replacement_002c_baseline_equivalent_negative_evidence",
+  "source_artifact_hashes_sha256": {
+    "result.json": "f26493902448156d1d7234bca461c73c9608a40b170232e5feb99453e7e34118",
+    "strongest_baseline_report.json": "8ad7939bb6550014f6b888218eb4a7fe4a72a13031be2f30e454c099544d1dd8",
+    "ablation_results.json": "832a0c41463228e42cf8e071b1c2049d5770ac6ec89ad4ac145c9d5bfb0dd2b6",
+    "replay_results.json": "225ce6e265cd2fcbc87798d4785019519a584ea5cf7824a817d11f619097367a",
+    "provenance_manifest.json": "5ea03b1daa1c8ed36bac478c6fbec8af8a10c5a5581f6e0ececdd97a6f11f82a",
+    "static_score_guard_report.json": "55ed87e45d4a0c47cee28e74ca260b808104e75f8f10a736cae3146328d109f1",
+    "non_mutation_guard.json": "f45da9d60c12d0dd27af8174ae1465e071e4f5ef813f579c26884d4cd5f0c959"
+  },
+  "json_parse_check": {
+    "result_json": true,
+    "strongest_baseline_report_json": true,
+    "ablation_results_json": true,
+    "negative_control_results_json": true,
+    "leakage_positive_control_results_json": true,
+    "replay_results_json": true,
+    "provenance_manifest_json": true,
+    "static_score_guard_report_json": true,
+    "non_mutation_guard_json": true,
+    "source_pin_readback_json": true
+  },
+  "fact_summary": {
+    "candidate_score": 1.0,
+    "strongest_faithful_baseline": "serialized_state_decoder",
+    "strongest_faithful_baseline_score": 1.0,
+    "faithful_baselines_tied_or_beat_candidate": [
+      "pair_count",
+      "ngram_trace_lookup",
+      "full_bundle_decoder",
+      "serialized_state_decoder",
+      "belief_table"
+    ],
+    "disable_social_latent_update_candidate_score": 0.25,
+    "negative_no_signal_score": 0.25,
+    "positive_control_leakage_detected": true,
+    "replay_passed": true,
+    "static_score_positive_control_detected": true,
+    "source_non_mutation_guard_passed": true
+  },
+  "negative_evidence_interpretation": {
+    "candidate_success_is_not_mechanism_advantage": true,
+    "reason": "candidate and faithful non-mechanism baselines reached the same score",
+    "ablation_drop_has_residual_diagnostic_value": true,
+    "ablation_drop_not_sufficient_for_gate4_continuation": true
+  }
+}
