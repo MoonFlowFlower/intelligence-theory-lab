@@ -1,0 +1,154 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-IMPLEMENTATION-TASK-CARD-001A",
+  "future_task_id_if_invoked": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-001B",
+  "future_implementation_authorized_now": false,
+  "requirements": [
+    {
+      "requirement_id": "schema_and_episode_contract",
+      "future_paths": [
+        "src/gate4_replacement_discriminative_social_latent_001b/schemas.py",
+        "src/gate4_replacement_discriminative_social_latent_001b/episodes.py"
+      ],
+      "must_define": [
+        "serializable observation schema",
+        "serializable action schema",
+        "serializable feedback schema",
+        "serializable state schema",
+        "split schema",
+        "provenance schema"
+      ],
+      "must_forbid_legal_decision_access_to": [
+        "raw seed",
+        "raw context_id",
+        "raw partner_id",
+        "phase token",
+        "split label",
+        "oracle latent label",
+        "artifact path",
+        "bundle path",
+        "answer-key-bearing fields"
+      ]
+    },
+    {
+      "requirement_id": "mandatory_split_families",
+      "future_path": "src/gate4_replacement_discriminative_social_latent_001b/episodes.py",
+      "split_ids": [
+        "seen_partner_unseen_context",
+        "unseen_partner_seen_context",
+        "unseen_partner_unseen_context",
+        "unseen_preference_transition",
+        "counterfactual_intervention",
+        "active_query_required_episodes",
+        "heldout_episodes_with_remapped_ids"
+      ],
+      "all_critical": true,
+      "aggregate_rescue_allowed": false
+    },
+    {
+      "requirement_id": "candidate_proxy",
+      "future_path": "src/gate4_replacement_discriminative_social_latent_001b/candidate.py",
+      "required_properties": [
+        "bounded toy proxy only",
+        "uncertainty representation or legal uncertainty proxy",
+        "active query policy path",
+        "feedback-dependent update path",
+        "serialized state before and after update",
+        "later-action dependence on updated state"
+      ],
+      "hidden_label_access_allowed": false
+    },
+    {
+      "requirement_id": "independent_baselines",
+      "future_path": "src/gate4_replacement_discriminative_social_latent_001b/baselines.py",
+      "mandatory_baselines": [
+        "stream_keyed_count_table",
+        "normalized_retrieval",
+        "nearest_neighbor_lookup",
+        "context_partner_table",
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal",
+        "no_state_ablation",
+        "no_feedback_ablation",
+        "no_action_ablation",
+        "oracle_label_positive_control"
+      ],
+      "candidate_policy_code_sharing_allowed": false,
+      "candidate_update_logic_sharing_allowed": false,
+      "candidate_latent_inference_code_sharing_allowed": false,
+      "candidate_state_transition_code_sharing_allowed": false
+    },
+    {
+      "requirement_id": "real_ablation_reruns",
+      "future_path": "src/gate4_replacement_discriminative_social_latent_001b/ablations.py",
+      "mandatory_ablations": [
+        "no_state",
+        "no_feedback",
+        "no_action",
+        "no_active_query",
+        "shuffled_feedback",
+        "counterfactual_transition"
+      ],
+      "post_hoc_score_edits_allowed": false
+    },
+    {
+      "requirement_id": "leakage_positive_control",
+      "future_path": "src/gate4_replacement_discriminative_social_latent_001b/leakage.py",
+      "must_scan": [
+        "real output bundle",
+        "deliberately contaminated positive-control bundle",
+        "ID leakage",
+        "phase-token leakage",
+        "bundle-path leakage",
+        "oracle-label leakage",
+        "answer-key leakage",
+        "deterministic-order leakage"
+      ],
+      "synthetic_controls_may_replace_real_bundle_scan": false,
+      "excluded_paths_must_be_recorded_as": "not_scanned"
+    },
+    {
+      "requirement_id": "replay_recomputation",
+      "future_path": "src/gate4_replacement_discriminative_social_latent_001b/replay.py",
+      "must_recompute_from": [
+        "serialized_state",
+        "observation",
+        "action_policy_path",
+        "update_path",
+        "feedback_history"
+      ],
+      "must_verify": [
+        "action_recomputation",
+        "state_update_recomputation"
+      ],
+      "stored_action_or_hash_only_replay_allowed": false
+    },
+    {
+      "requirement_id": "metrics_and_provenance",
+      "future_paths": [
+        "src/gate4_replacement_discriminative_social_latent_001b/metrics.py",
+        "src/gate4_replacement_discriminative_social_latent_001b/provenance.py"
+      ],
+      "every_score_must_record": [
+        "producer_function",
+        "input_artifacts",
+        "run_id",
+        "seed_ids",
+        "context_ids",
+        "partner_ids",
+        "episode_ids",
+        "split_id",
+        "aggregation_rule",
+        "code_path_hash",
+        "baseline_invocation_path",
+        "ablation_invocation_path",
+        "leakage_scanner_path",
+        "replay_recompute_path"
+      ],
+      "static_score_sources_allowed": false
+    }
+  ]
+}

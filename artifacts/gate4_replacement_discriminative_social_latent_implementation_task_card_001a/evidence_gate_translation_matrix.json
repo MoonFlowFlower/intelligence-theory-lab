@@ -1,0 +1,83 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-IMPLEMENTATION-TASK-CARD-001A",
+  "source_execution_card": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "score_bearing_current_result": false,
+  "translations": [
+    {
+      "sealed_gate": "metric_threshold_gate",
+      "future_implementation_requirement": "Implement computed aggregate, split-level, confidence or repeated-seed, and tie-blocking checks.",
+      "must_block_if": [
+        "strongest non-oracle baseline ties candidate",
+        "aggregate delta below 0.15",
+        "critical split delta below 0.10",
+        "aggregate success attempts to rescue critical split failure",
+        "95 percent lower bound is not greater than 0.05 and no justified repeated-seed replacement exists"
+      ]
+    },
+    {
+      "sealed_gate": "budget_parity_gate",
+      "future_implementation_requirement": "Candidate and baselines use the same legal observation, action, feedback, history, query, update, and state-capacity interface unless a recorded parity exception blocks or justifies comparison.",
+      "must_block_if": [
+        "candidate-only hidden information exists",
+        "baseline-only handicap exists",
+        "legal feedback available to candidate is denied to baseline",
+        "hidden label is used in a decision-time metric"
+      ]
+    },
+    {
+      "sealed_gate": "active_query_causal_gate",
+      "future_implementation_requirement": "Trace uncertainty, policy-chosen query, changed observation or feedback, serialized-state update, and later-action change against no-query and shuffled-feedback counterfactuals.",
+      "must_block_if": [
+        "query is injected by harness default",
+        "query does not change evidence",
+        "feedback does not update serialized state",
+        "later action is unchanged under counterfactuals",
+        "no-active-query or shuffled-feedback drop is below 0.20",
+        "counterfactual-transition drop is below 0.15"
+      ]
+    },
+    {
+      "sealed_gate": "baseline_independence_gate",
+      "future_implementation_requirement": "Invoke every mandatory baseline as an independent callable on every required split and select strongest baseline by computed metric.",
+      "must_block_if": [
+        "baseline is declared but not invoked",
+        "baseline output is literal or static JSON",
+        "baseline shares candidate policy or update code",
+        "disabling a mandatory baseline does not fail the harness"
+      ]
+    },
+    {
+      "sealed_gate": "leakage_positive_control_contract",
+      "future_implementation_requirement": "Scan real bundle and contaminated positive-control bundle through the same callable scanner path.",
+      "must_block_if": [
+        "positive-control contamination is missed",
+        "real-bundle scan is replaced by synthetic-only scan",
+        "bundle argument is ignored",
+        "excluded paths are marked clean instead of not_scanned"
+      ]
+    },
+    {
+      "sealed_gate": "replay_recomputation_contract",
+      "future_implementation_requirement": "Replay recomputes action and state update from serialized state, observation, policy path, update path, and feedback history.",
+      "must_block_if": [
+        "stored-action replay is used",
+        "hash-only replay is used",
+        "state update is not recomputed",
+        "corrupted-state or corrupted-feedback failure paths do not fail"
+      ]
+    },
+    {
+      "sealed_gate": "computed_evidence_provenance_gate",
+      "future_implementation_requirement": "Every score, baseline, ablation, leakage, replay, and verdict metric records callable producer provenance.",
+      "must_block_if": [
+        "producer_function is missing",
+        "input_artifacts are missing",
+        "code_path_hash is missing",
+        "baseline_invocation_path is missing",
+        "ablation_invocation_path is missing",
+        "leakage_scanner_path is missing",
+        "replay_recompute_path is missing"
+      ]
+    }
+  ]
+}
