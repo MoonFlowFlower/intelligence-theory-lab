@@ -1,0 +1,67 @@
+{
+  "task_id": "GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A",
+  "artifact_id": "gate4_evidence_target_spec",
+  "target_statement": "Future Gate4 should test whether a candidate can maintain and update hidden partner-relevant state under uncertainty, use it for counterfactual partner prediction and action under distribution shift, and degrade under real interventions in ways faithful shortcut baselines cannot match.",
+  "evidence_targets": [
+    {
+      "target": "hidden_state_inference_under_uncertainty",
+      "requirement": "Candidate must infer latent partner-relevant state from partial observations without answer-bearing visible labels or target fields.",
+      "negative_evidence_stop": "visible or serialized fields make target directly decodable"
+    },
+    {
+      "target": "belief_update_from_partial_observations",
+      "requirement": "Candidate behavior must depend on update history and degrade under freeze-memory or remove-update ablations.",
+      "negative_evidence_stop": "static belief table, pair count, or observation-only baseline ties candidate"
+    },
+    {
+      "target": "counterfactual_partner_modeling",
+      "requirement": "Candidate must recompute predictions under counterfactual partner interventions not present as trace fragments.",
+      "negative_evidence_stop": "ngram trace lookup or nearest-neighbor trace retrieval ties candidate"
+    },
+    {
+      "target": "transfer_to_unseen_partner_families",
+      "requirement": "Heldout split must include unseen partner dynamics or causal families, not only unseen labels within the same toy family.",
+      "negative_evidence_stop": "candidate advantage disappears or baseline tie occurs on unseen families"
+    },
+    {
+      "target": "intervention_sensitivity",
+      "requirement": "Ablations must rerun episodes under real interventions on social/partner update, memory update, counterfactual branch, partner identity, and observation order.",
+      "negative_evidence_stop": "claimed update path can be removed without meaningful degradation or ablation does not rerun behavior"
+    },
+    {
+      "target": "robustness_under_distribution_shift",
+      "requirement": "Candidate must be evaluated under shifted observation/outcome mappings and shifted partner dynamics with schema parity across splits.",
+      "negative_evidence_stop": "schema split or episode-order artifact exposes the shift"
+    },
+    {
+      "target": "replay_recomputation_from_serialized_state_plus_observation",
+      "requirement": "Replay must recompute candidate and baseline behavior from serialized_state plus observation and record producer_function, input artifacts, run_id, seed, context IDs, episode IDs, aggregation rule, and code path hash.",
+      "negative_evidence_stop": "stored actions, cached outputs, stored metrics, or hash-only replay can pass"
+    },
+    {
+      "target": "resistance_to_decoder_lookup_trace_baselines",
+      "requirement": "Serialized-state decoder, full-bundle decoder, lookup, n-gram, pair-count, static-belief, nearest-neighbor, random/majority, and oracle-style upper-bound baselines must be callable and invoked.",
+      "negative_evidence_stop": "any faithful non-oracle baseline ties or beats candidate"
+    },
+    {
+      "target": "clear_negative_evidence_stop_conditions",
+      "requirement": "The future task card must predeclare blocked verdicts for baseline equivalence, leakage, replay weakness, unused frozen inputs, unfair baseline access, and claim inflation.",
+      "negative_evidence_stop": "task tries to repair after baseline tie rather than preserving negative evidence"
+    }
+  ],
+  "future_provenance_requirements": {
+    "reported_result": "must be produced by callable computation path",
+    "baseline": "must be independent callable implementation",
+    "ablation": "must rerun episodes under real interventions",
+    "contrast": "must be computed from declared splits and artifacts",
+    "leakage": "scanner must include at least one positive-control case",
+    "replay": "must recompute behavior from serialized_state plus observation",
+    "forbidden_metric_forms": [
+      "literal metric dictionary",
+      "static clean report",
+      "unconditional pass verdict",
+      "test that only asserts pass"
+    ]
+  },
+  "claim_ceiling": "future Gate4 evidence-target specification only; no execution or mechanism claim"
+}

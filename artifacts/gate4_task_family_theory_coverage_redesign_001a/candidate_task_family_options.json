@@ -1,0 +1,117 @@
+{
+  "task_id": "GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A",
+  "artifact_id": "candidate_task_family_options",
+  "design_baseline": [
+    "002C/002D baseline-equivalent negative evidence",
+    "existing theory landscape coverage",
+    "explicit faithful-baseline collapse taxonomy"
+  ],
+  "options": [
+    {
+      "option_id": "cross_family_social_causal_transfer",
+      "mechanism_target": "Infer and update partner-relevant latent causal structure from partial observations, then predict or act under counterfactual partner interventions.",
+      "expected_baseline_failure_mode": "Lookup, n-gram trace, pair-count, and static belief-table baselines fail on unseen causal families; serialized-state and full-bundle decoders fail if state contains audit statistics rather than target encodings.",
+      "expected_candidate_advantage_condition": "Candidate beats strongest faithful non-oracle baseline on heldout partner families, counterfactual intervention cases, and shifted observation/outcome mappings.",
+      "leakage_risks": [
+        "partner family encoded in context ID",
+        "target encoded in serialized latent field",
+        "counterfactual branch encoded in episode order",
+        "task schema differs between train and heldout"
+      ],
+      "minimum_heldout_split": "hold out entire partner causal families plus at least one task schema family, with schema-parity checks across splits",
+      "required_ablations": [
+        "remove claimed social or partner latent update",
+        "freeze memory update",
+        "remove counterfactual branch",
+        "shuffle partner identities",
+        "scramble observation order",
+        "hold out partner families",
+        "hold out task schemas",
+        "disable replay recomputation path"
+      ],
+      "replay_requirement": "recompute candidate and baselines from serialized_state plus observation with a stale-output failure-path test",
+      "stop_condition": "any faithful non-oracle decoder, lookup, trace, pair-count, static-belief, or graph-cache baseline ties or beats candidate",
+      "why_not_002c_patched": "The target is transfer across unseen causal families, not same-family dynamic partner-belief route recovery.",
+      "comparison_against_design_baseline": "Directly addresses 002C/002D collapse by making unseen-family causal transfer the target."
+    },
+    {
+      "option_id": "active_uncertainty_reducing_partner_probe",
+      "mechanism_target": "Select information-gathering probes under budget to reduce uncertainty about partner dynamics before acting.",
+      "expected_baseline_failure_mode": "Static tables, pair counts, and trace retrieval fail when useful probes depend on posterior uncertainty and unseen partner families.",
+      "expected_candidate_advantage_condition": "Candidate's probe policy improves heldout and counterfactual prediction beyond query-capable imitation and no-query baselines.",
+      "leakage_risks": [
+        "query name reveals correct action",
+        "query availability differs by target",
+        "probe result encodes hidden label",
+        "budget metadata leaks split"
+      ],
+      "minimum_heldout_split": "hold out partner families and probe-response mappings; preserve identical query schema across train, heldout, and counterfactual splits",
+      "required_ablations": [
+        "disable active probe selection",
+        "force random query",
+        "freeze belief update after query",
+        "shuffle probe responses",
+        "scramble observation order",
+        "hold out partner families",
+        "disable replay recomputation path"
+      ],
+      "replay_requirement": "recompute probe selection, update, and final action from serialized_state plus observation",
+      "stop_condition": "query-capable imitation, trace lookup, or static query table ties or beats candidate",
+      "why_not_002c_patched": "The tested target is active information acquisition under uncertainty, not passive decoding of a partner observation stream.",
+      "comparison_against_design_baseline": "Adds a control-oriented inference target from theory coverage while preserving 002D anti-Zeno closure."
+    },
+    {
+      "option_id": "distribution_shifted_belief_revision",
+      "mechanism_target": "Revise partner belief after partial evidence and maintain it across delayed outcome windows under distribution shift.",
+      "expected_baseline_failure_mode": "Frequency, pair-count, and nearest-neighbor baselines fail when train and heldout observation/outcome mappings shift without schema cues.",
+      "expected_candidate_advantage_condition": "Candidate remains calibrated under shifted dynamics and degrades under memory-freeze and observation-order ablations.",
+      "leakage_risks": [
+        "shift type encoded in split name",
+        "delayed outcome row order leaks answer",
+        "serialized state stores final target",
+        "heldout schema exposes distribution shift"
+      ],
+      "minimum_heldout_split": "hold out shift families and delayed outcome patterns; require same schema and ID format across splits",
+      "required_ablations": [
+        "freeze memory update",
+        "remove delayed outcome channel",
+        "shuffle observation order",
+        "swap partner identities",
+        "hold out partner families",
+        "hold out task schemas",
+        "disable replay recomputation path"
+      ],
+      "replay_requirement": "recompute sequential belief revision and delayed action from serialized_state plus observation",
+      "stop_condition": "frequency, nearest-neighbor, static belief, or serialized-state decoder ties or beats candidate",
+      "why_not_002c_patched": "The task tests delayed belief revision under distribution shift, not immediate route selection in the 002C family.",
+      "comparison_against_design_baseline": "Targets 002C's small-family saturation by requiring shift-family holdout."
+    },
+    {
+      "option_id": "social_memory_counterfactual_replay",
+      "mechanism_target": "Recompute future partner response from auditable prior interaction state under counterfactual perturbations while resisting pure retrieval.",
+      "expected_baseline_failure_mode": "Nearest-neighbor trace retrieval and social-believability baselines fail when counterfactual branches require recomputation rather than recall.",
+      "expected_candidate_advantage_condition": "Candidate behavior changes predictably under counterfactual perturbations and social-memory removal, while trace-only replay and memory-summary baselines fail.",
+      "leakage_risks": [
+        "memory summary text states target",
+        "counterfactual branch ID encodes answer",
+        "trace hash acts as lookup key",
+        "prompt instructions reveal partner type"
+      ],
+      "minimum_heldout_split": "hold out interaction-history families, counterfactual perturbation families, and partner response families",
+      "required_ablations": [
+        "remove social memory carryover",
+        "remove counterfactual branch",
+        "shuffle partner identities",
+        "scramble observation order",
+        "hold out partner families",
+        "disable replay recomputation path",
+        "compare against memory-summary baseline"
+      ],
+      "replay_requirement": "recompute memory update and counterfactual response from serialized_state plus observation, not from stored output or summary text",
+      "stop_condition": "trace retrieval, memory-summary, n-gram, or serialized-state decoder baseline ties or beats candidate",
+      "why_not_002c_patched": "The focus is counterfactual social-memory replay, not partner-type table selection.",
+      "comparison_against_design_baseline": "Uses theory coverage for memory/replay and social modeling while treating Generative Agents-style social believability as a baseline."
+    }
+  ],
+  "claim_ceiling": "future task-family options only; no option is implemented or authorized for execution by this task"
+}

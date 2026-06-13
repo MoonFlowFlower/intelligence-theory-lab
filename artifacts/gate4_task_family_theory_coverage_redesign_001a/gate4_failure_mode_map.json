@@ -1,0 +1,68 @@
+{
+  "task_id": "GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A",
+  "artifact_id": "gate4_failure_mode_map",
+  "source_negative_evidence": {
+    "002c_verdict": "gate4_replacement_002c_baseline_equivalent_negative_evidence",
+    "002d_route_decision": "close_002c_toy_pomdp_family",
+    "candidate_score": 1.0,
+    "strongest_faithful_baseline": "serialized_state_decoder",
+    "strongest_faithful_baseline_score": 1.0
+  },
+  "failure_modes": [
+    {
+      "failure_mode": "faithful_baseline_tie",
+      "source_readback": "002C candidate reached 1.0 while faithful non-oracle baselines also reached 1.0.",
+      "redesign_requirement": "Any future Gate4 candidate claim is blocked if the strongest faithful non-oracle baseline ties or beats candidate on heldout, counterfactual, or shifted splits.",
+      "future_stop_condition": "faithful_baseline_tied_or_beat_candidate"
+    },
+    {
+      "failure_mode": "serialized_state_decoder_collapse",
+      "source_readback": "002C strongest faithful non-oracle baseline was serialized_state_decoder with score 1.0.",
+      "redesign_requirement": "Future serialized state must support replay and audit without directly encoding answer-sufficient hidden target fields.",
+      "future_stop_condition": "serialized_state_decoder_reached_candidate_equivalent_performance"
+    },
+    {
+      "failure_mode": "full_bundle_decoder_collapse",
+      "source_readback": "002D lists full_bundle_decoder among baselines that reached 1.0.",
+      "redesign_requirement": "Full candidate-visible bundle access must be an explicit baseline; if it decodes the target, the task is negative evidence.",
+      "future_stop_condition": "full_bundle_decoder_reached_candidate_equivalent_performance"
+    },
+    {
+      "failure_mode": "table_lookup_collapse",
+      "source_readback": "002C/002D identify belief_table and pair_count routes as faithful baselines tying or beating candidate.",
+      "redesign_requirement": "Future heldout split must include unseen partner families or causal structures that cannot be solved by static belief tables, partner-ID tables, or pair counts.",
+      "future_stop_condition": "table_or_count_lookup_reached_candidate_equivalent_performance"
+    },
+    {
+      "failure_mode": "ngram_trace_lookup_collapse",
+      "source_readback": "002D lists ngram_trace_lookup among faithful baselines reaching 1.0.",
+      "redesign_requirement": "Future train/heldout/counterfactual episodes must require recomputation under novel transitions rather than matching trace fragments.",
+      "future_stop_condition": "trace_lookup_reached_candidate_equivalent_performance"
+    },
+    {
+      "failure_mode": "ablation_diagnostic_but_non_claimable",
+      "source_readback": "002D states the ablated social-latent update score of 0.25 has residual diagnostic value only.",
+      "redesign_requirement": "Ablation degradation may show path dependence, but cannot support a positive claim unless faithful baselines fail below candidate.",
+      "future_stop_condition": "ablation_drop_without_baseline_non_equivalence"
+    },
+    {
+      "failure_mode": "small_family_toy_environment_saturation",
+      "source_readback": "002D closes the 002C toy dynamic partner-belief POMDP family and rejects 002E same-family patching.",
+      "redesign_requirement": "Future task families must test cross-family transfer, distribution shift, and counterfactual intervention rather than same-family scaling.",
+      "future_stop_condition": "same_family_patch_or_toy_scaling_route_detected"
+    },
+    {
+      "failure_mode": "leakage_risk",
+      "source_readback": "002C required positive-control leakage detection, but target remained recoverable through fair access surfaces.",
+      "redesign_requirement": "Leakage scans must cover labels, partner IDs, hidden variables, context IDs, filenames, config fields, trace IDs, episode order, prompt text, and scoring artifacts, with positive controls.",
+      "future_stop_condition": "target_or_sufficient_feature_leakage_detected"
+    },
+    {
+      "failure_mode": "replay_risk",
+      "source_readback": "002C replay recomputed from serialized state plus observation, but replay pass did not imply mechanism advantage.",
+      "redesign_requirement": "Replay must recompute candidate and baselines from serialized_state plus observation and include stale/cached-output failure-path tests.",
+      "future_stop_condition": "replay_not_recomputed_or_cached_output_can_pass"
+    }
+  ],
+  "claim_ceiling": "failure-mode mapping from sealed negative evidence only"
+}

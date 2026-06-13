@@ -1,0 +1,159 @@
+{
+  "task_id": "GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A",
+  "artifact_id": "theory_coverage_map",
+  "source_matrix": {
+    "path": "artifacts/theory_landscape_coverage_canonicalization_001a/canonical_theory_coverage_matrix.json",
+    "source_document": "docs/research/THEORY-LANDSCAPE-COVERAGE-COMPRESSION-001D.md",
+    "row_count": 45,
+    "implementation_authorized": false,
+    "architecture_selection_authorized": false,
+    "claim_ceiling": "bounded repo-canonicalization evidence for already source-pinned theory coverage only"
+  },
+  "families": [
+    {
+      "requested_family": "predictive_processing / prediction-error mechanisms",
+      "repo_coverage_status": "present",
+      "canonical_entries": [
+        {
+          "candidate_id": "predictive_processing",
+          "display_name": "Predictive Processing",
+          "layer": "mechanism theory",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Bounded predictive-update framing only",
+          "strongest_objection": "Any update can be retrofitted as prediction error"
+        }
+      ],
+      "gate4_use": "Potential framing for belief-update error signals; not sufficient as Gate4 evidence by itself."
+    },
+    {
+      "requested_family": "active_inference / control-oriented inference",
+      "repo_coverage_status": "present",
+      "canonical_entries": [
+        {
+          "candidate_id": "active_inference_fep",
+          "display_name": "Active Inference / FEP",
+          "layer": "mechanism theory",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Bounded active-policy / viability proxy framing only",
+          "strongest_objection": "High agency / life / affect overclaim risk"
+        }
+      ],
+      "gate4_use": "Useful for uncertainty-aware probe/action selection; high claim-inflation risk."
+    },
+    {
+      "requested_family": "world-model learning",
+      "repo_coverage_status": "present",
+      "canonical_entries": [
+        {
+          "candidate_id": "world_models_latent_dynamics",
+          "display_name": "World Models / Latent Dynamics",
+          "layer": "mechanism / model-based RL / representation",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Learned-dynamics comparator only",
+          "strongest_objection": "Task performance may be benchmark-specific optimization"
+        }
+      ],
+      "gate4_use": "Useful as comparator for latent dynamics and planning; not sufficient if it avoids partner-state intervention tests."
+    },
+    {
+      "requested_family": "JEPA / V-JEPA / LeJEPA / predictive representation learning",
+      "repo_coverage_status": "partial_present",
+      "canonical_entries": [
+        {
+          "candidate_id": "jepa_predictive_representation",
+          "display_name": "JEPA / Predictive Representation Learning",
+          "layer": "substrate / representation",
+          "role": "monitor_only",
+          "claim_ceiling": "Monitor representation-learning relevance only",
+          "strongest_objection": "Representation quality is not agency or continuity"
+        }
+      ],
+      "additional_repo_readback": {
+        "phase_one_mentions_v_jepa": true,
+        "exact_lejepa_text_found": false
+      },
+      "gate4_use": "Monitor-only representation-learning reference; no architecture selection or implementation authorization."
+    },
+    {
+      "requested_family": "memory consolidation / replay",
+      "repo_coverage_status": "present",
+      "canonical_entries": [
+        {
+          "candidate_id": "memory_lifelong_learning_systems",
+          "display_name": "Memory / Lifelong Learning Systems",
+          "layer": "memory / lifelong learning",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Durable-state-change framing only",
+          "strongest_objection": "Persistent memory does not equal same-agent continuity"
+        },
+        {
+          "candidate_id": "trace_replay_reproducibility",
+          "display_name": "Trace / Replay Reproducibility",
+          "layer": "evidence-governance",
+          "role": "mandatory_methodology",
+          "claim_ceiling": "Required replay method only",
+          "strongest_objection": "Hash replay is not behavior recomputation"
+        }
+      ],
+      "gate4_use": "Mandatory replay and memory-update audit support; retrieval improvements alone are insufficient."
+    },
+    {
+      "requested_family": "self-boundary / controlled initiative proxies",
+      "repo_coverage_status": "present",
+      "canonical_entries": [
+        {
+          "candidate_id": "active_inference_fep",
+          "display_name": "Active Inference / FEP",
+          "layer": "mechanism theory",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Bounded active-policy / viability proxy framing only"
+        },
+        {
+          "candidate_id": "adjustable_autonomy_delegation_control",
+          "display_name": "Adjustable Autonomy / Delegation Control",
+          "layer": "controllability / autonomy governance",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Controlled-initiative framing only",
+          "strongest_objection": "Delegation UI or policy toggles do not prove self-boundary"
+        }
+      ],
+      "gate4_use": "Useful only as boundary/control framing for probe policy and intervention governance."
+    },
+    {
+      "requested_family": "partner / social modeling",
+      "repo_coverage_status": "present_bounded",
+      "canonical_entries": [
+        {
+          "candidate_id": "theory_of_mind_social_latent",
+          "display_name": "Theory-of-Mind / Social-Latent Modeling",
+          "layer": "social / companion system; mechanism theory",
+          "role": "mechanism_family_coverage_only",
+          "claim_ceiling": "Social-latent proxy framing only",
+          "strongest_objection": "ToM-like behavior may be prompt inference or stereotype retrieval"
+        },
+        {
+          "candidate_id": "generative_agents",
+          "display_name": "Generative Agents",
+          "layer": "social / companion system",
+          "role": "baseline_only",
+          "claim_ceiling": "Social-believability baseline only",
+          "strongest_objection": "Believable social behavior is not relationship learning"
+        }
+      ],
+      "gate4_use": "Bounded mechanism hypothesis or baseline only; not subjectivity proof, relationship-learning proof, or companion readiness."
+    }
+  ],
+  "non_authorization_flags": {
+    "architecture_selection_authorized": false,
+    "implementation_authorized": false,
+    "ego_mainline_authorized": false,
+    "runtime_authorized": false,
+    "companion_or_relationship_work_authorized": false,
+    "llm_rag_authorized": false,
+    "user_model_authorized": false,
+    "emotion_authorized": false,
+    "persistent_profile_authorized": false,
+    "long_term_human_user_memory_authorized": false
+  },
+  "claim_ceiling": "theory coverage mapping only; no architecture selection, mechanism validity, or implementation authorization"
+}

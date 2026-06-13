@@ -1,0 +1,101 @@
+{
+  "task_id": "GATE4-TASK-FAMILY-THEORY-COVERAGE-REDESIGN-001A",
+  "artifact_id": "baseline_collapse_guardrails",
+  "guardrail_principle": "No future Gate4 candidate claim is allowed until all declared faithful baseline families are independently callable, invoked, and beaten under fair access on heldout, counterfactual, and shifted splits.",
+  "baseline_families": [
+    {
+      "baseline_id": "serialized_state_decoder",
+      "purpose": "Detect answer recovery from replay/audit state.",
+      "required_access_declaration": "candidate-equivalent serialized state fields only, no scorer target",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "full_bundle_decoder",
+      "purpose": "Detect target recovery from full candidate-visible bundle.",
+      "required_access_declaration": "full candidate-visible input bundle, no scorer target",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "label_config_leakage_scanner",
+      "purpose": "Scan labels, hidden variables, partner identities, answer aliases, prompts, configs, filenames, paths, trace IDs, and scoring artifacts.",
+      "required_positive_control": true,
+      "collapse_condition": "target_or_sufficient_feature_leakage_detected"
+    },
+    {
+      "baseline_id": "trace_id_episode_order_leakage_scanner",
+      "purpose": "Detect recoverability from episode order, context ID format, trace IDs, split names, or row order.",
+      "required_positive_control": true,
+      "collapse_condition": "order_or_id_feature_predicts_target"
+    },
+    {
+      "baseline_id": "ngram_trace_lookup",
+      "purpose": "Detect trace-fragment matching or local sequence lookup.",
+      "required_access_declaration": "training traces and candidate-visible observation fragments only",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "pair_count_frequency_baseline",
+      "purpose": "Detect pair-count, co-occurrence, and frequency shortcut recovery.",
+      "required_access_declaration": "train observations and public split metadata only",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "static_belief_table",
+      "purpose": "Detect hand-coded or learned static partner-belief tables.",
+      "required_access_declaration": "declared train split and candidate-visible partner/context features only",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "nearest_neighbor_trace_retrieval",
+      "purpose": "Detect retrieval of similar prior episodes rather than state-update mechanism.",
+      "required_access_declaration": "train traces and candidate-visible observations only",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "random_majority_baseline",
+      "purpose": "Set minimal lower-bound sanity check and detect broken scoring.",
+      "required_access_declaration": "label set or action set only",
+      "collapse_condition": "candidate_not_above_random_or_majority_under_declared_threshold"
+    },
+    {
+      "baseline_id": "independent_oracle_style_upper_bound",
+      "purpose": "Separate task solvability from mechanism evidence when an upper bound is appropriate.",
+      "required_access_declaration": "explicit oracle access, not faithful non-oracle",
+      "collapse_condition": "not_a_collapse_by_itself_but_must_not_be_confused_with_candidate_claim"
+    },
+    {
+      "baseline_id": "query_capable_imitation_baseline",
+      "purpose": "Detect scripted active querying or prompt-level social behavior.",
+      "required_access_declaration": "same query budget and observations as candidate",
+      "collapse_condition": "ties_or_beats_candidate"
+    },
+    {
+      "baseline_id": "graph_cache_family",
+      "purpose": "Detect graph lookup, transition table, successor map, count table, FSM planner, or episodic traversal recovery.",
+      "required_members": [
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal"
+      ],
+      "collapse_condition": "any_faithful_graph_cache_member_ties_or_beats_candidate"
+    }
+  ],
+  "required_per_baseline_provenance": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "train_context_ids",
+    "heldout_context_ids",
+    "counterfactual_context_ids",
+    "episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "access_rights_declaration",
+    "failure_mode_ruled_out_or_triggered"
+  ],
+  "claim_ceiling": "future baseline guardrails only; no baseline was executed by this task"
+}
