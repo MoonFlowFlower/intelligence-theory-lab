@@ -1,0 +1,59 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "metric_threshold_gate",
+  "future_pass_fail_policy": {
+    "ties_block": true,
+    "tie_scope": "Any tie between candidate and strongest non-oracle baseline blocks positive evidence.",
+    "aggregate_margin": {
+      "metric": "candidate_minus_strongest_non_oracle_baseline",
+      "required_absolute_margin": 0.15,
+      "comparison": "greater_than_or_equal"
+    },
+    "confidence_rule": {
+      "if_bootstrap_or_confidence_intervals_used": {
+        "required_lower_bound_95pct_candidate_minus_strongest_baseline": 0.05,
+        "comparison": "greater_than"
+      },
+      "if_confidence_intervals_not_used": {
+        "requires_explicit_justification": true,
+        "replacement_rule": "repeated_seed_stability"
+      }
+    },
+    "split_level_margin": {
+      "critical_split_required_margin": 0.10,
+      "comparison": "greater_than_or_equal",
+      "critical_splits": [
+        "seen_partner_unseen_context",
+        "unseen_partner_seen_context",
+        "unseen_partner_unseen_context",
+        "unseen_preference_transition",
+        "counterfactual_intervention",
+        "active_query_required_episodes",
+        "heldout_episodes_with_remapped_ids"
+      ]
+    },
+    "no_aggregate_rescue": true,
+    "repeated_seed_stability": {
+      "minimum_independent_seeds": 5,
+      "minimum_seeds_satisfying_aggregate_margin": 4,
+      "active_query_required_episodes_must_never_be_below_strongest_non_oracle_baseline": true,
+      "no_critical_split_may_fail_seed_aggregated_result": true
+    },
+    "oracle_label_positive_control": {
+      "ordinary_baseline_to_beat": false,
+      "positive_control_only": true,
+      "failure_to_outperform_ordinary_baselines_invalidates_task_or_harness": true
+    }
+  },
+  "future_failure_semantics": [
+    "candidate_failure",
+    "baseline_parity_failure",
+    "split_failure",
+    "active_query_causal_failure",
+    "leakage_scan_failure",
+    "replay_recomputation_failure",
+    "provenance_failure",
+    "harness_invalidity"
+  ],
+  "score_bearing_current_result": false
+}

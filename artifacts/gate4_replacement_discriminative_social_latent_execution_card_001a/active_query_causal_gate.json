@@ -1,0 +1,60 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "active_query_causal_gate",
+  "future_requirement": "Active information-seeking must be causal, not decorative.",
+  "conditions": {
+    "uncertainty_condition": {
+      "required": true,
+      "description": "Candidate must face uncertainty before query/action and trace must show multiple latent social or preference states remain possible."
+    },
+    "query_choice_condition": {
+      "required": true,
+      "description": "Query/action must be selected by candidate policy path, not injected by harness defaults."
+    },
+    "observation_changing_condition": {
+      "required": true,
+      "description": "Query must change received observation, feedback, or available evidence."
+    },
+    "state_update_condition": {
+      "required": true,
+      "description": "Received feedback must update serialized candidate state through candidate update path."
+    },
+    "later_action_condition": {
+      "required": true,
+      "description": "Updated state must change at least one later action or policy distribution relative to no-query or shuffled-feedback counterfactual."
+    },
+    "no_active_query_ablation": {
+      "required": true,
+      "minimum_score_drop_on_active_query_required_episodes": 0.20
+    },
+    "shuffled_feedback_ablation": {
+      "required": true,
+      "minimum_score_drop_on_active_query_required_episodes": 0.20
+    },
+    "counterfactual_transition_ablation": {
+      "required": true,
+      "minimum_score_drop_on_counterfactual_and_active_query_required_episodes": 0.15
+    },
+    "stored_action_replay_insufficient": true
+  },
+  "future_trace_required_fields": [
+    "pre_query_observation",
+    "uncertainty_representation_or_legal_uncertainty_proxy",
+    "selected_query_or_action",
+    "received_feedback",
+    "serialized_state_before_update",
+    "serialized_state_after_update",
+    "later_action_under_updated_state",
+    "later_action_under_no_query_counterfactual",
+    "later_action_under_shuffled_feedback_counterfactual",
+    "producer_function",
+    "invocation_path",
+    "run_id",
+    "seed_ids",
+    "context_ids",
+    "partner_ids",
+    "episode_ids",
+    "code_path_hash"
+  ],
+  "future_replay_requirement": "Replay must recompute both action and state update."
+}

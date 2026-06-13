@@ -1,0 +1,108 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "baseline_family_matrix",
+  "mandatory_future_baselines": [
+    {
+      "baseline_id": "stream_keyed_count_table",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "stable stream-key lookup over seed/context/partner or equivalent keys",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "normalized_retrieval",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "retrieval by normalized observation prefixes or phase-insensitive keys",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "nearest_neighbor_lookup",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "nearest-neighbor memorization under legal observations",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "context_partner_table",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "context-partner table lookup",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "graph_lookup",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "graph cache over observed state/action transitions",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "transition_table",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "memorized transition table",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "successor_map",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "successor-map traversal without latent inference",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "count_table",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "frequency table over legal keys",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "fsm_planner",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "finite-state planner over exposed state",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "episodic_traversal",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "episode path traversal and replay",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "no_state_ablation",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "candidate behavior not depending on serialized state",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "no_feedback_ablation",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "candidate behavior not depending on feedback",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "no_action_ablation",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "candidate behavior not depending on action conditioning",
+      "ordinary_non_oracle_baseline": true
+    },
+    {
+      "baseline_id": "oracle_label_positive_control",
+      "independent_callable_required": true,
+      "failure_mode_challenged": "invalid harness if oracle control does not outperform ordinary baselines",
+      "ordinary_non_oracle_baseline": false,
+      "positive_control_only": true
+    }
+  ],
+  "required_fields_per_baseline": [
+    "independent callable implementation",
+    "independent invocation path",
+    "input artifact list",
+    "code path hash",
+    "legal input declaration",
+    "state capacity declaration",
+    "history window declaration",
+    "query budget declaration",
+    "update budget declaration",
+    "split-level output",
+    "failure mode challenged"
+  ],
+  "candidate_policy_code_sharing_forbidden": true,
+  "candidate_update_logic_sharing_forbidden": true,
+  "candidate_latent_inference_code_sharing_forbidden": true,
+  "candidate_state_transition_code_sharing_forbidden": true
+}

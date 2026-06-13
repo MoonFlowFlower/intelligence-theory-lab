@@ -1,0 +1,24 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "baseline_independence_matrix",
+  "future_baseline_invocation_checks": {
+    "each_baseline_callable_invoked_at_least_once_per_required_split": true,
+    "disabling_any_mandatory_baseline_causes_harness_failure": true,
+    "strongest_baseline_selected_by_computed_metric_not_static_declaration": true,
+    "oracle_label_positive_control_invoked_separately_from_non_oracle_baselines": true,
+    "baseline_outputs_generated_from_legal_input_artifacts_not_literals": true,
+    "baseline_code_path_hash_recorded": true,
+    "baseline_scores_cannot_be_manually_inserted_into_result_json": true
+  },
+  "allowed_shared_components": [
+    "common IO schemas",
+    "metric utilities"
+  ],
+  "forbidden_shared_components": [
+    "candidate policy code",
+    "candidate update logic",
+    "candidate latent inference code",
+    "candidate state transition code"
+  ],
+  "future_failure_if_independence_missing": true
+}

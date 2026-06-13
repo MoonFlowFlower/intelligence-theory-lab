@@ -1,0 +1,29 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "leakage_positive_control_contract",
+  "future_scans_required": [
+    "real-bundle scan",
+    "positive-control leakage case",
+    "ID leakage scan",
+    "phase-token scan",
+    "bundle-path scan",
+    "oracle-label scan",
+    "answer-key scan",
+    "deterministic-order scan"
+  ],
+  "positive_control_requirement": {
+    "deliberately_contaminated_bundle_required": true,
+    "scanner_must_flag_contaminated_positive_control": true,
+    "failure_to_flag_positive_control_invalidates_scanner": true,
+    "future_execution_blocked_if_positive_control_not_flagged": true
+  },
+  "real_bundle_requirement": {
+    "synthetic_controls_may_supplement": true,
+    "synthetic_controls_may_replace_real_bundle_scan": false,
+    "bundle_argument_must_not_be_ignored": true
+  },
+  "excluded_path_policy": {
+    "excluded_paths_recorded_as": "not_scanned",
+    "excluded_paths_must_not_be_recorded_as": "clean"
+  }
+}

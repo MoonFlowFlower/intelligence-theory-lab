@@ -1,0 +1,49 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "split_design_matrix",
+  "mandatory_split_families": [
+    {
+      "split_id": "seen_partner_unseen_context",
+      "purpose": "Tests whether candidate can generalize partner-related latent inference to new contexts.",
+      "failure_mode_blocked": "context memorization and context-partner table lookup",
+      "critical_split": true
+    },
+    {
+      "split_id": "unseen_partner_seen_context",
+      "purpose": "Tests whether candidate can infer partner latent behavior without stable partner memorization.",
+      "failure_mode_blocked": "partner-ID lookup and partner-profile retrieval",
+      "critical_split": true
+    },
+    {
+      "split_id": "unseen_partner_unseen_context",
+      "purpose": "Tests combined generalization where both stable partner and stable context keys are unavailable.",
+      "failure_mode_blocked": "stream-keyed count table over (seed, context_id, partner_id)",
+      "critical_split": true
+    },
+    {
+      "split_id": "unseen_preference_transition",
+      "purpose": "Tests adaptation to preference or latent-state transition not present in training episodes.",
+      "failure_mode_blocked": "transition table and successor map lookup",
+      "critical_split": true
+    },
+    {
+      "split_id": "counterfactual_intervention",
+      "purpose": "Tests whether later behavior changes when latent social/preference state or feedback transition is counterfactually changed.",
+      "failure_mode_blocked": "static policy imitation and fixed trajectory replay",
+      "critical_split": true
+    },
+    {
+      "split_id": "active_query_required_episodes",
+      "purpose": "Tests whether active information acquisition is necessary for success.",
+      "failure_mode_blocked": "passive retrieval, static tables, and decorative query actions",
+      "critical_split": true
+    },
+    {
+      "split_id": "heldout_episodes_with_remapped_ids",
+      "purpose": "Tests whether success survives remapping of seed/context/partner/episode IDs while preserving underlying causal/social structure.",
+      "failure_mode_blocked": "ID leakage and deterministic ordering leakage",
+      "critical_split": true
+    }
+  ],
+  "aggregate_success_cannot_override_split_failure": true
+}

@@ -1,0 +1,43 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "replay_recomputation_contract",
+  "future_replay_must_recompute_from": [
+    "serialized_state",
+    "observation",
+    "action_policy_path",
+    "update_path",
+    "feedback_history"
+  ],
+  "must_verify": [
+    "action_recomputation",
+    "state_update_recomputation"
+  ],
+  "stored_action_hash_only_replay_valid": false,
+  "required_future_replay_cases": [
+    "candidate replay",
+    "no-state ablation replay",
+    "no-feedback ablation replay",
+    "active-query replay",
+    "counterfactual replay",
+    "failure-path replay with corrupted serialized state",
+    "failure-path replay with corrupted feedback"
+  ],
+  "required_replay_result_fields": [
+    "replay_producer_function",
+    "replay_recomputation_path",
+    "input_artifacts",
+    "serialized_state_artifact",
+    "observation_artifact",
+    "feedback_history_artifact",
+    "action_policy_path",
+    "update_path",
+    "code_path_hash",
+    "run_id",
+    "seed_ids",
+    "context_ids",
+    "partner_ids",
+    "episode_ids",
+    "pass_fail_reason"
+  ],
+  "future_failure_if_action_or_state_update_recomputation_missing": true
+}

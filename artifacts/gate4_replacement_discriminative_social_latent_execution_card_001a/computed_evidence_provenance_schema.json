@@ -1,0 +1,44 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "computed_evidence_provenance_schema",
+  "future_rule": "Every future score must be computed by callable paths.",
+  "static_score_sources_forbidden": [
+    "static JSON",
+    "hardcoded constants",
+    "self-reported pass/fail files",
+    "tests that merely assert pass"
+  ],
+  "mandatory_provenance_fields_per_score": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed_ids",
+    "context_ids",
+    "partner_ids",
+    "episode_ids",
+    "split_id",
+    "aggregation_rule",
+    "code_path_hash",
+    "baseline_invocation_path",
+    "ablation_invocation_path",
+    "leakage_scanner_path",
+    "replay_recompute_path"
+  ],
+  "future_result_files_requiring_provenance": [
+    "candidate aggregate score",
+    "candidate split-level scores",
+    "each baseline aggregate score",
+    "each baseline split-level score",
+    "each ablation score",
+    "active-query causal metrics",
+    "leakage scanner results",
+    "replay recomputation results",
+    "bootstrap or repeated-seed stability metrics"
+  ],
+  "missing_provenance_blocks_positive_evidence": true,
+  "unused_frozen_seed_blocks_positive_evidence": true,
+  "unused_train_context_blocks_positive_evidence": true,
+  "unused_heldout_context_blocks_positive_evidence": true,
+  "unused_counterfactual_pair_blocks_positive_evidence": true,
+  "unused_remapped_id_episode_blocks_positive_evidence": true
+}

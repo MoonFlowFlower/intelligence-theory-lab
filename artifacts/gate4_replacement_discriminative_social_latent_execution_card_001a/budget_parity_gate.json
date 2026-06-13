@@ -1,0 +1,36 @@
+{
+  "task_id": "GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-EXECUTION-CARD-001A",
+  "gate": "budget_parity_gate",
+  "future_requirement": "Candidate and baselines must have the same legal interface unless a difference is explicitly justified and recorded.",
+  "required_parity_dimensions": {
+    "same_observation_interface": true,
+    "same_action_interface": true,
+    "same_reward_feedback_interface": true,
+    "same_history_interface": true,
+    "same_legal_input_access": true,
+    "comparable_episode_count": true,
+    "comparable_training_update_exposure": true,
+    "comparable_query_budget": true,
+    "comparable_update_budget": true,
+    "comparable_history_window": true,
+    "comparable_state_capacity_or_explicit_capacity_sweep": true,
+    "no_candidate_only_hidden_information": true,
+    "no_baseline_only_handicap": true,
+    "no_baseline_denial_of_legal_feedback_available_to_candidate": true,
+    "no_candidate_access_to_latent_labels_unless_same_labels_available_to_baselines": true,
+    "no_metric_computed_from_hidden_labels_unavailable_at_decision_time": true
+  },
+  "capacity_policy": {
+    "if_candidate_has_learned_state_capacity": [
+      "future baselines receive matched capacity budget",
+      "or explicit capacity sweep shows baseline failure is not arbitrary under-capacity"
+    ]
+  },
+  "history_policy": {
+    "if_candidate_receives_feedback_history": "baselines must receive the same feedback history through the same serialized interface"
+  },
+  "query_policy": {
+    "if_candidate_can_query": "baselines must be able to issue legal queries under the same query budget",
+    "baseline_nonuse_of_queries": "baseline behavior, not a handicap"
+  }
+}
