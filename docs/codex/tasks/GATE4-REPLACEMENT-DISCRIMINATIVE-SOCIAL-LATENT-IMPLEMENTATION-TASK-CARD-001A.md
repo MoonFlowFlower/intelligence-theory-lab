@@ -311,6 +311,14 @@ Future pass/fail thresholds:
   satisfy the aggregate margin; no seed may show candidate below strongest
   non-oracle baseline on active query-required episodes; no critical split may
   fail in the seed-aggregated result.
+- Oracle-label positive control remains a positive control only, not an
+  ordinary fair baseline. If the oracle-label positive control fails to
+  outperform the strongest ordinary non-oracle baseline under the same legal
+  scoring setup, the future harness is invalid with verdict
+  `harness_invalid_oracle_positive_control_failure`.
+- Oracle failure is not candidate failure and not baseline victory. It blocks
+  all positive replacement-Gate4 evidence because the task evidence is
+  harness-invalid.
 
 ### Budget Parity Gate
 
@@ -321,6 +329,49 @@ comparable history window, and comparable state capacity or explicit capacity
 sweep. Candidate-only hidden information, baseline-only handicaps, or metrics
 computed from hidden labels unavailable at decision time block positive
 evidence.
+
+Budget parity is a future callable computed gate, not prose. The future
+implementation must declare and invoke:
+
+- producer:
+  `src/gate4_replacement_discriminative_social_latent_001b/budget_parity.py::compute_budget_parity_report`
+- verifier:
+  `src/gate4_replacement_discriminative_social_latent_001b/budget_parity.py::verify_budget_parity`
+
+This task does not create that source file.
+
+The future budget parity report must compute and record at least:
+
+- `episode_count`
+- `train_context_count`
+- `dev_context_count`
+- `heldout_context_count`
+- `counterfactual_context_count`
+- `observation_count`
+- `active_query_count`
+- `oracle_label_access_count`
+- `environment_step_count`
+- `memory_write_count`
+- `memory_read_count`
+- `training_step_count`
+- `parameter_count_or_model_capacity`
+- `capacity_match_or_capacity_sweep`
+- `preprocessing_access`
+- `split_access`
+
+Every field must be derived from future run artifacts, not handwritten JSON.
+Budget parity provenance must include producer function, verifier function,
+input artifacts, run ID, seed, train/dev/heldout/counterfactual context IDs,
+episode IDs, candidate or baseline ID, aggregation rule, and code path hash.
+
+Any candidate/baseline budget difference must be explicitly justified and
+recorded. Future budget differences must be classified as `equal`,
+`justified_non_advantageous_difference`, `unjustified_candidate_advantage`,
+`unjustified_baseline_handicap`, `unjustified_oracle_access`, or `unknown`.
+The last four classifications block future positive evidence. Missing budget
+report, missing callable producer, budget report not linked to scored run
+artifacts, or budget report not covered by computed-evidence provenance also
+blocks.
 
 ### Active-Query Causal Gate
 
@@ -366,6 +417,12 @@ Every score must record `producer_function`, `input_artifacts`, `run_id`,
 `replay_recompute_path`. Static scores, self-reported pass/fail files, and tests
 that merely assert pass block positive evidence.
 
+For this gate, "every score" explicitly includes candidate score, ordinary
+baseline score, oracle positive-control score, ablation score, active-query
+causal contrast score, budget parity result, leakage scan result, replay
+recomputation result, split coverage result, threshold pass/fail result,
+aggregate contrast result, and per-split contrast result.
+
 ## Acceptance Gate For This Drafting Task
 
 This drafting task passes only if:
@@ -402,8 +459,15 @@ offline evidence. It passes only if all of the following are true:
 - disabling any mandatory baseline causes harness failure;
 - strongest baseline is selected by computed metric;
 - no non-oracle baseline ties or beats the candidate;
+- oracle-label positive control outperforms the strongest ordinary non-oracle
+  baseline under the same legal scoring setup, otherwise the future harness is
+  invalid with `harness_invalid_oracle_positive_control_failure`;
 - aggregate, split, confidence or repeated-seed, and active-query thresholds
   pass;
+- budget parity is computed by the declared future callable producer, verified
+  by the declared future verifier, linked to scored run artifacts, covered by
+  computed-evidence provenance, and has no unjustified or unknown blocking
+  differences;
 - leakage positive control is flagged through the same callable scanner path;
 - replay recomputes action and state update;
 - ablations rerun real interventions and meet predeclared drops;
@@ -433,7 +497,14 @@ Future implementation must stop if:
   counterfactual pair is unused;
 - any mandatory baseline is missing, uninvoked, non-independent, or tied with
   the candidate;
+- oracle-label positive control fails to outperform the strongest ordinary
+  non-oracle baseline under the same legal scoring setup;
 - active-query causal evidence is decorative rather than state-changing;
+- budget parity lacks the declared future callable producer or verifier;
+- budget parity report is missing, handwritten, not linked to scored run
+  artifacts, or not covered by computed-evidence provenance;
+- any budget difference is `unjustified_candidate_advantage`,
+  `unjustified_baseline_handicap`, `unjustified_oracle_access`, or `unknown`;
 - any ablation is a post-hoc score edit;
 - replay does not recompute both action and state update;
 - leakage positive controls are missed;

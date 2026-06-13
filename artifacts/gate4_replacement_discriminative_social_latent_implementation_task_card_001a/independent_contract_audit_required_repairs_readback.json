@@ -1,0 +1,32 @@
+{
+  "artifact_id": "independent_contract_audit_required_repairs_readback",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "audit_verdict": "independent_contract_audit_passed_no_implementation_authorization",
+  "required_repairs_before_future_implementation_authorization": [
+    {
+      "repair": "oracle_harness_validity_consequence_was_missing",
+      "closed_by_amendment_001a": true,
+      "future_failure_verdict": "harness_invalid_oracle_positive_control_failure"
+    },
+    {
+      "repair": "budget_parity_enforceability_too_weak_and_not_bound_to_callable_producer",
+      "closed_by_amendment_001a": true,
+      "future_callable_producer": "src/gate4_replacement_discriminative_social_latent_001b/budget_parity.py::compute_budget_parity_report",
+      "future_callable_verifier": "src/gate4_replacement_discriminative_social_latent_001b/budget_parity.py::verify_budget_parity"
+    }
+  ],
+  "optional_repair_explicit_provenance_result_families": {
+    "closed_by_amendment_001a": true
+  },
+  "implementation_authorized_after_this_amendment": false
+}

@@ -1,0 +1,31 @@
+{
+  "artifact_id": "amendment_001a_acceptance_stop_patch_readback",
+  "safe_to_implement_replacement_gate4": false,
+  "implementation_authorized": false,
+  "experiment_authorized": false,
+  "source_creation_authorized": false,
+  "test_creation_authorized": false,
+  "dataset_creation_authorized": false,
+  "harness_creation_authorized": false,
+  "safe_to_enter_gate5": false,
+  "safe_to_use_for_admission": false,
+  "safe_to_use_for_bridge": false,
+  "safe_to_use_for_ego_mainline": false,
+  "future_acceptance_gate_patches": [
+    "oracle_label_positive_control_must_outperform_strongest_ordinary_non_oracle_baseline_or_harness_invalid",
+    "budget_parity_must_be_computed_by_declared_future_callable_producer",
+    "budget_parity_must_be_verified_by_declared_future_callable_verifier",
+    "budget_parity_must_be_linked_to_scored_run_artifacts",
+    "budget_parity_must_be_covered_by_computed_evidence_provenance",
+    "budget_parity_must_have_no_unjustified_or_unknown_blocking_differences"
+  ],
+  "future_stop_condition_patches": [
+    "oracle_label_positive_control_failure_blocks_with_harness_invalid_oracle_positive_control_failure",
+    "missing_budget_parity_callable_producer_or_verifier_blocks",
+    "missing_or_handwritten_or_unlinked_budget_report_blocks",
+    "budget_report_not_covered_by_computed_evidence_provenance_blocks",
+    "unjustified_or_unknown_budget_difference_blocks"
+  ],
+  "stop_conditions_triggered_in_this_amendment": [],
+  "claim_inflation_detected": false
+}

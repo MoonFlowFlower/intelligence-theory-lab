@@ -170,6 +170,61 @@
         "replay_recompute_path"
       ],
       "static_score_sources_allowed": false
+    },
+    {
+      "requirement_id": "metric.oracle_positive_control_harness_validity",
+      "gate_family": "metric_threshold",
+      "source": "sealed_execution_card",
+      "future_callable_required": true,
+      "producer_function_required": true,
+      "input_artifacts_required": true,
+      "blocks_positive_evidence_if_missing": true,
+      "failure_verdict": "harness_invalid_oracle_positive_control_failure",
+      "claim_ceiling_if_failed": "harness invalid; no replacement Gate4 evidence claim"
+    },
+    {
+      "requirement_id": "budget_parity.callable_computed_gate",
+      "gate_family": "budget_parity",
+      "source": "amendment_001a_required_repair",
+      "future_callable_required": true,
+      "future_producer_function": "src/gate4_replacement_discriminative_social_latent_001b/budget_parity.py::compute_budget_parity_report",
+      "future_verifier_function": "src/gate4_replacement_discriminative_social_latent_001b/budget_parity.py::verify_budget_parity",
+      "source_file_created_by_this_task": false,
+      "input_artifacts_required": true,
+      "run_artifact_derivation_required": true,
+      "required_report_fields": [
+        "episode_count",
+        "train_context_count",
+        "dev_context_count",
+        "heldout_context_count",
+        "counterfactual_context_count",
+        "observation_count",
+        "active_query_count",
+        "oracle_label_access_count",
+        "environment_step_count",
+        "memory_write_count",
+        "memory_read_count",
+        "training_step_count",
+        "parameter_count_or_model_capacity",
+        "capacity_match_or_capacity_sweep",
+        "preprocessing_access",
+        "split_access"
+      ],
+      "computed_evidence_provenance_required": true,
+      "difference_justification_required": true,
+      "blocking_difference_classifications": [
+        "unjustified_candidate_advantage",
+        "unjustified_baseline_handicap",
+        "unjustified_oracle_access",
+        "unknown"
+      ],
+      "blocks_positive_evidence_if_missing": true,
+      "failure_verdicts": [
+        "blocked_budget_parity_not_callable",
+        "blocked_budget_difference_not_recorded",
+        "blocked_budget_parity_not_in_acceptance_or_stop"
+      ],
+      "claim_ceiling_if_failed": "budget parity invalid or unverified; no replacement Gate4 evidence claim"
     }
   ]
 }

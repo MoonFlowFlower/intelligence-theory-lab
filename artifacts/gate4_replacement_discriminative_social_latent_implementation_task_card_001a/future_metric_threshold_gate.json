@@ -22,7 +22,8 @@
     "fewer_than_5_independent_seeds": true,
     "fewer_than_4_of_5_seeds_satisfy_aggregate_margin": true,
     "any_seed_candidate_below_strongest_non_oracle_on_active_query_required": true,
-    "any_critical_split_fails_seed_aggregated_result": true
+    "any_critical_split_fails_seed_aggregated_result": true,
+    "oracle_label_positive_control_fails_to_outperform_strongest_ordinary_non_oracle_baseline": true
   },
   "thresholds": {
     "aggregate_candidate_minus_strongest_non_oracle_baseline_min": 0.15,
@@ -31,5 +32,14 @@
     "minimum_independent_seeds": 5,
     "minimum_seeds_satisfying_aggregate_margin": 4
   },
-  "oracle_label_positive_control_role": "positive_control_only_not_ordinary_baseline"
+  "oracle_label_positive_control_role": "positive_control_only_not_ordinary_baseline",
+  "oracle_harness_validity_consequence": {
+    "required": true,
+    "failure_verdict": "harness_invalid_oracle_positive_control_failure",
+    "same_legal_scoring_setup_required": true,
+    "oracle_failure_is_candidate_failure": false,
+    "oracle_failure_is_baseline_victory": false,
+    "oracle_failure_invalidates_harness": true,
+    "blocks_positive_replacement_gate4_evidence": true
+  }
 }
