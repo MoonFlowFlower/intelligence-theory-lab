@@ -1,0 +1,56 @@
+{
+  "task_id": "GATE4-REPLACEMENT-001D-NEGATIVE-AUDIT-PRESERVATION-AND-ANTI-ZENO-ROUTING-001A",
+  "scoring_scale": {
+    "1": "low",
+    "3": "medium",
+    "5": "high"
+  },
+  "preferred_route": "B",
+  "preferred_route_title": "Run 001E baseline-equivalence adjudication",
+  "preferred_next_task_id_if_separately_authorized": "GATE4-REPLACEMENT-001E-BASELINE-EQUIVALENCE-ADJUDICATION-001A",
+  "routes": [
+    {
+      "route_id": "A",
+      "title": "Continue direct 001E repair-to-pass",
+      "likelihood_of_producing_discriminative_mechanism_evidence": 1,
+      "hard_coding_risk": 5,
+      "candidate_specific_puzzle_risk": 5,
+      "baseline_equivalence_risk": 5,
+      "local_optimum_zeno_risk": 5,
+      "implementation_cost": 3,
+      "evidence_value_if_blocked": 2,
+      "claim_ceiling_clarity": 1,
+      "decision": "reject",
+      "rationale": "This route optimizes for another local pass and repeats the 001B/001C/001D pattern of moving the collapse rather than testing it."
+    },
+    {
+      "route_id": "B",
+      "title": "Run 001E baseline-equivalence adjudication",
+      "likelihood_of_producing_discriminative_mechanism_evidence": 4,
+      "hard_coding_risk": 2,
+      "candidate_specific_puzzle_risk": 2,
+      "baseline_equivalence_risk": 1,
+      "local_optimum_zeno_risk": 2,
+      "implementation_cost": 3,
+      "evidence_value_if_blocked": 5,
+      "claim_ceiling_clarity": 5,
+      "decision": "prefer",
+      "rationale": "Faithful pair-count, two-token/full-bundle, serialized-state, graph/cache/count-table, and query-capable challengers should be added before any further repair. A tie should close as informative negative evidence."
+    },
+    {
+      "route_id": "C",
+      "title": "Close this Gate4 replacement task family as negative evidence and design a new Gate4 environment",
+      "likelihood_of_producing_discriminative_mechanism_evidence": 3,
+      "hard_coding_risk": 1,
+      "candidate_specific_puzzle_risk": 1,
+      "baseline_equivalence_risk": 1,
+      "local_optimum_zeno_risk": 1,
+      "implementation_cost": 5,
+      "evidence_value_if_blocked": 4,
+      "claim_ceiling_clarity": 5,
+      "decision": "hold_as_fallback",
+      "rationale": "This is cleaner if 001E adjudication ties the candidate, but it has higher design cost and should follow an explicit equivalence closeout."
+    }
+  ],
+  "anti_zeno_rule": "Do not attempt to tune 001D until it passes. First adjudicate whether simple faithful baselines tie the candidate; preserve ties as negative evidence."
+}

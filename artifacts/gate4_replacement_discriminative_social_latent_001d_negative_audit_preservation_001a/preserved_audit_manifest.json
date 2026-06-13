@@ -1,0 +1,31 @@
+{
+  "task_id": "GATE4-REPLACEMENT-001D-NEGATIVE-AUDIT-PRESERVATION-AND-ANTI-ZENO-ROUTING-001A",
+  "preserved_audit_document": "docs/research/CLAUDE-INDEPENDENT-EVIDENCE-AUDIT-GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-001D.md",
+  "preservation_mode": "append_only_new_document",
+  "preserved_from_attached_task_text": true,
+  "verdict": "E. blocked_candidate_specific_puzzle",
+  "secondary_blocker": "C. blocked_query_capable_baseline_weak_or_unfair",
+  "recoverability_harness_failure_preserved": true,
+  "required_preserved_metrics": {
+    "candidate": 1.0,
+    "strongest_menu_baseline": 0.5,
+    "pair_count_table_probe": 1.0,
+    "serialized_state_after_update_probe": 1.0
+  },
+  "preserved_blocking_explanation": "candidate advantage is a two-token candidate-specific puzzle, not validated multi-step integration",
+  "must_not_remote_anchor_as_positive_evidence": true,
+  "inherited_negative_evidence": [
+    {
+      "id": "001B",
+      "summary": "split-design observation-target leakage and weak baseline menu"
+    },
+    {
+      "id": "001C",
+      "summary": "target moved into feedback channel"
+    },
+    {
+      "id": "001D",
+      "summary": "candidate-specific two-token puzzle, unfair single-token-limited feedback baselines, incomplete recoverability harness"
+    }
+  ]
+}
