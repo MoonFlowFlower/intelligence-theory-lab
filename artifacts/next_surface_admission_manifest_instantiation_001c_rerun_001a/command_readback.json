@@ -1,0 +1,23 @@
+{
+  "claim_ceiling": "authorization-validator manifest-instantiation closure evidence only",
+  "commands": [
+    {
+      "command": "python artifacts/next_surface_admission_manifest_instantiation_001c_rerun_001a/run_manifest_instantiation_001c_rerun_001a.py",
+      "purpose": "recompute rerun artifacts from source manifest and validator"
+    },
+    {
+      "command": "python -m pytest tests/test_future_surface_admission_authorization_validator_gap_repair_001c.py tests/test_next_surface_admission_manifest_instantiation_001c.py::test_default_artifacts_and_report_preserve_001c_blocker_boundary",
+      "purpose": "focused current repaired-validator checks plus prior blocked-artifact preservation check"
+    }
+  ],
+  "producer_function": "command_readback_for_rerun_reproduction",
+  "run_id": "next_surface_admission_manifest_instantiation_001c_rerun_001a-20260614T174846Z",
+  "summary": {
+    "ablations_blocked": 10,
+    "dependency_controls_blocked": 4,
+    "negative_controls_blocked": 6,
+    "replay_match": true,
+    "verdict": "next_surface_admission_manifest_instantiation_001c_rerun_001a_pass"
+  },
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001C-RERUN-001A"
+}

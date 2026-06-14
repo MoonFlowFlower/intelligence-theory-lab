@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "command": "python artifacts\\next_surface_admission_manifest_instantiation_001c_rerun_001a\\run_manifest_instantiation_001c_rerun_001a.py",
+      "status": "pass",
+      "summary": "rerun produced next_surface_admission_manifest_instantiation_001c_rerun_001a_pass with 6/6 negative controls, 10/10 ablations, 4/4 dependency controls, replay true, and no stop conditions"
+    },
+    {
+      "command": "python -m pytest tests\\test_future_surface_admission_authorization_validator_gap_repair_001c.py tests\\test_next_surface_admission_manifest_instantiation_001c.py::test_default_artifacts_and_report_preserve_001c_blocker_boundary",
+      "status": "pass",
+      "summary": "4 passed"
+    },
+    {
+      "command": "artifact integrity assertion script",
+      "status": "pass",
+      "summary": "result, start_state, validator hash, manifest hash, control counts, replay, anti-hardcoding audit, and 21 trace rows matched expected values"
+    },
+    {
+      "command": "python -m pytest tests\\test_future_surface_admission_authorization_validator_gap_repair_001c.py tests\\test_next_surface_admission_manifest_instantiation_001c.py",
+      "status": "expected_stale_failure_not_fixed_in_scope",
+      "summary": "the old 001C runner test still expects blocked_validator_gap_repair_001b_dependency_not_enforced when rerun against the now-repaired validator; this task does not edit forbidden test files"
+    }
+  ],
+  "claim_ceiling": "authorization-validator manifest-instantiation closure evidence only",
+  "producer_function": "manual_closeout_verification_readback_from_current_session_commands",
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001C-RERUN-001A"
+}
