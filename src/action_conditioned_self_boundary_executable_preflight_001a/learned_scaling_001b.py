@@ -66,7 +66,17 @@ REQUIRED_LEARNED_BASELINES = [
     "embedding_knn_or_episodic_retrieval_baseline",
 ]
 
-REQUIRED_NON_ORACLE_BASELINES = REQUIRED_LEARNED_BASELINES + [
+REQUIRED_FINITE_BASELINES = [
+    "transition_table_baseline",
+    "fsm_baseline",
+    "graph_cache_episodic_traversal_baseline",
+    "action_effect_frequency_without_boundary_state_baseline",
+    "recency_or_last_effect_baseline",
+    "majority_baseline",
+    "random_baseline",
+]
+
+REQUIRED_NON_ORACLE_BASELINES = REQUIRED_FINITE_BASELINES + REQUIRED_LEARNED_BASELINES + [
     "capacity_matched_boundary_disabled_reference",
 ]
 
@@ -123,6 +133,7 @@ def build_challenge_config(repo_root: Path | str | None = None) -> dict[str, Any
             "combinatorial_heldout": list(range(9200, 9224)),
             "noisy_decoy_intervention": list(range(9300, 9320)),
         },
+        "finite_baseline_inventory": REQUIRED_FINITE_BASELINES,
         "learned_no_boundary_baseline_inventory": REQUIRED_LEARNED_BASELINES,
         "non_oracle_baseline_inventory": REQUIRED_NON_ORACLE_BASELINES,
         "ablation_inventory": REQUIRED_ABLATIONS,
@@ -290,6 +301,15 @@ def contaminated_learned_no_boundary_baseline(
 
 
 BASELINE_FUNCTIONS_001B: dict[str, Callable[[dict[str, Any], dict[str, Any], dict[str, Any]], dict[str, Any]]] = {
+    "transition_table_baseline": base_001a.transition_table_baseline,
+    "fsm_baseline": base_001a.fsm_baseline,
+    "graph_cache_episodic_traversal_baseline": base_001a.graph_cache_episodic_traversal_baseline,
+    "action_effect_frequency_without_boundary_state_baseline": (
+        base_001a.action_effect_frequency_without_boundary_state_baseline
+    ),
+    "recency_or_last_effect_baseline": base_001a.recency_or_last_effect_baseline,
+    "majority_baseline": base_001a.majority_baseline,
+    "random_baseline": base_001a.random_baseline,
     "learned_feature_mlp_without_boundary_state": learned_feature_mlp_without_boundary_state,
     "sequence_model_without_boundary_update": sequence_model_without_boundary_update,
     "embedding_knn_or_episodic_retrieval_baseline": embedding_knn_or_episodic_retrieval_baseline,
@@ -433,9 +453,19 @@ def run_probe_scores(
         strongest_learned_name, strongest_learned = max(
             learned_scores.items(), key=lambda item: item[1]["score"]
         )
+        finite_scores = {
+            name: baseline_scores[name] for name in REQUIRED_FINITE_BASELINES
+        }
+        strongest_finite_name, strongest_finite = max(
+            finite_scores.items(), key=lambda item: item[1]["score"]
+        )
         by_probe[probe_name] = {
             "reference_path": reference,
             "baseline_scores": baseline_scores,
+            "strongest_finite_baseline": {
+                "baseline_name": strongest_finite_name,
+                "score": strongest_finite["score"],
+            },
             "strongest_non_oracle_baseline": {
                 "baseline_name": strongest_non_oracle_name,
                 "score": strongest_non_oracle["score"],
@@ -752,12 +782,14 @@ def write_research_report_001b(
     ]
     for probe_name in PROBE_SETTINGS:
         probe = scores[probe_name]
+        finite = probe["strongest_finite_baseline"]
         strongest = probe["strongest_non_oracle_baseline"]
         learned = probe["strongest_learned_no_boundary_baseline"]
         capacity = probe["baseline_scores"]["capacity_matched_boundary_disabled_reference"]
         lines.extend(
             [
                 f"- `{probe_name}` reference: `{probe['reference_path']['score']}`",
+                f"- `{probe_name}` strongest finite baseline: `{finite['baseline_name']}` = `{finite['score']}`",
                 f"- `{probe_name}` strongest non-oracle: `{strongest['baseline_name']}` = `{strongest['score']}`",
                 f"- `{probe_name}` strongest learned no-boundary: `{learned['baseline_name']}` = `{learned['score']}`",
                 f"- `{probe_name}` capacity-disabled reference: `{capacity['score']}`",
@@ -1056,6 +1088,7 @@ def _build_baseline_comparison(scores: dict[str, Any]) -> dict[str, Any]:
     for probe_name, probe_scores in scores["by_probe_setting"].items():
         by_probe[probe_name] = {
             "baseline_scores": probe_scores["baseline_scores"],
+            "strongest_finite_baseline": probe_scores["strongest_finite_baseline"],
             "strongest_non_oracle_baseline": probe_scores["strongest_non_oracle_baseline"],
             "strongest_learned_no_boundary_baseline": probe_scores[
                 "strongest_learned_no_boundary_baseline"
@@ -1065,9 +1098,13 @@ def _build_baseline_comparison(scores: dict[str, Any]) -> dict[str, Any]:
         "task_id": TASK_ID,
         "producer_function": "_build_baseline_comparison",
         "invoked_learned_no_boundary_baselines": sorted(REQUIRED_LEARNED_BASELINES),
+        "invoked_finite_baselines": sorted(REQUIRED_FINITE_BASELINES),
         "invoked_non_oracle_baselines": sorted(BASELINE_FUNCTIONS_001B),
         "missing_learned_no_boundary_baselines": sorted(
             set(REQUIRED_LEARNED_BASELINES) - set(BASELINE_FUNCTIONS_001B)
+        ),
+        "missing_finite_baselines": sorted(
+            set(REQUIRED_FINITE_BASELINES) - set(BASELINE_FUNCTIONS_001B)
         ),
         "missing_non_oracle_baselines": sorted(
             set(REQUIRED_NON_ORACLE_BASELINES) - set(BASELINE_FUNCTIONS_001B)
@@ -1141,6 +1178,10 @@ def _build_result(
         "claim_ceiling": CLAIM_CEILING,
         "reference_score_by_probe_setting": {
             probe_name: probe_scores["reference_path"]["score"]
+            for probe_name, probe_scores in scores["by_probe_setting"].items()
+        },
+        "strongest_finite_baseline_by_probe_setting": {
+            probe_name: probe_scores["strongest_finite_baseline"]
             for probe_name, probe_scores in scores["by_probe_setting"].items()
         },
         "strongest_non_oracle_baseline_by_probe_setting": {
@@ -1296,9 +1337,10 @@ def _summary_text_001b(run: dict[str, Any]) -> str:
     ]
     for probe_name in PROBE_SETTINGS:
         probe = run["scores"]["by_probe_setting"][probe_name]
+        finite = probe["strongest_finite_baseline"]
         strongest = probe["strongest_non_oracle_baseline"]
         lines.append(
-            f"- `{probe_name}` reference `{probe['reference_path']['score']}`, strongest non-oracle `{strongest['baseline_name']}` = `{strongest['score']}`"
+            f"- `{probe_name}` reference `{probe['reference_path']['score']}`, strongest finite `{finite['baseline_name']}` = `{finite['score']}`, strongest non-oracle `{strongest['baseline_name']}` = `{strongest['score']}`"
         )
     lines.extend(
         [

@@ -26,7 +26,17 @@ REQUIRED_LEARNED_BASELINES = {
     "embedding_knn_or_episodic_retrieval_baseline",
 }
 
-REQUIRED_NON_ORACLE_BASELINES = REQUIRED_LEARNED_BASELINES | {
+REQUIRED_FINITE_BASELINES = {
+    "transition_table_baseline",
+    "fsm_baseline",
+    "graph_cache_episodic_traversal_baseline",
+    "action_effect_frequency_without_boundary_state_baseline",
+    "recency_or_last_effect_baseline",
+    "majority_baseline",
+    "random_baseline",
+}
+
+REQUIRED_NON_ORACLE_BASELINES = REQUIRED_FINITE_BASELINES | REQUIRED_LEARNED_BASELINES | {
     "capacity_matched_boundary_disabled_reference",
 }
 
@@ -150,18 +160,23 @@ def test_learned_baselines_scaling_and_capacity_challenge_are_callable_and_faila
     assert result["gate_bridge_runtime_or_ego_mainline_enabled"] is False
 
     assert set(baselines["invoked_learned_no_boundary_baselines"]) == REQUIRED_LEARNED_BASELINES
+    assert set(baselines["invoked_finite_baselines"]) == REQUIRED_FINITE_BASELINES
     assert set(baselines["invoked_non_oracle_baselines"]) == REQUIRED_NON_ORACLE_BASELINES
     assert baselines["missing_learned_no_boundary_baselines"] == []
+    assert baselines["missing_finite_baselines"] == []
     assert baselines["missing_non_oracle_baselines"] == []
 
     for probe_name in REQUIRED_PROBES:
         probe_scores = scores["by_probe_setting"][probe_name]
         reference_score = probe_scores["reference_path"]["score"]
+        strongest_finite = probe_scores["strongest_finite_baseline"]
         strongest_non_oracle = probe_scores["strongest_non_oracle_baseline"]
         strongest_learned = probe_scores["strongest_learned_no_boundary_baseline"]
         capacity_score = probe_scores["baseline_scores"]["capacity_matched_boundary_disabled_reference"]["score"]
 
         assert reference_score == 1.0
+        assert strongest_finite["baseline_name"] in REQUIRED_FINITE_BASELINES
+        assert reference_score - strongest_finite["score"] >= 0.15
         assert reference_score - strongest_non_oracle["score"] >= 0.15
         assert strongest_learned["score"] < reference_score
         assert reference_score - capacity_score >= 0.20

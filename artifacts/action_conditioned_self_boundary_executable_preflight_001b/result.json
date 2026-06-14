@@ -95,8 +95,6 @@
       "artifacts/action_conditioned_self_boundary_executable_preflight_001b/"
     ],
     "changed_paths": [
-      "artifacts/action_conditioned_self_boundary_executable_preflight_001b/",
-      "docs/research/ACTION-CONDITIONED-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B-LEARNED-BASELINE-SCALING-CHALLENGE.md",
       "src/action_conditioned_self_boundary_executable_preflight_001a/learned_scaling_001b.py",
       "tests/test_action_conditioned_self_boundary_executable_preflight_001b.py"
     ],
@@ -151,6 +149,20 @@
   },
   "runtime_readiness_claimed": false,
   "stop_conditions_triggered": [],
+  "strongest_finite_baseline_by_probe_setting": {
+    "combinatorial_heldout": {
+      "baseline_name": "random_baseline",
+      "score": 0.458333
+    },
+    "noisy_decoy_intervention": {
+      "baseline_name": "fsm_baseline",
+      "score": 0.25
+    },
+    "small_reproduction": {
+      "baseline_name": "fsm_baseline",
+      "score": 0.25
+    }
+  },
   "strongest_learned_no_boundary_baseline_by_probe_setting": {
     "combinatorial_heldout": {
       "baseline_name": "learned_feature_mlp_without_boundary_state",
@@ -167,22 +179,22 @@
   },
   "strongest_non_oracle_baseline_by_probe_setting": {
     "combinatorial_heldout": {
-      "baseline_name": "learned_feature_mlp_without_boundary_state",
-      "score": 0.0
+      "baseline_name": "random_baseline",
+      "score": 0.458333
     },
     "noisy_decoy_intervention": {
-      "baseline_name": "learned_feature_mlp_without_boundary_state",
-      "score": 0.0
+      "baseline_name": "fsm_baseline",
+      "score": 0.25
     },
     "small_reproduction": {
-      "baseline_name": "learned_feature_mlp_without_boundary_state",
-      "score": 0.0
+      "baseline_name": "fsm_baseline",
+      "score": 0.25
     }
   },
   "strongest_objection_after_execution": {
-    "baseline_name": "learned_feature_mlp_without_boundary_state",
-    "probe_setting": "small_reproduction",
-    "score": 0.0
+    "baseline_name": "random_baseline",
+    "probe_setting": "combinatorial_heldout",
+    "score": 0.458333
   },
   "subjectivity_claimed": false,
   "task_id": "ACTION-CONDITIONED-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B-LEARNED-BASELINE-SCALING-CHALLENGE",

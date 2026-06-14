@@ -45,15 +45,18 @@ No Gate4, Gate5, bridge, runtime, tournament, companion, product, or EGO-mainlin
 ## Probe Scores
 
 - `small_reproduction` reference: `1.0`
-- `small_reproduction` strongest non-oracle: `learned_feature_mlp_without_boundary_state` = `0.0`
+- `small_reproduction` strongest finite baseline: `fsm_baseline` = `0.25`
+- `small_reproduction` strongest non-oracle: `fsm_baseline` = `0.25`
 - `small_reproduction` strongest learned no-boundary: `learned_feature_mlp_without_boundary_state` = `0.0`
 - `small_reproduction` capacity-disabled reference: `0.0`
 - `combinatorial_heldout` reference: `1.0`
-- `combinatorial_heldout` strongest non-oracle: `learned_feature_mlp_without_boundary_state` = `0.0`
+- `combinatorial_heldout` strongest finite baseline: `random_baseline` = `0.458333`
+- `combinatorial_heldout` strongest non-oracle: `random_baseline` = `0.458333`
 - `combinatorial_heldout` strongest learned no-boundary: `learned_feature_mlp_without_boundary_state` = `0.0`
 - `combinatorial_heldout` capacity-disabled reference: `0.0`
 - `noisy_decoy_intervention` reference: `1.0`
-- `noisy_decoy_intervention` strongest non-oracle: `learned_feature_mlp_without_boundary_state` = `0.0`
+- `noisy_decoy_intervention` strongest finite baseline: `fsm_baseline` = `0.25`
+- `noisy_decoy_intervention` strongest non-oracle: `fsm_baseline` = `0.25`
 - `noisy_decoy_intervention` strongest learned no-boundary: `learned_feature_mlp_without_boundary_state` = `0.0`
 - `noisy_decoy_intervention` capacity-disabled reference: `0.0`
 

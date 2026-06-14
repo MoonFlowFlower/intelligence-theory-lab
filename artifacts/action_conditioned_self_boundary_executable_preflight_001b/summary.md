@@ -12,8 +12,8 @@ Real trigger evidence: `callable local 001B execution produced artifacts`
 
 Claim ceiling: `offline learned-baseline/scaling challenge evidence only`
 
-- `small_reproduction` reference `1.0`, strongest non-oracle `learned_feature_mlp_without_boundary_state` = `0.0`
-- `combinatorial_heldout` reference `1.0`, strongest non-oracle `learned_feature_mlp_without_boundary_state` = `0.0`
-- `noisy_decoy_intervention` reference `1.0`, strongest non-oracle `learned_feature_mlp_without_boundary_state` = `0.0`
+- `small_reproduction` reference `1.0`, strongest finite `fsm_baseline` = `0.25`, strongest non-oracle `fsm_baseline` = `0.25`
+- `combinatorial_heldout` reference `1.0`, strongest finite `random_baseline` = `0.458333`, strongest non-oracle `random_baseline` = `0.458333`
+- `noisy_decoy_intervention` reference `1.0`, strongest finite `fsm_baseline` = `0.25`, strongest non-oracle `fsm_baseline` = `0.25`
 
 No mechanism validity is claimed. No Gate4, Gate5, bridge, runtime, tournament, companion, product, or EGO-mainline path is enabled.
