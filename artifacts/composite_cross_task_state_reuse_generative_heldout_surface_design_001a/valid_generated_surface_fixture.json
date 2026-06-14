@@ -1,0 +1,686 @@
+{
+  "baseline_access": {
+    "answer_keys_access": false,
+    "disputed_cross_task_update_channel_access": false,
+    "hidden_target_labels_access": false,
+    "observation_access": "fair_visible_observation_access",
+    "partner_or_context_ids_access": false,
+    "row_ids_access": false,
+    "trace_order_access": false
+  },
+  "baseline_preregistration": [
+    "exact_lookup",
+    "train_row_table_lookup",
+    "nearest_neighbor_retrieval",
+    "identity_key_lookup",
+    "trace_order_lookup",
+    "static_formula_decoder_visible_fields",
+    "independent_per_task_optimal_ensemble_no_shared_latent_state",
+    "shared_latent_state_without_cross_task_prediction_error_to_action_transfer",
+    "multi_task_representation_learning",
+    "pomdp_shared_belief_state_update_plus_control",
+    "rnn_meta_rl_hidden_state_controller",
+    "dyna_q_prioritized_sweeping",
+    "mpc_world_model_planner",
+    "causal_bandit",
+    "oracle_feature_sharing_without_disputed_update_channel"
+  ],
+  "claim_ceiling": "Surface-design / protocol-governance only. No mechanism validity, no Gate4 validity, no candidate behavior, no tournament outcome, no runtime readiness, no bridge/admission readiness, no agency, no subjectivity, no consciousness, no emotion, no autonomy, no companion readiness, and no EGO readiness.",
+  "counterfactual_pairs": [
+    {
+      "changed": [
+        "latent_parameter_id",
+        "hidden.task_b_target_action"
+      ],
+      "held_constant": [
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue"
+      ],
+      "pair_id": "cf_same_surface_latent_changes_train_0_1",
+      "pair_type": "same_superficial_features_latent_structure_changes",
+      "record_ids": [
+        "train:episode:0",
+        "train:episode:1"
+      ]
+    },
+    {
+      "changed": [
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue"
+      ],
+      "held_constant": [
+        "latent_parameter_id",
+        "hidden.task_b_target_action"
+      ],
+      "pair_id": "cf_surface_changes_latent_stable_train_2_3",
+      "pair_type": "superficial_features_change_latent_structure_stable",
+      "record_ids": [
+        "train:episode:2",
+        "train:episode:3"
+      ]
+    }
+  ],
+  "cross_task_prediction_error_event_ids": [
+    "pe:train:0",
+    "pe:train:1",
+    "pe:train:2",
+    "pe:train:3",
+    "pe:heldout:0",
+    "pe:heldout:1",
+    "pe:heldout:2",
+    "pe:heldout:3"
+  ],
+  "design_only": true,
+  "future_ablation_requirement": {
+    "preserve_local_per_task_behavior_where_possible": true,
+    "remove_cross_task_update_channel": true,
+    "task_b_support_disjoint_action_change_must_collapse": true
+  },
+  "future_replay_requirement": {
+    "new_observation_required": true,
+    "recompute_from_serialized_state_and_observation": true,
+    "recompute_function_path": "composite_cross_task_state_reuse_generative_heldout_surface_design_001a.runner.recompute_task_b_action_from_serialized_state",
+    "serialized_state_required": true,
+    "stored_answer_replay_allowed": false,
+    "stored_hash_replay_allowed": false
+  },
+  "generated_by_callable": true,
+  "latent_generator": {
+    "controls_task_a_target_structure": true,
+    "controls_task_b_target_structure": true,
+    "hidden_latent_state_id": "hidden_composite_state_v1",
+    "shared_across_task_a_and_task_b": true
+  },
+  "provenance": {
+    "baseline_preregistration_list": [
+      "exact_lookup",
+      "train_row_table_lookup",
+      "nearest_neighbor_retrieval",
+      "identity_key_lookup",
+      "trace_order_lookup",
+      "static_formula_decoder_visible_fields",
+      "independent_per_task_optimal_ensemble_no_shared_latent_state",
+      "shared_latent_state_without_cross_task_prediction_error_to_action_transfer",
+      "multi_task_representation_learning",
+      "pomdp_shared_belief_state_update_plus_control",
+      "rnn_meta_rl_hidden_state_controller",
+      "dyna_q_prioritized_sweeping",
+      "mpc_world_model_planner",
+      "causal_bandit",
+      "oracle_feature_sharing_without_disputed_update_channel"
+    ],
+    "code_path_hash": "909d2a2fa167a6d932b0ddeae84e69901d55255d93ed3e559704c2a9c47a1631",
+    "counterfactual_pair_ids": [
+      "cf_same_surface_latent_changes_train_0_1",
+      "cf_surface_changes_latent_stable_train_2_3"
+    ],
+    "generator_function": "composite_cross_task_state_reuse_generative_heldout_surface_design_001a.runner.generate_valid_surface_fixture",
+    "heldout_ids": [
+      "heldout:episode:0",
+      "heldout:episode:1",
+      "heldout:episode:2",
+      "heldout:episode:3"
+    ],
+    "latent_parameter_ids": {
+      "heldout": [
+        "latent_heldout_eta",
+        "latent_heldout_theta",
+        "latent_heldout_iota",
+        "latent_heldout_kappa"
+      ],
+      "train": [
+        "latent_train_alpha",
+        "latent_train_beta",
+        "latent_train_gamma",
+        "latent_train_gamma"
+      ]
+    },
+    "prediction_error_event_ids": [
+      "pe:train:0",
+      "pe:train:1",
+      "pe:train:2",
+      "pe:train:3",
+      "pe:heldout:0",
+      "pe:heldout:1",
+      "pe:heldout:2",
+      "pe:heldout:3"
+    ],
+    "seed": 61001,
+    "shared_state_update_event_ids": [
+      "update:train:0",
+      "update:train:1",
+      "update:train:2",
+      "update:train:3",
+      "update:heldout:0",
+      "update:heldout:1",
+      "update:heldout:2",
+      "update:heldout:3"
+    ],
+    "support_signatures": {
+      "heldout": [
+        "heldout_support_eta",
+        "heldout_support_theta",
+        "heldout_support_iota",
+        "heldout_support_kappa"
+      ],
+      "train": [
+        "train_support_alpha",
+        "train_support_beta",
+        "train_support_gamma",
+        "train_support_delta"
+      ]
+    },
+    "target_resolver_path": "composite_cross_task_state_reuse_generative_heldout_surface_design_001a.runner.resolve_task_b_target_action",
+    "task_b_action_dependency_ids": [
+      "task_b_dep:train:0",
+      "task_b_dep:train:1",
+      "task_b_dep:train:2",
+      "task_b_dep:train:3",
+      "task_b_dep:heldout:0",
+      "task_b_dep:heldout:1",
+      "task_b_dep:heldout:2",
+      "task_b_dep:heldout:3"
+    ],
+    "task_family_ids": [
+      "self_boundary_controllability",
+      "replay_consolidation",
+      "viability_value_gated_prediction_action",
+      "social_latent_inference"
+    ],
+    "train_ids": [
+      "train:episode:0",
+      "train:episode:1",
+      "train:episode:2",
+      "train:episode:3"
+    ]
+  },
+  "records": {
+    "heldout": [
+      {
+        "context_handle": "heldout_context_eta",
+        "counterfactual_combo_id": "heldout_combo_eta",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_heldout_eta",
+          "task_b_target_action": "replan_memory"
+        },
+        "latent_parameter_id": "latent_heldout_eta",
+        "partner_handle": "heldout_partner_eta",
+        "record_id": "heldout:episode:0",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:heldout:0",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_heldout_eta:0": "replan_memory"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:heldout:0"
+        },
+        "split": "heldout",
+        "support_signature": "heldout_support_eta",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_0",
+            "visible_event_class": "task_a_surface_heldout_surface_eta"
+          },
+          "prediction_error_event_id": "pe:heldout:0",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:heldout:0",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_heldout_eta:0",
+            "local_visible_cue": "cue_heldout_a",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "heldout_surface_eta"
+          },
+          "post_update_action": "replan_memory",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "viability_value_gated_prediction_action"
+      },
+      {
+        "context_handle": "heldout_context_theta",
+        "counterfactual_combo_id": "heldout_combo_theta",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_heldout_theta",
+          "task_b_target_action": "inspect_boundary"
+        },
+        "latent_parameter_id": "latent_heldout_theta",
+        "partner_handle": "heldout_partner_theta",
+        "record_id": "heldout:episode:1",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:heldout:1",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_heldout_theta:1": "inspect_boundary"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:heldout:1"
+        },
+        "split": "heldout",
+        "support_signature": "heldout_support_theta",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_1",
+            "visible_event_class": "task_a_surface_heldout_surface_theta"
+          },
+          "prediction_error_event_id": "pe:heldout:1",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:heldout:1",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_heldout_theta:1",
+            "local_visible_cue": "cue_heldout_b",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "heldout_surface_theta"
+          },
+          "post_update_action": "inspect_boundary",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "social_latent_inference"
+      },
+      {
+        "context_handle": "heldout_context_iota",
+        "counterfactual_combo_id": "heldout_combo_iota",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_heldout_iota",
+          "task_b_target_action": "consolidate_trace"
+        },
+        "latent_parameter_id": "latent_heldout_iota",
+        "partner_handle": "heldout_partner_iota",
+        "record_id": "heldout:episode:2",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:heldout:2",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_heldout_iota:2": "consolidate_trace"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:heldout:2"
+        },
+        "split": "heldout",
+        "support_signature": "heldout_support_iota",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_0",
+            "visible_event_class": "task_a_surface_heldout_surface_iota"
+          },
+          "prediction_error_event_id": "pe:heldout:2",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:heldout:2",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_heldout_iota:2",
+            "local_visible_cue": "cue_heldout_c",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "heldout_surface_iota"
+          },
+          "post_update_action": "consolidate_trace",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "viability_value_gated_prediction_action"
+      },
+      {
+        "context_handle": "heldout_context_kappa",
+        "counterfactual_combo_id": "heldout_combo_kappa",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_heldout_kappa",
+          "task_b_target_action": "defer_action"
+        },
+        "latent_parameter_id": "latent_heldout_kappa",
+        "partner_handle": "heldout_partner_kappa",
+        "record_id": "heldout:episode:3",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:heldout:3",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_heldout_kappa:3": "defer_action"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:heldout:3"
+        },
+        "split": "heldout",
+        "support_signature": "heldout_support_kappa",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_1",
+            "visible_event_class": "task_a_surface_heldout_surface_kappa"
+          },
+          "prediction_error_event_id": "pe:heldout:3",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:heldout:3",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_heldout_kappa:3",
+            "local_visible_cue": "cue_heldout_d",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "heldout_surface_kappa"
+          },
+          "post_update_action": "defer_action",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "social_latent_inference"
+      }
+    ],
+    "train": [
+      {
+        "context_handle": "train_context_alpha",
+        "counterfactual_combo_id": "train_combo_alpha",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_train_alpha",
+          "task_b_target_action": "inspect_boundary"
+        },
+        "latent_parameter_id": "latent_train_alpha",
+        "partner_handle": "train_partner_alpha",
+        "record_id": "train:episode:0",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:train:0",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_train_alpha:0": "inspect_boundary"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:train:0"
+        },
+        "split": "train",
+        "support_signature": "train_support_alpha",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_0",
+            "visible_event_class": "task_a_surface_same_surface_x"
+          },
+          "prediction_error_event_id": "pe:train:0",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:train:0",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_train_alpha:0",
+            "local_visible_cue": "cue_shared",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "same_surface_x"
+          },
+          "post_update_action": "inspect_boundary",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "self_boundary_controllability"
+      },
+      {
+        "context_handle": "train_context_beta",
+        "counterfactual_combo_id": "train_combo_beta",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_train_beta",
+          "task_b_target_action": "consolidate_trace"
+        },
+        "latent_parameter_id": "latent_train_beta",
+        "partner_handle": "train_partner_beta",
+        "record_id": "train:episode:1",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:train:1",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_train_beta:1": "consolidate_trace"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:train:1"
+        },
+        "split": "train",
+        "support_signature": "train_support_beta",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_1",
+            "visible_event_class": "task_a_surface_same_surface_x"
+          },
+          "prediction_error_event_id": "pe:train:1",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:train:1",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_train_beta:1",
+            "local_visible_cue": "cue_shared",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "same_surface_x"
+          },
+          "post_update_action": "consolidate_trace",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "self_boundary_controllability"
+      },
+      {
+        "context_handle": "train_context_gamma",
+        "counterfactual_combo_id": "train_combo_gamma",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_train_gamma",
+          "task_b_target_action": "defer_action"
+        },
+        "latent_parameter_id": "latent_train_gamma",
+        "partner_handle": "train_partner_gamma",
+        "record_id": "train:episode:2",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:train:2",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_train_gamma:2": "defer_action"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:train:2"
+        },
+        "split": "train",
+        "support_signature": "train_support_gamma",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_0",
+            "visible_event_class": "task_a_surface_surface_variant_gamma"
+          },
+          "prediction_error_event_id": "pe:train:2",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:train:2",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_train_gamma:2",
+            "local_visible_cue": "cue_gamma",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "surface_variant_gamma"
+          },
+          "post_update_action": "defer_action",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "replay_consolidation"
+      },
+      {
+        "context_handle": "train_context_delta",
+        "counterfactual_combo_id": "train_combo_delta",
+        "hidden": {
+          "generator_latent_state_id": "hidden_composite_state_v1",
+          "shared_update_required_for_task_b_action": true,
+          "task_a_latent_target": "task_a_error_for_latent_train_gamma",
+          "task_b_target_action": "defer_action"
+        },
+        "latent_parameter_id": "latent_train_gamma",
+        "partner_handle": "train_partner_delta",
+        "record_id": "train:episode:3",
+        "shared_state_update": {
+          "caused_by_task_a_prediction_error_event_id": "pe:train:3",
+          "channel": "hidden_cross_task_prediction_error_update_channel",
+          "serialized_state_after": {
+            "latent_action_binding": {
+              "probe:latent_train_gamma:3": "defer_action"
+            },
+            "shared_update_applied": true
+          },
+          "serialized_state_before": {
+            "latent_action_binding": {},
+            "shared_update_applied": false
+          },
+          "update_event_id": "update:train:3"
+        },
+        "split": "train",
+        "support_signature": "train_support_delta",
+        "task_a": {
+          "observation": {
+            "observed_outcome": "unexpected_shift_response",
+            "predicted_outcome": "expected_stable_response",
+            "prediction_signal": "signal_1",
+            "visible_event_class": "task_a_surface_surface_variant_delta"
+          },
+          "prediction_error_event_id": "pe:train:3",
+          "prediction_error_under_pre_update_state": true
+        },
+        "task_b": {
+          "action_dependency_id": "task_b_dep:train:3",
+          "action_depends_on_shared_state_update": true,
+          "observation": {
+            "fallback_action": "hold",
+            "latent_binding_probe": "probe:latent_train_gamma:3",
+            "local_visible_cue": "cue_delta",
+            "pre_update_default_action": "hold",
+            "superficial_signature": "surface_variant_delta"
+          },
+          "post_update_action": "defer_action",
+          "pre_update_action": "hold",
+          "visible_features_alone_sufficient": false
+        },
+        "task_family_id": "replay_consolidation"
+      }
+    ]
+  },
+  "shared_state_update_event_ids": [
+    "update:train:0",
+    "update:train:1",
+    "update:train:2",
+    "update:train:3",
+    "update:heldout:0",
+    "update:heldout:1",
+    "update:heldout:2",
+    "update:heldout:3"
+  ],
+  "shortcut_flags": {
+    "hidden_label_exposure_detected": false,
+    "independent_ensemble_solves_without_shared_update": false,
+    "shared_latent_no_transfer_solves_task_b": false,
+    "stored_answer_replay_path_present": false,
+    "task_b_visible_features_sufficient": false
+  },
+  "split_policy": {
+    "context_support_disjoint_required": true,
+    "counterfactual_combination_disjoint_required": true,
+    "identity_permutation_required": true,
+    "latent_parameterization_disjoint_required": true,
+    "support_disjoint_required": true
+  },
+  "surface_id": "composite_cross_task_state_reuse_valid_generated_surface_001a",
+  "surface_kind": "generated_surface_design_fixture_only",
+  "task_b_action_dependency_ids": [
+    "task_b_dep:train:0",
+    "task_b_dep:train:1",
+    "task_b_dep:train:2",
+    "task_b_dep:train:3",
+    "task_b_dep:heldout:0",
+    "task_b_dep:heldout:1",
+    "task_b_dep:heldout:2",
+    "task_b_dep:heldout:3"
+  ],
+  "task_family_ids": [
+    "self_boundary_controllability",
+    "replay_consolidation",
+    "viability_value_gated_prediction_action",
+    "social_latent_inference"
+  ],
+  "threshold": 0.8
+}
