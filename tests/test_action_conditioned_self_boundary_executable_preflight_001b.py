@@ -275,7 +275,8 @@ def test_artifacts_report_claim_scan_and_allowlist_are_written_and_parse(tmp_pat
     assert result["changed_file_allowlist"]["passed"] is True
     assert git_readback["source_001a"]["runner_sha256"] == run["config"]["source_001a"]["runner_sha256"]
     assert git_readback["source_001a"]["result_sha256"] == run["config"]["source_001a"]["result_sha256"]
-    assert git_readback["diff_name_status"]
+    assert isinstance(git_readback["diff_name_status"], list)
+    assert git_readback["worktree_status_at_artifact_generation"] in {"clean", "dirty"}
 
     report_text = report_path.read_text(encoding="utf-8")
     assert "Auto-Remote-Anchor: conditional" in report_text
