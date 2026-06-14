@@ -1,0 +1,286 @@
+{
+  "baseline_access": {
+    "same_observation_fields_as_candidate": true,
+    "target_fields_visible_to_baselines": false
+  },
+  "baseline_preregistration": [
+    "exact_lookup",
+    "train_row_table_lookup",
+    "nearest_neighbor_retrieval",
+    "trace_order_lookup",
+    "identity_key_lookup",
+    "static_decoder",
+    "static_formula"
+  ],
+  "claim_ceiling": "Protocol / governance / task-surface design only. No mechanism validity, no Gate4 validity, no candidate behavior, no tournament result, no runtime readiness, no bridge/admission readiness, no agency, no subjectivity, no consciousness, no emotion, no autonomy, no companion readiness, and no EGO readiness.",
+  "counterfactual_pairs": [
+    {
+      "changed": [
+        "latent_variables.latent_parameter_id",
+        "latent_variables.target_class"
+      ],
+      "held_constant": [
+        "observation.surface_form"
+      ],
+      "pair_id": "cf_surface_same_latent_changes_target_train_0_1",
+      "pair_type": "same_superficial_features_latent_structure_changes",
+      "record_ids": [
+        "train:0",
+        "train:1"
+      ]
+    },
+    {
+      "changed": [
+        "observation.surface_form",
+        "observation.intervention_handle"
+      ],
+      "held_constant": [
+        "latent_variables.latent_parameter_id",
+        "latent_variables.target_class"
+      ],
+      "pair_id": "cf_latent_same_surface_changes_train_2_3",
+      "pair_type": "superficial_features_change_latent_structure_stable",
+      "record_ids": [
+        "train:2",
+        "train:3"
+      ]
+    }
+  ],
+  "expected_block_reason": "exact_lookup_reaches_threshold",
+  "identity_permutation": {
+    "across_splits": true,
+    "anonymized_fields": [
+      "partner_handle"
+    ],
+    "heldout_identity_values": [
+      "anon_heldout_q",
+      "anon_heldout_r",
+      "anon_heldout_s",
+      "anon_heldout_t"
+    ],
+    "train_identity_values": [
+      "anon_train_a",
+      "anon_train_b",
+      "anon_train_c",
+      "anon_train_d"
+    ]
+  },
+  "provenance": {
+    "code_path_hash": "7c2b0f3200a0d5e84f61ad774e871a8c8e1d6c3c57f9ed31ca93c7c92020e86b",
+    "counterfactual_pair_ids": [
+      "cf_surface_same_latent_changes_target_train_0_1",
+      "cf_latent_same_surface_changes_train_2_3"
+    ],
+    "generator_function": "build_example_valid_surface_fixture",
+    "heldout_ids": [
+      "heldout:0",
+      "heldout:1",
+      "heldout:2",
+      "heldout:3"
+    ],
+    "latent_parameter_ids": {
+      "heldout": [
+        "heldout_rule_family:param_q",
+        "heldout_rule_family:param_r",
+        "heldout_rule_family:param_s",
+        "heldout_rule_family:param_t"
+      ],
+      "train": [
+        "train_rule_family:param_a",
+        "train_rule_family:param_b",
+        "train_rule_family:param_c",
+        "train_rule_family:param_c"
+      ]
+    },
+    "seed": 41001,
+    "target_resolver_path": "anti_lookup_generative_heldout_surface_protocol_001a.runner.resolve_example_surface_target",
+    "train_ids": [
+      "train:0",
+      "train:1",
+      "train:2",
+      "train:3"
+    ]
+  },
+  "records": {
+    "heldout": [
+      {
+        "latent_variables": {
+          "causal_rule_family": "heldout_rule_family",
+          "latent_parameter_id": "heldout_rule_family:param_q",
+          "target_class": "adapt_left"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_0",
+          "intervention_handle": "train_intervention_0",
+          "partner_handle": "anon_train_a",
+          "surface_form": "shared_surface_form",
+          "visible_trajectory": [
+            "train_visible_step_0",
+            "train_intervention_0"
+          ]
+        },
+        "record_id": "heldout:0",
+        "support_signature": "heldout_support_eta"
+      },
+      {
+        "latent_variables": {
+          "causal_rule_family": "heldout_rule_family",
+          "latent_parameter_id": "heldout_rule_family:param_r",
+          "target_class": "adapt_right"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_1",
+          "intervention_handle": "train_intervention_1",
+          "partner_handle": "anon_train_b",
+          "surface_form": "shared_surface_form",
+          "visible_trajectory": [
+            "train_visible_step_1",
+            "train_intervention_1"
+          ]
+        },
+        "record_id": "heldout:1",
+        "support_signature": "heldout_support_theta"
+      },
+      {
+        "latent_variables": {
+          "causal_rule_family": "heldout_rule_family",
+          "latent_parameter_id": "heldout_rule_family:param_s",
+          "target_class": "adapt_left"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_2",
+          "intervention_handle": "train_intervention_2",
+          "partner_handle": "anon_train_c",
+          "surface_form": "surface_variant_c",
+          "visible_trajectory": [
+            "train_visible_step_2",
+            "train_intervention_2"
+          ]
+        },
+        "record_id": "heldout:2",
+        "support_signature": "heldout_support_iota"
+      },
+      {
+        "latent_variables": {
+          "causal_rule_family": "heldout_rule_family",
+          "latent_parameter_id": "heldout_rule_family:param_t",
+          "target_class": "adapt_left"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_3",
+          "intervention_handle": "train_intervention_3",
+          "partner_handle": "anon_train_d",
+          "surface_form": "surface_variant_d",
+          "visible_trajectory": [
+            "train_visible_step_3",
+            "train_intervention_3"
+          ]
+        },
+        "record_id": "heldout:3",
+        "support_signature": "heldout_support_kappa"
+      }
+    ],
+    "train": [
+      {
+        "latent_variables": {
+          "causal_rule_family": "train_rule_family",
+          "latent_parameter_id": "train_rule_family:param_a",
+          "target_class": "adapt_left"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_0",
+          "intervention_handle": "train_intervention_0",
+          "partner_handle": "anon_train_a",
+          "surface_form": "shared_surface_form",
+          "visible_trajectory": [
+            "train_visible_step_0",
+            "train_intervention_0"
+          ]
+        },
+        "record_id": "train:0",
+        "support_signature": "train_support_alpha"
+      },
+      {
+        "latent_variables": {
+          "causal_rule_family": "train_rule_family",
+          "latent_parameter_id": "train_rule_family:param_b",
+          "target_class": "adapt_right"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_1",
+          "intervention_handle": "train_intervention_1",
+          "partner_handle": "anon_train_b",
+          "surface_form": "shared_surface_form",
+          "visible_trajectory": [
+            "train_visible_step_1",
+            "train_intervention_1"
+          ]
+        },
+        "record_id": "train:1",
+        "support_signature": "train_support_beta"
+      },
+      {
+        "latent_variables": {
+          "causal_rule_family": "train_rule_family",
+          "latent_parameter_id": "train_rule_family:param_c",
+          "target_class": "adapt_left"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_2",
+          "intervention_handle": "train_intervention_2",
+          "partner_handle": "anon_train_c",
+          "surface_form": "surface_variant_c",
+          "visible_trajectory": [
+            "train_visible_step_2",
+            "train_intervention_2"
+          ]
+        },
+        "record_id": "train:2",
+        "support_signature": "train_support_gamma"
+      },
+      {
+        "latent_variables": {
+          "causal_rule_family": "train_rule_family",
+          "latent_parameter_id": "train_rule_family:param_c",
+          "target_class": "adapt_left"
+        },
+        "observation": {
+          "distractor_code": "distractor_train_3",
+          "intervention_handle": "train_intervention_3",
+          "partner_handle": "anon_train_d",
+          "surface_form": "surface_variant_d",
+          "visible_trajectory": [
+            "train_visible_step_3",
+            "train_intervention_3"
+          ]
+        },
+        "record_id": "train:3",
+        "support_signature": "train_support_delta"
+      }
+    ]
+  },
+  "split_policy": {
+    "heldout_generator_id": "heldout_counterfactual_generator_v2",
+    "identity_permutation_required": true,
+    "latent_parameter_ids": {
+      "heldout": [
+        "heldout_rule_family:param_q",
+        "heldout_rule_family:param_r",
+        "heldout_rule_family:param_s",
+        "heldout_rule_family:param_t"
+      ],
+      "train": [
+        "train_rule_family:param_a",
+        "train_rule_family:param_b",
+        "train_rule_family:param_c",
+        "train_rule_family:param_c"
+      ]
+    },
+    "support_disjoint_required": true,
+    "train_generator_id": "train_counterfactual_generator_v1"
+  },
+  "surface_id": "invalid_exact_lookup_surface",
+  "surface_kind": "protocol_fixture_only",
+  "target_resolver_path": "anti_lookup_generative_heldout_surface_protocol_001a.runner.resolve_example_surface_target",
+  "threshold": 0.8
+}
