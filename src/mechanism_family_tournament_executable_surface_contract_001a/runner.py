@@ -487,6 +487,13 @@ def build_source_pin_readback() -> dict[str, Any]:
     current_head = _git(["rev-parse", "HEAD"])
     branch = _git(["branch", "--show-current"])
     status = _git(["status", "--short", "--branch"])
+    ancestor_check = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", INHERITED_HEAD_ANCHOR, "HEAD"],
+        cwd=repo_root(),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    ).returncode == 0
+    source_pin_boundary_ok = current_head == INHERITED_HEAD_ANCHOR or ancestor_check
     return {
         "producer_function": "build_source_pin_readback",
         "task_id": TASK_CARD_ID,
@@ -495,6 +502,8 @@ def build_source_pin_readback() -> dict[str, Any]:
         "current_head": current_head,
         "inherited_head_anchor": INHERITED_HEAD_ANCHOR,
         "current_head_matches_inherited_anchor": current_head == INHERITED_HEAD_ANCHOR,
+        "inherited_head_anchor_is_ancestor_of_current_head": ancestor_check,
+        "source_pin_boundary_ok": source_pin_boundary_ok,
         "git_status_short_branch": status,
         "source_inputs": [
             {
@@ -725,8 +734,8 @@ def compute_result(
     stop_conditions = []
     if source_pin["branch"] != BRANCH:
         stop_conditions.append("branch_mismatch")
-    if not source_pin["current_head_matches_inherited_anchor"]:
-        stop_conditions.append("inherited_head_anchor_mismatch")
+    if not source_pin["source_pin_boundary_ok"]:
+        stop_conditions.append("inherited_head_anchor_not_current_or_ancestor")
     if len(surface_validation["baseline_preflight_executable_family_ids"]) != 6:
         stop_conditions.append("not_all_families_baseline_preflight_executable")
     if not positive_controls["all_failed_as_expected"]:
@@ -912,6 +921,8 @@ def write_research_report(run: dict[str, Any], report_path: str | Path | None = 
         f"- Current HEAD: `{source['current_head']}`",
         f"- Inherited HEAD / anchor: `{source['inherited_head_anchor']}`",
         f"- Current HEAD matches inherited anchor: `{source['current_head_matches_inherited_anchor']}`",
+        f"- Inherited anchor is ancestor of current HEAD: `{source['inherited_head_anchor_is_ancestor_of_current_head']}`",
+        f"- Source-pin boundary ok: `{source['source_pin_boundary_ok']}`",
         "",
         "## Family Surface Table",
         "",

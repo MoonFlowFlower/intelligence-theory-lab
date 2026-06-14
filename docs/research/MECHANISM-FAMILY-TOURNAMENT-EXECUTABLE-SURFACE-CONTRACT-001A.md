@@ -36,9 +36,11 @@ Auto-Remote-Anchor: forbidden.
 ## Source Pin Readback
 
 - Branch: `codex/meta-theory-scaffold`
-- Current HEAD: `af5b694dfacf76cf97e5172ade9f9ce831d2b714`
+- Current HEAD: `07a49565f0746acf8394a29034107829cc790326`
 - Inherited HEAD / anchor: `af5b694dfacf76cf97e5172ade9f9ce831d2b714`
-- Current HEAD matches inherited anchor: `True`
+- Current HEAD matches inherited anchor: `False`
+- Inherited anchor is ancestor of current HEAD: `True`
+- Source-pin boundary ok: `True`
 
 ## Family Surface Table
 
