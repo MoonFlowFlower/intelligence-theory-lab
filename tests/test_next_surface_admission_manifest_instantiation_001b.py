@@ -38,25 +38,25 @@ def _load_runner():
     return module
 
 
-def test_runner_preserves_validator_gap_dependency_ablation_blocker(tmp_path):
+def test_runner_recomputes_authorization_after_validator_gap_repair_without_rewriting_parent_artifacts(
+    tmp_path,
+):
     runner = _load_runner()
     output_dir = tmp_path / TASK_SLUG
 
     result = runner.run(ROOT, output_dir=output_dir)
 
     assert result["task_id"] == TASK_ID
-    assert result["verdict"] == "blocked_validator_gap_repair_dependency_ablation_authorized"
-    assert result["decision"] == "later_task_card_drafting_not_authorized"
+    assert result["verdict"] == "authorized_later_task_card_drafting_only"
+    assert result["decision"] == "later_task_card_drafting_authorized_only"
     assert result["claim_ceiling"] == CLAIM_CEILING
     assert result["mechanism_execution"] is False
     assert result["mainline_integration"] is False
     assert result["enabled_status"] == "local offline validator invocation only"
     assert result["producer_function"] == "validate_authorization_manifest"
-    assert "validator_returned_unexpected_authorization_for_validator_gap_repair_dependency_ablation" in result[
-        "stop_conditions_triggered"
-    ]
-    assert result["auto_remote_anchor"]["permitted"] is False
-    assert result["auto_remote_anchor"]["decision"] == "conditional_not_completed"
+    assert result["stop_conditions_triggered"] == []
+    assert result["auto_remote_anchor"]["permitted"] is True
+    assert result["auto_remote_anchor"]["decision"] == "conditional_pending_commit_gate"
 
     assert REQUIRED_FILES == {path.name for path in output_dir.iterdir()}
     assert (output_dir / "claim_ceiling.txt").read_text(encoding="utf-8").strip() == CLAIM_CEILING
@@ -104,13 +104,20 @@ def test_runner_preserves_validator_gap_dependency_ablation_blocker(tmp_path):
     assert all(control["blocked"] for control in negative_controls["controls"])
 
     ablation_by_id = {ablation["ablation_id"]: ablation for ablation in ablations["ablations"]}
-    assert ablations["all_required_ablations_blocked"] is False
-    assert ablation_by_id["remove_validator_gap_repair_dependency"]["blocked"] is False
+    assert ablations["all_required_ablations_blocked"] is True
+    assert ablation_by_id["remove_validator_gap_repair_dependency"]["blocked"] is True
     assert (
         ablation_by_id["remove_validator_gap_repair_dependency"]["validator_decision"]
-        == "authorized"
+        == "blocked"
     )
-    assert ablation_by_id["remove_validator_gap_repair_dependency"]["unexpected_authorization"] is True
+    assert (
+        "missing_validator_gap_repair_dependency"
+        in ablation_by_id["remove_validator_gap_repair_dependency"]["reasons_fired"]
+    )
+    assert (
+        ablation_by_id["remove_validator_gap_repair_dependency"]["unexpected_authorization"]
+        is False
+    )
     assert ablation_by_id["remove_concrete_proposed_direction"]["blocked"] is True
     assert ablation_by_id["remove_later_task_card_only_scope_lock"]["blocked"] is True
     assert ablation_by_id["remove_no_mechanism_score_clause"]["blocked"] is True
@@ -119,7 +126,7 @@ def test_runner_preserves_validator_gap_dependency_ablation_blocker(tmp_path):
 
     assert trace["events"][0]["event"] == "manifest_instantiated"
     assert any(event["event"] == "validator_invoked" for event in trace["events"])
-    assert any(event["event"] == "stop_condition_triggered" for event in trace["events"])
+    assert not any(event["event"] == "stop_condition_triggered" for event in trace["events"])
     assert trace["jsonl_trace_path"].endswith("trace.jsonl")
     assert {entry["event"] for entry in trace_jsonl}.issuperset(
         {
@@ -127,7 +134,6 @@ def test_runner_preserves_validator_gap_dependency_ablation_blocker(tmp_path):
             "validator_invoked",
             "negative_control_invoked",
             "ablation_invoked",
-            "stop_condition_triggered",
         }
     )
 

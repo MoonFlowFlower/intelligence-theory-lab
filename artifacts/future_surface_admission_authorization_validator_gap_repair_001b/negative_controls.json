@@ -1,0 +1,76 @@
+{
+  "all_controls_blocked": true,
+  "blocked_control_count": 6,
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "controls": [
+    {
+      "blocked": true,
+      "control_id": "missing_concrete_proposed_direction",
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_concrete_surface_direction"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "gate5_proposed_direction",
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "forbidden_surface_admission_direction"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "bridge_runtime_tournament_ego_mainline_proposed_direction",
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "forbidden_surface_admission_direction"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "old_invalid_surfaces_cited_as_mechanism_evidence",
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "old_invalid_surface_cited_as_mechanism_evidence"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "mechanism_score_before_admission",
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "mechanism_score_before_admission"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "validator_repair_treated_as_mechanism_execution_authorization",
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+        "execution_scope_opened_or_language_leakage"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    }
+  ],
+  "producer_function": "run_negative_controls_through_validate_authorization_manifest",
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001B"
+}

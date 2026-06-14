@@ -37,6 +37,10 @@ REFUSED_VERDICT = "future_surface_admission_authorization_template_001a_refused"
 INVALID_VERDICT = "invalid_future_surface_admission_authorization_template_harness"
 ENFORCEMENT_VERDICT = "contract_enforcement_pass"
 HARDENING_VERDICT = "contract_hardened_pass"
+GAP_REPAIR_TASK_ID = "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001A"
+GAP_REPAIR_SLUG = "future_surface_admission_authorization_validator_gap_repair_001a"
+GAP_REPAIR_VERDICT = "future_surface_admission_authorization_validator_gap_repair_001a_pass"
+GAP_REPAIR_DEPENDENCY_TYPE = "sealed_validator_gap_repair_boundary"
 REQUIRED_ENFORCEMENT_ACCEPTANCE = [f"E{index}" for index in range(1, 19)]
 REQUIRED_ACCEPTANCE = [f"A{index}" for index in range(1, 21)]
 INVALID_SURFACE_MARKERS = (
@@ -498,6 +502,28 @@ def _template_dependency_manifest() -> dict[str, Any]:
     }
 
 
+def _validator_gap_repair_dependency_manifest() -> dict[str, Any]:
+    return {
+        "task_id": GAP_REPAIR_TASK_ID,
+        "artifact_id": GAP_REPAIR_SLUG,
+        "result_path": (
+            "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/"
+            "repair_result.json"
+        ),
+        "readback_path": (
+            "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/"
+            "validator_gap_inventory.json"
+        ),
+        "trace_path": (
+            "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/"
+            "repair_trace.jsonl"
+        ),
+        "required_verdict": GAP_REPAIR_VERDICT,
+        "dependency_type": GAP_REPAIR_DEPENDENCY_TYPE,
+        "required": True,
+    }
+
+
 def _manifest_hash_payload(manifest: dict[str, Any]) -> dict[str, Any]:
     normalized = copy.deepcopy(manifest)
     authorization = normalized.get("authorization_validator")
@@ -555,6 +581,7 @@ def build_authorization_manifest_template(repo_root: str | Path) -> dict[str, An
                 "required": True,
             },
             _template_dependency_manifest(),
+            _validator_gap_repair_dependency_manifest(),
         ],
         "pre_execution_enforcement": {
             "checker_module": "surface_admission_contract_enforcement_001a.validator",
@@ -650,7 +677,12 @@ def build_authorization_manifest_template(repo_root: str | Path) -> dict[str, An
         "current_layer": LAYER,
         "parent_boundary": _parent_boundary_manifest(),
         "claim_ceiling": CLAIM_CEILING,
-        "required_dependency_task_ids": [HARDENING_TASK_ID, ENFORCEMENT_TASK_ID, TASK_ID],
+        "required_dependency_task_ids": [
+            HARDENING_TASK_ID,
+            ENFORCEMENT_TASK_ID,
+            TASK_ID,
+            GAP_REPAIR_TASK_ID,
+        ],
         "required_pre_execution_fields": [
             "checker_module",
             "checker_function",
@@ -713,6 +745,8 @@ def _check_manifest_dependencies(manifest: dict[str, Any]) -> list[str]:
         reasons.append("missing_enforcement_dependency")
     if TASK_ID not in dependency_ids:
         reasons.append("missing_future_authorization_template_dependency")
+    if GAP_REPAIR_TASK_ID not in dependency_ids:
+        reasons.append("missing_validator_gap_repair_dependency")
     expected_verdicts = {
         HARDENING_TASK_ID: HARDENING_VERDICT,
         ENFORCEMENT_TASK_ID: ENFORCEMENT_VERDICT,
@@ -722,6 +756,13 @@ def _check_manifest_dependencies(manifest: dict[str, Any]) -> list[str]:
         dependency = dependencies_by_id.get(task_id)
         if dependency and dependency.get("required_verdict") != expected_verdict:
             reasons.append("dependency_verdict_mismatch")
+    gap_dependency = dependencies_by_id.get(GAP_REPAIR_TASK_ID)
+    if gap_dependency and (
+        gap_dependency.get("required_verdict") != GAP_REPAIR_VERDICT
+        or gap_dependency.get("dependency_type") != GAP_REPAIR_DEPENDENCY_TYPE
+        or gap_dependency.get("artifact_id") != GAP_REPAIR_SLUG
+    ):
+        reasons.append("validator_gap_repair_dependency_mismatch")
     return sorted(set(reasons))
 
 
@@ -935,7 +976,9 @@ def _check_template_contract(template: dict[str, Any]) -> list[str]:
     if CLAIM_CEILING != template.get("claim_ceiling"):
         reasons.append("template_claim_ceiling_mismatch")
     dependency_ids = set(template.get("required_dependency_task_ids", []))
-    if not {HARDENING_TASK_ID, ENFORCEMENT_TASK_ID}.issubset(dependency_ids):
+    if not {HARDENING_TASK_ID, ENFORCEMENT_TASK_ID, TASK_ID, GAP_REPAIR_TASK_ID}.issubset(
+        dependency_ids
+    ):
         reasons.append("template_dependency_requirements_missing")
     rules = template.get("required_rules", {})
     if not isinstance(rules, dict):
@@ -1069,6 +1112,8 @@ def validate_authorization_manifest(
         "hardening_dependency_required": HARDENING_TASK_ID in _dependency_ids(manifest),
         "enforcement_dependency_required": ENFORCEMENT_TASK_ID in _dependency_ids(manifest),
         "future_authorization_template_dependency_required": TASK_ID in _dependency_ids(manifest),
+        "validator_gap_repair_dependency_required": GAP_REPAIR_TASK_ID
+        in _dependency_ids(manifest),
         "concrete_surface_direction_required": (
             "missing_concrete_surface_direction" not in unique_reasons
             and "forbidden_surface_admission_direction" not in unique_reasons
