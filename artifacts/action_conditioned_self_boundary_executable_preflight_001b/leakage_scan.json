@@ -1,0 +1,68 @@
+{
+  "all_positive_controls_blocked": true,
+  "clean_legal_input_excludes_contaminated_fields": true,
+  "learned_contaminated_positive_control": {
+    "baseline_path_name": "contaminated_learned_no_boundary_baseline",
+    "correct": 60,
+    "exploited_contamination": true,
+    "producer_function": "_score_contaminated_learned_positive_control",
+    "score": 1.0,
+    "total": 60
+  },
+  "normal_legal_input": {
+    "blocked": false,
+    "detected_paths": [],
+    "producer_function": "scan_legal_input_for_leakage_001b"
+  },
+  "positive_controls": [
+    {
+      "blocked": true,
+      "control_id": "explicit_target_action_output",
+      "detected_paths": [
+        "observation.target_action",
+        "observation.target_output"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "oracle_boundary_label",
+      "detected_paths": [
+        "serialized_state.oracle_boundary_label"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "benign_answer_alias",
+      "detected_paths": [
+        "observation.benign_answer_alias"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "hidden_id_answer_map",
+      "detected_paths": [
+        "observation.hidden_id"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "future_outcome",
+      "detected_paths": [
+        "observation.future_outcome"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "stored_verdict_score",
+      "detected_paths": [
+        "observation.precomputed_score",
+        "observation.precomputed_verdict"
+      ]
+    }
+  ],
+  "positive_controls_blocked": 6,
+  "positive_controls_total": 6,
+  "producer_function": "run_leakage_scan_001b",
+  "scanner_path": "scan_legal_input_for_leakage_001b",
+  "task_id": "ACTION-CONDITIONED-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B-LEARNED-BASELINE-SCALING-CHALLENGE"
+}
