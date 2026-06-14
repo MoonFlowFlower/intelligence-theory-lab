@@ -41,6 +41,9 @@ GAP_REPAIR_TASK_ID = "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAI
 GAP_REPAIR_SLUG = "future_surface_admission_authorization_validator_gap_repair_001a"
 GAP_REPAIR_VERDICT = "future_surface_admission_authorization_validator_gap_repair_001a_pass"
 GAP_REPAIR_DEPENDENCY_TYPE = "sealed_validator_gap_repair_boundary"
+GAP_REPAIR_001B_TASK_ID = "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001B"
+GAP_REPAIR_001B_SLUG = "future_surface_admission_authorization_validator_gap_repair_001b"
+GAP_REPAIR_001B_VERDICT = "future_surface_admission_authorization_validator_gap_repair_001b_pass"
 REQUIRED_ENFORCEMENT_ACCEPTANCE = [f"E{index}" for index in range(1, 19)]
 REQUIRED_ACCEPTANCE = [f"A{index}" for index in range(1, 21)]
 INVALID_SURFACE_MARKERS = (
@@ -107,6 +110,18 @@ REQUIRED_ENFORCEMENT_CONTROLS = {
     ),
     "false_full_suite_pass_after_timeout": "false_full_suite_control_not_blocked",
 }
+VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS = {
+    GAP_REPAIR_TASK_ID: {
+        "artifact_id": GAP_REPAIR_SLUG,
+        "required_verdict": GAP_REPAIR_VERDICT,
+        "dependency_type": GAP_REPAIR_DEPENDENCY_TYPE,
+    },
+    GAP_REPAIR_001B_TASK_ID: {
+        "artifact_id": GAP_REPAIR_001B_SLUG,
+        "required_verdict": GAP_REPAIR_001B_VERDICT,
+        "dependency_type": GAP_REPAIR_DEPENDENCY_TYPE,
+    },
+}
 
 
 def _enforcement_result_path(repo_root: Path) -> Path:
@@ -151,12 +166,22 @@ def _source_hash() -> str:
     functions = [
         validate_enforcement_artifacts,
         build_authorization_manifest_template,
+        _dependency_by_id,
+        _dependency_ids,
+        _required_validator_gap_repair_dependency_specs,
+        _check_manifest_dependencies,
+        _check_template_contract,
         validate_authorization_manifest,
         build_hostile_control_report,
         build_ablation_report,
         run_authorization_template,
     ]
     source = "\n".join(inspect.getsource(function) for function in functions)
+    source += "\n" + json.dumps(
+        VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS,
+        sort_keys=True,
+        ensure_ascii=True,
+    )
     return _hash_bytes(source.encode("utf-8"))
 
 
@@ -735,6 +760,26 @@ def _dependency_ids(manifest: dict[str, Any]) -> set[str]:
     }
 
 
+def _required_validator_gap_repair_dependency_specs(
+    manifest: dict[str, Any],
+) -> dict[str, dict[str, str]]:
+    required = {
+        GAP_REPAIR_TASK_ID: VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS[GAP_REPAIR_TASK_ID],
+    }
+    parent_repair_task = manifest.get("parent_repair_task")
+    if (
+        isinstance(parent_repair_task, str)
+        and parent_repair_task in VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS
+    ):
+        required[parent_repair_task] = VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS[parent_repair_task]
+    explicit_required = manifest.get("required_validator_gap_repair_task_ids")
+    if isinstance(explicit_required, list):
+        for task_id in explicit_required:
+            if isinstance(task_id, str) and task_id in VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS:
+                required[task_id] = VALIDATOR_GAP_REPAIR_DEPENDENCY_SPECS[task_id]
+    return required
+
+
 def _check_manifest_dependencies(manifest: dict[str, Any]) -> list[str]:
     reasons: list[str] = []
     dependencies_by_id = _dependency_by_id(manifest)
@@ -745,8 +790,22 @@ def _check_manifest_dependencies(manifest: dict[str, Any]) -> list[str]:
         reasons.append("missing_enforcement_dependency")
     if TASK_ID not in dependency_ids:
         reasons.append("missing_future_authorization_template_dependency")
-    if GAP_REPAIR_TASK_ID not in dependency_ids:
-        reasons.append("missing_validator_gap_repair_dependency")
+    required_gap_dependencies = _required_validator_gap_repair_dependency_specs(manifest)
+    for task_id, expected in required_gap_dependencies.items():
+        gap_dependency = dependencies_by_id.get(task_id)
+        if gap_dependency is None:
+            reasons.append("missing_validator_gap_repair_dependency")
+            if task_id == GAP_REPAIR_001B_TASK_ID:
+                reasons.append("missing_validator_gap_repair_001b_dependency")
+            continue
+        if (
+            gap_dependency.get("required_verdict") != expected["required_verdict"]
+            or gap_dependency.get("dependency_type") != expected["dependency_type"]
+            or gap_dependency.get("artifact_id") != expected["artifact_id"]
+        ):
+            reasons.append("validator_gap_repair_dependency_mismatch")
+            if task_id == GAP_REPAIR_001B_TASK_ID:
+                reasons.append("validator_gap_repair_001b_dependency_mismatch")
     expected_verdicts = {
         HARDENING_TASK_ID: HARDENING_VERDICT,
         ENFORCEMENT_TASK_ID: ENFORCEMENT_VERDICT,
@@ -756,13 +815,6 @@ def _check_manifest_dependencies(manifest: dict[str, Any]) -> list[str]:
         dependency = dependencies_by_id.get(task_id)
         if dependency and dependency.get("required_verdict") != expected_verdict:
             reasons.append("dependency_verdict_mismatch")
-    gap_dependency = dependencies_by_id.get(GAP_REPAIR_TASK_ID)
-    if gap_dependency and (
-        gap_dependency.get("required_verdict") != GAP_REPAIR_VERDICT
-        or gap_dependency.get("dependency_type") != GAP_REPAIR_DEPENDENCY_TYPE
-        or gap_dependency.get("artifact_id") != GAP_REPAIR_SLUG
-    ):
-        reasons.append("validator_gap_repair_dependency_mismatch")
     return sorted(set(reasons))
 
 
@@ -1103,17 +1155,22 @@ def validate_authorization_manifest(
 
     rules = manifest.get("required_rules", {}) if isinstance(manifest.get("required_rules"), dict) else {}
     scope = manifest.get("scope", {}) if isinstance(manifest.get("scope"), dict) else {}
+    dependency_ids = _dependency_ids(manifest)
+    required_gap_dependencies = _required_validator_gap_repair_dependency_specs(manifest)
     unique_reasons = sorted(set(reasons))
     return {
         "task_id": TASK_ID,
         "manifest_task_id": manifest.get("task_id"),
         "authorization_decision": "blocked" if unique_reasons else "authorized",
         "reasons_fired": unique_reasons,
-        "hardening_dependency_required": HARDENING_TASK_ID in _dependency_ids(manifest),
-        "enforcement_dependency_required": ENFORCEMENT_TASK_ID in _dependency_ids(manifest),
-        "future_authorization_template_dependency_required": TASK_ID in _dependency_ids(manifest),
+        "hardening_dependency_required": HARDENING_TASK_ID in dependency_ids,
+        "enforcement_dependency_required": ENFORCEMENT_TASK_ID in dependency_ids,
+        "future_authorization_template_dependency_required": TASK_ID in dependency_ids,
         "validator_gap_repair_dependency_required": GAP_REPAIR_TASK_ID
-        in _dependency_ids(manifest),
+        in dependency_ids,
+        "validator_gap_repair_001b_dependency_required": GAP_REPAIR_001B_TASK_ID
+        in dependency_ids,
+        "required_validator_gap_repair_task_ids": sorted(required_gap_dependencies),
         "concrete_surface_direction_required": (
             "missing_concrete_surface_direction" not in unique_reasons
             and "forbidden_surface_admission_direction" not in unique_reasons
