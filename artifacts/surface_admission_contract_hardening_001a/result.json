@@ -1,0 +1,126 @@
+{
+  "acceptance_gates": {
+    "evidence_by_gate": {
+      "G1": {
+        "evidence": [
+          "PRESERVE-CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A-HOSTILE-AUDIT-001A: oracle/target or oracle/scorer tautology is preserved in blocker evidence",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: oracle/target or oracle/scorer tautology is preserved in blocker evidence"
+        ],
+        "passed": true
+      },
+      "G10": {
+        "evidence": [
+          "all preserved negative controls blocked"
+        ],
+        "passed": true
+      },
+      "G2": {
+        "evidence": [
+          "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: answer-bearing alias channel reported",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: blocking issue reports semantic answer-bearing legal field",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: legal field deterministically encodes target",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: effect_vector_lookup_accuracy=1.0 via actuator_effects semantic probe",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: benign alias accuracy=1.0 without forbidden-name match"
+        ],
+        "passed": true
+      },
+      "G3": {
+        "evidence": [
+          "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: simple legal challenger reaches oracle-level accuracy or majority equivalence",
+          "PRESERVE-CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A-HOSTILE-AUDIT-001A: simple legal challenger reaches oracle-level accuracy or majority equivalence",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: simple legal challenger reaches oracle-level accuracy or majority equivalence"
+        ],
+        "passed": true
+      },
+      "G4": {
+        "evidence": [
+          "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: oracle/scorer has answer-function or forbidden-alias access not granted to fair baselines",
+          "PRESERVE-CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A-HOSTILE-AUDIT-001A: oracle/scorer has answer-function or forbidden-alias access not granted to fair baselines",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: oracle/scorer has answer-function or forbidden-alias access not granted to fair baselines"
+        ],
+        "passed": true
+      },
+      "G5": {
+        "evidence": [
+          "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: required fair legal challengers are synthesized before admission",
+          "PRESERVE-CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A-HOSTILE-AUDIT-001A: required fair legal challengers are synthesized before admission",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: required fair legal challengers are synthesized before admission"
+        ],
+        "passed": true
+      },
+      "G6": {
+        "evidence": [
+          "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: replay path recomputes the label or reads answer-bearing state",
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: replay path recomputes the label or reads answer-bearing state"
+        ],
+        "passed": true
+      },
+      "G7": {
+        "evidence": [
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: benign-named answer alias controllability_outlook reaches target accuracy while name scan passes"
+        ],
+        "passed": true
+      },
+      "G8": {
+        "evidence": [
+          "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A: same-state metadata/context/action_index fields determine or proxy the target"
+        ],
+        "passed": true
+      },
+      "G9": {
+        "evidence": [
+          "static positive control: $.passed=true is a non-fail-able static claim",
+          "static positive control: $.verified=true is a non-fail-able static claim",
+          "static positive control: $.bounded_pass=true is a non-fail-able static claim",
+          "static positive control: $.oracle_accuracy=1.0 lacks metric producer provenance",
+          "static positive control: $.baseline_gate_passed=true is a non-fail-able static claim",
+          "static positive control: $.replay_gate_passed=true is a non-fail-able static claim",
+          "static positive control: $.leakage_gate_passed=true is a non-fail-able static claim"
+        ],
+        "passed": true
+      }
+    },
+    "failed": [],
+    "passed": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8",
+      "G9",
+      "G10"
+    ]
+  },
+  "auto_remote_anchor": {
+    "claim_ceiling_if_performed": "remote-anchor publication and verification only",
+    "decision": "conditional",
+    "permitted_now": true
+  },
+  "blocked_control_count": 3,
+  "candidate_or_surface_designed": false,
+  "claim_ceiling": "engineering-governance / evidence-hygiene only",
+  "current_layer": "engineering-governance / harness-contract hardening / no mechanism surface",
+  "enabled_status": "callable local validator only; no mechanism candidate, runtime, bridge, Gate5, or EGO mainline path enabled",
+  "mainline_integration_status": "not integrated; offline validator and contract only",
+  "mechanism_score_produced": false,
+  "next_minimal_closed_loop_action": "Require this validator contract before any future surface-admission task card can authorize execution.",
+  "old_artifacts_modified": false,
+  "preserved_inputs_modified": false,
+  "real_trigger_evidence": "read-only preserved hostile-audit artifacts plus static positive-control refusal",
+  "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+  "verdict": "blocked_preserved_false_positive_surfaces",
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "Gate4 validity",
+    "candidate behavior",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "EGO readiness",
+    "mainline effect"
+  ]
+}

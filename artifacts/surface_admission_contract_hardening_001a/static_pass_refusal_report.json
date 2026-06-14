@@ -1,0 +1,61 @@
+{
+  "admission_decision": "blocked",
+  "bundle_id": "static_pass_positive_control",
+  "claim_ceiling": "engineering-governance / evidence-hygiene only",
+  "findings": [
+    {
+      "detector_method": "non_failable_boolean_claim_probe",
+      "evidence": "$.passed=true is a non-fail-able static claim",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    },
+    {
+      "detector_method": "non_failable_boolean_claim_probe",
+      "evidence": "$.verified=true is a non-fail-able static claim",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    },
+    {
+      "detector_method": "non_failable_boolean_claim_probe",
+      "evidence": "$.bounded_pass=true is a non-fail-able static claim",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    },
+    {
+      "detector_method": "static_literal_metric_probe",
+      "evidence": "$.oracle_accuracy=1.0 lacks metric producer provenance",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    },
+    {
+      "detector_method": "non_failable_boolean_claim_probe",
+      "evidence": "$.baseline_gate_passed=true is a non-fail-able static claim",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    },
+    {
+      "detector_method": "non_failable_boolean_claim_probe",
+      "evidence": "$.replay_gate_passed=true is a non-fail-able static claim",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    },
+    {
+      "detector_method": "non_failable_boolean_claim_probe",
+      "evidence": "$.leakage_gate_passed=true is a non-fail-able static claim",
+      "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+      "gate_id": "G9",
+      "source_path": "synthetic_static_pass/result.json"
+    }
+  ],
+  "non_failable_claims_detected": true,
+  "producer_function": "validate_surface_admission_bundle",
+  "static_report_refused": true,
+  "static_task_id_denylist_used": false,
+  "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+}
