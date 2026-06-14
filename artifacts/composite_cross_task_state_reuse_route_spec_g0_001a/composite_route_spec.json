@@ -1,0 +1,72 @@
+{
+  "action": "Task B action selection reads the updated shared state under a support-disjoint heldout context.",
+  "baseline_contrasts": {
+    "causal_bandit": "Should not match because intervention reward estimation is not sufficient to reuse one state across boundary/replay/viability/social inference.",
+    "dyna_q": "Should not match because same-task simulated replay/value update does not satisfy cross-family support-disjoint transfer.",
+    "independent_per_task_optimal_ensemble": "Should not match because no per-task module can receive task A prediction-error updates through the disputed shared state.",
+    "meta_rl_recurrent_hidden_state_controller": "Should not match unless it exposes the same support-disjoint prediction-error transfer and channel-removal ablation.",
+    "mpc_world_model_planner": "Should not match because rollout/action optimization without the disputed update channel has no reason to change task B after task A error.",
+    "multi_task_representation_learning": "Should not match because shared features alone do not make task A prediction error causally alter task B action selection.",
+    "oracle_feature_sharing_no_update_channel": "Should not match because oracle features without the disputed update channel should fail the channel-removal contrast.",
+    "pomdp_shared_belief_state_update_control": "Should not match unless it adds the disputed support-disjoint cross-task update channel and ablation-sensitive observable.",
+    "prioritized_sweeping": "Should not match because prioritized replay alone lacks task A to task B action-selection transfer under heldout support.",
+    "retrieval_nearest_neighbor_table_lookup": "Should not match because IDs, row order, nearest traces, cached episodes, and stored answers are forbidden leakage paths.",
+    "shared_latent_no_cross_task_transfer": "Should not match because a merely shared state without cross-task prediction-error-to-action transfer loses the required observable.",
+    "static_rule_formula_decoder": "Should not match because the observable must depend on a prediction-error update, not a static formula."
+  },
+  "boundary": "The state carries boundary/context evidence without row, context, partner, trace-order, or target-key access.",
+  "computational_steps": [
+    "shared_internal_state",
+    "prediction_error_update",
+    "cross_task_action_selection_dependency",
+    "support_disjoint_transfer",
+    "ablation_cross_task_update_channel",
+    "replay_recompute_from_serialized_state",
+    "leakage_positive_control"
+  ],
+  "context_ids": [],
+  "cross_task_action_selection_observable": "Observable: after task A prediction error, task B support-disjoint action selection changes relative to the no-update channel control.",
+  "cross_task_reuse": "Prediction error in task A updates the same state used by task B action selection.",
+  "downstream_action_selection_change": "Task B action selection changes only when the task A prediction error reaches the shared state update channel.",
+  "episode_ids": [],
+  "feedback": "Task A feedback supplies a prediction error signal without exposing task B target fields.",
+  "future_surface_protocol": "ANTI-LOOKUP-GENERATIVE-HELDOUT-SURFACE-PROTOCOL-001A",
+  "leakage_check": {
+    "forbidden_fields": [
+      "answer_key",
+      "context_id",
+      "hidden_label",
+      "partner_id",
+      "row_id",
+      "static_formula",
+      "support_overlap",
+      "target_field",
+      "trace_order"
+    ],
+    "positive_control_required": true,
+    "support_overlap_scan_required": true
+  },
+  "minimal_future_observable": "Anti-lookup heldout observable: task B support-disjoint action selection changes after task A prediction error, and the change collapses under update-channel ablation.",
+  "prediction": "Task A predicts a boundary/viability/social latent consequence before feedback is observed.",
+  "prediction_error_update_effect": "In support-disjoint task A, prediction error updates the shared state; in support-disjoint task B, the updated shared state changes action selection.",
+  "replay_consolidation": "Replay/consolidation recomputes future action selection without direct target leakage or stored answers.",
+  "replay_recomputation_requirement": "Future replay must recompute candidate behavior from serialized state plus new observation; stored answer replay is forbidden.",
+  "required_ablation": "Remove the cross-task prediction-error update channel; the cross-task action-selection change must collapse while local per-task ability is preserved.",
+  "run_id": "composite_cross_task_state_reuse_route_spec_g0_001a_20260614T041515Z",
+  "serialized_recomputation_requirement": "Serialized state plus new observation must be sufficient for recomputation; stored answer or stored target hash comparison is forbidden.",
+  "shared_internal_state_type": "non_table_shared_latent_state",
+  "shared_state": "The shared non-tabular latent state is an update-sensitive vector-like contract, not an indexed memory or stored-answer selector.",
+  "social_inference": "The same state constrains social-inference action selection in task B.",
+  "source_artifact": "attached_task_card_COMPOSITE-CROSS-TASK-STATE-REUSE-ROUTE-SPEC-G0-001A",
+  "spec_id": "composite_cross_task_state_reuse_route_spec_g0_001a_candidate_route_spec",
+  "state": "A single shared route_state is reused by boundary, replay, viability, and social inference task families.",
+  "support_disjoint_condition": "Task A and task B must share no exact train support, stable IDs, table rows, partner IDs, context IDs, or trace order.",
+  "task_families": [
+    "boundary",
+    "replay",
+    "viability",
+    "social_inference"
+  ],
+  "update": "The prediction error updates the shared state through the disputed cross-task update channel.",
+  "viability": "The state carries viability-relevant error information that can alter future action selection."
+}
