@@ -1,0 +1,65 @@
+{
+  "allowed_observation_fields": [
+    "task_a.observation.visible_event_class",
+    "task_a.observation.predicted_outcome",
+    "task_a.observation.observed_outcome",
+    "task_a.observation.prediction_signal",
+    "task_b.observation.superficial_signature",
+    "task_b.observation.local_visible_cue",
+    "task_b.observation.pre_update_default_action",
+    "task_b.observation.fallback_action",
+    "task_family_id"
+  ],
+  "allowed_training_outcome_fields": [
+    "records.train.task_b.post_update_action"
+  ],
+  "baseline_access_violations": {},
+  "claim_ceiling": "No-candidate multi-seed surface-robustness preflight only.",
+  "forbidden_fields_checked": [
+    "hidden",
+    "hidden.task_b_target_action",
+    "hidden.task_a_latent_target",
+    "hidden.generator_latent_state_id",
+    "record_id",
+    "context_handle",
+    "partner_handle",
+    "support_signature",
+    "counterfactual_combo_id",
+    "latent_parameter_id",
+    "split",
+    "task_b.post_update_action",
+    "task_b.action_dependency_id",
+    "task_b.observation.latent_binding_probe",
+    "task_a.prediction_error_event_id",
+    "shared_state_update.update_event_id",
+    "shared_state_update.channel",
+    "shared_state_update.caused_by_task_a_prediction_error_event_id",
+    "shared_state_update.serialized_state_after",
+    "shared_state_update.serialized_state_before",
+    "provenance.heldout_ids",
+    "provenance.train_ids",
+    "target_resolver_output",
+    "row_id",
+    "context_id",
+    "partner_id",
+    "trace_order",
+    "answer_key"
+  ],
+  "positive_controls": {
+    "illegal_field_access": {
+      "blocked": true,
+      "illegal_accesses": [
+        "hidden.task_b_target_action"
+      ]
+    },
+    "stored_answer_replay_attempt": {
+      "blocked": true,
+      "illegal_accesses": [
+        "task_b.post_update_action"
+      ]
+    }
+  },
+  "producer_function": "build_field_access_audit",
+  "run_id": "composite_cross_task_state_reuse_multi_seed_surface_robustness_preflight_001a_20260614T103238Z",
+  "task_id": "COMPOSITE-CROSS-TASK-STATE-REUSE-MULTI-SEED-SURFACE-ROBUSTNESS-PREFLIGHT-001A"
+}

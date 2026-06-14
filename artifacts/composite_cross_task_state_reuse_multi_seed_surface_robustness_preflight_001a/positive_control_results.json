@@ -1,0 +1,56 @@
+{
+  "all_positive_controls_failed": true,
+  "claim_ceiling": "No-candidate multi-seed surface-robustness preflight only.",
+  "control_results": {
+    "illegal_field_access": {
+      "code_path_hash": "621f4292434ffb5a454c71f705cdd9b99e254fffaa70314c381f56a7a823b63a",
+      "control_id": "illegal_field_access",
+      "expected_block_reason": "forbidden_field_access",
+      "failed_as_expected": true,
+      "illegal_accesses": [
+        "hidden.task_b_target_action"
+      ],
+      "observed_blocking_reasons": [
+        "forbidden_field_access"
+      ],
+      "producer_function": "run_positive_controls"
+    },
+    "overlapping_support_fixture": {
+      "code_path_hash": "621f4292434ffb5a454c71f705cdd9b99e254fffaa70314c381f56a7a823b63a",
+      "control_id": "overlapping_support_fixture",
+      "expected_block_reason": "overlapping_train_heldout_support",
+      "failed_as_expected": true,
+      "observed_blocking_reasons": [
+        "forbidden_files_modified",
+        "overlapping_train_heldout_support"
+      ],
+      "producer_function": "run_positive_controls"
+    },
+    "stored_answer_replay_attempt": {
+      "code_path_hash": "621f4292434ffb5a454c71f705cdd9b99e254fffaa70314c381f56a7a823b63a",
+      "control_id": "stored_answer_replay_attempt",
+      "expected_block_reason": "stored_answer_replay_path_present",
+      "failed_as_expected": true,
+      "illegal_accesses": [
+        "task_b.post_update_action"
+      ],
+      "observed_blocking_reasons": [
+        "stored_answer_replay_path_present"
+      ],
+      "producer_function": "run_positive_controls"
+    },
+    "visible_feature_only_degenerate_fixture": {
+      "code_path_hash": "621f4292434ffb5a454c71f705cdd9b99e254fffaa70314c381f56a7a823b63a",
+      "control_id": "visible_feature_only_degenerate_fixture",
+      "expected_block_reason": "task_b_visible_features_sufficient",
+      "failed_as_expected": true,
+      "observed_blocking_reasons": [
+        "forbidden_files_modified",
+        "task_b_visible_features_sufficient"
+      ],
+      "producer_function": "run_positive_controls"
+    }
+  },
+  "producer_function": "run_positive_controls",
+  "task_id": "COMPOSITE-CROSS-TASK-STATE-REUSE-MULTI-SEED-SURFACE-ROBUSTNESS-PREFLIGHT-001A"
+}
