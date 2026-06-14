@@ -1,0 +1,142 @@
+{
+  "expected_failure_reason": "forbidden_target_derived_field_visible",
+  "fixture_type": "malformed forbidden-visible-target positive controls",
+  "fixtures": [
+    {
+      "family_id": "causal_world_model_control",
+      "injected_field": "intervention_consequence_class",
+      "malformation": "forbidden_target_derived_field_visible",
+      "record": {
+        "observation": {
+          "action": "redirect_flow",
+          "intervention": "valve_shift",
+          "intervention_consequence_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+          "previous_transition_summary": "no direct outcome labels",
+          "state_features": {
+            "load": "medium",
+            "zone": "s1"
+          }
+        },
+        "target_source": {
+          "intervention_consequence_class": "stabilizes"
+        }
+      }
+    },
+    {
+      "family_id": "jepa_like_latent_prediction",
+      "injected_field": "future_transition_class",
+      "malformation": "forbidden_target_derived_field_visible",
+      "record": {
+        "observation": {
+          "current_observation_features": {
+            "phase": "pre",
+            "shape": "paired"
+          },
+          "future_transition_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+          "masked_future_boundary": "future_window_a",
+          "perturbation_handle": "swap_dynamics",
+          "transition_context": "composition_split_02"
+        },
+        "target_source": {
+          "future_transition_class": "relation_preserved"
+        }
+      }
+    },
+    {
+      "family_id": "replay_consolidation_adaptation",
+      "injected_field": "post_replay_behavior_class",
+      "malformation": "forbidden_target_derived_field_visible",
+      "record": {
+        "observation": {
+          "heldout_observation": {
+            "probe": "new_context"
+          },
+          "post_replay_behavior_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+          "replay_event_summary": {
+            "events": [
+              "e1",
+              "e2"
+            ],
+            "labels": []
+          },
+          "replay_order_marker": "causal_order_a",
+          "serialized_state_hash": "statehash001"
+        },
+        "target_source": {
+          "post_replay_behavior_class": "updates_response"
+        }
+      }
+    },
+    {
+      "family_id": "self_boundary_controllability_model",
+      "injected_field": "controllability_attribution_class",
+      "malformation": "forbidden_target_derived_field_visible",
+      "record": {
+        "observation": {
+          "controllability_attribution_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+          "feedback_window": "window_b",
+          "intervention_attempt": "nudge_plus",
+          "observed_delta": {
+            "direction": "up",
+            "magnitude": "partial"
+          },
+          "variable_handle": "var_17"
+        },
+        "target_source": {
+          "controllability_attribution_class": "self_caused_partial"
+        }
+      }
+    },
+    {
+      "family_id": "viability_value_gated_prediction_action_loop",
+      "injected_field": "delayed_viability_action_class",
+      "malformation": "forbidden_target_derived_field_visible",
+      "record": {
+        "observation": {
+          "action_options": [
+            "probe",
+            "preserve",
+            "spend"
+          ],
+          "delayed_consequence_context": "lagged_effect_split",
+          "delayed_viability_action_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+          "prediction_error_signal": "large",
+          "state_features": {
+            "resource": "low",
+            "volatility": "high"
+          },
+          "viability_pressure_signal": "conserve"
+        },
+        "target_source": {
+          "delayed_viability_action_class": "preserve"
+        }
+      }
+    },
+    {
+      "family_id": "social_latent_inference_without_partner_id_lookup",
+      "injected_field": "latent_response_class",
+      "malformation": "forbidden_target_derived_field_visible",
+      "record": {
+        "observation": {
+          "feedback_signal": "partner_policy_shift_visible_only_as_feedback",
+          "history_summary_without_identity": {
+            "recent": [
+              "ask",
+              "revise"
+            ]
+          },
+          "identity_permutation_epoch": "perm_epoch_03",
+          "interaction_observation": {
+            "affordance": "clarify",
+            "turn": "challenge"
+          },
+          "latent_response_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL"
+        },
+        "target_source": {
+          "latent_response_class": "ask_constraint_question"
+        }
+      }
+    }
+  ],
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-EXECUTABLE-SURFACE-CONTRACT-001A"
+}

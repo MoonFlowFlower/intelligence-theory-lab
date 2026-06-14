@@ -1,0 +1,509 @@
+{
+  "auto_remote_anchor": "forbidden",
+  "baseline_preflight_rerun_authorized_if_validation_passes": true,
+  "candidate_code_authorized": false,
+  "candidate_score_authorized": false,
+  "claim_ceiling": "Executable-surface contract repair only. This authorizes no candidate code, no candidate score, no tournament execution, no Gate4 replacement design, no runtime or EGO-mainline path, and no mechanism-validity claim.",
+  "families": [
+    {
+      "allowed_input_fields": [
+        "state_features",
+        "action",
+        "intervention",
+        "previous_transition_summary"
+      ],
+      "cheap_baseline_attack_surface": [
+        "state_action_lookup_table",
+        "model_free_action_frequency_baseline",
+        "oracle_visible_feature_shortcut",
+        "nearest_neighbor_transition_retrieval",
+        "ngram_trajectory_lookup"
+      ],
+      "family_id": "causal_world_model_control",
+      "forbidden_target_derived_fields": [
+        "target",
+        "target_label",
+        "intervention_consequence_class",
+        "consequence_label",
+        "state_action_answer_key",
+        "transition_target"
+      ],
+      "leakage_detector_list": [
+        "forbidden_visible_target_field_scanner",
+        "state_action_answer_key_scanner",
+        "context_or_row_index_target_scanner",
+        "static_transition_formula_scanner"
+      ],
+      "metric_function": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.exact_match_accuracy",
+      "minimum_baseline_preflight_eligibility": true,
+      "numeric_threshold": 0.8,
+      "observation_schema": {
+        "action": "string action handle",
+        "intervention": "string intervention handle",
+        "previous_transition_summary": "string or object without outcome labels",
+        "state_features": "object with non-target state descriptors"
+      },
+      "positive_control_malformed_fixture": {
+        "family_id": "causal_world_model_control",
+        "injected_field": "intervention_consequence_class",
+        "malformation": "forbidden_target_derived_field_visible",
+        "record": {
+          "observation": {
+            "action": "redirect_flow",
+            "intervention": "valve_shift",
+            "intervention_consequence_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+            "previous_transition_summary": "no direct outcome labels",
+            "state_features": {
+              "load": "medium",
+              "zone": "s1"
+            }
+          },
+          "target_source": {
+            "intervention_consequence_class": "stabilizes"
+          }
+        }
+      },
+      "sample_valid_record": {
+        "observation": {
+          "action": "redirect_flow",
+          "intervention": "valve_shift",
+          "previous_transition_summary": "no direct outcome labels",
+          "state_features": {
+            "load": "medium",
+            "zone": "s1"
+          }
+        },
+        "target_source": {
+          "intervention_consequence_class": "stabilizes"
+        }
+      },
+      "target_resolver": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.resolve_causal_world_model_control_target",
+      "threshold_rationale": "Cheap-baseline invalidation threshold for exact-match heldout intervention consequences; reuses the prior no-candidate 0.8 kill threshold before any candidate result exists."
+    },
+    {
+      "allowed_input_fields": [
+        "current_observation_features",
+        "masked_future_boundary",
+        "transition_context",
+        "perturbation_handle"
+      ],
+      "cheap_baseline_attack_surface": [
+        "frozen_random_or_pretrained_encoder_baseline",
+        "nearest_neighbor_latent_retrieval",
+        "supervised_target_shortcut",
+        "bag_of_observation_feature_baseline",
+        "trace_only_decoder_baseline"
+      ],
+      "family_id": "jepa_like_latent_prediction",
+      "forbidden_target_derived_fields": [
+        "target",
+        "target_label",
+        "future_transition_class",
+        "future_state_id",
+        "latent_answer_key",
+        "transition_label"
+      ],
+      "leakage_detector_list": [
+        "latent_answer_key_scanner",
+        "trace_index_target_scanner",
+        "filename_target_label_scanner",
+        "decoder_visible_bundle_scanner"
+      ],
+      "metric_function": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.exact_match_accuracy",
+      "minimum_baseline_preflight_eligibility": true,
+      "numeric_threshold": 0.8,
+      "observation_schema": {
+        "current_observation_features": "object with visible non-target features",
+        "masked_future_boundary": "string boundary marker without answer key",
+        "perturbation_handle": "string perturbation handle",
+        "transition_context": "string context handle without target label"
+      },
+      "positive_control_malformed_fixture": {
+        "family_id": "jepa_like_latent_prediction",
+        "injected_field": "future_transition_class",
+        "malformation": "forbidden_target_derived_field_visible",
+        "record": {
+          "observation": {
+            "current_observation_features": {
+              "phase": "pre",
+              "shape": "paired"
+            },
+            "future_transition_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+            "masked_future_boundary": "future_window_a",
+            "perturbation_handle": "swap_dynamics",
+            "transition_context": "composition_split_02"
+          },
+          "target_source": {
+            "future_transition_class": "relation_preserved"
+          }
+        }
+      },
+      "sample_valid_record": {
+        "observation": {
+          "current_observation_features": {
+            "phase": "pre",
+            "shape": "paired"
+          },
+          "masked_future_boundary": "future_window_a",
+          "perturbation_handle": "swap_dynamics",
+          "transition_context": "composition_split_02"
+        },
+        "target_source": {
+          "future_transition_class": "relation_preserved"
+        }
+      },
+      "target_resolver": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.resolve_jepa_like_latent_prediction_target",
+      "threshold_rationale": "Cheap-baseline invalidation threshold for heldout transition-class discrimination; set before candidate code and high enough to close retrieval or decoder-solvable surfaces."
+    },
+    {
+      "allowed_input_fields": [
+        "serialized_state_hash",
+        "replay_event_summary",
+        "heldout_observation",
+        "replay_order_marker"
+      ],
+      "cheap_baseline_attack_surface": [
+        "no_replay",
+        "shuffled_replay",
+        "cache_replay",
+        "stored_answer_replay",
+        "retrieval_over_previous_traces",
+        "hash_comparison_replay"
+      ],
+      "family_id": "replay_consolidation_adaptation",
+      "forbidden_target_derived_fields": [
+        "target",
+        "target_label",
+        "post_replay_behavior_class",
+        "stored_answer_hash",
+        "replay_answer_key",
+        "episode_target"
+      ],
+      "leakage_detector_list": [
+        "stored_answer_hash_scanner",
+        "replay_buffer_target_scanner",
+        "episode_id_answer_key_scanner",
+        "hash_only_replay_scanner"
+      ],
+      "metric_function": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.exact_match_accuracy",
+      "minimum_baseline_preflight_eligibility": true,
+      "numeric_threshold": 0.8,
+      "observation_schema": {
+        "heldout_observation": "object for recomputation",
+        "replay_event_summary": "object without stored answers",
+        "replay_order_marker": "string non-answer order marker",
+        "serialized_state_hash": "string hash of pre-replay state"
+      },
+      "positive_control_malformed_fixture": {
+        "family_id": "replay_consolidation_adaptation",
+        "injected_field": "post_replay_behavior_class",
+        "malformation": "forbidden_target_derived_field_visible",
+        "record": {
+          "observation": {
+            "heldout_observation": {
+              "probe": "new_context"
+            },
+            "post_replay_behavior_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+            "replay_event_summary": {
+              "events": [
+                "e1",
+                "e2"
+              ],
+              "labels": []
+            },
+            "replay_order_marker": "causal_order_a",
+            "serialized_state_hash": "statehash001"
+          },
+          "target_source": {
+            "post_replay_behavior_class": "updates_response"
+          }
+        }
+      },
+      "sample_valid_record": {
+        "observation": {
+          "heldout_observation": {
+            "probe": "new_context"
+          },
+          "replay_event_summary": {
+            "events": [
+              "e1",
+              "e2"
+            ],
+            "labels": []
+          },
+          "replay_order_marker": "causal_order_a",
+          "serialized_state_hash": "statehash001"
+        },
+        "target_source": {
+          "post_replay_behavior_class": "updates_response"
+        }
+      },
+      "target_resolver": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.resolve_replay_consolidation_adaptation_target",
+      "threshold_rationale": "Cheap-baseline invalidation threshold for post-replay behavior class under recomputation; closes cache or stored-answer surfaces before candidate work."
+    },
+    {
+      "allowed_input_fields": [
+        "variable_handle",
+        "intervention_attempt",
+        "observed_delta",
+        "feedback_window"
+      ],
+      "cheap_baseline_attack_surface": [
+        "variable_name_heuristic",
+        "intervention_lookup_table",
+        "state_delta_frequency_baseline",
+        "oracle_controllability_label_baseline",
+        "fixed_self_other_partition_baseline"
+      ],
+      "family_id": "self_boundary_controllability_model",
+      "forbidden_target_derived_fields": [
+        "target",
+        "target_label",
+        "controllability_attribution_class",
+        "self_other_label",
+        "role_label",
+        "boundary_answer_key"
+      ],
+      "leakage_detector_list": [
+        "role_label_scanner",
+        "semantic_variable_name_scanner",
+        "fixed_position_mask_scanner",
+        "generator_role_field_scanner"
+      ],
+      "metric_function": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.exact_match_accuracy",
+      "minimum_baseline_preflight_eligibility": true,
+      "numeric_threshold": 0.8,
+      "observation_schema": {
+        "feedback_window": "string feedback interval",
+        "intervention_attempt": "string intervention handle",
+        "observed_delta": "object with non-label delta values",
+        "variable_handle": "opaque variable handle"
+      },
+      "positive_control_malformed_fixture": {
+        "family_id": "self_boundary_controllability_model",
+        "injected_field": "controllability_attribution_class",
+        "malformation": "forbidden_target_derived_field_visible",
+        "record": {
+          "observation": {
+            "controllability_attribution_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+            "feedback_window": "window_b",
+            "intervention_attempt": "nudge_plus",
+            "observed_delta": {
+              "direction": "up",
+              "magnitude": "partial"
+            },
+            "variable_handle": "var_17"
+          },
+          "target_source": {
+            "controllability_attribution_class": "self_caused_partial"
+          }
+        }
+      },
+      "sample_valid_record": {
+        "observation": {
+          "feedback_window": "window_b",
+          "intervention_attempt": "nudge_plus",
+          "observed_delta": {
+            "direction": "up",
+            "magnitude": "partial"
+          },
+          "variable_handle": "var_17"
+        },
+        "target_source": {
+          "controllability_attribution_class": "self_caused_partial"
+        }
+      },
+      "target_resolver": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.resolve_self_boundary_controllability_model_target",
+      "threshold_rationale": "Cheap-baseline invalidation threshold for heldout controllability attribution; blocks static role, name, and partition shortcuts before mechanism testing."
+    },
+    {
+      "allowed_input_fields": [
+        "state_features",
+        "action_options",
+        "prediction_error_signal",
+        "viability_pressure_signal",
+        "delayed_consequence_context"
+      ],
+      "cheap_baseline_attack_surface": [
+        "static_reward_lookup",
+        "myopic_greedy_policy",
+        "fixed_risk_avoidance_heuristic",
+        "action_frequency_baseline",
+        "oracle_viability_label_shortcut",
+        "state_action_reward_triple_table"
+      ],
+      "family_id": "viability_value_gated_prediction_action_loop",
+      "forbidden_target_derived_fields": [
+        "target",
+        "target_label",
+        "delayed_viability_action_class",
+        "viability_label",
+        "risk_label",
+        "reward_answer_key"
+      ],
+      "leakage_detector_list": [
+        "immediate_reward_target_scanner",
+        "fixed_risk_label_scanner",
+        "state_action_reward_answer_key_scanner",
+        "oracle_viability_label_scanner"
+      ],
+      "metric_function": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.exact_match_accuracy",
+      "minimum_baseline_preflight_eligibility": true,
+      "numeric_threshold": 0.8,
+      "observation_schema": {
+        "action_options": "list of opaque action handles",
+        "delayed_consequence_context": "string context handle",
+        "prediction_error_signal": "numeric or bucketed error signal",
+        "state_features": "object with non-answer state descriptors",
+        "viability_pressure_signal": "numeric or bucketed non-label pressure"
+      },
+      "positive_control_malformed_fixture": {
+        "family_id": "viability_value_gated_prediction_action_loop",
+        "injected_field": "delayed_viability_action_class",
+        "malformation": "forbidden_target_derived_field_visible",
+        "record": {
+          "observation": {
+            "action_options": [
+              "probe",
+              "preserve",
+              "spend"
+            ],
+            "delayed_consequence_context": "lagged_effect_split",
+            "delayed_viability_action_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL",
+            "prediction_error_signal": "large",
+            "state_features": {
+              "resource": "low",
+              "volatility": "high"
+            },
+            "viability_pressure_signal": "conserve"
+          },
+          "target_source": {
+            "delayed_viability_action_class": "preserve"
+          }
+        }
+      },
+      "sample_valid_record": {
+        "observation": {
+          "action_options": [
+            "probe",
+            "preserve",
+            "spend"
+          ],
+          "delayed_consequence_context": "lagged_effect_split",
+          "prediction_error_signal": "large",
+          "state_features": {
+            "resource": "low",
+            "volatility": "high"
+          },
+          "viability_pressure_signal": "conserve"
+        },
+        "target_source": {
+          "delayed_viability_action_class": "preserve"
+        }
+      },
+      "target_resolver": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.resolve_viability_value_gated_prediction_action_loop_target",
+      "threshold_rationale": "Cheap-baseline invalidation threshold for delayed consequence action class; blocks static reward, myopic, and risk-label shortcuts before candidate work."
+    },
+    {
+      "allowed_input_fields": [
+        "interaction_observation",
+        "feedback_signal",
+        "history_summary_without_identity",
+        "identity_permutation_epoch"
+      ],
+      "cheap_baseline_attack_surface": [
+        "partner_id_lookup",
+        "anonymized_partner_key_lookup",
+        "preference_table_reconstruction",
+        "prior_trace_retrieval",
+        "order_k_partner_history",
+        "profile_table_baseline",
+        "ngram_trace_lookup",
+        "query_conditioned_imitation",
+        "graph_cache_baseline",
+        "full_bundle_decoder"
+      ],
+      "family_id": "social_latent_inference_without_partner_id_lookup",
+      "forbidden_target_derived_fields": [
+        "target",
+        "target_label",
+        "latent_response_class",
+        "partner_id",
+        "partner_key",
+        "anonymized_partner_key",
+        "profile_id",
+        "preference_table",
+        "social_answer_key"
+      ],
+      "leakage_detector_list": [
+        "partner_id_visible_field_scanner",
+        "anonymized_partner_key_scanner",
+        "preference_table_scanner",
+        "profile_or_context_id_scanner",
+        "full_bundle_decoder_positive_control"
+      ],
+      "metric_function": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.exact_match_accuracy",
+      "minimum_baseline_preflight_eligibility": true,
+      "numeric_threshold": 0.8,
+      "observation_schema": {
+        "feedback_signal": "string or object feedback cue",
+        "history_summary_without_identity": "object with identity-free dynamics",
+        "identity_permutation_epoch": "string permutation boundary marker",
+        "interaction_observation": "object with non-identity interaction cues"
+      },
+      "positive_control_malformed_fixture": {
+        "family_id": "social_latent_inference_without_partner_id_lookup",
+        "injected_field": "latent_response_class",
+        "malformation": "forbidden_target_derived_field_visible",
+        "record": {
+          "observation": {
+            "feedback_signal": "partner_policy_shift_visible_only_as_feedback",
+            "history_summary_without_identity": {
+              "recent": [
+                "ask",
+                "revise"
+              ]
+            },
+            "identity_permutation_epoch": "perm_epoch_03",
+            "interaction_observation": {
+              "affordance": "clarify",
+              "turn": "challenge"
+            },
+            "latent_response_class": "VISIBLE_TARGET_LEAK_POSITIVE_CONTROL"
+          },
+          "target_source": {
+            "latent_response_class": "ask_constraint_question"
+          }
+        }
+      },
+      "sample_valid_record": {
+        "observation": {
+          "feedback_signal": "partner_policy_shift_visible_only_as_feedback",
+          "history_summary_without_identity": {
+            "recent": [
+              "ask",
+              "revise"
+            ]
+          },
+          "identity_permutation_epoch": "perm_epoch_03",
+          "interaction_observation": {
+            "affordance": "clarify",
+            "turn": "challenge"
+          }
+        },
+        "target_source": {
+          "latent_response_class": "ask_constraint_question"
+        }
+      },
+      "target_resolver": "mechanism_family_tournament_executable_surface_contract_001a.surfaces.resolve_social_latent_inference_without_partner_id_lookup_target",
+      "threshold_rationale": "Cheap-baseline invalidation threshold for identity-permuted heldout response class; preserves the prior partner-ID negative evidence and blocks identity/profile lookup."
+    }
+  ],
+  "gate4_replacement_authorized": false,
+  "inherited_head_anchor": "af5b694dfacf76cf97e5172ade9f9ce831d2b714",
+  "inherited_task_id": "MECHANISM-FAMILY-TOURNAMENT-BASELINE-PREFLIGHT-001A",
+  "process_mode": "engineering-governance / executable surface contract repair only",
+  "runtime_or_mainline_authorized": false,
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-EXECUTABLE-SURFACE-CONTRACT-001A",
+  "tournament_execution_authorized": false
+}
