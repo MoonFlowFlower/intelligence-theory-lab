@@ -1,0 +1,69 @@
+{
+  "task_id": "ACSB-POST-001C-BLOCKER-AUDIT-ROUTE-DECISION-001A",
+  "readback_timestamp_utc": "2026-06-14T22:06:55Z",
+  "memory_relied_on": false,
+  "canonical_source_basis": "clean_clone_of_origin_codex_meta_theory_scaffold_at_d429ad7",
+  "source_sha256_canonical": {
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001B-HOSTILE-AUDIT-001A.md": "dfa3c3c0de34e3aacf3934d90693165b4a611c510b4cb2db0261d36e476e0c5a",
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001C-BLOCKER-AUDIT-001A.md": "56010927d6b4a6e932bd5b6ad004aa2b1fe23d5d7e762e3a81ea04e0dd6e0cf2",
+    "docs/research/ACTION-CONDITIONED-SELF-BOUNDARY-MEASUREMENT-OBJECT-SPEC-001A.md": "084b64076f03d603351a8131eb3c9291485fc5666cd2a39dd0a31f9eeda5c8c9",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/audit_verdict.json": "93de18a8afbbf196dbd68a69079cb3fc96e6ae395d894047a1d81c409dad792a",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/readback.json": "58af207570227c76d9abfd6a6842528849c08cd2595948bc4278ca4343be17d0",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/claim_ceiling.txt": "ebb9e585963d37049842dcb1d323445fd41c6503c86b4b9cc73986e32bf6ff97",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/git_readback.json": "fd92297d3cd065e563167b1d960c5f1a1b5c82dbb0d987e1054ab38b8cb7d07d",
+    "artifacts/claude_independent_acsb_001c_blocker_audit_001a/audit_verdict.json": "06bc3c388a01f6a05db2947029c21770f99292a0d7fd18c6b4748a6547fc2ccc",
+    "artifacts/claude_independent_acsb_001c_blocker_audit_001a/readback.json": "73f5e63ee554d1e73c55342a7b7568853f6f672d7414a33647abd0dc0f63e4a4",
+    "artifacts/claude_independent_acsb_001c_blocker_audit_001a/claim_ceiling.txt": "a5707f2786c86a44ccd804ad8082f6226a8a73814006a73073059fc23b40997e",
+    "artifacts/claude_independent_acsb_001c_blocker_audit_001a/git_readback.json": "e2e1ed590c897dd97c74c3bb76f31ea65f36ca861fb2450d3431ec44c074043f",
+    "artifacts/action_conditioned_self_boundary_executable_preflight_001b/result.json": "298dd55f9b1aab545233e59913c4b55114e8dacfa64e2eb025acde2df70b856f",
+    "artifacts/action_conditioned_self_boundary_executable_preflight_001c/result.json": "7a9202686c3177532375d89874a1f0ff895fe7a0085a1e002244ddf2aa57554f"
+  },
+  "001b_audit_preservation_readback": {
+    "doc": "docs/research/CLAUDE-INDEPENDENT-ACSB-001B-HOSTILE-AUDIT-001A.md",
+    "doc_sha256_canonical": "dfa3c3c0de34e3aacf3934d90693165b4a611c510b4cb2db0261d36e476e0c5a",
+    "doc_sha256_mount": "dfa3c3c0de34e3aacf3934d90693165b4a611c510b4cb2db0261d36e476e0c5a",
+    "mount_matches_canonical": true,
+    "verdict": "claude_independent_acsb_001b_audit_blocks_on_learned_baseline_invalidity"
+  },
+  "001c_audit_preservation_readback": {
+    "doc": "docs/research/CLAUDE-INDEPENDENT-ACSB-001C-BLOCKER-AUDIT-001A.md",
+    "doc_sha256_canonical": "56010927d6b4a6e932bd5b6ad004aa2b1fe23d5d7e762e3a81ea04e0dd6e0cf2",
+    "doc_sha256_mount": "54d335db8bc25f55f93d52b7d3a4a9ea6e686c070fe82f5b4126c05eea830963",
+    "mount_matches_canonical": false,
+    "mount_divergence_cause": "crlf_terminators_only_byte_identical_after_stripping_cr_verified",
+    "verdict": "claude_independent_acsb_001c_audit_blocks_on_reference_or_capacity_mismatch"
+  },
+  "environment_findings": {
+    "git_config_corruption": {
+      "symptom": "bad config line 19",
+      "cause": "approx_24_trailing_nul_bytes_fuse_artifact",
+      "action": "stripped_nul_padding_no_semantic_config_change",
+      "backup": "/tmp/git_config_backup_<ts>"
+    },
+    "git_index_corruption": {
+      "symptom": "fatal_unknown_index_entry_format",
+      "action": "all_git_operations_performed_in_tmp_clone_of_canonical_remote"
+    },
+    "mount_worktree_vs_canonical": {
+      "clean": false,
+      "crlf_noise": "widespread_cosmetic",
+      "semantic_divergences_count": 10,
+      "semantic_divergences_examples": [
+        "AGENTS.md (governance rule source, deleted block)",
+        "artifacts/gate4_replacement_discriminative_social_latent_implementation_task_card_001a/*",
+        "docs/codex/tasks/GATE4-REPLACEMENT-DISCRIMINATIVE-SOCIAL-LATENT-IMPLEMENTATION-TASK-CARD-001A.md",
+        "docs/research/CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A.md"
+      ],
+      "authored_by_this_task": false,
+      "corroboration": "same_crlf_and_agents_md_governance_block_condition_independently_flagged_in_001b_hostile_audit",
+      "excluded_from_commit": true
+    },
+    "secret_hygiene": {
+      "scripts/push.sh": "carries_plaintext_github_token_gitignored",
+      "scripts/push.py": "carries_plaintext_github_token_gitignored",
+      "token_reproduced_in_any_artifact": false,
+      "flagged_as": "repo_hygiene_concern_out_of_scope_for_route_decision"
+    }
+  },
+  "claim_ceiling": "route_decision_recommendation_only"
+}
