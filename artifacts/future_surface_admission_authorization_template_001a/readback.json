@@ -1,0 +1,748 @@
+{
+  "ablation_controls": {
+    "ablations": [
+      {
+        "ablation_id": "remove_hardening_dependency",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_hardening_dependency"
+        ]
+      },
+      {
+        "ablation_id": "remove_enforcement_dependency",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_enforcement_dependency"
+        ]
+      },
+      {
+        "ablation_id": "remove_checker_invocation_field",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_checker_invocation"
+        ]
+      },
+      {
+        "ablation_id": "remove_checker_readback_field",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "enforcement_readback_hash_mismatch",
+          "missing_checker_readback"
+        ]
+      },
+      {
+        "ablation_id": "remove_old_invalid_surface_citation_ban",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_old_invalid_surface_citation_ban"
+        ]
+      },
+      {
+        "ablation_id": "remove_no_mechanism_score_rule",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_no_mechanism_score_rule"
+        ]
+      },
+      {
+        "ablation_id": "remove_no_candidate_runtime_mainline_scope_rule",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_no_candidate_runtime_mainline_scope_rule"
+        ]
+      },
+      {
+        "ablation_id": "remove_claim_ceiling_field",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "claim_ceiling_missing_or_wrong",
+          "missing_claim_ceiling_rule"
+        ]
+      },
+      {
+        "ablation_id": "corrupt_parent_commit_reference",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "parent_commit_reference_mismatch"
+        ]
+      },
+      {
+        "ablation_id": "corrupt_parent_tag_reference",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "parent_tag_reference_mismatch"
+        ]
+      },
+      {
+        "ablation_id": "corrupt_enforcement_verdict",
+        "blocked": true,
+        "producer_function": "validate_enforcement_artifacts",
+        "reasons_fired": [
+          "enforcement_verdict_not_contract_enforcement_pass"
+        ]
+      },
+      {
+        "ablation_id": "corrupt_readback_hash_or_status",
+        "blocked": true,
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "enforcement_readback_hash_mismatch",
+          "missing_checker_readback"
+        ]
+      }
+    ],
+    "all_ablations_blocked": true,
+    "blocked_ablation_count": 12,
+    "claim_ceiling": "surface-admission authorization hygiene only",
+    "producer_function": "build_ablation_report",
+    "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+  },
+  "acceptance_gates": {
+    "evidence_by_gate": {
+      "A1": {
+        "evidence": [
+          "future authorization template object exists"
+        ],
+        "passed": true
+      },
+      "A10": {
+        "evidence": [
+          "old invalid COMPOSITE / CTSR / ACTION-CONDITIONED mechanism-evidence citation blocked"
+        ],
+        "passed": true
+      },
+      "A11": {
+        "evidence": [
+          "hostile controls blocked by callable validation"
+        ],
+        "passed": true
+      },
+      "A12": {
+        "evidence": [
+          "ablation controls blocked by callable validation"
+        ],
+        "passed": true
+      },
+      "A13": {
+        "evidence": [
+          "JSON artifacts parse"
+        ],
+        "passed": true
+      },
+      "A14": {
+        "evidence": [
+          "trace includes producer, hashes, parent boundary, and final decision"
+        ],
+        "passed": true
+      },
+      "A15": {
+        "evidence": [
+          "claim ceiling file exists"
+        ],
+        "passed": true
+      },
+      "A16": {
+        "evidence": [
+          "no new mechanism surface created by this validator"
+        ],
+        "passed": true
+      },
+      "A17": {
+        "evidence": [
+          "no candidate created by this validator"
+        ],
+        "passed": true
+      },
+      "A18": {
+        "evidence": [
+          "readiness/mainline-effect claims are not authorized by valid manifest"
+        ],
+        "passed": true
+      },
+      "A19": {
+        "evidence": [
+          "focused test execution is required before commit and verified in closeout"
+        ],
+        "passed": true
+      },
+      "A2": {
+        "evidence": [
+          "machine-readable manifest template includes an example authorized manifest"
+        ],
+        "passed": true
+      },
+      "A20": {
+        "evidence": [
+          "final clean git status after commit is a closeout gate, not a mechanism claim"
+        ],
+        "passed": true
+      },
+      "A3": {
+        "evidence": [
+          "authorization recomputed from manifest/template/readback with stored verdict ignored"
+        ],
+        "passed": true
+      },
+      "A4": {
+        "evidence": [
+          "hardening dependency required"
+        ],
+        "passed": true
+      },
+      "A5": {
+        "evidence": [
+          "enforcement dependency required"
+        ],
+        "passed": true
+      },
+      "A6": {
+        "evidence": [
+          "enforcement checker invocation required"
+        ],
+        "passed": true
+      },
+      "A7": {
+        "evidence": [
+          "enforcement checker readback and readback hash required"
+        ],
+        "passed": true
+      },
+      "A8": {
+        "evidence": [
+          "mechanism_score before admission blocked"
+        ],
+        "passed": true
+      },
+      "A9": {
+        "evidence": [
+          "candidate/Gate5/bridge/runtime/tournament/EGO-mainline scope blocked"
+        ],
+        "passed": true
+      }
+    },
+    "failed": [],
+    "passed": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "A9",
+      "A10",
+      "A11",
+      "A12",
+      "A13",
+      "A14",
+      "A15",
+      "A16",
+      "A17",
+      "A18",
+      "A19",
+      "A20"
+    ]
+  },
+  "authorization_decision": {
+    "authorization_decision": "authorized",
+    "checker_invocation_required": true,
+    "checker_readback_required": true,
+    "claim_ceiling": "surface-admission authorization hygiene only",
+    "enforcement_dependency_required": true,
+    "hardening_dependency_required": true,
+    "invocation_log": [
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_template_contract",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_manifest_dependencies",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_checker_invocation_and_readback",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_parent_boundary_reference",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_scope_bans",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_old_invalid_surface_ban",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_claim_ceiling",
+        "reasons_fired": []
+      }
+    ],
+    "manifest_task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-MANIFEST",
+    "no_candidate_runtime_mainline": true,
+    "no_mechanism_score": true,
+    "old_invalid_surface_evidence_ban": true,
+    "producer_function": "validate_authorization_manifest",
+    "reasons_fired": [],
+    "stored_verdict_trusted": false,
+    "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+  },
+  "checks_run": [
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json"
+      ],
+      "passed": true,
+      "producer_function": "parse_enforcement_result",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "parse_enforcement_readback",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json"
+      ],
+      "passed": true,
+      "producer_function": "check_enforcement_verdict",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json",
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_enforcement_acceptance_gates",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_hostile_controls_from_enforcement_readback",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_g13_g14_anti_blacklist_reason_controls",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "remote-anchor-surface-admission-contract-enforcement-001a-22d8a09"
+      ],
+      "passed": true,
+      "producer_function": "check_parent_boundary_reference",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_template_contract",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_manifest_dependencies",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_checker_invocation_and_readback",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_parent_boundary_reference",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_scope_bans",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_old_invalid_surface_ban",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_claim_ceiling",
+      "reasons_fired": []
+    }
+  ],
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "enforcement_artifact_report": {
+    "acceptance_gates": {
+      "failed": [],
+      "passed": [
+        "E1",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15",
+        "E16",
+        "E17",
+        "E18",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9"
+      ],
+      "passed_count": 18
+    },
+    "claim_ceiling": "surface-admission authorization hygiene only",
+    "enforcement_readback": {
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json",
+      "sha256": "3f33767cd08e595eb4ce83b013f11bfbf3fe2664e74353acf9bc2f576aa3c130",
+      "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
+    },
+    "enforcement_result": {
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json",
+      "sha256": "5b5654bd3efae5edf28c8fe3a0611437590e50f01ff26ecca10316b4c5f45cf2",
+      "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+      "verdict": "contract_enforcement_pass"
+    },
+    "files_read": [
+      {
+        "exists": true,
+        "parse_status": "parsed",
+        "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json",
+        "sha256": "5b5654bd3efae5edf28c8fe3a0611437590e50f01ff26ecca10316b4c5f45cf2"
+      },
+      {
+        "exists": true,
+        "parse_status": "parsed",
+        "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json",
+        "sha256": "3f33767cd08e595eb4ce83b013f11bfbf3fe2664e74353acf9bc2f576aa3c130"
+      }
+    ],
+    "invocation_log": [
+      {
+        "inputs": [
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json"
+        ],
+        "passed": true,
+        "producer_function": "parse_enforcement_result",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+        ],
+        "passed": true,
+        "producer_function": "parse_enforcement_readback",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json"
+        ],
+        "passed": true,
+        "producer_function": "check_enforcement_verdict",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json",
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+        ],
+        "passed": true,
+        "producer_function": "check_enforcement_acceptance_gates",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+        ],
+        "passed": true,
+        "producer_function": "check_hostile_controls_from_enforcement_readback",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [
+          "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+        ],
+        "passed": true,
+        "producer_function": "check_g13_g14_anti_blacklist_reason_controls",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [
+          "remote-anchor-surface-admission-contract-enforcement-001a-22d8a09"
+        ],
+        "passed": true,
+        "producer_function": "check_parent_boundary_reference",
+        "reasons_fired": []
+      }
+    ],
+    "parent_boundary": {
+      "boundary": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+      "branch": "codex/meta-theory-scaffold",
+      "commit": "22d8a09eb6747152f4d072d52c71f2725add87b1",
+      "current_branch": "codex/meta-theory-scaffold",
+      "local_tag_hash": "22d8a09eb6747152f4d072d52c71f2725add87b1",
+      "local_tag_matches_commit": true,
+      "tag": "remote-anchor-surface-admission-contract-enforcement-001a-22d8a09"
+    },
+    "passed": true,
+    "producer_function": "validate_enforcement_artifacts",
+    "readback_hash": "3f33767cd08e595eb4ce83b013f11bfbf3fe2664e74353acf9bc2f576aa3c130",
+    "reasons_fired": [],
+    "required_control_checks": {
+      "anti_blacklist": {
+        "passed": true,
+        "producer_function": "check_anti_blacklist_readback"
+      },
+      "g13_g14": {
+        "passed": true,
+        "producer_function": "check_g1_g14_readback"
+      },
+      "reason_control": {
+        "passed": true,
+        "producer_function": "check_reason_specific_controls"
+      }
+    },
+    "result_hash": "5b5654bd3efae5edf28c8fe3a0611437590e50f01ff26ecca10316b4c5f45cf2",
+    "synthetic_controls": {
+      "all_controls_blocked": true,
+      "blocked_control_count": 12,
+      "control_ids": [
+        "candidate_gate5_bridge_runtime_mainline_language",
+        "false_full_suite_pass_after_timeout",
+        "hardening_result_treated_as_gate_or_readiness",
+        "mechanism_score_requested",
+        "missing_anti_blacklist_requirement",
+        "missing_g13_g14_controls",
+        "missing_or_corrupt_readback",
+        "missing_reason_specific_positive_counter_controls",
+        "new_surface_without_hardened_validator_precondition",
+        "old_invalid_surface_cited_as_mechanism_evidence",
+        "superficial_contract_mention_only",
+        "wrong_top_level_verdict_enum"
+      ]
+    },
+    "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+  },
+  "files_read": [
+    {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json",
+      "sha256": "5b5654bd3efae5edf28c8fe3a0611437590e50f01ff26ecca10316b4c5f45cf2"
+    },
+    {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json",
+      "sha256": "3f33767cd08e595eb4ce83b013f11bfbf3fe2664e74353acf9bc2f576aa3c130"
+    }
+  ],
+  "hostile_controls": {
+    "all_controls_blocked": true,
+    "blocked_control_count": 14,
+    "claim_ceiling": "surface-admission authorization hygiene only",
+    "controls": [
+      {
+        "blocked": true,
+        "control_id": "superficial_contract_mention_without_checker_invocation",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "claim_ceiling_missing_or_wrong",
+          "missing_checker_invocation",
+          "missing_checker_readback",
+          "missing_claim_ceiling_rule",
+          "missing_enforcement_dependency",
+          "missing_hardening_dependency",
+          "missing_no_candidate_runtime_mainline_scope_rule",
+          "missing_no_mechanism_score_rule",
+          "missing_old_invalid_surface_citation_ban",
+          "missing_parent_boundary_reference"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "checker_invocation_without_readback",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "enforcement_readback_hash_mismatch",
+          "missing_checker_readback"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "hardening_dependency_only_missing_enforcement",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_enforcement_dependency"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "enforcement_dependency_only_missing_hardening",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "missing_hardening_dependency"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "wrong_enforcement_verdict",
+        "producer_function": "validate_enforcement_artifacts",
+        "reasons_fired": [
+          "enforcement_verdict_not_contract_enforcement_pass"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "corrupt_or_missing_readback",
+        "producer_function": "validate_enforcement_artifacts",
+        "reasons_fired": [
+          "enforcement_readback_parse_failed"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_g13_g14_requirement",
+        "producer_function": "validate_enforcement_artifacts",
+        "reasons_fired": [
+          "enforcement_hostile_controls_not_all_blocked",
+          "missing_g13_g14_control_not_blocked"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_anti_blacklist_requirement",
+        "producer_function": "validate_enforcement_artifacts",
+        "reasons_fired": [
+          "enforcement_hostile_controls_not_all_blocked",
+          "missing_anti_blacklist_control_not_blocked"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_reason_control_requirement",
+        "producer_function": "validate_enforcement_artifacts",
+        "reasons_fired": [
+          "enforcement_hostile_controls_not_all_blocked",
+          "missing_reason_control_not_blocked"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "old_invalid_surface_cited_as_mechanism_evidence",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "old_invalid_surface_cited_as_mechanism_evidence"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "mechanism_score_before_admission",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "mechanism_score_before_admission"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "readiness_inflation_language",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "claim_ceiling_inflation",
+          "claim_ceiling_missing_or_wrong"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "false_full_suite_pass_claim",
+        "producer_function": "validate_authorization_manifest",
+        "reasons_fired": [
+          "false_full_suite_pass_claim"
+        ]
+      }
+    ],
+    "producer_function": "build_hostile_control_report",
+    "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+  },
+  "no_candidate": true,
+  "no_mechanism_score": true,
+  "no_new_mechanism_surface": true,
+  "producer_function": "build_authorization_template_readback",
+  "readback_json_parse": {
+    "parse_status": "created_and_parsed",
+    "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\future_surface_admission_authorization_template_001a\\readback.json"
+  },
+  "reasons_fired": [],
+  "result_json_parse": {
+    "parse_status": "parsed",
+    "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\future_surface_admission_authorization_template_001a\\result.json",
+    "top_level_verdict": "future_surface_admission_authorization_template_001a_pass"
+  },
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A",
+  "trace_summary": {
+    "final_decision_event_present": true,
+    "row_count": 43,
+    "trace_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\future_surface_admission_authorization_template_001a\\authorization_trace.jsonl"
+  }
+}

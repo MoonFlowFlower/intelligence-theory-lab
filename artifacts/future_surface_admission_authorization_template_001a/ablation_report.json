@@ -1,0 +1,108 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "remove_hardening_dependency",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_hardening_dependency"
+      ]
+    },
+    {
+      "ablation_id": "remove_enforcement_dependency",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_enforcement_dependency"
+      ]
+    },
+    {
+      "ablation_id": "remove_checker_invocation_field",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_checker_invocation"
+      ]
+    },
+    {
+      "ablation_id": "remove_checker_readback_field",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "enforcement_readback_hash_mismatch",
+        "missing_checker_readback"
+      ]
+    },
+    {
+      "ablation_id": "remove_old_invalid_surface_citation_ban",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_old_invalid_surface_citation_ban"
+      ]
+    },
+    {
+      "ablation_id": "remove_no_mechanism_score_rule",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_no_mechanism_score_rule"
+      ]
+    },
+    {
+      "ablation_id": "remove_no_candidate_runtime_mainline_scope_rule",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_no_candidate_runtime_mainline_scope_rule"
+      ]
+    },
+    {
+      "ablation_id": "remove_claim_ceiling_field",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "claim_ceiling_missing_or_wrong",
+        "missing_claim_ceiling_rule"
+      ]
+    },
+    {
+      "ablation_id": "corrupt_parent_commit_reference",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "parent_commit_reference_mismatch"
+      ]
+    },
+    {
+      "ablation_id": "corrupt_parent_tag_reference",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "parent_tag_reference_mismatch"
+      ]
+    },
+    {
+      "ablation_id": "corrupt_enforcement_verdict",
+      "blocked": true,
+      "producer_function": "validate_enforcement_artifacts",
+      "reasons_fired": [
+        "enforcement_verdict_not_contract_enforcement_pass"
+      ]
+    },
+    {
+      "ablation_id": "corrupt_readback_hash_or_status",
+      "blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "enforcement_readback_hash_mismatch",
+        "missing_checker_readback"
+      ]
+    }
+  ],
+  "all_ablations_blocked": true,
+  "blocked_ablation_count": 12,
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "producer_function": "build_ablation_report",
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+}

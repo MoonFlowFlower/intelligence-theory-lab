@@ -1,0 +1,146 @@
+{
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "current_layer": "engineering-governance / future task authorization template / surface-admission precondition enforcement",
+  "example_authorized_manifest": {
+    "claims": [
+      "surface-admission authorization hygiene only"
+    ],
+    "current_layer": "engineering-governance / future task authorization template / surface-admission precondition enforcement",
+    "dependencies": [
+      {
+        "artifact_id": "surface_admission_contract_hardening_001a",
+        "dependency_type": "pre_execution_contract",
+        "required": true,
+        "required_verdict": "contract_hardened_pass",
+        "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+      },
+      {
+        "artifact_id": "surface_admission_contract_enforcement_001a",
+        "dependency_type": "pre_execution_authorization_checker",
+        "readback_path": "artifacts/surface_admission_contract_enforcement_001a/readback.json",
+        "required": true,
+        "required_verdict": "contract_enforcement_pass",
+        "result_path": "artifacts/surface_admission_contract_enforcement_001a/result.json",
+        "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
+      }
+    ],
+    "evidence_citations": [
+      {
+        "artifact_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+        "claim": "pre-execution hardening dependency only"
+      },
+      {
+        "artifact_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+        "claim": "pre-execution authorization checker dependency only"
+      }
+    ],
+    "outputs_requested": [
+      "authorization_decision",
+      "readback.json",
+      "claim_ceiling.txt"
+    ],
+    "parent_boundary": {
+      "boundary": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+      "branch": "codex/meta-theory-scaffold",
+      "commit": "22d8a09eb6747152f4d072d52c71f2725add87b1",
+      "tag": "remote-anchor-surface-admission-contract-enforcement-001a-22d8a09"
+    },
+    "pre_execution_enforcement": {
+      "checker_function": "validate_future_manifest",
+      "checker_module": "surface_admission_contract_enforcement_001a.validator",
+      "invocation_recorded": true,
+      "invocation_required": true,
+      "readback_hash": "3f33767cd08e595eb4ce83b013f11bfbf3fe2664e74353acf9bc2f576aa3c130",
+      "readback_path": "artifacts/surface_admission_contract_enforcement_001a/readback.json",
+      "readback_required": true,
+      "readback_status": "created_and_parsed"
+    },
+    "required_rules": {
+      "claim_ceiling_limited_to_surface_admission_authorization": true,
+      "no_candidate_gate5_bridge_runtime_tournament_ego_mainline_scope": true,
+      "no_mechanism_score_before_admission": true,
+      "old_invalid_surface_citation_ban": true,
+      "require_anti_blacklist": true,
+      "require_g13_g14": true,
+      "require_reason_control": true
+    },
+    "scope": {
+      "creates_candidate_behavior": false,
+      "opens_bridge": false,
+      "opens_ego_mainline": false,
+      "opens_gate5": false,
+      "opens_runtime": false,
+      "opens_tournament": false,
+      "produces_mechanism_score": false,
+      "surface_admission_authorization_only": true
+    },
+    "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-MANIFEST",
+    "test_evidence": {
+      "claims_full_suite_pass": false,
+      "focused_tests_required": true,
+      "full_pytest_status": "not_claimed_by_template"
+    }
+  },
+  "forbidden_claim_inflation_markers": [
+    "mechanism validity",
+    "gate4 validity",
+    "gate5 validity",
+    "candidate behavior",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "companion readiness",
+    "ego readiness",
+    "runtime readiness",
+    "mainline readiness",
+    "mainline effect",
+    "stable user benefit"
+  ],
+  "forbidden_invalid_surface_evidence_markers": [
+    "COMPOSITE-CROSS-TASK-STATE-REUSE",
+    "CTSR-SOLVABILITY-INVERSION",
+    "ACTION-CONDITIONED-SELF-BOUNDARY"
+  ],
+  "forbidden_scope_fields": [
+    "creates_candidate_behavior",
+    "opens_gate5",
+    "opens_bridge",
+    "opens_runtime",
+    "opens_tournament",
+    "opens_ego_mainline",
+    "produces_mechanism_score"
+  ],
+  "parent_boundary": {
+    "boundary": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+    "branch": "codex/meta-theory-scaffold",
+    "commit": "22d8a09eb6747152f4d072d52c71f2725add87b1",
+    "tag": "remote-anchor-surface-admission-contract-enforcement-001a-22d8a09"
+  },
+  "required_dependency_task_ids": [
+    "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+    "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
+  ],
+  "required_pre_execution_fields": [
+    "checker_module",
+    "checker_function",
+    "invocation_required",
+    "invocation_recorded",
+    "readback_required",
+    "readback_path",
+    "readback_status",
+    "readback_hash"
+  ],
+  "required_rules": {
+    "claim_ceiling_limited_to_surface_admission_authorization": true,
+    "no_candidate_gate5_bridge_runtime_tournament_ego_mainline_scope": true,
+    "no_mechanism_score_before_admission": true,
+    "old_invalid_surface_citation_ban": true,
+    "require_anti_blacklist": true,
+    "require_g13_g14": true,
+    "require_reason_control": true
+  },
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A",
+  "template_version": "001A"
+}
