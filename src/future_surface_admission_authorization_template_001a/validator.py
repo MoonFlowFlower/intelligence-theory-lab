@@ -12,6 +12,8 @@ from typing import Any
 
 TASK_ID = "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
 TASK_SLUG = "future_surface_admission_authorization_template_001a"
+SEALED_TEMPLATE_COMMIT = "d23a2ba7ff041ce227c7814b23c29be5b538e08b"
+SEALED_TEMPLATE_TAG = "remote-anchor-future-surface-admission-authorization-template-001a-d23a2ba"
 HARDENING_TASK_ID = "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
 HARDENING_SLUG = "surface_admission_contract_hardening_001a"
 ENFORCEMENT_TASK_ID = "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
@@ -58,6 +60,33 @@ CLAIM_INFLATION_MARKERS = (
     "mainline readiness",
     "mainline effect",
     "stable user benefit",
+)
+FORBIDDEN_DIRECTION_MARKERS = (
+    "ctsr redesign",
+    "action-conditioned repair",
+    "gate4 candidate",
+    "gate5",
+    "bridge",
+    "runtime",
+    "tournament",
+    "ego-mainline",
+    "ego mainline",
+    "companion readiness",
+    "stable user benefit",
+    "mechanism deployment",
+    "candidate behavior execution",
+)
+EXECUTION_SCOPE_LANGUAGE_MARKERS = (
+    "candidate authorized",
+    "gate5 authorized",
+    "runtime authorized",
+    "bridge authorized",
+    "tournament authorized",
+    "ego-mainline authorized",
+    "ego mainline authorized",
+    "mainline-effective",
+    "execution scope opened",
+    "opens execution scope",
 )
 REQUIRED_ENFORCEMENT_CONTROLS = {
     "missing_g13_g14_controls": "missing_g13_g14_control_not_blocked",
@@ -451,6 +480,55 @@ def _parent_boundary_manifest() -> dict[str, Any]:
     }
 
 
+def _template_dependency_manifest() -> dict[str, Any]:
+    return {
+        "task_id": TASK_ID,
+        "artifact_id": TASK_SLUG,
+        "template_path": (
+            "artifacts/future_surface_admission_authorization_template_001a/"
+            "authorization_manifest_template.json"
+        ),
+        "result_path": "artifacts/future_surface_admission_authorization_template_001a/result.json",
+        "readback_path": "artifacts/future_surface_admission_authorization_template_001a/readback.json",
+        "required_verdict": RESULT_VERDICT,
+        "dependency_type": "pre_execution_authorization_manifest_template",
+        "required": True,
+        "commit": SEALED_TEMPLATE_COMMIT,
+        "tag": SEALED_TEMPLATE_TAG,
+    }
+
+
+def _manifest_hash_payload(manifest: dict[str, Any]) -> dict[str, Any]:
+    normalized = copy.deepcopy(manifest)
+    authorization = normalized.get("authorization_validator")
+    if isinstance(authorization, dict):
+        authorization.pop("manifest_hash", None)
+    normalized.pop("manifest_integrity_hash", None)
+    return normalized
+
+
+def _manifest_integrity_hash(manifest: dict[str, Any]) -> str:
+    return _hash_payload(_manifest_hash_payload(manifest))
+
+
+def _refresh_manifest_hash(manifest: dict[str, Any]) -> dict[str, Any]:
+    authorization = manifest.get("authorization_validator")
+    if isinstance(authorization, dict) and "manifest_hash" in authorization:
+        authorization["manifest_hash"] = _manifest_integrity_hash(manifest)
+    return manifest
+
+
+def _dependency_by_id(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    dependencies = manifest.get("dependencies", [])
+    if not isinstance(dependencies, list):
+        return {}
+    return {
+        str(dependency.get("task_id")): dependency
+        for dependency in dependencies
+        if isinstance(dependency, dict) and dependency.get("required") is True
+    }
+
+
 def build_authorization_manifest_template(repo_root: str | Path) -> dict[str, Any]:
     root = Path(repo_root)
     enforcement_readback = _enforcement_readback_path(root)
@@ -476,6 +554,7 @@ def build_authorization_manifest_template(repo_root: str | Path) -> dict[str, An
                 "dependency_type": "pre_execution_authorization_checker",
                 "required": True,
             },
+            _template_dependency_manifest(),
         ],
         "pre_execution_enforcement": {
             "checker_module": "surface_admission_contract_enforcement_001a.validator",
@@ -505,6 +584,8 @@ def build_authorization_manifest_template(repo_root: str | Path) -> dict[str, An
             "opens_tournament": False,
             "opens_ego_mainline": False,
             "produces_mechanism_score": False,
+            "execution_scope_opened": False,
+            "later_task_card_only": True,
         },
         "evidence_citations": [
             {
@@ -527,14 +608,49 @@ def build_authorization_manifest_template(repo_root: str | Path) -> dict[str, An
             "claim_ceiling.txt",
         ],
         "claims": [CLAIM_CEILING],
+        "proposed_surface_admission_direction": (
+            "bounded offline authorization validator regression surface direction"
+        ),
+        "execution_scope_opened": False,
+        "later_task_card_only": True,
+        "manifest_instantiation_before_execution": True,
+        "authorization_validator_invocation_before_execution": True,
+        "validator_readback_before_execution": True,
+        "source_template": {
+            "task_id": TASK_ID,
+            "path": (
+                "artifacts/future_surface_admission_authorization_template_001a/"
+                "authorization_manifest_template.json"
+            ),
+            "commit": SEALED_TEMPLATE_COMMIT,
+            "tag": SEALED_TEMPLATE_TAG,
+        },
+        "authorization_validator": {
+            "checker_module": "future_surface_admission_authorization_template_001a.validator",
+            "checker_function": "validate_authorization_manifest",
+            "invocation_required": True,
+            "invocation_recorded": True,
+            "readback_required": True,
+            "readback_path": (
+                "artifacts/future_surface_admission_authorization_template_001a/readback.json"
+            ),
+            "trace_path": (
+                "artifacts/future_surface_admission_authorization_template_001a/"
+                "authorization_trace.jsonl"
+            ),
+            "code_path_hash": _source_hash(),
+        },
     }
+    example_manifest["authorization_validator"]["manifest_hash"] = _manifest_integrity_hash(
+        example_manifest
+    )
     return {
         "task_id": TASK_ID,
         "template_version": "001A",
         "current_layer": LAYER,
         "parent_boundary": _parent_boundary_manifest(),
         "claim_ceiling": CLAIM_CEILING,
-        "required_dependency_task_ids": [HARDENING_TASK_ID, ENFORCEMENT_TASK_ID],
+        "required_dependency_task_ids": [HARDENING_TASK_ID, ENFORCEMENT_TASK_ID, TASK_ID],
         "required_pre_execution_fields": [
             "checker_module",
             "checker_function",
@@ -589,12 +705,104 @@ def _dependency_ids(manifest: dict[str, Any]) -> set[str]:
 
 def _check_manifest_dependencies(manifest: dict[str, Any]) -> list[str]:
     reasons: list[str] = []
-    dependency_ids = _dependency_ids(manifest)
+    dependencies_by_id = _dependency_by_id(manifest)
+    dependency_ids = set(dependencies_by_id)
     if HARDENING_TASK_ID not in dependency_ids:
         reasons.append("missing_hardening_dependency")
     if ENFORCEMENT_TASK_ID not in dependency_ids:
         reasons.append("missing_enforcement_dependency")
-    return reasons
+    if TASK_ID not in dependency_ids:
+        reasons.append("missing_future_authorization_template_dependency")
+    expected_verdicts = {
+        HARDENING_TASK_ID: HARDENING_VERDICT,
+        ENFORCEMENT_TASK_ID: ENFORCEMENT_VERDICT,
+        TASK_ID: RESULT_VERDICT,
+    }
+    for task_id, expected_verdict in expected_verdicts.items():
+        dependency = dependencies_by_id.get(task_id)
+        if dependency and dependency.get("required_verdict") != expected_verdict:
+            reasons.append("dependency_verdict_mismatch")
+    return sorted(set(reasons))
+
+
+def _check_concrete_surface_direction(manifest: dict[str, Any]) -> list[str]:
+    direction = manifest.get("proposed_surface_admission_direction")
+    status = str(manifest.get("proposed_surface_admission_direction_status", "")).lower()
+    blocker = str(manifest.get("authorization_blocker", "")).lower()
+    if (
+        not isinstance(direction, str)
+        or not direction.strip()
+        or "missing_concrete_surface_direction" in status
+        or "authorization_blocked_missing_concrete_surface_direction" in blocker
+    ):
+        return ["missing_concrete_surface_direction"]
+    normalized = " ".join(direction.lower().replace("_", " ").split())
+    if any(marker in normalized for marker in FORBIDDEN_DIRECTION_MARKERS):
+        return ["forbidden_surface_admission_direction"]
+    return []
+
+
+def _check_authorization_validator_integrity(manifest: dict[str, Any]) -> list[str]:
+    authorization = manifest.get("authorization_validator")
+    if not isinstance(authorization, dict):
+        return [
+            "missing_authorization_validator_reference",
+            "trace_reference_mismatch",
+            "code_path_hash_mismatch",
+            "manifest_hash_mismatch",
+        ]
+    reasons: list[str] = []
+    if (
+        authorization.get("checker_module")
+        != "future_surface_admission_authorization_template_001a.validator"
+        or authorization.get("checker_function") != "validate_authorization_manifest"
+        or authorization.get("invocation_required") is not True
+        or authorization.get("invocation_recorded") is not True
+    ):
+        reasons.append("authorization_validator_invocation_missing")
+    trace_path = authorization.get("trace_path")
+    if (
+        not isinstance(trace_path, str)
+        or not trace_path.startswith("artifacts/")
+        or not trace_path.endswith(".jsonl")
+        or "missing" in trace_path.lower()
+    ):
+        reasons.append("trace_reference_mismatch")
+    if authorization.get("code_path_hash") != _source_hash():
+        reasons.append("code_path_hash_mismatch")
+    if authorization.get("manifest_hash") != _manifest_integrity_hash(manifest):
+        reasons.append("manifest_hash_mismatch")
+    return sorted(set(reasons))
+
+
+def _check_execution_scope_locks(manifest: dict[str, Any]) -> list[str]:
+    reasons: list[str] = []
+    scope = manifest.get("scope", {})
+    if not isinstance(scope, dict):
+        return ["execution_scope_lock_missing", "later_task_card_only_lock_missing"]
+    if manifest.get("execution_scope_opened") is not False or scope.get("execution_scope_opened") is not False:
+        reasons.append("execution_scope_lock_missing")
+    if manifest.get("later_task_card_only") is not True or scope.get("later_task_card_only") is not True:
+        reasons.append("later_task_card_only_lock_missing")
+    if any(
+        manifest.get(key) is True
+        for key in [
+            "candidate_scope_opened",
+            "gate5_scope_opened",
+            "bridge_scope_opened",
+            "runtime_scope_opened",
+            "tournament_scope_opened",
+            "ego_mainline_scope_opened",
+        ]
+    ):
+        reasons.append("candidate_gate5_bridge_runtime_tournament_mainline_scope")
+    for _, value in _walk_json(manifest):
+        if isinstance(value, str):
+            text = value.lower()
+            if any(marker in text for marker in EXECUTION_SCOPE_LANGUAGE_MARKERS):
+                reasons.append("execution_scope_opened_or_language_leakage")
+                break
+    return sorted(set(reasons))
 
 
 def _check_checker_invocation_and_readback(
@@ -778,6 +986,15 @@ def validate_authorization_manifest(
         dependency_reasons,
     )
 
+    direction_reasons = _check_concrete_surface_direction(manifest)
+    reasons.extend(direction_reasons)
+    _append_invocation(
+        invocation_log,
+        "check_concrete_surface_direction",
+        not direction_reasons,
+        direction_reasons,
+    )
+
     checker_reasons = _check_checker_invocation_and_readback(manifest, enforcement_report)
     reasons.extend(checker_reasons)
     _append_invocation(
@@ -787,6 +1004,15 @@ def validate_authorization_manifest(
         checker_reasons,
     )
 
+    authorization_validator_reasons = _check_authorization_validator_integrity(manifest)
+    reasons.extend(authorization_validator_reasons)
+    _append_invocation(
+        invocation_log,
+        "check_authorization_validator_integrity",
+        not authorization_validator_reasons,
+        authorization_validator_reasons,
+    )
+
     parent_reasons = _check_parent_boundary(manifest)
     reasons.extend(parent_reasons)
     _append_invocation(
@@ -794,6 +1020,15 @@ def validate_authorization_manifest(
         "check_parent_boundary_reference",
         not parent_reasons,
         parent_reasons,
+    )
+
+    execution_lock_reasons = _check_execution_scope_locks(manifest)
+    reasons.extend(execution_lock_reasons)
+    _append_invocation(
+        invocation_log,
+        "check_execution_scope_locks",
+        not execution_lock_reasons,
+        execution_lock_reasons,
     )
 
     scope_reasons = _check_scope_bans(manifest)
@@ -833,6 +1068,11 @@ def validate_authorization_manifest(
         "reasons_fired": unique_reasons,
         "hardening_dependency_required": HARDENING_TASK_ID in _dependency_ids(manifest),
         "enforcement_dependency_required": ENFORCEMENT_TASK_ID in _dependency_ids(manifest),
+        "future_authorization_template_dependency_required": TASK_ID in _dependency_ids(manifest),
+        "concrete_surface_direction_required": (
+            "missing_concrete_surface_direction" not in unique_reasons
+            and "forbidden_surface_admission_direction" not in unique_reasons
+        ),
         "checker_invocation_required": "missing_checker_invocation" not in unique_reasons,
         "checker_readback_required": (
             "missing_checker_readback" not in unique_reasons
@@ -961,11 +1201,27 @@ def build_hostile_control_report(
         for dependency in enforcement_only["dependencies"]
         if dependency["task_id"] == ENFORCEMENT_TASK_ID
     ]
+    _refresh_manifest_hash(enforcement_only)
     controls.append(
         _decision_row(
             "control_id",
             "enforcement_dependency_only_missing_hardening",
             validate_authorization_manifest(enforcement_only, template, enforcement_report),
+        )
+    )
+
+    template_missing = copy.deepcopy(valid)
+    template_missing["dependencies"] = [
+        dependency
+        for dependency in template_missing["dependencies"]
+        if dependency["task_id"] != TASK_ID
+    ]
+    _refresh_manifest_hash(template_missing)
+    controls.append(
+        _decision_row(
+            "control_id",
+            "future_authorization_template_dependency_missing",
+            validate_authorization_manifest(template_missing, template, enforcement_report),
         )
     )
 
@@ -1036,6 +1292,7 @@ def build_hostile_control_report(
             "claim": "readiness evidence",
         },
     ]
+    _refresh_manifest_hash(invalid_citation)
     controls.append(
         _decision_row(
             "control_id",
@@ -1046,6 +1303,7 @@ def build_hostile_control_report(
 
     mechanism_score = copy.deepcopy(valid)
     mechanism_score["outputs_requested"].append("mechanism_score")
+    _refresh_manifest_hash(mechanism_score)
     controls.append(
         _decision_row(
             "control_id",
@@ -1065,6 +1323,7 @@ def build_hostile_control_report(
             "opens_ego_mainline": True,
         }
     )
+    _refresh_manifest_hash(scope)
     controls.append(
         _decision_row(
             "control_id",
@@ -1075,6 +1334,7 @@ def build_hostile_control_report(
 
     inflated = copy.deepcopy(valid)
     inflated["claims"] = ["runtime readiness", "mainline readiness", "stable user benefit"]
+    _refresh_manifest_hash(inflated)
     controls.append(
         _decision_row(
             "control_id",
@@ -1083,9 +1343,23 @@ def build_hostile_control_report(
         )
     )
 
+    execution_language = copy.deepcopy(valid)
+    execution_language["stored_authorization_decision"] = (
+        "candidate authorized for runtime mainline-effective execution"
+    )
+    _refresh_manifest_hash(execution_language)
+    controls.append(
+        _decision_row(
+            "control_id",
+            "execution_scope_implication_language",
+            validate_authorization_manifest(execution_language, template, enforcement_report),
+        )
+    )
+
     false_suite = copy.deepcopy(valid)
     false_suite["test_evidence"]["claims_full_suite_pass"] = True
     false_suite["test_evidence"]["full_pytest_status"] = "timed_out_after_120s"
+    _refresh_manifest_hash(false_suite)
     controls.append(
         _decision_row(
             "control_id",
@@ -1111,58 +1385,64 @@ def build_ablation_report(
 ) -> dict[str, Any]:
     root = Path(repo_root)
     valid = copy.deepcopy(template["example_authorized_manifest"])
-    result_payload = _load_json(_enforcement_result_path(root))
-    readback_payload = _load_json(_enforcement_readback_path(root))
     ablations: list[dict[str, Any]] = []
 
-    def add_manifest_ablation(ablation_id: str, manifest: dict[str, Any]) -> None:
+    def add_manifest_ablation(
+        ablation_id: str,
+        manifest: dict[str, Any],
+        mutated_template: dict[str, Any] | None = None,
+        refresh_manifest_hash: bool = True,
+    ) -> None:
+        if refresh_manifest_hash:
+            _refresh_manifest_hash(manifest)
         ablations.append(
             _decision_row(
                 "ablation_id",
                 ablation_id,
-                validate_authorization_manifest(manifest, template, enforcement_report),
+                validate_authorization_manifest(
+                    manifest,
+                    mutated_template if mutated_template is not None else template,
+                    enforcement_report,
+                ),
             )
         )
 
-    remove_hardening = copy.deepcopy(valid)
-    remove_hardening["dependencies"] = [
-        dependency
-        for dependency in remove_hardening["dependencies"]
-        if dependency["task_id"] != HARDENING_TASK_ID
-    ]
-    add_manifest_ablation("remove_hardening_dependency", remove_hardening)
+    remove_dependencies = copy.deepcopy(valid)
+    remove_dependencies["dependencies"] = []
+    add_manifest_ablation("ablate_manifest_dependency_list", remove_dependencies)
 
-    remove_enforcement = copy.deepcopy(valid)
-    remove_enforcement["dependencies"] = [
-        dependency
-        for dependency in remove_enforcement["dependencies"]
-        if dependency["task_id"] != ENFORCEMENT_TASK_ID
-    ]
-    add_manifest_ablation("remove_enforcement_dependency", remove_enforcement)
+    corrupt_dependency_verdicts = copy.deepcopy(valid)
+    for dependency in corrupt_dependency_verdicts["dependencies"]:
+        dependency["required_verdict"] = "wrong_verdict"
+    add_manifest_ablation("ablate_dependency_verdicts", corrupt_dependency_verdicts)
 
-    remove_invocation = copy.deepcopy(valid)
-    remove_invocation["pre_execution_enforcement"].pop("checker_module", None)
-    remove_invocation["pre_execution_enforcement"]["invocation_recorded"] = False
-    add_manifest_ablation("remove_checker_invocation_field", remove_invocation)
+    corrupt_template = copy.deepcopy(template)
+    corrupt_template["task_id"] = "CORRUPTED-TEMPLATE"
+    add_manifest_ablation(
+        "ablate_template_hash",
+        copy.deepcopy(valid),
+        mutated_template=corrupt_template,
+    )
 
-    remove_readback = copy.deepcopy(valid)
-    for key in ["readback_required", "readback_path", "readback_status", "readback_hash"]:
-        remove_readback["pre_execution_enforcement"].pop(key, None)
-    add_manifest_ablation("remove_checker_readback_field", remove_readback)
+    corrupt_manifest_hash = copy.deepcopy(valid)
+    corrupt_manifest_hash["authorization_validator"]["manifest_hash"] = "0" * 64
+    add_manifest_ablation(
+        "ablate_manifest_hash",
+        corrupt_manifest_hash,
+        refresh_manifest_hash=False,
+    )
 
-    remove_invalid_ban = copy.deepcopy(valid)
-    remove_invalid_ban["required_rules"]["old_invalid_surface_citation_ban"] = False
-    add_manifest_ablation("remove_old_invalid_surface_citation_ban", remove_invalid_ban)
+    corrupt_readback = copy.deepcopy(valid)
+    corrupt_readback["pre_execution_enforcement"].pop("readback_hash", None)
+    add_manifest_ablation("ablate_validator_readback_reference", corrupt_readback)
 
-    remove_score_rule = copy.deepcopy(valid)
-    remove_score_rule["required_rules"]["no_mechanism_score_before_admission"] = False
-    add_manifest_ablation("remove_no_mechanism_score_rule", remove_score_rule)
+    corrupt_trace = copy.deepcopy(valid)
+    corrupt_trace["authorization_validator"]["trace_path"] = "missing_trace.jsonl"
+    add_manifest_ablation("ablate_trace_reference", corrupt_trace)
 
-    remove_scope_rule = copy.deepcopy(valid)
-    remove_scope_rule["required_rules"][
-        "no_candidate_gate5_bridge_runtime_tournament_ego_mainline_scope"
-    ] = False
-    add_manifest_ablation("remove_no_candidate_runtime_mainline_scope_rule", remove_scope_rule)
+    corrupt_code_path = copy.deepcopy(valid)
+    corrupt_code_path["authorization_validator"]["code_path_hash"] = "0" * 64
+    add_manifest_ablation("ablate_code_path_hash", corrupt_code_path)
 
     remove_claim = copy.deepcopy(valid)
     remove_claim.pop("claims", None)
@@ -1170,30 +1450,27 @@ def build_ablation_report(
         "claim_ceiling_limited_to_surface_admission_authorization",
         None,
     )
-    add_manifest_ablation("remove_claim_ceiling_field", remove_claim)
+    add_manifest_ablation("ablate_claim_ceiling_field", remove_claim)
 
-    corrupt_commit = copy.deepcopy(valid)
-    corrupt_commit["parent_boundary"]["commit"] = "0000000000000000000000000000000000000000"
-    add_manifest_ablation("corrupt_parent_commit_reference", corrupt_commit)
+    remove_scope_rule = copy.deepcopy(valid)
+    remove_scope_rule["required_rules"][
+        "no_candidate_gate5_bridge_runtime_tournament_ego_mainline_scope"
+    ] = False
+    add_manifest_ablation("ablate_banned_scope_field", remove_scope_rule)
 
-    corrupt_tag = copy.deepcopy(valid)
-    corrupt_tag["parent_boundary"]["tag"] = "remote-anchor-wrong-tag"
-    add_manifest_ablation("corrupt_parent_tag_reference", corrupt_tag)
+    remove_invalid_ban = copy.deepcopy(valid)
+    remove_invalid_ban["required_rules"]["old_invalid_surface_citation_ban"] = False
+    add_manifest_ablation("ablate_old_invalid_surface_exclusion_field", remove_invalid_ban)
 
-    corrupt_verdict = copy.deepcopy(result_payload)
-    corrupt_verdict["verdict"] = "contract_enforcement_refused"
-    ablations.append(
-        _decision_row(
-            "ablation_id",
-            "corrupt_enforcement_verdict",
-            _mutated_enforcement_report(root, corrupt_verdict, readback_payload),
-        )
-    )
+    corrupt_execution_lock = copy.deepcopy(valid)
+    corrupt_execution_lock["execution_scope_opened"] = True
+    corrupt_execution_lock["scope"]["execution_scope_opened"] = True
+    add_manifest_ablation("ablate_execution_scope_lock", corrupt_execution_lock)
 
-    corrupt_hash = copy.deepcopy(valid)
-    corrupt_hash["pre_execution_enforcement"]["readback_hash"] = "0" * 64
-    corrupt_hash["pre_execution_enforcement"]["readback_status"] = "missing"
-    add_manifest_ablation("corrupt_readback_hash_or_status", corrupt_hash)
+    corrupt_later_task_lock = copy.deepcopy(valid)
+    corrupt_later_task_lock["later_task_card_only"] = False
+    corrupt_later_task_lock["scope"]["later_task_card_only"] = False
+    add_manifest_ablation("ablate_later_task_card_only_lock", corrupt_later_task_lock)
 
     return {
         "task_id": TASK_ID,

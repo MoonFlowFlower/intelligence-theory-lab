@@ -1,0 +1,340 @@
+{
+  "ablation_controls_blocked": "6/12",
+  "ablation_controls_not_blocked": [
+    "ablate_dependency_verdicts",
+    "ablate_manifest_hash",
+    "ablate_trace_reference",
+    "ablate_code_path_hash",
+    "ablate_execution_scope_lock",
+    "ablate_later_task_card_only_lock"
+  ],
+  "ablation_results": {
+    "blocked": "6/12",
+    "not_blocked": [
+      "ablate_dependency_verdicts",
+      "ablate_manifest_hash",
+      "ablate_trace_reference",
+      "ablate_code_path_hash",
+      "ablate_execution_scope_lock",
+      "ablate_later_task_card_only_lock"
+    ]
+  },
+  "all_blocked_reasons": [
+    "authorization_blocked_missing_concrete_surface_direction",
+    "authorization_blocked_hostile_controls_not_blocked",
+    "authorization_blocked_ablation_controls_not_blocked"
+  ],
+  "artifacts": {
+    "ablation_controls": "artifacts/next_surface_admission_manifest_instantiation_001a/ablation_controls_001a.json",
+    "authorization_readback": "artifacts/next_surface_admission_manifest_instantiation_001a/authorization_readback_001a.json",
+    "authorization_trace": "artifacts/next_surface_admission_manifest_instantiation_001a/authorization_trace_001a.jsonl",
+    "dependency_readback": "artifacts/next_surface_admission_manifest_instantiation_001a/dependency_readback.json",
+    "hostile_controls": "artifacts/next_surface_admission_manifest_instantiation_001a/hostile_controls_001a.json",
+    "manifest": "artifacts/next_surface_admission_manifest_instantiation_001a/next_surface_admission_authorization_manifest_001a.json",
+    "preflight_repo_readback": "artifacts/next_surface_admission_manifest_instantiation_001a/preflight_repo_readback.json",
+    "result": "artifacts/next_surface_admission_manifest_instantiation_001a/result_001a.json"
+  },
+  "authorization_decision": "authorization_blocked_missing_concrete_surface_direction",
+  "baseline_results": {
+    "observed": "blocked by static-only hostile control; task-specific dependency/lock gaps remain unblocked by validator",
+    "strongest_false_positive_baseline": "static/manual authorization without callable validator invocation"
+  },
+  "bridge_scope_opened": false,
+  "candidate_scope_opened": false,
+  "checks_run": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "d23a2ba7ff041ce227c7814b23c29be5b538e08b"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "--abbrev-ref",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "codex/meta-theory-scaffold"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "?? artifacts/next_surface_admission_manifest_instantiation_001a/"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_surface_admission_contract_enforcement_001a.py",
+        "tests/test_future_surface_admission_authorization_template_001a.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "..............                                                           [100%]\n14 passed in 2.89s"
+    }
+  ],
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "code_path_hash": "cc2f4287a97178990266b63d0c6953d1c8cbb19b4e8cc7b0d769442752b82b96",
+  "dependencies": [
+    "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+    "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+    "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+  ],
+  "ego_mainline_scope_opened": false,
+  "enabled_status": "local offline validator invocation only",
+  "excluded_invalid_surfaces": [
+    "COMPOSITE-CTSR pass-chain",
+    "CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A",
+    "ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A"
+  ],
+  "execution_scope_opened": false,
+  "forbidden_claim_scan": "passed",
+  "forbidden_claim_scan_details": {
+    "allowed_occurrences_sample": [
+      {
+        "allowed_context": true,
+        "file": "hostile_controls_001a.json",
+        "json_path": "$.controls[3].reasons_fired[7]",
+        "location": "value",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "hostile_controls_001a.json",
+        "json_path": "$.controls[6].control_id",
+        "location": "value",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "hostile_controls_001a.json",
+        "json_path": "$.controls[6].expected_reason",
+        "location": "value",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "hostile_controls_001a.json",
+        "json_path": "$.controls[6].reasons_fired[0]",
+        "location": "value",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "next_surface_admission_authorization_manifest_001a.json",
+        "json_path": "$.required_rules.no_mechanism_score_before_admission",
+        "location": "key",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "next_surface_admission_authorization_manifest_001a.json",
+        "json_path": "$.scope.produces_mechanism_score",
+        "location": "key",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.mechanism_score_present",
+        "location": "key",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[4]",
+        "location": "value",
+        "term": "autonomy"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[5]",
+        "location": "value",
+        "term": "consciousness"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[6]",
+        "location": "value",
+        "term": "emotion"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[7]",
+        "location": "value",
+        "term": "subjectivity"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[8]",
+        "location": "value",
+        "term": "EGO readiness"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[9]",
+        "location": "value",
+        "term": "runtime readiness"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[10]",
+        "location": "value",
+        "term": "companion readiness"
+      },
+      {
+        "allowed_context": true,
+        "file": "result_001a.json",
+        "json_path": "$.what_this_does_not_prove[11]",
+        "location": "value",
+        "term": "stable user benefit"
+      },
+      {
+        "allowed_context": true,
+        "file": "authorization_trace_001a.jsonl",
+        "json_path": "$line[13].reasons_fired[7]",
+        "location": "value",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "authorization_trace_001a.jsonl",
+        "json_path": "$line[16].control_id",
+        "location": "value",
+        "term": "mechanism_score"
+      },
+      {
+        "allowed_context": true,
+        "file": "authorization_trace_001a.jsonl",
+        "json_path": "$line[16].reasons_fired[0]",
+        "location": "value",
+        "term": "mechanism_score"
+      }
+    ],
+    "forbidden_positive_claims": [
+      "mechanism_score",
+      "EGO readiness",
+      "runtime readiness",
+      "companion readiness",
+      "stable user benefit",
+      "consciousness",
+      "subjectivity",
+      "emotion",
+      "autonomy",
+      "agency success",
+      "mainline-effective",
+      "Gate5 authorized",
+      "candidate authorized"
+    ],
+    "occurrence_count": 18,
+    "positive_claim_occurrences": [],
+    "producer_function": "forbidden_claim_context_scan",
+    "status": "passed"
+  },
+  "forbidden_claim_scan_independent": {
+    "occurrence_count": 52,
+    "positive_claim_occurrences": [],
+    "status": "passed"
+  },
+  "gate5_scope_opened": false,
+  "hostile_controls_blocked": "14/16",
+  "hostile_controls_not_blocked": [
+    "omit_future_authorization_template_dependency",
+    "execution_scope_language_implies_opened_scope"
+  ],
+  "input_hashes": {
+    "ablation_controls": "3c22dc5956cd062e3900804ace217455352066a705e68258b63f64e28c5da256",
+    "authorization_readback": "3b1396576975f330b137c9bafb9c200f35880b2bae0e04dea1af7de4bd8d0fbe",
+    "dependency_readback": "5b341e83491c5e07b179ce09866395f563f3f1208351bea9937df04ef6e59719",
+    "hostile_controls": "e8bed27a0960136d5485598ba77af5275fcc80d9ce678904d3014bb151d8c416",
+    "manifest": "f8503c02234a36d6b4a8be5deefa1d04029d9779bca603f8b271e229af5561eb",
+    "preflight_repo_readback": "c253544647e239c420db9823edc58a9548a387738333586d71b02c3dfca2b72b",
+    "template": "24990057300295257f3393ef9d60ec30fe6cbc2aa297f69147a905f746891abc",
+    "trace": "1aed85d91852f33a75b67a41eb76e05554744de13091bae35084f4161651c260"
+  },
+  "json_parse_check": "passed",
+  "json_parse_errors": [],
+  "json_parse_verification": {
+    "errors": [],
+    "parse_status": "passed",
+    "parsed": [
+      "ablation_controls_001a.json",
+      "authorization_readback_001a.json",
+      "dependency_readback.json",
+      "hostile_controls_001a.json",
+      "next_surface_admission_authorization_manifest_001a.json",
+      "preflight_repo_readback.json",
+      "result_001a.json",
+      "authorization_trace_001a.jsonl:38"
+    ]
+  },
+  "layer": "engineering-governance / surface-admission authorization hygiene only",
+  "mainline_integration": "none",
+  "mainline_integration_status": "none",
+  "manifest_hash": "f8503c02234a36d6b4a8be5deefa1d04029d9779bca603f8b271e229af5561eb",
+  "mechanism_score_present": false,
+  "next_minimal_closed_loop_action": "Do not draft the later concrete surface-admission task card until a concrete non-forbidden proposed direction is supplied and the validator contract is repaired or a separate repair card authorizes that semantic expansion.",
+  "producer_function": "validate_authorization_manifest",
+  "readback_hash": "3b1396576975f330b137c9bafb9c200f35880b2bae0e04dea1af7de4bd8d0fbe",
+  "real_trigger_evidence": "validate_authorization_manifest invoked on instantiated manifest; task-specific controls and readback preserved",
+  "remote_anchor": "forbidden",
+  "replay_result": "trace/readback preserved for validator recomputation only; no mechanism replay executed",
+  "runtime_scope_opened": false,
+  "stop_conditions_triggered": [
+    "authorization_blocked_missing_concrete_surface_direction",
+    "authorization_blocked_hostile_controls_not_blocked",
+    "authorization_blocked_ablation_controls_not_blocked"
+  ],
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001A",
+  "template_hash": "24990057300295257f3393ef9d60ec30fe6cbc2aa297f69147a905f746891abc",
+  "tournament_scope_opened": false,
+  "trace_hash": "1aed85d91852f33a75b67a41eb76e05554744de13091bae35084f4161651c260",
+  "validator_reasons_fired": [],
+  "validator_verdict": "authorized",
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "Gate validity",
+    "candidate behavior",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "EGO readiness",
+    "runtime readiness",
+    "companion readiness",
+    "stable user benefit",
+    "mainline effect"
+  ]
+}

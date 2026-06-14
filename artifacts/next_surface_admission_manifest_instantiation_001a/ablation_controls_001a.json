@@ -1,0 +1,152 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "ablate_manifest_dependency_list",
+      "blocked": true,
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_dependencies",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_enforcement_dependency",
+        "missing_hardening_dependency"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "ablate_dependency_verdicts",
+      "blocked": false,
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "dependency_verdict_mismatch",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    },
+    {
+      "ablation_id": "ablate_template_hash",
+      "blocked": true,
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "template_task_id_mismatch",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "template_task_id_mismatch"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "ablate_manifest_hash",
+      "blocked": false,
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "manifest_hash_mismatch",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    },
+    {
+      "ablation_id": "ablate_validator_readback_reference",
+      "blocked": true,
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_checker_readback",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "enforcement_readback_hash_mismatch"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "ablate_trace_reference",
+      "blocked": false,
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "trace_reference_mismatch",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    },
+    {
+      "ablation_id": "ablate_code_path_hash",
+      "blocked": false,
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "code_path_hash_mismatch",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    },
+    {
+      "ablation_id": "ablate_claim_ceiling_field",
+      "blocked": true,
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "claim_ceiling_missing_or_wrong",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "claim_ceiling_missing_or_wrong",
+        "missing_claim_ceiling_rule"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "ablate_banned_scope_field",
+      "blocked": true,
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_no_candidate_runtime_mainline_scope_rule",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_no_candidate_runtime_mainline_scope_rule"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "ablate_old_invalid_surface_exclusion_field",
+      "blocked": true,
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_old_invalid_surface_citation_ban",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_old_invalid_surface_citation_ban"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "ablate_execution_scope_lock",
+      "blocked": false,
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "execution_scope_lock_missing",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    },
+    {
+      "ablation_id": "ablate_later_task_card_only_lock",
+      "blocked": false,
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "later_task_card_only_lock_missing",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    }
+  ],
+  "all_ablations_blocked": false,
+  "blocked_ablation_count": 6,
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "not_blocked_ablation_ids": [
+    "ablate_dependency_verdicts",
+    "ablate_manifest_hash",
+    "ablate_trace_reference",
+    "ablate_code_path_hash",
+    "ablate_execution_scope_lock",
+    "ablate_later_task_card_only_lock"
+  ],
+  "producer_function": "run_task_specific_ablations_via_validate_authorization_manifest",
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001A",
+  "total_ablation_count": 12
+}

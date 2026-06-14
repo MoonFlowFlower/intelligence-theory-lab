@@ -1,0 +1,213 @@
+{
+  "all_controls_blocked": false,
+  "blocked_control_count": 14,
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "controls": [
+    {
+      "blocked": true,
+      "control_id": "omit_hardening_dependency",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_hardening_dependency",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_hardening_dependency"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "omit_enforcement_dependency",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_enforcement_dependency",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_enforcement_dependency"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": false,
+      "control_id": "omit_future_authorization_template_dependency",
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "missing_future_authorization_template_dependency",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    },
+    {
+      "blocked": true,
+      "control_id": "claim_authorization_without_manifest_instantiation",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_manifest_instantiation",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "claim_ceiling_missing_or_wrong",
+        "missing_checker_invocation",
+        "missing_checker_readback",
+        "missing_claim_ceiling_rule",
+        "missing_enforcement_dependency",
+        "missing_hardening_dependency",
+        "missing_no_candidate_runtime_mainline_scope_rule",
+        "missing_no_mechanism_score_rule",
+        "missing_old_invalid_surface_citation_ban",
+        "missing_parent_boundary_reference"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "claim_authorization_without_validator_invocation",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_checker_invocation",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_checker_invocation"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "claim_authorization_without_validator_readback",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "missing_checker_readback",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "enforcement_readback_hash_mismatch",
+        "missing_checker_readback"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "include_mechanism_score",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "mechanism_score_before_admission",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "mechanism_score_before_admission"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "open_candidate_scope",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "open_gate5_scope",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "open_bridge_scope",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "open_runtime_scope",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "open_tournament_scope",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "open_ego_mainline_scope",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "candidate_gate5_bridge_runtime_tournament_mainline_scope",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "cite_old_invalid_surfaces_as_mechanism_evidence",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "old_invalid_surface_cited_as_mechanism_evidence",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "old_invalid_surface_cited_as_mechanism_evidence"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "control_id": "claim_forbidden_mechanism_or_readiness_validity",
+      "control_not_blocked_by_validator": false,
+      "expected_reason": "claim_ceiling_inflation",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "claim_ceiling_inflation",
+        "claim_ceiling_missing_or_wrong"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": false,
+      "control_id": "execution_scope_language_implies_opened_scope",
+      "control_not_blocked_by_validator": true,
+      "expected_reason": "execution_scope_opened_or_language_leakage",
+      "expected_to_block": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "validator_decision": "authorized"
+    }
+  ],
+  "not_blocked_control_ids": [
+    "omit_future_authorization_template_dependency",
+    "execution_scope_language_implies_opened_scope"
+  ],
+  "producer_function": "run_task_specific_hostile_controls_via_validate_authorization_manifest",
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001A",
+  "total_control_count": 16
+}

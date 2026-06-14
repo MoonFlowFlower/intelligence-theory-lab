@@ -1,0 +1,117 @@
+{
+  "ablation_controls_blocked": "12/12",
+  "ablation_results": {
+    "blocked": "12/12",
+    "not_blocked": []
+  },
+  "artifact_hashes": {
+    "ablation_controls_after_repair.json": "ef8b40cbcdff75f4177c37a223f9c5c3b22ff36c411e0351e1e51889e34a632e",
+    "forbidden_claim_scan.json": "8765178bd59da4f4bd5912f604e1d2b8c3dcd25f0d01fdaac1c9fee00eb53f5d",
+    "hostile_controls_after_repair.json": "9b8785188e532d4d2e2e94b19c7d2a7f62c3d96308ffd4977c6457b712f4ac81",
+    "preflight_repo_readback.json": "c8a9d80a258713dbbd0ac15c521130069cad75fa8557528c54e08abaf38e9b3b",
+    "prior_blocked_artifact_readback.json": "151cf93415ce3c1d20c2891828cca1d89681f23a4e0dc3d5ca24d8e490a48cfb",
+    "regression_test_output.txt": "f93d46f3bca87470c321ecd3a84dd6ed8fbb1b90b91349dc49c74b4beb95a938",
+    "repair_result.json": "c402f8b76f61de509eca7b5aa05f0da9798ba05c2749c1f91807a90f4b7a4451",
+    "repair_trace.jsonl": "af0426c186b3b4144dd93657f07fbef2ce000e192795444a320bfe4d6766f780",
+    "validator_gap_inventory.json": "68335626855fd3b3f93de19cb84e84a80bf5bab1b3134b45d4e2ad8f3ba13dda"
+  },
+  "artifacts": {
+    "ablation_controls_after_repair.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/ablation_controls_after_repair.json",
+    "forbidden_claim_scan.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/forbidden_claim_scan.json",
+    "hostile_controls_after_repair.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/hostile_controls_after_repair.json",
+    "preflight_repo_readback.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/preflight_repo_readback.json",
+    "prior_blocked_artifact_readback.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/prior_blocked_artifact_readback.json",
+    "regression_test_output.txt": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/regression_test_output.txt",
+    "repair_result.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/repair_result.json",
+    "repair_trace.jsonl": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/repair_trace.jsonl",
+    "validator_gap_inventory.json": "artifacts/future_surface_admission_authorization_validator_gap_repair_001a/validator_gap_inventory.json"
+  },
+  "authorization_validator_decision": "local_validator_repaired_if_all_gates_pass",
+  "auto_remote_anchor_readback": {
+    "ahead_behind": "0 0",
+    "claim_ceiling_if_later_performed": "remote-anchor publication and verification only",
+    "decision": "forbidden_not_performed",
+    "git_status_short": "M src/future_surface_admission_authorization_template_001a/validator.py\n M tests/test_future_surface_admission_authorization_template_001a.py\n?? artifacts/future_surface_admission_authorization_validator_gap_repair_001a/\n?? artifacts/next_surface_admission_manifest_instantiation_001a/\n?? tests/test_future_surface_admission_authorization_validator_gap_repair_001a.py",
+    "reason": "worktree contains uncommitted repair changes and pre-existing untracked prior input artifacts; publication scope not clean in this session"
+  },
+  "baseline_results": {
+    "observed": "recomputed validator calls block each concrete prior bypass",
+    "strongest_false_positive_baseline": "outer wrapper reports blocked while validate_authorization_manifest still authorizes mutated manifest"
+  },
+  "bridge_scope_opened": false,
+  "candidate_scope_opened": false,
+  "claim_ceiling": "Authorization-validator enforcement hygiene only",
+  "code_path_hash": "a6cd3ca24459e212ce8fd80a37978fa9b99214cf5740899ea0c42122dff25e6b",
+  "ego_mainline_scope_opened": false,
+  "enabled_status": "local offline validator and tests only",
+  "execution_scope_opened": false,
+  "forbidden_claim_scan": "passed",
+  "forbidden_claim_scan_hash": "8765178bd59da4f4bd5912f604e1d2b8c3dcd25f0d01fdaac1c9fee00eb53f5d",
+  "gap_controls_blocked": "9/9",
+  "gate5_scope_opened": false,
+  "hostile_controls_blocked": "16/16",
+  "input_hashes": {
+    "gap_test": "95dfdcac44bf9fa71c3921ae70030c407120104fa477174a32e24d9b73de0083",
+    "prior_result": "cffaa75edb54edd6cbda413f738f5036638c5059f69dbb5016ccf3b6bdb4e36d",
+    "validator_py": "e50619610d7caf89f0d7a8e79b2fd0fbebc31adaacd46f1be74500a81eddbae0"
+  },
+  "json_parse_check": "passed",
+  "json_parse_verification": {
+    "errors": [],
+    "parse_status": "passed",
+    "parsed": [
+      "ablation_controls_after_repair.json",
+      "hostile_controls_after_repair.json",
+      "preflight_repo_readback.json",
+      "prior_blocked_artifact_readback.json",
+      "repair_result.json",
+      "validator_gap_inventory.json",
+      "repair_trace.jsonl:43"
+    ]
+  },
+  "layer": "engineering-governance / authorization-validator repair only",
+  "mainline_integration_status": "none",
+  "next_minimal_closed_loop_action": "If committed and independently accepted, this validator can be used to reject the prior authorization bypasses before any later separate surface-admission task card is drafted.",
+  "prior_blocked_evidence_preserved": true,
+  "producer_function": "validate_authorization_manifest",
+  "real_trigger_evidence": "prior blocked artifacts plus recomputed validate_authorization_manifest controls",
+  "regression_tests": {
+    "command": [
+      "C:\\Python313\\python.exe",
+      "-m",
+      "pytest",
+      "tests/test_surface_admission_contract_enforcement_001a.py",
+      "tests/test_future_surface_admission_authorization_template_001a.py",
+      "tests/test_future_surface_admission_authorization_validator_gap_repair_001a.py",
+      "-q"
+    ],
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ".........................                                                [100%]\n25 passed in 3.48s"
+  },
+  "remote_anchor": "forbidden_not_performed_local_worktree_not_clean",
+  "replay_result": "repair_trace.jsonl preserves callable validator recomputation; no mechanism replay executed",
+  "runtime_scope_opened": false,
+  "stop_conditions_triggered": [],
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001A",
+  "tournament_scope_opened": false,
+  "valid_manifest_decision": "authorized",
+  "verdict": "future_surface_admission_authorization_validator_gap_repair_001a_pass",
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "Gate validity",
+    "candidate authorization",
+    "Gate5 authorization",
+    "bridge readiness",
+    "runtime readiness",
+    "tournament readiness",
+    "EGO-mainline readiness",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "stable user benefit",
+    "mainline effect"
+  ]
+}

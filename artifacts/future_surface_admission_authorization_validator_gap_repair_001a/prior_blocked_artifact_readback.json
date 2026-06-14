@@ -1,0 +1,73 @@
+{
+  "claim_ceiling": "Authorization-validator enforcement hygiene only",
+  "files": [
+    {
+      "ablation_controls_not_blocked": [
+        "ablate_dependency_verdicts",
+        "ablate_manifest_hash",
+        "ablate_trace_reference",
+        "ablate_code_path_hash",
+        "ablate_execution_scope_lock",
+        "ablate_later_task_card_only_lock"
+      ],
+      "authorization_decision": "authorization_blocked_missing_concrete_surface_direction",
+      "exists": true,
+      "hostile_controls_not_blocked": [
+        "omit_future_authorization_template_dependency",
+        "execution_scope_language_implies_opened_scope"
+      ],
+      "parse_status": "parsed",
+      "path": "artifacts/next_surface_admission_manifest_instantiation_001a/result_001a.json",
+      "sha256": "cffaa75edb54edd6cbda413f738f5036638c5059f69dbb5016ccf3b6bdb4e36d",
+      "validator_verdict": "authorized"
+    },
+    {
+      "blocked": "14/16",
+      "exists": true,
+      "not_blocked": [
+        "omit_future_authorization_template_dependency",
+        "execution_scope_language_implies_opened_scope"
+      ],
+      "parse_status": "parsed",
+      "path": "artifacts/next_surface_admission_manifest_instantiation_001a/hostile_controls_001a.json",
+      "sha256": "e8bed27a0960136d5485598ba77af5275fcc80d9ce678904d3014bb151d8c416"
+    },
+    {
+      "blocked": "6/12",
+      "exists": true,
+      "not_blocked": [
+        "ablate_dependency_verdicts",
+        "ablate_manifest_hash",
+        "ablate_trace_reference",
+        "ablate_code_path_hash",
+        "ablate_execution_scope_lock",
+        "ablate_later_task_card_only_lock"
+      ],
+      "parse_status": "parsed",
+      "path": "artifacts/next_surface_admission_manifest_instantiation_001a/ablation_controls_001a.json",
+      "sha256": "3c22dc5956cd062e3900804ace217455352066a705e68258b63f64e28c5da256"
+    },
+    {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "artifacts/next_surface_admission_manifest_instantiation_001a/next_surface_admission_authorization_manifest_001a.json",
+      "sha256": "f8503c02234a36d6b4a8be5deefa1d04029d9779bca603f8b271e229af5561eb"
+    },
+    {
+      "exists": true,
+      "parse_status": "parsed_jsonl",
+      "path": "artifacts/next_surface_admission_manifest_instantiation_001a/authorization_trace_001a.jsonl",
+      "row_count": 38,
+      "sha256": "1aed85d91852f33a75b67a41eb76e05554744de13091bae35084f4161651c260"
+    },
+    {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "artifacts/next_surface_admission_manifest_instantiation_001a/authorization_readback_001a.json",
+      "sha256": "3b1396576975f330b137c9bafb9c200f35880b2bae0e04dea1af7de4bd8d0fbe"
+    }
+  ],
+  "prior_artifact_dir": "artifacts/next_surface_admission_manifest_instantiation_001a",
+  "producer_function": "prior_blocked_artifact_readback",
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001A"
+}

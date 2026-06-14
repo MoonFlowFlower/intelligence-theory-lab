@@ -1,0 +1,74 @@
+{
+  "blocked_reasons": [
+    "authorization_blocked_missing_concrete_surface_direction",
+    "authorization_blocked_hostile_controls_not_blocked",
+    "authorization_blocked_ablation_controls_not_blocked"
+  ],
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "enabled_status": "local offline validator invocation only",
+  "execution_scope_opened": false,
+  "later_task_card_only": true,
+  "mainline_integration_status": "none",
+  "producer_function": "build_next_surface_admission_authorization_readback",
+  "real_trigger_evidence": "instantiated manifest plus validate_authorization_manifest invocation and task-specific control readback",
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001A",
+  "task_specific_gates": {
+    "ablation_controls_all_blocked_by_validator": false,
+    "concrete_surface_direction_available": false,
+    "hostile_controls_all_blocked_by_validator": false,
+    "manifest_depends_on_enforcement": true,
+    "manifest_depends_on_future_template": true,
+    "manifest_depends_on_hardening": true,
+    "validator_invoked": true
+  },
+  "validator_invocation": {
+    "authorization_decision": "authorized",
+    "invocation_log": [
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_template_contract",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_manifest_dependencies",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_checker_invocation_and_readback",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_parent_boundary_reference",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_scope_bans",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_old_invalid_surface_ban",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_claim_ceiling",
+        "reasons_fired": []
+      }
+    ],
+    "producer_function": "validate_authorization_manifest",
+    "reasons_fired": [],
+    "stored_verdict_trusted": false
+  }
+}

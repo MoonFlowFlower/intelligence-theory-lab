@@ -1,0 +1,189 @@
+{
+  "all_required_gaps_blocked": true,
+  "blocked_count": 9,
+  "claim_ceiling": "Authorization-validator enforcement hygiene only",
+  "gap_controls": [
+    {
+      "blocked": true,
+      "expected_reason": "missing_concrete_surface_direction",
+      "expected_reason_present": true,
+      "gap_id": "missing_concrete_non_forbidden_proposed_surface_admission_direction",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_concrete_surface_direction"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "missing_future_authorization_template_dependency",
+      "expected_reason_present": true,
+      "gap_id": "missing_future_authorization_template_dependency",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_future_authorization_template_dependency"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "execution_scope_opened_or_language_leakage",
+      "expected_reason_present": true,
+      "gap_id": "execution_scope_implication_language",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "execution_scope_opened_or_language_leakage"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "dependency_verdict_mismatch",
+      "expected_reason_present": true,
+      "gap_id": "dependency_verdict_ablation",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "dependency_verdict_mismatch"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "manifest_hash_mismatch",
+      "expected_reason_present": true,
+      "gap_id": "manifest_hash_ablation",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "manifest_hash_mismatch"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "trace_reference_mismatch",
+      "expected_reason_present": true,
+      "gap_id": "trace_reference_ablation",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "trace_reference_mismatch"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "code_path_hash_mismatch",
+      "expected_reason_present": true,
+      "gap_id": "code_path_hash_ablation",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "code_path_hash_mismatch"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "execution_scope_lock_missing",
+      "expected_reason_present": true,
+      "gap_id": "execution_scope_lock_ablation",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "execution_scope_lock_missing"
+      ],
+      "validator_decision": "blocked"
+    },
+    {
+      "blocked": true,
+      "expected_reason": "later_task_card_only_lock_missing",
+      "expected_reason_present": true,
+      "gap_id": "later_task_card_only_lock_ablation",
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "later_task_card_only_lock_missing"
+      ],
+      "validator_decision": "blocked"
+    }
+  ],
+  "producer_function": "validator_gap_inventory_after_repair",
+  "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001A",
+  "total_count": 9,
+  "valid_manifest_decision": {
+    "authorization_decision": "authorized",
+    "checker_invocation_required": true,
+    "checker_readback_required": true,
+    "claim_ceiling": "surface-admission authorization hygiene only",
+    "concrete_surface_direction_required": true,
+    "enforcement_dependency_required": true,
+    "future_authorization_template_dependency_required": true,
+    "hardening_dependency_required": true,
+    "invocation_log": [
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_template_contract",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_manifest_dependencies",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_concrete_surface_direction",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_checker_invocation_and_readback",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_authorization_validator_integrity",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_parent_boundary_reference",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_execution_scope_locks",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_scope_bans",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_old_invalid_surface_ban",
+        "reasons_fired": []
+      },
+      {
+        "inputs": [],
+        "passed": true,
+        "producer_function": "check_claim_ceiling",
+        "reasons_fired": []
+      }
+    ],
+    "manifest_task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-MANIFEST",
+    "no_candidate_runtime_mainline": true,
+    "no_mechanism_score": true,
+    "old_invalid_surface_evidence_ban": true,
+    "producer_function": "validate_authorization_manifest",
+    "reasons_fired": [],
+    "stored_verdict_trusted": false,
+    "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-TEMPLATE-001A"
+  }
+}
