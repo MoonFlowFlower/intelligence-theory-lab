@@ -1,0 +1,6557 @@
+{
+  "candidate_mechanism_implemented": false,
+  "created_at": "2026-06-14T12:43:03Z",
+  "declared_environment_transition_interface": {
+    "inputs": [
+      "legal_state_observation.pre_state",
+      "legal_state_observation.actuator_effects",
+      "selected_action"
+    ],
+    "name": "action_effect_lookup_transition_contract",
+    "rule": "future divergence class is computed from selected action effect and independently checked against downstream legal post-state",
+    "target_field_emitted": false
+  },
+  "episodes": [
+    {
+      "context_id": "60e861cf84dd0a841a02",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 3,
+            "position_x": 11,
+            "position_y": 203
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 8,
+            "position_y": 203
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 200
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 14,
+            "position_y": 203
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 206
+          }
+        }
+      },
+      "episode_id": "episode_00_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 3,
+          "position_x": 11,
+          "position_y": 203,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "60e861cf84dd0a841a02",
+        "provenance_only": true,
+        "state_group_index": 0
+      },
+      "same_state_group": "state_group_00",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "17d0df643a39334011ba",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 3,
+            "position_x": 11,
+            "position_y": 203
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 8,
+            "position_y": 203
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 200
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 14,
+            "position_y": 203
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 206
+          }
+        }
+      },
+      "episode_id": "episode_00_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 3,
+          "position_x": 11,
+          "position_y": 203,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "17d0df643a39334011ba",
+        "provenance_only": true,
+        "state_group_index": 0
+      },
+      "same_state_group": "state_group_00",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "69a895e4e4892a9fac20",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 3,
+            "position_x": 11,
+            "position_y": 203
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 8,
+            "position_y": 203
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 200
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 14,
+            "position_y": 203
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 206
+          }
+        }
+      },
+      "episode_id": "episode_00_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 3,
+          "position_x": 11,
+          "position_y": 203,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "69a895e4e4892a9fac20",
+        "provenance_only": true,
+        "state_group_index": 0
+      },
+      "same_state_group": "state_group_00",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "dfc550484071d4ae2172",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 3,
+            "position_x": 11,
+            "position_y": 203
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 8,
+            "position_y": 203
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 200
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 14,
+            "position_y": 203
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 11,
+            "position_y": 206
+          }
+        }
+      },
+      "episode_id": "episode_00_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 3,
+          "position_x": 11,
+          "position_y": 203,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "dfc550484071d4ae2172",
+        "provenance_only": true,
+        "state_group_index": 0
+      },
+      "same_state_group": "state_group_00",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "8e38448840c729001d38",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 8,
+            "position_x": 28,
+            "position_y": 190
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 184
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 34,
+            "position_y": 190
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 196
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 22,
+            "position_y": 190
+          }
+        }
+      },
+      "episode_id": "episode_01_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "pull_y": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "push_y": {
+            "dx": -6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 8,
+          "position_x": 28,
+          "position_y": 190,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "8e38448840c729001d38",
+        "provenance_only": true,
+        "state_group_index": 1
+      },
+      "same_state_group": "state_group_01",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "6c0d2a9884c131fb8551",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 8,
+            "position_x": 28,
+            "position_y": 190
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 184
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 34,
+            "position_y": 190
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 196
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 22,
+            "position_y": 190
+          }
+        }
+      },
+      "episode_id": "episode_01_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "pull_y": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "push_y": {
+            "dx": -6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 8,
+          "position_x": 28,
+          "position_y": 190,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "6c0d2a9884c131fb8551",
+        "provenance_only": true,
+        "state_group_index": 1
+      },
+      "same_state_group": "state_group_01",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "a88360dfc3554a9a3614",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 8,
+            "position_x": 28,
+            "position_y": 190
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 184
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 34,
+            "position_y": 190
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 196
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 22,
+            "position_y": 190
+          }
+        }
+      },
+      "episode_id": "episode_01_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "pull_y": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "push_y": {
+            "dx": -6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 8,
+          "position_x": 28,
+          "position_y": 190,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "a88360dfc3554a9a3614",
+        "provenance_only": true,
+        "state_group_index": 1
+      },
+      "same_state_group": "state_group_01",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "5b3368b501ec213ef117",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 8,
+            "position_x": 28,
+            "position_y": 190
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 184
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 34,
+            "position_y": 190
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 28,
+            "position_y": 196
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 22,
+            "position_y": 190
+          }
+        }
+      },
+      "episode_id": "episode_01_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "pull_y": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "push_y": {
+            "dx": -6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 8,
+          "position_x": 28,
+          "position_y": 190,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "5b3368b501ec213ef117",
+        "provenance_only": true,
+        "state_group_index": 1
+      },
+      "same_state_group": "state_group_01",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "981f250bf24d4df8c6b4",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 45,
+            "position_y": 177
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 54,
+            "position_y": 177
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 186
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 36,
+            "position_y": 177
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 168
+          }
+        }
+      },
+      "episode_id": "episode_02_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 13,
+          "position_x": 45,
+          "position_y": 177,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "981f250bf24d4df8c6b4",
+        "provenance_only": true,
+        "state_group_index": 2
+      },
+      "same_state_group": "state_group_02",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "f1cc6838ffe45e3dd92c",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 45,
+            "position_y": 177
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 54,
+            "position_y": 177
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 186
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 36,
+            "position_y": 177
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 168
+          }
+        }
+      },
+      "episode_id": "episode_02_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 13,
+          "position_x": 45,
+          "position_y": 177,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "f1cc6838ffe45e3dd92c",
+        "provenance_only": true,
+        "state_group_index": 2
+      },
+      "same_state_group": "state_group_02",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "77100b9b3c73cbfbe49f",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 45,
+            "position_y": 177
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 54,
+            "position_y": 177
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 186
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 36,
+            "position_y": 177
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 168
+          }
+        }
+      },
+      "episode_id": "episode_02_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 13,
+          "position_x": 45,
+          "position_y": 177,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "77100b9b3c73cbfbe49f",
+        "provenance_only": true,
+        "state_group_index": 2
+      },
+      "same_state_group": "state_group_02",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "089d1fa94fce7acd7663",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 45,
+            "position_y": 177
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 54,
+            "position_y": 177
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 186
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 36,
+            "position_y": 177
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 22,
+            "position_x": 45,
+            "position_y": 168
+          }
+        }
+      },
+      "episode_id": "episode_02_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 13,
+          "position_x": 45,
+          "position_y": 177,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "089d1fa94fce7acd7663",
+        "provenance_only": true,
+        "state_group_index": 2
+      },
+      "same_state_group": "state_group_02",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "1473de279486577aaf43",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 62,
+            "position_y": 164
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 167
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 59,
+            "position_y": 164
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 161
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 65,
+            "position_y": 164
+          }
+        }
+      },
+      "episode_id": "episode_03_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 18,
+          "position_x": 62,
+          "position_y": 164,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "1473de279486577aaf43",
+        "provenance_only": true,
+        "state_group_index": 3
+      },
+      "same_state_group": "state_group_03",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "067f06e48253b4e0e086",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 62,
+            "position_y": 164
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 167
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 59,
+            "position_y": 164
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 161
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 65,
+            "position_y": 164
+          }
+        }
+      },
+      "episode_id": "episode_03_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 18,
+          "position_x": 62,
+          "position_y": 164,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "067f06e48253b4e0e086",
+        "provenance_only": true,
+        "state_group_index": 3
+      },
+      "same_state_group": "state_group_03",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "37420b06c8de1148d62b",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 62,
+            "position_y": 164
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 167
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 59,
+            "position_y": 164
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 161
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 65,
+            "position_y": 164
+          }
+        }
+      },
+      "episode_id": "episode_03_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 18,
+          "position_x": 62,
+          "position_y": 164,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "37420b06c8de1148d62b",
+        "provenance_only": true,
+        "state_group_index": 3
+      },
+      "same_state_group": "state_group_03",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "55e324303736b026e9c4",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 62,
+            "position_y": 164
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 167
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 59,
+            "position_y": 164
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 62,
+            "position_y": 161
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 65,
+            "position_y": 164
+          }
+        }
+      },
+      "episode_id": "episode_03_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 18,
+          "position_x": 62,
+          "position_y": 164,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "55e324303736b026e9c4",
+        "provenance_only": true,
+        "state_group_index": 3
+      },
+      "same_state_group": "state_group_03",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "e4ce5da27baed547dc2b",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 4,
+            "position_x": 79,
+            "position_y": 151
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 73,
+            "position_y": 151
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 145
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 85,
+            "position_y": 151
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 157
+          }
+        }
+      },
+      "episode_id": "episode_04_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 4,
+          "position_x": 79,
+          "position_y": 151,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "e4ce5da27baed547dc2b",
+        "provenance_only": true,
+        "state_group_index": 4
+      },
+      "same_state_group": "state_group_04",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "0379124b80833cf1a571",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 4,
+            "position_x": 79,
+            "position_y": 151
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 73,
+            "position_y": 151
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 145
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 85,
+            "position_y": 151
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 157
+          }
+        }
+      },
+      "episode_id": "episode_04_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 4,
+          "position_x": 79,
+          "position_y": 151,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "0379124b80833cf1a571",
+        "provenance_only": true,
+        "state_group_index": 4
+      },
+      "same_state_group": "state_group_04",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "72118cfcbd0963ef3961",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 4,
+            "position_x": 79,
+            "position_y": 151
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 73,
+            "position_y": 151
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 145
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 85,
+            "position_y": 151
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 157
+          }
+        }
+      },
+      "episode_id": "episode_04_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 4,
+          "position_x": 79,
+          "position_y": 151,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "72118cfcbd0963ef3961",
+        "provenance_only": true,
+        "state_group_index": 4
+      },
+      "same_state_group": "state_group_04",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "af9753a18eb110733007",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 4,
+            "position_x": 79,
+            "position_y": 151
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 73,
+            "position_y": 151
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 145
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 85,
+            "position_y": 151
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 79,
+            "position_y": 157
+          }
+        }
+      },
+      "episode_id": "episode_04_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 4,
+          "position_x": 79,
+          "position_y": 151,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "af9753a18eb110733007",
+        "provenance_only": true,
+        "state_group_index": 4
+      },
+      "same_state_group": "state_group_04",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "2bd762c6313e9fd5ab21",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 96,
+            "position_y": 138
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 129
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 105,
+            "position_y": 138
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 147
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 87,
+            "position_y": 138
+          }
+        }
+      },
+      "episode_id": "episode_05_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 9,
+          "position_x": 96,
+          "position_y": 138,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "2bd762c6313e9fd5ab21",
+        "provenance_only": true,
+        "state_group_index": 5
+      },
+      "same_state_group": "state_group_05",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "d76af586c12510ed3a94",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 96,
+            "position_y": 138
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 129
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 105,
+            "position_y": 138
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 147
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 87,
+            "position_y": 138
+          }
+        }
+      },
+      "episode_id": "episode_05_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 9,
+          "position_x": 96,
+          "position_y": 138,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "d76af586c12510ed3a94",
+        "provenance_only": true,
+        "state_group_index": 5
+      },
+      "same_state_group": "state_group_05",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "450a163ee900092a2cfa",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 96,
+            "position_y": 138
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 129
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 105,
+            "position_y": 138
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 147
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 87,
+            "position_y": 138
+          }
+        }
+      },
+      "episode_id": "episode_05_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 9,
+          "position_x": 96,
+          "position_y": 138,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "450a163ee900092a2cfa",
+        "provenance_only": true,
+        "state_group_index": 5
+      },
+      "same_state_group": "state_group_05",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "69109ad5cbbeb8161af0",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 96,
+            "position_y": 138
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 129
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 105,
+            "position_y": 138
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 96,
+            "position_y": 147
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 18,
+            "position_x": 87,
+            "position_y": 138
+          }
+        }
+      },
+      "episode_id": "episode_05_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 9,
+          "position_x": 96,
+          "position_y": 138,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "69109ad5cbbeb8161af0",
+        "provenance_only": true,
+        "state_group_index": 5
+      },
+      "same_state_group": "state_group_05",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "d245c1f49a41541203cc",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 113,
+            "position_y": 125
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 116,
+            "position_y": 125
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 128
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 110,
+            "position_y": 125
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 122
+          }
+        }
+      },
+      "episode_id": "episode_06_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 14,
+          "position_x": 113,
+          "position_y": 125,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "d245c1f49a41541203cc",
+        "provenance_only": true,
+        "state_group_index": 6
+      },
+      "same_state_group": "state_group_06",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "b18f8f2fc85add9574fe",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 113,
+            "position_y": 125
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 116,
+            "position_y": 125
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 128
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 110,
+            "position_y": 125
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 122
+          }
+        }
+      },
+      "episode_id": "episode_06_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 14,
+          "position_x": 113,
+          "position_y": 125,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "b18f8f2fc85add9574fe",
+        "provenance_only": true,
+        "state_group_index": 6
+      },
+      "same_state_group": "state_group_06",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "4d16486c473cc44587c3",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 113,
+            "position_y": 125
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 116,
+            "position_y": 125
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 128
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 110,
+            "position_y": 125
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 122
+          }
+        }
+      },
+      "episode_id": "episode_06_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 14,
+          "position_x": 113,
+          "position_y": 125,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "4d16486c473cc44587c3",
+        "provenance_only": true,
+        "state_group_index": 6
+      },
+      "same_state_group": "state_group_06",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "f54b626a5617a3f60251",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 113,
+            "position_y": 125
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 116,
+            "position_y": 125
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 128
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 110,
+            "position_y": 125
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 113,
+            "position_y": 122
+          }
+        }
+      },
+      "episode_id": "episode_06_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 14,
+          "position_x": 113,
+          "position_y": 125,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "f54b626a5617a3f60251",
+        "provenance_only": true,
+        "state_group_index": 6
+      },
+      "same_state_group": "state_group_06",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "8f6b3b24bde8377c09ff",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 0,
+            "position_x": 130,
+            "position_y": 112
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 118
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 124,
+            "position_y": 112
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 106
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 136,
+            "position_y": 112
+          }
+        }
+      },
+      "episode_id": "episode_07_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 0,
+          "position_x": 130,
+          "position_y": 112,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "8f6b3b24bde8377c09ff",
+        "provenance_only": true,
+        "state_group_index": 7
+      },
+      "same_state_group": "state_group_07",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_x",
+      "split": "train"
+    },
+    {
+      "context_id": "4b7e4edf3cd6b9f83983",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 0,
+            "position_x": 130,
+            "position_y": 112
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 118
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 124,
+            "position_y": 112
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 106
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 136,
+            "position_y": 112
+          }
+        }
+      },
+      "episode_id": "episode_07_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 0,
+          "position_x": 130,
+          "position_y": 112,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "4b7e4edf3cd6b9f83983",
+        "provenance_only": true,
+        "state_group_index": 7
+      },
+      "same_state_group": "state_group_07",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_x",
+      "split": "train"
+    },
+    {
+      "context_id": "09f2573b0023d079dc28",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 0,
+            "position_x": 130,
+            "position_y": 112
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 118
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 124,
+            "position_y": 112
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 106
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 136,
+            "position_y": 112
+          }
+        }
+      },
+      "episode_id": "episode_07_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 0,
+          "position_x": 130,
+          "position_y": 112,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "09f2573b0023d079dc28",
+        "provenance_only": true,
+        "state_group_index": 7
+      },
+      "same_state_group": "state_group_07",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_y",
+      "split": "train"
+    },
+    {
+      "context_id": "1413437f9fa8ece39261",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 0,
+            "position_x": 130,
+            "position_y": 112
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 118
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 124,
+            "position_y": 112
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 130,
+            "position_y": 106
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 136,
+            "position_y": 112
+          }
+        }
+      },
+      "episode_id": "episode_07_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 0,
+          "position_x": 130,
+          "position_y": 112,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "train"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "1413437f9fa8ece39261",
+        "provenance_only": true,
+        "state_group_index": 7
+      },
+      "same_state_group": "state_group_07",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_y",
+      "split": "train"
+    },
+    {
+      "context_id": "45e552475de7a6d2bc6d",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 147,
+            "position_y": 99
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 156,
+            "position_y": 99
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 108
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 138,
+            "position_y": 99
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 90
+          }
+        }
+      },
+      "episode_id": "episode_08_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 5,
+          "position_x": 147,
+          "position_y": 99,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "45e552475de7a6d2bc6d",
+        "provenance_only": true,
+        "state_group_index": 8
+      },
+      "same_state_group": "state_group_08",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "21e7a0c31486f931da6d",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 147,
+            "position_y": 99
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 156,
+            "position_y": 99
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 108
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 138,
+            "position_y": 99
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 90
+          }
+        }
+      },
+      "episode_id": "episode_08_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 5,
+          "position_x": 147,
+          "position_y": 99,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "21e7a0c31486f931da6d",
+        "provenance_only": true,
+        "state_group_index": 8
+      },
+      "same_state_group": "state_group_08",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "e012ca45a0e1cf551340",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 147,
+            "position_y": 99
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 156,
+            "position_y": 99
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 108
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 138,
+            "position_y": 99
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 90
+          }
+        }
+      },
+      "episode_id": "episode_08_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 5,
+          "position_x": 147,
+          "position_y": 99,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "e012ca45a0e1cf551340",
+        "provenance_only": true,
+        "state_group_index": 8
+      },
+      "same_state_group": "state_group_08",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "9fbb1a6b49345ff0dcf7",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 147,
+            "position_y": 99
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 156,
+            "position_y": 99
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 108
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 138,
+            "position_y": 99
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 14,
+            "position_x": 147,
+            "position_y": 90
+          }
+        }
+      },
+      "episode_id": "episode_08_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 5,
+          "position_x": 147,
+          "position_y": 99,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "9fbb1a6b49345ff0dcf7",
+        "provenance_only": true,
+        "state_group_index": 8
+      },
+      "same_state_group": "state_group_08",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "f406176ce8d0e678984a",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 164,
+            "position_y": 86
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 89
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 161,
+            "position_y": 86
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 83
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 167,
+            "position_y": 86
+          }
+        }
+      },
+      "episode_id": "episode_09_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 10,
+          "position_x": 164,
+          "position_y": 86,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "f406176ce8d0e678984a",
+        "provenance_only": true,
+        "state_group_index": 9
+      },
+      "same_state_group": "state_group_09",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "a1afe2150bcd6b271566",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 164,
+            "position_y": 86
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 89
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 161,
+            "position_y": 86
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 83
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 167,
+            "position_y": 86
+          }
+        }
+      },
+      "episode_id": "episode_09_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 10,
+          "position_x": 164,
+          "position_y": 86,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "a1afe2150bcd6b271566",
+        "provenance_only": true,
+        "state_group_index": 9
+      },
+      "same_state_group": "state_group_09",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "ddbb01605106b25ebaf4",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 164,
+            "position_y": 86
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 89
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 161,
+            "position_y": 86
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 83
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 167,
+            "position_y": 86
+          }
+        }
+      },
+      "episode_id": "episode_09_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 10,
+          "position_x": 164,
+          "position_y": 86,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "ddbb01605106b25ebaf4",
+        "provenance_only": true,
+        "state_group_index": 9
+      },
+      "same_state_group": "state_group_09",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "46bdd72ecb77e9997532",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 164,
+            "position_y": 86
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 89
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 161,
+            "position_y": 86
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 164,
+            "position_y": 83
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 13,
+            "position_x": 167,
+            "position_y": 86
+          }
+        }
+      },
+      "episode_id": "episode_09_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "pull_y": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "push_y": {
+            "dx": 3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 10,
+          "position_x": 164,
+          "position_y": 86,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "46bdd72ecb77e9997532",
+        "provenance_only": true,
+        "state_group_index": 9
+      },
+      "same_state_group": "state_group_09",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "1fc18546d6c6230a8154",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 15,
+            "position_x": 181,
+            "position_y": 73
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 175,
+            "position_y": 73
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 67
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 187,
+            "position_y": 73
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 79
+          }
+        }
+      },
+      "episode_id": "episode_10_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 15,
+          "position_x": 181,
+          "position_y": 73,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "1fc18546d6c6230a8154",
+        "provenance_only": true,
+        "state_group_index": 10
+      },
+      "same_state_group": "state_group_10",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "43d347cff1af1e74c5f2",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 15,
+            "position_x": 181,
+            "position_y": 73
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 175,
+            "position_y": 73
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 67
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 187,
+            "position_y": 73
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 79
+          }
+        }
+      },
+      "episode_id": "episode_10_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 15,
+          "position_x": 181,
+          "position_y": 73,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "43d347cff1af1e74c5f2",
+        "provenance_only": true,
+        "state_group_index": 10
+      },
+      "same_state_group": "state_group_10",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "3f8f5bb081f93274e28a",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 15,
+            "position_x": 181,
+            "position_y": 73
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 175,
+            "position_y": 73
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 67
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 187,
+            "position_y": 73
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 79
+          }
+        }
+      },
+      "episode_id": "episode_10_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 15,
+          "position_x": 181,
+          "position_y": 73,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "3f8f5bb081f93274e28a",
+        "provenance_only": true,
+        "state_group_index": 10
+      },
+      "same_state_group": "state_group_10",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "08d444f6a53746373711",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 15,
+            "position_x": 181,
+            "position_y": 73
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 175,
+            "position_y": 73
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 67
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 187,
+            "position_y": 73
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 21,
+            "position_x": 181,
+            "position_y": 79
+          }
+        }
+      },
+      "episode_id": "episode_10_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -6,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_x": {
+            "dx": 6,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 6
+          }
+        },
+        "pre_state": {
+          "boundary_load": 15,
+          "position_x": 181,
+          "position_y": 73,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "08d444f6a53746373711",
+        "provenance_only": true,
+        "state_group_index": 10
+      },
+      "same_state_group": "state_group_10",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "5de003fb8e817d34efd6",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 1,
+            "position_x": 198,
+            "position_y": 60
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 51
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 207,
+            "position_y": 60
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 69
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 189,
+            "position_y": 60
+          }
+        }
+      },
+      "episode_id": "episode_11_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 1,
+          "position_x": 198,
+          "position_y": 60,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "5de003fb8e817d34efd6",
+        "provenance_only": true,
+        "state_group_index": 11
+      },
+      "same_state_group": "state_group_11",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "36398a50694870153c34",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 1,
+            "position_x": 198,
+            "position_y": 60
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 51
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 207,
+            "position_y": 60
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 69
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 189,
+            "position_y": 60
+          }
+        }
+      },
+      "episode_id": "episode_11_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 1,
+          "position_x": 198,
+          "position_y": 60,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "36398a50694870153c34",
+        "provenance_only": true,
+        "state_group_index": 11
+      },
+      "same_state_group": "state_group_11",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "354757e6029c1a309265",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 1,
+            "position_x": 198,
+            "position_y": 60
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 51
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 207,
+            "position_y": 60
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 69
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 189,
+            "position_y": 60
+          }
+        }
+      },
+      "episode_id": "episode_11_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 1,
+          "position_x": 198,
+          "position_y": 60,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "354757e6029c1a309265",
+        "provenance_only": true,
+        "state_group_index": 11
+      },
+      "same_state_group": "state_group_11",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "b9843dfaf0332ad3cbf6",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 1,
+            "position_x": 198,
+            "position_y": 60
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 51
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 207,
+            "position_y": 60
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 198,
+            "position_y": 69
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 10,
+            "position_x": 189,
+            "position_y": 60
+          }
+        }
+      },
+      "episode_id": "episode_11_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -9
+          },
+          "pull_y": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 9
+          },
+          "push_y": {
+            "dx": -9,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 1,
+          "position_x": 198,
+          "position_y": 60,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "b9843dfaf0332ad3cbf6",
+        "provenance_only": true,
+        "state_group_index": 11
+      },
+      "same_state_group": "state_group_11",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "a050aec0eab43ecb1956",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 215,
+            "position_y": 47
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 218,
+            "position_y": 47
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 50
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 212,
+            "position_y": 47
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 44
+          }
+        }
+      },
+      "episode_id": "episode_12_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 6,
+          "position_x": 215,
+          "position_y": 47,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "a050aec0eab43ecb1956",
+        "provenance_only": true,
+        "state_group_index": 12
+      },
+      "same_state_group": "state_group_12",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "fe4772c381b599ade179",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 215,
+            "position_y": 47
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 218,
+            "position_y": 47
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 50
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 212,
+            "position_y": 47
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 44
+          }
+        }
+      },
+      "episode_id": "episode_12_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 6,
+          "position_x": 215,
+          "position_y": 47,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "fe4772c381b599ade179",
+        "provenance_only": true,
+        "state_group_index": 12
+      },
+      "same_state_group": "state_group_12",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "6d49b4a2253de6e81097",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 215,
+            "position_y": 47
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 218,
+            "position_y": 47
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 50
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 212,
+            "position_y": 47
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 44
+          }
+        }
+      },
+      "episode_id": "episode_12_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 6,
+          "position_x": 215,
+          "position_y": 47,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "6d49b4a2253de6e81097",
+        "provenance_only": true,
+        "state_group_index": 12
+      },
+      "same_state_group": "state_group_12",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "f3d450d641fd5914b007",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 6,
+            "position_x": 215,
+            "position_y": 47
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 218,
+            "position_y": 47
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 50
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 212,
+            "position_y": 47
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 9,
+            "position_x": 215,
+            "position_y": 44
+          }
+        }
+      },
+      "episode_id": "episode_12_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 3,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_x": {
+            "dx": -3,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": -3
+          }
+        },
+        "pre_state": {
+          "boundary_load": 6,
+          "position_x": 215,
+          "position_y": 47,
+          "sensor_phase": 2
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "f3d450d641fd5914b007",
+        "provenance_only": true,
+        "state_group_index": 12
+      },
+      "same_state_group": "state_group_12",
+      "seed_id": "acsb_seed_00",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "5008729e3f49e788e53b",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 11,
+            "position_x": 232,
+            "position_y": 34
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 40
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 226,
+            "position_y": 34
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 28
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 238,
+            "position_y": 34
+          }
+        }
+      },
+      "episode_id": "episode_13_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 11,
+          "position_x": 232,
+          "position_y": 34,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "5008729e3f49e788e53b",
+        "provenance_only": true,
+        "state_group_index": 13
+      },
+      "same_state_group": "state_group_13",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "e2c4abac0ae0f4fbfef4",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 11,
+            "position_x": 232,
+            "position_y": 34
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 40
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 226,
+            "position_y": 34
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 28
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 238,
+            "position_y": 34
+          }
+        }
+      },
+      "episode_id": "episode_13_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 11,
+          "position_x": 232,
+          "position_y": 34,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "e2c4abac0ae0f4fbfef4",
+        "provenance_only": true,
+        "state_group_index": 13
+      },
+      "same_state_group": "state_group_13",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "4059250d8d20ba90647e",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 11,
+            "position_x": 232,
+            "position_y": 34
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 40
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 226,
+            "position_y": 34
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 28
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 238,
+            "position_y": 34
+          }
+        }
+      },
+      "episode_id": "episode_13_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 11,
+          "position_x": 232,
+          "position_y": 34,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "4059250d8d20ba90647e",
+        "provenance_only": true,
+        "state_group_index": 13
+      },
+      "same_state_group": "state_group_13",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "a4115fc467380d39b70b",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 11,
+            "position_x": 232,
+            "position_y": 34
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 40
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 226,
+            "position_y": 34
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 232,
+            "position_y": 28
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 17,
+            "position_x": 238,
+            "position_y": 34
+          }
+        }
+      },
+      "episode_id": "episode_13_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": 6
+          },
+          "pull_y": {
+            "dx": -6,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": -6
+          },
+          "push_y": {
+            "dx": 6,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 11,
+          "position_x": 232,
+          "position_y": 34,
+          "sensor_phase": 3
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "a4115fc467380d39b70b",
+        "provenance_only": true,
+        "state_group_index": 13
+      },
+      "same_state_group": "state_group_13",
+      "seed_id": "acsb_seed_01",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "036eae1f1e3470bc7e9e",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 16,
+            "position_x": 249,
+            "position_y": 21
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 240,
+            "position_y": 21
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 12
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 258,
+            "position_y": 21
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 30
+          }
+        }
+      },
+      "episode_id": "episode_14_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -9
+          },
+          "push_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 16,
+          "position_x": 249,
+          "position_y": 21,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "036eae1f1e3470bc7e9e",
+        "provenance_only": true,
+        "state_group_index": 14
+      },
+      "same_state_group": "state_group_14",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "48c63ee765f77c509d3d",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 16,
+            "position_x": 249,
+            "position_y": 21
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 240,
+            "position_y": 21
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 12
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 258,
+            "position_y": 21
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 30
+          }
+        }
+      },
+      "episode_id": "episode_14_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -9
+          },
+          "push_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 16,
+          "position_x": 249,
+          "position_y": 21,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "48c63ee765f77c509d3d",
+        "provenance_only": true,
+        "state_group_index": 14
+      },
+      "same_state_group": "state_group_14",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "07622f0eeddbbad5231b",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 16,
+            "position_x": 249,
+            "position_y": 21
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 240,
+            "position_y": 21
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 12
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 258,
+            "position_y": 21
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 30
+          }
+        }
+      },
+      "episode_id": "episode_14_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -9
+          },
+          "push_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 16,
+          "position_x": 249,
+          "position_y": 21,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "07622f0eeddbbad5231b",
+        "provenance_only": true,
+        "state_group_index": 14
+      },
+      "same_state_group": "state_group_14",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "27211685ea223857ca5d",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 16,
+            "position_x": 249,
+            "position_y": 21
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 240,
+            "position_y": 21
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 12
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 258,
+            "position_y": 21
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 25,
+            "position_x": 249,
+            "position_y": 30
+          }
+        }
+      },
+      "episode_id": "episode_14_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": -9,
+            "dy": 0
+          },
+          "pull_y": {
+            "dx": 0,
+            "dy": -9
+          },
+          "push_x": {
+            "dx": 9,
+            "dy": 0
+          },
+          "push_y": {
+            "dx": 0,
+            "dy": 9
+          }
+        },
+        "pre_state": {
+          "boundary_load": 16,
+          "position_x": 249,
+          "position_y": 21,
+          "sensor_phase": 0
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "27211685ea223857ca5d",
+        "provenance_only": true,
+        "state_group_index": 14
+      },
+      "same_state_group": "state_group_14",
+      "seed_id": "acsb_seed_02",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "9364e9803566e9a717f8",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 2,
+            "position_x": 266,
+            "position_y": 8
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 5
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 269,
+            "position_y": 8
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 11
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 263,
+            "position_y": 8
+          }
+        }
+      },
+      "episode_id": "episode_15_00",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "pull_y": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_y": {
+            "dx": -3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 2,
+          "position_x": 266,
+          "position_y": 8,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 0,
+        "context_id": "9364e9803566e9a717f8",
+        "provenance_only": true,
+        "state_group_index": 15
+      },
+      "same_state_group": "state_group_15",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "990f64316ef6b1bbb333",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 2,
+            "position_x": 266,
+            "position_y": 8
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 5
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 269,
+            "position_y": 8
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 11
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 263,
+            "position_y": 8
+          }
+        }
+      },
+      "episode_id": "episode_15_01",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "pull_y": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_y": {
+            "dx": -3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 2,
+          "position_x": 266,
+          "position_y": 8,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 1,
+        "context_id": "990f64316ef6b1bbb333",
+        "provenance_only": true,
+        "state_group_index": 15
+      },
+      "same_state_group": "state_group_15",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_x",
+      "split": "heldout"
+    },
+    {
+      "context_id": "6ed32ef776b76ef2a472",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 2,
+            "position_x": 266,
+            "position_y": 8
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 5
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 269,
+            "position_y": 8
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 11
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 263,
+            "position_y": 8
+          }
+        }
+      },
+      "episode_id": "episode_15_02",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "pull_y": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_y": {
+            "dx": -3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 2,
+          "position_x": 266,
+          "position_y": 8,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 2,
+        "context_id": "6ed32ef776b76ef2a472",
+        "provenance_only": true,
+        "state_group_index": 15
+      },
+      "same_state_group": "state_group_15",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "push_y",
+      "split": "heldout"
+    },
+    {
+      "context_id": "3c6db61181f91425dc11",
+      "downstream_legal_observations": {
+        "hold_boundary": {
+          "action": "hold_boundary",
+          "post_state": {
+            "boundary_load": 2,
+            "position_x": 266,
+            "position_y": 8
+          }
+        },
+        "pull_x": {
+          "action": "pull_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 5
+          }
+        },
+        "pull_y": {
+          "action": "pull_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 269,
+            "position_y": 8
+          }
+        },
+        "push_x": {
+          "action": "push_x",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 266,
+            "position_y": 11
+          }
+        },
+        "push_y": {
+          "action": "push_y",
+          "post_state": {
+            "boundary_load": 5,
+            "position_x": 263,
+            "position_y": 8
+          }
+        }
+      },
+      "episode_id": "episode_15_03",
+      "legal_counterfactual_action_labels": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y",
+        "hold_boundary"
+      ],
+      "legal_state_observation": {
+        "actuator_effects": {
+          "hold_boundary": {
+            "dx": 0,
+            "dy": 0
+          },
+          "pull_x": {
+            "dx": 0,
+            "dy": -3
+          },
+          "pull_y": {
+            "dx": 3,
+            "dy": 0
+          },
+          "push_x": {
+            "dx": 0,
+            "dy": 3
+          },
+          "push_y": {
+            "dx": -3,
+            "dy": 0
+          }
+        },
+        "pre_state": {
+          "boundary_load": 2,
+          "position_x": 266,
+          "position_y": 8,
+          "sensor_phase": 1
+        },
+        "transition_contract": {
+          "effect_field": "legal_state_observation.actuator_effects",
+          "rule": "post_state = pre_state + actuator_effects[selected_action]",
+          "split": "heldout"
+        }
+      },
+      "metadata": {
+        "action_index": 3,
+        "context_id": "3c6db61181f91425dc11",
+        "provenance_only": true,
+        "state_group_index": 15
+      },
+      "same_state_group": "state_group_15",
+      "seed_id": "acsb_seed_03",
+      "selected_action": "pull_y",
+      "split": "heldout"
+    }
+  ],
+  "mechanism_score_produced": false,
+  "prior_negative_evidence": [
+    "current COMPOSITE-CTSR pass-chain closed as mechanism evidence and frozen as negative evidence",
+    "CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A downgraded to inconclusive / admission unsupported",
+    "fair simple baselines reached oracle-level accuracy in hostile audit",
+    "no CTSR candidate/tournament/bridge/runtime/Gate5 continuation is authorized"
+  ],
+  "run_family": "action_conditioned_self_boundary_preflight_001a",
+  "same_state_different_action_pairs": [
+    {
+      "episode_ids": [
+        "episode_00_00",
+        "episode_00_01",
+        "episode_00_02",
+        "episode_00_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_00",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_00"
+    },
+    {
+      "episode_ids": [
+        "episode_01_00",
+        "episode_01_01",
+        "episode_01_02",
+        "episode_01_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_01",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_01"
+    },
+    {
+      "episode_ids": [
+        "episode_02_00",
+        "episode_02_01",
+        "episode_02_02",
+        "episode_02_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_02",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_02"
+    },
+    {
+      "episode_ids": [
+        "episode_03_00",
+        "episode_03_01",
+        "episode_03_02",
+        "episode_03_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_03",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_03"
+    },
+    {
+      "episode_ids": [
+        "episode_04_00",
+        "episode_04_01",
+        "episode_04_02",
+        "episode_04_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_04",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_04"
+    },
+    {
+      "episode_ids": [
+        "episode_05_00",
+        "episode_05_01",
+        "episode_05_02",
+        "episode_05_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_05",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_05"
+    },
+    {
+      "episode_ids": [
+        "episode_06_00",
+        "episode_06_01",
+        "episode_06_02",
+        "episode_06_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_06",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_06"
+    },
+    {
+      "episode_ids": [
+        "episode_07_00",
+        "episode_07_01",
+        "episode_07_02",
+        "episode_07_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_07",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_07"
+    },
+    {
+      "episode_ids": [
+        "episode_08_00",
+        "episode_08_01",
+        "episode_08_02",
+        "episode_08_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_08",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_08"
+    },
+    {
+      "episode_ids": [
+        "episode_09_00",
+        "episode_09_01",
+        "episode_09_02",
+        "episode_09_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_09",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_09"
+    },
+    {
+      "episode_ids": [
+        "episode_10_00",
+        "episode_10_01",
+        "episode_10_02",
+        "episode_10_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_10",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_10"
+    },
+    {
+      "episode_ids": [
+        "episode_11_00",
+        "episode_11_01",
+        "episode_11_02",
+        "episode_11_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_11",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_11"
+    },
+    {
+      "episode_ids": [
+        "episode_12_00",
+        "episode_12_01",
+        "episode_12_02",
+        "episode_12_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_12",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_12"
+    },
+    {
+      "episode_ids": [
+        "episode_13_00",
+        "episode_13_01",
+        "episode_13_02",
+        "episode_13_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_13",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_13"
+    },
+    {
+      "episode_ids": [
+        "episode_14_00",
+        "episode_14_01",
+        "episode_14_02",
+        "episode_14_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_14",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_14"
+    },
+    {
+      "episode_ids": [
+        "episode_15_00",
+        "episode_15_01",
+        "episode_15_02",
+        "episode_15_03"
+      ],
+      "pair_id": "same_state_counterfactual_pair_15",
+      "selected_actions": [
+        "push_x",
+        "pull_x",
+        "push_y",
+        "pull_y"
+      ],
+      "state_group": "state_group_15"
+    }
+  ],
+  "surface_config_hash": "9aefb79fe834453710ab5d45df832f850d761e5063bd6d5804dc9c524fbd9b01",
+  "task_distribution_frozen_before_results": true,
+  "task_id": "ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A"
+}
