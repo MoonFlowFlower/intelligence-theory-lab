@@ -1,0 +1,456 @@
+{
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-ENTRY-CRITERIA-001A",
+  "process_mode": "discovery_mode",
+  "registry_scope": "candidate mechanism-family tournament entry criteria only; no candidate code, no Gate4 replacement design, no tournament execution",
+  "families": [
+    {
+      "family_id": "causal_world_model_control",
+      "mechanism_layer": "causal_world_model_control",
+      "bounded_mechanism_hypothesis": "A candidate learns an action-state-consequence model usable under heldout interventions, not merely action-label lookup.",
+      "intended_observable": "Prediction or planning improves under heldout action-state combinations where direct lookup and model-free table baselines fail.",
+      "minimum_environment_requirements": [
+        "episodes with actions, states, consequences, and interventions",
+        "heldout action-state combinations absent from training episodes",
+        "public observations that do not expose target labels or generator metadata"
+      ],
+      "target_source_requirement": "Targets must be generated from intervention outcomes with target provenance and cannot be recoverable from one visible state key, action ID, row index, context ID, or deterministic generator metadata.",
+      "strongest_cheap_baseline": [
+        "state_action_lookup_table",
+        "model_free_action_frequency_baseline",
+        "oracle_visible_feature_shortcut",
+        "nearest_neighbor_transition_retrieval",
+        "ngram_trajectory_lookup"
+      ],
+      "required_independent_baselines": [
+        "state_action_lookup_table",
+        "model_free_action_frequency_baseline",
+        "oracle_visible_feature_shortcut",
+        "nearest_neighbor_transition_retrieval",
+        "ngram_trajectory_lookup"
+      ],
+      "required_ablation": [
+        "disable_or_freeze_causal_transition_update_while_preserving_observation_access"
+      ],
+      "leakage_risks": [
+        "state key or action ID encodes target",
+        "context ID or row index encodes generator state",
+        "deterministic metadata exposes consequence mapping"
+      ],
+      "shortcut_risks": [
+        "state-action table memorization",
+        "nearest-neighbor transition retrieval",
+        "n-gram trajectory lookup"
+      ],
+      "minimum_transfer_condition": [
+        "heldout intervention combinations not present in training episodes"
+      ],
+      "required_counterfactuals": [
+        "same surface state with changed intervention consequence",
+        "different surface state with same causal consequence"
+      ],
+      "trace_requirements": [
+        "trace must record observation, action, intervention, predicted consequence, observed consequence, and update step"
+      ],
+      "replay_requirements_if_applicable": [
+        "recompute prediction or planning from serialized state plus observation without stored target lookup"
+      ],
+      "why_not_lookup_profile_table_shortcut": "The entry requires heldout intervention combinations and counterfactual consequence swaps, so a lookup or profile table must fail when the same key maps to a changed intervention consequence.",
+      "entry_preflight_requirements": [
+        "run cheap baselines before candidate code",
+        "lock config hash and threshold before results",
+        "run leakage scanner with positive controls",
+        "record target provenance and code path hash"
+      ],
+      "exit_conditions": [
+        "close family if best faithful cheap baseline reaches threshold",
+        "block if target is recoverable from static key or generator metadata",
+        "block if ablation is missing"
+      ],
+      "claim_ceiling": "bounded discovery-mode family-entry hypothesis only; no mechanism validity or Gate4 readiness",
+      "forbidden_interpretations": [
+        "causal understanding",
+        "mechanism validity",
+        "Gate4 readiness",
+        "runtime readiness"
+      ]
+    },
+    {
+      "family_id": "jepa_like_latent_prediction",
+      "mechanism_layer": "latent_prediction_world_model",
+      "bounded_mechanism_hypothesis": "A candidate learns latent predictive structure that supports future-state discrimination or planning under heldout transitions, not pixel/string reconstruction or nearest-neighbor matching.",
+      "intended_observable": "Latent prediction improves heldout transition discrimination or action selection beyond frozen encoder, nearest-neighbor, and supervised shortcut baselines.",
+      "minimum_environment_requirements": [
+        "sequential observations with hidden transition structure",
+        "heldout transition compositions or perturbations",
+        "evaluation targets isolated from literal IDs and answer keys"
+      ],
+      "target_source_requirement": "Latent targets must be generated from future-state or transition discrimination and must not encode literal target, environment ID, partner ID, trace index, or answer key.",
+      "strongest_cheap_baseline": [
+        "frozen_random_or_pretrained_encoder_baseline",
+        "nearest_neighbor_latent_retrieval",
+        "supervised_target_shortcut",
+        "bag_of_observation_feature_baseline",
+        "trace_only_decoder_baseline"
+      ],
+      "required_independent_baselines": [
+        "frozen_random_or_pretrained_encoder_baseline",
+        "nearest_neighbor_latent_retrieval",
+        "supervised_target_shortcut",
+        "bag_of_observation_feature_baseline",
+        "trace_only_decoder_baseline"
+      ],
+      "required_ablation": [
+        "remove_latent_prediction_objective_or_replace_with_non_predictive_embedding"
+      ],
+      "leakage_risks": [
+        "embedding encodes answer key",
+        "trace index or environment ID determines target",
+        "decoder reconstructs target-bearing strings"
+      ],
+      "shortcut_risks": [
+        "nearest-neighbor latent retrieval",
+        "supervised target shortcut",
+        "bag-of-observation matching"
+      ],
+      "minimum_transfer_condition": [
+        "new transition compositions or perturbations not present in training"
+      ],
+      "required_counterfactuals": [
+        "same observation bag with changed transition relation",
+        "different observation surface with matched predictive relation"
+      ],
+      "trace_requirements": [
+        "trace must record encoder input, latent prediction, future observation boundary, discrimination target, and update provenance"
+      ],
+      "replay_requirements_if_applicable": [
+        "recompute latent prediction from serialized model state and current observation"
+      ],
+      "why_not_lookup_profile_table_shortcut": "The entry requires transition-composition transfer and counterfactual surfaces, which should break table lookup over visible bundles or trace indices.",
+      "entry_preflight_requirements": [
+        "run encoder and retrieval baselines before candidate code",
+        "lock threshold and config hash",
+        "prove literal answer keys are absent from embeddings and filenames",
+        "record source pins and code path hash"
+      ],
+      "exit_conditions": [
+        "close family if retrieval or decoder baseline reaches threshold",
+        "block if latent target is literally recoverable",
+        "block if prediction ablation is missing"
+      ],
+      "claim_ceiling": "bounded discovery-mode latent-prediction family-entry hypothesis only; no mechanism validity or Gate4 readiness",
+      "forbidden_interpretations": [
+        "world-model proof",
+        "understanding",
+        "mechanism validity",
+        "Gate4 readiness"
+      ]
+    },
+    {
+      "family_id": "replay_consolidation_adaptation",
+      "mechanism_layer": "replay_consolidation",
+      "bounded_mechanism_hypothesis": "Replay or consolidation changes later behavior from serialized state and observation recomputation, not cached answer retrieval.",
+      "intended_observable": "Post-replay behavior or prediction improves on heldout episodes relative to no-replay, shuffled-replay, and cache-replay baselines.",
+      "minimum_environment_requirements": [
+        "serialized candidate state before and after replay",
+        "heldout post-consolidation episodes",
+        "trace format that supports recomputation from state plus observation"
+      ],
+      "target_source_requirement": "Targets must require recomputation from serialized state and observation, with no stored target, answer hash, trace label, or episode ID determining output.",
+      "strongest_cheap_baseline": [
+        "no_replay",
+        "shuffled_replay",
+        "cache_replay",
+        "stored_answer_replay",
+        "retrieval_over_previous_traces",
+        "hash_comparison_replay"
+      ],
+      "required_independent_baselines": [
+        "no_replay",
+        "shuffled_replay",
+        "cache_replay",
+        "stored_answer_replay",
+        "retrieval_over_previous_traces",
+        "hash_comparison_replay"
+      ],
+      "required_ablation": [
+        "disable_replay_recomputation_or_replace_replay_with_shuffled_non_causal_replay"
+      ],
+      "leakage_risks": [
+        "stored target in replay buffer",
+        "answer hash comparison",
+        "episode ID or trace label determines answer"
+      ],
+      "shortcut_risks": [
+        "cache replay",
+        "stored-answer replay",
+        "retrieval over previous traces"
+      ],
+      "minimum_transfer_condition": [
+        "new episode context after consolidation where direct answer retrieval is insufficient"
+      ],
+      "required_counterfactuals": [
+        "same replay records with shuffled causal order",
+        "same serialized state with changed heldout observation"
+      ],
+      "trace_requirements": [
+        "trace must record serialized state, replay inputs, replay update, observation, recomputed behavior, and output"
+      ],
+      "replay_requirements_if_applicable": [
+        "replay must recompute candidate behavior from serialized state plus observation",
+        "stored hash comparison is insufficient"
+      ],
+      "why_not_lookup_profile_table_shortcut": "The entry requires post-replay behavior in new contexts and replay corruption controls, which should expose cached-answer or trace-retrieval shortcuts.",
+      "entry_preflight_requirements": [
+        "run no-replay, shuffled-replay, cache, stored-answer, retrieval, and hash-only baselines before candidate code",
+        "lock config hash and threshold",
+        "prove replay traces do not contain answer-bearing labels",
+        "record replay recomputation provenance"
+      ],
+      "exit_conditions": [
+        "close family if cache or stored-answer replay reaches threshold",
+        "block if replay does not recompute from state plus observation",
+        "block if replay corruption does not fail as expected"
+      ],
+      "claim_ceiling": "bounded discovery-mode replay/consolidation family-entry hypothesis only; no adaptation validity or Gate4 readiness",
+      "forbidden_interpretations": [
+        "learning proof",
+        "memory validity",
+        "agency",
+        "Gate4 readiness"
+      ]
+    },
+    {
+      "family_id": "self_boundary_controllability_model",
+      "mechanism_layer": "self_boundary_controllability",
+      "bounded_mechanism_hypothesis": "A candidate learns a bounded model of self-caused versus externally caused changes and controllable versus uncontrollable variables under intervention.",
+      "intended_observable": "Correct intervention response and boundary attribution under heldout self, other, and environment perturbations beyond controllability lookup baselines.",
+      "minimum_environment_requirements": [
+        "variables with interventions and observed deltas",
+        "heldout variable or intervention pairings",
+        "non-semantic variable handles that do not reveal self or other role"
+      ],
+      "target_source_requirement": "Boundary targets must come from intervention feedback and must not be recoverable from variable names, fixed positions, static masks, or generator role fields.",
+      "strongest_cheap_baseline": [
+        "variable_name_heuristic",
+        "intervention_lookup_table",
+        "state_delta_frequency_baseline",
+        "oracle_controllability_label_baseline",
+        "fixed_self_other_partition_baseline"
+      ],
+      "required_independent_baselines": [
+        "variable_name_heuristic",
+        "intervention_lookup_table",
+        "state_delta_frequency_baseline",
+        "oracle_controllability_label_baseline",
+        "fixed_self_other_partition_baseline"
+      ],
+      "required_ablation": [
+        "remove_boundary_update_or_scramble_intervention_feedback"
+      ],
+      "leakage_risks": [
+        "variable name reveals role",
+        "fixed position or static mask reveals boundary",
+        "generator role field leaks target"
+      ],
+      "shortcut_risks": [
+        "intervention lookup table",
+        "fixed self/other partition",
+        "state-delta frequency heuristic"
+      ],
+      "minimum_transfer_condition": [
+        "new variables or intervention pairings not seen in training"
+      ],
+      "required_counterfactuals": [
+        "same variable handle with changed controllability",
+        "different variable handle with matched controllability response"
+      ],
+      "trace_requirements": [
+        "trace must record intervention attempt, predicted controllability, observed delta, boundary update, and attribution"
+      ],
+      "replay_requirements_if_applicable": [
+        "recompute boundary attribution from serialized boundary state plus current intervention observation"
+      ],
+      "why_not_lookup_profile_table_shortcut": "The entry requires heldout intervention pairings and controllability swaps that make static role tables and variable-name heuristics fail.",
+      "entry_preflight_requirements": [
+        "run name, lookup, frequency, oracle-label, and fixed-partition baselines before candidate code",
+        "lock threshold and config hash",
+        "run leakage checks over names, positions, masks, and generator fields",
+        "record intervention provenance"
+      ],
+      "exit_conditions": [
+        "close family if lookup or fixed partition reaches threshold",
+        "block if variable names or static positions recover target",
+        "block if boundary ablation is absent"
+      ],
+      "claim_ceiling": "bounded discovery-mode self-boundary/controllability family-entry hypothesis only; no selfhood, agency, or Gate4 readiness",
+      "forbidden_interpretations": [
+        "self-awareness",
+        "agency",
+        "subjectivity",
+        "mechanism validity"
+      ]
+    },
+    {
+      "family_id": "viability_value_gated_prediction_action_loop",
+      "mechanism_layer": "viability_value_prediction_action",
+      "bounded_mechanism_hypothesis": "A candidate uses viability or value pressure to gate prediction and action updates under changing environment consequences, not static reward lookup.",
+      "intended_observable": "Prediction error and viability/value signal jointly alter future action selection under heldout perturbations beyond static reward table and myopic policy baselines.",
+      "minimum_environment_requirements": [
+        "state, action, prediction, consequence, and viability or value signal",
+        "changed consequence mapping or delayed-effect condition not present in training",
+        "evaluation split where immediate reward alone is insufficient"
+      ],
+      "target_source_requirement": "Targets must depend on changed or delayed consequences and cannot be recoverable from immediate reward, state ID, action ID, or fixed risk label alone.",
+      "strongest_cheap_baseline": [
+        "static_reward_lookup",
+        "myopic_greedy_policy",
+        "fixed_risk_avoidance_heuristic",
+        "action_frequency_baseline",
+        "oracle_viability_label_shortcut",
+        "state_action_reward_triple_table"
+      ],
+      "required_independent_baselines": [
+        "static_reward_lookup",
+        "myopic_greedy_policy",
+        "fixed_risk_avoidance_heuristic",
+        "action_frequency_baseline",
+        "oracle_viability_label_shortcut",
+        "state_action_reward_triple_table"
+      ],
+      "required_ablation": [
+        "remove_viability_value_gating_while_preserving_prediction_access"
+      ],
+      "leakage_risks": [
+        "immediate reward exposes target",
+        "fixed risk label exposes action",
+        "state/action IDs encode consequence"
+      ],
+      "shortcut_risks": [
+        "static reward table",
+        "myopic greedy policy",
+        "state-action-reward triple lookup"
+      ],
+      "minimum_transfer_condition": [
+        "changed consequence mapping or delayed-effect condition not present in training"
+      ],
+      "required_counterfactuals": [
+        "same immediate reward with changed delayed consequence",
+        "same state-action pair with changed viability pressure"
+      ],
+      "trace_requirements": [
+        "trace must record prediction error, viability/value signal, gate state, chosen action, and later consequence"
+      ],
+      "replay_requirements_if_applicable": [
+        "recompute gated action selection from serialized state, observation, prediction error, and value signal"
+      ],
+      "why_not_lookup_profile_table_shortcut": "The entry requires changed consequence mappings and delayed effects where immediate reward or static action tables are insufficient.",
+      "entry_preflight_requirements": [
+        "run reward, myopic, risk, frequency, oracle-label, and state-action-reward baselines before candidate code",
+        "lock threshold and config hash",
+        "scan for immediate-reward and risk-label leakage",
+        "record gating provenance and code path hash"
+      ],
+      "exit_conditions": [
+        "close family if static reward or myopic policy reaches threshold",
+        "block if target is recoverable from immediate reward or fixed risk label",
+        "block if value-gate ablation is absent"
+      ],
+      "claim_ceiling": "bounded discovery-mode viability/value gated loop family-entry hypothesis only; no agency, value alignment, or Gate4 readiness",
+      "forbidden_interpretations": [
+        "real value system",
+        "agency",
+        "autonomy",
+        "mechanism validity"
+      ]
+    },
+    {
+      "family_id": "social_latent_inference_without_partner_id_lookup",
+      "mechanism_layer": "social_latent_inference",
+      "bounded_mechanism_hypothesis": "A candidate infers changing latent social policy from interaction dynamics and feedback, not partner identity, profile, preference table, or order-k history lookup.",
+      "intended_observable": "Heldout interaction response improves under unseen partners, same-ID/different-latent counterfactuals, and different-ID/same-latent counterfactuals where identity lookup fails.",
+      "minimum_environment_requirements": [
+        "unseen partners and partner-latent swaps",
+        "same-ID/different-latent and different-ID/same-latent counterfactuals",
+        "identity-like fields treated as nuisance variables"
+      ],
+      "target_source_requirement": "Targets must be generated so partner ID, context ID, row order, preference table, trace metadata, filename, or serialized partner key cannot determine the output.",
+      "strongest_cheap_baseline": [
+        "partner_id_lookup",
+        "anonymized_partner_key_lookup",
+        "preference_table_reconstruction",
+        "retrieval_over_prior_traces",
+        "order_k_partner_history",
+        "profile_table_baseline",
+        "ngram_trace_lookup",
+        "query_conditioned_imitation",
+        "graph_cache_baseline",
+        "full_bundle_decoder"
+      ],
+      "required_independent_baselines": [
+        "partner_id_lookup",
+        "anonymized_partner_key_lookup",
+        "preference_table_reconstruction",
+        "retrieval_over_prior_traces",
+        "order_k_partner_history",
+        "profile_table_baseline",
+        "ngram_trace_lookup",
+        "query_conditioned_imitation",
+        "graph_cache_baseline",
+        "full_bundle_decoder"
+      ],
+      "required_ablation": [
+        "remove_social_latent_update_while_preserving_non_social_observation_access"
+      ],
+      "leakage_risks": [
+        "partner ID or anonymized partner key determines target",
+        "preference table reconstructs answer",
+        "trace order, filename, context ID, or serialized partner key leaks target"
+      ],
+      "shortcut_risks": [
+        "partner-ID lookup",
+        "preference-table reconstruction",
+        "order-k partner history",
+        "full-bundle decoding"
+      ],
+      "minimum_transfer_condition": [
+        "unseen partners plus counterfactual partner-latent swaps"
+      ],
+      "required_counterfactuals": [
+        "same partner ID with different latent policy",
+        "different partner ID with same latent policy",
+        "permuted partner keys with invariant target relation"
+      ],
+      "trace_requirements": [
+        "trace must record interaction observation, feedback, latent update input, candidate response, and identity nuisance fields"
+      ],
+      "replay_requirements_if_applicable": [
+        "recompute response from serialized latent state plus current interaction observation without partner-ID lookup"
+      ],
+      "why_not_lookup_profile_table_shortcut": "The entry makes identity a nuisance through unseen partners, same-ID/different-latent swaps, and different-ID/same-latent swaps, so profile and partner-key tables must fail.",
+      "entry_preflight_requirements": [
+        "run partner-ID, partner-key, preference-table, trace-retrieval, history, profile, n-gram, imitation, graph/cache, and full-bundle decoder baselines before candidate code",
+        "lock threshold and config hash",
+        "run identity/key permutation and leakage positive controls",
+        "record target provenance and code path hash"
+      ],
+      "exit_conditions": [
+        "close family if partner-ID or related faithful cheap baseline reaches threshold",
+        "block if same-family repair reopens the current generated Gate4 family",
+        "block if identity permutation or counterfactual split is missing"
+      ],
+      "claim_ceiling": "bounded discovery-mode social-latent family-entry hypothesis only; no social understanding, mechanism validity, Gate4 readiness, or EGO readiness",
+      "forbidden_interpretations": [
+        "social understanding",
+        "agency",
+        "subjectivity",
+        "mechanism validity",
+        "Gate4 readiness"
+      ]
+    }
+  ],
+  "winner_declared": false,
+  "preferred_family_declared": false,
+  "candidate_code_authorized": false,
+  "gate4_replacement_design_authorized": false,
+  "claim_ceiling": "bounded discovery-mode candidate-family registry only; no tournament execution, candidate implementation, Gate4 validity, mechanism validity, runtime readiness, bridge/admission readiness, companion readiness, user benefit, or EGO readiness"
+}

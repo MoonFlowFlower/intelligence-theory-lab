@@ -1,0 +1,112 @@
+{
+  "ablation_row_count": 6,
+  "admission_claim_authorized": false,
+  "baseline_row_count": 37,
+  "candidate_code_authorized": false,
+  "closed_family_inherited": true,
+  "code_path_hash": "5a9bf78102a2c9a2d9382f49a218afe5e07d7c534c16ddd9ef0c6633d9d56806",
+  "current_head": "5c91f36882e15156efb9ec85413b2f9d1e919ec0",
+  "family_count": 6,
+  "final_verdict": "pass",
+  "generated_at_utc": "2026-06-14T00:58:49Z",
+  "inputs": [
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/candidate_family_registry.json",
+      "sha256": "0a20e47e632a3b61220782c5a1c914b094d17f1db9ec330904a65ff888da152d"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/shared_tournament_preflight_protocol.json",
+      "sha256": "ef563e3d5454c24fb1b39f7d487127b00c7e930db24d82807eef659636d3bcb3"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/family_baseline_matrix.json",
+      "sha256": "40efb577ff700f93e0483cd771eda8af98dbfa9a52109c072bba875dd002e7b4"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/family_ablation_matrix.json",
+      "sha256": "a36f685098bf3f78aea78272a016fc508b24685ce00d5fd6483441d2035340bd"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/family_transfer_counterfactual_matrix.json",
+      "sha256": "12c990cb62f8575029e460ce75c70cd905e0c2fa5d0a3efac898a7ad0bd7d1da"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/closed_family_inheritance.json",
+      "sha256": "a0e8b898bb23a6ff756ded3d5566c3311f706b323777f177ff0c2cfa90877332"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/tournament_entry_validation_rules.json",
+      "sha256": "66a7f11046ca0f12ecdc70ae0d98a63694f760b8944698b9175b13c93f7d73b3"
+    },
+    {
+      "path": "artifacts/mechanism_family_tournament_entry_criteria_001a/malformed_positive_control_fixture.json",
+      "sha256": "cc3eb38c76d4c956dd67d9728dc0d2014b783baef5dd731aef36d67803b4452b"
+    }
+  ],
+  "invalid_fixture_errors": [
+    "registry_candidate_code_authorized",
+    "registry_gate4_design_authorized",
+    "registry_declares_winner",
+    "registry_declares_preferred_family",
+    "fewer_than_three_candidate_families",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:mechanism_layer",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:bounded_mechanism_hypothesis",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:intended_observable",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:minimum_environment_requirements",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:target_source_requirement",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:strongest_cheap_baseline",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:required_independent_baselines",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:required_ablation",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:leakage_risks",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:shortcut_risks",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:minimum_transfer_condition",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:required_counterfactuals",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:trace_requirements",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:replay_requirements_if_applicable",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:why_not_lookup_profile_table_shortcut",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:entry_preflight_requirements",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:exit_conditions",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:claim_ceiling",
+    "family_missing_field:social_latent_inference_without_partner_id_lookup:forbidden_interpretations",
+    "family_invalid_mechanism_layer:social_latent_inference_without_partner_id_lookup",
+    "family_claim_ceiling_missing_gate4_bound:social_latent_inference_without_partner_id_lookup",
+    "missing_required_families:causal_world_model_control,jepa_like_latent_prediction,replay_consolidation_adaptation,self_boundary_controllability_model,viability_value_gated_prediction_action_loop",
+    "protocol_missing_field:required_leakage_positive_controls",
+    "protocol_missing_field:required_transfer_splits",
+    "protocol_missing_field:required_counterfactual_splits",
+    "protocol_missing_field:required_threshold_lock",
+    "protocol_missing_field:required_config_hash_lock",
+    "protocol_missing_field:required_source_pin",
+    "protocol_missing_field:required_code_path_hash",
+    "protocol_missing_field:family_kill_rule",
+    "protocol_missing_field:same_family_repair_policy",
+    "protocol_allows_candidate_code_before_preflight",
+    "protocol_admission_claim_not_forbidden",
+    "protocol_mainline_claim_not_forbidden",
+    "protocol_readiness_claim_not_forbidden",
+    "protocol_missing_target_provenance_fields",
+    "family_missing_baseline_matrix_row:social_latent_inference_without_partner_id_lookup",
+    "social_family_missing_required_shortcut_baselines",
+    "family_missing_ablation_matrix_row:social_latent_inference_without_partner_id_lookup",
+    "family_missing_transfer_counterfactual_row:social_latent_inference_without_partner_id_lookup",
+    "closed_family_negative_evidence_not_inherited",
+    "missing_validation_rules:admission_or_readiness_claim_in_discovery_mode,candidate_code_before_baseline_preflight,fewer_than_three_candidate_families,missing_ablation,missing_leakage_risk,missing_strongest_cheap_baseline,missing_target_provenance,missing_transfer_condition,reopening_closed_family_without_new_problem_definition_and_stronger_baseline_separation,social_family_without_partner_id_lookup_baseline,target_recoverable_from_static_label_formula"
+  ],
+  "invalid_fixture_failed_as_expected": true,
+  "mainline_claim_authorized": false,
+  "missing_required_families": [],
+  "producer_function": "run_validation",
+  "required_families_present": true,
+  "required_family_ids_present": [
+    "causal_world_model_control",
+    "jepa_like_latent_prediction",
+    "replay_consolidation_adaptation",
+    "self_boundary_controllability_model",
+    "social_latent_inference_without_partner_id_lookup",
+    "viability_value_gated_prediction_action_loop"
+  ],
+  "run_id": "mechanism_family_tournament_entry_criteria_001a_20260614T005849Z",
+  "script_path": "artifacts/mechanism_family_tournament_entry_criteria_001a/validate_tournament_entry_criteria.py",
+  "transfer_counterfactual_row_count": 6,
+  "validation_errors": []
+}

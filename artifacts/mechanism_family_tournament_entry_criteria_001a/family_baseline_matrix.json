@@ -1,0 +1,372 @@
+[
+  {
+    "family_id": "causal_world_model_control",
+    "baseline_id": "state_action_lookup_table",
+    "baseline_class": "lookup_table",
+    "why_strong": "Tests whether state-action keys alone recover heldout outcomes.",
+    "expected_shortcut_detected": "target encoded by state-action key",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Family is table-solvable rather than evidence of action-state-consequence modeling."
+  },
+  {
+    "family_id": "causal_world_model_control",
+    "baseline_id": "model_free_action_frequency_baseline",
+    "baseline_class": "frequency_policy",
+    "why_strong": "Tests whether action frequency explains apparent planning.",
+    "expected_shortcut_detected": "action prior dominates target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Behavior can be matched without transition modeling."
+  },
+  {
+    "family_id": "causal_world_model_control",
+    "baseline_id": "oracle_visible_feature_shortcut",
+    "baseline_class": "oracle_shortcut",
+    "why_strong": "Tests whether public features leak the consequence.",
+    "expected_shortcut_detected": "visible field directly exposes target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Target is not evidence-grade because visible features leak answer."
+  },
+  {
+    "family_id": "causal_world_model_control",
+    "baseline_id": "nearest_neighbor_transition_retrieval",
+    "baseline_class": "nearest_neighbor_retrieval",
+    "why_strong": "Tests whether heldout cases are near copies of training transitions.",
+    "expected_shortcut_detected": "nearest transition retrieval matches target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Transfer split is too weak or transition families are memorized."
+  },
+  {
+    "family_id": "causal_world_model_control",
+    "baseline_id": "ngram_trajectory_lookup",
+    "baseline_class": "trajectory_lookup",
+    "why_strong": "Tests whether local trajectory history is sufficient.",
+    "expected_shortcut_detected": "n-gram trajectory determines target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Observed sequence statistics replace causal update evidence."
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "baseline_id": "frozen_random_or_pretrained_encoder_baseline",
+    "baseline_class": "encoder_control",
+    "why_strong": "Tests whether encoder representation alone explains performance.",
+    "expected_shortcut_detected": "frozen representation already separates target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Prediction objective is not needed for observed signal."
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "baseline_id": "nearest_neighbor_latent_retrieval",
+    "baseline_class": "nearest_neighbor_retrieval",
+    "why_strong": "Tests whether latent nearest neighbors recover answers.",
+    "expected_shortcut_detected": "latent retrieval rather than prediction",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Latent space acts as retrieval index."
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "baseline_id": "supervised_target_shortcut",
+    "baseline_class": "supervised_shortcut",
+    "why_strong": "Tests whether direct supervised labels explain apparent latent structure.",
+    "expected_shortcut_detected": "target is linearly or directly decodable",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Target leakage or direct label shortcut replaces latent prediction."
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "baseline_id": "bag_of_observation_feature_baseline",
+    "baseline_class": "feature_bag",
+    "why_strong": "Tests whether unordered visible features solve the task.",
+    "expected_shortcut_detected": "bag-of-observation match",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Sequential latent prediction is unnecessary."
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "baseline_id": "trace_only_decoder_baseline",
+    "baseline_class": "decoder",
+    "why_strong": "Tests whether trace-visible bundles decode the answer.",
+    "expected_shortcut_detected": "trace decoder recovers target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Answer is recoverable from trace serialization."
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "baseline_id": "no_replay",
+    "baseline_class": "replay_control",
+    "why_strong": "Tests whether replay is unnecessary.",
+    "expected_shortcut_detected": "same performance without replay",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "contrast_required",
+    "failure_interpretation": "Replay/consolidation is not causally implicated."
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "baseline_id": "shuffled_replay",
+    "baseline_class": "replay_control",
+    "why_strong": "Tests whether replay order or content matters.",
+    "expected_shortcut_detected": "non-causal replay matches result",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "contrast_required",
+    "failure_interpretation": "Consolidation signal is not order or content sensitive."
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "baseline_id": "cache_replay",
+    "baseline_class": "cache_retrieval",
+    "why_strong": "Tests whether cached outputs replace recomputation.",
+    "expected_shortcut_detected": "cache lookup determines output",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Replay is cached-answer retrieval."
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "baseline_id": "stored_answer_replay",
+    "baseline_class": "cache_retrieval",
+    "why_strong": "Tests whether replay stores answer labels.",
+    "expected_shortcut_detected": "stored answer determines output",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Replay trace contains target-bearing labels."
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "baseline_id": "retrieval_over_previous_traces",
+    "baseline_class": "history_lookup",
+    "why_strong": "Tests whether nearest previous trace solves heldout episodes.",
+    "expected_shortcut_detected": "prior trace retrieval",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Post-replay behavior is trace retrieval."
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "baseline_id": "hash_comparison_replay",
+    "baseline_class": "hash_only_replay",
+    "why_strong": "Tests whether replay validity is only stored-hash matching.",
+    "expected_shortcut_detected": "hash comparison instead of recomputation",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Replay evidence lacks recomputation."
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "baseline_id": "variable_name_heuristic",
+    "baseline_class": "heuristic",
+    "why_strong": "Tests whether variable names reveal self/other boundary.",
+    "expected_shortcut_detected": "semantic name leakage",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Boundary target leaks through names."
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "baseline_id": "intervention_lookup_table",
+    "baseline_class": "lookup_table",
+    "why_strong": "Tests whether intervention pair lookup solves boundary attribution.",
+    "expected_shortcut_detected": "intervention key table",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Controllability is table-solvable."
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "baseline_id": "state_delta_frequency_baseline",
+    "baseline_class": "frequency_policy",
+    "why_strong": "Tests whether frequent deltas explain controllability.",
+    "expected_shortcut_detected": "state-delta frequency",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Boundary attribution is frequency matching."
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "baseline_id": "oracle_controllability_label_baseline",
+    "baseline_class": "label_oracle",
+    "why_strong": "Upper-bound leak check for hidden controllability labels.",
+    "expected_shortcut_detected": "oracle label available",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "diagnostic_only",
+    "failure_interpretation": "Hidden labels or equivalent fields may be exposed."
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "baseline_id": "fixed_self_other_partition_baseline",
+    "baseline_class": "fixed_partition",
+    "why_strong": "Tests whether a static partition solves all examples.",
+    "expected_shortcut_detected": "static self/other mask",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "No update-sensitive self-boundary evidence."
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "baseline_id": "static_reward_lookup",
+    "baseline_class": "reward_table",
+    "why_strong": "Tests whether immediate reward table solves action selection.",
+    "expected_shortcut_detected": "reward lookup",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Viability/value gating is unnecessary."
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "baseline_id": "myopic_greedy_policy",
+    "baseline_class": "myopic_policy",
+    "why_strong": "Tests whether one-step greedy reward matches behavior.",
+    "expected_shortcut_detected": "myopic reward optimization",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Delayed consequence or gating evidence is absent."
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "baseline_id": "fixed_risk_avoidance_heuristic",
+    "baseline_class": "risk_heuristic",
+    "why_strong": "Tests whether static risk labels explain action choice.",
+    "expected_shortcut_detected": "fixed risk heuristic",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Value pressure is static label lookup."
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "baseline_id": "action_frequency_baseline",
+    "baseline_class": "frequency_policy",
+    "why_strong": "Tests whether action priors dominate.",
+    "expected_shortcut_detected": "action frequency",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Action selection does not require prediction-value gating."
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "baseline_id": "oracle_viability_label_shortcut",
+    "baseline_class": "label_oracle",
+    "why_strong": "Detects exposure of viability labels.",
+    "expected_shortcut_detected": "oracle viability label leakage",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "Target leaks through viability labels."
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "baseline_id": "state_action_reward_triple_table",
+    "baseline_class": "lookup_table",
+    "why_strong": "Tests whether state-action-reward triples solve target.",
+    "expected_shortcut_detected": "state-action-reward table",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "No evidence beyond static triple lookup."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "partner_id_lookup",
+    "baseline_class": "identity_lookup",
+    "why_strong": "Directly tests the closed-family shortcut.",
+    "expected_shortcut_detected": "partner identity determines target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Family repeats the current partner-ID lookup collapse."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "anonymized_partner_key_lookup",
+    "baseline_class": "identity_lookup",
+    "why_strong": "Tests whether anonymization leaves a stable identity key.",
+    "expected_shortcut_detected": "anonymous key determines target",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Identity remains an answer key under renamed fields."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "preference_table_reconstruction",
+    "baseline_class": "profile_table",
+    "why_strong": "Tests whether a preference/profile table reconstructs target.",
+    "expected_shortcut_detected": "profile table answer recovery",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Social latent is replaced by profile lookup."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "prior_trace_retrieval",
+    "baseline_class": "history_lookup",
+    "why_strong": "Tests whether previous traces solve the response.",
+    "expected_shortcut_detected": "trace retrieval",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Interaction dynamics are retrieval over prior traces."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "order_k_partner_history",
+    "baseline_class": "history_lookup",
+    "why_strong": "Tests whether short partner history is enough.",
+    "expected_shortcut_detected": "order-k history lookup",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "No latent inference beyond bounded history table."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "profile_table_baseline",
+    "baseline_class": "profile_table",
+    "why_strong": "Tests full partner profile shortcut.",
+    "expected_shortcut_detected": "profile table determines response",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Family is profile-table solvable."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "ngram_trace_lookup",
+    "baseline_class": "trajectory_lookup",
+    "why_strong": "Tests local trace sequence lookup.",
+    "expected_shortcut_detected": "n-gram trace recovers response",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Social dynamics are trace-sequence lookup."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "query_conditioned_imitation",
+    "baseline_class": "imitation",
+    "why_strong": "Tests whether query pattern imitation solves target.",
+    "expected_shortcut_detected": "query-conditioned imitation",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Candidate-like behavior is imitation of query format."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "graph_cache_baseline",
+    "baseline_class": "graph_cache",
+    "why_strong": "Tests graph/cache family challengers required for replay-adjacent claims.",
+    "expected_shortcut_detected": "graph/cache lookup",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "kill_if_reaches_threshold",
+    "failure_interpretation": "Graph/cache baseline is sufficient."
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "baseline_id": "full_bundle_decoder",
+    "baseline_class": "full_bundle_decoder",
+    "why_strong": "Tests whether the serialized bundle exposes target.",
+    "expected_shortcut_detected": "full bundle decodes answer",
+    "callable_required_in_future_preflight": true,
+    "threshold_role": "block_if_detected",
+    "failure_interpretation": "The task is decoder-solvable before mechanism evidence."
+  }
+]

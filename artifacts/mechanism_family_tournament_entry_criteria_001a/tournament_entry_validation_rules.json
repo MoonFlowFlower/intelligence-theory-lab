@@ -1,0 +1,62 @@
+{
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-ENTRY-CRITERIA-001A",
+  "rules_scope": "rules future tournament-preflight task cards must satisfy before candidate implementation",
+  "block_rules": [
+    {
+      "rule_id": "fewer_than_three_candidate_families",
+      "condition": "candidate_family_count < 3",
+      "block_reason": "discovery-mode tournament requires at least three candidate mechanism families"
+    },
+    {
+      "rule_id": "missing_strongest_cheap_baseline",
+      "condition": "any family lacks strongest cheap baseline",
+      "block_reason": "baseline-first comparison cannot be run"
+    },
+    {
+      "rule_id": "missing_ablation",
+      "condition": "any family lacks required ablation",
+      "block_reason": "mechanism path would not be causally tested"
+    },
+    {
+      "rule_id": "missing_transfer_condition",
+      "condition": "any family lacks heldout transfer condition",
+      "block_reason": "local lookup or memorization cannot be ruled out"
+    },
+    {
+      "rule_id": "missing_leakage_risk",
+      "condition": "any family lacks leakage risk",
+      "block_reason": "evidence leakage cannot be preflighted"
+    },
+    {
+      "rule_id": "missing_target_provenance",
+      "condition": "target provenance fields are absent",
+      "block_reason": "computed-evidence provenance gate cannot be satisfied"
+    },
+    {
+      "rule_id": "social_family_without_partner_id_lookup_baseline",
+      "condition": "social family lacks partner-ID, partner-key, preference-table, retrieval, history, or full-bundle decoder baseline",
+      "block_reason": "current closed-family shortcut was not inherited"
+    },
+    {
+      "rule_id": "target_recoverable_from_static_label_formula",
+      "condition": "target is recoverable from static label formula alone",
+      "block_reason": "mechanism claim would be label-formula equivalence"
+    },
+    {
+      "rule_id": "candidate_code_before_baseline_preflight",
+      "condition": "candidate code is proposed or created before baseline-first preflight",
+      "block_reason": "violates discovery-mode cheap-baseline-first process"
+    },
+    {
+      "rule_id": "admission_or_readiness_claim_in_discovery_mode",
+      "condition": "discovery-mode artifact claims admission, mainline, readiness, mechanism validity, Gate4 validity, or EGO readiness",
+      "block_reason": "claim ceiling inflation"
+    },
+    {
+      "rule_id": "reopening_closed_family_without_new_problem_definition_and_stronger_baseline_separation",
+      "condition": "closed family is reopened without source-pinned new problem definition and stronger baseline separation",
+      "block_reason": "anti-Zeno same-family repair"
+    }
+  ],
+  "claim_ceiling": "validation rules only; no tournament execution or mechanism evidence"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "family_id": "causal_world_model_control",
+    "ablation_id": "freeze_causal_transition_update",
+    "ablated_component": "causal transition update",
+    "what_failure_would_mean": "Observed behavior does not require update-sensitive action-state-consequence modeling.",
+    "what_success_would_not_prove": "Success would not prove causal understanding, mechanism validity, or Gate4 readiness.",
+    "callable_required_in_future_execution": true
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "ablation_id": "remove_latent_prediction_objective",
+    "ablated_component": "latent prediction objective",
+    "what_failure_would_mean": "Heldout transition performance is not dependent on predictive latent structure.",
+    "what_success_would_not_prove": "Success would not prove a world model, understanding, or mechanism validity.",
+    "callable_required_in_future_execution": true
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "ablation_id": "disable_replay_recomputation",
+    "ablated_component": "replay recomputation path",
+    "what_failure_would_mean": "Post-replay behavior can be produced without causal replay recomputation.",
+    "what_success_would_not_prove": "Success would not prove memory, learning, agency, or adaptation outside the stated split.",
+    "callable_required_in_future_execution": true
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "ablation_id": "scramble_intervention_feedback",
+    "ablated_component": "boundary update from intervention feedback",
+    "what_failure_would_mean": "Boundary attribution is not intervention-sensitive.",
+    "what_success_would_not_prove": "Success would not prove selfhood, self-awareness, or agency.",
+    "callable_required_in_future_execution": true
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "ablation_id": "remove_viability_value_gate",
+    "ablated_component": "viability/value gate on prediction-action update",
+    "what_failure_would_mean": "Action selection does not require viability/value gating.",
+    "what_success_would_not_prove": "Success would not prove real values, agency, autonomy, or mechanism validity.",
+    "callable_required_in_future_execution": true
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "ablation_id": "remove_social_latent_update",
+    "ablated_component": "social latent update while preserving non-social observation access",
+    "what_failure_would_mean": "Interaction response is not dependent on social-latent update.",
+    "what_success_would_not_prove": "Success would not prove social understanding, agency, subjectivity, or Gate4 readiness.",
+    "callable_required_in_future_execution": true
+  }
+]

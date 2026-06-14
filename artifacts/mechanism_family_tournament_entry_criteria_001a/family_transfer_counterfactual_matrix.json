@@ -1,0 +1,105 @@
+[
+  {
+    "family_id": "causal_world_model_control",
+    "transfer_condition": "heldout action-state intervention combinations not present in training episodes",
+    "counterfactual_condition": "same surface state with changed intervention consequence and different surface state with same consequence",
+    "nuisance_variables": [
+      "state ID",
+      "action ID",
+      "row index",
+      "context ID"
+    ],
+    "target_variables": [
+      "intervention consequence",
+      "planning or prediction outcome"
+    ],
+    "split_required": true,
+    "leakage_risk_reduced": "static key, action-label, and row-index recovery"
+  },
+  {
+    "family_id": "jepa_like_latent_prediction",
+    "transfer_condition": "new transition compositions or perturbations not present in training",
+    "counterfactual_condition": "same observation bag with changed transition relation and different surface with matched predictive relation",
+    "nuisance_variables": [
+      "environment ID",
+      "trace index",
+      "literal target strings"
+    ],
+    "target_variables": [
+      "future-state discrimination",
+      "action selection under heldout transition"
+    ],
+    "split_required": true,
+    "leakage_risk_reduced": "nearest-neighbor, decoder, and target-label leakage"
+  },
+  {
+    "family_id": "replay_consolidation_adaptation",
+    "transfer_condition": "new episode context after consolidation where direct answer retrieval is insufficient",
+    "counterfactual_condition": "same replay records with shuffled causal order and same serialized state with changed heldout observation",
+    "nuisance_variables": [
+      "episode ID",
+      "trace label",
+      "stored answer hash"
+    ],
+    "target_variables": [
+      "post-replay recomputed behavior",
+      "heldout prediction or action"
+    ],
+    "split_required": true,
+    "leakage_risk_reduced": "cache replay, stored-answer replay, and hash-only replay"
+  },
+  {
+    "family_id": "self_boundary_controllability_model",
+    "transfer_condition": "new variables or intervention pairings not seen in training",
+    "counterfactual_condition": "same variable handle with changed controllability and different handle with matched controllability response",
+    "nuisance_variables": [
+      "variable name",
+      "fixed position",
+      "static mask",
+      "generator role field"
+    ],
+    "target_variables": [
+      "controllability attribution",
+      "self-caused versus external change"
+    ],
+    "split_required": true,
+    "leakage_risk_reduced": "name, role, and static partition leakage"
+  },
+  {
+    "family_id": "viability_value_gated_prediction_action_loop",
+    "transfer_condition": "changed consequence mapping or delayed-effect condition not present in training",
+    "counterfactual_condition": "same immediate reward with changed delayed consequence and same state-action pair with changed viability pressure",
+    "nuisance_variables": [
+      "immediate reward",
+      "state ID",
+      "action ID",
+      "fixed risk label"
+    ],
+    "target_variables": [
+      "future action selection",
+      "prediction-error and viability-gated update"
+    ],
+    "split_required": true,
+    "leakage_risk_reduced": "static reward lookup and myopic policy shortcuts"
+  },
+  {
+    "family_id": "social_latent_inference_without_partner_id_lookup",
+    "transfer_condition": "unseen partners plus counterfactual partner-latent swaps",
+    "counterfactual_condition": "same-ID/different-latent and different-ID/same-latent partner pairs with identity-key permutation",
+    "nuisance_variables": [
+      "partner ID",
+      "anonymized partner key",
+      "context ID",
+      "row order",
+      "preference table",
+      "filename",
+      "serialized partner key"
+    ],
+    "target_variables": [
+      "changing latent social policy",
+      "heldout interaction response"
+    ],
+    "split_required": true,
+    "leakage_risk_reduced": "partner-ID, profile-table, history, retrieval, graph/cache, and full-bundle decoder shortcuts"
+  }
+]

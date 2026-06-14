@@ -1,0 +1,98 @@
+{
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-ENTRY-CRITERIA-001A",
+  "process_mode": "discovery_mode",
+  "candidate_code_allowed_before_preflight": false,
+  "required_baseline_classes": [
+    "lookup_table",
+    "frequency_policy",
+    "oracle_shortcut",
+    "nearest_neighbor_retrieval",
+    "trajectory_lookup",
+    "encoder_control",
+    "supervised_shortcut",
+    "feature_bag",
+    "decoder",
+    "replay_control",
+    "cache_retrieval",
+    "hash_only_replay",
+    "heuristic",
+    "label_oracle",
+    "fixed_partition",
+    "reward_table",
+    "myopic_policy",
+    "risk_heuristic",
+    "identity_lookup",
+    "profile_table",
+    "history_lookup",
+    "imitation",
+    "graph_cache",
+    "full_bundle_decoder"
+  ],
+  "required_leakage_positive_controls": [
+    "visible_identity_key_injection",
+    "target_label_in_filename_injection",
+    "row_order_or_trace_index_injection",
+    "static_label_formula_injection",
+    "serialized_bundle_answer_key_injection"
+  ],
+  "required_target_provenance_fields": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed_context_episode_ids",
+    "aggregation_rule",
+    "code_path_hash",
+    "target_source_path_or_generator",
+    "hidden_label_access_policy"
+  ],
+  "required_transfer_splits": [
+    "heldout_intervention_combinations",
+    "heldout_transition_compositions",
+    "heldout_post_consolidation_contexts",
+    "heldout_variable_or_intervention_pairings",
+    "changed_consequence_or_delayed_effect_conditions",
+    "unseen_partner_and_partner_latent_swap_conditions"
+  ],
+  "required_counterfactual_splits": [
+    "same_surface_different_target_relation",
+    "different_surface_same_target_relation",
+    "identity_key_permutation_where_identity_like_fields_exist",
+    "same_id_different_latent_and_different_id_same_latent_for_social_family"
+  ],
+  "required_threshold_lock": {
+    "required": true,
+    "rule": "threshold must be predeclared before baseline or candidate results and must not be revised after results"
+  },
+  "required_config_hash_lock": {
+    "required": true,
+    "rule": "future preflight config hash must be recorded before any result-producing command"
+  },
+  "required_source_pin": true,
+  "required_code_path_hash": true,
+  "baseline_first_execution_required": true,
+  "independent_callable_baselines_required": true,
+  "target_not_recoverable_from_static_label_formula_required": true,
+  "identity_key_permutation_tests_required_where_identity_like_fields_exist": true,
+  "heldout_transfer_split_required": true,
+  "counterfactual_split_required_where_applicable": true,
+  "family_kill_rule": {
+    "condition": "best_faithful_cheap_baseline_score >= task_threshold",
+    "action": "close_that_family",
+    "same_family_repair_allowed_next_task": false,
+    "claim_ceiling": "negative evidence and route closure only"
+  },
+  "same_family_repair_policy": {
+    "default_allowed": false,
+    "reopen_requires": [
+      "new user-authorized problem definition",
+      "stronger baseline separation",
+      "source-pinned inheritance of closed-family negative evidence"
+    ]
+  },
+  "admission_claim_forbidden": true,
+  "mainline_claim_forbidden": true,
+  "readiness_claim_forbidden": true,
+  "gate4_validity_claim_forbidden": true,
+  "mechanism_validity_claim_forbidden": true,
+  "claim_ceiling": "shared discovery-mode preflight protocol only; no admission, mainline, readiness, Gate4, or mechanism-validity claim"
+}

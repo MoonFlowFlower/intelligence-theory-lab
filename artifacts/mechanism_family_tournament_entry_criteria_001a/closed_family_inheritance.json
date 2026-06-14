@@ -1,0 +1,47 @@
+{
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-ENTRY-CRITERIA-001A",
+  "current_generated_gate4_partner_id_lookup_family_closure": {
+    "family_id": "generated_gate4_partner_id_lookup_family",
+    "closure_source": "docs/research/GATE4-REPLACEMENT-BASELINE-BLOCKED-ROUTING-AND-REDESIGN-CRITERIA-001A.md",
+    "closure_artifact": "artifacts/gate4_replacement_baseline_blocked_routing_and_redesign_criteria_001a/result.json",
+    "supporting_no_candidate_preflight_artifact": "artifacts/gate4_replacement_no_candidate_baseline_preflight_001a/result.json",
+    "verdict": "close_current_generated_gate4_task_family_partner_id_lookup_negative_evidence_001a",
+    "best_faithful_baseline": "partner_id_lookup_baseline",
+    "score": 1.0,
+    "threshold": 0.8,
+    "same_family_repair_allowed": false,
+    "closure_reason": "partner_id_lookup_baseline scored 1.0 against threshold 0.8 before candidate code existed",
+    "forbidden_reopen_patterns": [
+      "remove only partner_id and rerun",
+      "threshold repair after result",
+      "same-family candidate patch",
+      "weaken lookup, retrieval, table, graph/cache, or decoder baselines",
+      "rename partner identity fields while preserving stable identity key",
+      "reopen as social-latent task without same-ID/different-latent and different-ID/same-latent counterfactuals"
+    ],
+    "required_citation_for_future_social_latent_tasks": [
+      "docs/research/GATE4-REPLACEMENT-BASELINE-BLOCKED-ROUTING-AND-REDESIGN-CRITERIA-001A.md",
+      "artifacts/gate4_replacement_baseline_blocked_routing_and_redesign_criteria_001a/result.json",
+      "artifacts/gate4_replacement_no_candidate_baseline_preflight_001a/result.json",
+      "docs/CLOSED_FAMILIES.md"
+    ],
+    "allowed_future_reopen_condition": "separate user-authorized problem definition where partner identity is a nuisance variable, with stronger baseline separation and inherited negative-evidence citation"
+  },
+  "other_closed_families_inherited_from_navigation_index": [
+    {
+      "family_id": "gate4_replacement_001d_derived_puzzle_bundle_family",
+      "best_faithful_baseline": "pair_count_table",
+      "score": 1.0,
+      "threshold": 1.0,
+      "same_family_repair_allowed": false
+    },
+    {
+      "family_id": "gate4_replacement_002c_toy_dynamic_partner_belief_pomdp_family",
+      "best_faithful_baseline": "serialized_state_decoder / full_bundle_decoder / belief_table / pair_count / ngram_trace_lookup",
+      "score": 1.0,
+      "threshold": 1.0,
+      "same_family_repair_allowed": false
+    }
+  ],
+  "claim_ceiling": "closed-family negative-evidence inheritance only; no family is reopened, repaired, validated, or Gate4-ready"
+}
