@@ -1,0 +1,50 @@
+{
+  "task_id": "NEXT-CONCRETE-SURFACE-ADMISSION-TASK-CARD-001A",
+  "producer_function": "manual_source_artifact_readback_from_current_session_artifact_commands",
+  "claim_ceiling": "concrete surface-admission task-card drafting only",
+  "source_closure": {
+    "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001C-RERUN-001A",
+    "commit": "1cbc680b9209707c3142168db6f2d65ef9367265",
+    "tag": "remote-anchor-next-surface-admission-manifest-instantiation-001c-rerun-001a-1cbc680",
+    "verdict": "next_surface_admission_manifest_instantiation_001c_rerun_001a_pass",
+    "valid_manifest_authorized": true,
+    "negative_controls_blocked": "6/6",
+    "ablations_blocked": "10/10",
+    "dependency_structure_controls_blocked": "4/4",
+    "replay_recomputation": true,
+    "replay_rows": 21,
+    "stop_conditions": []
+  },
+  "inherited_boundaries": {
+    "original_blocked_001c": {
+      "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001C",
+      "verdict": "blocked_validator_gap_repair_001b_dependency_not_enforced",
+      "negative_controls_blocked": "6/6",
+      "ablations_blocked": "9/10",
+      "dependency_structure_controls_blocked": "0/4"
+    },
+    "validator_repair_001c": {
+      "task_id": "FUTURE-SURFACE-ADMISSION-AUTHORIZATION-VALIDATOR-GAP-REPAIR-001C",
+      "verdict": "future_surface_admission_authorization_validator_gap_repair_001c_pass",
+      "before_validator_hash": "67f7c2e08a9ec95176bbaf9c98c2c88a8e1a13e06355cff3211dd7ffb1cebb01",
+      "after_validator_hash": "c3b6394d42906a1b86f94ace72e237399c10cb4d57f9c2958483c9c990625e41"
+    },
+    "preservation_boundary": {
+      "commit": "b6f659588099e9eeecf4815d779784b5e80df630",
+      "tag": "remote-anchor-future-surface-admission-authorization-validator-gap-repair-001c-0ae1bcd",
+      "tag_target_note": "Tag points to preservation commit b6f659588099e9eeecf4815d779784b5e80df630, not directly to preserved repair commit 0ae1bcd530247338224e9bda2e179fb1b0538c80."
+    }
+  },
+  "concrete_surface_identifier": {
+    "source_manifest": "artifacts/next_surface_admission_manifest_instantiation_001c/manifest.json",
+    "source_field": "proposed_surface_admission_direction",
+    "source_value": "Minimal non-candidate surface-admission preflight for a future mechanism-family direction",
+    "normalized_identifier": "minimal_non_candidate_surface_admission_preflight_for_future_mechanism_family_direction",
+    "future_task_id": "MINIMAL-NON-CANDIDATE-SURFACE-ADMISSION-PREFLIGHT-001A"
+  },
+  "known_stale_legacy_check": {
+    "status": "preserved_caveat",
+    "summary": "A broader legacy check still expects the pre-repair 001C blocker when the old runner is executed against the repaired validator; this drafting task does not edit that legacy test."
+  },
+  "verdict": "source_artifact_readback_match"
+}
