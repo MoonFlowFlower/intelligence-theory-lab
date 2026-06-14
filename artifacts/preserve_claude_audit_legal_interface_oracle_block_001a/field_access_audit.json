@@ -1,0 +1,117 @@
+{
+  "allowed_observation_fields": [
+    "task_a.observation.visible_event_class",
+    "task_a.observation.predicted_outcome",
+    "task_a.observation.observed_outcome",
+    "task_a.observation.prediction_signal",
+    "task_b.observation.superficial_signature",
+    "task_b.observation.local_visible_cue",
+    "task_b.observation.pre_update_default_action",
+    "task_b.observation.fallback_action",
+    "task_family_id"
+  ],
+  "baseline_access_violations": {},
+  "claim_ceiling": "Legal-interface solvability oracle and negative-evidence preservation only.",
+  "forbidden_prediction_fields_checked": [
+    "hidden",
+    "hidden.task_b_target_action",
+    "hidden.task_a_latent_target",
+    "hidden.generator_latent_state_id",
+    "record_id",
+    "context_handle",
+    "partner_handle",
+    "support_signature",
+    "counterfactual_combo_id",
+    "latent_parameter_id",
+    "split",
+    "task_b.post_update_action",
+    "task_b.action_dependency_id",
+    "task_b.observation.latent_binding_probe",
+    "task_a.prediction_error_event_id",
+    "shared_state_update.update_event_id",
+    "shared_state_update.channel",
+    "shared_state_update.caused_by_task_a_prediction_error_event_id",
+    "shared_state_update.serialized_state_after",
+    "shared_state_update.serialized_state_before",
+    "provenance.heldout_ids",
+    "provenance.train_ids",
+    "target_resolver_output",
+    "row_id",
+    "context_id",
+    "partner_id",
+    "trace_order",
+    "answer_key"
+  ],
+  "oracle_prediction_access": {
+    "forbidden_fields_checked": [
+      "hidden",
+      "hidden.task_b_target_action",
+      "hidden.task_a_latent_target",
+      "hidden.generator_latent_state_id",
+      "record_id",
+      "context_handle",
+      "partner_handle",
+      "support_signature",
+      "counterfactual_combo_id",
+      "latent_parameter_id",
+      "split",
+      "task_b.post_update_action",
+      "task_b.action_dependency_id",
+      "task_b.observation.latent_binding_probe",
+      "task_a.prediction_error_event_id",
+      "shared_state_update.update_event_id",
+      "shared_state_update.channel",
+      "shared_state_update.caused_by_task_a_prediction_error_event_id",
+      "shared_state_update.serialized_state_after",
+      "shared_state_update.serialized_state_before",
+      "provenance.heldout_ids",
+      "provenance.train_ids",
+      "target_resolver_output",
+      "row_id",
+      "context_id",
+      "partner_id",
+      "trace_order",
+      "answer_key"
+    ],
+    "forbidden_prediction_fields_accessed": [],
+    "prediction_access_legal": true,
+    "prediction_fields_accessed": [
+      "task_a.observation.observed_outcome",
+      "task_a.observation.predicted_outcome",
+      "task_a.observation.prediction_signal",
+      "task_a.observation.visible_event_class",
+      "task_b.observation.fallback_action",
+      "task_b.observation.local_visible_cue",
+      "task_b.observation.pre_update_default_action",
+      "task_b.observation.superficial_signature",
+      "task_family_id"
+    ],
+    "producer_function": "run_legal_interface_oracle.field_access",
+    "scoring_ground_truth_fields_accessed": [
+      "shared_state_update.serialized_state_after",
+      "task_b.observation"
+    ]
+  },
+  "positive_controls": {
+    "hidden_target_alias": {
+      "blocked": true,
+      "illegal_accesses": [
+        "hidden.task_b_target_action"
+      ]
+    },
+    "serialized_state_answer_alias": {
+      "blocked": true,
+      "illegal_accesses": [
+        "shared_state_update.serialized_state_after"
+      ]
+    },
+    "stored_answer_alias": {
+      "blocked": true,
+      "illegal_accesses": [
+        "task_b.post_update_action"
+      ]
+    }
+  },
+  "producer_function": "build_field_access_audit",
+  "task_id": "PRESERVE-CLAUDE-AUDIT-LEGAL-INTERFACE-ORACLE-BLOCK-001A"
+}
