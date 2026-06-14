@@ -1,0 +1,128 @@
+{
+  "ablations": [
+    {
+      "ablation_id": "remove_hardening_dependency",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_hardening_dependency"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_enforcement_dependency",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_enforcement_dependency"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_future_authorization_template_dependency",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_future_authorization_template_dependency"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_validator_gap_repair_001a_dependency",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_validator_gap_repair_dependency"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_validator_gap_repair_001b_dependency",
+      "blocked": false,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "unexpected_authorization": true,
+      "validator_decision": "authorized"
+    },
+    {
+      "ablation_id": "remove_concrete_proposed_direction",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_concrete_surface_direction"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_later_task_card_only_scope_lock",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "later_task_card_only_lock_missing"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_no_mechanism_score_clause",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_no_mechanism_score_rule"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "remove_invalid_evidence_ban",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "missing_old_invalid_surface_citation_ban"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    },
+    {
+      "ablation_id": "open_no_candidate_gate5_bridge_runtime_tournament_ego_mainline_scope",
+      "blocked": true,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [
+        "candidate_gate5_bridge_runtime_tournament_mainline_scope"
+      ],
+      "unexpected_authorization": false,
+      "validator_decision": "blocked"
+    }
+  ],
+  "all_required_ablations_blocked": false,
+  "blocked_ablation_count": 9,
+  "claim_ceiling": "surface-admission authorization hygiene only",
+  "producer_function": "run_ablations_through_validate_authorization_manifest",
+  "task_id": "NEXT-SURFACE-ADMISSION-MANIFEST-INSTANTIATION-001C",
+  "unexpected_authorizations": [
+    {
+      "ablation_id": "remove_validator_gap_repair_001b_dependency",
+      "blocked": false,
+      "expected_blocked": true,
+      "producer_function": "validate_authorization_manifest",
+      "reasons_fired": [],
+      "unexpected_authorization": true,
+      "validator_decision": "authorized"
+    }
+  ]
+}
