@@ -1,0 +1,1116 @@
+{
+  "ablation_dependency_check": {
+    "candidate_ablation": false,
+    "changed_action_count": 4,
+    "comparison_type": "fixture_dependency_mask_only",
+    "cross_task_update_dependency_required": true,
+    "masked_update_dependency": {
+      "task_b_actions": [
+        "hold",
+        "hold",
+        "hold",
+        "hold"
+      ]
+    },
+    "preserved_update_dependency": {
+      "task_b_actions": [
+        "replan_memory",
+        "inspect_boundary",
+        "consolidate_trace",
+        "defer_action"
+      ]
+    },
+    "producer_function": "build_cross_task_update_dependency_check",
+    "total_heldout_cases": 4
+  },
+  "baseline_results": [
+    {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "independent_per_task_optimal_ensemble_no_shared_latent",
+      "code_path_hash": "0855dca1af4b609f0554a6d696650d110fc78db27ef8815410e7707e426f4311",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "cross_task_prediction_error_to_action_transfer_access": false,
+        "decoder_train_accuracies": {
+          "global_majority": 0.5,
+          "task_a_prediction_signal": 0.0,
+          "task_a_visible_event_class": 0.0,
+          "task_b_local_cue": 0.0,
+          "task_b_visible_pair": 0.0,
+          "task_family_majority": 0.5
+        },
+        "selected_decoder": "global_majority",
+        "shared_latent_state_access": false
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.25,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "independent_per_task_optimal_ensemble_no_shared_latent",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "shared_latent_no_cross_task_transfer",
+      "code_path_hash": "e0a2b8d0c71fe83f5c7a2c042f1fb5c8ee51011d3f6ef6a398b2c770b0e03fb8",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "hold"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "hold"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "hold"
+        },
+        {
+          "case_index": 3,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "hold"
+        }
+      ],
+      "details": {
+        "cross_task_prediction_error_to_action_transfer_access": false,
+        "masked_update_policy": "predict_pre_update_default_action",
+        "shared_latent_state_allowed": true
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.0,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "shared_latent_no_cross_task_transfer",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "visible_feature_only_task_b_decoder",
+      "code_path_hash": "1cd4b27ce9343161b1aff830f0ecf8eb685b7e48fdb11bd9c9307edf9ab2cf64",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "decoder_fields": [
+          "task_b.observation.superficial_signature",
+          "task_b.observation.local_visible_cue"
+        ]
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.25,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "visible_feature_only_task_b_decoder",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "trace_order_or_id_sanitized_retrieval_probe",
+      "code_path_hash": "c3659970d6112e6d4c600d61ab4d985506f4afbb0d82803a97d4f8f89122c0d8",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "retrieval_keys_removed": [
+          "record_id",
+          "context_handle",
+          "partner_handle",
+          "trace_order",
+          "task_b.observation.latent_binding_probe"
+        ]
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.25,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "trace_order_or_id_sanitized_retrieval_probe",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "static_formula_visible_field_decoder",
+      "code_path_hash": "9cc704824b074c99ab707c4c9de0a1865eec7dd51dd322146754b81586f04c61",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "inspect_boundary"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "inspect_boundary"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "formula": "sha256_visible_fields_mod_train_action_space"
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.5,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "static_formula_visible_field_decoder",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    }
+  ],
+  "baseline_results_by_name": {
+    "independent_per_task_optimal_ensemble_no_shared_latent": {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "independent_per_task_optimal_ensemble_no_shared_latent",
+      "code_path_hash": "0855dca1af4b609f0554a6d696650d110fc78db27ef8815410e7707e426f4311",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "cross_task_prediction_error_to_action_transfer_access": false,
+        "decoder_train_accuracies": {
+          "global_majority": 0.5,
+          "task_a_prediction_signal": 0.0,
+          "task_a_visible_event_class": 0.0,
+          "task_b_local_cue": 0.0,
+          "task_b_visible_pair": 0.0,
+          "task_family_majority": 0.5
+        },
+        "selected_decoder": "global_majority",
+        "shared_latent_state_access": false
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.25,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "independent_per_task_optimal_ensemble_no_shared_latent",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    "shared_latent_no_cross_task_transfer": {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "shared_latent_no_cross_task_transfer",
+      "code_path_hash": "e0a2b8d0c71fe83f5c7a2c042f1fb5c8ee51011d3f6ef6a398b2c770b0e03fb8",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "hold"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "hold"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "hold"
+        },
+        {
+          "case_index": 3,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "hold"
+        }
+      ],
+      "details": {
+        "cross_task_prediction_error_to_action_transfer_access": false,
+        "masked_update_policy": "predict_pre_update_default_action",
+        "shared_latent_state_allowed": true
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.0,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "shared_latent_no_cross_task_transfer",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    "static_formula_visible_field_decoder": {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "static_formula_visible_field_decoder",
+      "code_path_hash": "9cc704824b074c99ab707c4c9de0a1865eec7dd51dd322146754b81586f04c61",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "inspect_boundary"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "inspect_boundary"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "formula": "sha256_visible_fields_mod_train_action_space"
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.5,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "static_formula_visible_field_decoder",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    "trace_order_or_id_sanitized_retrieval_probe": {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "trace_order_or_id_sanitized_retrieval_probe",
+      "code_path_hash": "c3659970d6112e6d4c600d61ab4d985506f4afbb0d82803a97d4f8f89122c0d8",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "retrieval_keys_removed": [
+          "record_id",
+          "context_handle",
+          "partner_handle",
+          "trace_order",
+          "task_b.observation.latent_binding_probe"
+        ]
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.25,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "trace_order_or_id_sanitized_retrieval_probe",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    },
+    "visible_feature_only_task_b_decoder": {
+      "aggregation_method": "heldout_accuracy",
+      "allowed_observation_fields": [
+        "task_a.observation.visible_event_class",
+        "task_a.observation.predicted_outcome",
+        "task_a.observation.observed_outcome",
+        "task_a.observation.prediction_signal",
+        "task_b.observation.superficial_signature",
+        "task_b.observation.local_visible_cue",
+        "task_b.observation.pre_update_default_action",
+        "task_b.observation.fallback_action",
+        "task_family_id"
+      ],
+      "allowed_training_outcome_fields": [
+        "records.train.task_b.post_update_action"
+      ],
+      "baseline_name": "visible_feature_only_task_b_decoder",
+      "code_path_hash": "1cd4b27ce9343161b1aff830f0ecf8eb685b7e48fdb11bd9c9307edf9ab2cf64",
+      "computed_predictions": [
+        {
+          "case_index": 0,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "replan_memory",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 1,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "inspect_boundary",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 2,
+          "correct": false,
+          "expected_recomputed_from_serialized_state": "consolidate_trace",
+          "prediction": "defer_action"
+        },
+        {
+          "case_index": 3,
+          "correct": true,
+          "expected_recomputed_from_serialized_state": "defer_action",
+          "prediction": "defer_action"
+        }
+      ],
+      "details": {
+        "decoder_fields": [
+          "task_b.observation.superficial_signature",
+          "task_b.observation.local_visible_cue"
+        ]
+      },
+      "executed": true,
+      "failure_reason": null,
+      "field_access_violations": [],
+      "forbidden_fields_checked": [
+        "hidden",
+        "hidden.task_b_target_action",
+        "hidden.task_a_latent_target",
+        "hidden.generator_latent_state_id",
+        "record_id",
+        "context_handle",
+        "partner_handle",
+        "support_signature",
+        "counterfactual_combo_id",
+        "latent_parameter_id",
+        "split",
+        "task_b.post_update_action",
+        "task_b.action_dependency_id",
+        "task_b.observation.latent_binding_probe",
+        "task_a.prediction_error_event_id",
+        "shared_state_update.update_event_id",
+        "shared_state_update.channel",
+        "shared_state_update.caused_by_task_a_prediction_error_event_id",
+        "shared_state_update.serialized_state_after",
+        "shared_state_update.serialized_state_before",
+        "provenance.heldout_ids",
+        "provenance.train_ids",
+        "target_resolver_output",
+        "row_id",
+        "context_id",
+        "partner_id",
+        "trace_order",
+        "answer_key"
+      ],
+      "heldout_accuracy": 0.25,
+      "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+      "metadata_only": false,
+      "producer_function": "visible_feature_only_task_b_decoder",
+      "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+      "seed": 61001,
+      "solve_threshold": 0.8,
+      "solves_fixture": false,
+      "static_verdict_dictionary_used": false
+    }
+  },
+  "claim_ceiling": "No-candidate surface-discriminativeness preflight only.",
+  "fixture_seed": 61001,
+  "input_fixture_path": "artifacts/composite_cross_task_state_reuse_generative_heldout_surface_design_001a/valid_generated_surface_fixture.json",
+  "producer_function": "run_baseline_probes",
+  "run_id": "composite_cross_task_state_reuse_surface_discriminativeness_preflight_001a_20260614T050243Z",
+  "solve_threshold": 0.8,
+  "static_verdict_or_metadata_only_audit": {
+    "independent_per_task_optimal_ensemble_no_shared_latent": {
+      "blocked": false,
+      "blocking_reasons": [],
+      "checked_keys": [
+        "aggregation_method",
+        "allowed_observation_fields",
+        "allowed_training_outcome_fields",
+        "baseline_name",
+        "code_path_hash",
+        "computed_predictions",
+        "details",
+        "executed",
+        "failure_reason",
+        "field_access_violations",
+        "forbidden_fields_checked",
+        "heldout_accuracy",
+        "input_fixture_path",
+        "metadata_only",
+        "producer_function",
+        "run_id",
+        "seed",
+        "solve_threshold",
+        "solves_fixture",
+        "static_verdict_dictionary_used"
+      ],
+      "producer_function": "detect_static_verdict_or_metadata_only"
+    },
+    "shared_latent_no_cross_task_transfer": {
+      "blocked": false,
+      "blocking_reasons": [],
+      "checked_keys": [
+        "aggregation_method",
+        "allowed_observation_fields",
+        "allowed_training_outcome_fields",
+        "baseline_name",
+        "code_path_hash",
+        "computed_predictions",
+        "details",
+        "executed",
+        "failure_reason",
+        "field_access_violations",
+        "forbidden_fields_checked",
+        "heldout_accuracy",
+        "input_fixture_path",
+        "metadata_only",
+        "producer_function",
+        "run_id",
+        "seed",
+        "solve_threshold",
+        "solves_fixture",
+        "static_verdict_dictionary_used"
+      ],
+      "producer_function": "detect_static_verdict_or_metadata_only"
+    },
+    "static_formula_visible_field_decoder": {
+      "blocked": false,
+      "blocking_reasons": [],
+      "checked_keys": [
+        "aggregation_method",
+        "allowed_observation_fields",
+        "allowed_training_outcome_fields",
+        "baseline_name",
+        "code_path_hash",
+        "computed_predictions",
+        "details",
+        "executed",
+        "failure_reason",
+        "field_access_violations",
+        "forbidden_fields_checked",
+        "heldout_accuracy",
+        "input_fixture_path",
+        "metadata_only",
+        "producer_function",
+        "run_id",
+        "seed",
+        "solve_threshold",
+        "solves_fixture",
+        "static_verdict_dictionary_used"
+      ],
+      "producer_function": "detect_static_verdict_or_metadata_only"
+    },
+    "trace_order_or_id_sanitized_retrieval_probe": {
+      "blocked": false,
+      "blocking_reasons": [],
+      "checked_keys": [
+        "aggregation_method",
+        "allowed_observation_fields",
+        "allowed_training_outcome_fields",
+        "baseline_name",
+        "code_path_hash",
+        "computed_predictions",
+        "details",
+        "executed",
+        "failure_reason",
+        "field_access_violations",
+        "forbidden_fields_checked",
+        "heldout_accuracy",
+        "input_fixture_path",
+        "metadata_only",
+        "producer_function",
+        "run_id",
+        "seed",
+        "solve_threshold",
+        "solves_fixture",
+        "static_verdict_dictionary_used"
+      ],
+      "producer_function": "detect_static_verdict_or_metadata_only"
+    },
+    "visible_feature_only_task_b_decoder": {
+      "blocked": false,
+      "blocking_reasons": [],
+      "checked_keys": [
+        "aggregation_method",
+        "allowed_observation_fields",
+        "allowed_training_outcome_fields",
+        "baseline_name",
+        "code_path_hash",
+        "computed_predictions",
+        "details",
+        "executed",
+        "failure_reason",
+        "field_access_violations",
+        "forbidden_fields_checked",
+        "heldout_accuracy",
+        "input_fixture_path",
+        "metadata_only",
+        "producer_function",
+        "run_id",
+        "seed",
+        "solve_threshold",
+        "solves_fixture",
+        "static_verdict_dictionary_used"
+      ],
+      "producer_function": "detect_static_verdict_or_metadata_only"
+    }
+  },
+  "task_id": "COMPOSITE-CROSS-TASK-STATE-REUSE-SURFACE-DISCRIMINATIVENESS-PREFLIGHT-001A"
+}
