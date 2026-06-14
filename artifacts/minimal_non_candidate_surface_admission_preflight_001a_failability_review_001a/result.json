@@ -1,0 +1,107 @@
+{
+  "task_id": "MINIMAL-NON-CANDIDATE-SURFACE-ADMISSION-PREFLIGHT-001A-FAILABILITY-REVIEW-001A",
+  "reviewed_task_id": "MINIMAL-NON-CANDIDATE-SURFACE-ADMISSION-PREFLIGHT-001A",
+  "timestamp_utc": "2026-06-14T18:38:14.1558227Z",
+  "verdict": "review_block_report_shaped_proxy",
+  "current_layer": "engineering-governance / preflight failability review only",
+  "mainline_integration_status": "none",
+  "enabled_status": "review artifact only; no enabled runtime, bridge, Gate, candidate, tournament, companion, or EGO-mainline path",
+  "real_trigger_evidence": "current git/readback matched requested local-only review start state; actual committed artifacts were inspected directly",
+  "claim_ceiling": "preflight failability review only",
+  "start_state": {
+    "branch": "codex/meta-theory-scaffold",
+    "local_head": "df3552ffd87f1d11d09f28441397baaafcf285eb",
+    "remote_branch": "89992cb1d18a15064b122dc7421066a421a82a87",
+    "ahead_behind_origin_to_head": "0 1",
+    "local_branch_ahead_by_exactly_one": true,
+    "worktree_clean": true,
+    "cached_diff_empty": true,
+    "tag_exists_for_head": false,
+    "changed_files_restricted_to_allowed_preflight_scope": true
+  },
+  "artifacts_inspected": [
+    "docs/research/MINIMAL-NON-CANDIDATE-SURFACE-ADMISSION-PREFLIGHT-001A.md",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/result.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/serialized_cases.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/trace.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/trace.jsonl",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/baseline_comparison.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/ablation_report.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/leakage_scan_report.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/replay_report.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/computed_evidence_provenance.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/command_readback.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/readback.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/source_boundary_readback.json",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a/start_state_readback.json",
+    "docs/research/NEXT-CONCRETE-SURFACE-ADMISSION-TASK-CARD-001A.md"
+  ],
+  "producer_path_review": {
+    "artifact_named_producer_function": "run_minimal_non_candidate_surface_admission_preflight_001a",
+    "artifact_named_case_function": "validate_surface_case",
+    "artifact_named_replay_function": "replay_validate_surface_case_from_serialized_input_plus_observation",
+    "command_readback_producer_function": "tempfile_python_callable_preflight_runner",
+    "durable_repo_source_path_identified": false,
+    "repo_search_found_definitions": false,
+    "review_effect": "acceptance gate failed because callable producer path was not identified"
+  },
+  "review_answers": {
+    "valid_surface_defines_concrete_observable": false,
+    "defines_future_behavior_state_output_measured": false,
+    "defines_independent_callable_baseline_requirement": "partial_not_durably_verified",
+    "defines_real_ablation_requirement": "partial_governance_input_mutations_only",
+    "leakage_positive_control_meaningful": "partial_scanner_source_absent",
+    "replay_recomputes_from_serialized_input_plus_observation": "partial_recomputes_governance_validator_verdict",
+    "negative_controls_semantic_not_just_missing_fields": "partial",
+    "ablations_claim_critical_for_future_surface": false,
+    "stale_legacy_check_caveat_preserved": true,
+    "hidden_candidate_or_mechanism_execution_found": false,
+    "forbidden_claim_inflation_found": false,
+    "trivial_governance_compliant_mechanism_empty_artifact_could_pass": true
+  },
+  "acceptance_gate": {
+    "start_state_matches": true,
+    "actual_artifacts_inspected": true,
+    "callable_producer_path_identified": false,
+    "valid_case_concrete_enough": false,
+    "negative_controls_meaningfully_failable": "partial",
+    "ablations_remove_claim_critical_requirements": "governance_only",
+    "leakage_positive_controls_not_trivial_only": "not_verified_due_missing_scanner_source",
+    "baselines_independently_callable": "not_durably_verified",
+    "replay_not_hash_or_verdict_only": "partial_validator_verdict_replay",
+    "no_candidate_mechanism_gate_bridge_runtime_or_mainline_enabled": true,
+    "no_forbidden_positive_claims": true,
+    "chosen_route": "review_block_report_shaped_proxy"
+  },
+  "stop_conditions_triggered": [
+    "callable_producer_path_not_durably_identified",
+    "valid_surface_too_governance_shaped_for_future_evidence_surface"
+  ],
+  "changed_files": [
+    "docs/research/MINIMAL-NON-CANDIDATE-SURFACE-ADMISSION-PREFLIGHT-001A-FAILABILITY-REVIEW-001A.md",
+    "artifacts/minimal_non_candidate_surface_admission_preflight_001a_failability_review_001a/result.json"
+  ],
+  "forbidden_changes_performed": false,
+  "auto_remote_anchor": {
+    "decision": "forbidden",
+    "performed": false
+  },
+  "next_minimal_closed_loop_action": "Do not anchor this local preflight as reviewed-pass; redesign the surface with concrete future observables and a durable callable producer path, or close this route as governance-shaped proxy evidence.",
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "Gate validity",
+    "Gate4 validity",
+    "Gate5 validity",
+    "candidate behavior",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "companion readiness",
+    "EGO readiness",
+    "runtime readiness",
+    "stable user benefit",
+    "mainline effect"
+  ]
+}
