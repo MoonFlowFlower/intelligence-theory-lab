@@ -1,0 +1,88 @@
+{
+  "action_pool": [
+    "inspect_boundary",
+    "consolidate_trace",
+    "defer_action",
+    "replan_memory"
+  ],
+  "baseline_inventory": [
+    "majority_baseline",
+    "exact_legal_tuple_lookup_with_majority_fallback",
+    "nearest_neighbor_legal_observation",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "observation_only_posthoc_classifier"
+  ],
+  "config_hash": "00945d97306daea9038c989cf1a0424ee25bd835b10b14ce325d81039a34f2a5",
+  "created_before_results": true,
+  "forbidden_fields": [
+    "target_action",
+    "post_update_action",
+    "hidden.task_b_target_action",
+    "serialized_state_after.latent_action_binding",
+    "metadata.target_action"
+  ],
+  "graph_lookup_observation_baselines": [
+    "exact_legal_tuple_lookup_with_majority_fallback",
+    "nearest_neighbor_legal_observation",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "observation_only_posthoc_classifier"
+  ],
+  "heldout_context_keys": [
+    "carry_context_4",
+    "carry_context_5",
+    "carry_context_6",
+    "carry_context_7"
+  ],
+  "legal_fields": {
+    "task_a": [
+      "task_a.context_key",
+      "task_a.source_symbol",
+      "task_a.observed_symbol",
+      "task_a.sample_index"
+    ],
+    "task_b": [
+      "task_b.context_key",
+      "task_b.query_offset",
+      "task_b.query_symbol",
+      "task_b.probe_family"
+    ]
+  },
+  "masked_fallback_action": "inspect_boundary",
+  "predeclared_before_results": true,
+  "predeclared_scoring_rule": "target = ACTION_POOL[(carry_shift_from_task_a + task_b.query_offset) mod len(ACTION_POOL)]",
+  "seeds": [
+    71001,
+    71002
+  ],
+  "symbol_ring": [
+    "amber",
+    "blue",
+    "crimson",
+    "dove"
+  ],
+  "task_card_id": "CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A",
+  "task_id": "ctsr_solvability_inversion_preflight_001a",
+  "thresholds": {
+    "best_graph_lookup_observation_max_accuracy": 0.5,
+    "carry_ablation_eps": 0.05,
+    "legal_oracle_min_accuracy": 0.8,
+    "legal_oracle_min_margin_over_best_baseline": 0.25,
+    "majority_baseline_max_accuracy": 0.3
+  },
+  "train_context_keys": [
+    "carry_context_0",
+    "carry_context_1",
+    "carry_context_2",
+    "carry_context_3"
+  ]
+}

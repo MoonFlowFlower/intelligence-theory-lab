@@ -1,0 +1,94 @@
+{
+  "answer_bearing_fields_in_legal_or_replay_bundle": [],
+  "code_path_hash": "48686aecc55c0499f4516204c99e1ada6e920769f916ee6c4af6693436925475",
+  "forbidden_answer_aliases_present_in_clean_surface": [],
+  "forbidden_fields": [
+    "target_action",
+    "post_update_action",
+    "hidden.task_b_target_action",
+    "serialized_state_after.latent_action_binding",
+    "metadata.target_action"
+  ],
+  "latent_action_binding_present_in_replay_bundle": false,
+  "legal_discriminative_fields_not_unique_identifiers": true,
+  "legal_field_cardinalities": {
+    "task_b.context_key": {
+      "cardinality_ratio": 0.0625,
+      "max_support_count": 16,
+      "total_count": 64,
+      "unique_count": 4
+    },
+    "task_b.probe_family": {
+      "cardinality_ratio": 0.03125,
+      "max_support_count": 32,
+      "total_count": 64,
+      "unique_count": 2
+    },
+    "task_b.query_offset": {
+      "cardinality_ratio": 0.0625,
+      "max_support_count": 16,
+      "total_count": 64,
+      "unique_count": 4
+    },
+    "task_b.query_symbol": {
+      "cardinality_ratio": 0.0625,
+      "max_support_count": 16,
+      "total_count": 64,
+      "unique_count": 4
+    }
+  },
+  "legal_fields": {
+    "task_a": [
+      "task_a.context_key",
+      "task_a.source_symbol",
+      "task_a.observed_symbol",
+      "task_a.sample_index"
+    ],
+    "task_b": [
+      "task_b.context_key",
+      "task_b.query_offset",
+      "task_b.query_symbol",
+      "task_b.probe_family"
+    ]
+  },
+  "legal_forbidden_registry_exhaustive": true,
+  "max_legal_field_cardinality_ratio": 0.0625,
+  "metadata_fields": [
+    "metadata.surface_family",
+    "metadata.seed_id",
+    "metadata.split",
+    "episode_id",
+    "context_id"
+  ],
+  "producer_function": "build_field_registry",
+  "replay_bundle_fields": [
+    "action_pool[]",
+    "config_hash",
+    "declared_transition_update_rules.carry_shift",
+    "declared_transition_update_rules.task_b_prediction",
+    "symbol_ring[]",
+    "task_a_raw_legal_observations[].context_id",
+    "task_a_raw_legal_observations[].metadata.seed_id",
+    "task_a_raw_legal_observations[].metadata.split",
+    "task_a_raw_legal_observations[].metadata.surface_family",
+    "task_a_raw_legal_observations[].seed_id",
+    "task_a_raw_legal_observations[].task_a.context_key",
+    "task_a_raw_legal_observations[].task_a.observed_symbol",
+    "task_a_raw_legal_observations[].task_a.sample_index",
+    "task_a_raw_legal_observations[].task_a.source_symbol",
+    "task_b_legal_probes[].context_id",
+    "task_b_legal_probes[].episode_id",
+    "task_b_legal_probes[].metadata.seed_id",
+    "task_b_legal_probes[].metadata.split",
+    "task_b_legal_probes[].metadata.surface_family",
+    "task_b_legal_probes[].seed_id",
+    "task_b_legal_probes[].task_b.context_key",
+    "task_b_legal_probes[].task_b.probe_family",
+    "task_b_legal_probes[].task_b.query_offset",
+    "task_b_legal_probes[].task_b.query_symbol",
+    "task_id"
+  ],
+  "serialized_state_after_present_in_replay_bundle": false,
+  "task_id": "ctsr_solvability_inversion_preflight_001a",
+  "unclassified_fields": []
+}
