@@ -1,0 +1,28 @@
+{"event": "file_read", "exists": true, "parse_status": "parsed", "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json"}
+{"event": "file_read", "exists": true, "parse_status": "parsed", "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json"], "passed": true, "producer_function": "parse_hardening_result", "reasons_fired": []}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"], "passed": true, "producer_function": "parse_hardening_readback", "reasons_fired": []}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json"], "passed": true, "producer_function": "check_hardening_verdict", "reasons_fired": []}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"], "passed": true, "producer_function": "check_g1_g14_readback", "reasons_fired": []}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"], "passed": true, "producer_function": "check_anti_blacklist_readback", "reasons_fired": []}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"], "passed": true, "producer_function": "check_reason_specific_controls", "reasons_fired": []}
+{"event": "check_invoked", "inputs": ["D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"], "passed": true, "producer_function": "check_no_mechanism_surface", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_hardened_contract_dependency", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_validator_readback_precondition", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_false_full_suite_claim", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_no_mechanism_score_request", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_no_candidate_runtime_mainline", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_preserved_invalid_surface_citations", "reasons_fired": []}
+{"event": "check_invoked", "inputs": [], "passed": true, "producer_function": "check_claim_ceiling", "reasons_fired": []}
+{"blocked": true, "control_id": "superficial_contract_mention_only", "event": "synthetic_control_evaluated", "reasons_fired": ["missing_hardened_contract_dependency", "missing_hardened_validator_or_readback_precondition"]}
+{"blocked": true, "control_id": "wrong_top_level_verdict_enum", "event": "synthetic_control_evaluated", "reasons_fired": ["hardening_verdict_not_contract_hardened_pass"]}
+{"blocked": true, "control_id": "missing_or_corrupt_readback", "event": "synthetic_control_evaluated", "reasons_fired": ["hardening_readback_parse_failed"]}
+{"blocked": true, "control_id": "missing_g13_g14_controls", "event": "synthetic_control_evaluated", "reasons_fired": ["missing_or_failed_g1_g14_readback"]}
+{"blocked": true, "control_id": "missing_anti_blacklist_requirement", "event": "synthetic_control_evaluated", "reasons_fired": ["anti_blacklist_readback_missing_or_failed"]}
+{"blocked": true, "control_id": "missing_reason_specific_positive_counter_controls", "event": "synthetic_control_evaluated", "reasons_fired": ["reason_specific_controls_missing_or_failed"]}
+{"blocked": true, "control_id": "new_surface_without_hardened_validator_precondition", "event": "synthetic_control_evaluated", "reasons_fired": ["missing_hardened_validator_or_readback_precondition"]}
+{"blocked": true, "control_id": "candidate_gate5_bridge_runtime_mainline_language", "event": "synthetic_control_evaluated", "reasons_fired": ["candidate_behavior_requested", "gate5_bridge_runtime_or_mainline_requested"]}
+{"blocked": true, "control_id": "mechanism_score_requested", "event": "synthetic_control_evaluated", "reasons_fired": ["mechanism_score_requested_or_produced"]}
+{"blocked": true, "control_id": "false_full_suite_pass_after_timeout", "event": "synthetic_control_evaluated", "reasons_fired": ["false_full_suite_pass_claim"]}
+{"blocked": true, "control_id": "old_invalid_surface_cited_as_mechanism_evidence", "event": "synthetic_control_evaluated", "reasons_fired": ["old_invalid_surface_cited_as_mechanism_evidence"]}
+{"blocked": true, "control_id": "hardening_result_treated_as_gate_or_readiness", "event": "synthetic_control_evaluated", "reasons_fired": ["claim_ceiling_inflation"]}

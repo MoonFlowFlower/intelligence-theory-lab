@@ -1,0 +1,251 @@
+{
+  "acceptance_gates": {
+    "evidence_by_gate": {
+      "E1": {
+        "evidence": [
+          "reconciled hardening result.json parses"
+        ],
+        "passed": true
+      },
+      "E10": {
+        "evidence": [
+          "candidate/Gate5/bridge/runtime/mainline synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E11": {
+        "evidence": [
+          "mechanism_score request synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E12": {
+        "evidence": [
+          "false full-suite pass claim synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E13": {
+        "evidence": [
+          "old invalid surface mechanism-evidence citation blocked"
+        ],
+        "passed": true
+      },
+      "E14": {
+        "evidence": [
+          "old frozen artifacts reported unchanged by hardening readback"
+        ],
+        "passed": true
+      },
+      "E15": {
+        "evidence": [
+          "valid parseable future manifest remains authorizable under governance-only constraints"
+        ],
+        "passed": true
+      },
+      "E16": {
+        "evidence": [
+          "valid manifest creates no candidate behavior"
+        ],
+        "passed": true
+      },
+      "E17": {
+        "evidence": [
+          "valid manifest requests no mechanism score"
+        ],
+        "passed": true
+      },
+      "E18": {
+        "evidence": [
+          "new result.json and readback.json are parseable"
+        ],
+        "passed": true
+      },
+      "E2": {
+        "evidence": [
+          "reconciled hardening readback.json parses"
+        ],
+        "passed": true
+      },
+      "E3": {
+        "evidence": [
+          "hardening verdict is contract_hardened_pass"
+        ],
+        "passed": true
+      },
+      "E4": {
+        "evidence": [
+          "G1-G14 readback gates are all present and passed"
+        ],
+        "passed": true
+      },
+      "E5": {
+        "evidence": [
+          "anti-blacklist readback present and passed"
+        ],
+        "passed": true
+      },
+      "E6": {
+        "evidence": [
+          "reason-specific positive/counter controls present and passed"
+        ],
+        "passed": true
+      },
+      "E7": {
+        "evidence": [
+          "superficial contract mention synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E8": {
+        "evidence": [
+          "missing/corrupt readback synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E9": {
+        "evidence": [
+          "wrong verdict enum synthetic control blocked"
+        ],
+        "passed": true
+      }
+    },
+    "failed": [],
+    "passed": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "E6",
+      "E7",
+      "E8",
+      "E9",
+      "E10",
+      "E11",
+      "E12",
+      "E13",
+      "E14",
+      "E15",
+      "E16",
+      "E17",
+      "E18"
+    ]
+  },
+  "aggregation": "contract_enforcement_pass iff E1-E18 pass and all hostile synthetic controls are blocked",
+  "auto_remote_anchor": {
+    "claim_ceiling_if_performed": "remote-anchor publication and verification only",
+    "decision": "conditional",
+    "permitted_now": true
+  },
+  "candidate_or_surface_designed": false,
+  "claim_ceiling": "engineering-governance / task-authorization hygiene only",
+  "code_path_hash": "fb651b637f4e7755bc2fbd413f3c8ea4048c5773660624231ba29f8b5feb4509",
+  "current_layer": "engineering-governance / contract enforcement / no mechanism surface",
+  "enabled_status": "local checker / artifact contract only",
+  "inputs": {
+    "hardening_readback": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json",
+    "hardening_result": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json",
+    "valid_future_manifest": {
+      "claims": [
+        "engineering-governance / task-authorization hygiene only"
+      ],
+      "current_layer": "engineering-governance / contract enforcement / no mechanism surface",
+      "evidence_citations": [
+        {
+          "artifact_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+          "claim": "artifact-backed contract dependency only"
+        }
+      ],
+      "hardened_contract_dependency": {
+        "artifact_id": "surface_admission_contract_hardening_001a",
+        "readback_path": "artifacts/surface_admission_contract_hardening_001a/readback.json",
+        "required_gates": [
+          "G1",
+          "G2",
+          "G3",
+          "G4",
+          "G5",
+          "G6",
+          "G7",
+          "G8",
+          "G9",
+          "G10",
+          "G11",
+          "G12",
+          "G13",
+          "G14"
+        ],
+        "required_tag": "remote-anchor-surface-admission-contract-hardening-001a-verdict-enum-reconciliation-001a-915d4c5",
+        "required_verdict": "contract_hardened_pass",
+        "result_path": "artifacts/surface_admission_contract_hardening_001a/result.json",
+        "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+      },
+      "outputs_requested": [
+        "authorization_decision",
+        "result.json",
+        "readback.json"
+      ],
+      "pre_execution_requirements": [
+        {
+          "readback_path": "artifacts/surface_admission_contract_hardening_001a/readback.json",
+          "requirement": "run_or_cite_hardened_validator_readback",
+          "validator_module": "surface_admission_contract_hardening_001a.validator"
+        }
+      ],
+      "scope": {
+        "creates_candidate_behavior": false,
+        "creates_new_mechanism_surface": false,
+        "creates_new_surface": false,
+        "opens_bridge": false,
+        "opens_ego_mainline": false,
+        "opens_gate5": false,
+        "opens_runtime": false,
+        "opens_tournament": false,
+        "produces_mechanism_score": false,
+        "surface_admission_authorization_only": true
+      },
+      "task_id": "SURFACE-ADMISSION-FUTURE-AUTHORIZATION-CONTROL",
+      "test_evidence": {
+        "claims_full_suite_pass": false,
+        "focused_tests_passed": true,
+        "full_pytest_status": "timed_out_after_120s"
+      }
+    }
+  },
+  "mainline_integration_status": "none; offline local checker and artifact contract only",
+  "mechanism_score_produced": false,
+  "new_mechanism_surface_designed": false,
+  "next_minimal_closed_loop_action": "Require this enforcement checker before future surface-admission task authorization.",
+  "producer_function": "run_enforcement",
+  "real_trigger_evidence": "read-only hardening artifact/readback plus synthetic future-manifest bypass controls",
+  "referenced_anchor": {
+    "current_head": "915d4c50fcb92a4020a3fe137327ce5e3e5101cd",
+    "exact_local_head_tag_match": true,
+    "local_tag_hash": "915d4c50fcb92a4020a3fe137327ce5e3e5101cd",
+    "tag": "remote-anchor-surface-admission-contract-hardening-001a-verdict-enum-reconciliation-001a-915d4c5"
+  },
+  "referenced_artifact_ids": [
+    "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+    "surface_admission_contract_hardening_001a"
+  ],
+  "run_id": "surface_admission_contract_enforcement_001a-20260614T135148Z",
+  "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A",
+  "verdict": "contract_enforcement_pass",
+  "what_this_does_not_prove": [
+    "mechanism validity",
+    "Gate4 validity",
+    "Gate5 validity",
+    "candidate behavior",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "EGO readiness",
+    "runtime readiness",
+    "companion readiness",
+    "stable user benefit",
+    "mainline effect"
+  ]
+}

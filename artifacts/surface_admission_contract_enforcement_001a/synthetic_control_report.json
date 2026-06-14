@@ -1,0 +1,107 @@
+{
+  "all_controls_blocked": true,
+  "blocked_control_count": 12,
+  "claim_ceiling": "engineering-governance / task-authorization hygiene only",
+  "controls": [
+    {
+      "blocked": true,
+      "control_id": "superficial_contract_mention_only",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "missing_hardened_contract_dependency",
+        "missing_hardened_validator_or_readback_precondition"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "wrong_top_level_verdict_enum",
+      "producer_function": "validate_hardening_artifacts",
+      "reasons_fired": [
+        "hardening_verdict_not_contract_hardened_pass"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "missing_or_corrupt_readback",
+      "producer_function": "validate_hardening_artifacts",
+      "reasons_fired": [
+        "hardening_readback_parse_failed"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "missing_g13_g14_controls",
+      "producer_function": "validate_hardening_artifacts",
+      "reasons_fired": [
+        "missing_or_failed_g1_g14_readback"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "missing_anti_blacklist_requirement",
+      "producer_function": "validate_hardening_artifacts",
+      "reasons_fired": [
+        "anti_blacklist_readback_missing_or_failed"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "missing_reason_specific_positive_counter_controls",
+      "producer_function": "validate_hardening_artifacts",
+      "reasons_fired": [
+        "reason_specific_controls_missing_or_failed"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "new_surface_without_hardened_validator_precondition",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "missing_hardened_validator_or_readback_precondition"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "candidate_gate5_bridge_runtime_mainline_language",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "candidate_behavior_requested",
+        "gate5_bridge_runtime_or_mainline_requested"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "mechanism_score_requested",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "mechanism_score_requested_or_produced"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "false_full_suite_pass_after_timeout",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "false_full_suite_pass_claim"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "old_invalid_surface_cited_as_mechanism_evidence",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "old_invalid_surface_cited_as_mechanism_evidence"
+      ]
+    },
+    {
+      "blocked": true,
+      "control_id": "hardening_result_treated_as_gate_or_readiness",
+      "producer_function": "validate_future_manifest",
+      "reasons_fired": [
+        "claim_ceiling_inflation"
+      ]
+    }
+  ],
+  "producer_function": "build_synthetic_control_report",
+  "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
+}

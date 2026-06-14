@@ -1,0 +1,370 @@
+{
+  "acceptance_gates": {
+    "evidence_by_gate": {
+      "E1": {
+        "evidence": [
+          "reconciled hardening result.json parses"
+        ],
+        "passed": true
+      },
+      "E10": {
+        "evidence": [
+          "candidate/Gate5/bridge/runtime/mainline synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E11": {
+        "evidence": [
+          "mechanism_score request synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E12": {
+        "evidence": [
+          "false full-suite pass claim synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E13": {
+        "evidence": [
+          "old invalid surface mechanism-evidence citation blocked"
+        ],
+        "passed": true
+      },
+      "E14": {
+        "evidence": [
+          "old frozen artifacts reported unchanged by hardening readback"
+        ],
+        "passed": true
+      },
+      "E15": {
+        "evidence": [
+          "valid parseable future manifest remains authorizable under governance-only constraints"
+        ],
+        "passed": true
+      },
+      "E16": {
+        "evidence": [
+          "valid manifest creates no candidate behavior"
+        ],
+        "passed": true
+      },
+      "E17": {
+        "evidence": [
+          "valid manifest requests no mechanism score"
+        ],
+        "passed": true
+      },
+      "E18": {
+        "evidence": [
+          "new result.json and readback.json are parseable"
+        ],
+        "passed": true
+      },
+      "E2": {
+        "evidence": [
+          "reconciled hardening readback.json parses"
+        ],
+        "passed": true
+      },
+      "E3": {
+        "evidence": [
+          "hardening verdict is contract_hardened_pass"
+        ],
+        "passed": true
+      },
+      "E4": {
+        "evidence": [
+          "G1-G14 readback gates are all present and passed"
+        ],
+        "passed": true
+      },
+      "E5": {
+        "evidence": [
+          "anti-blacklist readback present and passed"
+        ],
+        "passed": true
+      },
+      "E6": {
+        "evidence": [
+          "reason-specific positive/counter controls present and passed"
+        ],
+        "passed": true
+      },
+      "E7": {
+        "evidence": [
+          "superficial contract mention synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E8": {
+        "evidence": [
+          "missing/corrupt readback synthetic control blocked"
+        ],
+        "passed": true
+      },
+      "E9": {
+        "evidence": [
+          "wrong verdict enum synthetic control blocked"
+        ],
+        "passed": true
+      }
+    },
+    "failed": [],
+    "passed": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "E6",
+      "E7",
+      "E8",
+      "E9",
+      "E10",
+      "E11",
+      "E12",
+      "E13",
+      "E14",
+      "E15",
+      "E16",
+      "E17",
+      "E18"
+    ]
+  },
+  "checks_run": [
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json"
+      ],
+      "passed": true,
+      "producer_function": "parse_hardening_result",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "parse_hardening_readback",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json"
+      ],
+      "passed": true,
+      "producer_function": "check_hardening_verdict",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_g1_g14_readback",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_anti_blacklist_readback",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_reason_specific_controls",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [
+        "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"
+      ],
+      "passed": true,
+      "producer_function": "check_no_mechanism_surface",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_hardened_contract_dependency",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_validator_readback_precondition",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_false_full_suite_claim",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_no_mechanism_score_request",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_no_candidate_runtime_mainline",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_preserved_invalid_surface_citations",
+      "reasons_fired": []
+    },
+    {
+      "inputs": [],
+      "passed": true,
+      "producer_function": "check_claim_ceiling",
+      "reasons_fired": []
+    }
+  ],
+  "claim_ceiling": "engineering-governance / task-authorization hygiene only",
+  "files_read": [
+    {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json"
+    },
+    {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\readback.json"
+    }
+  ],
+  "no_candidate": true,
+  "no_mechanism_score": true,
+  "no_new_mechanism_surface": true,
+  "producer_function": "build_enforcement_readback",
+  "readback_json_parse": {
+    "parse_status": "created_and_parsed",
+    "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\readback.json"
+  },
+  "reasons_fired": [],
+  "result_json_parse": {
+    "parse_status": "parsed",
+    "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_enforcement_001a\\result.json",
+    "top_level_verdict": "contract_enforcement_pass"
+  },
+  "synthetic_controls": {
+    "all_controls_blocked": true,
+    "blocked_control_count": 12,
+    "claim_ceiling": "engineering-governance / task-authorization hygiene only",
+    "controls": [
+      {
+        "blocked": true,
+        "control_id": "superficial_contract_mention_only",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "missing_hardened_contract_dependency",
+          "missing_hardened_validator_or_readback_precondition"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "wrong_top_level_verdict_enum",
+        "producer_function": "validate_hardening_artifacts",
+        "reasons_fired": [
+          "hardening_verdict_not_contract_hardened_pass"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_or_corrupt_readback",
+        "producer_function": "validate_hardening_artifacts",
+        "reasons_fired": [
+          "hardening_readback_parse_failed"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_g13_g14_controls",
+        "producer_function": "validate_hardening_artifacts",
+        "reasons_fired": [
+          "missing_or_failed_g1_g14_readback"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_anti_blacklist_requirement",
+        "producer_function": "validate_hardening_artifacts",
+        "reasons_fired": [
+          "anti_blacklist_readback_missing_or_failed"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "missing_reason_specific_positive_counter_controls",
+        "producer_function": "validate_hardening_artifacts",
+        "reasons_fired": [
+          "reason_specific_controls_missing_or_failed"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "new_surface_without_hardened_validator_precondition",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "missing_hardened_validator_or_readback_precondition"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "candidate_gate5_bridge_runtime_mainline_language",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "candidate_behavior_requested",
+          "gate5_bridge_runtime_or_mainline_requested"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "mechanism_score_requested",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "mechanism_score_requested_or_produced"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "false_full_suite_pass_after_timeout",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "false_full_suite_pass_claim"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "old_invalid_surface_cited_as_mechanism_evidence",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "old_invalid_surface_cited_as_mechanism_evidence"
+        ]
+      },
+      {
+        "blocked": true,
+        "control_id": "hardening_result_treated_as_gate_or_readiness",
+        "producer_function": "validate_future_manifest",
+        "reasons_fired": [
+          "claim_ceiling_inflation"
+        ]
+      }
+    ],
+    "producer_function": "build_synthetic_control_report",
+    "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
+  },
+  "task_id": "SURFACE-ADMISSION-CONTRACT-ENFORCEMENT-001A"
+}
