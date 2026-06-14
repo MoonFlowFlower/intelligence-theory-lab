@@ -1,0 +1,399 @@
+{
+  "all_matched": true,
+  "controls": [
+    {
+      "baseline_id": "target_leak_detector",
+      "control_id": "target_leak_fixture",
+      "expected_block_reason": "target_leak_detected",
+      "faithful_or_leakage_detector": "leakage_detector",
+      "matched": true,
+      "observed_block_reason": "target_leak_detected",
+      "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/target_leak_fixture.json",
+      "score_record": null
+    },
+    {
+      "baseline_id": "partner_id_lookup",
+      "control_id": "partner_id_lookup_fixture",
+      "expected_block_reason": "partner_id_lookup_shortcut_detected",
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "matched": true,
+      "observed_block_reason": "partner_id_lookup_shortcut_detected",
+      "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/partner_id_lookup_fixture.json",
+      "score_record": {
+        "aggregation": "mean exact-match accuracy over heldout positive-control rows",
+        "baseline_category": "identity_lookup",
+        "baseline_id": "partner_id_lookup",
+        "code_path_hash": "f729f47bf33865438be7269424496a0e142966ddb8063433b17afdcdda394621",
+        "context_ids": [
+          "partner_id_lookup_fixture"
+        ],
+        "decision_contribution": "positive_control_failure_expected",
+        "episode_ids_or_registry_row_ids": [
+          "partner_0",
+          "partner_1",
+          "partner_2",
+          "partner_3"
+        ],
+        "faithful_or_leakage_detector": "faithful_cheap_baseline",
+        "family_id": "partner_id_lookup_fixture",
+        "inputs": {
+          "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/partner_id_lookup_fixture.json"
+        },
+        "module_path": "src/mechanism_family_tournament_baseline_preflight_001a/runner.py",
+        "producer_function": "recompute_baseline_score",
+        "raw_predictions": {
+          "partner_0": "support",
+          "partner_1": "challenge",
+          "partner_2": "defer",
+          "partner_3": "summarize"
+        },
+        "run_id": "mechanism_family_tournament_baseline_preflight_001a_20260614T011841Z",
+        "score": 1.0,
+        "seed": 1001,
+        "serialized_input": {
+          "baseline_kind": "field_lookup",
+          "heldout": [
+            {
+              "episode_id": "partner_0",
+              "observation": {
+                "context_id": "context_0",
+                "partner_id": "partner_0",
+                "risk": 0.0
+              },
+              "target": "support"
+            },
+            {
+              "episode_id": "partner_1",
+              "observation": {
+                "context_id": "context_1",
+                "partner_id": "partner_1",
+                "risk": 0.3333333333333333
+              },
+              "target": "challenge"
+            },
+            {
+              "episode_id": "partner_2",
+              "observation": {
+                "context_id": "context_2",
+                "partner_id": "partner_2",
+                "risk": 0.6666666666666666
+              },
+              "target": "defer"
+            },
+            {
+              "episode_id": "partner_3",
+              "observation": {
+                "context_id": "context_3",
+                "partner_id": "partner_3",
+                "risk": 1.0
+              },
+              "target": "summarize"
+            }
+          ],
+          "shortcut_field": "partner_id",
+          "train": [
+            {
+              "episode_id": "partner_0",
+              "observation": {
+                "context_id": "context_0",
+                "partner_id": "partner_0",
+                "risk": 0.0
+              },
+              "target": "support"
+            },
+            {
+              "episode_id": "partner_1",
+              "observation": {
+                "context_id": "context_1",
+                "partner_id": "partner_1",
+                "risk": 0.3333333333333333
+              },
+              "target": "challenge"
+            },
+            {
+              "episode_id": "partner_2",
+              "observation": {
+                "context_id": "context_2",
+                "partner_id": "partner_2",
+                "risk": 0.6666666666666666
+              },
+              "target": "defer"
+            },
+            {
+              "episode_id": "partner_3",
+              "observation": {
+                "context_id": "context_3",
+                "partner_id": "partner_3",
+                "risk": 1.0
+              },
+              "target": "summarize"
+            }
+          ]
+        },
+        "targets": {
+          "partner_0": "support",
+          "partner_1": "challenge",
+          "partner_2": "defer",
+          "partner_3": "summarize"
+        },
+        "threshold": 0.8
+      }
+    },
+    {
+      "baseline_id": "table_lookup",
+      "control_id": "table_lookup_solvable_fixture",
+      "expected_block_reason": "faithful_table_lookup_reaches_threshold",
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "matched": true,
+      "observed_block_reason": "faithful_table_lookup_reaches_threshold",
+      "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/table_lookup_solvable_fixture.json",
+      "score_record": {
+        "aggregation": "mean exact-match accuracy over heldout positive-control rows",
+        "baseline_category": "lookup_table",
+        "baseline_id": "table_lookup",
+        "code_path_hash": "f729f47bf33865438be7269424496a0e142966ddb8063433b17afdcdda394621",
+        "context_ids": [
+          "table_lookup_solvable_fixture"
+        ],
+        "decision_contribution": "positive_control_failure_expected",
+        "episode_ids_or_registry_row_ids": [
+          "table_0",
+          "table_1",
+          "table_2",
+          "table_3"
+        ],
+        "faithful_or_leakage_detector": "faithful_cheap_baseline",
+        "family_id": "table_lookup_solvable_fixture",
+        "inputs": {
+          "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/table_lookup_solvable_fixture.json"
+        },
+        "module_path": "src/mechanism_family_tournament_baseline_preflight_001a/runner.py",
+        "producer_function": "recompute_baseline_score",
+        "raw_predictions": {
+          "table_0": "support",
+          "table_1": "challenge",
+          "table_2": "defer",
+          "table_3": "summarize"
+        },
+        "run_id": "mechanism_family_tournament_baseline_preflight_001a_20260614T011841Z",
+        "score": 1.0,
+        "seed": 1001,
+        "serialized_input": {
+          "baseline_kind": "table_lookup",
+          "heldout": [
+            {
+              "episode_id": "table_0",
+              "observation": {
+                "context_id": "context_0",
+                "visible_token": "token_0"
+              },
+              "target": "support"
+            },
+            {
+              "episode_id": "table_1",
+              "observation": {
+                "context_id": "context_1",
+                "visible_token": "token_1"
+              },
+              "target": "challenge"
+            },
+            {
+              "episode_id": "table_2",
+              "observation": {
+                "context_id": "context_2",
+                "visible_token": "token_0"
+              },
+              "target": "defer"
+            },
+            {
+              "episode_id": "table_3",
+              "observation": {
+                "context_id": "context_3",
+                "visible_token": "token_1"
+              },
+              "target": "summarize"
+            }
+          ],
+          "shortcut_field": "context_id",
+          "train": [
+            {
+              "episode_id": "table_0",
+              "observation": {
+                "context_id": "context_0",
+                "visible_token": "token_0"
+              },
+              "target": "support"
+            },
+            {
+              "episode_id": "table_1",
+              "observation": {
+                "context_id": "context_1",
+                "visible_token": "token_1"
+              },
+              "target": "challenge"
+            },
+            {
+              "episode_id": "table_2",
+              "observation": {
+                "context_id": "context_2",
+                "visible_token": "token_0"
+              },
+              "target": "defer"
+            },
+            {
+              "episode_id": "table_3",
+              "observation": {
+                "context_id": "context_3",
+                "visible_token": "token_1"
+              },
+              "target": "summarize"
+            }
+          ]
+        },
+        "targets": {
+          "table_0": "support",
+          "table_1": "challenge",
+          "table_2": "defer",
+          "table_3": "summarize"
+        },
+        "threshold": 0.8
+      }
+    },
+    {
+      "baseline_id": "static_formula",
+      "control_id": "static_formula_solvable_fixture",
+      "expected_block_reason": "static_formula_shortcut_detected",
+      "faithful_or_leakage_detector": "leakage_detector",
+      "matched": true,
+      "observed_block_reason": "static_formula_shortcut_detected",
+      "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/static_formula_solvable_fixture.json",
+      "score_record": {
+        "aggregation": "mean exact-match accuracy over heldout positive-control rows",
+        "baseline_category": "static_formula",
+        "baseline_id": "static_formula",
+        "code_path_hash": "f729f47bf33865438be7269424496a0e142966ddb8063433b17afdcdda394621",
+        "context_ids": [
+          "static_formula_solvable_fixture"
+        ],
+        "decision_contribution": "positive_control_failure_expected",
+        "episode_ids_or_registry_row_ids": [
+          "formula_low_0",
+          "formula_low_1",
+          "formula_high_0",
+          "formula_high_1"
+        ],
+        "faithful_or_leakage_detector": "leakage_detector",
+        "family_id": "static_formula_solvable_fixture",
+        "inputs": {
+          "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/static_formula_solvable_fixture.json"
+        },
+        "module_path": "src/mechanism_family_tournament_baseline_preflight_001a/runner.py",
+        "producer_function": "recompute_baseline_score",
+        "raw_predictions": {
+          "formula_high_0": "high",
+          "formula_high_1": "high",
+          "formula_low_0": "low",
+          "formula_low_1": "low"
+        },
+        "run_id": "mechanism_family_tournament_baseline_preflight_001a_20260614T011841Z",
+        "score": 1.0,
+        "seed": 1001,
+        "serialized_input": {
+          "baseline_kind": "static_formula",
+          "formula_threshold": 0.5,
+          "heldout": [
+            {
+              "episode_id": "formula_low_0",
+              "observation": {
+                "risk": 0.1
+              },
+              "target": "low"
+            },
+            {
+              "episode_id": "formula_low_1",
+              "observation": {
+                "risk": 0.3
+              },
+              "target": "low"
+            },
+            {
+              "episode_id": "formula_high_0",
+              "observation": {
+                "risk": 0.7
+              },
+              "target": "high"
+            },
+            {
+              "episode_id": "formula_high_1",
+              "observation": {
+                "risk": 0.9
+              },
+              "target": "high"
+            }
+          ],
+          "shortcut_field": "risk",
+          "train": [
+            {
+              "episode_id": "formula_low_0",
+              "observation": {
+                "risk": 0.1
+              },
+              "target": "low"
+            },
+            {
+              "episode_id": "formula_low_1",
+              "observation": {
+                "risk": 0.3
+              },
+              "target": "low"
+            },
+            {
+              "episode_id": "formula_high_0",
+              "observation": {
+                "risk": 0.7
+              },
+              "target": "high"
+            },
+            {
+              "episode_id": "formula_high_1",
+              "observation": {
+                "risk": 0.9
+              },
+              "target": "high"
+            }
+          ]
+        },
+        "targets": {
+          "formula_high_0": "high",
+          "formula_high_1": "high",
+          "formula_low_0": "low",
+          "formula_low_1": "low"
+        },
+        "threshold": 0.8
+      }
+    },
+    {
+      "baseline_id": "missing_threshold_control",
+      "control_id": "missing_threshold_fixture",
+      "expected_block_reason": "missing_threshold",
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "matched": true,
+      "observed_block_reason": "missing_threshold",
+      "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/missing_threshold_fixture.json",
+      "score_record": null
+    },
+    {
+      "baseline_id": "missing_callable_target_control",
+      "control_id": "missing_callable_target_fixture",
+      "expected_block_reason": "missing_callable_target",
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "matched": true,
+      "observed_block_reason": "missing_callable_target",
+      "positive_control_input_fixture_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/mechanism_family_tournament_baseline_preflight_001a/positive_controls/missing_callable_target_fixture.json",
+      "score_record": null
+    }
+  ],
+  "producer_function": "run_positive_controls",
+  "run_id": "mechanism_family_tournament_baseline_preflight_001a_20260614T011841Z",
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-BASELINE-PREFLIGHT-001A"
+}

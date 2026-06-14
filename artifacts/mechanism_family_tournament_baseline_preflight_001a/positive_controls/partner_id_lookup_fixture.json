@@ -1,0 +1,88 @@
+{
+  "baseline_category": "identity_lookup",
+  "baseline_id": "partner_id_lookup",
+  "callable_target": true,
+  "control_id": "partner_id_lookup_fixture",
+  "faithful_or_leakage_detector": "faithful_cheap_baseline",
+  "serialized_input": {
+    "baseline_kind": "field_lookup",
+    "heldout": [
+      {
+        "episode_id": "partner_0",
+        "observation": {
+          "context_id": "context_0",
+          "partner_id": "partner_0",
+          "risk": 0.0
+        },
+        "target": "support"
+      },
+      {
+        "episode_id": "partner_1",
+        "observation": {
+          "context_id": "context_1",
+          "partner_id": "partner_1",
+          "risk": 0.3333333333333333
+        },
+        "target": "challenge"
+      },
+      {
+        "episode_id": "partner_2",
+        "observation": {
+          "context_id": "context_2",
+          "partner_id": "partner_2",
+          "risk": 0.6666666666666666
+        },
+        "target": "defer"
+      },
+      {
+        "episode_id": "partner_3",
+        "observation": {
+          "context_id": "context_3",
+          "partner_id": "partner_3",
+          "risk": 1.0
+        },
+        "target": "summarize"
+      }
+    ],
+    "shortcut_field": "partner_id",
+    "train": [
+      {
+        "episode_id": "partner_0",
+        "observation": {
+          "context_id": "context_0",
+          "partner_id": "partner_0",
+          "risk": 0.0
+        },
+        "target": "support"
+      },
+      {
+        "episode_id": "partner_1",
+        "observation": {
+          "context_id": "context_1",
+          "partner_id": "partner_1",
+          "risk": 0.3333333333333333
+        },
+        "target": "challenge"
+      },
+      {
+        "episode_id": "partner_2",
+        "observation": {
+          "context_id": "context_2",
+          "partner_id": "partner_2",
+          "risk": 0.6666666666666666
+        },
+        "target": "defer"
+      },
+      {
+        "episode_id": "partner_3",
+        "observation": {
+          "context_id": "context_3",
+          "partner_id": "partner_3",
+          "risk": 1.0
+        },
+        "target": "summarize"
+      }
+    ]
+  },
+  "threshold": 0.8
+}

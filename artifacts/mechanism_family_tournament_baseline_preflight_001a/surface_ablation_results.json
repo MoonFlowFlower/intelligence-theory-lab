@@ -1,0 +1,40 @@
+{
+  "ablations": [
+    {
+      "baseline_id": "partner_id_lookup",
+      "control_id": "partner_id_lookup_fixture",
+      "decision_impact": "confirms positive-control shortcut dependence",
+      "masked_score": 0.25,
+      "original_score": 1.0,
+      "score_collapses": true,
+      "shortcut_fields": [
+        "partner_id"
+      ]
+    },
+    {
+      "baseline_id": "table_lookup",
+      "control_id": "table_lookup_solvable_fixture",
+      "decision_impact": "confirms positive-control shortcut dependence",
+      "masked_score": 0.25,
+      "original_score": 1.0,
+      "score_collapses": true,
+      "shortcut_fields": [
+        "context_id"
+      ]
+    },
+    {
+      "baseline_id": "static_formula",
+      "control_id": "static_formula_solvable_fixture",
+      "decision_impact": "confirms positive-control shortcut dependence",
+      "masked_score": 0.5,
+      "original_score": 1.0,
+      "score_collapses": true,
+      "shortcut_fields": [
+        "risk"
+      ]
+    }
+  ],
+  "claim_ceiling": "surface-ablation positive-control check only; no mechanism evidence",
+  "producer_function": "build_surface_ablation_results",
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-BASELINE-PREFLIGHT-001A"
+}
