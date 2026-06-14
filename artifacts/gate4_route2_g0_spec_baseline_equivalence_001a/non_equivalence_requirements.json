@@ -1,0 +1,121 @@
+{
+  "candidate_spec_evaluation": {
+    "blocking_reasons": [
+      "missing_shared_internal_state",
+      "missing_cross_context_action_selection_observable",
+      "missing_replay_action_effect_or_target_leakage_guard",
+      "missing_baseline_contrast",
+      "missing_future_observable",
+      "missing_required_ablation",
+      "missing_leakage_check_terms",
+      "missing_replay_recomputation_requirement"
+    ],
+    "passed": false,
+    "producer_function": "evaluate_non_equivalence_requirements",
+    "rows": [
+      {
+        "blocking_reason": "missing_shared_internal_state",
+        "passed": false,
+        "requirement_id": "shared_internal_state_not_table_cache_or_belief_label"
+      },
+      {
+        "blocking_reason": "missing_cross_context_action_selection_observable",
+        "passed": false,
+        "requirement_id": "prediction_error_update_changes_support_disjoint_action_selection"
+      },
+      {
+        "blocking_reason": "missing_replay_action_effect_or_target_leakage_guard",
+        "passed": false,
+        "requirement_id": "replay_changes_future_action_selection_without_target_leakage"
+      },
+      {
+        "blocking_reason": "missing_baseline_contrast",
+        "passed": false,
+        "requirement_id": "baseline_contrast_covers_all_required_families"
+      },
+      {
+        "blocking_reason": "missing_future_observable",
+        "passed": false,
+        "requirement_id": "minimal_future_observable_under_anti_lookup_protocol"
+      },
+      {
+        "blocking_reason": "missing_required_ablation",
+        "passed": false,
+        "requirement_id": "required_route2_specific_ablation"
+      },
+      {
+        "blocking_reason": "missing_leakage_check_terms",
+        "passed": false,
+        "requirement_id": "leakage_check_forbids_required_shortcuts"
+      },
+      {
+        "blocking_reason": "missing_replay_recomputation_requirement",
+        "passed": false,
+        "requirement_id": "replay_recomputes_from_serialized_state_plus_new_observation"
+      }
+    ],
+    "spec_id": "current_repo_route2_candidate_step_readback"
+  },
+  "claim_ceiling": "Spec-level baseline-equivalence governance only. No mechanism validity, no Gate4 validity, no candidate behavior, no tournament outcome, no runtime readiness, no bridge/admission readiness, no agency, no subjectivity, no consciousness, no emotion, no autonomy, no companion readiness, and no EGO readiness.",
+  "minimal_non_equivalence_fixture_evaluation": {
+    "blocking_reasons": [],
+    "passed": true,
+    "producer_function": "evaluate_non_equivalence_requirements",
+    "rows": [
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "shared_internal_state_not_table_cache_or_belief_label"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "prediction_error_update_changes_support_disjoint_action_selection"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "replay_changes_future_action_selection_without_target_leakage"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "baseline_contrast_covers_all_required_families"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "minimal_future_observable_under_anti_lookup_protocol"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "required_route2_specific_ablation"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "leakage_check_forbids_required_shortcuts"
+      },
+      {
+        "blocking_reason": "",
+        "passed": true,
+        "requirement_id": "replay_recomputes_from_serialized_state_plus_new_observation"
+      }
+    ],
+    "spec_id": "minimal_non_equivalence_fixture_route2_spec_level_only"
+  },
+  "minimal_non_equivalence_fixture_is_not_candidate_code": true,
+  "producer_function": "build_non_equivalence_requirements",
+  "required_non_equivalence_criteria": [
+    "shared internal state not merely table, trace cache, or POMDP belief label",
+    "prediction-error update in one context changes action selection in a support-disjoint context",
+    "replay/consolidation changes future action selection without direct target leakage",
+    "baseline contrasts cover Dyna-Q, prioritized sweeping, POMDP, causal bandit, MPC, retrieval/table lookup, static formula, and independent ensemble",
+    "minimal future observable under anti-lookup generative heldout protocol",
+    "required ablation removes the Route2-specific step and should collapse cross-context transfer",
+    "leakage check forbids row ID, partner ID, context ID, trace order, target field, static formula, and table lookup shortcuts",
+    "replay recomputes from serialized state plus new observation, not stored answer replay"
+  ],
+  "task_id": "GATE4-ROUTE2-G0-SPEC-BASELINE-EQUIVALENCE-001A"
+}
