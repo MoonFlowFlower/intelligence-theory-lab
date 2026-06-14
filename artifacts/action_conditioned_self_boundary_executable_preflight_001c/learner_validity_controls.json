@@ -1,0 +1,32 @@
+{
+  "constant_predictor_guard": {
+    "failures": [],
+    "passed": true
+  },
+  "fit_removed_mutation_test": {
+    "failure_mode": "FittedLinearNoBoundaryModel.fit must run before inference",
+    "passed": true,
+    "producer_function": "_run_fit_removed_mutation_control"
+  },
+  "learner_can_fit_leakage_positive_control": {
+    "correct": 32,
+    "exploited_contamination": true,
+    "parameter_update_count": 32,
+    "producer_function": "_run_contaminated_positive_control",
+    "score": 1.0,
+    "total": 32
+  },
+  "learner_fails_or_drops_when_discriminative_legal_features_removed": {
+    "effect_marked": true,
+    "original_score": 1.0,
+    "producer_function": "_run_feature_removal_control",
+    "removed_score": 0.0,
+    "score_drop": 1.0
+  },
+  "producer_function": "run_learner_validity_controls_001c",
+  "task_id": "ACTION-CONDITIONED-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001C-TRUE-LEARNED-FAIR-CAPACITY-CHALLENGE",
+  "zero_update_guard": {
+    "failures": [],
+    "passed": true
+  }
+}
