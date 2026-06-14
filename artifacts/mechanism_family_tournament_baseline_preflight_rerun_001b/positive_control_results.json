@@ -1,0 +1,57 @@
+{
+  "all_failed_as_expected": true,
+  "claim_ceiling": "positive-control validation only; no candidate or tournament execution",
+  "controls": [
+    {
+      "control_id": "target_leak",
+      "expected_block_reason": "target_leak_detected",
+      "failed_as_expected": true,
+      "faithful_or_leakage_detector": "leakage_detector",
+      "observed_block_reason": "target_leak_detected",
+      "positive_control_input_fixture_path": "generated_from_contract:target_leak"
+    },
+    {
+      "control_id": "partner_id_lookup",
+      "expected_block_reason": "partner_id_lookup_shortcut_detected",
+      "failed_as_expected": true,
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "observed_block_reason": "partner_id_lookup_shortcut_detected",
+      "positive_control_input_fixture_path": "generated_from_contract:partner_id_lookup"
+    },
+    {
+      "control_id": "table_lookup",
+      "expected_block_reason": "faithful_table_lookup_reaches_threshold",
+      "failed_as_expected": true,
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "observed_block_reason": "faithful_table_lookup_reaches_threshold",
+      "positive_control_input_fixture_path": "generated_from_contract:table_lookup"
+    },
+    {
+      "control_id": "static_formula",
+      "expected_block_reason": "static_formula_shortcut_detected",
+      "failed_as_expected": true,
+      "faithful_or_leakage_detector": "faithful_cheap_baseline",
+      "observed_block_reason": "static_formula_shortcut_detected",
+      "positive_control_input_fixture_path": "generated_from_contract:static_formula"
+    },
+    {
+      "control_id": "missing_threshold",
+      "expected_block_reason": "missing_threshold",
+      "failed_as_expected": true,
+      "faithful_or_leakage_detector": "contract_validator",
+      "observed_block_reason": "missing_threshold",
+      "positive_control_input_fixture_path": "generated_from_contract:missing_threshold"
+    },
+    {
+      "control_id": "missing_callable_target",
+      "expected_block_reason": "missing_callable_target",
+      "failed_as_expected": true,
+      "faithful_or_leakage_detector": "contract_validator",
+      "observed_block_reason": "missing_callable_target",
+      "positive_control_input_fixture_path": "generated_from_contract:missing_callable_target"
+    }
+  ],
+  "producer_function": "run_positive_controls",
+  "run_id": "mechanism_family_tournament_baseline_preflight_rerun_001b_20260614T020254Z",
+  "task_id": "MECHANISM-FAMILY-TOURNAMENT-BASELINE-PREFLIGHT-RERUN-001B"
+}
