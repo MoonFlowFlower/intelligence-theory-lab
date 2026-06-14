@@ -1,0 +1,119 @@
+{
+  "task_id": "PRESERVE-CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A-HOSTILE-AUDIT-001A",
+  "verdict": "downgrade_inconclusive_admission_unsupported",
+  "current_layer": "engineering-governance / negative-evidence preservation / preflight-downgrade record only",
+  "mainline_integration_status": "not integrated",
+  "enabled_status": "no new mechanism path, no candidate, no surface redesign, no new CTSR admission claim",
+  "real_trigger_evidence": "User-provided hostile audit found that CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A is unsupported as admission evidence because fair simple baselines reach oracle-level accuracy.",
+  "claim_ceiling": "Negative-evidence preservation and preflight-downgrade governance only.",
+  "original_preflight": {
+    "task_id": "CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A",
+    "original_reported_verdict": "admitted_surface_preflight",
+    "downstream_usable_status": "not_admissible_blocked_pending_redesign_outside_this_route",
+    "original_result_path": "artifacts/ctsr_solvability_inversion_preflight_001a/result.json",
+    "original_report_path": "docs/research/CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A.md",
+    "original_remote_anchor_tag": "remote-anchor-ctsr-no-candidate-preflight-001a-7552e5d",
+    "original_anchor_commit": "7552e5d85c9b4aca3dedee0bfb90abbfd537ca1b",
+    "original_legal_oracle_accuracy": 1.0,
+    "original_majority_baseline_accuracy": 0.25,
+    "original_best_recorded_baseline": "transition_table",
+    "original_best_recorded_baseline_score": 0.25,
+    "original_recorded_margin": 0.75
+  },
+  "blocking_issues": [
+    {
+      "id": "B1",
+      "name": "baseline_weakness_equivalence",
+      "detail": "Hostile audit reports fair simple baselines reach oracle-level accuracy 1.0, including task_b-only context_key plus query_offset arithmetic, legal-join, and legal-observation nearest-neighbor baselines."
+    },
+    {
+      "id": "B2",
+      "name": "carry_leakage_into_legal_context_key",
+      "detail": "Legal task_b context_key and query_offset can deterministically encode the target, so the surface does not establish a nontrivial cross-task carry requirement."
+    },
+    {
+      "id": "B3",
+      "name": "oracle_scorer_tautology",
+      "detail": "The oracle and scorer share the expected-action computation path, so oracle accuracy is not independent admission evidence."
+    },
+    {
+      "id": "B4",
+      "name": "low_cardinality_field_target_encoding",
+      "detail": "Low-cardinality legal fields can still deterministically encode target answers; non-unique fields are not sufficient leakage protection."
+    },
+    {
+      "id": "B5",
+      "name": "incomplete_leakage_positive_controls",
+      "detail": "The hostile audit reports positive controls did not cover all answer-bearing channels."
+    },
+    {
+      "id": "B6",
+      "name": "registry_exhaustiveness_gap",
+      "detail": "Root-level registry exhaustiveness did not rule out third-channel or metadata leakage."
+    }
+  ],
+  "non_blocking_caveats": [
+    "harness_reported_reproducible",
+    "focused_pytest_passed_for_original_preflight",
+    "ablations_appear_to_be_real_reruns",
+    "original_artifacts_should_remain_unmodified"
+  ],
+  "downstream_usage_rule": {
+    "allowed": [
+      "cite_as_negative_evidence_for_this_preflight_admission_claim",
+      "cite_original_result_as_historical_artifact_only_with_downgraded_status",
+      "use_blockers_to_motivate_separately_authorized_redesign_task_card"
+    ],
+    "forbidden": [
+      "cite_original_admitted_surface_preflight_as_candidate_admission_evidence",
+      "authorize_candidate_vs_baseline_discrimination_from_this_preflight",
+      "authorize_gate4_gate5_tournament_bridge_runtime_or_ego_mainline_work_from_this_preflight",
+      "rewrite_original_ctsr_source_artifacts_tests_report_field_registry_thresholds_or_verdict_to_make_the_downgrade_look_like_a_pass"
+    ]
+  },
+  "referenced_prior_artifacts": [
+    "C:/Users/LEO/.codex/attachments/7869f638-03a4-4ff9-b3e5-2baf1b46afb5/pasted-text.txt",
+    "C:/Users/LEO/.codex/attachments/aec8d595-dc85-4ab0-8dc0-83b5e6d58d43/pasted-text.txt",
+    "artifacts/ctsr_solvability_inversion_preflight_001a/result.json",
+    "artifacts/ctsr_solvability_inversion_preflight_001a/baseline_comparison.json",
+    "artifacts/ctsr_solvability_inversion_preflight_001a/field_registry.json",
+    "artifacts/ctsr_solvability_inversion_preflight_001a/leakage_scan_report.json",
+    "artifacts/ctsr_solvability_inversion_preflight_001a/replay_report.json",
+    "docs/research/CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A.md",
+    "src/ctsr_solvability_inversion_preflight_001a/runner.py"
+  ],
+  "changed_file_list": [
+    "docs/research/PRESERVE-CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A-HOSTILE-AUDIT-001A.md",
+    "artifacts/preserve_ctsr_solvability_inversion_preflight_001a_hostile_audit_001a/result.json",
+    "artifacts/preserve_ctsr_solvability_inversion_preflight_001a_hostile_audit_001a/readback.json"
+  ],
+  "old_artifacts_unchanged": true,
+  "old_source_files_unchanged": true,
+  "original_ctsr_report_unchanged": true,
+  "old_composite_negative_evidence_unchanged": true,
+  "new_mechanism_score_produced": false,
+  "candidate_code_created": false,
+  "surface_redesign_performed": false,
+  "runner_rerun_or_repair_performed": false,
+  "gate4_gate5_tournament_bridge_runtime_or_ego_mainline_entered": false,
+  "auto_remote_anchor": {
+    "decision": "conditional",
+    "claim_ceiling_if_performed": "remote-anchor publication and verification only",
+    "tag_name_must_identify": "hostile-audit downgrade or negative-evidence preservation, not admission success"
+  },
+  "next_minimal_closed_loop_action": "Do not use CTSR-SOLVABILITY-INVERSION-PREFLIGHT-001A as admission evidence; if CTSR remains in scope, draft a separate redesign task card with the hostile audit's fair simple challengers before any candidate or gate work.",
+  "what_this_does_not_prove": [
+    "mechanism failure",
+    "CTSR impossibility",
+    "Gate4 invalidity",
+    "Gate5 invalidity",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "companion readiness",
+    "EGO readiness",
+    "stable user benefit"
+  ]
+}
