@@ -24,7 +24,13 @@ PRESERVED_CONTROL_PATHS = [
     / "result.json",
 ]
 
-REQUIRED_GATE_IDS = {f"G{index}" for index in range(1, 11)}
+REQUIRED_GATE_IDS = {f"G{index}" for index in range(1, 15)}
+ALLOWED_VERDICTS = {
+    "contract_hardened_pass",
+    "contract_refused",
+    "invalid_contract_harness",
+}
+OLD_MISMATCH_VERDICT = "blocked_preserved_false_positive_surfaces"
 REQUIRED_CHALLENGERS = {
     "single_legal_field_lookup",
     "legal_tuple_lookup",
@@ -62,7 +68,10 @@ def test_validator_blocks_all_preserved_false_positive_controls_without_task_id_
     report = validator.validate_preserved_negative_controls(ROOT)
 
     assert report["task_id"] == TASK_ID
-    assert report["verdict"] == "blocked_preserved_false_positive_surfaces"
+    assert report["verdict"] == "contract_hardened_pass"
+    assert report["verdict"] in ALLOWED_VERDICTS
+    assert report["verdict_enum_reconciliation"]["previous_top_level_verdict"] == OLD_MISMATCH_VERDICT
+    assert report["verdict_enum_reconciliation"]["contract_mismatch_preserved"] is True
     assert report["claim_ceiling"] == CLAIM_CEILING
     assert report["static_task_id_denylist_used"] is False
     assert report["mechanism_score_produced"] is False
@@ -147,6 +156,7 @@ def test_run_validator_writes_machine_readable_artifacts_without_mechanism_score
 
     required_artifacts = {
         "result.json",
+        "readback.json",
         "preserved_negative_control_report.json",
         "validator_rule_manifest.json",
         "synthesized_challenger_manifest.json",
@@ -155,7 +165,8 @@ def test_run_validator_writes_machine_readable_artifacts_without_mechanism_score
         "json_parse_verification.json",
         "claim_ceiling.txt",
     }
-    assert result["verdict"] == "blocked_preserved_false_positive_surfaces"
+    assert result["verdict"] == "contract_hardened_pass"
+    assert result["verdict"] in ALLOWED_VERDICTS
     assert result["mechanism_score_produced"] is False
     assert result["candidate_or_surface_designed"] is False
     assert result["auto_remote_anchor"]["decision"] == "conditional"
@@ -168,12 +179,52 @@ def test_run_validator_writes_machine_readable_artifacts_without_mechanism_score
 
     verification = _load_json(out / "json_parse_verification.json")
     protected = _load_json(out / "protected_input_hashes.json")
+    readback = _load_json(out / "readback.json")
     assert verification["parse_status"] == "all_required_json_parsed"
     assert verification["no_mechanism_score"] is True
+    assert "readback.json" in verification["parsed_files"]
+    assert readback["result_json_parse"]["parse_status"] == "parsed"
+    assert readback["readback_json_parse"]["parse_status"] == "created_and_parsed"
+    assert readback["verdict_enum"]["allowed"] == sorted(ALLOWED_VERDICTS)
+    assert readback["verdict_enum"]["old_top_level_verdict"] == OLD_MISMATCH_VERDICT
+    assert readback["verdict_enum"]["new_top_level_verdict"] == "contract_hardened_pass"
+    assert readback["verdict_enum"]["contract_mismatch_preserved"] is True
+    assert set(readback["gates"]) == REQUIRED_GATE_IDS
+    assert all(gate["passed"] is True for gate in readback["gates"].values())
+    assert readback["scope_guards"]["no_mechanism_score"] is True
+    assert readback["scope_guards"]["no_candidate"] is True
+    assert readback["scope_guards"]["no_new_mechanism_surface"] is True
+    assert readback["scope_guards"]["old_preserved_artifacts_unchanged"] is True
     assert protected["preserved_inputs_modified"] is False
     assert set(protected["protected_input_paths"]) == {
         str(path.relative_to(ROOT)).replace("\\", "/") for path in PRESERVED_CONTROL_PATHS
     }
+
+
+def test_anti_blacklist_and_reason_specific_controls_are_computed():
+    validator = _validator()
+
+    anti_blacklist = validator.build_anti_blacklist_readback(ROOT)
+    assert anti_blacklist["producer_function"] == "build_anti_blacklist_readback"
+    assert anti_blacklist["static_task_id_denylist_used"] is False
+    assert anti_blacklist["renamed_positive_control"]["admission_decision"] == "blocked"
+    assert anti_blacklist["renamed_positive_control"]["preserved_task_id"] != (
+        "PRESERVE-ACTION-CONDITIONED-SELF-BOUNDARY-PREFLIGHT-001A-HOSTILE-AUDIT-001A"
+    )
+    assert anti_blacklist["task_id_only_counter_control"]["admission_decision"] == "blocked_pending_audit"
+    assert anti_blacklist["passed"] is True
+
+    reason_controls = validator.build_reason_specific_control_readback()
+    assert reason_controls["producer_function"] == "build_reason_specific_control_readback"
+    assert reason_controls["static_task_id_denylist_used"] is False
+    assert reason_controls["passed"] is True
+    assert reason_controls["positive_control_count"] == reason_controls["counter_control_count"]
+    assert reason_controls["positive_control_count"] >= 9
+    for row in reason_controls["controls"]:
+        assert row["positive_control"]["triggered_expected_gate"] is True
+        assert row["counter_control"]["triggered_expected_gate"] is False
+        assert row["positive_control"]["static_task_id_denylist_used"] is False
+        assert row["counter_control"]["static_task_id_denylist_used"] is False
 
 
 def test_contract_document_defines_future_surface_admission_gates():
@@ -182,6 +233,9 @@ def test_contract_document_defines_future_surface_admission_gates():
 
     assert "Auto-Remote-Anchor: conditional" in text
     assert "No mechanism candidate is implemented or scored" in text
+    assert "contract_hardened_pass" in text
+    assert "contract_refused" in text
+    assert "invalid_contract_harness" in text
     for gate_id in sorted(REQUIRED_GATE_IDS):
         assert f"{gate_id}." in text
     for challenger in sorted(REQUIRED_CHALLENGERS):

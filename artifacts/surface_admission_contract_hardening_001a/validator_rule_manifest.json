@@ -1,9 +1,18 @@
 {
+  "allowed_verdicts": [
+    "contract_hardened_pass",
+    "contract_refused",
+    "invalid_contract_harness"
+  ],
   "claim_ceiling": "engineering-governance / evidence-hygiene only",
   "decision_rule": "Block by detected semantic/provenance/challenger/replay/static-report evidence, not by task id alone.",
   "gates": {
     "G1": "Detect oracle-target tautology.",
     "G10": "Block all preserved negative controls.",
+    "G11": "Reconcile the top-level result verdict to the allowed enum while preserving the old mismatch.",
+    "G12": "Verify rejection is feature-based and not a task-id blacklist.",
+    "G13": "Verify reason-specific positive controls and counter-controls.",
+    "G14": "Verify no mechanism score, candidate, new surface, or preserved-artifact drift.",
     "G2": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
     "G3": "Detect when a simple legal baseline equals oracle.",
     "G4": "Detect evaluator privilege where oracle/scorer has rule access not granted to baselines.",

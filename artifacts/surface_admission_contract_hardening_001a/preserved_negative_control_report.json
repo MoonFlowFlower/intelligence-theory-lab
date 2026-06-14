@@ -14,6 +14,35 @@
         ],
         "passed": true
       },
+      "G11": {
+        "evidence": [
+          "old blocked_preserved_false_positive_surfaces verdict preserved as enum mismatch",
+          "new top-level verdict is contract_hardened_pass"
+        ],
+        "passed": true
+      },
+      "G12": {
+        "evidence": [
+          "renamed positive control blocked by detected features",
+          "task-id-only counter-control not rejected by blacklist"
+        ],
+        "passed": true
+      },
+      "G13": {
+        "evidence": [
+          "9 reason-specific positive controls triggered expected gates",
+          "9 counter-controls did not trigger expected gates"
+        ],
+        "passed": true
+      },
+      "G14": {
+        "evidence": [
+          "no mechanism score produced",
+          "no candidate or new mechanism surface designed",
+          "preserved input artifact hashes match recorded hashes"
+        ],
+        "passed": true
+      },
       "G2": {
         "evidence": [
           "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: answer-bearing alias channel reported",
@@ -91,8 +120,152 @@
       "G7",
       "G8",
       "G9",
-      "G10"
+      "G10",
+      "G11",
+      "G12",
+      "G13",
+      "G14"
     ]
+  },
+  "anti_blacklist_readback": {
+    "claim_ceiling": "engineering-governance / evidence-hygiene only",
+    "counter_not_blocked_by_task_id": true,
+    "passed": true,
+    "positive_blocked_by_features": true,
+    "producer_function": "build_anti_blacklist_readback",
+    "renamed_positive_control": {
+      "admission_decision": "blocked",
+      "claim_ceiling": "engineering-governance / evidence-hygiene only",
+      "control_path": "synthetic/renamed_preserved_negative_control.json",
+      "findings": [
+        {
+          "detector_method": "shared_oracle_target_path_probe",
+          "evidence": "oracle/target or oracle/scorer tautology is preserved in blocker evidence",
+          "gate": "Detect oracle-target tautology.",
+          "gate_id": "G1",
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "semantic_accuracy_probe",
+          "evidence": "blocking issue reports semantic answer-bearing legal field",
+          "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+          "gate_id": "G2",
+          "matched_challengers": [
+            "effect_vector_lookup"
+          ],
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "semantic_accuracy_probe",
+          "evidence": "legal field deterministically encodes target",
+          "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+          "gate_id": "G2",
+          "matched_challengers": [
+            "effect_vector_lookup"
+          ],
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "semantic_accuracy_probe",
+          "evidence": "effect_vector_lookup_accuracy=1.0 via actuator_effects semantic probe",
+          "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+          "gate_id": "G2",
+          "matched_challengers": [
+            "effect_vector_lookup"
+          ],
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "semantic_accuracy_probe",
+          "evidence": "benign alias accuracy=1.0 without forbidden-name match",
+          "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+          "gate_id": "G2",
+          "matched_challengers": [
+            "effect_vector_lookup"
+          ],
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "oracle_equivalence_probe",
+          "evidence": "simple legal challenger reaches oracle-level accuracy or majority equivalence",
+          "gate": "Detect when a simple legal baseline equals oracle.",
+          "gate_id": "G3",
+          "matched_challengers": [
+            "action_index_context_key_arithmetic",
+            "effect_vector_lookup",
+            "legal_tuple_lookup",
+            "state_action_table"
+          ],
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "evaluator_privilege_probe",
+          "evidence": "oracle/scorer has answer-function or forbidden-alias access not granted to fair baselines",
+          "gate": "Detect evaluator privilege where oracle/scorer has rule access not granted to baselines.",
+          "gate_id": "G4",
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "synthesized_legal_challenger_probe",
+          "evidence": "required fair legal challengers are synthesized before admission",
+          "gate": "Detect missing fair challengers by synthesizing simple legal baselines.",
+          "gate_id": "G5",
+          "matched_challengers": [
+            "action_index_context_key_arithmetic",
+            "effect_vector_lookup",
+            "legal_tuple_lookup",
+            "state_action_table"
+          ],
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "replay_independence_probe",
+          "evidence": "replay path recomputes the label or reads answer-bearing state",
+          "gate": "Detect replay tautology.",
+          "gate_id": "G6",
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "semantic_accuracy_probe",
+          "evidence": "benign-named answer alias controllability_outlook reaches target accuracy while name scan passes",
+          "gate": "Detect benign-named answer aliases.",
+          "gate_id": "G7",
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        },
+        {
+          "detector_method": "same_state_proxy_probe",
+          "evidence": "same-state metadata/context/action_index fields determine or proxy the target",
+          "gate": "Detect same-state proxy leaks through metadata/context/action-index fields.",
+          "gate_id": "G8",
+          "source_path": "synthetic/renamed_preserved_negative_control.json"
+        }
+      ],
+      "matched_challengers": [
+        "action_index_context_key_arithmetic",
+        "effect_vector_lookup",
+        "legal_tuple_lookup",
+        "state_action_table"
+      ],
+      "oracle_equivalent_legal_challengers_detected": true,
+      "preserved_task_id": "SYNTHETIC-RENAMED-SURFACE-CONTROL-NOT-A-DENYLIST",
+      "producer_function": "validate_preserved_negative_control",
+      "static_task_id_denylist_used": false,
+      "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+    },
+    "source_control_path": "artifacts/preserve_action_conditioned_self_boundary_preflight_001a_hostile_audit_001a/result.json",
+    "static_task_id_denylist_used": false,
+    "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+    "task_id_only_counter_control": {
+      "admission_decision": "blocked_pending_audit",
+      "bundle_id": "task_id_only_counter_control",
+      "claim_ceiling": "engineering-governance / evidence-hygiene only",
+      "findings": [],
+      "non_failable_claims_detected": false,
+      "producer_function": "validate_surface_admission_bundle",
+      "static_report_refused": false,
+      "static_task_id_denylist_used": false,
+      "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+    }
   },
   "blocked_control_count": 3,
   "candidate_or_surface_designed": false,
@@ -340,7 +513,344 @@
   "producer_function": "validate_preserved_negative_controls",
   "producer_source_path": "src/surface_admission_contract_hardening_001a/validator.py",
   "real_trigger_evidence": "read-only preserved hostile-audit artifacts plus static positive-control refusal",
-  "source_code_hash": "c6de210bcca20d84f00c8cb888302235ac36d331a90b6e5f47acef45a3d9f80f",
+  "reason_specific_control_readback": {
+    "claim_ceiling": "engineering-governance / evidence-hygiene only",
+    "controls": [
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G1",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "shared_oracle_target_path_probe",
+              "evidence": "oracle/target or oracle/scorer tautology is preserved in blocker evidence",
+              "gate": "Detect oracle-target tautology.",
+              "gate_id": "G1",
+              "source_path": "synthetic/reason_positive_G1.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G2",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "semantic_accuracy_probe",
+              "evidence": "blocking issue reports semantic answer-bearing legal field",
+              "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+              "gate_id": "G2",
+              "source_path": "synthetic/reason_positive_G2.json"
+            },
+            {
+              "detector_method": "semantic_accuracy_probe",
+              "evidence": "legal field deterministically encodes target",
+              "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+              "gate_id": "G2",
+              "source_path": "synthetic/reason_positive_G2.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G3",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "oracle_equivalence_probe",
+              "evidence": "simple legal challenger reaches oracle-level accuracy or majority equivalence",
+              "gate": "Detect when a simple legal baseline equals oracle.",
+              "gate_id": "G3",
+              "source_path": "synthetic/reason_positive_G3.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G4",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "evaluator_privilege_probe",
+              "evidence": "oracle/scorer has answer-function or forbidden-alias access not granted to fair baselines",
+              "gate": "Detect evaluator privilege where oracle/scorer has rule access not granted to baselines.",
+              "gate_id": "G4",
+              "source_path": "synthetic/reason_positive_G4.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G5",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "synthesized_legal_challenger_probe",
+              "evidence": "required fair legal challengers are synthesized before admission",
+              "gate": "Detect missing fair challengers by synthesizing simple legal baselines.",
+              "gate_id": "G5",
+              "matched_challengers": [
+                "action_index_context_key_arithmetic",
+                "effect_vector_lookup",
+                "legal_tuple_lookup",
+                "nearest_neighbor_legal_observations",
+                "single_legal_field_lookup",
+                "state_action_table"
+              ],
+              "source_path": "synthetic/reason_positive_G5.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G6",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "replay_independence_probe",
+              "evidence": "replay path recomputes the label or reads answer-bearing state",
+              "gate": "Detect replay tautology.",
+              "gate_id": "G6",
+              "source_path": "synthetic/reason_positive_G6.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G7",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "semantic_accuracy_probe",
+              "evidence": "benign alias accuracy=1.0 without forbidden-name match",
+              "gate": "Detect legal-field semantic answer encoding, not only forbidden-name matches.",
+              "gate_id": "G2",
+              "source_path": "synthetic/reason_positive_G7.json"
+            },
+            {
+              "detector_method": "oracle_equivalence_probe",
+              "evidence": "simple legal challenger reaches oracle-level accuracy or majority equivalence",
+              "gate": "Detect when a simple legal baseline equals oracle.",
+              "gate_id": "G3",
+              "source_path": "synthetic/reason_positive_G7.json"
+            },
+            {
+              "detector_method": "semantic_accuracy_probe",
+              "evidence": "benign-named answer alias controllability_outlook reaches target accuracy while name scan passes",
+              "gate": "Detect benign-named answer aliases.",
+              "gate_id": "G7",
+              "source_path": "synthetic/reason_positive_G7.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "unblocked",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G8",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "synthesized_legal_challenger_probe",
+              "evidence": "required fair legal challengers are synthesized before admission",
+              "gate": "Detect missing fair challengers by synthesizing simple legal baselines.",
+              "gate_id": "G5",
+              "matched_challengers": [
+                "action_index_context_key_arithmetic"
+              ],
+              "source_path": "synthetic/reason_positive_G8.json"
+            },
+            {
+              "detector_method": "same_state_proxy_probe",
+              "evidence": "same-state metadata/context/action_index fields determine or proxy the target",
+              "gate": "Detect same-state proxy leaks through metadata/context/action-index fields.",
+              "gate_id": "G8",
+              "source_path": "synthetic/reason_positive_G8.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      },
+      {
+        "counter_control": {
+          "admission_decision": "blocked_pending_audit",
+          "findings": [],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": false
+        },
+        "gate_id": "G9",
+        "positive_control": {
+          "admission_decision": "blocked",
+          "findings": [
+            {
+              "detector_method": "non_failable_boolean_claim_probe",
+              "evidence": "$.passed=true is a non-fail-able static claim",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            },
+            {
+              "detector_method": "non_failable_boolean_claim_probe",
+              "evidence": "$.verified=true is a non-fail-able static claim",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            },
+            {
+              "detector_method": "non_failable_boolean_claim_probe",
+              "evidence": "$.bounded_pass=true is a non-fail-able static claim",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            },
+            {
+              "detector_method": "static_literal_metric_probe",
+              "evidence": "$.oracle_accuracy=1.0 lacks metric producer provenance",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            },
+            {
+              "detector_method": "non_failable_boolean_claim_probe",
+              "evidence": "$.baseline_gate_passed=true is a non-fail-able static claim",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            },
+            {
+              "detector_method": "non_failable_boolean_claim_probe",
+              "evidence": "$.replay_gate_passed=true is a non-fail-able static claim",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            },
+            {
+              "detector_method": "non_failable_boolean_claim_probe",
+              "evidence": "$.leakage_gate_passed=true is a non-fail-able static claim",
+              "gate": "Refuse static pass reports and non-fail-able boolean claims.",
+              "gate_id": "G9",
+              "source_path": "synthetic_static_pass/result.json"
+            }
+          ],
+          "static_task_id_denylist_used": false,
+          "triggered_expected_gate": true
+        }
+      }
+    ],
+    "counter_control_count": 9,
+    "passed": true,
+    "positive_control_count": 9,
+    "producer_function": "build_reason_specific_control_readback",
+    "static_task_id_denylist_used": false,
+    "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+  },
+  "scope_guard_readback": {
+    "claim_ceiling": "engineering-governance / evidence-hygiene only",
+    "no_candidate": true,
+    "no_mechanism_score": true,
+    "no_new_mechanism_surface": true,
+    "old_preserved_artifacts_unchanged": true,
+    "passed": true,
+    "producer_function": "_scope_guard_readback",
+    "protected_input_readback": {
+      "claim_ceiling": "engineering-governance / evidence-hygiene only",
+      "manifest_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\protected_input_hashes.json",
+      "old_preserved_artifacts_unchanged": true,
+      "passed": true,
+      "producer_function": "_verify_protected_inputs_unchanged",
+      "records": [
+        {
+          "current_sha256": "320110dcaa16877db40e4ab8209f0e53a8e40666c0b345097d56029d93322298",
+          "expected_sha256": "320110dcaa16877db40e4ab8209f0e53a8e40666c0b345097d56029d93322298",
+          "path": "artifacts/preserve_composite_ctsr_hostile_audit_001a/result.json",
+          "unchanged": true
+        },
+        {
+          "current_sha256": "1a33c5341116238495c21f529f2e2094ffb0a19b7b8875d03d4ed9a201ba57c9",
+          "expected_sha256": "1a33c5341116238495c21f529f2e2094ffb0a19b7b8875d03d4ed9a201ba57c9",
+          "path": "artifacts/preserve_ctsr_solvability_inversion_preflight_001a_hostile_audit_001a/result.json",
+          "unchanged": true
+        },
+        {
+          "current_sha256": "97892d1ab40184c12996c829312d6d06a1c7875f4ee79561b48c66390883afc1",
+          "expected_sha256": "97892d1ab40184c12996c829312d6d06a1c7875f4ee79561b48c66390883afc1",
+          "path": "artifacts/preserve_action_conditioned_self_boundary_preflight_001a_hostile_audit_001a/result.json",
+          "unchanged": true
+        }
+      ],
+      "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+    },
+    "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
+  },
+  "source_code_hash": "177338e54cab0d8d2f50c218f82779bac699e8be22fba15bc32c33da31cace2c",
   "static_pass_refusal_report": {
     "admission_decision": "blocked",
     "bundle_id": "static_pass_positive_control",
@@ -425,11 +935,31 @@
       "single_legal_field_lookup",
       "state_action_table"
     ],
-    "source_code_hash": "c6de210bcca20d84f00c8cb888302235ac36d331a90b6e5f47acef45a3d9f80f",
+    "source_code_hash": "177338e54cab0d8d2f50c218f82779bac699e8be22fba15bc32c33da31cace2c",
     "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A"
   },
   "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
-  "verdict": "blocked_preserved_false_positive_surfaces",
+  "verdict": "contract_hardened_pass",
+  "verdict_enum_reconciliation": {
+    "allowed_verdicts": [
+      "contract_hardened_pass",
+      "contract_refused",
+      "invalid_contract_harness"
+    ],
+    "claim_ceiling": "engineering-governance / evidence-hygiene only",
+    "contract_mismatch_preserved": true,
+    "existing_top_level_verdict": "blocked_preserved_false_positive_surfaces",
+    "new_top_level_verdict": "contract_hardened_pass",
+    "previous_top_level_verdict": "blocked_preserved_false_positive_surfaces",
+    "producer_function": "_previous_verdict_readback",
+    "result_json_parse": {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json",
+      "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+      "top_level_verdict": "blocked_preserved_false_positive_surfaces"
+    }
+  },
   "what_this_does_not_prove": [
     "mechanism validity",
     "Gate4 validity",

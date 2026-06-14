@@ -14,6 +14,35 @@
         ],
         "passed": true
       },
+      "G11": {
+        "evidence": [
+          "old blocked_preserved_false_positive_surfaces verdict preserved as enum mismatch",
+          "new top-level verdict is contract_hardened_pass"
+        ],
+        "passed": true
+      },
+      "G12": {
+        "evidence": [
+          "renamed positive control blocked by detected features",
+          "task-id-only counter-control not rejected by blacklist"
+        ],
+        "passed": true
+      },
+      "G13": {
+        "evidence": [
+          "9 reason-specific positive controls triggered expected gates",
+          "9 counter-controls did not trigger expected gates"
+        ],
+        "passed": true
+      },
+      "G14": {
+        "evidence": [
+          "no mechanism score produced",
+          "no candidate or new mechanism surface designed",
+          "preserved input artifact hashes match recorded hashes"
+        ],
+        "passed": true
+      },
       "G2": {
         "evidence": [
           "PRESERVE-COMPOSITE-CTSR-HOSTILE-AUDIT-001A: answer-bearing alias channel reported",
@@ -91,7 +120,11 @@
       "G7",
       "G8",
       "G9",
-      "G10"
+      "G10",
+      "G11",
+      "G12",
+      "G13",
+      "G14"
     ]
   },
   "auto_remote_anchor": {
@@ -106,12 +139,33 @@
   "enabled_status": "callable local validator only; no mechanism candidate, runtime, bridge, Gate5, or EGO mainline path enabled",
   "mainline_integration_status": "not integrated; offline validator and contract only",
   "mechanism_score_produced": false,
+  "new_mechanism_surface_designed": false,
   "next_minimal_closed_loop_action": "Require this validator contract before any future surface-admission task card can authorize execution.",
   "old_artifacts_modified": false,
   "preserved_inputs_modified": false,
   "real_trigger_evidence": "read-only preserved hostile-audit artifacts plus static positive-control refusal",
   "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
-  "verdict": "blocked_preserved_false_positive_surfaces",
+  "verdict": "contract_hardened_pass",
+  "verdict_enum_reconciliation": {
+    "allowed_verdicts": [
+      "contract_hardened_pass",
+      "contract_refused",
+      "invalid_contract_harness"
+    ],
+    "claim_ceiling": "engineering-governance / evidence-hygiene only",
+    "contract_mismatch_preserved": true,
+    "existing_top_level_verdict": "blocked_preserved_false_positive_surfaces",
+    "new_top_level_verdict": "contract_hardened_pass",
+    "previous_top_level_verdict": "blocked_preserved_false_positive_surfaces",
+    "producer_function": "_previous_verdict_readback",
+    "result_json_parse": {
+      "exists": true,
+      "parse_status": "parsed",
+      "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\surface_admission_contract_hardening_001a\\result.json",
+      "task_id": "SURFACE-ADMISSION-CONTRACT-HARDENING-001A",
+      "top_level_verdict": "blocked_preserved_false_positive_surfaces"
+    }
+  },
   "what_this_does_not_prove": [
     "mechanism validity",
     "Gate4 validity",

@@ -1,6 +1,14 @@
 # SURFACE-ADMISSION-CONTRACT-HARDENING-001A
 
-Verdict: `blocked_preserved_false_positive_surfaces`.
+Verdict: `contract_hardened_pass`.
+
+Verdict enum reconciliation: prior top-level `result.json` verdict
+`blocked_preserved_false_positive_surfaces` is preserved as a contract mismatch.
+The reconciled top-level verdict must be one of:
+
+- `contract_hardened_pass`
+- `contract_refused`
+- `invalid_contract_harness`
 
 Layer: engineering-governance / harness-contract hardening / no mechanism surface.
 
@@ -23,13 +31,18 @@ No mechanism candidate is implemented or scored by this task. No mechanism score
 ## Computed Validator Readback
 
 Artifact result: `artifacts/surface_admission_contract_hardening_001a/result.json`.
+Artifact readback: `artifacts/surface_admission_contract_hardening_001a/readback.json`.
 
 Readback:
 
 - all preserved negative controls blocked: yes;
-- G1 through G10 passed: yes;
+- G1 through G14 passed: yes;
 - failed gates: none;
 - static task-id denylist used: false;
+- anti-blacklist renamed positive-control blocked by features: yes;
+- task-id-only counter-control not rejected by blacklist: yes;
+- reason-specific positive-controls triggered expected gates: yes;
+- reason-specific counter-controls did not trigger expected gates: yes;
 - mechanism score produced: false;
 - candidate or new surface designed: false;
 - preserved input artifacts modified: false.
@@ -47,9 +60,9 @@ Readback:
 - Ablation requirement: static pass and non-fail-able boolean claims must be refused by positive control.
 - Trace/replay requirement: replay must be rejected when it recomputes labels with the same function/path as label generation or reads answer-bearing state.
 - Computed-evidence provenance gate: reports must identify producer functions, protected input hashes, and generated machine-readable artifacts.
-- Acceptance gate: G1 through G10 below must pass.
+- Acceptance gate: G1 through G14 below must pass.
 - Claim ceiling: engineering-governance / evidence-hygiene only.
-- Stop condition: if any preserved negative control is not blocked, result is `invalid_contract`.
+- Stop condition: if any preserved negative control is not blocked, result is `invalid_contract_harness`; if verdict discipline, G13, or G14 is not satisfied, result is `contract_refused` or `invalid_contract_harness` instead of pass.
 - Rollback plan: revert the isolated validator package, test file, contract document, and generated artifact directory.
 - Expected changed files: `src/surface_admission_contract_hardening_001a/`, `tests/test_surface_admission_contract_hardening_001a.py`, this document, and `artifacts/surface_admission_contract_hardening_001a/`.
 - Forbidden changes: mechanism candidates, new surfaces, frozen artifacts, old invalid harnesses, EGO mainline, runtime, Gate5, bridge, UI, LLM integration, deployment, and API keys.
@@ -83,6 +96,21 @@ G8. Same-state proxy leaks through metadata, context, action-index, query-offset
 G9. Static pass reports and non-fail-able boolean claims must be refused. Literal pass verdicts, `passed=true`, `verified=true`, perfect scores without callable provenance, and clean reports without positive controls are not evidence.
 
 G10. All three preserved negative controls must be blocked by the validator.
+
+G11. The top-level result verdict must conform to the allowed verdict enum, and
+the prior `blocked_preserved_false_positive_surfaces` value must remain recorded
+as a contract mismatch rather than silently disappearing.
+
+G12. Anti-blacklist readback must show that a renamed positive-control remains
+blocked by detected features while a task-id-only counter-control is not rejected
+by static blacklist behavior.
+
+G13. Reason-specific positive-controls and counter-controls must be computed:
+positive-controls must trigger their expected gates, and counter-controls must
+not trigger those gates.
+
+G14. Scope and preservation guards must remain true: no mechanism score, no
+candidate, no new mechanism surface, and no old preserved input artifact drift.
 
 ## Future Surface Admission Contract
 
