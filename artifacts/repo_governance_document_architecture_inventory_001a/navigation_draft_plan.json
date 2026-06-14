@@ -1,0 +1,100 @@
+{
+  "blockers": [],
+  "draft_files": [
+    {
+      "allowed_content": [
+        "current branch/head readback at generation time",
+        "claim ceiling",
+        "active closed-family boundaries",
+        "next minimal allowed action"
+      ],
+      "claim_ceiling": "navigation-only draft; source artifacts remain authoritative",
+      "forbidden_content": [
+        "new mechanism claims",
+        "Gate4 validity claims",
+        "runtime or EGO readiness claims",
+        "rewriting old verdicts"
+      ],
+      "intended_reader": "future Codex or reviewer needing orientation before task selection",
+      "must_not_replace_original_evidence": true,
+      "path": "docs/CURRENT_STATE.md",
+      "purpose": "Short current-state readback for repo navigation.",
+      "source_artifact_inputs": [
+        "source_pin_readback.json",
+        "canonical_boundary_candidates.json",
+        "closed_family_index.json",
+        "document_inventory_metrics.json"
+      ],
+      "update_rule": "Update only from a new bounded governance task that source-pins current boundary artifacts."
+    },
+    {
+      "allowed_content": [
+        "boundary id",
+        "source doc path",
+        "artifact path",
+        "anchor/hash",
+        "claim ceiling"
+      ],
+      "claim_ceiling": "canonical-navigation candidate list only",
+      "forbidden_content": [
+        "new evidence interpretation stronger than source",
+        "mechanism success claims"
+      ],
+      "intended_reader": "future task-card writer or evidence auditor",
+      "must_not_replace_original_evidence": true,
+      "path": "docs/CANONICAL_BOUNDARIES.md",
+      "purpose": "Compact pointer list for candidate canonical source boundaries.",
+      "source_artifact_inputs": [
+        "canonical_boundary_candidates.json"
+      ],
+      "update_rule": "Append or revise only through a bounded source-pinned governance task."
+    },
+    {
+      "allowed_content": [
+        "computed aggregate counts",
+        "scan limitations",
+        "source inventory pointer"
+      ],
+      "claim_ceiling": "inventory metrics and navigation only",
+      "forbidden_content": [
+        "hand-written aggregate totals",
+        "claim upgrades from counts"
+      ],
+      "intended_reader": "future reviewer checking where to inspect source records",
+      "must_not_replace_original_evidence": true,
+      "path": "docs/EVIDENCE_LEDGER.md",
+      "purpose": "Thin category ledger for evidence and governance record types.",
+      "source_artifact_inputs": [
+        "repo_document_inventory.json",
+        "document_inventory_metrics.json"
+      ],
+      "update_rule": "Regenerate counts from callable analyzer before changing aggregate numbers."
+    },
+    {
+      "allowed_content": [
+        "family id",
+        "closure source",
+        "closure reason",
+        "reopen conditions",
+        "forbidden reopen patterns"
+      ],
+      "claim_ceiling": "closed-family navigation only",
+      "forbidden_content": [
+        "same-family repair authorization",
+        "candidate-family tournament design",
+        "runtime readiness"
+      ],
+      "intended_reader": "future Codex task executor avoiding anti-Zeno loops",
+      "must_not_replace_original_evidence": true,
+      "path": "docs/CLOSED_FAMILIES.md",
+      "purpose": "Short index of closed or blocked task families and forbidden reopen patterns.",
+      "source_artifact_inputs": [
+        "closed_family_index.json"
+      ],
+      "update_rule": "Update only by adding source-pinned closure records; do not erase historical closures."
+    }
+  ],
+  "scan_sufficient_for_optional_navigation_drafts": true,
+  "status": "draft_navigation_layer_plan",
+  "task_id": "REPO-GOVERNANCE-DOCUMENT-ARCHITECTURE-INVENTORY-001A"
+}
