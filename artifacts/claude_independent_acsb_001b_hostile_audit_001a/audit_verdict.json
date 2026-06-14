@@ -1,0 +1,78 @@
+{
+  "verdict": "remote_anchor_preserve_claude_independent_acsb_001b_hostile_audit_001a_blocker",
+  "audit_id": "CLAUDE-INDEPENDENT-ACTION-CONDITIONED-SELF-BOUNDARY-001B-HOSTILE-AUDIT-001A",
+  "audited_boundary": "ACTION-CONDITIONED-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B-LEARNED-BASELINE-SCALING-CHALLENGE",
+  "audited_commit": "347b75b9fcf610d0eb93206da20297057ead220a",
+  "audited_branch": "codex/meta-theory-scaffold",
+  "audited_tag": "remote-anchor-action-conditioned-self-boundary-executable-preflight-001b-347b75b",
+  "audit_verdict": "claude_independent_acsb_001b_audit_blocks_on_learned_baseline_invalidity",
+  "co_blocking_verdict": "claude_independent_acsb_001b_audit_blocks_on_capacity_matched_baseline_invalidity",
+  "supports_bounded_001b_claim": false,
+  "primary_blocker": "learned_baselines_untrained_deterministic_readouts_ignoring_discriminative_legal_fields",
+  "co_blocker": "capacity_matched_reference_returns_stale_prior_channel_rigged_to_zero",
+  "non_blocking_positives": [
+    "legal_inputs_did_not_contain_direct_target_or_oracle_leakage",
+    "leakage_positive_controls_were_failable",
+    "contaminated_learned_baseline_exploited_leakage_at_1_0",
+    "replay_recomputed_behavior_from_state_and_observation",
+    "provenance_and_static_score_checks_were_materially_better_than_prior_report_shaped_routes"
+  ],
+  "route_decision": {
+    "preserved_decision": "001B must be treated as blocked for learned-baseline and scaling survival claims",
+    "remaining_usable_part_of_001b": "partial harness and evidence-hygiene evidence only",
+    "forbidden_citation": "do not cite 001B as learned-baseline/scaling survival evidence",
+    "recommended_route": "reclassify 001B to blocked or downgrade to handcoded heuristic separation pending required fixes"
+  },
+  "successor_restrictions": [
+    "successors depending on learned/scaling evidence are blocked until a replacement task implements an actually fitted no-boundary model on flattened legal observations including no-action and external rows",
+    "successors depending on learned/scaling evidence are blocked until a genuine capacity-matched boundary-disabled reference is implemented",
+    "successors depending on learned/scaling evidence are blocked until non-constant mechanism-specific ablations are implemented",
+    "successors depending on learned/scaling evidence are blocked until a real generalization split is implemented or scaling/heldout language is removed",
+    "successors depending on learned/scaling evidence are blocked until tests fail when learner or ablation is constant or feature-impoverished"
+  ],
+  "current_layer": "engineering-governance / hostile audit preservation only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": "Claude independently audited the anchored 001B commit using read-only committed blobs via git archive and found that the learned-baseline/scaling claim is blocked",
+  "claim_ceiling": "independent hostile-audit preservation only",
+  "changed_files": [
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001B-HOSTILE-AUDIT-001A.md",
+    "artifacts/CLAUDE-INDEPENDENT-ACSB-001B-HOSTILE-AUDIT-001A/audit_verdict.json",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/audit_verdict.json",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/readback.json",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/claim_ceiling.txt",
+    "artifacts/claude_independent_acsb_001b_hostile_audit_001a/git_readback.json"
+  ],
+  "checks_run": [
+    "start_state_git_readback",
+    "remote_branch_tag_readback_for_001b_commit",
+    "worktree_dirty_file_readback",
+    "audit_artifact_sha256_readback",
+    "json_parse_check_for_audit_verdict_json",
+    "changed_file_allowlist_check",
+    "forbidden_path_scan",
+    "forbidden_positive_claim_scan",
+    "scoped_secret_pattern_scan",
+    "git_diff_check",
+    "git_diff_cached_check",
+    "final_git_status",
+    "final_git_diff_name_status",
+    "remote_anchor_exact_readback_if_anchor_performed"
+  ],
+  "what_this_cannot_prove": [
+    "mechanism invalidity",
+    "mechanism validity",
+    "gate4_validity",
+    "gate5_validity",
+    "candidate_behavior",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "runtime_readiness",
+    "ego_readiness",
+    "stable_user_benefit",
+    "mainline_effect"
+  ]
+}
