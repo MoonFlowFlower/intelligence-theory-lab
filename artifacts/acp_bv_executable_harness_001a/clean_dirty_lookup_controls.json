@@ -1,0 +1,44 @@
+{
+  "clean_control": {
+    "scanner_result": {
+      "called": true,
+      "candidate_controlled_hits": [],
+      "fixed_field_name_only_scanner": false,
+      "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/clean_dirty_lookup_controls.json",
+      "producer_function": "scan_candidate_bundle_for_leakage",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-clean-dirty-lookup-clean",
+      "verdict": "clean"
+    },
+    "verdict": "clean_control_passed"
+  },
+  "command": "python -m acp_bv_harness_001a.runner --output-dir D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a --run-id acp-bv-executable-harness-001a-implementation-controls-001a-clean-dirty-lookup",
+  "dirty_control": {
+    "scanner_result": {
+      "called": true,
+      "candidate_controlled_hits": [
+        {
+          "field_path": "metadata.nested.answer_key_alias",
+          "key": "answer_key_alias",
+          "reason": "forbidden_alias_or_key"
+        },
+        {
+          "field_path": "metadata.nested.answer_key_alias",
+          "reason": "forbidden_value_encoding",
+          "value_excerpt": "answer-key:probe"
+        }
+      ],
+      "fixed_field_name_only_scanner": false,
+      "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/clean_dirty_lookup_controls.json",
+      "producer_function": "scan_candidate_bundle_for_leakage",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-clean-dirty-lookup-dirty",
+      "verdict": "blocked"
+    },
+    "verdict": "dirty_control_blocked"
+  },
+  "lookup_memorization_control": {
+    "block_reason": "lookup_table_or_memorization_state_present",
+    "verdict": "lookup_memorization_blocked"
+  },
+  "producer_function": "run_clean_dirty_lookup_controls",
+  "self_reported_boolean_load_bearing": false
+}

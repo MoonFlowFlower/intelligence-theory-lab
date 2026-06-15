@@ -1,0 +1,142 @@
+{
+  "all_required_controls_passed": true,
+  "controls": [
+    {
+      "actual_block_reason": [
+        "candidate_artifact_source",
+        "candidate_writable_source",
+        "not_repo_source_owned"
+      ],
+      "actual_verdict": "blocked",
+      "artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/boundary_negative_controls.json",
+      "control_id": "candidate_accessible_truth_generator_rejected",
+      "expected_block_reason": "candidate_artifact_source",
+      "injected_violation": "truth generator placed under candidate artifact root",
+      "resolved_source_path": "artifacts/acp_bv_executable_harness_001a/candidate_controls/candidate_accessible_truth_generator.py",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-boundary-candidate-accessible",
+      "source_hash": "60b8ad9f66c95f09e1c1463ef3e57ea62dbe20804020a3ad7154fe707c353f9d",
+      "verifier_entrypoint": "verify_callable_source_boundary"
+    },
+    {
+      "actual_block_reason": [
+        "candidate_policy_map_influence"
+      ],
+      "actual_verdict": "blocked",
+      "artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/boundary_negative_controls.json",
+      "control_id": "policy_map_influenced_generator_rejected",
+      "expected_block_reason": "candidate_policy_map_influence",
+      "injected_violation": "generator selection influenced by candidate policy_map",
+      "resolved_source_path": "src/acp_bv_harness_001a/environment.py",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-boundary-policy-map",
+      "source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01",
+      "verifier_entrypoint": "verify_callable_source_boundary"
+    },
+    {
+      "actual_block_reason": [
+        "candidate_artifact_source",
+        "candidate_writable_source",
+        "not_repo_source_owned"
+      ],
+      "actual_verdict": "blocked",
+      "artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/boundary_negative_controls.json",
+      "control_id": "valid_hash_wrong_owner_rejected",
+      "expected_block_reason": "candidate_artifact_source",
+      "injected_violation": "valid source hash but source owner is candidate artifact root",
+      "resolved_source_path": "artifacts/acp_bv_executable_harness_001a/candidate_controls/candidate_accessible_truth_generator.py",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-boundary-wrong-owner",
+      "source_hash": "60b8ad9f66c95f09e1c1463ef3e57ea62dbe20804020a3ad7154fe707c353f9d",
+      "verifier_entrypoint": "verify_callable_source_boundary"
+    },
+    {
+      "actual_block_reason": [
+        "candidate_artifact_source",
+        "candidate_writable_source",
+        "generated_code_source",
+        "not_repo_source_owned"
+      ],
+      "actual_verdict": "blocked",
+      "artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/boundary_negative_controls.json",
+      "control_id": "path_escape_or_generated_code_rejected",
+      "expected_block_reason": "generated_code_source",
+      "injected_violation": "generated-code/path-escape substitute source under candidate root",
+      "resolved_source_path": "artifacts/acp_bv_executable_harness_001a/candidate_controls/candidate_accessible_truth_generator.py",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-boundary-path-escape",
+      "source_hash": "60b8ad9f66c95f09e1c1463ef3e57ea62dbe20804020a3ad7154fe707c353f9d",
+      "substitute_used": true,
+      "verifier_entrypoint": "verify_callable_source_boundary"
+    },
+    {
+      "actual_verdict": "blocked",
+      "block_reason": "blocked_by_runtime_mutation_or_temporal_boundary_gap",
+      "candidate_control_source": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/candidate_controls/same_process_truth_substitution.py",
+      "candidate_side_same_process_substitution_attempted": true,
+      "control_id": "same_process_monkeypatch_rejected_or_ineffective",
+      "expected_block_reason": "blocked_by_runtime_mutation_or_temporal_boundary_gap",
+      "scoring_allowed_after_mutation": false,
+      "scoring_result": {
+        "block_reason": "blocked_by_runtime_mutation_or_temporal_boundary_gap",
+        "blocked": true,
+        "manifest_verification": {
+          "block_reason": null,
+          "bootstrap_check": {
+            "actual_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+            "bootstrap_checker_entrypoint": "acp_bv_harness_001a.source_pins:bootstrap_check_verifier_source_pin",
+            "expected_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+            "passed": true,
+            "verifier_source_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\acp_bv_harness_001a\\boundary.py"
+          },
+          "bootstrap_hash_match": true,
+          "current_bootstrap_checker_source_hash": "6569e8df970de9cff765510baba9019d8ad0bcbf0216f670a73525566617639c",
+          "current_verifier_source_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+          "expected_bootstrap_checker_source_hash": "6569e8df970de9cff765510baba9019d8ad0bcbf0216f670a73525566617639c",
+          "expected_verifier_source_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+          "passed": true,
+          "verifier_hash_match": true
+        },
+        "task_id": "ACP-BV-EXECUTABLE-HARNESS-001A",
+        "truth_boundary": {
+          "block_reasons": [
+            "candidate_artifact_source",
+            "candidate_writable_source",
+            "not_repo_source_owned",
+            "source_hash_mismatch"
+          ],
+          "boundary_verdict": "source_boundary_blocked",
+          "callable_entrypoint": "acp_bv_candidate_control_same_process_truth_substitution:same_process_truth_substitution",
+          "candidate_artifact_root_match": true,
+          "candidate_config_influence_detected": false,
+          "candidate_inaccessible_derived": false,
+          "candidate_label_or_logit_influence_detected": false,
+          "candidate_policy_map_influence_detected": false,
+          "candidate_score_or_verdict_influence_detected": false,
+          "candidate_serialized_state_influence_detected": false,
+          "candidate_writable_root_match": true,
+          "generated_output_root_match": false,
+          "normalized_realpath": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\acp_bv_executable_harness_001a\\candidate_controls\\same_process_truth_substitution.py",
+          "repo_source_owned_derived": false,
+          "repo_source_root_match": false,
+          "resolved_source_path": "artifacts/acp_bv_executable_harness_001a/candidate_controls/same_process_truth_substitution.py",
+          "self_declared_ownership_accepted": false,
+          "source_hash": "bef9186e154fe150f2b1a22b735937772eb9cc43aade5e2a9f6aeee6aa9818f9"
+        }
+      }
+    }
+  ],
+  "producer_function": "run_boundary_negative_controls",
+  "provenance": {
+    "aggregation_method": "all_boundary_negative_controls_must_block",
+    "code_path_hash": "311268061137fcf961e38bc0bb6b60a533d5f667c8c41b8d192e65e9b4e98eb1",
+    "input_artifact_hash": "358b129e4ca0b958420da98b8f5cb61fd331294032777a300904a4f7e751fb0c",
+    "inputs": {
+      "control_count": 5
+    },
+    "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/boundary_negative_controls.json",
+    "producer_entrypoint": "acp_bv_harness_001a.controls:run_boundary_negative_controls",
+    "producer_function": "run_boundary_negative_controls",
+    "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-boundary",
+    "seed_context_episode_ids": [],
+    "source_hash": "311268061137fcf961e38bc0bb6b60a533d5f667c8c41b8d192e65e9b4e98eb1",
+    "source_path": "src/acp_bv_harness_001a/controls.py"
+  },
+  "self_declared_ownership_accepted": false
+}

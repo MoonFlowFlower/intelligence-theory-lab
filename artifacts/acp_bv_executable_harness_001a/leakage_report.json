@@ -1,0 +1,112 @@
+{
+  "all_controls_passed": true,
+  "clean_case": {
+    "called": true,
+    "candidate_controlled_hits": [],
+    "fixed_field_name_only_scanner": false,
+    "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/leakage_report.json",
+    "producer_function": "scan_candidate_bundle_for_leakage",
+    "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-leakage-clean",
+    "verdict": "clean"
+  },
+  "dirty_case": {
+    "called": true,
+    "candidate_controlled_hits": [
+      {
+        "field_path": "oracleLabel",
+        "key": "oracleLabel",
+        "reason": "forbidden_alias_or_key"
+      },
+      {
+        "field_path": "oracleLabel",
+        "reason": "forbidden_value_encoding",
+        "value_excerpt": "oracle::boundary_delta=2"
+      }
+    ],
+    "fixed_field_name_only_scanner": false,
+    "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/leakage_report.json",
+    "producer_function": "scan_candidate_bundle_for_leakage",
+    "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-leakage-dirty-1",
+    "verdict": "blocked"
+  },
+  "fixed_field_name_only_scanner": false,
+  "producer_function": "run_leakage_controls",
+  "provenance": {
+    "aggregation_method": "all_dirty_controls_must_block_clean_must_pass",
+    "code_path_hash": "55b13c220e0da5e91c08d1dffa379638c77ef27595d81ef232b05e0eac09e7c5",
+    "input_artifact_hash": "62e9596fd40ef82a3860d3c225c9fc56c030c7e0051dc28fb45bc15e30a27af3",
+    "inputs": {
+      "dirty_variant_count": 3
+    },
+    "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/leakage_report.json",
+    "producer_entrypoint": "acp_bv_harness_001a.leakage:run_leakage_controls",
+    "producer_function": "run_leakage_controls",
+    "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-leakage",
+    "seed_context_episode_ids": [],
+    "source_hash": "55b13c220e0da5e91c08d1dffa379638c77ef27595d81ef232b05e0eac09e7c5",
+    "source_path": "src/acp_bv_harness_001a/leakage.py"
+  },
+  "randomized_dirty_cases": [
+    {
+      "called": true,
+      "candidate_controlled_hits": [
+        {
+          "field_path": "oracleLabel",
+          "key": "oracleLabel",
+          "reason": "forbidden_alias_or_key"
+        },
+        {
+          "field_path": "oracleLabel",
+          "reason": "forbidden_value_encoding",
+          "value_excerpt": "oracle::boundary_delta=2"
+        }
+      ],
+      "fixed_field_name_only_scanner": false,
+      "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/leakage_report.json",
+      "producer_function": "scan_candidate_bundle_for_leakage",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-leakage-dirty-1",
+      "verdict": "blocked"
+    },
+    {
+      "called": true,
+      "candidate_controlled_hits": [
+        {
+          "field_path": "metadata.nested.answer_key_alias",
+          "key": "answer_key_alias",
+          "reason": "forbidden_alias_or_key"
+        },
+        {
+          "field_path": "metadata.nested.answer_key_alias.encoded",
+          "reason": "forbidden_value_encoding",
+          "value_excerpt": "answer-key:repair"
+        }
+      ],
+      "fixed_field_name_only_scanner": false,
+      "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/leakage_report.json",
+      "producer_function": "scan_candidate_bundle_for_leakage",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-leakage-dirty-2",
+      "verdict": "blocked"
+    },
+    {
+      "called": true,
+      "candidate_controlled_hits": [
+        {
+          "field_path": "candidate_outputs[0].expectedScoreBlob",
+          "key": "expectedScoreBlob",
+          "reason": "forbidden_alias_or_key"
+        },
+        {
+          "field_path": "candidate_outputs[0].expectedScoreBlob",
+          "reason": "forbidden_value_encoding",
+          "value_excerpt": "expected_score=1.0"
+        }
+      ],
+      "fixed_field_name_only_scanner": false,
+      "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_executable_harness_001a/leakage_report.json",
+      "producer_function": "scan_candidate_bundle_for_leakage",
+      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-leakage-dirty-3",
+      "verdict": "blocked"
+    }
+  ],
+  "randomized_dirty_cases_detected": 3
+}
