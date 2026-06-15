@@ -1,0 +1,99 @@
+{
+  "task_id": "NEXT-MECHANISM-SURFACE-ROUTE-DECISION-001A",
+  "producer_function": "manual_validation_readback",
+  "claim_ceiling": "bounded route recommendation / route block / surface-admissibility decision only",
+  "validation_requirements": {
+    "git_branch_head_status_readback": "passed",
+    "local_tag_readback": "passed",
+    "remote_branch_readback": "passed",
+    "remote_tag_readback": "passed",
+    "ahead_behind_readback": "passed",
+    "json_parse_validation": "passed",
+    "changed_file_allowlist_check": "passed",
+    "forbidden_claim_scan": "passed",
+    "no_001e_file_or_path_created": "passed",
+    "no_source_runtime_mainline_files_modified": "passed"
+  },
+  "start_state_commands": [
+    {
+      "command": "git branch --show-current",
+      "exit_code": 0,
+      "observed": "codex/meta-theory-scaffold"
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit_code": 0,
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e"
+    },
+    {
+      "command": "git status --porcelain=v1",
+      "exit_code": 0,
+      "observed": ""
+    },
+    {
+      "command": "git rev-list --left-right --count \"HEAD...@{u}\"",
+      "exit_code": 0,
+      "observed": "0 0"
+    },
+    {
+      "command": "git rev-parse refs/tags/remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426",
+      "exit_code": 0,
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e"
+    },
+    {
+      "command": "git ls-remote origin refs/heads/codex/meta-theory-scaffold",
+      "exit_code": 0,
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e"
+    },
+    {
+      "command": "git ls-remote origin refs/tags/remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426",
+      "exit_code": 0,
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e"
+    },
+    {
+      "command": "git tag -l remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426 --format='%(objecttype)'",
+      "exit_code": 0,
+      "observed": "commit"
+    }
+  ],
+  "allowlist": [
+    "docs/research/NEXT-MECHANISM-SURFACE-ROUTE-DECISION-001A.md",
+    "artifacts/next_mechanism_surface_route_decision_001a/result.json",
+    "artifacts/next_mechanism_surface_route_decision_001a/route_matrix.json",
+    "artifacts/next_mechanism_surface_route_decision_001a/readback.json",
+    "artifacts/next_mechanism_surface_route_decision_001a/validation.json"
+  ],
+  "forbidden_claim_scan_terms_source": "Attached task card forbidden-claim phrase list; exact phrases are applied by the validation command and not stored verbatim here to avoid self-matching the validation artifact.",
+  "forbidden_claim_scan_term_count": 15,
+  "post_write_validation": {
+    "producer_commands": [
+      "Get-Content -Raw <json_file> | ConvertFrom-Json",
+      "git status --porcelain=v1 -uall",
+      "PowerShell fixed-string forbidden-claim scan over produced files",
+      "PowerShell changed-path scan for 001e",
+      "PowerShell changed-path scan for source/runtime/mainline prefixes"
+    ],
+    "json_files": [
+      "artifacts/next_mechanism_surface_route_decision_001a/result.json",
+      "artifacts/next_mechanism_surface_route_decision_001a/route_matrix.json",
+      "artifacts/next_mechanism_surface_route_decision_001a/readback.json",
+      "artifacts/next_mechanism_surface_route_decision_001a/validation.json"
+    ],
+    "json_parse_status": "all_required_json_parsed",
+    "changed_files_observed": [
+      "artifacts/next_mechanism_surface_route_decision_001a/readback.json",
+      "artifacts/next_mechanism_surface_route_decision_001a/result.json",
+      "artifacts/next_mechanism_surface_route_decision_001a/route_matrix.json",
+      "artifacts/next_mechanism_surface_route_decision_001a/validation.json",
+      "docs/research/NEXT-MECHANISM-SURFACE-ROUTE-DECISION-001A.md"
+    ],
+    "allowlist_status": "changed_files_match_allowlist",
+    "forbidden_claim_matches": [],
+    "forbidden_claim_scan_status": "no_forbidden_unbounded_claim_matches",
+    "created_001e_paths": [],
+    "created_001e_path_status": "no_001e_file_or_path_created",
+    "source_runtime_mainline_modified_paths": [],
+    "source_runtime_mainline_status": "no_source_runtime_mainline_paths_modified"
+  },
+  "final_commit_anchor_note": "If committed and remote-anchored, final commit and tag readback are reported after commit/tag push; embedding those fields in this artifact would change the commit hash."
+}

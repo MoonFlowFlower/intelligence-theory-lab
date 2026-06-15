@@ -1,0 +1,131 @@
+{
+  "task_id": "NEXT-MECHANISM-SURFACE-ROUTE-DECISION-001A",
+  "producer_function": "manual_route_governance_matrix_from_repo_readback",
+  "claim_ceiling": "bounded route recommendation / route block / surface-admissibility decision only",
+  "source_classification_contract": [
+    "repo_readback_fact",
+    "handoff_fact",
+    "inference",
+    "assumption",
+    "unknown",
+    "route_recommendation"
+  ],
+  "repo_readback_facts": {
+    "canonical_boundary": "PRESERVE-ACSB-CURRENT-ROUTE-DOWNGRADE-CLOSURE-001A",
+    "canonical_boundary_commit": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+    "canonical_boundary_tag": "remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426",
+    "canonical_boundary_verdict": "preserve_acsb_current_route_downgrade_closure_001a_pass",
+    "acsb_validly_tested_by_001d": false,
+    "fe5aa85_accepted_as_acsb_negative_evidence": false,
+    "fe5aa85_citation_allowed_as": "invalid-harness blocker evidence only",
+    "acsb_001e_created_or_authorized": false,
+    "replacement_acsb_preflight_authorized": false
+  },
+  "handoff_facts": {
+    "candidate_route_families_required": [
+      "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+      "world-model-only causal intervention surface",
+      "social / ACSB re-entry family"
+    ],
+    "mainline_integration_target": "none",
+    "enabled_requirement": "none",
+    "implementation_authorized": false,
+    "acsb_reentry_authorized": false
+  },
+  "routes": [
+    {
+      "route_id": "A",
+      "name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+      "source_type": "route_recommendation",
+      "decision": "select_for_future_task_card_drafting_only",
+      "implementation_authorized": false,
+      "mainline_integration_status": "none",
+      "enabled_status": "none",
+      "target_non_oracle_requirement_specifiable": true,
+      "target_generator_isolation_specifiable": true,
+      "train_consumption_requirement_specifiable": true,
+      "boundary_state_causal_dependence_specifiable": true,
+      "fair_strongest_baseline_specifiable": true,
+      "replay_recomputation_specifiable": true,
+      "leakage_positive_controls_specifiable": true,
+      "strongest_baselines": [
+        "no-boundary recurrent learner",
+        "world-model-only learner",
+        "no-memory sequence learner",
+        "fitted no-boundary MLP/RNN/transformer-like baseline",
+        "simple causal transition learner without boundary state"
+      ],
+      "strongest_objection": "ACP-BV may collapse into ordinary model-based control or reward shaping; if viability is just reward or boundary memory is a hidden lookup table, downgrade or block.",
+      "downgrade_rule": "If boundary-memory mutation, persistence-disabled intervention, or capacity-disabled intervention does not change pre-registered behavior, downgrade to world-model-only or block.",
+      "recommendation_rationale_type": "inference",
+      "recommendation_rationale": "This route directly targets the failure family preserved by the ACSB downgrade while allowing hard gates against oracle, lookup, fake learner, inert boundary, and replay-tautology collapse."
+    },
+    {
+      "route_id": "B",
+      "name": "world-model-only causal intervention surface",
+      "source_type": "route_recommendation",
+      "decision": "retain_as_mandatory_substrate_baseline_and_fallback",
+      "implementation_authorized": false,
+      "mainline_integration_status": "none",
+      "enabled_status": "none",
+      "target_non_oracle_requirement_specifiable": true,
+      "target_generator_isolation_specifiable": true,
+      "train_consumption_requirement_specifiable": true,
+      "boundary_state_causal_dependence_specifiable": false,
+      "fair_strongest_baseline_specifiable": true,
+      "replay_recomputation_specifiable": true,
+      "leakage_positive_controls_specifiable": true,
+      "strongest_baselines": [
+        "model-free policy learner",
+        "recurrent predictor",
+        "non-causal sequence learner",
+        "lookup / transition table control",
+        "frozen representation baseline"
+      ],
+      "strongest_objection": "This route can test action-conditioned prediction/adaptation but cannot by itself support a boundary or viability proxy claim.",
+      "fallback_condition": "Use Route B if ACP-BV cannot specify or later satisfy boundary-memory causal-dependence and non-oracle gates.",
+      "recommendation_rationale_type": "inference",
+      "recommendation_rationale": "It is lower-risk and useful as a substrate, but selecting it as primary would be a route downgrade rather than a boundary-proxy advance."
+    },
+    {
+      "route_id": "C",
+      "name": "social / ACSB re-entry family",
+      "source_type": "handoff_fact",
+      "decision": "blocked_frozen_contrast_only",
+      "implementation_authorized": false,
+      "mainline_integration_status": "none",
+      "enabled_status": "none",
+      "target_non_oracle_requirement_specifiable": false,
+      "target_generator_isolation_specifiable": false,
+      "train_consumption_requirement_specifiable": false,
+      "boundary_state_causal_dependence_specifiable": false,
+      "fair_strongest_baseline_specifiable": false,
+      "replay_recomputation_specifiable": false,
+      "leakage_positive_controls_specifiable": false,
+      "strongest_objection": "Immediate ACSB/social re-entry repeats the sealed current-route failure pattern and is not authorized by this boundary.",
+      "future_reentry_condition": "A separate route-decision card would be required for a materially different surface.",
+      "recommendation_rationale_type": "repo_readback_fact",
+      "recommendation_rationale": "The current ACSB route is downgraded and sealed; fe5aa85 is invalid-harness blocker evidence only, not accepted ACSB negative evidence."
+    }
+  ],
+  "unknowns": [
+    {
+      "source_type": "unknown",
+      "item": "Whether a future ACP-BV executable surface can actually satisfy the non-oracle, fair-baseline, boundary-causal, and replay-recomputation gates.",
+      "routing_effect": "Unknown does not authorize implementation; it defines the next task-card drafting burden."
+    }
+  ],
+  "assumptions": [
+    {
+      "source_type": "assumption",
+      "item": "Future task-card drafting can specify admissibility gates without creating candidate code.",
+      "routing_effect": "If this assumption fails, route selection should freeze or downgrade to world-model-only."
+    }
+  ],
+  "selected_route": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "selected_route_authorizes_implementation": false,
+  "acsb_reentry_authorized": false,
+  "acsb_001e_authorized": false,
+  "replacement_preflight_authorized": false,
+  "claude_implementation_authorized": false
+}

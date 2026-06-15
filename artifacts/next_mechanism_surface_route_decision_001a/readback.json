@@ -1,0 +1,103 @@
+{
+  "task_id": "NEXT-MECHANISM-SURFACE-ROUTE-DECISION-001A",
+  "producer_function": "manual_repo_readback_and_key_string_extraction",
+  "claim_ceiling": "bounded route recommendation / route block / surface-admissibility decision only",
+  "start_state_readback": {
+    "branch": {
+      "producer_command": "git branch --show-current",
+      "expected": "codex/meta-theory-scaffold",
+      "observed": "codex/meta-theory-scaffold",
+      "match": true
+    },
+    "local_head": {
+      "producer_command": "git rev-parse HEAD",
+      "expected": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "match": true
+    },
+    "status": {
+      "producer_command": "git status --porcelain=v1",
+      "expected": "",
+      "observed": "",
+      "match": true
+    },
+    "ahead_behind": {
+      "producer_command": "git rev-list --left-right --count \"HEAD...@{u}\"",
+      "expected": "0 0",
+      "observed": "0 0",
+      "match": true
+    },
+    "local_tag": {
+      "producer_command": "git rev-parse refs/tags/remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426",
+      "expected": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "match": true
+    },
+    "remote_branch": {
+      "producer_command": "git ls-remote origin refs/heads/codex/meta-theory-scaffold",
+      "expected": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "match": true
+    },
+    "remote_tag": {
+      "producer_command": "git ls-remote origin refs/tags/remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426",
+      "expected": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "observed": "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+      "match": true
+    },
+    "local_tag_type": {
+      "producer_command": "git tag -l remote-anchor-acsb-current-route-downgrade-closure-001a-a70b426 --format='%(objecttype)'",
+      "expected": "commit",
+      "observed": "commit",
+      "match": true
+    },
+    "exact_start_boundary_match": true
+  },
+  "source_artifact_readback": {
+    "canonical_boundary_result": {
+      "producer_file": "artifacts/acsb_current_route_downgrade_closure_001a/result.json",
+      "verdict": "preserve_acsb_current_route_downgrade_closure_001a_pass",
+      "layer": "route-governance / ACSB current-route downgrade preservation only",
+      "claim_ceiling": "ACSB current-route downgrade preservation only",
+      "acsb_mechanism_falsified": false,
+      "acsb_validly_tested_by_001d": false,
+      "fe5aa85_accepted_as_negative_evidence": false,
+      "fe5aa85_citation_allowed_as": "invalid-harness blocker evidence only",
+      "001e_created_or_authorized": false,
+      "non_001e_replacement_preflight_authorized": false
+    },
+    "preserved_invalid_harness_blocker": {
+      "producer_file": "artifacts/claude_independent_acsb_001d_execution_001a_hostile_audit_001a/result.json",
+      "verdict": "preserve_claude_independent_acsb_001d_execution_001a_hostile_audit_001a_pass",
+      "claim_ceiling": "ACSB-001D execution 001A invalid-harness blocker preservation only",
+      "preserved_route_consequence_verdict": "acsb_001d_execution_001a_bounded_negative_evidence_not_accepted",
+      "accepted_bounded_negative_evidence": false,
+      "blocker_summary": "The reported 1.0 / 1.0 / 0.0 result is preserved as a constructive identity artifact, not valid bounded negative ACSB evidence.",
+      "fe5aa85_may_be_cited_only_as_invalid_harness_blocker": true
+    }
+  },
+  "bounded_deep_audit": {
+    "layer": "route-governance / mechanism-surface admissibility review",
+    "real_objective": "Select, block, or freeze the next mechanism-surface direction after ACSB downgrade without implementation or re-entry authorization.",
+    "problem_definition_wrong_if": "The route decision treats invalid-harness blocker evidence as ACSB mechanism-negative evidence or authorizes ACSB repair.",
+    "strongest_baseline_explanation": "Prior ACSB failures were evidence-surface collapse: oracle/legal-observation shortcut, lookup/static decoder behavior, fake learner, and inert boundary memory.",
+    "strongest_reason_task_may_be_invalid": "A route recommendation may become pass-shaped if it names a promising surface without enforceable non-oracle, fair-baseline, train-consumption, boundary-causal, and replay-recomputation gates.",
+    "would_falsify_current_framing": "If selected ACP-BV cannot specify the required admissibility gates, or if it requires same-step legal-observation target access, the selected route must block or downgrade.",
+    "still_insufficient_evidence": "A route recommendation, document, or JSON matrix is not computed mechanism evidence and cannot support mechanism-level or runtime claims.",
+    "tests_mechanism_or_resemblance": "This task does not test mechanism behavior; it tests future surface admissibility at route-governance level.",
+    "hard_coding_risk": "Future task card must block hidden target rules, answer-bearing aliases, static dictionaries, and hidden lookup tables.",
+    "local_optimum_risk": "Route A may overfit to repairing ACSB-shaped failures; mandatory downgrade to Route B mitigates this.",
+    "zeno_risk": "Further ACSB repair is forbidden; this record selects one future surface direction only.",
+    "evidence_leakage_risk": "Future target generator isolation and scanner positive controls are mandatory.",
+    "weak_baseline_risk": "Strong train-consuming no-boundary baselines must be admitted; feature-impoverished baselines are insufficient.",
+    "schema_split_risk": "Candidate, reference, baseline, replay, and evaluator paths must not have separate answer-bearing access.",
+    "second_logic_path_risk": "Future scanner must catch path splitting and target-generator access.",
+    "replay_weakness_risk": "Replay must recompute from serialized state plus observation/history, not stored hashes.",
+    "claim_inflation_risk": "Claim ceiling remains route-governance only.",
+    "minimal_validation": "JSON parse, allowlist, forbidden-claim scan, no 001E path creation, no source/runtime/mainline modification.",
+    "stop_condition": "Any start-state mismatch, unauthorized file modification, implementation authorization, ACSB re-entry authorization, or unbounded claim blocks.",
+    "rollback_plan": "Revert non-allowlisted changes; preserve only blocked artifacts under artifacts/next_mechanism_surface_route_decision_001a if possible.",
+    "acceptance_signal": "Allowed files only, explicit selected route, implementation false, ACSB re-entry false, JSON parse passes, forbidden-claim scan passes."
+  },
+  "final_anchor_readback_note": "Final commit and remote-anchor readback cannot be embedded inside the same committed artifact without changing the commit hash; final anchor fields are reported after commit, push, tag, and remote readback."
+}
