@@ -37,13 +37,13 @@
       "command": "git rev-parse HEAD",
       "exit_code": 0,
       "stderr": "",
-      "stdout": "45d7c1a0650cab4a963be51f723ad306db50e77b"
+      "stdout": "9cda5051f1a64d886843c9517348e73cca6872ca"
     },
     {
       "command": "git status --short --branch",
       "exit_code": 0,
       "stderr": "",
-      "stdout": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold\n?? docs/research/ACSB-001D-BOUNDED-CODEX-EXECUTION-001A.md\n?? src/acsb_001d_execution_001a/\n?? tests/test_acsb_001d_execution_001a.py"
+      "stdout": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold\n M src/acsb_001d_execution_001a/runner.py"
     },
     {
       "command": "git rev-list --left-right --count origin/codex/meta-theory-scaffold...HEAD",
@@ -84,18 +84,20 @@
     {
       "command": "git diff --name-status",
       "exit_code": 0,
-      "stderr": "",
-      "stdout": ""
+      "stderr": "warning: in the working copy of 'src/acsb_001d_execution_001a/runner.py', LF will be replaced by CRLF the next time Git touches it",
+      "stdout": "M\tsrc/acsb_001d_execution_001a/runner.py"
     }
   ],
-  "diff_name_status": [],
+  "diff_name_status": [
+    "M\tsrc/acsb_001d_execution_001a/runner.py"
+  ],
   "final_source_classification": "mount_local_repo",
   "git_index_parseable": true,
-  "local_head": "45d7c1a0650cab4a963be51f723ad306db50e77b",
+  "local_head": "9cda5051f1a64d886843c9517348e73cca6872ca",
   "producer_function": "probe_git_health",
   "required_commit_objects_exist": true,
   "required_refs_or_tags_exist": true,
   "route_decision_tag_commit": "fb0129aebe760d25bf4051328cdbf9ed14095694",
   "source_card_tag_commit": "45d7c1a0650cab4a963be51f723ad306db50e77b",
-  "status_short_branch": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold\n?? docs/research/ACSB-001D-BOUNDED-CODEX-EXECUTION-001A.md\n?? src/acsb_001d_execution_001a/\n?? tests/test_acsb_001d_execution_001a.py"
+  "status_short_branch": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold\n M src/acsb_001d_execution_001a/runner.py"
 }

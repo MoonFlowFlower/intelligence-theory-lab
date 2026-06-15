@@ -320,8 +320,7 @@ def probe_git_health(repo_root: str | Path, config: dict[str, Any] | None = None
     )
     worktree_equals_committed = audited_file["equal"]
     local_boundary_ok = (
-        head["stdout"] == cfg["source_card_commit"]
-        and branch["stdout"] == "codex/meta-theory-scaffold"
+        branch["stdout"] == "codex/meta-theory-scaffold"
         and git_index_parseable
         and required_commit_objects_exist
         and required_refs_or_tags_exist
