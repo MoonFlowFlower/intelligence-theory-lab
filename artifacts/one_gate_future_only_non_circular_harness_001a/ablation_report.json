@@ -1,0 +1,58 @@
+{
+  "called": true,
+  "code_path_hash": "ef6fc4283b02b1b3a3d25340112193d1cfe50f0d98729f5749590a7c94431328",
+  "episodes_rerun": true,
+  "intervention": "corrupt first raw action and rerun harness metric",
+  "intervention_applied": true,
+  "original_score": 1.0,
+  "output_row_ids": [
+    "ep_001",
+    "ep_002",
+    "ep_003"
+  ],
+  "producer_function": "remove_first_action_and_rerun",
+  "producer_source_path": "src/one_gate_future_only_non_circular_harness_001a/runner.py",
+  "rerun_metric": {
+    "aggregation_rule": "mean action match against harness recomputation from serialized_state plus observation",
+    "called": true,
+    "code_path_hash": "ef6fc4283b02b1b3a3d25340112193d1cfe50f0d98729f5749590a7c94431328",
+    "input_row_count": 3,
+    "matched_count": 2,
+    "output_row_ids": [
+      "ep_001",
+      "ep_002",
+      "ep_003"
+    ],
+    "per_episode_rows": [
+      {
+        "candidate_action": "__ablated_corrupt_action__",
+        "episode_id": "ep_001",
+        "expected_action_recomputed": "approach",
+        "match": false,
+        "valid_for_score": true
+      },
+      {
+        "candidate_action": "avoid",
+        "episode_id": "ep_002",
+        "expected_action_recomputed": "avoid",
+        "match": true,
+        "valid_for_score": true
+      },
+      {
+        "candidate_action": "wait",
+        "episode_id": "ep_003",
+        "expected_action_recomputed": "wait",
+        "match": true,
+        "valid_for_score": true
+      }
+    ],
+    "producer_function": "score_actions_from_raw_traces",
+    "producer_source_path": "src/one_gate_future_only_non_circular_harness_001a/runner.py",
+    "score": 0.666667,
+    "valid_row_count": 3
+  },
+  "score": 0.666667,
+  "score_changed_or_blocked": true,
+  "score_recomputed": true,
+  "unchanged_pass_report_accepted": false
+}
