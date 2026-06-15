@@ -1,0 +1,82 @@
+{
+  "001e_created_or_authorized": false,
+  "accepted_bounded_negative_evidence": false,
+  "audited_execution_commit": "fe5aa85430850f4bd7607917b1e73e129a8a8a21",
+  "audited_execution_tag": "remote-anchor-acsb-001d-bounded-execution-001a-fe5aa85",
+  "audit_source_attachment_sha256": "41678B4CBB9A2D44733B5629BEF26F49B3E0088A19E5FDB10383BF0B252350CC",
+  "baseline_fairness_status": {
+    "accepted_as_fair_learned_baseline": false,
+    "finding": "fitted_pure_python_mlp_no_boundary_learner is wired to _legal_rule_predictions and therefore to _target_from_observation; preserved audit says it ignores training data and is an oracle/rule path.",
+    "status": "blocked_feature_impoverished_or_unfair_baseline"
+  },
+  "blocker_summary": "The reported 1.0 / 1.0 / 0.0 result is preserved as a constructive identity artifact: full_reference, capacity_disabled, and strongest baseline are structurally identical to the label oracle rather than valid bounded negative ACSB evidence.",
+  "boundary_memory_causal_status": {
+    "causal_boundary_use_established": false,
+    "finding": "reference_core.selected_output is independent of boundary_memory and disable flags.",
+    "status": "decorative_or_inert_boundary_memory_for_scored_output"
+  },
+  "capacity_disabled_status": {
+    "accepted_as_capacity_evidence": false,
+    "finding": "capacity-disabled score 1.0 does not show persistence is unnecessary; preserved audit says disable flags do not affect selected_output.",
+    "status": "invalid_as_capacity_disabled_evidence"
+  },
+  "changed_files": [
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001D-EXECUTION-001A-HOSTILE-AUDIT-001A.md",
+    "artifacts/claude_independent_acsb_001d_execution_001a_hostile_audit_001a/result.json",
+    "artifacts/claude_independent_acsb_001d_execution_001a_hostile_audit_001a/readback.json",
+    "artifacts/claude_independent_acsb_001d_execution_001a_hostile_audit_001a/git_readback.json",
+    "artifacts/claude_independent_acsb_001d_execution_001a_hostile_audit_001a/claim_ceiling.txt"
+  ],
+  "claim_ceiling": "ACSB-001D execution 001A invalid-harness blocker preservation only",
+  "enabled_status": "none",
+  "forbidden_paths_touched": [],
+  "layer": "engineering-governance / independent hostile audit preservation only",
+  "mainline_integration_status": "none",
+  "next_minimal_closed_loop_action": "Route-decision review: decide whether ACSB should be closed/downgraded due repeated non-discriminative/invalid surfaces, or whether a separate non-001E replacement design is justified. Do not repair 001D immediately.",
+  "oracle_wiring_findings": [
+    "_make_episode generates labels using _target_from_observation.",
+    "_target_from_observation computes target = phase_bit XOR action_bit.",
+    "phase_bit and action_bit are present in legal_observation.",
+    "fitted_pure_python_mlp_no_boundary_learner is wired to _legal_rule_predictions.",
+    "_legal_rule_predictions calls _target_from_observation.",
+    "The reported fitted baseline does not consume training data; with empty train it still scores 1.0.",
+    "The fitted baseline is therefore an oracle/rule path, not a learned no-boundary baseline.",
+    "reference_core.selected_output also calls _target_from_observation.",
+    "reference_core.selected_output is independent of boundary_memory and disable flags.",
+    "full_reference, capacity_disabled, and strongest baseline are structurally identical to the label oracle.",
+    "1.0 / 1.0 / 0.0 is a constructive identity artifact, not valid bounded negative evidence.",
+    "The 001D execution result cannot be cited as ACSB negative evidence or ACSB closure/downgrade evidence."
+  ],
+  "preserved_route_consequence_verdict": "acsb_001d_execution_001a_bounded_negative_evidence_not_accepted",
+  "real_trigger_evidence": "current handoff containing Claude independent hostile audit verdict claude_independent_acsb_001d_execution_001a_audit_blocks_feature_impoverished_or_unfair_baseline",
+  "route_consequence": {
+    "acsb_001d_execution_001a_valid_as_bounded_negative_evidence": false,
+    "acsb_remains_unresolved_by_001d_execution_001a": true,
+    "closure_or_downgrade_may_rely_on_fe5aa85": false,
+    "fe5aa85_may_be_cited_as_acsb_negative_evidence": false,
+    "fe5aa85_may_be_cited_only_as_invalid_harness_blocker": true,
+    "future_work_requires_separate_route_decision_card": true,
+    "no_immediate_001d_repair": true
+  },
+  "superseded_tag_or_commit": {
+    "canonical": false,
+    "commit": "9cda5051f1a64d886843c9517348e73cca6872ca",
+    "tag": "remote-anchor-acsb-001d-bounded-execution-001a-9cda505"
+  },
+  "verdict": "preserve_claude_independent_acsb_001d_execution_001a_hostile_audit_001a_pass",
+  "what_this_does_not_prove": [
+    "ACSB validity or invalidity in general",
+    "mechanism validity",
+    "Gate validity",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "subjectivity",
+    "runtime readiness",
+    "EGO readiness",
+    "stable user benefit",
+    "companion/product readiness",
+    "mainline effect"
+  ]
+}
