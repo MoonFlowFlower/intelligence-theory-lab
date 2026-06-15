@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import inspect
 import json
 from collections import Counter, defaultdict
 from copy import deepcopy
@@ -481,21 +482,73 @@ class ControllabilityModel:
         return _later_action_for_effect(predicted_effect)
 
 
-def build_candidate_trace() -> tuple[list[dict[str, Any]], dict[str, dict[str, str]], dict[str, str]]:
+def _slug(value: str) -> str:
+    return "".join(ch if ch.isalnum() else "_" for ch in value.lower()).strip("_")
+
+
+def _inverted_effect(effect: str) -> str:
+    return {
+        "move": "drift",
+        "stabilize": "drift",
+        "no_change": "move",
+        "drift": "move",
+        "unknown": "drift",
+    }.get(effect, "drift")
+
+
+def _ablation_case(case: dict[str, Any], ablation_name: str, idx: int) -> dict[str, Any]:
+    ablated = deepcopy(case)
+    if ablation_name == "action disabled":
+        ablated["action_id"] = "action_disabled"
+    elif ablation_name == "control mapping inverted":
+        ablated["observed_effect"] = _inverted_effect(case["observed_effect"])
+    elif ablation_name == "environment perturbation":
+        ablated["observed_effect"] = "drift" if case["observed_effect"] != "drift" else "move"
+        ablated["external_event_id"] = "synthetic_perturbation"
+    elif ablation_name == "partial observability":
+        ablated["object_feature"] = "masked"
+    elif ablation_name == "heldout action-object compositions" and case["split"] == "heldout":
+        ablated["object_feature"] = f"heldout_masked_{case['object_feature']}"
+    elif ablation_name == "counterfactual action contrast" and case["split"] == "heldout":
+        ablated["action_id"] = "counterfactual_scan" if case["action_id"] != "scan" else "counterfactual_nudge"
+    elif ablation_name == "delayed controllability effect" and case["delay"] > 0:
+        ablated["object_feature"] = f"delayed_masked_{case['object_feature']}"
+    elif ablation_name == "history replacement":
+        ablated["context_feature"] = f"replacement_context_{idx % 2}"
+    return ablated
+
+
+def _should_update_model(ablation_name: str, case: dict[str, Any], idx: int) -> bool:
+    if ablation_name == "controllability feedback removed":
+        return False
+    if ablation_name == "history replacement":
+        return idx % 2 == 0
+    if ablation_name == "learning freeze":
+        return idx <= 3
+    if ablation_name == "delayed controllability effect" and case["delay"] > 0:
+        return False
+    return True
+
+
+def build_candidate_trace(ablation_name: str = "none") -> tuple[list[dict[str, Any]], dict[str, dict[str, str]], dict[str, str]]:
     model = ControllabilityModel()
     rows: list[dict[str, Any]] = []
     heldout_predictions: dict[str, dict[str, str]] = {}
     previous_hash = "GENESIS"
-    run_id = "gate2_001b_run_v1"
+    run_id = "gate2_001b_run_v1" if ablation_name == "none" else f"gate2_001b_ablation:{_slug(ablation_name)}"
     for idx, case in enumerate(all_cases(), start=1):
+        if ablation_name == "history replacement":
+            model = ControllabilityModel()
+        candidate_case = _ablation_case(case, ablation_name, idx)
         before = model.snapshot()
-        predicted_effect = model.predict_effect(case)
-        observed_effect = case["observed_effect"]
+        predicted_effect = model.predict_effect(candidate_case)
+        observed_effect = candidate_case["observed_effect"]
         predicted_later = model.later_action(predicted_effect)
         eval_id = f"later_eval_{idx:03d}"
-        linkage = _linkage_key(run_id, case["case_id"], case["action_id"], eval_id)
+        linkage = _linkage_key(run_id, case["case_id"], candidate_case["action_id"], eval_id)
         state_hash_before = stable_hash(before)
-        model.update(case, observed_effect)
+        if _should_update_model(ablation_name, case, idx):
+            model.update(candidate_case, observed_effect)
         after = model.snapshot()
         state_hash_after = stable_hash(after)
         row = {
@@ -503,8 +556,8 @@ def build_candidate_trace() -> tuple[list[dict[str, Any]], dict[str, dict[str, s
             "episode_id": f"episode_{idx:03d}",
             "step_id": idx,
             "observation_id": f"obs_{idx:03d}",
-            "observation_payload_hash": stable_hash(visible_case(case)),
-            "action_id": case["action_id"],
+            "observation_payload_hash": stable_hash(visible_case(candidate_case)),
+            "action_id": candidate_case["action_id"],
             "predicted_control_effect": predicted_effect,
             "observed_effect": observed_effect,
             "controllability_error": 0 if predicted_effect == observed_effect else 1,
@@ -512,12 +565,12 @@ def build_candidate_trace() -> tuple[list[dict[str, Any]], dict[str, dict[str, s
             "self_boundary_state_after": after,
             "state_hash_before_action": state_hash_before,
             "state_hash_after_action": state_hash_after,
-            "external_event_id": case["external_event_id"],
+            "external_event_id": candidate_case["external_event_id"],
             "intervention_condition": case.get("case_family", "support_adaptation"),
-            "ablation_condition": "none",
+            "ablation_condition": ablation_name,
             "allowed_history_hash": stable_hash(rows[-3:]),
-            "memory_read_keys": [f"feature:{case['action_id']}|{case['object_feature']}"],
-            "memory_write_keys": [f"boundary:{case['action_id']}|{case['object_feature']}"],
+            "memory_read_keys": [f"feature:{candidate_case['action_id']}|{candidate_case['object_feature']}"],
+            "memory_write_keys": [f"boundary:{candidate_case['action_id']}|{candidate_case['object_feature']}"],
             "resource_usage": {"memory_cells": len(model.effect_by_feature_pair), "update_steps": idx},
             "later_action_eval_id": eval_id,
             "predicted_later_action": predicted_later,
@@ -540,6 +593,54 @@ def build_candidate_trace() -> tuple[list[dict[str, Any]], dict[str, dict[str, s
                 "predicted_later_action": predicted_later,
             }
     return rows, heldout_predictions, model.effect_by_feature_pair | {}
+
+
+def _trace_hash(rows: list[dict[str, Any]]) -> str:
+    return stable_hash(rows)
+
+
+def _heldout_metrics(heldout_predictions: dict[str, dict[str, str]]) -> dict[str, float]:
+    effect_targets = {case["case_id"]: case["observed_effect"] for case in heldout_cases()}
+    action_targets = {case["case_id"]: case["later_action"] for case in heldout_cases()}
+    effect_predictions = {
+        case_id: pred["predicted_control_effect"] for case_id, pred in heldout_predictions.items()
+    }
+    action_predictions = {
+        case_id: pred["predicted_later_action"] for case_id, pred in heldout_predictions.items()
+    }
+    return {
+        "heldout_controllability_prediction_accuracy": _match_rate(effect_predictions, effect_targets),
+        "later_action_selection_accuracy": _match_rate(action_predictions, action_targets),
+    }
+
+
+def _row_change_count(baseline_rows: list[dict[str, Any]], ablated_rows: list[dict[str, Any]]) -> int:
+    fields = [
+        "action_id",
+        "predicted_control_effect",
+        "observed_effect",
+        "self_boundary_state_before",
+        "self_boundary_state_after",
+        "predicted_later_action",
+        "state_hash_after_action",
+    ]
+    return sum(
+        any(base[field] != ablated[field] for field in fields)
+        for base, ablated in zip(baseline_rows, ablated_rows)
+    )
+
+
+def _ablation_code_path_hash() -> str:
+    return sha256_text(
+        "\n".join(
+            [
+                inspect.getsource(build_candidate_trace),
+                inspect.getsource(_ablation_case),
+                inspect.getsource(_should_update_model),
+                inspect.getsource(ablation_report),
+            ]
+        )
+    )
 
 
 def build_prediction_commit(heldout_predictions: dict[str, dict[str, str]]) -> dict[str, Any]:
@@ -698,24 +799,55 @@ def evaluate_baselines(heldout_predictions: dict[str, dict[str, str]]) -> tuple[
 
 
 def ablation_report() -> dict[str, Any]:
+    baseline_rows, baseline_predictions, _baseline_model = build_candidate_trace()
+    baseline_metrics = _heldout_metrics(baseline_predictions)
+    baseline_trace_hash = _trace_hash(baseline_rows)
+    code_path_hash = _ablation_code_path_hash()
     rows = []
     for name in REQUIRED_ABLATIONS:
+        ablated_rows, ablated_predictions, _ablated_model = build_candidate_trace(ablation_name=name)
+        ablated_metrics = _heldout_metrics(ablated_predictions)
+        metric_deltas = {
+            key: baseline_metrics[key] - ablated_metrics[key]
+            for key in baseline_metrics
+        }
+        changed_trace_row_count = _row_change_count(baseline_rows, ablated_rows)
         rows.append(
             {
                 "ablation_name": name,
+                "producer_function": "build_candidate_trace",
+                "run_id": "gate2_001b_run_v1",
+                "rerun_id": f"gate2_001b_ablation:{_slug(name)}",
+                "input_artifacts": ["support_cases", "heldout_cases", "counterfactual_cases"],
+                "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+                "code_path_hash": code_path_hash,
+                "baseline_trace_hash": baseline_trace_hash,
+                "ablated_trace_hash": _trace_hash(ablated_rows),
+                "baseline_metrics": baseline_metrics,
+                "ablated_metrics": ablated_metrics,
+                "metric_deltas": metric_deltas,
+                "changed_trace_row_count": changed_trace_row_count,
+                "real_rerun": True,
+                "ablation_outputs_recomputed": True,
                 "executed": True,
-                "controllability_prediction_changed": True,
-                "self_boundary_update_changed": True,
-                "later_action_selection_changed": True,
-                "failure_condition_triggered": False,
+                "controllability_prediction_changed": metric_deltas["heldout_controllability_prediction_accuracy"] > 0.0,
+                "self_boundary_update_changed": changed_trace_row_count > 0,
+                "later_action_selection_changed": metric_deltas["later_action_selection_accuracy"] > 0.0,
+                "failure_condition_triggered": metric_deltas["heldout_controllability_prediction_accuracy"] <= 0.0,
             }
         )
     return {
         "task_id": TASK_ID,
         "claim_ceiling": CLAIM_CEILING,
+        "producer_function": "ablation_report",
+        "baseline_candidate_run_id": "gate2_001b_run_v1",
+        "baseline_candidate_trace_hash": baseline_trace_hash,
+        "baseline_metrics": baseline_metrics,
         "ablation_names": REQUIRED_ABLATIONS,
         "ablations": rows,
-        "all_required_ablations_executed": True,
+        "all_required_ablations_executed": all(row["executed"] for row in rows),
+        "all_required_ablations_reran_candidate": all(row["real_rerun"] for row in rows),
+        "all_ablation_outputs_recomputed": all(row["ablation_outputs_recomputed"] for row in rows),
         "ablation_gate_passed": all(
             row["controllability_prediction_changed"]
             and row["self_boundary_update_changed"]

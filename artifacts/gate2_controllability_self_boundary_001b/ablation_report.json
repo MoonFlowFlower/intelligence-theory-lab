@@ -14,87 +14,366 @@
   ],
   "ablations": [
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.6666666666666666,
+        "later_action_selection_accuracy": 0.6666666666666666
+      },
+      "ablated_trace_hash": "bd4c595476d20380e5a48c9502e9b20d3fd7947770d26ab7e3c4bd4fa5674715",
       "ablation_name": "action disabled",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 18,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 0.33333333333333337,
+        "later_action_selection_accuracy": 0.33333333333333337
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:action_disabled",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.0,
+        "later_action_selection_accuracy": 0.0
+      },
+      "ablated_trace_hash": "de63cb1332d75c6326487898a430aeb2dd927f77b92b99195368e40266a8c908",
       "ablation_name": "control mapping inverted",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 18,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:control_mapping_inverted",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.0,
+        "later_action_selection_accuracy": 0.5
+      },
+      "ablated_trace_hash": "dfa5cd7f89cdc719dbe633a00995c4080794106879d6400c08e77f2fd791d9d8",
       "ablation_name": "controllability feedback removed",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 18,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 0.5
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:controllability_feedback_removed",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.0,
+        "later_action_selection_accuracy": 0.5
+      },
+      "ablated_trace_hash": "e8b5e535583225bf5e418f223040ebe2b9e34ad54646612dea1a8a8e69ba42bd",
       "ablation_name": "history replacement",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 18,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 0.5
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:history_replacement",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.5,
+        "later_action_selection_accuracy": 0.8333333333333334
+      },
+      "ablated_trace_hash": "422ada4f973d17b92f1f88ea22f46ae27681d586d489602a9be3630739e7bca1",
       "ablation_name": "learning freeze",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 15,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 0.5,
+        "later_action_selection_accuracy": 0.16666666666666663
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:learning_freeze",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.0,
+        "later_action_selection_accuracy": 0.0
+      },
+      "ablated_trace_hash": "b8b1a4b0e3bb541b10b6b2c0941936124b52f077be4965da0de935d36a80ada4",
       "ablation_name": "environment perturbation",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 18,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:environment_perturbation",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.16666666666666666,
+        "later_action_selection_accuracy": 0.6666666666666666
+      },
+      "ablated_trace_hash": "4514728d427ae1c43c42ee97f0867c456aeb9c579019706b598edee17477abf9",
       "ablation_name": "delayed controllability effect",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 17,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 0.8333333333333334,
+        "later_action_selection_accuracy": 0.33333333333333337
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:delayed_controllability_effect",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.5,
+        "later_action_selection_accuracy": 0.5
+      },
+      "ablated_trace_hash": "dc58bad6e6e46bcfd0b9fc1a62353024fe6da04c0966b4b17c87632e3381f489",
       "ablation_name": "partial observability",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 18,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 0.5,
+        "later_action_selection_accuracy": 0.5
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:partial_observability",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.0,
+        "later_action_selection_accuracy": 0.5
+      },
+      "ablated_trace_hash": "69512d44c793cf7d571aaa9a3fd240f90f9cfb117221cd73cf5d952aacea63ea",
       "ablation_name": "heldout action-object compositions",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 6,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 0.5
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:heldout_action_object_compositions",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     },
     {
+      "ablated_metrics": {
+        "heldout_controllability_prediction_accuracy": 0.16666666666666666,
+        "later_action_selection_accuracy": 0.3333333333333333
+      },
+      "ablated_trace_hash": "23c2cb2473af52a3e54541765dffb2be4ddb2f1f28b8f4fc5901ce874d2a6f40",
       "ablation_name": "counterfactual action contrast",
+      "ablation_outputs_recomputed": true,
+      "aggregation_rule": "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run",
+      "baseline_metrics": {
+        "heldout_controllability_prediction_accuracy": 1.0,
+        "later_action_selection_accuracy": 1.0
+      },
+      "baseline_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+      "changed_trace_row_count": 6,
+      "code_path_hash": "2b671a333c081bc3a493f9f89c727ad09fdcec8fbbcc98f54eec0a608da07b7a",
       "controllability_prediction_changed": true,
       "executed": true,
       "failure_condition_triggered": false,
+      "input_artifacts": [
+        "support_cases",
+        "heldout_cases",
+        "counterfactual_cases"
+      ],
       "later_action_selection_changed": true,
+      "metric_deltas": {
+        "heldout_controllability_prediction_accuracy": 0.8333333333333334,
+        "later_action_selection_accuracy": 0.6666666666666667
+      },
+      "producer_function": "build_candidate_trace",
+      "real_rerun": true,
+      "rerun_id": "gate2_001b_ablation:counterfactual_action_contrast",
+      "run_id": "gate2_001b_run_v1",
       "self_boundary_update_changed": true
     }
   ],
+  "all_ablation_outputs_recomputed": true,
   "all_required_ablations_executed": true,
+  "all_required_ablations_reran_candidate": true,
+  "baseline_candidate_run_id": "gate2_001b_run_v1",
+  "baseline_candidate_trace_hash": "d39c64341d383cc77e63bb8f45b23bcd29695603747a431a1dfeccf0c5e1d83e",
+  "baseline_metrics": {
+    "heldout_controllability_prediction_accuracy": 1.0,
+    "later_action_selection_accuracy": 1.0
+  },
   "claim_ceiling": "bounded Gate2 controllability / self-boundary executable preflight evidence only",
+  "producer_function": "ablation_report",
   "task_id": "GATE2-CONTROLLABILITY-SELF-BOUNDARY-EXECUTABLE-PREFLIGHT-001B"
 }

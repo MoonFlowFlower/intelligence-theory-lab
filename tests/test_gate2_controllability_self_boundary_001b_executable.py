@@ -263,6 +263,32 @@ def test_all_required_ablations_are_sensitive(tmp_path):
     assert result["ablation_gate_passed"] is True
 
 
+def test_ablation_report_records_real_rerun_provenance(tmp_path):
+    run_preflight_001b(repo_root=ROOT, output_dir=tmp_path)
+    ablation = _read_json(tmp_path / "ablation_report.json")
+
+    assert ablation["producer_function"] == "ablation_report"
+    assert ablation["baseline_candidate_run_id"]
+    assert ablation["baseline_candidate_trace_hash"]
+    assert ablation["all_required_ablations_reran_candidate"] is True
+    assert ablation["all_ablation_outputs_recomputed"] is True
+
+    for row in ablation["ablations"]:
+        assert row["executed"] is True
+        assert row["real_rerun"] is True
+        assert row["rerun_id"].startswith("gate2_001b_ablation:")
+        assert row["producer_function"] == "build_candidate_trace"
+        assert row["input_artifacts"] == ["support_cases", "heldout_cases", "counterfactual_cases"]
+        assert row["aggregation_rule"] == "rerun candidate trace under named Gate2 ablation and compare metrics to baseline candidate run"
+        assert row["baseline_trace_hash"] == ablation["baseline_candidate_trace_hash"]
+        assert row["ablated_trace_hash"] != row["baseline_trace_hash"]
+        assert row["code_path_hash"]
+        assert row["baseline_metrics"]["heldout_controllability_prediction_accuracy"] == 1.0
+        assert row["ablated_metrics"]["heldout_controllability_prediction_accuracy"] < 1.0
+        assert row["metric_deltas"]["heldout_controllability_prediction_accuracy"] > 0.0
+        assert row["changed_trace_row_count"] > 0
+
+
 def test_candidate_reports_bounded_controllability_and_later_behavior_linkage(tmp_path):
     result = run_preflight_001b(repo_root=ROOT, output_dir=tmp_path)
     controllability = _read_json(tmp_path / "controllability_error_report.json")
