@@ -1,0 +1,61 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "schema_type": "future_trace_replay_contract_specification_only",
+  "replay_results_run": false,
+  "replay_requires_candidate_inaccessible_target": true,
+  "serialized_state_direct_answer_table_forbidden": true,
+  "future_trace_schema": {
+    "episode_id": "required harness-owned string",
+    "seed": "required harness-owned seed; may be held-out",
+    "context_id": "required harness-owned context id; may be held-out",
+    "heldout_status": "required enum: train, heldout_context, unseen_seed, unseen_combination, harness_counterfactual",
+    "observation": "required candidate-visible object only",
+    "boundary_condition_public_proxy": "optional candidate-visible proxy; never hidden truth",
+    "action_source": "required enum: candidate_selected, fixed_action_set, harness_sampled_probe, harness_counterfactual",
+    "action": "required raw action",
+    "prediction": "required raw candidate prediction; not expected label or answer key",
+    "serialized_candidate_state": "required replay input; forbidden to contain direct input-output answer tables for replay targets",
+    "uncertainty_trace": "optional diagnostic raw output only",
+    "logit_trace": "optional diagnostic raw output only",
+    "environment_hidden_truth_hash": "required hash; truth remains environment-owned",
+    "harness_owned_target_id": "required target id owned by harness/environment",
+    "harness_metric_function_path": "required repo-source-owned callable path",
+    "baseline_invocation": "required object naming independent baseline callable and input ids",
+    "ablation_condition": "required string or null",
+    "replay_recomputation_input": "required object containing serialized candidate state plus held-out/unseen observation or harness-owned counterfactual transition",
+    "lookup_table_leakage_scan_result": "required object for replay lookup-table positive control",
+    "block_or_continue_reason": "required harness-owned reason string"
+  },
+  "heldout_or_unseen_replay_options": [
+    "held-out context_id",
+    "held-out seed",
+    "unseen observation/boundary/viability combination",
+    "harness-owned counterfactual transition"
+  ],
+  "lookup_table_positive_control": {
+    "candidate_serialized_state_contains_seen_context_lookup_table": true,
+    "seen_context_replay_success_counts": false,
+    "heldout_or_unseen_replay_must_expose_failure_or_block": true,
+    "required_block_reason": "lookup_table_replay_leakage"
+  },
+  "uncertainty_logit_restrictions": {
+    "diagnostic_raw_outputs_only": true,
+    "may_define_truth_labels": false,
+    "may_select_counted_cases": false,
+    "may_mask_hard_cases": false,
+    "may_act_as_admission_or_pass_verdict": false,
+    "may_replace_environment_or_harness_outcomes": false,
+    "if_scored_then_score_against": "environment-owned or harness-owned outcomes only"
+  },
+  "future_score_metadata_required": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_id",
+    "episode_id",
+    "aggregation_rule",
+    "code_path_hash"
+  ]
+}

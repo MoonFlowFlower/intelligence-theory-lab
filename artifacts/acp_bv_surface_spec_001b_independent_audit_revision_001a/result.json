@@ -1,0 +1,83 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "verdict": "acp_bv_surface_spec_001b_ready_for_independent_reaudit",
+  "acceptance_gate": "A",
+  "current_layer": "mechanism-hypothesis / engineering-governance ACP-BV surface-spec revision only",
+  "mainline_integration_status": "none",
+  "enabled_status": "no new enabled path",
+  "real_trigger_evidence": {
+    "start_branch": "codex/meta-theory-scaffold",
+    "start_head": "8ce1df30da8c146060effd348546c7bad5bdf433",
+    "start_worktree_status": "clean",
+    "start_anchor_tag": "remote-anchor-acp-bv-surface-spec-independent-truth-preflight-001a-8ce1df3",
+    "start_anchor_tag_hash": "8ce1df30da8c146060effd348546c7bad5bdf433",
+    "prior_spec": "docs/research/ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A.md",
+    "prior_artifact_dir": "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a"
+  },
+  "independent_audit_conclusion_preserved": {
+    "audit_layer_conclusion": "accept_surface_spec_for_audit_layer",
+    "verdict": "conditional_pass_with_required_revisions_before_harness_card",
+    "accepted_non_circular_at_surface_spec_layer": true,
+    "required_before_harness_card": true,
+    "strongest_residual_risks": [
+      "replay state-lookup table over seen context",
+      "action-as-difficulty selection",
+      "non-fail-able leakage scanner",
+      "missing graph-cache challenger family",
+      "post-hoc ablation thresholds",
+      "uncertainty/logit traces as hidden truth or selection keys"
+    ]
+  },
+  "required_revisions": {
+    "R1_graph_cache_challenger_family": "incorporated",
+    "R2_replay_heldout_lookup_table_blocker": "incorporated",
+    "R3_leakage_scanner_real_failability": "incorporated",
+    "R4_action_as_difficulty_control": "incorporated",
+    "R5_predeclared_ablation_thresholds_effect_sizes": "incorporated",
+    "R6_uncertainty_logit_trace_restriction": "incorporated",
+    "truth_ownership_update": "incorporated"
+  },
+  "future_harness_implemented": false,
+  "candidate_model_created": false,
+  "gate_rerun": false,
+  "old_gate_bundles_mutated": false,
+  "baseline_results_claimed": false,
+  "ablation_results_claimed": false,
+  "replay_results_claimed": false,
+  "leakage_results_claimed": false,
+  "candidate_authored_score_bearing_truth_allowed": false,
+  "candidate_derived_score_bearing_truth_allowed": false,
+  "artifacts": {
+    "baseline_matrix": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/baseline_matrix.json",
+    "ablation_matrix": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/ablation_matrix.json",
+    "positive_controls": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/positive_controls.json",
+    "trace_replay_schema": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/trace_replay_schema.json",
+    "truth_ownership_inventory": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/truth_ownership_inventory.json",
+    "validation": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/validation.json",
+    "claim_ceiling": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/claim_ceiling.txt",
+    "readback": "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/readback.md"
+  },
+  "blocked_or_unknown_items": [
+    "No executable ACP-BV harness exists in this task.",
+    "No ACP-BV baseline, ablation, replay, leakage, Gate, or admission result was run.",
+    "Independent reaudit has not yet accepted this 001B revision.",
+    "A separate executable harness task card is still required before any harness implementation."
+  ],
+  "claim_ceiling": "ACP-BV surface-spec revision only",
+  "next_minimal_closed_loop_action": "Independent reaudit of this 001B revision before any executable harness task card.",
+  "what_this_does_not_prove": [
+    "Gate validity",
+    "mechanism validity",
+    "admission readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "mainline effect",
+    "agency",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ],
+  "auto_remote_anchor_decision": "conditional"
+}

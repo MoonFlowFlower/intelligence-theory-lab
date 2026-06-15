@@ -1,0 +1,58 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "verdict": "acp_bv_surface_spec_001b_ready_for_independent_reaudit",
+  "validation_status": "command_readback_passed",
+  "acceptance_gate": "A",
+  "revision_requirements": {
+    "R1_graph_cache_challenger_family_specified": true,
+    "R2_replay_requires_heldout_or_unseen_candidate_inaccessible_targets": true,
+    "R2_serialized_state_lookup_table_forbidden": true,
+    "R2_lookup_table_positive_control_specified": true,
+    "R3_clean_and_dirty_payload_controls_required": true,
+    "R3_scanner_callable_and_payload_paths_required": true,
+    "R3_hardcoded_string_self_test_insufficient": true,
+    "R4_action_as_difficulty_control_specified": true,
+    "R5_metric_direction_effect_equivalence_block_rules_predeclared": true,
+    "R5_post_hoc_threshold_tuning_forbidden": true,
+    "R6_uncertainty_logit_traces_diagnostic_only": true,
+    "R6_uncertainty_logit_traces_cannot_select_truth_cases_or_verdict": true,
+    "truth_ownership_inventory_updated": true,
+    "score_bearing_candidate_authored_truth_blocks": true,
+    "score_bearing_candidate_derived_truth_blocks": true
+  },
+  "expected_changed_files_allowlist": [
+    "docs/codex/tasks/ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A.md",
+    "docs/research/ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A.md",
+    "artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/**"
+  ],
+  "forbidden_paths_not_modified_expected": [
+    "src/**",
+    "Gate3/Gate4 source or artifacts except read-only references",
+    "integrated admission / bridge / runtime / mainline files",
+    "unrelated tests",
+    "unrelated artifacts"
+  ],
+  "harness_implemented": false,
+  "candidate_created": false,
+  "gate_rerun": false,
+  "old_gate_bundles_mutated": false,
+  "baseline_results_claimed_as_run": false,
+  "ablation_results_claimed_as_run": false,
+  "replay_results_claimed_as_run": false,
+  "leakage_results_claimed_as_run": false,
+  "checks_run_before_commit": [
+    "ConvertFrom-Json on all JSON artifacts in artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a",
+    "changed-file allowlist check from git status --porcelain=v1 -uall",
+    "forbidden path check from git status --porcelain=v1 -uall",
+    "required R1-R6 fixed-string scan",
+    "implementation path absence check",
+    "structured result flag assertion",
+    "structured graph-cache challenger assertion",
+    "structured truth-ownership assertion",
+    "structured ablation-threshold assertion",
+    "structured trace/replay restriction assertion",
+    "git diff --check"
+  ],
+  "claim_ceiling": "ACP-BV surface-spec revision only",
+  "next_minimal_closed_loop_action": "Independent reaudit of this 001B revision before any executable harness task card."
+}

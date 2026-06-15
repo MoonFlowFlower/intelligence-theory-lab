@@ -1,0 +1,148 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "matrix_type": "future_baseline_and_challenger_specification_only",
+  "baseline_results_run": false,
+  "graph_cache_family_mandatory": true,
+  "baseline_equivalence_must_block_admission": true,
+  "graph_cache_challengers": [
+    {
+      "challenger": "graph_lookup",
+      "input_receives": [
+        "public observation keys",
+        "candidate-visible action history",
+        "environment-assigned context_id",
+        "past candidate-visible transition records"
+      ],
+      "truth_cannot_access": [
+        "hidden boundary truth",
+        "hidden viability truth",
+        "held-out replay target",
+        "future observation",
+        "expected action",
+        "expected score",
+        "producer_function",
+        "pass verdict",
+        "candidate-authored answer key"
+      ],
+      "expected_failure_mode_if_acp_bv_needed": "Fails on held-out or counterfactual transitions whose boundary/viability consequences cannot be recovered from exact observed graph keys.",
+      "equivalence_condition": "If graph_lookup matches ACP-BV within the predeclared equivalence band on score-bearing targets, classify ACP-BV as baseline-equivalent, not pass."
+    },
+    {
+      "challenger": "transition_table",
+      "input_receives": [
+        "public observation",
+        "action",
+        "context_id",
+        "observed transition tuples from training contexts"
+      ],
+      "truth_cannot_access": [
+        "held-out transition truth",
+        "hidden boundary truth",
+        "hidden viability truth",
+        "candidate expected labels",
+        "future observations"
+      ],
+      "expected_failure_mode_if_acp_bv_needed": "Fails when the harness queries unseen context_id, unseen seed, or counterfactual action/transition combinations absent from the table.",
+      "equivalence_condition": "If transition_table matches ACP-BV on held-out or counterfactual targets within the equivalence band, classify as baseline-equivalent or block for non-discriminative surface."
+    },
+    {
+      "challenger": "successor_map",
+      "input_receives": [
+        "public state key",
+        "candidate-visible action",
+        "observed successor relation over training contexts"
+      ],
+      "truth_cannot_access": [
+        "hidden boundary/viability labels",
+        "unseen successor target",
+        "expected score",
+        "oracle labels"
+      ],
+      "expected_failure_mode_if_acp_bv_needed": "Fails when successor identity is insufficient to predict boundary-sensitive viability under counterfactual or held-out transitions.",
+      "equivalence_condition": "If successor_map matches ACP-BV on boundary/viability-sensitive held-out cases, the result is baseline-equivalent, not ACP-BV evidence."
+    },
+    {
+      "challenger": "count_table",
+      "input_receives": [
+        "public observation buckets",
+        "candidate-visible action buckets",
+        "training-context transition counts"
+      ],
+      "truth_cannot_access": [
+        "held-out labels",
+        "hidden boundary truth",
+        "hidden viability truth",
+        "case-selection truth",
+        "candidate-authored verdicts"
+      ],
+      "expected_failure_mode_if_acp_bv_needed": "Fails under held-out contexts where frequency over seen keys does not determine boundary/viability consequences.",
+      "equivalence_condition": "If count_table matches ACP-BV within the equivalence band, classify as baseline-equivalent and do not admit the ACP-BV mechanism claim."
+    },
+    {
+      "challenger": "episodic_traversal",
+      "input_receives": [
+        "candidate-visible episodic trace",
+        "public observations",
+        "actions",
+        "training-context transition sequence"
+      ],
+      "truth_cannot_access": [
+        "hidden boundary truth",
+        "hidden viability truth",
+        "held-out episode answer key",
+        "future observation"
+      ],
+      "expected_failure_mode_if_acp_bv_needed": "Fails when replay demands recomputation on unseen observation/boundary/viability combinations rather than traversal of a seen episode.",
+      "equivalence_condition": "If episodic_traversal matches ACP-BV on held-out replay targets, classify as baseline-equivalent or block as replay lookup leakage."
+    },
+    {
+      "challenger": "fsm_planner",
+      "input_receives": [
+        "public state abstraction",
+        "candidate-visible action set",
+        "training-context transition graph",
+        "repo-source-owned planner code"
+      ],
+      "truth_cannot_access": [
+        "hidden boundary truth",
+        "hidden viability truth",
+        "oracle reward/score fields",
+        "pass verdict",
+        "candidate-authored truth"
+      ],
+      "expected_failure_mode_if_acp_bv_needed": "Fails when a finite-state plan over public state cannot account for boundary/viability-sensitive counterfactual consequences.",
+      "equivalence_condition": "If fsm_planner matches ACP-BV on the same score-bearing targets, the surface has not distinguished ACP-BV from an FSM baseline and must not pass."
+    }
+  ],
+  "additional_required_baselines": [
+    {
+      "baseline": "candidate-authored self-consistency",
+      "required_classification": "blocked if candidate-authored expected labels, scores, digests, or verdicts affect score"
+    },
+    {
+      "baseline": "majority_or_static_action",
+      "required_classification": "baseline-equivalent if candidate does not exceed static action under the same harness-owned truth"
+    },
+    {
+      "baseline": "action_independent_predictor",
+      "required_classification": "baseline-equivalent if action shuffling leaves performance unchanged"
+    },
+    {
+      "baseline": "observation_only_predictor",
+      "required_classification": "baseline-equivalent if public observation alone matches candidate score"
+    },
+    {
+      "baseline": "boundary_blind_viability_predictor",
+      "required_classification": "baseline-equivalent if boundary-blind model matches on boundary-dependent cases"
+    },
+    {
+      "baseline": "replay_hash_only",
+      "required_classification": "blocked if replay success is stored hash equality rather than recomputation"
+    },
+    {
+      "baseline": "leakage_oracle_label",
+      "required_classification": "blocked if oracle-label dirty payload is not detected"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "matrix_type": "future_ablation_threshold_specification_only",
+  "ablation_results_run": false,
+  "normalization_requirement": "All score metrics used by these thresholds must be normalized to [0, 1] before candidate evaluation.",
+  "post_hoc_threshold_tuning_allowed": false,
+  "default_threshold_rule": {
+    "minimum_effect_criterion": "absolute normalized delta >= 0.05",
+    "equivalence_criterion": "absolute normalized delta < 0.02",
+    "inconclusive_band": "absolute normalized delta >= 0.02 and < 0.05 blocks admission",
+    "threshold_source": "fixed in this specification unless a future executable card derives stricter thresholds from independent baselines before candidate evaluation",
+    "threshold_unavailable_blocker": "required if neither fixed nor independent-baseline-derived thresholds are available before candidate evaluation"
+  },
+  "mechanism_critical_ablations": [
+    {
+      "ablation": "action_conditioning_removed_or_shuffled",
+      "metric": "action_conditioned_prediction_score",
+      "metric_direction": "candidate intact score should decrease when action-conditioning is removed or shuffled",
+      "minimum_effect_criterion": "drop >= 0.05 absolute normalized score",
+      "equivalence_criterion": "drop < 0.02 absolute normalized score or action-independent baseline within equivalence band",
+      "block_condition": "block if score is unchanged, equivalent to action-independent predictor, or threshold was tuned after candidate evaluation"
+    },
+    {
+      "ablation": "boundary_signal_hidden_or_swapped",
+      "metric": "boundary_dependent_subset_prediction_score",
+      "metric_direction": "candidate intact score should decrease on boundary-dependent subset when boundary signal is hidden or swapped",
+      "minimum_effect_criterion": "drop >= 0.05 absolute normalized score on predeclared boundary-dependent subset",
+      "equivalence_criterion": "drop < 0.02 or boundary-blind viability predictor within equivalence band",
+      "block_condition": "block if boundary ablation is insensitive, subset is selected after candidate results, or hidden boundary labels leak"
+    },
+    {
+      "ablation": "viability_signal_decoupled_from_action_consequence",
+      "metric": "viability_calibration_or_consequence_prediction_score",
+      "metric_direction": "candidate intact score should worsen when viability is decoupled from action consequence",
+      "minimum_effect_criterion": "prediction score drop >= 0.05 or calibration error increase >= 0.05 after normalization",
+      "equivalence_criterion": "absolute normalized change < 0.02 or reward-shaping/world-model-only baseline within equivalence band",
+      "block_condition": "block if viability decoupling does not affect the predeclared metric or if viability truth is candidate-authored"
+    },
+    {
+      "ablation": "candidate_state_reset_before_heldout_replay",
+      "metric": "heldout_replay_recomputed_behavior_score",
+      "metric_direction": "state reset should reduce replay score on predeclared memory-required held-out cases",
+      "minimum_effect_criterion": "drop >= 0.05 absolute normalized score or explicit replay failure on memory-required cases",
+      "equivalence_criterion": "drop < 0.02 or replay/hash-only baseline within equivalence band",
+      "block_condition": "block if reset state still succeeds through stored outputs, seen-context lookup, or direct input-output answer table"
+    },
+    {
+      "ablation": "observations_fixed_hidden_boundary_viability_changed",
+      "metric": "hidden_truth_sensitive_prediction_score",
+      "metric_direction": "score should change on predeclared hidden-truth-dependent cases when hidden truth changes under fixed public observations",
+      "minimum_effect_criterion": "target-sensitive score delta >= 0.05 absolute normalized score",
+      "equivalence_criterion": "delta < 0.02 indicates public-observation or lookup-only route",
+      "block_condition": "block if hidden truth does not control the score or if changed cases are selected after candidate results"
+    },
+    {
+      "ablation": "hidden_truth_fixed_candidate_authored_state_changed",
+      "metric": "truth_target_stability_under_candidate_state_change",
+      "metric_direction": "environment/harness target truth must remain fixed when only candidate-authored state changes",
+      "minimum_effect_criterion": "target truth delta must equal 0; metric may change only through raw prediction/action differences",
+      "equivalence_criterion": "not an admission criterion; this is a truth-ownership invariance check",
+      "block_condition": "block if candidate serialized_state, uncertainty, logits, or candidate reports change the target truth, case inclusion, threshold, or verdict"
+    },
+    {
+      "ablation": "harness_selected_counterfactual_action_queries",
+      "metric": "difficulty_normalized_prediction_score",
+      "metric_direction": "candidate must retain predictive sensitivity when the harness, not the candidate, selects action probes",
+      "minimum_effect_criterion": "candidate must exceed graph-cache and static-action challengers by >= 0.05 normalized score on harness-selected probes",
+      "equivalence_criterion": "candidate within 0.02 of graph-cache, fsm_planner, static-action, or action-independent baseline",
+      "block_condition": "block as action difficulty if high score appears only when candidate selects easy actions"
+    },
+    {
+      "ablation": "uncertainty_logit_trace_removed_or_masked",
+      "metric": "case_selection_and_truth_ownership_invariance",
+      "metric_direction": "removing diagnostic traces must not change which cases count, truth labels, thresholds, or pass verdicts",
+      "minimum_effect_criterion": "case set, truth labels, thresholds, and verdict inputs must be byte-identical or structurally equivalent before scoring",
+      "equivalence_criterion": "not an evidence-positive criterion; diagnostic traces are not truth",
+      "block_condition": "block if uncertainty/logit traces select cases, mask hard cases, define truth, or act as pass/admission channel"
+    }
+  ]
+}

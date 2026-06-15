@@ -1,0 +1,205 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "inventory_type": "truth_ownership_update_for_R1_R6",
+  "candidate_outputs_are_truth_bearing": false,
+  "any_score_bearing_candidate_authored_or_candidate_derived_truth_blocks": true,
+  "truth_ownership_inventory": [
+    {
+      "truth_bearing_value": "hidden boundary state",
+      "ownership_classification": "environment-owned",
+      "score_bearing": true,
+      "candidate_role": "not accessible except through public observations",
+      "block_condition": "block if sourced from candidate serialized_state, prediction, uncertainty/logit trace, or report"
+    },
+    {
+      "truth_bearing_value": "hidden viability state",
+      "ownership_classification": "environment-owned",
+      "score_bearing": true,
+      "candidate_role": "not accessible except through public observations and action consequences",
+      "block_condition": "block if candidate-authored or candidate-derived"
+    },
+    {
+      "truth_bearing_value": "held-out context_id or seed assignment",
+      "ownership_classification": "harness-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate may receive public id only when selected by harness",
+      "block_condition": "block if candidate selects held-out target or can infer answer table from serialized state"
+    },
+    {
+      "truth_bearing_value": "unseen observation/boundary/viability combination",
+      "ownership_classification": "environment-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate receives public observation but not hidden combination truth",
+      "block_condition": "block if combination is selected after candidate results or leaked through payload"
+    },
+    {
+      "truth_bearing_value": "harness-owned counterfactual transition",
+      "ownership_classification": "harness-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate prediction is scored against transition chosen by harness",
+      "block_condition": "block if candidate selects the counterfactual target or supplies expected consequence"
+    },
+    {
+      "truth_bearing_value": "graph-cache challenger input observations/actions/history",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "candidate-visible history may also be provided to independent challengers",
+      "block_condition": "block if hidden truth or candidate answer key is added to challenger input"
+    },
+    {
+      "truth_bearing_value": "graph-cache challenger output",
+      "ownership_classification": "repo-source-owned",
+      "score_bearing": false,
+      "candidate_role": "baseline output is a comparator prediction, not truth",
+      "block_condition": "block if challenger output becomes target truth or pass verdict"
+    },
+    {
+      "truth_bearing_value": "baseline equivalence classification",
+      "ownership_classification": "harness-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate cannot declare equivalence or non-equivalence",
+      "block_condition": "block if equivalence is candidate-authored, report-derived, or tuned post hoc"
+    },
+    {
+      "truth_bearing_value": "candidate serialized_state",
+      "ownership_classification": "candidate-authored",
+      "score_bearing": false,
+      "candidate_role": "replay input only",
+      "block_condition": "block if serialized_state contains direct input-output answer table for score-bearing replay targets"
+    },
+    {
+      "truth_bearing_value": "seen-context lookup table positive-control payload",
+      "ownership_classification": "candidate-authored",
+      "score_bearing": false,
+      "candidate_role": "dirty positive-control payload",
+      "block_condition": "must block as lookup_table_replay_leakage on held-out/unseen replay"
+    },
+    {
+      "truth_bearing_value": "clean raw-output leakage bundle",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "candidate-like raw output used as clean scanner control",
+      "block_condition": "block scanner validation if clean bundle is absent or not executed"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload oracle label",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner does not detect oracle label"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload hidden boundary",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner does not detect hidden boundary leakage"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload hidden viability",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner does not detect hidden viability leakage"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload expected action",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner does not detect expected action leakage"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload expected score",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner does not detect expected score leakage"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload producer_function",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner permits candidate-supplied producer_function"
+    },
+    {
+      "truth_bearing_value": "future score producer_function metadata",
+      "ownership_classification": "repo-source-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate cannot select or author producer_function",
+      "block_condition": "block if producer function comes from candidate output or candidate payload"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload pass verdict",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner permits candidate-authored pass/admission verdict"
+    },
+    {
+      "truth_bearing_value": "dirty leakage payload answer-key alias",
+      "ownership_classification": "harness-owned",
+      "score_bearing": false,
+      "candidate_role": "dirty scanner positive-control field",
+      "block_condition": "block if scanner misses nested, aliased, path-like, or value-channel answer key"
+    },
+    {
+      "truth_bearing_value": "fixed action set",
+      "ownership_classification": "harness-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate acts within harness-defined action set",
+      "block_condition": "block if candidate can redefine action availability or difficulty set after seeing results"
+    },
+    {
+      "truth_bearing_value": "harness-sampled action probes",
+      "ownership_classification": "harness-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate predicts outcomes for harness-selected actions",
+      "block_condition": "block if probe selection is candidate-authored, candidate-derived, or post-hoc"
+    },
+    {
+      "truth_bearing_value": "difficulty-normalized prediction score",
+      "ownership_classification": "harness-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate raw predictions are scored after difficulty normalization",
+      "block_condition": "block if normalization uses candidate-authored difficulty, candidate logits as labels, or post-hoc case selection"
+    },
+    {
+      "truth_bearing_value": "predeclared ablation threshold",
+      "ownership_classification": "repo-source-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate cannot tune threshold",
+      "block_condition": "block as threshold_unavailable_blocker if threshold is absent or chosen after candidate evaluation"
+    },
+    {
+      "truth_bearing_value": "ablation equivalence criterion",
+      "ownership_classification": "repo-source-owned",
+      "score_bearing": true,
+      "candidate_role": "candidate cannot define equivalence",
+      "block_condition": "block if equivalence rule is report-derived or candidate-controlled"
+    },
+    {
+      "truth_bearing_value": "uncertainty trace",
+      "ownership_classification": "candidate-derived",
+      "score_bearing": false,
+      "candidate_role": "diagnostic raw output only",
+      "block_condition": "block if uncertainty defines labels, selects cases, masks hard cases, or acts as verdict"
+    },
+    {
+      "truth_bearing_value": "logit trace",
+      "ownership_classification": "candidate-derived",
+      "score_bearing": false,
+      "candidate_role": "diagnostic raw output only",
+      "block_condition": "block if logits define truth labels, select counted cases, mask hard cases, or act as pass/admission channel"
+    },
+    {
+      "truth_bearing_value": "pass/admission verdict",
+      "ownership_classification": "report/verdict-derived",
+      "score_bearing": false,
+      "candidate_role": "candidate cannot author; final report is downstream of computed evidence only",
+      "block_condition": "block if verdict field is accepted as score-bearing truth or as candidate evidence"
+    }
+  ]
+}

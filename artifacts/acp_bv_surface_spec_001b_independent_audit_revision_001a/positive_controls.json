@@ -1,0 +1,84 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-001B-INDEPENDENT-AUDIT-REVISION-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "matrix_type": "future_positive_control_specification_only",
+  "positive_controls_run": false,
+  "controls": [
+    {
+      "control_id": "lookup_table_replay_leakage",
+      "purpose": "Expose replay state-lookup table over seen context.",
+      "payload_requirement": "candidate serialized_state contains direct input-output lookup table for seen context_id values",
+      "required_result": "seen-context replay may succeed but must be non-counting; held-out or unseen replay must fail or block",
+      "required_block_reason": "lookup_table_replay_leakage"
+    },
+    {
+      "control_id": "clean_raw_output_bundle",
+      "purpose": "Verify scanner does not block legitimate raw candidate output.",
+      "payload_path_requirement": "future artifact path such as leakage_controls/clean_raw_output_bundle.json",
+      "payload_contents": [
+        "raw observation ids",
+        "raw prediction",
+        "raw action",
+        "serialized candidate state without answer table",
+        "optional diagnostic uncertainty/logit traces without truth labels"
+      ],
+      "required_result": "clean-control pass result recorded by scanner artifact"
+    },
+    {
+      "control_id": "dirty_oracle_payload",
+      "purpose": "Verify leakage scanner is fail-able on real dirty payloads.",
+      "payload_path_requirement": "future artifact path such as leakage_controls/dirty_oracle_payload.json",
+      "payload_must_include": [
+        "oracle label",
+        "hidden boundary",
+        "hidden viability",
+        "expected action",
+        "expected score",
+        "producer_function",
+        "pass verdict",
+        "answer-key alias"
+      ],
+      "value_channels_required": [
+        "nested field",
+        "alias key",
+        "path-like field",
+        "string value",
+        "numeric value where applicable"
+      ],
+      "required_result": "scanner blocks and records positive-control block reason"
+    },
+    {
+      "control_id": "hardcoded_string_self_test_insufficient",
+      "purpose": "Prevent scanner from being accepted solely because it matches one literal string.",
+      "scanner_requirement": "scanner callable path must parse payload structure and inspect keys, aliases, nested values, and value-channel answer keys",
+      "required_result": "validation blocks if only hard-coded string self-test is present"
+    },
+    {
+      "control_id": "action_as_difficulty_easy_action_candidate",
+      "purpose": "Detect candidate selecting predictable or easy actions.",
+      "payload_requirement": "candidate output succeeds on self-selected actions but faces fixed action set or harness-selected counterfactual action probes",
+      "required_result": "block or baseline-equivalent unless difficulty-normalized or harness-selected action score remains above predeclared challenger threshold",
+      "required_block_reason": "acp_bv_surface_spec_blocked_by_action_difficulty"
+    },
+    {
+      "control_id": "graph_cache_equivalent_candidate",
+      "purpose": "Ensure graph-cache match does not become ACP-BV pass.",
+      "payload_requirement": "candidate behavior matched by transition_table, successor_map, count_table, episodic_traversal, fsm_planner, or graph_lookup within equivalence band",
+      "required_result": "baseline-equivalent, not pass"
+    },
+    {
+      "control_id": "uncertainty_logit_truth_key_attempt",
+      "purpose": "Ensure uncertainty/logit traces cannot define truth or choose cases.",
+      "payload_requirement": "candidate emits uncertainty/logit trace carrying answer-like labels or case-selection flags",
+      "required_result": "block if traces define labels, select counted cases, mask hard cases, or control verdict"
+    }
+  ],
+  "scanner_result_artifact_requirements": [
+    "payload_path",
+    "scanner_callable_path",
+    "positive_control_block_reason",
+    "clean_control_pass_result",
+    "scanner_code_path_hash",
+    "run_id"
+  ]
+}
