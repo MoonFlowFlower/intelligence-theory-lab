@@ -1,0 +1,301 @@
+{
+  "aggregation_rule": "preserve failed_graph_cache_collapse when prior callable controls matched or beat candidate under the frozen zero-advantage lineage rule",
+  "candidate_A_graph_cache_collapse_detected": true,
+  "candidate_A_matched_by_generic_replay": [
+    "chunk_replay",
+    "equal_compute",
+    "frozen_theta",
+    "gate0_frozen",
+    "online_only",
+    "posthoc_generator",
+    "random_replay",
+    "salience_replay",
+    "shuffled_replay",
+    "uniform_replay"
+  ],
+  "candidate_A_matched_by_graph_cache_family": [
+    "compressed_map",
+    "count_table",
+    "episodic_traversal",
+    "fsm_planner",
+    "graph_lookup",
+    "predecessor_map",
+    "successor_map",
+    "transition_table"
+  ],
+  "candidate_B_matched_by_generic_replay": [
+    "shuffled_replay_B"
+  ],
+  "candidate_B_window_cache_controls_executed": true,
+  "claim_ceiling": "Gate1 failed graph-cache reconciliation and post-freeze queue selection only; no Gate1 pass, mechanism-validity, bridge, admission, runtime, or EGO-readiness claim",
+  "fair_control_match_blocks_positive_gate1_claim": true,
+  "graph_cache_control_ledger_evidence": [
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_graph_lookup_seed11",
+        "A_ctrl_graph_lookup_seed13",
+        "A_ctrl_graph_lookup_seed17",
+        "A_ctrl_graph_lookup_seed19",
+        "A_ctrl_graph_lookup_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_graph_lookup"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_transition_table_seed11",
+        "A_ctrl_transition_table_seed13",
+        "A_ctrl_transition_table_seed17",
+        "A_ctrl_transition_table_seed19",
+        "A_ctrl_transition_table_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_transition_table"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_successor_map_seed11",
+        "A_ctrl_successor_map_seed13",
+        "A_ctrl_successor_map_seed17",
+        "A_ctrl_successor_map_seed19",
+        "A_ctrl_successor_map_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_successor_map"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_predecessor_map_seed11",
+        "A_ctrl_predecessor_map_seed13",
+        "A_ctrl_predecessor_map_seed17",
+        "A_ctrl_predecessor_map_seed19",
+        "A_ctrl_predecessor_map_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_predecessor_map"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_fsm_planner_seed11",
+        "A_ctrl_fsm_planner_seed13",
+        "A_ctrl_fsm_planner_seed17",
+        "A_ctrl_fsm_planner_seed19",
+        "A_ctrl_fsm_planner_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_fsm_planner"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_count_table_seed11",
+        "A_ctrl_count_table_seed13",
+        "A_ctrl_count_table_seed17",
+        "A_ctrl_count_table_seed19",
+        "A_ctrl_count_table_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_count_table"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_compressed_map_seed11",
+        "A_ctrl_compressed_map_seed13",
+        "A_ctrl_compressed_map_seed17",
+        "A_ctrl_compressed_map_seed19",
+        "A_ctrl_compressed_map_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_compressed_map"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "A_ctrl_episodic_traversal_seed11",
+        "A_ctrl_episodic_traversal_seed13",
+        "A_ctrl_episodic_traversal_seed17",
+        "A_ctrl_episodic_traversal_seed19",
+        "A_ctrl_episodic_traversal_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "A_ctrl_episodic_traversal"
+    }
+  ],
+  "package_verdict": "gate1_preflight_failed_graph_cache_collapse",
+  "prior_artifact": "artifacts/gate1_replay_consolidation_exec_taskcard_001/baseline_comparison.json",
+  "prior_result_artifact": "artifacts/gate1_replay_consolidation_exec_taskcard_001/result.json",
+  "producer_function": "build_baseline_reconciliation",
+  "task_id": "GATE1-FAILED-GRAPH-CACHE-RECONCILIATION-001A",
+  "window_cache_control_ledger_evidence": [
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "B_ctrl_hidden_state_cache_seed11",
+        "B_ctrl_hidden_state_cache_seed13",
+        "B_ctrl_hidden_state_cache_seed17",
+        "B_ctrl_hidden_state_cache_seed19",
+        "B_ctrl_hidden_state_cache_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "B_ctrl_hidden_state_cache"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "B_ctrl_prefix_cache_seed11",
+        "B_ctrl_prefix_cache_seed13",
+        "B_ctrl_prefix_cache_seed17",
+        "B_ctrl_prefix_cache_seed19",
+        "B_ctrl_prefix_cache_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "B_ctrl_prefix_cache"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "B_ctrl_longer_context_retrieval_seed11",
+        "B_ctrl_longer_context_retrieval_seed13",
+        "B_ctrl_longer_context_retrieval_seed17",
+        "B_ctrl_longer_context_retrieval_seed19",
+        "B_ctrl_longer_context_retrieval_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "B_ctrl_longer_context_retrieval"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "B_ctrl_sequence_lookup_seed11",
+        "B_ctrl_sequence_lookup_seed13",
+        "B_ctrl_sequence_lookup_seed17",
+        "B_ctrl_sequence_lookup_seed19",
+        "B_ctrl_sequence_lookup_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "B_ctrl_sequence_lookup"
+    },
+    {
+      "completed_for_all_seeds": true,
+      "completed_run_ids": [
+        "B_ctrl_nn_sequence_seed11",
+        "B_ctrl_nn_sequence_seed13",
+        "B_ctrl_nn_sequence_seed17",
+        "B_ctrl_nn_sequence_seed19",
+        "B_ctrl_nn_sequence_seed23"
+      ],
+      "missing_run_ids": [],
+      "producer_function": "run_ledger_completed_run_id_check",
+      "seeds": [
+        11,
+        13,
+        17,
+        19,
+        23
+      ],
+      "variant_prefix": "B_ctrl_nn_sequence"
+    }
+  ]
+}
