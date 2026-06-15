@@ -1,0 +1,99 @@
+{
+  "task_id": "ACP-BV-EXECUTABLE-HARNESS-001A-CARD-R1-REVISION-001A",
+  "verdict": "acp_bv_harness_card_r1_revision_ready_for_independent_reaudit",
+  "current_layer": "engineering-governance / ACP-BV executable harness task-card revision only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": {
+    "starting_commit": "42b94d06b9cddb9e5679468d1a21f66d3f7d1022",
+    "starting_tag": "remote-anchor-acp-bv-001b-reaudit-harness-card-draft-001a-42b94d0",
+    "prior_verdict": "acp_bv_harness_card_draft_ready_for_independent_review",
+    "claude_card_audit_verdict": "requires_card_revision_before_implementation"
+  },
+  "preservation": {
+    "audit_source": "user-provided attachment 92c57e39-ca5e-488f-8fbc-1b8d97ea4576/pasted-text.txt",
+    "audit_source_sha256": "C97DBC12B1D84600DA780021735B24100ED838D7B0603660B9643FBE66C0B6EB",
+    "audit_doc": "docs/research/ACP-BV-EXECUTABLE-HARNESS-001A-CARD-CLAUDE-AUDIT-001A.md",
+    "audit_doc_sha256_before_artifact_commit": "8B39AA8013E5DC0091F9D4E1DD49DCC1D7AF1454921D53DDC6D74C70874C0BF5"
+  },
+  "r1_revision": {
+    "task_card": "docs/codex/tasks/ACP-BV-EXECUTABLE-HARNESS-001A-TASK-CARD.md",
+    "task_card_sha256_before_artifact_commit": "10D0E63FBDED1290B05D100CEB091463C74FD81F4A3DCAACCF5706EAE69A089B",
+    "derived_source_boundary_verifier_required": true,
+    "required_verifier_name": "verify_callable_source_boundary",
+    "self_declared_source_boundary_fields_forbidden": [
+      "repo_source_owned",
+      "candidate_inaccessible",
+      "trusted_source",
+      "source_owned_by_harness",
+      "equivalent static or candidate-authored declarations"
+    ],
+    "source_boundary_inputs_required": [
+      "repo-owned source roots",
+      "candidate-writable roots",
+      "candidate artifact roots",
+      "generated-output roots",
+      "import/load resolution rules",
+      "symlink and realpath handling",
+      "environment-variable influence rules",
+      "candidate config influence rules"
+    ],
+    "minimum_boundary_controls_required": [
+      "candidate-accessible environment or truth generator rejected",
+      "candidate policy_map influenced generator selection rejected",
+      "valid source hash with wrong boundary ownership rejected",
+      "symlink or realpath escape rejected, or unsupported symlink limitation recorded with substitute path-escape control"
+    ],
+    "stop_conditions_added": [
+      "blocked_by_self_declared_or_unverified_source_boundary",
+      "blocked_by_candidate_accessible_truth_or_generator"
+    ],
+    "non_blocking_suggestions_incorporated": [
+      "N1 leakage dirty-control randomization",
+      "N2 ablation must rerun episodes and regenerate trace",
+      "N3 immutable threshold band change rule"
+    ]
+  },
+  "acceptance_gate_result": {
+    "claude_audit_preserved_as_bounded_audit_evidence": true,
+    "task_card_revised_to_make_ownership_and_inaccessibility_derived": true,
+    "callable_source_boundary_verifier_required": true,
+    "fail_able_candidate_accessible_generator_or_truth_negative_control_required": true,
+    "blocked_by_self_declared_or_unverified_source_boundary_added": true,
+    "n1_n2_n3_incorporated_without_harness_implementation": true,
+    "src_files_created_or_modified": false,
+    "tests_files_created_or_modified": false,
+    "harness_implementation_created": false,
+    "baseline_ablation_replay_leakage_or_gate_experiment_run": false,
+    "gate_bridge_runtime_admission_mainline_or_candidate_artifact_mutated": false,
+    "changed_files_within_allowlist": true,
+    "claim_ceiling_present_in_docs_and_artifacts": true
+  },
+  "commands_not_run_by_scope": [
+    "ACP-BV harness execution",
+    "baseline experiments",
+    "ablation experiments",
+    "replay experiments",
+    "leakage experiments",
+    "Gate experiments"
+  ],
+  "claim_ceiling": "ACP-BV harness task-card R1 revision and Claude card-audit preservation only.",
+  "next_minimal_closed_loop_action": "Send the revised task card back to Claude for targeted independent re-audit of R1/N1/N2/N3 and regression check on B1-B5 before any harness implementation.",
+  "what_this_does_not_prove": [
+    "ACP-BV validity",
+    "harness readiness",
+    "harness validity",
+    "Gate validity",
+    "mechanism validity",
+    "admission readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "mainline effect",
+    "agency evidence",
+    "consciousness",
+    "real emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}

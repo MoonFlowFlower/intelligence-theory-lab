@@ -2,12 +2,19 @@
 
 Task id: `ACP-BV-EXECUTABLE-HARNESS-001A`
 
-Status: draft ready for independent review only. This card must not be executed
-until independent review accepts it.
+Status: R1 revised after independent card-level audit; ready for targeted
+independent re-audit only. This card must not be executed until independent
+review accepts this revised card.
 
-No harness implementation before independent review of the card.
+No harness implementation before independent re-audit of the revised card.
 
 Auto-Remote-Anchor: forbidden.
+
+R1 audit preservation: the independent card-level audit requiring this revision
+is preserved at
+`docs/research/ACP-BV-EXECUTABLE-HARNESS-001A-CARD-CLAUDE-AUDIT-001A.md`.
+The preserved audit verdict is
+`requires_card_revision_before_implementation`.
 
 ## Problem Definition
 
@@ -42,6 +49,7 @@ Real-trigger evidence requirement:
 - cite source artifacts under
   `artifacts/acp_bv_surface_spec_001b_independent_audit_revision_001a/`;
 - cite prior negative evidence listed in this card;
+- cite the preserved R1 card-level audit before implementation;
 - do not execute if current HEAD, local tag, remote branch, or remote tag has
   drifted from the intended start boundary unless a new review explicitly
   revalidates the card.
@@ -103,9 +111,20 @@ Inconclusive band: `[0.02, 0.05)`.
 
 Minimum mechanism-relevant effect: `>= 0.05`.
 
-Any changed band values must be justified before candidate evaluation using an
-independent baseline-derived rule. Baseline equivalence must be classified as
-`baseline_equivalent`, not pass.
+The `<0.02`, `[0.02, 0.05)`, and `>=0.05` band values are immutable by
+default. Any future change to these bands must be generated before candidate
+scoring by repo-owned code from a recorded baseline-error distribution and must
+record:
+
+- producer function;
+- source hash;
+- seed;
+- baseline distribution input;
+- generated thresholds;
+- artifact path.
+
+Post-hoc threshold changes after seeing candidate score are forbidden. Baseline
+equivalence must be classified as `baseline_equivalent`, not pass.
 
 ## B1 - Counterfactual Action And Difficulty Control
 
@@ -183,19 +202,105 @@ Rules:
 - inconclusive results block admission rather than permitting post-hoc
   threshold tuning.
 
-## B4 - Source-Hash Provenance
+## B4 - Source-Hash Provenance And Derived Source Boundary
 
-The future harness must record source-hash provenance for each code path below.
+The future harness must include a repo-owned callable source-boundary verifier
+named `verify_callable_source_boundary`.
 
-| Component | Required provenance fields |
-| --- | --- |
-| scorer | callable path, source path, code path hash, repo-source-owned true/false |
-| environment generator | callable path, source path, code path hash, repo-source-owned true/false |
-| held-out/counterfactual truth generator | callable path, source path, code path hash, repo-source-owned true/false |
-| leakage scanner | callable path, source path, code path hash, repo-source-owned true/false |
-| graph-cache challengers | callable path, source path, code path hash, repo-source-owned true/false |
-| replay recomputation function | callable path, source path, code path hash, repo-source-owned true/false |
-| ablation runner | callable path, source path, code path hash, repo-source-owned true/false |
+The verifier must derive source ownership and candidate-inaccessibility for
+every load-bearing callable. It must not accept self-declared fields such as:
+
+- `repo_source_owned: true`;
+- `candidate_inaccessible: true`;
+- `trusted_source: true`;
+- `source_owned_by_harness: true`;
+- any equivalent static or candidate-authored declaration.
+
+The verifier must cover all load-bearing callable components:
+
+- scorer;
+- environment generator;
+- held-out truth generator;
+- counterfactual truth generator;
+- leakage scanner;
+- graph-cache challengers;
+- replay recomputation function;
+- ablation runner;
+- baseline runner;
+- metric aggregator;
+- admission/verdict classifier, if any.
+
+The future implementation must explicitly define all source-boundary inputs
+before candidate scoring:
+
+1. repo-owned source roots;
+2. candidate-writable roots;
+3. candidate artifact roots;
+4. generated-output roots;
+5. import/load resolution rules;
+6. symlink and realpath handling;
+7. environment-variable influence rules;
+8. candidate config influence rules.
+
+Path resolution must use canonical realpaths. String-prefix checks alone are
+not sufficient.
+
+The verifier must record these derived fields for every covered callable:
+
+- `resolved_source_path`;
+- `normalized_realpath`;
+- `source_hash`;
+- `repo_source_root_match`;
+- `candidate_writable_root_match`;
+- `candidate_artifact_root_match`;
+- `candidate_config_influence_detected`;
+- `candidate_serialized_state_influence_detected`;
+- `candidate_policy_map_influence_detected`;
+- `candidate_label_or_logit_influence_detected`;
+- `repo_source_owned_derived`;
+- `candidate_inaccessible_derived`;
+- `boundary_verdict`.
+
+The future harness must block unless all of the following are true:
+
+- `repo_source_owned_derived == true`;
+- `candidate_inaccessible_derived == true`;
+- `candidate_writable_root_match == false`;
+- `candidate_artifact_root_match == false`;
+- no candidate-controlled config, serialized state, policy map, labels, logits,
+  confidence, score, verdict, or producer function influences generator, truth,
+  scorer, baseline, ablation, replay, leakage, metric, or verdict selection.
+
+The verifier must block or explicitly test symlink escape, relative-path
+escape, generated-code injection, candidate-selected import path, and
+candidate-controlled environment variable influence.
+
+Minimum required source-boundary controls:
+
+1. A deliberately candidate-accessible environment or truth generator placed
+   under a candidate artifact or candidate-writable path must be rejected.
+2. A generator whose selection is influenced by candidate `policy_map` must be
+   rejected.
+3. A callable with valid source hash but wrong boundary ownership must be
+   rejected.
+4. A symlink or realpath escape from an allowed-looking path into a
+   candidate-controlled path must be rejected. If the implementation
+   environment cannot create symlinks, that limitation must be recorded and a
+   substitute path-escape control must be used.
+
+Each boundary-control artifact must persist:
+
+- control name;
+- injected violation;
+- verifier entrypoint;
+- resolved source path;
+- source hash;
+- expected block reason;
+- actual block reason;
+- run ID;
+- artifact path.
+
+A clean report without these boundary-negative controls is insufficient.
 
 All reported scores must also record producer_function, input artifacts, run_id,
 seed/context/episode IDs, aggregation rule, and code path hash.
@@ -206,7 +311,7 @@ not admissible score producers.
 ## B5 - Candidate-Inaccessible Environment And Challenger Generators
 
 Environment generator code, challenger generator code, truth generator code, and
-metric producer code must be:
+metric producer code must be verified by `verify_callable_source_boundary` as:
 
 - repo-source-owned;
 - candidate-inaccessible;
@@ -214,6 +319,8 @@ metric producer code must be:
 - not selected by the candidate;
 - not influenced by candidate-authored serialized state, policy_map, labels,
   logits, confidence, score, verdict, or producer_function.
+
+These properties must be derived verifier outputs, not self-declared fields.
 
 No candidate-authored truth, no candidate-selected producer, no
 candidate-declared expected values, no row injection into metric producers, and
@@ -238,6 +345,20 @@ ablations:
 Each ablation must predeclare metric direction, minimum effect criterion,
 equivalence criterion, block condition, threshold source, and expected
 mechanism-critical variable. No post-hoc threshold tuning is allowed.
+
+Ablation must not be implemented as deleting, masking, or editing report
+fields. Ablation must rerun episodes under real input or component intervention
+and regenerate the full trace.
+
+Each ablation artifact must persist:
+
+- intervention target;
+- rerun command;
+- run ID;
+- regenerated trace path;
+- before/after metrics;
+- effect size;
+- threshold classification.
 
 ## Trace / Replay Plan
 
@@ -281,6 +402,15 @@ The scanner must inspect nested fields, alias keys, path-like fields, string
 values, and numeric values where applicable. A literal string self-test is not
 sufficient.
 
+Dirty-control injection must be repo-owned and vary across seeds or cases in at
+least:
+
+- alias/name;
+- nested location;
+- value encoding or representation.
+
+A scanner that only recognizes a fixed injected field name is insufficient.
+
 ## Computed-Evidence Gate
 
 No evidence-bearing result may be a literal, static verdict dictionary,
@@ -311,6 +441,8 @@ The future executable harness task must return exactly one:
 - `acp_bv_executable_harness_001a_blocked_by_leakage`;
 - `acp_bv_executable_harness_001a_blocked_by_replay_lookup`;
 - `acp_bv_executable_harness_001a_blocked_by_source_provenance`;
+- `acp_bv_executable_harness_001a_blocked_by_self_declared_or_unverified_source_boundary`;
+- `acp_bv_executable_harness_001a_blocked_by_candidate_accessible_truth_or_generator`;
 - `acp_bv_executable_harness_001a_blocked_by_candidate_authored_truth`;
 - `acp_bv_executable_harness_001a_blocked_by_missing_control_execution`;
 - `acp_bv_executable_harness_001a_blocked_by_inconclusive_effect`;
@@ -329,8 +461,13 @@ Pass is allowed only if all of the following are true:
 - no result falls in `[0.02, 0.05)`;
 - all ablations execute as real reruns;
 - all source-hash provenance fields are present;
-- environment/challenger/truth generators are repo-source-owned and
-  candidate-inaccessible;
+- `verify_callable_source_boundary` executes for every load-bearing callable;
+- ownership and candidate-inaccessibility are derived from resolved source
+  paths and explicit path-boundary rules, not declarations;
+- boundary-negative controls reject candidate-accessible, candidate-influenced,
+  wrong-boundary, and path-escape callables;
+- environment/challenger/truth generators are derived repo-source-owned and
+  derived candidate-inaccessible;
 - no candidate-authored truth, no candidate-selected producer, no
   candidate-declared expected values, no row-injected metric, no static verdict
   dictionary, and no pass-shaped report is load-bearing.
@@ -355,8 +492,13 @@ Stop if:
 - controls are self-reported booleans rather than real artifacts;
 - baseline equivalence is reported as pass;
 - source-hash provenance is missing for any required component;
-- environment/challenger/truth generators are candidate-accessible or
-  candidate-influenced;
+- any load-bearing callable's repo ownership or candidate-inaccessibility is
+  accepted from declaration rather than derived by
+  `verify_callable_source_boundary` and validated by fail-able controls;
+- environment generation, truth generation, counterfactual truth generation,
+  scoring, leakage scanning, graph-cache challenger generation, replay
+  recomputation, ablation running, metric aggregation, or verdict classification
+  is candidate-accessible or candidate-influenced;
 - replay uses stored hashes instead of recomputation;
 - leakage scanner lacks real clean/dirty controls;
 - row injection, static verdict dictionaries, pass-shaped JSON reports,
