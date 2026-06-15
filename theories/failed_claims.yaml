@@ -39,6 +39,23 @@ failed_claims:
       - explicit_action_label_rules was true
     consequence: clean-room FOPC candidate contract is not authorized
     successor_constraint: no action-label-sensitive future-option proxy may be used as a core mechanism claim
+  - claim_id: future_only_evidence_harness_noncircularity_001a
+    status: downgraded
+    failure_type: candidate_authored_ground_truth_circularity
+    anchor:
+      commit: cb95bbdb06c9fadbbbf7765ae61acc46609ed994
+      tag: remote-anchor-one-gate-future-only-non-circular-evidence-harness-001a-cb95bbd
+      artifacts: artifacts/one_gate_future_only_non_circular_harness_001a/
+      source_of_record: independent read-only audit; harness not modified or repaired
+    evidence:
+      - removes candidate declaration and producer-selection control (name-level field block plus harness-owned metric registry)
+      - fails non-circularity because score, replay, and baseline are computed against candidate-authored serialized_state.policy_map
+      - fixed observations and actions, flipped only policy_map, outcome flips from score 1.0 admitted to blocked
+      - degenerate self-consistent fixture yields candidate score 1.0 equal to majority baseline 1.0 yet still admitted, all run-level acceptance gates pass, baseline non-equivalence is not gated
+      - leakage scanner is name-based, policy_map and signal carry ground truth off the name-list (0 hits), and its positive control scans a hardcoded dict so detection is structurally always true
+    consequence: cb95bbd future-only harness must not be used as a Gate evidence contract
+    successor_constraint: run a separate independent-ground-truth preflight for the intended Gate target; if no harness-owned or candidate-inaccessible truth source exists, downgrade the Gate evidence route instead of repairing the harness again
+    claim_ceiling: future-only non-circular evidence-harness preflight only; no Gate, mechanism, autonomy, agency, consciousness, or EGO/runtime claim
 global_successor_constraints:
   - no action-label future-option proxy
   - no trace-only boundary or control claim
@@ -48,4 +65,5 @@ global_successor_constraints:
   - no hidden future or oracle field
   - no scenario_id or object_name shortcut
   - no theory rename without stronger kill test
+  - no candidate-authored ground truth in an evidence harness; harness ground truth must be harness-owned and candidate-inaccessible
 
