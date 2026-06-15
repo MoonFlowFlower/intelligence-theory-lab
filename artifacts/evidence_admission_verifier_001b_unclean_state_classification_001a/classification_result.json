@@ -1,0 +1,32 @@
+{
+  "task_id": "EVIDENCE-ADMISSION-VERIFIER-001B-UNCLEAN-STATE-CLASSIFICATION-001A",
+  "layer": "engineering implementation layer",
+  "mainline_integration_status": "none",
+  "enabled_status": "no new enabled path; existing standalone CLI only",
+  "real_trigger_evidence": {
+    "local_head_at_start": "b1070058736235dc897d4fa9e693f48f06e63059",
+    "upstream_head_at_start": "ffa928624ad3ada526b15e38e624ea09e6e34d23",
+    "untracked_files_observed": [
+      "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/claim_ceiling.txt",
+      "docs/codex/tasks/EVIDENCE-ADMISSION-VERIFIER-001A-REAL-BUNDLE-CALIBRATION-001A.md"
+    ]
+  },
+  "temporary_move_test": {
+    "files_moved_outside_repo": true,
+    "scoped_pytest_command": "python -m pytest tests/test_evidence_admission_verifier_001a.py tests/test_evidence_admission_verifier_001b_callable_provenance_repair_001a.py -q",
+    "scoped_pytest_exit_code": 0,
+    "scoped_pytest_result": "18 passed in 0.84s",
+    "hidden_untracked_dependency": false
+  },
+  "tracked_reference_classification": {
+    "exact_path_references_found": true,
+    "executable_dependency_found": false,
+    "src_or_test_exact_references_found": false,
+    "interpretation": "Tracked exact references are diagnostic status/readback records or prior source-freeze status records, not verifier source, scoped test input, or verifier input dependency."
+  },
+  "classification": "preserve_as_durable_evidence_records",
+  "preservation_reason": "The task card is the bounded governance card for the already tracked 001A real-bundle calibration artifact set, and the claim_ceiling.txt file is evidence-contract metadata under the same 001A artifact root. They are not needed by verifier tests or source execution, but deleting them would leave the prior calibration evidence/task-card set incomplete.",
+  "verifier_source_behavior_changed": false,
+  "claim_ceiling": "repo-hygiene and reproducibility closure only; no Gate validity, mechanism validity, integrated admission readiness, mainline effect, agency, consciousness, emotion, autonomy, stable user benefit, or EGO readiness claim",
+  "acceptance_gate_status": "passed_for_classification"
+}
