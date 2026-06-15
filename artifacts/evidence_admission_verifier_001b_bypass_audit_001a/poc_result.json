@@ -1,0 +1,84 @@
+{
+  "audited_boundary": "14aa837e1db8265f9ec64c745c46d9a70c1eaaa3",
+  "blocker": "The verifier compares producer-returned output_digest to candidate-declared expected_output_digest; the PoC controls both.",
+  "bypass_depends_on_row_injection": false,
+  "claim_ceiling": "verifier-bypass negative evidence and route downgrade only",
+  "constant_producer_admitted": true,
+  "current_layer": "engineering-governance / verifier bypass audit preservation and route downgrade only",
+  "enabled_status": "no new enabled path; standalone verifier only",
+  "forged_digest": "sha256:c883ea8669a63efd13248f96af9f89936f1588382b8829f6b2317e37dbe03435",
+  "mainline_integration_status": "none",
+  "poc_cases": [
+    {
+      "admitted_for_citation": true,
+      "block_reason_ids": [],
+      "bundle_path": "artifacts\\evidence_admission_verifier_001b_bypass_audit_001a\\forged_bundles\\constant_producer",
+      "callable_check_count": 5,
+      "canonical_decision": "admitted_for_citation",
+      "case_id": "constant_producer",
+      "output_path": "artifacts\\evidence_admission_verifier_001b_bypass_audit_001a\\verifier_outputs\\constant_producer",
+      "producer_function": "artifacts.evidence_admission_verifier_001b_bypass_audit_001a.poc_forged_digest_admission:constant_forged_digest",
+      "row_injection_required": false
+    },
+    {
+      "admitted_for_citation": true,
+      "block_reason_ids": [],
+      "bundle_path": "artifacts\\evidence_admission_verifier_001b_bypass_audit_001a\\forged_bundles\\row_echo_producer",
+      "callable_check_count": 5,
+      "canonical_decision": "admitted_for_citation",
+      "case_id": "row_echo_producer",
+      "output_path": "artifacts\\evidence_admission_verifier_001b_bypass_audit_001a\\verifier_outputs\\row_echo_producer",
+      "producer_function": "artifacts.evidence_admission_verifier_001b_bypass_audit_001a.poc_forged_digest_admission:row_echo_forged_digest",
+      "row_injection_required": true
+    }
+  ],
+  "real_trigger_evidence": "forged bundle admitted with block_reason_ids empty in verifier_outputs/constant_producer/admission_decision.json",
+  "repair_parent": "b1070058736235dc897d4fa9e693f48f06e63059",
+  "repo_state": {
+    "anchor_under_audit_resolved": {
+      "command": "git rev-parse 14aa837e1db8265f9ec64c745c46d9a70c1eaaa3",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "14aa837e1db8265f9ec64c745c46d9a70c1eaaa3"
+    },
+    "branch": {
+      "command": "git branch --show-current",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "codex/meta-theory-scaffold"
+    },
+    "head": {
+      "command": "git rev-parse HEAD",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "14aa837e1db8265f9ec64c745c46d9a70c1eaaa3"
+    },
+    "repair_parent_resolved": {
+      "command": "git rev-parse b1070058736235dc897d4fa9e693f48f06e63059",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "b1070058736235dc897d4fa9e693f48f06e63059"
+    },
+    "status_short_branch": {
+      "command": "git status --short --branch",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold\n?? artifacts/evidence_admission_verifier_001b_bypass_audit_001a/\n?? docs/research/EVIDENCE-ADMISSION-VERIFIER-001B-BYPASS-AUDIT-001A.md"
+    }
+  },
+  "row_echo_producer_admitted": true,
+  "task_id": "PRESERVE-EVIDENCE-ADMISSION-VERIFIER-001B-BYPASS-AUDIT-001A",
+  "verdict": "verifier_001b_blocked_by_circular_candidate_controlled_digest",
+  "what_this_does_not_prove": [
+    "Gate validity",
+    "mechanism validity",
+    "admission readiness",
+    "mainline effect",
+    "agency",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}
