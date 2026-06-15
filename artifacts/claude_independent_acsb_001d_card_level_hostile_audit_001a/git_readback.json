@@ -1,0 +1,82 @@
+{
+  "task_id": "CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A",
+  "readback_kind": "preservation_git_and_anchor_readback",
+  "recording_note": "This artifact is committed before the preservation commit hash and remote tag can exist; exact post-commit and post-tag readback is required in the final task closeout.",
+  "session_initial_state_before_fetch": {
+    "branch": "codex/meta-theory-scaffold",
+    "head": "d429ad78948e964d2a17efc05a57e8388f7fae26",
+    "upstream": "origin/codex/meta-theory-scaffold",
+    "local_ahead_behind_before_fetch": "0 0",
+    "status_summary": [
+      "untracked: artifacts/acsb_post_001c_blocker_audit_route_decision_001a/",
+      "untracked: artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/",
+      "untracked: docs/research/ACSB-POST-001C-BLOCKER-AUDIT-ROUTE-DECISION-001A.md",
+      "untracked: docs/research/CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A.md"
+    ]
+  },
+  "claimed_route_decision_anchor": {
+    "boundary": "ACSB-POST-001C-BLOCKER-AUDIT-ROUTE-DECISION-001A",
+    "claimed_commit": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+    "claimed_tag": "remote-anchor-acsb-post-001c-route-decision-001a-fb0129a",
+    "branch": "codex/meta-theory-scaffold",
+    "local_mount_before_fetch": {
+      "commit_object_present": false,
+      "tag_present": false,
+      "interpretation": "Matches the preserved audit caveat: the claimed anchor was not independently verifiable from the initial mount state."
+    },
+    "origin_readback_after_fetch": {
+      "remote_branch_commit": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+      "remote_tag_object": "b37ab9c978e0764865d501247e4072955210a99c",
+      "remote_tag_peeled_commit": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+      "local_tag_type_after_fetch": "annotated",
+      "local_tag_object_after_fetch": "b37ab9c978e0764865d501247e4072955210a99c",
+      "local_tag_peeled_commit_after_fetch": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+      "interpretation": "Origin verifies the claimed route-decision commit through the branch and the annotated tag's peeled commit; this does not erase the audit's original mount-verification caveat."
+    }
+  },
+  "safe_alignment_before_preservation_commit": {
+    "action": "fetched origin refs and aligned local branch/index to origin/codex/meta-theory-scaffold with working-tree content preserved",
+    "reason": "The pre-existing untracked route-decision files matched the fetched origin commit blobs exactly.",
+    "aligned_head": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+    "aligned_ahead_behind": "0 0",
+    "matched_origin_blob_paths": [
+      "artifacts/acsb_post_001c_blocker_audit_route_decision_001a/claim_ceiling.txt",
+      "artifacts/acsb_post_001c_blocker_audit_route_decision_001a/git_readback.json",
+      "artifacts/acsb_post_001c_blocker_audit_route_decision_001a/readback.json",
+      "artifacts/acsb_post_001c_blocker_audit_route_decision_001a/result.json",
+      "docs/research/ACSB-POST-001C-BLOCKER-AUDIT-ROUTE-DECISION-001A.md"
+    ],
+    "status_after_alignment": [
+      "untracked: artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/",
+      "untracked: docs/research/CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A.md"
+    ]
+  },
+  "audit_artifact_hashes_before_preservation_commit": {
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A.md": "9BF6FD136BFEBEFAFE05B994E643E606E86A54BA4265D1CE94A4F1D520EDD40E",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/audit_verdict.json": "0ABEB82D06959CCBD0EA10A4C32A656EFFF1E627A5FDEE380F10C5045CBD338F",
+    "external_current_audit_note_C:/Users/LEO/Documents": "87D36CAB348549FE19A18598353EB497F71D0A384866897861F01CD68B931E4F"
+  },
+  "changed_file_allowlist": [
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A.md",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/audit_verdict.json",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/readback.json",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/claim_ceiling.txt",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/git_readback.json"
+  ],
+  "forbidden_path_policy": {
+    "src": "must_not_change",
+    "tests": "must_not_change",
+    "gate_bridge_tournament_runtime_companion_product_ego_mainline": "must_not_change"
+  },
+  "remote_anchor": {
+    "authorization": "conditional",
+    "suggested_tag_pattern": "remote-anchor-claude-independent-acsb-001d-card-level-audit-001a-<shortsha>",
+    "allowed_only_if": [
+      "audit boundary preserved",
+      "no implementation files changed",
+      "worktree clean after commit",
+      "branch push succeeds",
+      "local HEAD, remote branch, local tag, and remote tag exactly match"
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "task_id": "CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A",
+  "result_artifact_kind": "audit_preservation_result_readback",
+  "verdict": "remote_anchor_preserve_claude_independent_acsb_001d_card_level_audit_001a_requires_minor_revision",
+  "audited_card": "ACTION-CONDITIONED-SELF-BOUNDARY-CORRECTED-CHALLENGE-001D",
+  "audit_id": "CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A",
+  "audit_verdict": "claude_independent_acsb_001d_card_audit_requires_minor_card_revision_before_execution",
+  "codex_execution_authorized": false,
+  "current_layer": "engineering-governance / card-level hostile audit preservation only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": "current audit artifacts plus repo and origin readback; no runner, candidate, Gate4/Gate5, bridge, tournament, runtime, companion, product, or EGO-mainline path was created or enabled",
+  "claim_ceiling": "card_level_audit_preservation_only",
+  "approval_criteria_unmet": [
+    "criterion_5_card_makes_rigged_capacity_disabled_challenger_fail"
+  ],
+  "primary_blocker": "The 001D draft does not structurally close the fair capacity-disabled challenger loophole; a capacity-disabled reference can still be rigged under the current wording.",
+  "preserved_findings": {
+    "substantially_closes": [
+      "dummy learner loophole",
+      "inert reference loophole",
+      "static decoder loophole",
+      "value leakage loophole",
+      "cosmetic split loophole",
+      "constant ablation loophole",
+      "replay/provenance tautology",
+      "threshold/no-001E ambiguity"
+    ],
+    "does_not_yet_structurally_close": [
+      "rigged capacity-disabled challenger loophole"
+    ]
+  },
+  "required_revisions": {
+    "R1_primary_blocking": "capacity reference must be the same callable as reference with persistence flag off; unify with disable_persistence ablation; add callable diff check; define rigged",
+    "R2": "bind boundary causal-effect paired probes to scored heldout distribution or justify the 0.25 floor",
+    "R3": "make heldout row-enumerability a callable check with closure path",
+    "R4": "require feature parity for learned baselines and decoders: same legal features as reference minus boundary memory",
+    "R5": "reconcile fb0129a canonical anchor and document corrupted mount-index / tmp-clone workaround for acceptance gate #1",
+    "R6_optional": "tie value-leakage threshold to epsilon of reference and bound no-update negative-result escape"
+  },
+  "post_revision_path": {
+    "delta_reaudit_required_for": [
+      "R1",
+      "R5"
+    ],
+    "full_reaudit_required": false,
+    "full_reaudit_required_unless": "the revision changes broader task structure"
+  },
+  "fallback_if_R1_infeasible": "close ACSB under route-decision Option C; do not ship a terminal challenge with a riggable capacity line",
+  "canonical_state_anchor_readback_caveat": {
+    "preserved_audit_caveat": {
+      "mount_branch_reported_by_audit": "codex/meta-theory-scaffold",
+      "mount_head_reported_by_audit": "d429ad78948e964d2a17efc05a57e8388f7fae26",
+      "fb0129a_object_present_on_initial_mount": false,
+      "claimed_tag_present_on_initial_mount": false,
+      "mount_git_index_status_reported_by_audit": "corrupted_unknown_index_entry_format_0x70680000",
+      "audit_interpretation_to_preserve": "anchor plausibly legitimate on origin via tmp clone, but not independently verifiable from the initial mount state"
+    },
+    "current_session_origin_readback_after_fetch": {
+      "remote_branch_commit": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+      "remote_tag_object": "b37ab9c978e0764865d501247e4072955210a99c",
+      "remote_tag_peeled_commit": "fb0129aebe760d25bf4051328cdbf9ed14095694",
+      "local_tag_type_after_fetch": "annotated",
+      "interpretation": "origin now verifies fb0129a through the branch and the annotated tag's peeled commit; this is an added readback and does not rewrite the original audit caveat"
+    }
+  },
+  "changed_files": [
+    "docs/research/CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A.md",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/audit_verdict.json",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/readback.json",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/claim_ceiling.txt",
+    "artifacts/claude_independent_acsb_001d_card_level_hostile_audit_001a/git_readback.json"
+  ],
+  "checks_run": {
+    "start_state_git_readback": "run",
+    "current_mount_branch_head_readback": "run",
+    "origin_remote_readback_for_fb0129a": "run",
+    "audit_artifact_sha256_readback": "run",
+    "json_parse_check_audit_verdict": "run",
+    "json_parse_check_readback_and_git_readback": "run",
+    "changed_file_allowlist_check": "run_pre_staging_and_staged_allowlist_ok",
+    "forbidden_path_scan": "run_pre_staging_ok",
+    "forbidden_positive_claim_scan": "run_pre_staging_and_staged_ok",
+    "scoped_secret_pattern_scan": "run_pre_staging_and_staged_ok",
+    "git_diff_check": "run_exit_0",
+    "git_diff_cached_check": "run_exit_0_before_final_restage",
+    "final_git_status": "pending_closeout",
+    "final_git_diff_name_status": "pending_closeout",
+    "remote_anchor_readback": "pending_if_anchor_performed"
+  },
+  "final_git_readback": {
+    "artifact_recording_note": "Exact post-commit and post-tag hashes are produced after this artifact is committed; final closeout must report local HEAD, remote branch, local tag, remote tag, exact match, clean worktree, and ahead/behind."
+  },
+  "what_this_cannot_prove": "This preservation does not prove ACSB validity, ACSB invalidity, mechanism validity, Gate validity, candidate behavior, agency, autonomy, consciousness, emotion, subjectivity, runtime readiness, EGO readiness, stable user benefit, or mainline effect."
+}
