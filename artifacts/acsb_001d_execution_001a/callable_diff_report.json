@@ -1,0 +1,275 @@
+{
+  "behavioral_negative_controls_passed": true,
+  "callable_diff_hash_used_as_sole_rig_control": false,
+  "capacity_disabled_config_hash": "a2ca0f8d51d2d5c2a10ab71609db1d6119587ed46c1508778c2092b05d9fee00",
+  "capacity_disabled_core_callable": "reference_core",
+  "capacity_disabled_path": "reference_core:disable_persistence",
+  "capacity_disabled_predictions": [
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue",
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue",
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue",
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue"
+  ],
+  "claim_ceiling": "bounded isolated ACSB-001D execution evidence only",
+  "declared_flag_diff": {
+    "boundary_memory_read_enabled": [
+      true,
+      false
+    ],
+    "boundary_memory_write_enabled": [
+      true,
+      false
+    ],
+    "persistence_enabled": [
+      true,
+      false
+    ]
+  },
+  "disable_persistence_ablation_path": "reference_core:disable_persistence",
+  "full_reference_config_hash": "ff72a71fc10eb9aef0562673120b3e174b4c04382d1041acd714afb60d662f42",
+  "full_reference_core_callable": "reference_core",
+  "full_reference_predictions": [
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue",
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue",
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue",
+    "channel_blue",
+    "channel_red",
+    "channel_red",
+    "channel_blue"
+  ],
+  "passed": true,
+  "producer_function": "run_callable_diff_check",
+  "sample_disabled_trace": [
+    {
+      "episode_id": "heldout_episode_000",
+      "observation": {
+        "action_bit": 0,
+        "external_evidence": 7,
+        "magnitude": 100,
+        "no_action_counterfactual": 0,
+        "phase_bit": 0,
+        "sensor_bucket": 1
+      },
+      "reference_core_output": {
+        "boundary_memory_after": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "boundary_memory_before": "read_disabled",
+        "boundary_memory_read_enabled": false,
+        "boundary_memory_write_enabled": false,
+        "config_hash": "a2ca0f8d51d2d5c2a10ab71609db1d6119587ed46c1508778c2092b05d9fee00",
+        "consumed_non_disabled_legal_evidence": true,
+        "disabled_component_flags": [
+          "disable_persistence"
+        ],
+        "evidence_terms": {
+          "action_bit": 0,
+          "external_evidence": 7,
+          "phase_bit": 0
+        },
+        "persistence_enabled": false,
+        "selected_output": "channel_blue",
+        "selector_code_path_hash": "9838c4c99455d3e7e4c51da1390effe35b1de88f53739920d561ee5339e2ba22",
+        "selector_core_used": "_target_from_observation",
+        "shared_core_code_path_hash": "05621c99941f6cebfec1f313982a2b3bc562bf346af0365586defe728b5b8084"
+      },
+      "serialized_state": {
+        "boundary_memory": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "recency_state": {
+          "last_observed_action_bit": 1,
+          "last_observed_phase_bit": 1
+        }
+      }
+    },
+    {
+      "episode_id": "heldout_episode_001",
+      "observation": {
+        "action_bit": 1,
+        "external_evidence": 4,
+        "magnitude": 101,
+        "no_action_counterfactual": 0,
+        "phase_bit": 0,
+        "sensor_bucket": 4
+      },
+      "reference_core_output": {
+        "boundary_memory_after": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "boundary_memory_before": "read_disabled",
+        "boundary_memory_read_enabled": false,
+        "boundary_memory_write_enabled": false,
+        "config_hash": "a2ca0f8d51d2d5c2a10ab71609db1d6119587ed46c1508778c2092b05d9fee00",
+        "consumed_non_disabled_legal_evidence": true,
+        "disabled_component_flags": [
+          "disable_persistence"
+        ],
+        "evidence_terms": {
+          "action_bit": 1,
+          "external_evidence": 4,
+          "phase_bit": 0
+        },
+        "persistence_enabled": false,
+        "selected_output": "channel_red",
+        "selector_code_path_hash": "9838c4c99455d3e7e4c51da1390effe35b1de88f53739920d561ee5339e2ba22",
+        "selector_core_used": "_target_from_observation",
+        "shared_core_code_path_hash": "05621c99941f6cebfec1f313982a2b3bc562bf346af0365586defe728b5b8084"
+      },
+      "serialized_state": {
+        "boundary_memory": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "recency_state": {
+          "last_observed_action_bit": 1,
+          "last_observed_phase_bit": 1
+        }
+      }
+    }
+  ],
+  "sample_full_trace": [
+    {
+      "episode_id": "heldout_episode_000",
+      "observation": {
+        "action_bit": 0,
+        "external_evidence": 7,
+        "magnitude": 100,
+        "no_action_counterfactual": 0,
+        "phase_bit": 0,
+        "sensor_bucket": 1
+      },
+      "reference_core_output": {
+        "boundary_memory_after": {
+          "evidence_count": 16,
+          "last_selected_output": "channel_blue",
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32,
+          "write_count": 1
+        },
+        "boundary_memory_before": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "boundary_memory_read_enabled": true,
+        "boundary_memory_write_enabled": true,
+        "config_hash": "ff72a71fc10eb9aef0562673120b3e174b4c04382d1041acd714afb60d662f42",
+        "consumed_non_disabled_legal_evidence": true,
+        "disabled_component_flags": [],
+        "evidence_terms": {
+          "action_bit": 0,
+          "external_evidence": 7,
+          "phase_bit": 0
+        },
+        "persistence_enabled": true,
+        "selected_output": "channel_blue",
+        "selector_code_path_hash": "9838c4c99455d3e7e4c51da1390effe35b1de88f53739920d561ee5339e2ba22",
+        "selector_core_used": "_target_from_observation",
+        "shared_core_code_path_hash": "05621c99941f6cebfec1f313982a2b3bc562bf346af0365586defe728b5b8084"
+      },
+      "serialized_state": {
+        "boundary_memory": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "recency_state": {
+          "last_observed_action_bit": 1,
+          "last_observed_phase_bit": 1
+        }
+      }
+    },
+    {
+      "episode_id": "heldout_episode_001",
+      "observation": {
+        "action_bit": 1,
+        "external_evidence": 4,
+        "magnitude": 101,
+        "no_action_counterfactual": 0,
+        "phase_bit": 0,
+        "sensor_bucket": 4
+      },
+      "reference_core_output": {
+        "boundary_memory_after": {
+          "evidence_count": 16,
+          "last_selected_output": "channel_red",
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32,
+          "write_count": 1
+        },
+        "boundary_memory_before": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "boundary_memory_read_enabled": true,
+        "boundary_memory_write_enabled": true,
+        "config_hash": "ff72a71fc10eb9aef0562673120b3e174b4c04382d1041acd714afb60d662f42",
+        "consumed_non_disabled_legal_evidence": true,
+        "disabled_component_flags": [],
+        "evidence_terms": {
+          "action_bit": 1,
+          "external_evidence": 4,
+          "phase_bit": 0
+        },
+        "persistence_enabled": true,
+        "selected_output": "channel_red",
+        "selector_code_path_hash": "9838c4c99455d3e7e4c51da1390effe35b1de88f53739920d561ee5339e2ba22",
+        "selector_core_used": "_target_from_observation",
+        "shared_core_code_path_hash": "05621c99941f6cebfec1f313982a2b3bc562bf346af0365586defe728b5b8084"
+      },
+      "serialized_state": {
+        "boundary_memory": {
+          "evidence_count": 16,
+          "learned_rule_family": "phase_action_xor_from_legal_observation",
+          "majority_prior": "channel_blue",
+          "train_count": 32
+        },
+        "recency_state": {
+          "last_observed_action_bit": 1,
+          "last_observed_phase_bit": 1
+        }
+      }
+    }
+  ],
+  "selector_code_path_hash": "9838c4c99455d3e7e4c51da1390effe35b1de88f53739920d561ee5339e2ba22",
+  "shared_core_code_path_hash": "05621c99941f6cebfec1f313982a2b3bc562bf346af0365586defe728b5b8084"
+}

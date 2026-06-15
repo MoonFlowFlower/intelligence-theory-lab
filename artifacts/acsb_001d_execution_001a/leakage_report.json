@@ -1,0 +1,89 @@
+{
+  "claim_ceiling": "bounded isolated ACSB-001D execution evidence only",
+  "clean_legal_input": {
+    "blocked": false,
+    "blocked_count": 0
+  },
+  "positive_controls": {
+    "benign_answer_alias": {
+      "blocked": true,
+      "detected": [
+        "preferred_channel"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "constant_count_signature_encoding": {
+      "blocked": true,
+      "detected": [
+        "count_signature_value",
+        "signature_channel"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "explicit_target_action_output_field": {
+      "blocked": true,
+      "detected": [
+        "target",
+        "target_channel"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "filename_fixture_context_id_leakage": {
+      "blocked": true,
+      "detected": [
+        "fixture_filename",
+        "value_level_channel_encoding"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "future_outcome_leakage": {
+      "blocked": true,
+      "detected": [
+        "future_outcome"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "hidden_deterministic_order": {
+      "blocked": true,
+      "detected": [
+        "value_level_channel_encoding"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "hidden_id_mapping_to_answer": {
+      "blocked": true,
+      "detected": [
+        "value_level_channel_encoding"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "oracle_boundary_label": {
+      "blocked": true,
+      "detected": [
+        "oracle_boundary_label"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    },
+    "rank_contrast_one_hot_encoding": {
+      "blocked": true,
+      "detected": [
+        "answer_one_hot"
+      ],
+      "verdict": "blocked_by_leakage_detected_001d"
+    }
+  },
+  "positive_controls_blocked": 9,
+  "positive_controls_required": [
+    "explicit_target_action_output_field",
+    "oracle_boundary_label",
+    "benign_answer_alias",
+    "hidden_id_mapping_to_answer",
+    "future_outcome_leakage",
+    "constant_count_signature_encoding",
+    "rank_contrast_one_hot_encoding",
+    "hidden_deterministic_order",
+    "filename_fixture_context_id_leakage"
+  ],
+  "positive_controls_total": 9,
+  "producer_function": "run_leakage_scan"
+}
