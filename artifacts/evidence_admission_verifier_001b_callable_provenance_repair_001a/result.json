@@ -1,0 +1,208 @@
+{
+  "ablation_results": {
+    "ablation_results": [
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "metric_provenance_missing_required_fields"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "missing_producer_function",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/missing_producer_function"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "producer_function_import_failed",
+          "producer_function_import_failed",
+          "producer_function_import_failed",
+          "producer_function_import_failed",
+          "producer_function_import_failed"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "non_importable_producer",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/non_importable_producer"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "producer_function_not_callable",
+          "producer_function_not_callable",
+          "producer_function_not_callable",
+          "producer_function_not_callable",
+          "producer_function_not_callable"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "non_callable_producer",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/non_callable_producer"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "code_path_hash_mismatch"
+        ],
+        "canonical_decision": "blocked_callable_provenance_mismatch",
+        "exit_status_observed": 0,
+        "id": "wrong_code_hash",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/wrong_code_hash"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "input_artifact_hash_mismatch"
+        ],
+        "canonical_decision": "blocked_callable_provenance_mismatch",
+        "exit_status_observed": 0,
+        "id": "wrong_input_hash",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/wrong_input_hash"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "output_digest_mismatch"
+        ],
+        "canonical_decision": "blocked_callable_provenance_mismatch",
+        "exit_status_observed": 0,
+        "id": "wrong_output_digest",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/wrong_output_digest"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "unsupported_aggregation_rule"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "unsupported_aggregation_rule",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/unsupported_aggregation_rule"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "metric_provenance_missing_required_fields"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "missing_run_id",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/missing_run_id"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "duplicate_metric_run_id"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "duplicate_run_id",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/duplicate_run_id"
+      },
+      {
+        "admitted_for_citation": false,
+        "block_reason_ids": [
+          "missing_recompute_contract"
+        ],
+        "canonical_decision": "blocked_missing_callable_provenance",
+        "exit_status_observed": 0,
+        "id": "missing_recompute_contract",
+        "output_artifact_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_outputs/callable_ablation_controls/missing_recompute_contract"
+      }
+    ],
+    "all_ablations_blocked": true,
+    "base_fixture_admitted_for_citation": true,
+    "base_fixture_decision": "admitted_for_citation",
+    "task_id": "EVIDENCE-ADMISSION-VERIFIER-001B-CALLABLE-PROVENANCE-REPAIR-001A"
+  },
+  "acceptance": {
+    "all_callable_ablations_blocked": true,
+    "candidate_missing_claim_ceiling_blocks_with_missing_claim_ceiling": true,
+    "forged_provenance_positive_control_blocks": true,
+    "pytest_exit_status": 0,
+    "pytest_passed": true,
+    "real_candidate_recorded_and_blocked": true,
+    "real_false_pass_recorded_and_blocked": true,
+    "result_report_text_not_used": true,
+    "row_shape_baseline_would_admit_forged": true,
+    "start_state_recorded": true,
+    "wrong_code_hash_positive_control_blocks": true,
+    "wrong_output_digest_positive_control_blocks": true
+  },
+  "auto_remote_anchor": "conditional_pending_git_commit_clean_status_and_exact_remote_readback",
+  "baseline_results": {
+    "all_required_row_shape_fields_present": true,
+    "baseline_id": "row_shape_only_verifier",
+    "claim_ceiling": "baseline comparison only; not evidence admission",
+    "control_files_present": true,
+    "input_bundle": "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/fixtures/forged_provenance_positive_control",
+    "metric_rows_observed": 5,
+    "observed_v0_calibration_forged_admitted_for_citation": true,
+    "observed_v0_calibration_forged_decision": "admitted_for_citation",
+    "producer_function": "inline.row_shape_only_verifier",
+    "required_row_shape_fields": [
+      "aggregation_rule",
+      "code_path_hash",
+      "computed_not_literal",
+      "counterfactual_pair_ids_consumed",
+      "episode_ids",
+      "evidence_role",
+      "failure_path_available",
+      "heldout_context_ids_consumed",
+      "input_artifact_hashes",
+      "input_artifact_paths",
+      "input_row_count",
+      "metric_id",
+      "metric_name",
+      "output_artifact_path",
+      "output_row_ids",
+      "producer_function",
+      "producer_module",
+      "run_id",
+      "seed_ids",
+      "threshold_frozen_before_run",
+      "threshold_used",
+      "train_context_ids_consumed"
+    ],
+    "task_id": "EVIDENCE-ADMISSION-VERIFIER-001B-CALLABLE-PROVENANCE-REPAIR-001A",
+    "would_admit_forged_provenance_positive_control": true
+  },
+  "claim_ceiling": "standalone callable-provenance verifier repair and calibration only; no Gate validity, mechanism validity, integrated admission readiness, mainline effect, agency, consciousness, emotion, autonomy, stable user benefit, or EGO readiness claim",
+  "cli_run_readback": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/cli_run_readback.json",
+  "current_layer": "engineering-governance / standalone evidence-admission verifier repair only",
+  "enabled_status": "standalone CLI/library only",
+  "mainline_integration_status": "none",
+  "next_minimal_closed_loop_action": "Inspect scoped diff/status, commit allowed repair scope if clean, then remote-anchor only if branch/tag exact-hash gates are satisfied.",
+  "real_trigger_evidence": "repaired CLI reran real false-pass, real candidate, missing-claim-ceiling ablation, preserved forged provenance, and callable corruption controls",
+  "replay_result": {
+    "claim_ceiling": "standalone callable-provenance verifier repair and calibration only",
+    "replay_scope": "callable producer recomputation for evidence-admission rows; not mechanism behavioral replay",
+    "task_id": "EVIDENCE-ADMISSION-VERIFIER-001B-CALLABLE-PROVENANCE-REPAIR-001A",
+    "valid_callable_fixture": {
+      "callable_provenance_check_count": 5,
+      "decision": "admitted_for_citation"
+    },
+    "wrong_output_digest_positive_control": {
+      "block_reason_ids": [
+        "output_digest_mismatch"
+      ],
+      "decision": "blocked_callable_provenance_mismatch"
+    }
+  },
+  "stop_conditions_triggered": [],
+  "task_id": "EVIDENCE-ADMISSION-VERIFIER-001B-CALLABLE-PROVENANCE-REPAIR-001A",
+  "tests": {
+    "command": "python -m pytest tests/test_evidence_admission_verifier_001a.py tests/test_evidence_admission_verifier_001b_callable_provenance_repair_001a.py",
+    "exit_status": 0,
+    "stderr_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/pytest_scoped_stderr.txt",
+    "stdout_path": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/pytest_scoped_stdout.txt"
+  },
+  "trace_index": "artifacts/evidence_admission_verifier_001b_callable_provenance_repair_001a/trace_index.json",
+  "verdict": "pass",
+  "what_this_does_not_prove": [
+    "does not prove Gate3 or Gate4 validity",
+    "does not prove mechanism validity",
+    "does not prove integrated admission readiness or EGO mainline effect",
+    "does not prove agency, consciousness, emotion, autonomy, stable user benefit, or EGO readiness"
+  ]
+}

@@ -1,0 +1,78 @@
+﻿[
+    {
+        "id":  "real_false_pass",
+        "role":  "repo_preserved_real_false_pass_blocked_pass_shaped_bundle",
+        "command":  "python -m evidence_admission_verifier_001a artifacts\\ego_mainline_gate4_preflight_executable_001b --out artifacts\\evidence_admission_verifier_001a_real_bundle_calibration_001a\\cli_outputs\\real_false_pass --run-id calibration_001a_real_false_pass",
+        "bundle_path":  "artifacts/ego_mainline_gate4_preflight_executable_001b",
+        "output_artifact_path":  "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/cli_outputs/real_false_pass",
+        "exit_status_observed":  0,
+        "canonical_decision":  "blocked_fake_pass",
+        "admitted_for_citation":  false,
+        "block_reason_ids":  [
+                                 "fake_pass_without_callable_provenance",
+                                 "missing_metric_provenance",
+                                 "missing_invocation_ledger"
+                             ],
+        "verdict_text_used":  false,
+        "admission_decision_sha256":  "8dba6ecd74ea0c3655ece83e81122cea7b19e7508bb6ddd1394bf114d737c465",
+        "stdout_sha256":  "d5a6550824ade7c4be82c03525353f2694966f5570e237e3041696bb3565f468",
+        "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "id":  "real_candidate",
+        "role":  "repo_preserved_real_candidate_bundle",
+        "command":  "python -m evidence_admission_verifier_001a artifacts\\gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a --out artifacts\\evidence_admission_verifier_001a_real_bundle_calibration_001a\\cli_outputs\\real_candidate --run-id calibration_001a_real_candidate_002c",
+        "bundle_path":  "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+        "output_artifact_path":  "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/cli_outputs/real_candidate",
+        "exit_status_observed":  0,
+        "canonical_decision":  "blocked_fake_pass",
+        "admitted_for_citation":  false,
+        "block_reason_ids":  [
+                                 "fake_pass_without_callable_provenance",
+                                 "missing_metric_provenance",
+                                 "missing_invocation_ledger",
+                                 "claim_inflation_detected"
+                             ],
+        "verdict_text_used":  false,
+        "admission_decision_sha256":  "7c3c7e4166f45beb34a0c6db2bec9df2d91362be86a8a2940c94655b8f798740",
+        "stdout_sha256":  "0660119b11bf7548e88204f5f7e3a8abc418990f81dde9ce8fd0e083ee979dcd",
+        "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "id":  "candidate_missing_claim_ceiling",
+        "role":  "candidate_ablation_missing_claim_ceiling",
+        "command":  "python -m evidence_admission_verifier_001a artifacts\\evidence_admission_verifier_001a_real_bundle_calibration_001a\\working_bundles\\gate4_replacement_002c_missing_claim_ceiling --out artifacts\\evidence_admission_verifier_001a_real_bundle_calibration_001a\\cli_outputs\\candidate_missing_claim_ceiling --run-id calibration_001a_candidate_missing_claim_ceiling",
+        "bundle_path":  "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/working_bundles/gate4_replacement_002c_missing_claim_ceiling",
+        "output_artifact_path":  "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/cli_outputs/candidate_missing_claim_ceiling",
+        "exit_status_observed":  0,
+        "canonical_decision":  "blocked_fake_pass",
+        "admitted_for_citation":  false,
+        "block_reason_ids":  [
+                                 "fake_pass_without_callable_provenance",
+                                 "missing_metric_provenance",
+                                 "missing_invocation_ledger",
+                                 "missing_claim_ceiling"
+                             ],
+        "verdict_text_used":  false,
+        "admission_decision_sha256":  "c9fbaa5e9535fc37591a9557d3b81a31d66561dfbc96efed09152aa096e2813b",
+        "stdout_sha256":  "0660119b11bf7548e88204f5f7e3a8abc418990f81dde9ce8fd0e083ee979dcd",
+        "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "id":  "forged_provenance",
+        "role":  "adversarial_forged_provenance_positive_control",
+        "command":  "python -m evidence_admission_verifier_001a artifacts\\evidence_admission_verifier_001a_real_bundle_calibration_001a\\fixtures\\forged_provenance_positive_control --out artifacts\\evidence_admission_verifier_001a_real_bundle_calibration_001a\\cli_outputs\\forged_provenance --run-id calibration_001a_forged_provenance",
+        "bundle_path":  "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/fixtures/forged_provenance_positive_control",
+        "output_artifact_path":  "artifacts/evidence_admission_verifier_001a_real_bundle_calibration_001a/cli_outputs/forged_provenance",
+        "exit_status_observed":  0,
+        "canonical_decision":  "admitted_for_citation",
+        "admitted_for_citation":  true,
+        "block_reason_ids":  {
+
+                             },
+        "verdict_text_used":  false,
+        "admission_decision_sha256":  "994b9982394caeac90cfc06b51e95871c197d52a716114a01818eb42eb197f47",
+        "stdout_sha256":  "41bb151aae50f2580994b28ca3ad262296c0745dfd1df92a39a3c2f71e2da2f9",
+        "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+]

@@ -1,0 +1,53 @@
+{
+  "ablation_context_ids": [
+    "ablation:disable_social_latent_update",
+    "ablation:freeze_other_state_after_initial_observation",
+    "ablation:shuffle_partner_observation_history",
+    "ablation:remove_partner_policy_shift",
+    "ablation:swap_partner_latent_dynamics",
+    "ablation:mask_partner_id_and_explicit_labels",
+    "ablation:inject_target_leakage_positive_control",
+    "ablation:remove_social_signal_negative_control"
+  ],
+  "counterfactual_context_ids": [
+    "counterfactual_ctx_a",
+    "counterfactual_ctx_b"
+  ],
+  "counterfactual_partner_response_probes": [
+    "counterfactual_ctx_a",
+    "counterfactual_ctx_b"
+  ],
+  "heldout_context_ids": [
+    "heldout_ctx_a",
+    "heldout_ctx_b"
+  ],
+  "heldout_partner_dynamics": [
+    "heldout_ctx_a",
+    "heldout_ctx_b"
+  ],
+  "interventions": [
+    "disable_social_latent_update",
+    "freeze_other_state_after_initial_observation",
+    "shuffle_partner_observation_history",
+    "remove_partner_policy_shift",
+    "swap_partner_latent_dynamics",
+    "mask_partner_id_and_explicit_labels",
+    "inject_target_leakage_positive_control",
+    "remove_social_signal_negative_control"
+  ],
+  "negative_control_no_signal_condition": "remove_social_signal_negative_control",
+  "partial_observability": true,
+  "partner_latent_types": [
+    "latent_even",
+    "latent_odd"
+  ],
+  "partner_policy_shift_after_interaction_history": true,
+  "positive_control_leakage_condition": "inject_target_leakage_positive_control",
+  "producer_function": "build_environment_manifest",
+  "target_not_directly_recoverable_claim": "tested by baselines, not assumed",
+  "task_id": "gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+  "train_context_ids": [
+    "train_ctx_a",
+    "train_ctx_b"
+  ]
+}

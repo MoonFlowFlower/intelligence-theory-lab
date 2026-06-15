@@ -1,0 +1,12 @@
+{
+    "task_id":  "EVIDENCE-ADMISSION-VERIFIER-001A-REAL-BUNDLE-CALIBRATION-001A",
+    "baseline_id":  "naive_verdict_report_reader",
+    "bundle_path":  "artifacts\\ego_mainline_gate4_preflight_executable_001b",
+    "input_artifact":  "artifacts\\ego_mainline_gate4_preflight_executable_001b\\result.json",
+    "producer_function":  "powershell.inline.naive_verdict_report_reader",
+    "rule":  "admit if result.bounded_pass is true or verdict contains pass",
+    "would_admit_false_pass_bundle":  true,
+    "result_verdict":  "ego_mainline_gate4_preflight_executable_001b_bounded_pass",
+    "bounded_pass":  true,
+    "claim_ceiling":  "naive baseline comparison only; not evidence admission"
+}

@@ -1,0 +1,35 @@
+{
+  "blocking": true,
+  "canonical_decision": "blocked_fake_pass",
+  "reasons": [
+    {
+      "canonical_decision": "blocked_fake_pass",
+      "computed": true,
+      "detail": "Pass-shaped result/report text exists without callable provenance rows.",
+      "evidence_path": "result.json/report.md",
+      "reason_id": "fake_pass_without_callable_provenance",
+      "source": "bundle_text_shape_scan",
+      "verdict_text_used": false
+    },
+    {
+      "canonical_decision": "blocked_missing_callable_provenance",
+      "computed": true,
+      "detail": "No metric provenance rows were found.",
+      "evidence_path": "metric_provenance.jsonl",
+      "reason_id": "missing_metric_provenance",
+      "source": "metric_provenance.jsonl",
+      "verdict_text_used": false
+    },
+    {
+      "canonical_decision": "blocked_missing_callable_provenance",
+      "computed": true,
+      "detail": "No callable invocation ledger rows were found.",
+      "evidence_path": "invocation_ledger.jsonl",
+      "reason_id": "missing_invocation_ledger",
+      "source": "invocation_ledger.jsonl",
+      "verdict_text_used": false
+    }
+  ],
+  "task_id": "EVIDENCE-ADMISSION-VERIFIER-001A",
+  "verdict_text_used": false
+}
