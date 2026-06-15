@@ -1,0 +1,39 @@
+{
+  "task_id": "GATE-TARGET-INDEPENDENT-GROUND-TRUTH-PREFLIGHT-001A",
+  "verdict_under_validation": "target_selection_blocked",
+  "validation_summary": {
+    "json_parse_result_json": "passed",
+    "json_parse_truth_inventory_json": "passed",
+    "json_parse_source_hashes_json": "passed",
+    "git_diff_check": "passed",
+    "changed_file_scope": "passed",
+    "forbidden_positive_claim_scan": "passed",
+    "gate_rerun_performed": false,
+    "harness_or_verifier_source_modified": false,
+    "old_bundle_mutated": false
+  },
+  "allowlist": [
+    "docs/codex/tasks/GATE-TARGET-INDEPENDENT-GROUND-TRUTH-PREFLIGHT-001A.md",
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/**"
+  ],
+  "observed_changed_files_before_stage": [
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/claim_ceiling.txt",
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/readback.md",
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/result.json",
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/source_hashes.json",
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/truth_inventory.json",
+    "artifacts/gate_target_independent_ground_truth_preflight_001a/validation.json",
+    "docs/codex/tasks/GATE-TARGET-INDEPENDENT-GROUND-TRUTH-PREFLIGHT-001A.md"
+  ],
+  "validation_commands": [
+    "python -m json.tool artifacts\\gate_target_independent_ground_truth_preflight_001a\\result.json",
+    "python -m json.tool artifacts\\gate_target_independent_ground_truth_preflight_001a\\truth_inventory.json",
+    "python -m json.tool artifacts\\gate_target_independent_ground_truth_preflight_001a\\source_hashes.json",
+    "git diff --check",
+    "git status --short",
+    "git ls-files --others --exclude-standard",
+    "Select-String -SimpleMatch for forbidden positive claim phrases over produced files"
+  ],
+  "claim_ceiling": "independent-ground-truth preflight only",
+  "next_minimal_closed_loop_action": "Draft a future ACP-BV task card only if separately authorized; define candidate-inaccessible truth before any harness or Gate rerun."
+}
