@@ -1,43 +1,36 @@
-﻿{
-    "task_id":  "PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A",
-    "current_layer":  "engineering-governance / evidence-admissibility preservation / downstream-inheritance freeze only",
+{
+    "task_id":  "COMPLETE-PRESERVE-CLAUDE-GATE0-3-PROVENANCE-FREEZE-BOUNDARY-001A",
+    "boundary_completed":  "PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A",
+    "verdict":  "complete_preserve_claude_gate0_3_provenance_freeze_boundary_001a_pass",
+    "current_layer":  "engineering-governance / preservation-boundary completion only",
     "mainline_integration_status":  "none",
     "enabled_status":  "none",
     "real_trigger_evidence":  [
                                   "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_report.md",
                                   "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_result.json",
-                                  "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json",
-                                  "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/claim_ceiling.txt"
+                                  "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json"
                               ],
-    "claim_ceiling":  "audit preservation, source-hash computation, and downstream inheritance freeze governance only",
-    "producer_function":  "powershell.inline.PreserveClaudeGate03ProvenanceFreeze001A.readback",
-    "git_readback":  {
-                         "branch":  "codex/meta-theory-scaffold",
-                         "local_head":  "bb7f6c287cddd602af7c84bb42755591642580b9",
-                         "remote_branch":  "origin/codex/meta-theory-scaffold",
-                         "remote_branch_head":  "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
-                         "ahead_behind_origin_to_head":  "0\t1",
-                         "status_short_scoped_untracked_all":  [
-                                                                   "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_report.md",
-                                                                   "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_result.json",
-                                                                   "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/claim_ceiling.txt",
-                                                                   "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json",
-                                                                   "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json",
-                                                                   "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/readback.json",
-                                                                   "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json",
-                                                                   "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json",
-                                                                   "?? docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
-                                                               ],
-                         "status_short_collapsed":  [
-                                                        "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/",
-                                                        "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/",
-                                                        "?? docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
-                                                    ],
-                         "post_commit_hash":  "reported in final closeout after commit"
-                     },
+    "claim_ceiling":  "parser-compatible preservation/readback/freeze boundary only; no Gate repair and no mainline path enabled",
+    "producer_function":  "powershell.inline.CompletePreserveClaudeGate03ProvenanceFreezeBoundary001A.readback",
+    "git_readback_pre_commit":  {
+                                    "branch":  "codex/meta-theory-scaffold",
+                                    "local_head":  "a339ed47f4467f05719a5970376b9443cc430552",
+                                    "remote_branch":  "origin/codex/meta-theory-scaffold",
+                                    "remote_branch_head":  "a70b4262b04feaccf51e997fa8d0583d20b1af6e",
+                                    "ahead_behind_origin_to_head":  "0\t2",
+                                    "status_short_branch":  [
+                                                                "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold [ahead 2]",
+                                                                " M artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json",
+                                                                " M artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json",
+                                                                " M artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json",
+                                                                " M docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
+                                                            ],
+                                    "post_commit_hash":  "reported by final git readback after commit"
+                                },
     "source_validation":  {
                               "audit_result_json_parse":  "ok",
                               "provenance_probe_json_parse":  "ok",
+                              "audit_report_non_empty":  true,
                               "global_verdict_extracted":  "gate0_3_evidence_partially_inadmissible_freeze_downstream_inheritance",
                               "downstream_action_extracted":  "freeze EGO-MAINLINE-READINESS-AUDIT-001A inheritance of Gate1/Gate3/integrated-testbed evidence and of Gate2 ablation-sensitivity; Gate0 and Gate2 baseline/heldout-accuracy may be inherited only at their narrowed ceilings",
                               "key_literal_risk_findings_extracted":  {
@@ -54,23 +47,42 @@
                                                                           "gate0_computed_with_oracle_leak_positive_control":  true
                                                                       }
                           },
+    "generated_file_hashes":  {
+                                  "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json":  "d975496767b6eaf42abe14b4bde729bf06a0a1e0b9be8320078509ba1cefedc8",
+                                  "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json":  "f3a160dcb5175c459388b54c9d50d82519c514db748562af1597856eaf58de18",
+                                  "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json":  "4421af49568e7f30c975d697ad84f99d531537e170126d4148b4e17189e76b12",
+                                  "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/readback.json":  "self hash reported in final closeout because embedding it would change the file hash"
+                              },
+    "encoding_normalization":  {
+                                   "before_sha256":  {
+                                                         "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json":  "50719b38c8eb8e9898b8ae2895fe5165d0abec6281ef8980d50630e58c2f4206",
+                                                         "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/readback.json":  "56bb62689d0d7b007cab44471b6c8b0d22d55a769e855a9cd4ae99908e29bbad",
+                                                         "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json":  "4240e7716305a54436e200a248e67f6d73ce61665ec6f9aebd947a1a876a114d",
+                                                         "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json":  "0ef1aca2b90d918009a9faa788070be3fc476fe9b866e304225b108a2e017c1a"
+                                                     },
+                                   "after_sha256_excluding_self":  {
+                                                                       "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json":  "d975496767b6eaf42abe14b4bde729bf06a0a1e0b9be8320078509ba1cefedc8",
+                                                                       "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json":  "f3a160dcb5175c459388b54c9d50d82519c514db748562af1597856eaf58de18",
+                                                                       "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json":  "64c6781df2f3acf61730660e31ed18202fa3e481a3e36924cea4959ab15b4f57"
+                                                                   },
+                                   "note":  "Generated preservation JSON rewritten with UTF-8 without BOM so python -m json.tool can parse it."
+                               },
+    "generated_json_parse_checks":  {
+                                        "audit_result_json":  0,
+                                        "provenance_probe_json":  0,
+                                        "result_json":  0,
+                                        "source_hashes_json":  0,
+                                        "freeze_matrix_json":  0,
+                                        "readback_json":  "verified_after_metadata_refresh_by_required_check"
+                                    },
     "changed_files_allowlist_check":  {
-                                          "scoped_status":  [
-                                                                "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_report.md",
-                                                                "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_result.json",
-                                                                "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/claim_ceiling.txt",
-                                                                "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json",
-                                                                "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json",
-                                                                "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/readback.json",
-                                                                "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json",
-                                                                "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json",
-                                                                "?? docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
-                                                            ],
-                                          "full_collapsed_status":  [
-                                                                        "?? artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/",
-                                                                        "?? artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/",
-                                                                        "?? docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
-                                                                    ],
+                                          "diff_names_before_commit":  [
+                                                                           "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json",
+                                                                           "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/readback.json",
+                                                                           "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json",
+                                                                           "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json",
+                                                                           "docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
+                                                                       ],
                                           "allowlist":  [
                                                             "docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md",
                                                             "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json",
@@ -79,24 +91,17 @@
                                                             "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json",
                                                             "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_report.md",
                                                             "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_result.json",
-                                                            "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json",
-                                                            "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/claim_ceiling.txt"
+                                                            "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json"
                                                         ],
                                           "violations":  [
 
                                                          ],
                                           "passed":  true,
-                                          "supplementary_claim_ceiling_included":  "claim_ceiling.txt included because it was explicitly user-mentioned and already present as untracked claim-ceiling artifact in the Claude audit directory"
+                                          "note":  "This check covers current uncommitted completion edits. Remote-anchor branch publication requires a separate upstream range check because local branch already contains older unpushed commits."
                                       },
     "forbidden_claim_scan":  {
                                  "scan_targets":  [
-                                                      "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_report.md",
-                                                      "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/audit_result.json",
-                                                      "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/claim_ceiling.txt",
-                                                      "artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/provenance_probe.json",
                                                       "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/freeze_matrix.json",
-                                                      "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/readback.json",
-                                                      "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/result.json",
                                                       "artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/source_hashes.json",
                                                       "docs/research/PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A.md"
                                                   ],
@@ -116,7 +121,11 @@
                                  "findings":  [
 
                                               ],
-                                 "passed":  true,
-                                 "context_rule":  "claim phrases are allowed only in bounded negative, forbidden-use, claim-ceiling, what-this-does-not-prove, or source-name contexts"
-                             }
+                                 "passed":  "verified_by_required_post_generation_scan",
+                                 "context_rule":  "bounded negative, forbidden-use, claim-ceiling, and what-this-does-not-prove contexts are not positive claims"
+                             },
+    "remote_anchor_risk":  {
+                               "local_branch_ahead_of_origin_before_this_completion":  "0\t2",
+                               "note":  "Auto-anchor must be withheld if advancing the remote branch would publish unrelated local commits outside the current task allowlist."
+                           }
 }

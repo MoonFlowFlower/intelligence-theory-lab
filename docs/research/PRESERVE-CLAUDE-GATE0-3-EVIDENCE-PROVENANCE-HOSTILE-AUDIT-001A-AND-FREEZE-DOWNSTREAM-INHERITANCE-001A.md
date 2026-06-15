@@ -2,7 +2,7 @@
 
 ## Verdict
 
-`preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a_pass`
+`complete_preserve_claude_gate0_3_provenance_freeze_boundary_001a_pass`
 
 ## Layer
 
@@ -16,7 +16,7 @@ Mainline integration status: none.
 
 Enabled status: none.
 
-Real trigger evidence: the preserved Claude hostile audit artifacts under `artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/`, with SHA-256 and JSON parse readback recorded in `artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/`. The three required source artifacts are `audit_report.md`, `audit_result.json`, and `provenance_probe.json`; the user-mentioned `claim_ceiling.txt` is preserved as a supplementary claim-ceiling artifact for clean repo closeout.
+Real trigger evidence: the preserved Claude hostile audit artifacts under `artifacts/CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A/`, with SHA-256 and parser-compatible JSON readback recorded in `artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/`. The three required source artifacts are `audit_report.md`, `audit_result.json`, and `provenance_probe.json`; the user-mentioned `claim_ceiling.txt` is preserved as supplementary claim-ceiling context and is not treated as a fourth required parse source.
 
 Claim ceiling: audit preservation, source-hash computation, and downstream inheritance freeze governance only.
 
@@ -24,8 +24,9 @@ Next minimal closed-loop action: future Gate, bridge, admission, or EGO-mainline
 
 ## Bounded Task Card Readback
 
-- Task id: `PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A`
-- Problem definition: preserve the Claude independent hostile audit finding that prior Gate0-Gate3 evidence is only partially admissible, because several committed baseline, ablation, and integration artifacts can be emitted by report-shaped literal functions without executing the claimed mechanisms.
+- Task id: `COMPLETE-PRESERVE-CLAUDE-GATE0-3-PROVENANCE-FREEZE-BOUNDARY-001A`
+- Boundary completed: `PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A`
+- Problem definition: complete the Claude independent hostile audit preservation/freeze boundary after a downstream repair queue correctly blocked on missing canonical `result.json` and `readback.json` plus parser-incompatible generated JSON.
 - Current stage/layer: engineering-governance / evidence-admissibility preservation / downstream-inheritance freeze only.
 - Mainline target: none.
 - Enabled-state requirement: no enabled mechanism, bridge, admission, runtime, or EGO-mainline path.
@@ -34,12 +35,12 @@ Next minimal closed-loop action: future Gate, bridge, admission, or EGO-mainline
 - Strongest baseline: without this boundary, downstream tasks can continue citing old Gate1/Gate3/integrated/Gate2-ablation `result.json` files as bounded preflight evidence.
 - Ablation requirement: not applicable to this preservation task; no mechanism episodes are rerun.
 - Trace/replay requirement: preserve the audit's trace/replay admissibility distinctions only; no new replay evidence is generated.
-- Computed-evidence provenance gate: SHA-256 hashes, JSON parse checks, source-field extraction, changed-files allowlist check, forbidden-claim scan, and git readback are produced by callable commands and recorded in machine-readable artifacts.
+- Computed-evidence provenance gate: SHA-256 hashes, parser-compatible JSON parse checks, source-field extraction, generated-file encoding normalization readback, changed-files allowlist check, forbidden-claim scan, and git readback are produced by callable commands and recorded in machine-readable artifacts.
 - Acceptance gate: all source audit artifacts are present and hash-recorded; expected global verdict and provenance-probe literal-risk fields are extracted; freeze matrix is recorded; no old gate source/result artifact is rewritten; changed files stay within allowlist; no forbidden unbounded claim is introduced.
 - Claim ceiling: preservation and downstream inheritance freeze only.
 - Stop condition: stop if source artifacts are missing, source JSON fails parse, the global verdict differs, old evidence must be rewritten, a forbidden path must be edited, changed-file allowlist is violated, or forbidden unbounded claims are introduced.
 - Rollback plan: do not commit, do not push, do not tag, and revert isolated preservation files if any stop condition triggers.
-- Expected changed files: this document; the four generated JSON artifacts under `artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/`; the three required Claude audit artifacts if they were previously untracked; and the user-mentioned `claim_ceiling.txt` as a supplementary preserved claim-ceiling artifact if it was previously untracked.
+- Expected changed files: this document; the four generated JSON artifacts under `artifacts/preserve_claude_gate0_3_evidence_provenance_hostile_audit_001a_and_freeze_downstream_inheritance_001a/`; the three required Claude audit artifacts if they were previously untracked; and the already-present `claim_ceiling.txt` only as supplementary preserved claim-ceiling context.
 - Forbidden changes: `src/**`, `tests/**`, old Gate0/Gate1/Gate2/Gate3/Gate4 artifacts except the three Claude audit files, bridge/admission/runtime/companion/product code, and any candidate/baseline/ablation/leakage/replay behavior.
 - Auto-Remote-Anchor decision: conditional; only after all acceptance gates pass, a scoped commit is clean, branch/tag push succeeds, and exact remote readback matches.
 
@@ -81,7 +82,7 @@ Downstream action:
 
 `freeze EGO-MAINLINE-READINESS-AUDIT-001A inheritance of Gate1/Gate3/integrated-testbed evidence and of Gate2 ablation-sensitivity; Gate0 and Gate2 baseline/heldout-accuracy may be inherited only at their narrowed ceilings`
 
-The source hashes and extracted findings are recorded in `source_hashes.json`, `readback.json`, and `result.json` in the preservation artifact directory. `claim_ceiling.txt` is hash-recorded as supplementary preserved audit context; the required acceptance fields still derive from the three required source artifacts.
+The source hashes and extracted findings are recorded in `source_hashes.json`, `readback.json`, and `result.json` in the preservation artifact directory. Generated preservation JSON is normalized to parser-compatible UTF-8 without BOM. `claim_ceiling.txt` is hash-recorded as supplementary preserved audit context; the required acceptance fields still derive from the three required source artifacts.
 
 ## Downstream Freeze Matrix
 
