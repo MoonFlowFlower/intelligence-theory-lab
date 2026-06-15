@@ -1,0 +1,91 @@
+﻿{
+    "task_id":  "PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A",
+    "producer_function":  "powershell.inline.PreserveClaudeGate03ProvenanceFreeze001A.freeze_matrix",
+    "input_artifacts":  [
+                            "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\audit_result.json",
+                            "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\provenance_probe.json"
+                        ],
+    "aggregation_rule":  "task-card required downstream admissibility matrix; no mechanism score produced",
+    "gates":  {
+                  "Gate0":  {
+                                "status":  "admissible_at_narrow_ceiling",
+                                "allowed_downstream_inheritance":  [
+                                                                       "bounded isolated Gate0 predictive-action mechanism-distinguishability under its frozen rule only"
+                                                                   ],
+                                "forbidden_downstream_inheritance":  [
+                                                                         "superiority over retrieval/cache/count/graph-cache family",
+                                                                         "authorization of Gate1+",
+                                                                         "bridge readiness",
+                                                                         "EGO readiness"
+                                                                     ]
+                            },
+                  "Gate1":  {
+                                "status":  "inadmissible_as_mechanism_evidence",
+                                "allowed_downstream_inheritance":  [
+                                                                       "trace/hash-chain hygiene only, if directly supported"
+                                                                   ],
+                                "frozen_forbidden_downstream_inheritance":  [
+                                                                                "replay/consolidation mechanism success",
+                                                                                "graph-cache non-equivalence",
+                                                                                "ablation sensitivity",
+                                                                                "baseline superiority",
+                                                                                "any positive Gate1 mechanism claim"
+                                                                            ],
+                                "special_note":  "Gate1 literal graph-cache non-equivalence conflicts with the prior failed_graph_cache_collapse lineage and cannot overturn that negative evidence without a real callable rerun."
+                            },
+                  "Gate2":  {
+                                "status":  "partially_admissible",
+                                "allowed_downstream_inheritance":  [
+                                                                       "baseline/heldout controllability-prediction accuracy at bounded ceiling",
+                                                                       "candidate vs fair baseline result only if source artifacts remain hash-matched"
+                                                                   ],
+                                "frozen_forbidden_downstream_inheritance":  [
+                                                                                "ablation-sensitivity claim",
+                                                                                "leakage-clean claim without positive control",
+                                                                                "heldout/support composition-disjointness claim unless separately computed",
+                                                                                "self-boundary mechanism-validity claim"
+                                                                            ]
+                            },
+                  "Gate3":  {
+                                "status":  "inadmissible_as_mechanism_evidence",
+                                "allowed_downstream_inheritance":  [
+                                                                       "trace/hash-chain hygiene only, if directly supported"
+                                                                   ],
+                                "frozen_forbidden_downstream_inheritance":  [
+                                                                                "viability / functional affect mechanism success",
+                                                                                "baseline superiority",
+                                                                                "ablation sensitivity",
+                                                                                "candidate score 1.0 as mechanism evidence",
+                                                                                "any positive Gate3 mechanism claim"
+                                                                            ]
+                            },
+                  "Integrated_Gate0_Gate3_testbed":  {
+                                                         "status":  "inadmissible_as_integration_mechanism_evidence",
+                                                         "allowed_downstream_inheritance":  [
+                                                                                                "hash-chain / tamper hygiene only, if directly supported"
+                                                                                            ],
+                                                         "frozen_forbidden_downstream_inheritance":  [
+                                                                                                         "shared-state integration claim",
+                                                                                                         "one-agent Gate0-\u003eGate3 continuity claim",
+                                                                                                         "integration score 1.0",
+                                                                                                         "baseline superiority",
+                                                                                                         "ablation sensitivity",
+                                                                                                         "leakage-clean claim without positive control",
+                                                                                                         "bounded_preflight_pass as mechanism evidence"
+                                                                                                     ]
+                                                     },
+                  "EGO_MAINLINE_READINESS_AUDIT_001A":  {
+                                                            "status":  "downstream_inheritance_frozen",
+                                                            "frozen_inheritance":  [
+                                                                                       "Gate1 evidence",
+                                                                                       "Gate3 evidence",
+                                                                                       "integrated-testbed integration evidence",
+                                                                                       "Gate2 ablation-sensitivity evidence"
+                                                                                   ],
+                                                            "allowed_inheritance":  [
+                                                                                        "Gate0 only at narrowed ceiling",
+                                                                                        "Gate2 baseline/heldout accuracy only at narrowed ceiling"
+                                                                                    ]
+                                                        }
+              }
+}

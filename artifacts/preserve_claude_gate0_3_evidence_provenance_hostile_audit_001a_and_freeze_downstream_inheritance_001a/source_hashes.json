@@ -1,0 +1,55 @@
+﻿{
+    "task_id":  "PRESERVE-CLAUDE-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A-AND-FREEZE-DOWNSTREAM-INHERITANCE-001A",
+    "producer_function":  "powershell.inline.PreserveClaudeGate03ProvenanceFreeze001A.source_hashes",
+    "producer_spec_sha256":  "2903c654e5a0a690f3329668a93c5f1698d29ea3f6b808287912d4a29889816a",
+    "required_input_artifacts":  [
+                                     "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\audit_report.md",
+                                     "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\audit_result.json",
+                                     "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\provenance_probe.json"
+                                 ],
+    "supplementary_preserved_artifacts":  [
+                                              "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\claim_ceiling.txt"
+                                          ],
+    "files":  [
+                  {
+                      "id":  "audit_report",
+                      "role":  "required_source",
+                      "path":  "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\audit_report.md",
+                      "exists":  true,
+                      "size_bytes":  11242,
+                      "sha256":  "8fc5a9a0e5567ad022ef89962b9606ad5465056c870163de5b1ff424c51851a5",
+                      "non_empty":  true,
+                      "json_parse":  "not_json"
+                  },
+                  {
+                      "id":  "audit_result",
+                      "role":  "required_source",
+                      "path":  "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\audit_result.json",
+                      "exists":  true,
+                      "size_bytes":  8390,
+                      "sha256":  "f74397f6206bf4023341ddb0527ad173e59f8ef52cf2e121be22e10a33de01f3",
+                      "non_empty":  true,
+                      "json_parse":  "ok"
+                  },
+                  {
+                      "id":  "provenance_probe",
+                      "role":  "required_source",
+                      "path":  "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\provenance_probe.json",
+                      "exists":  true,
+                      "size_bytes":  4255,
+                      "sha256":  "0bd99b42aa788f2d8ef551c25911a5ed11304109f9b67e87586c515c055028af",
+                      "non_empty":  true,
+                      "json_parse":  "ok"
+                  },
+                  {
+                      "id":  "claim_ceiling",
+                      "role":  "supplementary_user_mentioned_claim_ceiling",
+                      "path":  "artifacts\\CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A\\claim_ceiling.txt",
+                      "exists":  true,
+                      "size_bytes":  478,
+                      "sha256":  "bea3427c27f00a1616abfbe5779e9c5279c8232a5455dd8c383c4df1e554fce2",
+                      "non_empty":  true,
+                      "json_parse":  "not_json"
+                  }
+              ]
+}

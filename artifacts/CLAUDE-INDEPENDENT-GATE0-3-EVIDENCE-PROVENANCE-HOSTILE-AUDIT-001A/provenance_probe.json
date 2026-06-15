@@ -1,0 +1,74 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE0-3-EVIDENCE-PROVENANCE-HOSTILE-AUDIT-001A",
+  "method": "static source trace + live function introspection + committed-artifact equality + pytest positive control",
+  "environment_caveat": "sandbox .git mount broken (git ls-files exit 128); integrated-testbed runner end-to-end blocked, but literal nature proven without runner",
+  "gates": {
+    "integrated_g0_g1_g2_g3_testbed": {
+      "baseline_fn_argcount": 0,
+      "ablation_fn_argcount": 0,
+      "committed_baseline_eq_fn_output": true,
+      "committed_ablation_eq_fn_output": true,
+      "candidate_headline_score_literal": 1.0,
+      "committed_verdict": "r_g_gate0_gate1_gate2_gate3_canonical_micro_agent_testbed_001b_bounded_preflight_pass",
+      "committed_stop_conditions": [],
+      "finding": "baseline+ablation are 0-arg constant functions; committed artifacts are byte-equal literal dumps; candidate score hardcoded 1.0; verdict gates driven by literals"
+    },
+    "gate3_viability_affect": {
+      "baseline_fn_argcount": 0,
+      "ablation_fn_argcount": 0,
+      "committed_baseline_eq_fn_output": true,
+      "committed_ablation_eq_fn_output": true,
+      "finding": "baseline+ablation 0-arg literal constants; committed artifacts byte-equal to function output"
+    },
+    "gate2_controllability_self_boundary": {
+      "baseline_predictions_argcount": 3,
+      "evaluate_baselines_argcount": 1,
+      "baseline_executed_on_heldout": true,
+      "committed_candidate_match_rate": 1.0,
+      "committed_best_fair_baseline": {
+        "baseline_name": "retrieval / summary retrieval",
+        "match_rate": 0.5
+      },
+      "committed_baseline_blocks_gate": false,
+      "ablation_rows_have_literal_executed_flag": true,
+      "ablation_rows_recompute_evidence_fields": [
+        "ablation_name",
+        "controllability_prediction_changed",
+        "executed",
+        "failure_condition_triggered",
+        "later_action_selection_changed",
+        "self_boundary_update_changed"
+      ],
+      "finding": "baselines REAL (callable predictors run on heldout, candidate 1.0 vs best fair 0.5, gate fail-able); ablation LITERAL (executed:True + all changed:True hardcoded, no rerun)"
+    },
+    "gate1_replay_consolidation": {
+      "baseline_rows_have_literal_executed_flag": true,
+      "ablation_rows_have_literal_executed_flag": true,
+      "committed_graph_cache_control_row": [
+        {
+          "baseline_name": "transition table / successor map / graph cache controls",
+          "classification": "fair_control",
+          "counts_as_mechanism_evidence": false,
+          "equivalent_to_candidate": false,
+          "executed": true,
+          "hygiene_only": false,
+          "match_rate": 0.25
+        }
+      ],
+      "prior_lineage_verdict": "failed_graph_cache_collapse (docs/GATE1-REPLAY-CONSOLIDATION-LINEAGE-CLOSEOUT-001.md)",
+      "finding": "baseline+ablation LITERAL (executed:True hardcoded); committed graph-cache control match_rate=0.25/non-equivalent is a literal that the lab's own closed lineage already falsified (window/count models dominated belief class)"
+    },
+    "gate0_predictive_action": {
+      "source_package": "predictive_action_learning_contract_001 / _001c (repo-root, not src/)",
+      "baselines_executed_as_real_episodes": true,
+      "oracle_leak_positive_control_present": true,
+      "ablations_real_rerun": true,
+      "pytest_positive_control": "3 passed (main_beats_passive, oracle_leak_flagged, ablations_degrade)",
+      "prior_shortcut_audit_verdict": "gate0_postfreeze_shortcut_audit_medium_risk_with_claim_caveats",
+      "prior_caveat": "graph_cache/count/transition family NOT run; nearest-history retrieval matched action-sensitive NLL within margin and beat learner post-shift",
+      "finding": "GENUINELY COMPUTED + fail-able + has oracle-leak positive control; admissible ONLY under pre-existing narrow bounded ceiling (does not defeat count/cache family)"
+    }
+  },
+  "pytest_positive_control_preflight_gates": "gate1+gate2+gate3 preflight tests: 26 passed (green despite literal baseline/ablation)",
+  "downstream_inheritance": "docs/codex/audits/EGO-MAINLINE-READINESS-AUDIT-001A.md inherits gate1/gate2/gate3 result.json directly as 'bounded ... preflight evidence'"
+}
