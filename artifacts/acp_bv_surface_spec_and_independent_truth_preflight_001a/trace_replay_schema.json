@@ -1,0 +1,36 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "future_trace_schema": {
+    "episode_id": "required string",
+    "seed": "required string or integer",
+    "context_id": "required string",
+    "observation": "required object containing public candidate-visible fields only",
+    "action": "required raw candidate action",
+    "prediction": "required raw candidate prediction, not expected label or truth key",
+    "serialized_candidate_state": "required object or hash for replay input; not a truth source",
+    "environment_hidden_truth_hash": "required hash of environment-owned hidden truth",
+    "harness_metric_function_path": "required repo-source-owned metric path",
+    "baseline_invocation": "required object naming independent baseline function and input ids",
+    "ablation_condition": "required string or null",
+    "replay_recomputation_input": "required object containing serialized candidate state plus new observation",
+    "block_or_admit_reason": "required harness-owned reason string"
+  },
+  "replay_definition": {
+    "must_recompute_behavior": true,
+    "input": "serialized_candidate_state plus new observation",
+    "score_against": "environment-owned hidden truth and harness-owned metric",
+    "stored_output_hash_comparison_allowed_as_replay": false,
+    "candidate_authored_truth_keys_allowed": false
+  },
+  "future_score_metadata_required": [
+    "producer_function",
+    "input_artifacts",
+    "run_id",
+    "seed",
+    "context_id",
+    "episode_id",
+    "aggregation_rule",
+    "code_path_hash"
+  ]
+}

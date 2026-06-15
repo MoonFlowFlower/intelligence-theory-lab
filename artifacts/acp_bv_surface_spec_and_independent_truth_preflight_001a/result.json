@@ -1,0 +1,70 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A",
+  "verdict": "acp_bv_surface_spec_ready_for_independent_audit",
+  "acceptance_gate": "A",
+  "current_layer": "mechanism-hypothesis / engineering-governance surface-spec preflight only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": {
+    "start_branch": "codex/meta-theory-scaffold",
+    "start_head": "49fc5135005664015fb7728e3817f97bd5c36ff8",
+    "start_worktree_status": "clean",
+    "start_ahead_behind": "0 0",
+    "required_predecessor_commits_observed": [
+      "72cb216a8134d21f1ff9e1d57232464a2df4c8cf",
+      "49fc5135005664015fb7728e3817f97bd5c36ff8"
+    ],
+    "eav_001b_negative_evidence": "verifier_001b_blocked_by_circular_candidate_controlled_digest",
+    "future_only_harness_001a_negative_evidence": "harness_001a_blocked_by_candidate_authored_ground_truth",
+    "ledger_successor_constraint": "no candidate-authored ground truth in an evidence harness; harness ground truth must be harness-owned and candidate-inaccessible"
+  },
+  "surface_specification": {
+    "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+    "specified_without_candidate_authored_truth": true,
+    "candidate_output_role": "raw observations consumed, raw predictions, raw actions, serialized candidate state, optional uncertainty/logit traces",
+    "candidate_truth_output_allowed": false,
+    "future_harness_implemented": false,
+    "candidate_model_created": false,
+    "gate_rerun": false,
+    "old_gate_bundles_mutated": false
+  },
+  "truth_ownership_artifact": "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a/truth_ownership_inventory.json",
+  "baseline_artifact": "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a/baseline_matrix.json",
+  "ablation_artifact": "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a/ablation_matrix.json",
+  "positive_control_artifact": "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a/positive_controls.json",
+  "trace_replay_schema_artifact": "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a/trace_replay_schema.json",
+  "computed_evidence_gate": {
+    "future_score_bearing_results_must_be_callable": true,
+    "future_results_must_use_environment_or_harness_truth_plus_raw_candidate_outputs": true,
+    "candidate_selected_metric_producers_forbidden": true,
+    "candidate_declared_expected_values_forbidden": true,
+    "candidate_authored_ground_truth_forbidden": true,
+    "literal_verdict_dictionaries_forbidden": true,
+    "pass_shaped_json_reports_forbidden": true,
+    "row_injection_into_metric_producers_forbidden": true,
+    "static_baseline_ablation_replay_leakage_fields_forbidden": true
+  },
+  "blocked_or_unknown_items": [
+    "No executable ACP-BV harness exists in this task.",
+    "No ACP-BV score, Gate evidence, or admission result exists.",
+    "Independent audit has not yet accepted this surface specification.",
+    "A separate task card is required before any future executable harness."
+  ],
+  "claim_ceiling": "ACP-BV surface-spec and independent-truth preflight only",
+  "next_minimal_closed_loop_action": "Run independent audit of this surface spec; only after acceptance draft a separate executable-harness task card.",
+  "what_this_does_not_prove": [
+    "Gate validity",
+    "mechanism validity",
+    "admission readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "mainline effect",
+    "agency",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ],
+  "auto_remote_anchor_decision": "conditional"
+}

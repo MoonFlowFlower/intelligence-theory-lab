@@ -1,0 +1,47 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "baselines": [
+    {
+      "baseline": "candidate-authored self-consistency",
+      "purpose": "Preserve the strongest failure mode from policy_map: candidate supplies behavior plus answer key.",
+      "required_classification": "blocked if score or admission changes when only candidate-authored truth keys change"
+    },
+    {
+      "baseline": "majority/static-action baseline",
+      "purpose": "Detect trivial action distribution success.",
+      "required_classification": "baseline-equivalent if candidate does not exceed static-action control under the same hidden truth"
+    },
+    {
+      "baseline": "action-independent predictive baseline",
+      "purpose": "Detect prediction that ignores candidate action.",
+      "required_classification": "baseline-equivalent if action shuffling leaves performance unchanged"
+    },
+    {
+      "baseline": "observation-only predictor",
+      "purpose": "Detect same-step legal-observation shortcuts.",
+      "required_classification": "baseline-equivalent if public observation alone matches candidate score"
+    },
+    {
+      "baseline": "boundary-blind viability baseline",
+      "purpose": "Detect viability prediction without self/other boundary state use.",
+      "required_classification": "baseline-equivalent if boundary-blind model matches candidate on boundary-dependent cases"
+    },
+    {
+      "baseline": "no-boundary recurrent or world-model-only learner",
+      "purpose": "Detect ordinary model-based control or reward shaping without boundary proxy dependence.",
+      "required_classification": "downgrade ACP-BV to world-model-only or block if matched"
+    },
+    {
+      "baseline": "replay/hash-only baseline",
+      "purpose": "Detect stored-trace replay tautology.",
+      "required_classification": "blocked if replay success is hash equality rather than recomputation"
+    },
+    {
+      "baseline": "leakage/oracle-label baseline",
+      "purpose": "Detect hidden truth leaks through names, aliases, values, paths, or nested fields.",
+      "required_classification": "blocked if oracle-label payload is not caught"
+    }
+  ],
+  "baseline_equivalence_must_block_admission": true
+}

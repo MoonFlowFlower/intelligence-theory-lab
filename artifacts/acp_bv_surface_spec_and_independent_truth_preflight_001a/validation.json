@@ -1,0 +1,32 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A",
+  "verdict": "acp_bv_surface_spec_ready_for_independent_audit",
+  "validation_status": "command_readback_passed",
+  "expected_changed_files_allowlist": [
+    "docs/codex/tasks/ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A.md",
+    "docs/research/ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A.md",
+    "artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a/**"
+  ],
+  "forbidden_paths_not_modified_expected": [
+    "src/one_gate_future_only_non_circular_harness_001a/**",
+    "src/evidence_admission_verifier_001a/**",
+    "Gate3/Gate4 source or artifacts except read-only references",
+    "integrated admission / bridge / runtime / mainline files",
+    "unrelated tests",
+    "unrelated artifacts"
+  ],
+  "harness_implemented": false,
+  "candidate_created": false,
+  "gate_rerun": false,
+  "old_gate_bundles_mutated": false,
+  "checks_run": [
+    "git status --porcelain=v1 -uall",
+    "ConvertFrom-Json on all JSON artifacts in artifacts/acp_bv_surface_spec_and_independent_truth_preflight_001a",
+    "changed-file allowlist check from git status --porcelain=v1 -uall",
+    "forbidden path check from git status --porcelain=v1 -uall",
+    "implementation flag true-value scan",
+    "forbidden claim phrase scan with only claim-ceiling/does-not-prove hits"
+  ],
+  "claim_ceiling": "ACP-BV surface-spec and independent-truth preflight only",
+  "next_minimal_closed_loop_action": "Independent audit of the surface spec before any executable harness task card."
+}

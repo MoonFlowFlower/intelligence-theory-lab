@@ -1,0 +1,37 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "ablations": [
+    {
+      "ablation": "action-conditioning removed or shuffled",
+      "measurable_failure_mode": "action-conditioned prediction loss worsens or admission blocks",
+      "unchanged_score_interpretation": "non-discriminative action-independent behavior"
+    },
+    {
+      "ablation": "boundary signal hidden or swapped",
+      "measurable_failure_mode": "boundary-dependent subset score worsens or mismatch blocks",
+      "unchanged_score_interpretation": "boundary-blind behavior or leaked target"
+    },
+    {
+      "ablation": "viability signal decoupled from action consequence",
+      "measurable_failure_mode": "viability calibration and action consequence prediction worsen",
+      "unchanged_score_interpretation": "reward-shaping, lookup, or non-viability route"
+    },
+    {
+      "ablation": "candidate state reset before replay",
+      "measurable_failure_mode": "memory-required replay cases change or fail",
+      "unchanged_score_interpretation": "no candidate-state dependence or stored-output replay"
+    },
+    {
+      "ablation": "observations held fixed while hidden boundary/viability truth changes",
+      "measurable_failure_mode": "score changes on predeclared hidden-truth-dependent cases",
+      "unchanged_score_interpretation": "environment hidden truth is not controlling the score"
+    },
+    {
+      "ablation": "hidden truth held fixed while candidate-authored state changes",
+      "measurable_failure_mode": "target truth remains fixed and admission is not controlled by candidate-authored state keys",
+      "unchanged_score_interpretation": "acceptable only when raw predictions/actions are fixed; candidate state must not be a truth key"
+    }
+  ],
+  "all_mechanism_critical_ablations_unchanged_blocks_surface": true
+}

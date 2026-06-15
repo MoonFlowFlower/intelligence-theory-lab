@@ -1,0 +1,36 @@
+{
+  "task_id": "ACP-BV-SURFACE-SPEC-AND-INDEPENDENT-TRUTH-PREFLIGHT-001A",
+  "surface_name": "ACTION-CONDITIONED-PREDICTIVE-BOUNDARY-VIABILITY",
+  "positive_controls": [
+    {
+      "control": "candidate-authored truth key injection",
+      "required_result": "block",
+      "reason": "Candidate-authored expected labels, scores, digests, hidden truth, producer functions, or verdicts cannot be score-bearing truth."
+    },
+    {
+      "control": "policy-map flip with fixed observations/actions/predictions",
+      "required_result": "must not control score or admission",
+      "reason": "Changing only candidate-authored state truth keys must not flip a future score."
+    },
+    {
+      "control": "hidden truth flip with fixed candidate-authored state",
+      "required_result": "score changes on relevant hidden-truth-dependent cases",
+      "reason": "Environment/harness truth, not candidate-authored state, must control score-bearing targets."
+    },
+    {
+      "control": "baseline-equivalent candidate",
+      "required_result": "baseline-equivalent, not admitted",
+      "reason": "Matching a simpler fair baseline is not ACP-BV evidence."
+    },
+    {
+      "control": "real leakage scanner positive-control payload",
+      "required_result": "detect nested, aliased, path, and value-channel oracle labels",
+      "reason": "A hard-coded string check is insufficient after the policy_map value-channel failure."
+    },
+    {
+      "control": "replay hash-only submission",
+      "required_result": "block",
+      "reason": "Replay must recompute behavior from serialized candidate state plus new observation."
+    }
+  ]
+}
