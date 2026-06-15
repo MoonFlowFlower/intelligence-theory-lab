@@ -1,0 +1,69 @@
+{
+  "task_id": "ACP-BV-001B-REAUDIT-PRESERVATION-AND-HARNESS-CARD-DRAFT-001A",
+  "validation_type": "governance_draft_scope_and_binding_validation",
+  "validation_status": "passed_by_repo_readback",
+  "commands_run": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --porcelain=v1",
+    "git rev-list --left-right --count \"HEAD...@{u}\"",
+    "git rev-parse --verify refs/tags/remote-anchor-acp-bv-surface-spec-001b-independent-audit-revision-001a-d8cf5bb",
+    "git ls-remote origin refs/heads/codex/meta-theory-scaffold refs/tags/remote-anchor-acp-bv-surface-spec-001b-independent-audit-revision-001a-d8cf5bb",
+    "Get-FileHash -Algorithm SHA256 on input sources",
+    "json parse validation for new JSON artifacts",
+    "changed-path allowlist validation",
+    "required-binding token scan",
+    "forbidden-path validation"
+  ],
+  "allowlist": [
+    "docs/research/ACP-BV-SURFACE-SPEC-001B-REAUDIT-001A.md",
+    "docs/codex/tasks/ACP-BV-EXECUTABLE-HARNESS-001A-TASK-CARD.md",
+    "artifacts/acp_bv_001b_reaudit_preservation_and_harness_card_draft_001a/"
+  ],
+  "forbidden_paths_touched": [],
+  "required_bindings_present": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "harness_selected_counterfactual_action_queries",
+    "independent difficulty source",
+    "clean bundle expected to pass",
+    "dirty leakage payload expected to block",
+    "lookup-table replay payload expected to block",
+    "counterfactual-action payload expected to expose easy-action selection",
+    "graph-cache baseline comparators",
+    "replay hash-only payload expected to block",
+    "equivalence band `< 0.02`",
+    "inconclusive band `[0.02, 0.05)`",
+    "minimum mechanism-relevant effect `>= 0.05`",
+    "source-hash provenance",
+    "repo-source-owned",
+    "candidate-inaccessible",
+    "No harness implementation before independent review of the card",
+    "no candidate-authored truth",
+    "no candidate-selected producer",
+    "no candidate-declared expected values",
+    "no pass-shaped JSON reports",
+    "no row injection into metric producers",
+    "static verdict dictionaries"
+  ],
+  "scope_results": {
+    "harness_implemented": false,
+    "src_touched": false,
+    "tests_touched": false,
+    "gate_artifacts_mutated": false,
+    "admission_bridge_runtime_mainline_touched": false,
+    "old_bundle_mutated": false
+  },
+  "claim_ceiling": "ACP-BV reaudit preservation and executable harness task-card drafting only",
+  "acceptance_gate": "acp_bv_harness_card_draft_ready_for_independent_review",
+  "what_this_validation_does_not_prove": [
+    "It does not run baselines.",
+    "It does not run ablations.",
+    "It does not run replay.",
+    "It does not run leakage controls.",
+    "It does not prove ACP-BV mechanism validity."
+  ]
+}
