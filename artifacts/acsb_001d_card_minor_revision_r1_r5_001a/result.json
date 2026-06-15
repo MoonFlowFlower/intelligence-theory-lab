@@ -1,0 +1,78 @@
+{
+  "task_id": "ACSB-001D-CARD-MINOR-REVISION-R1-R5-001A",
+  "verdict": "acsb_001d_card_minor_revision_r1_r5_001a_ready_for_delta_reaudit",
+  "revised_card_path": "docs/research/ACTION-CONDITIONED-SELF-BOUNDARY-CORRECTED-CHALLENGE-001D.md",
+  "current_layer": "engineering-governance / 001D task-card minor revision only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": "Preserved hostile audit CLAUDE-INDEPENDENT-ACSB-001D-CARD-LEVEL-HOSTILE-AUDIT-001A requires R1 and R5 fixes before any Codex execution of 001D.",
+  "claim_ceiling": "revised_task_card_draft_only",
+  "r1_revision_summary": {
+    "same_callable_family_required": true,
+    "fair_capacity_disabled_reference_definition": "reference_callable with persistence_enabled=false, boundary_memory_read_enabled=false, boundary_memory_write_enabled=false, disabled_component_flags=[disable_persistence]",
+    "unified_with_disable_persistence": true,
+    "shared_trace_schema_required": true,
+    "callable_diff_check_required": true,
+    "rigged_definition_added": true,
+    "required_blocking_verdicts_added": [
+      "blocked_by_rigged_capacity_disabled_reference_001d",
+      "blocked_by_capacity_ablation_path_split_001d",
+      "blocked_by_capacity_reference_not_same_callable_family_001d"
+    ],
+    "decoy_by_construction_failure_tests_required": true
+  },
+  "r5_revision_summary": {
+    "canonical_source_hierarchy_added": true,
+    "fb0129a_reconciliation_added": true,
+    "corrupted_mount_tmp_clone_workflow_documented": true,
+    "acceptance_gate_1_revised": true,
+    "canonical_anchor_verification_source_field_added": true,
+    "allowed_values": [
+      "mount_local_repo",
+      "origin_remote_branch_or_tag",
+      "tmp_clone_from_origin",
+      "handoff_only_degraded",
+      "unverified_blocked"
+    ],
+    "unverified_anchor_stop_verdict_added": "blocked_by_unverified_route_decision_anchor_001d"
+  },
+  "other_revision_status": {
+    "R2": "preserved_and_lightly_clarified_heldout_bound_paired_probes_and_0_25_rationale",
+    "R3": "preserved_and_lightly_clarified_callable_row_enumerability_check",
+    "R4": "preserved_and_lightly_clarified_feature_parity",
+    "R6": "optional_clarification_added_for_value_leakage_threshold_and_no_update_escape"
+  },
+  "codex_execution_authorized_for_001d_implementation": false,
+  "delta_reaudit_required": true,
+  "required_delta_reaudit_scope": "R1_and_R5",
+  "changed_files": [
+    "docs/research/ACTION-CONDITIONED-SELF-BOUNDARY-CORRECTED-CHALLENGE-001D.md",
+    "artifacts/acsb_001d_card_minor_revision_r1_r5_001a/result.json",
+    "artifacts/acsb_001d_card_minor_revision_r1_r5_001a/readback.json",
+    "artifacts/acsb_001d_card_minor_revision_r1_r5_001a/claim_ceiling.txt",
+    "artifacts/acsb_001d_card_minor_revision_r1_r5_001a/git_readback.json"
+  ],
+  "checks_run": {
+    "start_state_git_readback": "run",
+    "current_latest_audit_boundary_readback_for_1fe086fdc3d86ffd7bb61f167b469715083ff65f": "run",
+    "origin_tmp_clone_readback_if_needed": "not_needed_origin_remote_tag_readback_succeeded",
+    "json_parse_checks_for_artifact_json": "run_exit_0",
+    "changed_file_allowlist_check": "run_exit_0",
+    "forbidden_path_scan": "run_exit_0",
+    "forbidden_positive_claim_scan": "run_refined_exit_0_after_line_wrap_false_positive_repair",
+    "scoped_secret_pattern_scan": "run_refined_exit_0_after_broad_sk_false_positive",
+    "non_ascii_scan": "run_exit_0",
+    "git_diff_check": "run_exit_0",
+    "git_diff_cached_check": "run_exit_0",
+    "staged_changed_file_allowlist_check": "run_exit_0",
+    "staged_forbidden_path_scan": "run_exit_0",
+    "final_git_status": "pending_post_commit_closeout",
+    "final_git_diff_name_status": "pending_post_commit_closeout"
+  },
+  "auto_remote_anchor": {
+    "decision": "conditional",
+    "eligible_if_checks_pass_and_worktree_clean_after_commit": true,
+    "suggested_tag_pattern": "remote-anchor-acsb-001d-card-minor-revision-r1-r5-001a-<shortsha>"
+  },
+  "what_this_cannot_prove": "This card revision does not prove ACSB validity, ACSB invalidity, mechanism validity, Gate validity, candidate behavior, agency, autonomy, consciousness, emotion, subjectivity, runtime readiness, EGO readiness, stable user benefit, companion readiness, production readiness, or mainline effect."
+}
