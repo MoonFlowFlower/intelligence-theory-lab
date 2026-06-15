@@ -1,0 +1,23 @@
+{
+  "admissibility_impact": "supports replay admissibility for selected 002C audit target only",
+  "baseline_replay_recomputed": {
+    "belief_table": true,
+    "serialized_state_decoder": true
+  },
+  "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+  "comparison_rule": "exact recomputation from serialized_state_before_update plus observation",
+  "failure_path_result": {
+    "actual_recomputed_action_or_prediction": "route_alpha",
+    "comparison_rule": "exact query, state, and prediction equality",
+    "passed": false
+  },
+  "finding": "replay report asserts recomputation from serialized state plus observation and includes a failing corrupted-observation path",
+  "passed": true,
+  "path": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/replay_results.json",
+  "producer_function": "build_replay_results",
+  "recomputation_function": "recompute_candidate_from_serialized_state_plus_observation",
+  "recomputed_from_serialized_state_plus_observation": true,
+  "records_checked": 24,
+  "selected_target": "gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+  "task_id": "gate4_false_pass_causal_audit_001a"
+}

@@ -1,0 +1,127 @@
+{
+  "audit_verdict": "gate4_false_pass_causal_audit_001a_pass_non_discriminative_due_cheap_baseline",
+  "candidate_score": 1.0,
+  "cheap_baseline_rows": [
+    {
+      "access_rights_declaration": "train split post-shift partner observation token pairs only",
+      "baseline_id": "pair_count",
+      "callable_invoked": true,
+      "code_path_hash": "b1332ebb8852b81f36f1b9f5e35accc85ba801db530810b27a0033ff4e67fdcc",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_pair_count",
+      "score": 1.0,
+      "tied_or_beat_candidate": true
+    },
+    {
+      "access_rights_declaration": "train split ordered partner observation tokens only",
+      "baseline_id": "ngram_trace_lookup",
+      "callable_invoked": true,
+      "code_path_hash": "bfbfca4725a37c5027bb3dae9b65bafd2775127decbf49c47ac0e657483c00d2",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_ngram_trace_lookup",
+      "score": 1.0,
+      "tied_or_beat_candidate": true
+    },
+    {
+      "access_rights_declaration": "partner_id and train targets only",
+      "baseline_id": "partner_id",
+      "callable_invoked": true,
+      "code_path_hash": "0b41352ae8b8d3f433a1801bc529ac5444dcdbd16893f3877749652b93c8240b",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_partner_id",
+      "score": 0.5,
+      "tied_or_beat_candidate": false
+    },
+    {
+      "access_rights_declaration": "visible decoy menu preference marker and train targets only",
+      "baseline_id": "preference_table",
+      "callable_invoked": true,
+      "code_path_hash": "2921f1839098c74989da6b93927ec1418ec4e5987765c3de42b353db4a818cf3",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_preference_table",
+      "score": 0.25,
+      "tied_or_beat_candidate": false
+    },
+    {
+      "access_rights_declaration": "candidate serialized other-state after update, no scorer target",
+      "baseline_id": "serialized_state_decoder",
+      "callable_invoked": true,
+      "code_path_hash": "095f7edc7c92123403d8262aaf5389632c91651c8f4971c09b6b7a934def2e8a",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_serialized_state_decoder",
+      "score": 1.0,
+      "tied_or_beat_candidate": true
+    },
+    {
+      "access_rights_declaration": "candidate-visible observation bundle, no scorer target",
+      "baseline_id": "full_bundle_decoder",
+      "callable_invoked": true,
+      "code_path_hash": "bdb1bb75a32c3ab0ac8fecaee8e8d31115fc836d342622c5d8c99ce42dbb7973",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_full_bundle_decoder",
+      "score": 1.0,
+      "tied_or_beat_candidate": true
+    },
+    {
+      "access_rights_declaration": "hand-coded belief table over visible partner observation tokens",
+      "baseline_id": "belief_table",
+      "callable_invoked": true,
+      "code_path_hash": "57010d97c07fb6c7ce5938fa6107a286d2dcab60190bb84a58be4dd8736a0418",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_belief_table",
+      "score": 1.0,
+      "tied_or_beat_candidate": true
+    },
+    {
+      "access_rights_declaration": "visible policy-shift marker only",
+      "baseline_id": "finite_state_policy",
+      "callable_invoked": true,
+      "code_path_hash": "ffbbfef86f99d5d950f8438dee50db0006e12f1057c189f82ceee7387ed8b943",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_finite_state_policy",
+      "score": 0.25,
+      "tied_or_beat_candidate": false
+    },
+    {
+      "access_rights_declaration": "same partner observation stream after a query, no latent state",
+      "baseline_id": "query_capable_imitation",
+      "callable_invoked": true,
+      "code_path_hash": "897794365037c511eaefb004aaef3423cb57f7feefd3dc375637dc020e398d5e",
+      "faithful_non_oracle": true,
+      "present": true,
+      "producer_function": "baseline_query_capable_imitation",
+      "score": 0.5,
+      "tied_or_beat_candidate": false
+    }
+  ],
+  "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+  "faithful_baselines_tied_or_beat_candidate": [
+    "pair_count",
+    "ngram_trace_lookup",
+    "full_bundle_decoder",
+    "serialized_state_decoder",
+    "belief_table"
+  ],
+  "invocation_check": {
+    "missing_baselines": [],
+    "passed": true,
+    "producer_function": "verify_required_baseline_invocations"
+  },
+  "selected_target": "gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+  "strongest_faithful_non_oracle": {
+    "access_rights_declaration": "candidate serialized other-state after update, no scorer target",
+    "baseline_id": "serialized_state_decoder",
+    "producer_function": "baseline_serialized_state_decoder",
+    "score": 1.0
+  },
+  "task_id": "gate4_false_pass_causal_audit_001a",
+  "verdict_impact": "positive Gate4 evidence is non-discriminative because cheap/fair baselines tie candidate"
+}

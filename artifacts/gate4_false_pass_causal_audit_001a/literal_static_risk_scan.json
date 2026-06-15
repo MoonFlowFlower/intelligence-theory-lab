@@ -1,0 +1,501 @@
+{
+  "admissibility_impact": "perfect-score fields remain non-discriminative because cheap baselines tie the candidate; not a positive Gate4 claim",
+  "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+  "finding": "candidate and several baselines have score 1.0, but selected score/report artifacts include callable provenance, static-injection positive control, and parsed equality against fresh callable output excluding live source-pin readback; no 0-argument score producer was found for the score-bearing path",
+  "fresh_callable_output_comparison": {
+    "all_checked_json_equal": false,
+    "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+    "comparison_type": "parsed JSON equality against fresh non-persistent execute_experiment output",
+    "live_source_pin_note": "source_pin_readback.json can differ on fresh rerun when HEAD/worktree has moved after the sealed 002C boundary; the mismatch is not a score, baseline, ablation, replay, leakage, or verdict artifact mismatch",
+    "old_artifacts_rewritten": false,
+    "rows": [
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/result.json",
+        "artifact_sha256": "f26493902448156d1d7234bca461c73c9608a40b170232e5feb99453e7e34118",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/candidate_result.json",
+        "artifact_sha256": "efcd086783b18fbe73e582d57dbf795da9848f11d1ee3959aaac99a7e4064b77",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+        "artifact_sha256": "90e27408cd27e15a919917abc4692d5a4fda69fd45138f764f077bf4acc6dd37",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/strongest_baseline_report.json",
+        "artifact_sha256": "8ad7939bb6550014f6b888218eb4a7fe4a72a13031be2f30e454c099544d1dd8",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/ablation_results.json",
+        "artifact_sha256": "832a0c41463228e42cf8e071b1c2049d5770ac6ec89ad4ac145c9d5bfb0dd2b6",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/replay_results.json",
+        "artifact_sha256": "225ce6e265cd2fcbc87798d4785019519a584ea5cf7824a817d11f619097367a",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/leakage_positive_control_results.json",
+        "artifact_sha256": "8be379d193d7731cb5a2edbbef3baeabd393a06cc4e2d07813bf81b418148dc1",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/negative_control_results.json",
+        "artifact_sha256": "f0c6c0b1e908d1c1e879ee62f2a55009e3f1b52c51651c67d2ae1c6289b67117",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/environment_manifest.json",
+        "artifact_sha256": "5af66c8e6b4cb7655dfe6d58ca9fa60f9b252847cdb3c14bd2ae966a12ff7ed9",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/source_pin_readback.json",
+        "artifact_sha256": "9632db08a91a3a972c2743f3bd38da15d6f0ab732c55f11c461ef0faa34d7e1c",
+        "parsed_equal_to_fresh_callable_output": false
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/non_mutation_guard.json",
+        "artifact_sha256": "f45da9d60c12d0dd27af8174ae1465e071e4f5ef813f579c26884d4cd5f0c959",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+        "artifact_sha256": "5ea03b1daa1c8ed36bac478c6fbec8af8a10c5a5581f6e0ececdd97a6f11f82a",
+        "parsed_equal_to_fresh_callable_output": true
+      },
+      {
+        "artifact": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/static_score_guard_report.json",
+        "artifact_sha256": "55ed87e45d4a0c47cee28e74ca260b808104e75f8f10a736cae3146328d109f1",
+        "parsed_equal_to_fresh_callable_output": true
+      }
+    ],
+    "score_and_report_json_equal_excluding_live_source_pin": true
+  },
+  "literal_score_source_lines": [],
+  "perfect_score_fields_requiring_callable_support": [
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "candidate_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/ablation_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "interventions.inject_target_leakage_positive_control.candidate_score",
+      "producer_function_context": "score_candidate",
+      "source_line": 21,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "candidate_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/ablation_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "interventions.mask_partner_id_and_explicit_labels.candidate_score",
+      "producer_function_context": "score_candidate",
+      "source_line": 21,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "candidate_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/ablation_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "interventions.shuffle_partner_observation_history.candidate_score",
+      "producer_function_context": "score_candidate",
+      "source_line": 21,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "rows.belief_table.score",
+      "producer_function_context": "baseline_belief_table",
+      "source_line": 94,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "rows.full_bundle_decoder.score",
+      "producer_function_context": "baseline_full_bundle_decoder",
+      "source_line": 94,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "rows.ngram_trace_lookup.score",
+      "producer_function_context": "baseline_ngram_trace_lookup",
+      "source_line": 94,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "rows.oracle_access_upper_bound.score",
+      "producer_function_context": "baseline_oracle_access_upper_bound",
+      "source_line": 94,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "rows.pair_count.score",
+      "producer_function_context": "baseline_pair_count",
+      "source_line": 94,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/baseline_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "rows.serialized_state_decoder.score",
+      "producer_function_context": "baseline_serialized_state_decoder",
+      "source_line": 94,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/candidate_result.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "score",
+      "producer_function_context": "score_candidate",
+      "source_line": 7,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "candidate_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/negative_control_results.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "candidate_score",
+      "producer_function_context": "build_negative_control_results",
+      "source_line": 2,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.0.computed_score",
+      "producer_function_context": "score_candidate",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.1.computed_score",
+      "producer_function_context": "run_baselines",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.2.computed_score",
+      "producer_function_context": "select_strongest_baseline",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.4.computed_score",
+      "producer_function_context": "build_leakage_positive_control_results",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.6.computed_score",
+      "producer_function_context": "build_replay_results",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.7.computed_score",
+      "producer_function_context": "build_non_mutation_guard",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.8.computed_score",
+      "producer_function_context": "build_result",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.10.computed_score",
+      "producer_function_context": "baseline_pair_count",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.11.computed_score",
+      "producer_function_context": "baseline_ngram_trace_lookup",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.14.computed_score",
+      "producer_function_context": "baseline_full_bundle_decoder",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.15.computed_score",
+      "producer_function_context": "baseline_serialized_state_decoder",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.18.computed_score",
+      "producer_function_context": "baseline_belief_table",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "computed_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/provenance_manifest.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "records.19.computed_score",
+      "producer_function_context": "baseline_oracle_access_upper_bound",
+      "source_line": 9,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "candidate_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/result.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "candidate_score",
+      "producer_function_context": "build_result",
+      "source_line": 4,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/result.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "strongest_faithful_non_oracle.score",
+      "producer_function_context": "baseline_serialized_state_decoder",
+      "source_line": 32,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "candidate_score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/strongest_baseline_report.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "candidate_score",
+      "producer_function_context": "select_strongest_baseline",
+      "source_line": 3,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/strongest_baseline_report.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "strongest_any_including_oracle.score",
+      "producer_function_context": "baseline_serialized_state_decoder",
+      "source_line": 15,
+      "value": 1.0
+    },
+    {
+      "admissibility_impact": "red_flag_candidate_or_baseline_perfect_score_requires_callable_trace",
+      "claim_ceiling": "Gate4 false-pass causal-path audit for one selected instance only; selected evidence admissibility, callable/fail-able baseline-ablation-replay-leakage status, and cheap-baseline non-discriminativeness only",
+      "evidence_type": [
+        "score"
+      ],
+      "field_name": "score",
+      "file": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/strongest_baseline_report.json",
+      "finding": "field inventoried for selected 002C target",
+      "object_path": "strongest_faithful_non_oracle.score",
+      "producer_function_context": "baseline_serialized_state_decoder",
+      "source_line": 15,
+      "value": 1.0
+    }
+  ],
+  "selected_target": "gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a",
+  "static_score_guard_report": {
+    "injected_blocking_reasons": [
+      "static_score_injection",
+      "unknown_producer:literal_score_table"
+    ],
+    "path": "artifacts/gate4_replacement_002c_dynamic_partner_belief_pomdp_execution_001a/static_score_guard_report.json",
+    "positive_control_static_injection_detected": true,
+    "producer_function": "build_static_score_guard_report"
+  },
+  "task_id": "gate4_false_pass_causal_audit_001a",
+  "zero_argument_score_or_report_producers": []
+}
