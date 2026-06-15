@@ -1,0 +1,234 @@
+{
+  "anchor_tag_under_audit": "remote-anchor-one-gate-future-only-non-circular-evidence-harness-001a-cb95bbd",
+  "anchor_under_audit": "cb95bbdb06c9fadbbbf7765ae61acc46609ed994",
+  "audit_verdict": "partially_real_but_circular_at_ground_truth",
+  "baseline_equivalence_issue": {
+    "acceptance_gates_all_pass_despite_equivalence": true,
+    "candidate_score_equals_majority_baseline": true,
+    "degenerate_acceptance_gates": {
+      "ablation_rerun_under_intervention": true,
+      "all_circular_positive_controls_block": true,
+      "baseline_independently_invoked": true,
+      "leakage_positive_control_detected": true,
+      "raw_output_only_fixture_scored": true,
+      "replay_recomputed_from_state_observation": true
+    },
+    "degenerate_candidate_still_admitted": true,
+    "degenerate_payload_sha256": "a1314c9c1425b6af5f72a9c32c3d6a47d485f910e5fb2fa40b008a4303d1cfdf",
+    "degenerate_summary": {
+      "ablation_score": 0.666667,
+      "admission_decision": "scored_future_only_preflight",
+      "baseline_majority_action": "approach",
+      "baseline_score": 1.0,
+      "block_reason_ids": [],
+      "candidate_blocked": false,
+      "candidate_id": "degenerate_all_approach_self_consistent_candidate_fixture",
+      "computed_score": 1.0,
+      "leakage_hit_count": 0,
+      "leakage_positive_control_detected": true,
+      "metric_provenance": {
+        "aggregation_rule": "mean action match against harness recomputation from serialized_state plus observation",
+        "candidate_metric_producer_used": false,
+        "code_path_hash": "cb3b7e5ebbc05a8d3fd68a163f931eba684a9080692ed020e997a86dffc6cf98",
+        "computed_score": 1.0,
+        "harness_registry_used": true,
+        "input_artifact_hashes": {
+          "candidate_payload": "a1314c9c1425b6af5f72a9c32c3d6a47d485f910e5fb2fa40b008a4303d1cfdf",
+          "raw_traces": "ab794648d23b184363a4ee1a230ee4b3107c417efab1fa956ad7a7eb15046244"
+        },
+        "input_artifacts": [
+          "candidate_payload.raw_traces"
+        ],
+        "metric_function_allowlist_id": "score_actions_from_raw_traces",
+        "producer_function": "score_actions_from_raw_traces",
+        "producer_source_path": "src/one_gate_future_only_non_circular_harness_001a/runner.py",
+        "run_id": "PRESERVE-ONE-GATE-FUTURE-ONLY-HARNESS-001A-NEGATIVE-AUDIT-001A_degenerate_majority_equivalent",
+        "seed_context_episode_ids": [
+          {
+            "context_id": "ctx_green",
+            "episode_id": "ep_001",
+            "seed": "seed_a"
+          },
+          {
+            "context_id": "ctx_red",
+            "episode_id": "ep_002",
+            "seed": "seed_a"
+          },
+          {
+            "context_id": "ctx_blue",
+            "episode_id": "ep_003",
+            "seed": "seed_b"
+          }
+        ]
+      },
+      "replay_matches_original_decision": true,
+      "replay_mismatch_episode_ids": []
+    }
+  },
+  "claim_ceiling": "future-only harness negative audit preservation and route downgrade only",
+  "contrast": {
+    "bypass_demonstrated": true,
+    "fixed_episode_surface_sha256": "c5138d41b3cac9c1add51f1c93065df79ae3c891686ec1757006dcc15cc99c27",
+    "flipped_payload_sha256": "2bb4436cab10dd0315417e0be94276aa838706d7cadd47ac6139a0e556c26ea3",
+    "flipped_policy_map_summary": {
+      "ablation_score": 0.0,
+      "admission_decision": "blocked_replay_mismatch",
+      "baseline_majority_action": "approach",
+      "baseline_score": 0.333333,
+      "block_reason_ids": [
+        "blocked_replay_mismatch",
+        "blocked_ablation_unchanged_pass"
+      ],
+      "candidate_blocked": true,
+      "candidate_id": "flipped_policy_map_same_observations_actions_fixture",
+      "computed_score": null,
+      "leakage_hit_count": 0,
+      "leakage_positive_control_detected": true,
+      "metric_provenance": {
+        "aggregation_rule": "mean action match against harness recomputation from serialized_state plus observation",
+        "candidate_metric_producer_used": false,
+        "code_path_hash": "cb3b7e5ebbc05a8d3fd68a163f931eba684a9080692ed020e997a86dffc6cf98",
+        "computed_score": 0.0,
+        "harness_registry_used": true,
+        "input_artifact_hashes": {
+          "candidate_payload": "2bb4436cab10dd0315417e0be94276aa838706d7cadd47ac6139a0e556c26ea3",
+          "raw_traces": "db754acb136731032a93e4082223e406bda427297881fe505f73924a66c8de85"
+        },
+        "input_artifacts": [
+          "candidate_payload.raw_traces"
+        ],
+        "metric_function_allowlist_id": "score_actions_from_raw_traces",
+        "producer_function": "score_actions_from_raw_traces",
+        "producer_source_path": "src/one_gate_future_only_non_circular_harness_001a/runner.py",
+        "run_id": "PRESERVE-ONE-GATE-FUTURE-ONLY-HARNESS-001A-NEGATIVE-AUDIT-001A_flipped_policy_map",
+        "seed_context_episode_ids": [
+          {
+            "context_id": "ctx_green",
+            "episode_id": "ep_001",
+            "seed": "seed_a"
+          },
+          {
+            "context_id": "ctx_red",
+            "episode_id": "ep_002",
+            "seed": "seed_a"
+          },
+          {
+            "context_id": "ctx_blue",
+            "episode_id": "ep_003",
+            "seed": "seed_b"
+          }
+        ]
+      },
+      "replay_matches_original_decision": false,
+      "replay_mismatch_episode_ids": [
+        "ep_001",
+        "ep_002",
+        "ep_003"
+      ]
+    },
+    "policy_maps_differ": true,
+    "same_observations_actions_predictions": true,
+    "self_endorsing_payload_sha256": "54c4221fe41b707511d219fd208ad937f609c69360cb8722e6cb7295002e6086",
+    "self_endorsing_summary": {
+      "ablation_score": 0.666667,
+      "admission_decision": "scored_future_only_preflight",
+      "baseline_majority_action": "approach",
+      "baseline_score": 0.333333,
+      "block_reason_ids": [],
+      "candidate_blocked": false,
+      "candidate_id": "self_endorsing_policy_map_candidate_fixture",
+      "computed_score": 1.0,
+      "leakage_hit_count": 0,
+      "leakage_positive_control_detected": true,
+      "metric_provenance": {
+        "aggregation_rule": "mean action match against harness recomputation from serialized_state plus observation",
+        "candidate_metric_producer_used": false,
+        "code_path_hash": "cb3b7e5ebbc05a8d3fd68a163f931eba684a9080692ed020e997a86dffc6cf98",
+        "computed_score": 1.0,
+        "harness_registry_used": true,
+        "input_artifact_hashes": {
+          "candidate_payload": "54c4221fe41b707511d219fd208ad937f609c69360cb8722e6cb7295002e6086",
+          "raw_traces": "0947a14f24f65c322fb46bba306211c8415cd5abed103b70f17dcca55beea3ad"
+        },
+        "input_artifacts": [
+          "candidate_payload.raw_traces"
+        ],
+        "metric_function_allowlist_id": "score_actions_from_raw_traces",
+        "producer_function": "score_actions_from_raw_traces",
+        "producer_source_path": "src/one_gate_future_only_non_circular_harness_001a/runner.py",
+        "run_id": "PRESERVE-ONE-GATE-FUTURE-ONLY-HARNESS-001A-NEGATIVE-AUDIT-001A_self_endorsing",
+        "seed_context_episode_ids": [
+          {
+            "context_id": "ctx_green",
+            "episode_id": "ep_001",
+            "seed": "seed_a"
+          },
+          {
+            "context_id": "ctx_red",
+            "episode_id": "ep_002",
+            "seed": "seed_a"
+          },
+          {
+            "context_id": "ctx_blue",
+            "episode_id": "ep_003",
+            "seed": "seed_b"
+          }
+        ]
+      },
+      "replay_matches_original_decision": true,
+      "replay_mismatch_episode_ids": []
+    }
+  },
+  "enabled_status": "no new enabled path; existing harness not repaired or wired",
+  "evidence_classification": "bounded temp rerun plus audit-readback/static route downgrade",
+  "git_readback_at_rerun": {
+    "branch": "codex/meta-theory-scaffold",
+    "head": "cb95bbdb06c9fadbbbf7765ae61acc46609ed994",
+    "status_short_branch": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold\n M docs/NEGATIVE_EVIDENCE_LEDGER.md\n M theories/failed_claims.yaml\n?? artifacts/one_gate_future_only_harness_001a_negative_audit_001a/"
+  },
+  "layer": "engineering-governance / future-only harness negative audit preservation",
+  "leakage_positive_control_weakness": {
+    "policy_map_in_forbidden_candidate_fields": false,
+    "policy_map_in_leakage_field_names": false,
+    "positive_control_detected": true,
+    "self_endorsing_leakage_hit_count": 0,
+    "self_endorsing_leakage_hits": [],
+    "signal_in_leakage_field_names": false,
+    "weakness": "scanner is field-name based and does not treat policy_map/signal value channels as leakage"
+  },
+  "mainline_integration_status": "none",
+  "real_trigger_evidence": "temp rerun through existing harness evaluator shows same observations/actions with only candidate-authored policy_map changed flips the result; static audit readback supplies the independent audit framing",
+  "route_decision": {
+    "decision": "cb95bbd_harness_must_not_be_used_as_gate_evidence_contract",
+    "downgraded_to": "prototype / negative evidence: candidate-authored ground truth failure",
+    "next_minimal_closed_loop_action": "run a separate independent-ground-truth preflight for the intended Gate target; if no harness-owned candidate-inaccessible truth source exists, downgrade the Gate evidence route",
+    "safe_to_wire_bridge": false,
+    "safe_to_wire_ego_mainline": false,
+    "safe_to_wire_gate3": false,
+    "safe_to_wire_gate4": false,
+    "safe_to_wire_runtime": false
+  },
+  "source_integrity": {
+    "harness_source_modified_by_this_script": false,
+    "harness_source_path": "src/one_gate_future_only_non_circular_harness_001a/runner.py",
+    "harness_source_sha256": "cb3b7e5ebbc05a8d3fd68a163f931eba684a9080692ed020e997a86dffc6cf98",
+    "old_gate_artifacts_modified_by_this_script": false,
+    "verifier_source_modified": false
+  },
+  "task_id": "PRESERVE-ONE-GATE-FUTURE-ONLY-HARNESS-001A-NEGATIVE-AUDIT-001A",
+  "verdict": "harness_001a_blocked_by_candidate_authored_ground_truth",
+  "what_this_does_not_prove": [
+    "Gate validity",
+    "mechanism validity",
+    "integrated admission readiness",
+    "mainline effect",
+    "bridge readiness",
+    "runtime readiness",
+    "agency",
+    "consciousness",
+    "emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}
