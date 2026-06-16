@@ -1,0 +1,49 @@
+{
+  "task_id": "ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A",
+  "verdict": "acp_bv_001b_implementation_task_card_001a_ready_for_independent_audit",
+  "validation_checks": {
+    "start_head_verified": true,
+    "start_tag_verified": true,
+    "remote_branch_verified": true,
+    "remote_tag_verified": true,
+    "status_readable": true,
+    "reaudit_document_created": true,
+    "implementation_task_card_created": true,
+    "binding_1_unified_detector_failability_present": true,
+    "binding_2_leakage_nonwhitelist_present": true,
+    "binding_3_per_seed_episode_floor_present": true,
+    "binding_4_factorization_family_completeness_present": true,
+    "future_source_paths_named": true,
+    "future_test_paths_named": true,
+    "future_artifact_path_named": true,
+    "current_task_forbids_immediate_implementation": true,
+    "no_src_or_tests_created_or_modified": true,
+    "no_gate_bridge_admission_runtime_mainline_or_real_gate_target_created_or_modified": true,
+    "artifact_result_records_start_commit_tag_files_checks_claim_ceiling_next_action": true,
+    "claim_ceiling_preserved": true
+  },
+  "expected_verdicts_allowed": [
+    "acp_bv_001b_implementation_task_card_001a_ready_for_independent_audit",
+    "blocked_by_missing_detector_failability_binding",
+    "blocked_by_missing_leakage_nonwhitelist_binding",
+    "blocked_by_scope_creep",
+    "blocked_by_start_state_mismatch",
+    "blocked_by_claim_inflation",
+    "blocked_by_forbidden_file_change",
+    "blocked_by_card_ambiguity"
+  ],
+  "forbidden_scope_scan_result": "no_forbidden_paths_changed",
+  "validation_commands_to_rerun_before_commit": [
+    "git status --porcelain=v1 -uall",
+    "git diff --name-only",
+    "git diff --cached --name-only",
+    "git diff --name-only -- src tests",
+    "git status --porcelain=v1 -uall -- src tests",
+    "git diff --check",
+    "python -m json.tool artifacts/acp_bv_001b_implementation_task_card_001a/result.json",
+    "python -m json.tool artifacts/acp_bv_001b_implementation_task_card_001a/readback.json",
+    "python -m json.tool artifacts/acp_bv_001b_implementation_task_card_001a/validation.json"
+  ],
+  "claim_ceiling": "ACP-BV 001B implementation-task-card drafting and R1-R5 reaudit preservation only",
+  "next_minimal_closed_loop_action": "Send docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md to Claude for independent hostile audit of the implementation task card."
+}

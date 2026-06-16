@@ -1,0 +1,33 @@
+Forbidden scope scan result: no_forbidden_paths_changed
+
+Allowed changed files for this current task:
+- docs/research/ACP-BV-DISTRIBUTION-REDESIGN-SPEC-001B-CLAUDE-REAUDIT-001A.md
+- docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md
+- artifacts/acp_bv_001b_implementation_task_card_001a/**
+
+Forbidden current-task paths:
+- src/**
+- tests/**
+- any Gate runner
+- any bridge/admission/runtime/mainline file
+- ACP-BV 001A implementation or artifacts except read-only references
+- existing 001B spec files except read-only references
+- any real Gate target artifact
+
+Authoritative changed-path command run before commit:
+- git status --porcelain=v1 -uall
+
+Observed output:
+?? artifacts/acp_bv_001b_implementation_task_card_001a/changed_files.txt
+?? artifacts/acp_bv_001b_implementation_task_card_001a/claim_ceiling.txt
+?? artifacts/acp_bv_001b_implementation_task_card_001a/forbidden_scope_scan.txt
+?? artifacts/acp_bv_001b_implementation_task_card_001a/readback.json
+?? artifacts/acp_bv_001b_implementation_task_card_001a/result.json
+?? artifacts/acp_bv_001b_implementation_task_card_001a/validation.json
+?? docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md
+?? docs/research/ACP-BV-DISTRIBUTION-REDESIGN-SPEC-001B-CLAUDE-REAUDIT-001A.md
+
+Forbidden-path commands to rerun before commit:
+- git status --porcelain=v1 -uall -- src tests
+- git diff --name-only -- src tests
+- git diff --cached --name-only -- src tests
