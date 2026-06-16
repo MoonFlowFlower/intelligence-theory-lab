@@ -75,16 +75,19 @@ def run_harness(
     repo_root: Path,
     output_dir: Path,
     run_id: str = "acp-bv-executable-harness-001a",
+    source_anchor_commit: str | None = None,
 ) -> dict[str, Any]:
     repo_root = repo_root.resolve()
     output_dir = output_dir.resolve()
     _prepare_output_dir(output_dir)
+    source_anchor_commit = source_anchor_commit or git_readback(repo_root)["head"]
 
     manifest = source_pins.create_source_pin_manifest(
         repo_root=repo_root,
         run_id=run_id,
         output_path=output_dir / "source_pins.json",
         load_bearing_callables=load_bearing_callable_registry(),
+        source_anchor_commit=source_anchor_commit,
     )
     manifest_check = source_pins.verify_source_pin_manifest(manifest, repo_root=repo_root)
     manifest["manifest_verification_at_scoring"] = manifest_check
@@ -136,6 +139,13 @@ def run_harness(
         run_id=f"{run_id}-baseline",
         candidate_score=candidate_score,
     )
+    baseline_blocker = (
+        "blocked_by_baseline_equivalence"
+        if baseline_matrix["strongest_baseline_comparison"]["classification"] == "baseline_equivalent"
+        else None
+    )
+    if baseline_blocker:
+        verdict = baseline_blocker
     ablation_report = ablations.run_ablation_reruns(
         clean_bundle,
         repo_root=repo_root,
@@ -161,9 +171,8 @@ def run_harness(
             boundary_negative_controls,
         ]
     )
-    all_acceptance = all(
+    infrastructure_controls_executed = all(
         [
-            verdict == "acp_bv_executable_harness_001a_implemented_with_fail_able_controls",
             manifest_check["passed"],
             boundary_report["boundary_verdict"] == "all_load_bearing_callables_boundary_verified",
             boundary_negative_controls["all_required_controls_passed"],
@@ -171,7 +180,6 @@ def run_harness(
             clean_dirty_lookup_controls["clean_control"]["verdict"] == "clean_control_passed",
             clean_dirty_lookup_controls["dirty_control"]["verdict"] == "dirty_control_blocked",
             counterfactual_controls["harness_selected_counterfactual_action_queries"],
-            baseline_matrix["strongest_baseline_comparison"]["classification"] == "mechanism_relevant_effect_candidate",
             ablation_report["all_rerun"],
             replay_report["verdict"] == "replay_recomputed",
             replay_report["hash_only_positive_control"]["verdict"] == "blocked_by_replay_hash_only",
@@ -179,13 +187,26 @@ def run_harness(
             claim_scan["forbidden_claim_scan_passed"],
         ]
     )
-    if not all_acceptance and verdict == "acp_bv_executable_harness_001a_implemented_with_fail_able_controls":
+    allowed_terminal_verdicts = {
+        "blocked_by_baseline_equivalence",
+        "blocked_by_non_discriminative_distribution",
+        "blocked_by_unpinned_boundary_verifier",
+        "blocked_by_fair_baseline_repair_failure",
+        "blocked_by_claim_inflation",
+        "blocked_by_forbidden_file_change",
+        "acp_bv_harness_001a_negative_audit_preserved_and_equivalence_exposed",
+    }
+    all_acceptance = infrastructure_controls_executed and verdict in allowed_terminal_verdicts
+    if not infrastructure_controls_executed and verdict == "acp_bv_executable_harness_001a_implemented_with_fail_able_controls":
         verdict = "blocked_by_test_failure"
 
     result = {
         "task_id": TASK_ID,
         "verdict": verdict,
         "acceptance_gate_passed": all_acceptance,
+        "infrastructure_controls_executed": infrastructure_controls_executed,
+        "task_level_blocker": verdict if verdict.startswith("blocked_by_") else None,
+        "harness_success_claimed": False,
         "current_layer": CURRENT_LAYER,
         "mainline_integration_status": "none",
         "enabled_status": "local offline CLI/test runner only",
@@ -200,6 +221,9 @@ def run_harness(
         "safe_to_wire_mainline": False,
         "candidate_score": candidate_score,
         "baseline_result": baseline_matrix["strongest_baseline_comparison"],
+        "full_access_lookup_result": baseline_matrix["full_access_lookup_evidence"],
+        "train_heldout_overlap_result": baseline_matrix["train_heldout_overlap"],
+        "candidate_truth_coupling_result": baseline_matrix["candidate_truth_coupling"],
         "ablation_result": {"all_rerun": ablation_report["all_rerun"]},
         "replay_result": {"hash_only_rejected": True, "behavior_recomputed": replay_report["behavior_recomputed"]},
         "leakage_result": {"dirty_detected": leakage_report["all_controls_passed"]},
@@ -215,8 +239,8 @@ def run_harness(
         "claim_ceiling": CLAIM_CEILING,
         "what_this_does_not_prove": claim_scan["what_this_does_not_prove"],
         "next_minimal_closed_loop_action": (
-            "Send the implementation result and artifacts to Claude for independent hostile "
-            "implementation audit before any real Gate target use."
+            "Route to a separate ACP-BV 001B distribution redesign task or downgrade ACP-BV "
+            "current surface; do not repair 001A further for pass."
         ),
     }
     readback = {
@@ -230,6 +254,8 @@ def run_harness(
         "artifact_dir": relpath(output_dir, repo_root),
         "claim_ceiling": CLAIM_CEILING,
         "what_this_does_not_prove": result["what_this_does_not_prove"],
+        "task_level_blocker": result["task_level_blocker"],
+        "source_anchor_commit": source_anchor_commit,
     }
     run_manifest = {
         "task_id": TASK_ID,
@@ -257,6 +283,7 @@ def run_harness(
         },
         "no_mainline_target": True,
         "claim_ceiling": CLAIM_CEILING,
+        "source_anchor_commit": source_anchor_commit,
     }
 
     write_json(output_dir / "boundary_report.json", boundary_report)
@@ -278,10 +305,16 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", default="artifacts/acp_bv_executable_harness_001a")
     parser.add_argument("--run-id", default="acp-bv-executable-harness-001a")
+    parser.add_argument("--source-anchor-commit", default=None)
     args = parser.parse_args()
-    result = run_harness(repo_root=Path.cwd(), output_dir=Path(args.output_dir), run_id=args.run_id)
+    result = run_harness(
+        repo_root=Path.cwd(),
+        output_dir=Path(args.output_dir),
+        run_id=args.run_id,
+        source_anchor_commit=args.source_anchor_commit,
+    )
     print(result["verdict"])
-    return 0 if result["acceptance_gate_passed"] else 1
+    return 0 if result["infrastructure_controls_executed"] else 1
 
 
 if __name__ == "__main__":

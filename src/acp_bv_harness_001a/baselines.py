@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+from inspect import getsource
 from pathlib import Path
 from typing import Any, Callable
 
 from . import environment
-from .common import classify_delta, provenance_for, seed_ids
+from .common import classify_delta, provenance_for, seed_ids, sha256_text, source_hash
 from .scoring import score_prediction_rows
 
 
@@ -39,8 +40,41 @@ def _partial_truth(episode: dict[str, Any], action: str, *, ignore_action: bool 
     return environment.held_out_truth_generator(proxy_episode, action_to_use)
 
 
+def observation_action_key(episode: dict[str, Any], action: str) -> tuple[str, int, int, str]:
+    observation = episode["observation"]
+    return (
+        str(observation["signal"]),
+        int(observation["topology"]),
+        int(observation["risk"]),
+        str(action),
+    )
+
+
+def _all_episode_actions(episode: dict[str, Any]) -> list[str]:
+    return list(dict.fromkeys([episode["chosen_action"], *episode["harness_selected_counterfactual_actions"]]))
+
+
+def _full_access_lookup_table(train_episodes: list[dict[str, Any]]) -> dict[tuple[str, int, int, str], dict[str, Any]]:
+    table: dict[tuple[str, int, int, str], dict[str, Any]] = {}
+    for episode in train_episodes:
+        for action in _all_episode_actions(episode):
+            table[observation_action_key(episode, action)] = environment.held_out_truth_generator(
+                episode,
+                action,
+            )
+    return table
+
+
 def graph_cache_transition_table(episodes: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return _rows_from_predictor(episodes, lambda episode, action: _partial_truth(episode, action, ignore_topology=True))
+
+
+def full_access_lookup_baseline(episodes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    lookup = _full_access_lookup_table(environment.generate_episodes("train"))
+    return _rows_from_predictor(
+        episodes,
+        lambda episode, action: lookup[observation_action_key(episode, action)],
+    )
 
 
 def graph_cache_successor_map(episodes: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -91,6 +125,7 @@ def lookup_table_memorization_blocker(episodes: list[dict[str, Any]]) -> list[di
 
 
 BASELINE_FUNCTIONS: dict[str, Callable[[list[dict[str, Any]]], list[dict[str, Any]]]] = {
+    "full_access_lookup_baseline": full_access_lookup_baseline,
     "graph_cache_transition_table": graph_cache_transition_table,
     "graph_cache_successor_map": graph_cache_successor_map,
     "graph_cache_count_table": graph_cache_count_table,
@@ -153,6 +188,9 @@ def run_baseline_matrix(
     scored = [row for row in rows if row["score"] is not None]
     strongest = max(scored, key=lambda row: row["score"])
     delta = round(candidate_score - strongest["score"], 6)
+    comparison_classification = classify_delta(delta)
+    overlap = detect_train_heldout_overlap()
+    full_access = next(row for row in rows if row["baseline_id"] == "full_access_lookup_baseline")
     return {
         "producer_function": "run_baseline_matrix",
         "candidate_score": candidate_score,
@@ -162,8 +200,23 @@ def run_baseline_matrix(
             "candidate_score": candidate_score,
             "baseline_score": strongest["score"],
             "delta": delta,
-            "classification": classify_delta(delta),
+            "classification": comparison_classification,
         },
+        "full_access_lookup_evidence": {
+            "train_key_schema": ["signal", "topology", "risk", "action"],
+            "heldout_key_schema": ["signal", "topology", "risk", "action"],
+            "train_observation_action_key_count": overlap["train_key_count"],
+            "heldout_observation_action_key_count": overlap["heldout_key_count"],
+            "overlap_count": overlap["overlap_count"],
+            "missing_heldout_key_count": overlap["missing_heldout_key_count"],
+            "baseline_score": full_access["score"],
+            "candidate_score": candidate_score,
+            "delta": round(candidate_score - full_access["score"], 6),
+            "b3_classification": classify_delta(round(candidate_score - full_access["score"], 6)),
+        },
+        "train_heldout_overlap": overlap,
+        "candidate_truth_coupling": detect_candidate_truth_coupling(),
+        "blocked_by_baseline_equivalence": comparison_classification == "baseline_equivalent",
         "thresholds": {
             "equivalence_lt": 0.02,
             "inconclusive_gte": 0.02,
@@ -172,4 +225,73 @@ def run_baseline_matrix(
         },
         "baseline_equivalent_is_pass": False,
         "weak_baseline_only": False,
+    }
+
+
+def _key_set(episodes: list[dict[str, Any]]) -> set[tuple[str, int, int, str]]:
+    return {
+        observation_action_key(episode, action)
+        for episode in episodes
+        for action in _all_episode_actions(episode)
+    }
+
+
+def detect_train_heldout_overlap(sample_limit: int = 8) -> dict[str, Any]:
+    train_keys = _key_set(environment.generate_episodes("train"))
+    heldout_keys = _key_set(environment.generate_episodes("heldout"))
+    overlap = train_keys & heldout_keys
+    missing = heldout_keys - train_keys
+    train_key_payload = sorted(map(repr, train_keys))
+    heldout_key_payload = sorted(map(repr, heldout_keys))
+    overlap_ratio = round(len(overlap) / len(heldout_keys), 6) if heldout_keys else 0.0
+    return {
+        "producer_function": "detect_train_heldout_overlap",
+        "train_key_schema": ["signal", "topology", "risk", "action"],
+        "heldout_key_schema": ["signal", "topology", "risk", "action"],
+        "train_key_count": len(train_keys),
+        "heldout_key_count": len(heldout_keys),
+        "overlap_count": len(overlap),
+        "missing_heldout_key_count": len(missing),
+        "overlap_ratio": overlap_ratio,
+        "train_key_set_hash": sha256_text("\n".join(train_key_payload)),
+        "heldout_key_set_hash": sha256_text("\n".join(heldout_key_payload)),
+        "overlapping_key_samples": sorted(map(repr, overlap))[:sample_limit],
+        "heldout_contains_unseen_keys": bool(missing),
+        "memory_lookup_can_be_complete_policy": bool(heldout_keys) and not missing,
+    }
+
+
+def detect_candidate_truth_coupling() -> dict[str, Any]:
+    episodes = [*environment.generate_episodes("train"), *environment.generate_episodes("heldout")]
+    state = environment.clean_serialized_state()
+    mismatches = []
+    for episode in episodes:
+        for action in _all_episode_actions(episode):
+            candidate = environment.reference_candidate_predict(state, episode["observation"], action)
+            truth = environment.held_out_truth_generator(episode, action)
+            if candidate != truth:
+                mismatches.append({"episode_id": episode["episode_id"], "action": action})
+    candidate_source = getsource(environment.reference_candidate_predict)
+    truth_source = getsource(environment.held_out_truth_generator)
+    formula_equivalent = not mismatches
+    return {
+        "producer_function": "detect_candidate_truth_coupling",
+        "candidate_function": "reference_candidate_predict",
+        "truth_generator": "held_out_truth_generator",
+        "candidate_function_source_hash": source_hash(environment.reference_candidate_predict),
+        "truth_generator_source_hash": source_hash(environment.held_out_truth_generator),
+        "shared_helper_source_dependency_analysis": {
+            "same_module": environment.reference_candidate_predict.__module__
+            == environment.held_out_truth_generator.__module__,
+            "shared_signal_value_table": "SIGNAL_VALUE" in candidate_source and "SIGNAL_VALUE" in truth_source,
+            "shared_action_delta_table": "ACTION_DELTA" in candidate_source and "ACTION_DELTA" in truth_source,
+            "episode_action_mismatch_count": len(mismatches),
+        },
+        "formula_equivalence_detected": formula_equivalent,
+        "classification": "oracle_like_reference_candidate_scaffolding_only"
+        if formula_equivalent
+        else "not_formula_equivalent_by_current_probe",
+        "claim_downgrade": "no_candidate_mechanism_relevance_claim_permitted"
+        if formula_equivalent
+        else "coupling_not_detected_by_current_probe",
     }

@@ -28,6 +28,10 @@ def sha256_file(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
 
 
+def sha256_source_file(path: Path) -> str:
+    return sha256_bytes(path.read_bytes().replace(b"\r\n", b"\n"))
+
+
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -49,7 +53,7 @@ def source_path(callable_obj: Callable[..., Any]) -> Path:
 
 
 def source_hash(callable_obj: Callable[..., Any]) -> str:
-    return sha256_file(source_path(callable_obj))
+    return sha256_source_file(source_path(callable_obj))
 
 
 def entrypoint(callable_obj: Callable[..., Any]) -> str:
@@ -102,7 +106,7 @@ def provenance_for(
     output_artifact_path: Path,
 ) -> dict[str, Any]:
     src = source_path(callable_obj)
-    src_hash = sha256_file(src)
+    src_hash = sha256_source_file(src)
     input_digest = sha256_text(json.dumps(inputs, sort_keys=True, default=str))
     return {
         "producer_function": callable_obj.__name__,

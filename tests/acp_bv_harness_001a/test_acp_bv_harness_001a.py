@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -26,6 +27,7 @@ ARTIFACT_NAMES = {
     "claim_ceiling.txt",
 }
 BASELINES = {
+    "full_access_lookup_baseline",
     "graph_cache_transition_table",
     "graph_cache_successor_map",
     "graph_cache_count_table",
@@ -123,15 +125,17 @@ def test_runner_writes_required_artifacts_and_control_reports_are_fail_able(tmp_
     result, out = _run(tmp_path)
 
     assert result["task_id"] == TASK_ID
-    assert result["verdict"] == "acp_bv_executable_harness_001a_implemented_with_fail_able_controls"
+    assert result["verdict"] == "blocked_by_baseline_equivalence"
+    assert result["infrastructure_controls_executed"] is True
+    assert result["task_level_blocker"] == "blocked_by_baseline_equivalence"
     assert result["current_layer"] == (
-        "engineering implementation / bounded offline ACP-BV harness implementation and control evidence only"
+        "engineering implementation / ACP-BV harness 001A negative-audit preservation and fail-able repair only"
     )
     assert result["mainline_integration_status"] == "none"
     assert result["enabled_status"] == "local offline CLI/test runner only"
     assert result["real_gate_target_applied"] is False
     assert result["claim_ceiling"] == (
-        "offline_harness_implemented_with_fail_able_controls_under_this_task_distribution"
+        "current_001a_distribution_exposes_baseline_equivalence_or_non_discriminative_surface"
     )
     assert ARTIFACT_NAMES == {path.name for path in out.iterdir() if path.is_file()}
 
@@ -178,13 +182,27 @@ def test_baselines_ablations_replay_and_provenance_are_callable_computed(tmp_pat
 
     baseline_matrix = _load_json(out / "baseline_matrix.json")
     assert {row["baseline_id"] for row in baseline_matrix["baselines"]} == BASELINES
-    assert baseline_matrix["strongest_baseline"]["baseline_id"] in BASELINES
-    assert baseline_matrix["strongest_baseline_comparison"]["delta"] >= 0.05
+    assert baseline_matrix["strongest_baseline"]["baseline_id"] == "full_access_lookup_baseline"
+    assert baseline_matrix["strongest_baseline"]["score"] == result["candidate_score"]
+    assert baseline_matrix["strongest_baseline_comparison"]["delta"] < 0.02
     assert (
         baseline_matrix["strongest_baseline_comparison"]["classification"]
-        == "mechanism_relevant_effect_candidate"
+        == "baseline_equivalent"
     )
     assert baseline_matrix["baseline_equivalent_is_pass"] is False
+    assert baseline_matrix["blocked_by_baseline_equivalence"] is True
+    assert baseline_matrix["full_access_lookup_evidence"]["train_key_schema"] == [
+        "signal",
+        "topology",
+        "risk",
+        "action",
+    ]
+    assert baseline_matrix["full_access_lookup_evidence"]["missing_heldout_key_count"] == 0
+    assert baseline_matrix["train_heldout_overlap"]["heldout_contains_unseen_keys"] is False
+    assert baseline_matrix["train_heldout_overlap"]["memory_lookup_can_be_complete_policy"] is True
+    assert baseline_matrix["candidate_truth_coupling"]["classification"] == (
+        "oracle_like_reference_candidate_scaffolding_only"
+    )
     assert baseline_matrix["thresholds"] == {
         "equivalence_lt": 0.02,
         "inconclusive_gte": 0.02,
@@ -231,9 +249,50 @@ def test_baselines_ablations_replay_and_provenance_are_callable_computed(tmp_pat
     assert required_roles.issubset(set(source_pins["load_bearing_callables"]))
     assert source_pins["manifest_verification_at_scoring"]["passed"] is True
 
-    assert result["baseline_result"]["classification"] == "mechanism_relevant_effect_candidate"
+    assert result["baseline_result"]["classification"] == "baseline_equivalent"
     assert result["ablation_result"]["all_rerun"] is True
     assert result["replay_result"]["hash_only_rejected"] is True
+
+
+def test_frozen_git_object_source_pin_detects_file_tamper(tmp_path):
+    from acp_bv_harness_001a import source_pins
+
+    repo = tmp_path / "repo"
+    src_dir = repo / "src" / "acp_bv_harness_001a"
+    src_dir.mkdir(parents=True)
+    boundary_file = src_dir / "boundary.py"
+    source_pins_file = src_dir / "source_pins.py"
+    boundary_file.write_text("def verifier():\n    return 'original'\n", encoding="utf-8")
+    source_pins_file.write_text("def bootstrap():\n    return 'original'\n", encoding="utf-8")
+
+    subprocess.run(["git", "init"], cwd=repo, check=True, capture_output=True, text=True)
+    subprocess.run(["git", "config", "user.email", "codex@example.invalid"], cwd=repo, check=True)
+    subprocess.run(["git", "config", "user.name", "Codex Test"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "."], cwd=repo, check=True)
+    subprocess.run(["git", "commit", "-m", "source anchor"], cwd=repo, check=True, capture_output=True, text=True)
+    commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+
+    anchor = source_pins.create_frozen_source_anchor(
+        repo_root=repo,
+        source_anchor_commit=commit,
+        source_paths=[
+            Path("src/acp_bv_harness_001a/boundary.py"),
+            Path("src/acp_bv_harness_001a/source_pins.py"),
+        ],
+    )
+    assert source_pins.verify_frozen_source_anchor(anchor, repo_root=repo)["passed"] is True
+
+    boundary_file.write_text("def verifier():\n    return 'tampered'\n", encoding="utf-8")
+    tampered = source_pins.verify_frozen_source_anchor(anchor, repo_root=repo)
+    assert tampered["passed"] is False
+    assert tampered["block_reason"] == "blocked_by_unpinned_boundary_verifier"
+    assert tampered["file_checks"]["src/acp_bv_harness_001a/boundary.py"]["hash_match"] is False
 
 
 def test_runtime_mutation_control_rejects_same_process_truth_substitution(tmp_path):

@@ -4,7 +4,7 @@ import inspect
 from pathlib import Path
 from typing import Any, Callable
 
-from .common import entrypoint, relpath, sha256_file, source_path
+from .common import entrypoint, relpath, sha256_source_file, source_path
 
 
 def _resolve(path: Path) -> Path:
@@ -54,7 +54,7 @@ def verify_callable_source_boundary(
         block_reasons.append("missing_source_file")
     else:
         resolved = _resolve(Path(source_file))
-        source_hash = sha256_file(resolved)
+        source_hash = sha256_source_file(resolved)
 
     repo_source_root_match = bool(resolved and _is_under(resolved, repo_source_root))
     candidate_writable_root_match = bool(resolved and _in_any_root(resolved, candidate_writable_roots))
@@ -156,4 +156,4 @@ def verify_many(
 
 
 def callable_source_hash(callable_obj: Callable[..., Any]) -> str:
-    return sha256_file(source_path(callable_obj))
+    return sha256_source_file(source_path(callable_obj))
