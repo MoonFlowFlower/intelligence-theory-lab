@@ -1,0 +1,77 @@
+{
+  "all_controls_fired": true,
+  "blocking_verdict": null,
+  "clean_case": {
+    "detected_classes": [],
+    "producer_function": "route_c_preflight_001a.leakage.scan_bundle_for_leakage",
+    "verdict": "clean"
+  },
+  "control_results": {
+    "L1": {
+      "detected_classes": [
+        "self-set-in-legal"
+      ],
+      "expected_class": "self-set-in-legal",
+      "fired": true,
+      "gate_verdict": "blocked_by_observation_decodable_self_set"
+    },
+    "L2": {
+      "detected_classes": [
+        "identity-not-permuted"
+      ],
+      "expected_class": "identity-not-permuted",
+      "fired": true,
+      "gate_verdict": null
+    },
+    "L3": {
+      "detected_classes": [
+        "action-label-alias"
+      ],
+      "expected_class": "action-label-alias",
+      "fired": true,
+      "gate_verdict": null
+    },
+    "L4": {
+      "detected_classes": [
+        "answer-in-query"
+      ],
+      "expected_class": "answer-in-query",
+      "fired": true,
+      "gate_verdict": null
+    },
+    "L5": {
+      "detected_classes": [
+        "confounder-in-legal"
+      ],
+      "expected_class": "confounder-in-legal",
+      "fired": true,
+      "gate_verdict": "blocked_by_observation_decodable_self_set"
+    },
+    "L6": {
+      "detected_classes": [
+        "api-effect-label"
+      ],
+      "expected_class": "api-effect-label",
+      "fired": true,
+      "gate_verdict": null
+    },
+    "L7": {
+      "detected_classes": [
+        "schema-only-positive-control"
+      ],
+      "expected_class": "schema-only-positive-control",
+      "fired": true,
+      "gate_verdict": "blocked_by_schema_alias_leakage"
+    },
+    "L8": {
+      "detected_classes": [
+        "oracle-reachable"
+      ],
+      "expected_class": "oracle-reachable",
+      "fired": true,
+      "gate_verdict": null
+    }
+  },
+  "producer_function": "route_c_preflight_001a.leakage.run_leakage_positive_controls",
+  "run_id": "route-c-preflight-001a-leakage"
+}
