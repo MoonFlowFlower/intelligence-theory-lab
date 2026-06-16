@@ -1,0 +1,55 @@
+{
+  "task_id": "acp_bv_001b_implementation_task_card_001a_revision_001a",
+  "verdict": "acp_bv_001b_implementation_task_card_001a_revision_001a_ready_for_independent_reaudit",
+  "layer": "mechanism-hypothesis / engineering-governance implementation-task-card revision only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": {
+    "source": "attached current task plus repo/tool readback",
+    "audited_card_path": "docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md",
+    "hostile_audit_verdict": "requires_implementation_card_revision_before_implementation",
+    "start_head_verified": true,
+    "start_tag_verified": true,
+    "remote_branch_verified": true,
+    "remote_tag_verified": true,
+    "prior_changed_files_limited_to_docs_and_artifacts": true,
+    "no_acp_bv_001b_src_or_tests_found": true
+  },
+  "start_commit": "7715dfd1322e416dc150fbbd7dde005d669180fb",
+  "start_tag": "remote-anchor-acp-bv-001b-implementation-task-card-001a-7715dfd",
+  "revised_card_path": "docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md",
+  "preserved_audit_doc_path": "docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A-CLAUDE-AUDIT-001A.md",
+  "required_revisions_closed": {
+    "required_revision_1_binding_1_divergence_must_block": true,
+    "required_revision_2_binding_2_anti_whitelist_leakage_upgrade": true,
+    "required_revision_3_anti_zeno_classification_closure": true,
+    "required_revision_4_nonblocking_hardening": true
+  },
+  "divergence_must_block_clause_present": true,
+  "runtime_heldout_leakage_variant_clause_present": true,
+  "anti_zeno_classification_present": true,
+  "per_seed_episode_floor": "128 heldout evaluation episodes per seed across seeds [1009, 2027, 3037, 4049, 5051]",
+  "novelty_floor_values_repeated": {
+    "unseen_heldout_ratio": ">= 0.40",
+    "unseen_heldout_count": ">= max(8, ceil(0.40 * heldout_count))",
+    "factorization_family_unseen_component_ratio": ">= 0.25",
+    "lookup_complete_heldout_episodes": "<= 0.75"
+  },
+  "multi_seed_rule_repeated": {
+    "seeds": [1009, 2027, 3037, 4049, 5051],
+    "requires_per_seed_candidate_score": true,
+    "requires_per_seed_strongest_fair_baseline_score": true,
+    "requires_per_seed_delta": true,
+    "requires_per_seed_b3_classification": true,
+    "requires_mean_delta": true,
+    "requires_median_delta": true,
+    "requires_dispersion": true,
+    "requires_uncertainty_estimate": true,
+    "requires_at_least_4_of_5_outside_baseline_equivalence": true,
+    "requires_no_seed_baseline_equivalent_for_mechanism_relevant_effect": true,
+    "requires_ci_lower_bound_exit_equivalence_band": true
+  },
+  "forbidden_scope_scan_result": "no_forbidden_paths_changed",
+  "claim_ceiling": "ACP-BV 001B implementation-task-card revision and hostile-audit preservation only",
+  "next_minimal_closed_loop_action": "Send docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md to Claude for targeted independent hostile re-audit of the card revision."
+}

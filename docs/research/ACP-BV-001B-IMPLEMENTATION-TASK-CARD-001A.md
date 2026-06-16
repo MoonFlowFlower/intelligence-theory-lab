@@ -5,6 +5,14 @@ Task id: `ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A`
 Card status: future implementation task card only; not execution authorization
 for this current task.
 
+Revision status: revised by
+`acp_bv_001b_implementation_task_card_001a_revision_001a` after independent
+hostile audit returned:
+
+```text
+requires_implementation_card_revision_before_implementation
+```
+
 ## Problem Definition
 
 ACP-BV 001A collapsed as baseline-equivalent because a fair lookup baseline
@@ -16,18 +24,46 @@ at the specification layer, and Claude returned:
 accept_for_001b_implementation_task_card_drafting
 ```
 
-The remaining risk is implementation-card-level: if detectors are not fail-able
-and leakage controls are name-whitelist checks, the future implementation could
-produce non-discriminative or stub-fed detector success. This card defines the
-bounded future implementation task needed for independent hostile audit before
-any ACP-BV 001B source or test work.
+Claude then independently audited this implementation task card at commit:
+
+```text
+7715dfd1322e416dc150fbbd7dde005d669180fb
+```
+
+with tag:
+
+```text
+remote-anchor-acp-bv-001b-implementation-task-card-001a-7715dfd
+```
+
+and returned:
+
+```text
+requires_implementation_card_revision_before_implementation
+```
+
+The audit did not hard-block the ACP-BV 001B spec and did not reopen the R1-R5
+spec revision. The four hard bindings were present, the implementation-card
+scope was clean, the baseline matrix was strong, and the computed-evidence and
+source-boundary contracts were present. The revision required here closes two
+highest-risk historical false-pass modes:
+
+- detector-stub / non-fail-able detector: expected-vs-actual flip recording was
+  required, but actual flip divergence did not explicitly block the future
+  implementation verdict;
+- whitelist leakage scanner: renamed or structural variants were required, but
+  one predeclared variant per leakage class could still be defeated by
+  whitelisting the original fixture plus that known variant.
+
+This card defines the bounded future implementation task needed for independent
+hostile re-audit before any ACP-BV 001B source or test work.
 
 This current card does not implement ACP-BV 001B.
 
 ## Stage / Layer
 
 Current stage/layer for this card: mechanism-hypothesis / engineering-
-governance implementation-task-card drafting only.
+governance implementation-task-card revision only.
 
 Future implementation layer if independently accepted: engineering
 implementation of an isolated offline evidence harness, with mechanism-
@@ -53,7 +89,7 @@ background process, no bridge, no admission path, and no mainline trigger.
 Future implementation real-trigger evidence must include:
 
 - exact starting commit and tag readback for this task card after independent
-  audit;
+  re-audit;
 - callable command used to run the isolated harness;
 - run id;
 - seed list and per-seed episode IDs;
@@ -146,8 +182,9 @@ Replay must recompute candidate behavior from serialized state plus observation.
 Hash-only comparison is insufficient.
 
 Replay must be fail-able. At least one negative control must break replay
-consistency and flip the replay verdict. If replay is operational and lacks a
-paired fail-ability control, the future verdict must be:
+consistency and flip the replay verdict. If replay/recomputation is operational
+and lacks a paired fail-ability control, if the control is not executed, or if
+`actual_flip != predeclared_expected_flip`, the future verdict must be:
 
 ```text
 blocked_by_non_fail_able_detector
@@ -176,8 +213,11 @@ Baselines must be independent callable implementations.
 
 Ablations must rerun episodes under real interventions.
 
-Leakage scans must include the eight positive-control classes plus renamed or
-structural variants.
+Leakage scans must include the eight positive-control classes plus at least two
+structural variants per leakage class. At least one structural variant per class
+must be generated at runtime or held out from scanner construction, and its
+generated names/identifiers must be disjoint from scanner source string
+literals.
 
 Replay must recompute candidate behavior from serialized state and observation.
 
@@ -196,15 +236,27 @@ families:
 
 - `acp_bv_001b_mechanism_relevant_effect_candidate`
 - `blocked_by_baseline_equivalence`
-- `blocked_by_insufficient_heldout_novelty`
 - `blocked_by_factorized_lookup_equivalence`
 - `blocked_by_candidate_truth_coupling`
+- `blocked_by_insufficient_heldout_novelty`
+- `blocked_by_insufficient_distribution_capacity`
+- `blocked_by_lookup_complete_distribution`
+- `blocked_by_non_discriminative_distribution`
+- `blocked_by_unsolvable_or_leaky_distribution`
+- `blocked_by_leaking_oracle_invalidity`
 - `blocked_by_non_fail_able_detector`
-- `blocked_by_non_fail_able_leakage_scanner`
 - `blocked_by_whitelist_leakage_scanner`
+- `blocked_by_weak_computed_evidence_gate`
+- `blocked_by_missing_callable_provenance`
+- `blocked_by_source_boundary_failure`
+- `blocked_by_replay_recomputation_failure`
+- `blocked_by_static_or_literal_verdict`
+- `blocked_by_malformed_artifact`
+- `blocked_by_missing_required_artifact`
 - `blocked_by_unstable_or_noise_level_effect`
 - `blocked_by_solvability_preflight_failure`
-- `blocked_by_unsolvable_or_leaky_distribution`
+- `blocked_by_anti_zeno_gap`
+- `blocked_by_scope_creep`
 - `inconclusive`
 - `close_or_downgrade_current_acp_bv_surface_family`
 
@@ -224,16 +276,18 @@ following are true:
 - memory resistance defeats exact-key, factorized, per-component, partial-key,
   topology-only, risk-only, signal-action, and action-conditioned nearest-
   neighbor lookup;
-- all operational detectors have paired fail-ability controls;
-- the leakage scanner detects structural variants of all eight positive-
-  control classes;
-- per-seed episode count is adequate for the stated B3 / dispersion / CI
-  decision rule;
+- all operational detectors have paired fail-ability controls and every paired
+  control satisfies `actual_flip == predeclared_expected_flip`;
+- the leakage scanner detects structural runtime/held-out variants of all eight
+  positive-control classes after scanner source string-literal disjointness is
+  proven;
+- per-seed episode count, multi-seed stability, dispersion, and uncertainty
+  gates satisfy this card;
 - replay recomputation and its negative control pass;
 - no second logic path bypasses the evidence path.
 
-Any 001B collapse condition is the second collapse for the current ACP-BV
-surface family after 001A. A detector-bound collapse must route to:
+Any terminal 001B distribution/surface collapse is the second collapse for the
+current ACP-BV surface family after 001A and must route to:
 
 ```text
 close_or_downgrade_current_acp_bv_surface_family
@@ -253,12 +307,40 @@ for every operational detector:
 - source-boundary/source-pin detector;
 - replay/recomputation detector, if used.
 
-Each paired control must inject a concrete intervention expected to flip the
-corresponding verdict. The future implementation must actually run the control
-and record expected-vs-actual flip.
+For every operational detector, the future implementation must predeclare:
 
-If any operational detector lacks a paired fail-ability control, the future
-implementation verdict must be:
+- detector name;
+- expected intervention;
+- expected verdict before intervention;
+- expected verdict after intervention;
+- expected flip direction;
+- producer_function;
+- input fixture/episode IDs;
+- run_id;
+- seed;
+- source path;
+- code path hash;
+- artifact path.
+
+Each paired control must inject a concrete intervention expected to flip the
+corresponding verdict. The future implementation must actually run the control,
+record expected-vs-actual flip, assert the expected flip, and block on
+divergence.
+
+Mandatory rule:
+
+If `actual_flip != predeclared_expected_flip` for any operational detector, the
+future implementation verdict must be:
+
+```text
+blocked_by_non_fail_able_detector
+```
+
+No warning-only, caveat-only, partial-pass, or "recorded but continue" behavior
+is allowed.
+
+If any detector lacks the paired control, or if the control is not executed, the
+future implementation verdict must also be:
 
 ```text
 blocked_by_non_fail_able_detector
@@ -281,11 +363,43 @@ The eight leakage positive-control classes are:
 - hidden-truth-label leakage;
 - answer-encoding metadata leakage.
 
-For each class, the future implementation must include at least one renamed or
-structurally varied positive-control probe.
+For each class, the future implementation must include at least two structural variants per leakage class.
+At least one variant per leakage class must be generated at runtime or held out
+from scanner construction.
 
-If the scanner catches only the original named fixture but misses the renamed or
-structural variant, the verdict must be:
+The runtime/held-out variant must have generated names/identifiers that are
+disjoint from scanner source string literals.
+
+The future implementation must include a scanner-literal audit:
+
+- extract scanner source string literals from
+  `src/acp_bv_distribution_harness_001b/leakage_scanner.py`;
+- record the generated runtime/held-out leakage identifiers;
+- prove no generated runtime/held-out identifier appears as a scanner source
+  string literal;
+- then run the leakage scanner and require structural detection of the
+  runtime/held-out variant.
+
+Mandatory rule:
+
+If the scanner detects only the original named fixture or the single
+predeclared variant but misses the runtime/held-out structural variant, the
+verdict must be:
+
+```text
+blocked_by_whitelist_leakage_scanner
+```
+
+If the generated runtime/held-out identifier appears in scanner source literals,
+the verdict must be:
+
+```text
+blocked_by_whitelist_leakage_scanner
+```
+
+If the scanner result is justified only by method statements such as
+"structural detection was used" without the literal-disjointness audit and
+runtime/held-out probe result, the verdict must be:
 
 ```text
 blocked_by_whitelist_leakage_scanner
@@ -293,18 +407,34 @@ blocked_by_whitelist_leakage_scanner
 
 ## Hard Binding 3 - Per-Seed Episode Floor
 
-The future implementation must set a minimum per-seed episode count or
-explicitly justify the chosen floor before candidate evaluation.
+The future implementation must use at least:
 
-The floor must be adequate for the B3 decision rule, dispersion estimate, and
-confidence interval or predeclared equivalent. If the episode budget is too
-small for the stated decision rule, the result must be downgraded to:
+```text
+128 heldout evaluation episodes per seed
+```
+
+across the five required seeds:
+
+```text
+[1009, 2027, 3037, 4049, 5051]
+```
+
+If the generator cannot produce at least 128 heldout evaluation episodes per
+seed while satisfying the novelty and factorization constraints, the verdict
+must be:
+
+```text
+blocked_by_insufficient_distribution_capacity
+```
+
+If fewer than 128 heldout evaluation episodes per seed are used without a
+separately audited card revision, the verdict must be:
 
 ```text
 inconclusive
 ```
 
-or blocked as:
+or:
 
 ```text
 blocked_by_unstable_or_noise_level_effect
@@ -323,23 +453,230 @@ be:
 blocked_by_factorized_lookup_equivalence
 ```
 
+## Hard Binding 5 - Restated Novelty Floor
+
+The future implementation must satisfy and report all novelty-floor values:
+
+- `unseen_heldout_ratio >= 0.40`;
+- `unseen_heldout_count >= max(8, ceil(0.40 * heldout_count))`;
+- every predeclared factorization family must have at least `0.25` of heldout
+  episodes containing unseen components;
+- lookup-complete heldout episodes must be `<= 0.75`.
+
+Violation of these values must force:
+
+```text
+blocked_by_insufficient_heldout_novelty
+```
+
+or, if lookup-complete factorization is discovered:
+
+```text
+blocked_by_factorized_lookup_equivalence
+```
+
+## Hard Binding 6 - Multi-Seed Stability
+
+The future implementation must run the five required seeds:
+
+```text
+[1009, 2027, 3037, 4049, 5051]
+```
+
+and must report:
+
+- per-seed candidate score;
+- per-seed strongest fair baseline score;
+- per-seed delta;
+- per-seed B3 classification;
+- mean delta;
+- median delta;
+- standard deviation or equivalent dispersion;
+- bootstrap CI or equivalent uncertainty estimate;
+- whether at least `4/5` seeds exit baseline-equivalence classification;
+- whether any seed is classified as baseline-equivalent;
+- whether the dispersion/CI lower bound exits the equivalence band.
+
+Mechanism-relevant effect candidate status requires:
+
+- at least `4/5` seeds outside baseline-equivalence classification;
+- no seed classified as baseline-equivalent;
+- dispersion/CI lower bound exits the equivalence band.
+
+If this is not satisfied, the verdict must be:
+
+```text
+blocked_by_unstable_or_noise_level_effect
+```
+
+or:
+
+```text
+inconclusive
+```
+
+## Hard Binding 7 - Shared Helper Candidate/Truth Decoupling
+
+The future implementation must include candidate/truth decoupling analysis over
+shared helpers.
+
+If candidate and truth share answer-bearing helper code, reference tables,
+generated labels, hidden keys, or oracle-like scaffolding, the verdict must be:
+
+```text
+blocked_by_candidate_truth_coupling
+```
+
+## Hard Binding 8 - Solvability Without Leaking Oracle
+
+The future implementation must require the solvability preflight to distinguish
+legal solvability from leaking-oracle solvability.
+
+If solvability depends on hidden truth labels, answer-bearing metadata, future
+observations, candidate-authored aliases, or other illegal fields, the verdict
+must be:
+
+```text
+blocked_by_leaking_oracle_invalidity
+```
+
+or:
+
+```text
+blocked_by_unsolvable_or_leaky_distribution
+```
+
+## Anti-Zeno Classification Closure
+
+The future implementation must classify failure verdicts into one of two
+families:
+
+### A. Terminal Distribution/Surface Collapse
+
+Terminal distribution/surface collapse must force:
+
+```text
+close_or_downgrade_current_acp_bv_surface_family
+```
+
+and must forbid 001C/001D repair attempts.
+
+Terminal collapse verdicts include at minimum:
+
+- `blocked_by_baseline_equivalence`;
+- `blocked_by_factorized_lookup_equivalence`;
+- `blocked_by_candidate_truth_coupling`;
+- `blocked_by_insufficient_heldout_novelty`;
+- `blocked_by_unsolvable_or_leaky_distribution`;
+- `blocked_by_leaking_oracle_invalidity`;
+- `blocked_by_non_discriminative_distribution`;
+- `blocked_by_lookup_complete_distribution`;
+- any strongest fair baseline tying the candidate under B3 bands;
+- any renamed/factored/thin-tail recurrence of 001A baseline-equivalence.
+
+For terminal distribution/surface collapse, the future implementation must
+write a closure/downgrade artifact under:
+
+```text
+artifacts/acp_bv_001b_collapse_closure_001a/result.json
+```
+
+or a path matching:
+
+```text
+artifacts/acp_bv_001b_collapse_closure_*/result.json
+```
+
+The closure artifact must include:
+
+- collapse trigger;
+- detector output;
+- producer_function;
+- source path;
+- run_id;
+- seed/context/episode IDs;
+- strongest baseline;
+- candidate score;
+- baseline score;
+- B3 classification;
+- reason;
+- claim ceiling;
+- next route;
+- explicit statement that 001A was the first collapse and 001B is the second
+  collapse.
+
+### B. Repairable Harness-Integrity Failure
+
+Repairable harness-integrity failures may be repaired only inside the already
+authorized 001B implementation-card scope and may not be cited as mechanism,
+harness, Gate, or surface evidence while unresolved.
+
+Repairable harness-integrity verdicts include:
+
+- `blocked_by_non_fail_able_detector`;
+- `blocked_by_whitelist_leakage_scanner`;
+- `blocked_by_weak_computed_evidence_gate`;
+- `blocked_by_missing_callable_provenance`;
+- `blocked_by_source_boundary_failure`;
+- `blocked_by_replay_recomputation_failure`;
+- `blocked_by_static_or_literal_verdict`;
+- `blocked_by_malformed_artifact`;
+- `blocked_by_missing_required_artifact`.
+
+Mandatory anti-pass-shaped rule:
+
+A repairable harness-integrity failure must not be used to redesign the
+distribution into a pass-shaped surface.
+
+A repairable harness-integrity fix must rerun the same predeclared distribution
+constraints and detectors after repair.
+
+If, after repairing a harness-integrity issue, a terminal
+distribution/surface collapse appears, it still counts as the 001B second
+collapse and must force closure/downgrade.
+
+If a repair changes the distribution, baseline matrix, B3 bands, novelty floor,
+detector definitions, or candidate/truth boundary in a way that weakens the
+revised 001B spec, the result must be:
+
+```text
+blocked_by_anti_zeno_gap
+```
+
+or:
+
+```text
+blocked_by_scope_creep
+```
+
 ## Revised 001B Spec Constraints To Carry Forward
 
 The future implementation must carry forward:
 
 - true heldout generalization;
+- `unseen_heldout_ratio >= 0.40`;
+- `unseen_heldout_count >= max(8, ceil(0.40 * heldout_count))`;
+- every predeclared factorization family has at least `0.25` of heldout
+  episodes containing unseen components;
+- lookup-complete heldout episodes are `<= 0.75`;
 - fair full-access lookup from the start;
 - strongest-baseline selection after execution using deterministic
   `argmax(score)` with tie handling preserving the most damaging fair baseline;
 - B3 bands with no post-hoc threshold tuning;
-- candidate/truth decoupling;
-- solvability preflight;
+- candidate/truth decoupling, including shared-helper analysis;
+- solvability preflight that distinguishes legal solvability from
+  leaking-oracle solvability;
 - no candidate-authored truth;
 - memory resistance beyond exact-key lookup;
 - source-boundary/source-pin carryover from 001A;
-- Anti-Zeno one-redesign rule: 001A is the first collapse, and any 001B
-  collapse is the second collapse requiring closure/downgrade of the current
-  ACP-BV surface family.
+- five-seed stability over `[1009, 2027, 3037, 4049, 5051]`;
+- at least 128 heldout evaluation episodes per seed;
+- detector fail-ability with record + assert + block-on-divergence semantics;
+- leakage scanner runtime/held-out variant and scanner source string-literal
+  disjointness audit;
+- Anti-Zeno one-redesign rule: 001A is the first collapse, and any terminal
+  001B distribution/surface collapse is the second collapse requiring
+  closure/downgrade of the current ACP-BV surface family.
 
 ## Future Changed Files
 
@@ -360,8 +697,11 @@ The future implementation task, if independently authorized, may change only:
 - `tests/test_acp_bv_replay_001b.py`
 - `tests/test_acp_bv_source_boundary_001b.py`
 - `artifacts/acp_bv_distribution_harness_001b_execution_001a/**`
+- `artifacts/acp_bv_001b_collapse_closure_001a/**` or
+  `artifacts/acp_bv_001b_collapse_closure_*/**`, only when terminal
+  distribution/surface collapse is triggered.
 
-This current drafting task must not create those files.
+This current revision task must not create those files.
 
 ## Forbidden Files For Future Implementation
 
@@ -383,6 +723,48 @@ The future implementation task must not modify:
 - any Gate, bridge, admission, runtime, scheduler, mainline, or real Gate target
   file not explicitly listed in the future changed-file allowlist.
 
+## Current Revision Task Scope
+
+This current revision task may change only:
+
+- `docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A.md`;
+- `docs/research/ACP-BV-001B-IMPLEMENTATION-TASK-CARD-001A-CLAUDE-AUDIT-001A.md`;
+- `artifacts/acp_bv_001b_implementation_task_card_001a_revision_001a/**`.
+
+This current revision task must not create or modify:
+
+- `src/**`;
+- `tests/**`;
+- any Gate runner;
+- any bridge/admission/runtime/mainline/scheduler/live file;
+- any real Gate target artifact;
+- ACP-BV 001A repair files;
+- ACP-BV 001B implementation files.
+
+## Auto-Remote-Anchor Policy For Current Revision
+
+Auto-Remote-Anchor decision for this current revision task: conditional.
+
+Remote anchor is allowed only if:
+
+- verdict is
+  `acp_bv_001b_implementation_task_card_001a_revision_001a_ready_for_independent_reaudit`;
+- changed files are limited to the current revision allowlist;
+- no `src/**` or `tests/**` changed;
+- no Gate/bridge/admission/runtime/mainline/scheduler/live files changed;
+- JSON artifacts parse successfully;
+- validation confirms Required Revisions #1-#3 and #4 hardening are present;
+- local commit hash is recorded;
+- worktree and index are clean after commit;
+- local HEAD equals remote branch, local tag, and remote tag after push;
+- no unresolved stop condition remains.
+
+Suggested tag name:
+
+```text
+remote-anchor-acp-bv-001b-implementation-task-card-revision-001a-<shortsha>
+```
+
 ## Auto-Remote-Anchor Policy For Future Implementation
 
 Auto-Remote-Anchor decision for the future implementation task: conditional.
@@ -398,8 +780,8 @@ Remote anchor is allowed only if:
 - local HEAD equals remote branch, local tag, and remote tag after push;
 - no independent audit is still pending for the boundary being anchored.
 
-Auto anchor must remain forbidden for this current drafting task unless this
-task's own validation and commit gates pass.
+Auto anchor must remain forbidden for the future implementation while the
+revised implementation task card is pending independent hostile re-audit.
 
 ## Claim Ceiling
 
@@ -412,7 +794,7 @@ bounded offline ACP-BV 001B mechanism-relevant effect candidate under the stated
 Current card maximum claim:
 
 ```text
-ACP-BV 001B implementation-task-card drafting only
+ACP-BV 001B implementation-task-card revision and hostile-audit preservation only
 ```
 
 Neither claim proves ACP-BV validity, mechanism validity, harness validity, Gate
@@ -428,14 +810,45 @@ Stop and return a blocked verdict if the future implementation:
 - omits Hard Binding 2;
 - omits Hard Binding 3;
 - omits Hard Binding 4;
+- omits the novelty-floor values in Hard Binding 5;
+- omits the multi-seed stability rule in Hard Binding 6;
+- omits shared-helper candidate/truth decoupling in Hard Binding 7;
+- omits legal-solvability versus leaking-oracle separation in Hard Binding 8;
 - weakens the revised 001B spec constraints;
 - authorizes or touches mainline/runtime/bridge/admission/Gate paths;
 - uses candidate-authored truth;
 - uses static verdicts or literal scores;
 - tunes thresholds after seeing results;
 - allows a non-fail-able detector to carry the verdict;
+- records `actual_flip != predeclared_expected_flip` without blocking;
 - allows whitelist-only leakage scanning;
+- validates leakage scanning using only one predeclared renamed variant per
+  leakage class;
+- omits runtime/held-out leakage variants;
+- omits scanner source string-literal disjointness audit;
+- fails to classify terminal collapse versus repairable harness-integrity
+  failure;
+- allows a repairable harness-integrity failure to become pass-shaped mechanism
+  evidence;
 - treats 001B collapse as authorization for 001C/001D repair.
+
+Stop and return a blocked verdict if this current revision task:
+
+- cannot verify the start HEAD/tag;
+- leaves detector flip divergence as warning-only or record-only;
+- leaves leakage scanner validation dependent on one predeclared renamed
+  variant per class;
+- omits runtime/held-out leakage variants;
+- omits scanner source string-literal disjointness audit;
+- omits terminal-collapse versus repairable-harness classification;
+- authorizes ACP-BV 001B implementation;
+- changes `src/**` or `tests/**`;
+- changes any Gate/bridge/admission/runtime/mainline/scheduler/live path;
+- creates malformed JSON artifacts;
+- weakens the revised 001B spec;
+- claims ACP-BV, mechanism, harness, Gate, admission, bridge, runtime, mainline,
+  agency, consciousness, emotion, autonomy, stable user benefit, or EGO
+  readiness.
 
 ## Rollback Plan
 
@@ -447,3 +860,7 @@ or revert them and report `blocked_by_scope_creep`.
 If required detector fail-ability or leakage non-whitelist bindings cannot be
 implemented unambiguously, preserve a blocker artifact rather than a pass-shaped
 result.
+
+If this current revision task touches forbidden files, revert only the
+forbidden files created or modified by this task and return
+`blocked_by_forbidden_file_change`.
