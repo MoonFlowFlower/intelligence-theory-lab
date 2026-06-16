@@ -1,5 +1,18 @@
 # Decision Log
 
+## ACOLB-A route closure / Route C design-audit boundary
+
+- Commit: `bb65008c365a987b6e5d00c759a153d365bdd476`
+- Decision: close ACOLB-A current surface.
+- Reason: fair amortized baseline / discounted WLS saturation; candidate and fair baseline are structurally equivalent on this surface.
+- Preserved evidence: `artifacts/acolb_001a/**`; verdict `saturated_close`; blocker `blocked_by_saturated_distribution`.
+- Next route: draft Route C hostile design blueprint as ACSB-family re-entry.
+- Not authorized: Route C implementation, Gate run, mainline wiring, push, tag, remote anchor.
+- Claim ceiling: route-governance / bounded local negative surface evidence only.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: none; this is docs-only route-governance preservation, not a live path.
+
 ## ACP-BV 001B post-anchor route closure / downgrade
 
 - Anchor: `remote-anchor-acp-bv-001b-negative-harness-repair-evidence-001a-98be7f4`
