@@ -6,72 +6,197 @@
     "producer_function": "route_c_preflight_001a.leakage.scan_bundle_for_leakage",
     "verdict": "clean"
   },
+  "clean_is_clean": true,
   "control_results": {
     "L1": {
+      "control_type": "gate_coupled",
       "detected_classes": [
         "self-set-in-legal"
       ],
       "expected_class": "self-set-in-legal",
       "fired": true,
-      "gate_verdict": "blocked_by_observation_decodable_self_set"
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "note": "gate-coupled: drives a fail-closed premise/schema gate verdict",
+      "value_level": false
     },
     "L2": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "identity-not-permuted"
       ],
       "expected_class": "identity-not-permuted",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L3": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "action-label-alias"
       ],
       "expected_class": "action-label-alias",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L4": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "answer-in-query"
       ],
       "expected_class": "answer-in-query",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L5": {
+      "control_type": "gate_coupled",
       "detected_classes": [
         "confounder-in-legal"
       ],
       "expected_class": "confounder-in-legal",
       "fired": true,
-      "gate_verdict": "blocked_by_observation_decodable_self_set"
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "note": "gate-coupled: drives a fail-closed premise/schema gate verdict",
+      "value_level": false
     },
     "L6": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "api-effect-label"
       ],
       "expected_class": "api-effect-label",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L7": {
+      "control_type": "gate_coupled",
       "detected_classes": [
         "schema-only-positive-control"
       ],
       "expected_class": "schema-only-positive-control",
       "fired": true,
-      "gate_verdict": "blocked_by_schema_alias_leakage"
+      "gate_verdict": "blocked_by_schema_alias_leakage",
+      "note": "gate-coupled: drives a fail-closed premise/schema gate verdict",
+      "value_level": false
     },
     "L8": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "oracle-reachable"
       ],
       "expected_class": "oracle-reachable",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
+    },
+    "L9": {
+      "control_type": "gate_coupled_value_level",
+      "decoded_by_value_level_attacker": true,
+      "detected_classes": [],
+      "expected_class": "observation-value-decodable",
+      "family_max": 1.0,
+      "family_max_attacker": "passive_mean_attacker",
+      "fired": true,
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "key_scanner_silent": true,
+      "note": "value-level leak in passive handle_values; decoded by a passive value attacker, not by name-grep",
+      "value_level": true,
+      "value_level_family_max": 1.0
     }
   },
+  "failure_probe": {
+    "blocking_verdict": "blocked_by_non_fail_able_control",
+    "control_fired": false,
+    "description": "L1 injector replaced by no-op; control must fail to fire and force a block",
+    "subsystem_blocks": true
+  },
   "producer_function": "route_c_preflight_001a.leakage.run_leakage_positive_controls",
-  "run_id": "route-c-preflight-001a-leakage"
+  "provenance_record": {
+    "aggregation": "all_controls_fired_and_clean_is_clean",
+    "callable_source_path": "/sessions/trusting-eloquent-wright/mnt/intelligence-theory-lab/src/route_c_preflight_001a/leakage.py",
+    "code_path_hash": "0350550ac20e06d6b71173c667e9195ec0b2129eee95945e30c767f6c1d26cb6",
+    "episode_ids": [
+      "route-c-episode-1600",
+      "route-c-episode-1601",
+      "route-c-episode-1602",
+      "route-c-episode-1603",
+      "route-c-episode-1604",
+      "route-c-episode-1605",
+      "route-c-episode-1606",
+      "route-c-episode-1607",
+      "route-c-episode-1608",
+      "route-c-episode-1609",
+      "route-c-episode-1610",
+      "route-c-episode-1611",
+      "route-c-episode-1612",
+      "route-c-episode-1613",
+      "route-c-episode-1614",
+      "route-c-episode-1615",
+      "route-c-episode-1616",
+      "route-c-episode-1617",
+      "route-c-episode-1618",
+      "route-c-episode-1619",
+      "route-c-episode-1620",
+      "route-c-episode-1621",
+      "route-c-episode-1622",
+      "route-c-episode-1623",
+      "route-c-episode-1624",
+      "route-c-episode-1625",
+      "route-c-episode-1626",
+      "route-c-episode-1627",
+      "route-c-episode-1628",
+      "route-c-episode-1629",
+      "route-c-episode-1630",
+      "route-c-episode-1631"
+    ],
+    "inputs": {
+      "clean_verdict": "clean",
+      "config_hash": "be02308603d4e8e067c291cb80b31adaa36bdb19cd524496aa58a602065404a6",
+      "controls": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7",
+        "L8",
+        "L9"
+      ]
+    },
+    "producer_function": "route_c_preflight_001a.leakage.run_leakage_positive_controls",
+    "provenance_kind": "material_record",
+    "recompute_basis": {
+      "kind": "indicator",
+      "predicate": true
+    },
+    "run_id": "route-c-preflight-001a-repair-001a-leakage",
+    "seed": "multi_seed",
+    "subsystem": "leakage",
+    "threshold_snapshot_hash": "216a015fad34bd2dbd74c931235e8d6158b587e78b7d8b6c06d36bd6ae323d4e",
+    "threshold_used": null,
+    "value": 1.0
+  },
+  "run_id": "route-c-preflight-001a-repair-001a-leakage",
+  "value_level_control": {
+    "control_type": "gate_coupled_value_level",
+    "decoded_by_value_level_attacker": true,
+    "detected_classes": [],
+    "expected_class": "observation-value-decodable",
+    "family_max": 1.0,
+    "family_max_attacker": "passive_mean_attacker",
+    "fired": true,
+    "gate_verdict": "blocked_by_observation_decodable_self_set",
+    "key_scanner_silent": true,
+    "note": "value-level leak in passive handle_values; decoded by a passive value attacker, not by name-grep",
+    "value_level": true,
+    "value_level_family_max": 1.0
+  }
 }

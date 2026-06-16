@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, replace
 import math
 import random
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 from . import CLAIM_CEILING
 from . import provenance
@@ -80,6 +80,9 @@ def _handle_token(seed: int, public_position: int) -> str:
     return f"h_{token}"
 
 
+# --------------------------------------------------------------------------- #
+# Generator (unchanged semantics: S never enters the passive law by construction)
+# --------------------------------------------------------------------------- #
 def sample_episode(seed: int, config: Config) -> HiddenEpisode:
     if not 0 < config.k_self < config.n_channels:
         raise ValueError("k_self must satisfy 0 < k_self < n_channels")
@@ -200,86 +203,340 @@ def score_self_set_prediction(predicted: Iterable[str], truth: Iterable[str], *,
     return len(predicted_set & truth_set) / k_self
 
 
-def _predict_from_membership_map(legal: dict[str, Any], membership_key: str) -> list[str] | None:
-    mapping = legal.get(membership_key)
-    if isinstance(mapping, dict):
-        return sorted([handle for handle, is_member in mapping.items() if is_member])[: legal["query"]["k_self"]]
-    return None
+# --------------------------------------------------------------------------- #
+# Passive value access + math helpers (pure Python, deterministic)
+# --------------------------------------------------------------------------- #
+def passive_value_matrix(legal: dict[str, Any]) -> tuple[list[str], list[list[float]]]:
+    """Return (handles, rows) read ONLY from legal['passive_rows'][*]['handle_values'].
+
+    This is the sole passive-value entry point used by the value-level attacker
+    family; it touches no key/label/name/answer field.
+    """
+    handles = list(legal["handles"])
+    rows: list[list[float]] = []
+    for row in legal.get("passive_rows", []):
+        values = row["handle_values"]
+        rows.append([float(values[handle]) for handle in handles])
+    return handles, rows
 
 
-def obs_only_baseline(legal_episodes: list[dict[str, Any]], *, run_id: str) -> dict[str, Any]:
-    predictions = []
+def _column(rows: list[list[float]], j: int) -> list[float]:
+    return [row[j] for row in rows]
+
+
+def _mean(values: list[float]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def _variance(values: list[float]) -> float:
+    if len(values) < 2:
+        return 0.0
+    mu = _mean(values)
+    return sum((v - mu) ** 2 for v in values) / (len(values) - 1)
+
+
+def _covariance_matrix(rows: list[list[float]], n: int) -> list[list[float]]:
+    if len(rows) < 2:
+        return [[0.0] * n for _ in range(n)]
+    means = [_mean(_column(rows, j)) for j in range(n)]
+    cov = [[0.0] * n for _ in range(n)]
+    denom = len(rows) - 1
+    for a in range(n):
+        for b in range(a, n):
+            s = 0.0
+            for row in rows:
+                s += (row[a] - means[a]) * (row[b] - means[b])
+            cov[a][b] = cov[b][a] = s / denom
+    return cov
+
+
+def _top_eigenvector(matrix: list[list[float]], n: int, *, iterations: int = 64) -> list[float]:
+    """Deterministic power iteration from a fixed start vector."""
+    vec = [1.0 / math.sqrt(n)] * n
+    for _ in range(iterations):
+        nxt = [0.0] * n
+        for a in range(n):
+            row = matrix[a]
+            nxt[a] = sum(row[b] * vec[b] for b in range(n))
+        norm = math.sqrt(sum(x * x for x in nxt))
+        if norm == 0.0:
+            return vec
+        vec = [x / norm for x in nxt]
+    return vec
+
+
+def _topk_by_score(handles: list[str], scores: dict[str, float], k: int) -> list[str]:
+    """Top-k handles by score; deterministic tie-break by handle string."""
+    ranked = sorted(handles, key=lambda h: (-scores[h], h))
+    return sorted(ranked[:k])
+
+
+# --------------------------------------------------------------------------- #
+# Passive observational attacker family (6.1: "may use any observational
+# structure (covariance, clustering, supervised fit on passive features)")
+# Each attacker maps a list of legal views -> list of predicted handle lists.
+# --------------------------------------------------------------------------- #
+def positional_first_k_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    """Weak diagnostic only. Reads no values; first-k handles. Kept to show that
+    a positional no-op stays at chance and cannot, alone, decode a value leak."""
+    out = []
+    for legal in legal_episodes:
+        out.append(sorted(legal["handles"][: legal["query"]["k_self"]]))
+    return out
+
+
+def passive_mean_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    out = []
+    for legal in legal_episodes:
+        handles, rows = passive_value_matrix(legal)
+        scores = {h: abs(_mean(_column(rows, j))) for j, h in enumerate(handles)}
+        out.append(_topk_by_score(handles, scores, legal["query"]["k_self"]))
+    return out
+
+
+def passive_variance_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    out = []
+    for legal in legal_episodes:
+        handles, rows = passive_value_matrix(legal)
+        scores = {h: _variance(_column(rows, j)) for j, h in enumerate(handles)}
+        out.append(_topk_by_score(handles, scores, legal["query"]["k_self"]))
+    return out
+
+
+def passive_correlation_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    """Rank handles by aggregate absolute correlation with the other channels."""
+    out = []
+    for legal in legal_episodes:
+        handles, rows = passive_value_matrix(legal)
+        n = len(handles)
+        cov = _covariance_matrix(rows, n)
+        sd = [math.sqrt(cov[j][j]) if cov[j][j] > 0 else 0.0 for j in range(n)]
+        scores = {}
+        for a, h in enumerate(handles):
+            total = 0.0
+            for b in range(n):
+                if b == a:
+                    continue
+                denom = sd[a] * sd[b]
+                total += abs(cov[a][b] / denom) if denom > 0 else 0.0
+            scores[h] = total
+        out.append(_topk_by_score(handles, scores, legal["query"]["k_self"]))
+    return out
+
+
+def passive_pca_subspace_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    """Rank handles by squared loading on the top passive principal component."""
+    out = []
+    for legal in legal_episodes:
+        handles, rows = passive_value_matrix(legal)
+        n = len(handles)
+        cov = _covariance_matrix(rows, n)
+        top = _top_eigenvector(cov, n)
+        scores = {h: top[j] * top[j] for j, h in enumerate(handles)}
+        out.append(_topk_by_score(handles, scores, legal["query"]["k_self"]))
+    return out
+
+
+def _channel_mean_feature(legal: dict[str, Any]) -> dict[str, float]:
+    handles, rows = passive_value_matrix(legal)
+    return {h: _mean(_column(rows, j)) for j, h in enumerate(handles)}
+
+
+def passive_cross_episode_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    """Population attacker: pool per-channel mean across all episodes, then within
+    each episode rank channels by |z-score| of their mean vs the pooled
+    distribution. A value-level mean shift on self channels makes them outliers;
+    on clean data the pooled mean is S-independent -> chance. Reads no truth."""
+    per_episode_means = [_channel_mean_feature(legal) for legal in legal_episodes]
+    pooled = [m for means in per_episode_means for m in means.values()]
+    mu = _mean(pooled)
+    sd = math.sqrt(_variance(pooled)) if len(pooled) > 1 else 0.0
+    out = []
+    for legal, means in zip(legal_episodes, per_episode_means):
+        if sd > 0:
+            scores = {h: abs((means[h] - mu) / sd) for h in means}
+        else:
+            scores = {h: 0.0 for h in means}
+        out.append(_topk_by_score(list(means), scores, legal["query"]["k_self"]))
+    return out
+
+
+# Training-seed range for the supervised attacker. Disjoint from any evaluation
+# seed range used in this lab and from the learner_observed_seed offset
+# (seed + 10_000_000), so the trainer never reuses an evaluation episode.
+SUPERVISED_TRAIN_SEEDS = tuple(range(90_000_000, 90_000_048))
+
+
+def _channel_features(legal: dict[str, Any]) -> dict[str, list[float]]:
+    handles, rows = passive_value_matrix(legal)
+    n = len(handles)
+    cov = _covariance_matrix(rows, n)
+    top = _top_eigenvector(cov, n)
+    sd = [math.sqrt(cov[j][j]) if cov[j][j] > 0 else 0.0 for j in range(n)]
+    feats: dict[str, list[float]] = {}
+    for j, h in enumerate(handles):
+        col = _column(rows, j)
+        corr = 0.0
+        for b in range(n):
+            if b == j:
+                continue
+            denom = sd[j] * sd[b]
+            corr += abs(cov[j][b] / denom) if denom > 0 else 0.0
+        feats[h] = [abs(_mean(col)), _variance(col), corr, top[j] * top[j]]
+    return feats
+
+
+def supervised_passive_feature_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    """Split-safe supervised fit on passive features.
+
+    Trains a nearest-centroid linear discriminant on DISJOINT training episodes
+    (truth legally assigned by the trainer to its own generated episodes), then
+    evaluates on the supplied (held-out) episodes using passive features ONLY.
+    Evaluation truth is never accessed (the legal views carry no truth field).
+    Because S is absent from the passive law, the learned weights generalise to
+    chance on clean data by construction.
+    """
+    train_config = replace(config, gain=0.0)  # passive features do not depend on gain
+    self_feats: list[list[float]] = []
+    other_feats: list[list[float]] = []
+    eval_seeds = {int(le.get("seed")) for le in legal_episodes if le.get("seed") is not None}
+    for seed in SUPERVISED_TRAIN_SEEDS:
+        if seed in eval_seeds:
+            continue  # split-safety guard: never train on an eval seed
+        episode = sample_episode(seed, train_config)
+        legal = legal_view_for_episode(episode, include_interventions=False)
+        truth = set(episode.truth_self_handles)  # legal: trainer's own episode
+        feats = _channel_features(legal)
+        for handle, vector in feats.items():
+            (self_feats if handle in truth else other_feats).append(vector)
+
+    if not self_feats or not other_feats:
+        # Cannot fit -> fall back to chance-equivalent positional guess.
+        return positional_first_k_attacker(legal_episodes, config=config)
+
+    dim = len(self_feats[0])
+    all_feats = self_feats + other_feats
+    f_mean = [_mean([row[d] for row in all_feats]) for d in range(dim)]
+    f_sd = [math.sqrt(_variance([row[d] for row in all_feats])) or 1.0 for d in range(dim)]
+
+    def standardize(vec: list[float]) -> list[float]:
+        return [(vec[d] - f_mean[d]) / f_sd[d] for d in range(dim)]
+
+    self_centroid = [_mean([standardize(r)[d] for r in self_feats]) for d in range(dim)]
+    other_centroid = [_mean([standardize(r)[d] for r in other_feats]) for d in range(dim)]
+    weight = [self_centroid[d] - other_centroid[d] for d in range(dim)]
+
+    out = []
+    for legal in legal_episodes:
+        feats = _channel_features(legal)
+        scores = {h: _dot(weight, standardize(vec)) for h, vec in feats.items()}
+        out.append(_topk_by_score(list(feats), scores, legal["query"]["k_self"]))
+    return out
+
+
+def legal_field_membership_attacker(legal_episodes: list[dict[str, Any]], *, config: Config) -> list[list[str]]:
+    """Reads an explicit membership/answer map IF the schema leaks one (L1/L5).
+    On clean data no such field exists -> emits an empty prediction (contributes
+    nothing to the family max). This is the answer-map reader the blueprint
+    requires to remain 'in addition' to the value-level attackers."""
+    out = []
+    for legal in legal_episodes:
+        prediction: list[str] = []
+        for key in ("leaked_self_membership_by_handle", "confounder_self_membership_by_handle"):
+            mapping = legal.get(key)
+            if isinstance(mapping, dict):
+                prediction = sorted([h for h, member in mapping.items() if member])[: legal["query"]["k_self"]]
+                break
+        out.append(sorted(prediction))
+    return out
+
+
+# (name, function, value_level, weak)
+PASSIVE_ATTACKER_FAMILY: tuple[tuple[str, Callable[..., Any], bool, bool], ...] = (
+    ("positional_first_k_attacker", positional_first_k_attacker, False, True),
+    ("passive_mean_attacker", passive_mean_attacker, True, False),
+    ("passive_variance_attacker", passive_variance_attacker, True, False),
+    ("passive_correlation_attacker", passive_correlation_attacker, True, False),
+    ("passive_pca_subspace_attacker", passive_pca_subspace_attacker, True, False),
+    ("passive_cross_episode_attacker", passive_cross_episode_attacker, True, False),
+    ("supervised_passive_feature_attacker", supervised_passive_feature_attacker, True, False),
+    ("legal_field_membership_attacker", legal_field_membership_attacker, False, False),
+)
+
+
+def obs_only_baseline(legal_episodes: list[dict[str, Any]], *, run_id: str, config: Config | None = None) -> dict[str, Any]:
+    """Run the passive observational attacker family.
+
+    Guards against interventional contamination (obs-only must never see do-data),
+    then returns per-attacker predictions. Scoring + family-max is done by
+    `run_obs_only_family`.
+    """
     for legal in legal_episodes:
         if legal.get("intervention_log"):
             raise ValueError("obs_only_baseline_received_intervention_data")
-        predicted = (
-            _predict_from_membership_map(legal, "leaked_self_membership_by_handle")
-            or _predict_from_membership_map(legal, "confounder_self_membership_by_handle")
-            or legal["handles"][: legal["query"]["k_self"]]
-        )
-        predictions.append(
-            {
-                "episode_id": legal["episode_id"],
-                "predicted_self_handles": sorted(predicted),
-                "producer_function": provenance.producer_name(obs_only_baseline),
-            }
-        )
-    return {"producer_function": provenance.producer_name(obs_only_baseline), "run_id": run_id, "predictions": predictions}
+    config = config or default_config()
+    attackers: dict[str, Any] = {}
+    for name, fn, value_level, weak in PASSIVE_ATTACKER_FAMILY:
+        predictions = fn(legal_episodes, config=config)
+        attackers[name] = {
+            "producer_function": provenance.producer_name(fn),
+            "value_level": value_level,
+            "weak_diagnostic": weak,
+            "predictions": [
+                {"episode_id": legal["episode_id"], "predicted_self_handles": sorted(pred)}
+                for legal, pred in zip(legal_episodes, predictions)
+            ],
+        }
+    return {
+        "producer_function": provenance.producer_name(obs_only_baseline),
+        "run_id": run_id,
+        "attackers": attackers,
+    }
 
 
-def schema_only_attacker(legal_episodes: list[dict[str, Any]], *, run_id: str) -> dict[str, Any]:
-    predictions = []
+def schema_only_attacker(legal_episodes: list[dict[str, Any]], *, config: Config | None = None) -> list[list[str]]:
+    out = []
     for legal in legal_episodes:
         aliases = legal.get("schema_alias_by_handle", {})
-        leaked = [handle for handle, alias in aliases.items() if "self" in str(alias).lower() or "target" in str(alias).lower()]
-        predicted = sorted(leaked)[: legal["query"]["k_self"]] if leaked else []
-        predictions.append(
-            {
-                "episode_id": legal["episode_id"],
-                "predicted_self_handles": sorted(predicted),
-                "producer_function": provenance.producer_name(schema_only_attacker),
-            }
-        )
-    return {"producer_function": provenance.producer_name(schema_only_attacker), "run_id": run_id, "predictions": predictions}
+        leaked = [h for h, alias in aliases.items() if "self" in str(alias).lower() or "target" in str(alias).lower()]
+        out.append(sorted(leaked)[: legal["query"]["k_self"]] if leaked else [])
+    return out
 
 
-def name_order_attacker(legal_episodes: list[dict[str, Any]], *, run_id: str) -> dict[str, Any]:
-    predictions = []
+def name_order_attacker(legal_episodes: list[dict[str, Any]], *, config: Config | None = None) -> list[list[str]]:
+    out = []
     for legal in legal_episodes:
         aliases = legal.get("schema_alias_by_handle", {})
-        leaked = [handle for handle, alias in aliases.items() if str(alias).startswith("self_")]
+        leaked = [h for h, alias in aliases.items() if str(alias).startswith("self_")]
         if not leaked:
-            leaked = [handle for handle in legal["handles"] if "self" in handle.lower() or "target" in handle.lower()]
-        predicted = sorted(leaked)[: legal["query"]["k_self"]] if leaked else []
-        predictions.append(
-            {
-                "episode_id": legal["episode_id"],
-                "predicted_self_handles": sorted(predicted),
-                "producer_function": provenance.producer_name(name_order_attacker),
-            }
-        )
-    return {"producer_function": provenance.producer_name(name_order_attacker), "run_id": run_id, "predictions": predictions}
+            leaked = [h for h in legal["handles"] if "self" in h.lower() or "target" in h.lower()]
+        out.append(sorted(leaked)[: legal["query"]["k_self"]] if leaked else [])
+    return out
 
 
-def _score_predictions(
+# --------------------------------------------------------------------------- #
+# Scoring + provenance plumbing
+# --------------------------------------------------------------------------- #
+def _score_attacker(
     *,
     bundle: dict[str, Any],
-    prediction_report: dict[str, Any],
-    producer_function: Any,
+    legal_episodes: list[dict[str, Any]],
+    predictions: list[dict[str, Any]],
+    producer_function: Callable[..., Any],
     run_id: str,
     config: Config,
+    subsystem: str,
+    threshold_snapshot_hash: str,
 ) -> dict[str, Any]:
-    truth_by_episode = {episode["episode_id"]: episode["truth_self_handles"] for episode in bundle["episodes"]}
+    truth_by_episode = {e["episode_id"]: e["truth_self_handles"] for e in bundle["episodes"]}
     per_episode = []
     scores = []
-    for prediction in prediction_report["predictions"]:
+    for prediction in predictions:
         episode_id = prediction["episode_id"]
         score = score_self_set_prediction(
-            prediction["predicted_self_handles"],
-            truth_by_episode[episode_id],
-            k_self=config.k_self,
+            prediction["predicted_self_handles"], truth_by_episode[episode_id], k_self=config.k_self
         )
-        scores.append(score)
+        scores.append(round(score, 6))
         per_episode.append(
             {
                 "episode_id": episode_id,
@@ -294,33 +551,120 @@ def _score_predictions(
         run_id=run_id,
         episode_ids=[row["episode_id"] for row in per_episode],
         threshold_used=config.premise_threshold,
+        threshold_snapshot_hash=threshold_snapshot_hash,
+        subsystem=subsystem,
     )
-    return {**prediction_report, "per_episode": per_episode, "aggregate_score": aggregate}
+    return {"per_episode": per_episode, "aggregate_score": aggregate}
 
 
-def run_baseline_panel(bundle: dict[str, Any], *, run_id: str) -> dict[str, Any]:
+def obs_only_family_max(values: list[float]) -> float:
+    return max(values) if values else 0.0
+
+
+def run_obs_only_family(
+    bundle: dict[str, Any],
+    *,
+    run_id: str,
+    config: Config,
+    threshold_snapshot_hash: str,
+) -> dict[str, Any]:
+    legal = [e["legal"] for e in bundle["episodes"]]
+    family = obs_only_baseline(legal, run_id=f"{run_id}-obs-family", config=config)
+    attackers = []
+    value_level_values = []
+    family_values = []
+    for name, fn, value_level, weak in PASSIVE_ATTACKER_FAMILY:
+        scored = _score_attacker(
+            bundle=bundle,
+            legal_episodes=legal,
+            predictions=family["attackers"][name]["predictions"],
+            producer_function=fn,
+            run_id=f"{run_id}-{name}",
+            config=config,
+            subsystem="premise",
+            threshold_snapshot_hash=threshold_snapshot_hash,
+        )
+        value = scored["aggregate_score"]["value"]
+        family_values.append(value)
+        if value_level:
+            value_level_values.append(value)
+        attackers.append(
+            {
+                "attacker": name,
+                "value_level": value_level,
+                "weak_diagnostic": weak,
+                "aggregate_score": scored["aggregate_score"],
+                "per_episode": scored["per_episode"],
+            }
+        )
+    max_value = obs_only_family_max(family_values)
+    max_attacker = max(attackers, key=lambda a: (a["aggregate_score"]["value"], a["attacker"]))["attacker"]
+    value_level_max = obs_only_family_max(value_level_values)
+    family_max_record = provenance.material_record(
+        value=max_value,
+        producer_function=obs_only_family_max,
+        inputs={
+            "attacker_values": {a["attacker"]: a["aggregate_score"]["value"] for a in attackers},
+            "config_hash": provenance.sha256_json(bundle["config"]),
+        },
+        run_id=f"{run_id}-family-max",
+        seed="multi_seed",
+        episode_ids=[e["episode_id"] for e in bundle["episodes"]],
+        aggregation="max_over_attacker_family",
+        threshold_used=config.premise_threshold,
+        threshold_snapshot_hash=threshold_snapshot_hash,
+        subsystem="premise",
+        recompute_basis={"kind": "max", "values": family_values},
+    )
+    return {
+        "producer_function": provenance.producer_name(run_obs_only_family),
+        "run_id": run_id,
+        "attackers": attackers,
+        "family_max": family_max_record,
+        "family_max_attacker": max_attacker,
+        "value_level_family_max": round(value_level_max, 6),
+        "obs_only_family_max_score": max_value,
+    }
+
+
+def run_baseline_panel(
+    bundle: dict[str, Any],
+    *,
+    run_id: str,
+    threshold_snapshot_hash: str | None = None,
+) -> dict[str, Any]:
     config = Config(**bundle["config"])
-    legal = [episode["legal"] for episode in bundle["episodes"]]
-    obs = _score_predictions(
-        bundle=bundle,
-        prediction_report=obs_only_baseline(legal, run_id=f"{run_id}-obs-only"),
-        producer_function=obs_only_baseline,
-        run_id=f"{run_id}-obs-only-score",
-        config=config,
+    if threshold_snapshot_hash is None:
+        threshold_snapshot_hash = provenance.build_threshold_snapshot(config=config, config_type=Config)["snapshot_hash"]
+    legal = [e["legal"] for e in bundle["episodes"]]
+    obs = run_obs_only_family(
+        bundle, run_id=f"{run_id}-obs-only", config=config, threshold_snapshot_hash=threshold_snapshot_hash
     )
-    schema = _score_predictions(
+    schema = _score_attacker(
         bundle=bundle,
-        prediction_report=schema_only_attacker(legal, run_id=f"{run_id}-schema"),
+        legal_episodes=legal,
+        predictions=[
+            {"episode_id": le["episode_id"], "predicted_self_handles": pred}
+            for le, pred in zip(legal, schema_only_attacker(legal, config=config))
+        ],
         producer_function=schema_only_attacker,
-        run_id=f"{run_id}-schema-score",
+        run_id=f"{run_id}-schema",
         config=config,
+        subsystem="schema_alias",
+        threshold_snapshot_hash=threshold_snapshot_hash,
     )
-    name = _score_predictions(
+    name = _score_attacker(
         bundle=bundle,
-        prediction_report=name_order_attacker(legal, run_id=f"{run_id}-name-order"),
+        legal_episodes=legal,
+        predictions=[
+            {"episode_id": le["episode_id"], "predicted_self_handles": pred}
+            for le, pred in zip(legal, name_order_attacker(legal, config=config))
+        ],
         producer_function=name_order_attacker,
-        run_id=f"{run_id}-name-order-score",
+        run_id=f"{run_id}-name-order",
         config=config,
+        subsystem="schema_alias",
+        threshold_snapshot_hash=threshold_snapshot_hash,
     )
     return {
         "producer_function": provenance.producer_name(run_baseline_panel),
@@ -333,7 +677,7 @@ def run_baseline_panel(bundle: dict[str, Any], *, run_id: str) -> dict[str, Any]
 
 
 def non_identifiability_premise_gate(panel: dict[str, Any], *, config: Config) -> dict[str, Any]:
-    obs = panel["obs_only"]["aggregate_score"]["value"]
+    obs = panel["obs_only"]["family_max"]["value"]
     schema = panel["schema_only"]["aggregate_score"]["value"]
     name = panel["name_order"]["aggregate_score"]["value"]
     threshold = config.premise_threshold
@@ -351,11 +695,13 @@ def _gate_verdict(verdict: str, value: float, threshold: float, passed: bool) ->
         "value": round(float(value), 6),
         "threshold": round(float(threshold), 6),
         "passed": passed,
-        "failure_path_available": True,
     }
 
 
-def _predict_oracle_for_legal(legal: dict[str, Any]) -> tuple[list[str], dict[str, dict[str, float]]]:
+# --------------------------------------------------------------------------- #
+# Interventional oracle (ceiling only) + headroom gate
+# --------------------------------------------------------------------------- #
+def _predict_oracle_for_legal(legal: dict[str, Any]) -> list[str]:
     effect_sums = {handle: 0.0 for handle in legal["handles"]}
     effect_weights = {handle: 0.0 for handle in legal["handles"]}
     for row in legal["intervention_log"]:
@@ -368,15 +714,18 @@ def _predict_oracle_for_legal(legal: dict[str, Any]) -> tuple[list[str], dict[st
         for handle in legal["handles"]
     }
     ranked = sorted(legal["handles"], key=lambda handle: (-abs(effects[handle]), handle))
-    return sorted(ranked[: legal["query"]["k_self"]]), {
-        "effect_sums": effect_sums,
-        "effect_weights": effect_weights,
-        "effects": effects,
-    }
+    return sorted(ranked[: legal["query"]["k_self"]])
 
 
-def run_interventional_oracle(bundle: dict[str, Any], *, run_id: str) -> dict[str, Any]:
+def run_interventional_oracle(
+    bundle: dict[str, Any],
+    *,
+    run_id: str,
+    threshold_snapshot_hash: str | None = None,
+) -> dict[str, Any]:
     config = Config(**bundle["config"])
+    if threshold_snapshot_hash is None:
+        threshold_snapshot_hash = provenance.build_threshold_snapshot(config=config, config_type=Config)["snapshot_hash"]
     per_episode = []
     scores = []
     predictions = []
@@ -384,22 +733,19 @@ def run_interventional_oracle(bundle: dict[str, Any], *, run_id: str) -> dict[st
     serialized_state = {"episodes": {}}
     for episode in bundle["episodes"]:
         legal = episode["interventional_legal"]
-        predicted, effect_state = _predict_oracle_for_legal(legal)
+        predicted = _predict_oracle_for_legal(legal)
         score = score_self_set_prediction(predicted, episode["truth_self_handles"], k_self=config.k_self)
-        scores.append(score)
+        scores.append(round(score, 6))
         per_episode.append({"episode_id": episode["episode_id"], "predicted_self_handles": predicted, "score": round(score, 6)})
         prediction_hash = provenance.sha256_json({"episode_id": episode["episode_id"], "predicted_self_handles": predicted})
         predictions.append(
-            {
-                "episode_id": episode["episode_id"],
-                "predicted_self_handles": predicted,
-                "prediction_hash": prediction_hash,
-            }
+            {"episode_id": episode["episode_id"], "predicted_self_handles": predicted, "prediction_hash": prediction_hash}
         )
+        # Serialized state carries ONLY what replay legally needs to recompute.
+        # No effect map / no answer is stored, so replay cannot shortcut.
         serialized_state["episodes"][episode["episode_id"]] = {
             "handles": legal["handles"],
             "k_self": legal["query"]["k_self"],
-            "effect_state": effect_state,
         }
         for row in legal["intervention_log"]:
             legal_rows.append(row)
@@ -410,6 +756,8 @@ def run_interventional_oracle(bundle: dict[str, Any], *, run_id: str) -> dict[st
         run_id=run_id,
         episode_ids=[row["episode_id"] for row in per_episode],
         threshold_used=config.premise_threshold,
+        threshold_snapshot_hash=threshold_snapshot_hash,
+        subsystem="interventional_headroom",
     )
     return {
         "producer_function": provenance.producer_name(run_interventional_oracle),
@@ -432,7 +780,7 @@ def interventional_headroom_gate(*, obs_score: float, oracle_score: float, confi
 
 
 def trace_rows(bundle: dict[str, Any], panel: dict[str, Any], oracle: dict[str, Any]) -> list[dict[str, Any]]:
-    obs_by_episode = {row["episode_id"]: row for row in panel["obs_only"]["per_episode"]}
+    obs_attackers = {a["attacker"]: {row["episode_id"]: row for row in a["per_episode"]} for a in panel["obs_only"]["attackers"]}
     schema_by_episode = {row["episode_id"]: row for row in panel["schema_only"]["per_episode"]}
     name_by_episode = {row["episode_id"]: row for row in panel["name_order"]["per_episode"]}
     oracle_by_episode = {row["episode_id"]: row for row in oracle["per_episode"]}
@@ -446,7 +794,9 @@ def trace_rows(bundle: dict[str, Any], panel: dict[str, Any], oracle: dict[str, 
                 "episode_id": episode_id,
                 "producer_function": provenance.producer_name(trace_rows),
                 "truth_self_handles_oracle_side": episode["truth_self_handles"],
-                "obs_only": obs_by_episode[episode_id],
+                "obs_only_family": {name: by_ep[episode_id] for name, by_ep in obs_attackers.items()},
+                "obs_only_family_max": panel["obs_only"]["family_max"]["value"],
+                "obs_only_family_max_attacker": panel["obs_only"]["family_max_attacker"],
                 "schema_only": schema_by_episode[episode_id],
                 "name_order": name_by_episode[episode_id],
                 "interventional_oracle": oracle_by_episode[episode_id],

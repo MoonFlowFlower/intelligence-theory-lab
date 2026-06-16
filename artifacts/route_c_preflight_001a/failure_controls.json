@@ -1,0 +1,54 @@
+{
+  "evidence": {
+    "interventional_headroom_gain0": {
+      "blocks": true,
+      "gain": 0.0,
+      "headroom_verdict": "blocked_by_no_interventional_headroom",
+      "obs_family_max": 0.583334,
+      "oracle_score": 0.375
+    },
+    "leakage_non_fire_probe": {
+      "blocking_verdict": "blocked_by_non_fail_able_control",
+      "control_fired": false,
+      "description": "L1 injector replaced by no-op; control must fail to fire and force a block",
+      "subsystem_blocks": true
+    },
+    "premise_value_level_L9": {
+      "control_type": "gate_coupled_value_level",
+      "decoded_by_value_level_attacker": true,
+      "detected_classes": [],
+      "expected_class": "observation-value-decodable",
+      "family_max": 1.0,
+      "family_max_attacker": "passive_mean_attacker",
+      "fired": true,
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "key_scanner_silent": true,
+      "note": "value-level leak in passive handle_values; decoded by a passive value attacker, not by name-grep",
+      "value_level": true,
+      "value_level_family_max": 1.0
+    },
+    "provenance_missing_hash_probe": {
+      "blocks": true,
+      "description": "drop code_path_hash from a real row",
+      "verdict": "blocked_by_provenance_gap"
+    },
+    "replay_tamper": {
+      "accepted_hash_only": false,
+      "corrupt_intervention_log_changes_behavior": true,
+      "corrupt_serialized_state_changes_behavior": true,
+      "recompute_ignores_stored_predictions": true,
+      "removed_intervention_rows_changes_behavior": true,
+      "stored_hash_tamper_accepted": false
+    },
+    "schema_alias_L7": true
+  },
+  "failure_controls": {
+    "interventional_headroom": true,
+    "leakage": true,
+    "premise": true,
+    "provenance": true,
+    "replay": true,
+    "schema_alias": true,
+    "verdict": true
+  }
+}

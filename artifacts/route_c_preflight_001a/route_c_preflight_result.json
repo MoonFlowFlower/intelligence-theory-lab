@@ -3,13 +3,80 @@
   "candidate_implemented": false,
   "claim_ceiling": "Route C candidate-free Phase 0 preflight evidence only",
   "code_path_hashes": {
-    "interventional_oracle": "afbae61e1087c13a273a2d8533d17d61c347024bb141d80c8412c4163cd0cafc",
-    "name_order_attacker": "b3c4fa245317e9241bfa1d7f70b8ad09e76d6ca51c1c2ed6c8acc66c37f5d8e8",
-    "obs_only_baseline": "ecfdbec412433326ff5f291fe69097535faf3716d802e054c120739c86a19e5c",
-    "schema_only_attacker": "230c36022ced37e3232621c37609e8378118a74de84687829b56a9da34631834"
+    "route_c_preflight_001a.core.interventional_headroom_gate": "b302ac5bb6e6c793f050080317e8fea90e88b8446d4034848b86a24cf419d7a9",
+    "route_c_preflight_001a.core.legal_field_membership_attacker": "ad1a19db03667112d9406a6534b72b3f5879c87bad8221b3e28900173f3b0439",
+    "route_c_preflight_001a.core.name_order_attacker": "03d7f2910b167e1e28d6e14e204c6528c8c8aa5d438b0a0af1f46533fab810bc",
+    "route_c_preflight_001a.core.non_identifiability_premise_gate": "a0c4ce91865a8874e292369e87ef581bbffb3a565e4c98646588d08665a67dba",
+    "route_c_preflight_001a.core.obs_only_family_max": "bf4ded6e081b6786200d18e5b61020e94fe274076df651bdb08951cbe30fe101",
+    "route_c_preflight_001a.core.passive_correlation_attacker": "1a563fb23eae886cf1ae3596ce3b774b323916649831991b5329d05aa9f9dce5",
+    "route_c_preflight_001a.core.passive_cross_episode_attacker": "b319b29900a936aca1ac35346b894b24b39460bb514d19df91f53ce68e1364b6",
+    "route_c_preflight_001a.core.passive_mean_attacker": "c499dc089f1ba2ca8b330f48b92559581eb021a9530a0759f419421f0877a182",
+    "route_c_preflight_001a.core.passive_pca_subspace_attacker": "2252bd92627c87bf41546c67e761f307a64d7d003a675ccdcd9977cfde1c34ba",
+    "route_c_preflight_001a.core.passive_variance_attacker": "9db66d947af3cb160059f8c343c468d3661e501ead154426365345581ca0903e",
+    "route_c_preflight_001a.core.positional_first_k_attacker": "8efd5800bd6148ae011f8ba5e11c508a25055a9a4bfff1e2ebef2b74f834d269",
+    "route_c_preflight_001a.core.run_interventional_oracle": "dab90728b6006af9ac7432f75feda9aba9c55e52da9341b9c72587098b1dcabd",
+    "route_c_preflight_001a.core.schema_only_attacker": "7a3015436e9ddead387c54fdefecaf3b465fd30ed6bbe9543115e461a34d50c9",
+    "route_c_preflight_001a.core.supervised_passive_feature_attacker": "10bb2e4654398992d5802696ede6c3805b2ca7fc161633ac7f7d46d188a147ce",
+    "route_c_preflight_001a.leakage.run_leakage_positive_controls": "0350550ac20e06d6b71173c667e9195ec0b2129eee95945e30c767f6c1d26cb6",
+    "route_c_preflight_001a.provenance.validate_provenance_rows": "ec7317328b6403bb9d8b452dd033172e9854e25a14979a37a209e13ff1807950",
+    "route_c_preflight_001a.replay.replay_oracle_predictions": "7b1d156e2df553b0ad8a7d11ba9cd0ae31f6accfac581099126555b776db5767",
+    "route_c_preflight_001a.runner._select_verdict": "2f84142ade45289990a198678c10f6c635796b68dc70920928845b3a97cf3072"
   },
   "current_layer": "engineering implementation / candidate-free preflight evidence only",
   "enabled_status": "local CLI / pytest / artifact generation only; no enabled Route C path",
+  "failure_control_evidence": {
+    "interventional_headroom_gain0": {
+      "blocks": true,
+      "gain": 0.0,
+      "headroom_verdict": "blocked_by_no_interventional_headroom",
+      "obs_family_max": 0.583334,
+      "oracle_score": 0.375
+    },
+    "leakage_non_fire_probe": {
+      "blocking_verdict": "blocked_by_non_fail_able_control",
+      "control_fired": false,
+      "description": "L1 injector replaced by no-op; control must fail to fire and force a block",
+      "subsystem_blocks": true
+    },
+    "premise_value_level_L9": {
+      "control_type": "gate_coupled_value_level",
+      "decoded_by_value_level_attacker": true,
+      "detected_classes": [],
+      "expected_class": "observation-value-decodable",
+      "family_max": 1.0,
+      "family_max_attacker": "passive_mean_attacker",
+      "fired": true,
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "key_scanner_silent": true,
+      "note": "value-level leak in passive handle_values; decoded by a passive value attacker, not by name-grep",
+      "value_level": true,
+      "value_level_family_max": 1.0
+    },
+    "provenance_missing_hash_probe": {
+      "blocks": true,
+      "description": "drop code_path_hash from a real row",
+      "verdict": "blocked_by_provenance_gap"
+    },
+    "replay_tamper": {
+      "accepted_hash_only": false,
+      "corrupt_intervention_log_changes_behavior": true,
+      "corrupt_serialized_state_changes_behavior": true,
+      "recompute_ignores_stored_predictions": true,
+      "removed_intervention_rows_changes_behavior": true,
+      "stored_hash_tamper_accepted": false
+    },
+    "schema_alias_L7": true
+  },
+  "failure_controls": {
+    "interventional_headroom": true,
+    "leakage": true,
+    "premise": true,
+    "provenance": true,
+    "replay": true,
+    "schema_alias": true,
+    "verdict": true
+  },
+  "final_verdict_producer": "route_c_preflight_001a.runner._select_verdict",
   "gate_mainline_runtime_bridge_scheduler_admission_product_touched": false,
   "generator_config": {
     "confounder_strength": 1.0,
@@ -24,409 +91,267 @@
     "permute_channels": true,
     "premise_band": 0.12
   },
-  "interventional_headroom": 0.604166,
+  "interventional_headroom": 0.572916,
   "interventional_headroom_verdict": "interventional_headroom_present",
   "interventional_oracle_score": 0.989583,
+  "leakage_blocking_verdict": null,
   "leakage_control_results": {
     "L1": {
+      "control_type": "gate_coupled",
       "detected_classes": [
         "self-set-in-legal"
       ],
       "expected_class": "self-set-in-legal",
       "fired": true,
-      "gate_verdict": "blocked_by_observation_decodable_self_set"
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "note": "gate-coupled: drives a fail-closed premise/schema gate verdict",
+      "value_level": false
     },
     "L2": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "identity-not-permuted"
       ],
       "expected_class": "identity-not-permuted",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L3": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "action-label-alias"
       ],
       "expected_class": "action-label-alias",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L4": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "answer-in-query"
       ],
       "expected_class": "answer-in-query",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L5": {
+      "control_type": "gate_coupled",
       "detected_classes": [
         "confounder-in-legal"
       ],
       "expected_class": "confounder-in-legal",
       "fired": true,
-      "gate_verdict": "blocked_by_observation_decodable_self_set"
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "note": "gate-coupled: drives a fail-closed premise/schema gate verdict",
+      "value_level": false
     },
     "L6": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "api-effect-label"
       ],
       "expected_class": "api-effect-label",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
     },
     "L7": {
+      "control_type": "gate_coupled",
       "detected_classes": [
         "schema-only-positive-control"
       ],
       "expected_class": "schema-only-positive-control",
       "fired": true,
-      "gate_verdict": "blocked_by_schema_alias_leakage"
+      "gate_verdict": "blocked_by_schema_alias_leakage",
+      "note": "gate-coupled: drives a fail-closed premise/schema gate verdict",
+      "value_level": false
     },
     "L8": {
+      "control_type": "synthetic_detector_only",
       "detected_classes": [
         "oracle-reachable"
       ],
       "expected_class": "oracle-reachable",
       "fired": true,
-      "gate_verdict": null
+      "gate_verdict": null,
+      "note": "synthetic detector-only: proves the key/name scanner fires on the planted token; not, by itself, a fail-closed gate path",
+      "value_level": false
+    },
+    "L9": {
+      "control_type": "gate_coupled_value_level",
+      "decoded_by_value_level_attacker": true,
+      "detected_classes": [],
+      "expected_class": "observation-value-decodable",
+      "family_max": 1.0,
+      "family_max_attacker": "passive_mean_attacker",
+      "fired": true,
+      "gate_verdict": "blocked_by_observation_decodable_self_set",
+      "key_scanner_silent": true,
+      "note": "value-level leak in passive handle_values; decoded by a passive value attacker, not by name-grep",
+      "value_level": true,
+      "value_level_family_max": 1.0
     }
   },
   "mainline_integration_status": "none",
+  "material_producer_count": 18,
   "mechanism_claim_admitted": false,
   "name_order_attacker_score": 0.0,
-  "next_minimal_closed_loop_action": "Run independent hostile audit against the generated Phase 0 artifacts before any Route C candidate card.",
+  "next_minimal_closed_loop_action": "Independent hostile re-audit of the repaired Route C Phase 0 preflight; candidate card remains forbidden until re-audit accepts.",
   "non_identifiability": "non_identifiability_present",
+  "obs_only_family_max_attacker": "supervised_passive_feature_attacker",
+  "obs_only_family_max_score": 0.416667,
   "parent_doc_hashes": {
     "blueprint_path": "docs/research/ROUTE-C-PREFLIGHT-001A-HOSTILE-DESIGN-BLUEPRINT.md",
     "blueprint_sha256": "a2bb1db2a147caba73ed9c46abc261c2a870f6fa00b2cf4f006036c5b16e4771",
     "task_card_path": "docs/codex/tasks/ROUTE-C-PREFLIGHT-001A.md",
     "task_card_sha256": "5446b68f0d3b7d8d8e75bfe31b76bc3b864e6a78405114b585f2ed5133b745b8"
   },
-  "passive_baseline_score": 0.385417,
+  "parent_negative_audit": {
+    "audit_doc": "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-HOSTILE-AUDIT-001A.md",
+    "blocking_verdict": "blocked_by_observation_baseline_underpowered",
+    "parent_audit_preservation_commit": "eadc08f04e9bc465379fd35b3844a823a55062c6",
+    "parent_impl_commit": "726f26daef9d766abe0592972acf8569041483fa"
+  },
+  "passive_attacker_family_scores": {
+    "legal_field_membership_attacker": 0.0,
+    "passive_correlation_attacker": 0.385417,
+    "passive_cross_episode_attacker": 0.354167,
+    "passive_mean_attacker": 0.354167,
+    "passive_pca_subspace_attacker": 0.322917,
+    "passive_variance_attacker": 0.34375,
+    "positional_first_k_attacker": 0.385417,
+    "supervised_passive_feature_attacker": 0.416667
+  },
   "producer_functions": [
+    "route_c_preflight_001a.core.interventional_headroom_gate",
+    "route_c_preflight_001a.core.legal_field_membership_attacker",
     "route_c_preflight_001a.core.name_order_attacker",
-    "route_c_preflight_001a.core.obs_only_baseline",
+    "route_c_preflight_001a.core.non_identifiability_premise_gate",
+    "route_c_preflight_001a.core.obs_only_family_max",
+    "route_c_preflight_001a.core.passive_correlation_attacker",
+    "route_c_preflight_001a.core.passive_cross_episode_attacker",
+    "route_c_preflight_001a.core.passive_mean_attacker",
+    "route_c_preflight_001a.core.passive_pca_subspace_attacker",
+    "route_c_preflight_001a.core.passive_variance_attacker",
+    "route_c_preflight_001a.core.positional_first_k_attacker",
     "route_c_preflight_001a.core.run_interventional_oracle",
     "route_c_preflight_001a.core.schema_only_attacker",
+    "route_c_preflight_001a.core.supervised_passive_feature_attacker",
     "route_c_preflight_001a.leakage.run_leakage_positive_controls",
-    "route_c_preflight_001a.replay.replay_oracle_predictions"
+    "route_c_preflight_001a.provenance.validate_provenance_rows",
+    "route_c_preflight_001a.replay.replay_oracle_predictions",
+    "route_c_preflight_001a.runner._select_verdict"
   ],
+  "provenance_row_count": 18,
   "provenance_validation_result": {
+    "code_path_hash": "ec7317328b6403bb9d8b452dd033172e9854e25a14979a37a209e13ff1807950",
+    "failure_controls": {
+      "interventional_headroom": true,
+      "leakage": true,
+      "premise": true,
+      "provenance": true,
+      "replay": true,
+      "schema_alias": true,
+      "verdict": true
+    },
     "failures": [],
     "producer_function": "route_c_preflight_001a.provenance.validate_provenance_rows",
-    "row_count": 4,
+    "provenance_kind": "validation_summary",
+    "row_count": 16,
+    "subsystems_covered": [
+      "interventional_headroom",
+      "leakage",
+      "premise",
+      "replay",
+      "schema_alias"
+    ],
     "valid": true,
     "verdict": "provenance_valid"
   },
   "push_tag_remote_anchor_performed": false,
   "real_trigger_evidence": {
-    "artifact_dir": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/route_c_preflight_001a",
+    "artifact_dir": "/sessions/trusting-eloquent-wright/mnt/intelligence-theory-lab/artifacts/route_c_preflight_001a",
     "callable_runner": "route_c_preflight_001a.runner.run_preflight",
-    "run_id": "route-c-preflight-001a"
+    "run_id": "route-c-preflight-001a-repair-001a"
   },
+  "repair_task_id": "REPAIR-ROUTE-C-PREFLIGHT-001A-OBSERVATIONAL-BASELINE-001A",
   "replay_validation_result": {
     "behavior_recomputed": true,
+    "clean_matches": true,
     "hash_only": false,
-    "mismatch_episode_ids": [],
     "negative_control": {
       "accepted_hash_only": false,
       "corrupt_intervention_log_changes_behavior": true,
+      "corrupt_serialized_state_changes_behavior": true,
+      "recompute_ignores_stored_predictions": true,
+      "removed_intervention_rows_changes_behavior": true,
       "stored_hash_tamper_accepted": false
     },
     "producer_function": "route_c_preflight_001a.replay.replay_oracle_predictions",
-    "recomputed_predictions": [
-      {
-        "episode_id": "route-c-episode-1600",
-        "predicted_self_handles": [
-          "h_0b56f23fed",
-          "h_67f4da8eeb",
-          "h_dc0c5cc747"
-        ],
-        "prediction_hash": "9c978b6672e58e7fba158d862dc2caad3593e07fd2f420ad83f7e7725ece524f"
+    "provenance_record": {
+      "aggregation": "replay_recomputed_and_all_tamper_controls_flip",
+      "callable_source_path": "/sessions/trusting-eloquent-wright/mnt/intelligence-theory-lab/src/route_c_preflight_001a/replay.py",
+      "code_path_hash": "7b1d156e2df553b0ad8a7d11ba9cd0ae31f6accfac581099126555b776db5767",
+      "episode_ids": [
+        "route-c-episode-1600",
+        "route-c-episode-1601",
+        "route-c-episode-1602",
+        "route-c-episode-1603",
+        "route-c-episode-1604",
+        "route-c-episode-1605",
+        "route-c-episode-1606",
+        "route-c-episode-1607",
+        "route-c-episode-1608",
+        "route-c-episode-1609",
+        "route-c-episode-1610",
+        "route-c-episode-1611",
+        "route-c-episode-1612",
+        "route-c-episode-1613",
+        "route-c-episode-1614",
+        "route-c-episode-1615",
+        "route-c-episode-1616",
+        "route-c-episode-1617",
+        "route-c-episode-1618",
+        "route-c-episode-1619",
+        "route-c-episode-1620",
+        "route-c-episode-1621",
+        "route-c-episode-1622",
+        "route-c-episode-1623",
+        "route-c-episode-1624",
+        "route-c-episode-1625",
+        "route-c-episode-1626",
+        "route-c-episode-1627",
+        "route-c-episode-1628",
+        "route-c-episode-1629",
+        "route-c-episode-1630",
+        "route-c-episode-1631"
+      ],
+      "inputs": {
+        "episode_count": 32,
+        "intervention_row_count": 3072
       },
-      {
-        "episode_id": "route-c-episode-1601",
-        "predicted_self_handles": [
-          "h_09ad74a7fa",
-          "h_38319b75f6",
-          "h_bd18a8e97d"
-        ],
-        "prediction_hash": "a4e5e678387f8cdc027e6e9f6b744bb958479d8f36456942fbbc1b45e0feb14e"
+      "producer_function": "route_c_preflight_001a.replay.replay_oracle_predictions",
+      "provenance_kind": "material_record",
+      "recompute_basis": {
+        "kind": "indicator",
+        "predicate": true
       },
-      {
-        "episode_id": "route-c-episode-1602",
-        "predicted_self_handles": [
-          "h_48aa80c732",
-          "h_55c6f0202b",
-          "h_775bea46f3"
-        ],
-        "prediction_hash": "1f2c173274403fc0b7eab40499cf7ef4f2fe80e58d473055ddd2cf79baf4bc35"
-      },
-      {
-        "episode_id": "route-c-episode-1603",
-        "predicted_self_handles": [
-          "h_10d5989758",
-          "h_d8acd9673a",
-          "h_db43dfc4b2"
-        ],
-        "prediction_hash": "a88567758da0be2f787dc26ee6b772f3971e007cb1dfa3fe912a901fbd41a336"
-      },
-      {
-        "episode_id": "route-c-episode-1604",
-        "predicted_self_handles": [
-          "h_0a394cad1c",
-          "h_7794aa34f0",
-          "h_b0a9600dbd"
-        ],
-        "prediction_hash": "aa94eb32ca1f32e22de972c121d6209b7b4b1427e9617c55f6bbcd9841f053c3"
-      },
-      {
-        "episode_id": "route-c-episode-1605",
-        "predicted_self_handles": [
-          "h_14f65236a4",
-          "h_a2b3ebf88f",
-          "h_dc25160ecc"
-        ],
-        "prediction_hash": "a6b4f88a5f5e6db22b629f91828a4053d453eb4cf4e93bca1683baab586230ae"
-      },
-      {
-        "episode_id": "route-c-episode-1606",
-        "predicted_self_handles": [
-          "h_1e8a167e2a",
-          "h_6cbe4dff52",
-          "h_bd7661828e"
-        ],
-        "prediction_hash": "bf8c55b2eaae9a563672e04d460a82ffc8122ffa9a03c188ab9ba79a476cb539"
-      },
-      {
-        "episode_id": "route-c-episode-1607",
-        "predicted_self_handles": [
-          "h_2926a687e0",
-          "h_d83e6b32fb",
-          "h_ee9a0788fc"
-        ],
-        "prediction_hash": "47f3ab7b9dc3bd594d218e303ff399f06e257d8dc5879ee69c28245f3f8cd9bd"
-      },
-      {
-        "episode_id": "route-c-episode-1608",
-        "predicted_self_handles": [
-          "h_129fe9b689",
-          "h_34d462ff69",
-          "h_70ca6be6dd"
-        ],
-        "prediction_hash": "e909f819f28697775892415cd077a3bdb1d8ee0ed1b19605e0133a72c5269d83"
-      },
-      {
-        "episode_id": "route-c-episode-1609",
-        "predicted_self_handles": [
-          "h_344ec215ac",
-          "h_6651971199",
-          "h_fd1d95ea79"
-        ],
-        "prediction_hash": "4da17c2660e97b75ec8c0caa3bb20e405e55a15df355b1b6603465d6f8978b12"
-      },
-      {
-        "episode_id": "route-c-episode-1610",
-        "predicted_self_handles": [
-          "h_08e76df438",
-          "h_0c5e366a43",
-          "h_673680b362"
-        ],
-        "prediction_hash": "811fe71d96e910ffd9ac78843efcfbd454470c6108ac9d200df4438f1fb84304"
-      },
-      {
-        "episode_id": "route-c-episode-1611",
-        "predicted_self_handles": [
-          "h_21379425d4",
-          "h_6214fbeee4",
-          "h_bb42d02d72"
-        ],
-        "prediction_hash": "3fb7ee246c5589913bc7fd1ac6e9bcd63ba7a3553a47f10055e124e1fce4cf71"
-      },
-      {
-        "episode_id": "route-c-episode-1612",
-        "predicted_self_handles": [
-          "h_52864543e0",
-          "h_7389b21bd8",
-          "h_8b0a0e0b17"
-        ],
-        "prediction_hash": "9265f797b622d29f97e5cebc6aa5f90fec59fe56b7f2c756e3315288ebd40264"
-      },
-      {
-        "episode_id": "route-c-episode-1613",
-        "predicted_self_handles": [
-          "h_491c54a344",
-          "h_4f5753f6bc",
-          "h_afb2f0724b"
-        ],
-        "prediction_hash": "e59fe8758ef810d68b722397d067cbc039ea1beb6c25f686294d559bead7275e"
-      },
-      {
-        "episode_id": "route-c-episode-1614",
-        "predicted_self_handles": [
-          "h_04ecc605ac",
-          "h_a8db4b318b",
-          "h_fba476a723"
-        ],
-        "prediction_hash": "bf72ad9dc483ec86782f1d68b0bd8ea26c80406e70511616854d6512c7d37d15"
-      },
-      {
-        "episode_id": "route-c-episode-1615",
-        "predicted_self_handles": [
-          "h_3568a028cc",
-          "h_8867541668",
-          "h_b2ce3860e9"
-        ],
-        "prediction_hash": "7a9daea3cf0f1ffd3738e8bf68886d3dd4edc92bd5b78491b6e61b12ab260543"
-      },
-      {
-        "episode_id": "route-c-episode-1616",
-        "predicted_self_handles": [
-          "h_09d75e9732",
-          "h_0e64c85215",
-          "h_7e1239b2cb"
-        ],
-        "prediction_hash": "3c0817b7a39c11583ed2f815a65a3567957bbdf014549967c048bcc69755e0cf"
-      },
-      {
-        "episode_id": "route-c-episode-1617",
-        "predicted_self_handles": [
-          "h_165ef543d4",
-          "h_7fba801c74",
-          "h_ca09484ff7"
-        ],
-        "prediction_hash": "42e87039e39273e65b4fa1a9749d903d1ed2301e3cb15bc8c6955671dbe2148a"
-      },
-      {
-        "episode_id": "route-c-episode-1618",
-        "predicted_self_handles": [
-          "h_62a0289393",
-          "h_952d185b85",
-          "h_d432caee9c"
-        ],
-        "prediction_hash": "ce86f4af03dffc127b4c751fee91794e84e6a7219f5c42e1fc70f1f4ba899a8a"
-      },
-      {
-        "episode_id": "route-c-episode-1619",
-        "predicted_self_handles": [
-          "h_0ece313dc2",
-          "h_19846f33cf",
-          "h_b80a6c7093"
-        ],
-        "prediction_hash": "0df1f0d3067b6627c1b7868f43bf3569b6bbe1ed208c6c2bc602724db55a8f60"
-      },
-      {
-        "episode_id": "route-c-episode-1620",
-        "predicted_self_handles": [
-          "h_59d6b0d68c",
-          "h_b4f06173a0",
-          "h_ded06910d8"
-        ],
-        "prediction_hash": "3265acd3ee5737b4f187562b8aa5b860d7d6e17bab17a8219ea2847633acaa52"
-      },
-      {
-        "episode_id": "route-c-episode-1621",
-        "predicted_self_handles": [
-          "h_61a75cb2bb",
-          "h_699341d76e",
-          "h_f73290343f"
-        ],
-        "prediction_hash": "7aa6f826e6bf08899a752eddd906d39ac6367a9a589581554c38cbff296c00c2"
-      },
-      {
-        "episode_id": "route-c-episode-1622",
-        "predicted_self_handles": [
-          "h_1920e3f2af",
-          "h_8ca501b4f6",
-          "h_af6b82dce0"
-        ],
-        "prediction_hash": "6503a5030cfb5bdece857ac262ac1083f8f26638d3aabf5a785d2ad64486c53d"
-      },
-      {
-        "episode_id": "route-c-episode-1623",
-        "predicted_self_handles": [
-          "h_072ea32fc1",
-          "h_d9f3dc1b0c",
-          "h_f1705022de"
-        ],
-        "prediction_hash": "97f112296b505a12d4a0005057bd06759548f16e180add150d818238e234e80d"
-      },
-      {
-        "episode_id": "route-c-episode-1624",
-        "predicted_self_handles": [
-          "h_2dfb0e68ee",
-          "h_5214e1a571",
-          "h_abf3fab0a3"
-        ],
-        "prediction_hash": "ccd7bac413524ba675571e792c50a470db123617414002fe1098c7e8f75aa847"
-      },
-      {
-        "episode_id": "route-c-episode-1625",
-        "predicted_self_handles": [
-          "h_00ec10d9b4",
-          "h_b164cf6848",
-          "h_ed34a46acf"
-        ],
-        "prediction_hash": "137af7186b4fb117fe6b2b1e4a9b16860a9374d26c076eea68105cfbf498ec60"
-      },
-      {
-        "episode_id": "route-c-episode-1626",
-        "predicted_self_handles": [
-          "h_4f46e5d148",
-          "h_977fcf5b59",
-          "h_e0c276ba26"
-        ],
-        "prediction_hash": "d2f4bc783ab7f68758c7a3db2e8519f1c03b900d1d3b3ed1cc64afa178e48961"
-      },
-      {
-        "episode_id": "route-c-episode-1627",
-        "predicted_self_handles": [
-          "h_8cff59adb8",
-          "h_902edff659",
-          "h_e1ea523ad8"
-        ],
-        "prediction_hash": "0719187c9a5cfd07cd821ebd78af922f738316a540b2b48313146c869707a568"
-      },
-      {
-        "episode_id": "route-c-episode-1628",
-        "predicted_self_handles": [
-          "h_63a22c8192",
-          "h_d59b7091a7",
-          "h_d9f1458cfa"
-        ],
-        "prediction_hash": "bbc132f7baf04940441f05c1d7feb1ac7eeb3b16b4bb504ff72d1564b0ded1d9"
-      },
-      {
-        "episode_id": "route-c-episode-1629",
-        "predicted_self_handles": [
-          "h_3d25fc49f8",
-          "h_5b8cb8595c",
-          "h_659c7ad1e9"
-        ],
-        "prediction_hash": "7f47ed33b9072399fcd3b468d2ae0678b2fdbea0ac89c29a98ab1a2e60158256"
-      },
-      {
-        "episode_id": "route-c-episode-1630",
-        "predicted_self_handles": [
-          "h_34dc34a5d1",
-          "h_dd76824037",
-          "h_ebf1c4b4b6"
-        ],
-        "prediction_hash": "014996b4fb2095ba781e13169f027350dd79ef3b729ce2287a78487b528b5a81"
-      },
-      {
-        "episode_id": "route-c-episode-1631",
-        "predicted_self_handles": [
-          "h_51ec0955a6",
-          "h_6ae999e7c7",
-          "h_8da78759a1"
-        ],
-        "prediction_hash": "09c857117f3c40ab87f239ed654d3fcca1ffefc5ec82e3e1dbee00e2898f193f"
-      }
-    ],
-    "run_id": "route-c-preflight-001a-replay",
+      "run_id": "route-c-preflight-001a-repair-001a-replay",
+      "seed": "multi_seed",
+      "subsystem": "replay",
+      "threshold_snapshot_hash": "216a015fad34bd2dbd74c931235e8d6158b587e78b7d8b6c06d36bd6ae323d4e",
+      "threshold_used": null,
+      "value": 1.0
+    },
+    "reads_answer_fields": false,
+    "run_id": "route-c-preflight-001a-repair-001a-replay",
     "used_intervention_rows": true,
     "used_serialized_state": true,
     "verdict": "replay_recomputed"
@@ -467,7 +392,41 @@
     1631
   ],
   "task_id": "ROUTE-C-PREFLIGHT-001A",
-  "thresholds_frozen_before_run": true,
+  "threshold_freeze_evidence": {
+    "config_source_unchanged_since_snapshot": true,
+    "live_config_source_hash": "6b7fe62c9b7ecd772d8ea5497366843bb4116c213eaad0d4ff5615e61cdbe9dc",
+    "threshold_snapshot": {
+      "config_source_hash": "6b7fe62c9b7ecd772d8ea5497366843bb4116c213eaad0d4ff5615e61cdbe9dc",
+      "declared_thresholds": {
+        "chance": 0.375,
+        "headroom_band": 0.25,
+        "premise_band": 0.12,
+        "premise_threshold": 0.495
+      },
+      "snapshot_hash": "216a015fad34bd2dbd74c931235e8d6158b587e78b7d8b6c06d36bd6ae323d4e"
+    }
+  },
+  "thresholds": {
+    "chance": 0.375,
+    "headroom_band": 0.25,
+    "premise_band": 0.12,
+    "premise_threshold": 0.495
+  },
+  "value_level_family_max_on_clean": 0.416667,
+  "value_level_observation_decodable_control": {
+    "control_type": "gate_coupled_value_level",
+    "decoded_by_value_level_attacker": true,
+    "detected_classes": [],
+    "expected_class": "observation-value-decodable",
+    "family_max": 1.0,
+    "family_max_attacker": "passive_mean_attacker",
+    "fired": true,
+    "gate_verdict": "blocked_by_observation_decodable_self_set",
+    "key_scanner_silent": true,
+    "note": "value-level leak in passive handle_values; decoded by a passive value attacker, not by name-grep",
+    "value_level": true,
+    "value_level_family_max": 1.0
+  },
   "verdict": "preflight_admitted_for_candidate_design",
   "what_this_does_not_prove": [
     "Route C mechanism validity",
