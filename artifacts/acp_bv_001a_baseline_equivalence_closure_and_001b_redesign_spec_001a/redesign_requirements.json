@@ -1,0 +1,120 @@
+{
+  "task_id": "ACP-BV-DISTRIBUTION-REDESIGN-SPEC-001B",
+  "spec_status": "ready_for_independent_hostile_spec_audit_only",
+  "current_layer": "mechanism-hypothesis / engineering-governance distribution redesign spec only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": {
+    "001a_verdict": "blocked_by_baseline_equivalence",
+    "001a_head": "c105a965de9e05dfdea7bc77b393bd5c85e43754",
+    "strongest_baseline": "full_access_lookup_baseline",
+    "candidate_score": 1.0,
+    "baseline_score": 1.0,
+    "delta": 0.0,
+    "train_heldout_overlap": "18/18",
+    "candidate_truth_coupling": "oracle_like_reference_candidate_scaffolding_only"
+  },
+  "design_goals": {
+    "G1_true_heldout_generalization": {
+      "required": true,
+      "detectors": [
+        "train_key_set",
+        "heldout_key_set",
+        "overlap_count",
+        "overlap_ratio",
+        "unseen_heldout_key_count",
+        "memory_complete_policy_verdict"
+      ],
+      "block_rule": "if overlap_ratio == 1.0 and full_access_lookup_baseline ties candidate, stop with blocked_by_baseline_equivalence"
+    },
+    "G2_candidate_not_equal_to_truth_formula": {
+      "required": true,
+      "scaffold_label": "oracle_like_reference_candidate_scaffolding_only",
+      "scaffold_claim": "not mechanism-relevant evidence"
+    },
+    "G3_fair_full_access_baseline_from_start": {
+      "required": true,
+      "baseline_matrix": [
+        "full_access_lookup_baseline",
+        "nearest_neighbor_full_observation_action_keys",
+        "graph_cache_transition_table",
+        "graph_cache_successor_map",
+        "episodic_traversal",
+        "fsm_planner",
+        "observation_only_baseline",
+        "action_independent_baseline",
+        "static_action_baseline",
+        "replay_hash_only_baseline",
+        "candidate_self_consistency_baseline"
+      ],
+      "strongest_baseline_selection": "after_execution"
+    },
+    "G4_b3_bands_preserved": {
+      "equivalence": "< 0.02",
+      "inconclusive": "[0.02, 0.05)",
+      "mechanism_relevant_effect_candidate": ">= 0.05",
+      "baseline_equivalent_is_blocker": true,
+      "mechanism_relevant_effect_candidate_is_not_mechanism_proof": true
+    },
+    "G5_solvability_without_leakage": {
+      "required": true,
+      "preflight_components": [
+        "allowed_observation_oracle",
+        "fair_full_access_lookup_baseline",
+        "graph_cache_family",
+        "leakage_scanner_with_positive_control",
+        "heldout_key_overlap_detector",
+        "candidate_truth_coupling_detector"
+      ],
+      "invalid_if_only_leaking_oracle_exceeds_baseline": true,
+      "unusable_if_allowed_observation_oracle_cannot_exceed_baseline": true
+    },
+    "G6_memory_resistance_mechanism": {
+      "required": true,
+      "allowed_mechanism_examples": [
+        "heldout_latent_recombination",
+        "compositional_generalization_over_unseen_topology_risk_action_combinations",
+        "seed_controlled_transition_dynamics_with_hidden_state_not_directly_copyable_from_train_keys",
+        "counterfactual_action_queries_under_unseen_action_consequences",
+        "distribution_shift_where_superficial_key_lookup_fails_but_model_based_state_action_prediction_can_solve"
+      ],
+      "noise_or_id_renaming_is_insufficient": true
+    },
+    "G7_no_candidate_authored_truth": {
+      "required": true,
+      "candidate_fields_forbidden_from_truth_or_metric_control": [
+        "policy_map",
+        "labels",
+        "logits",
+        "confidence",
+        "score",
+        "verdict",
+        "serialized_state",
+        "producer_function",
+        "baseline_result",
+        "ablation_result",
+        "leakage_result",
+        "replay_result"
+      ]
+    },
+    "G8_source_boundary_and_source_pin_carryover": {
+      "required": true,
+      "requirements": [
+        "verify_callable_source_boundary",
+        "git_object_frozen_source_pin_anchor",
+        "tamper_after_anchor_negative_control",
+        "no_self_declared_ownership",
+        "no_live_regenerated_manifest_trust"
+      ]
+    }
+  },
+  "anti_zeno_rule": {
+    "one_redesign_attempt": true,
+    "close_or_downgrade_if_001b_collapses_to_lookup_equivalence": true,
+    "close_or_downgrade_if_001b_collapses_to_candidate_truth_formula_coupling": true,
+    "close_or_downgrade_if_001b_collapses_to_non_discriminative_distribution": true,
+    "forbidden_route": "repair_into_pass_shaped_success"
+  },
+  "claim_ceiling": "ACP-BV 001A negative-evidence closure and ACP-BV 001B distribution redesign spec only",
+  "next_minimal_closed_loop_action": "Independent hostile spec audit before any ACP-BV 001B implementation task is drafted."
+}
