@@ -40,3 +40,21 @@
 - Enabled status: none.
 - Claim ceiling: Route C Phase 0 preflight negative audit evidence preservation only.
 - Auto-Remote-Anchor: forbidden.
+
+## Route C repaired preflight re-audit acceptance preservation
+
+- Audit task: `CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-REPAIR-REAUDIT-001A`
+- Target: `ROUTE-C-PREFLIGHT-001A`
+- Target commit: `278819ab5b2dccc082bfaa24098c5ddbdbba7749`
+- Decision: preserve Claude independent re-audit acceptance for candidate-card drafting only.
+- Verdict: `audit_accepts_repaired_phase0_for_candidate_card_drafting`.
+- Candidate card drafting: permitted as the next bounded design task only.
+- Candidate implementation: forbidden until a separate Route C candidate-card design task is independently audited.
+- Gate/mainline/runtime/live integration: forbidden.
+- Push/tag/remote-anchor: forbidden; a reported GitHub PAT in local push scripts remains a separate repo-hygiene blocker until revoked/rotated and removed.
+- Preserved caveats: F-forge / provenance basis not re-derived from real episode data; meta-provenance self-reference; deferred section 6.3 fair-interventional saturation risk; PAT push blocker.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: operator-provided Claude independent hostile re-audit artifacts under `artifacts/CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-REPAIR-REAUDIT-001A/`.
+- Claim ceiling: Route C repaired Phase 0 re-audit acceptance preservation only; no mechanism evidence, no candidate evidence, no Gate pass, no mainline effect, no runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness.
+- Auto-Remote-Anchor: forbidden.

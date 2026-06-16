@@ -1,0 +1,174 @@
+{
+  "audit_task_id": "CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-REPAIR-REAUDIT-001A",
+  "verdict": "audit_accepts_repaired_phase0_for_candidate_card_drafting",
+  "target_commit": "278819ab5b2dccc082bfaa24098c5ddbdbba7749",
+  "target_commit_subject": "Repair Route C preflight observational baseline",
+  "parent_preservation_commit": "eadc08f04e9bc465379fd35b3844a823a55062c6",
+  "parent_impl_commit": "726f26daef9d766abe0592972acf8569041483fa",
+  "branch": "codex/meta-theory-scaffold",
+  "target_artifact_path": "artifacts/route_c_preflight_001a/",
+  "current_layer_under_audit": "engineering implementation / candidate-free Phase 0 preflight repair evidence only",
+  "audit_layer": "engineering-governance / independent hostile re-audit only",
+  "mainline_integration_status": "none",
+  "enabled_status": "local CLI / pytest / artifact generation only; no enabled/live Route C path",
+  "claim_ceiling": "independent hostile re-audit verdict over the repaired Route C candidate-free Phase 0 preflight only; no mechanism, candidate, Gate, mainline, runtime, agency, autonomy, consciousness, emotion, stable-user-benefit, or EGO-readiness claim",
+  "accept_downgrade_block": "ACCEPT",
+  "blocking_issues": [],
+  "non_blocking_issues": [
+    "F-forge: provenance computed_not_literal binds rows to real unmodified source (code_path_hash) and re-derives value from declared recompute_basis, but does NOT re-derive basis VALUES from real episode data; a self-consistent forged (value,basis) row naming a real producer passes validation (reproduced). Acceptable for candidate-free Phase 0 because the canonical numbers are independently reproduced from source byte-for-byte; REQUIRED-CLOSURE before any Gate-grade claim.",
+    "E-self-ref: the two meta producers (provenance.validate_provenance_rows, runner._select_verdict) are emitted as material rows with real source-matching code_path_hashes but are not themselves re-run through the validator (structural circularity). 16/18 rows validated; both ACTUAL gates (premise, headroom) ARE validated.",
+    "D-margin: worst observed CLEAN seed-range family_max = 0.4750 vs premise_threshold 0.4950 (margin 0.0200). Premise robust across 8 disjoint clean ranges (0/8 exceed threshold) but finite-sample-thin; error direction is false-BLOCK (conservative), never false-admit.",
+    "replay-tautology: replay negative controls #4 (recompute_ignores_stored) and #5 (stored_hash_tamper_accepted=False) are asserted/tautological rather than dynamically adversarial; load-bearing controls #1-#3 (corrupt rows / removed rows / corrupt state) are real and flip.",
+    "env-mount: FUSE no-delete mount makes the entire repo appear dirty (4498 'D' + 17 '??' across unrelated historical paths); verified mount artifact, NOT real changes (all 23 on-disk route_c files hash-identical to commit 278819a).",
+    "env-sentinel: artifacts/route_c_preflight_001a/_bash_write_test.txt (23B) is untracked, absent from commit 278819a, undeletable via FUSE; recorded as caveat, not read as evidence, excluded from comparisons.",
+    "env-gitconfig: .git/config truncated at the [credential \"https://github...] section by FUSE; audit ran via a read-only temp gitdir using object alternates."
+  ],
+  "separate_repo_hygiene_blocker": {
+    "issue": "hardcoded GitHub PAT present in scripts/push.py:31 and scripts/push.sh:19 (token redacted, never displayed in this audit)",
+    "tracked_in_commit": false,
+    "gitignored": true,
+    "gitignore_note": "Push scripts contain token - never commit",
+    "impact": "push/tag/remote-anchor must remain BLOCKED until the token is revoked/rotated and removed from scripts (and the .git/config credential section); separate from the Route C Phase 0 re-audit verdict",
+    "token_exposed_in_audit": false
+  },
+  "start_state_checks": {
+    "repo_root_confirmed": true,
+    "branch_correct": true,
+    "head_equals_target": true,
+    "target_artifacts_exist": true,
+    "no_candidate_py": true,
+    "only_route_c_paths_touched_by_repair": true,
+    "repair_diff_file_count": 19,
+    "push_performed": false,
+    "tag_on_target": false,
+    "origin_ref": "8ad1dd846bd033d77d26367304bf10747eecbbf0",
+    "origin_ref_equals_target": false
+  },
+  "reproduction": {
+    "pytest": "22 passed",
+    "cli_verdict_reproduced": "preflight_admitted_for_candidate_design",
+    "result_json_diff_vs_committed": "only artifact_dir path, run_id, and absolute callable_source_path differ (expected); all scientific content byte-identical",
+    "canonical_run_mount": "trusting-eloquent-wright (executor session); reaudit reproduced on elegant-gracious-carson",
+    "key_scalars_reproduced": {
+      "obs_only_family_max_score": 0.416667,
+      "obs_only_family_max_attacker": "supervised_passive_feature_attacker",
+      "value_level_family_max_on_clean": 0.416667,
+      "interventional_oracle_score": 0.989583,
+      "interventional_headroom": 0.572916,
+      "premise_threshold": 0.495,
+      "chance": 0.375,
+      "material_producer_count": 18,
+      "provenance_row_count": 18
+    }
+  },
+  "prior_blocker_closure": {
+    "prior_blocker": "blocked_by_observation_baseline_underpowered",
+    "closed": true,
+    "value_level_attackers_read_handle_values": true,
+    "passive_attacker_family": [
+      "positional_first_k_attacker (weak/value_level=false)",
+      "passive_mean_attacker (value_level)",
+      "passive_variance_attacker (value_level)",
+      "passive_correlation_attacker (value_level)",
+      "passive_pca_subspace_attacker (value_level)",
+      "passive_cross_episode_attacker (value_level)",
+      "supervised_passive_feature_attacker (value_level, split-safe)",
+      "legal_field_membership_attacker (answer-map reader, value_level=false)"
+    ],
+    "family_max_is_max_over_all": true,
+    "premise_gate_uses_family_max": true,
+    "weak_positional_cannot_determine_verdict_when_stronger_fires": true
+  },
+  "l9_value_level_control": {
+    "leaks_via_handle_values_only": true,
+    "new_legal_keys_introduced": 0,
+    "adds_no_answer_map_or_truth_or_alias_or_schema_or_query": true,
+    "gate_verdict_on_l9": "blocked_by_observation_decodable_self_set",
+    "family_max_on_l9": 1.0,
+    "winning_attacker_is_value_level": true,
+    "key_name_scanner_on_l9": "clean"
+  },
+  "canonical_clean_score_semantics": {
+    "S_absent_from_passive_law_by_construction": true,
+    "threshold_predeclared_unchanged_across_commits": true,
+    "premise_band": 0.12,
+    "headroom_band": 0.25,
+    "default_seeds_unchanged_across_commits": "range(1600,1632)",
+    "no_post_hoc_threshold_tuning": true,
+    "no_seed_cherry_pick": true,
+    "supervised_attacker_split_safe": true,
+    "supervised_train_seeds": "range(90000000,90000048) disjoint from eval + learner_observed_seed offset",
+    "clean_seed_robustness_ranges_over_threshold": "0/8",
+    "clean_family_max_observed_range": "0.379 to 0.475"
+  },
+  "provenance": {
+    "rows_total": 18,
+    "rows_validated_by_gate": 16,
+    "all_rows_have_code_path_hash": true,
+    "all_18_producers_resolve_and_source_hash_matches_live": true,
+    "subsystem_histogram": {"premise": 10, "schema_alias": 2, "interventional_headroom": 2, "leakage": 1, "replay": 1, "provenance": 1, "verdict": 1},
+    "provenance_validation_verdict": "provenance_valid",
+    "breaking_a_real_producer_blocks": true
+  },
+  "computed_attestations": {
+    "computed_not_literal_fail_able": true,
+    "threshold_frozen_before_run_fail_able": true,
+    "failure_path_available_fail_able": true,
+    "drop_code_path_hash_blocks": true,
+    "config_source_changed_since_snapshot_blocks": true,
+    "hardcoded_true_disagreeing_blocks": true,
+    "self_consistent_forge_passes": true
+  },
+  "leakage": {
+    "clean_is_clean": true,
+    "all_controls_fired": true,
+    "blocking_verdict": null,
+    "gate_coupled_controls": ["L1", "L5", "L7", "L9"],
+    "synthetic_detector_only_controls": ["L2", "L3", "L4", "L6", "L8"],
+    "synthetic_controls_honestly_marked": true,
+    "l1_noop_failure_probe_blocks": true
+  },
+  "replay": {
+    "clean_verdict": "replay_recomputed",
+    "recomputes_from_state_and_rows_only": true,
+    "reads_no_stored_prediction_or_truth_or_oracle_field": true,
+    "corrupt_intervention_rows_changes_behavior": true,
+    "removed_intervention_rows_changes_behavior": true,
+    "corrupt_serialized_state_changes_behavior": true,
+    "replay_material_record_in_provenance": true
+  },
+  "test_adequacy": {
+    "test_count": 22,
+    "pytest_result": "22 passed",
+    "fail_shaped": true,
+    "covers_value_level_block": true,
+    "covers_family_max_used": true,
+    "covers_positional_cannot_pass": true,
+    "covers_forged_attestation_blocks": true,
+    "covers_failure_control_absent_blocks": true,
+    "covers_replay_tamper_flip": true,
+    "covers_candidate_absent": true
+  },
+  "candidate_free_boundary": {
+    "candidate_py_absent": true,
+    "learned_self_boundary_candidate_absent": true,
+    "fair_interventional_candidate_absent": true,
+    "gate_run": false,
+    "mainline_integration": false,
+    "runtime_bridge_scheduler_admission_product_path": false,
+    "push_tag_remote_anchor": false
+  },
+  "next_minimal_closed_loop_action": "Draft a separate bounded Route C candidate-card DESIGN task (candidate implementation remains FORBIDDEN until that card is independently audited). In parallel, open a separate repo-hygiene task to rotate/remove the GitHub PAT before any push/tag/anchor.",
+  "what_this_audit_does_not_prove": [
+    "Route C mechanism validity",
+    "self-boundary mechanism evidence",
+    "candidate success",
+    "Gate pass",
+    "mainline effect",
+    "live path",
+    "agency", "autonomy", "consciousness", "emotion",
+    "stable user benefit",
+    "EGO readiness",
+    "fair interventional candidate advantage under deferred 6.3 saturation risk"
+  ]
+}
