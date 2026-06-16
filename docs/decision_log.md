@@ -23,3 +23,20 @@
 - Mainline integration: none.
 - Enabled status: none beyond local CLI / pytest / artifact generation.
 - Auto-Remote-Anchor: forbidden.
+
+## Route C preflight hostile audit blocker
+
+- Audit task: `CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-HOSTILE-AUDIT-001A`
+- Target: `ROUTE-C-PREFLIGHT-001A`
+- Target commit: `726f26daef9d766abe0592972acf8569041483fa`
+- Decision: `ROUTE-C-PREFLIGHT-001A` admission is blocked.
+- Verdict: `blocked_by_observation_baseline_underpowered`.
+- Candidate card drafting: forbidden until bounded preflight repair and independent re-audit.
+- Root cause: `obs_only_baseline` is underpowered; it reads planted answer maps or falls back to first-k handle position and does not inspect passive `handle_values`.
+- Real trigger evidence: read-only hostile probe injected a value-level observation-decodable self-set leak into passive `handle_values`; a legal mean-attacker scored `1.0000`, while the shipped baseline stayed near chance and the shipped premise gate still returned `non_identifiability_present`.
+- Next allowed action: bounded candidate-free preflight repair only.
+- Not admitted: Gate pass, mainline/runtime/live/candidate path, mechanism claim, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
+- Mainline integration: none.
+- Enabled status: none.
+- Claim ceiling: Route C Phase 0 preflight negative audit evidence preservation only.
+- Auto-Remote-Anchor: forbidden.

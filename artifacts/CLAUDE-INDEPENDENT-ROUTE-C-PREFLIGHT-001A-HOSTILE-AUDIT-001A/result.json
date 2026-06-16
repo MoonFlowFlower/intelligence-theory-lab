@@ -1,0 +1,65 @@
+{
+  "task_id": "CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-HOSTILE-AUDIT-001A",
+  "audit_layer": "engineering-governance / independent hostile audit only",
+  "audit_date": "2026-06-16",
+  "verdict": "blocked_by_observation_baseline_underpowered",
+  "admission_decision": "BLOCKED — do not draft Route C candidate card",
+  "target": {
+    "repo": "intelligence-theory-lab",
+    "branch": "codex/meta-theory-scaffold",
+    "target_commit": "726f26daef9d766abe0592972acf8569041483fa",
+    "commit_message": "Implement Route C candidate-free preflight",
+    "head_equals_target": true,
+    "target_artifact_path": "artifacts/route_c_preflight_001a/result.json",
+    "audited_claimed_verdict": "preflight_admitted_for_candidate_design"
+  },
+  "current_layer_under_audit": "engineering implementation / candidate-free preflight evidence only",
+  "mainline_integration_status": "none (verified: commit touches only src/tests/artifacts/route_c_preflight_001a + 2 docs)",
+  "enabled_status": "local CLI / pytest / artifact generation only (verified)",
+  "real_trigger_evidence": {
+    "result_json_reproduced_byte_identical_from_source": true,
+    "only_difference_on_rerun": "artifact_dir path field",
+    "pytest": "12 passed",
+    "cli_prints": "preflight_admitted_for_candidate_design",
+    "parent_doc_hashes_match_committed_LF_docs": true
+  },
+  "claim_ceiling": "Independent audit verdict over Route C Phase 0 candidate-free preflight artifacts only. No mechanism, candidate, Gate, mainline, agency, autonomy, consciousness, emotion, or user-benefit claim is made or admitted.",
+  "decisive_blocker": {
+    "id": "blocked_by_observation_baseline_underpowered",
+    "summary": "The shipped obs_only_baseline never analyzes the passive observation values; it reads two planted answer-maps then falls back to a positional first-k guess. It is materially weaker than the predeclared blueprint contract (best passive predictor: 'may use any observational structure (covariance, clustering, supervised fit on passive features)'). Therefore the non_identifiability_present verdict is asserted-by-construction, not tested.",
+    "demonstrated_counterexample": {
+      "construction": "Injected a blatant value-level leak of S into passive_rows handle_values (self-channel offset +100).",
+      "trivial_legal_mean_attacker_score": 1.0,
+      "shipped_obs_only_baseline_score_same_data": 0.3854,
+      "shipped_premise_gate_verdict_same_data": "non_identifiability_present",
+      "conclusion": "The premise gate ADMITS a genuinely observation-decodable passive surface; it is not fail-closed against threat F1 it was designed to defend."
+    },
+    "acceptance_condition_failed": "#1 — passive observation is not decoding S under a strong-enough baseline family (a trivial legal attacker decodes S to 1.0 where the shipped baseline reports chance)."
+  },
+  "non_blocking_findings": [
+    "Provenance scope gap: producer_functions=6 but provenance_rows=4 and code_path_hashes=4; leakage.run_leakage_positive_controls and replay.replay_oracle_predictions are material to _select_verdict yet are outside the callable provenance gate (no code_path_hash, not in provenance_rows.jsonl).",
+    "Non-fail-able provenance attestations: computed_not_literal / threshold_frozen_before_run / failure_path_available are hardcoded True in provenance.score_record; result.thresholds_frozen_before_run is a hardcoded literal. The validator cannot fail on these.",
+    "Leakage suite is an injector<->detector string-name pair: L2/L3/L4/L6/L8 have gate_verdict=null and are nominal key-name detections not coupled to any decoder. Only L1/L5/L7 couple to a gate, and only via explicit answer-maps/aliases. blocking_verdict is None on canonical data by construction (all controls fire, clean stays clean), so leakage cannot block the canonical run.",
+    "Headroom semantics inflated: headroom = oracle(0.9896) - obs(0.3854); because obs is a no-op positional baseline, the gap measures 'strong estimator vs no-op guess', not interventional advantage over the best passive attacker. (Zero-gain control does genuinely fail the headroom gate.)",
+    "Replay hash-tamper negative control is vacuous: _predict_from_rows never reads prediction_hash, so stored_hash_tamper_accepted is structurally always False (cannot flip). The corrupt-intervention-log control IS real and fail-able.",
+    "CRLF/working-tree caveat: committed artifacts/docs are LF; the Windows working tree carries CRLF (13/13 artifacts differ on CR only, identical after stripping). parent_doc_hashes and code_path_hash reproduce only against committed LF content."
+  ],
+  "checks_that_passed": [
+    "Source/artifact consistency: result.json reproduced byte-identical from source (machine-generated, not hand-written).",
+    "Interventional oracle validity (F): oracle estimates effect from randomized do-responses; it does NOT read S, truth labels, oracle-only/effect/serialized answer fields.",
+    "Replay core (H): recomputes predictions from serialized_state(handles,k_self)+intervention rows; no answer-path; corrupt-log control changes behavior.",
+    "Candidate-free boundary (K): no candidate.py; no Gate/mainline/runtime/bridge/scheduler/admission/product path; no push/tag/remote anchor; result boundary flags all none/False.",
+    "Some genuinely fail-able controls exist: zero-gain kills headroom (tests + failure_manifest), missing code_path_hash blocks provenance."
+  ],
+  "strongest_objection_to_blocker": "The toy is non-identifiable BY CONSTRUCTION (S is absent from passive P(X) per blueprint §3), so a weak baseline reaching chance is the 'correct' answer and admission may be substantively right. REBUTTAL: a preflight whose premise gate cannot distinguish a non-identifiable surface from an observation-decodable one establishes nothing empirically; the demonstrated counterexample shows the gate admits a decodable surface, so 'non_identifiability_present' here is an artifact of the baseline, not evidence — and the blueprint itself mandates 'tested not assumed' with a capable observational attacker.",
+  "next_minimal_closed_loop_action": "Open a bounded preflight-repair card (no candidate): (1) replace obs_only_baseline with the predeclared §6.1 capable observational attacker family (covariance/correlation, channel-variance, PCA/subspace, cross-episode clustering, supervised fit on passive features) selecting max score; (2) add a fail-able value-level control inject_observation_value_decodable_self_set that makes obs_only jump to ~1.0 and forces blocked_by_observation_decodable_self_set (the existing L1 answer-map proxy is insufficient); (3) bring leakage and replay producers inside the provenance gate (code_path_hash + rows); (4) re-run and re-audit. Candidate implementation forbidden until re-audit accepts.",
+  "what_this_audit_does_not_prove": [
+    "Does not prove Route C mechanism validity or self-boundary mechanism evidence.",
+    "Does not prove the toy is observation-decodable in canonical data (canonical S is genuinely absent from passive P(X)); it proves the harness cannot detect decodability if present.",
+    "Does not prove candidate success, Gate pass, mainline effect, live path, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+    "Does not assess Route C 6.3 fair interventional baseline (deferred) or the F6 saturation risk that killed ACOLB-A."
+  ],
+  "stop_condition_triggered": "Decisive blocker found (acceptance condition #1 fails, demonstrated). Audit stopped expansion; no repair performed.",
+  "auto_remote_anchor": {"decision": "forbidden", "performed": false},
+  "files_modified_in_target_repo": "none (read-only audit; this report is new negative-evidence under its own task id)"
+}
