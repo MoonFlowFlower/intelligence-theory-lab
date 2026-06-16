@@ -1,0 +1,93 @@
+{
+  "task_id": "ACP-BV-001B-REDESIGN-SPEC-R1-R5-REVISION-001A",
+  "preservation_type": "claude_hostile_spec_audit_preservation",
+  "audit_source": "user_provided_attached_pasted_text_current_session",
+  "claude_verdict": "requires_001b_spec_revision_before_implementation_card",
+  "all_ten_required_elements_present": true,
+  "implementation_authorized": false,
+  "implementation_remains_unauthorized": true,
+  "audit_finding": "All ten required spec elements were present, but the decision rules still permitted baseline-equivalence to recur under a renamed or thin-tail distribution.",
+  "required_revisions": {
+    "R1": {
+      "title": "Baseline Equivalence Trigger And Novelty Floor",
+      "required": true,
+      "blockers": [
+        "blocked_by_insufficient_heldout_novelty",
+        "blocked_by_baseline_equivalence"
+      ]
+    },
+    "R2": {
+      "title": "Must Defeat Factorized / Per-Component Lookup",
+      "required": true,
+      "blockers": [
+        "blocked_by_factorized_lookup_equivalence"
+      ]
+    },
+    "R3": {
+      "title": "Leakage Positive-Control Panel",
+      "required": true,
+      "blockers": [
+        "blocked_by_non_fail_able_leakage_scanner",
+        "blocked_by_whitelist_leakage_scanner"
+      ]
+    },
+    "R4": {
+      "title": "Multi-Seed Stability For Mechanism-Relevant Effect Candidate",
+      "required": true,
+      "blockers_or_downgrades": [
+        "inconclusive",
+        "blocked_by_unstable_or_noise_level_effect"
+      ]
+    },
+    "R5": {
+      "title": "Anti-Zeno Detector-Bound Closure",
+      "required": true,
+      "required_route": "close_or_downgrade_current_acp_bv_surface_family"
+    }
+  },
+  "nonblocking_revision": {
+    "R6": {
+      "title": "Defense-In-Depth",
+      "blocking": false,
+      "items": [
+        "candidate-vs-truth behavioral equivalence probe on heldout probe cases",
+        "predeclared strongest-baseline selector as argmax(score) over executed fair baselines",
+        "namespace clarification distinguishing prior ACP-BV surface-spec 001B from distribution-redesign spec 001B"
+      ]
+    }
+  },
+  "claim_ceiling": "ACP-BV 001B distribution redesign spec R1-R5 revision only",
+  "maximum_claim": "001b_redesign_spec_r1_r5_ready_for_independent_reaudit",
+  "forbidden_claims": [
+    "ACP-BV validity",
+    "ACP-BV mechanism validity",
+    "harness validity",
+    "Gate validity",
+    "admission readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "mainline effect",
+    "agency evidence",
+    "consciousness",
+    "real emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ],
+  "what_this_does_not_prove": [
+    "ACP-BV validity",
+    "ACP-BV mechanism validity",
+    "harness validity",
+    "Gate validity",
+    "admission readiness",
+    "bridge readiness",
+    "runtime readiness",
+    "mainline effect",
+    "agency evidence",
+    "consciousness",
+    "real emotion",
+    "autonomy",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}

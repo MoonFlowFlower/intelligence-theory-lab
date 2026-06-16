@@ -1,0 +1,133 @@
+{
+  "task_id": "ACP-BV-001B-REDESIGN-SPEC-R1-R5-REVISION-001A",
+  "revised_spec": "docs/research/ACP-BV-DISTRIBUTION-REDESIGN-SPEC-001B.md",
+  "audit_preservation_doc": "docs/research/ACP-BV-DISTRIBUTION-REDESIGN-SPEC-001B-CLAUDE-AUDIT-001A.md",
+  "revision_status": "r1_r5_added_r6_nonblocking_included",
+  "matrix": [
+    {
+      "revision": "R1",
+      "requirement": "Generalize baseline-equivalence trigger beyond overlap_ratio == 1.0 and define a heldout novelty floor.",
+      "spec_locations": [
+        "G1 - True Heldout Generalization, Novelty Floor, And Baseline Tie Block",
+        "Acceptance For Future 001B Design"
+      ],
+      "required_persisted_evidence": [
+        "train key count",
+        "heldout key count",
+        "exact-key overlap count",
+        "exact-key overlap ratio",
+        "unseen heldout count",
+        "unseen heldout ratio",
+        "factorized/per-component seen ratio",
+        "novelty-floor threshold",
+        "whether novelty floor is met",
+        "whether fair memory/lookup/NN baseline ties candidate",
+        "B3 classification"
+      ],
+      "blockers": [
+        "blocked_by_insufficient_heldout_novelty",
+        "blocked_by_baseline_equivalence"
+      ],
+      "status": "added"
+    },
+    {
+      "revision": "R2",
+      "requirement": "Require memory-resistance to defeat exact, factorized, per-component, partial-key, topology-only, risk-only, signal-action, and action-conditioned nearest-neighbor lookup.",
+      "spec_locations": [
+        "G3 - Fair Full-Access Baseline Included From The Start",
+        "G6 - Memory-Resistance Mechanism",
+        "Acceptance For Future 001B Design"
+      ],
+      "blockers": [
+        "blocked_by_factorized_lookup_equivalence"
+      ],
+      "status": "added"
+    },
+    {
+      "revision": "R3",
+      "requirement": "Replace one leakage positive control with a predeclared leakage positive-control panel.",
+      "spec_locations": [
+        "G5 - Solvability Without Leakage",
+        "Acceptance For Future 001B Design"
+      ],
+      "panel_controls": [
+        "observation-name leakage",
+        "action-name leakage",
+        "filename leakage",
+        "fixture-name leakage",
+        "candidate-authored alias leakage",
+        "future-observation leakage",
+        "hidden truth label leakage",
+        "answer-encoding metadata leakage"
+      ],
+      "blockers": [
+        "blocked_by_non_fail_able_leakage_scanner",
+        "blocked_by_whitelist_leakage_scanner"
+      ],
+      "status": "added"
+    },
+    {
+      "revision": "R4",
+      "requirement": "Require multi-seed stability before any mechanism_relevant_effect_candidate classification.",
+      "spec_locations": [
+        "G4 - B3 Bands Preserved",
+        "Acceptance For Future 001B Design"
+      ],
+      "minimum_seed_count": 5,
+      "default_seed_list": [
+        1009,
+        2027,
+        3037,
+        4049,
+        5051
+      ],
+      "required_outputs": [
+        "per-seed candidate score",
+        "per-seed strongest baseline score",
+        "per-seed delta",
+        "mean delta",
+        "dispersion or confidence interval",
+        "minimum stable effect requirement",
+        "episode-budget noise verdict"
+      ],
+      "blockers_or_downgrades": [
+        "inconclusive",
+        "blocked_by_unstable_or_noise_level_effect"
+      ],
+      "status": "added"
+    },
+    {
+      "revision": "R5",
+      "requirement": "Bind Anti-Zeno closure to detector outputs and forbid 001C/001D repair after a second collapse.",
+      "spec_locations": [
+        "Anti-Zeno Rule",
+        "Acceptance For Future 001B Design"
+      ],
+      "collapse_conditions": [
+        "baseline_equivalent",
+        "blocked_by_baseline_equivalence",
+        "blocked_by_factorized_lookup_equivalence",
+        "blocked_by_candidate_truth_coupling",
+        "oracle_like_reference_candidate_scaffolding_only used as evidence",
+        "blocked_by_non_discriminative_distribution",
+        "blocked_by_solvability_preflight_failure",
+        "blocked_by_unsolvable_or_leaky_distribution"
+      ],
+      "required_route": "close_or_downgrade_current_acp_bv_surface_family",
+      "required_closure_artifact": "artifacts/acp_bv_001b_collapse_closure_*/result.json",
+      "status": "added"
+    },
+    {
+      "revision": "R6",
+      "requirement": "Recommended defense-in-depth additions.",
+      "spec_locations": [
+        "R6 - Recommended Defense-In-Depth",
+        "Acceptance For Future 001B Design"
+      ],
+      "blocking": false,
+      "status": "included_as_nonblocking"
+    }
+  ],
+  "implementation_created": false,
+  "claim_ceiling": "ACP-BV 001B distribution redesign spec R1-R5 revision only"
+}
