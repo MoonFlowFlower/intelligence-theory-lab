@@ -2,6 +2,19 @@
 
 Task id: `ACP-BV-EXECUTABLE-HARNESS-001A`
 
+## Supersession Note
+
+This earlier implementation result is superseded for mechanism-evidence use by
+the hostile implementation audit preservation and fair-baseline repair record:
+
+`docs/research/ACP-BV-HARNESS-001A-IMPLEMENTATION-CLAUDE-AUDIT-PRESERVATION-001A.md`
+
+The preserved task-level blocker is `blocked_by_baseline_equivalence`. The
+prior implementation artifacts remain historical evidence-hygiene records and
+must not be cited as ACP-BV mechanism evidence, Gate evidence, bridge
+readiness, admission readiness, runtime readiness, EGO readiness, or mainline
+effect.
+
 Verdict: `acp_bv_executable_harness_001a_implemented_with_fail_able_controls`
 
 Current layer: engineering implementation / bounded offline ACP-BV harness

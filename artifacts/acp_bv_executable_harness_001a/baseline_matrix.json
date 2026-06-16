@@ -2,21 +2,21 @@
   "baseline_equivalent_is_pass": false,
   "baselines": [
     {
-      "baseline_id": "graph_cache_transition_table",
+      "baseline_id": "full_access_lookup_baseline",
       "blocked_reason": null,
-      "classification": "mechanism_relevant_effect_candidate",
+      "classification": "baseline_equivalent",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
-        "input_artifact_hash": "8cd7f4e346e6ff1d861a6a993deb61a42153f95896290e825e3783a7fed27479",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+        "input_artifact_hash": "5a912048dcccab0324695c6f2055d1f7dbbbe9477c1e9cd9700f615a85bb1938",
         "inputs": {
-          "baseline_id": "graph_cache_transition_table",
+          "baseline_id": "full_access_lookup_baseline",
           "episode_count": 12
         },
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
-        "producer_entrypoint": "acp_bv_harness_001a.baselines:graph_cache_transition_table",
-        "producer_function": "graph_cache_transition_table",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-graph_cache_transition_table",
+        "producer_entrypoint": "acp_bv_harness_001a.baselines:full_access_lookup_baseline",
+        "producer_function": "full_access_lookup_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-full_access_lookup_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -79,7 +79,90 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+        "source_path": "src/acp_bv_harness_001a/baselines.py"
+      },
+      "score": 1.0
+    },
+    {
+      "baseline_id": "graph_cache_transition_table",
+      "blocked_reason": null,
+      "classification": "mechanism_relevant_effect_candidate",
+      "provenance": {
+        "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+        "input_artifact_hash": "8cd7f4e346e6ff1d861a6a993deb61a42153f95896290e825e3783a7fed27479",
+        "inputs": {
+          "baseline_id": "graph_cache_transition_table",
+          "episode_count": 12
+        },
+        "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
+        "producer_entrypoint": "acp_bv_harness_001a.baselines:graph_cache_transition_table",
+        "producer_function": "graph_cache_transition_table",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-graph_cache_transition_table",
+        "seed_context_episode_ids": [
+          {
+            "context_id": "heldout_ctx_low_mesh_0",
+            "episode_id": "heldout_ep_0_0",
+            "seed": "seed_c"
+          },
+          {
+            "context_id": "heldout_ctx_mid_chain_0",
+            "episode_id": "heldout_ep_0_1",
+            "seed": "seed_c"
+          },
+          {
+            "context_id": "heldout_ctx_high_mesh_0",
+            "episode_id": "heldout_ep_0_2",
+            "seed": "seed_c"
+          },
+          {
+            "context_id": "heldout_ctx_low_chain_0",
+            "episode_id": "heldout_ep_0_3",
+            "seed": "seed_c"
+          },
+          {
+            "context_id": "heldout_ctx_mid_mesh_0",
+            "episode_id": "heldout_ep_0_4",
+            "seed": "seed_c"
+          },
+          {
+            "context_id": "heldout_ctx_high_chain_0",
+            "episode_id": "heldout_ep_0_5",
+            "seed": "seed_c"
+          },
+          {
+            "context_id": "heldout_ctx_low_mesh_1",
+            "episode_id": "heldout_ep_1_0",
+            "seed": "seed_d"
+          },
+          {
+            "context_id": "heldout_ctx_mid_chain_1",
+            "episode_id": "heldout_ep_1_1",
+            "seed": "seed_d"
+          },
+          {
+            "context_id": "heldout_ctx_high_mesh_1",
+            "episode_id": "heldout_ep_1_2",
+            "seed": "seed_d"
+          },
+          {
+            "context_id": "heldout_ctx_low_chain_1",
+            "episode_id": "heldout_ep_1_3",
+            "seed": "seed_d"
+          },
+          {
+            "context_id": "heldout_ctx_mid_mesh_1",
+            "episode_id": "heldout_ep_1_4",
+            "seed": "seed_d"
+          },
+          {
+            "context_id": "heldout_ctx_high_chain_1",
+            "episode_id": "heldout_ep_1_5",
+            "seed": "seed_d"
+          }
+        ],
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.5
@@ -90,7 +173,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "74f15a15c58ce9de2e550dde3622457798db2f002ce2b6deff8a6ac54397add6",
         "inputs": {
           "baseline_id": "graph_cache_successor_map",
@@ -99,7 +182,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:graph_cache_successor_map",
         "producer_function": "graph_cache_successor_map",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-graph_cache_successor_map",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-graph_cache_successor_map",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -162,7 +245,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.333333
@@ -173,7 +256,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "c3de1f0e37c0d70747b98ff8256f22fc6a0828913ee26a8de94e43f102ac4851",
         "inputs": {
           "baseline_id": "graph_cache_count_table",
@@ -182,7 +265,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:graph_cache_count_table",
         "producer_function": "graph_cache_count_table",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-graph_cache_count_table",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-graph_cache_count_table",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -245,7 +328,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.111111
@@ -256,7 +339,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "b0b2b1fc5c6f55b6e4249263e1754063a2ebe329c30247794658000bf7651dbc",
         "inputs": {
           "baseline_id": "episodic_traversal_baseline",
@@ -265,7 +348,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:episodic_traversal_baseline",
         "producer_function": "episodic_traversal_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-episodic_traversal_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-episodic_traversal_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -328,7 +411,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.5
@@ -339,7 +422,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "4fe7802ba757307cbdb4328f74d02269418fda76b4d84a0b309330618cb89d27",
         "inputs": {
           "baseline_id": "fsm_planner_baseline",
@@ -348,7 +431,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:fsm_planner_baseline",
         "producer_function": "fsm_planner_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-fsm_planner_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-fsm_planner_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -411,7 +494,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.5
@@ -422,7 +505,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "f348e738249b2e055b1706ccf9ac46101dd354798ce2fc71867d2096ed9bb6d7",
         "inputs": {
           "baseline_id": "graph_lookup_baseline",
@@ -431,7 +514,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:graph_lookup_baseline",
         "producer_function": "graph_lookup_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-graph_lookup_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-graph_lookup_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -494,7 +577,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.333333
@@ -505,7 +588,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "49459d50f6ee31938d8625cfa27a53e44f24841ce13096d1316a293ac4a6e286",
         "inputs": {
           "baseline_id": "observation_only_baseline",
@@ -514,7 +597,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:observation_only_baseline",
         "producer_function": "observation_only_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-observation_only_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-observation_only_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -577,7 +660,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.333333
@@ -588,7 +671,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "9a0024e4adde52aa9627cf9c19fd518c0ea2be6bbdff9712ddc9b0905e480621",
         "inputs": {
           "baseline_id": "action_independent_baseline",
@@ -597,7 +680,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:action_independent_baseline",
         "producer_function": "action_independent_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-action_independent_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-action_independent_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -660,7 +743,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.333333
@@ -671,7 +754,7 @@
       "classification": "mechanism_relevant_effect_candidate",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "dfdda8a6d6dda533d41192be14f59d83751d610654b3c7b354cbbe9907af0833",
         "inputs": {
           "baseline_id": "static_action_baseline",
@@ -680,7 +763,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:static_action_baseline",
         "producer_function": "static_action_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-static_action_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-static_action_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -743,7 +826,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.333333
@@ -754,7 +837,7 @@
       "classification": "blocked_by_replay_hash_only",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "3ee05f27de66b0e4e238f4dec2e7fdef86e6d58ad78955a25c4ee39aa62ca732",
         "inputs": {
           "baseline_id": "replay_hash_only_baseline",
@@ -763,7 +846,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:replay_hash_only_baseline",
         "producer_function": "replay_hash_only_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-replay_hash_only_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-replay_hash_only_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -826,7 +909,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": null
@@ -837,7 +920,7 @@
       "classification": "blocked_by_candidate_authored_self_consistency",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "225be28c3bb906407a6e418b34b5ab7dae289e7117a86e7e539d5968145c374d",
         "inputs": {
           "baseline_id": "candidate_self_consistency_baseline",
@@ -846,7 +929,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:candidate_self_consistency_baseline",
         "producer_function": "candidate_self_consistency_baseline",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-candidate_self_consistency_baseline",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-candidate_self_consistency_baseline",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -909,7 +992,7 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": null
@@ -920,7 +1003,7 @@
       "classification": "lookup_memorization_classified",
       "provenance": {
         "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-        "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "input_artifact_hash": "124a49a8140e8289b6b32ee17a93dc9c1ed7862f82b848ad0bfb615f401add97",
         "inputs": {
           "baseline_id": "lookup_table_memorization_blocker",
@@ -929,7 +1012,7 @@
         "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
         "producer_entrypoint": "acp_bv_harness_001a.baselines:lookup_table_memorization_blocker",
         "producer_function": "lookup_table_memorization_blocker",
-        "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-lookup_table_memorization_blocker",
+        "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-lookup_table_memorization_blocker",
         "seed_context_episode_ids": [
           {
             "context_id": "heldout_ctx_low_mesh_0",
@@ -992,30 +1075,69 @@
             "seed": "seed_d"
           }
         ],
-        "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+        "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
         "source_path": "src/acp_bv_harness_001a/baselines.py"
       },
       "score": 0.166667
     }
   ],
+  "blocked_by_baseline_equivalence": true,
   "candidate_score": 1.0,
+  "candidate_truth_coupling": {
+    "candidate_function": "reference_candidate_predict",
+    "candidate_function_source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01",
+    "claim_downgrade": "no_candidate_mechanism_relevance_claim_permitted",
+    "classification": "oracle_like_reference_candidate_scaffolding_only",
+    "formula_equivalence_detected": true,
+    "producer_function": "detect_candidate_truth_coupling",
+    "shared_helper_source_dependency_analysis": {
+      "episode_action_mismatch_count": 0,
+      "same_module": true,
+      "shared_action_delta_table": false,
+      "shared_signal_value_table": false
+    },
+    "truth_generator": "held_out_truth_generator",
+    "truth_generator_source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01"
+  },
+  "full_access_lookup_evidence": {
+    "b3_classification": "baseline_equivalent",
+    "baseline_score": 1.0,
+    "candidate_score": 1.0,
+    "delta": 0.0,
+    "heldout_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "heldout_observation_action_key_count": 18,
+    "missing_heldout_key_count": 0,
+    "overlap_count": 18,
+    "train_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "train_observation_action_key_count": 18
+  },
   "producer_function": "run_baseline_matrix",
   "strongest_baseline": {
-    "baseline_id": "graph_cache_transition_table",
+    "baseline_id": "full_access_lookup_baseline",
     "blocked_reason": null,
-    "classification": "mechanism_relevant_effect_candidate",
+    "classification": "baseline_equivalent",
     "provenance": {
       "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
-      "code_path_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
-      "input_artifact_hash": "8cd7f4e346e6ff1d861a6a993deb61a42153f95896290e825e3783a7fed27479",
+      "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+      "input_artifact_hash": "5a912048dcccab0324695c6f2055d1f7dbbbe9477c1e9cd9700f615a85bb1938",
       "inputs": {
-        "baseline_id": "graph_cache_transition_table",
+        "baseline_id": "full_access_lookup_baseline",
         "episode_count": 12
       },
       "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
-      "producer_entrypoint": "acp_bv_harness_001a.baselines:graph_cache_transition_table",
-      "producer_function": "graph_cache_transition_table",
-      "run_id": "acp-bv-executable-harness-001a-implementation-controls-001a-baseline-graph_cache_transition_table",
+      "producer_entrypoint": "acp_bv_harness_001a.baselines:full_access_lookup_baseline",
+      "producer_function": "full_access_lookup_baseline",
+      "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-full_access_lookup_baseline",
       "seed_context_episode_ids": [
         {
           "context_id": "heldout_ctx_low_mesh_0",
@@ -1078,22 +1200,56 @@
           "seed": "seed_d"
         }
       ],
-      "source_hash": "fcefdeab18cd240d52afd99497348d72f9a3bf355fd7a91b28fbacad1388437c",
+      "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
       "source_path": "src/acp_bv_harness_001a/baselines.py"
     },
-    "score": 0.5
+    "score": 1.0
   },
   "strongest_baseline_comparison": {
-    "baseline_score": 0.5,
+    "baseline_score": 1.0,
     "candidate_score": 1.0,
-    "classification": "mechanism_relevant_effect_candidate",
-    "delta": 0.5
+    "classification": "baseline_equivalent",
+    "delta": 0.0
   },
   "thresholds": {
     "equivalence_lt": 0.02,
     "inconclusive_gte": 0.02,
     "inconclusive_lt": 0.05,
     "mechanism_relevant_effect_gte": 0.05
+  },
+  "train_heldout_overlap": {
+    "heldout_contains_unseen_keys": false,
+    "heldout_key_count": 18,
+    "heldout_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "heldout_key_set_hash": "8aebbef8a480db128fba0de9870c8ae9da770a3b19f850ff202c0ca626421000",
+    "memory_lookup_can_be_complete_policy": true,
+    "missing_heldout_key_count": 0,
+    "overlap_count": 18,
+    "overlap_ratio": 1.0,
+    "overlapping_key_samples": [
+      "('high', 0, 3, 'probe')",
+      "('high', 0, 3, 'repair')",
+      "('high', 0, 3, 'shield')",
+      "('high', 1, 1, 'probe')",
+      "('high', 1, 1, 'repair')",
+      "('high', 1, 1, 'shield')",
+      "('low', 0, 1, 'probe')",
+      "('low', 0, 1, 'repair')"
+    ],
+    "producer_function": "detect_train_heldout_overlap",
+    "train_key_count": 18,
+    "train_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "train_key_set_hash": "8aebbef8a480db128fba0de9870c8ae9da770a3b19f850ff202c0ca626421000"
   },
   "weak_baseline_only": false
 }

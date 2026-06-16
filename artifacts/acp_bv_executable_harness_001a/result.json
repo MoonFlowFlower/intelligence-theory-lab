@@ -4,18 +4,34 @@
   },
   "acceptance_gate_passed": true,
   "baseline_result": {
-    "baseline_score": 0.5,
+    "baseline_score": 1.0,
     "candidate_score": 1.0,
-    "classification": "mechanism_relevant_effect_candidate",
-    "delta": 0.5
+    "classification": "baseline_equivalent",
+    "delta": 0.0
   },
   "boundary_negative_control_result": {
     "all_required_controls_passed": true
   },
   "candidate_score": 1.0,
-  "claim_ceiling": "offline_harness_implemented_with_fail_able_controls_under_this_task_distribution",
+  "candidate_truth_coupling_result": {
+    "candidate_function": "reference_candidate_predict",
+    "candidate_function_source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01",
+    "claim_downgrade": "no_candidate_mechanism_relevance_claim_permitted",
+    "classification": "oracle_like_reference_candidate_scaffolding_only",
+    "formula_equivalence_detected": true,
+    "producer_function": "detect_candidate_truth_coupling",
+    "shared_helper_source_dependency_analysis": {
+      "episode_action_mismatch_count": 0,
+      "same_module": true,
+      "shared_action_delta_table": false,
+      "shared_signal_value_table": false
+    },
+    "truth_generator": "held_out_truth_generator",
+    "truth_generator_source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01"
+  },
+  "claim_ceiling": "current_001a_distribution_exposes_baseline_equivalence_or_non_discriminative_surface",
   "claim_scan": {
-    "claim_ceiling": "offline_harness_implemented_with_fail_able_controls_under_this_task_distribution",
+    "claim_ceiling": "current_001a_distribution_exposes_baseline_equivalence_or_non_discriminative_surface",
     "claim_ceiling_passed": true,
     "forbidden_claim_scan_passed": true,
     "forbidden_positive_claim_hits": [],
@@ -36,13 +52,37 @@
       "EGO readiness"
     ]
   },
-  "current_layer": "engineering implementation / bounded offline ACP-BV harness implementation and control evidence only",
+  "current_layer": "engineering implementation / ACP-BV harness 001A negative-audit preservation and fail-able repair only",
   "enabled_status": "local offline CLI/test runner only",
+  "full_access_lookup_result": {
+    "b3_classification": "baseline_equivalent",
+    "baseline_score": 1.0,
+    "candidate_score": 1.0,
+    "delta": 0.0,
+    "heldout_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "heldout_observation_action_key_count": 18,
+    "missing_heldout_key_count": 0,
+    "overlap_count": 18,
+    "train_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "train_observation_action_key_count": 18
+  },
+  "harness_success_claimed": false,
+  "infrastructure_controls_executed": true,
   "leakage_result": {
     "dirty_detected": true
   },
   "mainline_integration_status": "none",
-  "next_minimal_closed_loop_action": "Send the implementation result and artifacts to Claude for independent hostile implementation audit before any real Gate target use.",
+  "next_minimal_closed_loop_action": "Route to a separate ACP-BV 001B distribution redesign task or downgrade ACP-BV current surface; do not repair 001A further for pass.",
   "real_gate_target_applied": false,
   "real_trigger_evidence": {
     "claude_targeted_reaudit_verdict": "accept_for_harness_implementation_task_with_required_bindings",
@@ -68,18 +108,90 @@
       "manifest_verification": {
         "block_reason": null,
         "bootstrap_check": {
-          "actual_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+          "actual_hash": "28353290f6bd8a39e166f4338077827eff69087a3c04e797707e9bbf660b431c",
           "bootstrap_checker_entrypoint": "acp_bv_harness_001a.source_pins:bootstrap_check_verifier_source_pin",
-          "expected_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+          "expected_hash": "28353290f6bd8a39e166f4338077827eff69087a3c04e797707e9bbf660b431c",
           "passed": true,
           "verifier_source_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\acp_bv_harness_001a\\boundary.py"
         },
         "bootstrap_hash_match": true,
-        "current_bootstrap_checker_source_hash": "6569e8df970de9cff765510baba9019d8ad0bcbf0216f670a73525566617639c",
-        "current_verifier_source_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
-        "expected_bootstrap_checker_source_hash": "6569e8df970de9cff765510baba9019d8ad0bcbf0216f670a73525566617639c",
-        "expected_verifier_source_hash": "b18b987001238c9000c2eaa030305b799923230a5695c9098102fa484f3a4c74",
+        "current_bootstrap_checker_source_hash": "14b6a9101024e6f2462b3b6c7b724481e4f334e6951bef0cd8f89839c9e70cb3",
+        "current_verifier_source_hash": "28353290f6bd8a39e166f4338077827eff69087a3c04e797707e9bbf660b431c",
+        "expected_bootstrap_checker_source_hash": "14b6a9101024e6f2462b3b6c7b724481e4f334e6951bef0cd8f89839c9e70cb3",
+        "expected_verifier_source_hash": "28353290f6bd8a39e166f4338077827eff69087a3c04e797707e9bbf660b431c",
+        "frozen_source_anchor_check": {
+          "anchor_source": "git_object",
+          "block_reason": null,
+          "file_checks": {
+            "src/acp_bv_harness_001a/ablations.py": {
+              "current_hash": "4e678461768dca77661da683238f61b8c13c5e962a04bea6e5b9489d150a64f0",
+              "expected_hash": "4e678461768dca77661da683238f61b8c13c5e962a04bea6e5b9489d150a64f0",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/ablations.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/baselines.py": {
+              "current_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+              "expected_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/baselines.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/boundary.py": {
+              "current_hash": "28353290f6bd8a39e166f4338077827eff69087a3c04e797707e9bbf660b431c",
+              "expected_hash": "28353290f6bd8a39e166f4338077827eff69087a3c04e797707e9bbf660b431c",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/boundary.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/difficulty.py": {
+              "current_hash": "e9189e28cc3ff0659cd3e3d639b647a7925c8a5508c01b79898272a2cb40e989",
+              "expected_hash": "e9189e28cc3ff0659cd3e3d639b647a7925c8a5508c01b79898272a2cb40e989",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/difficulty.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/environment.py": {
+              "current_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01",
+              "expected_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/environment.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/leakage.py": {
+              "current_hash": "55b13c220e0da5e91c08d1dffa379638c77ef27595d81ef232b05e0eac09e7c5",
+              "expected_hash": "55b13c220e0da5e91c08d1dffa379638c77ef27595d81ef232b05e0eac09e7c5",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/leakage.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/replay.py": {
+              "current_hash": "d70d74aaf4f72948b36b08ed4413ed1c3554372ac4f6f0eef7dcd283af4b64f9",
+              "expected_hash": "d70d74aaf4f72948b36b08ed4413ed1c3554372ac4f6f0eef7dcd283af4b64f9",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/replay.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/scoring.py": {
+              "current_hash": "d32307a6495a7fcf7f0375d41ca1f90dc86479dd97c745da8ad0bc8fdc712d24",
+              "expected_hash": "d32307a6495a7fcf7f0375d41ca1f90dc86479dd97c745da8ad0bc8fdc712d24",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/scoring.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            },
+            "src/acp_bv_harness_001a/source_pins.py": {
+              "current_hash": "14b6a9101024e6f2462b3b6c7b724481e4f334e6951bef0cd8f89839c9e70cb3",
+              "expected_hash": "14b6a9101024e6f2462b3b6c7b724481e4f334e6951bef0cd8f89839c9e70cb3",
+              "git_object_spec": "cbdc4ea227736139e7862e782e61d5eee1cc2953:src/acp_bv_harness_001a/source_pins.py",
+              "hash_match": true,
+              "hash_source": "git_object"
+            }
+          },
+          "passed": true,
+          "source_anchor_commit": "cbdc4ea227736139e7862e782e61d5eee1cc2953"
+        },
         "passed": true,
+        "source_pin_mode": "git_object_frozen_anchor",
         "verifier_hash_match": true
       },
       "task_id": "ACP-BV-EXECUTABLE-HARNESS-001A",
@@ -106,14 +218,49 @@
         "repo_source_root_match": false,
         "resolved_source_path": "artifacts/acp_bv_executable_harness_001a/candidate_controls/same_process_truth_substitution.py",
         "self_declared_ownership_accepted": false,
-        "source_hash": "bef9186e154fe150f2b1a22b735937772eb9cc43aade5e2a9f6aeee6aa9818f9"
+        "source_hash": "6a0e65078e5dadbd9b0cd3f04e3956ced70a9654557a17880b464744c5ef103c"
       }
     }
   },
   "safe_to_apply_to_real_gate_target": false,
   "safe_to_wire_mainline": false,
   "task_id": "ACP-BV-EXECUTABLE-HARNESS-001A",
-  "verdict": "acp_bv_executable_harness_001a_implemented_with_fail_able_controls",
+  "task_level_blocker": "blocked_by_baseline_equivalence",
+  "train_heldout_overlap_result": {
+    "heldout_contains_unseen_keys": false,
+    "heldout_key_count": 18,
+    "heldout_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "heldout_key_set_hash": "8aebbef8a480db128fba0de9870c8ae9da770a3b19f850ff202c0ca626421000",
+    "memory_lookup_can_be_complete_policy": true,
+    "missing_heldout_key_count": 0,
+    "overlap_count": 18,
+    "overlap_ratio": 1.0,
+    "overlapping_key_samples": [
+      "('high', 0, 3, 'probe')",
+      "('high', 0, 3, 'repair')",
+      "('high', 0, 3, 'shield')",
+      "('high', 1, 1, 'probe')",
+      "('high', 1, 1, 'repair')",
+      "('high', 1, 1, 'shield')",
+      "('low', 0, 1, 'probe')",
+      "('low', 0, 1, 'repair')"
+    ],
+    "producer_function": "detect_train_heldout_overlap",
+    "train_key_count": 18,
+    "train_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "train_key_set_hash": "8aebbef8a480db128fba0de9870c8ae9da770a3b19f850ff202c0ca626421000"
+  },
+  "verdict": "blocked_by_baseline_equivalence",
   "what_this_does_not_prove": [
     "ACP-BV validity",
     "ACP-BV mechanism validity",

@@ -1,0 +1,172 @@
+{
+  "baseline_equivalent_is_pass": false,
+  "blocked_by_baseline_equivalence": true,
+  "candidate_truth_coupling": {
+    "candidate_function": "reference_candidate_predict",
+    "candidate_function_source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01",
+    "claim_downgrade": "no_candidate_mechanism_relevance_claim_permitted",
+    "classification": "oracle_like_reference_candidate_scaffolding_only",
+    "formula_equivalence_detected": true,
+    "producer_function": "detect_candidate_truth_coupling",
+    "shared_helper_source_dependency_analysis": {
+      "episode_action_mismatch_count": 0,
+      "same_module": true,
+      "shared_action_delta_table": false,
+      "shared_signal_value_table": false
+    },
+    "truth_generator": "held_out_truth_generator",
+    "truth_generator_source_hash": "f5305394192f644b3417356340d2d4414c79fff412b925c3ef85fb8cbeb35f01"
+  },
+  "full_access_lookup_evidence": {
+    "b3_classification": "baseline_equivalent",
+    "baseline_score": 1.0,
+    "candidate_score": 1.0,
+    "delta": 0.0,
+    "heldout_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "heldout_observation_action_key_count": 18,
+    "missing_heldout_key_count": 0,
+    "overlap_count": 18,
+    "train_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "train_observation_action_key_count": 18
+  },
+  "producer_function": "run_baseline_matrix",
+  "strongest_baseline": {
+    "baseline_id": "full_access_lookup_baseline",
+    "blocked_reason": null,
+    "classification": "baseline_equivalent",
+    "provenance": {
+      "aggregation_method": "same_scorer_mean_exact_prediction_and_counterfactual_accuracy",
+      "code_path_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+      "input_artifact_hash": "5a912048dcccab0324695c6f2055d1f7dbbbe9477c1e9cd9700f615a85bb1938",
+      "inputs": {
+        "baseline_id": "full_access_lookup_baseline",
+        "episode_count": 12
+      },
+      "output_artifact_path": "artifacts/acp_bv_executable_harness_001a/baseline_matrix.json",
+      "producer_entrypoint": "acp_bv_harness_001a.baselines:full_access_lookup_baseline",
+      "producer_function": "full_access_lookup_baseline",
+      "run_id": "acp-bv-harness-001a-fair-baseline-repair-001a-baseline-full_access_lookup_baseline",
+      "seed_context_episode_ids": [
+        {
+          "context_id": "heldout_ctx_low_mesh_0",
+          "episode_id": "heldout_ep_0_0",
+          "seed": "seed_c"
+        },
+        {
+          "context_id": "heldout_ctx_mid_chain_0",
+          "episode_id": "heldout_ep_0_1",
+          "seed": "seed_c"
+        },
+        {
+          "context_id": "heldout_ctx_high_mesh_0",
+          "episode_id": "heldout_ep_0_2",
+          "seed": "seed_c"
+        },
+        {
+          "context_id": "heldout_ctx_low_chain_0",
+          "episode_id": "heldout_ep_0_3",
+          "seed": "seed_c"
+        },
+        {
+          "context_id": "heldout_ctx_mid_mesh_0",
+          "episode_id": "heldout_ep_0_4",
+          "seed": "seed_c"
+        },
+        {
+          "context_id": "heldout_ctx_high_chain_0",
+          "episode_id": "heldout_ep_0_5",
+          "seed": "seed_c"
+        },
+        {
+          "context_id": "heldout_ctx_low_mesh_1",
+          "episode_id": "heldout_ep_1_0",
+          "seed": "seed_d"
+        },
+        {
+          "context_id": "heldout_ctx_mid_chain_1",
+          "episode_id": "heldout_ep_1_1",
+          "seed": "seed_d"
+        },
+        {
+          "context_id": "heldout_ctx_high_mesh_1",
+          "episode_id": "heldout_ep_1_2",
+          "seed": "seed_d"
+        },
+        {
+          "context_id": "heldout_ctx_low_chain_1",
+          "episode_id": "heldout_ep_1_3",
+          "seed": "seed_d"
+        },
+        {
+          "context_id": "heldout_ctx_mid_mesh_1",
+          "episode_id": "heldout_ep_1_4",
+          "seed": "seed_d"
+        },
+        {
+          "context_id": "heldout_ctx_high_chain_1",
+          "episode_id": "heldout_ep_1_5",
+          "seed": "seed_d"
+        }
+      ],
+      "source_hash": "f1a15b3e77850c715c1ef63a00b2ac007ecb12619d5a529247f1dd34755515a7",
+      "source_path": "src/acp_bv_harness_001a/baselines.py"
+    },
+    "score": 1.0
+  },
+  "strongest_baseline_comparison": {
+    "baseline_score": 1.0,
+    "candidate_score": 1.0,
+    "classification": "baseline_equivalent",
+    "delta": 0.0
+  },
+  "thresholds": {
+    "equivalence_lt": 0.02,
+    "inconclusive_gte": 0.02,
+    "inconclusive_lt": 0.05,
+    "mechanism_relevant_effect_gte": 0.05
+  },
+  "train_heldout_overlap": {
+    "heldout_contains_unseen_keys": false,
+    "heldout_key_count": 18,
+    "heldout_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "heldout_key_set_hash": "8aebbef8a480db128fba0de9870c8ae9da770a3b19f850ff202c0ca626421000",
+    "memory_lookup_can_be_complete_policy": true,
+    "missing_heldout_key_count": 0,
+    "overlap_count": 18,
+    "overlap_ratio": 1.0,
+    "overlapping_key_samples": [
+      "('high', 0, 3, 'probe')",
+      "('high', 0, 3, 'repair')",
+      "('high', 0, 3, 'shield')",
+      "('high', 1, 1, 'probe')",
+      "('high', 1, 1, 'repair')",
+      "('high', 1, 1, 'shield')",
+      "('low', 0, 1, 'probe')",
+      "('low', 0, 1, 'repair')"
+    ],
+    "producer_function": "detect_train_heldout_overlap",
+    "train_key_count": 18,
+    "train_key_schema": [
+      "signal",
+      "topology",
+      "risk",
+      "action"
+    ],
+    "train_key_set_hash": "8aebbef8a480db128fba0de9870c8ae9da770a3b19f850ff202c0ca626421000"
+  }
+}
