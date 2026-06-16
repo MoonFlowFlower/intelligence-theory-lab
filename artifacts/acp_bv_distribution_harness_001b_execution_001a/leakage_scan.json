@@ -1,0 +1,360 @@
+{
+  "all_classes_have_two_variants": true,
+  "all_runtime_variants_detected": true,
+  "class_results": {
+    "action_name_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "action_name_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "action_name_leakage",
+                "path": "candidate_outputs[0].action"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "action_name_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "action_name_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "action_name_leakage",
+                "path": "candidate_outputs[0].action"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_32b727b5c7d35059"
+        }
+      ]
+    },
+    "answer_encoding_metadata_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "answer_encoding_metadata_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "answer_encoding_metadata_leakage",
+                "path": "metadata.payload"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "answer_encoding_metadata_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "answer_encoding_metadata_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "answer_encoding_metadata_leakage",
+                "path": "metadata.payload"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_becd44db6354bdd0"
+        }
+      ]
+    },
+    "candidate_authored_alias_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "candidate_authored_alias_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "candidate_authored_alias_leakage",
+                "path": "candidate_alias"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "candidate_authored_alias_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "candidate_authored_alias_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "candidate_authored_alias_leakage",
+                "path": "aliases.candidate_field"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_034c21f86a35715f"
+        }
+      ]
+    },
+    "filename_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "filename_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "filename_leakage",
+                "path": "filename"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "filename_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "filename_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "filename_leakage",
+                "path": "file_path"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_61aec7d7fcdc9632"
+        }
+      ]
+    },
+    "fixture_name_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "fixture_name_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "fixture_name_leakage",
+                "path": "fixture_name"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "fixture_name_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "fixture_name_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "fixture_name_leakage",
+                "path": "fixture_id"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_949de73c3c4ca5ab"
+        }
+      ]
+    },
+    "future_observation_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "future_observation_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "future_observation_leakage",
+                "path": "future_observation"
+              },
+              {
+                "leakage_class": "future_observation_leakage",
+                "path": "future_observation.signal_code"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "future_observation_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "future_observation_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "future_observation_leakage",
+                "path": "future_observation_rt_fabc3f378ffa0779"
+              },
+              {
+                "leakage_class": "future_observation_leakage",
+                "path": "future_observation_rt_fabc3f378ffa0779.risk_code"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_fabc3f378ffa0779"
+        }
+      ]
+    },
+    "hidden_truth_label_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "hidden_truth_label_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "hidden_truth_label_leakage",
+                "path": "hidden_truth_label"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "hidden_truth_label_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "hidden_truth_label_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "hidden_truth_label_leakage",
+                "path": "hidden_target_rt_b5ff011d9a2f532e"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_b5ff011d9a2f532e"
+        }
+      ]
+    },
+    "observation_name_leakage": {
+      "runtime_or_heldout_variant_detected": true,
+      "variants": [
+        {
+          "detected": true,
+          "runtime_or_heldout": false,
+          "scan": {
+            "detected_classes": [
+              "observation_name_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "observation_name_leakage",
+                "path": "observation.answer_target_probe"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "observation_name_leakage.predeclared"
+        },
+        {
+          "detected": true,
+          "runtime_or_heldout": true,
+          "scan": {
+            "detected_classes": [
+              "observation_name_leakage"
+            ],
+            "hits": [
+              {
+                "leakage_class": "observation_name_leakage",
+                "path": "observation.rt_dbbfca79af661442_truth_target"
+              }
+            ],
+            "producer_function": "scan_payload",
+            "verdict": "blocked"
+          },
+          "variant_id": "rt_dbbfca79af661442"
+        }
+      ]
+    }
+  },
+  "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_distribution_harness_001b_execution_001a/leakage_scan.json",
+  "producer_function": "run_leakage_positive_controls",
+  "run_id": "acp-bv-001b-red-first-repair-final-verify-leakage",
+  "runtime_generated_identifiers": [
+    "rt_dbbfca79af661442",
+    "rt_32b727b5c7d35059",
+    "rt_61aec7d7fcdc9632",
+    "rt_949de73c3c4ca5ab",
+    "rt_034c21f86a35715f",
+    "rt_fabc3f378ffa0779",
+    "rt_b5ff011d9a2f532e",
+    "rt_becd44db6354bdd0"
+  ],
+  "validation": {
+    "blocking_verdict": null,
+    "passed": true,
+    "producer_function": "validate_leakage_positive_controls"
+  }
+}

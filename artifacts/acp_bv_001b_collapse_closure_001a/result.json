@@ -1,0 +1,693 @@
+{
+  "baseline_equivalence": {
+    "blocked_by_baseline_equivalence": true,
+    "strongest_baseline": {
+      "b3_classification": "baseline_equivalent",
+      "baseline_id": "parametric_modular_linear_baseline",
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "provenance": {
+        "aggregation_method": "mean_over_seed_scores",
+        "callable_source_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/src/acp_bv_distribution_harness_001b/baselines.py",
+        "code_path_hash": "da9ac4d3ae804c5f17cf0891ac5f54f10cd6f5e67b3241abb7f0ef4e6bfe04f1",
+        "context_episode_ids": [
+          "1009",
+          "2027",
+          "3037",
+          "4049",
+          "5051"
+        ],
+        "inputs": {
+          "baseline_id": "parametric_modular_linear_baseline",
+          "seed_count": 5
+        },
+        "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_distribution_harness_001b_execution_001a/baseline_matrix.json",
+        "producer_function": "acp_bv_distribution_harness_001b.baselines.parametric_modular_linear_baseline",
+        "run_id": "acp-bv-001b-red-first-repair-final-verify-baselines-aggregate-parametric_modular_linear_baseline",
+        "seed": "multi_seed",
+        "source_blob_hash_or_git_object_pin": "da9ac4d3ae804c5f17cf0891ac5f54f10cd6f5e67b3241abb7f0ef4e6bfe04f1"
+      },
+      "score": 1.0
+    }
+  },
+  "claim_ceiling": "local ACP-BV 001B harness collapse closure only",
+  "co_triggers": [
+    "blocked_by_baseline_equivalence"
+  ],
+  "collapse_family": "candidate_truth_coupling",
+  "coupling_report": {
+    "aggregation_method": "exact_prediction_vector_agreement_over_seen_and_extrapolation_probe_grid",
+    "agreement_rate_extrapolation": 1.0,
+    "agreement_rate_overall": 1.0,
+    "code_path_hash": "e695c2a017b5efeb3485f7e51c755b05e820403549022ccb4274b93556330c3a",
+    "evidence_hash": "b09d838d2b61f316e96746e974ff8aca51ef5ded9b379873e90f19fef010eb40",
+    "max_abs_divergence": 0,
+    "n_probes": 1632,
+    "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_distribution_harness_001b_execution_001a/candidate_truth_decoupling.json",
+    "probe_grid_spec": {
+      "actions": [
+        "probe",
+        "shield",
+        "repair",
+        "defer"
+      ],
+      "extrapolation_cells": 48,
+      "seen_cells": 360
+    },
+    "producer_function": "detect_candidate_truth_coupling",
+    "run_id": "acp-bv-001b-red-first-repair-final-verify-candidate-truth-coupling",
+    "seed": 1009,
+    "source_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/src/acp_bv_distribution_harness_001b/coupling.py",
+    "thresholds": {
+      "theta_couple": 1.0
+    },
+    "tolerance": 0,
+    "training_response": {
+      "fit_legal_vs_fit_empty_identical": true,
+      "fit_legal_vs_fit_label_permuted_identical": true,
+      "predictions_invariant_to_training": true
+    },
+    "trigger_A_oracle_match": true,
+    "trigger_B_training_invariance": true,
+    "verdict": "blocked_by_candidate_truth_coupling"
+  },
+  "detector_failability": {
+    "all_actual_flips_match_predeclared": true,
+    "all_controls_discriminated": true,
+    "blocking_verdict": null
+  },
+  "evidence_hashes": {
+    "coupling": "b09d838d2b61f316e96746e974ff8aca51ef5ded9b379873e90f19fef010eb40",
+    "detector_control_hash": "48b34322ae8f6efd61aeb88834c4b35bb7ea4ded73505b000a1325edc3fb9a67",
+    "factorization_hash": "793504ae3b2aab67171a0b8224985ce30870143d9d77361211c8453ba6d24aa9",
+    "solvability": "1bbc682eaba3280f968beb2b8d6cb456b45e2a1da8d4082f572c7dcb52095d5c"
+  },
+  "factorization_report": {
+    "blocked_by_factorized_lookup_equivalence": false,
+    "blocking_reasons": {
+      "candidate_factorized_agreement": false,
+      "lookup_complete_distribution": false,
+      "undeclared_lookup_complete_axis": false
+    },
+    "candidate_vs_factorized_agreement_by_seed": [
+      {
+        "candidate_vs_factorized_agreement": 0.088542,
+        "seed": 1009
+      },
+      {
+        "candidate_vs_factorized_agreement": 0.104167,
+        "seed": 2027
+      },
+      {
+        "candidate_vs_factorized_agreement": 0.085938,
+        "seed": 3037
+      },
+      {
+        "candidate_vs_factorized_agreement": 0.085938,
+        "seed": 4049
+      },
+      {
+        "candidate_vs_factorized_agreement": 0.098958,
+        "seed": 5051
+      }
+    ],
+    "lookup_complete_heldout_ratio_by_seed": {
+      "1009": 0.0,
+      "2027": 0.0,
+      "3037": 0.0,
+      "4049": 0.0,
+      "5051": 0.0
+    },
+    "no_undeclared_lookup_complete_axis_detected": true,
+    "pair_axis_scans": [
+      {
+        "fields": [
+          "signal_code",
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "signal_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "signal_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "topology_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "topology_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "risk_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "signal_code",
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "signal_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "signal_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "topology_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "topology_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "risk_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "signal_code",
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "signal_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "signal_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "topology_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "topology_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "risk_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "signal_code",
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "signal_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "signal_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "topology_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "topology_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "risk_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "signal_code",
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "signal_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "signal_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "topology_code",
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "topology_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "risk_code",
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 64,
+        "lookup_complete_heldout_ratio": 0.5,
+        "seed": 5051
+      }
+    ],
+    "predeclared_factorization_families": [
+      "phase_family",
+      "risk_family",
+      "signal_family",
+      "topology_family"
+    ],
+    "producer_function": "factorization_report",
+    "single_axis_scans": [
+      {
+        "fields": [
+          "signal_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 1009
+      },
+      {
+        "fields": [
+          "signal_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 2027
+      },
+      {
+        "fields": [
+          "signal_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 3037
+      },
+      {
+        "fields": [
+          "signal_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 4049
+      },
+      {
+        "fields": [
+          "signal_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "topology_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "risk_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 5051
+      },
+      {
+        "fields": [
+          "phase_code"
+        ],
+        "heldout_count": 128,
+        "lookup_complete": false,
+        "lookup_complete_heldout_count": 96,
+        "lookup_complete_heldout_ratio": 0.75,
+        "seed": 5051
+      }
+    ]
+  },
+  "leakage_report": {
+    "aggregation_method": "parametric_recovery_from_legal_channels_plus_forbidden_observation_key_scan",
+    "candidate_authored_aliases_required": false,
+    "code_path_hash": "82d5e906cbc580c670ff9805853604ae4d9fff36cbf2d524f4ccb4db376d78ef",
+    "context_episode_ids": [
+      "1009",
+      "2027",
+      "3037",
+      "4049",
+      "5051"
+    ],
+    "evidence_hash": "1bbc682eaba3280f968beb2b8d6cb456b45e2a1da8d4082f572c7dcb52095d5c",
+    "forbidden_observation_hits": [],
+    "future_observations_required": false,
+    "hidden_truth_labels_required": false,
+    "leaking_oracle_solvability_detected": false,
+    "legal_channel_parametric_score": 1.0,
+    "legal_solvability_detected": true,
+    "output_artifact_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/acp_bv_distribution_harness_001b_execution_001a/solvability_preflight.json",
+    "producer_function": "run_solvability_preflight",
+    "run_id": "acp-bv-001b-red-first-repair-final-verify-solvability",
+    "seed": "multi_seed",
+    "source_path": "D:/Project/AIProject/MyProject/intelligence-theory-lab/src/acp_bv_distribution_harness_001b/leakage_scanner.py",
+    "verdict": "legal_solvability_without_leaking_oracle"
+  },
+  "primary_verdict": "blocked_by_candidate_truth_coupling",
+  "task_id": "acp_bv_001b_collapse_closure_001a",
+  "terminal": true,
+  "what_this_does_not_prove": "Does not prove ACP-BV validity, mechanism validity, Gate validity, mainline effect, agency, consciousness, emotion, autonomy, stable user benefit, or EGO readiness."
+}
