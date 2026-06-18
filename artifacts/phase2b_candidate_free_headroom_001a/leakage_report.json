@@ -1,0 +1,172 @@
+{
+  "blocking_reasons": [],
+  "clean_scan_findings": [],
+  "clean_scan_passed_after_positive_controls": true,
+  "clean_scan_scanned_generated_artifacts": true,
+  "clean_scan_scope": {
+    "candidate_visible_episode_count": 108,
+    "diagnostic_only_excluded_from_candidate_visible_claim": true,
+    "scanned_surfaces": [
+      "candidate_visible.current_observation",
+      "candidate_visible.legal_action_or_query_schema",
+      "candidate_visible.budget_state",
+      "candidate_visible.runner_action_history",
+      "candidate_visible.legal_interaction_results",
+      "candidate_visible.serialized_state",
+      "candidate_visible.source_provenance",
+      "artifact_structure.paths",
+      "source_path",
+      "evaluation_only.diagnostic_boundary"
+    ],
+    "trace_row_count": 108
+  },
+  "consumed_by_final_verdict": true,
+  "detected_positive_control_ids": [
+    "answer_map",
+    "final_action_score",
+    "fixture_name_target_leak",
+    "full_legal_response_bundle",
+    "full_legal_response_bundles",
+    "semantic_action_label_leak",
+    "source_path_target_leak",
+    "target_label"
+  ],
+  "illegal_leak_findings": [],
+  "passed": true,
+  "positive_control_findings": {
+    "answer_map": [
+      {
+        "path": "answer_map",
+        "reason": "illegal_key_token",
+        "root_id": "answer_map",
+        "value_preview": "{'candidate_visible': {'answer_map': {'episode': 'a0'}}}"
+      },
+      {
+        "path": "answer_map.candidate_visible.answer_map",
+        "reason": "illegal_key_token",
+        "root_id": "answer_map",
+        "value_preview": "{'episode': 'a0'}"
+      }
+    ],
+    "final_action_score": [
+      {
+        "path": "final_action_score",
+        "reason": "illegal_key_token",
+        "root_id": "final_action_score",
+        "value_preview": "{'candidate_visible': {'final_action_score': {'a0': 1, 'a1': 0}}}"
+      },
+      {
+        "path": "final_action_score.candidate_visible.final_action_score",
+        "reason": "illegal_key_token",
+        "root_id": "final_action_score",
+        "value_preview": "{'a0': 1, 'a1': 0}"
+      }
+    ],
+    "fixture_name_target_leak": [
+      {
+        "path": "fixture_name_target_leak",
+        "reason": "illegal_key_token",
+        "root_id": "fixture_name_target_leak",
+        "value_preview": "{'fixture_name': 'episode_answer_map_a0.json'}"
+      },
+      {
+        "path": "fixture_name_target_leak.fixture_name",
+        "reason": "illegal_value_token",
+        "root_id": "fixture_name_target_leak",
+        "value_preview": "episode_answer_map_a0.json"
+      }
+    ],
+    "full_legal_response_bundle": [
+      {
+        "path": "full_legal_response_bundle",
+        "reason": "illegal_key_token",
+        "root_id": "full_legal_response_bundle",
+        "value_preview": "{'candidate_visible': {'full_legal_response_bundle': {'best_final_action': 'a1'}}}"
+      },
+      {
+        "path": "full_legal_response_bundle.candidate_visible.full_legal_response_bundle",
+        "reason": "illegal_key_token",
+        "root_id": "full_legal_response_bundle",
+        "value_preview": "{'best_final_action': 'a1'}"
+      }
+    ],
+    "full_legal_response_bundles": [
+      {
+        "path": "full_legal_response_bundles",
+        "reason": "illegal_key_token",
+        "root_id": "full_legal_response_bundles",
+        "value_preview": "{'candidate_visible': {'full_legal_response_bundles': [{'best_final_action': 'a2'}]}}"
+      },
+      {
+        "path": "full_legal_response_bundles.candidate_visible.full_legal_response_bundles",
+        "reason": "illegal_key_token",
+        "root_id": "full_legal_response_bundles",
+        "value_preview": "[{'best_final_action': 'a2'}]"
+      }
+    ],
+    "semantic_action_label_leak": [
+      {
+        "path": "semantic_action_label_leak.candidate_visible.action_metadata.a0",
+        "reason": "illegal_value_token",
+        "root_id": "semantic_action_label_leak",
+        "value_preview": "stabilize_self_caused_viability_drop"
+      }
+    ],
+    "source_path_target_leak": [
+      {
+        "path": "source_path_target_leak",
+        "reason": "illegal_key_token",
+        "root_id": "source_path_target_leak",
+        "value_preview": "{'source_path': 'fixtures/target_label_stabilize_self_caused_viability_drop.json'}"
+      },
+      {
+        "path": "source_path_target_leak.source_path",
+        "reason": "illegal_value_token",
+        "root_id": "source_path_target_leak",
+        "value_preview": "fixtures/target_label_stabilize_self_caused_viability_drop.json"
+      }
+    ],
+    "target_label": [
+      {
+        "path": "target_label",
+        "reason": "illegal_key_token",
+        "root_id": "target_label",
+        "value_preview": "{'candidate_visible': {'target_label': 'stabilize_self_caused_viability_drop'}}"
+      },
+      {
+        "path": "target_label.candidate_visible.target_label",
+        "reason": "illegal_key_token",
+        "root_id": "target_label",
+        "value_preview": "stabilize_self_caused_viability_drop"
+      },
+      {
+        "path": "target_label.candidate_visible.target_label",
+        "reason": "illegal_value_token",
+        "root_id": "target_label",
+        "value_preview": "stabilize_self_caused_viability_drop"
+      }
+    ]
+  },
+  "positive_control_ids": [
+    "answer_map",
+    "final_action_score",
+    "fixture_name_target_leak",
+    "full_legal_response_bundle",
+    "full_legal_response_bundles",
+    "semantic_action_label_leak",
+    "source_path_target_leak",
+    "target_label"
+  ],
+  "positive_controls_passed": true,
+  "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan",
+  "required_positive_control_ids": [
+    "answer_map",
+    "final_action_score",
+    "fixture_name_target_leak",
+    "full_legal_response_bundle",
+    "full_legal_response_bundles",
+    "semantic_action_label_leak",
+    "source_path_target_leak",
+    "target_label"
+  ]
+}

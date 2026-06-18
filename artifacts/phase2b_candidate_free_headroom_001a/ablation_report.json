@@ -1,0 +1,117 @@
+{
+  "all_controls_consumed_by_final_verdict": true,
+  "blocking_reasons": [],
+  "controls": [
+    {
+      "blocking_reason_detected": "missing_replay_input:current_observation",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "remove_legal_observation_fields",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_replay_check"
+    },
+    {
+      "blocking_reason_detected": "missing_serialized_probe_results",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "remove_legal_interaction_history",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_replay_check"
+    },
+    {
+      "blocking_reason_detected": "insufficient_replay_budget",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "remove_legal_query_budget",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_replay_check"
+    },
+    {
+      "blocking_reason_detected": "strongest_fair_baseline_in_oracle_equivalence_band",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "force_strongest_baseline_equals_visible_oracle",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.derive_result"
+    },
+    {
+      "blocking_reason_detected": "positive_control_detected:answer_map",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "inject_answer_map_positive_control",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan"
+    },
+    {
+      "blocking_reason_detected": "positive_control_detected:target_label",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "inject_target_field_positive_control",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan"
+    },
+    {
+      "blocking_reason_detected": "positive_control_detected:final_action_score",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "inject_final_score_positive_control",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan"
+    },
+    {
+      "blocking_reason_detected": "positive_control_detected:semantic_action_label_leak",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "inject_semantic_action_label_positive_control",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan"
+    },
+    {
+      "blocking_reason_detected": "positive_control_detected:full_legal_response_bundle",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "inject_full_bundle_positive_control",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan"
+    },
+    {
+      "blocking_reason_detected": "positive_control_detected:source_path_target_leak",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "inject_source_path_target_positive_control",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_leakage_scan"
+    },
+    {
+      "blocking_reason_detected": "replay_tamper_negative_control_detected",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "tamper_replay_state",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_replay_check"
+    },
+    {
+      "blocking_reason_detected": "missing_required_provenance:phase2b_episode_generator",
+      "callable_invoked": true,
+      "consumed_by_final_verdict": true,
+      "control_id": "omit_source_generator_provenance",
+      "detected_expected_failure": true,
+      "producer_function": "phase2b_candidate_free_headroom_001a.runner.verify_provenance"
+    }
+  ],
+  "producer_function": "phase2b_candidate_free_headroom_001a.runner.run_ablation_controls",
+  "required_control_ids": [
+    "force_strongest_baseline_equals_visible_oracle",
+    "inject_answer_map_positive_control",
+    "inject_final_score_positive_control",
+    "inject_full_bundle_positive_control",
+    "inject_semantic_action_label_positive_control",
+    "inject_source_path_target_positive_control",
+    "inject_target_field_positive_control",
+    "omit_source_generator_provenance",
+    "remove_legal_interaction_history",
+    "remove_legal_observation_fields",
+    "remove_legal_query_budget",
+    "tamper_replay_state"
+  ]
+}
