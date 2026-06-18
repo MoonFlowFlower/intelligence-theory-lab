@@ -1,0 +1,104 @@
+{
+  "checks": {
+    "baselines_fail": true,
+    "headroom_ok": true,
+    "ideal_high": true,
+    "replay_exact": true,
+    "shuffle_collapse": true,
+    "single_step_floor": true
+  },
+  "claim_ceiling": "A minimal procedural world that separates compositional-latent inference from lookup/memorization on a held-out, balanced, leak-free metric, with measured headroom vs an ideal (Bayesian) observer -- IF the computed verdict is 'world_discriminates_structure_inference'. Tests NO candidate; not generalization-mechanism evidence; evidences nothing about agency, learning-as-mechanism, self, feeling, or subjectivity. A negative verdict is bounded to THIS world. This run was drafter-implemented in a non-outcome-neutral session and REQUIRES independent audit before its verdict may be treated as banked lab evidence.",
+  "delta": 0.1,
+  "floor": 0.2,
+  "headroom_heldout": 0.8031885429818576,
+  "ideal_observer_heldout": 1.0,
+  "margin_reported": 0.2996904090061985,
+  "max_fair_baseline_heldout": 0.19681145701814237,
+  "n_episodes": 200,
+  "official_run": true,
+  "preregistration": {
+    "candidate_free": true,
+    "claim_ceiling": "A minimal procedural world that separates compositional-latent inference from lookup/memorization on a held-out, balanced, leak-free metric, with measured headroom vs an ideal (Bayesian) observer -- IF the computed verdict is 'world_discriminates_structure_inference'. Tests NO candidate; not generalization-mechanism evidence; evidences nothing about agency, learning-as-mechanism, self, feeling, or subjectivity. A negative verdict is bounded to THIS world. This run was drafter-implemented in a non-outcome-neutral session and REQUIRES independent audit before its verdict may be treated as banked lab evidence.",
+    "leakage": {
+      "detector": "dual-target mutual information",
+      "flag_if": "MI(channel;rule_id) >= MI_FRAC*H(rule_id) OR MI(channel;answer) >= MI_FRAC*H(answer)",
+      "mi_frac": 0.5,
+      "planted_controls": [
+        "rule_id_channel",
+        "heldout_answer_channel",
+        "renamed_rule_id_channel"
+      ],
+      "targets": [
+        "rule_id",
+        "held_out_answer"
+      ]
+    },
+    "metric": {
+      "delta_band": 0.1,
+      "floor": 0.2,
+      "headroom": "ideal_observer - max(fair_non_inference_baselines)",
+      "margin_rule": "margin = max_trivial_baseline + DELTA (reported); pass also requires headroom > DELTA",
+      "primary": "mean over episodes of per-episode balanced accuracy on held-out queries"
+    },
+    "research_layer": "engineering_implementation+mechanism_hypothesis_preflight",
+    "seeds": {
+      "baseline_fit": 20260622,
+      "leak": 20260621,
+      "master": 20260618,
+      "real": 20260619,
+      "shuffle": 20260620
+    },
+    "sizes": {
+      "n_adapt": 24,
+      "n_episodes": 200,
+      "n_query": 30
+    },
+    "task_id": "TLGP-001A",
+    "verdict_rule": {
+      "invalid": "invalid_due_to_leakage_or_contract_failure",
+      "invalid_iff": "any planted leak uncaught OR any clean channel falsely flagged",
+      "pass": "world_discriminates_structure_inference",
+      "pass_iff_all": [
+        "headroom > DELTA",
+        "max_fair_baseline <= FLOOR + DELTA",
+        "single_step_decoder <= FLOOR + DELTA",
+        "ideal_observer >= FLOOR + 2*DELTA",
+        "all planted leaks caught AND no clean channel falsely flagged",
+        "shuffle ablation collapses headroom (headroom_shuffle <= DELTA)",
+        "replay exact"
+      ],
+      "weak": "world_cannot_discriminate__lookup_or_degenerate",
+      "weak_otherwise": true
+    },
+    "world": {
+      "ACTION_CARD": 5,
+      "D": 3,
+      "K": 5,
+      "M": 5,
+      "heldout_definition": "every query property value drawn from heldout_values (unseen during adaptation)",
+      "heldout_values": [
+        3,
+        4
+      ],
+      "rule": "effect = (sum_i w_i * x_i + c * a) mod K",
+      "rule_space_size": 625,
+      "train_values": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "preregistration_sha256": "3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579",
+  "shuffle_headroom": -0.0028891483516483574,
+  "single_step_decoder": {
+    "clean": 0.1996904090061985,
+    "leaked_rule": 1.0
+  },
+  "task_id": "TLGP-001A",
+  "validity": {
+    "decoder_capable": true,
+    "leak_detector_valid": true
+  },
+  "verdict": "world_discriminates_structure_inference"
+}

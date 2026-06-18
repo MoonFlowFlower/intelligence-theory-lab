@@ -1,0 +1,59 @@
+{
+  "all_executed_equals_delivered": true,
+  "files": {
+    "src/tlgp_001a/__init__.py": {
+      "delivered_sha256": "bba21d2fdfe07ea43e8b51fb5153a8de047b9739f53b327debee81ce0f6d88ce",
+      "executed_sha256": "bba21d2fdfe07ea43e8b51fb5153a8de047b9739f53b327debee81ce0f6d88ce",
+      "match": true
+    },
+    "src/tlgp_001a/baselines.py": {
+      "delivered_sha256": "514a81ca7e816482a369c0e04b93dc64fc12d93bbed9c03e86c0993735df301d",
+      "executed_sha256": "514a81ca7e816482a369c0e04b93dc64fc12d93bbed9c03e86c0993735df301d",
+      "match": true
+    },
+    "src/tlgp_001a/harness.py": {
+      "delivered_sha256": "7f9e4ba840f2345dabecf902dfa64a64665bb711c4b8c6189aab8bac2d438bab",
+      "executed_sha256": "7f9e4ba840f2345dabecf902dfa64a64665bb711c4b8c6189aab8bac2d438bab",
+      "match": true
+    },
+    "src/tlgp_001a/ideal_observer.py": {
+      "delivered_sha256": "be8ef3c13e314baf77632b8c70c831b5aa82a6a2f59cabaa60854eda18c4e2a9",
+      "executed_sha256": "be8ef3c13e314baf77632b8c70c831b5aa82a6a2f59cabaa60854eda18c4e2a9",
+      "match": true
+    },
+    "src/tlgp_001a/leakage.py": {
+      "delivered_sha256": "387c413d6af816216c73b45316bf854e3ef906e575bffc96cea1f6353e90bef1",
+      "executed_sha256": "387c413d6af816216c73b45316bf854e3ef906e575bffc96cea1f6353e90bef1",
+      "match": true
+    },
+    "src/tlgp_001a/metrics.py": {
+      "delivered_sha256": "5fcc40a16d4a7417e96a8282b4c7fad1e84ad17aa73925bc8c210d657469aa5e",
+      "executed_sha256": "5fcc40a16d4a7417e96a8282b4c7fad1e84ad17aa73925bc8c210d657469aa5e",
+      "match": true
+    },
+    "src/tlgp_001a/preregistration.py": {
+      "delivered_sha256": "4122c221fcad9fedbe21c5b83d5b5d657caaf6dd3e313b0c0256b0d37954b660",
+      "executed_sha256": "4122c221fcad9fedbe21c5b83d5b5d657caaf6dd3e313b0c0256b0d37954b660",
+      "match": true
+    },
+    "src/tlgp_001a/world.py": {
+      "delivered_sha256": "beff9a88ab3a40c62b9be3806e8300199df55e3064a574184fb375bf486c820a",
+      "executed_sha256": "beff9a88ab3a40c62b9be3806e8300199df55e3064a574184fb375bf486c820a",
+      "match": true
+    },
+    "tests/test_tlgp_001a.py": {
+      "delivered_sha256": "a358f9884c75922678e6f0e91b5075016ad0f314d36416482b84c29c6ec61b69",
+      "executed_sha256": "a358f9884c75922678e6f0e91b5075016ad0f314d36416482b84c29c6ec61b69",
+      "match": true
+    }
+  },
+  "n_episodes": 200,
+  "note": "FUSE-safe execution: code authored/run from a /tmp clean copy (mount file-tool writes are lossy on bash read); delivered mount source then overwritten from that same copy via bash. executed==delivered verified byte-for-byte.",
+  "preregistration_sha256": "3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579",
+  "task_id": "TLGP-001A",
+  "undeletable_leftovers": [
+    "artifacts/TLGP-001A/_rtcheck.py (neutralized; defunct FUSE round-trip check, no-delete mount)",
+    "artifacts/TLGP-001A/__pycache__ (stale, no-delete mount; not imported - run is from /tmp)"
+  ],
+  "verdict": "world_discriminates_structure_inference"
+}

@@ -1,0 +1,35 @@
+TLGP-001A LIMITATIONS (read with result.json; these BOUND the PASS).
+
+1. DRAFTER == IMPLEMENTER == SAME SESSION. The card mandates an outcome-neutral fresh
+   session; this run violated that. The verdict is NOT banked lab evidence until an
+   INDEPENDENT audit reproduces it. Claim ceiling stays at: drafter-implemented,
+   pending independent audit.
+
+2. NO CROSS-EPISODE META-LEARNER in the fair-baseline panel. All fair baselines are
+   per-episode (cold): they see only this episode's 24 adaptation interactions, like the
+   ideal observer. A learner trained ACROSS many episodes could in principle learn the
+   mod-K family and extrapolate, potentially closing the headroom. Therefore the PASS is
+   bounded to: "WITHIN-episode compositional-structure inference is separable from
+   WITHIN-episode lookup/memorization." It does NOT show any learner achieves the
+   ideal-observer headroom. The NEXT (candidate) card MUST add a cross-episode meta-learner
+   to the panel before any learning-mechanism claim. (K2 fair-baseline-completeness note.)
+
+3. HELD-OUT = UNSEEN PROPERTY VALUES (extrapolation regime: train values {0,1,2}, held-out
+   {3,4}). The discrimination demonstrated is EXTRAPOLATIVE compositional generalization.
+   Interpolation (new combinations of already-seen values) is a different, untested regime.
+
+4. IDEAL=1.000 because 24 adaptation interactions identify the rule in 200/200 episodes
+   (n_consistent==1). The ceiling is exact by construction (enumerate+filter over 625
+   rules); it is the optimal in-family observer, granted the family as a probe.
+
+5. REPLAY is bounded: it recomputes the ideal score from recorded predictions vs recorded
+   ground truth (no hidden future info) and re-aggregates the recorded per-episode baseline
+   scores to re-derive the verdict. It validates the decision + ideal pipelines; it trusts
+   the per-episode baseline scores recorded in the trace (it does not re-fit the sklearn
+   baselines during replay).
+
+6. The headroom source is the mod-K nonlinearity + family knowledge granted to the ideal
+   observer. The shuffle-structure ablation shows this advantage exists ONLY when the world
+   actually has compositional structure (on a random table the ideal observer collapses to
+   floor), so the headroom is not "oracle always wins". But the gap is, by construction, the
+   value of KNOWING the family; a candidate must LEARN it (see #2).
