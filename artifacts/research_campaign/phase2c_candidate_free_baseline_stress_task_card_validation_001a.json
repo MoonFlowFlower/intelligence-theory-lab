@@ -1,0 +1,115 @@
+﻿{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE2C-CANDIDATE-FREE-BASELINE-STRESS-TASK-CARD-001A",
+    "generated_at":  "2026-06-18T12:38:04.8842574-05:00",
+    "producer_function":  "powershell.phase2c_candidate_free_baseline_stress_task_card_validation_001a",
+    "result":  "passed",
+    "blocking_findings":  [
+
+                          ],
+    "layer":  "engineering_implementation + mechanism_hypothesis_governance",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "local_phase2c_candidate_free_baseline_stress_task_card_validated_pending_audit",
+    "route_selected":  "candidate_free_baseline_stress_task_card",
+    "route_audit_verdict":  "success_reached",
+    "current_trace_row_count":  12,
+    "current_single_run":  true,
+    "current_random_ties_strongest":  true,
+    "strongest_fair_baseline_id":  "fsm_planner",
+    "strongest_fair_baseline_macro_accuracy":  0.33333333333333331,
+    "future_stress_contract":  {
+                                   "seed_count_min":  5,
+                                   "train_family_count_min":  3,
+                                   "heldout_family_count_min":  3,
+                                   "episodes_per_family_min":  4,
+                                   "candidate_free_only":  true,
+                                   "equal_access_and_budget_required":  true,
+                                   "baselines":  [
+                                                     "random",
+                                                     "majority",
+                                                     "observation_only",
+                                                     "lookup",
+                                                     "count_table",
+                                                     "transition_table",
+                                                     "graph_cache",
+                                                     "successor_map",
+                                                     "nearest_neighbor",
+                                                     "fsm_planner",
+                                                     "episodic_traversal",
+                                                     "trace_only_replay",
+                                                     "exhaustive_legal_query"
+                                                 ],
+                                   "ablations":  [
+                                                     "memory_deletion",
+                                                     "source_memory_deletion",
+                                                     "latent_rule_swap",
+                                                     "heldout_task_family_transfer",
+                                                     "cross_episode_reset",
+                                                     "exploration_budget_ablation",
+                                                     "partial_observation_ablation",
+                                                     "observation_field_masking",
+                                                     "spurious_token_injection_removal"
+                                                 ]
+                               },
+    "source_or_test_diff_present":  false,
+    "stress_execution_run":  false,
+    "stress_output_generated":  false,
+    "candidate_mechanism_run":  false,
+    "phase3_opened":  false,
+    "route_tournament_authorized":  false,
+    "auto_remote_anchor":  "forbidden",
+    "program_goal_status":  "active_not_complete",
+    "program_terminal_condition":  "not_met",
+    "program_terminal_verdict":  "not_recorded",
+    "claim_ceiling":  "Candidate-free baseline-stress task-card validation only; no stress execution, no candidate validation, no mechanism validity, no runtime/mainline effect, no terminal verdict, and no program completion claim.",
+    "next_minimal_closed_loop_action":  "Run read-only audit of this baseline-stress task card before any candidate-free stress implementation or execution.",
+    "source_readback":  [
+                            {
+                                "path":  "docs/research_campaign/phase2c_candidate_free_baseline_stress_task_card_001a.md",
+                                "sha256":  "3bff65a44868bc28a3c88463fa9531c9cf3ea24c0790fb1f98438fbfc4a809bb",
+                                "byte_count":  19748,
+                                "consumed_by_decision":  true
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/phase2c_hidden_latent_post_result_route_check_001a.json",
+                                "sha256":  "c0defcbea3ded9cfc8a872911c306aa0de56b4149135b9c2a5b4865b5c65f6bd",
+                                "byte_count":  16220,
+                                "consumed_by_decision":  true
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/phase2c_hidden_latent_post_result_route_check_audit_001a.json",
+                                "sha256":  "691e86d1c13e38a186d6dcd39438508794dc44643d56fe96d06d33a556e7331a",
+                                "byte_count":  15576,
+                                "consumed_by_decision":  true
+                            },
+                            {
+                                "path":  "docs/research_campaign/plan.md",
+                                "sha256":  "382d2b3cbb57e0c6aeeb3b81020231c1d76e282f6f51bf8976ec7f17ac180eeb",
+                                "byte_count":  10397,
+                                "consumed_by_decision":  true
+                            },
+                            {
+                                "path":  "docs/OVERALL_PROGRESS.md",
+                                "sha256":  "dbd69612a54a5dd020510979d53358fe43d58f391c3b6fb4c89469353a055947",
+                                "byte_count":  131449,
+                                "consumed_by_decision":  true
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/stage_scorecard.json",
+                                "sha256":  "943f7014fdc65959b33bee6462bc63cc3624c8ddb1efd51684341cb79a5c555b",
+                                "byte_count":  247889,
+                                "consumed_by_decision":  true
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/experiment_log.jsonl",
+                                "sha256":  "7da8a5e1ad0bf06f240949baa689b398bcb25c034dd96ab10850d871b79acad8",
+                                "byte_count":  517764,
+                                "consumed_by_decision":  true
+                            }
+                        ],
+    "git_readback":  {
+                         "repo_root":  "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+                         "branch":  "codex/meta-theory-scaffold",
+                         "head":  "f81f62bf09fb2783b441c22cf985c8c3575f2b0b",
+                         "status_short_branch_uall":  "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold [ahead 31]\r\n M docs/OVERALL_PROGRESS.md\r\n M docs/research_campaign/plan.md\r\n?? docs/research_campaign/phase2c_candidate_free_baseline_stress_task_card_001a.md"
+                     }
+}
