@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T09:45:15-05:00
+Last updated: 2026-06-18T09:56:05-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -30,49 +30,43 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 ## Current Campaign State
 
-Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-OUTPUT-REPAIR-001A`
+Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-POST-RESULT-ROUTE-CHECK-001A`
 
-Status: `phase2c_hidden_latent_harness_execution_output_repair_audited_success_pending_route_check`
+Status: `phase2c_hidden_latent_post_result_route_check_audited_success_baseline_stress_task_card_next`
 
-Current stage status: `phase2c_hidden_latent_harness_execution_output_repair_audited_success_pending_route_check`
+Current stage status: `phase2c_hidden_latent_post_result_route_check_audited_success_baseline_stress_task_card_next`
 
 Reviewer verdict: `success_reached`
 
-Current stage goal: Preserve the audited repaired candidate-free harness output and open a bounded post-result route check before any candidate mechanism work.
+Current stage goal: Preserve the audited post-result route decision and open a separate candidate-free Phase2C baseline-stress task card before any candidate mechanism work.
 
 Stage success criteria:
 
-- execution task card exists
-- runner command is frozen
-- required output artifact list is frozen
-- implementation audit success is cited
-- initial exact-command import failure is preserved
-- repaired command uses `PYTHONPATH=src`
-- harness output directory exists and is preserved as invalid execution output
-- execution summary artifact records the invalid output boundary
-- focused validation passes
+- route-check task card exists
+- route-check task card validation passes
+- route-check artifact exists and records source hashes
+- route-check audit returns `success_reached`
+- selected route is `candidate_free_baseline_stress_task_card`
+- repaired output audit success is preserved
+- trace row count is preserved as 12
+- strongest fair baseline is preserved as `fsm_planner` at macro accuracy
+  `0.3333333333333333`
+- random and lookup-family baseline ties are recorded as the reason immediate
+  candidate work remains premature
 - candidate mechanisms remain unrun
 - Phase 3 remains unopened
 - route tournament remains unauthorized
-- harness execution ran once after command repair
-- generated output is invalid as execution evidence because `result.json` says
-  `implemented_not_executed`, `harness_execution_claim=false`, and
-  `trace.jsonl` is empty
+- runtime/EGO mainline, push, tag, remote anchor, terminal verdict, and
+  route-exhaustion claims remain blocked
 
-Next decision gate: Bounded post-result route check.
+Next decision gate: Candidate-free Phase2C baseline-stress task-card opening.
 
-Next frontier: Open a bounded post-result routing check to decide whether the audited candidate-free Phase2C repaired output authorizes a narrow candidate task, more baseline stress, or another repair. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked until that route check exists and passes.
+Next frontier: Open and validate a separate candidate-free Phase2C baseline-stress task card before any candidate mechanism work. Stress execution, source edits, candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked until that future task card exists and passes review.
 
 ## Active Checkpoint
 
 Task card:
-`docs/research_campaign/phase2c_hidden_latent_harness_execution_task_card_001a.md`
-
-Source paths:
-`src/phase2c_hidden_latent_harness_001a/`
-
-Test path:
-`tests/phase2c_hidden_latent_harness_001a/`
+`docs/research_campaign/phase2c_hidden_latent_post_result_route_check_task_card_001a.md`
 
 Surface contract:
 `docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md`
@@ -81,9 +75,18 @@ Checkpoint artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json`
 
 Validation artifact:
-`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_validation_001a.json`
+`artifacts/research_campaign/phase2c_hidden_latent_post_result_route_check_task_card_validation_001a.json`
 
-Command failure artifact:
+Route-check artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_post_result_route_check_001a.json`
+
+Route-check audit:
+`artifacts/research_campaign/phase2c_hidden_latent_post_result_route_check_audit_001a.json`
+
+Selected route:
+`candidate_free_baseline_stress_task_card`
+
+Preserved command failure artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_failure_001a.json`
 
 Command repair validation artifact:
@@ -114,18 +117,21 @@ Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local Phase2C execution-output repair audited success.
+Enabled status: local Phase2C post-result route-check audited success.
 
-Real trigger evidence: read-only audit success over repaired Phase2C output:
-focused tests `6 passed`, 12 trace rows, no candidate-visible hidden leaks,
-persisted provenance, replay/leakage/ablation checks passed, invalid original
-output preserved, and candidate/Phase3 remained false.
+Real trigger evidence: read-only audit success over the route-check artifact:
+source hashes matched, repaired audit verdict was `success_reached`, trace rows
+were non-empty at 12, the run was single fixed-run, random and lookup-family
+baselines tied strongest fair macro accuracy `0.3333333333333333`, candidate
+mechanism and Phase3 flags remained false, and selected route was
+`candidate_free_baseline_stress_task_card`.
 
-Claim ceiling: read-only audit of Phase2C candidate-free repaired harness
-execution-output evidence only; no candidate mechanism was run or validated,
-no mechanism validity, learning/adaptation success, consciousness, real
-emotion, autonomy, EGO readiness, companion readiness, runtime/mainline
-effect, route exhaustion, terminal verdict, or program completion claim.
+Claim ceiling: read-only audit of Phase2C post-result route-check artifact
+only; selected route is a future candidate-free baseline-stress task card, not
+candidate validation, mechanism validity, learning/adaptation success,
+consciousness, real emotion, autonomy, EGO readiness, companion readiness,
+runtime/mainline effect, route exhaustion, terminal verdict, or program
+completion.
 
 Auto-Remote-Anchor: forbidden.
 
