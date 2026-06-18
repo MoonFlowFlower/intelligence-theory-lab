@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T08:07:20-05:00
+Last updated: 2026-06-18T08:12:12-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -95,7 +95,7 @@ Auto-Remote-Anchor: forbidden.
 Maintenance task:
 `docs/research_campaign/worktree_batch_cleanup_task_card_001a.md`
 
-Status: `worktree_batch_cleanup_validated_pending_local_batch_commits`
+Status: `worktree_batch_cleanup_completed_local_batch_commits_clean_record_corrected_pending_closeout_commit`
 
 User-authorized local action: classify dirty/untracked paths, keep existing
 ignore rules for temporary cache/log noise, and create exact-path local commit

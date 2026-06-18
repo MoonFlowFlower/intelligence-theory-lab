@@ -1,6 +1,6 @@
 ﻿# Overall Progress
 
-Last updated: 2026-06-18T08:07:20-05:00
+Last updated: 2026-06-18T08:12:12-05:00
 
 ## Active Campaign Checkpoint
 
@@ -26,9 +26,13 @@ goal_card_contract_line_count_after_worktree_hygiene = 249
 goal_card_contract_sha256_after_worktree_hygiene = b734112ed1dc470ad0b616cbdac2f1487a394a4362876fdce12749e6f393a707
 worktree_batch_cleanup_task = RESEARCH-CAMPAIGN-WORKTREE-BATCH-CLEANUP-001A
 worktree_batch_cleanup_task_card = docs/research_campaign/worktree_batch_cleanup_task_card_001a.md
-worktree_batch_cleanup_status = validated_pending_local_batch_commits
+worktree_batch_cleanup_status = completed_local_batch_commits_clean_record_corrected_pending_closeout_commit
 worktree_cleanup_local_commits_authorized_by_user = true
 worktree_cleanup_push_tag_remote_anchor_authorized = false
+worktree_cleanup_governance_commit = 42f41ddcf8f2faa7987a9ef89ab230415a0da695
+worktree_cleanup_baseline_first_commit = 0cd600e437c51021e63d2c4400953bab34c3500f
+worktree_cleanup_phase2b_commit = 8c297cbd166b4b96ba54da329be49ffb9fcd641a
+worktree_cleanup_new_ignore_rules_added = false
 plan_representation_compaction = completed
 plan_representation_task = RESEARCH-CAMPAIGN-PLAN-REPRESENTATION-COMPACTION-001A
 plan_primary_line_count = 177
