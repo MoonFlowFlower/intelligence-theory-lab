@@ -1,54 +1,435 @@
 ﻿# Overall Progress
 
-Last updated: 2026-06-17T22:03:35-05:00
+Last updated: 2026-06-18T08:07:20-05:00
 
-## Active Recovery Checkpoint
+## Active Campaign Checkpoint
 
 ```text
-task = RESEARCH-CAMPAIGN-PHASE0-RECOVERY-LEDGER-HARDENING-001A
-verdict = phase0_recovery_inventory_corrected_bounded
+task = RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A
+verdict = phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success
+standing_governance_card = RESEARCH-CAMPAIGN-GOAL-STAGE-AUDIT-LOOP-001A
+program_goal_status = active_not_complete
+program_terminal_condition = not_met
+goal_card_representation_compaction = validated_execution_discipline_and_worktree_hygiene_hardened
+goal_card_contract_line_count = 249
+goal_card_pre_compaction_line_count = 520
+goal_card_pre_compaction_sha256 = 793ee8c170dad4074281fb11c45ce83dec8026a751df93d23621aa20e72cca59
+goal_card_pre_worktree_hygiene_sha256 = cd4ee21b33764c5454e536964395a07e36fa8764a2735fd01d1a0ea9c85726ab
+goal_card_compact_sha256 = b734112ed1dc470ad0b616cbdac2f1487a394a4362876fdce12749e6f393a707
+goal_card_appendix = docs/research_campaign/goal_stage_audit_loop_001a_historical_appendix.md
+goal_card_appendix_sha256 = 6ffa5e9dbc1b9bc6a79c8a8732a4ad4c40aef05a60eb9bac5df4463ef68bd41f
+goal_card_live_frontier_source = docs/research_campaign/plan.md
+goal_card_model_execution_discipline = required
+goal_card_stale_phase1_next_action_removed = true
+goal_card_task_end_worktree_hygiene = required
+goal_card_contract_line_count_after_worktree_hygiene = 249
+goal_card_contract_sha256_after_worktree_hygiene = b734112ed1dc470ad0b616cbdac2f1487a394a4362876fdce12749e6f393a707
+worktree_batch_cleanup_task = RESEARCH-CAMPAIGN-WORKTREE-BATCH-CLEANUP-001A
+worktree_batch_cleanup_task_card = docs/research_campaign/worktree_batch_cleanup_task_card_001a.md
+worktree_batch_cleanup_status = validated_pending_local_batch_commits
+worktree_cleanup_local_commits_authorized_by_user = true
+worktree_cleanup_push_tag_remote_anchor_authorized = false
+plan_representation_compaction = completed
+plan_representation_task = RESEARCH-CAMPAIGN-PLAN-REPRESENTATION-COMPACTION-001A
+plan_primary_line_count = 177
+plan_pre_compaction_line_count = 1245
+plan_pre_compaction_sha256 = b960eaf54f5dd4ef33d7e6435b00491fec72a162139cd50e33c4c7a1c346b8f0
+plan_compact_sha256 = 9d81f2d1e87bf3c6d896a04b0b81c215b900724c5e812c1b6eb0d972efb49863
+plan_appendix = docs/research_campaign/plan_appendix_historical_task_cards_001a.md
+plan_appendix_sha256 = 2cd3cb668ee8814ce46c13ea8a593e0e96c8025b31887119762c8db56128c247
+plan_snapshot_preservation_level = text_level_line_count_and_heading_complete_with_byte_exact_trailing_whitespace_caveat
+plan_snapshot_byte_exact = false
 layer = engineering_implementation + mechanism_hypothesis_governance
 mainline_integration_status = none
-enabled_status = none
-real_trigger_evidence = repo readback and campaign ledger recovery only
-claim_ceiling = Phase 0 recovery / evidence-hygiene hardening only
+enabled_status = local_hidden_latent_heldout_surface_contract_reviewer_audited_success
+real_trigger_evidence = Audited Phase 2 and Phase2B no-headroom artifacts plus audited Phase2B no-headroom route-decision artifact and user design correction requiring hidden latent state, heldout splits, interventions, and preserved strong baselines
+claim_ceiling = Problem-representation redesign contract only; no mechanism-validity, learning/adaptation success, subjectivity, consciousness, real-emotion, autonomy, EGO-readiness, companion-readiness, mainline-effect, route-exhaustion, terminal-verdict, candidate-validation, or program-completion claim
 auto_remote_anchor = forbidden
+phase2_executed = true
+phase2_task_card_opened = true
+phase2_start_state_validated = true
+phase2_reviewer_needs_repair_preserved = true
+phase2_repair_applied = true
+phase2_reaudit_status = success_reached
+baseline_battery_run = true
+candidate_mechanism_run = false
+phase3_opened = false
+visible_channel_oracle_macro_f1 = 1.0
+strongest_fair_baseline_macro_f1 = 1.0
+strongest_fair_baseline_id = count_table
+equivalence_band = 0.03
+phase2_no_headroom_negative_evidence_recorded = true
+reframing_task_card_opened = true
+reframing_task_card_validated = true
+reframing_executed = true
+reframing_reviewer_audit_status = success_reached
+phase2b_task_card_opened = true
+phase2b_spec_draft_opened = true
+phase2b_validation_status = passed_after_wording_repair
+phase2b_reviewer_audit_status = success_reached
+phase2b_timestamp_repair_applied = true
+phase2b_reaudit_success_recorded = true
+phase2b_candidate_free_headroom_task_card_opened = true
+phase2b_candidate_free_headroom_validation_status = passed
+phase2b_candidate_free_headroom_reviewer_audit_status = success_reached
+phase2b_candidate_free_headroom_audit_success_recorded = true
+phase2b_execution_start_state_spec_freeze_task_card_opened = true
+phase2b_execution_start_state_spec_freeze_validation_status = passed
+phase2b_execution_start_state_spec_freeze_reviewer_audit_status = success_reached
+phase2b_execution_start_state_spec_freeze_audit_success_recorded = true
+phase2b_start_state_spec_freeze_readback_task_card_opened = true
+phase2b_start_state_spec_freeze_readback_validation_status = passed
+phase2b_start_state_spec_freeze_readback_reviewer_audit_status = success_reached
+phase2b_start_state_spec_freeze_readback_audit_success_recorded = true
+phase2b_spec_freeze_readback_execution_task_card_opened = true
+phase2b_spec_freeze_readback_execution_task_card_validation_status = passed
+phase2b_spec_freeze_readback_execution_task_card_reviewer_audit_status = success_reached_after_stale_status_repair
+phase2b_spec_freeze_readback_execution_audit_success_recorded = true
+phase2b_start_state_readback_authorized_historical = true
+phase2b_spec_freeze_authorized_historical = true
+phase2b_spec_freeze_created = true
+phase2b_start_state_readback_created = true
+phase2b_spec_freeze_readback_execution_validation_status = passed_after_reviewer_success_recording
+phase2b_spec_freeze_readback_execution_reviewer_audit_status = success_reached
+phase2b_candidate_free_harness_execution_task_card_opened = true
+phase2b_candidate_free_harness_execution_validation_status = passed
+phase2b_candidate_free_harness_execution_reviewer_audit_status = success_reached
+phase2b_candidate_free_harness_run_task_card_opened = true
+phase2b_candidate_free_harness_run_validation_status = passed
+phase2b_candidate_free_harness_run_reviewer_audit_status = success_reached
+phase2b_candidate_free_harness_run_authorized_historical = true
+phase2b_candidate_free_headroom_execution_run = true
+phase2b_candidate_free_headroom_execution_validation_status = passed
+phase2b_candidate_free_headroom_execution_reviewer_audit_status = success_reached
+phase2b_candidate_free_headroom_execution_verdict = no_headroom_baseline_saturated
+phase2b_no_headroom_negative_evidence_recorded = true
+phase2b_no_headroom_preservation_reframing_opened = true
+phase2b_no_headroom_preservation_reframing_validation_status = passed
+phase2b_no_headroom_preservation_reframing_reviewer_audit_status = success_reached_after_two_preserved_stale_readback_repairs
+phase2b_no_headroom_route_decision_opened = true
+phase2b_no_headroom_route_decision_validation_status = passed
+phase2b_no_headroom_route_decision_reviewer_audit_status = success_reached_after_stale_bookkeeping_repair
+phase2b_program_needs_reframing_checkpoint_opened = true
+phase2b_program_needs_reframing_checkpoint_validation_status = passed
+phase2b_program_needs_reframing_checkpoint_reviewer_audit_status = superseded_before_audit
+phase2b_program_needs_reframing_checkpoint_status = superseded_by_user_design_correction_not_terminal_evidence
+phase2c_hidden_latent_heldout_surface_contract_opened = true
+phase2c_hidden_latent_heldout_surface_contract_validation_status = passed_after_reviewer_success_recording
+phase2c_hidden_latent_heldout_surface_contract_reviewer_audit_status = success_reached_after_three_preserved_current_state_repairs
+program_terminal_verdict = not_recorded
+phase2b_execution_authorized_historical = true
+phase2b_start_state_readback_authorized_historical = true
+phase2b_spec_freeze_authorized_historical = true
+current_route_decision_new_environment_spec_authorized = false
+current_route_decision_new_harness_authorized = false
+current_route_decision_candidate_mechanism_authorized = false
+current_route_decision_phase3_authorized = false
+future_phase2b_execution_authorized = false
+chat_only_hegel_audit_recorded = false
+phase1_reviewer_audit_recorded = true
 ```
 
-The current workspace is dirty and ahead of origin. Phase 0 is a recovery-first
-checkpoint: classify current dirty/untracked evidence-like state, create the
-canonical campaign plan, update the campaign ledger files, and block any new
-mechanism experiment until the recovery record validates. The Phase 0 validation artifact records the current recovery checks.
+Phase 0 recovery closeout is audited pass after subagent re-audit. Phase 1
+problem formalization has produced bounded proxy contracts for self-model,
+affect/value regulation, active exploration, long-term update, and
+self/environment boundary. Phase 1 audit runs 001 and 002 returned
+`needs_more_implementation`; those failures are preserved, their local repairs
+are applied, and Phase 1 audit run 003 returned `success_reached`. The
+`success_reached` verdict is recorded in
+`artifacts/research_campaign/phase1_problem_formalization_audit_001a.json`,
+`artifacts/research_campaign/experiment_log.jsonl`,
+`artifacts/research_campaign/stage_scorecard.json`, and this checkpoint.
 
-Inventory correction: the recovery inventory excludes Phase 0-created campaign ledger paths from the pre-existing dirty-state count and preserves the correction in the ledger.
+Phase 2 opened in `docs/research_campaign/phase2_baseline_first_headroom_001a.md`,
+and start-state validation passed in
+`artifacts/research_campaign/phase2_baseline_first_headroom_task_card_validation_001a.json`.
+The candidate-free harness then executed under
+`src/baseline_first_harness_001a/` and wrote artifacts under
+`artifacts/baseline_first_harness_001a/`. The measured verdict is
+`no_headroom_baseline_saturated`: visible-channel oracle macro F1 was `1.0`, the
+strongest fair baseline was `count_table` with macro F1 `1.0`, and the
+equivalence band was `0.03`. No candidate mechanism, Phase 3 search, Gate,
+runtime path, EGO mainline path, push, tag, or remote anchor was run.
 
-This checkpoint does not accept any untracked artifact as valid evidence. It
-does not run a baseline battery, mechanism candidate, Gate, runtime path, EGO
-mainline path, or live trigger.
+The first read-only reviewer audit returned `needs_repair`: replay input
+consumption was overstated, leakage scanning did not inspect generated
+artifacts, and ablation/provenance coverage was inflated. That failure is
+preserved in
+`artifacts/research_campaign/phase2_baseline_first_headroom_001a.json`. Repairs
+have been applied and the raw harness artifacts now record replay reads for all
+required inputs, generated-artifact leakage scan with four positive controls,
+six callable ablation controls, and 25 provenance records. The read-only
+re-audit returned `success_reached`, recorded in
+`artifacts/research_campaign/phase2_baseline_first_headroom_audit_001a.json`.
 
-Required Phase 0 artifacts:
+The audited no-headroom result is now preserved as route-blocking negative
+evidence in
+`artifacts/research_campaign/phase2_no_headroom_negative_evidence_001a.json`.
+The bounded reframing task card is opened in
+`docs/research_campaign/phase2_no_headroom_reframing_001a.md`. It authorizes
+only future representation-governance work. Focused start-state validation for
+that card passed in
+`artifacts/research_campaign/phase2_no_headroom_reframing_task_card_validation_001a.json`.
+The card does not authorize candidate mechanisms, Phase 3, route tournament,
+runtime, EGO mainline, push, tag, or remote anchor.
+
+The separately authorized Phase2B candidate-free headroom harness has now run
+under `src/phase2b_candidate_free_headroom_001a/` and wrote raw artifacts under
+`artifacts/phase2b_candidate_free_headroom_001a/`. The campaign summary is
+`artifacts/research_campaign/phase2b_candidate_free_headroom_001a.json`, and
+focused validation is recorded in
+`artifacts/research_campaign/phase2b_candidate_free_headroom_validation_001a.json`.
+The measured verdict is `no_headroom_baseline_saturated`: visible-channel
+oracle macro F1 was `1.0`, the strongest fair baseline was `count_table` with
+macro F1 `1.0`, and the equivalence band was `0.03`. Leakage positive controls,
+replay recomputation, ablation controls, baseline invocation, source-pin, and
+provenance checks passed locally. Plato read-only reviewer audit returned
+`success_reached` with no blocking findings and is recorded in
+`artifacts/research_campaign/phase2b_candidate_free_headroom_audit_001a.json`.
+Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push,
+tag, and remote anchor remain blocked.
+
+The audited Phase2B no-headroom result is now being preserved as route-blocking
+negative evidence in
+`artifacts/research_campaign/phase2b_no_headroom_negative_evidence_001a.json`.
+The bounded preservation/reframing task card is opened in
+`docs/research_campaign/phase2b_no_headroom_preservation_reframing_001a.md`,
+and the reframing artifact is
+`artifacts/research_campaign/phase2b_no_headroom_preservation_reframing_001a.json`.
+This checkpoint authorizes only local preservation/reframing validation and
+read-only reviewer audit. It does not authorize candidate mechanisms, Phase 3,
+route tournament, runtime/EGO mainline, push, tag, or remote anchor.
+Focused validation passed for JSON/JSONL parseability, task-card clauses, source
+hashes, and blocked candidate/Phase 3 flags. The first read-only reviewer audit
+returned `needs_more_implementation` for stale current-state readbacks only. The
+second read-only reviewer audit returned `needs_more_implementation` for the
+progress machine block, the reframing artifact's negative-evidence hash, and a
+nested validation summary field. Both findings are preserved in
+`artifacts/research_campaign/phase2b_no_headroom_preservation_reframing_audit_001a.json`.
+The bounded repairs were applied, and the read-only re-audit returned
+`success_reached`. This remains preservation/governance evidence only.
+
+The bounded Phase2B no-headroom route-decision checkpoint is now opened in
+`docs/research_campaign/phase2b_no_headroom_route_decision_task_card_001a.md`.
+The route-decision artifact is
+`artifacts/research_campaign/phase2b_no_headroom_route_decision_001a.json`.
+It records that Phase 2 and Phase2B both saturated against `count_table` and
+that the next allowed work is only a separately bounded
+problem-representation redesign, surface-family closure, or claim-downgrade
+checkpoint. Focused dry validation passed for required task-card clauses,
+repeated no-headroom inputs, blocked candidate/Phase 3 flags, campaign JSON
+parseability, and ledger JSONL parseability. Laplace read-only reviewer audit
+returned `needs_more_implementation` for stale bookkeeping/readback fields only;
+the finding is preserved, the bounded repair was applied, and the read-only
+re-audit returned `success_reached`. Candidate mechanisms, Phase 3, route
+tournament, runtime/EGO mainline, push, tag, and remote anchor remain blocked.
+
+The bounded Phase2B program-needs-reframing checkpoint was opened in an
+interrupted local turn at
+`docs/research_campaign/phase2b_program_needs_reframing_checkpoint_001a.md`.
+It is now superseded before reviewer audit by the user's design correction: the
+campaign should learn how to design a surface where visible-surface baselines
+cannot solve heldout latent structure, not simply record an early terminal
+`program_needs_reframing` verdict. The terminal verdict remains `not_recorded`.
+This interrupted checkpoint is not terminal evidence, not route-exhaustion
+evidence, and not program-completion evidence.
+
+The bounded Phase2C hidden-latent heldout surface contract checkpoint is now
+opened in
+`docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md`.
+The contract is
+`docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md`. It
+requires hidden latent state or latent causal rules, train/heldout seed splits,
+heldout task-family transfer, online exploration/hypothesis-testing actions,
+memory deletion, latent-rule swap interventions, failure taxonomy, leakage
+positive controls, and preservation of lookup/count-table/transition-table/
+graph-cache/nearest-neighbor/episodic-traversal style baselines. It does not
+authorize candidate mechanisms, Phase 3, route tournament, a new harness,
+runtime/EGO mainline, push, tag, commit, or remote anchor.
+
+The bounded reframing artifact now exists at
+`artifacts/research_campaign/phase2_no_headroom_reframing_001a.json`. It records
+`decision = reframe_before_candidate_search`, keeps candidate search and Phase 3
+unauthorized, and limits the next possible route to a future task-card-only
+Phase2B candidate-free environment-spec redesign after reviewer audit success.
+The first read-only reviewer audit returned `needs_more_implementation` because
+the artifact's provenance omitted hashes for two declared inputs, the explicit
+Phase 2 run id, and the aggregation rule. That failure is preserved in the
+artifact, and the provenance repair is applied. A later reviewer finding about
+stale top-level timestamps is also preserved. The read-only re-audit returned
+`success_reached`, recorded in
+`artifacts/research_campaign/phase2_no_headroom_reframing_audit_001a.json`.
+
+Phase2B is now opened only as a task-card/spec checkpoint. The campaign task
+card is
+`docs/research_campaign/phase2b_minimal_env_reframe_spec_001a.md`, and the
+candidate-free spec draft is
+`docs/research/phase2b_minimal_env_reframe_spec_001a.md`. The draft explicitly
+forbids candidate-visible target labels, final-action scores, answer maps, full
+legal response bundles, semantic action-label leaks, mutation or refreeze of
+`MINIMAL-ENV-SPEC-001A`, Phase2B execution, candidates, Phase 3, route
+tournament, runtime/EGO mainline, push, tag, or remote anchor. Focused
+validation passed after preserving one wording failure and repair in
+`artifacts/research_campaign/phase2b_minimal_env_reframe_spec_task_card_validation_001a.json`.
+
+The first Phase2B read-only reviewer audit returned
+`needs_more_implementation` because the top-level status timestamps in
+`docs/research_campaign/plan.md` and this progress file were stale relative to
+the recorded Phase2B validation time. That failure is preserved in
+`artifacts/research_campaign/phase2b_minimal_env_reframe_spec_audit_001a.json`.
+The timestamp repair is applied and the state is pending read-only re-audit.
+The read-only re-audit returned `success_reached`; this audit success is a
+Phase2B task-card/spec governance result only and does not authorize Phase2B
+execution, candidate mechanisms, Phase 3, route tournament, runtime/EGO
+mainline, push, tag, or remote anchor.
+
+The next Phase2B candidate-free headroom task card is now opened at
+`docs/research_campaign/phase2b_candidate_free_headroom_task_card_001a.md`.
+It is a task-card-opening checkpoint only. Focused validation passed, and it does not authorize Phase2B execution, oracle scoring, baseline scoring,
+candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push,
+tag, or remote anchor.
+The read-only reviewer audit returned `success_reached`; that audit success is
+recorded in
+`artifacts/research_campaign/phase2b_candidate_free_headroom_task_card_audit_001a.json`.
+This still does not authorize Phase2B execution, candidate mechanisms, Phase 3,
+route tournament, runtime/EGO mainline, push, tag, or remote anchor.
+
+The next Phase2B execution start-state/spec-freeze task card is now read-only
+reviewer audited `success_reached` at
+`docs/research_campaign/phase2b_execution_start_state_spec_freeze_task_card_001a.md`.
+It is a task-card reviewer-audit checkpoint only. Focused validation passed;
+the first read-only reviewer audit returned `needs_more_implementation` for two
+stale status readbacks, and the first re-audit returned
+`needs_more_implementation` for one stale nested scorecard status. Both
+failures are preserved, the stale readbacks are repaired, and the second
+read-only re-audit returned `success_reached`. This does not authorize spec
+freeze, Phase2B execution, oracle scoring, baseline scoring, replay scoring,
+ablation scoring, leakage scoring, candidate mechanisms, Phase 3, route
+tournament, runtime/EGO mainline, push, tag, or remote anchor.
+
+The Phase2B start-state/spec-freeze readback task card is now read-only
+reviewer audited `success_reached` at
+`docs/research_campaign/phase2b_start_state_spec_freeze_readback_task_card_001a.md`.
+It is a task-card reviewer-audit checkpoint only. Focused validation passed
+after preserving one validator schema-path failure, and read-only reviewer audit
+returned `success_reached`. It does not authorize spec freeze, start-state
+readback execution, Phase2B execution, oracle scoring, baseline scoring, replay
+scoring, ablation scoring, leakage scoring, candidate mechanisms, Phase 3,
+route tournament, runtime/EGO mainline, push, tag, or remote anchor.
+
+The Phase2B spec-freeze/readback execution task card is now opened at
+`docs/research_campaign/phase2b_spec_freeze_readback_execution_task_card_001a.md`.
+It is a task-card validation checkpoint only. Focused validation passed and it
+received a read-only reviewer `needs_more_implementation` finding for stale
+task-card source-hash provenance. That finding is preserved, and the provenance
+repair was applied. The read-only reviewer re-audit returned `success_reached`.
+A later local readback found stale next-action and claim-ceiling fields in the
+task card and nested scorecard. Those stale fields are repaired pending
+read-only re-audit, and the re-audit returned `success_reached`. This checkpoint
+still does not create a freeze file, create a readback result, execute Phase2B,
+score an oracle or baseline, run replay/ablation/leakage scoring, implement a
+candidate mechanism, open Phase 3, run a route tournament, touch runtime/EGO
+mainline, push, tag, or remote anchor.
+
+Standing governance card
+`docs/research_campaign/goal_stage_audit_loop_001a.md` now formalizes the
+phase-by-phase rule: open a bounded phase task card, execute only that scope,
+update plan/progress/ledger/scorecard immediately, run read-only subagent audit,
+preserve failures, repair and re-audit, and open the next phase only after a
+recorded and validated `success_reached`. It is validated by
+`artifacts/research_campaign/goal_stage_audit_loop_validation_001a.json`, which
+also preserves local validation-script failures and the timestamp reconciliation.
+The same card now includes a Program Terminal Contract: task-card completion,
+local validation, chat-only subagent success, or one phase pass cannot complete
+the long-running program. The terminal-contract hardening is locally validated
+in `artifacts/research_campaign/goal_stage_audit_loop_validation_001a.json`.
+This card does not execute Phase 2. The chat-only Hegel audit notification is
+not recorded as ledger truth.
+
+Inventory correction remains preserved: the recovery inventory excludes
+Phase 0-created campaign ledger paths from the pre-existing dirty-state count
+and preserves the correction in the ledger.
+
+This checkpoint does not accept any recovered artifact as valid mechanism
+evidence. It does not run a baseline battery, mechanism candidate, Gate, runtime
+path, EGO mainline path, or live trigger.
+
+Required active artifacts:
 
 ```text
 docs/research_campaign/plan.md
+docs/research_campaign/goal_stage_audit_loop_001a.md
 artifacts/research_campaign/phase0_recovery_inventory_001a.json
 artifacts/research_campaign/phase0_recovery_validation_001a.json
+artifacts/research_campaign/phase0_recovery_closeout_001a.json
+artifacts/research_campaign/phase0_recovery_closeout_audit_001a.json
+docs/research_campaign/phase1_problem_formalization_001a.md
+docs/research_campaign/phase2_baseline_first_headroom_001a.md
+artifacts/research_campaign/phase1_problem_formalization_001a.json
+artifacts/research_campaign/phase1_problem_formalization_validation_001a.json
+artifacts/research_campaign/phase1_problem_formalization_audit_001a.json
 artifacts/research_campaign/experiment_log.jsonl
 artifacts/research_campaign/stage_scorecard.json
+artifacts/research_campaign/goal_stage_audit_loop_validation_001a.json
+artifacts/research_campaign/phase2_baseline_first_headroom_task_card_validation_001a.json
+artifacts/research_campaign/phase2_baseline_first_headroom_001a.json
+artifacts/research_campaign/phase2_baseline_first_headroom_audit_001a.json
+artifacts/research_campaign/phase2_no_headroom_negative_evidence_001a.json
+docs/research_campaign/phase2_no_headroom_reframing_001a.md
+artifacts/research_campaign/phase2_no_headroom_reframing_task_card_validation_001a.json
+artifacts/research_campaign/phase2_no_headroom_reframing_001a.json
+artifacts/research_campaign/phase2_no_headroom_reframing_audit_001a.json
+docs/research_campaign/phase2b_minimal_env_reframe_spec_001a.md
+docs/research/phase2b_minimal_env_reframe_spec_001a.md
+artifacts/research_campaign/phase2b_minimal_env_reframe_spec_task_card_validation_001a.json
+artifacts/baseline_first_harness_001a/result.json
+artifacts/baseline_first_harness_001a/trace.jsonl
+artifacts/baseline_first_harness_001a/baseline_comparison.json
+artifacts/baseline_first_harness_001a/ablation_report.json
+artifacts/baseline_first_harness_001a/replay_report.json
+artifacts/baseline_first_harness_001a/leakage_report.json
+artifacts/baseline_first_harness_001a/computed_evidence_provenance.json
+artifacts/baseline_first_harness_001a/failure_manifest.json
+artifacts/baseline_first_harness_001a/claim_ceiling.txt
+src/phase2b_candidate_free_headroom_001a/runner.py
+src/phase2b_candidate_free_headroom_001a/__init__.py
+tests/phase2b_candidate_free_headroom_001a/test_phase2b_candidate_free_headroom_001a.py
+artifacts/phase2b_candidate_free_headroom_001a/result.json
+artifacts/phase2b_candidate_free_headroom_001a/trace.jsonl
+artifacts/phase2b_candidate_free_headroom_001a/baseline_comparison.json
+artifacts/phase2b_candidate_free_headroom_001a/ablation_report.json
+artifacts/phase2b_candidate_free_headroom_001a/replay_report.json
+artifacts/phase2b_candidate_free_headroom_001a/leakage_report.json
+artifacts/phase2b_candidate_free_headroom_001a/computed_evidence_provenance.json
+artifacts/phase2b_candidate_free_headroom_001a/failure_manifest.json
+artifacts/phase2b_candidate_free_headroom_001a/claim_ceiling.txt
+artifacts/research_campaign/phase2b_candidate_free_headroom_001a.json
+artifacts/research_campaign/phase2b_candidate_free_headroom_validation_001a.json
+artifacts/research_campaign/phase2b_candidate_free_headroom_audit_001a.json
 ```
 
 Next minimal closed-loop action:
 
 ```text
-Run Phase 0 validation: JSON parse, ledger-schema check, plan/progress consistency
-check, and final git readback. Then decide recovery closeout or independent audit
-before any Phase 1 problem-formalization task card.
+Validate the Phase2C hidden-latent heldout surface contract, then run read-only
+reviewer audit. Do not implement candidates, open Phase 3, run a route
+tournament, execute a harness, touch runtime/EGO mainline, push, tag, commit,
+or remote-anchor. Program status remains `active_not_complete`; the interrupted
+`program_needs_reframing` checkpoint is superseded and not terminal evidence.
 ```
 
-## Program Goal
+## Historical Carryover Boundary
+
+The sections below are preserved pre-recovery campaign history and older CMBC/LCC
+status material. They are not the active campaign stage after
+`RESEARCH-CAMPAIGN-PHASE0-RECOVERY-CLOSEOUT-001A` unless a later bounded task
+card explicitly reactivates them.
+
+## Historical Pre-Recovery Program Goal
 
 Build a falsifiable theory-elimination lab for intelligence-mechanism candidates. The program goal is not to keep any one theory alive; it is to preserve negative evidence and force every successor through stronger kill tests.
 
-## Current Stage Goal
+## Historical Pre-Recovery CMBC Stage Goal
 
 Execute the generated option generation 007 redteam as bounded execution:
 
@@ -76,7 +457,7 @@ Execute the generated option generation 007 redteam as bounded execution:
 
 Only bounded 007-REDTEAM-EXECUTE was authorized after the 007 redteam contract. No real companion behavior, selector patch, threshold change, baseline weakening, probe mutation, real proactive messages, EGO runtime connection, LLM action selection, background autonomy, general companion agent, Cycle 011, autonomous theory search, or theory-support claim is authorized.
 
-## Stage Success Criteria
+## Historical Pre-Recovery Stage Success Criteria
 
 ```text
 Record PendingCounterevidenceRecord and FeedbackAdmissionState.
@@ -91,7 +472,7 @@ No selector thresholds, baselines, renderer, probe definitions, or action handle
 No stronger theory, product, companion-agent, or EGO claim is made.
 ```
 
-## Runner Verdict
+## Historical Pre-Recovery Runner Verdict
 
 ```text
 generated_option_007_redteam_bounded_pass
@@ -1437,13 +1818,13 @@ CMBC longitudinal generated options 008 execute preserves 003 / 005 / 006 / 007 
 CMBC longitudinal generated options 008 execute claim_ceiling = bounded longitudinal generated-options 008 execution evidence only; not real companion readiness.
 ```
 
-## Current Blocker
+## Historical Pre-Recovery Blocker
 
 ```text
 CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE passed as bounded execution evidence, but this still does not establish real companion readiness, open-ended generated-option robustness, proactive messaging safety, LLM action selection safety, or EGO readiness.
 ```
 
-## Next Frontier
+## Historical Pre-Recovery Frontier
 
 Human review after `CMBC-COMPANION-LONGITUDINAL-GENERATED-OPTIONS-008-EXECUTE` before any independent replication, ablation/necessity audit, closeout, real companion implementation, proactive messaging, LLM action selection, or EGO migration.
 

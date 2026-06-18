@@ -1,0 +1,127 @@
+{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE1-PROBLEM-FORMALIZATION-001A",
+    "timestamp":  "2026-06-17T22:39:05.6348091-05:00",
+    "producer_function":  "PowerShell validation over phase1_problem_formalization_001a.json",
+    "input_artifacts":  [
+                            "artifacts/research_campaign/phase1_problem_formalization_001a.json",
+                            "docs/research_campaign/phase1_problem_formalization_001a.md"
+                        ],
+    "run_id":  "phase1_problem_formalization_validation_001a_repaired_run_002",
+    "prior_failed_validation_runs":  [
+                                         {
+                                             "run_id":  "phase1_problem_formalization_validation_001a_failed_run_001",
+                                             "verdict":  "phase1_problem_formalization_validation_failed",
+                                             "missing_proxy_ids":  [
+                                                                       "affect_value_regulation",
+                                                                       "active_exploration",
+                                                                       "long_term_update",
+                                                                       "self_environment_boundary"
+                                                                   ],
+                                             "proxy_checks":  [
+                                                                  {
+                                                                      "proxy_id":  "self_model",
+                                                                      "ok":  false,
+                                                                      "missing_fields":  [
+
+                                                                                         ],
+                                                                      "cardinality_failures":  [
+                                                                                                   "stop_conditions"
+                                                                                               ],
+                                                                      "trace_replay_ok":  true,
+                                                                      "baseline_count":  5,
+                                                                      "ablation_count":  4,
+                                                                      "leakage_control_count":  4,
+                                                                      "stop_condition_count":  2
+                                                                  }
+                                                              ]
+                                         }
+                                     ],
+    "aggregation_rule":  "all required proxy ids present and all proxy field/cardinality/replay checks pass; forbidden claim scan has zero hits",
+    "code_path_hash":  "inline-powershell-validation-no-src-change",
+    "required_proxy_ids_present":  true,
+    "missing_proxy_ids":  [
+
+                          ],
+    "proxy_checks":  [
+                         {
+                             "proxy_id":  "self_model",
+                             "ok":  true,
+                             "missing_fields":  [
+
+                                                ],
+                             "cardinality_failures":  [
+
+                                                      ],
+                             "trace_replay_ok":  true,
+                             "baseline_count":  5,
+                             "ablation_count":  4,
+                             "leakage_control_count":  4,
+                             "stop_condition_count":  3
+                         },
+                         {
+                             "proxy_id":  "affect_value_regulation",
+                             "ok":  true,
+                             "missing_fields":  [
+
+                                                ],
+                             "cardinality_failures":  [
+
+                                                      ],
+                             "trace_replay_ok":  true,
+                             "baseline_count":  5,
+                             "ablation_count":  5,
+                             "leakage_control_count":  4,
+                             "stop_condition_count":  3
+                         },
+                         {
+                             "proxy_id":  "active_exploration",
+                             "ok":  true,
+                             "missing_fields":  [
+
+                                                ],
+                             "cardinality_failures":  [
+
+                                                      ],
+                             "trace_replay_ok":  true,
+                             "baseline_count":  5,
+                             "ablation_count":  4,
+                             "leakage_control_count":  4,
+                             "stop_condition_count":  3
+                         },
+                         {
+                             "proxy_id":  "long_term_update",
+                             "ok":  true,
+                             "missing_fields":  [
+
+                                                ],
+                             "cardinality_failures":  [
+
+                                                      ],
+                             "trace_replay_ok":  true,
+                             "baseline_count":  5,
+                             "ablation_count":  5,
+                             "leakage_control_count":  4,
+                             "stop_condition_count":  3
+                         },
+                         {
+                             "proxy_id":  "self_environment_boundary",
+                             "ok":  true,
+                             "missing_fields":  [
+
+                                                ],
+                             "cardinality_failures":  [
+
+                                                      ],
+                             "trace_replay_ok":  true,
+                             "baseline_count":  5,
+                             "ablation_count":  4,
+                             "leakage_control_count":  4,
+                             "stop_condition_count":  3
+                         }
+                     ],
+    "forbidden_claim_scan_hit_count":  0,
+    "mechanism_experiment_run":  false,
+    "baseline_battery_run":  false,
+    "verdict":  "phase1_problem_formalization_validated_pending_audit",
+    "claim_ceiling":  "validation of proxy schema completeness only; no mechanism evidence"
+}

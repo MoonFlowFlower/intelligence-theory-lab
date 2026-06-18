@@ -1,0 +1,381 @@
+{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE1-PROBLEM-FORMALIZATION-001A",
+    "timestamp":  "2026-06-17T22:39:05.6348091-05:00",
+    "verdict":  "phase1_problem_formalization_pending_audit",
+    "layer":  "engineering_implementation + mechanism_hypothesis_governance",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "none",
+    "real_trigger_evidence":  "Phase 1 proxy schema and markdown formalization only",
+    "claim_ceiling":  "Phase 1 proxy formalization only; no mechanism validity, self-awareness, subjective experience, real emotion, autonomy, EGO readiness, companion readiness, or mainline effect",
+    "auto_remote_anchor":  "forbidden",
+    "mechanism_experiment_run":  false,
+    "baseline_battery_run":  false,
+    "candidate_mechanism_run":  false,
+    "phase2_opened":  false,
+    "proxy_families":  [
+                           {
+                               "id":  "self_model",
+                               "name":  "Self-model proxy",
+                               "question":  "Maintain and use bounded own-state, capability, uncertainty, commitment, and action-history representation for future choice.",
+                               "observable_variables":  [
+                                                            "serialized_state",
+                                                            "observation",
+                                                            "action",
+                                                            "outcome",
+                                                            "uncertainty_or_confidence",
+                                                            "source_lineage"
+                                                        ],
+                               "legal_inputs":  [
+                                                    "current_observation",
+                                                    "previous_serialized_state",
+                                                    "own_action_history",
+                                                    "declared_constraints",
+                                                    "source_outcome_records"
+                                                ],
+                               "illegal_leaked_inputs":  [
+                                                             "hidden_labels",
+                                                             "future_observations",
+                                                             "evaluator_verdicts",
+                                                             "answer_keys_in_filenames_or_action_names"
+                                                         ],
+                               "metrics":  [
+                                               "self_state_prediction_error",
+                                               "own_action_counterfactual_sensitivity",
+                                               "uncertainty_calibration",
+                                               "policy_change_after_legal_self_state_update"
+                                           ],
+                               "independent_baseline_families":  [
+                                                                     "last_state_lookup",
+                                                                     "action_frequency_table",
+                                                                     "observation_only_classifier",
+                                                                     "transition_table_self_state_cache",
+                                                                     "nearest_neighbor_episode_replay"
+                                                                 ],
+                               "ablation_requirements":  [
+                                                             "remove_prior_own_action_history",
+                                                             "corrupt_self_state_variables",
+                                                             "freeze_capability_constraint_state",
+                                                             "replace_self_state_with_observation_only_state"
+                                                         ],
+                               "trace_replay_requirements":  {
+                                                                 "trace_fields":  [
+                                                                                      "state_before_action",
+                                                                                      "observation",
+                                                                                      "legal_self_state_fields",
+                                                                                      "action",
+                                                                                      "outcome"
+                                                                                  ],
+                                                                 "replay_rule":  "future executable tasks must recompute behavior or score from serialized_state + observation plus declared legal inputs; hash-only replay is insufficient",
+                                                                 "replay_claim_in_phase1":  false
+                                                             },
+                               "leakage_controls":  [
+                                                        "label_permutation",
+                                                        "future_observation_deletion",
+                                                        "filename_and_action_name_scan",
+                                                        "positive_control_hidden_label_injection"
+                                                    ],
+                               "stop_conditions":  [
+                                                       "observation_only_or_lookup_baseline_saturates",
+                                                       "behavior_changes_only_through_leaked_label_fields",
+                                                       "replay_cannot_recompute_from_state_and_observation"
+                                                   ],
+                               "claim_ceiling":  "bounded proxy evidence only after future executable validation; Phase 1 defines no mechanism evidence"
+                           },
+                           {
+                               "id":  "affect_value_regulation",
+                               "name":  "Affect/value regulation proxy",
+                               "question":  "Regulate choices through bounded value, viability, preference, confidence, and outcome-updated state rather than fixed action labels.",
+                               "observable_variables":  [
+                                                            "serialized_state",
+                                                            "observation",
+                                                            "action",
+                                                            "outcome",
+                                                            "uncertainty_or_confidence",
+                                                            "source_lineage"
+                                                        ],
+                               "legal_inputs":  [
+                                                    "current_observation",
+                                                    "previous_serialized_state",
+                                                    "own_action_history",
+                                                    "declared_constraints",
+                                                    "source_outcome_records"
+                                                ],
+                               "illegal_leaked_inputs":  [
+                                                             "hidden_labels",
+                                                             "future_observations",
+                                                             "evaluator_verdicts",
+                                                             "answer_keys_in_filenames_or_action_names"
+                                                         ],
+                               "metrics":  [
+                                               "outcome_perturbation_value_sensitivity",
+                                               "source_deletion_action_distribution_change",
+                                               "contradictory_feedback_confidence_calibration",
+                                               "constraint_violation_rate"
+                                           ],
+                               "independent_baseline_families":  [
+                                                                     "fixed_priority_policy",
+                                                                     "reward_lookup_table",
+                                                                     "recency_only_outcome_policy",
+                                                                     "frequency_only_success_policy",
+                                                                     "prompt_sentiment_classifier"
+                                                                 ],
+                               "ablation_requirements":  [
+                                                             "delete_supporting_outcome_sources",
+                                                             "perturb_outcome_valence",
+                                                             "freeze_value_state",
+                                                             "remove_uncertainty_update",
+                                                             "replace_value_state_with_fixed_priority"
+                                                         ],
+                               "trace_replay_requirements":  {
+                                                                 "trace_fields":  [
+                                                                                      "value_state_before_update",
+                                                                                      "value_state_after_update",
+                                                                                      "source_outcome_ids",
+                                                                                      "aggregation_rule",
+                                                                                      "action_distribution"
+                                                                                  ],
+                                                                 "replay_rule":  "future executable tasks must recompute behavior or score from serialized_state + observation plus declared legal inputs; hash-only replay is insufficient",
+                                                                 "replay_claim_in_phase1":  false
+                                                             },
+                               "leakage_controls":  [
+                                                        "renamed_feedback_channel_positive_control",
+                                                        "target_action_text_injection",
+                                                        "source_deletion_control",
+                                                        "irrelevant_outcome_deletion_control"
+                                                    ],
+                               "stop_conditions":  [
+                                                       "fixed_priority_or_reward_lookup_equivalent",
+                                                       "value_update_without_source_outcome_evidence",
+                                                       "single_weak_signal_flips_policy_without_admission"
+                                                   ],
+                               "claim_ceiling":  "bounded proxy evidence only after future executable validation; Phase 1 defines no mechanism evidence"
+                           },
+                           {
+                               "id":  "active_exploration",
+                               "name":  "Active exploration proxy",
+                               "question":  "Choose information-gathering actions because they reduce decision-relevant uncertainty under equal budget.",
+                               "observable_variables":  [
+                                                            "serialized_state",
+                                                            "observation",
+                                                            "action",
+                                                            "outcome",
+                                                            "uncertainty_or_confidence",
+                                                            "source_lineage"
+                                                        ],
+                               "legal_inputs":  [
+                                                    "current_observation",
+                                                    "previous_serialized_state",
+                                                    "own_action_history",
+                                                    "declared_constraints",
+                                                    "source_outcome_records"
+                                                ],
+                               "illegal_leaked_inputs":  [
+                                                             "hidden_labels",
+                                                             "future_observations",
+                                                             "evaluator_verdicts",
+                                                             "answer_keys_in_filenames_or_action_names"
+                                                         ],
+                               "metrics":  [
+                                               "diagnostic_action_rate_ambiguous_vs_certain",
+                                               "uncertainty_reduction_after_exploration",
+                                               "downstream_control_success_after_exploration",
+                                               "budget_normalized_information_gain"
+                                           ],
+                               "independent_baseline_families":  [
+                                                                     "random_exploration",
+                                                                     "exhaustive_sweep_same_budget",
+                                                                     "graph_lookup_successor_map",
+                                                                     "uncertainty_heuristic_without_learned_state",
+                                                                     "oracle_budget_legal_query"
+                                                                 ],
+                               "ablation_requirements":  [
+                                                             "remove_information_gain_term",
+                                                             "freeze_uncertainty_state",
+                                                             "equalize_action_information_estimates",
+                                                             "remove_transition_action_conditioning"
+                                                         ],
+                               "trace_replay_requirements":  {
+                                                                 "trace_fields":  [
+                                                                                      "uncertainty_before_action",
+                                                                                      "candidate_exploration_score_per_action",
+                                                                                      "selected_action",
+                                                                                      "budget_state",
+                                                                                      "post_exploration_observation"
+                                                                                  ],
+                                                                 "replay_rule":  "future executable tasks must recompute behavior or score from serialized_state + observation plus declared legal inputs; hash-only replay is insufficient",
+                                                                 "replay_claim_in_phase1":  false
+                                                             },
+                               "leakage_controls":  [
+                                                        "future_observation_scanner",
+                                                        "hidden_target_positive_control",
+                                                        "action_name_leakage_scan",
+                                                        "heldout_context_usage_check"
+                                                    ],
+                               "stop_conditions":  [
+                                                       "exhaustive_or_graph_cache_baseline_saturates",
+                                                       "exploration_selected_by_static_route_table",
+                                                       "candidate_uses_hidden_target_or_future_observation"
+                                                   ],
+                               "claim_ceiling":  "bounded proxy evidence only after future executable validation; Phase 1 defines no mechanism evidence"
+                           },
+                           {
+                               "id":  "long_term_update",
+                               "name":  "Long-term update proxy",
+                               "question":  "Update behavior across episodes or sessions from prior experience with traceable source lineage, transfer, and shortcut controls.",
+                               "observable_variables":  [
+                                                            "serialized_state",
+                                                            "observation",
+                                                            "action",
+                                                            "outcome",
+                                                            "uncertainty_or_confidence",
+                                                            "source_lineage"
+                                                        ],
+                               "legal_inputs":  [
+                                                    "current_observation",
+                                                    "previous_serialized_state",
+                                                    "own_action_history",
+                                                    "declared_constraints",
+                                                    "source_outcome_records"
+                                                ],
+                               "illegal_leaked_inputs":  [
+                                                             "hidden_labels",
+                                                             "future_observations",
+                                                             "evaluator_verdicts",
+                                                             "answer_keys_in_filenames_or_action_names"
+                                                         ],
+                               "metrics":  [
+                                               "source_deletion_effect",
+                                               "counterfactual_outcome_perturbation_effect",
+                                               "heldout_context_transfer",
+                                               "catastrophic_forgetting_rate",
+                                               "baseline_non_equivalence_margin"
+                                           ],
+                               "independent_baseline_families":  [
+                                                                     "nearest_neighbor_episodic_replay",
+                                                                     "recency_only_memory",
+                                                                     "frequency_only_memory",
+                                                                     "summary_rag_memory_baseline",
+                                                                     "transition_table_consolidation"
+                                                                 ],
+                               "ablation_requirements":  [
+                                                             "delete_source_episodes",
+                                                             "corrupt_consolidated_state",
+                                                             "freeze_memory_update",
+                                                             "remove_old_context_replay",
+                                                             "remove_heldout_transfer_contexts"
+                                                         ],
+                               "trace_replay_requirements":  {
+                                                                 "trace_fields":  [
+                                                                                      "source_episode_lineage",
+                                                                                      "memory_state_before_update",
+                                                                                      "memory_state_after_update",
+                                                                                      "current_observation",
+                                                                                      "downstream_action_distribution"
+                                                                                  ],
+                                                                 "replay_rule":  "future executable tasks must recompute behavior or score from serialized_state + observation plus declared legal inputs; hash-only replay is insufficient",
+                                                                 "replay_claim_in_phase1":  false
+                                                             },
+                               "leakage_controls":  [
+                                                        "heldout_context_usage_scan",
+                                                        "source_deletion_positive_control",
+                                                        "memory_summary_label_leak_scan",
+                                                        "train_heldout_overlap_check"
+                                                    ],
+                               "stop_conditions":  [
+                                                       "recency_frequency_or_nearest_neighbor_equivalent",
+                                                       "source_deletion_has_no_effect",
+                                                       "replay_cannot_recompute_memory_update_from_sources"
+                                                   ],
+                               "claim_ceiling":  "bounded proxy evidence only after future executable validation; Phase 1 defines no mechanism evidence"
+                           },
+                           {
+                               "id":  "self_environment_boundary",
+                               "name":  "Self/environment boundary proxy",
+                               "question":  "Distinguish own controlled state changes from environment changes and use that boundary in prediction, credit assignment, and action selection.",
+                               "observable_variables":  [
+                                                            "serialized_state",
+                                                            "observation",
+                                                            "action",
+                                                            "outcome",
+                                                            "uncertainty_or_confidence",
+                                                            "source_lineage"
+                                                        ],
+                               "legal_inputs":  [
+                                                    "current_observation",
+                                                    "previous_serialized_state",
+                                                    "own_action_history",
+                                                    "declared_constraints",
+                                                    "source_outcome_records"
+                                                ],
+                               "illegal_leaked_inputs":  [
+                                                             "hidden_labels",
+                                                             "future_observations",
+                                                             "evaluator_verdicts",
+                                                             "answer_keys_in_filenames_or_action_names"
+                                                         ],
+                               "metrics":  [
+                                               "controllable_uncontrollable_attribution_accuracy",
+                                               "action_conditioned_prediction_improvement",
+                                               "boundary_perturbation_action_sensitivity",
+                                               "false_controllability_rate"
+                                           ],
+                               "independent_baseline_families":  [
+                                                                     "observation_only_transition_table",
+                                                                     "action_agnostic_predictor",
+                                                                     "graph_lookup_with_hidden_state_key",
+                                                                     "majority_controllability_baseline",
+                                                                     "post_hoc_classifier_baseline"
+                                                                 ],
+                               "ablation_requirements":  [
+                                                             "remove_action_conditioning",
+                                                             "swap_own_action_and_environment_channels",
+                                                             "freeze_boundary_attribution_state",
+                                                             "delete_intervention_records"
+                                                         ],
+                               "trace_replay_requirements":  {
+                                                                 "trace_fields":  [
+                                                                                      "own_action",
+                                                                                      "environment_observation",
+                                                                                      "boundary_attribution_state",
+                                                                                      "prediction",
+                                                                                      "next_action"
+                                                                                  ],
+                                                                 "replay_rule":  "future executable tasks must recompute behavior or score from serialized_state + observation plus declared legal inputs; hash-only replay is insufficient",
+                                                                 "replay_claim_in_phase1":  false
+                                                             },
+                               "leakage_controls":  [
+                                                        "controllability_label_scanner",
+                                                        "action_name_permutation",
+                                                        "future_transition_deletion",
+                                                        "hidden_boundary_positive_control"
+                                                    ],
+                               "stop_conditions":  [
+                                                       "action_agnostic_predictor_saturates",
+                                                       "boundary_labels_leak_through_observation_or_action_names",
+                                                       "intervention_deletion_does_not_change_attribution_behavior"
+                                                   ],
+                               "claim_ceiling":  "bounded proxy evidence only after future executable validation; Phase 1 defines no mechanism evidence"
+                           }
+                       ],
+    "required_proxy_ids":  [
+                               "self_model",
+                               "affect_value_regulation",
+                               "active_exploration",
+                               "long_term_update",
+                               "self_environment_boundary"
+                           ],
+    "phase2_dependency":  "Only after Phase 1 subagent audit succeeds may Phase 2 run candidate-free baseline-first headroom for a specific proxy surface.",
+    "prior_failed_validation_runs":  [
+                                         {
+                                             "run_id":  "phase1_problem_formalization_validation_001a_failed_run_001",
+                                             "verdict":  "phase1_problem_formalization_validation_failed",
+                                             "missing_proxy_ids":  [
+                                                                       "affect_value_regulation",
+                                                                       "active_exploration",
+                                                                       "long_term_update",
+                                                                       "self_environment_boundary"
+                                                                   ],
+                                             "repair":  "regenerated proxy_families with explicit array construction and preserved failure in ledger"
+                                         }
+                                     ]
+}

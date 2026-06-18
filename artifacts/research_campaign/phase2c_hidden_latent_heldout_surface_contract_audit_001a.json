@@ -1,0 +1,98 @@
+﻿{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A",
+    "created_at":  "2026-06-18T07:29:48-05:00",
+    "layer":  "engineering_implementation + mechanism_hypothesis_governance",
+    "reviewer":  "Hubble",
+    "residual_risks":  [
+                           "The contract itself was judged bounded and aligned by the reviewer, but current-state bookkeeping needed repair.",
+                           "Readbacks must be refreshed immediately before re-audit to avoid stale-hash recurrence."
+                       ],
+    "repair_summary":  {
+                           "repaired_at":  "2026-06-18T07:29:48-05:00",
+                           "repaired_fields":  [
+                                                   "plan active checkpoint literal paths",
+                                                   "plan current status/frontier",
+                                                   "progress machine block reviewer status",
+                                                   "goal validation phase2b supersession status",
+                                                   "goal validation next_minimal_closed_loop_action",
+                                                   "Phase2C artifact campaign_state_readback_current",
+                                                   "Phase2C validation campaign_state_readback_current"
+                                               ]
+                       },
+    "claim_ceiling":  "Reviewer repair bookkeeping only; no mechanism validity, terminal verdict, or mainline effect.",
+    "second_repair_summary":  {
+                                  "repaired_at":  "2026-06-18T07:35:05-05:00",
+                                  "reason":  "Second reviewer audit found stale readbacks and stale validated/pending status strings",
+                                  "repaired_fields":  [
+                                                          "artifact.enabled_status",
+                                                          "validation.enabled_status",
+                                                          "validation.summary.reviewer_verdict",
+                                                          "campaign_state_readback_current",
+                                                          "goal source_readback_current"
+                                                      ]
+                              },
+    "third_repair_summary":  {
+                                 "repaired_at":  "2026-06-18T07:40:24-05:00",
+                                 "reason":  "Third reviewer audit found one stale enabled-status sentence in plan.md",
+                                 "repaired_fields":  [
+                                                         "docs/research_campaign/plan.md Active Checkpoint enabled-status sentence",
+                                                         "campaign_state_readback_current",
+                                                         "goal source_readback_current"
+                                                     ]
+                             },
+    "last_repaired_at":  "2026-06-18T07:40:24-05:00",
+    "reviewer_verdict":  "success_reached",
+    "blocking_findings":  [
+
+                          ],
+    "audited_at":  "2026-06-18T07:41:20-05:00",
+    "final_reviewer_audit_summary":  {
+                                         "reviewer":  "Hubble",
+                                         "verdict":  "success_reached",
+                                         "audited_at":  "2026-06-18T07:41:20-05:00",
+                                         "preserved_prior_needs_more_findings":  3
+                                     },
+    "review_history":  [
+                           {
+                               "reviewer":  "Hubble",
+                               "verdict":  "needs_more_implementation",
+                               "reviewed_at":  "2026-06-18T07:29:48-05:00",
+                               "blocking_findings":  [
+                                                         {
+                                                             "id":  "stale_campaign_state_hashes",
+                                                             "finding":  "Phase2C artifact and validation artifact stored stale campaign_state_readback_current hashes for plan, progress, scorecard, and ledger.",
+                                                             "repaired":  true
+                                                         },
+                                                         {
+                                                             "id":  "goal_validation_supersession_mismatch",
+                                                             "finding":  "Goal validation still recorded phase2b program-needs-reframing reviewer status as pending while progress marked it superseded.",
+                                                             "repaired":  true
+                                                         },
+                                                         {
+                                                             "id":  "goal_validation_frontier_stale",
+                                                             "finding":  "Goal validation next_minimal_closed_loop_action still pointed to the older redesign/closure/downgrade frontier.",
+                                                             "repaired":  true
+                                                         },
+                                                         {
+                                                             "id":  "plan_object_dump",
+                                                             "finding":  "Plan active checkpoint and next-action text contained a literal PowerShell object dump instead of literal Phase2C paths.",
+                                                             "repaired":  true
+                                                         }
+                                                     ]
+                           },
+                           {
+                               "reviewer":  "Hubble",
+                               "verdict":  "success_reached",
+                               "reviewed_at":  "2026-06-18T07:41:20-05:00",
+                               "blocking_findings":  [
+
+                                                     ],
+                               "residual_risks":  [
+                                                      "Governance/contract evidence only; no candidate, Phase 3, harness execution, terminal verdict, route exhaustion, or mechanism validity.",
+                                                      "Future writes require fresh readback refresh before relying on hash equality."
+                                                  ]
+                           }
+                       ],
+    "next_minimal_closed_loop_action":  "If the campaign continues, open only a separately bounded Phase2C executable harness task card; do not execute a harness from this contract checkpoint."
+}
+

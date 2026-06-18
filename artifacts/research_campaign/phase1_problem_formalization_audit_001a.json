@@ -1,0 +1,116 @@
+﻿{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE1-PROBLEM-FORMALIZATION-AUDIT-001A",
+    "timestamp":  "2026-06-17T22:44:30.5629901-05:00",
+    "layer":  "engineering_implementation + mechanism_hypothesis_governance",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "none",
+    "real_trigger_evidence":  "read-only reviewer subagent audit of Phase 1 formalization files and git status",
+    "claim_ceiling":  "Phase 1 formalization audit only; no mechanism validity or subjectivity claim",
+    "auto_remote_anchor":  "forbidden",
+    "audit_history":  [
+                          {
+                              "audit_id":  "phase1_problem_formalization_subagent_audit_run_001",
+                              "agent_id":  "019ed8d0-c9b1-7b90-96e5-8b3413c0c8e4",
+                              "nickname":  "Faraday",
+                              "verdict":  "needs_more_implementation",
+                              "findings":  [
+                                               {
+                                                   "severity":  "high",
+                                                   "path":  "artifacts/research_campaign/stage_scorecard.json",
+                                                   "issue":  "current_best_evidence carried large historical mechanism/replay claims unrelated to Phase 1 formalization, risking downstream scope inheritance.",
+                                                   "repair_status":  "repaired_by_archiving_historical_best_evidence_outside_current_best_evidence"
+                                               },
+                                               {
+                                                   "severity":  "medium",
+                                                   "path":  "docs/research_campaign/phase1_problem_formalization_001a.md",
+                                                   "issue":  "Markdown claimed each proxy defines claim ceiling, but per-proxy sections omitted claim-ceiling entries present in JSON.",
+                                                   "repair_status":  "repaired_by_adding_per_proxy_claim_ceiling_sections"
+                                               }
+                                           ],
+                              "passed_checks":  [
+                                                    "Phase 0 audited pass recorded before Phase 1 opened",
+                                                    "Phase 1 bounded task card exists with Auto-Remote-Anchor forbidden and no src/tests/runtime/Gate scope",
+                                                    "Phase 1 artifacts parse and initial validation failure is preserved",
+                                                    "all five required proxies exist in JSON and pass field/cardinality/replay checks",
+                                                    "no Phase 2 baseline battery or mechanism run executed"
+                                                ]
+                          },
+                          {
+                              "audit_id":  "phase1_problem_formalization_subagent_audit_run_002",
+                              "agent_id":  "019ed8d6-5a59-72b0-bf64-391fead0be0c",
+                              "nickname":  "Herschel",
+                              "verdict":  "needs_more_implementation",
+                              "findings":  [
+                                               {
+                                                   "severity":  "high",
+                                                   "path":  "docs/OVERALL_PROGRESS.md",
+                                                   "issue":  "Active checkpoint still described Phase 1 as validated_pending_audit and asked for a first audit after audit run 001 had failed and been repaired.",
+                                                   "repair_status":  "repaired_by_recording_run_001_and_run_002_failures_plus_repaired_pending_reaudit_state"
+                                               },
+                                               {
+                                                   "severity":  "medium",
+                                                   "path":  "docs/research_campaign/plan.md",
+                                                   "issue":  "Next minimal action still pointed to the initial Phase 1 audit and did not preserve audit run 001/run 002 failure-and-repair state.",
+                                                   "repair_status":  "repaired_by_rewriting_next_action_as_phase1_reaudit_after_preserved_failures"
+                                               },
+                                               {
+                                                   "severity":  "medium",
+                                                   "path":  "artifacts/research_campaign/experiment_log.jsonl",
+                                                   "issue":  "Ledger did not yet include a post-repair state after the Phase 1 audit failure sequence, leaving scorecard/audit artifacts ahead of the append-only log.",
+                                                   "repair_status":  "repaired_by_appending_run_002_repair_required_and_repair_entries"
+                                               }
+                                           ],
+                              "passed_checks":  [
+                                                    "scorecard current_best_evidence is scoped to Phase 0/Phase 1 governance after archival repair",
+                                                    "per-proxy markdown claim ceilings are present",
+                                                    "all five Phase 1 proxy families are present in the machine-readable schema",
+                                                    "initial Phase 1 schema validation failure remains preserved",
+                                                    "no Phase 2 baseline battery, candidate search, Gate, runtime, EGO mainline, push, tag, or remote anchor was run"
+                                                ]
+                          },
+                          {
+                              "audit_id":  "phase1_problem_formalization_subagent_audit_run_003",
+                              "agent_id":  "019ed90a-14d9-7610-9aae-293675d0b827",
+                              "nickname":  "Noether",
+                              "verdict":  "success_reached",
+                              "findings":  [
+                                               {
+                                                   "severity":  "info",
+                                                   "path":  "git status --short --branch -uall",
+                                                   "issue":  "Dirty paths are limited to docs/research_campaign, docs/OVERALL_PROGRESS.md, and artifacts/research_campaign with no dirty src/ or tests/ paths.",
+                                                   "repair_status":  "no_repair_required"
+                                               },
+                                               {
+                                                   "severity":  "info",
+                                                   "path":  "docs/research_campaign/plan.md; docs/OVERALL_PROGRESS.md; artifacts/research_campaign/stage_scorecard.json; artifacts/research_campaign/experiment_log.jsonl",
+                                                   "issue":  "Plan, progress, scorecard, and ledger agree that Phase 1 is repaired and pending recorded re-audit success; Phase 2 remains blocked and unexecuted before this run is recorded.",
+                                                   "repair_status":  "record_success_reached_before_phase2"
+                                               },
+                                               {
+                                                   "severity":  "info",
+                                                   "path":  "docs/research_campaign/phase1_problem_formalization_001a.md; artifacts/research_campaign/phase1_problem_formalization_001a.json",
+                                                   "issue":  "All five required proxy families are present with observables, legal inputs, illegal leaked inputs, metrics, independent baselines, ablations, trace/replay requirements, leakage controls, stop conditions, and per-proxy claim ceilings.",
+                                                   "repair_status":  "no_repair_required"
+                                               }
+                                           ],
+                              "passed_checks":  [
+                                                    "plan/progress/scorecard/ledger agree on current Phase 1 status and next frontier",
+                                                    "previous audit failures are preserved append-only and not rewritten into a pass",
+                                                    "Phase 1 proxy formalization contains all five required proxy families and all required fields",
+                                                    "callable validation evidence exists, parses, and preserves the initial failed validation",
+                                                    "historical CMBC/LCC evidence is not inherited as current Phase 1 mechanism proof",
+                                                    "no chat-only Hegel verdict is treated as current ledger truth",
+                                                    "no Phase 2 baseline battery, candidate search, Gate, runtime, EGO mainline, push, tag, or remote anchor was executed or claimed",
+                                                    "dirty paths remain inside the authorized campaign governance/formalization surface with no src/ or tests/ dirty paths",
+                                                    "no active Phase 1 artifact claims consciousness, real emotion, autonomy, electronic life, EGO readiness, companion readiness, mechanism validity, or mainline effect"
+                                                ],
+                              "required_repairs_before_phase2":  [
+                                                                      "none on the Phase 1 formalization surface; record this success_reached verdict in audit artifact, experiment_log.jsonl, stage_scorecard.json, and OVERALL_PROGRESS.md before opening Phase 2"
+                                                                  ]
+                          }
+                      ],
+    "current_verdict":  "success_reached",
+    "next_minimal_closed_loop_action":  "Record Phase 1 audited pass across ledger, scorecard, and progress, then open a bounded Phase 2 baseline-first headroom task card before any Phase 2 execution.",
+    "repaired_at":  "2026-06-17T22:53:28.3688328-05:00",
+    "success_reached_at":  "2026-06-17T23:46:14.9305678-05:00"
+}

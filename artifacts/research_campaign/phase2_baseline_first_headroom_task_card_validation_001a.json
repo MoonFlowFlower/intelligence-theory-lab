@@ -1,0 +1,46 @@
+{
+  "task_id": "RESEARCH-CAMPAIGN-PHASE2-BASELINE-FIRST-HEADROOM-001A",
+  "harness_card_id": "BASELINE-FIRST-HARNESS-001A",
+  "timestamp": "2026-06-17T23:54:04.6659308-05:00",
+  "producer_function": "focused PowerShell start-state validation",
+  "input_artifacts": [
+    "docs/research_campaign/phase2_baseline_first_headroom_001a.md",
+    "docs/research_campaign/plan.md",
+    "docs/OVERALL_PROGRESS.md",
+    "artifacts/research_campaign/stage_scorecard.json",
+    "artifacts/research_campaign/experiment_log.jsonl",
+    "docs/research/MINIMAL-ENV-SPEC-001A.md",
+    "docs/research/MINIMAL-ENV-SPEC-001A.freeze.json"
+  ],
+  "run_id": "phase2_baseline_first_headroom_task_card_validation_001a_run_001",
+  "aggregation_rule": "all required task-card sections present; frozen spec hash matches; campaign bookkeeping agrees; JSON and JSONL parse; Phase 2 execution and baseline battery remain false; no forbidden dirty paths",
+  "expected_frozen_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+  "observed_frozen_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+  "phase2_task_card_opened": true,
+  "phase2_executed": false,
+  "baseline_battery_run": false,
+  "candidate_mechanism_run": false,
+  "mechanism_experiment_run": false,
+  "validation_history": [
+    {
+      "run_id": "phase2_baseline_first_headroom_task_card_validation_001a_run_001",
+      "timestamp": "2026-06-17T23:54:04.6659308-05:00",
+      "verdict": "passed",
+      "checks": [
+        "JSON files parse",
+        "experiment_log.jsonl parses",
+        "required task-card sections are present",
+        "frozen MINIMAL-ENV-SPEC-001A hash matches freeze metadata",
+        "plan/progress/scorecard/ledger agree that Phase 2 card is opened",
+        "Phase 2 baseline battery remains unexecuted",
+        "candidate mechanism run remains false",
+        "program goal remains active_not_complete",
+        "program terminal condition remains not_met",
+        "no forbidden dirty paths under src, tests, runtime, Gate, EGO mainline, or decision log"
+      ]
+    }
+  ],
+  "verdict": "phase2_task_card_start_state_validated",
+  "claim_ceiling": "Phase 2 task-card opening validation only; no baseline headroom or mechanism evidence",
+  "auto_remote_anchor": "forbidden"
+}

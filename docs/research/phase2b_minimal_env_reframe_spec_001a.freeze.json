@@ -1,0 +1,94 @@
+﻿{
+    "artifact_type":  "phase2b_minimal_env_reframe_spec_freeze_manifest",
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE2B-SPEC-FREEZE-READBACK-EXECUTION-001A",
+    "authorization_task_id":  "RESEARCH-CAMPAIGN-PHASE2B-SPEC-FREEZE-READBACK-RUN-001A",
+    "run_id":  "phase2b_spec_freeze_readback_execution_001a_a047cb8d57a7_12dff37131b2",
+    "source_spec":  {
+                        "path":  "docs/research/phase2b_minimal_env_reframe_spec_001a.md",
+                        "sha256":  "a047cb8d57a706b594f6d82cabd68fa4ee7320aa3c16987c2de67a6c83c1f3e2",
+                        "byte_count":  8816,
+                        "line_count":  289,
+                        "first_heading":  "# Phase2B Minimal Environment Reframe Spec 001A"
+                    },
+    "frozen_from":  {
+                        "repo_root":  "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+                        "branch":  "codex/meta-theory-scaffold",
+                        "head":  "12dff37131b2f9d7473a6d4f30675470b6dc7bda",
+                        "upstream_status":  "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold [ahead 13]"
+                    },
+    "producer":  {
+                     "producer_function":  "New-Phase2BSpecFreezeReadback001A",
+                     "producer_descriptor":  "phase2b_spec_freeze_readback_execution_001a_inline_powershell_v1:Get-FileHash+ConvertTo-Json+git-readback; no harness execution; no random seed",
+                     "producer_descriptor_sha256":  "125d4a5f4060157ff3c61d316a700bf8296062fa821a36eb02ffccc1e07662f7",
+                     "command_family":  "PowerShell Get-FileHash + ConvertTo-Json + git readback"
+                 },
+    "input_artifacts":  [
+                            {
+                                "path":  "docs/research/phase2b_minimal_env_reframe_spec_001a.md",
+                                "sha256":  "a047cb8d57a706b594f6d82cabd68fa4ee7320aa3c16987c2de67a6c83c1f3e2",
+                                "role":  "source_spec"
+                            },
+                            {
+                                "path":  "docs/research_campaign/phase2b_spec_freeze_readback_run_task_card_001a.md",
+                                "sha256":  "b7aaacd52bf03b7decf8fd7b29e774c463f925b57ab239a608e5ea289c549099",
+                                "role":  "authorization_task_card"
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/phase2b_spec_freeze_readback_run_task_card_validation_001a.json",
+                                "sha256":  "c3a8755f9cd7ec8f7b71865f5f104a3a50f8c06b996bc593606559b3bb71ec35",
+                                "role":  "authorization_validation"
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/phase2b_spec_freeze_readback_run_task_card_audit_001a.json",
+                                "sha256":  "02b1b95a3ff991b8d3b4aaec26e312481a76e64679af6ff8822c675b8013236f",
+                                "role":  "authorization_audit_success"
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/stage_scorecard.json",
+                                "sha256":  "132f869921a5aeb2721ca1af57720cbe34159058a2ef21ba37b6e1c39b0f68d8",
+                                "role":  "campaign_scorecard_before_freeze"
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/goal_stage_audit_loop_validation_001a.json",
+                                "sha256":  "94ca59e3efa25dcefb8ed635d2746d84974df3948187d5c3153ca42978c8810f",
+                                "role":  "goal_validation_before_freeze"
+                            },
+                            {
+                                "path":  "artifacts/research_campaign/phase2_no_headroom_negative_evidence_001a.json",
+                                "sha256":  "aa4259dc97e4d02a752949bd6d3647ec4d57028deee06c91b7fba4ac8530d831",
+                                "role":  "prior_no_headroom_negative_evidence"
+                            },
+                            {
+                                "path":  "docs/research/MINIMAL-ENV-SPEC-001A.md",
+                                "sha256":  "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+                                "role":  "prior_minimal_env_spec"
+                            }
+                        ],
+    "aggregation_rule":  "Freeze manifest is valid only if source_spec.sha256 matches live source spec, authorization audit status is success_reached, phase2b_spec_freeze_authorized=true, phase2b_start_state_readback_authorized=true, phase2b_execution_authorized=false, candidate_mechanism_run=false, phase3_opened=false, and all listed input artifact paths are read back by SHA256.",
+    "deterministic_fields":  [
+                                 "source_spec.path",
+                                 "source_spec.sha256",
+                                 "source_spec.byte_count",
+                                 "source_spec.line_count",
+                                 "frozen_from.head",
+                                 "input_artifacts.sha256",
+                                 "producer_descriptor_sha256"
+                             ],
+    "excluded_from_claims":  [
+                                 "Phase2B harness execution",
+                                 "oracle scoring",
+                                 "baseline scoring",
+                                 "replay scoring",
+                                 "ablation scoring",
+                                 "leakage scoring",
+                                 "candidate mechanisms",
+                                 "Phase 3",
+                                 "route tournament",
+                                 "runtime/EGO mainline",
+                                 "push",
+                                 "tag",
+                                 "remote anchor"
+                             ],
+    "claim_ceiling":  "Phase2B source-spec freeze identity only; no readback validation, harness execution, measured headroom, mechanism validity, agency, subjectivity, consciousness, autonomy, EGO readiness, companion readiness, or mainline-effect claim.",
+    "auto_remote_anchor":  "forbidden"
+}

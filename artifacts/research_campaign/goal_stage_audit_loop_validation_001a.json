@@ -1,0 +1,862 @@
+﻿{
+    "task_id":  "RESEARCH-CAMPAIGN-GOAL-STAGE-AUDIT-LOOP-001A",
+    "layer":  "engineering_implementation + mechanism_hypothesis_governance",
+    "mainline_integration_status":  "none",
+    "auto_remote_anchor":  "forbidden",
+    "mechanism_experiment_run":  false,
+    "phase2_executed":  true,
+    "validation_history":  [
+                               {
+                                   "run_id":  "validation_run_001_failed",
+                                   "verdict":  "validation_check_bug",
+                                   "failure":  "The first local validation searched for HEGEL|RUN_003|PASS and incorrectly matched the pre-existing Phase 0 RUN_002_PASS ledger id.",
+                                   "preserved":  true
+                               },
+                               {
+                                   "run_id":  "validation_run_002_failed",
+                                   "verdict":  "validation_check_bug",
+                                   "failure":  "The second local validation used a backslash validation-artifact path while dirty paths were normalized to forward slashes, so the not-yet-written validation artifact was incorrectly reported missing.",
+                                   "preserved":  true
+                               },
+                               {
+                                   "run_id":  "validation_run_003_failed",
+                                   "verdict":  "validation_check_bug",
+                                   "failure":  "The third local validation used PowerShell -like wildcard matching for Markdown text containing backticks and incorrectly reported the task id missing.",
+                                   "preserved":  true
+                               },
+                               {
+                                   "run_id":  "validation_run_004_corrected",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "expected dirty paths only, excluding not-yet-written validation artifact before write",
+                                                  "campaign JSON files parse",
+                                                  "experiment_log.jsonl parses",
+                                                  "goal task card ledger entry exists exactly once",
+                                                  "no Hegel or Phase1 run 003 success_reached is recorded in ledger",
+                                                  "no Hegel success_reached is recorded in Phase1 audit artifact",
+                                                  "scorecard standing governance card exists",
+                                                  "Phase1 status remains audit_run_002_repaired_pending_reaudit",
+                                                  "Phase2 is not executed",
+                                                  "required card sections are present",
+                                                  "no src/tests dirty paths"
+                                              ]
+                               },
+                               {
+                                   "run_id":  "bookkeeping_timestamp_reconciliation_001",
+                                   "verdict":  "bookkeeping_reconciled",
+                                   "issue":  "CARD_CREATED timestamp was manually supplied as 2026-06-17T23:07:42-05:00, later than validation timestamp.",
+                                   "preservation":  "Original ledger entry left append-only; scorecard and validation artifact record the anomaly."
+                               },
+                               {
+                                   "run_id":  "completion_audit_progress_machine_fields_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "OVERALL_PROGRESS has phase2_executed = false",
+                                                  "OVERALL_PROGRESS has chat_only_hegel_audit_recorded = false",
+                                                  "natural-language Hegel boundary no longer needs to be parsed across wrapped lines"
+                                              ]
+                               },
+                               {
+                                   "run_id":  "program_terminal_contract_hardening_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "goal card contains Program Terminal Contract",
+                                                  "goal card contains Program Goal Acceptance Gate",
+                                                  "goal card contains Do Not Complete Program When",
+                                                  "goal card contains Continuation Rule",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "no Phase2 execution or mechanism pass recorded"
+                                              ],
+                                   "validated_at":  "2026-06-17T23:38:43.8494552-05:00"
+                               },
+                               {
+                                   "run_id":  "phase1_audit_run_003_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Phase1 audit artifact records Noether run 003 success_reached",
+                                                  "experiment_log.jsonl contains the run 003 success recording entry",
+                                                  "stage_scorecard marks Phase1 audited pass and current frontier as Phase2 task-card opening",
+                                                  "OVERALL_PROGRESS records phase1_reviewer_audit_recorded = true",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "phase2_executed remains false",
+                                                  "no mechanism pass is recorded",
+                                                  "no src/tests dirty paths"
+                                              ],
+                                   "validated_at":  "2026-06-17T23:46:14.9305678-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2_task_card_opening_and_start_state_validation_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Phase2 baseline-first headroom task card exists",
+                                                  "frozen MINIMAL-ENV-SPEC-001A hash matches freeze metadata",
+                                                  "plan/progress/scorecard/ledger agree on Phase2 validated-pending-execution state",
+                                                  "phase2_executed remains false",
+                                                  "baseline_battery_run remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "no src/tests dirty paths"
+                                              ],
+                                   "validated_at":  "2026-06-17T23:54:04.6659308-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2_candidate_free_baseline_execution_validation_001",
+                                   "verdict":  "passed_then_reviewer_needs_repair",
+                                   "checks":  [
+                                                  "raw harness result parses",
+                                                  "campaign Phase2 execution summary parses",
+                                                  "stage_scorecard parses",
+                                                  "experiment_log.jsonl parses",
+                                                  "result verdict is no_headroom_baseline_saturated",
+                                                  "visible-channel oracle macro F1 is 1.0",
+                                                  "strongest fair baseline macro F1 is 1.0",
+                                                  "strongest fair baseline id is count_table",
+                                                  "baseline_battery_run is true",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "runtime_or_mainline_touched remains false",
+                                                  "one append-only Phase2 execution ledger entry exists",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T00:07:45.9400363-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2_reviewer_needs_repair_response_validation_001",
+                                   "verdict":  "repair_applied_pending_reaudit",
+                                   "checks":  [
+                                                  "Helmholtz reviewer needs_repair verdict is preserved in phase2 execution summary",
+                                                  "focused Phase2 harness tests pass",
+                                                  "raw harness verdict remains no_headroom_baseline_saturated",
+                                                  "replay_report records reads for serialized_state, current_observation, legal_action_or_query_schema, and budget_state",
+                                                  "leakage_report scans generated candidate-visible artifacts",
+                                                  "leakage_report has four positive controls and zero illegal leak findings",
+                                                  "ablation_report records six callable detected controls",
+                                                  "computed_evidence_provenance has 25 records including generator/source/spec/control/final-verdict producers",
+                                                  "failure_manifest.has_blocking_failure remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T00:23:49.5423570-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2_read_only_reaudit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Helmholtz read-only re-audit returned success_reached",
+                                                  "phase2 audit artifact exists and preserves first needs_repair plus re-audit success",
+                                                  "raw harness result remains no_headroom_baseline_saturated",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "runtime_or_mainline_touched remains false",
+                                                  "stage_scorecard marks Phase2 audited no-headroom",
+                                                  "OVERALL_PROGRESS records phase2_reaudit_status = success_reached",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T00:30:37.5850642-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2_no_headroom_reframing_task_card_validation_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "no-headroom negative-evidence artifact parses",
+                                                  "source artifact hashes match the negative-evidence record",
+                                                  "bounded reframing task card exists",
+                                                  "reframing task card includes required sections",
+                                                  "plan/progress/scorecard/ledger agree on reframing task-card validated-pending-execution state",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "runtime_or_mainline_touched remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "no forbidden dirty paths found"
+                                              ],
+                                   "validated_at":  "2026-06-18T00:36:02.7497237-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2_no_headroom_reframing_reaudit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Boole read-only re-audit returned success_reached",
+                                                  "audit artifact preserves prior needs_more_implementation findings and final success",
+                                                  "reframing artifact review_status is success_reached",
+                                                  "stage_scorecard marks phase2_no_headroom_reframing_audited_success",
+                                                  "OVERALL_PROGRESS records reframing_reviewer_audit_status = success_reached",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T00:57:05.8432453-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_minimal_env_reframe_spec_task_card_validation_001",
+                                   "verdict":  "passed_after_wording_repair",
+                                   "checks":  [
+                                                  "Phase2B task card exists",
+                                                  "Phase2B spec draft exists",
+                                                  "first validation failure for plural full legal response bundles is preserved in phase2b validation artifact",
+                                                  "old MINIMAL-ENV-SPEC-001A hash remains frozen",
+                                                  "source hashes match validation readback",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "bad_dirty_scope_count = 0"
+                                              ],
+                                   "validated_at":  "2026-06-18T01:12:35.4426351-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_reviewer_audit_run_001_repair_001",
+                                   "verdict":  "repair_applied_pending_reaudit",
+                                   "checks":  [
+                                                  "Plato needs_more_implementation verdict preserved in Phase2B audit artifact",
+                                                  "plan.md Last updated header repaired to 2026-06-18T01:19:25-05:00",
+                                                  "OVERALL_PROGRESS Last updated header repaired to 2026-06-18T01:19:25-05:00",
+                                                  "scorecard status moved to phase2b_minimal_env_reframe_spec_repaired_pending_reaudit",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T01:19:25.5308295-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_reviewer_reaudit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Plato read-only re-audit returned success_reached",
+                                                  "Phase2B audit artifact records prior needs_more_implementation and final success_reached",
+                                                  "stage_scorecard marks Phase2B task-card/spec audited success",
+                                                  "OVERALL_PROGRESS records phase2b_reviewer_audit_status = success_reached",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T01:27:18.8327169-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_candidate_free_headroom_task_card_opening_001",
+                                   "verdict":  "opened_pending_validation",
+                                   "checks":  [
+                                                  "Phase2B candidate-free headroom task card created",
+                                                  "execution remains unauthorized",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "recorded_at":  "2026-06-18T01:32:47.3331024-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_candidate_free_headroom_task_card_validation_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Phase2B candidate-free headroom task card exists",
+                                                  "source Phase2B audit is success_reached",
+                                                  "source Phase2 result remains no_headroom_baseline_saturated",
+                                                  "old MINIMAL-ENV-SPEC-001A hash remains frozen",
+                                                  "Phase2B spec hash matches validation artifact",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "forbidden future execution path count = 0",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "bad_dirty_scope_count = 0"
+                                              ],
+                                   "validated_at":  "2026-06-18T01:37:02.0000987-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_candidate_free_headroom_task_card_reviewer_audit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Plato read-only reviewer audit returned success_reached",
+                                                  "task-card audit artifact records success_reached",
+                                                  "stage_scorecard marks Phase2B candidate-free headroom task card audited success",
+                                                  "OVERALL_PROGRESS records reviewer audit success",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T01:44:16.2816064-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_execution_start_state_spec_freeze_task_card_opening_001",
+                                   "verdict":  "opened_pending_validation",
+                                   "checks":  [
+                                                  "Phase2B execution start-state/spec-freeze task card created",
+                                                  "spec freeze remains unauthorized",
+                                                  "execution remains unauthorized",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "recorded_at":  "2026-06-18T01:49:55.4284726-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_execution_start_state_spec_freeze_task_card_validation_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Phase2B execution start-state/spec-freeze task card exists",
+                                                  "source candidate-free headroom task-card audit is success_reached",
+                                                  "source Phase2 result remains no_headroom_baseline_saturated",
+                                                  "old MINIMAL-ENV-SPEC-001A hash remains frozen",
+                                                  "Phase2B spec hash matches validation artifact",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "forbidden future path count = 0",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "bad_dirty_scope_count = 0"
+                                              ],
+                                   "validated_at":  "2026-06-18T01:55:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_execution_start_state_spec_freeze_task_card_reviewer_audit_run_001_repair_001",
+                                   "verdict":  "repair_applied_pending_reaudit",
+                                   "checks":  [
+                                                  "Plato needs_more_implementation verdict preserved in task-card audit artifact",
+                                                  "task-card Status line repaired from opened pending focused validation",
+                                                  "validation artifact top-level enabled_status repaired from opened_pending_validation",
+                                                  "plan/progress/scorecard/goal current statuses moved to repaired_pending_reaudit",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T02:02:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_execution_start_state_spec_freeze_task_card_reviewer_audit_run_002_repair_001",
+                                   "verdict":  "second_repair_applied_pending_reaudit",
+                                   "checks":  [
+                                                  "Plato re-audit needs_more_implementation verdict preserved in task-card audit artifact",
+                                                  "stage_scorecard standing_governance_card nested task status repaired from validated_pending_reviewer_audit",
+                                                  "stage_scorecard standing_governance_card next action repaired to re-audit",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T02:08:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_execution_start_state_spec_freeze_task_card_reviewer_audit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Plato second read-only re-audit returned success_reached",
+                                                  "audit artifact preserves two prior needs_more_implementation findings and final success_reached",
+                                                  "stage_scorecard marks Phase2B execution start-state/spec-freeze task card audited success",
+                                                  "OVERALL_PROGRESS records reviewer audit success",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T02:14:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_start_state_spec_freeze_readback_task_card_opening_001",
+                                   "verdict":  "opened_pending_validation",
+                                   "checks":  [
+                                                  "Phase2B start-state/spec-freeze readback task card created",
+                                                  "spec freeze remains unauthorized",
+                                                  "start-state readback remains unauthorized",
+                                                  "execution remains unauthorized",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "recorded_at":  "2026-06-18T02:24:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_start_state_spec_freeze_readback_task_card_validation_001",
+                                   "verdict":  "passed_after_validation_check_repair",
+                                   "checks":  [
+                                                  "first validator schema-path failure preserved",
+                                                  "Phase2B start-state/spec-freeze readback task card exists",
+                                                  "source task-card audit is success_reached",
+                                                  "source Phase2 result remains no_headroom_baseline_saturated via audited_result.verdict",
+                                                  "old MINIMAL-ENV-SPEC-001A hash remains frozen",
+                                                  "Phase2B spec hash matches validation artifact",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "forbidden future path count = 0",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "bad_dirty_scope_count = 0"
+                                              ],
+                                   "validated_at":  "2026-06-18T02:30:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_start_state_spec_freeze_readback_task_card_reviewer_audit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Plato read-only reviewer audit returned success_reached",
+                                                  "audit artifact records success_reached",
+                                                  "validation schema-path failure remains preserved",
+                                                  "stage_scorecard marks Phase2B start-state/spec-freeze readback task card audited success",
+                                                  "OVERALL_PROGRESS records reviewer audit success",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "validated_at":  "2026-06-18T02:36:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_opening_001",
+                                   "verdict":  "opened_pending_validation",
+                                   "checks":  [
+                                                  "Phase2B spec-freeze/readback execution task card created",
+                                                  "spec freeze remains unauthorized",
+                                                  "start-state readback remains unauthorized",
+                                                  "Phase2B execution remains unauthorized",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "recorded_at":  "2026-06-18T02:42:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_validation_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Phase2B spec-freeze/readback execution task card exists",
+                                                  "source task-card audit is success_reached",
+                                                  "source Phase2 result remains no_headroom_baseline_saturated via audited_result.verdict",
+                                                  "old MINIMAL-ENV-SPEC-001A hash remains frozen",
+                                                  "Phase2B spec hash matches validation artifact",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "forbidden future path count = 0",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met",
+                                                  "bad_dirty_scope_count = 0"
+                                              ],
+                                   "validated_at":  "2026-06-18T02:46:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_reviewer_audit_run_001_repair_001",
+                                   "verdict":  "repair_applied_pending_reaudit",
+                                   "checks":  [
+                                                  "Plato needs_more_implementation verdict preserved in task-card audit artifact",
+                                                  "validation artifact task-card source hash repaired to live readback",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "old_task_card_sha256":  "418d77c43cf94f52610534a5debb0a4757ea6b1bf79ba8425d392e3754c5abbc",
+                                   "reviewer_seen_live_task_card_sha256":  "0aa4ff362f23fe80c8a17fccc71b898a5c78979ba1cd4194f17ce94ad0e32cdd",
+                                   "repaired_task_card_sha256":  "39f1321765578b6ee29cb699be86a2b215e859d9d7167c32f2a35f3cb3ceee3e",
+                                   "validated_at":  "2026-06-18T02:50:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_reviewer_audit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Plato read-only re-audit returned success_reached",
+                                                  "audit artifact preserves prior needs_more_implementation and final success_reached",
+                                                  "validation artifact task-card source hash updated to final live readback after success recording",
+                                                  "stage_scorecard marks Phase2B spec-freeze/readback execution task card audited success",
+                                                  "OVERALL_PROGRESS records reviewer audit success",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "final_task_card_sha256":  "c9903ec35aacc4bb1a87ffd1df055d828dc94af45ec5ae1ed1401d8ecf1caa8b",
+                                   "validated_at":  "2026-06-18T02:56:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_stale_status_repair_001",
+                                   "verdict":  "repair_applied_pending_reaudit",
+                                   "checks":  [
+                                                  "task-card stale Next Minimal Closed-Loop Action repaired",
+                                                  "task-card stale Claim Ceiling repaired",
+                                                  "nested scorecard stale claim ceiling repaired",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "repaired_task_card_sha256":  "7c591ecaa1ed3d92960aa61191b08b7b24d4261798c7fa067f591a76d347a7f4",
+                                   "recorded_at":  "2026-06-18T03:04:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_stale_status_reaudit_success_recording_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Plato read-only re-audit returned success_reached for stale next-action and claim-ceiling repair",
+                                                  "validation artifact task-card source hash updated to final live readback after success recording",
+                                                  "stage_scorecard marks stale-status repair audited success",
+                                                  "OVERALL_PROGRESS records reviewer audit success after stale-status repair",
+                                                  "phase2b_spec_freeze_authorized remains false",
+                                                  "phase2b_start_state_readback_authorized remains false",
+                                                  "phase2b_execution_authorized remains false",
+                                                  "candidate_mechanism_run remains false",
+                                                  "phase3_opened remains false",
+                                                  "program_goal_status remains active_not_complete",
+                                                  "program_terminal_condition remains not_met"
+                                              ],
+                                   "final_task_card_sha256":  "ee7896739f696ca657ae42e97fed5c8df1929d65b7cdae1de264dc41cbb37f89",
+                                   "validated_at":  "2026-06-18T03:10:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_final_validation_run_001_failed",
+                                   "verdict":  "validation_check_bug",
+                                   "failure":  "Final validation searched for the wrapped task-card status as one contiguous string and incorrectly reported the stale-status re-audit success text missing.",
+                                   "preserved":  true,
+                                   "recorded_at":  "2026-06-18T03:12:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_spec_freeze_readback_execution_task_card_final_validation_run_002_failed",
+                                   "verdict":  "validation_check_bug",
+                                   "failure":  "The second final validation still used PowerShell wildcard matching on task-card status text containing backticks and incorrectly reported the present status as missing.",
+                                   "preserved":  true,
+                                   "recorded_at":  "2026-06-18T03:14:00.0000000-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_candidate_free_headroom_execution_validation_001",
+                                   "verdict":  "passed",
+                                   "checks":  [
+                                                  "Phase2B candidate-free headroom result parses",
+                                                  "focused validation artifact passed",
+                                                  "visible-channel oracle macro F1 is 1.0",
+                                                  "strongest fair baseline count_table macro F1 is 1.0",
+                                                  "baseline, leakage, replay, ablation, and provenance checks passed",
+                                                  "candidate mechanism remains false",
+                                                  "Phase 3 remains false",
+                                                  "program goal remains active_not_complete",
+                                                  "corrected execution-specific ledger id is present and prior id collision is preserved"
+                                              ],
+                                   "validated_at":  "2026-06-18T05:46:48-05:00"
+                               },
+                               {
+                                   "run_id":  "phase2b_candidate_free_headroom_audit_success_recording_001",
+                                   "verdict":  "passed_after_reviewer_success_recording",
+                                   "checks":  [
+                                                  "Plato read-only reviewer audit returned success_reached",
+                                                  "audit artifact records no blocking findings",
+                                                  "Phase2B validation artifact refreshed after reviewer success recording",
+                                                  "stage_scorecard marks phase2b_candidate_free_headroom_audited_success_no_headroom",
+                                                  "candidate mechanism remains false",
+                                                  "Phase 3 remains false",
+                                                  "program goal remains active_not_complete"
+                                              ],
+                                   "validated_at":  "2026-06-18T06:02:56-05:00"
+                               }
+                           ],
+    "dirty_path_count_before_validation_artifact":  11,
+    "ledger_record_count_before_validation_ledger_entries":  48,
+    "result":  "goal_task_card_validation_passed_after_check_repair",
+    "timestamp_reconciliation_recorded_at":  "2026-06-17T23:07:14.5333104-05:00",
+    "completion_audit_updated_at":  "2026-06-17T23:28:42.4210482-05:00",
+    "program_terminal_contract_hardened_at":  "2026-06-17T23:37:31.5156582-05:00",
+    "program_terminal_contract_validation_result":  "passed",
+    "program_terminal_contract_validated_at":  "2026-06-17T23:38:43.8494552-05:00",
+    "phase1_audit_success_recorded_at":  "2026-06-17T23:46:14.9305678-05:00",
+    "phase1_audit_success_recording_validation_result":  "passed",
+    "phase2_task_card_start_state_validated_at":  "2026-06-17T23:54:04.6659308-05:00",
+    "phase2_task_card_start_state_validation_result":  "passed",
+    "phase2_execution_recorded_at":  "2026-06-18T00:07:45.9400363-05:00",
+    "phase2_execution_result":  "no_headroom_baseline_saturated",
+    "phase2_execution_artifact":  "artifacts/research_campaign/phase2_baseline_first_headroom_001a.json",
+    "phase2_execution_validation_result":  "passed_then_reviewer_needs_repair",
+    "phase2_reviewer_audit_status":  "success_reached",
+    "phase2_reviewer_needs_repair_preserved":  true,
+    "phase2_repair_recorded_at":  "2026-06-18T00:23:49.5423570-05:00",
+    "phase2_repair_validation_result":  "repair_applied_then_reaudit_success",
+    "phase2_reaudit_success_recorded_at":  "2026-06-18T00:30:37.5850642-05:00",
+    "phase2_audit_artifact":  "artifacts/research_campaign/phase2_baseline_first_headroom_audit_001a.json",
+    "phase2_no_headroom_negative_evidence_artifact":  "artifacts/research_campaign/phase2_no_headroom_negative_evidence_001a.json",
+    "phase2_reframing_task_card":  "docs/research_campaign/phase2_no_headroom_reframing_001a.md",
+    "phase2_reframing_task_card_validation_result":  "passed",
+    "phase2_reframing_task_card_validated_at":  "2026-06-18T00:36:02.7497237-05:00",
+    "last_updated_at":  "2026-06-18T06:02:56-05:00",
+    "phase2_reframing_execution_status":  "audited_success",
+    "phase2_reframing_reviewer_audit_status":  "success_reached",
+    "phase2_reframing_audit_success_recorded_at":  "2026-06-18T00:57:05.8432453-05:00",
+    "phase2_reframing_audit_artifact":  "artifacts/research_campaign/phase2_no_headroom_reframing_audit_001a.json",
+    "phase2_reframing_reaudit_success_recording_validation_result":  "passed",
+    "phase2_reframing_reaudit_success_recording_validated_at":  "2026-06-18T01:02:55.2807161-05:00",
+    "phase2_reframing_reaudit_success_recording_validation_summary":  {
+                                                                          "overall_ok":  true,
+                                                                          "json_file_count_checked":  8,
+                                                                          "jsonl_record_count":  64,
+                                                                          "input_hash_mismatch_count":  0,
+                                                                          "audit_needs_more_count":  2,
+                                                                          "audit_success_count":  1,
+                                                                          "reframing_review_status":  "success_reached",
+                                                                          "scorecard_status":  "phase2_no_headroom_reframing_audited_success",
+                                                                          "ledger_success_entry_count":  1,
+                                                                          "candidate_search_authorized":  false,
+                                                                          "phase3_authorized":  false,
+                                                                          "phase2b_execution_authorized":  false,
+                                                                          "program_goal_status":  "active_not_complete",
+                                                                          "program_terminal_condition":  "not_met",
+                                                                          "bad_dirty_scope_count":  0
+                                                                      },
+    "phase2b_task_card":  "docs/research_campaign/phase2b_minimal_env_reframe_spec_001a.md",
+    "phase2b_spec_draft":  "docs/research/phase2b_minimal_env_reframe_spec_001a.md",
+    "phase2b_task_card_status":  "audited_success",
+    "phase2b_task_card_opened_at":  "2026-06-18T01:05:39.9238003-05:00",
+    "phase2b_validation_artifact":  "artifacts/research_campaign/phase2b_minimal_env_reframe_spec_task_card_validation_001a.json",
+    "phase2b_task_card_validated_at":  "2026-06-18T01:12:35.4426351-05:00",
+    "phase2b_task_card_validation_result":  "passed_after_wording_repair",
+    "phase2b_reviewer_audit_status":  "success_reached",
+    "phase2b_reviewer_audit_artifact":  "artifacts/research_campaign/phase2b_minimal_env_reframe_spec_audit_001a.json",
+    "phase2b_timestamp_repair_applied":  true,
+    "phase2b_timestamp_repair_applied_at":  "2026-06-18T01:19:25.5308295-05:00",
+    "phase2b_execution_authorized":  false,
+    "candidate_mechanism_run":  false,
+    "phase3_opened":  false,
+    "phase2b_reaudit_success_recorded_at":  "2026-06-18T01:27:18.8327169-05:00",
+    "phase2b_candidate_free_headroom_task_card":  "docs/research_campaign/phase2b_candidate_free_headroom_task_card_001a.md",
+    "phase2b_candidate_free_headroom_task_card_status":  "audited_success",
+    "phase2b_candidate_free_headroom_task_card_opened_at":  "2026-06-18T01:32:47.3331024-05:00",
+    "phase2b_candidate_free_headroom_validation_artifact":  "artifacts/research_campaign/phase2b_candidate_free_headroom_validation_001a.json",
+    "phase2b_candidate_free_headroom_validation_status":  "passed",
+    "phase2b_candidate_free_headroom_task_card_validated_at":  "2026-06-18T01:37:02.0000987-05:00",
+    "phase2b_candidate_free_headroom_validation_result":  "passed_after_reviewer_success_recording",
+    "phase2b_candidate_free_headroom_reviewer_audit_status":  "success_reached",
+    "phase2b_candidate_free_headroom_audit_artifact":  "artifacts/research_campaign/phase2b_candidate_free_headroom_audit_001a.json",
+    "phase2b_candidate_free_headroom_audit_success_reached_at":  "2026-06-18T01:44:16.2816064-05:00",
+    "phase2b_execution_start_state_spec_freeze_task_card":  "docs/research_campaign/phase2b_execution_start_state_spec_freeze_task_card_001a.md",
+    "phase2b_execution_start_state_spec_freeze_task_card_status":  "audited_success",
+    "phase2b_execution_start_state_spec_freeze_task_card_opened_at":  "2026-06-18T01:49:55.4284726-05:00",
+    "phase2b_execution_start_state_spec_freeze_validation_artifact":  "artifacts/research_campaign/phase2b_execution_start_state_spec_freeze_task_card_validation_001a.json",
+    "phase2b_execution_start_state_spec_freeze_validation_status":  "passed",
+    "phase2b_spec_freeze_authorized":  true,
+    "phase2b_execution_start_state_spec_freeze_task_card_validated_at":  "2026-06-18T01:55:00.0000000-05:00",
+    "phase2b_execution_start_state_spec_freeze_validation_result":  "passed",
+    "phase2b_execution_start_state_spec_freeze_reviewer_audit_status":  "success_reached",
+    "phase2b_execution_start_state_spec_freeze_audit_artifact":  "artifacts/research_campaign/phase2b_execution_start_state_spec_freeze_task_card_audit_001a.json",
+    "phase2b_execution_start_state_spec_freeze_repair_applied_at":  "2026-06-18T02:02:00.0000000-05:00",
+    "phase2b_execution_start_state_spec_freeze_repair_002_applied_at":  "2026-06-18T02:08:00.0000000-05:00",
+    "phase2b_execution_start_state_spec_freeze_audit_success_reached_at":  "2026-06-18T02:14:00.0000000-05:00",
+    "phase2b_start_state_spec_freeze_readback_task_card":  "docs/research_campaign/phase2b_start_state_spec_freeze_readback_task_card_001a.md",
+    "phase2b_start_state_spec_freeze_readback_task_card_status":  "audited_success",
+    "phase2b_start_state_spec_freeze_readback_task_card_opened_at":  "2026-06-18T02:24:00.0000000-05:00",
+    "phase2b_start_state_spec_freeze_readback_validation_artifact":  "artifacts/research_campaign/phase2b_start_state_spec_freeze_readback_task_card_validation_001a.json",
+    "phase2b_start_state_spec_freeze_readback_validation_status":  "passed",
+    "phase2b_start_state_readback_authorized":  true,
+    "phase2b_start_state_spec_freeze_readback_task_card_validated_at":  "2026-06-18T02:30:00.0000000-05:00",
+    "phase2b_start_state_spec_freeze_readback_validation_result":  "passed_after_validation_check_repair",
+    "phase2b_start_state_spec_freeze_readback_reviewer_audit_status":  "success_reached",
+    "phase2b_start_state_spec_freeze_readback_audit_artifact":  "artifacts/research_campaign/phase2b_start_state_spec_freeze_readback_task_card_audit_001a.json",
+    "phase2b_start_state_spec_freeze_readback_audit_success_reached_at":  "2026-06-18T02:36:00.0000000-05:00",
+    "phase2b_spec_freeze_readback_execution_task_card":  "docs/research_campaign/phase2b_spec_freeze_readback_execution_task_card_001a.md",
+    "phase2b_spec_freeze_readback_execution_task_card_status":  "audited_success_after_stale_status_repair",
+    "phase2b_spec_freeze_readback_execution_task_card_opened_at":  "2026-06-18T02:42:00.0000000-05:00",
+    "phase2b_spec_freeze_readback_execution_validation_status":  "passed_after_stale_status_repair_and_reaudit_success",
+    "phase2b_spec_freeze_readback_execution_task_card_validated_at":  "2026-06-18T02:46:00.0000000-05:00",
+    "phase2b_spec_freeze_readback_execution_repair_applied_at":  "2026-06-18T02:50:00.0000000-05:00",
+    "phase2b_spec_freeze_readback_execution_stale_status_repair_applied_at":  "2026-06-18T03:04:00.0000000-05:00",
+    "phase2b_spec_freeze_readback_execution_stale_status_reaudit_success_reached_at":  "2026-06-18T03:10:00.0000000-05:00",
+    "phase2b_spec_freeze_readback_run_task_card":  "docs/research_campaign/phase2b_spec_freeze_readback_run_task_card_001a.md",
+    "phase2b_spec_freeze_readback_run_validation_artifact":  "artifacts/research_campaign/phase2b_spec_freeze_readback_run_task_card_validation_001a.json",
+    "phase2b_spec_freeze_readback_run_task_card_status":  "audit_success_recorded_next_freeze_readback_authorized",
+    "phase2b_spec_freeze_readback_run_task_card_validated_at":  "2026-06-18T03:31:11.7521228-05:00",
+    "phase2b_spec_freeze_readback_run_validation_result":  "passed_after_reviewer_success_recording",
+    "phase2b_spec_freeze_readback_run_audit_artifact":  "artifacts/research_campaign/phase2b_spec_freeze_readback_run_task_card_audit_001a.json",
+    "phase2b_spec_freeze_readback_run_repair_applied_at":  "2026-06-18T03:34:50.7909119-05:00",
+    "phase2b_spec_freeze_readback_run_task_card_revalidated_at":  "2026-06-18T03:36:32.2385621-05:00",
+    "phase2b_spec_freeze_readback_run_scorecard_repair_applied_at":  "2026-06-18T03:41:04.6726261-05:00",
+    "phase2b_spec_freeze_readback_run_task_card_revalidated_after_scorecard_repair_at":  "2026-06-18T03:42:48.0271189-05:00",
+    "phase2b_spec_freeze_readback_run_next_action_source_hash_repair_applied_at":  "2026-06-18T03:47:25.1032248-05:00",
+    "phase2b_spec_freeze_readback_run_audit_success_reached_at":  "2026-06-18T03:54:26.6578760-05:00",
+    "phase2b_spec_freeze_readback_run_reviewer_audit_status":  "success_reached",
+    "phase2b_spec_freeze_readback_execution_artifact":  "artifacts/research_campaign/phase2b_spec_freeze_readback_execution_001a.json",
+    "phase2b_spec_freeze_readback_execution_freeze_manifest":  "docs/research/phase2b_minimal_env_reframe_spec_001a.freeze.json",
+    "phase2b_spec_freeze_readback_execution_artifact_created_at":  "2026-06-18T03:58:56.2387558-05:00",
+    "phase2b_spec_freeze_readback_execution_artifact_status":  "audited_success",
+    "phase2b_spec_freeze_readback_execution_validation_artifact":  "artifacts/research_campaign/phase2b_spec_freeze_readback_execution_validation_001a.json",
+    "phase2b_spec_freeze_readback_execution_validated_at":  "2026-06-18T04:01:16.5781258-05:00",
+    "phase2b_spec_freeze_readback_execution_validation_result":  "passed_after_reviewer_success_recording",
+    "phase2b_spec_freeze_readback_execution_status_doc_hash_refresh_validated_at":  "2026-06-18T04:02:38.4962033-05:00",
+    "phase2b_spec_freeze_readback_execution_audit_artifact":  "artifacts/research_campaign/phase2b_spec_freeze_readback_execution_audit_001a.json",
+    "phase2b_spec_freeze_readback_execution_status_doc_repair_applied_at":  "2026-06-18T04:12:33.2621665-05:00",
+    "phase2b_spec_freeze_readback_execution_reviewer_audit_status":  "success_reached",
+    "phase2b_spec_freeze_readback_execution_readback_status_repair_applied_at":  "2026-06-18T04:18:00.7194054-05:00",
+    "phase2b_spec_freeze_readback_execution_markdown_timestamp_repair_applied_at":  "2026-06-18T04:23:26.6651856-05:00",
+    "phase2b_spec_freeze_readback_execution_audit_success_reached_at":  "2026-06-18T04:29:28.8082574-05:00",
+    "phase2b_candidate_free_harness_execution_task_card":  "docs/research_campaign/phase2b_candidate_free_harness_execution_task_card_001a.md",
+    "phase2b_candidate_free_harness_execution_task_card_validation_artifact":  "artifacts/research_campaign/phase2b_candidate_free_harness_execution_task_card_validation_001a.json",
+    "phase2b_candidate_free_harness_execution_task_card_status":  "audited_success",
+    "phase2b_candidate_free_harness_execution_validation_status":  "passed",
+    "phase2b_candidate_free_harness_execution_task_card_validated_at":  "2026-06-18T04:37:17.8199503-05:00",
+    "phase2b_candidate_free_harness_execution_reviewer_audit_status":  "success_reached",
+    "phase2b_candidate_free_harness_execution_task_card_audit_artifact":  "artifacts/research_campaign/phase2b_candidate_free_harness_execution_task_card_audit_001a.json",
+    "phase2b_candidate_free_harness_execution_task_card_sha256":  "bf22576a14be6f9c6955b0ff56686dec596ad8f1328b4698c8d0dd9b5f29bdb0",
+    "phase2b_candidate_free_harness_execution_current_stage_status_repair_applied_at":  "2026-06-18T04:46:31-05:00",
+    "phase2b_candidate_free_harness_execution_markdown_current_state_repair_applied_at":  "2026-06-18T04:51:31-05:00",
+    "phase2b_candidate_free_harness_execution_current_state_wording_alignment_refreshed_at":  "2026-06-18T04:53:39-05:00",
+    "phase2b_candidate_free_harness_execution_task_card_status_wording_repair_applied_at":  "2026-06-18T04:58:19-05:00",
+    "phase2b_candidate_free_harness_execution_audit_success_reached_at":  "2026-06-18T05:02:30-05:00",
+    "phase2b_candidate_free_harness_execution_reviewer_findings_preserved_count":  3,
+    "phase2b_candidate_free_harness_run_task_card":  "docs/research_campaign/phase2b_candidate_free_harness_run_task_card_001a.md",
+    "phase2b_candidate_free_harness_run_task_card_validation_artifact":  "artifacts/research_campaign/phase2b_candidate_free_harness_run_task_card_validation_001a.json",
+    "phase2b_candidate_free_harness_run_task_card_status":  "audited_success",
+    "phase2b_candidate_free_harness_run_validation_status":  "passed",
+    "phase2b_candidate_free_harness_run_reviewer_audit_status":  "success_reached",
+    "phase2b_candidate_free_harness_run_task_card_opened_at":  "2026-06-18T05:08:23-05:00",
+    "phase2b_candidate_free_harness_run_task_card_sha256":  "f2c29fd914e038a94762e03cd5e87ee5ccb64c88b2f82270df302b27bbb80a36",
+    "phase2b_candidate_free_harness_run_task_card_validated_at":  "2026-06-18T05:11:30-05:00",
+    "phase2b_candidate_free_harness_run_stale_readback_repair_applied_at":  "2026-06-18T05:16:41-05:00",
+    "phase2b_candidate_free_harness_run_task_card_audit_artifact":  "artifacts/research_campaign/phase2b_candidate_free_harness_run_task_card_audit_001a.json",
+    "phase2b_candidate_free_harness_run_task_card_current_fields_repair_applied_at":  "2026-06-18T05:25:32-05:00",
+    "phase2b_candidate_free_harness_run_audit_success_reached_at":  "2026-06-18T05:30:17-05:00",
+    "phase2b_candidate_free_harness_run_reviewer_findings_preserved_count":  2,
+    "phase2b_candidate_free_harness_run_authorized":  true,
+    "phase2b_candidate_free_headroom_execution_status":  "audited_success_no_headroom",
+    "phase2b_candidate_free_headroom_execution_result":  "no_headroom_baseline_saturated",
+    "phase2b_candidate_free_headroom_execution_artifact":  "artifacts/research_campaign/phase2b_candidate_free_headroom_001a.json",
+    "phase2b_execution_run":  true,
+    "future_phase2b_execution_authorized":  false,
+    "phase2b_program_needs_reframing_checkpoint_task_card":  "docs/research_campaign/phase2b_program_needs_reframing_checkpoint_001a.md",
+    "phase2b_program_needs_reframing_checkpoint_artifact":  "artifacts/research_campaign/phase2b_program_needs_reframing_checkpoint_001a.json",
+    "phase2b_program_needs_reframing_checkpoint_validation_artifact":  "artifacts/research_campaign/phase2b_program_needs_reframing_checkpoint_validation_001a.json",
+    "phase2b_program_needs_reframing_checkpoint_validated_at":  "2026-06-18T07:04:48-05:00",
+    "phase2b_program_needs_reframing_checkpoint_validation_result":  "passed",
+    "program_goal_status":  "active_not_complete",
+    "program_terminal_condition":  "not_met",
+    "program_terminal_verdict":  "not_recorded",
+    "phase2c_hidden_latent_heldout_surface_contract_task_card":  "docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md",
+    "phase2c_hidden_latent_heldout_surface_contract_doc":  "docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md",
+    "phase2c_hidden_latent_heldout_surface_contract_artifact":  "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json",
+    "phase2c_hidden_latent_heldout_surface_contract_validation_artifact":  "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_validation_001a.json",
+    "phase2c_hidden_latent_heldout_surface_contract_validated_at":  "2026-06-18T07:17:15-05:00",
+    "phase2c_hidden_latent_heldout_surface_contract_readback_repair_applied_at":  "2026-06-18T07:21:42-05:00",
+    "phase2c_hidden_latent_heldout_surface_contract_audit_artifact":  "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_audit_001a.json",
+    "phase2b_program_needs_reframing_checkpoint_reviewer_audit_status":  "superseded_before_audit",
+    "phase2b_program_needs_reframing_checkpoint_status":  "superseded_by_user_design_correction_not_terminal_evidence",
+    "phase2c_hidden_latent_heldout_surface_contract_plan_text_repair_applied_at":  "2026-06-18T07:40:24-05:00",
+    "timestamp":  "2026-06-18T07:41:20-05:00",
+    "enabled_status":  "local_hidden_latent_heldout_surface_contract_reviewer_audited_success",
+    "real_trigger_evidence":  "Hubble read-only re-audit success after three preserved current-state/readback repairs.",
+    "claim_ceiling":  "Phase2C hidden-latent heldout surface contract reviewer-audited success only; no mechanism validity, terminal verdict, or mainline effect.",
+    "phase2c_hidden_latent_heldout_surface_contract_status":  "reviewer_audited_success",
+    "phase2c_hidden_latent_heldout_surface_contract_reviewer_audit_status":  "success_reached",
+    "phase2c_hidden_latent_heldout_surface_contract_audit_success_reached_at":  "2026-06-18T07:41:20-05:00",
+    "phase2c_hidden_latent_heldout_surface_contract_validation_result":  "passed_after_reviewer_success_recording",
+    "current_scorecard_status":  "phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success",
+    "current_stage_status":  "phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success",
+    "next_minimal_closed_loop_action":  "If the campaign continues, open only a separately bounded Phase2C executable harness task card; candidates, Phase 3, route tournament, runtime/EGO mainline, push, tag, commit, terminal verdicts, route-exhaustion claims, and remote anchor remain blocked.",
+    "last_validated_at":  "2026-06-18T07:41:20-05:00",
+    "source_readback_current":  {
+                                    "docs/research_campaign/goal_stage_audit_loop_001a.md":  {
+                                                                                                 "path":  "docs/research_campaign/goal_stage_audit_loop_001a.md",
+                                                                                                 "sha256":  "793ee8c170dad4074281fb11c45ce83dec8026a751df93d23621aa20e72cca59",
+                                                                                                 "byte_count":  19784
+                                                                                             },
+                                    "docs/research_campaign/plan.md":  {
+                                                                           "path":  "docs/research_campaign/plan.md",
+                                                                           "sha256":  "a21bac0145e11650a223858b8db500feb8e12c115414e812b75e5f7462ccd07f",
+                                                                           "byte_count":  7396
+                                                                       },
+                                    "docs/OVERALL_PROGRESS.md":  {
+                                                                     "path":  "docs/OVERALL_PROGRESS.md",
+                                                                     "sha256":  "0cc0cf58839ebb424d06add4f017e598565911f1ed812af65ff08a5ea15bd688",
+                                                                     "byte_count":  119333
+                                                                 },
+                                    "artifacts/research_campaign/stage_scorecard.json":  {
+                                                                                             "path":  "artifacts/research_campaign/stage_scorecard.json",
+                                                                                             "sha256":  "e37623ca82c60590a28721e2d6cbb5c5fa0c218855a3fb9201e1805ce5394a43",
+                                                                                             "byte_count":  213574
+                                                                                         },
+                                    "artifacts/research_campaign/experiment_log.jsonl":  {
+                                                                                             "path":  "artifacts/research_campaign/experiment_log.jsonl",
+                                                                                             "sha256":  "d79833f51fde37b5db060e8cf0e59b91e580a39ed9e47cc63cc5771b1c970af5",
+                                                                                             "byte_count":  460703
+                                                                                         },
+                                    "docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md":  {
+                                                                                                                                    "path":  "docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md",
+                                                                                                                                    "sha256":  "a0f4047284383c2f1e308bf2f9ab2e3b5410e50db3143cff08bbd40902d83c13",
+                                                                                                                                    "byte_count":  11733
+                                                                                                                                },
+                                    "docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md":  {
+                                                                                                                 "path":  "docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md",
+                                                                                                                 "sha256":  "ac821d480c3801238e3324fa8239b07bfd8899855f7a1f18dfca0c4c4fa96d52",
+                                                                                                                 "byte_count":  8542
+                                                                                                             },
+                                    "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json":  {
+                                                                                                                                 "path":  "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json",
+                                                                                                                                 "sha256":  "7adbf1b74c54a25770f05a1d1b957c55b80f3e5e47b66642c450b70dc5fc252a",
+                                                                                                                                 "byte_count":  18729
+                                                                                                                             },
+                                    "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_validation_001a.json":  {
+                                                                                                                                            "path":  "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_validation_001a.json",
+                                                                                                                                            "sha256":  "09511876e5fdb999ba2cbc9a32d466e7729e9566df0f61b9ae2292b110377432",
+                                                                                                                                            "byte_count":  9670
+                                                                                                                                        },
+                                    "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_audit_001a.json":  {
+                                                                                                                                       "path":  "artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_audit_001a.json",
+                                                                                                                                       "sha256":  "48658d9f1d8d16181805a804728146d285fd616183fa4739ce31d7329ec270dd",
+                                                                                                                                       "byte_count":  7183
+                                                                                                                                   },
+                                    "artifacts/research_campaign/phase2b_no_headroom_route_decision_001a.json":  {
+                                                                                                                     "path":  "artifacts/research_campaign/phase2b_no_headroom_route_decision_001a.json",
+                                                                                                                     "sha256":  "4a3cc89815695adc1b447468c7ad4dc823512bcc1c27a070d2a86b6490bd3a07",
+                                                                                                                     "byte_count":  15597
+                                                                                                                 },
+                                    "artifacts/research_campaign/phase2b_no_headroom_route_decision_audit_001a.json":  {
+                                                                                                                           "path":  "artifacts/research_campaign/phase2b_no_headroom_route_decision_audit_001a.json",
+                                                                                                                           "sha256":  "79c10224a1c386141124f83e981ae92c05ab3232170055e45fbb3d4bcf1e3e2b",
+                                                                                                                           "byte_count":  9604
+                                                                                                                       },
+                                    "artifacts/research_campaign/phase2b_program_needs_reframing_checkpoint_001a.json":  {
+                                                                                                                             "path":  "artifacts/research_campaign/phase2b_program_needs_reframing_checkpoint_001a.json",
+                                                                                                                             "sha256":  "29cc09c996912739237c804e6d9fc19971f7c79fb18253ff64e2da8189ac57d6",
+                                                                                                                             "byte_count":  12882
+                                                                                                                         },
+                                    "artifacts/research_campaign/phase2b_program_needs_reframing_checkpoint_validation_001a.json":  {
+                                                                                                                                        "path":  "artifacts/research_campaign/phase2b_program_needs_reframing_checkpoint_validation_001a.json",
+                                                                                                                                        "sha256":  "b70ae5dfec8472e82d0f00f428c85dfac51264ecd2aecb062d2ad4aa6a8f103e",
+                                                                                                                                        "byte_count":  7155
+                                                                                                                                    }
+                                }
+}
+

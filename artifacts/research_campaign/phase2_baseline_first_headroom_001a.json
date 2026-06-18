@@ -1,0 +1,131 @@
+{
+  "task_id": "RESEARCH-CAMPAIGN-PHASE2-BASELINE-FIRST-HEADROOM-001A",
+  "harness_card_id": "BASELINE-FIRST-HARNESS-001A",
+  "created_at": "2026-06-18T00:07:45.9400363-05:00",
+  "last_repaired_at": "2026-06-18T00:23:49.5423570-05:00",
+  "audited_at": "2026-06-18T00:30:37.5850642-05:00",
+  "layer": "engineering_implementation + mechanism_hypothesis_governance",
+  "mainline_integration_status": "none",
+  "enabled_status": "local_candidate_free_harness_executed",
+  "real_trigger_evidence": "python -m baseline_first_harness_001a.runner executed under PYTHONPATH=src and wrote candidate-free baseline/oracle/control artifacts",
+  "claim_ceiling": "Phase 2 candidate-free baseline-first harness evidence only: measured no baseline headroom for the frozen surface because the strongest fair callable baseline saturated the visible-channel oracle within the equivalence band. This is no mechanism validity, no consciousness, no real emotion, no autonomy, no EGO readiness, no companion readiness, and no mainline-effect claim.",
+  "auto_remote_anchor": "forbidden",
+  "program_goal_status": "active_not_complete",
+  "program_terminal_condition": "not_met",
+  "source_task_card": "docs/research_campaign/phase2_baseline_first_headroom_001a.md",
+  "frozen_spec_path": "docs/research/MINIMAL-ENV-SPEC-001A.md",
+  "expected_frozen_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+  "observed_frozen_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+  "harness_command": "$env:PYTHONPATH='src'; python -m baseline_first_harness_001a.runner --output-dir artifacts\\baseline_first_harness_001a",
+  "test_command": "python -m pytest tests\\baseline_first_harness_001a\\test_baseline_first_harness_001a.py -q",
+  "test_result": "3 passed",
+  "harness_artifact_dir": "artifacts/baseline_first_harness_001a",
+  "harness_artifacts": [
+    "artifacts/baseline_first_harness_001a/result.json",
+    "artifacts/baseline_first_harness_001a/trace.jsonl",
+    "artifacts/baseline_first_harness_001a/baseline_comparison.json",
+    "artifacts/baseline_first_harness_001a/ablation_report.json",
+    "artifacts/baseline_first_harness_001a/replay_report.json",
+    "artifacts/baseline_first_harness_001a/leakage_report.json",
+    "artifacts/baseline_first_harness_001a/computed_evidence_provenance.json",
+    "artifacts/baseline_first_harness_001a/failure_manifest.json",
+    "artifacts/baseline_first_harness_001a/claim_ceiling.txt"
+  ],
+  "result_artifact": "artifacts/baseline_first_harness_001a/result.json",
+  "result": {
+    "verdict": "no_headroom_baseline_saturated",
+    "stop_conditions_triggered": [
+      "strongest_fair_baseline_in_oracle_equivalence_band"
+    ],
+    "visible_channel_oracle_macro_f1": 1.0,
+    "strongest_fair_baseline_macro_f1": 1.0,
+    "strongest_fair_baseline_id": "count_table",
+    "equivalence_band": 0.03,
+    "episode_count": 100,
+    "seed_count": 5,
+    "episodes_per_seed": 20,
+    "baseline_battery_run": true,
+    "candidate_mechanism_run": false,
+    "mechanism_experiment_run": false,
+    "phase3_opened": false,
+    "gate_run": false,
+    "runtime_or_mainline_touched": false,
+    "spec_hash_matches_freeze": true
+  },
+  "review_history": [
+    {
+      "reviewer": "Helmholtz",
+      "reviewed_at": "2026-06-18T00:07:45.9400363-05:00",
+      "verdict": "needs_repair",
+      "blocking_findings": [
+        "replay evidence overstated required input consumption",
+        "leakage scan did not inspect generated artifacts",
+        "ablation and provenance coverage was inflated"
+      ],
+      "preserved": true
+    },
+    {
+      "reviewer": "Helmholtz",
+      "reviewed_at": "2026-06-18T00:30:37.5850642-05:00",
+      "verdict": "success_reached",
+      "blocking_findings": [],
+      "confirmations": [
+        "previous replay input-consumption blocker repaired",
+        "previous generated-artifact leakage-scan blocker repaired",
+        "previous ablation/provenance coverage blocker repaired",
+        "bounded no_headroom_baseline_saturated result remains candidate-free"
+      ],
+      "preserved": true
+    }
+  ],
+  "repair_summary": {
+    "repaired_at": "2026-06-18T00:23:49.5423570-05:00",
+    "repair_scope": [
+      "replay recomputation now consumes serialized_state, current_observation, legal_action_or_query_schema, and budget_state",
+      "leakage scan now scans generated candidate-visible payloads and trace evaluation boundaries with four positive controls",
+      "ablation report now records six callable detected controls",
+      "provenance now requires generator/source, frozen spec hash, controls, and final-verdict derivation records"
+    ],
+    "post_repair_validation": {
+      "focused_tests": "3 passed",
+      "raw_harness_verdict": "no_headroom_baseline_saturated",
+      "replay_observed_input_reads_all_required": true,
+      "illegal_leak_findings": 0,
+      "positive_control_count": 4,
+      "ablation_control_count": 6,
+      "provenance_record_count": 25,
+      "failure_manifest_blocking": false
+    }
+  },
+  "controls": {
+    "leakage_positive_controls_passed": true,
+    "clean_scan_scanned_generated_artifacts": true,
+    "illegal_leak_findings": 0,
+    "positive_control_count": 4,
+    "replay_recomputation_passed": true,
+    "replay_observed_input_reads": {
+      "serialized_state": true,
+      "current_observation": true,
+      "legal_action_or_query_schema": true,
+      "budget_state": true
+    },
+    "replay_tamper_negative_control_detected": true,
+    "ablation_controls_consumed": true,
+    "ablation_control_count": 6,
+    "provenance_check_passed": true,
+    "provenance_record_count": 25,
+    "missing_required_baseline_count": 0
+  },
+  "audit_artifact": "artifacts/research_campaign/phase2_baseline_first_headroom_audit_001a.json",
+  "review_status": "success_reached",
+  "next_minimal_closed_loop_action": "Record the audited no-headroom negative evidence and open a bounded reframing task card before any candidate search or Phase 3 opening.",
+  "what_this_does_not_prove": [
+    "No mechanism validity",
+    "No subjectivity or consciousness evidence",
+    "No real emotion evidence",
+    "No autonomy or agency-success evidence",
+    "No EGO readiness",
+    "No companion readiness",
+    "No runtime or mainline effect"
+  ]
+}

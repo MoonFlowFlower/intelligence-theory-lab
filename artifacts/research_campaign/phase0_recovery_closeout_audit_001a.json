@@ -1,0 +1,66 @@
+{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE0-RECOVERY-CLOSEOUT-AUDIT-001A",
+    "timestamp":  "2026-06-17T22:29:29.6688693-05:00",
+    "layer":  "engineering_implementation + mechanism_hypothesis_governance",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "none",
+    "real_trigger_evidence":  "read-only reviewer subagent audit of closeout files and git status",
+    "claim_ceiling":  "Phase 0 recovery closeout audit only; no mechanism validity or subjectivity claim",
+    "auto_remote_anchor":  "forbidden",
+    "audit_history":  [
+                          {
+                              "audit_id":  "recovery_closeout_subagent_audit_run_001",
+                              "agent_id":  "019ed8c1-f49f-7ae2-ac3f-3ed68067fdd8",
+                              "nickname":  "Descartes",
+                              "verdict":  "needs_more_implementation",
+                              "findings":  [
+                                               {
+                                                   "severity":  "high",
+                                                   "path":  "docs/OVERALL_PROGRESS.md",
+                                                   "issue":  "Old CMBC Current Stage Goal, Runner Verdict, Current Blocker, and Next Frontier conflicted with active Phase 0 closeout pending audit.",
+                                                   "repair_status":  "repaired_by_renaming_to_historical_carryover"
+                                               },
+                                               {
+                                                   "severity":  "medium",
+                                                   "path":  "docs/research_campaign/plan.md",
+                                                   "issue":  "Stale Next Minimal Closed-Loop Action still said to decide recovery closeout or audit.",
+                                                   "repair_status":  "repaired_to_require_reaudit_before_phase1"
+                                               },
+                                               {
+                                                   "severity":  "medium",
+                                                   "path":  "artifacts/research_campaign/phase0_recovery_closeout_001a.json",
+                                                   "issue":  "Required-file status omitted closeout artifact itself and audit artifact was missing.",
+                                                   "repair_status":  "repaired_required_file_list_and_created_audit_artifact"
+                                               }
+                                           ],
+                              "passed_checks":  [
+                                                    "bounded task card existed with Auto-Remote-Anchor forbidden",
+                                                    "closeout was underclaimed as pending_subagent_audit",
+                                                    "scoped JSON/JSONL files parsed",
+                                                    "dirty paths were limited to closeout-scope files and no src/tests/historical artifacts were modified"
+                                                ]
+                          },
+                          {
+                              "audit_id":  "recovery_closeout_subagent_audit_run_002",
+                              "agent_id":  "019ed8c7-73cb-7640-93d6-9aed4f4f935f",
+                              "nickname":  "Jason",
+                              "verdict":  "success_reached",
+                              "findings":  [
+
+                                           ],
+                              "passed_checks":  [
+                                                    "prior audit failure preserved in audit artifact and ledger",
+                                                    "stale CMBC current-stage narratives demoted to historical carryover",
+                                                    "plan tail blocks Phase 1 until successful re-audit and Auto-Remote-Anchor remains forbidden",
+                                                    "closeout required-file list includes closeout and audit artifacts",
+                                                    "JSON/JSONL parsed cleanly during subagent audit",
+                                                    "dirty paths limited to expected closeout surface; no src/tests/historical artifact changes",
+                                                    "no forbidden claim inflation found"
+                                                ],
+                              "next_action":  "Record audited pass and open bounded Phase 1 problem formalization task card."
+                          }
+                      ],
+    "current_verdict":  "success_reached",
+    "next_minimal_closed_loop_action":  "Open Phase 1 problem formalization task card; do not run Phase 2 baseline battery until Phase 1 is audited.",
+    "finalized_at":  "2026-06-17T22:34:42.9008076-05:00"
+}

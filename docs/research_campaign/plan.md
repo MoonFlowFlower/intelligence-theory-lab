@@ -1,153 +1,184 @@
-# Strict Intelligence Mechanism Research Campaign Plan
+﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18
+Last updated: 2026-06-18T08:07:20-05:00
+
+This file is the compact campaign controller. Historical task cards, prior
+checkpoints, and the full pre-compaction plan snapshot are preserved in:
+
+- appendix: `docs/research_campaign/plan_appendix_historical_task_cards_001a.md`
+- pre-compaction plan sha256: `b960eaf54f5dd4ef33d7e6435b00491fec72a162139cd50e33c4c7a1c346b8f0`
+- appendix sha256: `2cd3cb668ee8814ce46c13ea8a593e0e96c8025b31887119762c8db56128c247`
+- snapshot preservation caveat: text-level snapshot preserved; final validation records a non-byte-exact trailing-whitespace caveat
 
 ## Program Goal
 
 Build a long-running, falsifiable, recovery-safe research campaign for finding
-and eliminating candidate mechanisms that could support bounded functional-subject
-proxies: self-modeling, affect/value regulation, active exploration, long-term
-learning, and self/environment boundary tracking.
+and eliminating candidate mechanisms that could support bounded
+functional-subject proxies: self-modeling, affect/value regulation, active
+exploration, long-term learning, and self/environment boundary tracking.
 
-This campaign does not aim to prove consciousness, subjective experience, real
-emotion, autonomy, electronic life, AGI, EGO readiness, companion readiness, or
-stable user benefit. Those claims remain forbidden unless a later bounded task
-defines computed evidence strong enough to support a narrower proxy claim.
+Program goal status: `active_not_complete`.
 
-## Current Phase
+Program terminal condition: `not_met`.
 
-Task id: `RESEARCH-CAMPAIGN-PHASE0-RECOVERY-LEDGER-HARDENING-001A`
+Program terminal verdict: `not_recorded`.
+
+Forbidden claims remain forbidden: consciousness, subjective experience, real
+emotion, autonomy, electronic life, AGI, EGO readiness, companion readiness,
+stable user benefit, mainline effect, route exhaustion, and candidate validation
+unless a later bounded task records computed evidence for a narrower proxy.
+
+## Current Campaign State
+
+Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A`
+
+Status: `phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success`
+
+Current stage status: `phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success`
+
+Reviewer verdict: `success_reached`
+
+Current stage goal: Validate a hidden-latent heldout surface contract that prevents visible-surface baseline saturation before any candidate or Phase 3 work.
+
+Stage success criteria:
+
+- task card exists
+- surface contract exists
+- goal controller contains no-headroom surface redesign rule
+- interrupted terminal checkpoint marked superseded
+- focused validation passes
+- candidate mechanisms remain unrun
+- Phase 3 remains unopened
+- route tournament remains unauthorized
+
+Next decision gate: Open a separately bounded Phase2C executable harness task card only if campaign continues.
+
+Next frontier: Open only a separately bounded Phase2C executable harness task card for the audited hidden-latent heldout surface contract; candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, commit, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+
+## Active Checkpoint
+
+Task card:
+`docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md`
+
+Surface contract:
+`docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md`
+
+Checkpoint artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json`
+
+Validation artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_validation_001a.json`
+
+Audit artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_audit_001a.json`
 
 Layer: engineering implementation + mechanism-hypothesis governance.
 
-Stage goal: recover the current dirty workspace state and harden the campaign
-ledger so every future task records progress, failures, baselines, ablations,
-trace/replay, and claim ceilings before any new mechanism experiment runs.
-
 Mainline integration status: none.
 
-Enabled status: none.
+Enabled status: local hidden-latent heldout surface contract reviewer-audited
+success. No harness execution is enabled.
 
-Real trigger evidence: repo readback and campaign ledger files only; no runtime,
-Gate, EGO mainline, live path, or mechanism experiment is triggered by this
-Phase 0 task.
+Real trigger evidence: audited no-headroom artifacts, audited route-decision
+artifact, user design correction, and updated controller-card surface redesign
+rule.
 
-Claim ceiling: campaign ledger recovery and evidence-hygiene hardening only.
+Claim ceiling: problem-representation redesign contract only; no mechanism
+validity, learning/adaptation success, consciousness, real emotion, autonomy,
+EGO readiness, companion readiness, runtime/mainline effect, route exhaustion,
+terminal verdict, or candidate validation.
 
 Auto-Remote-Anchor: forbidden.
 
-## Phase 0 Task Card
+## Repository Hygiene Checkpoint
 
-Problem definition: the repository is already ahead of origin with a modified
-decision log and many untracked evidence-like artifacts. Continuing mechanism
-experiments without recovering and classifying that state risks losing progress,
-burying failures, or creating false pass narratives.
+Maintenance task:
+`docs/research_campaign/worktree_batch_cleanup_task_card_001a.md`
 
-Hypothesis: a minimal recovery pass can make the current campaign state
-auditable by adding a canonical plan entry, a computed dirty-state inventory,
-an append-only ledger entry, an updated scorecard, and a progress checkpoint
-without accepting any unverified artifact as mechanism evidence.
+Status: `worktree_batch_cleanup_validated_pending_local_batch_commits`
 
-Strongest baseline explanation: the current dirty state may be a mixed pile of
-prior user work, audit bundles, generated artifacts, and implementation surfaces;
-file presence alone does not establish validity, acceptance, or readiness.
+User-authorized local action: classify dirty/untracked paths, keep existing
+ignore rules for temporary cache/log noise, and create exact-path local commit
+batches for durable governance, source/test, and artifact files.
 
-Ablation requirement: no candidate mechanism, baseline battery, ablation run,
-replay run, or formal Gate is executed in Phase 0. The recovery output must
-remain distinguishable from evidence acceptance.
+Forbidden actions: `git add -A`, ignoring evidence-like artifacts, deleting
+unowned work, push, tag, remote anchor, mechanism-candidate execution, Phase 3,
+runtime/EGO mainline, and program terminal verdicts.
 
-Trace/replay requirement: the recovery inventory must be reproducible from live
-`git status --porcelain=v1` plus repo readback. Future mechanism tasks must
-define replay recomputation from `serialized_state + observation`, not hash-only
-comparison.
+Task-end rule: every future task must finish with dirty-path classification and
+either exact-path local commit, scoped ignore for classified temporary noise, or
+an explicit dirty carry-forward blocker recorded in campaign state.
+## Evidence Pointers
 
-Computed-evidence provenance gate: future scores must record producer function,
-input artifacts, run id, seed/context/episode ids, aggregation rule, and code
-path hash. Phase 0 records no mechanism scores.
+Standing governance card:
+`docs/research_campaign/goal_stage_audit_loop_001a.md`
 
-Acceptance gate:
+Standing governance appendix:
+`docs/research_campaign/goal_stage_audit_loop_001a_historical_appendix.md`
 
-- `docs/research_campaign/plan.md` exists and states the active campaign rules.
-- `artifacts/research_campaign/phase0_recovery_inventory_001a.json` parses as JSON.
-- `artifacts/research_campaign/experiment_log.jsonl` has one append-only Phase 0 entry.
-- `artifacts/research_campaign/stage_scorecard.json` parses as JSON and points to Phase 0.
-- `docs/OVERALL_PROGRESS.md` has a current Phase 0 checkpoint.
-- No existing evidence artifact is rewritten, deleted, promoted, pushed, tagged, or anchored.
+Campaign progress checkpoint:
+`docs/OVERALL_PROGRESS.md`
 
-Stop condition:
+Machine scorecard:
+`artifacts/research_campaign/stage_scorecard.json`
 
-- Stop if JSON validation fails.
-- Stop if `docs/decision_log.md` or pre-existing untracked evidence bundles would need to be
-  overwritten or reinterpreted to complete the task.
-- Stop if any command would run a mechanism experiment, Gate, runtime, EGO mainline,
-  external service, push, tag, or remote anchor.
+Experiment ledger:
+`artifacts/research_campaign/experiment_log.jsonl`
 
-Rollback plan: remove only the Phase 0 files/entries created by this task:
-`docs/research_campaign/plan.md`, the Phase 0 recovery inventory/validation
-artifacts, the appended Phase 0 JSONL ledger entry, and the Phase 0 checkpoint
-edits. Do not delete or rewrite pre-existing artifacts.
+Repeated no-headroom inputs:
 
-Expected changed files:
+- `artifacts/research_campaign/phase2_no_headroom_negative_evidence_001a.json`
+- `artifacts/research_campaign/phase2b_no_headroom_negative_evidence_001a.json`
+- `artifacts/research_campaign/phase2b_no_headroom_route_decision_001a.json`
+- `artifacts/research_campaign/phase2b_no_headroom_route_decision_audit_001a.json`
 
-- `docs/research_campaign/plan.md`
-- `docs/OVERALL_PROGRESS.md`
-- `artifacts/research_campaign/experiment_log.jsonl`
-- `artifacts/research_campaign/stage_scorecard.json`
-- `artifacts/research_campaign/phase0_recovery_inventory_001a.json`
-- `artifacts/research_campaign/phase0_recovery_validation_001a.json`
+Plan representation maintenance:
 
-Forbidden changes:
-
-- No `src/` implementation or candidate mechanism changes.
-- No `tests/` changes except future task-specific validation cards.
-- No historical artifact rewrites.
-- No old failure repair into pass-shaped language.
-- No threshold tuning, baseline weakening, schema migration, Gate execution,
-  runtime wiring, EGO mainline work, UI, LLM integration, external services,
-  push, tag, or remote anchor.
+- task card: `docs/research_campaign/plan_representation_compaction_task_card_001a.md`
+- validation: `artifacts/research_campaign/plan_representation_compaction_validation_001a.json`
 
 ## Campaign Loop Rules
 
-Every future task must update the campaign state immediately:
+Every future task must update campaign state immediately:
 
-1. Before work: write or update this plan with the task card, claim ceiling,
-   expected changed files, forbidden changes, and stop condition.
-2. During work: keep failures and blockers in the ledger; do not wait for a pass.
+1. Before work: write or repair a bounded task card with claim ceiling,
+   expected files, forbidden changes, and stop condition.
+2. During work: preserve failures and blockers in the ledger; do not wait for a
+   pass.
 3. After work: append `experiment_log.jsonl`, update `stage_scorecard.json`,
-   update `docs/OVERALL_PROGRESS.md`, and record the next minimal closed-loop action.
+   update `docs/OVERALL_PROGRESS.md`, and record the next minimal closed-loop
+   action.
 4. If two consecutive tasks do not increase discriminative evidence, route to
    `needs_reframing`; do not continue patching toward a pass.
+5. On every resume, read `docs/OVERALL_PROGRESS.md`,
+   `artifacts/research_campaign/stage_scorecard.json`, and
+   `artifacts/research_campaign/experiment_log.jsonl` before continuing.
 
 ## Research Phases
 
-Phase 1: Problem formalization. Split self-awareness, emotion, agency, and
-learning into measurable proxy variables: self-model, affect/value regulation,
-active exploration, long-term update, and self/environment boundary.
+Phase 1: Problem formalization into measurable proxy variables.
 
-Phase 2: Baseline-first headroom. Run candidate-free baseline batteries before
-candidate mechanisms. If lookup, graph/cache, heuristic, or exhaustive baselines
-saturate the surface, freeze no-headroom negative evidence and reframe.
+Phase 2: Baseline-first headroom; stop on fair baseline saturation.
 
-Phase 3: Mechanism search. Search candidates only inside measured-headroom
-surfaces. Change one mechanism variable per run. Do not tune thresholds after
-seeing results.
+Phase 3: Mechanism search only inside measured-headroom environments.
 
-Phase 4: Structure extraction. Extract low-complexity structure from passes and
-failures using MDL, compressed causal structure, and replayable state transitions.
-Do not treat language appearance as mechanism evidence.
+Phase 4: Structure extraction from pass and fail evidence using low-complexity,
+replayable structures.
 
-Phase 5: Large-scale validation. Run distribution-shift, counterfactual,
-intervention, ablation, source-deletion, replay-recomputation, and leakage
-positive-control checks.
+Phase 5: Large-scale validation with distribution shift, counterfactuals,
+interventions, ablations, source deletion, replay recomputation, and leakage
+positive controls.
 
-Phase 6: Formalization. Produce local formal proofs only for stable,
-reproducible, baseline-resistant structures. State proof scope and failure
-boundaries explicitly.
+Phase 6: Local formalization only for stable, reproducible, baseline-resistant
+structures. This cannot prove consciousness.
+
+Phase 1 through Phase 6 may repeat. A single task card, phase pass, local
+validation pass, or chat-only reviewer verdict cannot complete the program.
 
 ## Standing Anti-False-Pass Rules
 
-- No static verdict dictionaries, handwritten scores, unconditional clean reports,
-  or tests that only assert pass.
+- No static verdict dictionaries, handwritten scores, unconditional clean
+  reports, or tests that only assert pass.
 - Baselines must be independent callable implementations under the same budget
   and input boundary as the candidate.
 - Ablations must rerun episodes under real interventions.
@@ -158,6 +189,12 @@ boundaries explicitly.
 
 ## Next Minimal Closed-Loop Action
 
-Complete Phase 0 validation, then decide whether the next bounded task is
-recovery closeout, independent audit of the recovery inventory, or a separate
-Phase 1 problem-formalization task card.
+If the campaign continues, open only a separately bounded Phase2C executable
+harness task card for
+`RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A`.
+Do not execute a harness or record any terminal verdict from this contract
+checkpoint.
+
+Candidate mechanisms, Phase 3, route tournament, harness execution,
+runtime/EGO mainline, push, tag, commit, remote anchor, terminal verdicts, and
+route-exhaustion claims remain blocked.

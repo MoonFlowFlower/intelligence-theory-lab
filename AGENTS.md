@@ -191,6 +191,31 @@ For Gate 1 / replay / consolidation lineage, graph-cache family challengers are 
 
 Formal gates and same-agent bridge tasks still require stronger predeclared metrics, baselines, ablations, run ledger, and freeze rules.
 
+## Collision-before-collapse protocol
+
+For EGO / ITL mechanism, gate, harness, evidence, baseline, or route tasks:
+
+1. Do not modify implementation files before producing a collision record.
+2. First produce at least three candidate approaches:
+   - minimal implementation
+   - strongest baseline / shortcut explanation
+   - mechanism-faithful implementation
+3. For each candidate, list:
+   - what evidence it would produce
+   - strongest cheap baseline that could match it
+   - leakage / hard-coding risk
+   - smallest falsifying test
+   - expected failure mode
+4. Select the approach only after comparing candidates against baselines.
+5. If a cheap baseline can match the candidate under access parity, stop and report downgrade/closure.
+6. Do not claim pass, readiness, mechanism evidence, integration, or closed-loop effect unless computed evidence comes from callable paths.
+7. Completion requires:
+   - collision_record
+   - frozen metric/baseline/ablation contract
+   - callable producer functions
+   - positive-control leakage scan
+   - replay/recompute path where relevant
+   - final claim ceiling
 
 ## Evidence Contract
 
