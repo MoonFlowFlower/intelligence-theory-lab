@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T08:12:12-05:00
+Last updated: 2026-06-18T08:25:32-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -30,35 +30,36 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 ## Current Campaign State
 
-Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A`
+Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-EXECUTABLE-HARNESS-TASK-CARD-001A`
 
-Status: `phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success`
+Status: `phase2c_executable_harness_task_card_validated_pending_reviewer_audit`
 
-Current stage status: `phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success`
+Current stage status: `phase2c_executable_harness_task_card_validated_pending_reviewer_audit`
 
-Reviewer verdict: `success_reached`
+Reviewer verdict: `validated_pending_reviewer_audit`
 
-Current stage goal: Validate a hidden-latent heldout surface contract that prevents visible-surface baseline saturation before any candidate or Phase 3 work.
+Current stage goal: Open a bounded Phase2C executable harness task card for the audited hidden-latent heldout surface contract without implementing or executing the harness.
 
 Stage success criteria:
 
-- task card exists
-- surface contract exists
-- goal controller contains no-headroom surface redesign rule
-- interrupted terminal checkpoint marked superseded
+- executable harness task card exists
+- collision record compares minimal, shortcut-baseline, and mechanism-faithful harness routes
+- prior Phase 2 and Phase2B no-headroom evidence is cited
+- primary-source benchmark mappings are recorded as design analogies
 - focused validation passes
 - candidate mechanisms remain unrun
 - Phase 3 remains unopened
 - route tournament remains unauthorized
+- harness implementation and execution remain unauthorized
 
-Next decision gate: Open a separately bounded Phase2C executable harness task card only if campaign continues.
+Next decision gate: Read-only reviewer audit of the validated Phase2C executable harness task-card checkpoint before implementation.
 
-Next frontier: Open only a separately bounded Phase2C executable harness task card for the audited hidden-latent heldout surface contract; candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, commit, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Run read-only reviewer audit of the validated Phase2C executable harness task-card checkpoint. Do not implement or execute the harness until that later audit succeeds; candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
 Task card:
-`docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md`
+`docs/research_campaign/phase2c_executable_harness_task_card_001a.md`
 
 Surface contract:
 `docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md`
@@ -67,26 +68,26 @@ Checkpoint artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json`
 
 Validation artifact:
-`artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_validation_001a.json`
+`artifacts/research_campaign/phase2c_executable_harness_task_card_validation_001a.json`
 
 Audit artifact:
-`artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_audit_001a.json`
+not yet created; read-only reviewer audit is the next gate after focused validation.
 
 Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local hidden-latent heldout surface contract reviewer-audited
-success. No harness execution is enabled.
+Enabled status: local executable-harness task-card opening only. No harness
+implementation or execution is enabled.
 
-Real trigger evidence: audited no-headroom artifacts, audited route-decision
-artifact, user design correction, and updated controller-card surface redesign
-rule.
+Real trigger evidence: audited Phase 2 and Phase2B no-headroom artifacts,
+audited Phase2C hidden-latent surface contract, current repo readback, and
+primary-source benchmark mappings used only as design analogies.
 
-Claim ceiling: problem-representation redesign contract only; no mechanism
+Claim ceiling: executable-harness task-card opening only; no mechanism
 validity, learning/adaptation success, consciousness, real emotion, autonomy,
 EGO readiness, companion readiness, runtime/mainline effect, route exhaustion,
-terminal verdict, or candidate validation.
+terminal verdict, harness evidence, or candidate validation.
 
 Auto-Remote-Anchor: forbidden.
 
@@ -189,12 +190,10 @@ validation pass, or chat-only reviewer verdict cannot complete the program.
 
 ## Next Minimal Closed-Loop Action
 
-If the campaign continues, open only a separately bounded Phase2C executable
-harness task card for
-`RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A`.
-Do not execute a harness or record any terminal verdict from this contract
-checkpoint.
+Run read-only reviewer audit for
+`RESEARCH-CAMPAIGN-PHASE2C-EXECUTABLE-HARNESS-TASK-CARD-001A` before any
+harness implementation or execution.
 
-Candidate mechanisms, Phase 3, route tournament, harness execution,
-runtime/EGO mainline, push, tag, commit, remote anchor, terminal verdicts, and
-route-exhaustion claims remain blocked.
+Candidate mechanisms, Phase 3, route tournament, harness implementation,
+harness execution, runtime/EGO mainline, push, tag, remote anchor, terminal
+verdicts, and route-exhaustion claims remain blocked.

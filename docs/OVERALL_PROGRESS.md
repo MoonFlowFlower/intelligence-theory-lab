@@ -1,12 +1,12 @@
 ﻿# Overall Progress
 
-Last updated: 2026-06-18T08:12:12-05:00
+Last updated: 2026-06-18T08:25:32-05:00
 
 ## Active Campaign Checkpoint
 
 ```text
-task = RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HELDOUT-SURFACE-CONTRACT-001A
-verdict = phase2c_hidden_latent_heldout_surface_contract_reviewer_audited_success
+task = RESEARCH-CAMPAIGN-PHASE2C-EXECUTABLE-HARNESS-TASK-CARD-001A
+verdict = phase2c_executable_harness_task_card_validated_pending_reviewer_audit
 standing_governance_card = RESEARCH-CAMPAIGN-GOAL-STAGE-AUDIT-LOOP-001A
 program_goal_status = active_not_complete
 program_terminal_condition = not_met
@@ -45,9 +45,9 @@ plan_snapshot_preservation_level = text_level_line_count_and_heading_complete_wi
 plan_snapshot_byte_exact = false
 layer = engineering_implementation + mechanism_hypothesis_governance
 mainline_integration_status = none
-enabled_status = local_hidden_latent_heldout_surface_contract_reviewer_audited_success
-real_trigger_evidence = Audited Phase 2 and Phase2B no-headroom artifacts plus audited Phase2B no-headroom route-decision artifact and user design correction requiring hidden latent state, heldout splits, interventions, and preserved strong baselines
-claim_ceiling = Problem-representation redesign contract only; no mechanism-validity, learning/adaptation success, subjectivity, consciousness, real-emotion, autonomy, EGO-readiness, companion-readiness, mainline-effect, route-exhaustion, terminal-verdict, candidate-validation, or program-completion claim
+enabled_status = local_executable_harness_task_card_validated_pending_reviewer_audit
+real_trigger_evidence = Audited Phase 2 and Phase2B no-headroom artifacts, audited Phase2C hidden-latent surface contract, current repo readback, and primary-source benchmark mappings used only as design analogies
+claim_ceiling = Executable-harness task-card opening only; no mechanism-validity, learning/adaptation success, subjectivity, consciousness, real-emotion, autonomy, EGO-readiness, companion-readiness, mainline-effect, route-exhaustion, terminal-verdict, harness-evidence, candidate-validation, or program-completion claim
 auto_remote_anchor = forbidden
 phase2_executed = true
 phase2_task_card_opened = true
@@ -120,6 +120,9 @@ phase2b_program_needs_reframing_checkpoint_status = superseded_by_user_design_co
 phase2c_hidden_latent_heldout_surface_contract_opened = true
 phase2c_hidden_latent_heldout_surface_contract_validation_status = passed_after_reviewer_success_recording
 phase2c_hidden_latent_heldout_surface_contract_reviewer_audit_status = success_reached_after_three_preserved_current_state_repairs
+phase2c_executable_harness_task_card_opened = true
+phase2c_executable_harness_task_card_validation_status = passed
+phase2c_executable_harness_task_card_reviewer_audit_status = pending
 program_terminal_verdict = not_recorded
 phase2b_execution_authorized_historical = true
 phase2b_start_state_readback_authorized_historical = true
@@ -250,6 +253,16 @@ positive controls, and preservation of lookup/count-table/transition-table/
 graph-cache/nearest-neighbor/episodic-traversal style baselines. It does not
 authorize candidate mechanisms, Phase 3, route tournament, a new harness,
 runtime/EGO mainline, push, tag, commit, or remote anchor.
+
+The bounded Phase2C executable harness task-card checkpoint is now opened at
+`docs/research_campaign/phase2c_executable_harness_task_card_001a.md`. It
+contains a collision record comparing a minimal visible harness, a
+shortcut-baseline harness, and a mechanism-faithful hidden-latent heldout
+harness route. The selected future route is mechanism-faithful, but this
+checkpoint is task-card-only: it does not implement or execute the harness,
+does not score an oracle or baseline, does not authorize candidate mechanisms,
+does not open Phase 3, does not run a route tournament, does not touch
+runtime/EGO mainline, and does not record a terminal verdict.
 
 The bounded reframing artifact now exists at
 `artifacts/research_campaign/phase2_no_headroom_reframing_001a.json`. It records
@@ -410,16 +423,25 @@ artifacts/phase2b_candidate_free_headroom_001a/claim_ceiling.txt
 artifacts/research_campaign/phase2b_candidate_free_headroom_001a.json
 artifacts/research_campaign/phase2b_candidate_free_headroom_validation_001a.json
 artifacts/research_campaign/phase2b_candidate_free_headroom_audit_001a.json
+docs/research_campaign/phase2c_hidden_latent_heldout_surface_contract_task_card_001a.md
+docs/research/phase2c_hidden_latent_heldout_surface_contract_001a.md
+artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json
+artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_validation_001a.json
+artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_audit_001a.json
+docs/research_campaign/phase2c_executable_harness_task_card_001a.md
+artifacts/research_campaign/phase2c_executable_harness_task_card_validation_001a.json
 ```
 
 Next minimal closed-loop action:
 
 ```text
-Validate the Phase2C hidden-latent heldout surface contract, then run read-only
-reviewer audit. Do not implement candidates, open Phase 3, run a route
-tournament, execute a harness, touch runtime/EGO mainline, push, tag, commit,
-or remote-anchor. Program status remains `active_not_complete`; the interrupted
-`program_needs_reframing` checkpoint is superseded and not terminal evidence.
+Run read-only reviewer audit for the Phase2C executable harness task-card
+checkpoint before any harness implementation or execution. Do not implement
+candidates, open Phase 3, run a route tournament, execute a harness, touch
+runtime/EGO mainline, push, tag, or remote-anchor.
+Program status remains `active_not_complete`; the interrupted
+`program_needs_reframing` checkpoint remains superseded and is not terminal
+evidence.
 ```
 
 ## Historical Carryover Boundary
