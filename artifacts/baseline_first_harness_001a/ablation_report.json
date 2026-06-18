@@ -1,0 +1,55 @@
+{
+  "producer_function": "baseline_first_harness_001a.runner.run_ablation_controls",
+  "controls": [
+    {
+      "control_id": "remove_legal_observation_fields",
+      "producer_function": "baseline_first_harness_001a.runner.run_replay_check",
+      "callable_invoked": true,
+      "detected_expected_failure": true,
+      "blocking_reason_detected": "missing_replay_input:current_observation",
+      "consumed_by_final_verdict": true
+    },
+    {
+      "control_id": "remove_legal_query_budget",
+      "producer_function": "baseline_first_harness_001a.runner.run_replay_check",
+      "callable_invoked": true,
+      "detected_expected_failure": true,
+      "blocking_reason_detected": "insufficient_replay_budget:action_score_probe",
+      "consumed_by_final_verdict": true
+    },
+    {
+      "control_id": "force_strongest_baseline_equals_visible_oracle",
+      "producer_function": "baseline_first_harness_001a.runner.derive_result",
+      "callable_invoked": true,
+      "detected_expected_failure": true,
+      "blocking_reason_detected": "strongest_fair_baseline_in_oracle_equivalence_band",
+      "consumed_by_final_verdict": true
+    },
+    {
+      "control_id": "inject_leakage_positive_control",
+      "producer_function": "baseline_first_harness_001a.runner.run_leakage_scan",
+      "callable_invoked": true,
+      "detected_expected_failure": true,
+      "blocking_reason_detected": "positive_controls_detected",
+      "consumed_by_final_verdict": true
+    },
+    {
+      "control_id": "tamper_replay_state",
+      "producer_function": "baseline_first_harness_001a.runner.run_replay_check",
+      "callable_invoked": true,
+      "detected_expected_failure": true,
+      "blocking_reason_detected": "replay_tamper_negative_control_failed",
+      "consumed_by_final_verdict": true
+    },
+    {
+      "control_id": "omit_source_generator_provenance",
+      "producer_function": "baseline_first_harness_001a.runner.verify_provenance",
+      "callable_invoked": true,
+      "detected_expected_failure": true,
+      "blocking_reason_detected": "missing_required_provenance:candidate_free_episode_generator",
+      "consumed_by_final_verdict": true
+    }
+  ],
+  "all_controls_consumed_by_final_verdict": true,
+  "blocking_reasons": []
+}
