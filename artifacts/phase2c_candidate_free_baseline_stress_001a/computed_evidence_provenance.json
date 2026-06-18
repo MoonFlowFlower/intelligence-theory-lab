@@ -1,0 +1,106 @@
+{
+  "producer_function": "phase2c_candidate_free_baseline_stress_001a.runner.build_provenance",
+  "records": [
+    {
+      "producer_id": "stress_config",
+      "producer_function": "default_stress_config",
+      "input_artifacts": [
+        "generated_phase2c_candidate_free_baseline_stress"
+      ],
+      "run_id": "phase2c_candidate_free_baseline_stress_001a",
+      "seed_context_episode_ids": [
+        "all_stress_seeds"
+      ],
+      "aggregation_rule": "candidate_free_baseline_stress_contract_verification",
+      "code_path_hash": "ba079f5b24c8c82f571de9d58df9bfed7b17fd8b832a5bedc9f7a554678ecd2b",
+      "consumed_by_final_verdict": true,
+      "value": {
+        "seeds": [
+          17,
+          29,
+          41,
+          53,
+          67
+        ],
+        "train_family_count": 3,
+        "heldout_family_count": 3,
+        "episodes_per_family": 4,
+        "equivalence_band": 0.03
+      }
+    },
+    {
+      "producer_id": "baseline_aggregate",
+      "producer_function": "phase2c_candidate_free_baseline_stress_001a.runner.aggregate_baseline_reports",
+      "input_artifacts": [
+        "generated_phase2c_candidate_free_baseline_stress"
+      ],
+      "run_id": "phase2c_candidate_free_baseline_stress_001a",
+      "seed_context_episode_ids": [
+        "all_stress_seeds"
+      ],
+      "aggregation_rule": "candidate_free_baseline_stress_contract_verification",
+      "code_path_hash": "9e1472535a4307b82520bc3ab0d1f0070461f217cfc7e11c9cc296d384c92233",
+      "consumed_by_final_verdict": true,
+      "value": [
+        "count_table",
+        "episodic_traversal",
+        "exhaustive_legal_query",
+        "fsm_planner",
+        "graph_cache",
+        "lookup",
+        "majority",
+        "nearest_neighbor",
+        "observation_only",
+        "random",
+        "successor_map",
+        "trace_only_replay",
+        "transition_table"
+      ]
+    },
+    {
+      "producer_id": "leakage_scan",
+      "producer_function": "phase2c_candidate_free_baseline_stress_001a.runner.aggregate_leakage_reports",
+      "input_artifacts": [
+        "generated_phase2c_candidate_free_baseline_stress"
+      ],
+      "run_id": "phase2c_candidate_free_baseline_stress_001a",
+      "seed_context_episode_ids": [
+        "all_stress_seeds"
+      ],
+      "aggregation_rule": "candidate_free_baseline_stress_contract_verification",
+      "code_path_hash": "8ac8245ee8fb249f9393b2640871096ba99b85f5e55309e8bbcb59e3ec24c270",
+      "consumed_by_final_verdict": true,
+      "value": true
+    },
+    {
+      "producer_id": "replay_recomputation",
+      "producer_function": "phase2c_candidate_free_baseline_stress_001a.runner.aggregate_replay_reports",
+      "input_artifacts": [
+        "generated_phase2c_candidate_free_baseline_stress"
+      ],
+      "run_id": "phase2c_candidate_free_baseline_stress_001a",
+      "seed_context_episode_ids": [
+        "all_stress_seeds"
+      ],
+      "aggregation_rule": "candidate_free_baseline_stress_contract_verification",
+      "code_path_hash": "c08ff6ffea350076315440fd252ffbe0404e062db45bab2a98e8be9488f8d5f8",
+      "consumed_by_final_verdict": true,
+      "value": true
+    },
+    {
+      "producer_id": "ablation_plan",
+      "producer_function": "phase2c_candidate_free_baseline_stress_001a.runner.aggregate_ablation_reports",
+      "input_artifacts": [
+        "generated_phase2c_candidate_free_baseline_stress"
+      ],
+      "run_id": "phase2c_candidate_free_baseline_stress_001a",
+      "seed_context_episode_ids": [
+        "all_stress_seeds"
+      ],
+      "aggregation_rule": "candidate_free_baseline_stress_contract_verification",
+      "code_path_hash": "4e7a8376f5e6929c8509107ff09966804cff5b3bce36f148ad0cc5addb8bf016",
+      "consumed_by_final_verdict": true,
+      "value": true
+    }
+  ]
+}

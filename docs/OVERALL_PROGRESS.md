@@ -1,12 +1,12 @@
 ﻿# Overall Progress
 
-Last updated: 2026-06-18T12:33:09-05:00
+Last updated: 2026-06-18T12:55:14-05:00
 
 ## Active Campaign Checkpoint
 
 ```text
-task = RESEARCH-CAMPAIGN-PHASE2C-CANDIDATE-FREE-BASELINE-STRESS-TASK-CARD-001A
-verdict = phase2c_candidate_free_baseline_stress_task_card_audited_success_stress_execution_next
+task = RESEARCH-CAMPAIGN-PHASE2C-CANDIDATE-FREE-BASELINE-STRESS-EXECUTION-001A
+verdict = phase2c_candidate_free_baseline_stress_audited_success_post_result_route_check_next
 standing_governance_card = RESEARCH-CAMPAIGN-GOAL-STAGE-AUDIT-LOOP-001A
 program_goal_status = active_not_complete
 program_terminal_condition = not_met
@@ -45,9 +45,9 @@ plan_snapshot_preservation_level = text_level_line_count_and_heading_complete_wi
 plan_snapshot_byte_exact = false
 layer = engineering_implementation + mechanism_hypothesis_governance
 mainline_integration_status = none
-enabled_status = local_phase2c_candidate_free_baseline_stress_task_card_audited_success
-real_trigger_evidence = Focused validation and read-only audit success over the Phase2C candidate-free baseline-stress task card; source route-check evidence remains single fixed-run, 12 trace rows, random and lookup-family baselines tied strongest fair macro accuracy 0.3333333333333333, candidate/Phase3 flags false, and selected route candidate_free_baseline_stress_task_card
-claim_ceiling = Candidate-free baseline-stress task-card readiness only; no stress execution yet, no candidate validation, no mechanism validity, no learning/adaptation success, subjectivity, consciousness, real-emotion, autonomy, EGO-readiness, companion-readiness, mainline-effect, route-exhaustion, terminal-verdict, candidate-validation, or program-completion claim
+enabled_status = local_phase2c_candidate_free_baseline_stress_wrapper_executed_and_audited_success
+real_trigger_evidence = CLI run of phase2c_candidate_free_baseline_stress_001a.runner generated result, baseline, leakage, replay, ablation, provenance, failure-manifest, and trace artifacts; 5 seeds, 3 train families, 3 heldout families, 4 episodes per family, 120 trace rows, strongest fair baseline episodic_traversal macro accuracy 0.2833333333333333, and graph_cache lookup-family tie preserved as cheap-baseline blocker
+claim_ceiling = Candidate-free Phase2C baseline-stress execution evidence only; no candidate validation, no mechanism validity, no learning/adaptation success, subjectivity, consciousness, real-emotion, autonomy, EGO-readiness, companion-readiness, mainline-effect, route-exhaustion, terminal-verdict, candidate-validation, or program-completion claim
 auto_remote_anchor = forbidden
 phase2_executed = true
 phase2_task_card_opened = true
@@ -185,8 +185,27 @@ phase2c_candidate_free_baseline_stress_future_seed_count_min = 5
 phase2c_candidate_free_baseline_stress_future_train_family_count_min = 3
 phase2c_candidate_free_baseline_stress_future_heldout_family_count_min = 3
 phase2c_candidate_free_baseline_stress_future_episodes_per_family_min = 4
-phase2c_candidate_free_baseline_stress_execution_run = false
-phase2c_candidate_free_baseline_stress_output_generated = false
+phase2c_candidate_free_baseline_stress_execution_task_card = docs/research_campaign/phase2c_candidate_free_baseline_stress_execution_task_card_001a.md
+phase2c_candidate_free_baseline_stress_execution_task_card_validation_artifact = artifacts/research_campaign/phase2c_candidate_free_baseline_stress_execution_task_card_validation_001a.json
+phase2c_candidate_free_baseline_stress_execution_task_card_validation_status = passed
+phase2c_candidate_free_baseline_stress_execution_run = true
+phase2c_candidate_free_baseline_stress_output_generated = true
+phase2c_candidate_free_baseline_stress_output_dir = artifacts/phase2c_candidate_free_baseline_stress_001a/
+phase2c_candidate_free_baseline_stress_summary_artifact = artifacts/research_campaign/phase2c_candidate_free_baseline_stress_001a.json
+phase2c_candidate_free_baseline_stress_audit_artifact = artifacts/research_campaign/phase2c_candidate_free_baseline_stress_audit_001a.json
+phase2c_candidate_free_baseline_stress_reviewer_audit_status = success_reached
+phase2c_candidate_free_baseline_stress_result_verdict = candidate_work_blocked_by_cheap_baseline_tie
+phase2c_candidate_free_baseline_stress_trace_row_count = 120
+phase2c_candidate_free_baseline_stress_seed_count = 5
+phase2c_candidate_free_baseline_stress_strongest_fair_baseline_id = episodic_traversal
+phase2c_candidate_free_baseline_stress_strongest_fair_baseline_macro_accuracy = 0.2833333333333333
+phase2c_candidate_free_baseline_stress_baseline_ids_tying_strongest = episodic_traversal, graph_cache, observation_only
+phase2c_candidate_free_baseline_stress_lookup_family_ids_tying_strongest = graph_cache
+phase2c_candidate_free_baseline_stress_random_ties_strongest = false
+phase2c_candidate_free_baseline_stress_replay_passed = true
+phase2c_candidate_free_baseline_stress_leakage_positive_controls_passed = true
+phase2c_candidate_free_baseline_stress_ablation_all_controls_consumed = true
+phase2c_candidate_free_baseline_stress_provenance_check_passed = true
 phase2c_hidden_latent_harness_initial_execution_command_failure_preserved = true
 phase2c_hidden_latent_harness_execution_command = $env:PYTHONPATH='src'; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a
 phase2c_hidden_latent_harness_execution_command_repair_status = passed
@@ -206,8 +225,9 @@ current_route_decision_new_harness_authorized = false
 current_route_decision_candidate_mechanism_authorized = false
 current_route_decision_phase3_authorized = false
 current_route_decision_candidate_free_baseline_stress_task_card_authorized = true
-current_route_decision_candidate_free_baseline_stress_execution_authorized = false
-future_phase2c_candidate_free_baseline_stress_execution_authorized_after_card_review = true
+current_route_decision_candidate_free_baseline_stress_execution_authorized = true
+future_phase2c_candidate_free_baseline_stress_execution_authorized_after_card_review = consumed_by_execution_001a
+current_route_decision_post_result_route_check_authorized = true
 future_phase2b_execution_authorized = false
 chat_only_hegel_audit_recorded = false
 phase1_reviewer_audit_recorded = true

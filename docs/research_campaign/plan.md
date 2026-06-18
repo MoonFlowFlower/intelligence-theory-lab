@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T12:33:09-05:00
+Last updated: 2026-06-18T12:55:14-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -30,47 +30,66 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 ## Current Campaign State
 
-Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-CANDIDATE-FREE-BASELINE-STRESS-TASK-CARD-001A`
+Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-CANDIDATE-FREE-BASELINE-STRESS-EXECUTION-001A`
 
-Status: `phase2c_candidate_free_baseline_stress_task_card_audited_success_stress_execution_next`
+Status: `phase2c_candidate_free_baseline_stress_audited_success_post_result_route_check_next`
 
-Current stage status: `phase2c_candidate_free_baseline_stress_task_card_audited_success_stress_execution_next`
+Current stage status: `phase2c_candidate_free_baseline_stress_audited_success_post_result_route_check_next`
 
 Reviewer verdict: `success_reached`
 
-Current stage goal: Open, validate, and audit a separate candidate-free Phase2C baseline-stress task card before any candidate mechanism work.
+Current stage goal: Execute and audit candidate-free Phase2C baseline stress before any candidate mechanism work.
 
 Stage success criteria:
 
-- baseline-stress task card exists
-- baseline-stress task card validation passes
-- baseline-stress task-card audit returns `success_reached`
-- source route-check artifact selected `candidate_free_baseline_stress_task_card`
-- source route-check audit success is preserved
-- future stress axes are frozen as candidate-free, multi-seed, larger-family,
-  equal-access baseline stress
-- random and lookup-family baseline ties remain the reason immediate candidate
-  work is premature
-- no source, test, stress-output, or repaired-output files are changed
+- execution task card exists
+- execution task card validation passes
+- candidate-free baseline-stress wrapper and focused tests exist under isolated paths
+- focused wrapper tests and parent Phase2C hidden-latent harness tests pass
+- CLI run generates all required baseline-stress artifacts
+- read-only audit returns `success_reached`
+- stress run uses at least 5 seeds, 3 train families, 3 heldout families, and 4 episodes per family
+- trace row count is `120`
+- required baseline set is complete
+- lookup-family baseline tie is preserved as the reason immediate candidate work remains premature
+- parent Phase2C hidden-latent harness source/tests/repaired outputs are unchanged
 - candidate mechanisms remain unrun
 - Phase 3 remains unopened
 - route tournament remains unauthorized
 - runtime/EGO mainline, push, tag, remote anchor, terminal verdict, and
   route-exhaustion claims remain blocked
 
-Next decision gate: Candidate-free Phase2C baseline-stress implementation/execution checkpoint under the reviewed task card.
+Next decision gate: Post-result route check over the audited candidate-free Phase2C baseline-stress result.
 
-Next frontier: Implement and run only candidate-free Phase2C baseline stress under `docs/research_campaign/phase2c_candidate_free_baseline_stress_task_card_001a.md`. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Open a bounded post-result route check for `artifacts/research_campaign/phase2c_candidate_free_baseline_stress_001a.json` and `artifacts/research_campaign/phase2c_candidate_free_baseline_stress_audit_001a.json` before any candidate mechanism work. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
 Task card:
-`docs/research_campaign/phase2c_candidate_free_baseline_stress_task_card_001a.md`
+`docs/research_campaign/phase2c_candidate_free_baseline_stress_execution_task_card_001a.md`
 
 Validation artifact:
-`artifacts/research_campaign/phase2c_candidate_free_baseline_stress_task_card_validation_001a.json`
+`artifacts/research_campaign/phase2c_candidate_free_baseline_stress_execution_task_card_validation_001a.json`
 
 Audit artifact:
+`artifacts/research_campaign/phase2c_candidate_free_baseline_stress_audit_001a.json`
+
+Execution summary:
+`artifacts/research_campaign/phase2c_candidate_free_baseline_stress_001a.json`
+
+Raw output directory:
+`artifacts/phase2c_candidate_free_baseline_stress_001a/`
+
+Result artifact:
+`artifacts/phase2c_candidate_free_baseline_stress_001a/result.json`
+
+Parent baseline-stress task card:
+`docs/research_campaign/phase2c_candidate_free_baseline_stress_task_card_001a.md`
+
+Parent baseline-stress task-card validation:
+`artifacts/research_campaign/phase2c_candidate_free_baseline_stress_task_card_validation_001a.json`
+
+Parent baseline-stress task-card audit:
 `artifacts/research_campaign/phase2c_candidate_free_baseline_stress_task_card_audit_001a.json`
 
 Source route-check task card:
@@ -116,20 +135,21 @@ Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local Phase2C candidate-free baseline-stress task-card audited success.
+Enabled status: local Phase2C candidate-free baseline-stress wrapper executed and audited success.
 
-Real trigger evidence: focused validation and read-only audit success over the
-baseline-stress task card, plus source route-check evidence that the repaired
-Phase2C output was a single fixed-run, 12-row, candidate-free surface where
-random and lookup-family baselines tied strongest fair macro accuracy
-`0.3333333333333333`; selected route remains
-`candidate_free_baseline_stress_task_card`.
+Real trigger evidence: CLI run of
+`phase2c_candidate_free_baseline_stress_001a.runner` generated result,
+baseline, leakage, replay, ablation, provenance, failure-manifest, and trace
+artifacts. The run used 5 seeds, 3 train families, 3 heldout families, 4
+episodes per family, and 120 trace rows. The strongest fair baseline was
+`episodic_traversal` with macro accuracy `0.2833333333333333`; `graph_cache`
+also tied strongest, preserving the cheap lookup-family explanation.
 
-Claim ceiling: candidate-free baseline-stress task-card readiness only; no
-stress execution yet, no candidate validation, no mechanism validity, no
-learning/adaptation success, no consciousness, no real emotion, no autonomy,
-no EGO readiness, no companion readiness, no runtime/mainline effect, no route
-exhaustion, no terminal verdict, and no program completion.
+Claim ceiling: candidate-free Phase2C baseline-stress execution evidence only;
+no candidate validation, no mechanism validity, no learning/adaptation success,
+no consciousness, no real emotion, no autonomy, no EGO readiness, no companion
+readiness, no runtime/mainline effect, no route exhaustion, no terminal verdict,
+and no program completion.
 
 Auto-Remote-Anchor: forbidden.
 
@@ -232,9 +252,8 @@ validation pass, or chat-only reviewer verdict cannot complete the program.
 
 ## Next Minimal Closed-Loop Action
 
-Implement and run only candidate-free Phase2C baseline stress under the
-reviewed task card
-`docs/research_campaign/phase2c_candidate_free_baseline_stress_task_card_001a.md`.
+Open a bounded post-result route check over the audited candidate-free Phase2C
+baseline-stress result before any candidate mechanism work.
 
 Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push,
 tag, remote anchor, terminal verdicts, and route-exhaustion claims remain
