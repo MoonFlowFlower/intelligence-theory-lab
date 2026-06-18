@@ -1,0 +1,114 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-HOSTILE-AUDIT-001A",
+  "audit_date": "2026-06-17",
+  "auditor_role": "same-agent-bridge-audit-role-001 / independent red-team (implementation-card level)",
+  "audit_type": "bounded_implementation_card_hostile_audit",
+  "targets": {
+    "card": "docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md",
+    "supporting_artifacts": [
+      "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/final_report.md",
+      "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/validation_report.json",
+      "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/source_readback.json",
+      "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/r1_reaudit_readback.json",
+      "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/constraint_traceability_matrix.json",
+      "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/claim_ceiling.txt"
+    ]
+  },
+  "scope": "ONLY whether the implementation-card draft is safe and bounded enough to authorize a LATER, separately-authorized Codex implementation task, subject to a pre-existing independently frozen surface spec. Did NOT evaluate Gate1 admissibility, mechanism validity, candidate success, baseline-immunity enforcement, or runtime/EGO readiness.",
+  "read_method": {
+    "channel": "file_api_read_not_bash",
+    "reason": "byte-level provenance claims must avoid the known FUSE mount-tail truncation trap",
+    "fuse_truncation_observed": false,
+    "line_counts_clean_close": {
+      "GATE1-REPLACEMENT-PREFLIGHT-00XA.md": 602,
+      "draft_next_task_card_r1.md": 527,
+      "R1_reaudit_audit_result.json": 78
+    }
+  },
+  "r1_chain_verification": {
+    "r1_verdict_real": true,
+    "evidence": "Cited audit_result.json contains verdict=r1_accepted_for_implementation_card_drafting, implementation_may_proceed_now=false, only_implementation_card_drafting_authorized=true, remaining_blocking_issue=none, prior_blocking_issue=Q6_metric_degeneracy_precision_recall_required (R1.a).",
+    "corroborated_by_independent_prior_record": "Matches auditor's own prior R1 re-audit memory itl-gate1-replacement-preflight-00xa-card-r1-reaudit (independent corroboration, not self-declaration).",
+    "internal_hash_consistency": "source_readback.json and r1_reaudit_readback.json both record audit_result.json sha256=62217c5aad76f5ff2956b44cf98e853c9d97406675579e38aeba3396059933d8; readback verdict fields match the real audit_result.json content field-for-field.",
+    "hash_recompute_caveat": "Exact SHA256 recompute through the FUSE mount is unreliable; verification is by file-API content corroboration (verdict + three repair_checks identical between readback and real file), not by independent byte-hash recomputation."
+  },
+  "card_vs_r1_accepted_source_diff": {
+    "method": "line-by-line comparison of R1-accepted draft_next_task_card_r1.md (527L) vs implementation card GATE1-REPLACEMENT-PREFLIGHT-00XA.md (602L)",
+    "weakening_detected": false,
+    "preserved": [
+      "Balanced metric (precision+recall / F-beta / cost-weighted / explicitly balanced) -> impl §16",
+      "Six single-sided bans (recall/precision/coverage/specificity/abstention/size) -> impl §16",
+      "Degenerate predictor controls predict_all/predict_none/constant_k_sweep/random/majority, callable rows, consumed_by_final_verdict, ceiling-band -> rejected_metric_degenerate -> impl §16",
+      "Size-only sweep 0..N consumed by final verdict -> impl §17",
+      "No-by-reference-escape (citing BASELINE-IMMUNITY standard insufficient) -> impl §16",
+      "Positive partial-inferability demonstration + 5 required controls + fail-closed -> impl §18",
+      "Budget-faithful visible-channel oracle, answer-key diagnostic-only -> impl §19",
+      "Full baseline panel incl. all six graph-cache challengers, lookup imitation, direct optimizer -> impl §15",
+      "Baseline-immunity standard static-contract-only -> impl §20",
+      "Provenance verifier prefilter-only -> impl §21",
+      "Leakage scanner with fail-able positive controls -> impl §22",
+      "Replay recomputation or explicit non-applicability -> impl §23",
+      "Source-pin/readback fail-closed -> impl §24",
+      "Computed-evidence provenance gate -> impl §25",
+      "Ablation or explicit non-applicability -> impl §26",
+      "Ten allowed verdicts incl. both blocked surface-spec verdicts -> impl §10",
+      "Claim ceiling (max downstream = candidate-card drafting) -> impl §32"
+    ],
+    "strengthened": [
+      "Forbidden-files list adds explicit 'any surface specification creation, mutation, normalization, amendment, or freeze' as first item -> impl §31",
+      "Acceptance gate adds 'hostile audit accepts this implementation card before execution' and oracle 'clears strongest fair baseline by at least the equivalence band' -> impl §27",
+      "Stop condition adds post-hoc-band stop ('metric definition or equivalence band is chosen post-hoc') and explicit commit/push/tag/remote-anchor stop -> impl §28 (directly closes the R1 re-audit non-blocking note about post-hoc band selection)",
+      "Computed-evidence forbidden list adds 'detached reports' and 'self-readback-only source validation' -> impl §25",
+      "§9 explicitly states target is NOT mechanism-success and NOT Gate1 pass evidence (claim-ceiling firewall)"
+    ]
+  },
+  "fifteen_checks": [
+    {"id": 1, "name": "preserves R1 re-audit boundary (R1.a metric-degeneracy, R1.b positive partial-inferability, R1.c surface-spec authorship/immutability)", "status": "pass", "evidence": "R1.a -> §16/§17/§27/§28; R1.b -> §18/§19/§27/§28; R1.c -> §6/§7/§10/§27/§28. Confirmed by line-diff vs R1-accepted card and by constraint_traceability_matrix.json (18/18 covered)."},
+    {"id": 2, "name": "forbids immediate implementation unless separately authorized", "status": "pass", "evidence": "§4 'enables no executable path'; §1 'does not authorize implementation by itself'; §27 requires hostile-audit acceptance + separate authorization; §33 + final_report reiterate."},
+    {"id": 3, "name": "treats frozen surface spec as required pre-existing INPUT, not a deliverable", "status": "pass", "evidence": "§6 'required input, not a deliverable. It must exist before any future implementation begins.'; §11; §28 stop if missing before execution."},
+    {"id": 4, "name": "forbids future implementer authoring/mutating/normalizing/amending/freezing the spec", "status": "pass", "evidence": "§7 explicit ban on all five verbs; §31 forbids 'any surface specification creation, mutation, normalization, amendment, or freeze'."},
+    {"id": 5, "name": "requires fail-closed verdicts blocked_missing_candidate_free_surface_spec and blocked_candidate_authored_or_mutated_surface_spec", "status": "pass", "evidence": "§6 -> blocked_missing; §7 -> blocked_candidate_authored; both in §10 allowed-verdict list and §28 stop conditions."},
+    {"id": 6, "name": "explicitly requires balanced metrics (precision+recall / F-beta / cost-weighted / other explicit balanced)", "status": "pass", "evidence": "§16 L262-267 lists exactly these four options; §27 acceptance gate restates."},
+    {"id": 7, "name": "forbids admissibility from recall/precision/coverage/specificity/abstention/size-only", "status": "pass", "evidence": "§16 L269-276 names all six; §28 stop condition restates."},
+    {"id": 8, "name": "requires callable, provenance-recorded, final-verdict-consumed controls (predict_all/predict_none/constant_k_sweep/random/majority/size-only sweep 0..N)", "status": "pass", "evidence": "§16 L278-288 + §17 require each control as callable row with producer/provenance and consumed_by_final_verdict=true; §15 full panel; §25 computed-evidence gate."},
+    {"id": 9, "name": "requires rejected_metric_degenerate when degenerate predictors or size-only sweep reach ceiling band", "status": "pass", "evidence": "§16 L290-291 and §17 L305-307 both mandate rejected_metric_degenerate; §27/§28 restate."},
+    {"id": 10, "name": "requires positive, fail-able partial inferability (not mere absence of baseline saturation)", "status": "pass", "evidence": "§18 L311-330: four positive demonstrations + 5 controls incl. null-oracle that cannot reach ceiling + fail-closed; absence -> blocked_missing_partial_inferability_demonstration / rejected_no_fair_signal."},
+    {"id": 11, "name": "requires budget-faithful visible-channel oracle only; answer-key oracle diagnostic-only never admission", "status": "pass", "evidence": "§19 L332-347: budget-faithful, visible-channel only, legal-access only, no hidden answer key, no planted truth, no mechanism presupposition, clears strongest fair baseline by equivalence band; answer-key -> rejected_no_fair_signal/rejected_answer_key_oracle_gap."},
+    {"id": 12, "name": "keeps baseline-immunity standard as static contract only, not executor", "status": "pass", "evidence": "§20 L351-359 'must not treat the standard or registry as an executor'; §16 no-by-reference-escape; §31 forbids standard/registry edits and executor creation."},
+    {"id": 13, "name": "keeps provenance verifier as local prefilter only, not admission", "status": "pass", "evidence": "§21 L361-371: allowed = provenance_wellformed_only; forbidden = any verifier output as Gate pass/admission/replay/source/strongest-baseline/candidate/mechanism validity."},
+    {"id": 14, "name": "preserves graph-cache challenger, leakage positive-control, replay recomputation, source-pin/readback, ablation, computed-evidence provenance", "status": "pass", "evidence": "§15 (all six graph-cache: graph_lookup/transition_table/successor_map/count_table/fsm_planner/episodic_traversal); §22 fail-able leakage positive control; §23 replay recompute; §24 source-pin/readback; §26 ablation; §25 computed-evidence gate."},
+    {"id": 15, "name": "avoids touching/authorizing source/tests, Gate1 impl, Gate4/5, Route C, runtime/mainline/admission/bridge, EGO/UI/LLM/AIRI/deployment/companion, commit/push/tag/anchor", "status": "pass", "evidence": "§3 no mainline targets; §30 isolated future paths only; §31 comprehensive forbidden-files list; §28 + §5 (Auto-Remote-Anchor: forbidden) block commit/push/tag/anchor. Drafting task itself: validation_report remote_actions all false; final_report confirms no staging/commit/push/tag/anchor; source_mutation_performed=false; no src/tests/Gate/runtime files in generated set."}
+  ],
+  "hostile_failure_mode_hunt": {
+    "claim_inflation": "none — verdict token gate1_replacement_preflight_00xa_implementation_card_drafted; claim ceiling 'implementation-card draft only' consistent across card §32, final_report, claim_ceiling.txt, validation_report.",
+    "governance_self_modification": "none — card is a new docs/codex/tasks/ artifact; defines only its own preflight verdict tokens (identical to R1 card); explicitly forbids editing baseline-immunity standard/registry and provenance verifier.",
+    "scope_creep": "none — implementation-card framing added (§1/§3/§4/§5/§30/§33) does not expand into implementation; mainline target none.",
+    "metric_degeneracy_reopening": "none — R1.a controls preserved and the post-hoc-band selection note from the R1 re-audit is now closed by §28.",
+    "surface_spec_authorship_leakage": "none — card specifies required spec CONTENTS as acceptance criteria but supplies no values/schema/metric/band; source_mutation_performed=false; no spec file generated.",
+    "verdict_naming_alias": "none — every verdict token used in the body (§6/§7/§12/§17/§18/§19) appears in the §10 allowed list; drafting verdict consistent across all four artifacts.",
+    "claim_ceiling_firewall": "intact — §9 declares target is NOT Gate1 pass evidence; max downstream verdict authorizes at most candidate-card drafting (§27/§32)."
+  },
+  "verdict": "implementation_card_accepted_surface_spec_required_before_implementation",
+  "implementation_may_proceed_now": false,
+  "frozen_surface_spec_required_before_implementation": true,
+  "implementation_card_drafter_allowed_to_create_or_mutate_spec": false,
+  "blocking_issues": [],
+  "non_blocking_observations": [
+    "Drafting-task validation_report.json checks are self-reported governance shape-checks (producer_function=codex_manual_validation_report, code_path_hash=not_applicable_manual_governance_draft). Appropriate for a draft that claims no mechanism, but it is NOT fail-able evidence; this audit does not rely on it — card text and the R1 chain were independently verified.",
+    "Amortized-learner panel entry (§15) retains 'real fitted' but drops the R1 card's explicit 'not a deterministic stub' qualifier (R1 L190-191). Substance preserved by 'real fitted'. Given ACSB-001B history (deterministic 'learned' baselines with ml_library_used=False), recommend the future implementation re-instate an explicit anti-stub guard (e.g. require a real fit / ml_library_used=true).",
+    "§5 drops the superseded original-card hostile-audit pointer (CLAUDE-INDEPENDENT-...-TASK-CARD-HOSTILE-AUDIT-001A/audit_result.json) that the R1 card listed, replacing it with the R1 re-audit boundary. Reasonable supersession; future implementation's prior-negative-evidence preservation should still be able to reach the original audit if needed.",
+    "source_readback.json hashed only the 4 R1-boundary trigger files, not the 8 read-only negative-evidence inputs named in §5 (those are deferred to the future implementation). Consistent with drafting scope; the future implementation MUST read + hash all of §5 via authoritative file APIs.",
+    "Surface spec still does not exist and no specific freezing authority is named (carried from the R1 re-audit). Correct for the card (blocked_missing_candidate_free_surface_spec covers absence), but this is the hard gating precondition for any implementation."
+  ],
+  "standing_blocker_unrelated_to_this_card": "Per prior audits, scripts/push.* hardcode a PAT; push/tag/remote-anchor must remain BLOCKED until the secret is rotated. This card forbids remote anchoring anyway. This audit performs no staging/commit/push/tag/anchor.",
+  "claim_ceiling": "Implementation-card draft acceptance only. This authorizes the card to be considered for a LATER, separately-authorized Codex implementation task. It is NOT Gate1 admissibility, NOT a Gate run, NOT a candidate task, NOT runtime/mainline/admission/bridge wiring, NOT an admission result, and produces no Gate evidence. Maximum downstream verdict (admissible_for_candidate_card_drafting_only) authorizes at most candidate-card drafting.",
+  "next_minimal_closed_loop_action": "An independent authority (not the future preflight implementer) produces and freezes a candidate-free surface specification pack containing all §6/§11 fields (target/state/observation/legal-action-query schemas, fixed budget, balanced metric + equivalence band, generator provenance, seed policy, source pins, legal/illegal channels, negative-evidence pointers, baseline-panel registry), records its path/SHA256/author/freeze-pointer/readback-channel, and obtains explicit operator authorization. ONLY THEN may a separate Codex implementation task run the preflight against it, failing closed (blocked_missing_candidate_free_surface_spec) if the spec is absent and (blocked_candidate_authored_or_mutated_surface_spec) if the implementer touches it.",
+  "what_this_does_not_prove": [
+    "that any real Gate1 replacement surface is admissible",
+    "that the future preflight will actually be fail-able when implemented",
+    "that an independently frozen surface spec exists or is well-formed",
+    "any Gate1 pass, mechanism validity, candidate success, baseline-immunity enforcement, Gate4/Gate5 readiness, runtime/mainline/admission readiness, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness"
+  ],
+  "delivery": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-HOSTILE-AUDIT-001A/ (audit_result.json + audit_report.md). NOT staged, NOT committed, NOT pushed, NOT anchored. Pre-existing dirty worktree left untouched.",
+  "predecessor": "itl-gate1-replacement-preflight-00xa-card-r1-reaudit"
+}

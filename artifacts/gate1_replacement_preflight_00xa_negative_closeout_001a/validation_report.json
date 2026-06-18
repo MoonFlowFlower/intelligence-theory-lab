@@ -1,0 +1,163 @@
+{
+    "task_id":  "gate1_replacement_preflight_00xa_negative_closeout_001a",
+    "schema_version":  "gate1_replacement_preflight_00xa_negative_closeout_validation_v1",
+    "producer_function":  "closeout_powershell_validation_report",
+    "run_id":  "gate1_replacement_preflight_00xa_negative_closeout_001a",
+    "generated_at":  "2026-06-17T11:12:32.6755778-05:00",
+    "verdict":  "gate1_replacement_00xa_closed_baseline_saturated_negative_evidence_recorded",
+    "current_layer":  "engineering-governance / accepted negative-evidence closeout only",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "no runtime/mainline path enabled",
+    "real_trigger_evidence":  "source hash capture plus accepted 001B audit verdict readback",
+    "json_parse_validation":  {
+                                  "generated_json_paths":  [
+                                                               "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/source_readback.json",
+                                                               "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json"
+                                                           ],
+                                  "errors":  [
+
+                                             ],
+                                  "valid":  true
+                              },
+    "route_record_field_coverage":  {
+                                        "terminal_verdict_00xa":  true,
+                                        "candidate_status_00xa":  true,
+                                        "reason":  true,
+                                        "b1_generator_provenance_gate":  true,
+                                        "no_further_b1_repair_allowed":  true,
+                                        "no_candidate_implementation_allowed_on_00xa":  true,
+                                        "next_route_if_continuing_gate1_replacement":  true,
+                                        "claim_ceiling":  true
+                                    },
+    "route_record_required_fields_present":  true,
+    "source_hash_capture":  {
+                                "required_source_count":  9,
+                                "missing":  [
+
+                                            ],
+                                "all_present":  true
+                            },
+    "frozen_spec_hash_readback":  {
+                                      "expected":  "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+                                      "observed_before":  "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+                                      "observed_after":  "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+                                      "match":  true
+                                  },
+    "freeze_json_hash_readback":  {
+                                      "observed_before":  "fe3f12ad0252f016f24424d355a6138a0063ee0a87ffe9dcd3f4b13c4c451758",
+                                      "observed_after":  "fe3f12ad0252f016f24424d355a6138a0063ee0a87ffe9dcd3f4b13c4c451758",
+                                      "unchanged_during_closeout":  true
+                                  },
+    "audit_verdict_readback":  {
+                                   "expected":  "evidence_bundle_001b_accepted_rejected_baseline_saturated",
+                                   "observed":  "evidence_bundle_001b_accepted_rejected_baseline_saturated",
+                                   "accepted":  true
+                               },
+    "forbidden_positive_claim_scan":  {
+                                          "scan_paths":  [
+                                                             "docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md",
+                                                             "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json",
+                                                             "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/claim_ceiling.txt",
+                                                             "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/final_report.md"
+                                                         ],
+                                          "positive_patterns":  [
+                                                                    "Gate1 pass achieved",
+                                                                    "Gate1 replacement validity established",
+                                                                    "mechanism validity proven",
+                                                                    "candidate success proven",
+                                                                    "baseline-immunity enforcement proven",
+                                                                    "Gate4 readiness established",
+                                                                    "Gate5 readiness established",
+                                                                    "runtime/mainline/live effect achieved",
+                                                                    "EGO readiness established"
+                                                                ],
+                                          "hits":  [
+
+                                                   ],
+                                          "clean":  true
+                                      },
+    "forbidden_path_scan":  {
+                                "preexisting_dirty_count":  285,
+                                "new_status_entries_since_precloseout":  [
+                                                                             "?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/claim_ceiling.txt",
+                                                                             "?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/final_report.md",
+                                                                             "?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json",
+                                                                             "?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/source_readback.json",
+                                                                             "?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/validation_report.json",
+                                                                             "?? docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md"
+                                                                         ],
+                                "new_paths_since_precloseout":  [
+                                                                    "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/claim_ceiling.txt",
+                                                                    "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/final_report.md",
+                                                                    "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json",
+                                                                    "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/source_readback.json",
+                                                                    "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/validation_report.json",
+                                                                    "docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md"
+                                                                ],
+                                "expected_new_paths":  [
+                                                           "docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md",
+                                                           "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/source_readback.json",
+                                                           "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json",
+                                                           "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/validation_report.json",
+                                                           "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/claim_ceiling.txt",
+                                                           "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/final_report.md"
+                                                       ],
+                                "unexpected_new_paths":  [
+
+                                                         ],
+                                "new_runtime_or_candidate_paths":  [
+
+                                                                   ],
+                                "clean_for_closeout_scope":  true
+                            },
+    "no_source_test_runtime_candidate_edits_by_closeout":  true,
+    "no_00xa_spec_mutation_by_closeout":  true,
+    "remote_actions_attempted":  false,
+    "local_commit_created":  false,
+    "acceptance_gate":  {
+                            "audit_verdict_accepted":  true,
+                            "route_record_closed_for_candidate_work":  true,
+                            "route_record_terminal_verdict":  "rejected_baseline_saturated",
+                            "route_record_claim_ceiling_preserved":  true,
+                            "no_forbidden_path_touched_by_closeout":  true,
+                            "no_remote_action":  true,
+                            "accepted":  true
+                        },
+    "claim_ceiling":  "Accepted candidate-free negative route evidence only. No Gate1 pass, no Gate1 replacement validity, no mechanism validity, no candidate success or feasibility, no baseline-immunity enforcement, no Gate4/Gate5 readiness, no runtime/mainline/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+    "next_minimal_closed_loop_action":  "Draft a separate design-only task card for a new budget-constrained headroom surface; do not inherit 00XA as admissible.",
+    "generated_file_presence":  [
+                                    {
+                                        "path":  "docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md",
+                                        "exists":  true
+                                    },
+                                    {
+                                        "path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/source_readback.json",
+                                        "exists":  true
+                                    },
+                                    {
+                                        "path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json",
+                                        "exists":  true
+                                    },
+                                    {
+                                        "path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/validation_report.json",
+                                        "exists":  true
+                                    },
+                                    {
+                                        "path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/claim_ceiling.txt",
+                                        "exists":  true
+                                    },
+                                    {
+                                        "path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/final_report.md",
+                                        "exists":  true
+                                    }
+                                ],
+    "all_expected_closeout_files_present":  true,
+    "git_diff_check_allowed_paths":  {
+                                         "command":  "git diff --check -- \u003csix allowed closeout paths\u003e",
+                                         "exit_code":  0,
+                                         "output":  [
+
+                                                    ],
+                                         "passed":  true
+                                     }
+}

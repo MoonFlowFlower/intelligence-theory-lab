@@ -1,0 +1,55 @@
+{
+  "access_parity_report_consumed": true,
+  "access_parity_report_file_sha256": "83ce0c07e8f2250e93b8c0f7878d3956e672c3a35cc99e85e84c7ce5eb275cdf",
+  "access_parity_report_sha256": "35822a14f92f12d1a933eea33782fdf4c134518af0ec0134135c9f319793c08e",
+  "graph_cache_challengers_included": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal"
+  ],
+  "not_saturated_case": {
+    "access_parity_consumed": true,
+    "candidate_score": 1.0,
+    "delta": 1.0,
+    "equivalence_band": 0.02,
+    "margin_verdict": "candidate_margin_cleared",
+    "producer_function": "saturation_gate",
+    "saturated": false,
+    "strongest_fair_score": 0.0,
+    "verdict": "not_saturated"
+  },
+  "producer_function": "build_saturation_failing_negative_control",
+  "provenance": {
+    "aggregation": "dual_branch_saturation_gate_control",
+    "code_path_hash": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+    "context_id": "all",
+    "episode_id": "all",
+    "inputs": {
+      "access_parity_report_sha256": "35822a14f92f12d1a933eea33782fdf4c134518af0ec0134135c9f319793c08e",
+      "baseline_comparison_hash": "e16d1b29c5f0ea0757ad67ef4477ff5f89b63fe2b34bbd544cf0446cc9f5dc5b"
+    },
+    "output_artifact": "artifacts/route_c_candidate_harness_001a/saturation_failing_negative_control.json",
+    "producer_function": "build_saturation_failing_negative_control",
+    "recompute_command": "$env:PYTHONPATH='src'; python -m route_c_candidate_harness_001a --output-dir D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/route_c_candidate_harness_001a --run-id route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+    "role": "control",
+    "run_id": "route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+    "seed": "all",
+    "source_path": "artifacts/route_c_candidate_harness_001a/source_artifact.json",
+    "source_pinned_input_artifact_hash": "276d3cb262f172e9d83e6d96c98c5b831a04f041f7ac92b190f89067e8f9b3c0"
+  },
+  "same_callable_saturation_gate_used": true,
+  "saturated_case": {
+    "access_parity_consumed": true,
+    "candidate_score": 1.0,
+    "delta": 0.0,
+    "equivalence_band": 0.02,
+    "producer_function": "saturation_gate",
+    "saturated": true,
+    "strongest_fair_score": 1.0,
+    "verdict": "close_or_downgrade"
+  },
+  "verdict": "close_or_downgrade"
+}

@@ -1,0 +1,44 @@
+{
+  "task_id": "GATE-CANONICAL-INVENTORY-AND-RETURN-POINT-READBACK-001A",
+  "checked_file": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json",
+  "mode": "presence and parseability only; no enforcement check; no executable stub created",
+  "valid_json": true,
+  "standard_id": "BASELINE-IMMUNITY-ADMISSION-STANDARD-001A",
+  "standard_id_ok": true,
+  "executor": "none; this file is static data consumed by future preflight task cards; an executable enforcer requires its own bounded, independently audited task card",
+  "executor_exact_none": false,
+  "executor_declares_none": true,
+  "admission_verdict_count": 6,
+  "admission_verdicts_present": true,
+  "failure_family_count": 19,
+  "failure_families_present": true,
+  "required_baseline_registry_check": {
+    "required": [
+      "predict_all",
+      "predict_none",
+      "constant_k_sweep",
+      "random",
+      "exhaustive_legal_query",
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal",
+      "direct_objective_optimizer",
+      "amortized_learner",
+      "task_specific_classical"
+    ],
+    "missing": [],
+    "all_required_present": true,
+    "note": "Class-level entries direct_objective_optimizer, amortized_learner, and task_specific_classical are present as registry classes; other required terms are present as baseline members."
+  },
+  "non_authorization_observed": [
+    "no executable enforcement of this standard",
+    "no Gate execution",
+    "no candidate authoring or implementation",
+    "Auto-Remote-Anchor: forbidden"
+  ],
+  "readback_result": "parseable_present_with_executor_exactness_note",
+  "claim_ceiling": "baseline-immunity standard presence/parseability readback only; no enforcement and no admission verdict for any current Gate"
+}

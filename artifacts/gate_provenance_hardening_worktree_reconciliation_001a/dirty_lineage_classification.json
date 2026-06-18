@@ -1,0 +1,832 @@
+﻿{
+    "task_id":  "GATE-PROVENANCE-HARDENING-WORKTREE-RECONCILIATION-001A",
+    "basis":  "git status --porcelain=v1 -uall captured before quarantine and normalization",
+    "allowed_classes":  [
+                            "preserve_as_negative_or_governance_evidence",
+                            "preserve_as_contract",
+                            "quarantine_untracked_rejected_executable",
+                            "leave_untouched_unrelated_or_unknown",
+                            "blocked_pending_user_authorization"
+                        ],
+    "classifications":  [
+                            {
+                                "path":  "docs/decision_log.md",
+                                "git_status":  " M",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "decision_log_route_c_and_gate_return_readback",
+                                "reason":  "tracked decision log contains Route C closure and baseline-immunity pointers and may need Gate inventory pointer"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/REPORT.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/cleanroom_reproduction.py",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/audit_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/audit_result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/card.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/card.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/card.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/card.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/card.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/ablation_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/baseline_comparison.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/invalid_bundle_positive_control.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/leakage_scan.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/provenance_rows.jsonl",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/readback.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/replay_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/source_pin_readback_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/candidate_free_route_c_baseline_separation_probe_001a/trace.jsonl",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/audit_verdict.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/cleanroom_reproduction.py",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/cleanroom_reproduction_output.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/final_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/readback.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/baseline_standard_readback.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/dirty_worktree_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/final_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/gate_status_table.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/inventory.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/gate_canonical_inventory_and_return_point_readback_001a/return_point_options.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "gate_canonical_inventory_and_return_point_readback_001a",
+                                "reason":  "inventory artifact recommended return_to_gate_provenance_hardening and no Gate run"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/ablation_rerun_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/access_parity_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/baseline_comparison.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/clean_anchor_control.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/co_forged_anchor_positive_control.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/failure_manifest.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/final_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/leakage_positive_controls.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/margin_failing_negative_control.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/predeclaration.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/provenance_rows.jsonl",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/replay_recomputation_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/saturation_failing_negative_control.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/source_artifact.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/source_pin_readback_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control_prefix.bin",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/trace.jsonl",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a/truth_seed_disjointness_report.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/claim_ceiling.txt",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/final_report.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/readback.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/result.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_contract",
+                                "lineage":  "baseline_immunity_admission_standard_001a",
+                                "reason":  "baseline-immunity admission standard contract and static registry"
+                            },
+                            {
+                                "path":  "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json",
+                                "git_status":  "??",
+                                "class":  "preserve_as_contract",
+                                "lineage":  "baseline_immunity_admission_standard_001a",
+                                "reason":  "baseline-immunity admission standard contract and static registry"
+                            },
+                            {
+                                "path":  "docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A.md",
+                                "git_status":  "??",
+                                "class":  "preserve_as_negative_or_governance_evidence",
+                                "lineage":  "route_c_governance_negative_or_task_card_artifacts",
+                                "reason":  "Route C audit, task-card, closure, rejection, or accepted negative-evidence artifact outside active executable paths"
+                            },
+                            {
+                                "path":  "src/candidate_free_route_c_baseline_separation_probe_001a/__init__.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "src/candidate_free_route_c_baseline_separation_probe_001a/__main__.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "src/candidate_free_route_c_baseline_separation_probe_001a/runner.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "src/route_c_candidate_harness_001a/__init__.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "src/route_c_candidate_harness_001a/__main__.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "src/route_c_candidate_harness_001a/runner.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "tests/test_candidate_free_route_c_baseline_separation_probe_001a.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            },
+                            {
+                                "path":  "tests/test_route_c_candidate_harness_001a.py",
+                                "git_status":  "??",
+                                "class":  "quarantine_untracked_rejected_executable",
+                                "lineage":  "route_c_rejected_or_closed_executable_residue",
+                                "reason":  "untracked rejected/closed Route C executable residue under active src/tests path"
+                            }
+                        ],
+    "summary":  [
+                    {
+                        "class":  "preserve_as_negative_or_governance_evidence",
+                        "count":  105
+                    },
+                    {
+                        "class":  "preserve_as_contract",
+                        "count":  2
+                    },
+                    {
+                        "class":  "quarantine_untracked_rejected_executable",
+                        "count":  8
+                    }
+                ]
+}

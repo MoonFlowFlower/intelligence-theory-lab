@@ -1,0 +1,171 @@
+{
+  "runs": [
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/valid_minimal_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation",
+        "strongest_baseline_coverage",
+        "leakage_positive_control",
+        "replay_recompute",
+        "source_pin_readback",
+        "control_consumption"
+      ],
+      "expected_verdict": "provenance_wellformed_only",
+      "failed_checks": [],
+      "fixture_name": "valid_minimal_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "provenance_wellformed_only"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/literal_verdict_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation"
+      ],
+      "expected_verdict": "invalid_literal_or_detached_verdict",
+      "failed_checks": [
+        {
+          "check": "verdict_derivation",
+          "reason": "final verdict is detached from computed gate inputs"
+        }
+      ],
+      "fixture_name": "literal_verdict_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_literal_or_detached_verdict"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/missing_baseline_invocation_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation"
+      ],
+      "expected_verdict": "invalid_missing_or_uninvoked_baseline",
+      "failed_checks": [
+        {
+          "check": "baseline_invocation",
+          "reason": "baseline names are listed without provenance rows: graph_cache_collapse"
+        }
+      ],
+      "fixture_name": "missing_baseline_invocation_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_missing_or_uninvoked_baseline"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/missing_strongest_baseline_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation",
+        "strongest_baseline_coverage"
+      ],
+      "expected_verdict": "invalid_missing_strongest_baseline",
+      "failed_checks": [
+        {
+          "check": "strongest_baseline_coverage",
+          "reason": "missing strongest-baseline field: strongest_fair_baseline_id"
+        }
+      ],
+      "fixture_name": "missing_strongest_baseline_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_missing_strongest_baseline"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/leakage_positive_control_absent_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation",
+        "strongest_baseline_coverage",
+        "leakage_positive_control"
+      ],
+      "expected_verdict": "invalid_leakage_positive_control_absent_or_not_consumed",
+      "failed_checks": [
+        {
+          "check": "leakage_positive_control",
+          "reason": "no leakage positive-control case exists"
+        }
+      ],
+      "fixture_name": "leakage_positive_control_absent_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_leakage_positive_control_absent_or_not_consumed"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/hash_only_replay_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation",
+        "strongest_baseline_coverage",
+        "leakage_positive_control",
+        "replay_recompute"
+      ],
+      "expected_verdict": "invalid_replay_not_recomputed",
+      "failed_checks": [
+        {
+          "check": "replay_recompute",
+          "reason": "replay evidence only compared stored artifacts"
+        }
+      ],
+      "fixture_name": "hash_only_replay_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_replay_not_recomputed"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/source_pin_self_readback_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation",
+        "strongest_baseline_coverage",
+        "leakage_positive_control",
+        "replay_recompute",
+        "source_pin_readback"
+      ],
+      "expected_verdict": "invalid_source_pin_self_readback_or_conflict",
+      "failed_checks": [
+        {
+          "check": "source_pin_readback",
+          "reason": "source pin compares only to itself"
+        }
+      ],
+      "fixture_name": "source_pin_self_readback_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_source_pin_self_readback_or_conflict"
+    },
+    {
+      "bundle_dir": "artifacts/gate_evidence_provenance_verifier_hardening_001a/fixtures/control_not_consumed_bundle",
+      "checks_run": [
+        "schema_parse",
+        "verdict_derivation",
+        "baseline_invocation",
+        "strongest_baseline_coverage",
+        "leakage_positive_control",
+        "replay_recompute",
+        "source_pin_readback",
+        "control_consumption"
+      ],
+      "expected_verdict": "invalid_control_computed_but_not_consumed",
+      "failed_checks": [
+        {
+          "check": "control_consumption",
+          "reason": "computed control was not consumed: orphan_full_budget_saturation"
+        }
+      ],
+      "fixture_name": "control_not_consumed_bundle",
+      "matches_expected": true,
+      "no_gate_pass_claim": true,
+      "observed_verdict": "invalid_control_computed_but_not_consumed"
+    }
+  ],
+  "task_id": "GATE-EVIDENCE-PROVENANCE-VERIFIER-HARDENING-001A"
+}

@@ -1,0 +1,73 @@
+{
+  "task_id": "PRESERVE-ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A",
+  "producer": "codex_preservation_readback",
+  "repo": "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+  "branch": "codex/meta-theory-scaffold",
+  "head_at_readback": "b45598b1c56080f2f850ae088f42cf585950483e",
+  "validated_inputs": {
+    "final_audit_result": {
+      "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/audit_result.json",
+      "sha256": "fd6e381fe091618ee9086a149cb0092133137b528e95d711e6c68ca5939ed888",
+      "verdict": "accepted_computed_negative_evidence_close_or_downgrade",
+      "admission_granted": true,
+      "implementation_may_proceed": false,
+      "blocking_issues_count": 0,
+      "claim_ceiling_present": true
+    },
+    "harness_result": {
+      "path": "artifacts/route_c_candidate_harness_001a/result.json",
+      "sha256": "bdc07a6aeaa3905813d2845bea6a29b8442d0bbd224464679a08f12b7df55396",
+      "verdict": "close_or_downgrade"
+    },
+    "baseline_comparison": {
+      "path": "artifacts/route_c_candidate_harness_001a/baseline_comparison.json",
+      "sha256": "4d9500a540f6116fe0e005f08f0ecc2367f37b90fd7576e4940edb5802a27147",
+      "candidate_score": 1.0,
+      "strongest_fair_baseline": "exhaustive_legal_query",
+      "strongest_fair_score": 1.0,
+      "candidate_delta_vs_strongest_fair": 0.0
+    },
+    "source_pin_readback": {
+      "path": "artifacts/route_c_candidate_harness_001a/source_pin_readback_report.json",
+      "sha256": "e33d3d408550db68d9a0e08ed4ca818556a3512210a82f80a4baf4311b454356",
+      "verdict": "source_pin_readback_completed",
+      "comparison_reader": "powershell_system_io_readallbytes"
+    },
+    "source_pin_truncation_positive_control": {
+      "path": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control.json",
+      "sha256": "40a921155883a06d31de6f2af7cf02f7753e37c960b7ae28cec3cba85c5d22a8",
+      "prefix_truncation_detected": true,
+      "source_pin_gate_fail_closed": true,
+      "derived_verdict": "invalid",
+      "terminal_reason": "source_pin_readback_conflict"
+    },
+    "access_parity": {
+      "path": "artifacts/route_c_candidate_harness_001a/access_parity_report.json",
+      "sha256": "83ce0c07e8f2250e93b8c0f7878d3956e672c3a35cc99e85e84c7ce5eb275cdf"
+    },
+    "replay": {
+      "path": "artifacts/route_c_candidate_harness_001a/replay_recomputation_report.json",
+      "sha256": "23f003155e23b7df77b1a037305c89ae23adc0be72d6c22d4013713b616ba924"
+    },
+    "ablation": {
+      "path": "artifacts/route_c_candidate_harness_001a/ablation_rerun_report.json",
+      "sha256": "9576d0ba92000515be53bb5ca0b6671b7397ded91c546114299b7fdcaef0d347"
+    },
+    "leakage": {
+      "path": "artifacts/route_c_candidate_harness_001a/leakage_positive_controls.json",
+      "sha256": "792dceb308ac571abe569282331b811e9fb206d926312378c9bd4d9a7b038c2a"
+    }
+  },
+  "validation": {
+    "final_audit_verdict_matches": true,
+    "admission_granted_true": true,
+    "implementation_may_proceed_false": true,
+    "no_blocking_issues": true,
+    "route_close_or_downgrade_preserved": true,
+    "claim_ceiling_present": true,
+    "decision_log_entry_required": true,
+    "forbidden_scope": "no source, test, Gate, mainline, runtime, bridge, scheduler, product, admission, push, tag, or remote-anchor changes authorized",
+    "tracked_diff_readback": "docs/decision_log.md only",
+    "untracked_caveat": "closure docs/artifacts are new; broader worktree already contains untracked Route C evidence/source/test paths that were not staged or committed"
+  }
+}

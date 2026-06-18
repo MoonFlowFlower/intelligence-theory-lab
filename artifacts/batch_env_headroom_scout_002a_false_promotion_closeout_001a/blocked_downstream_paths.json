@@ -1,0 +1,34 @@
+{
+  "affected_task": "BATCH-ENV-HEADROOM-SCOUT-002A",
+  "blocked_downstream_paths": [
+    {
+      "path": "artifacts/batch_env_headroom_scout_002a/full_harness_task_card_relational_contrast_budget_probe.md",
+      "reason": "Derived from false-positive promotion; must not be executed.",
+      "status": "blocked"
+    },
+    {
+      "path": "scripts/research/relational_contrast_budget_probe_full_baseline_first_harness.py",
+      "reason": "Expected changed file named by blocked 002A task card; must not be created from the false promotion.",
+      "status": "blocked"
+    },
+    {
+      "path": "tests/research/test_relational_contrast_budget_probe_full_baseline_first_harness.py",
+      "reason": "Expected test path named by blocked 002A task card; must not be created from the false promotion.",
+      "status": "blocked"
+    },
+    {
+      "path": "artifacts/relational_contrast_budget_probe_full_baseline_first_harness/",
+      "reason": "Expected artifact path named by blocked 002A task card; must not be generated from the false promotion.",
+      "status": "blocked"
+    }
+  ],
+  "claim_ceiling": "blocked downstream paths for 002A false-promotion closeout only",
+  "explicit_non_authorizations": {
+    "candidate_implementation": false,
+    "full_harness_execution": false,
+    "route_tournament": false,
+    "runtime_mainline_admission_bridge": false,
+    "wm_p_vsb_c_csl": false
+  },
+  "schema_version": "batch_env_headroom_scout_002a_blocked_downstream_paths_v1"
+}

@@ -1,0 +1,104 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A",
+  "audited_task": "GATE-EVIDENCE-PROVENANCE-VERIFIER-HARDENING-001A",
+  "audit_date": "2026-06-17",
+  "verdict": "accept_as_local_provenance_shape_checker",
+  "current_layer": "engineering-governance / independent hostile audit of Gate evidence provenance verifier",
+  "mainline_integration_status": "none (not wired into runtime, scheduler, Gate4, Gate5, Route C, admission, or live paths)",
+  "enabled_status": "local library plus CLI only",
+  "repo_head": "b45598b1c56080f2f850ae088f42cf585950483e",
+  "impl_may_proceed": false,
+  "commit_created": false,
+  "push_or_tag_created": false,
+  "auto_remote_anchor": "forbidden",
+
+  "source_hash_verification": {
+    "method": "independent sha256sum on disk vs readback.json claimed hashes",
+    "result": "all_5_match",
+    "verifier.py": "365326d38dd647f5fe27d8950bf9ac81af90523115255df48ea8a9c18406cc42",
+    "schema.py": "c5edfa78abd72a4c5d58a7578e1375b08bddedd79a1b4f33f20e369463320425",
+    "__main__.py": "5e12dbad48c9e85ff8b419b6a3066cf74e57a1f7668f04b66db5f3bb82a77aab",
+    "__init__.py": "3d4efed1a96f4abf4c93b9714dbe3d58b401699a20ade92f11014ac46e8ccf8d",
+    "test_gate_evidence_provenance_verifier_001a.py": "6972c03077f8fb3364338c9784242e4fd46b1df26b7080887d7f35cf41d33c41",
+    "note": "no FUSE truncation on these files; file-API reads are canonical and match recorded provenance"
+  },
+
+  "decisive_checks": {
+    "Q1_content_derived_verdict": {
+      "status": "pass",
+      "evidence": "verify_bundle reads only parsed bundle JSON; bundle_dir stored as metadata only, never used in verdict logic. Directory-rename test (test_mutating_valid_bundle_into_each_invalid_pattern_flips_verdict, renamed dirs renamed_fixture_0..6) and clean-room rename reproduction confirm name-independence. test_verifier_ignores_literal_expected_verdict_fields plus a deliberately-wrong expected_verdict decoy embedded in every fixture confirm expected-verdict literals are ignored."
+    },
+    "Q2_failure_path_competence": {
+      "status": "pass",
+      "evidence": "7 mutators flip a valid bundle into each specific invalid verdict; tests assert flip + non-empty failed_checks + verdict != VALID. Clean-room pytest: 6 passed. Independent probes show present-but-invalid sub-paths also fail correctly (P5 leakage detected=False, P6 baseline invoked=False, P7 source-pin open unresolved conflict, P8 leakage detected-but-not-consumed)."
+    },
+    "Q3_no_gate_pass_inflation": {
+      "status": "pass",
+      "evidence": "VALID_VERDICT='provenance_wellformed_only'; result carries no_gate_pass_claim=true and claim_ceiling; final_report.md has explicit 'What this does not prove'; CLI test scans 13 forbidden-claim terms in serialized output."
+    },
+    "Q4_scope_boundary": {
+      "status": "pass_honest",
+      "evidence": "Checks provenance-shape only. Does not adjudicate baseline-panel completeness or strength. Demonstrated by P2/P4 passing (see strongest_objection)."
+    },
+    "Q5_control_consumption": {
+      "status": "pass",
+      "evidence": "Every computed control row must appear in verdict_derivation.consumed_control_ids; orphan computed control -> invalid_control_computed_but_not_consumed (reproduced). control_consumption gate-input False forces derived 'blocked', enforced by verdict_derivation coupling."
+    },
+    "Q6_replay_check": {
+      "status": "pass_for_shape",
+      "evidence": "Rejects hash_only/stored_*_only flags; requires recompute booleans + mode=='recompute_from_serialized_state_and_observation'.",
+      "caveat": "Declaration/shape check on self-reported booleans, NOT actual recomputation. Inherent to a static bundle checker; within claim ceiling but must never be read as 'replay validated'."
+    },
+    "Q7_source_pin_check": {
+      "status": "pass_for_shape",
+      "evidence": "Rejects self_comparison_only; requires >=2 distinct authoritative channels with valid sha256; unresolved conflict / not-fail-closed -> invalid (P7 reproduced).",
+      "caveat": "Shape check; verifier does not itself re-hash source files. Fixtures use constant fabricated hashes (a*64) which is acceptable for shape testing only."
+    },
+    "Q8_leakage_positive_control": {
+      "status": "pass",
+      "evidence": "Requires scanner provenance + >=1 positive control with same_admission_path + detected + consumed (id in consumed_leakage_positive_control_ids). P5 (not detected) and P8 (not consumed) -> invalid."
+    },
+    "Q9_baseline_invocation": {
+      "status": "pass",
+      "evidence": "Listed/required baselines must have provenance rows carrying producer_function, inputs, run_id, aggregation, code_path_hash and invoked=True. P6 (invoked=False) -> invalid. Strongest baseline id must tie to an invoked row and be consumed by verdict derivation."
+    },
+    "Q10_historical_negative_calibration_readiness": {
+      "status": "safe_but_limited",
+      "evidence": "Read-only, produces no admission. But historical bundles use different filenames; acolb_001a and acp_bv_distribution_harness_001b_execution_001a both return invalid_schema_or_parse_failure (missing replay_report.json / source_pin_readback_report.json / leakage_scan.json / provenance_rows.jsonl). Substantive provenance checks will not engage without a separate, separately-audited schema shim. Any provenance_wellformed_only on historical data must NOT be read as admission."
+    }
+  },
+
+  "strongest_objection": {
+    "summary": "The verifier cannot catch the exact failure class that produced the Route C false positive: metric degeneracy and omitted/mis-declared strongest fair baseline.",
+    "probe_P2": "shape-valid bundle with candidate_score=0.99 vs declared strongest_fair_baseline_score=0.05, delta=0.94, equivalence_band=0.01 -> provenance_wellformed_only (no margin/band adjudication performed).",
+    "probe_P4": "a second invoked baseline present, yet the weaker baseline still declared strongest_fair_baseline_id -> provenance_wellformed_only (no cross-baseline maximum check).",
+    "implication": "This is a provenance-SHAPE prefilter, not a baseline-immunity or admission gate. It must be paired with the separate BASELINE-IMMUNITY-ADMISSION-STANDARD enforcement, which it does not implement."
+  },
+
+  "non_blocking_issues": [
+    "replay/source-pin/leakage/consumption are declaration-shape checks on self-reported fields; verifier does not recompute or re-hash. Within claim ceiling but provenance_wellformed_only must never be read as 'replay/source verified'.",
+    "Dead branch verifier.py lines 248-249 (failure_recorded check unreachable; line 246 already guarantees consumed_by_final_verdict True). Cosmetic.",
+    "Committed tests omit present-but-invalid sub-paths (baseline invoked=False; leakage present-but-not-detected / not-consumed; source-pin open unresolved conflict). Code handles them (proven by probes) but tests do not lock them in -> regression risk.",
+    "Fixtures use constant fabricated hashes (a*64...); fine for shape testing, but committed fixtures never exercise a real source-pin hash mismatch.",
+    "P3: internal final_verdict='bundle_provenance_inputs_blocked' but shape-valid returns provenance_wellformed_only. Benign direction (does not false-green a shape-bad bundle); worth one-line documentation."
+  ],
+
+  "blocking_issues": [],
+
+  "required_fixes": [],
+
+  "recommendation": "Accept as local admission-support tooling / provenance-shape prefilter. Do NOT use as an admission gate or treat any provenance_wellformed_only as Gate pass, mechanism validity, baseline-immunity, or historical-evidence admission.",
+
+  "next_minimal_closed_loop_action": "GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HISTORICAL-NEGATIVE-CALIBRATION-001A: run the verifier read-only on a small selected set of known historical negative bundles; expect mostly invalid_schema_or_parse_failure; record verdicts as diagnostic only; provenance_wellformed_only must not be interpreted as admission. Optional bounded follow-up: add the 4 missing sub-path regression tests (non-blocking, no scope expansion).",
+
+  "claim_ceiling": "Independent verifier audit only. No Gate pass, no mechanism validity, no baseline-immunity, no candidate success, no Route C viability, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+
+  "what_this_does_not_prove": [
+    "that any Gate bundle passed",
+    "that any candidate mechanism is valid",
+    "that any bundle is baseline-immune",
+    "that the declared strongest fair baseline is actually the strongest",
+    "that replay/source-pin/leakage evidence was genuinely recomputed (only that it has the right shape)",
+    "anything about Route C viability, mainline readiness, or EGO readiness"
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "schema_version": "minimal_env_spec_001a_environment_schema_v1",
+  "environment_id": "minimal_closed_loop_latent_maintenance_001a",
+  "candidate_free": true,
+  "authorized_next_card": "BASELINE-FIRST-HARNESS-001A",
+  "forbidden_before_headroom": [
+    "WM-P",
+    "VSB-C",
+    "CSL",
+    "Route C",
+    "Gate1 candidate",
+    "Gate4",
+    "Gate5",
+    "runtime/mainline/admission/bridge",
+    "LLM/AIRI/deployment"
+  ],
+  "budget": {
+    "candidate_matched_budget_tokens": 5,
+    "full_legal_channel_count": 12,
+    "budget_rule": "budget below full legal-channel count is necessary but not sufficient",
+    "true_condition": "battery_max_fair_baseline < visible_channel_oracle - equivalence_band under the same budget"
+  },
+  "required_state_fields": [
+    { "name": "episode_id", "visibility": "fair" },
+    { "name": "seed", "visibility": "fair" },
+    { "name": "hidden_state", "visibility": "diagnostic_oracle_only" },
+    { "name": "observable_state", "visibility": "fair" },
+    { "name": "legal_action_space", "visibility": "fair" },
+    { "name": "legal_channel_responses", "visibility": "budget_spent_fair_else_diagnostic" },
+    { "name": "viability_state", "visibility": "fair_bucket_plus_hidden_detail" },
+    { "name": "self_boundary_state", "visibility": "fair_summary_plus_hidden_detail" },
+    { "name": "external_perturbation_state", "visibility": "diagnostic_oracle_only" },
+    { "name": "transition_rule_id", "visibility": "diagnostic_oracle_only" },
+    { "name": "serialized_state", "visibility": "replay_contract" },
+    { "name": "target_label_or_target_variable", "visibility": "diagnostic_oracle_only" },
+    { "name": "generator_source_hash", "visibility": "provenance" },
+    { "name": "generator_config_hash", "visibility": "provenance" },
+    { "name": "source_pin_readback", "visibility": "provenance" }
+  ],
+  "legal_actions": [
+    "observe",
+    "probe",
+    "move_or_act",
+    "repair_or_protect_viability",
+    "store",
+    "replay",
+    "exploit",
+    "ignore",
+    "ask_or_query_channel"
+  ],
+  "final_decision_labels": [
+    "protect_left_boundary",
+    "protect_right_boundary",
+    "repair_core_viability",
+    "exploit_safe_window",
+    "defer_or_ignore"
+  ],
+  "metrics": {
+    "primary_metric": "macro_f1",
+    "f_beta": 1.0,
+    "oracle_target_floor": 0.9,
+    "passive_rejection_floor_exclusive": 0.87,
+    "degenerate_rejection_floor_exclusive": 0.87,
+    "size_only_rejection_floor_exclusive": 0.87,
+    "equivalence_band": 0.03,
+    "per_class_precision_floor": 0.85,
+    "per_class_recall_floor": 0.85,
+    "forbidden_metric_admission": [
+      "recall_only",
+      "precision_only",
+      "coverage_only",
+      "specificity_only",
+      "abstention_only",
+      "size_only",
+      "natural_language_summary",
+      "static_verdict_dictionary",
+      "provenance_wellformed_only"
+    ]
+  },
+  "mandatory_baselines": {
+    "degenerate_predictors": [
+      "predict_all",
+      "predict_none",
+      "constant_k_sweep",
+      "random",
+      "majority"
+    ],
+    "passive_family": [
+      "observation_only",
+      "value_decoder_mean",
+      "value_decoder_variance",
+      "value_decoder_correlation",
+      "value_decoder_pca",
+      "nearest_neighbor_passive",
+      "membership_passive_attacker",
+      "supervised_passive_attacker"
+    ],
+    "active_query_baselines": [
+      "exhaustive_legal_query",
+      "greedy_uncertainty_query_under_budget"
+    ],
+    "graph_cache_challengers": [
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal"
+    ],
+    "lookup_imitation": [
+      "trace_only_replay",
+      "ngram_trace_lookup",
+      "full_bundle_decoder",
+      "serialized_state_decoder",
+      "belief_table",
+      "pair_count_table"
+    ],
+    "direct_objective_optimizers": [
+      "discounted_wls",
+      "least_squares",
+      "convex_solver"
+    ]
+  },
+  "headroom_precheck": {
+    "visible_channel_oracle": ">= 0.90",
+    "passive_family_max": "< 0.87",
+    "degenerate_controls_max": "< 0.87",
+    "size_only_sweep_max": "< 0.87",
+    "strongest_fair_baseline": "< visible_channel_oracle - 0.03",
+    "exhaustive_legal_query": "< visible_channel_oracle - 0.03",
+    "each_graph_cache_challenger": "< visible_channel_oracle - 0.03",
+    "leakage_positive_control": "no failure",
+    "replay": "recompute from serialized_state + observation + budget state",
+    "generator_source_provenance": "complete and consumed"
+  },
+  "multi_seed_power": {
+    "minimum_seeds": 5,
+    "minimum_episodes_per_seed": 20,
+    "required_reporting": [
+      "per_seed_scores",
+      "aggregate_macro_f1",
+      "seed_noise_tolerance",
+      "failure_if_headroom_only_within_noise"
+    ]
+  },
+  "claim_ceiling": "frozen minimal closed-loop environment spec only"
+}

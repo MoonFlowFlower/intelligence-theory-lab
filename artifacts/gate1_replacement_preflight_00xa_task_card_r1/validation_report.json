@@ -1,0 +1,133 @@
+{
+  "artifact_id": "gate1_replacement_preflight_00xa_task_card_r1_validation_report",
+  "generated_at_local": "2026-06-17T07:57:05.1490016-05:00",
+  "current_layer": "engineering-governance / artifact validation",
+  "verdict": "validation_passed_for_task_card_repair_artifacts",
+  "validation_scope": {
+    "allowed_path_prefix": "artifacts/gate1_replacement_preflight_00xa_task_card_r1/",
+    "source_draft_path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/draft_next_task_card.md",
+    "audit_path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-HOSTILE-AUDIT-001A/audit_result.json",
+    "forbidden_actions": [
+      "pytest",
+      "Gate1 run",
+      "historical Gate module import",
+      "Route C module run",
+      "source or test creation",
+      "candidate creation",
+      "surface spec creation or mutation",
+      "staging",
+      "commit",
+      "push",
+      "tag",
+      "remote-anchor"
+    ]
+  },
+  "json_parse_validation": {
+    "command": "Get-ChildItem -Path artifacts/gate1_replacement_preflight_00xa_task_card_r1 -Filter *.json | ConvertFrom-Json",
+    "result": "passed",
+    "files_checked": [
+      "audit_requirement_readback.json",
+      "repair_matrix.json",
+      "source_draft_readback.json",
+      "validation_report.json"
+    ]
+  },
+  "grep_token_coverage": {
+    "command": "Select-String -SimpleMatch over required R1.a/R1.b/R1.c and preserved-boundary terms",
+    "result": "passed",
+    "missing_terms": [],
+    "covered_terms": [
+      "precision and recall",
+      "F-beta",
+      "cost-weighted utility",
+      "false-positive and false-negative costs",
+      "recall-only",
+      "precision-only",
+      "coverage-only",
+      "specificity-only",
+      "abstention-only",
+      "size-only score",
+      "predict_all",
+      "predict_none",
+      "constant_k_sweep",
+      "random",
+      "majority",
+      "size-only sweep",
+      "0..N",
+      "consumed_by_final_verdict",
+      "No By-Reference Escape",
+      "BASELINE-IMMUNITY-ADMISSION-STANDARD-001A",
+      "Partial-Inferability Demonstration",
+      "passive-only attacker family",
+      "visible-channel decodability check",
+      "random/matched marginal baseline",
+      "non-reading oracle",
+      "null oracle",
+      "rejected_no_fair_signal",
+      "blocked_missing_partial_inferability_demonstration",
+      "budget-faithful",
+      "visible-channel only",
+      "legal-access only",
+      "answer-key",
+      "rejected_answer_key_oracle_gap",
+      "Surface Specification Authorship And Immutability",
+      "blocked_missing_candidate_free_surface_spec",
+      "blocked_candidate_authored_or_mutated_surface_spec",
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal",
+      "provenance_wellformed_only",
+      "replay must recompute",
+      "source pins",
+      "producer_function",
+      "code_path_hash"
+    ]
+  },
+  "forbidden_claim_scan": {
+    "command": "Select-String scan for affirmative forbidden completion/readiness/admission phrases with negated claim-ceiling lines excluded",
+    "result": "passed",
+    "forbidden_claim_candidates": []
+  },
+  "path_allowlist_check": {
+    "command": "Resolve generated file paths and require artifacts/gate1_replacement_preflight_00xa_task_card_r1/ prefix",
+    "result": "passed",
+    "files_checked": [
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/audit_requirement_readback.json",
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/claim_ceiling.txt",
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/draft_next_task_card_r1.md",
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/final_report.md",
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/repair_matrix.json",
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/source_draft_readback.json",
+      "artifacts/gate1_replacement_preflight_00xa_task_card_r1/validation_report.json"
+    ]
+  },
+  "source_draft_integrity": {
+    "command": "Get-FileHash artifacts/gate1_replacement_readback_or_preflight_selection_001a/draft_next_task_card.md -Algorithm SHA256",
+    "result": "passed",
+    "expected_sha256": "7a1b2c5e4408ab256e4267aca2ac84f02210fcaf9b91756e410dda7b40e2ff46",
+    "actual_sha256_after_artifact_creation": "7a1b2c5e4408ab256e4267aca2ac84f02210fcaf9b91756e410dda7b40e2ff46"
+  },
+  "git_diff_check": {
+    "command": "git diff --check -- artifacts/gate1_replacement_preflight_00xa_task_card_r1",
+    "result": "passed",
+    "exit_code": 0
+  },
+  "final_closeout_readback": {
+    "json_parse_all_generated_json": "passed",
+    "token_coverage": "passed",
+    "forbidden_claim_scan": "passed",
+    "path_allowlist": "passed",
+    "source_draft_hash_preserved": "passed",
+    "scoped_git_diff_check": "passed"
+  },
+  "checks_not_run_by_design": [
+    "pytest",
+    "Gate1",
+    "Route C modules",
+    "historical Gate module imports"
+  ],
+  "claim_ceiling": "validation report for Gate1 replacement preflight task-card repair artifacts only"
+}

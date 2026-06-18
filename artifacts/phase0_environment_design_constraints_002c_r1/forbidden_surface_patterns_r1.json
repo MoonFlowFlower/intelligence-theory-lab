@@ -1,0 +1,180 @@
+{
+  "schema_version": "phase0_environment_design_constraints_002c_r1_forbidden_surface_patterns_v1",
+  "task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-R1",
+  "source_task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "verdict": "design_constraints_002c_r1_recorded",
+  "r1_revision_summary": [
+    "Preserves 002C A1-A9 and S1 design-kill families.",
+    "Adds A10_ACTIVE_PLANNER_SATURATION as a first-class active budget-faithful planner forbidden pattern.",
+    "Makes planner_family_max below oracle-minus-band an explicit promotion gate, not an implied strongest-fair-baseline property."
+  ],
+  "forbidden_surface_patterns": [
+    {
+      "pattern_id": "A1_DIRECT_LEGAL_CHANNEL_COMPUTE",
+      "attack_library_family": "A1",
+      "pattern": "target deterministic from <= budget legal/visible channels",
+      "required_detector_or_baseline": [
+        "target_dependency_set_over_legal_visible_channels",
+        "target_deterministic_from_le_budget_visible_channels",
+        "legal_query_can_read_all_target_components",
+        "exhaustive_legal_query",
+        "oracle_as_fair_baseline_if_budget_visible"
+      ],
+      "forbidden_if": "any legal-channel function under budget reaches oracle equivalence band",
+      "rejection": "reject_direct_decode"
+    },
+    {
+      "pattern_id": "A2_GRAPH_CACHE_TRANSITION_TABLE_SATURATION",
+      "attack_library_family": "A2",
+      "pattern": "state/signature space small enough for graph/cache/table saturation",
+      "required_detector_or_baseline": [
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal"
+      ],
+      "forbidden_if": "full graph-cache family max enters oracle equivalence band",
+      "rejection": "reject_graph_cache_saturated"
+    },
+    {
+      "pattern_id": "A3_LOOKUP_UNDER_MEMORIZATION_SPLIT",
+      "attack_library_family": "A3",
+      "pattern": "lookup fails only because train/test context IDs are disjoint",
+      "required_detector_or_baseline": [
+        "memorizing_lookup_or_nearest_neighbor",
+        "generalizing_compute_baseline_on_same_heldout_split",
+        "fitted_legal_channel_learner_on_same_heldout_split"
+      ],
+      "forbidden_if": "compute or fitted baseline reaches oracle band despite lookup failure",
+      "rejection": "reject_no_headroom_likely"
+    },
+    {
+      "pattern_id": "A4_FITTED_CLASSICAL_LEARNER_SATURATION_OR_ABSENCE",
+      "attack_library_family": "A4",
+      "pattern": "fitted/classical legal-channel method solves the task, or learner is absent/stubbed",
+      "required_detector_or_baseline": [
+        "fitted_legal_channel_learner",
+        "strongest_known_classical_method_for_task_type",
+        "fit_evidence",
+        "anti_stub_guard"
+      ],
+      "forbidden_if": "fitted/classical baseline reaches oracle band, or mandatory learner is missing/stubbed",
+      "rejection": "reject_no_headroom_likely_or_blocked_compute_baseline_missing"
+    },
+    {
+      "pattern_id": "A5_PASSIVE_VALUE_DECODER_LEAKAGE",
+      "attack_library_family": "A5",
+      "pattern": "passive visible values encode target",
+      "required_detector_or_baseline": [
+        "observation_only",
+        "value_decoder_mean",
+        "value_decoder_variance",
+        "value_decoder_correlation",
+        "value_decoder_pca",
+        "nearest_neighbor_passive",
+        "supervised_or_membership_passive_attacker",
+        "value_level_positive_control"
+      ],
+      "forbidden_if": "passive family max reaches passive floor",
+      "rejection": "reject_passive_decodable"
+    },
+    {
+      "pattern_id": "A6_METRIC_DEGENERACY",
+      "attack_library_family": "A6",
+      "pattern": "metric allows predict_all, predict_none, constant-k, random, majority, or size-only to score high",
+      "required_detector_or_baseline": [
+        "predict_all",
+        "predict_none",
+        "constant_k_sweep",
+        "random",
+        "majority",
+        "size_only_sweep",
+        "balanced_macro_f1",
+        "per_class_precision_recall_floors"
+      ],
+      "forbidden_if": "degenerate or size-only predictor reaches rejection floor, or metric is single-sided",
+      "rejection": "reject_metric_degenerate"
+    },
+    {
+      "pattern_id": "A7_ORACLE_NOT_BUDGET_FAITHFUL",
+      "attack_library_family": "A7",
+      "pattern": "oracle needs hidden_state, answer_key, future labels, target aliases, or unqueried values",
+      "required_detector_or_baseline": [
+        "answer_key_diagnostic_oracle",
+        "budget_faithful_visible_channel_oracle",
+        "field_access_manifest",
+        "legal_query_trace"
+      ],
+      "forbidden_if": "only answer-key oracle clears ceiling, visible oracle reads forbidden fields, or visible oracle exceeds budget",
+      "rejection": "reject_oracle_not_budget_faithful"
+    },
+    {
+      "pattern_id": "A8_BASELINE_ALIASING_FAKE_DIVERSITY",
+      "attack_library_family": "A8",
+      "pattern": "baseline battery relies on aliases or omits fitted/classical/compute members",
+      "required_detector_or_baseline": [
+        "producer_function",
+        "source_body_hash",
+        "prediction_vector_hash",
+        "input_field_manifest",
+        "strategy_signature",
+        "baseline_family",
+        "independence_family",
+        "consumed_by_final_verdict"
+      ],
+      "forbidden_if": "mandatory producer absent, aliased weak rows count as independent corroboration, or required rows are unconsumed",
+      "rejection": "blocked_baseline_aliasing_invalidates_promotion_or_blocked_baseline_battery_incomplete"
+    },
+    {
+      "pattern_id": "A9_SPLIT_DEFEATS_MEMORY_NOT_COMPUTE",
+      "attack_library_family": "A9",
+      "pattern": "train/test split defeats memory but not legal-channel compute",
+      "required_detector_or_baseline": [
+        "memory_family_on_disjoint_split",
+        "exhaustive_legal_query_on_identical_heldout_split",
+        "fitted_legal_channel_learner_on_identical_heldout_split",
+        "strongest_classical_method_on_identical_heldout_split"
+      ],
+      "forbidden_if": "compute or fitted baseline reaches oracle band despite memory-family failure",
+      "rejection": "reject_no_headroom_likely"
+    },
+    {
+      "pattern_id": "A10_ACTIVE_PLANNER_SATURATION",
+      "attack_library_family": "A10",
+      "pattern": "budget-faithful active planner family reaches visible-oracle equivalence band under the same query/action budget",
+      "planner_family_minimum": [
+        "budget_limited_belief_state_planner",
+        "greedy_information_gain_or_uncertainty_planner_under_budget",
+        "strongest_active_planner_for_task_type",
+        "any_task_specific_budget_faithful_active_planner_or_strongest_active_classical_method"
+      ],
+      "required_detector_or_baseline": [
+        "planner_family_max",
+        "budget_limited_belief_state_planner",
+        "greedy_information_gain_or_uncertainty_planner_under_budget",
+        "strongest_active_planner_for_task_type",
+        "planner_field_access_manifest",
+        "planner_budget_trace",
+        "consumed_by_final_verdict"
+      ],
+      "forbidden_if": "planner_family_max >= visible_oracle_score - equivalence_band",
+      "promotion_may_proceed_only_if": "planner_family_max < visible_oracle_score - equivalence_band",
+      "rejection": "reject_active_planner_saturated"
+    },
+    {
+      "pattern_id": "S1_UNDERPOWERED_ORACLE_SIGNAL",
+      "attack_library_family": "002B_observed_extra_stop_condition",
+      "pattern": "signal too weak for oracle to clear target floor",
+      "required_detector_or_baseline": [
+        "budget_faithful_visible_oracle_score",
+        "oracle_floor",
+        "preliminary_gap"
+      ],
+      "forbidden_if": "visible oracle below floor or preliminary gap below threshold before stronger claims",
+      "rejection": "reject_underpowered_surface"
+    }
+  ],
+  "claim_ceiling": "Phase-0 environment design-constraint R1 repair only. No headroom confirmation. No Gate1 pass. No mechanism validity. No candidate feasibility. No runtime/mainline effect. No agency/autonomy/consciousness/EGO readiness."
+}

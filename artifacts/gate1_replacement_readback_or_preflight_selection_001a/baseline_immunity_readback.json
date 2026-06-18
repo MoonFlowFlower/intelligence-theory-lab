@@ -1,0 +1,86 @@
+{
+  "task_id": "GATE1-REPLACEMENT-READBACK-OR-PREFLIGHT-SELECTION-001A",
+  "contract_path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md",
+  "registry_path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json",
+  "contract_exists": true,
+  "registry_exists": true,
+  "registry_parse_valid": true,
+  "standard_id": "BASELINE-IMMUNITY-ADMISSION-STANDARD-001A",
+  "layer": "route-governance / evidence-governance documentation only",
+  "executor": "none",
+  "executor_note": "static data consumed by future preflight task cards; executable enforcer requires separate audited task card",
+  "static_contract_only": true,
+  "enforcement_available": false,
+  "admission_limit": "admissible_for_candidate_preflight authorizes candidate-card drafting only, not implementation or Gate execution",
+  "required_baseline_panel_for_replacement": {
+    "trivial_predictors": [
+      "predict_all",
+      "predict_none",
+      "constant_k_sweep",
+      "random",
+      "majority"
+    ],
+    "passive_baselines": [
+      "observation_only",
+      "value_decoder_mean",
+      "value_decoder_variance",
+      "value_decoder_correlation",
+      "value_decoder_pca",
+      "nearest_neighbor_passive"
+    ],
+    "active_query_baselines": [
+      "exhaustive_legal_query",
+      "greedy_uncertainty_query_under_budget"
+    ],
+    "graph_cache_challengers": [
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "count_table",
+      "fsm_planner",
+      "episodic_traversal"
+    ],
+    "lookup_imitation": [
+      "trace_only_replay",
+      "ngram_trace_lookup",
+      "full_bundle_decoder",
+      "serialized_state_decoder",
+      "belief_table",
+      "pair_count_table"
+    ],
+    "direct_objective_optimizer_when_applicable": [
+      "discounted_wls",
+      "least_squares",
+      "convex_solver"
+    ],
+    "amortized_learner_when_learning_claimed": [
+      "trained_legal_channel_learner"
+    ],
+    "task_specific_classical": [
+      "strongest_known_classical_method_for_task_type"
+    ]
+  },
+  "blocking_failure_families_to_carry_forward": [
+    "recall_only_predict_all_saturation",
+    "predict_none_abstention_saturation",
+    "constant_k_saturation",
+    "post_hoc_threshold_tuning",
+    "random_band_no_signal",
+    "size_exploit_metric",
+    "single_sided_metric_imbalance",
+    "visible_target_determination",
+    "observation_decodable_self_set",
+    "identifiability_extremes_no_residual",
+    "side_channel_leakage",
+    "candidate_authored_ground_truth",
+    "fair_baseline_saturation",
+    "direct_objective_optimizer_equivalence",
+    "graph_cache_collapse",
+    "fake_learned_deterministic_baseline",
+    "mechanism_oracle_tautology",
+    "answer_key_oracle_gap",
+    "canonical_readback_failure"
+  ],
+  "use_in_selected_draft": "normative reference and required baseline registry only; not an executor and not a proof of baseline-immunity",
+  "claim_ceiling": "Baseline-immunity standard readback only; no enforcement, admission, Gate pass, candidate success, or mechanism validity."
+}

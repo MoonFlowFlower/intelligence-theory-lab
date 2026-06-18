@@ -1,0 +1,159 @@
+{
+  "schema_version": "claude_independent_phase0_environment_design_constraints_002c_hostile_audit_001a_v1",
+  "audit_task_id": "CLAUDE-INDEPENDENT-PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-HOSTILE-AUDIT-001A",
+  "audited_artifact": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "audited_artifact_verdict_claimed": "design_constraints_002c_recorded",
+  "audit_date": "2026-06-17",
+  "auditor_role": "independent auditor / red-team reviewer (CLAUDE.md Same-Agent Bridge Audit Role 001; Preflight Audit Rule)",
+  "research_layer": "engineering-governance / Phase-0 environment design-constraint synthesis (audit, read-only)",
+  "claim_ceiling": "design-constraint audit only. No headroom confirmation, no Gate1 pass, no mechanism validity, no candidate feasibility, no 003A authorization, no route tournament, no runtime/mainline/admission/bridge effect, no agency/autonomy/consciousness/EGO readiness.",
+
+  "verdict": "accept_design_constraint_record_with_required_revisions_before_003a_authorization",
+  "admissible_as_recorded_negative_lineage_synthesis": true,
+  "authorizes_003a": false,
+  "implementation_may_proceed": false,
+  "implementation_block_reasons": [
+    "out of audit scope: this audit is not authorized to approve 003A, route tournament, full harness, or candidate implementation",
+    "three required fixes (RF-1, RF-2, RF-3) should be closed before 002C is used as the authorization basis for 003A"
+  ],
+  "governance_self_modification_detected": false,
+  "governance_self_modification_note": "002C does not amend or re-freeze MINIMAL-ENV-SPEC-001A or PHASE0-ENVIRONMENT-ATTACK-LIBRARY-001A; forbidden_in_003a explicitly bars reopening/optimizing MINIMAL-ENV-SPEC-001A. No frozen rule source was modified.",
+
+  "what_was_verified": {
+    "file_read_method": "authoritative file-API Read (bash mount showed stale directory listing for freshly-written 002C; whole-mount sweep + file-API used instead per repo FUSE-truncation lesson)",
+    "provenance_sources_exist": true,
+    "provenance_sources_checked": [
+      "artifacts/baseline_first_harness_001a/final_verdict.json (1846B)",
+      "artifacts/CLAUDE-INDEPENDENT-BASELINE-FIRST-HARNESS-001A-R1-EVIDENCE-INTEGRITY-HOSTILE-AUDIT-001A/audit_result.json (14900B)",
+      "artifacts/batch_env_headroom_scout_002a_false_promotion_closeout_001a/closeout_record.json (3482B)",
+      "artifacts/batch_env_headroom_scout_002b/rejected_sketches.json (4890B)",
+      "artifacts/batch_env_headroom_scout_002b/micro_probe_results.json (519323B)"
+    ],
+    "f002b_subscores_cross_checked_against_002b_rejected_sketches_json": "verbatim match",
+    "f002b_subscore_match_examples": {
+      "graph_cache_transition_surface": {"002c": {"visible_oracle": 1.0, "graph_cache_family_max": 1.0, "exhaustive_legal_query": 1.0, "fitted": 1.0}, "002b": {"visible_oracle": 1.0, "graph_cache_family_max": 1.0, "exhaustive_legal_query": 1.0, "fitted": 1.0}, "match": true},
+      "lookup_split_compute_artifact": {"002c": {"visible_oracle": 1.0, "exhaustive_legal_query": 1.0, "fitted": 1.0, "graph_cache_family_max": 0.16666666666666666}, "002b": {"visible_oracle": 1.0, "exhaustive_legal_query": 1.0, "fitted": 1.0, "graph_cache_family_max": 0.16666666666666666}, "match": true},
+      "low_signal_underpowered_surface": {"002c": {"visible_oracle": 0.3333333333333333, "strongest_cheap_baseline": 0.3333333333333333, "fitted": 0.0}, "002b": {"visible_oracle": 0.3333333333333333, "strongest_cheap_baseline_score": 0.3333333333333333, "strongest_cheap_baseline_producer": "budget_limited_belief_state_planner", "fitted": 0.0}, "match": true},
+      "passive_value_leak_surface": {"002c": {"visible_oracle": 0.375, "passive_family_max": 1.0}, "002b": {"visible_oracle": 0.375, "passive_family_max": 1.0, "strongest_cheap_baseline_producer": "observation_only"}, "match": true}
+    },
+    "001a_headline_match": "002C failure_taxonomy F001A (verdict rejected_no_headroom_baseline_saturated; oracle 1.0; strongest fair 1.0 = budget_limited_belief_state_planner; margin 0.0; band 0.03; six graph-cache all 1.0) matches BASELINE-FIRST-HARNESS-001A-R1 closeout verbatim",
+    "002a_headline_match": "002C failure_taxonomy F002A (verdict blocked_promotion_false_positive_direct_decode; relational_contrast_budget_probe; (contrast_a + 2*contrast_b + phase_probe) % 3; oracle was itself a fair legal-channel compute baseline not mirrored on fair side) matches 002A false-promotion closeout verbatim",
+    "002b_headline_match": "002C failure_taxonomy + .md (verdict all_rejected_static_or_microprobe; 7 registered / 3 static / 4 micro-probed / 0 promoted / 7 rejected; 7 named sketches+verdicts) matches 002B final_report.md verbatim; promoted_full_harness_candidates.json promoted_count = 0 confirmed"
+  },
+
+  "question_findings": {
+    "q1_preserves_001a_002a_002b": {
+      "answer": "yes",
+      "detail": "All three predecessor results are preserved accurately, including verbatim numeric sub-scores cross-checked against source artifacts. Framed strictly as bounded negative environment evidence; 001A is correctly retained as environment/surface failure, NOT candidate failure. No result is upgraded, reinterpreted as stronger, or patched into a pass.",
+      "status": "pass"
+    },
+    "q2_forbidden_patterns_block_a1_a9": {
+      "answer": "names/maps all A1-A9 (pass) but one substantive completeness gap",
+      "detail": "forbidden_surface_patterns.json enumerates A1-A9 by family id, each with required_detector_or_baseline + forbidden_if + rejection, plus an extra S1 underpowered-oracle family beyond the attack library. A2 lists all six graph-cache members; A5 the full value-decoder family + positive control; A6 the full degenerate set + balanced macro-F1; A8 producer/source/prediction hashes. Gap: there is no first-class forbidden family for ACTIVE budget-faithful planner saturation (budget-limited belief-state planner / greedy info-gain planner), even though the belief-state planner was the strongest fair baseline that saturated 001A (margin 0.0) and appears as a strongest-cheap-baseline in 002B. It is present in baseline_battery_minimum but is NOT elevated to a named forbidden pattern, a positive property, or an explicit promotion-gate term. See RF-1.",
+      "status": "pass_with_required_fix"
+    },
+    "q3_positive_properties_constrain_or_slogan": {
+      "answer": "mostly real constraints, one load-bearing slogan",
+      "detail": "P001-P011 each carry a minimum_pre_run_evidence field that operationalizes them; promotion_rule pins requires_preliminary_gap_min = 0.08 and inherits band 0.03; promotion gates enumerate exhaustive_legal_query / fitted_learner / graph_cache_family_max below oracle-minus-band. These are genuine, testable constraints, not slogans. The single under-specified item is the top-level positive_grammar_summary ('oracle earns score through budget-faithful information gathering'), which is not distinguished from the budget-limited belief-state planner baseline that performs the same information gathering. Several P-properties ('expected to remain below oracle') defer numeric floors to 003A; predeclaration-before-run is required, which mitigates but does not pin all thresholds. See RF-2.",
+      "status": "pass_with_required_fix"
+    },
+    "q4_weakens_baselines_or_optimize_until_pass": {
+      "answer": "no",
+      "detail": "002C strengthens the battery (adds budget_limited_belief_state_planner, greedy_information_gain planner, and closed decoders ngram_trace_lookup / belief_table / pair_count_table / trace_only_replay). It explicitly forbids manufacturing headroom by weakening/omitting/aliasing/underpowering baselines, forbids reopening or optimizing the closed MINIMAL-ENV-SPEC-001A, requires pre-registration of the strongest false explanation and A1-A9 mapping before any run, caps batch size (6-10, not 20 random variants), and routes the only-by-weakening path to the blocked stop verdict. It does NOT license per-surface optimize-until-pass. Residual (non-blocking): no cross-batch survivorship / multiple-testing control across 003A/004A/...; the program-level garden-of-forking-paths risk is ungoverned.",
+      "status": "pass_with_non_blocking_finding"
+    },
+    "q5_blocked_no_valid_environment_design_grammar_needed": {
+      "answer": "yes, needed and correctly fail-closed; likely the live outcome; but it is the only non-operationalized verdict",
+      "detail": "The verdict is defined and consistently wired across .md + design_constraints.json (two triggers: only-path-is-weaken-baselines; no-budget-faithful-positive-property-exists) + required_positive_properties.json + next_batch_generation_brief.json. It is genuinely needed: because the proposed positive grammar is not yet separated from the belief-state planner that already saturated 001A, blocked_no_valid_environment_design_grammar is arguably the EXPECTED outcome, not a formality. Weakness: it is the only verdict in 002C with no mechanical trigger - it relies on an agent self-reporting that no non-cheating surface exists, whereas every reject_* verdict has a checkable condition. As written it can be deferred indefinitely by running another batch. See RF-3.",
+      "status": "needed_pass_with_required_fix"
+    }
+  },
+
+  "blocking_issues_against_recording_002c": [],
+  "blocking_issues_against_003a_authorization": [
+    "RF-1 active-planner gating gap",
+    "RF-2 positive-grammar / oracle-vs-planner non-separation",
+    "RF-3 blocked_no_valid_environment_design_grammar not operationalized"
+  ],
+
+  "required_fixes": [
+    {
+      "id": "RF-1",
+      "title": "Gate the active budget-faithful planner family explicitly",
+      "evidence": "001A strongest_fair_baseline_producer = budget_limited_belief_state_planner, score 1.0, oracle_minus_baseline_margin 0.0. 002B low_signal_underpowered_surface strongest_cheap_baseline_producer = budget_limited_belief_state_planner.",
+      "problem": "budget_limited_belief_state_planner and greedy_information_gain planner are in next_batch_generation_brief.baseline_battery_minimum, but are absent from (a) promotion_rule_for_003a explicit *_below_oracle_minus_band gates, (b) required_positive_properties, and (c) forbidden_surface_patterns / A-family list. A 003A surface could satisfy every enumerated promotion gate while an active planner still saturates the oracle, reproducing 001A.",
+      "fix": "Add an explicit 'planner_family_max (belief-state + greedy info-gain) below oracle-minus-band' term to promotion_rule_for_003a; add a corresponding required positive property and forbidden pattern; OR state explicitly that strongest_fair is computed as max over the FULL battery (planners included) and that the enumerated gate terms are non-exhaustive examples, not the closed gate set.",
+      "blocking_for_003a": true
+    },
+    {
+      "id": "RF-2",
+      "title": "Make the positive grammar distinguish the oracle from a fair budget-limited planner",
+      "evidence": "positive_grammar_summary: 'oracle earns signal through budget-faithful information gathering'. A budget-limited belief-state planner (a fair baseline) also performs budget-faithful information gathering and reached ceiling on 001A.",
+      "problem": "As stated the oracle's advantage is the same capability the strongest fair baseline already has. This is the lab's recurring collapse mode (candidate behaviorally equivalent to a fair baseline: cf. ACOLB == discounted weighted least-squares; Route C candidate == exhaustive_legal_query). The positive grammar is not yet credible on this axis.",
+      "fix": "State the specific structural source of oracle advantage that a fair budget-limited / greedy planner provably cannot capture under the same budget (e.g. a legal-but-non-plannable information asymmetry), with a pre-run argument; or lower the confidence of the positive grammar and treat blocked_no_valid_environment_design_grammar as the expected outcome.",
+      "blocking_for_003a": true
+    },
+    {
+      "id": "RF-3",
+      "title": "Operationalize blocked_no_valid_environment_design_grammar",
+      "evidence": "Every reject_* verdict has a checkable numeric condition; blocked_no_valid_environment_design_grammar has only a judgment-call trigger ('only path is weakening baselines' / 'no budget-faithful positive property exists').",
+      "problem": "A self-reported stop verdict is vulnerable to indefinite deferral (just run another batch) and to the self-report failure mode this lab repeatedly flags. It also leaves the cross-batch multiple-testing risk ungoverned.",
+      "fix": "Bind the stop verdict to a concrete trigger, e.g. record it when a batch all-rejects AND every rejection is a saturation/leakage/decode family (not a fixable underpowered/signal issue), and/or declare a cross-batch search budget after which continued sketch generation is itself treated as baseline-saturated search.",
+      "blocking_for_003a": true
+    }
+  ],
+
+  "non_blocking_issues": [
+    {
+      "id": "NB-1",
+      "title": "Static-detectability honesty for A3/A4/A8/A9",
+      "detail": "PHASE0-ENVIRONMENT-ATTACK-LIBRARY-001A states A3/A4/A8/A9 have no stage-1 static detector and depend on a complete micro-probe battery. 002C's forbidden_surface_patterns present all families as generator-side rules; it should note which families are only catchable at micro-probe time, to avoid implying static-killability. Mitigated because next_batch_generation_brief requires micro-probe."
+    },
+    {
+      "id": "NB-2",
+      "title": "Cross-batch survivorship / multiple-testing ungoverned",
+      "detail": "002C governs a single pre-registered batch but has no family-wise error budget or total search cap across 003A/004A/... Generating sketches batch-after-batch until one passes is program-level p-hacking. Ties to RF-3."
+    },
+    {
+      "id": "NB-3",
+      "title": "Some positive-property floors deferred, not pinned",
+      "detail": "0.08 preliminary-gap and 0.03 band are pinned; oracle floor and passive floor are referenced as 'expected below' without numeric values in 002C. 003A's card must bind them; predeclaration-before-run is required."
+    },
+    {
+      "id": "NB-4",
+      "title": "Two closed decoders not in the 003A battery",
+      "detail": "CLOSED_FAMILIES full_bundle_decoder and serialized_state_decoder are not explicitly listed in baseline_battery_minimum (most others, incl. belief_table / pair_count_table / ngram_trace_lookup / trace_only_replay, are). Minor; arguably covered by the six-member graph-cache family."
+    }
+  ],
+
+  "confirmed_strengths": [
+    "Predecessor evidence preserved verbatim and numerically exact (verified against source artifacts); framed as negative evidence; no upgrading; 001A kept as environment-not-candidate failure.",
+    "All A1-A9 enumerated, mapped, with reject conditions and required baselines; plus an extra underpowered (S1) family the attack library lacked.",
+    "Baselines strengthened, not weakened (adds active planners and closed decoders); explicit anti-weakening language; closed MINIMAL-ENV-SPEC-001A not reopened.",
+    "Pre-registration discipline (strongest false explanation + A1-A9 mapping + all positive properties before any run); 0.08 gap floor pinned; promotion only to a separate harness card; candidate / tournament / headroom-confirmation all unauthorized.",
+    "Claim ceiling correct and repeated in every artifact; no governance self-modification; all 10 cited provenance sources exist."
+  ],
+
+  "anti_hardcoding_audit": {
+    "if_else_disguised_as_mechanism": "n/a (design doc, no executable mechanism)",
+    "threshold_tuned_after_results": "no (0.08 gap and 0.03 band are declared/inherited; nothing to pass yet)",
+    "label_leakage": "n/a",
+    "renderer_behavior_as_evidence": "n/a",
+    "schema_changed_to_hide_failure": "no (failure_taxonomy preserves all closed verdicts verbatim)",
+    "self_report_risk": "present at exactly one point: blocked_no_valid_environment_design_grammar trigger is a judgment call (RF-3)"
+  },
+
+  "stop_conditions_triggered": [
+    "Audit scope explicitly forbids authorizing 003A, route tournament, full harness, or candidate implementation; none authorized.",
+    "RF-1/RF-2/RF-3 flagged as required before 002C can serve as 003A authorization basis."
+  ],
+
+  "commit_push_tag_anchor": "none authorized; Auto-Remote-Anchor forbidden; scripts/push.* hardcoded-PAT standing block remains in effect",
+  "files_changed": "none (read-only audit; only new audit artifacts created under this audit task directory)",
+
+  "what_this_does_not_prove": "This audit does not prove that any Phase-0 environment has headroom, that A1-A9 is an exhaustive failure set, that a credible positive design grammar exists, that 003A would succeed, or anything about Gate1, mechanism validity, candidate feasibility, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness. It is a bounded, read-only design-constraint audit of one recorded synthesis document.",
+  "remaining_unknowns": [
+    "Whether any surface can make a budget-limited belief-state / greedy planner provably fail while keeping a budget-faithful oracle above floor (the RF-2 credibility question) - unknown until a concrete 003A sketch is designed and micro-probed.",
+    "Whether 002C's qualitative stop trigger would actually fire before a false positive is manufactured across multiple batches (RF-3)."
+  ]
+}

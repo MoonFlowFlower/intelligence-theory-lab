@@ -1,0 +1,57 @@
+{
+  "aggregation_rule": "ordered_fail_closed_verdict_derivation",
+  "allowed_verdict": true,
+  "claim_ceiling": "candidate-free preflight evidence bundle only",
+  "consumed_by_final_verdict": true,
+  "current_layer": "engineering implementation / candidate-free Gate1 replacement preflight run",
+  "enabled_status": "no runtime/mainline path enabled",
+  "final_verdict": "rejected_baseline_saturated",
+  "generator_provenance_gate": {
+    "aggregation_rule": "fail_closed_if_generator_provenance_absent_unverifiable_self_readback_or_candidate_authored",
+    "consumed_by_final_verdict": true,
+    "errors": [],
+    "generator_source_hash": "7cbe9d369ebca261d70f5cbbd9ab3db83f7d462d20ec79b68a05dac713d44f5c",
+    "generator_source_path": "src/gate1_replacement_preflight_00xa/spec_loader.py",
+    "input_artifacts": [
+      "generator_provenance.json",
+      "source_readback.json"
+    ],
+    "producer_function": "gate1_replacement_preflight_00xa.verdict.validate_generator_provenance",
+    "source_pin_sha256": "7cbe9d369ebca261d70f5cbbd9ab3db83f7d462d20ec79b68a05dac713d44f5c",
+    "valid": true
+  },
+  "input_artifacts": [
+    "source_readback.json",
+    "generator_provenance.json",
+    "generator_provenance_gate.json",
+    "baseline_results.jsonl",
+    "partial_inferability.json",
+    "oracle_results.json",
+    "leakage_results.json",
+    "replay_results.json",
+    "ablation_results.json"
+  ],
+  "mainline_integration_status": "none",
+  "next_minimal_closed_loop_action": "send evidence bundle to Claude for hostile audit",
+  "producer_function": "gate1_replacement_preflight_00xa.verdict.derive_final_verdict",
+  "real_trigger_evidence": "source pins and frozen surface spec hash read through canonical file APIs before scoring",
+  "strongest_fair_macro_f1": 1.0,
+  "task_id": "gate1_replacement_preflight_00xa_run_001b",
+  "task_repair_verdict": "gate1_replacement_preflight_00xa_b1_generator_provenance_repaired",
+  "terminal_reason_id": "fair_baseline_ties_oracle_within_equivalence_band",
+  "visible_oracle_macro_f1": 1.0,
+  "what_this_does_not_prove": [
+    "Gate1 pass",
+    "Gate1 replacement validity after hostile audit",
+    "mechanism validity",
+    "candidate success",
+    "Gate4 or Gate5 readiness",
+    "runtime/mainline/live effect",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}

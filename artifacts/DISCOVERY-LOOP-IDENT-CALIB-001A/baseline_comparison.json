@@ -1,0 +1,57 @@
+{
+  "mechanism_under_test": "em_hmm_latent_state_predictor",
+  "baseline": "order_k_count_table_observation_only (strongest held-out k)",
+  "access_parity": "same train/held-out, scored on identical positions t>=max_order_K; only model class differs",
+  "metric": "causal one-step held-out predictive log-loss (nats/symbol), past-only",
+  "eps_nats": 0.01,
+  "per_regime": {
+    "latent_necessary": {
+      "base_logloss_mean": 0.611681,
+      "hmm_logloss_mean": 0.604758,
+      "gap_mean": 0.006924,
+      "gap_min": 0.000932,
+      "gap_max": 0.012444,
+      "separates_seeds": 1,
+      "equivalent_seeds": 9,
+      "sig_pos_seeds": 6,
+      "sig_neg_seeds": 0,
+      "best_base_order_mode": 4
+    },
+    "latent_redundant": {
+      "base_logloss_mean": 0.562433,
+      "hmm_logloss_mean": 0.563244,
+      "gap_mean": -0.000811,
+      "gap_min": -0.004653,
+      "gap_max": 0.000211,
+      "separates_seeds": 0,
+      "equivalent_seeds": 10,
+      "sig_pos_seeds": 0,
+      "sig_neg_seeds": 2,
+      "best_base_order_mode": 1
+    },
+    "positive_control": {
+      "base_logloss_mean": 0.639249,
+      "hmm_logloss_mean": 0.626791,
+      "gap_mean": 0.012458,
+      "gap_min": 0.006856,
+      "gap_max": 0.017334,
+      "separates_seeds": 8,
+      "equivalent_seeds": 2,
+      "sig_pos_seeds": 9,
+      "sig_neg_seeds": 0,
+      "best_base_order_mode": 4
+    },
+    "negative_control": {
+      "base_logloss_mean": 0.693115,
+      "hmm_logloss_mean": 0.693222,
+      "gap_mean": -0.000107,
+      "gap_min": -0.00058,
+      "gap_max": 4e-06,
+      "separates_seeds": 0,
+      "equivalent_seeds": 10,
+      "sig_pos_seeds": 0,
+      "sig_neg_seeds": 0,
+      "best_base_order_mode": 1
+    }
+  }
+}

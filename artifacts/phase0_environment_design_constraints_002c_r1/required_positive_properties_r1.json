@@ -1,0 +1,119 @@
+{
+  "schema_version": "phase0_environment_design_constraints_002c_r1_required_positive_properties_v1",
+  "task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-R1",
+  "source_task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "verdict": "design_constraints_002c_r1_recorded",
+  "required_positive_properties": [
+    {
+      "property_id": "P001_NON_COMPUTABLE_UNDER_BUDGET",
+      "name": "non-computable-under-budget target",
+      "requirement": "Target is not exactly computable from <= budget legal channels.",
+      "minimum_pre_run_evidence": "Declared dependency set includes more or different information than budget permits, with a planned static derivation check."
+    },
+    {
+      "property_id": "P002_BUDGET_FAITHFUL_ORACLE_STRATEGY",
+      "name": "oracle budget-faithfulness",
+      "requirement": "Oracle is high because of legitimate partial-observation strategy, not answer-key, hidden-state, target-alias, future-label, or unqueried access.",
+      "minimum_pre_run_evidence": "Field-access manifest, legal query trace schema, budget ledger, and separate answer-key diagnostic oracle."
+    },
+    {
+      "property_id": "P003_REMAINING_UNCERTAINTY_UNDER_EXHAUSTIVE_LEGAL_QUERY",
+      "name": "exhaustive legal-query resistance",
+      "requirement": "Exhaustive legal query within budget leaves nontrivial remaining uncertainty.",
+      "minimum_pre_run_evidence": "Expected exhaustive_legal_query score below oracle minus band and explanation of what legal budget cannot reveal."
+    },
+    {
+      "property_id": "P004_GRAPH_CACHE_RESISTANCE",
+      "name": "graph/cache heldout resistance",
+      "requirement": "Graph/cache/table baselines are structurally disadvantaged on heldout generalization, not merely absent.",
+      "minimum_pre_run_evidence": "Heldout generation rule prevents table reuse of state/signature keys while preserving fair compute baselines."
+    },
+    {
+      "property_id": "P005_FITTED_LEARNER_RESISTANCE",
+      "name": "fitted legal-channel learner resistance",
+      "requirement": "Fitted legal-channel learner and strongest classical method are included and expected to remain below oracle.",
+      "minimum_pre_run_evidence": "Declared learner family, fit evidence fields, anti-stub guard, and expected heldout limitation."
+    },
+    {
+      "property_id": "P006_PASSIVE_RESISTANCE",
+      "name": "passive value-level resistance",
+      "requirement": "Passive family expected below ceiling by value-level analysis.",
+      "minimum_pre_run_evidence": "Value-level leakage scan plan, positive control, and passive family max threshold."
+    },
+    {
+      "property_id": "P007_METRIC_ROBUSTNESS",
+      "name": "metric robustness",
+      "requirement": "Balanced metric with per-class floor; degenerate and size-only controls must remain low.",
+      "minimum_pre_run_evidence": "Balanced macro-F1, per-class precision/recall floors, and degenerate baseline family."
+    },
+    {
+      "property_id": "P008_SPLIT_RESISTS_MEMORY_AND_COMPUTE",
+      "name": "split defeats memorization and simple compute",
+      "requirement": "Train/test split defeats memorization and simple legal-channel compute on the same heldout split.",
+      "minimum_pre_run_evidence": "Split design states how context IDs, signatures, legal tuples, and target-generating rules avoid both lookup reuse and closed-form compute."
+    },
+    {
+      "property_id": "P009_SIGNAL_FLOOR",
+      "name": "sufficient visible-oracle signal",
+      "requirement": "Budget-faithful oracle has enough legitimate signal to exceed the oracle floor.",
+      "minimum_pre_run_evidence": "Expected oracle score floor and source of legitimate partial information."
+    },
+    {
+      "property_id": "P010_STRONGEST_FALSE_EXPLANATION",
+      "name": "strongest false explanation first",
+      "requirement": "Sketch states strongest false explanation before any run and maps it to A1-A10.",
+      "minimum_pre_run_evidence": "A1-A10 self-attack table, expected strongest cheap baseline, and explicit rejection condition."
+    },
+    {
+      "property_id": "P011_BASELINE_COMPLETENESS_AND_INDEPENDENCE",
+      "name": "complete independent battery",
+      "requirement": "All required rows are present, consumed, and alias-collapsed before any promotion.",
+      "minimum_pre_run_evidence": "Producer hashes, prediction hashes, input manifests, strategy signatures, baseline families, independence families, and consumed_by_final_verdict true."
+    },
+    {
+      "property_id": "P012_ORACLE_VS_ACTIVE_PLANNER_SEPARATION",
+      "name": "oracle vs active-planner structural separation",
+      "requirement": "The oracle advantage must be structurally distinct from fair budget-limited planning, or the sketch is treated as active-planner-equivalent and rejected or blocked.",
+      "minimum_pre_run_evidence": [
+        "oracle strategy description",
+        "planner family strategy description",
+        "same-budget comparison",
+        "falsification condition",
+        "expected planner_family_max below oracle-minus-band"
+      ],
+      "required_per_sketch_declaration": "oracle_vs_planner_separation_argument",
+      "declaration_must_answer": [
+        "what_information_or_computation_the_budget_faithful_oracle_can_exploit",
+        "why_a_fair_budget_limited_belief_state_planner_cannot_exploit_the_same_structure_under_the_same_budget",
+        "whether_the_oracle_is_actually_just_an_active_planner",
+        "what_micro_probe_result_would_falsify_the_claimed_separation",
+        "why_the_claimed_gap_is_not_produced_by_weakening_omitting_aliasing_or_underpowering_the_planner_baseline"
+      ],
+      "default_expected_verdict_if_no_credible_argument": "blocked_no_valid_environment_design_grammar",
+      "reject_if": "planner_family_max >= visible_oracle_score - equivalence_band",
+      "promotion_may_proceed_only_if": "planner_family_max < visible_oracle_score - equivalence_band"
+    }
+  ],
+  "positive_grammar_summary_r1": "Design surfaces where the legal budget gives real but incomplete partial observation, the budget-faithful oracle has a concrete structural advantage over fair active budget-limited planners, and complete cheap fair baselines remain present and fail for stated, falsifiable structural reasons. Do not manufacture headroom by weakening, omitting, aliasing, underpowering, or restricting planner baselines.",
+  "oracle_vs_planner_separation_argument_schema": {
+    "required": true,
+    "fields": [
+      "oracle_strategy_description",
+      "planner_family_strategy_description",
+      "same_budget_comparison",
+      "information_or_computation_oracle_exploits",
+      "why_fair_budget_limited_belief_state_planner_cannot_exploit_same_structure",
+      "active_planner_equivalence_check",
+      "falsifying_micro_probe_result",
+      "anti_underpowered_planner_baseline_guard",
+      "expected_planner_family_max_below_oracle_minus_band"
+    ],
+    "fail_closed_default": "blocked_no_valid_environment_design_grammar"
+  },
+  "stop_condition": {
+    "verdict_if_no_positive_property_beyond_weaker_baselines": "blocked_no_valid_environment_design_grammar",
+    "verdict_if_no_oracle_vs_planner_separation_argument": "blocked_no_valid_environment_design_grammar",
+    "verdict_if_oracle_is_active_planner_equivalent": "reject_active_planner_saturated"
+  },
+  "claim_ceiling": "Phase-0 environment design-constraint R1 repair only. No headroom confirmation. No Gate1 pass. No mechanism validity. No candidate feasibility. No runtime/mainline effect. No agency/autonomy/consciousness/EGO readiness."
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": "phase0_environment_design_constraints_002c_failure_taxonomy_v1",
+  "task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "verdict": "design_constraints_002c_recorded",
+  "current_layer": "engineering-governance / Phase-0 environment design-constraint synthesis",
+  "mainline_integration_status": "none",
+  "enabled_status": "no runtime/mainline/admission/bridge path enabled",
+  "no_scout_execution": true,
+  "no_full_harness_execution": true,
+  "no_candidate_implementation": true,
+  "auto_remote_anchor": "forbidden",
+  "sources_read": [
+    "docs/research/BASELINE-FIRST-HARNESS-001A-R1-ACCEPTED-NO-HEADROOM-CLOSEOUT-001A.md",
+    "artifacts/baseline_first_harness_001a/final_verdict.json",
+    "artifacts/CLAUDE-INDEPENDENT-BASELINE-FIRST-HARNESS-001A-R1-EVIDENCE-INTEGRITY-HOSTILE-AUDIT-001A/audit_result.json",
+    "docs/research/BATCH-ENV-HEADROOM-SCOUT-002A-FALSE-PROMOTION-CLOSEOUT-001A.md",
+    "artifacts/batch_env_headroom_scout_002a_false_promotion_closeout_001a/closeout_record.json",
+    "docs/research/BATCH-ENV-HEADROOM-SCOUT-002B-INDEPENDENT-STATIC-AND-COMPUTE-BASELINE-SCOUT-TASK-CARD-001A.md",
+    "artifacts/batch_env_headroom_scout_002b/final_report.md",
+    "artifacts/batch_env_headroom_scout_002b/rejected_sketches.json",
+    "artifacts/batch_env_headroom_scout_002b/micro_probe_results.json",
+    "docs/research/PHASE0-ENVIRONMENT-ATTACK-LIBRARY-001A.md"
+  ],
+  "closed_failure_families": [
+    {
+      "family_id": "F001A_LEGAL_CHANNEL_BELIEF_PLANNER_SATURATION",
+      "source": "BASELINE-FIRST-HARNESS-001A-R1",
+      "closed_verdict": "rejected_no_headroom_baseline_saturated",
+      "evidence": {
+        "visible_channel_oracle_score": 1.0,
+        "strongest_fair_baseline_score": 1.0,
+        "strongest_fair_baseline_producer": "budget_limited_belief_state_planner",
+        "oracle_minus_baseline_margin": 0.0,
+        "equivalence_band": 0.03,
+        "graph_cache_family_scores": {
+          "graph_lookup": 1.0,
+          "transition_table": 1.0,
+          "successor_map": 1.0,
+          "count_table": 1.0,
+          "fsm_planner": 1.0,
+          "episodic_traversal": 1.0
+        }
+      },
+      "failure_summary": "Frozen MINIMAL-ENV-SPEC-001A is saturated by fair legal-channel readers, belief-state planner, and graph/cache family.",
+      "design_implication": "Do not emit surfaces whose target is exactly recoverable by budget-respecting legal-channel readers, belief-state planners, or graph/cache tables."
+    },
+    {
+      "family_id": "F002A_FALSE_PROMOTION_DIRECT_DECODE",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002A",
+      "closed_verdict": "blocked_promotion_false_positive_direct_decode",
+      "affected_sketch": "relational_contrast_budget_probe",
+      "evidence": {
+        "oracle_formula": "(contrast_a + 2 * contrast_b + phase_probe) % 3",
+        "oracle_reads_legal_channels_under_budget": true,
+        "oracle_was_budget_faithful_legal_compute_baseline": true,
+        "same_compute_missing_from_fair_baseline_panel": true,
+        "promotion_gap_interpretation": "memorize-vs-compute asymmetry, not accepted environment headroom"
+      },
+      "failure_summary": "Oracle-side legal compute was not mirrored as a fair baseline, producing phantom headroom.",
+      "design_implication": "Oracle-as-baseline symmetry is mandatory for any budget-visible legal computation."
+    },
+    {
+      "family_id": "F002B_DIRECT_DECODE",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_direct_decode",
+      "affected_sketch": "direct_legal_channel_compute",
+      "evidence": {
+        "rejection_stage": "independent_static_kill_scan",
+        "derived_kill_reasons": [
+          "target_deterministic_from_le_budget_visible_channels",
+          "legal_query_can_read_all_target_components"
+        ]
+      },
+      "failure_summary": "Target was deterministic from legal visible channels within budget.",
+      "design_implication": "003A sketches must predeclare why target dependency cannot be exactly read or computed under budget."
+    },
+    {
+      "family_id": "F002B_ANSWER_KEY_ORACLE",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_oracle_not_budget_faithful",
+      "affected_sketch": "answer_key_oracle_surface",
+      "evidence": {
+        "rejection_stage": "independent_static_kill_scan",
+        "derived_kill_reasons": [
+          "oracle_needs_hidden_state_answer_key_or_future_labels"
+        ]
+      },
+      "failure_summary": "Oracle depended on forbidden answer-key style access.",
+      "design_implication": "003A oracle definitions must include budget-faithful field-access manifests and answer-key diagnostic separation."
+    },
+    {
+      "family_id": "F002B_METRIC_DEGENERACY",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_metric_degenerate",
+      "affected_sketch": "metric_degenerate_predict_all_surface",
+      "evidence": {
+        "rejection_stage": "independent_static_kill_scan",
+        "derived_kill_reasons": [
+          "metric_degenerate"
+        ]
+      },
+      "failure_summary": "Metric could be saturated by degenerate predictors.",
+      "design_implication": "003A must use balanced macro-F1 plus per-class precision/recall floors and degenerate predictor controls."
+    },
+    {
+      "family_id": "F002B_GRAPH_CACHE_SATURATION",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_graph_cache_saturated",
+      "affected_sketch": "graph_cache_transition_surface",
+      "evidence": {
+        "visible_oracle_score": 1.0,
+        "graph_cache_family_max_score": 1.0,
+        "exhaustive_legal_query_score": 1.0,
+        "fitted_legal_channel_learner_score": 1.0,
+        "verdict_reason": "full graph-cache family reached visible-oracle equivalence band"
+      },
+      "failure_summary": "Full graph/cache family reached oracle band.",
+      "design_implication": "003A surfaces must make graph/cache/table baselines structurally fail on heldout generalization, not merely omit them."
+    },
+    {
+      "family_id": "F002B_LOOKUP_VS_COMPUTE_ARTIFACT",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_no_headroom_likely",
+      "affected_sketch": "lookup_split_compute_artifact",
+      "evidence": {
+        "visible_oracle_score": 1.0,
+        "lookup_memorization_defeated": true,
+        "exhaustive_legal_query_score": 1.0,
+        "fitted_legal_channel_learner_score": 1.0,
+        "graph_cache_family_max_score": 0.16666666666666666,
+        "verdict_reason": "legal-channel compute baseline reached visible-oracle equivalence band"
+      },
+      "failure_summary": "Disjoint split defeated memory but not legal-channel compute.",
+      "design_implication": "003A split design must defeat memorization and simple compute on the same heldout split."
+    },
+    {
+      "family_id": "F002B_UNDERPOWERED_SURFACE",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_underpowered_surface",
+      "affected_sketch": "low_signal_underpowered_surface",
+      "evidence": {
+        "visible_oracle_score": 0.3333333333333333,
+        "strongest_cheap_baseline_score": 0.3333333333333333,
+        "fitted_legal_channel_learner_score": 0.0,
+        "verdict_reason": "visible oracle too weak or preliminary gap below promotion threshold"
+      },
+      "failure_summary": "Budget-faithful oracle did not clear the useful signal floor.",
+      "design_implication": "003A surfaces need legitimate oracle signal before they can test baseline headroom."
+    },
+    {
+      "family_id": "F002B_PASSIVE_VALUE_LEAK",
+      "source": "BATCH-ENV-HEADROOM-SCOUT-002B-RUN-001A",
+      "closed_verdict": "reject_passive_decodable",
+      "affected_sketch": "passive_value_leak_surface",
+      "evidence": {
+        "visible_oracle_score": 0.375,
+        "passive_family_max_score": 1.0,
+        "strongest_cheap_baseline_producer": "observation_only",
+        "verdict_reason": "passive value-decoder family reached rejection floor"
+      },
+      "failure_summary": "Passive visible values encoded the target.",
+      "design_implication": "003A must include value-level passive leakage analysis before any run."
+    }
+  ],
+  "claim_ceiling": "Phase-0 environment design-constraint synthesis only. No headroom confirmation. No Gate1 pass. No mechanism validity. No candidate feasibility. No runtime/mainline effect. No agency/autonomy/consciousness/EGO readiness."
+}

@@ -1,0 +1,19 @@
+{
+  "positive_control": {
+    "purpose": "sensitivity: loop MUST separate a guaranteed-identifiable world",
+    "world_verdict": "separates",
+    "separates_seeds": 8,
+    "passed": true
+  },
+  "negative_control": {
+    "purpose": "specificity: loop MUST NOT separate a no-structure (i.i.d.) world",
+    "world_verdict": "equivalent",
+    "separates_seeds": 0,
+    "passed": true
+  },
+  "substantive": {
+    "latent_necessary_verdict": "equivalent",
+    "latent_redundant_verdict": "equivalent"
+  },
+  "leakage_probe_note": "tests exercise hmm_losses(leak=True): oracle leak MUST flip negative_control to separates -> check_invalid_false_separation"
+}

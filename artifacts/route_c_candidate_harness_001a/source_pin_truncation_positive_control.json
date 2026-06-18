@@ -1,0 +1,129 @@
+{
+  "authoritative_sha256": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+  "authoritative_size": 81765,
+  "control_id": "source_pin_truncation_positive_control",
+  "derived_verdict": {
+    "stop_conditions_triggered": [
+      "source_pin_readback_conflict"
+    ],
+    "terminal_reason": "source_pin_readback_conflict",
+    "verdict": "invalid"
+  },
+  "prefix_truncation_detected": true,
+  "producer_function": "build_source_pin_truncation_positive_control",
+  "provenance": {
+    "aggregation": "truncated_prefix_positive_control_through_source_pin_gate",
+    "code_path_hash": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+    "context_id": "source_pin_truncation_positive_control",
+    "episode_id": "source_pin_truncation_positive_control",
+    "inputs": {
+      "access_parity_report": "artifacts/route_c_candidate_harness_001a/access_parity_report.json",
+      "baseline_comparison": "artifacts/route_c_candidate_harness_001a/baseline_comparison.json",
+      "source_path": "src/route_c_candidate_harness_001a/runner.py",
+      "truncated_prefix_artifact": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control_prefix.bin"
+    },
+    "output_artifact": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control.json",
+    "producer_function": "build_source_pin_truncation_positive_control",
+    "recompute_command": "$env:PYTHONPATH='src'; python -m route_c_candidate_harness_001a --output-dir D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/route_c_candidate_harness_001a --run-id route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+    "role": "control",
+    "run_id": "route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+    "seed": "control",
+    "source_path": "artifacts/route_c_candidate_harness_001a/source_artifact.json",
+    "source_pinned_input_artifact_hash": "276d3cb262f172e9d83e6d96c98c5b831a04f041f7ac92b190f89067e8f9b3c0"
+  },
+  "readback_report": {
+    "authoritative_reader": "pathlib_direct_binary_read",
+    "comparison_reader": "positive_control_truncated_prefix_reader",
+    "critical_source_pins": [
+      {
+        "authoritative_read_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\route_c_candidate_harness_001a\\runner.py",
+        "authoritative_reader": "pathlib_direct_binary_read",
+        "comparison_error": null,
+        "comparison_read_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\route_c_candidate_harness_001a\\source_pin_truncation_positive_control_prefix.bin",
+        "comparison_read_source": "shell_or_subprocess_reader",
+        "comparison_reader": "positive_control_truncated_prefix_reader",
+        "comparison_sha256": "5384bfdb2df380b6557cc7a71d16891415bccaa87699406e236f752c6415389f",
+        "comparison_signal_available": true,
+        "conflict_status": "bounded_prefix_truncation_detected",
+        "expected_sha256": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+        "expected_size": 81765,
+        "file_size": 81765,
+        "line_count": 2017,
+        "observed_size": 35,
+        "output_artifact": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control.json",
+        "path": "src/route_c_candidate_harness_001a/runner.py",
+        "prefix_comparison": {
+          "authoritative_is_prefix_of_expected": false,
+          "expected_matches_authoritative": true
+        },
+        "prefix_truncation_detected": true,
+        "producer_function": "build_source_pin_readback_report",
+        "recompute_command": "$env:PYTHONPATH='src'; python -m route_c_candidate_harness_001a --output-dir D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/route_c_candidate_harness_001a --run-id route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+        "role": "source_pin_truncation_positive_control",
+        "sha256": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+        "shell_mount_read_compared": true,
+        "shell_mount_read_comparison_note": "shell/mount bytes compared",
+        "shell_read": {
+          "available": true,
+          "is_prefix_of_authoritative": true,
+          "observed_size": 35,
+          "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\route_c_candidate_harness_001a\\source_pin_truncation_positive_control_prefix.bin",
+          "prefix_truncation_detected": true,
+          "sha256": "5384bfdb2df380b6557cc7a71d16891415bccaa87699406e236f752c6415389f"
+        },
+        "stale_cache_check": "double_read_hash_match"
+      }
+    ],
+    "output_artifact": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control.json",
+    "producer_function": "build_source_pin_readback_report",
+    "unresolved_readback_conflicts": [
+      {
+        "authoritative_read_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\route_c_candidate_harness_001a\\runner.py",
+        "authoritative_reader": "pathlib_direct_binary_read",
+        "comparison_error": null,
+        "comparison_read_path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\route_c_candidate_harness_001a\\source_pin_truncation_positive_control_prefix.bin",
+        "comparison_read_source": "shell_or_subprocess_reader",
+        "comparison_reader": "positive_control_truncated_prefix_reader",
+        "comparison_sha256": "5384bfdb2df380b6557cc7a71d16891415bccaa87699406e236f752c6415389f",
+        "comparison_signal_available": true,
+        "conflict_status": "bounded_prefix_truncation_detected",
+        "expected_sha256": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+        "expected_size": 81765,
+        "file_size": 81765,
+        "line_count": 2017,
+        "observed_size": 35,
+        "output_artifact": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control.json",
+        "path": "src/route_c_candidate_harness_001a/runner.py",
+        "prefix_comparison": {
+          "authoritative_is_prefix_of_expected": false,
+          "expected_matches_authoritative": true
+        },
+        "prefix_truncation_detected": true,
+        "producer_function": "build_source_pin_readback_report",
+        "recompute_command": "$env:PYTHONPATH='src'; python -m route_c_candidate_harness_001a --output-dir D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/route_c_candidate_harness_001a --run-id route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+        "role": "source_pin_truncation_positive_control",
+        "sha256": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+        "shell_mount_read_compared": true,
+        "shell_mount_read_comparison_note": "shell/mount bytes compared",
+        "shell_read": {
+          "available": true,
+          "is_prefix_of_authoritative": true,
+          "observed_size": 35,
+          "path": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\route_c_candidate_harness_001a\\source_pin_truncation_positive_control_prefix.bin",
+          "prefix_truncation_detected": true,
+          "sha256": "5384bfdb2df380b6557cc7a71d16891415bccaa87699406e236f752c6415389f"
+        },
+        "stale_cache_check": "double_read_hash_match"
+      }
+    ],
+    "verdict": "source_pin_readback_conflict_fail_closed"
+  },
+  "run_id": "route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+  "same_source_pin_gate_callable_used": true,
+  "same_source_pin_report_callable_used": true,
+  "source_path": "src/route_c_candidate_harness_001a/runner.py",
+  "source_pin_gate_fail_closed": true,
+  "truncated_prefix_artifact": "artifacts/route_c_candidate_harness_001a/source_pin_truncation_positive_control_prefix.bin",
+  "truncated_prefix_sha256": "5384bfdb2df380b6557cc7a71d16891415bccaa87699406e236f752c6415389f",
+  "truncated_prefix_size": 35
+}

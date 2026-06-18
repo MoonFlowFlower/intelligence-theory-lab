@@ -1,0 +1,57 @@
+{
+  "aggregation_rule": "clean_scan_plus_fail_able_positive_control",
+  "clean_scan": {
+    "aggregation_rule": "recursive_forbidden_token_scan_over_visible_admission_path",
+    "code_path_hash": "35b4fec0499068f6af899daee029607cf4f334bb6d18a52b7ad5b347a50b4606",
+    "detected": [],
+    "input_artifacts": [
+      "visible_candidate_free_bundle"
+    ],
+    "producer_function": "gate1_replacement_preflight_00xa.leakage.scan_visible_admission_path"
+  },
+  "code_path_hash": "54e8ddd47533bbf14a24b001d57e366f8530790191f186cf2be4240aead4e70c",
+  "consumed_by_final_verdict": true,
+  "input_artifacts": [
+    "candidate_free_surface_bundle"
+  ],
+  "positive_control": {
+    "consumed_by_final_verdict": true,
+    "control_id": "leakage_positive_control_visible_answer_key_label",
+    "detected": true,
+    "detected_id": "leak_key:$/episodes[0]/visible_state/observable_features/answer_key_label",
+    "injected_scan": {
+      "aggregation_rule": "recursive_forbidden_token_scan_over_visible_admission_path",
+      "code_path_hash": "35b4fec0499068f6af899daee029607cf4f334bb6d18a52b7ad5b347a50b4606",
+      "detected": [
+        {
+          "detection_id": "leak_key:$/episodes[0]/visible_state/observable_features/answer_key_label",
+          "path": "$/episodes[0]/visible_state/observable_features/answer_key_label",
+          "token": "answer_key"
+        },
+        {
+          "detection_id": "leak_value:$/episodes[0]/visible_state/observable_features/answer_key_label",
+          "path": "$/episodes[0]/visible_state/observable_features/answer_key_label",
+          "token": "admissible_for_candidate_card_drafting_only"
+        }
+      ],
+      "input_artifacts": [
+        "visible_candidate_free_bundle"
+      ],
+      "producer_function": "gate1_replacement_preflight_00xa.leakage.scan_visible_admission_path"
+    },
+    "removal_removes_detection": true,
+    "removed_scan": {
+      "aggregation_rule": "recursive_forbidden_token_scan_over_visible_admission_path",
+      "code_path_hash": "35b4fec0499068f6af899daee029607cf4f334bb6d18a52b7ad5b347a50b4606",
+      "detected": [],
+      "input_artifacts": [
+        "visible_candidate_free_bundle"
+      ],
+      "producer_function": "gate1_replacement_preflight_00xa.leakage.scan_visible_admission_path"
+    },
+    "same_admission_path": true
+  },
+  "producer_function": "gate1_replacement_preflight_00xa.leakage.run_leakage_controls",
+  "run_id": "gate1_replacement_preflight_00xa_run_001b",
+  "schema_version": "gate1_replacement_preflight_00xa_leakage_v1"
+}

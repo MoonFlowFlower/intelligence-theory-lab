@@ -1,0 +1,412 @@
+{
+  "candidate_advantage": {
+    "ci_95": [
+      0.0,
+      0.0
+    ],
+    "clears_frozen_margin_and_noise_floor": false,
+    "mean_delta_vs_strongest_fair": 0.0,
+    "per_seed_deltas_vs_strongest_fair": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "candidate_per_seed_scores": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "candidate_score": 1.0,
+  "fair_interventional_baselines": [
+    {
+      "baseline_id": "random",
+      "callable_invoked": true,
+      "family": "fair_interventional",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.random",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "greedy_info_gain",
+      "callable_invoked": true,
+      "family": "fair_interventional",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.greedy_info_gain",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "exhaustive_legal_query",
+      "callable_invoked": true,
+      "family": "fair_interventional",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.exhaustive_legal_query",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "bayesian_likelihood",
+      "callable_invoked": true,
+      "family": "fair_interventional",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.bayesian_likelihood",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "lookup_imitation",
+      "callable_invoked": true,
+      "family": "fair_interventional",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.lookup_imitation",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "direct_objective_optimizer",
+      "callable_invoked": true,
+      "family": "fair_interventional",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.direct_objective_optimizer",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "graph_lookup",
+      "callable_invoked": true,
+      "family": "graph_cache",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.graph_lookup",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "transition_table",
+      "callable_invoked": true,
+      "family": "graph_cache",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.transition_table",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "successor_map",
+      "callable_invoked": true,
+      "family": "graph_cache",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.successor_map",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "count_table",
+      "callable_invoked": true,
+      "family": "graph_cache",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.count_table",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "fsm_planner",
+      "callable_invoked": true,
+      "family": "graph_cache",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.fsm_planner",
+      "score": 1.0,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "episodic_traversal",
+      "callable_invoked": true,
+      "family": "graph_cache",
+      "per_seed_scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "producer_function": "fair_interventional_baseline.episodic_traversal",
+      "score": 1.0,
+      "seed_count": 5
+    }
+  ],
+  "fair_interventional_family_max": {
+    "baseline_id": "exhaustive_legal_query",
+    "callable_invoked": true,
+    "family": "fair_interventional",
+    "per_seed_scores": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "producer_function": "fair_interventional_baseline.exhaustive_legal_query",
+    "score": 1.0,
+    "seed_count": 5
+  },
+  "graph_cache_challengers": [
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal"
+  ],
+  "margin_decision": {
+    "advantage": 0.0,
+    "baseline_score": 1.0,
+    "candidate_score": 1.0,
+    "ci_low": 0.0,
+    "clears_frozen_margin_and_noise_floor": false,
+    "margin_threshold": 0.05,
+    "noise_floor": 0.0,
+    "producer_function": "margin_gate",
+    "verdict": "close_or_downgrade"
+  },
+  "noise_floor_estimate": {
+    "frozen_margin_exceeds_noise_floor": true,
+    "method": "population_stddev_of_per_seed_candidate_minus_strongest_fair_delta",
+    "value": 0.0
+  },
+  "obs_only_family_max": {
+    "baseline_id": "positional_first_k",
+    "callable_invoked": true,
+    "family": "passive",
+    "per_seed_scores": [
+      0.5,
+      0.5,
+      0.5,
+      0.0,
+      0.5
+    ],
+    "producer_function": "passive_baseline.positional_first_k",
+    "score": 0.4,
+    "seed_count": 5
+  },
+  "passive_baselines": [
+    {
+      "baseline_id": "positional_first_k",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.5,
+        0.5,
+        0.5,
+        0.0,
+        0.5
+      ],
+      "producer_function": "passive_baseline.positional_first_k",
+      "score": 0.4,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "mean",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "producer_function": "passive_baseline.mean",
+      "score": 0.2,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "variance",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.0
+      ],
+      "producer_function": "passive_baseline.variance",
+      "score": 0.16,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "correlation",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.5
+      ],
+      "producer_function": "passive_baseline.correlation",
+      "score": 0.26,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "pca_subspace",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "producer_function": "passive_baseline.pca_subspace",
+      "score": 0.2,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "cross_episode",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.0
+      ],
+      "producer_function": "passive_baseline.cross_episode",
+      "score": 0.16,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "supervised",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.0,
+        0.2,
+        0.2,
+        0.5,
+        0.2
+      ],
+      "producer_function": "passive_baseline.supervised",
+      "score": 0.22000000000000003,
+      "seed_count": 5
+    },
+    {
+      "baseline_id": "legal_field_membership",
+      "callable_invoked": true,
+      "family": "passive",
+      "per_seed_scores": [
+        0.2,
+        0.2,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "producer_function": "passive_baseline.legal_field_membership",
+      "score": 0.27999999999999997,
+      "seed_count": 5
+    }
+  ],
+  "predeclaration": {
+    "aggregation_method": "mean_over_predeclared_seeds",
+    "candidate_vs_baseline_margin_threshold": 0.05,
+    "ci_method": "normal_approximation_95_percent_interval_over_predeclared_seed_deltas",
+    "close_or_downgrade_rule": "return close_or_downgrade if candidate advantage is within noise floor, does not exceed frozen margin, or overlaps strongest fair baseline",
+    "minimum_seed_count": 5,
+    "noise_floor_method": "population_stddev_of_per_seed_candidate_minus_strongest_fair_delta",
+    "predeclaration_hash": "1ff37742b3a872603ac370d27f2c36d1212f0377fb1b586c6dfb929062237a01",
+    "saturation_equivalence_band": 0.02,
+    "seed_set": [
+      101,
+      203,
+      307,
+      409,
+      503
+    ],
+    "source_artifact_sha256": "276d3cb262f172e9d83e6d96c98c5b831a04f041f7ac92b190f89067e8f9b3c0"
+  },
+  "producer_function": "build_baseline_comparison",
+  "saturation_decision": {
+    "access_parity_consumed": true,
+    "candidate_score": 1.0,
+    "delta": 0.0,
+    "equivalence_band": 0.02,
+    "producer_function": "saturation_gate",
+    "saturated": true,
+    "strongest_fair_score": 1.0,
+    "verdict": "close_or_downgrade"
+  }
+}

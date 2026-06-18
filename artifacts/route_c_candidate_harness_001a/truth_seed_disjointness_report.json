@@ -1,0 +1,95 @@
+{
+  "candidate_visible_truth_seed": false,
+  "producer_function": "build_truth_seed_disjointness_report",
+  "provenance": {
+    "aggregation": "pairwise_disjoint_set_check",
+    "code_path_hash": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+    "context_id": "all",
+    "episode_id": "all",
+    "inputs": {
+      "baseline_observation_seeds": [
+        "baseline-observation-101",
+        "baseline-observation-203",
+        "baseline-observation-307",
+        "baseline-observation-409",
+        "baseline-observation-503"
+      ],
+      "candidate_observation_seeds": [
+        "candidate-observation-101",
+        "candidate-observation-203",
+        "candidate-observation-307",
+        "candidate-observation-409",
+        "candidate-observation-503"
+      ],
+      "intervention_policy_seeds": [
+        "intervention-policy-101",
+        "intervention-policy-203",
+        "intervention-policy-307",
+        "intervention-policy-409",
+        "intervention-policy-503"
+      ],
+      "truth_self_set_seeds": [
+        "truth-101",
+        "truth-203",
+        "truth-307",
+        "truth-409",
+        "truth-503"
+      ],
+      "visible_replay_counterfactual_seeds": [
+        "replay-counterfactual-101",
+        "replay-counterfactual-203",
+        "replay-counterfactual-307",
+        "replay-counterfactual-409",
+        "replay-counterfactual-503"
+      ]
+    },
+    "output_artifact": "artifacts/route_c_candidate_harness_001a/truth_seed_disjointness_report.json",
+    "producer_function": "build_truth_seed_disjointness_report",
+    "recompute_command": "$env:PYTHONPATH='src'; python -m route_c_candidate_harness_001a --output-dir D:/Project/AIProject/MyProject/intelligence-theory-lab/artifacts/route_c_candidate_harness_001a --run-id route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+    "role": "gate",
+    "run_id": "route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+    "seed": "all",
+    "source_path": "artifacts/route_c_candidate_harness_001a/source_artifact.json",
+    "source_pinned_input_artifact_hash": "276d3cb262f172e9d83e6d96c98c5b831a04f041f7ac92b190f89067e8f9b3c0"
+  },
+  "run_id": "route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a",
+  "seed_groups": {
+    "baseline_observation_seeds": [
+      "baseline-observation-101",
+      "baseline-observation-203",
+      "baseline-observation-307",
+      "baseline-observation-409",
+      "baseline-observation-503"
+    ],
+    "candidate_observation_seeds": [
+      "candidate-observation-101",
+      "candidate-observation-203",
+      "candidate-observation-307",
+      "candidate-observation-409",
+      "candidate-observation-503"
+    ],
+    "intervention_policy_seeds": [
+      "intervention-policy-101",
+      "intervention-policy-203",
+      "intervention-policy-307",
+      "intervention-policy-409",
+      "intervention-policy-503"
+    ],
+    "truth_self_set_seeds": [
+      "truth-101",
+      "truth-203",
+      "truth-307",
+      "truth-409",
+      "truth-503"
+    ],
+    "visible_replay_counterfactual_seeds": [
+      "replay-counterfactual-101",
+      "replay-counterfactual-203",
+      "replay-counterfactual-307",
+      "replay-counterfactual-409",
+      "replay-counterfactual-503"
+    ]
+  },
+  "sets_are_pairwise_disjoint": true,
+  "verdict": "truth_seed_disjointness_passed"
+}

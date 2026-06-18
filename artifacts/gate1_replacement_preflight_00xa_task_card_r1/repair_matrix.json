@@ -1,0 +1,66 @@
+{
+  "artifact_id": "gate1_replacement_preflight_00xa_task_card_r1_repair_matrix",
+  "generated_at_local": "2026-06-17T07:57:05.1490016-05:00",
+  "current_layer": "engineering-governance / task-card repair matrix",
+  "source_draft_path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/draft_next_task_card.md",
+  "r1_card_path": "artifacts/gate1_replacement_preflight_00xa_task_card_r1/draft_next_task_card_r1.md",
+  "entries": {
+    "R1.a_metric_precision_recall_or_cost_balance": {
+      "status": "repaired",
+      "where_in_r1_card": "Metric Shape And Degeneracy Controls / Balanced Metric Requirement; Acceptance Gate; Stop Condition",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Requires precision+recall, stated F-beta, cost-weighted utility, or another balanced metric; forbids recall-only, precision-only, coverage-only, specificity-only, abstention-only, and size-only metrics; maps violation to rejected_metric_degenerate."
+    },
+    "R1.a_predict_all_predict_none_constant_k_controls": {
+      "status": "repaired",
+      "where_in_r1_card": "Full Baseline Panel; Metric Shape And Degeneracy Controls / Degenerate Predictor Controls; Acceptance Gate",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Requires predict_all, predict_none, constant_k_sweep, random, and majority as callable baseline rows with producer/provenance and consumed_by_final_verdict=true."
+    },
+    "R1.a_size_only_sweep": {
+      "status": "repaired",
+      "where_in_r1_card": "Metric Shape And Degeneracy Controls / Size-Only Sweep; Acceptance Gate; Stop Condition",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Requires 0..N size-only sweep with content policy fixed or matched; rejects if size alone reaches ceiling band."
+    },
+    "R1.a_metric_controls_consumed_by_final_verdict": {
+      "status": "repaired",
+      "where_in_r1_card": "Metric Shape And Degeneracy Controls / Control Consumption; Computed-Evidence Provenance Gate; Acceptance Gate",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "States computed but unconsumed metric-degeneracy controls invalidate the bundle and cannot support an admissibility verdict."
+    },
+    "R1.b_partial_inferability_demonstration": {
+      "status": "folded_in",
+      "where_in_r1_card": "Positive Admission Basis / Partial-Inferability Demonstration; Acceptance Gate; Stop Condition",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Requires passive non-triviality, non-independence from fair channels, residual uncertainty, and fair legal channel reducibility with passive-only, decodability, marginal, and null-oracle controls."
+    },
+    "R1.b_budget_faithful_visible_channel_oracle": {
+      "status": "folded_in",
+      "where_in_r1_card": "Positive Admission Basis / Budget-Faithful Visible-Channel Oracle; Acceptance Gate; Stop Condition",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Requires any admissive oracle to be budget-faithful, visible-channel only, legal-access only, not answer-key based, and to clear strongest fair baseline by the equivalence band."
+    },
+    "R1.c_surface_spec_independent_frozen_authority": {
+      "status": "folded_in",
+      "where_in_r1_card": "Surface Specification Authorship And Immutability; Observable State; Acceptance Gate",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Requires surface spec to exist before implementation and be authored/frozen by separate authority or accepted pre-existing artifact, with path, sha256, source, freeze timestamp or decision-log pointer, and canonical readback channel."
+    },
+    "R1.c_block_missing_or_implementer_authored_spec": {
+      "status": "folded_in",
+      "where_in_r1_card": "Surface Specification Authorship And Immutability; Stop Condition; Allowed verdicts",
+      "required_language_present": true,
+      "blocking_verdict_present": true,
+      "notes": "Maps missing independent spec to blocked_missing_candidate_free_surface_spec and implementer-authored or mutated spec to blocked_candidate_authored_or_mutated_surface_spec."
+    }
+  },
+  "claim_ceiling": "repair matrix for Gate1 replacement preflight task-card repair only"
+}

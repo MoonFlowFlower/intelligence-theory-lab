@@ -1,0 +1,155 @@
+{
+  "task_id": "AIDSP-001A-R1",
+  "run_id": "20260618T002141Z_6b8a6b61",
+  "preregistration": {
+    "task_id": "AIDSP-001A-R1",
+    "schema_version": "aidsp-001a-r1.evidence.v1",
+    "research_layer": "engineering_implementation+mechanism_hypothesis",
+    "card_defect_notes": [
+      "delta/grid/noise/budget/seeds/band NOT numerically present in card text despite card claiming delta is 'fixed in this card'; frozen here blind to candidate results.",
+      "card M1 formula says per-step cost (telescopes, contradicts its own rationale); cumulative-cost interpretation adopted to realize stated intent ('brute sweep -> low M1')."
+    ],
+    "environment": {
+      "ring_size": 12,
+      "dark_room_cell": 4,
+      "noisy_tv_cell": 8,
+      "agent_start_cell": 0,
+      "step_budget": 24,
+      "n_cue_outcomes": 2,
+      "cue_semantics": "directional bearing {cw,ccw} only; never a food label",
+      "eps_clear": 0.1,
+      "eps_foggy": 0.4,
+      "terrain_rule": "even cell -> clear, odd cell -> foggy (frozen map)",
+      "dark_room_cue": "constant (predictable, no info)",
+      "noisy_tv_cue": "uniform random (max entropy, no info about food)",
+      "p_at_food_detect": 0.95,
+      "p_at_food_falsepos": 0.02,
+      "energy_levels": 5,
+      "energy_setpoint": 4,
+      "energy_decay_per_step": 1,
+      "energy_on_eat": 4,
+      "food_spawn": "uniform over normal cells (excludes dark-room & noisy-TV), relocated each episode"
+    },
+    "seeds": {
+      "n_episodes": 60,
+      "seed_family_A": [
+        0,
+        59
+      ],
+      "seed_family_B": [
+        1000,
+        1059
+      ],
+      "families_disjoint": true,
+      "train_seeds": [
+        5000,
+        5399
+      ]
+    },
+    "metrics": {
+      "M1": "sum_t [H(p_{t-1})-H(p_t)]/cost_t ; cost_t=cumulative action cost; H from INDEPENDENT Bayes-filter estimator over food location",
+      "M2": "mean TVD(pi_present, pi_ablated) over steps+episodes (cue intervention)",
+      "per_action_cost": 1.0
+    },
+    "band_rule": {
+      "binding": "band = max(trivial_M1) * (1 + DELTA_REL)",
+      "delta_rel": 0.1,
+      "delta_abs_floor": 1e-06,
+      "note": "DERIVED from triviality probe; not tuned after results."
+    },
+    "thresholds": {
+      "tau_m2_floor": 0.05,
+      "tau_m2_use": 0.2,
+      "challenger_dwell_tol": 0.0,
+      "leak_mi_frac": 0.9
+    },
+    "probe_fail_conditions": {
+      "PF1_m2_validity": "any cue-ignoring trivial strategy M2 > tau_m2_floor",
+      "PF2_m1_headroom": "oracle_M1 < band",
+      "PF3_m2_detectability": "oracle_M2 < tau_m2_use"
+    },
+    "efe": {
+      "gamma": 16.0,
+      "policy_len": 1,
+      "engine": "pymdp.legacy"
+    },
+    "claim_ceiling": "A pass = the EFE epistemic-value term produced information-seeking behavior (higher unit-cost posterior-entropy reduction M1 and interventional cue-usage M2) NOT reproduced by random / behavior-tree / homeostatic-RL / count-based / observation-only / exhaustive-sweep / systematic-coverage, in ONE toy POMDP, with the advantage causally removed by the epistemic-ablation, fully replayable. NOTHING MORE. Does NOT evidence agency, autonomy, wanting-as-felt, emotion, self, companion-readiness, that active inference is 'correct', or that the drive scales/transfers. A negative is bounded-negative for this world only.",
+    "what_this_does_not_prove": [
+      "Not agency.",
+      "Not feeling.",
+      "Not real emotion.",
+      "Not self.",
+      "Not autonomy.",
+      "Not companion-readiness.",
+      "Not that active inference is the 'correct' theory.",
+      "Not that the drive generalizes beyond this one toy world.",
+      "Not subjective experience of any kind."
+    ]
+  },
+  "prereg_sha256": "c594f4aeadd72f77bb217c62fc78b5f30440972a92d13b669fb7bc5dba4d02a7",
+  "code_path_hash": "6b8a6b61746dd02eacc6a34ab46a2823e6e50b9c072148259b78723d80ad42a0",
+  "secret_scan": {
+    "run_path": "/tmp/itl/src/aidsp_001a_r1",
+    "run_path_secret_findings": {},
+    "run_path_clean": true,
+    "extra_paths_scanned": {}
+  },
+  "verdict": "baseline_equivalence_or_no_separation",
+  "verdict_detail": {
+    "verdict": "baseline_equivalence_or_no_separation",
+    "family_A_admit_check": {
+      "threshold_M1": 1.5196703441067798,
+      "candidate_M1": 1.6922399823601852,
+      "m1_beats_all_fair_by_band": true,
+      "m2_pass": true,
+      "challenger_pass": true,
+      "ref_dwell_dark": 0.0638888888888889,
+      "ref_dwell_tv": 0.03958333333333333,
+      "cand_dwell_dark": 0.0020833333333333333,
+      "cand_dwell_tv": 0.005555555555555555,
+      "epistemic_ablation_removes_advantage": false
+    },
+    "family_B_admit_check": {
+      "threshold_M1": 1.4052315219314369,
+      "candidate_M1": 1.392196413485588,
+      "m1_beats_all_fair_by_band": false,
+      "m2_pass": true,
+      "challenger_pass": true,
+      "ref_dwell_dark": 0.03888888888888888,
+      "ref_dwell_tv": 0.03611111111111111,
+      "cand_dwell_dark": 0.005555555555555555,
+      "cand_dwell_tv": 0.006944444444444445,
+      "epistemic_ablation_removes_advantage": true
+    },
+    "multi_seed_consistent": false
+  },
+  "triviality_probe_gate": {
+    "metric_degenerate": false,
+    "band": 1.294711975409034,
+    "oracle_M1": 1.712053502019437,
+    "max_trivial_M1": 1.1770108867354854,
+    "oracle_M2": 0.31250000000000006
+  },
+  "stop_conditions_triggered": [],
+  "claim_ceiling": "A pass = the EFE epistemic-value term produced information-seeking behavior (higher unit-cost posterior-entropy reduction M1 and interventional cue-usage M2) NOT reproduced by random / behavior-tree / homeostatic-RL / count-based / observation-only / exhaustive-sweep / systematic-coverage, in ONE toy POMDP, with the advantage causally removed by the epistemic-ablation, fully replayable. NOTHING MORE. Does NOT evidence agency, autonomy, wanting-as-felt, emotion, self, companion-readiness, that active inference is 'correct', or that the drive scales/transfers. A negative is bounded-negative for this world only.",
+  "what_this_does_not_prove": [
+    "Not agency.",
+    "Not feeling.",
+    "Not real emotion.",
+    "Not self.",
+    "Not autonomy.",
+    "Not companion-readiness.",
+    "Not that active inference is the 'correct' theory.",
+    "Not that the drive generalizes beyond this one toy world.",
+    "Not subjective experience of any kind."
+  ],
+  "artifacts": [
+    "result.json",
+    "trace.jsonl",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "triviality_probe_report.json",
+    "positive_control_report.json",
+    "replay_report.json"
+  ]
+}

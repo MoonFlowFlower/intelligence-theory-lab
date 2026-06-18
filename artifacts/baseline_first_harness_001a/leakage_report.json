@@ -1,0 +1,28 @@
+{
+  "clean_scan": {
+    "detected": []
+  },
+  "code_path_hash": "2795f5dff7e5b68c680a86ed4164e6b8be4b833eab23cb8f375f1f3d8a422ba1",
+  "consumed_by_final_verdict": true,
+  "positive_control": {
+    "consumed_by_final_verdict": true,
+    "control_id": "leaky_oracle_reads_hidden_state_target_answer_key",
+    "detected": true,
+    "detected_ids": [
+      "forbidden_value:$/oracle_consumed_fields[11]",
+      "forbidden_value:$/oracle_consumed_fields[12]",
+      "forbidden_value:$/oracle_consumed_fields[12]",
+      "forbidden_value:$/oracle_consumed_fields[13]"
+    ],
+    "leaky_variant_reads": [
+      "hidden_state",
+      "target_label_or_target_variable",
+      "answer_key"
+    ],
+    "removal_removes_detection": true
+  },
+  "producer_function": "strategy_class_alignment_001a.run_leakage_controls",
+  "result": "passed",
+  "run_id": "BASELINE-FIRST-HARNESS-001A-R1",
+  "schema_version": "baseline_first_harness_001a_leakage_v1"
+}

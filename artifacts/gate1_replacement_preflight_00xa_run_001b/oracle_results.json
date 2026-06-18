@@ -1,0 +1,134 @@
+{
+  "answer_key_oracle": {
+    "aggregation_rule": "diagnostic_only_answer_key_upper_bound",
+    "code_path_hash": "f4a79ab60046e9c3e431d594def2bd8452059c789a10335d1cf287dc73e6f311",
+    "consumed_by_final_verdict": true,
+    "diagnostic_only": true,
+    "input_artifacts": [
+      "hidden_target_diagnostic_only"
+    ],
+    "may_support_admission": false,
+    "metric": {
+      "balanced_metric": true,
+      "beta": 1.0,
+      "confusion_counts": {
+        "false_negative": 0,
+        "false_positive": 0,
+        "true_negative": 20,
+        "true_positive": 20
+      },
+      "false_negative_count": 0,
+      "false_positive_count": 0,
+      "macro_f1": 1.0,
+      "metric_id": "macro_f1_beta_1_binary",
+      "per_class": {
+        "false": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 20
+        },
+        "true": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 20
+        }
+      }
+    },
+    "producer_function": "gate1_replacement_preflight_00xa.run_preflight._oracle_results"
+  },
+  "null_oracle": {
+    "aggregation_rule": "non_reading_null_predictions",
+    "code_path_hash": "f4a79ab60046e9c3e431d594def2bd8452059c789a10335d1cf287dc73e6f311",
+    "consumed_by_final_verdict": true,
+    "input_artifacts": [
+      "no_reading_control"
+    ],
+    "metric": {
+      "balanced_metric": true,
+      "beta": 1.0,
+      "confusion_counts": {
+        "false_negative": 20,
+        "false_positive": 0,
+        "true_negative": 20,
+        "true_positive": 0
+      },
+      "false_negative_count": 20,
+      "false_positive_count": 0,
+      "macro_f1": 0.3333333333333333,
+      "metric_id": "macro_f1_beta_1_binary",
+      "per_class": {
+        "false": {
+          "f1": 0.6666666666666666,
+          "fn": 0,
+          "fp": 20,
+          "precision": 0.5,
+          "recall": 1.0,
+          "tp": 20
+        },
+        "true": {
+          "f1": 0.0,
+          "fn": 20,
+          "fp": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tp": 0
+        }
+      }
+    },
+    "producer_function": "gate1_replacement_preflight_00xa.run_preflight._oracle_results"
+  },
+  "run_id": "gate1_replacement_preflight_00xa_run_001b",
+  "schema_version": "gate1_replacement_preflight_00xa_oracle_v1",
+  "visible_channel_oracle": {
+    "aggregation_rule": "budget_faithful_visible_channel_majority_vote",
+    "answer_key_access": false,
+    "budget_faithful": true,
+    "code_path_hash": "6b2122f563292fa75c81aaaacbd781730fcab1ad46b9a583092f8fe938799335",
+    "consumed_by_final_verdict": true,
+    "diagnostic_only": false,
+    "input_artifacts": [
+      "candidate_free_surface_bundle_legal_channel"
+    ],
+    "legal_access_only": true,
+    "metric": {
+      "balanced_metric": true,
+      "beta": 1.0,
+      "confusion_counts": {
+        "false_negative": 0,
+        "false_positive": 0,
+        "true_negative": 20,
+        "true_positive": 20
+      },
+      "false_negative_count": 0,
+      "false_positive_count": 0,
+      "macro_f1": 1.0,
+      "metric_id": "macro_f1_beta_1_binary",
+      "per_class": {
+        "false": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 20
+        },
+        "true": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 20
+        }
+      }
+    },
+    "producer_function": "gate1_replacement_preflight_00xa.baselines.strongest_known_classical_method_for_task_type",
+    "visible_channel_only": true
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A",
+  "audited_artifacts": "artifacts/candidate_free_route_c_baseline_separation_probe_001a/",
+  "audited_source": "src/candidate_free_route_c_baseline_separation_probe_001a/runner.py",
+  "audited_head_claimed_by_probe": "b45598b1c56080f2f850ae088f42cf585950483e (git_readback inside result.json; not independently verifiable due to corrupt .git/config FUSE mount)",
+  "role": "independent hostile auditor (Same-Agent Bridge Audit Role 001)",
+  "verdict": "reject_as_false_positive_or_weakened_baseline",
+  "implementation_may_proceed": false,
+  "one_line": "The oracle-vs-fair separation (1.0 vs 0.5833) is an artifact of a pure-recall metric with no precision penalty plus a baseline panel that omits the trivial recall-maximizing 'predict-all' fair baseline; a non-privileged predict-all scores recall 1.0 == oracle, so delta == 0 and no separation exists.",
+
+  "decisive_computed_evidence": {
+    "reproduction_script": "cleanroom_reproduction.py (independent regeneration, does NOT import the probe module)",
+    "faithfulness_cross_check": "independent generator reproduces probe 'mean' per-episode [0.5,0.25,0.75,0.25,1.0,0.75] and oracle per-episode [1.0]*6 byte-identically",
+    "oracle_recall": 1.0,
+    "probe_reported_strongest_fair": {"baseline_id": "mean", "score": 0.5833333333333334},
+    "predict_all_recall_fair_nonprivileged": 1.0,
+    "threshold_min_same_mean_family_recall": 1.0,
+    "delta_under_strongest_admissible_fair_baseline": 0.0,
+    "corr_visible_score_vs_hidden_membership": 0.0029,
+    "max_prediction_set_size_in_probe_trace": 7,
+    "interpretation": "visible features are derived from VISIBLE_SALT while the hidden set is ranked by a different SOURCE_SALT, so features are statistically independent of the hidden set (corr ~ 0). Recall is maximized purely by predicting more items. The metric _score_prediction = |truth & pred| / |truth| has no precision term and no prediction-size cap on passive baselines; predicting the full legal action space yields recall 1.0."
+  },
+
+  "critical_checks": {
+    "1_oracle_privilege_impossible_for_fair_baselines": {
+      "status": "pass_at_field_level_but_not_decision_relevant",
+      "detail": "oracle_privileged_exact_solver returns set(private_episode['hidden_set']); baselines receive legal_view() which excludes hidden_set. Field-level privilege is real. BUT it confers no exclusive ceiling: a fair predict-all baseline also reaches recall 1.0, so the privilege does not explain the separation."
+    },
+    "2_no_nonoracle_baseline_reads_hidden_truth": {
+      "status": "pass",
+      "detail": "baselines receive legal_view (no hidden_set) plus training_history = membership RESULTS of the first query_budget items of TRAINING episodes only. Eval-episode hidden sets are never exposed. No answer-key/evaluator-field/result-artifact read by baselines."
+    },
+    "3_exhaustive_legal_query_budget2_not_misleadingly_weakened": {
+      "status": "fail_at_panel_level",
+      "detail": "Within the budgeted-active class, exhaustive_legal_query is not weak relative to siblings: because features are independent of the hidden set (corr ~ 0), NO budgeted query optimizer can beat ~chance, so the whole active class is intrinsically capped (~0.04-0.29). The misleading weakening is at the PANEL level: the strongest admissible fair baseline (passive, unbudgeted predict-all / low-threshold) is omitted and reaches recall 1.0.",
+      "strongest_admissible_fair_baseline_identified": "predict_all (passive, no privilege) == recall 1.0; equivalently baseline_mean with threshold=min."
+    },
+    "4_baselines_competent_not_placeholders": {
+      "status": "fail",
+      "detail": "The 0.5833 'ceiling' is produced by baseline_mean's arbitrary '>= mean' threshold. Replacing the threshold with min (same family) or adding predict_all yields recall 1.0. The recall-maximizing fair baseline is absent; the reported strongest_fair is therefore not the strongest admissible fair baseline."
+    },
+    "5_access_parity_per_class": {
+      "status": "fail",
+      "detail": "Passive baselines may emit arbitrary-size prediction sets; active baselines may only emit query-confirmed items (<= budget). Under a pure-recall metric this asymmetry is decisive: set-size freedom alone wins. The metric does not give parity-appropriate scoring across classes."
+    },
+    "6_scores_from_episode_execution_not_static": {
+      "status": "pass",
+      "detail": "run_callable_on_episodes executes each producer over episodes and computes _score_prediction live; provenance carries code_path_hash and literal_or_static_score_used=False. Independent reproduction matches byte-for-byte, confirming non-literal execution."
+    },
+    "7_all_attempted_configs_preserved": {
+      "status": "partial",
+      "detail": "Exactly one tested_configuration (budget=2, hardcoded QUERY_BUDGET). Budget extremes 0 and 12 are preserved only inside ablation_report. No intermediate-budget sweep. Secondary to the metric defect (predict_all ties at ANY budget because it is unbudgeted)."
+    },
+    "8_full_budget_saturation_control_drives_verdict_and_can_flip": {
+      "status": "fail",
+      "detail": "ablation_report computes full_budget_result (exhaustive_legal_query -> 1.0) but select_decision_verdict([config_result], ...) consumes ONLY the budget=2 config. The saturation control is recorded ('preserved_as_negative_evidence') yet inert: it cannot flip the emitted decision_rule_verdict. The control actually demonstrates the separation is budget-induced, which the verdict ignores."
+    },
+    "9_leakage_positive_control_same_path_and_blocked": {
+      "status": "pass_with_caveat",
+      "detail": "build_leakage_report injects key 'oracle_hidden_set' and the same scanner blocks it. Caveat: scanner is NAME-substring based (FORBIDDEN_LEGAL_KEYS = hidden/truth/oracle/target); it cannot catch value-level leakage. Non-blocking here because features are provably independent of the hidden set (no value leakage exists)."
+    },
+    "10_replay_recomputes_from_serialized_state": {
+      "status": "pass",
+      "detail": "replay_report re-runs evaluate_config from serialized config (regenerates episodes deterministically), checks score_delta==0; positive control tampers query_budget->12 and detects strongest_fair mismatch. Recompute, not stored-hash/stored-action comparison."
+    },
+    "11_source_pin_readback_dual_channel_or_authoritative": {
+      "status": "weak_pass",
+      "detail": "pathlib direct file read vs inspect.getsource — both read the SAME on-disk file. Detects in-memory/disk divergence; borderline self-comparison rather than an independent second attestation channel. Non-blocking (consistent with prior source-pin caveats)."
+    },
+    "12_manifold_circular_spectral_baselines_required": {
+      "status": "not_applicable_but_spirit_violated",
+      "detail": "Task is not circular/manifold; it is sparse-subset recovery from hash-independent noise. The analogue of the 'required missing baseline' is predict-all / threshold-swept passive, which IS missing -> folds into checks 3-4."
+    }
+  },
+
+  "blocking_issues": [
+    "B1 (metric): _score_prediction is pure recall with no precision/over-claim penalty and no prediction-set-size cap on passive baselines. predicting the full legal action space yields recall 1.0.",
+    "B2 (weakened panel): the strongest admissible fair, non-privileged baseline (predict-all; equivalently mean@threshold=min) is omitted; it scores recall 1.0 == oracle, so delta_oracle_vs_strongest_fair collapses to 0.0 and decision_gate.separation_exists becomes False.",
+    "B3 (claim-ceiling leakage): the probe's own blocked_or_unknown_items admits 'This does not show that any future candidate can exploit the separating toy configuration', yet it emits decision_rule_verdict='separation_exists_route_c_may_repromote_one_surface' and next_action='Draft exactly one new Route C surface preflight'. An oracle-reads-the-answer / metric-artifact gap is being converted into governance authorization to re-open a closed negative surface.",
+    "B4 (inert saturation control): the full-budget control that would expose the budget-artifact nature of the gap is not wired into select_decision_verdict and cannot flip the emitted verdict."
+  ],
+  "non_blocking_issues": [
+    "N1: leakage scanner is name-substring based only (no value-level leakage test).",
+    "N2: source-pin is dual-read of the same on-disk file (borderline self-comparison).",
+    "N3: single hardcoded budget=2 config; no intermediate-budget sweep preserved in baseline_comparison.",
+    "N4: test_*.py hard-codes the spurious result (asserts separation_exists is True, strongest_fair < 1.0), so the suite cannot detect the false positive — green tests here are not evidence of separation.",
+    "N5: probe-reported git HEAD could not be independently verified (corrupt .git/config FUSE mount); provenance read via file-API."
+  ],
+  "required_fixes_before_any_repromotion_claim": [
+    "F1: replace the metric with a precision-aware one (exact-set match, or F1/Jaccard, or enforce |prediction| <= hidden_set_size for ALL families incl. passive and oracle). Under any precision-aware metric predict-all collapses.",
+    "F2: add the omitted fair baselines explicitly (predict_all, threshold-swept passive at min/quantiles, size-normalized random-K) and re-measure delta against the TRUE strongest admissible fair baseline.",
+    "F3: make the oracle comparison fair: either compare against an informed-but-budget-limited oracle, or restate the result as 'field-level privilege only' with NO re-promotion implication. An unbudgeted answer-reader vs budget-limited searchers is not a separation.",
+    "F4: feed full-budget (and a budget sweep) results into select_decision_verdict so the saturation control can actually flip the emitted verdict.",
+    "F5 (deeper): as built the hidden set is information-theoretically independent of every fair channel (independent salts), so even a fixed metric would only show the oracle reads an unlearnable field. If the intent is partial inferability, the generator must couple visible features to the hidden set; only then do spectral/NN/supervised challengers become meaningful. Absent that coupling there is no mechanism-reachable headroom and no basis to re-promote Route C."
+  ],
+
+  "claim_ceiling": "Candidate-free route-governance separation audit only. No Route C mechanism validity, no candidate success, no hidden-self-set inference, no self-boundary evidence, no Gate pass, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+  "what_this_audit_does_not_prove": "It does not prove Route C is false, that no separating toy configuration exists, or that a precision-aware redesign would also saturate (likely, given corr~0, but not formally tested here). It only shows THIS probe's separation is a false positive driven by metric design and a weakened (incomplete) baseline panel.",
+  "auto_remote_anchor": "forbidden",
+  "push_status": "not pushed; not anchored. scripts/push.* carries a hard-coded PAT (prior blocker) and must remain unused until rotated."
+}

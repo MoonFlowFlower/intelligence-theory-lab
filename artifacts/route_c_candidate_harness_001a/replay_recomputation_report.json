@@ -1,0 +1,72 @@
+{
+  "behavior_recomputed_from_serialized_state_and_legal_history": true,
+  "controls": {
+    "corrupted_state": {
+      "reason": "serialized_state_positive_items_conflict",
+      "verdict": "fail_closed"
+    },
+    "forbidden_truth_field_read": {
+      "reason": "truth labels and stored verdict values are rejected from replay input",
+      "verdict": "fail_closed"
+    },
+    "missing_observation": {
+      "reason": "legal_history_missing_query_result",
+      "verdict": "fail_closed"
+    }
+  },
+  "producer_function": "recompute_replay_from_serialized_state_and_legal_history",
+  "recomputed": [
+    {
+      "episode_id": "episode-101",
+      "matches_original_prediction": true,
+      "recomputed_prediction": [
+        0,
+        2,
+        3
+      ],
+      "seed": 101
+    },
+    {
+      "episode_id": "episode-203",
+      "matches_original_prediction": true,
+      "recomputed_prediction": [
+        1,
+        2,
+        3
+      ],
+      "seed": 203
+    },
+    {
+      "episode_id": "episode-307",
+      "matches_original_prediction": true,
+      "recomputed_prediction": [
+        0,
+        2,
+        5
+      ],
+      "seed": 307
+    },
+    {
+      "episode_id": "episode-409",
+      "matches_original_prediction": true,
+      "recomputed_prediction": [
+        3,
+        5,
+        6
+      ],
+      "seed": 409
+    },
+    {
+      "episode_id": "episode-503",
+      "matches_original_prediction": true,
+      "recomputed_prediction": [
+        1,
+        2,
+        5
+      ],
+      "seed": 503
+    }
+  ],
+  "stored_hash_only_used": false,
+  "verdict": "replay_recomputed"
+}

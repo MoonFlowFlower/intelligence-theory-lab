@@ -1,0 +1,82 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-HOSTILE-AUDIT-001A",
+  "audited_object": "task_card_draft",
+  "audited_object_path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/draft_next_task_card.md",
+  "verdict": "requires_one_bounded_task_card_repair",
+  "current_layer": "engineering-governance / hostile audit of Gate1 replacement preflight task card",
+  "mainline_integration_status": "none",
+  "enabled_status": "audit-only; readback plus local audit-artifact generation; no repo execution, no Gate run, no candidate, no commit/push/tag/anchor",
+  "repo_head": "b45598b1c56080f2f850ae088f42cf585950483e",
+  "branch": "codex/meta-theory-scaffold",
+  "impl_may_proceed_now": false,
+  "next_action_id": "GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1",
+  "real_trigger_evidence": "Prior selection task (GATE1-REPLACEMENT-READBACK-OR-PREFLIGHT-SELECTION-001A) returned selected_verdict=draft_gate1_replacement_preflight_card with next_minimal_closed_loop_action='send draft to hostile audit before Codex implementation'. Draft card GATE1-REPLACEMENT-PREFLIGHT-00XA produced for audit.",
+  "inspected_files": [
+    {"path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/draft_next_task_card.md", "sha256_mount": "7a1b2c5e4408ab256e4267aca2ac84f02210fcaf9b91756e410dda7b40e2ff46", "read_channel": "file_api_authoritative"},
+    {"path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/selected_verdict.json", "sha256_mount": "7ab962d4ca2ce3429869361595621f3ca456e5091aa4c540b43a79f3f591ae1f", "read_channel": "file_api_authoritative"},
+    {"path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/gate1_failure_readback.json", "sha256_mount": "2bb4e1c616a7116325ef5809a0ceb8284133c36b881a1de8176ed328af5c98b3", "read_channel": "file_api_authoritative"},
+    {"path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/gate_dependency_readback.json", "sha256_mount": "a89ff9bed0def6f01d483dbc241c0378f7da7ead22f1713f39b3514ffebf752c", "read_channel": "file_api_authoritative"},
+    {"path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/final_report.md", "sha256_mount": "ddcb31fdc2cf4bb65481120bcbc63e1d7eafcb0a3dfec24bed85b8eb887e17c8", "read_channel": "file_api_authoritative"},
+    {"path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md", "sha256_mount": "25db184894f8f7dfc235a17f56aebdadaa1c0d1e6710244a3922990d54dee76e", "read_channel": "file_api_authoritative"},
+    {"path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json", "sha256_mount": "3ddf875365720e33a1cc43c8768b47315f868ad46db4dedad2d053bc5b83af89", "read_channel": "file_api_authoritative", "note": "mount json.load raised Extra-data at char 23125; file-API readback shows clean close at line 266 -> FUSE tail artifact, not a real defect (canonical_readback_failure family)"},
+    {"path": "artifacts/post_freeze_gate0_3_sequential_repair_queue_001a_gate1_failed_graph_cache_reconciliation/baseline_comparison.json", "sha256_mount": "4daa4c71abc82ebf685ba664a31f62787a9bf4192f057603b064f14c32b21753", "read_channel": "mount_parse_ok", "note": "confirms gate1_failure_readback: candidate_A_graph_cache_collapse_detected=true, fair_control_match_blocks_positive_gate1_claim=true"}
+  ],
+  "readback_consistency": {
+    "selected_verdict_matches_draft": true,
+    "gate1_failure_readback_confirmed_by_cited_reconciliation": true,
+    "gate1_failure_conflicts_with_decision_log_or_remote_closure": false,
+    "no_tracked_gate1_replacement_source_or_candidate": true,
+    "block_pending_canonical_readback_applicable": false
+  },
+  "question_results": {
+    "Q1_no_old_gate1_positive_inheritance": "pass",
+    "Q2_six_member_graph_cache_tied_to_stop": "pass",
+    "Q3_pre_candidate_only": "pass",
+    "Q4_real_target_and_legal_channel": "pass_with_nonblocking_note",
+    "Q5_baseline_immunity_operationalized_not_magic": "partial_gap",
+    "Q6_metric_degeneracy_precision_recall_required": "fail_narrow_blocking",
+    "Q7_no_answer_key_oracle_headroom": "pass",
+    "Q8_computed_evidence_not_reports": "pass_strong",
+    "Q9_verifier_as_prefilter_only": "pass_strong",
+    "Q10_leakage_replay_sourcepin_computed_and_consumed": "pass_strong",
+    "Q11_terminal_anti_zeno_stop_conditions": "pass_strong",
+    "Q12_success_authorizes_at_most_candidate_card_drafting": "pass"
+  },
+  "strongest_objection": "Metric-shape degeneracy (Q6 / standard 2.6 size-exploit, 2.7 single-sided): the draft enumerates predict_all/predict_none/constant_k_sweep/random/majority but does NOT explicitly require a balanced or jointly-reported precision+recall (or stated cost-weighted/F-beta) metric, nor an explicit size-only sweep control. It defers these to the blanket clause 'any metric degeneracy trigger from the baseline-immunity standard fires'. This is the exact degeneracy that produced the lab's most recent false positive (candidate-free Route C separation probe: precision-less recall made oracle==predict_all==1.0). Q6 explicitly requires precision/recall-or-cost-balanced reporting, so by-reference is insufficient.",
+  "blocking_required_repair": {
+    "id": "R1.a",
+    "scope": "metric definition + acceptance/baseline-panel section of the draft only; no Gate1 route redesign",
+    "requirement": "Mandate an explicitly balanced or jointly-reported precision+recall metric (or a stated cost-weighted/F-beta metric), AND an explicit size-only sweep control (vary prediction-set size with content policy fixed; score must not climb to the ceiling band on size alone). Forbid any single-sided (recall-only or precision-only) metric from supporting an admissible verdict. Enumerate this as a panel/acceptance control, not only as a reference to the standard."
+  },
+  "nonblocking_objections_recommended_foldin": [
+    {"id": "R1.b", "issue": "Positive admission basis under-specified: admissibility is framed as absence-of-saturation; standard 3.3 (partial-inferability) and 4.2 (budget-faithful visible-channel oracle re-promotion) require a positive, fail-able demonstration of reducible residual. Without it, an irreducible-noise surface could be admitted, re-spawning saturation one layer down.", "recommend": "Require the 3.3 fail-able partial-inferability demonstration (genuine residual under passive channel + mechanism-class reducibility, with a non-reading oracle scoring 0) and 4.2 budget-faithful visible-channel oracle separation by >= band as the positive admission basis."},
+    {"id": "R1.c", "issue": "Surface-spec authorship/immutability authority unpinned (Q4 / standard 3.5 generator coupling). The draft consumes a 'frozen surface specification pack' that does not yet exist and does not forbid the preflight implementer from authoring-then-freezing it (self-grading risk). Mitigated by blocked_missing_candidate_free_surface_spec and candidate-free framing, but not closed.", "recommend": "Require the surface spec to be authored/frozen under a separate authority or pre-existing, not authored or mutated by the preflight implementer; record its provenance/SHA; fail closed if implementer-authored on the fly."}
+  ],
+  "anti_hardcoding_and_governance": {
+    "modifies_baseline_immunity_standard_or_verifier": false,
+    "governance_self_modification": "none_detected",
+    "treats_verifier_as_admission": false,
+    "treats_standard_as_executor": false,
+    "post_hoc_threshold_tuning_authorized": false,
+    "fail_closed_and_preserve_failure": true
+  },
+  "claim_ceiling": "Independent task-card audit only. Cannot prove Gate1 pass, Gate1 replacement admissibility, mechanism validity, candidate success, baseline-immunity enforcement, Gate4/Gate5 readiness, mainline/runtime/live effect, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+  "what_this_does_not_prove": [
+    "Gate1 pass",
+    "Gate1 replacement admissibility",
+    "mechanism validity",
+    "candidate success",
+    "baseline-immunity enforcement",
+    "Gate4/Gate5 readiness",
+    "mainline/runtime/live effect",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "stable user benefit",
+    "EGO readiness"
+  ],
+  "next_minimal_closed_loop_action": "Author GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1 (draft-card repair only, no implementation): close R1.a (blocking) and fold in R1.b + R1.c. Then a brief re-audit, then CODEX-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-001A.",
+  "commit_push_tag_anchor": "none_performed_forbidden",
+  "auto_remote_anchor": "forbidden"
+}

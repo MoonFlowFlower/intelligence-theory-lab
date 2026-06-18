@@ -1,0 +1,26 @@
+{
+  "task_id": "GATE1-REPLACEMENT-READBACK-OR-PREFLIGHT-SELECTION-001A",
+  "verifier_artifact_path": "artifacts/gate_evidence_provenance_verifier_hardening_001a/readback.json",
+  "hostile_audit_path": "artifacts/CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A/audit_result.json",
+  "historical_calibration_path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/calibration_results.json",
+  "verifier_files_exist": true,
+  "verifier_hardening_verdict": "gate_evidence_provenance_verifier_hardened",
+  "verifier_enabled_status": "local library plus CLI only",
+  "verifier_mainline_integration_status": "not integrated into runtime, admission, Gate4, Gate5, Route C, or scheduler paths",
+  "hostile_audit_verdict": "accept_as_local_provenance_shape_checker",
+  "historical_negative_calibration_verdict": "historical_negative_calibration_completed_diagnostic_only",
+  "historical_calibration_counts": {
+    "invalid_literal_or_detached_verdict": 1,
+    "invalid_schema_or_parse_failure": 3,
+    "provenance_wellformed_only": 0
+  },
+  "decisive_caveats": [
+    "The verifier is a provenance-shape prefilter only.",
+    "It does not adjudicate metric degeneracy.",
+    "It does not prove the declared strongest fair baseline is actually the strongest.",
+    "It does not perform real replay recomputation or source re-hashing by itself.",
+    "It must not be treated as an admission gate."
+  ],
+  "use_in_selected_draft": "future Gate1 replacement preflight should emit a verifier-compatible evidence bundle and may run this verifier as a local shape prefilter only after its own executable evidence is generated",
+  "claim_ceiling": "Verifier status readback only; no Gate admission, no baseline-immunity, no mechanism validity, and no candidate success."
+}

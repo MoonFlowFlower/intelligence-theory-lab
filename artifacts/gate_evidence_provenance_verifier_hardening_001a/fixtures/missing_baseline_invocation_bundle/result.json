@@ -1,0 +1,39 @@
+{
+  "computed_gate_inputs": {
+    "baseline_invocation": true,
+    "control_consumption": true,
+    "leakage_positive_control": true,
+    "replay_recompute": true,
+    "source_pin_readback": true,
+    "strongest_baseline": true
+  },
+  "expected_verdict": "invalid_literal_or_detached_verdict",
+  "final_verdict": "bundle_provenance_inputs_wellformed",
+  "schema_version": "gate_evidence_provenance_verifier_001a_fixture_v1",
+  "verdict_derivation": {
+    "aggregation": "all_required_gates_true_fail_closed",
+    "consumed_baseline_ids": [
+      "graph_cache_collapse"
+    ],
+    "consumed_control_ids": [
+      "full_budget_saturation",
+      "baseline_saturation"
+    ],
+    "consumed_leakage_positive_control_ids": [
+      "leakage-pc-label"
+    ],
+    "consumed_source_pin_control_ids": [
+      "source-truncation-pc"
+    ],
+    "input_artifacts": [
+      "baseline_comparison.json",
+      "provenance_rows.jsonl",
+      "leakage_scan.json",
+      "replay_report.json",
+      "source_pin_readback_report.json"
+    ],
+    "producer_function": "synthetic_verdicts.select_decision_verdict",
+    "terminal_reason_id": "all_required_gates_true",
+    "terminal_reason_source": "computed_gate_inputs"
+  }
+}

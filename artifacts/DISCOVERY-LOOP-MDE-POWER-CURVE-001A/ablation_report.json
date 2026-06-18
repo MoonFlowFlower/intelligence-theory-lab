@@ -1,0 +1,34 @@
+{
+  "C1_monotone_in_effect": {
+    "purpose": "power must be non-decreasing in true_gap at each budget",
+    "inversions_per_budget": {
+      "1500": 0,
+      "3000": 0,
+      "6000": 0
+    },
+    "passed": true
+  },
+  "C2_monotone_in_budget": {
+    "purpose": "MDE must be non-increasing as L_train grows (tol 0.0020)",
+    "mde_by_budget": {
+      "1500": {
+        "mde": 0.012108,
+        "p_stay": 0.97
+      },
+      "3000": {
+        "mde": 0.012108,
+        "p_stay": 0.97
+      },
+      "6000": {
+        "mde": 0.012108,
+        "p_stay": 0.97
+      }
+    },
+    "passed": true
+  },
+  "oracle_sanity": {
+    "min_world_gap": 0.000425,
+    "max_world_gap": 0.028715,
+    "ordered": true
+  }
+}

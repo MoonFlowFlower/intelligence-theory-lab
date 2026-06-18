@@ -1,0 +1,89 @@
+{
+  "schema_version": "phase0_environment_design_constraints_002c_required_positive_properties_v1",
+  "task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "verdict": "design_constraints_002c_recorded",
+  "required_positive_properties": [
+    {
+      "property_id": "P001_NON_COMPUTABLE_UNDER_BUDGET",
+      "name": "non-computable-under-budget target",
+      "requirement": "Target is not exactly computable from <= budget legal channels.",
+      "why_needed": "Blocks 001A/002A/002B direct legal-channel saturation.",
+      "minimum_pre_run_evidence": "Declared dependency set includes more or different information than budget permits, with a planned static derivation check."
+    },
+    {
+      "property_id": "P002_BUDGET_FAITHFUL_ORACLE_STRATEGY",
+      "name": "oracle budget-faithfulness",
+      "requirement": "Oracle is high because of legitimate partial-observation strategy, not answer-key, hidden-state, target-alias, future-label, or unqueried access.",
+      "why_needed": "Blocks answer-key oracle false ceilings.",
+      "minimum_pre_run_evidence": "Field-access manifest, legal query trace schema, budget ledger, and separate answer-key diagnostic oracle."
+    },
+    {
+      "property_id": "P003_REMAINING_UNCERTAINTY_UNDER_EXHAUSTIVE_LEGAL_QUERY",
+      "name": "exhaustive legal-query resistance",
+      "requirement": "Exhaustive legal query within budget leaves nontrivial remaining uncertainty.",
+      "why_needed": "Blocks legal compute and oracle-as-baseline symmetry failures.",
+      "minimum_pre_run_evidence": "Expected exhaustive_legal_query score below oracle minus band and explanation of what legal budget cannot reveal."
+    },
+    {
+      "property_id": "P004_GRAPH_CACHE_RESISTANCE",
+      "name": "graph/cache heldout resistance",
+      "requirement": "Graph/cache/table baselines are structurally disadvantaged on heldout generalization, not merely absent.",
+      "why_needed": "Blocks graph-cache saturation.",
+      "minimum_pre_run_evidence": "Heldout generation rule prevents table reuse of state/signature keys while preserving fair compute baselines."
+    },
+    {
+      "property_id": "P005_FITTED_LEARNER_RESISTANCE",
+      "name": "fitted legal-channel learner resistance",
+      "requirement": "Fitted legal-channel learner and strongest classical method are included and expected to remain below oracle.",
+      "why_needed": "Blocks compute/fitted baselines from replacing the mechanism question.",
+      "minimum_pre_run_evidence": "Declared learner family, fit evidence fields, anti-stub guard, and expected heldout limitation."
+    },
+    {
+      "property_id": "P006_PASSIVE_RESISTANCE",
+      "name": "passive value-level resistance",
+      "requirement": "Passive family expected below ceiling by value-level analysis.",
+      "why_needed": "Blocks passive target leakage.",
+      "minimum_pre_run_evidence": "Value-level leakage scan plan, positive control, and passive family max threshold."
+    },
+    {
+      "property_id": "P007_METRIC_ROBUSTNESS",
+      "name": "metric robustness",
+      "requirement": "Balanced metric with per-class floor; degenerate and size-only controls must remain low.",
+      "why_needed": "Blocks predict_all / predict_none / size-only metric traps.",
+      "minimum_pre_run_evidence": "Balanced macro-F1, per-class precision/recall floors, and degenerate baseline family."
+    },
+    {
+      "property_id": "P008_SPLIT_RESISTS_MEMORY_AND_COMPUTE",
+      "name": "split defeats memorization and simple compute",
+      "requirement": "Train/test split defeats memorization and simple legal-channel compute on the same heldout split.",
+      "why_needed": "Blocks lookup-vs-compute artifact and memory-only battery false positives.",
+      "minimum_pre_run_evidence": "Split design states how context IDs, signatures, legal tuples, and target-generating rules avoid both lookup reuse and closed-form compute."
+    },
+    {
+      "property_id": "P009_SIGNAL_FLOOR",
+      "name": "sufficient visible-oracle signal",
+      "requirement": "Budget-faithful oracle has enough legitimate signal to exceed the oracle floor.",
+      "why_needed": "Blocks underpowered surfaces whose low baseline scores are uninterpretable.",
+      "minimum_pre_run_evidence": "Expected oracle score floor and source of legitimate partial information."
+    },
+    {
+      "property_id": "P010_STRONGEST_FALSE_EXPLANATION",
+      "name": "strongest false explanation first",
+      "requirement": "Sketch states strongest false explanation before any run and maps it to A1-A9.",
+      "why_needed": "Prevents optimistic interpretation from replacing discriminative evidence.",
+      "minimum_pre_run_evidence": "A1-A9 self-attack table, expected strongest cheap baseline, and explicit rejection condition."
+    },
+    {
+      "property_id": "P011_BASELINE_COMPLETENESS_AND_INDEPENDENCE",
+      "name": "complete independent battery",
+      "requirement": "All required rows are present, consumed, and alias-collapsed before any promotion.",
+      "why_needed": "Blocks fake battery diversity and missing legal/fitted compute controls.",
+      "minimum_pre_run_evidence": "Producer hashes, prediction hashes, input manifests, strategy signatures, baseline families, independence families, and consumed_by_final_verdict true."
+    }
+  ],
+  "positive_grammar_summary": "Design surfaces where the legal budget gives real but incomplete partial observation, the oracle earns signal through budget-faithful information gathering, and complete cheap fair baselines remain present but fail for structural reasons. Do not manufacture headroom by weakening, omitting, aliasing, or underpowering baselines.",
+  "stop_condition": {
+    "verdict_if_no_positive_property_beyond_weaker_baselines": "blocked_no_valid_environment_design_grammar"
+  },
+  "claim_ceiling": "Phase-0 environment design-constraint synthesis only. No headroom confirmation. No Gate1 pass. No mechanism validity. No candidate feasibility. No runtime/mainline effect. No agency/autonomy/consciousness/EGO readiness."
+}

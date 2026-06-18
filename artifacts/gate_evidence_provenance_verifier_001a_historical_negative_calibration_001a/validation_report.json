@@ -1,0 +1,92 @@
+{
+  "forbidden_claim_scan": {
+    "ok": true,
+    "pattern_count": 15,
+    "scan_policy": "Scans for affirmative forbidden-claim phrases; negated claim ceilings are allowed. Pattern text is intentionally not embedded to avoid self-matching the scanner config.",
+    "violations": []
+  },
+  "gate_runtime_integration_check": {
+    "gate_run": false,
+    "ok": true,
+    "runtime_or_admission_integration_added": false
+  },
+  "git_diff_check_decision_log": {
+    "command": "git diff --check -- docs/decision_log.md",
+    "exit_code": 0,
+    "stderr": "warning: in the working copy of 'docs/decision_log.md', LF will be replaced by CRLF the next time Git touches it\n",
+    "stdout": ""
+  },
+  "historical_bundle_modification_check": {
+    "historical_bundle_paths": [
+      "artifacts/acolb_001a",
+      "artifacts/acp_bv_distribution_harness_001b_execution_001a",
+      "artifacts/route_c_candidate_harness_001a",
+      "artifacts/candidate_free_route_c_baseline_separation_probe_001a"
+    ],
+    "ok": true,
+    "task_touched_historical_bundle_paths": []
+  },
+  "json_parse_validation": [
+    {
+      "error": null,
+      "ok": true,
+      "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/calibration_results.json"
+    },
+    {
+      "error": null,
+      "ok": true,
+      "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/decision_log_report.json"
+    },
+    {
+      "error": null,
+      "ok": true,
+      "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/selected_bundles.json"
+    },
+    {
+      "error": null,
+      "ok": true,
+      "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/start_state.json"
+    },
+    {
+      "error": null,
+      "ok": true,
+      "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/validation_report.json"
+    }
+  ],
+  "jsonl_parse_validation": [
+    {
+      "error": null,
+      "ok": true,
+      "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/verifier_cli_outputs.jsonl",
+      "records": 4
+    }
+  ],
+  "overall_ok": true,
+  "path_allowlist_check": {
+    "allowed_paths": [
+      "docs/decision_log.md",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/**"
+    ],
+    "allowlist_violations": [],
+    "forbidden_task_paths_touched": [],
+    "note": "Start-state contained existing out-of-scope untracked files; this check is scoped to task-touched paths.",
+    "preexisting_out_of_scope_worktree_items_not_cleared": true,
+    "task_touched_paths": [
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/calibration_results.json",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/claim_ceiling.txt",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/decision_log_report.json",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/final_report.md",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/interpretation_table.md",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/selected_bundles.json",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/start_state.json",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/validation_report.json",
+      "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/verifier_cli_outputs.jsonl",
+      "docs/decision_log.md"
+    ]
+  },
+  "task_id": "GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HISTORICAL-NEGATIVE-CALIBRATION-001A",
+  "verifier_source_test_modification_check": {
+    "forbidden_source_or_test_paths_touched": [],
+    "ok": true
+  }
+}

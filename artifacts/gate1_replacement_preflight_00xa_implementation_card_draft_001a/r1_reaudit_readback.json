@@ -1,0 +1,55 @@
+{
+  "task_id": "GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-DRAFT-001A",
+  "run_id": "gate1_replacement_preflight_00xa_implementation_card_draft_001a",
+  "producer_function": "codex_manual_r1_reaudit_readback",
+  "code_path_hash": "not_applicable_manual_governance_draft",
+  "source_path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A/audit_result.json",
+  "source_sha256": "62217c5aad76f5ff2956b44cf98e853c9d97406675579e38aeba3396059933d8",
+  "verdict": "r1_accepted_for_implementation_card_drafting",
+  "implementation_may_proceed_now": false,
+  "only_implementation_card_drafting_authorized": true,
+  "remaining_blocking_issue": "none",
+  "prior_blocking_issue": "Q6_metric_degeneracy_precision_recall_required (R1.a)",
+  "scope": "ONLY whether R1.a/R1.b/R1.c required repairs are satisfied. Did NOT evaluate Gate1 admissibility, mechanism validity, candidate success, baseline-immunity enforcement, runtime/EGO readiness.",
+  "repair_checks": {
+    "R1_a_metric_degeneracy": {
+      "status": "satisfied",
+      "carried_into_draft": true,
+      "draft_sections": [
+        "16. Balanced Metric And Degeneracy Controls",
+        "17. Size-Only Sweep `0..N`",
+        "27. Acceptance Gate",
+        "28. Stop Condition"
+      ]
+    },
+    "R1_b_positive_admission_basis": {
+      "status": "satisfied",
+      "carried_into_draft": true,
+      "draft_sections": [
+        "18. Positive Partial-Inferability Demonstration",
+        "19. Budget-Faithful Visible-Channel Oracle Rule",
+        "27. Acceptance Gate",
+        "28. Stop Condition"
+      ]
+    },
+    "R1_c_surface_spec_authorship_immutability": {
+      "status": "satisfied",
+      "carried_into_draft": true,
+      "draft_sections": [
+        "6. Frozen Surface Specification Input Requirement",
+        "7. Surface-Spec Authorship / Immutability Rule",
+        "10. Allowed Verdicts",
+        "28. Stop Condition"
+      ]
+    }
+  },
+  "boundary_preserved": {
+    "gate1_implementation_authorized": false,
+    "candidate_authorized": false,
+    "surface_spec_creation_authorized": false,
+    "gate4_gate5_route_c_runtime_mainline_admission_authorized": false,
+    "commit_push_tag_anchor_authorized": false,
+    "next_action": "Claude hostile audit of the implementation-card draft"
+  },
+  "claim_ceiling": "implementation-card draft only"
+}

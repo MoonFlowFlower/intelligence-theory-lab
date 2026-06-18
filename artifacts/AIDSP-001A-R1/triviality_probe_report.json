@@ -1,0 +1,47 @@
+{
+  "trivial_M1": {
+    "random_walk": 1.0086578059511746,
+    "stay_still": 1.0584966751319733,
+    "exhaustive_sweep": 1.026177622646295,
+    "systematic_coverage": 1.1770108867354854,
+    "cue_ignoring_greedy": 1.027779060213605,
+    "predict_all_uniform": 0.0
+  },
+  "trivial_M2": {
+    "random_walk": 0.0,
+    "stay_still": 0.0,
+    "exhaustive_sweep": 0.0,
+    "systematic_coverage": 0.0,
+    "cue_ignoring_greedy": 0.0,
+    "predict_all_uniform": 0.0
+  },
+  "max_trivial_M1": 1.1770108867354854,
+  "band": 1.294711975409034,
+  "band_rule": "max(max_trivial*(1+DELTA_REL), max_trivial+DELTA_ABS_FLOOR)",
+  "delta_rel": 0.1,
+  "oracle_M1": 1.712053502019437,
+  "oracle_M2": 0.31250000000000006,
+  "PF1_m2_validity_fail": false,
+  "PF1_violations": {},
+  "PF2_m1_headroom_fail": false,
+  "PF3_m2_detectability_fail": false,
+  "metric_degenerate": false,
+  "note": "oracle is a PROBE INSTRUMENT (headroom ceiling), NOT a fair baseline and NOT part of the candidate verdict comparison.",
+  "provenance": {
+    "producer_function": "run_triviality_probe",
+    "inputs": {
+      "trivial_battery": [
+        "random_walk",
+        "stay_still",
+        "exhaustive_sweep",
+        "systematic_coverage",
+        "cue_ignoring_greedy"
+      ],
+      "oracle": "map_rollout_horizon=L"
+    },
+    "run_id": "20260618T002141Z_6b8a6b61",
+    "seed_episode_id": "0..59",
+    "aggregation": "mean over family A",
+    "code_path_hash": "6b8a6b61746dd02eacc6a34ab46a2823e6e50b9c072148259b78723d80ad42a0"
+  }
+}

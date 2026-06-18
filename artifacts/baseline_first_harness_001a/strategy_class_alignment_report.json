@@ -1,0 +1,101 @@
+{
+  "checks": {
+    "same_candidate_matched_budget": true,
+    "same_information_boundary": true,
+    "same_legal_action_query_set": true,
+    "same_prohibited_field_boundary": true,
+    "same_scoring_target": true,
+    "same_strategy_class": true,
+    "same_visible_channel": true
+  },
+  "code_path_hash": "defcaf4877a4f1d34813c09f320359898cd8b1c158a06711dde83682b489769d",
+  "consumed_by_final_verdict": true,
+  "oracle_strategy_class": {
+    "candidate_matched_budget": 5,
+    "episode_information_boundary": [
+      "episode_id",
+      "seed",
+      "observable_state",
+      "legal_action_space",
+      "queried_channel_responses_only",
+      "budget_state",
+      "own_query_history"
+    ],
+    "legal_action_query_set": [
+      "probe_rule_family",
+      "probe_viability_bucket",
+      "probe_boundary_pressure",
+      "probe_perturbation_phase",
+      "probe_action_trace_mod"
+    ],
+    "prohibited_field_boundary": [
+      "hidden_state",
+      "target_label_or_target_variable",
+      "answer_key",
+      "unqueried_channel_values",
+      "stored_labels",
+      "stored_predictions",
+      "stored_final_hashes"
+    ],
+    "scoring_target": [
+      "protect_left_boundary",
+      "protect_right_boundary",
+      "repair_core_viability",
+      "exploit_safe_window",
+      "defer_or_ignore"
+    ],
+    "strategy_class": "budget_limited_belief_state_planner",
+    "visible_channel": "legal_channel_responses_if_queried"
+  },
+  "producer_function": "strategy_class_alignment_001a.run_strategy_class_alignment",
+  "result": "passed",
+  "run_id": "BASELINE-FIRST-HARNESS-001A-R1",
+  "schema_version": "baseline_first_harness_001a_strategy_class_alignment_v1",
+  "strongest_classical_strategy_class": {
+    "candidate_matched_budget": 5,
+    "episode_information_boundary": [
+      "episode_id",
+      "seed",
+      "observable_state",
+      "legal_action_space",
+      "queried_channel_responses_only",
+      "budget_state",
+      "own_query_history"
+    ],
+    "legal_action_query_set": [
+      "probe_rule_family",
+      "probe_viability_bucket",
+      "probe_boundary_pressure",
+      "probe_perturbation_phase",
+      "probe_action_trace_mod"
+    ],
+    "operationalized_by": [
+      "budget_limited_belief_state_planner",
+      "greedy_information_gain_or_uncertainty_planner_under_budget",
+      "fsm_planner",
+      "successor_map",
+      "transition_table",
+      "graph_lookup",
+      "episodic_traversal"
+    ],
+    "prohibited_field_boundary": [
+      "hidden_state",
+      "target_label_or_target_variable",
+      "answer_key",
+      "unqueried_channel_values",
+      "stored_labels",
+      "stored_predictions",
+      "stored_final_hashes"
+    ],
+    "scoring_target": [
+      "protect_left_boundary",
+      "protect_right_boundary",
+      "repair_core_viability",
+      "exploit_safe_window",
+      "defer_or_ignore"
+    ],
+    "strategy_class": "budget_limited_belief_state_planner",
+    "visible_channel": "legal_channel_responses_if_queried"
+  },
+  "strongest_known_classical_method_status": "scored"
+}

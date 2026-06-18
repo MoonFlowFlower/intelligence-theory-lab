@@ -1,0 +1,110 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-SURFACE-SPEC-00XA-CORE-HOSTILE-AUDIT-001A",
+  "audit_type": "core_only_hostile_audit_not_full_governance_reaudit",
+  "audit_date": "2026-06-17",
+  "auditor_role": "independent auditor / red-team (Same-Agent Bridge Audit Role 001; Preflight Audit Rule core-only)",
+  "target": [
+    "docs/research/gate1_replacement_surface_spec_00xa.md",
+    "docs/research/gate1_replacement_surface_spec_00xa.freeze.json"
+  ],
+  "supporting": [
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/final_report.md",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/validation_report.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/spec_hash_readback.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/independence_declaration.json"
+  ],
+  "scope": "Judge ONLY whether the frozen surface spec is usable as a pre-existing input for a future separately-authorized preflight implementation. NOT judging Gate1 admissibility, mechanism validity, candidate success, runtime readiness, or EGO readiness.",
+  "verdict": "surface_spec_core_accepted_for_operator_authorization_consideration",
+  "implementation_may_proceed_now": false,
+  "operator_explicit_authorization_still_required": true,
+  "future_implementer_may_mutate_spec": false,
+  "remaining_blocking_issue": "none",
+  "claim_ceiling": "Accepts the frozen candidate-free surface spec as an independently-identified, mutation-banned, non-self-grading, claim-bounded PRE-EXISTING INPUT for a future separately-authorized candidate-free preflight. Does NOT accept any Gate1 replacement admissibility, mechanism validity, candidate success, baseline-immunity enforcement outcome, partial-inferability result, runtime/mainline/bridge/EGO readiness, or that the future preflight will pass.",
+  "core_checks": {
+    "1_freeze_identity": {
+      "status": "pass",
+      "method": "independent bash sha256sum raw-byte recompute of live .md vs recorded hash in freeze JSON and spec_hash_readback.json",
+      "live_spec_sha256_recomputed": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+      "freeze_json_recorded_spec_sha256": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+      "spec_hash_readback_recorded_spec_sha256": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+      "three_way_identity": true,
+      "crlf_check": "CR=0 (LF-only), no normalization ambiguity",
+      "byte_count": 24588,
+      "fuse_truncation_ruled_out": "live bash recompute equals externally-recorded PowerShell Get-FileHash value; any missing byte would change the hash, so the mount served the full file",
+      "note": "freeze JSON file self-hash fe3f12ad... and spec_hash_readback file self-hash aec21d74... are irrelevant to spec identity; only the RECORDED spec_sha256 matters and it matches the live recompute."
+    },
+    "2_independence": {
+      "status": "pass",
+      "author_source_present": "Codex bounded execution agent, current surface-spec freeze session (spec L9-10, freeze JSON author_source, independence_declaration author_source)",
+      "source_pointer_present": "source_readback_path + source_artifacts_used[] with per-file sha256",
+      "freeze_pointer_present": "freeze_timestamp 2026-06-17T09:04:49.54-05:00, freeze_verdict, spec_hash_readback_path",
+      "readback_channel_present": "canonical_readback_channel = file_api_read of markdown spec + freeze JSON + artifacts dir",
+      "future_implementer_mutation_ban_present": "spec L22-25 + freeze JSON future_preflight_implementer_may_mutate_spec=false + independence_declaration {may_mutate=false, may_normalize_or_amend=false, may_refreeze=false}; required_stop_if_violated = blocked_candidate_authored_or_mutated_surface_spec",
+      "enforcement": "hash freeze + declared stop condition; any mutation changes the hash and is detectable at canonical readback",
+      "caveat_non_blocking": "actor-level independence of future implementer is self-declared, not cryptographically proven; operational enforcement depends on the FUTURE preflight actually recomputing+comparing the spec hash at runtime (a future-execution-audit item, not a freeze defect)."
+    },
+    "3_metric": {
+      "status": "pass",
+      "balanced_metric": "macro F1 (beta=1.0) over binary target, requiring per-class precision AND recall for BOTH admissible and rejection/block classes + confusion counts + FP/FN counts (spec L193-217)",
+      "numeric_equivalence_band": "0.03 macro F1",
+      "ceiling_band": "ceiling minimum 0.90, ceiling band floor 0.87",
+      "single_sided_admission_forbidden": "recall-only, precision-only, coverage-only, specificity-only, abstention-only, size-only, NL-summary, provenance_wellformed_only, static verdict dict all explicitly forbidden (L219-229)",
+      "degeneracy_rule": "any degenerate predictor or size-only sweep reaching macro F1>=0.87 -> rejected_metric_degenerate",
+      "closes_prior_failure": "Route C separation-probe false positive (recall-only -> predict_all==oracle). Closed by macro-F1 + per-class 0.85 precision/recall floors + predict_all in degeneracy pool + fair-baseline saturation rule.",
+      "thresholds_frozen": "all numeric thresholds are inside the hashed spec; post-hoc threshold/band/budget change is an illegal action (L172) -> threshold-tuning failure mode closed."
+    },
+    "4_baseline_registry": {
+      "status": "pass",
+      "callable_producer_requirement": "every applicable baseline must be an independent callable producer; each row records producer_function, input artifacts, run_id, seed/context/episode IDs, aggregation rule, code path hash, invoked status, independence status, consumed_by_final_verdict=true",
+      "degenerate_controls_present": "predict_all, predict_none, constant_k_sweep, random, majority, size_only_sweep_0_to_N",
+      "six_graph_cache_challengers_present": "graph_lookup, transition_table, successor_map, count_table, fsm_planner, episodic_traversal -- all six mandatory, no substitutions (L468); satisfies CLAUDE.md Gate1/replay mandatory-challenger rule",
+      "anti_stub_guard_present": "trained_legal_channel_learner row requires real fit + training data + fit procedure + ml_library_used=true/equivalent + not deterministic stub; stub/no-fit/within-band-tie blocks (L471); preserves ACSB-001B learned-baseline-invalidity negative evidence",
+      "exhaustive_query_backstop": "exhaustive_legal_query is challenger-only; saturating ceiling band or within-band tie with oracle -> rejected; inlines the Route C candidate-harness cand==exhaustive_legal_query negative evidence",
+      "no_literal_substitution": "no baseline may be a literal dict, static verdict, or test-only second logic path"
+    },
+    "5_partial_inferability": {
+      "status": "pass",
+      "passive_not_trivially_decoding": "required positive fail-able evidence + fail-closed: passive-only family macro F1>=0.87 -> rejected_trivially_decodable",
+      "fair_channel_not_independent": "required + random/matched-marginal baseline >=0.87 -> rejected_no_fair_signal",
+      "residual_uncertainty_exists": "required (L279)",
+      "legal_channel_can_reduce_uncertainty_in_principle": "required (L280-281); visible-channel oracle must beat passive-only by >=0.06 macro F1",
+      "fail_closed_if_no_signal": "visible-channel oracle failing passive-only by <0.06 -> blocked_missing_partial_inferability_demonstration / rejected_no_fair_signal; failing strongest fair baseline by <=0.03 -> rejected_baseline_saturated",
+      "note": "this is the exact surface that the entire prior audit chain repeatedly blocked on (obs-baseline-underpowered, predict_all=oracle); the spec encodes positive fail-able partial-inferability with explicit fail-closed routing."
+    },
+    "6_oracle_leakage": {
+      "status": "pass",
+      "answer_key_oracle_diagnostic_only": "answer-key oracle diagnostic only; answer-key-only headroom -> rejected_no_fair_signal / rejected_answer_key_oracle_gap; only budget-faithful visible-channel legal-access oracle may support admissibility (L308-325)",
+      "leakage_positive_control_fail_able": "inject known leak -> scanner must detect -> detected ID consumed by final verdict -> REMOVING the injected leak must remove detection (the fail-ability negative control); non-detected/unconsumed -> blocks; hard-coded always-pass/single-dictionary scanner forbidden (L496-507)"
+    },
+    "7_claim_ceiling": {
+      "status": "pass",
+      "spec_acceptance_not_self_authorizing": "freeze verdict is only gate1_replacement_surface_spec_00xa_frozen; admissibility target is explicitly deferred and disclaimed",
+      "separate_operator_authorization_required": "spec L610-612 + freeze JSON same_session_future_preflight_implementation_authorized=false + validation_report implementation_still_not_authorized=true",
+      "no_gate_mechanism_runtime_ego_claim": "claim ceiling is all negations; independently confirmed no positive Gate/mechanism/consciousness/autonomy/runtime/EGO claim in spec text",
+      "not_self_grading": "spec does not grade its own admissibility target as admissible; verdict 'rejected_surface_spec_self_grading_or_claim_inflated' does NOT apply"
+    }
+  },
+  "non_blocking_observations": [
+    "validation_report.json is self-produced by the freeze session (producer codex_manual_document_spec_validation, code_path_hash=not_applicable_manual_governance_freeze); it is shape self-validation, not independent. Its decisive frozen_spec_hash_capture claim is INDEPENDENTLY CONFIRMED by this audit's bash recompute, so it is accurate on the point that matters.",
+    "Upstream source-pin hashes (source_readback.json) were out of core scope and not re-verified here. Corroboration: freeze JSON records baseline_comparison.json sha256=4daa4c71... which matches the value verified in the prior impl-card / reconciliation audits, indicating the provenance chain is genuine rather than fabricated.",
+    "strongest_known_classical_method_for_task_type is implementer-selected and could be under-powered; mitigated by the broad mandatory enumerated challenger set; verify strength at execution time.",
+    "Fixed budget (16 = 8 probe + 8 query_legal_channel) cannot be checked against the full legal action space now (no generator exists); the exhaustive_legal_query saturation->reject rule is the backstop; verify budget-vs-action-space ratio at execution.",
+    "Spec hash-comparison enforcement is only as strong as the future preflight actually performing the recompute+compare; this is a future-execution audit obligation."
+  ],
+  "stop_conditions_triggered": [],
+  "anti_hardcoding_audit": {
+    "self_grading_of_admissibility_target": "not found",
+    "literal_verdict_dictionary_for_admissibility": "not found (freeze verdict only; admissibility deferred)",
+    "claim_inflation": "not found",
+    "governance_self_modification": "not found in core scope (spec references BASELINE-IMMUNITY-ADMISSION-STANDARD-001A as normative input and forbids it as executor; self-reported forbidden_path_scan limits changes to allowed paths)",
+    "threshold_tuning_after_results": "structurally precluded (all thresholds frozen in hashed spec; post-hoc change is illegal action)"
+  },
+  "what_this_does_not_prove": [
+    "Does not prove Gate1 replacement admissibility.",
+    "Does not prove the future preflight will return admissible_for_candidate_card_drafting_only.",
+    "Does not prove any partial-inferability, baseline-immunity, mechanism, or candidate result.",
+    "Does not prove runtime/mainline/bridge/EGO readiness.",
+    "Does not authorize implementation; operator authorization + execution-time hostile audit still required."
+  ],
+  "next_minimal_closed_loop_action": "Operator issues an explicit, separate implementation authorization for a candidate-free preflight task that (a) reads this frozen spec via canonical file-API readback, (b) recomputes and asserts spec sha256 == fca7e5eb...c9 before any score, (c) stops with blocked_candidate_authored_or_mutated_surface_spec on any spec/freeze mutation, (d) implements the full mandatory baseline panel (incl. all six graph-cache challengers, exhaustive-query challenger, anti-stub learner) as independent callable producers, (e) submits execution-time evidence for a separate hostile audit. No push/tag/remote-anchor."
+}

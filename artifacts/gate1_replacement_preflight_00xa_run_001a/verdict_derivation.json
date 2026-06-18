@@ -1,0 +1,20 @@
+{
+  "aggregation_rule": "ordered_fail_closed_verdict_derivation",
+  "allowed_verdict": true,
+  "claim_ceiling": "candidate-free preflight evidence bundle only",
+  "consumed_by_final_verdict": true,
+  "final_verdict": "rejected_baseline_saturated",
+  "input_artifacts": [
+    "source_readback.json",
+    "baseline_results.jsonl",
+    "partial_inferability.json",
+    "oracle_results.json",
+    "leakage_results.json",
+    "replay_results.json",
+    "ablation_results.json"
+  ],
+  "producer_function": "gate1_replacement_preflight_00xa.verdict.derive_final_verdict",
+  "strongest_fair_macro_f1": 1.0,
+  "terminal_reason_id": "fair_baseline_ties_oracle_within_equivalence_band",
+  "visible_oracle_macro_f1": 1.0
+}

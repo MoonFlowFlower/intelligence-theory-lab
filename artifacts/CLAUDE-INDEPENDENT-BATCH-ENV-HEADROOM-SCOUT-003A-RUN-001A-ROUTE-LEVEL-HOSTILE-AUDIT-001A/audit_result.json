@@ -1,0 +1,107 @@
+{
+  "schema_version": "claude_independent_route_level_hostile_audit_v1",
+  "audit_id": "CLAUDE-INDEPENDENT-BATCH-ENV-HEADROOM-SCOUT-003A-RUN-001A-ROUTE-LEVEL-HOSTILE-AUDIT-001A",
+  "audited_task_id": "BATCH-ENV-HEADROOM-SCOUT-003A-RUN-001A",
+  "audit_date": "2026-06-17",
+  "auditor_role": "Same-Agent Bridge Audit Role 001 / independent red-team route-level reviewer",
+  "layer": "engineering-governance / Phase-0 constrained environment portfolio scouting (audit)",
+
+  "verdict": "accept_grammar_stop_as_bounded_negative_and_process_evidence__reject_any_grammar_non_viability_reading__004a_remains_blocked",
+  "implementation_may_proceed": {
+    "004a": false,
+    "full_harness": false,
+    "candidate_implementation": false,
+    "route_tournament": false,
+    "route_level_decision_only": true
+  },
+
+  "evidence_integrity_findings": {
+    "final_verdict_is_computed_not_literal": true,
+    "final_verdict_derivation": "produce_callable_final_verdict -> cross_batch.grammar_stop_triggered (trigger_a) -> blocked_no_valid_environment_design_grammar",
+    "trigger_a_definition_matches_predeclared_002c_r1_rule": true,
+    "trigger_a_conditions": "zero_promotions AND all_sketches_rejected AND all_rejections_known_hard_failure_families AND fixable_implementation_omission_count==0",
+    "clean_room_rerun_reproduces_verdict": true,
+    "clean_room_per_sketch_verdicts_identical": true,
+    "predeclared_tests_pass": "7/7 tests/research/test_batch_env_headroom_scout_003a.py",
+    "promote_gate_is_failable": true,
+    "promote_gate_positive_control": "lowering_all_fair_baselines_below_oracle flips active_planner sketch from reject_active_planner_saturated -> promote_to_full_harness_candidate (observed_flip=true)",
+    "stop_trigger_failable_both_directions": "single promotion would set zero_promotions=false -> trigger_a=false; all-reject known-family batch fires trigger_a (confirmed by all_rejected_hard_family_batch_triggers_grammar_stop probe)",
+    "baseline_battery_complete": "all MANDATORY_BASELINE_PRODUCERS present and consumed (degenerate, passive-decoder, exhaustive_legal_query, planner family, full graph-cache family, trace-replay, fitted/classical)",
+    "004a_block_and_route_decisions_are_predeclared": "cross_batch_stop_rules.json: 004A_not_automatically_authorized + before_any_004a.allowed_decisions == [continue, downgrade, replace, close]"
+  },
+
+  "central_finding": {
+    "id": "BATCH_CONTAINS_ZERO_SINCERE_CANDIDATE_SURFACES",
+    "statement": "All 8 sketches are deliberately-constructed known-failure-family fixtures inherited from 002B (prior.make_* wrapped with explicit primary hard-failure family + expected stop_condition). None is a sincere attempt at an admissible/headroom surface.",
+    "supporting_scores": {
+      "active_planner_equivalent_surface_003a": "oracle=1.0, exhaustive_legal_query=1.0 (target exactly computable from legal channels); planner rows hardcoded to oracle predictions via saturating_same_budget policy",
+      "fitted_legal_channel_learner_saturation_003a": "oracle=1.0, exhaustive_legal_query=1.0 (no compute gap)",
+      "graph_cache_family_saturated_surface_003a": "oracle=1.0, graph_cache_max=1.0, passive_max=1.0, exhaustive=1.0 (fully saturated)",
+      "passive_value_decoder_leak_surface_003a": "oracle=0.375, observation_only passive decoder=1.0 (passive leak)",
+      "missing_oracle_vs_planner_separation_003a": "oracle=0.3333 (below ORACLE_FLOOR 0.80), separation_argument=None by construction",
+      "three_static_rejected": "direct_legal_channel_compute, answer_key_oracle_surface, metric_degenerate_predict_all_surface"
+    },
+    "consequence": "blocked_no_valid_environment_design_grammar is a mechanical STOP/governance label meaning 'this fixture batch saturates into known hard-failure families', NOT an empirical proof that the environment design grammar cannot produce an admissible surface. The downgrade recommendation is a routing default, not a non-viability proof."
+  },
+
+  "blocking_issues": [
+    {
+      "id": "B1_AUTHORIZATION_GAP",
+      "severity": "blocking_process",
+      "detail": "Predeclared governance (cross_batch_stop_rules.json lines 83-85) states 002c_r1_authorizes_003a=false and 003a_requires_separate_review_and_explicit_authorization=true. Prior 002C-R1 audit explicitly did not authorize 003A. Need operator confirmation that 003A-RUN-001A was separately and explicitly authorized before execution. If self-authorized, the evidence remains valid but the process violation must be recorded.",
+      "blocks": "process record; does NOT invalidate the computed evidence"
+    },
+    {
+      "id": "B2_CLAIM_CEILING_BINDING",
+      "severity": "blocking_for_strong_claim",
+      "detail": "The route-level record must bind the verdict to its predeclared bounded meaning ('fixture-batch saturation + mechanical stop fired'), and must NOT use 003A to claim the grammar is proven non-viable or that headroom is impossible. With the batch containing no sincere candidate, only the bounded reading is supportable.",
+      "blocks": "any inflated interpretation; 004A stays blocked"
+    }
+  ],
+
+  "non_blocking_issues": [
+    {
+      "id": "N1_PLANNER_IS_STUB_OR_ORACLE_COPY",
+      "detail": "Active-planner family is never a genuine search. Under saturating_same_budget the three planner rows are set equal to the visible-oracle predictions (signatures: *_recovered_visible_oracle, score=1.0); under weak policy they are constant-0 stubs (score=0.1667). A10 'saturation' here is a constructed fixture artifact, not evidence a real planner saturates a real candidate.",
+      "required_before": "candidate harness / any A10 saturation claim against a real surface",
+      "fix": "implement a genuine anti-stub budget-matched active planner; forbid oracle-prediction copying as the planner row"
+    },
+    {
+      "id": "N2_VERDICT_LOGIC_KEYS_ON_SKETCH_ID_STRING",
+      "detail": "micro_probe_sketch branches on sketch['sketch_id']=='direct_legal_channel_compute' (script lines ~961 and ~977). This only changes the reject LABEL (reject_direct_decode vs reject_no_headroom_likely) and both are rejections, so outcome is unaffected; but name-keyed verdict logic is the exact anti-hardcoding pattern the operating contract forbids (label leakage via names).",
+      "fix": "key the verdict on the structural property (exhaustive_legal_query within oracle band) rather than the sketch-id string"
+    },
+    {
+      "id": "N3_HARD_FAILURE_FAMILY_SET_AND_TRIGGER_REIMPLEMENTED_IN_CODE",
+      "detail": "The grammar-stop trigger logic is re-implemented in 003A code (build_cross_batch_stop_report.trigger_a) and only metadata is read from cross_batch_stop_rules.json. 003A's HARD_FAILURE_FAMILY_CODES self-defines S1_UNDERPOWERED_ORACLE_SIGNAL as 'known', which is not in the governance rule's enumerated 11 families. Latent governance-faithfulness drift; did NOT affect this run (no S1 codes were emitted; codes used = A1,A2,A4,A5,A6,A7,A10).",
+      "fix": "drive trigger + family set from the governance rules file, or have the rules file explicitly enumerate S1; add a faithfulness check comparing code family set to source family set"
+    },
+    {
+      "id": "N4_MISSING_SEPARATION_COUNTED_AS_NONFIXABLE_A10",
+      "detail": "missing_oracle_vs_planner_separation_003a rejection (blocked_missing_oracle_vs_planner_separation_argument) is recorded as non-fixable hard-failure A10. A missing required argument is arguably a fixable/contract-omission category; if it were classified fixable, trigger_a condition 3 would be at risk. Outcome is unaffected because the same surface is independently underpowered (oracle 0.333 < floor), so it is non-promotable even if the argument were supplied.",
+      "fix": "make the 'non-promotable even if argument supplied' reasoning explicit rather than relying on the A10 label"
+    }
+  ],
+
+  "answers": {
+    "q1_is_003a_credible_negative_evidence": "Yes, as BOUNDED negative/process evidence: probe verdicts computed (not literal), reproducible bit-for-bit, baseline-battery complete, promote-gate demonstrably fail-able, and trigger A faithfully implements the predeclared 002C-R1 rule. No implementation/probe weakness prevents accepting the mechanical grammar stop. CAVEAT (decisive): the batch is composed entirely of known-bad fixtures, so the verdict cannot be read as proof of grammar non-viability or absence of headroom.",
+    "q2_next_route": "downgrade_current_environment_grammar (immediate routing decision, supported). NOT continue_environment_search under the same grammar (anti-p-hacking rule + batch never attempted a sincere candidate). NOT close_phase0_environment_search (premature: the partial/non-identifiability framing in Q4 has not been tried). The substantive next step is a replacement-framing spec under a NEW explicitly-authorized bounded card.",
+    "q3_is_004a_blocked": "Yes, explicitly. Predeclared rule blocks 004A pending route-level review, and this audit does NOT lift the block. 004A, full harness, candidate implementation, and route tournament all remain unauthorized.",
+    "q4_smallest_replacement_framing": "A partial-observability / non-identifiability environment where the target/latent S is NOT a (statistically) identifiable function of any <=budget subset of legal channels (defeats direct-decode, exhaustive_legal_query saturation, fitted/classical saturation), is NOT recoverable by graph/cache from observable transitions (defeats graph-cache), is absent from passive channels (defeats passive leak), scored with balanced macro-F1 + per-class floors (defeats metric degeneracy), and uses a budget-faithful visible oracle distinct from any answer-key (defeats oracle-invalid). Canonical minimal instance already scoped in lab memory: toy linear-Gaussian env with S independent of passive P(X). KNOWN RISK to pre-register: a fair budget-matched ACTIVE/interventional baseline may saturate this framing (the F6 risk); the replacement spec must include a genuine anti-stub active planner and an oracle-vs-planner separation argument that does not rely on weakening/omitting/underpowering baselines. This is design guidance, not authorization.",
+    "q5_preserve_003a": "Yes. Preserve as bounded negative/process evidence (reproducible, source-derived). Do not rewrite or strengthen. Successors must cite it as prior negative evidence per the operating contract. It records: (a) probe soundness on known-bad families, (b) a fail-able promote gate, (c) a correct mechanical stop firing. It is NOT headroom evidence and NOT proof of grammar non-viability."
+  },
+
+  "claim_ceiling": "Bounded route-level audit of an offline candidate-free Phase-0 scout. Confirms only: the 003A grammar-stop is computed, reproducible, baseline-complete, fail-able, and faithful to the predeclared 002C-R1 trigger; and the batch contains no sincere candidate. Proves nothing about headroom, Gate1, mechanism validity, candidate feasibility, runtime/mainline effect, or agency/autonomy/consciousness/EGO readiness.",
+  "what_this_does_not_prove": [
+    "that the environment design grammar cannot produce an admissible surface",
+    "any headroom anywhere",
+    "any Gate1 pass, mechanism validity, or candidate feasibility",
+    "any runtime/mainline/admission/bridge effect",
+    "any agency, autonomy, consciousness, or EGO readiness"
+  ],
+  "remaining_unknowns": [
+    "whether 003A-RUN-001A received explicit operator authorization (B1)",
+    "whether any non-saturable partial-identifiability surface exists under the full fair baseline battery (untested; the entire prior-evidence line has found none)",
+    "how a genuine anti-stub active planner behaves against a real candidate surface (never exercised)"
+  ]
+}

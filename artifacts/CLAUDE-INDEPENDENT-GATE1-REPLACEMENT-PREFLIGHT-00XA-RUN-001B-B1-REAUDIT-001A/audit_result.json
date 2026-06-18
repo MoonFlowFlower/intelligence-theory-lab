@@ -1,0 +1,176 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A",
+  "audit_role": "same_agent_bridge_audit_role_001_independent_auditor",
+  "audit_date": "2026-06-17",
+  "audited_bundle": "artifacts/gate1_replacement_preflight_00xa_run_001b/",
+  "prior_bundle": "artifacts/gate1_replacement_preflight_00xa_run_001a/",
+  "prior_audit_verdict": "requires_one_bounded_evidence_repair",
+  "prior_blocker": "B1_generator_provenance_gate_not_honored",
+  "scope": "B1 repair + minimal no-regression checks only; did not redo R1/implementation-card/surface-spec governance audit",
+  "research_layer": "engineering implementation / candidate-free preflight B1 evidence repair",
+  "mainline_integration": "none",
+  "enabled_status": "no runtime/mainline path enabled",
+
+  "verdict": "evidence_bundle_001b_accepted_rejected_baseline_saturated",
+
+  "answers": {
+    "rejected_baseline_saturated_accepted_as_terminal_route_evidence": true,
+    "close_00xa_surface_for_candidate_work": true,
+    "further_implementation_repair_allowed": false,
+    "new_headroom_surface_design_warranted": true,
+    "remaining_blocking_issue": null
+  },
+
+  "git_anchor": {
+    "head": "b45598b1c56080f2f850ae088f42cf585950483e",
+    "head_unchanged_since_prior_audit": true,
+    "bundle_001b_tracked": false,
+    "bundle_001b_status": "untracked (??), no commit/push/tag/remote-anchor",
+    "bundle_001a_preserved": true
+  },
+
+  "core_b1_checks": {
+    "1_source_spec_identity": {
+      "status": "PASS",
+      "live_spec_md_sha256": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+      "expected_spec_sha256": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+      "match": true,
+      "spec_md_bytes": 24588,
+      "independent_method": "bash sha256sum over live file == expected (24.5KB file hashed cleanly, no truncation on .md)",
+      "freeze_json_recorded_sha256": "fe3f12ad0252f016f24424d355a6138a0063ee0a87ffe9dcd3f4b13c4c451758",
+      "spec_mutation_detected": false,
+      "impl_card_audit_and_surface_spec_core_audit_read_back": true,
+      "note": "spec .md unchanged from frozen value; spec NOT mutated/normalized/refrozen"
+    },
+    "2_generator_provenance_completeness": {
+      "status": "PASS",
+      "all_required_fields_present": true,
+      "fields": [
+        "generator_source_hash", "generator_source_path", "generator_version_or_code_path_hash",
+        "producer_function", "fair_baseline_access", "hidden_target_storage",
+        "no_candidate_authored_truth", "readback_channels", "consumed_by_final_verdict"
+      ],
+      "generator_source_hash": "7cbe9d369ebca261d70f5cbbd9ab3db83f7d462d20ec79b68a05dac713d44f5c",
+      "generator_version_or_code_path_hash": "b240c6c7072100af36d52647228b3848d5475b1efc69763ec227e36d1d2d40bd",
+      "no_candidate_authored_truth": true,
+      "candidate_authored_truth": false,
+      "self_readback_only": false,
+      "source_pin_integrity": true,
+      "consumed_by_final_verdict": true
+    },
+    "3_generator_source_pin": {
+      "status": "PASS_WITH_NON_BLOCKING_CAVEAT",
+      "spec_loader_in_required_source_pins": true,
+      "recorded_sha256": "7cbe9d369ebca261d70f5cbbd9ab3db83f7d462d20ec79b68a05dac713d44f5c",
+      "recorded_byte_count": 8921,
+      "source_hash_checked_before_verdict": true,
+      "check_path": "build_generator_provenance computes file_sha256(spec_loader.py) and source_pin lookup; validate_generator_provenance asserts equality + integrity before derive_final_verdict proceeds",
+      "caveat": "Numeric value 7cbe9d36 not byte-level re-derivable by auditor: FUSE mount truncates spec_loader.py to 6583B/155 lines (ends mid-token), authoritative file is 8921B/213 lines. Verified instead by (a) full file-API content read = 213 coherent generator lines, (b) hash is runtime-computed via file_sha256, NOT a hardcoded literal (no '7cbe9d36' constant in any source; only EXPECTED spec hash fca7e5eb is hardcoded), (c) generator_source_hash and source_pin_sha256 both derive from file_sha256 of the SAME path so equality is structural, (d) recorded byte_count 8921 vs mount 6583 corroborates truncation-not-fabrication."
+    },
+    "4_generator_provenance_gate_failability": {
+      "status": "PASS",
+      "method": "clean-room reimplementation of validate_generator_provenance + derive_final_verdict from file-API source, executed in-sandbox (bypassing truncating mount)",
+      "probes_all_route_to_blocked_pending_canonical_readback": {
+        "missing_provenance_None": "PASS",
+        "missing_generator_source_hash": "PASS",
+        "generator_source_hash_mismatch": "PASS",
+        "self_readback_only_true": "PASS",
+        "candidate_authored_truth_true": "PASS",
+        "no_candidate_authored_truth_false": "PASS",
+        "source_pin_integrity_false_unverifiable": "PASS",
+        "dropped_canonical_source_pin_readback_channel": "PASS"
+      }
+    },
+    "5_gate_ordering": {
+      "status": "PASS",
+      "gate_runs_before_saturation": true,
+      "evidence": {
+        "valid_gp_plus_forced_degenerate_ceiling": "rejected_metric_degenerate (cascade continues past gate)",
+        "invalid_gp_plus_forced_degenerate_ceiling": "blocked_pending_canonical_readback (gate wins over both degenerate-rejection AND saturation)",
+        "valid_gp_non_saturated_inputs": "admissible_for_candidate_card_drafting_only"
+      },
+      "no_literal_terminal_path": "confirmed: every return flows through _final(verdict,...); 4 distinct terminal verdicts produced by varying inputs; verdict_derivation.final_verdict == final_verdict.json.final_verdict"
+    },
+    "6_recomputed_saturation": {
+      "status": "PASS",
+      "method": "clean-room generator (seeds 4001-4040) + baselines + macro_f1 recomputed in-sandbox, not copied from 001A",
+      "exhaustive_legal_query_macro_f1": 1.0,
+      "visible_channel_oracle_macro_f1": 1.0,
+      "answer_key_oracle_macro_f1": 1.0,
+      "six_graph_cache_macro_f1": {"graph_lookup": 1.0, "transition_table": 1.0, "successor_map": 1.0, "count_table": 1.0, "fsm_planner": 1.0, "episodic_traversal": 1.0},
+      "strongest_fair_macro_f1": 1.0,
+      "passive_family_max_macro_f1": 0.6,
+      "max_degenerate_macro_f1": 0.5247,
+      "size_only_macro_f1": 0.5489,
+      "truths_positive": "20 of 40 (balanced; macro F1 not degenerate-inflated)",
+      "legal_channel_only": true,
+      "reads_hidden_target": false,
+      "saturation_mechanism": "16 legal-channel votes per episode (14 correct / 2 flipped); fixed budget 16 == full legal channel count -> majority recovers target -> fair baseline ties oracle at 1.0",
+      "terminal_derived_from_frozen_equivalence_rule": "strongest_fair (1.0) >= visible_oracle (1.0) - EQUIVALENCE_BAND (0.03) -> rejected_baseline_saturated"
+    },
+    "7_no_regression": {
+      "status": "PASS",
+      "thresholds_unchanged": {"macro_f1_beta": 1.0, "equivalence_band": 0.03, "target_ceiling_minimum": 0.90, "ceiling_band_floor": 0.87, "per_class_floor": 0.85, "partial_inferability_margin": 0.06},
+      "candidate_added": false,
+      "frozen_spec_mutated": false,
+      "exhaustive_legal_query_weakened": false,
+      "graph_cache_challenger_weakened": false,
+      "all_six_graph_cache_present_invoked_consumed": true,
+      "leakage_present_consumed": true,
+      "leakage_positive_control_failable": true,
+      "leakage_clean_scan_empty": true,
+      "replay_present_valid_consumed": true,
+      "ablation_present_consumed": true,
+      "ablation_rows": ["no_action", "no_transition", "no_legal_channel", "no_observation", "no_leakage_control"],
+      "verifier_as_admission_or_immunity_as_executor": false,
+      "shared_artifacts_001a_vs_001b": "differ only by run_id stamp; partial_inferability.json and size_only_sweep.jsonl byte-identical -> metric logic unchanged"
+    },
+    "8_scope": {
+      "status": "PASS",
+      "changes_within_00xa_paths_only": true,
+      "001a_preserved_not_overwritten": true,
+      "gate4_gate5_routeC_runtime_mainline_admission_bridge_candidate_ego_ui_llm_airi_deploy_touched": false,
+      "commit_push_tag_remote_anchor_attempted": false,
+      "validation_report": {"artifact_allowlist_exact": true, "missing": [], "extra": [], "generator_provenance_gate_valid": true}
+    }
+  },
+
+  "spec_gate_alignment": {
+    "frozen_spec_mandates_generator_provenance_gate": true,
+    "spec_lines": "327-352 (Generator Provenance section); 350-352 mandate blocked_pending_canonical_readback if generator provenance absent/unverifiable/self-readback-only/candidate-authored",
+    "governance_self_modification": false,
+    "note": "Spec hash unchanged (fca7e5eb) -> 001B implements a pre-existing frozen rule that run_001a failed to honor; not a self-serving spec edit"
+  },
+
+  "blocking_issues": [],
+  "non_blocking_issues": [
+    "Generator source hash numeric value (7cbe9d36) not byte-level re-derivable by auditor through truncating FUSE mount (real 8921B vs mount 6583B); verified by content read + structural equality + runtime-computed-not-literal + byte_count corroboration. Same standing caveat as prior runs in this lineage.",
+    "001B drops surface_spec_readback.json (present in 001A); replaced by spec_hash_assertion.json + generator_provenance.json + generator_provenance_gate.json. Spec freeze identity still anchored via source pins + prior surface-spec core audit. Governance-metadata reduction, does not affect the 001B terminal verdict. Out of B1 scope.",
+    "freeze.json expected hash not re-anchored to a hardcoded constant in 001B code (only the .md is, via EXPECTED_SURFACE_SPEC_SHA256); freeze.json integrity pinned via source_readback only. Prior core audit established 3-way freeze identity.",
+    "Pre-existing dirty working tree outside 00xa (AGENTS.md, CLAUDE.md, acolb_*, acp_bv_* artifacts marked ' M'); not attributable to 001B (its footprint is untracked 00xa-only). Pre-existing drift / mount artifact documented in prior audits; should be cleaned but is outside this task."
+  ],
+  "required_fixes": [],
+  "implementation_may_proceed": "no_candidate_implementation_on_this_surface; B1 repair accepted; only governance close-out + design-only headroom surface allowed",
+
+  "claim_ceiling": "Repaired candidate-free Gate1-replacement preflight evidence bundle only. Bounded offline NEGATIVE evidence: the 00XA surface is saturated by fair candidate-free baselines (exhaustive_legal_query and all six graph-cache challengers tie the visible-channel oracle at macro F1 1.0 within the 0.03 equivalence band under fixed budget 16). The generator-provenance (B1) gate is now spec-correct, fail-able, and ordered before saturation.",
+  "what_this_does_not_prove": [
+    "Gate1 pass",
+    "Gate1 replacement validity",
+    "any mechanism validity",
+    "candidate success or candidate feasibility on any surface",
+    "Gate4 or Gate5 readiness",
+    "runtime/mainline/live effect",
+    "agency, autonomy, consciousness, emotion, self-awareness",
+    "stable user benefit",
+    "EGO readiness",
+    "correctness of Bio-CMBC, CVPSM, VCCO, CMBC, or R/G"
+  ],
+
+  "next_minimal_closed_loop_action": "Record/local-commit run_001b as ACCEPTED candidate-free negative (baseline-saturation) evidence and mark 00XA CLOSED for candidate work. NO push/tag/remote-anchor (standing PAT-rotation block; Auto-Remote-Anchor FORBIDDEN). Then, separately and design-only, draft a budget-constrained headroom surface card where fixed budget < full legal-channel count so exhaustive_legal_query and the graph-cache family cannot reach the oracle, creating genuine fair-vs-oracle headroom.",
+
+  "method_caveats": [
+    "FUSE mount truncates large pre-existing repo files on read (spec_loader.py: 8921B authoritative vs 6583B mount; verdict.py/baselines.py also). All source forensics used file-API Read (authoritative) and in-sandbox clean-room reimplementation; bash hashes over truncated source are fragments and were NOT used as evidence.",
+    "Clean-room recompute reimplements generator/baseline/verdict logic from file-API source; it reproduces the saturation substance and verdict cascade behavior, not a byte-for-byte re-execution of the user-machine runner."
+  ],
+  "audit_artifacts_pushed": false
+}

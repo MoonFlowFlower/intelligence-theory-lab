@@ -1,0 +1,108 @@
+{
+  "task_id": "GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-DRAFT-001A",
+  "run_id": "gate1_replacement_preflight_00xa_implementation_card_draft_001a",
+  "producer_function": "codex_manual_validation_report",
+  "code_path_hash": "not_applicable_manual_governance_draft",
+  "verdict": "gate1_replacement_preflight_00xa_implementation_card_drafted",
+  "scope": "implementation-card drafting artifacts only",
+  "checks": [
+    {
+      "name": "json_parse_validation_for_generated_json_files",
+      "status": "passed",
+      "evidence": "ConvertFrom-Json succeeded for source_readback.json, r1_reaudit_readback.json, constraint_traceability_matrix.json, and validation_report.json."
+    },
+    {
+      "name": "path_allowlist_check",
+      "status": "passed",
+      "evidence": "Generated file set matched exactly the seven allowed paths."
+    },
+    {
+      "name": "forbidden_claim_scan",
+      "status": "passed",
+      "evidence": "No positive forbidden-claim phrase from the scan list appeared in the generated card or artifacts.",
+      "claim_ceiling": "implementation-card draft only"
+    },
+    {
+      "name": "forbidden_path_scan",
+      "status": "passed",
+      "evidence": "Scoped generated files are limited to docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md and artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/. Existing unrelated dirty workspace paths were not staged or modified by this task."
+    },
+    {
+      "name": "source_readback_hash_capture",
+      "status": "passed",
+      "evidence": "source_readback.json records all four required paths and SHA256 hashes; closeout hash recapture matched those values."
+    },
+    {
+      "name": "required_section_coverage_scan",
+      "status": "passed",
+      "evidence": "Sections 1 through 33 were found in docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md."
+    },
+    {
+      "name": "r1_reaudit_traceability_scan",
+      "status": "passed",
+      "evidence": "Literal R1.a, R1.b, R1.c, R1 acceptance, blocked surface-spec verdicts, degenerate controls, graph-cache challengers, consumed_by_final_verdict, and BASELINE-IMMUNITY-ADMISSION-STANDARD-001A tokens were found."
+    },
+    {
+      "name": "no_source_test_runtime_gate_route_c_gate4_gate5_mainline_admission_changes",
+      "status": "passed",
+      "evidence": "Scoped generated file set contains no src/, tests/, Gate4/Gate5, Route C, runtime, mainline, bridge, or admission path. The workspace had unrelated pre-existing dirty paths before this task."
+    },
+    {
+      "name": "no_surface_spec_file_creation_or_mutation",
+      "status": "passed",
+      "evidence": "Scoped generated file set contains no surface specification path and the implementation card explicitly forbids future implementer surface-spec authorship or mutation."
+    },
+    {
+      "name": "git_diff_check_allowed_paths",
+      "status": "passed",
+      "evidence": "git diff --check over docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md and artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a exited 0."
+    }
+  ],
+  "generated_files": [
+    "docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md",
+    "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/source_readback.json",
+    "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/r1_reaudit_readback.json",
+    "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/constraint_traceability_matrix.json",
+    "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/validation_report.json",
+    "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/claim_ceiling.txt",
+    "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/final_report.md"
+  ],
+  "explicitly_not_run": [
+    "pytest",
+    "Gate1",
+    "Gate4",
+    "Gate5",
+    "Route C",
+    "candidate implementation",
+    "runtime",
+    "baseline run",
+    "ablation run",
+    "replay run",
+    "verifier admission run"
+  ],
+  "remote_actions": {
+    "commit": false,
+    "push": false,
+    "tag": false,
+    "remote_anchor": false
+  },
+  "mainline_integration_status": "none",
+  "enabled_status": "no executable path enabled",
+  "real_trigger_evidence": "R1 re-audit readback accepted implementation-card drafting only",
+  "claim_ceiling": "implementation-card draft only",
+  "next_minimal_closed_loop_action": "Send the implementation card, final report, and validation report to Claude for hostile audit.",
+  "what_this_does_not_prove": [
+    "Gate1 replacement admissibility",
+    "Gate1 pass",
+    "mechanism validity",
+    "candidate success",
+    "baseline-immunity enforcement",
+    "runtime or mainline readiness",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}

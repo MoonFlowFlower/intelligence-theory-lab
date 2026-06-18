@@ -1,0 +1,84 @@
+{
+  "clean_negative_control": {
+    "detected": false,
+    "payload_sha256": "78023d36e20a6a0baa43f611ac1bc6b266c01f385a377dedd2570368f35370d0",
+    "producer_function": "detect_leakage.clean_negative"
+  },
+  "positive_controls": [
+    {
+      "control_id": "passive_value_level_leakage",
+      "detected": true,
+      "payload_sha256": "e1d6864108b58c4cd753163544071b9fa329d84e901586d2f75363df0fd3cafc",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "schema_name_key_leakage",
+      "detected": true,
+      "payload_sha256": "ef4be7cf218a6d56331e8021298160b558266b092fa270592c192f11bedf45a7",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "order_leakage",
+      "detected": true,
+      "payload_sha256": "da01a4a5dd61f58a91e5ea0302a786dbb7c5cb153a01afcf03002bc657f9271c",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "action_api_leakage",
+      "detected": true,
+      "payload_sha256": "92b59f8cb8948f089f8e090b58c1a8ce640ca3126dffd340d80f040686b06088",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "serialized_state_leakage",
+      "detected": true,
+      "payload_sha256": "9dc7cb150bb2c1b54b365a67702849fc157450fc214f743032161c6fc9aaf8f7",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "result_json_leakage",
+      "detected": true,
+      "payload_sha256": "48dd3130f7332eb3b966b9a4c082959e78fb866f507ef75b0967c8446de346e3",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "candidate_only_field_leakage",
+      "detected": true,
+      "payload_sha256": "c2dc2a97e2effe1df95cafb73cea56e7308bd5fa691c59111e1b6cb73c0e52c0",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "train_heldout_contamination",
+      "detected": true,
+      "payload_sha256": "3632732117dbaaa23b4b9da65f6423ec78374eee1db2ac6a6b7dd64d98a6f061",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "truth_seed_contamination",
+      "detected": true,
+      "payload_sha256": "b7ebaf9893c0cfd910403fef0b337cc782e976fa783425c3e1a392cd91b7e00c",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "unused_frozen_seed",
+      "detected": true,
+      "payload_sha256": "6791fcdcf670bad58b6b0f9b8588e77b5c2d1ddcfbbaad45d0f880b8f40f3a59",
+      "producer_function": "detect_leakage"
+    },
+    {
+      "control_id": "source_pin_aliasing_or_forged_anchor_leakage",
+      "detected": true,
+      "payload_sha256": "3b923ef51692910250fc234015505aaaa2549e42427916d56c7405271c4196ba",
+      "producer_function": "detect_leakage"
+    }
+  ],
+  "producer_function": "build_leakage_positive_controls",
+  "real_artifact_scan": {
+    "artifact_count": 5,
+    "detected": false,
+    "hits": [],
+    "producer_function": "scan_real_artifacts_for_leakage"
+  },
+  "scanner_positive_controls_detected": true,
+  "verdict": "leakage_positive_controls_detected"
+}

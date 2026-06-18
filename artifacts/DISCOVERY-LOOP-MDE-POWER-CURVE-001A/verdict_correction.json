@@ -1,0 +1,34 @@
+{
+  "task_id": "DISCOVERY-LOOP-MDE-POWER-CURVE-001A",
+  "note": "Additive correction. The frozen run (result.json) is preserved unmutated; this file records a pre-registration LABEL DEFECT and the corrected reading.",
+  "frozen_verdict_in_result_json": "power_curve_estimated__mde_decreases_with_budget",
+  "label_defect": {
+    "what": "The pre-registered C2 gate ('MDE non-increasing in L within tol -> PASS') does not distinguish CONSTANT from DECREASING, but the PASS verdict is LABELLED 'mde_decreases_with_budget'.",
+    "observed": "MDE was FLAT at 0.012108 (the p_stay=0.97 world) across L_train in {1500,3000,6000}. It did NOT decrease.",
+    "consequence": "The verdict label overclaims. The honest verdict is 'mde_flat_across_budget__floor_set_by_asymptotic_gap_vs_eps'."
+  },
+  "corrected_substantive_finding": {
+    "headline": "For a latent mechanism competing against a flexible observation-only baseline (high-order count table), MORE DATA DOES NOT LOWER the detection floor. Separation is governed by whether the ASYMPTOTIC gap (oracle true_gap) exceeds eps, not by data budget.",
+    "evidence": {
+      "true_gap_gt_eps_worlds_separate_robustly": {"p_stay_0.97": {"true_gap": 0.012108, "power_1500_3000_6000": [1.0, 0.9, 0.8]}, "p_stay_0.99": {"true_gap": 0.028715, "power": [1.0, 1.0, 1.0]}},
+      "true_gap_lt_eps_worlds_do_not": {"p_stay_0.85": {"true_gap": 0.000425, "power": [0.0, 0.0, 0.0]}, "p_stay_0.92": {"true_gap": 0.00227, "power": [0.0, 0.0, 0.0]}, "p_stay_0.95": {"true_gap": 0.006832, "power": [0.5, 0.2, 0.2]}},
+      "small_data_separation_evaporates": "p_stay=0.95 (true_gap 0.0068 < eps 0.01): mean measured gap 0.0101 at L=1500 (power 0.5) converges DOWN toward the true sub-eps value as data grows -> separation collapses. Small-data separations of sub-eps-asymptotic effects are baseline-underestimation artifacts."
+    }
+  },
+  "confound_caveat": {
+    "what": "At the boundary world p_stay=0.95 the per-seed gap VARIANCE explodes at larger L (sd 0.0028 @1500 -> 0.0276 @3000 -> 0.0299 @6000), with occasional large-negative gaps.",
+    "cause": "Partly EM-HMM fit instability (em_restarts=3 insufficient at larger L; occasional bad local optima), NOT pure gap-convergence. So the p_stay=0.95 power drop is part real (gap->sub-eps) and part estimator artifact.",
+    "scope": "Confound affects the single boundary world's precise power value; it does NOT affect the qualitative conclusions, which rest on the clean worlds (0.97/0.99 robust; 0.85/0.92 sub-eps)."
+  },
+  "robust_conclusions": [
+    "C1 holds: fitted power is monotone non-decreasing in oracle true_gap at every budget (effect-size axis valid).",
+    "Worlds with asymptotic true_gap > eps separate robustly at all tested budgets.",
+    "Worlds with asymptotic true_gap < eps do not separate robustly at any tested budget.",
+    "MDE (smallest reliably-detected true effect) is FLAT across budget and ~= the smallest tested asymptotic gap exceeding eps (~0.012); it is NOT lowered by more data.",
+    "A separation found only at small data is not budget-robust and may be a baseline-underestimation false positive."
+  ],
+  "corrected_power_statement_primitive": "A negative/equivalence verdict's power statement is NOT 'collect more data to lower MDE'. It is: 'the loop reliably detects only asymptotic gaps > eps; effects with asymptotic gap < eps are undetectable at ANY budget in this baseline class, and small-data separations of such effects are non-robust'. Positive separations at small data MUST be checked for budget-robustness.",
+  "replay_match": true,
+  "C1_passed": true,
+  "secret_clean": true
+}

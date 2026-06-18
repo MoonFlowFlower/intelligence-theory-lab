@@ -1,0 +1,78 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A",
+  "audit_type": "independent_hostile_execution_time_audit",
+  "audit_date": "2026-06-16",
+  "target": {
+    "task_id": "ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-ACTIVATION-001A",
+    "source": "src/route_c_candidate_harness_001a/runner.py",
+    "tests": "tests/test_route_c_candidate_harness_001a.py",
+    "artifacts_dir": "artifacts/route_c_candidate_harness_001a/",
+    "runner_sha256": "e07980a4360be5624fc577b68397e2ae8cec75091cc49af0f705ad5a6f2f56da",
+    "reported_run_id": "route-c-candidate-harness-001a-local"
+  },
+  "verdict": "requires_harness_repair_before_negative_evidence_admission",
+  "implementation_may_proceed": false,
+  "one_line": "The underlying computed negative SIGNAL (candidate ties the strongest fair baseline; delta=0.0; gates are fail-able; fully reproducible) is genuine, but the REPORTED close_or_downgrade is packaged with a hardcoded result.json verdict, a self-reported access-parity gate on the declared causal path, and several non-fail-able / hand-filled controls; these must be repaired before the bundle is admitted as clean computed negative evidence.",
+  "core_finding": {
+    "candidate_is_code_identical_to_strongest_fair_baseline": true,
+    "explanation": "candidate_policy and fair_interventional_baseline.exhaustive_legal_query both call query_all_policy(episode) with the default order and query the entire legal action space (budget=item_count=8=all items), so both recover the exact hidden set -> score 1.0. delta=0.0 is structural, not coincidental. This is genuine baseline equivalence and the honest negative outcome for THIS candidate implementation.",
+    "scorer_is_discriminative": "passive/observation-only baselines genuinely score 0.16-0.40 (<1.0); ablations score 0.20-1.00; only the query-based candidate and the 12 fair/graph-cache interventional baselines reach 1.0. The scorer is real, not pinned to 1.0.",
+    "computed_gates_are_fail_able": "Fail-ability probe (monkeypatched all baselines to score 0.0, candidate stays 1.0, delta=1.0): baseline_comparison.margin_decision flipped to candidate_margin_cleared, saturation_decision flipped to not_saturated, failure_manifest.stop_conditions became []. The computed gates respond correctly to inputs."
+  },
+  "checks": {
+    "1_cli_recomputes_everything": {"result": "PASS", "evidence": "Fresh CLI run exit 0; pytest 4 passed; trace.jsonl & baseline_comparison.json byte-identical to committed after CRLF->LF normalization (only predeclaration_hash and source_artifact_sha256 differ, both downstream of source_artifact CRLF). Provenance 115 rows produced by callable paths."},
+    "2_exhaustive_legal_query_is_fair_baseline": {"result": "PASS_SUBSTANCE", "evidence": "It is code-identical to the candidate (same query_all_policy, same default order), so access is provably equal; it is a fair, indeed maximally-fair, interventional baseline."},
+    "3_access_parity_computed_not_self_reported": {"result": "FAIL", "evidence": "build_access_parity_report() takes NO candidate/baseline access traces (signature: repo_root, output_dir, run_id, code_hash, source_hash). It emits a static dict with every dimension candidate_access/baseline_access='legal_equal', parity=true, verdict='access_parity_passed'. Pure self-report. Tests assert all(item['parity'] is True) — locks the literal."},
+    "4_saturation_control_consumes_report_and_returns_close": {"result": "FAIL", "evidence": "saturation_failing_negative_control.json sets access_parity_report_consumed:true as a LITERAL field and calls saturation_gate(candidate=1.0, fair=1.0, parity=True) with hardcoded inputs identical to the real run. It does NOT actually read access_parity_report.json, and only re-exhibits the SATURATED (close_or_downgrade) branch; it never demonstrates not_saturated. Consumption is asserted, not real; control is not fail-able in the discriminating direction."},
+    "5_margin_failing_control_fails_closed": {"result": "PASS", "evidence": "margin_failing_negative_control.json: candidate=0.50, baseline=0.49, advantage=0.01 -> clears=false -> close_or_downgrade. Genuinely fails closed via the same margin_gate callable. (Bundle lacks an in-bundle cleared demonstration; supplied by audit probe.)"},
+    "6_replay_recomputes_from_state_not_hashes": {"result": "PASS_WITH_CAVEAT", "evidence": "recompute_replay...() genuinely recomputes predicted set from legal_history membership (all 5 match; independently reproduced from trace). stored_hash_only_used=false is true. CAVEAT: the controls{corrupted_state, missing_observation, forbidden_truth_field_read}='fail_closed' are HARDCODED literals — the failing conditions are never executed through the replay function."},
+    "7_ablations_real_intervention": {"result": "PASS", "evidence": "run_ablation_reruns() rebuilds episodes and recomputes predictions under modified policies; scores vary (0.20-1.00) across ablations and seeds. replace_candidate_policy_with_strongest_fair_baseline_policy -> 1.0 = candidate score, corroborating baseline equivalence by computation."},
+    "8_leakage_positive_controls_detected": {"result": "PASS_WITH_CAVEAT", "evidence": "All 11 detect_leakage positive controls return detected=true via the real detector. CAVEAT: payloads are constructed to match each detector (near-tautological); the scanner is NEVER run over the actual produced artifacts (result.json, trace.jsonl, serialized_state) and there is no clean-negative control showing not-detected on the real pipeline. Not a fail-able guard over the real evidence."},
+    "9_source_pin_not_only_fuse_truncation_vulnerable": {"result": "FAIL", "evidence": "read_file_pin() does a pathlib double-read (catches only between-read staleness) and HARDCODES prefix_truncation_detected=false; shell_mount_read_compared=false. No independent reader / expected-size comparison, so it cannot actually detect prefix truncation; it asserts absence. (No actual truncation present here: runner.py sha256 matches committed code_path_hash e07980a4.)"},
+    "10_provenance_rows_callable_and_complete": {"result": "PASS", "evidence": "115 rows, 0 missing required fields; 8 roles {candidate, passive baseline, fair interventional baseline, control, gate, ablation, replay, leakage}; 31 producer_functions; all code_path_hash==e07980a4 (real runner hash); all have recompute_command and source_pinned_input_artifact_hash. Produced during actual execution (5 candidate + 40 passive + 60 fair + report rows)."},
+    "11_no_literal_or_result_patching_creates_verdict": {"result": "FAIL", "evidence": "result.json['verdict']='close_or_downgrade' and ['terminal_reason']='strongest_fair_baseline_saturated_candidate' are HARDCODED string constants (runner.py lines 1328-1329), NOT derived from the computed gates. Fail-ability probe proved it: when computed gates flip to candidate-wins, result.json STILL reports close_or_downgrade and stop_conditions=[] (internal inconsistency with failure_manifest). access_parity_report, saturation control, and replay sub-controls are also hand-filled clean reports. The valid computed negative evidence lives ONLY in baseline_comparison.json / failure_manifest.stop_conditions, not in the reported result.json headline."},
+    "12_no_forbidden_scope_changes": {"result": "PASS", "evidence": "Harness writes only under output_dir (code-verified); git usage is read-only (rev-parse/branch/status only — no commit/push/tag/add/remote/anchor); task outputs are untracked (?? in run-time git_readback); no mainline/runtime/bridge/scheduler/Gate-runner/product source has a post-2026-06-16 mtime attributable to this harness. auto_remote_anchor='forbidden' preserved."}
+  },
+  "blocking_issues": [
+    "B1 (check 11): result.json verdict + terminal_reason are non-computed literals, disconnected from the gates (proven fail-ability probe). The REPORTED close_or_downgrade is not itself computed/fail-able.",
+    "B2 (check 3): access parity is self-reported (static all-true dict, no access traces consumed); the declared terminal_reason (saturation) consumes this hand-filled parity as a hardcoded-True conjunct.",
+    "B3 (check 4): saturation 'failing negative control' does not actually consume access_parity_report.json and never exhibits not_saturated; it is not fail-able in the discriminating direction.",
+    "B4 (check 9): source-pin readback hardcodes prefix_truncation_detected=false and performs no independent-reader/expected-size truncation check."
+  ],
+  "non_blocking_issues": [
+    "N1 (check 6): replay sub-controls (corrupted_state/missing_observation/forbidden_truth) are hardcoded fail_closed literals, not executed (main replay recomputation is genuine).",
+    "N2 (check 8): leakage scanner only confirms planted, detector-matched positives; never scans real artifacts; no clean-negative control.",
+    "N3: test suite asserts the literal outcomes (verdict=='close_or_downgrade', delta==0.0, parity all true) rather than fail-ability; it is a fixture, not a falsification test.",
+    "N4 (env): cross-environment reproducibility uses CRLF source_artifact on Windows -> source/predeclaration hashes are line-ending-dependent; LF rerun changes those hashes only.",
+    "N5 (env): in a broken-git environment forbidden_scope_status returns clean vacuously (empty status); independent filesystem check used here instead."
+  ],
+  "required_fixes_for_admission": [
+    "Derive result.json['verdict'] and ['terminal_reason'] from baseline_comparison gate verdicts (margin_decision/saturation_decision) and add an assertion that result.verdict == the computed gate outcome; fail the run on mismatch.",
+    "Compute access parity from recorded candidate/baseline access traces (API set, budget used, observation set, state/update access, cache) and make build_access_parity_report fail when access differs; feed the COMPUTED parity into saturation_gate.",
+    "Replace the hardcoded saturation/replay negative controls with controls that actually execute the failing/clearing inputs through the same callables and produce both close_or_downgrade AND not_saturated/cleared outcomes (in-bundle fail-ability in both directions).",
+    "Run the leakage scanner over the actual produced artifacts plus a clean-negative control; record not-detected on the real pipeline.",
+    "Implement a real source-pin truncation check (independent reader / expected-size or known-good hash comparison) instead of asserting prefix_truncation_detected=false.",
+    "Make tests assert fail-ability (e.g., a perturbed candidate flips the gate verdict) rather than only locking literals."
+  ],
+  "what_is_genuinely_sound": [
+    "Candidate and baseline scores are genuinely computed and deterministically reproduced (byte-identical mod line endings); scorer is discriminative.",
+    "Computed gates (margin_decision, saturation_decision in baseline_comparison.json) are fail-able and correct on real inputs.",
+    "Candidate is code-identical to exhaustive_legal_query -> genuine, overdetermined baseline equivalence (also corroborated by the replace-with-baseline ablation == 1.0 and by the parity-independent margin gate: advantage 0.0 < 0.05).",
+    "Ablations are real interventional reruns; main replay recomputation is real; provenance is complete and callable-produced; scope is clean; claim ceiling enforced; no positive/mechanism/consciousness claims; auto_remote_anchor forbidden."
+  ],
+  "claim_ceiling": "execution-time audit of bounded local candidate harness evidence only. No mechanism validity, candidate success, Gate pass, mainline/runtime effect, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+  "what_this_audit_does_not_prove": [
+    "Does not prove Route C is impossible or unviable — only that THIS candidate implementation is baseline-equivalent.",
+    "Does not prove the candidate has any mechanism, self-boundary, or hidden-self-set inference capability.",
+    "Does not certify the harness's integrity-control layer; several controls are non-fail-able as written.",
+    "Does not grant Gate, mainline, runtime, or anchor admission."
+  ],
+  "commands_run": [
+    "PYTHONPATH=src python3 -m route_c_candidate_harness_001a --output-dir /tmp/audit_rerun --run-id route-c-candidate-harness-001a-local",
+    "PYTHONPATH=src python3 -m pytest tests/test_route_c_candidate_harness_001a.py -q  (4 passed)",
+    "sha256sum src/route_c_candidate_harness_001a/runner.py  (== committed code_path_hash e07980a4)",
+    "CRLF-normalized diffs of source_artifact.json / trace.jsonl / baseline_comparison.json (committed vs rerun)",
+    "fail-ability probe: monkeypatch baselines->0.0, rerun, inspect baseline_comparison vs result.json",
+    "provenance field/role coverage scan; filesystem scope check"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001A-HOSTILE-AUDIT-001A",
+  "audit_date": "2026-06-17",
+  "auditor_role": "same_agent_bridge_audit_role_001_independent_red_team",
+  "audited_bundle": "artifacts/gate1_replacement_preflight_00xa_run_001a/",
+  "audited_terminal_verdict_claim": "rejected_baseline_saturated",
+  "current_layer": "engineering implementation / candidate-free Gate1 replacement preflight run",
+  "mainline_integration": "none",
+  "enabled_status": "no runtime/mainline path enabled",
+
+  "audit_verdict": "requires_one_bounded_evidence_repair",
+  "negative_finding_substance_accepted_as_route_evidence": true,
+  "terminal_label_rejected_baseline_saturated_admissible_as_is": false,
+  "implementation_repair_allowed": "one_bounded_repair_generator_provenance_conformance_only",
+  "new_surface_warranted_or_close_00xa": "deferred_until_after_provenance_repair_then_close_00xa_as_generated_and_design_headroom_surface",
+
+  "decision_basis": "The saturation evidence is real, computed, fail-able, in-scope, and byte-reproducible from source in a clean room. The single blocking defect is a frozen-spec conformance gap: the spec (lines 350-352 + State Schema line 104) mandates that absent/unverifiable generator provenance MUST yield blocked_pending_canonical_readback, the generator provenance (generator source SHA256 + code-path hash + several required fields) is in fact absent, and derive_final_verdict implements no generator-provenance gate. The spec-correct terminal label for this bundle's actual provenance state is therefore blocked_pending_canonical_readback, not rejected_baseline_saturated. After the bounded provenance repair the saturation is expected to survive and the terminal label legitimately becomes rejected_baseline_saturated.",
+
+  "core_checks": {
+    "1_source_spec_identity": {
+      "verdict": "pass",
+      "read_before_scoring": true,
+      "live_spec_sha256_independently_reproduced": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9",
+      "spec_byte_count": 24588,
+      "crlf_count": 0,
+      "spec_or_freeze_mutated_by_implementer": false,
+      "notes": "sha256sum + 3-way (live md == freeze record == spec_hash_assertion). Spec untracked but byte-stable; verify_surface_spec_hash is real and fail-closed."
+    },
+    "2_verdict_derivation": {
+      "verdict": "pass",
+      "computed_not_literal": true,
+      "consistent_with_frozen_saturation_rule": true,
+      "fail_able_branches_reached": ["admissible_for_candidate_card_drafting_only", "rejected_baseline_saturated", "rejected_trivially_decodable", "rejected_answer_key_oracle_gap", "blocked_candidate_authored_or_mutated_surface_spec", "blocked_pending_canonical_readback"],
+      "notes": "Ordered fail-closed cascade in verdict.derive_final_verdict. Fresh clean-room run reproduced verdict_derivation.json byte-identical to committed. Probe drove 6 distinct verdicts incl. admissible -> resolves prior B1 literal-verdict failure family."
+    },
+    "3_exhaustive_legal_query": {
+      "verdict": "pass",
+      "legal_fair_challenger": true,
+      "independent_callable": true,
+      "reads_hidden_target": false,
+      "macro_f1_recomputed_from_inputs": 1.0,
+      "consumed_by_final_verdict": true,
+      "notes": "Reads only legal_channel_responses majority. Recomputed in clean room."
+    },
+    "4_visible_channel_oracle": {
+      "verdict": "pass_with_caveat",
+      "budget_faithful_visible_channel_only": true,
+      "answer_key_access": false,
+      "macro_f1_recomputed": 1.0,
+      "caveat": "visible_channel_oracle IS the same function as strongest_known_classical_method_for_task_type (legal majority vote). Correct/honest for a REJECTION (no daylight between best-legal and trivial-classical = saturation), but the oracle is a member of the fair-method class, not a privileged upper bound; would be circular if it ever drove an ADMISSION. answer_key_oracle (reads label) is correctly diagnostic_only/may_support_admission=false and used only for the answer-key-gap branch."
+    },
+    "5_baseline_panel": {
+      "verdict": "pass",
+      "degenerate_predictors_invoked_consumed": true,
+      "size_only_sweep_0_to_N_invoked_consumed": true,
+      "six_graph_cache_present_callable_independent_invoked_consumed": ["graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "episodic_traversal"],
+      "lookup_imitation_present": ["trace_only_replay", "ngram_trace_lookup", "full_bundle_decoder", "serialized_state_decoder", "belief_table", "pair_count_table"],
+      "strongest_known_classical_not_weaker_than_fair_challenger": true,
+      "trained_learner": "correctly_non_applicable_no_adaptation_claim",
+      "n_baselines": 30
+    },
+    "6_metric": {
+      "verdict": "pass_with_caveat",
+      "macro_f1_beta_1_as_frozen": true,
+      "equivalence_band_0_03": true,
+      "ceiling_band_0_87_and_0_90_as_frozen": true,
+      "no_single_sided_metric_supports_verdict": true,
+      "predict_all_recall_1_0_but_macro_f1_0_333_does_not_win": true,
+      "caveat": "PER_CLASS_FLOOR=0.85 constant matches frozen spec and per-class P/R are computed for every row, but metric_clears_admission_floors() and validate_metric_contract() are defined yet NOT wired into derive_final_verdict. Immaterial to THIS rejection (decided earlier by macro_f1 saturation); MUST be wired before any admissible verdict is trusted."
+    },
+    "7_positive_partial_inferability": {
+      "verdict": "pass",
+      "passive_family_macro_f1": 0.6,
+      "from_callable_producers": true,
+      "not_trivially_decodable": true,
+      "shows_legal_signal_but_baseline_saturated": true,
+      "verdict_does_not_overclaim_admissibility": true
+    },
+    "8_leakage": {
+      "verdict": "pass_with_caveat",
+      "scanner_fail_able": true,
+      "injected_leak_detected": true,
+      "removal_removes_detection": true,
+      "same_admission_path": true,
+      "consumed_by_final_verdict": true,
+      "caveat": "Token-name scanner only (no value-level leakage detection), but value-level leakage is separately guarded by the passive-trivial-decodability gate (passive>=0.87 -> reject). Combination adequate."
+    },
+    "9_replay": {
+      "verdict": "pass",
+      "recompute_from_serialized_state_plus_observation": true,
+      "hash_only_or_stored_output": false,
+      "negative_control_corrupt_state_changes_behavior": true,
+      "consumed_by_final_verdict": true
+    },
+    "10_ablations": {
+      "verdict": "pass_with_caveat",
+      "no_legal_channel_real_mutation": true,
+      "macro_f1_recomputed": true,
+      "caveat": "no_legal_channel empties legal_channel_responses (real intervention -> 0.333). no_action/no_transition are modeled as predict-none counterfactual, not bundle-level mutation. derive_final_verdict consumes ablation only as a PRESENCE gate (invoked+consumed), not value-load-bearing; values DO substantively support legal_channel_reduces_uncertainty (1.0 -> 0.333). Not used to overclaim mechanism evidence (verdict is a rejection)."
+    },
+    "11_computed_evidence_provenance": {
+      "verdict": "pass_with_caveat",
+      "baseline_rows_full_provenance": true,
+      "oracle_leakage_replay_ablation_partial_carry_producer_and_consumed": true,
+      "no_detached_or_literal_verdict": true,
+      "caveat": "validation_report.json and several boolean flags (budget_faithful, answer_key_access, forbidden_runtime_scope_touched, etc.) are self-reported shape; the load-bearing ones were independently corroborated against code (answer_key_access) and git (scope/no-commit)."
+    },
+    "12_scope": {
+      "verdict": "pass",
+      "changes_inside_allowed_paths": true,
+      "no_gate4_gate5_routec_runtime_candidate_ego_ui_llm_airi_deploy": true,
+      "commit_push_tag_anchor_attempted": false,
+      "notes": "All gate1_replacement_preflight_00xa src/tests/spec/run_001a paths are UNTRACKED; HEAD unchanged at b45598b1. candidate/EGO matches in working tree are pre-existing drift from other tasks (acp_bv, cmbc_companion)."
+    }
+  },
+
+  "blocking_issues": [
+    {
+      "id": "B1_generator_provenance_gate_not_honored",
+      "severity": "blocking_for_terminal_label_only",
+      "evidence": "Spec lines 350-352 + State Schema line 104 (generator_source_hash: sha256-or-blocked) + Generator Provenance section (source SHA256, code-path hash, producer_function, fair-baseline-access, hidden-target-storage, no-candidate-authored-truth assertion). Bundle records only generator_id + source-path string. grep: generator_source_hash absent in src; no run_001a artifact records generator provenance; spec_loader.py not among canonical source pins; derive_final_verdict has no generator-provenance gate.",
+      "consequence": "Per the frozen spec the verdict for absent generator provenance MUST be blocked_pending_canonical_readback. The harness emitted rejected_baseline_saturated, skipping the spec-mandated gate. The terminal label does not match the spec-correct outcome for the bundle's actual provenance state.",
+      "cannot_inflate_into_false_positive": true,
+      "note": "This blocks the TERMINAL LABEL, not the substance: the saturation observation is real and conservative; it cannot become a false admission."
+    }
+  ],
+
+  "non_blocking_issues": [
+    "Per-class floor (0.85) + validate_metric_contract defined but not wired into the admissible branch (immaterial to this rejection; required before any admission).",
+    "visible_channel_oracle == strongest_known_classical_method function (honest for rejection; circular if it ever drove admission).",
+    "Leakage scanner is token-name only; value-level leakage covered separately by passive-decodability gate.",
+    "Ablation values are presence-consumed not value-consumed by the verdict; no_action/no_transition are predict-none counterfactuals rather than bundle mutations.",
+    "validation_report.json + several boolean flags are self-reported shape (load-bearing ones independently corroborated).",
+    "Generator/spec fidelity: bundle does not let an auditor verify the generator implements the spec's intended surface (no generator source pin/hash); rejection is conservative so non-blocking, but tied to B1."
+  ],
+
+  "required_fix_single_bounded_repair": "Implement the frozen spec's generator-provenance requirement: (a) record complete generator provenance in the bundle/artifacts (generator source SHA256 + version/code-path hash + producer_function + fair-baseline-access + hidden-target-storage + no-candidate-authored-truth assertion), (b) add the generator source (src/gate1_replacement_preflight_00xa/spec_loader.py) to the canonical source-pin readback so it is hashed, (c) wire a generator-provenance gate into derive_final_verdict so absent/unverifiable/self-readback-only/candidate-authored generator provenance yields blocked_pending_canonical_readback. Do NOT mutate the frozen surface spec, do NOT change thresholds, do NOT add a candidate. Re-run preflight and re-audit. Saturation is expected to persist; terminal label then legitimately becomes rejected_baseline_saturated.",
+
+  "reproduction": {
+    "spec_sha256_cmd": "sha256sum docs/research/gate1_replacement_surface_spec_00xa.md",
+    "spec_sha256_result": "fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9 (24588 bytes, 0 CRLF) == expected",
+    "pytest": "python -m pytest tests/gate1_replacement_preflight_00xa -q -> 22 passed",
+    "clean_room_rerun": "run_preflight -> verdict_derivation.json BYTE-IDENTICAL to committed; baseline macro_f1 map identical (n=30); oracle 1.0/1.0/0.333 match; leakage/replay/partial match",
+    "fail_ability_probe": "derive_final_verdict reaches admissible (fair=0.70), rejected_baseline_saturated (fair=0.93), rejected_trivially_decodable (passive=0.95), rejected_answer_key_oracle_gap (visible_oracle=0.50/answer_key=0.94), blocked_candidate_authored_or_mutated_surface_spec (spec ok=false), blocked_pending_canonical_readback (source conflict / leak on clean path)"
+  },
+
+  "claim_ceiling": "candidate-free preflight evidence bundle only. Bounded offline evidence that the 00xa surface AS GENERATED is saturated by a fair legal-query baseline that ties the budget-faithful visible-channel oracle within the 0.03 equivalence band. Does NOT prove Gate1 pass, Gate1 replacement validity, mechanism validity, candidate success, that the saturation is intrinsic to the spec's intended surface (vs the generator implementation), Gate4/Gate5/runtime/EGO readiness, agency, autonomy, consciousness, emotion, or stable user benefit.",
+
+  "next_minimal_closed_loop_action": "Authorize one bounded harness-repair task card (generator-provenance conformance + gate wiring, no spec mutation, no candidate, no threshold change). Re-run preflight, re-audit. If saturation persists with complete generator provenance: record rejected_baseline_saturated as terminal, CLOSE the 00xa surface for candidate work, and (if an admissible Gate1 replacement is still wanted) draft a NEW surface design with baseline-resistant headroom (visible-channel oracle >= 0.90, oracle - strongest_fair > 0.03, passive < 0.87).",
+
+  "what_this_audit_does_not_prove": [
+    "that 00xa is or is not a valid Gate1 replacement surface",
+    "Gate1 pass or any mechanism/candidate validity",
+    "that the spec's intended surface is intrinsically saturated",
+    "runtime, mainline, EGO, or companion readiness",
+    "any consciousness/subjectivity/agency/emotion claim"
+  ],
+
+  "push_status": "NOT pushed/committed/tagged/anchored. scripts/push.* hardcoded-PAT remains a standing BLOCK on any remote action until rotated."
+}

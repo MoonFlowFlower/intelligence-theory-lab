@@ -1,0 +1,108 @@
+{
+  "task_id": "PRESERVE-CANDIDATE-FREE-ROUTE-C-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A",
+  "verdict": "route_c_separation_probe_rejection_preserved",
+  "preserved_verdict": "reject_as_false_positive_or_weakened_baseline",
+  "current_layer": "engineering-governance / hostile-audit rejection preservation only",
+  "mainline_integration_status": "none",
+  "enabled_status": "local docs/artifacts preservation only",
+  "real_trigger_evidence": {
+    "hostile_audit_artifact_dir": "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/",
+    "normalized_preservation_dir": "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+    "cleanroom_output": "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/cleanroom_reproduction_output.txt"
+  },
+  "authorization": {
+    "implementation_authorized": false,
+    "route_c_repromotion_authorized": false,
+    "new_surface_preflight_authorized": false,
+    "candidate_implementation_authorized": false,
+    "gate_run_authorized": false,
+    "commit_authorized": false,
+    "push_authorized": false,
+    "tag_authorized": false,
+    "remote_anchor_authorized": false,
+    "auto_remote_anchor": "forbidden"
+  },
+  "probe_rejection_basis": {
+    "reported_oracle_score": 1.0,
+    "reported_strongest_fair_baseline": {
+      "baseline_id": "mean",
+      "score": 0.5833333333333334
+    },
+    "reported_delta": 0.41666666666666663,
+    "reported_verdict": "separation_exists_route_c_may_repromote_one_surface",
+    "decisive_fair_baseline": {
+      "baseline_id": "predict_all",
+      "score": 1.0,
+      "privileged": false,
+      "omitted_from_original_panel": true
+    },
+    "delta_under_strongest_admissible_fair_baseline": 0.0,
+    "metric_defect": "recall-only metric with no precision penalty and no passive prediction-set-size cap",
+    "generator_defect": "visible features and hidden membership are generated from independent salts",
+    "inert_control": "full-budget saturation control computed but not consumed by the final decision path"
+  },
+  "cleanroom_reproduction_facts": {
+    "command": "python cleanroom_reproduction.py",
+    "exit_code": 0,
+    "oracle_mean_score": 1.0,
+    "mean_baseline_score": 0.5833,
+    "predict_all_mean_score": 1.0,
+    "threshold_min_mean_score": 1.0,
+    "visible_hidden_correlation": 0.0029,
+    "conclusion": "strongest admissible fair baseline reaches oracle recall, so delta is 0.0"
+  },
+  "old_green_tests_interpretation": "not evidence of separation because they assert the false-positive condition",
+  "decision_log_updated": true,
+  "source_or_probe_repair_made": false,
+  "new_surface_drafted": false,
+  "gate_run_performed": false,
+  "commit_push_tag_or_anchor_performed": false,
+  "validation": {
+    "json_parse_validation": {
+      "audit_verdict_json": "ok",
+      "result_json": "ok",
+      "readback_json": "ok"
+    },
+    "cleanroom_reproduction_command": {
+      "command": "python cleanroom_reproduction.py",
+      "exit_code": 0,
+      "required_output_facts_present": true
+    },
+    "git_diff_check": {
+      "command": "git diff --check -- docs/decision_log.md docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md",
+      "exit_code": 0,
+      "warning": "docs/decision_log.md LF will be replaced by CRLF the next time Git touches it"
+    },
+    "path_allowlist_check": {
+      "allowlist_ok": true,
+      "new_status_entries_from_this_task": [
+        "?? artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+        "?? docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md"
+      ],
+      "tracked_diff_names": [
+        "docs/decision_log.md"
+      ]
+    },
+    "forbidden_claim_scan": {
+      "ok": true,
+      "issue_count": 0
+    }
+  },
+  "claim_ceiling": "Hostile-audit rejection preservation only. This proves only that the Codex candidate-free Route C separation probe cannot be used as Route C re-promotion evidence.",
+  "next_minimal_closed_loop_action": "Return to Gate-oriented or alternative mechanism route selection.",
+  "what_this_does_not_prove": [
+    "Route C mechanism validity",
+    "Route C impossibility",
+    "hidden-self-set inference",
+    "self-boundary evidence",
+    "candidate success",
+    "Gate pass",
+    "mainline/runtime/live effect",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}

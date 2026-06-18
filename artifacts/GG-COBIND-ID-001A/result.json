@@ -1,0 +1,113 @@
+{
+  "task_id": "GG-COBIND-ID-001A",
+  "run_id": "local_gg_cobind_id_001a",
+  "preregistration": {
+    "task_id": "GG-COBIND-ID-001A",
+    "schema_version": "gg-cobind-id-001a.evidence.v1",
+    "research_layer": "engineering_implementation+mechanism_hypothesis",
+    "d_L": 6,
+    "n_channels": 3,
+    "rank_hypothesis": 1,
+    "n_ample": 400,
+    "n_poor": 15,
+    "n_poor_pc": 8,
+    "n_heldout": 2000,
+    "noise_sd": 0.3,
+    "ridge_lambda_grid": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "DELTA_R2": 0.05,
+    "consistency_min": 8,
+    "eval_target": "noise_free_signal",
+    "regimes": [
+      "balanced_ample",
+      "imbalanced",
+      "positive_control",
+      "negative_control"
+    ],
+    "claim_ceiling": "Bounded identifiability statement for LINEAR interventional co-binding in ONE toy world. NOT self, agency, emotion, autonomy, subjectivity, companion-readiness. Does NOT prove non-identifiability for nonlinear mechanisms; informs grounding-gate gate-to-draft decision only.",
+    "what_this_does_not_prove": [
+      "Not self.",
+      "Not agency.",
+      "Not emotion.",
+      "Not autonomy.",
+      "Not subjectivity.",
+      "Not companion-readiness.",
+      "Not non-identifiability for nonlinear mechanisms.",
+      "Not that the grounding gate is impossible in every world."
+    ]
+  },
+  "prereg_sha256": "46acea22784d9f7250523489b118809e15f9ee4e197b7a612a58cc5e1f774456",
+  "code_path_hash": "f87bafa6a0cd961755f2833eda02adf491ce828d93144641e7d86d15b02e54c7",
+  "secret_scan": {
+    "run_path": "/tmp/itl_gg/src/gg_cobind_id_001a/probe.py",
+    "clean": true,
+    "n_findings": 0
+  },
+  "verdict": "co_binding_non_identifiable__only_transfer_headroom",
+  "verdict_detail": {
+    "positive_control_win_seeds": [
+      9,
+      10
+    ],
+    "negative_control_win_seeds": [
+      0,
+      10
+    ],
+    "imbalanced_win_seeds": [
+      9,
+      10
+    ],
+    "balanced_independent_reproduces_seeds": [
+      10,
+      10
+    ],
+    "DELTA_R2": 0.05,
+    "consistency_min": 8
+  },
+  "qualitative_co_change": {
+    "independent_model_intervention_delta_per_channel": [
+      -1.682822,
+      -1.227699,
+      0.865377
+    ],
+    "all_three_channels_change": true,
+    "note": "independent heads (no shared latent) reproduce 'intervene -> all channels change'"
+  },
+  "claim_ceiling": "Bounded identifiability statement for LINEAR interventional co-binding in ONE toy world. NOT self, agency, emotion, autonomy, subjectivity, companion-readiness. Does NOT prove non-identifiability for nonlinear mechanisms; informs grounding-gate gate-to-draft decision only.",
+  "what_this_does_not_prove": [
+    "Not self.",
+    "Not agency.",
+    "Not emotion.",
+    "Not autonomy.",
+    "Not subjectivity.",
+    "Not companion-readiness.",
+    "Not non-identifiability for nonlinear mechanisms.",
+    "Not that the grounding gate is impossible in every world."
+  ],
+  "artifacts": [
+    "result.json",
+    "trace.csv",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "positive_control_report.json",
+    "replay_report.json",
+    "claim_ceiling.txt"
+  ]
+}

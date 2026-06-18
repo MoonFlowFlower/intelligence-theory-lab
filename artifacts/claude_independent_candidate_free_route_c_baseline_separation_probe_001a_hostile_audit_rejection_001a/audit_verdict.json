@@ -1,0 +1,79 @@
+{
+  "task_id": "PRESERVE-CANDIDATE-FREE-ROUTE-C-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A",
+  "audited_probe_task_id": "CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A",
+  "verdict": "reject_as_false_positive_or_weakened_baseline",
+  "implementation_authorized": false,
+  "route_c_repromotion_authorized": false,
+  "new_surface_preflight_authorized": false,
+  "candidate_implementation_authorized": false,
+  "gate_run_authorized": false,
+  "auto_remote_anchor": "forbidden",
+  "current_layer": "engineering-governance / hostile-audit rejection preservation only",
+  "mainline_integration_status": "none",
+  "enabled_status": "local docs/artifacts preservation only",
+  "real_trigger_evidence": [
+    "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/audit_result.json",
+    "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/REPORT.md",
+    "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/cleanroom_reproduction_output.txt"
+  ],
+  "decisive_blocker": "predict_all is a legal non-privileged fair baseline omitted from the original baseline panel and reaches recall 1.0 == oracle under the recall-only metric.",
+  "reported_probe_claim": {
+    "oracle_score": 1.0,
+    "strongest_fair_baseline_id": "mean",
+    "strongest_fair_baseline_score": 0.5833333333333334,
+    "delta_oracle_vs_strongest_fair": 0.41666666666666663,
+    "decision_rule_verdict": "separation_exists_route_c_may_repromote_one_surface"
+  },
+  "cleanroom_reproduction": {
+    "producer_function": "cleanroom_reproduction.py",
+    "input_artifacts": [
+      "hostile audit text",
+      "public salts/seeds preserved from the audited probe",
+      "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/audit_result.json"
+    ],
+    "run_id": "candidate_free_route_c_hostile_audit_rejection_001a_cleanroom",
+    "episode_ids": [
+      91701,
+      91702,
+      91703,
+      91704,
+      91705,
+      91706
+    ],
+    "aggregation_rule": "mean recall over six regenerated episodes",
+    "code_path_hash_sha256": "E9A8BEB4D1E3CD56B90E73EC4118CF6C1B6A57F4955719437A27B10883971440",
+    "output_hash_sha256": "357DFCE78E2AB21B707529F10F96CCE3ED227634B77F7296BD8982BDA928CEA6",
+    "oracle_mean_score": 1.0,
+    "probe_mean_baseline_score": 0.5833,
+    "predict_all_mean_score": 1.0,
+    "threshold_min_mean_score": 1.0,
+    "delta_under_strongest_admissible_fair_baseline": 0.0,
+    "corr_visible_score_vs_hidden_membership": 0.0029,
+    "imports_codex_probe_module": false
+  },
+  "blocking_reasons": [
+    "recall-only metric has no false-positive penalty",
+    "passive baselines have no prediction-set-size cap",
+    "predict_all was omitted from the original baseline panel",
+    "independent salts make visible features approximately independent of hidden membership",
+    "full-budget saturation control was computed but not consumed by final decision",
+    "old green tests asserted the false-positive condition"
+  ],
+  "route_consequence": "Route C cannot be re-promoted from this probe; current Route C resurrection path is blocked.",
+  "claim_ceiling": "Hostile-audit rejection preservation only. This blocks citing this probe as Route C re-promotion evidence and does not prove Route C mechanism validity or impossibility.",
+  "what_this_does_not_prove": [
+    "Route C mechanism validity",
+    "Route C impossibility",
+    "hidden-self-set inference",
+    "self-boundary evidence",
+    "candidate success",
+    "Gate pass",
+    "mainline/runtime/live effect",
+    "agency",
+    "autonomy",
+    "consciousness",
+    "emotion",
+    "stable user benefit",
+    "EGO readiness"
+  ]
+}

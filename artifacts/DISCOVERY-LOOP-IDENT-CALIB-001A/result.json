@@ -1,0 +1,1054 @@
+{
+  "task_id": "DISCOVERY-LOOP-IDENT-CALIB-001A",
+  "run_id": "local_discovery_loop_ident_calib_001a",
+  "preregistration": {
+    "task_id": "DISCOVERY-LOOP-IDENT-CALIB-001A",
+    "schema_version": "discovery-loop-ident-calib-001a.evidence.v1",
+    "research_layer": "engineering_implementation+mechanism_hypothesis",
+    "alphabet_M": 2,
+    "L_train": 3000,
+    "L_heldout": 2000,
+    "max_order_K": 4,
+    "orders": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "hmm_n_states": [
+      2,
+      3
+    ],
+    "em_restarts": 3,
+    "em_iters": 40,
+    "em_tol": 0.0001,
+    "n_states_selection": "bic_full_train",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "consistency_min": 8,
+    "eps_nats": 0.01,
+    "regimes": [
+      "latent_necessary",
+      "latent_redundant",
+      "positive_control",
+      "negative_control"
+    ],
+    "world_params": {
+      "latent_necessary": {
+        "kind": "hmm2",
+        "p_stay": 0.95,
+        "e1_s1": 0.8,
+        "e1_s0": 0.2
+      },
+      "latent_redundant": {
+        "kind": "markov1",
+        "p1_given0": 0.25,
+        "p1_given1": 0.75
+      },
+      "positive_control": {
+        "kind": "hmm2",
+        "p_stay": 0.97,
+        "e1_s1": 0.75,
+        "e1_s0": 0.25
+      },
+      "negative_control": {
+        "kind": "iid",
+        "p1": 0.5
+      }
+    },
+    "claim_ceiling": "Bounded calibration of the discovery loop's OBSERVATIONAL identifiability discrimination on 4 synthetic ground-truth-known binary-sequence worlds. PASS = loop separates an identifiable latent mechanism and reports equivalence for a redundant one, label-blind and future-blind. NOT consciousness/subjectivity/emotion/autonomy/agency/AGI/companion. NOT interventional identifiability (observational only). NOT a proof about any specific past lab target.",
+    "what_this_does_not_prove": [
+      "Not consciousness/subjective experience/real emotion/autonomy/agency/self-awareness/AGI.",
+      "Not companion-readiness.",
+      "Not interventional (do-calculus) identifiability; this run is observational only.",
+      "Not that any specific past lab target was non-identifiable.",
+      "Not non-identifiability for nonlinear / large-alphabet / longer-memory worlds."
+    ]
+  },
+  "prereg_sha256": "c501ac8b464cc8fedad9c65c73147b89214126a07adc559074e5de812a76d99a",
+  "code_path_hash": "2932e3ba5bb869752233aaf3632877024c994ab7f4eec253d9d8c33065b8afa4",
+  "secret_scan": {
+    "run_path": "/tmp/dlic/discovery_loop_ident_calib_001a/probe.py",
+    "clean": true,
+    "n_findings": 0
+  },
+  "verdict": "loop_misses_identifiable_latent",
+  "verdict_detail": {
+    "latent_necessary": {
+      "world_verdict": "equivalent",
+      "separates_seeds": 1,
+      "equivalent_seeds": 9,
+      "n_seeds": 10
+    },
+    "latent_redundant": {
+      "world_verdict": "equivalent",
+      "separates_seeds": 0,
+      "equivalent_seeds": 10,
+      "n_seeds": 10
+    },
+    "positive_control": {
+      "world_verdict": "separates",
+      "separates_seeds": 8,
+      "equivalent_seeds": 2,
+      "n_seeds": 10
+    },
+    "negative_control": {
+      "world_verdict": "equivalent",
+      "separates_seeds": 0,
+      "equivalent_seeds": 10,
+      "n_seeds": 10
+    },
+    "eps_nats": 0.01,
+    "consistency_min": 8
+  },
+  "exploratory_significance_view": {
+    "latent_necessary": {
+      "sig_world_verdict": "indeterminate_sig",
+      "sig_pos_seeds": 6,
+      "sig_neg_seeds": 0,
+      "ci_contains_zero_seeds": 4,
+      "n_seeds": 10
+    },
+    "latent_redundant": {
+      "sig_world_verdict": "equivalent_sig",
+      "sig_pos_seeds": 0,
+      "sig_neg_seeds": 2,
+      "ci_contains_zero_seeds": 8,
+      "n_seeds": 10
+    },
+    "positive_control": {
+      "sig_world_verdict": "separates_sig",
+      "sig_pos_seeds": 9,
+      "sig_neg_seeds": 0,
+      "ci_contains_zero_seeds": 1,
+      "n_seeds": 10
+    },
+    "negative_control": {
+      "sig_world_verdict": "equivalent_sig",
+      "sig_pos_seeds": 0,
+      "sig_neg_seeds": 0,
+      "ci_contains_zero_seeds": 10,
+      "n_seeds": 10
+    },
+    "exploratory_meta": "exploratory_mixed",
+    "label": "POST-SMOKE EXPLORATORY, NOT PRE-REGISTERED. Primary verdict = frozen absolute-eps rule (result.verdict). Bootstrap-CI power diagnostic only."
+  },
+  "per_seed_rows": {
+    "latent_necessary": [
+      {
+        "regime": "latent_necessary",
+        "seed": 0,
+        "best_base_order": 4,
+        "base_logloss": 0.615814,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.607026,
+        "gap": 0.008788,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": 0.003411,
+        "gap_ci_high": 0.014671,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.69355,
+          "1": 0.645588,
+          "2": 0.627892,
+          "3": 0.621754,
+          "4": 0.615814
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 1,
+        "best_base_order": 4,
+        "base_logloss": 0.620496,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.613656,
+        "gap": 0.006841,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": 0.001326,
+        "gap_ci_high": 0.011991,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.687641,
+          "1": 0.651676,
+          "2": 0.632474,
+          "3": 0.623881,
+          "4": 0.620496
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 2,
+        "best_base_order": 4,
+        "base_logloss": 0.600173,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.595701,
+        "gap": 0.004472,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000328,
+        "gap_ci_high": 0.010057,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.69448,
+          "1": 0.641311,
+          "2": 0.617079,
+          "3": 0.605497,
+          "4": 0.600173
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 3,
+        "best_base_order": 4,
+        "base_logloss": 0.618315,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.60927,
+        "gap": 0.009045,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": 0.003976,
+        "gap_ci_high": 0.013587,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693823,
+          "1": 0.652991,
+          "2": 0.631315,
+          "3": 0.624744,
+          "4": 0.618315
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 4,
+        "best_base_order": 4,
+        "base_logloss": 0.613642,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.60455,
+        "gap": 0.009092,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": 0.004494,
+        "gap_ci_high": 0.013581,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.692853,
+          "1": 0.645563,
+          "2": 0.625755,
+          "3": 0.616961,
+          "4": 0.613642
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 5,
+        "best_base_order": 4,
+        "base_logloss": 0.59714,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.587152,
+        "gap": 0.009988,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": 0.004713,
+        "gap_ci_high": 0.01511,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.696349,
+          "1": 0.637376,
+          "2": 0.618575,
+          "3": 0.603673,
+          "4": 0.59714
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 6,
+        "best_base_order": 4,
+        "base_logloss": 0.615957,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.611217,
+        "gap": 0.00474,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000419,
+        "gap_ci_high": 0.010804,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693321,
+          "1": 0.645319,
+          "2": 0.626213,
+          "3": 0.616967,
+          "4": 0.615957
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 7,
+        "best_base_order": 4,
+        "base_logloss": 0.639957,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.627514,
+        "gap": 0.012444,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.006809,
+        "gap_ci_high": 0.018429,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.68895,
+          "1": 0.655587,
+          "2": 0.645056,
+          "3": 0.641859,
+          "4": 0.639957
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 8,
+        "best_base_order": 4,
+        "base_logloss": 0.596461,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.593566,
+        "gap": 0.002894,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.002133,
+        "gap_ci_high": 0.008188,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.694916,
+          "1": 0.631951,
+          "2": 0.613925,
+          "3": 0.605606,
+          "4": 0.596461
+        }
+      },
+      {
+        "regime": "latent_necessary",
+        "seed": 9,
+        "best_base_order": 4,
+        "base_logloss": 0.598858,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.597926,
+        "gap": 0.000932,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.005362,
+        "gap_ci_high": 0.006794,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693147,
+          "1": 0.639067,
+          "2": 0.618373,
+          "3": 0.605382,
+          "4": 0.598858
+        }
+      }
+    ],
+    "latent_redundant": [
+      {
+        "regime": "latent_redundant",
+        "seed": 0,
+        "best_base_order": 1,
+        "base_logloss": 0.562644,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.563361,
+        "gap": -0.000717,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001238,
+        "gap_ci_high": -0.000193,
+        "sig_pos": false,
+        "sig_neg": true,
+        "base_order_losses": {
+          "0": 0.694006,
+          "1": 0.562644,
+          "2": 0.563956,
+          "3": 0.564928,
+          "4": 0.566243
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 1,
+        "best_base_order": 3,
+        "base_logloss": 0.578324,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.578284,
+        "gap": 4.1e-05,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.002077,
+        "gap_ci_high": 0.001931,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693223,
+          "1": 0.578502,
+          "2": 0.578326,
+          "3": 0.578324,
+          "4": 0.578867
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 2,
+        "best_base_order": 1,
+        "base_logloss": 0.555968,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.555757,
+        "gap": 0.000211,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000621,
+        "gap_ci_high": 0.001085,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.698335,
+          "1": 0.555968,
+          "2": 0.555978,
+          "3": 0.556238,
+          "4": 0.55973
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 3,
+        "best_base_order": 1,
+        "base_logloss": 0.540973,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.541567,
+        "gap": -0.000594,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001972,
+        "gap_ci_high": 0.00074,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693279,
+          "1": 0.540973,
+          "2": 0.541429,
+          "3": 0.543852,
+          "4": 0.544334
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 4,
+        "best_base_order": 4,
+        "base_logloss": 0.577426,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.579033,
+        "gap": -0.001607,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.004221,
+        "gap_ci_high": 0.000764,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.696251,
+          "1": 0.578929,
+          "2": 0.578299,
+          "3": 0.577809,
+          "4": 0.577426
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 5,
+        "best_base_order": 1,
+        "base_logloss": 0.560181,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.560379,
+        "gap": -0.000198,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000568,
+        "gap_ci_high": 0.000186,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.695922,
+          "1": 0.560181,
+          "2": 0.560207,
+          "3": 0.561359,
+          "4": 0.562194
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 6,
+        "best_base_order": 3,
+        "base_logloss": 0.558902,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.558893,
+        "gap": 9e-06,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001569,
+        "gap_ci_high": 0.001511,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693497,
+          "1": 0.559133,
+          "2": 0.559202,
+          "3": 0.558902,
+          "4": 0.559979
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 7,
+        "best_base_order": 1,
+        "base_logloss": 0.557179,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.561832,
+        "gap": -0.004653,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.007015,
+        "gap_ci_high": -0.002128,
+        "sig_pos": false,
+        "sig_neg": true,
+        "base_order_losses": {
+          "0": 0.693163,
+          "1": 0.557179,
+          "2": 0.561814,
+          "3": 0.563433,
+          "4": 0.5644
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 8,
+        "best_base_order": 2,
+        "base_logloss": 0.568979,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.568854,
+        "gap": 0.000125,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001036,
+        "gap_ci_high": 0.001294,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.694214,
+          "1": 0.569218,
+          "2": 0.568979,
+          "3": 0.570464,
+          "4": 0.571791
+        }
+      },
+      {
+        "regime": "latent_redundant",
+        "seed": 9,
+        "best_base_order": 2,
+        "base_logloss": 0.563754,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.564482,
+        "gap": -0.000727,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.002083,
+        "gap_ci_high": 0.000598,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693305,
+          "1": 0.564596,
+          "2": 0.563754,
+          "3": 0.56388,
+          "4": 0.564728
+        }
+      }
+    ],
+    "positive_control": [
+      {
+        "regime": "positive_control",
+        "seed": 0,
+        "best_base_order": 4,
+        "base_logloss": 0.650303,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.635834,
+        "gap": 0.014469,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.00675,
+        "gap_ci_high": 0.022256,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.689874,
+          "1": 0.66727,
+          "2": 0.661489,
+          "3": 0.653664,
+          "4": 0.650303
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 1,
+        "best_base_order": 4,
+        "base_logloss": 0.645049,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.631089,
+        "gap": 0.01396,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.007412,
+        "gap_ci_high": 0.020608,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.691721,
+          "1": 0.669404,
+          "2": 0.656989,
+          "3": 0.650606,
+          "4": 0.645049
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 2,
+        "best_base_order": 4,
+        "base_logloss": 0.640481,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.630962,
+        "gap": 0.009518,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": 0.001771,
+        "gap_ci_high": 0.017171,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.694204,
+          "1": 0.671747,
+          "2": 0.652249,
+          "3": 0.644958,
+          "4": 0.640481
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 3,
+        "best_base_order": 4,
+        "base_logloss": 0.630935,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.624079,
+        "gap": 0.006856,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001017,
+        "gap_ci_high": 0.015237,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693384,
+          "1": 0.658953,
+          "2": 0.644297,
+          "3": 0.635344,
+          "4": 0.630935
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 4,
+        "best_base_order": 4,
+        "base_logloss": 0.625101,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.610332,
+        "gap": 0.014769,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.007983,
+        "gap_ci_high": 0.021255,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.687482,
+          "1": 0.660197,
+          "2": 0.643379,
+          "3": 0.63174,
+          "4": 0.625101
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 5,
+        "best_base_order": 4,
+        "base_logloss": 0.630276,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.619041,
+        "gap": 0.011235,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.002457,
+        "gap_ci_high": 0.020032,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.692377,
+          "1": 0.661511,
+          "2": 0.646788,
+          "3": 0.638462,
+          "4": 0.630276
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 6,
+        "best_base_order": 4,
+        "base_logloss": 0.64793,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.637016,
+        "gap": 0.010915,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.002707,
+        "gap_ci_high": 0.019244,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.691028,
+          "1": 0.66799,
+          "2": 0.659059,
+          "3": 0.655856,
+          "4": 0.64793
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 7,
+        "best_base_order": 4,
+        "base_logloss": 0.641869,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.62939,
+        "gap": 0.012478,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.00547,
+        "gap_ci_high": 0.019362,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693226,
+          "1": 0.668125,
+          "2": 0.653705,
+          "3": 0.647456,
+          "4": 0.641869
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 8,
+        "best_base_order": 4,
+        "base_logloss": 0.634851,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.621805,
+        "gap": 0.013045,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.006708,
+        "gap_ci_high": 0.020151,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.692316,
+          "1": 0.660579,
+          "2": 0.644743,
+          "3": 0.63671,
+          "4": 0.634851
+        }
+      },
+      {
+        "regime": "positive_control",
+        "seed": 9,
+        "best_base_order": 4,
+        "base_logloss": 0.645698,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.628364,
+        "gap": 0.017334,
+        "separates": true,
+        "equivalent": false,
+        "gap_ci_low": 0.009908,
+        "gap_ci_high": 0.024967,
+        "sig_pos": true,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693111,
+          "1": 0.66958,
+          "2": 0.659933,
+          "3": 0.646997,
+          "4": 0.645698
+        }
+      }
+    ],
+    "negative_control": [
+      {
+        "regime": "negative_control",
+        "seed": 0,
+        "best_base_order": 2,
+        "base_logloss": 0.693133,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.693157,
+        "gap": -2.4e-05,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000237,
+        "gap_ci_high": 0.000221,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693149,
+          "1": 0.693156,
+          "2": 0.693133,
+          "3": 0.693884,
+          "4": 0.694058
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 1,
+        "best_base_order": 1,
+        "base_logloss": 0.693078,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.693077,
+        "gap": 1e-06,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -3e-06,
+        "gap_ci_high": 4e-06,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693147,
+          "1": 0.693078,
+          "2": 0.693855,
+          "3": 0.694505,
+          "4": 0.696164
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 2,
+        "best_base_order": 2,
+        "base_logloss": 0.692638,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.692943,
+        "gap": -0.000305,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000769,
+        "gap_ci_high": 0.000171,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693005,
+          "1": 0.692937,
+          "2": 0.692638,
+          "3": 0.694158,
+          "4": 0.69412
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 3,
+        "best_base_order": 2,
+        "base_logloss": 0.692322,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.692363,
+        "gap": -4.2e-05,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001161,
+        "gap_ci_high": 0.001183,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693135,
+          "1": 0.692342,
+          "2": 0.692322,
+          "3": 0.695988,
+          "4": 0.697008
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 4,
+        "best_base_order": 1,
+        "base_logloss": 0.692952,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.692948,
+        "gap": 4e-06,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -5e-06,
+        "gap_ci_high": 1.3e-05,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693107,
+          "1": 0.692952,
+          "2": 0.69326,
+          "3": 0.694755,
+          "4": 0.695982
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 5,
+        "best_base_order": 0,
+        "base_logloss": 0.693147,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.693727,
+        "gap": -0.00058,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.001587,
+        "gap_ci_high": 0.000429,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693147,
+          "1": 0.693607,
+          "2": 0.693343,
+          "3": 0.695273,
+          "4": 0.697554
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 6,
+        "best_base_order": 1,
+        "base_logloss": 0.693037,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.693043,
+        "gap": -6e-06,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -1.9e-05,
+        "gap_ci_high": 1e-05,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693169,
+          "1": 0.693037,
+          "2": 0.694225,
+          "3": 0.694502,
+          "4": 0.695022
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 7,
+        "best_base_order": 0,
+        "base_logloss": 0.694224,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.694251,
+        "gap": -2.8e-05,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.000265,
+        "gap_ci_high": 0.000211,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.694224,
+          "1": 0.694249,
+          "2": 0.695049,
+          "3": 0.697684,
+          "4": 0.699421
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 8,
+        "best_base_order": 0,
+        "base_logloss": 0.693835,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.69391,
+        "gap": -7.4e-05,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -0.00029,
+        "gap_ci_high": 0.000161,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.693835,
+          "1": 0.693897,
+          "2": 0.694105,
+          "3": 0.693957,
+          "4": 0.697237
+        }
+      },
+      {
+        "regime": "negative_control",
+        "seed": 9,
+        "best_base_order": 1,
+        "base_logloss": 0.692787,
+        "hmm_n_states": 2,
+        "hmm_logloss": 0.692798,
+        "gap": -1.1e-05,
+        "separates": false,
+        "equivalent": true,
+        "gap_ci_low": -2.8e-05,
+        "gap_ci_high": 6e-06,
+        "sig_pos": false,
+        "sig_neg": false,
+        "base_order_losses": {
+          "0": 0.692962,
+          "1": 0.692787,
+          "2": 0.692793,
+          "3": 0.693512,
+          "4": 0.696392
+        }
+      }
+    ]
+  },
+  "claim_ceiling": "Bounded calibration of the discovery loop's OBSERVATIONAL identifiability discrimination on 4 synthetic ground-truth-known binary-sequence worlds. PASS = loop separates an identifiable latent mechanism and reports equivalence for a redundant one, label-blind and future-blind. NOT consciousness/subjectivity/emotion/autonomy/agency/AGI/companion. NOT interventional identifiability (observational only). NOT a proof about any specific past lab target.",
+  "what_this_does_not_prove": [
+    "Not consciousness/subjective experience/real emotion/autonomy/agency/self-awareness/AGI.",
+    "Not companion-readiness.",
+    "Not interventional (do-calculus) identifiability; this run is observational only.",
+    "Not that any specific past lab target was non-identifiable.",
+    "Not non-identifiability for nonlinear / large-alphabet / longer-memory worlds."
+  ],
+  "artifacts": [
+    "result.json",
+    "trace.csv",
+    "trace.jsonl",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "replay_report.json",
+    "claim_ceiling.txt"
+  ]
+}

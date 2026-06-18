@@ -1,0 +1,97 @@
+{
+    "task_id":  "GATE1-REPLACEMENT-PREFLIGHT-00XA-NEGATIVE-EVIDENCE-CLOSEOUT-001A",
+    "schema_version":  "gate1_replacement_preflight_00xa_negative_route_record_v1",
+    "producer_function":  "closeout_powershell_route_record_from_001b_readback",
+    "run_id":  "gate1_replacement_preflight_00xa_negative_closeout_001a",
+    "generated_at":  "2026-06-17T11:12:32.6755778-05:00",
+    "current_layer":  "engineering-governance / accepted negative-evidence closeout only",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "no runtime/mainline path enabled",
+    "real_trigger_evidence":  "001B final verdict, verdict derivation, baseline results, generator provenance, source readback, independent B1 re-audit, frozen surface spec, and freeze metadata were read and SHA256-recorded in source_readback.json.",
+    "auto_remote_anchor":  "forbidden",
+    "remote_actions_attempted":  false,
+    "local_commit_created":  false,
+    "terminal_verdict_00xa":  "rejected_baseline_saturated",
+    "candidate_status_00xa":  "closed_for_candidate_work",
+    "closeout_verdict":  "gate1_replacement_00xa_closed_baseline_saturated_negative_evidence_recorded",
+    "closeout_accepted":  true,
+    "reason":  {
+                   "strongest_fair_baseline_macro_f1":  1,
+                   "visible_channel_oracle_macro_f1":  1,
+                   "exhaustive_legal_query_macro_f1":  1,
+                   "all_six_graph_cache_challengers_macro_f1":  [
+                                                                    {
+                                                                        "baseline_id":  "graph_lookup",
+                                                                        "macro_f1":  1.0,
+                                                                        "invoked":  true,
+                                                                        "consumed_by_final_verdict":  true
+                                                                    },
+                                                                    {
+                                                                        "baseline_id":  "transition_table",
+                                                                        "macro_f1":  1.0,
+                                                                        "invoked":  true,
+                                                                        "consumed_by_final_verdict":  true
+                                                                    },
+                                                                    {
+                                                                        "baseline_id":  "successor_map",
+                                                                        "macro_f1":  1.0,
+                                                                        "invoked":  true,
+                                                                        "consumed_by_final_verdict":  true
+                                                                    },
+                                                                    {
+                                                                        "baseline_id":  "count_table",
+                                                                        "macro_f1":  1.0,
+                                                                        "invoked":  true,
+                                                                        "consumed_by_final_verdict":  true
+                                                                    },
+                                                                    {
+                                                                        "baseline_id":  "fsm_planner",
+                                                                        "macro_f1":  1.0,
+                                                                        "invoked":  true,
+                                                                        "consumed_by_final_verdict":  true
+                                                                    },
+                                                                    {
+                                                                        "baseline_id":  "episodic_traversal",
+                                                                        "macro_f1":  1.0,
+                                                                        "invoked":  true,
+                                                                        "consumed_by_final_verdict":  true
+                                                                    }
+                                                                ],
+                   "passive_family_max_macro_f1":  0.6,
+                   "max_degenerate_macro_f1":  0.52470293933708567,
+                   "ceiling_band_floor":  0.87,
+                   "terminal_reason_id":  "fair_baseline_ties_oracle_within_equivalence_band",
+                   "explanation":  "Fixed budget equals the full legal-channel count, allowing fair exhaustive/legal-query and graph-cache challengers to tie the visible-channel oracle at macro F1 1.0. This closes 00XA for candidate work as negative route evidence."
+               },
+    "b1_generator_provenance_gate":  {
+                                         "audit_accepted_as_spec_correct_and_failable":  true,
+                                         "audit_verdict":  "evidence_bundle_001b_accepted_rejected_baseline_saturated",
+                                         "gate_valid":  true,
+                                         "gate_errors":  [
+
+                                                         ],
+                                         "producer_function":  "gate1_replacement_preflight_00xa.verdict.validate_generator_provenance",
+                                         "generator_source_path":  "src/gate1_replacement_preflight_00xa/spec_loader.py",
+                                         "generator_source_hash":  "7cbe9d369ebca261d70f5cbbd9ab3db83f7d462d20ec79b68a05dac713d44f5c",
+                                         "source_pin_sha256":  "7cbe9d369ebca261d70f5cbbd9ab3db83f7d462d20ec79b68a05dac713d44f5c",
+                                         "no_further_b1_repair_allowed":  true
+                                     },
+    "no_candidate_implementation_allowed_on_00xa":  true,
+    "no_further_b1_repair_allowed":  true,
+    "next_route_if_continuing_gate1_replacement":  "design-only headroom surface; 00XA must be preserved as inadmissible negative evidence and not inherited as an admissible candidate surface.",
+    "source_readback_path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/source_readback.json",
+    "validation_report_path":  "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/validation_report.json",
+    "claim_ceiling":  "Accepted candidate-free negative route evidence only. No Gate1 pass, no Gate1 replacement validity, no mechanism validity, no candidate success or feasibility, no baseline-immunity enforcement, no Gate4/Gate5 readiness, no runtime/mainline/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+    "what_this_does_not_prove":  [
+                                     "Gate1 pass",
+                                     "Gate1 replacement validity",
+                                     "mechanism validity",
+                                     "candidate success or feasibility",
+                                     "baseline-immunity enforcement",
+                                     "Gate4 or Gate5 readiness",
+                                     "runtime/mainline/live effect",
+                                     "agency, autonomy, consciousness, emotion, self-awareness",
+                                     "stable user benefit",
+                                     "EGO readiness"
+                                 ]
+}

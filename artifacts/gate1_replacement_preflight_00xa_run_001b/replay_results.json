@@ -1,0 +1,58 @@
+{
+  "aggregation_rule": "macro_f1_after_recomputed_predictions",
+  "applicability": "applicable_serialized_state",
+  "code_path_hash": "c29d321a478ff0000ff9f2d04db3a69dcab3fe6b6e3e1e0105c67eae1700b20e",
+  "consumed_by_final_verdict": true,
+  "hash_only": false,
+  "input_artifacts": [
+    "serialized_state",
+    "observation"
+  ],
+  "metric": {
+    "balanced_metric": true,
+    "beta": 1.0,
+    "confusion_counts": {
+      "false_negative": 0,
+      "false_positive": 0,
+      "true_negative": 20,
+      "true_positive": 20
+    },
+    "false_negative_count": 0,
+    "false_positive_count": 0,
+    "macro_f1": 1.0,
+    "metric_id": "macro_f1_beta_1_binary",
+    "per_class": {
+      "false": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 20
+      },
+      "true": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 20
+      }
+    }
+  },
+  "mode": "recompute_from_serialized_state_plus_observation",
+  "negative_controls": {
+    "corrupt_serialized_state_changes_behavior": true,
+    "stored_hash_tamper_accepted": false
+  },
+  "producer_function": "gate1_replacement_preflight_00xa.replay.recompute_predictions_from_serialized_state",
+  "recomputed_from_observation": true,
+  "recomputed_from_serialized_state": true,
+  "run_id": "gate1_replacement_preflight_00xa_run_001b",
+  "schema_version": "gate1_replacement_preflight_00xa_replay_v1",
+  "stored_output_replay": false,
+  "validation": {
+    "errors": [],
+    "valid": true
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "task_id": "GATE1-REPLACEMENT-PREFLIGHT-00XA-SURFACE-SPEC-FREEZE-001A",
+  "run_id": "gate1_replacement_surface_spec_freeze_001a",
+  "validation_timestamp": "2026-06-17T09:04:49.5404919-05:00",
+  "producer_function": "codex_manual_document_spec_validation",
+  "code_path_hash": "not_applicable_manual_governance_freeze",
+  "verdict": "validation_passed_surface_spec_freeze_only",
+  "current_layer": "engineering-governance / candidate-free surface-spec authoring and freeze only",
+  "mainline_integration_status": "none",
+  "enabled_status": "no executable path enabled",
+  "real_trigger_evidence": "JSON parse checks, required-field scan, metric-degeneracy scan, R1 preservation scan, source hash capture, frozen spec hash capture, independence declaration check, forbidden-path scope readback, and git diff --check whitespace scan over allowed generated paths",
+  "claim_ceiling": "Candidate-free surface-spec freeze validation only. Not Gate1 admissibility, not Gate1 pass, not candidate success, not mechanism evidence, not baseline-immunity enforcement, not runtime/mainline readiness.",
+  "generated_files": [
+    "docs/research/gate1_replacement_surface_spec_00xa.md",
+    "docs/research/gate1_replacement_surface_spec_00xa.freeze.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/source_readback.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/spec_hash_readback.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/independence_declaration.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/validation_report.json",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/claim_ceiling.txt",
+    "artifacts/gate1_replacement_surface_spec_freeze_001a/final_report.md"
+  ],
+  "checks": [
+    {
+      "id": "json_parse_validation",
+      "status": "pass",
+      "method": "PowerShell ConvertFrom-Json over generated JSON files",
+      "evidence": [
+        "docs/research/gate1_replacement_surface_spec_00xa.freeze.json parsed",
+        "artifacts/gate1_replacement_surface_spec_freeze_001a/source_readback.json parsed",
+        "artifacts/gate1_replacement_surface_spec_freeze_001a/spec_hash_readback.json parsed",
+        "artifacts/gate1_replacement_surface_spec_freeze_001a/independence_declaration.json parsed",
+        "artifacts/gate1_replacement_surface_spec_freeze_001a/validation_report.json parsed"
+      ]
+    },
+    {
+      "id": "required_field_coverage_scan",
+      "status": "pass",
+      "method": "literal coverage scan over markdown spec",
+      "evidence": "target, state schema, observation schema, legal action/query schema, fixed budget, balanced metric, equivalence band, ceiling band, false-positive/false-negative treatment, generator provenance, seed policy, source pins, legal/illegal channels, negative evidence, baseline registry, leakage, replay, ablation, and final verdict list were all present"
+    },
+    {
+      "id": "metric_degeneracy_requirement_scan",
+      "status": "pass",
+      "method": "rg scan for degenerate predictors and single-sided metric bans",
+      "evidence": "Spec includes predict_all, predict_none, constant_k_sweep, random, majority, size-only sweep 0..N, rejected_metric_degenerate, and bans recall-only, precision-only, coverage-only, specificity-only, abstention-only, and size-only admission."
+    },
+    {
+      "id": "r1_a_r1_b_r1_c_preservation_scan",
+      "status": "pass",
+      "method": "literal scan for accepted R1 repair families",
+      "evidence": "R1.a preserved by balanced metric, equivalence band, degeneracy controls, and size-only sweep. R1.b preserved by positive partial-inferability and budget-faithful visible-channel oracle requirements. R1.c preserved by explicit future implementer mutation, normalization, amendment, and re-freeze ban."
+    },
+    {
+      "id": "forbidden_claim_scan",
+      "status": "pass",
+      "method": "rg scan for forbidden positive claim strings",
+      "evidence": "Matches were negated claim-ceiling text only, such as 'No Gate1 pass' and 'No agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.' No positive Gate, mechanism, consciousness, autonomy, runtime, or EGO readiness claim was found."
+    },
+    {
+      "id": "forbidden_path_scan",
+      "status": "pass",
+      "method": "scoped git status readback for allowed output paths plus manual comparison to the task allowlist",
+      "evidence": "New task-created files are limited to docs/research/gate1_replacement_surface_spec_00xa.md, docs/research/gate1_replacement_surface_spec_00xa.freeze.json, and artifacts/gate1_replacement_surface_spec_freeze_001a/. No src, tests, runtime, admission, bridge, Gate4/Gate5, Route C, candidate, baseline-immunity contract, or provenance-verifier file was modified by this task."
+    },
+    {
+      "id": "source_hash_capture",
+      "status": "pass",
+      "method": "PowerShell Get-FileHash live recompute against source_readback.json",
+      "evidence": "All hard-trigger and supporting negative-evidence source hashes recorded in source_readback.json matched live file hashes."
+    },
+    {
+      "id": "frozen_spec_hash_capture",
+      "status": "pass",
+      "method": "PowerShell Get-FileHash live recompute against freeze JSON and spec_hash_readback.json",
+      "evidence": "Spec SHA256 matched in live file hash, freeze JSON, and spec_hash_readback.json: fca7e5ebcd5b1042cda57d88790347f487eaad33182aa91f00640621014fa9c9."
+    },
+    {
+      "id": "independence_declaration_check",
+      "status": "pass",
+      "method": "PowerShell ConvertFrom-Json boolean check",
+      "evidence": "future_implementer_may_mutate_spec=false, same_session_future_preflight_implementation_authorized=false, and implementation_created_in_this_task=false."
+    },
+    {
+      "id": "git_diff_check_allowed_paths",
+      "status": "pass",
+      "method": "git diff --check --no-index whitespace warning collector over generated files",
+      "evidence": "No trailing whitespace, space-before-tab, or EOF whitespace warnings were emitted for allowed generated files."
+    }
+  ],
+  "not_run_by_design": [
+    "pytest",
+    "Gate1",
+    "Gate4",
+    "Gate5",
+    "Route C",
+    "candidate implementation",
+    "baseline execution",
+    "ablation execution",
+    "replay execution",
+    "provenance verifier as admission",
+    "runtime/mainline/admission/bridge path",
+    "commit",
+    "push",
+    "tag",
+    "remote anchor"
+  ],
+  "baseline_results": "not run; surface-spec freeze only",
+  "ablation_results": "not run; surface-spec freeze only",
+  "replay_result": "not run; surface-spec freeze only",
+  "stop_conditions_triggered": [],
+  "blocked_or_unknown_items": [
+    "Claude hostile audit of the frozen surface spec has not yet been performed.",
+    "No future preflight implementation is authorized by this freeze.",
+    "No Gate1 replacement admissibility is known.",
+    "Pre-existing unrelated dirty/untracked workspace material remains outside this task's generated output paths."
+  ],
+  "implementation_still_not_authorized": true,
+  "commit_created": false,
+  "push_or_tag_or_remote_anchor_created": false,
+  "next_minimal_closed_loop_action": "Send docs/research/gate1_replacement_surface_spec_00xa.md, docs/research/gate1_replacement_surface_spec_00xa.freeze.json, artifacts/gate1_replacement_surface_spec_freeze_001a/final_report.md, and artifacts/gate1_replacement_surface_spec_freeze_001a/validation_report.json to Claude for hostile audit."
+}

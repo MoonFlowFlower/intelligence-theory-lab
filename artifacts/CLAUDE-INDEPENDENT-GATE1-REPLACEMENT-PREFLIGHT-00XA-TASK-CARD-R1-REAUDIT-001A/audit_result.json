@@ -1,0 +1,77 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A",
+  "audit_date": "2026-06-17",
+  "auditor_role": "same-agent-bridge-audit-role-001 / independent red-team (card-level)",
+  "audit_type": "bounded_card_repair_re_audit",
+  "target_card": "artifacts/gate1_replacement_preflight_00xa_task_card_r1/draft_next_task_card_r1.md",
+  "target_card_lines": 527,
+  "identity_check": {
+    "repo_vs_uploaded": "byte_equivalent_content",
+    "read_channel": "file_api_read_not_bash",
+    "fuse_truncation_observed": false,
+    "note": "clean close at line 527; no mount-tail truncation artifact"
+  },
+  "prior_verdict": "requires_one_bounded_task_card_repair",
+  "prior_blocking_issue": "Q6_metric_degeneracy_precision_recall_required (R1.a)",
+  "scope": "ONLY whether R1.a/R1.b/R1.c required repairs are satisfied. Did NOT evaluate Gate1 admissibility, mechanism validity, candidate success, baseline-immunity enforcement, runtime/EGO readiness.",
+  "verdict": "r1_accepted_for_implementation_card_drafting",
+  "implementation_may_proceed_now": false,
+  "only_implementation_card_drafting_authorized": true,
+  "remaining_blocking_issue": "none",
+  "repair_checks": {
+    "R1_a_metric_degeneracy": {
+      "status": "satisfied",
+      "items": {
+        "balanced_metric_required_precision_recall_or_fbeta_or_cost_weighted": {"ok": true, "card_ref": "Balanced Metric Requirement L204-211"},
+        "forbid_all_single_sided_recall_precision_coverage_specificity_abstention_size": {"ok": true, "card_ref": "L213-221 (all six named)"},
+        "size_only_sweep_0_to_N_content_policy_matched": {"ok": true, "card_ref": "Size-Only Sweep L242-253"},
+        "rejected_metric_degenerate_consumed_by_final_verdict_not_merely_reported": {"ok": true, "card_ref": "L224, L239-240, L251-253, Control Consumption L256-261, No By-Reference Escape L263-270, Acceptance Gate L426-429"}
+      },
+      "note": "Prior blocker was operationalization delegated to a single by-reference sentence. Card now adds dedicated Balanced-Metric / Degenerate-Predictor / Size-Only-Sweep / Control-Consumption / No-By-Reference-Escape sections with explicit verdict bindings. Directly closes the predict_all=oracle (recall-only, no precision penalty) false-positive vector seen in the Route C separation probe."
+    },
+    "R1_b_positive_admission_basis": {
+      "status": "satisfied",
+      "items": {
+        "positive_failable_partial_inferability_not_merely_absence_of_saturation": {"ok": true, "card_ref": "Positive Admission Basis L274-276; Partial-Inferability L278-299"},
+        "controls_passive_attacker_visible_decodability_matched_marginal_null_oracle": {"ok": true, "card_ref": "L289-295"},
+        "fail_closed_if_fair_channel_no_signal": {"ok": true, "card_ref": "L295, L297-299"},
+        "oracle_budget_faithful_visible_only_no_answer_key_no_planted_truth_no_mechanism_tautology_clears_band": {"ok": true, "card_ref": "Budget-Faithful Visible-Channel Oracle L301-312"},
+        "answer_key_oracle_diagnostic_only_not_admission": {"ok": true, "card_ref": "L314-317"}
+      }
+    },
+    "R1_c_surface_spec_authorship_immutability": {
+      "status": "satisfied",
+      "items": {
+        "spec_must_exist_before_implementation": {"ok": true, "card_ref": "L96-97"},
+        "implementer_forbidden_to_author_mutate_freeze": {"ok": true, "card_ref": "L98-99 (also amend/normalize)"},
+        "independent_authority_or_preexisting_acceptance": {"ok": true, "card_ref": "L100-101"},
+        "record_path_sha256_author_freeze_ts_readback_channel": {"ok": true, "card_ref": "L102-103"},
+        "blocked_missing_candidate_free_surface_spec": {"ok": true, "card_ref": "L104-105, allowed-verdict L86"},
+        "blocked_candidate_authored_or_mutated_surface_spec": {"ok": true, "card_ref": "L106-107, allowed-verdict L87"}
+      }
+    }
+  },
+  "cross_cut_checks": {
+    "claim_ceiling_discipline": "pass (L33 + Claim Ceiling L513-518: task-card repair only; success authorizes at most candidate-card drafting)",
+    "scope_no_implementation_creep": "pass (L11-14, L42-46, L109-110, L447-449, L485-495, L520-526)",
+    "no_governance_self_modification": "pass (baseline-immunity standard + registry treated as static contracts, not executors: L269-270, L319-326; card defines only its own preflight verdict tokens)",
+    "no_regression_of_prior_strengths": "pass (Q1 no-old-Gate1-inheritance L62-64/L444; Q2 six graph-cache challengers L183-184/L434-435/L470; Q8 computed-evidence gate L385-401; Q9 verifier prefilter-only L328-338; Q10 leakage/replay/source-pin L340-383; Q11 terminal stop L451-477; Q12 candidate-card-drafting ceiling L447-449)",
+    "graph_cache_family_mandatory_check": "pass (all six: graph_lookup, transition_table, successor_map, count_table, fsm_planner, episodic_traversal present + stop-bound)",
+    "prior_negative_evidence_cited": "pass (L62-65 + Real-Trigger Evidence L50-60)",
+    "leakage_risk_direction": "reduced (new oracle clause bars hidden answer key / planted truth / mechanism presupposition)"
+  },
+  "non_blocking_observations": [
+    "Surface-spec dependency points to an artifact that does not yet exist and names no specific freezing authority. Correct for card claim-ceiling (blocked_missing_candidate_free_surface_spec covers absence), but R1.c protection only holds in practice if the spec is genuinely produced AND frozen by an independent authority before the implementation card runs. Track downstream; not a card defect.",
+    "Stop Condition L462 retains the by-reference trigger 'any metric-degeneracy trigger from the baseline-immunity standard fires'. Now additive/harmless because operationalized triggers (L460-465) and No-By-Reference-Escape (L263-270) exist alongside it. No fix required.",
+    "Numeric equivalence band and metric thresholds are correctly deferred to the frozen surface spec, not fixed in the card. The future implementation-card audit must verify these were not chosen post-hoc."
+  ],
+  "claim_ceiling": "Accepting this R1 card authorizes ONLY drafting of the next Codex implementation card. It is NOT Gate1 admissibility, NOT mechanism validity, NOT candidate success, NOT baseline-immunity enforcement, NOT runtime/mainline/EGO readiness, and produces no Gate evidence.",
+  "what_this_does_not_prove": [
+    "that any real Gate1 replacement surface is admissible",
+    "that the future preflight will actually be fail-able when implemented",
+    "that an independently frozen surface spec exists or is well-formed",
+    "any mechanism, candidate, consciousness, agency, autonomy, or EGO claim"
+  ],
+  "delivery": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A/ (audit_result.json + audit_report.md). NOT committed, NOT pushed, NOT anchored.",
+  "predecessor": "itl-gate1-replacement-preflight-00xa-card-audit"
+}

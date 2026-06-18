@@ -1,0 +1,176 @@
+{
+  "budget_trace_audit": {
+    "budget": 5,
+    "max_query_count": 5,
+    "query_trace_summary": [
+      {
+        "episode_id": "seed-101-episode-00",
+        "final_prediction": "repair_core_viability",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-01",
+        "final_prediction": "exploit_safe_window",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-02",
+        "final_prediction": "defer_or_ignore",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-03",
+        "final_prediction": "protect_left_boundary",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-04",
+        "final_prediction": "protect_right_boundary",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-05",
+        "final_prediction": "repair_core_viability",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-06",
+        "final_prediction": "exploit_safe_window",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-07",
+        "final_prediction": "defer_or_ignore",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-08",
+        "final_prediction": "protect_left_boundary",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      },
+      {
+        "episode_id": "seed-101-episode-09",
+        "final_prediction": "protect_right_boundary",
+        "queried_channel_ids": [
+          "probe_rule_family",
+          "probe_viability_bucket",
+          "probe_boundary_pressure",
+          "probe_perturbation_phase",
+          "probe_action_trace_mod"
+        ],
+        "query_count": 5,
+        "stopping_condition": "candidate_matched_budget_exhausted_after_required_component_queries"
+      }
+    ],
+    "violations": []
+  },
+  "code_path_hash": "c003843be96719d66d5864dc0a3d8b358c63950290749bcf245d3db13bf2f408",
+  "consumed_by_final_verdict": true,
+  "failure_reason": null,
+  "field_access_audit": {
+    "consumed_field_manifest": [
+      "budget_state",
+      "episode_id",
+      "legal_action_space",
+      "legal_channel_responses.probe_action_trace_mod.value_if_queried",
+      "legal_channel_responses.probe_boundary_pressure.value_if_queried",
+      "legal_channel_responses.probe_perturbation_phase.value_if_queried",
+      "legal_channel_responses.probe_rule_family.value_if_queried",
+      "legal_channel_responses.probe_viability_bucket.value_if_queried",
+      "observable_state",
+      "own_query_history",
+      "seed"
+    ],
+    "forbidden_field_hits": []
+  },
+  "hidden_field_ablation": {
+    "masked_score": 1.0,
+    "original_score": 1.0,
+    "prediction_invariant": true,
+    "result": "passed"
+  },
+  "hidden_field_permutation": {
+    "prediction_invariant": true,
+    "result": "passed"
+  },
+  "producer_function": "oracle_budget_faithfulness_001a.run_oracle_budget_faithfulness_controls",
+  "replay_recomputation": {
+    "recomputed_from_serialized_state_plus_permitted_trace": true,
+    "result": "passed"
+  },
+  "result": "passed",
+  "run_id": "BASELINE-FIRST-HARNESS-001A-R1",
+  "schema_version": "baseline_first_harness_001a_oracle_budget_faithfulness_v1"
+}

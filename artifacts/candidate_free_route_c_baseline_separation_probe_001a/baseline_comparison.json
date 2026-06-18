@@ -1,0 +1,486 @@
+{
+  "all_baselines_callable_and_invoked": true,
+  "missing_baselines": [],
+  "no_privileged_leakage_into_non_oracle_baselines": true,
+  "required_baseline_panel": [
+    "random",
+    "greedy_info_gain",
+    "exhaustive_legal_query",
+    "graph_lookup",
+    "transition_table",
+    "successor_map",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "lookup_imitation",
+    "direct_objective_optimizer",
+    "amortized_least_squares",
+    "mean",
+    "variance",
+    "correlation",
+    "pca_subspace",
+    "cross_episode",
+    "supervised",
+    "legal_field_membership",
+    "positional_first_k"
+  ],
+  "run_id": "route-c-candidate-free-baseline-separation-probe-001a",
+  "scores_computed_from_episode_execution": true,
+  "task_id": "CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A",
+  "tested_configurations": [
+    {
+      "aggregation": "mean_recall_over_hidden_set_across_executed_toy_episodes",
+      "baseline_scores": [
+        {
+          "baseline_id": "random",
+          "callable_invoked": true,
+          "family": "active",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.0,
+            0.25,
+            0.0,
+            0.0,
+            0.25
+          ],
+          "producer_function": "baseline.random",
+          "query_budget": 2,
+          "score": 0.08333333333333333,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "greedy_info_gain",
+          "callable_invoked": true,
+          "family": "active",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.0,
+            0.25,
+            0.0,
+            0.5,
+            0.0
+          ],
+          "producer_function": "baseline.greedy_info_gain",
+          "query_budget": 2,
+          "score": 0.125,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "exhaustive_legal_query",
+          "callable_invoked": true,
+          "family": "active",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.25,
+            0.0,
+            0.25,
+            0.0,
+            0.0
+          ],
+          "producer_function": "baseline.exhaustive_legal_query",
+          "query_budget": 2,
+          "score": 0.08333333333333333,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "graph_lookup",
+          "callable_invoked": true,
+          "family": "graph_cache",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.25,
+            0.0,
+            0.0,
+            0.25,
+            0.0
+          ],
+          "producer_function": "baseline.graph_lookup",
+          "query_budget": 2,
+          "score": 0.08333333333333333,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "transition_table",
+          "callable_invoked": true,
+          "family": "graph_cache",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.25,
+            0.0,
+            0.0
+          ],
+          "producer_function": "baseline.transition_table",
+          "query_budget": 2,
+          "score": 0.041666666666666664,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "successor_map",
+          "callable_invoked": true,
+          "family": "graph_cache",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.25,
+            0.0,
+            0.0,
+            0.0,
+            0.25,
+            0.25
+          ],
+          "producer_function": "baseline.successor_map",
+          "query_budget": 2,
+          "score": 0.125,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "count_table",
+          "callable_invoked": true,
+          "family": "graph_cache",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.25,
+            0.25,
+            0.0,
+            0.5,
+            0.5,
+            0.25
+          ],
+          "producer_function": "baseline.count_table",
+          "query_budget": 2,
+          "score": 0.2916666666666667,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "fsm_planner",
+          "callable_invoked": true,
+          "family": "graph_cache",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.25,
+            0.0,
+            0.0,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "producer_function": "baseline.fsm_planner",
+          "query_budget": 2,
+          "score": 0.16666666666666666,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "episodic_traversal",
+          "callable_invoked": true,
+          "family": "graph_cache",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "producer_function": "baseline.episodic_traversal",
+          "query_budget": 2,
+          "score": 0.0,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "lookup_imitation",
+          "callable_invoked": true,
+          "family": "active",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.25,
+            0.0,
+            0.25,
+            0.0,
+            0.0
+          ],
+          "producer_function": "baseline.lookup_imitation",
+          "query_budget": 2,
+          "score": 0.08333333333333333,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "direct_objective_optimizer",
+          "callable_invoked": true,
+          "family": "active",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.25,
+            0.0,
+            0.0,
+            0.25,
+            0.0
+          ],
+          "producer_function": "baseline.direct_objective_optimizer",
+          "query_budget": 2,
+          "score": 0.08333333333333333,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "amortized_least_squares",
+          "callable_invoked": true,
+          "family": "active",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.25,
+            0.0,
+            0.5,
+            0.0,
+            0.75,
+            0.25
+          ],
+          "producer_function": "baseline.amortized_least_squares",
+          "query_budget": 2,
+          "score": 0.2916666666666667,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "mean",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.5,
+            0.25,
+            0.75,
+            0.25,
+            1.0,
+            0.75
+          ],
+          "producer_function": "baseline.mean",
+          "query_budget": 2,
+          "score": 0.5833333333333334,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "variance",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.5,
+            0.25,
+            0.75,
+            0.5,
+            0.5,
+            0.0
+          ],
+          "producer_function": "baseline.variance",
+          "query_budget": 2,
+          "score": 0.4166666666666667,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "correlation",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.25,
+            0.0,
+            0.25,
+            0.5,
+            0.5,
+            0.25
+          ],
+          "producer_function": "baseline.correlation",
+          "query_budget": 2,
+          "score": 0.2916666666666667,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "pca_subspace",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.5,
+            0.25,
+            0.25,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "producer_function": "baseline.pca_subspace",
+          "query_budget": 2,
+          "score": 0.4166666666666667,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "cross_episode",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.25,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "producer_function": "baseline.cross_episode",
+          "query_budget": 2,
+          "score": 0.041666666666666664,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "supervised",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.0,
+            0.25,
+            0.25,
+            0.5,
+            0.25
+          ],
+          "producer_function": "baseline.supervised",
+          "query_budget": 2,
+          "score": 0.20833333333333334,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "legal_field_membership",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.0,
+            0.25,
+            0.25,
+            0.0,
+            0.25,
+            0.0
+          ],
+          "producer_function": "baseline.legal_field_membership",
+          "query_budget": 2,
+          "score": 0.125,
+          "score_source": "computed_from_episode_execution"
+        },
+        {
+          "baseline_id": "positional_first_k",
+          "callable_invoked": true,
+          "family": "passive",
+          "legal_action_space_size": 12,
+          "oracle_privileged_access_used": false,
+          "per_episode_scores": [
+            0.25,
+            0.25,
+            0.0,
+            0.5,
+            0.5,
+            0.25
+          ],
+          "producer_function": "baseline.positional_first_k",
+          "query_budget": 2,
+          "score": 0.2916666666666667,
+          "score_source": "computed_from_episode_execution"
+        }
+      ],
+      "code_path_hash": "9db5f4c029527d7812533bd6f94aaa89e9ae622a300cbc86361c28c12cbd6947",
+      "config_id": "route_c_candidate_free_sparse_hidden_set_v1",
+      "decision_gate": {
+        "amortized_least_squares_below_ceiling": true,
+        "direct_objective_optimizer_below_ceiling": true,
+        "full_fair_baseline_panel_below_ceiling": true,
+        "graph_cache_family_below_ceiling": true,
+        "lookup_imitation_below_ceiling": true,
+        "oracle_at_ceiling": true,
+        "passive_family_below_ceiling": true,
+        "random_below_ceiling": true,
+        "separation_exists": true
+      },
+      "delta_oracle_vs_strongest_fair": 0.41666666666666663,
+      "episode_ids": [
+        "episode-91701",
+        "episode-91702",
+        "episode-91703",
+        "episode-91704",
+        "episode-91705",
+        "episode-91706"
+      ],
+      "inputs": {
+        "config": {
+          "config_id": "route_c_candidate_free_sparse_hidden_set_v1",
+          "episode_seeds": [
+            91701,
+            91702,
+            91703,
+            91704,
+            91705,
+            91706
+          ],
+          "hidden_set_size": 4,
+          "legal_action_space_size": 12,
+          "oracle_threshold": 1.0,
+          "query_budget": 2,
+          "run_id": "route-c-candidate-free-baseline-separation-probe-001a",
+          "seed": 91700,
+          "source_salt_hash": "6171c7924d8f4e7e2d516dde37946373afeca824a334a2aa80eca89df282abe2",
+          "train_seeds": [
+            81701,
+            81702,
+            81703,
+            81704,
+            81705,
+            81706
+          ],
+          "visible_salt_hash": "6246a20332a9a16d277ec5c4a4dae7920c5738736c073d36eb409f688d644f6c"
+        },
+        "eval_episode_count": 6,
+        "train_episode_count": 6
+      },
+      "legal_action_space_size": 12,
+      "oracle_access": "oracle_only_hidden_set_and_source_salt",
+      "oracle_callable_invoked": true,
+      "oracle_score": 1.0,
+      "passive_family_max": {
+        "baseline_id": "mean",
+        "score": 0.5833333333333334
+      },
+      "producer_function": "candidate_free_route_c_baseline_separation_probe_001a.runner.evaluate_config",
+      "query_budget": 2,
+      "run_id": "route-c-candidate-free-baseline-separation-probe-001a",
+      "seed": 91700,
+      "strongest_fair_baseline": {
+        "baseline_id": "mean",
+        "score": 0.5833333333333334
+      }
+    }
+  ]
+}

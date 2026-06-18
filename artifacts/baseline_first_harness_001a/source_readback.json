@@ -1,0 +1,123 @@
+{
+  "canonical_input_readback": {
+    "actual_freeze_sha256": "dc6d42b2fa010fb63edda889562bccc9d616ebe8871663c56233ee3f9bd02884",
+    "actual_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+    "canonical_readback_channel": "workspace filesystem Get-FileHash SHA256",
+    "consumed_by_final_verdict": true,
+    "freeze_path": "docs\\research\\MINIMAL-ENV-SPEC-001A.freeze.json",
+    "freeze_payload_task_id": "MINIMAL-ENV-SPEC-001A",
+    "freeze_sha256_matches_handoff": true,
+    "freeze_status": "frozen_before_any_baseline_or_oracle_scores",
+    "generator_source_pins_readable": true,
+    "known_freeze_sha256": "dc6d42b2fa010fb63edda889562bccc9d616ebe8871663c56233ee3f9bd02884",
+    "ok": true,
+    "required_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+    "run_id": "BASELINE-FIRST-HARNESS-001A-R1",
+    "source_inputs": [
+      {
+        "path": "docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md",
+        "sha256": "5f92dd10352666cca774e91f3829063917352a31d03dd78a3fcf59bdff2e273d"
+      },
+      {
+        "path": "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/route_record.json",
+        "sha256": "e00fc15ca7cc2ed3cf6da87ef647cf22be2215f2d7765edacb6359330f640d1d"
+      },
+      {
+        "path": "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/final_report.md",
+        "sha256": "a3417764710f48df00fe06973ab5a44039c7d779a1de485ba489d79554ee669e"
+      },
+      {
+        "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A/audit_result.json",
+        "sha256": "fc5557a7f443a0a9032e05675f35d96f19631a82968be2fe04e95550c2df8b7f"
+      },
+      {
+        "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A/audit_report.md",
+        "sha256": "772ccae286eeb45d2b27465ba809ccc878fd0f9578e51979d1c06ef36a835656"
+      },
+      {
+        "path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md",
+        "sha256": "25db184894f8f7dfc235a17f56aebdadaa1c0d1e6710244a3922990d54dee76e"
+      },
+      {
+        "path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json",
+        "sha256": "4a3170de614d697a7ffd99d4e524ad7a2a61585f49f3f095f00b1fd6e899b43f"
+      },
+      {
+        "path": "C:/Users/LEO/.codex/memories/extensions/ad_hoc/notes/2026-06-17T11-53-50-05-00-minimal-env-spec-first-route-memory.md",
+        "sha256": "373d4e2fe94134e83b92d73826e5995b3a842ceab50f6c304de58d237688d4ac"
+      },
+      {
+        "path": "C:/Users/LEO/.codex/memories/extensions/ad_hoc/notes/2026-06-17T11-16-17-route-tournament-evidence-sprint.md",
+        "sha256": "e4a25ff89b7e90c45522c7ef147e322c53dc7a9c0dc2740ddb5b88f28e064dae"
+      }
+    ],
+    "spec_path": "docs\\research\\MINIMAL-ENV-SPEC-001A.md",
+    "thresholds": {
+      "frozen_candidate_matched_budget": 5,
+      "frozen_degenerate_ceiling": 0.87,
+      "frozen_equivalence_band": 0.03,
+      "frozen_full_legal_channel_count": 12,
+      "frozen_min_episodes_per_seed": 20,
+      "frozen_min_seed_count": 5,
+      "frozen_oracle_target_floor": 0.9,
+      "frozen_passive_ceiling": 0.87,
+      "frozen_seed_noise_requirement": 0.03,
+      "frozen_size_only_ceiling": 0.87
+    }
+  },
+  "consumed_by_final_verdict": true,
+  "generator_config": {
+    "candidate_free": true,
+    "candidate_matched_budget_tokens": 5,
+    "environment_id": "minimal_closed_loop_latent_maintenance_001a",
+    "episodes_per_seed": 20,
+    "full_legal_channel_count": 12,
+    "schema_version": "baseline_first_harness_001a_generator_config_v1",
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "target_rule": "final_action_index = sum(five_budget_component_probe_values) mod 5"
+  },
+  "generator_config_sha256": "ebbc049ecc2baac666ebaeb7b6bec956b2816b7eabe8a7cd0b4144a99af82633",
+  "generator_provenance": {
+    "code_path_hash": "3c45cbeb1ffdd3ce819a40f0445053937da18de8835c8434522271196275eeb8",
+    "consumed_by_final_verdict": true,
+    "fair_baseline_access_declaration": "same visible channel, same candidate-matched budget, same legal action/query set",
+    "generator_config_sha256": "ebbc049ecc2baac666ebaeb7b6bec956b2816b7eabe8a7cd0b4144a99af82633",
+    "generator_source_path": "scripts/research/minimal_env_spec_loader_001a.py",
+    "generator_source_sha256": "3c45cbeb1ffdd3ce819a40f0445053937da18de8835c8434522271196275eeb8",
+    "hidden_target_storage_declaration": "target_label_or_target_variable and hidden_state are diagnostic-only",
+    "no_candidate_authored_truth_assertion": true,
+    "producer_function": "minimal_env_spec_loader_001a.build_candidate_free_episodes",
+    "readback_channel": "canonical_file_api_read_bytes",
+    "result": "passed",
+    "run_id": "BASELINE-FIRST-HARNESS-001A-R1",
+    "source_pin_integrity_status": "passed"
+  },
+  "producer_function": "baseline_first_harness_001a._source_readback",
+  "repo": {
+    "ahead_behind": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold [ahead 9]\n M docs/decision_log.md\n?? artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001A-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-SURFACE-SPEC-00XA-CORE-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/\n?? artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/\n?? artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/\n?? artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/\n?? artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/\n?? artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/\n?? artifacts/baseline_first_harness_001a/\n?? artifacts/candidate_free_route_c_baseline_separation_probe_001a/\n?? artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/\n?? artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/\n?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/\n?? artifacts/gate1_replacement_preflight_00xa_run_001a/\n?? artifacts/gate1_replacement_preflight_00xa_run_001b/\n?? artifacts/gate1_replacement_preflight_00xa_task_card_r1/\n?? artifacts/gate1_replacement_readback_or_preflight_selection_001a/\n?? artifacts/gate1_replacement_surface_spec_freeze_001a/\n?? artifacts/gate_canonical_inventory_and_return_point_readback_001a/\n?? artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/\n?? artifacts/gate_evidence_provenance_verifier_hardening_001a/\n?? artifacts/gate_provenance_hardening_worktree_reconciliation_001a/\n?? artifacts/minimal_env_spec_001a/\n?? artifacts/route_c_candidate_harness_001a/\n?? artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/\n?? docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md\n?? docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json\n?? docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md\n?? docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A.md\n?? docs/research/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1.md\n?? docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md\n?? docs/research/MINIMAL-ENV-SPEC-001A.freeze.json\n?? docs/research/MINIMAL-ENV-SPEC-001A.md\n?? docs/research/ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A.md\n?? docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md\n?? docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A.md\n?? docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1.md\n?? docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A.md\n?? docs/research/gate1_replacement_surface_spec_00xa.freeze.json\n?? docs/research/gate1_replacement_surface_spec_00xa.md\n?? scripts/\n?? src/gate1_replacement_preflight_00xa/\n?? src/gate_evidence_provenance_verifier_001a/\n?? tests/gate1_replacement_preflight_00xa/\n?? tests/research/\n?? tests/test_gate_evidence_provenance_verifier_001a.py",
+    "branch": "codex/meta-theory-scaffold",
+    "head": "b45598b1c56080f2f850ae088f42cf585950483e",
+    "root": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab",
+    "status_short": "M docs/decision_log.md\n?? artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001A-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-SURFACE-SPEC-00XA-CORE-HOSTILE-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/\n?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/\n?? artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/\n?? artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/\n?? artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/\n?? artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/\n?? artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/\n?? artifacts/baseline_first_harness_001a/\n?? artifacts/candidate_free_route_c_baseline_separation_probe_001a/\n?? artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/\n?? artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/\n?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/\n?? artifacts/gate1_replacement_preflight_00xa_run_001a/\n?? artifacts/gate1_replacement_preflight_00xa_run_001b/\n?? artifacts/gate1_replacement_preflight_00xa_task_card_r1/\n?? artifacts/gate1_replacement_readback_or_preflight_selection_001a/\n?? artifacts/gate1_replacement_surface_spec_freeze_001a/\n?? artifacts/gate_canonical_inventory_and_return_point_readback_001a/\n?? artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/\n?? artifacts/gate_evidence_provenance_verifier_hardening_001a/\n?? artifacts/gate_provenance_hardening_worktree_reconciliation_001a/\n?? artifacts/minimal_env_spec_001a/\n?? artifacts/route_c_candidate_harness_001a/\n?? artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/\n?? docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md\n?? docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json\n?? docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md\n?? docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A.md\n?? docs/research/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1.md\n?? docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md\n?? docs/research/MINIMAL-ENV-SPEC-001A.freeze.json\n?? docs/research/MINIMAL-ENV-SPEC-001A.md\n?? docs/research/ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A.md\n?? docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md\n?? docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A.md\n?? docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1.md\n?? docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A.md\n?? docs/research/gate1_replacement_surface_spec_00xa.freeze.json\n?? docs/research/gate1_replacement_surface_spec_00xa.md\n?? scripts/\n?? src/gate1_replacement_preflight_00xa/\n?? src/gate_evidence_provenance_verifier_001a/\n?? tests/gate1_replacement_preflight_00xa/\n?? tests/research/\n?? tests/test_gate_evidence_provenance_verifier_001a.py"
+  },
+  "run_id": "BASELINE-FIRST-HARNESS-001A-R1",
+  "schema_version": "baseline_first_harness_001a_source_readback_v1",
+  "thresholds": {
+    "frozen_candidate_matched_budget": 5,
+    "frozen_degenerate_ceiling": 0.87,
+    "frozen_equivalence_band": 0.03,
+    "frozen_full_legal_channel_count": 12,
+    "frozen_min_episodes_per_seed": 20,
+    "frozen_min_seed_count": 5,
+    "frozen_oracle_target_floor": 0.9,
+    "frozen_passive_ceiling": 0.87,
+    "frozen_seed_noise_requirement": 0.03,
+    "frozen_size_only_ceiling": 0.87
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": "claude_independent_hostile_audit_v1",
+  "audit_id": "CLAUDE-INDEPENDENT-BASELINE-FIRST-HARNESS-001A-R1-EVIDENCE-INTEGRITY-HOSTILE-AUDIT-001A",
+  "audited_task_id": "BASELINE-FIRST-HARNESS-001A-R1",
+  "audited_claim_under_review": "rejected_no_headroom_baseline_saturated",
+  "audit_scope": "evidence-integrity hostile audit only; not candidate evidence; no route tournament; no WM-P/VSB-C/CSL authorization; no environment optimization unless concrete integrity defect; not Gate1/mechanism/candidate/runtime/agency/consciousness/EGO",
+  "audit_date": "2026-06-17",
+  "repo_head_at_audit": "b45598b1c56080f2f850ae088f42cf585950483e",
+  "audited_bundle_tracked_status": "untracked_working_tree (not committed)",
+
+  "verdict": "accepted_candidate_free_phase0_no_headroom_negative_environment_evidence",
+  "impl_may_proceed": false,
+  "route_tournament_authorized": false,
+  "candidate_work_authorized": false,
+  "blocking_issues": [],
+  "admission": true,
+
+  "audit_questions": {
+    "Q1_verdict_enum_and_claim_ceiling": {
+      "result": "pass",
+      "detail": "final_verdict='rejected_no_headroom_baseline_saturated' is a member of ALLOWED_VERDICTS (harness lines 50-65). claim_ceiling string is correctly bounded: no Gate1 pass, no mechanism validity, no candidate feasibility, no runtime/mainline, no agency/autonomy/consciousness/EGO. auto_remote_anchor=forbidden; mainline_integration_status=none; no_candidate_work_performed=true. No claim inflation detected."
+    },
+    "Q2_callable_not_handwritten": {
+      "result": "pass",
+      "detail": "Verdict produced by produce_baseline_first_harness_001a_r1_verdict (harness line 686); real run does not override final_verdict in the post-call .update(). Fail-ability probes confirm the function branches on inputs (see fail_ability_probes). A handwritten-vs-callable cross-check gate exists (validate_handwritten_verdict_matches_callable, line 812) and blocks on disagreement. Byte-identical clean-room reproduction confirms the on-disk verdict is the callable output."
+    },
+    "Q3_B1_oracle_budget_faithfulness_consumed": {
+      "result": "pass_with_nonblocking_caveat",
+      "detail": "Verdict reads rows['visible_channel_oracle_budget_faithfulness_result'] and returns blocked_oracle_not_budget_faithful if != passed (harness lines 241-243). Probe PD (set result=failed) flips verdict to blocked_oracle_not_budget_faithful => genuinely consumed and gate-level fail-able.",
+      "caveat_ref": "N3"
+    },
+    "Q4_B2_strategy_class_and_graph_cache_consumed": {
+      "result": "partial_pass_with_nonblocking_caveat",
+      "detail": "Six graph-cache challenger scores ARE consumed: probe PE (one graph-cache=1.0, rest=0.5) triggers saturation, proving any single graph-cache entering the band drives the verdict. budget_limited_belief_state_planner (strongest classical) is consumed via strongest_fair_baseline_score and the _validate_baseline_battery required-scored check. HOWEVER strategy_class_alignment producer is non-fail-able (caveat N2): it compares two hardcoded-identical literal dicts and can never return failed for any real code path, so 'strategy_class_alignment_result: passed' is consumed but evidentially near-empty.",
+      "caveat_ref": "N2"
+    },
+    "Q5_fair_cheap_baseline_in_band": {
+      "result": "confirmed_yes_real_saturation",
+      "detail": "visible_channel_oracle=1.0; strongest_fair_baseline=1.0; exhaustive_legal_query=1.0; all six graph-cache=1.0; lookup_imitation_max=1.0; margin=0.0 < equivalence_band=0.03. Saturation is REAL not metric-degenerate: degenerate_predictor_max=0.1889 (random) and passive_family_max=0.40 (observation_only) are far below the legal-channel readers, and observation_only predictions != oracle predictions. The environment target = sum(5 budget-component channels) mod 5 is fully recoverable within the budget-5 legal channel, so any budget-respecting legal-channel reader saturates the oracle (1.0 = the answer-key ceiling)."
+    },
+    "Q6_blocking_integrity_defects": {
+      "result": "none",
+      "detail": "No defect causes a false no-headroom. oracle=1.0 is the true ceiling (answer_key_diagnostic_oracle=1.0), and the legal-channel decode genuinely achieves 1.0 because the target is defined as the sum of those channels. No candidate can exceed 1.0. All identified defects are non-blocking and lie in the conservative direction (they understate evidence diversity/strength or are moot for the no-headroom path)."
+    },
+    "Q7_closeout": {
+      "result": "confirmed",
+      "detail": "Accept as candidate-free Phase-0 no-headroom negative environment evidence. MINIMAL-ENV-SPEC-001A is closed for candidate work. Next action: stop / preserve; no route tournament; no candidate implementation."
+    }
+  },
+
+  "verification_performed": {
+    "clean_room_real_run_reproduction": "exit 0; /tmp/cleanroom_out/final_verdict.json and score_summary.json BYTE-IDENTICAL to committed bundle (independent execution from intact mount, no FUSE truncation on these files)",
+    "self_check": "self_check_status=passed, 12/12 failure-path checks (independently re-run)",
+    "pytest": "NOT independently re-run (pytest unavailable / install hung in sandbox); 10 test functions present in tests/research/test_baseline_first_harness_001a.py, consistent with reported '10 passed'. Independent run+self-check+probes are stronger evidence than re-running the authored test file.",
+    "spec_sha256_independent_recompute": "bash sha256(MINIMAL-ENV-SPEC-001A.md)=bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658 == frozen == run --required-spec-sha256 (matches Windows Get-FileHash channel => no truncation)",
+    "freeze_sha256_independent_recompute": "bash sha256(MINIMAL-ENV-SPEC-001A.freeze.json)=dc6d42b2fa010fb63edda889562bccc9d616ebe8871663c56233ee3f9bd02884 == loader REQUIRED_FREEZE_SHA256",
+    "freeze_preregistration": "freeze_status=frozen_before_any_baseline_or_oracle_scores; freeze_timestamp 2026-06-17T11:57 precedes run artifacts mtime 18:19 (~6h); mutation_ban set; push/tag/remote_anchor all false",
+    "evidence_table": "49 rows, all consumed_by_final_verdict=True",
+    "aliasing_proof": "all 15 legal-channel baselines (fair_active + strongest_classical + 6 graph-cache + 4 lookup-imitation) produce predictions IDENTICAL to the oracle; graph_lookup source body == count_table source body (verified via inspect.getsource); observation_only predictions != oracle"
+  },
+
+  "fail_ability_probes": {
+    "P0_unmodified": "rejected_no_headroom_baseline_saturated (expected)",
+    "PA_all_fair_0.5": "headroom_confirmed_for_route_contract_drafting_only (verdict FLIPS off saturation => not a hardcoded literal)",
+    "PB_degenerate_0.95": "rejected_metric_degenerate (degeneracy gate fires before saturation; closes Route-C predict_all==oracle family)",
+    "PC_passive_0.95": "rejected_passive_trivially_decodable",
+    "PD_oracle_budget_failed": "blocked_oracle_not_budget_faithful",
+    "PE_one_graph_1.0_rest_0.5": "rejected_no_headroom_baseline_saturated (any single graph-cache in band triggers)",
+    "PF_visible_0.5_answerkey_1.0": "rejected_no_oracle_headroom"
+  },
+
+  "per_family_scores_reproduced": {
+    "degenerate_predictor": {"predict_all": 0.0667, "predict_none": 0.0667, "constant_k_sweep": 0.0667, "random": 0.1889, "majority": 0.0667},
+    "size_only": {"size_only_sweep_0_to_N": 0.40},
+    "passive": {"observation_only": 0.40, "value_decoder_mean": 0.20, "value_decoder_variance": 0.168, "value_decoder_correlation": 0.168, "value_decoder_pca": 0.157, "nearest_neighbor_passive": 0.20, "supervised_or_membership_passive_attacker": 0.178},
+    "legal_channel_readers_all_1_0": ["exhaustive_legal_query", "greedy_uncertainty_query_under_budget", "budget_limited_belief_state_planner", "greedy_information_gain_or_uncertainty_planner_under_budget", "graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "episodic_traversal", "trace_only_replay", "ngram_trace_lookup", "belief_table", "pair_count_table", "strongest_known_classical_method_for_task_type"],
+    "explicitly_not_applicable": ["full_bundle_decoder", "serialized_state_decoder", "discounted_wls_if_applicable", "least_squares_if_applicable", "convex_solver_if_applicable", "real_fitted_amortized_learner_if_any_learning_adaptation_language_appears"]
+  },
+
+  "non_blocking_issues": {
+    "N1_baseline_diversity_is_cosmetic": "The 15 'fair/graph-cache/lookup' producers are aliases of one function predict_from_budget_components (identical source bodies, identical predictions). 'Six graph-cache challengers = 1.0' is one computation reported six times, not six independent challengers. ACCEPTABLE for a no-headroom STOP (the cheapest legal-channel route saturating is sufficient, and the score equals what a faithful budget-respecting graph_lookup/count_table would yield over the same 5 channels). MUST NOT be cited as independent corroboration, and MUST NOT be reused as-is for any positive headroom claim, candidate tournament, or BASELINE-IMMUNITY-ADMISSION-STANDARD-001A admission, where genuinely distinct implementations are required (there it would be a blocking under-powered-battery defect).",
+    "N2_strategy_class_alignment_non_fail_able": "run_strategy_class_alignment compares two hardcoded-identical literal dicts (build_oracle_strategy_class vs build_strongest_classical_strategy_class); all 7 checks compare equal literals, so the producer can never return failed for any actual code. Consumed by the verdict but evidentially near-empty. The self-check's strategy_class_mismatch_blocks case only passes because it manually injects result=failed into a synthetic context; it does not exercise the real builder. Do not count as real B2 alignment evidence.",
+    "N3_oracle_budget_subcontrols_near_vacuous": "hidden_field_ablation (mask) and hidden_field_permutation pass vacuously because the oracle reads only BUDGET_COMPONENT_CHANNELS and never reads hidden_state/target, so masking/permuting them cannot change predictions by construction. The forbidden-token scan IS fail-able but runs over the oracle's self-declared consumed_field_manifest (hardcoded), so a future oracle reading a forbidden field without declaring it would evade it. For the current oracle, code inspection confirms it reads only legal channels; non-blocking but the control is weaker than 'passed' implies.",
+    "N4_leakage_is_name_token_only": "Leakage positive control is a real fail-able token detector but scans only forbidden field-NAME tokens (answer_key, hidden_state, target_label, stored_prediction). It does not test value-level leakage (a visible field numerically equal to the target). Here it happens not to matter (passive max 0.40 confirms no value-level leakage lets passive solve it), but the control is name-level not value-level.",
+    "N5_thresholds_and_generator_in_unfrozen_py": "The freeze pins only the spec .md sha256 (enforced). The numeric thresholds (band 0.03, ceilings 0.87, floor 0.90) and the target rule + generator live in minimal_env_spec_loader_001a.py and baseline_battery_001a.py, which are recorded at run-time via generator provenance but with NO frozen expected hash enforced by the verdict. Mitigated because: (a) the decisive saturation gate has margin exactly 0.0, which triggers for any positive band, so band-tuning cannot change the verdict; degenerate 0.19 / passive 0.40 sit far below 0.87; visible 1.0 > floor 0.90; (b) the .py values match the spec .md (lines 232-236). Non-blocking provenance-completeness caveat; a stronger freeze would pin loader/battery source hashes with enforced comparison.",
+    "N6_per_class_floors_not_enforced": "Spec lines 232-237 require per-class precision floor 0.85 and recall floor 0.85; the verdict logic uses only scalar macro_f1 family comparisons and does not enforce per-class floors. Moot for the no-headroom path (saturation decided by margin=0), but it WOULD matter on the headroom_confirmed path; flag for any future headroom run."
+  },
+
+  "required_fixes_if_reused_for_positive_or_candidate_work": [
+    "Replace the 15 aliased legal-channel baselines with genuinely distinct implementations (real graph_lookup table, real count_table, real fsm_planner, etc.) before any positive headroom or candidate-tournament claim.",
+    "Make strategy_class_alignment fail-able by deriving both strategy classes from the actual oracle/baseline code paths rather than hardcoded literal dicts.",
+    "Add a value-level leakage control (e.g., correlation/equality of any visible field with target) in addition to name-token scanning.",
+    "Pin minimal_env_spec_loader_001a.py and baseline_battery_001a.py source hashes in the freeze with verdict-enforced comparison.",
+    "Enforce per-class precision/recall floors (0.85) in the headroom_confirmed branch."
+  ],
+
+  "claim_ceiling": "This audit certifies bounded evidence-integrity only: that BASELINE-FIRST-HARNESS-001A-R1 is a reproducible, fail-able, pre-registered candidate-free Phase-0 measurement whose 'no-headroom / baseline-saturated' verdict is computed (not literal) and correct for the frozen MINIMAL-ENV-SPEC-001A. It does NOT prove Gate1 pass, mechanism validity, candidate feasibility, runtime/mainline effect, baseline-immunity for any future surface, or agency/autonomy/consciousness/EGO readiness. It does not prove the environment is an interesting or neutral tournament surface; it proves the opposite (the environment is trivially legal-channel-solvable and therefore unsuitable for candidate discrimination).",
+
+  "what_this_audit_does_not_prove": [
+    "That any candidate mechanism works or is feasible.",
+    "That MINIMAL-ENV-SPEC-001A is a valid neutral tournament environment (it is closed as no-headroom).",
+    "That the six graph-cache challengers are independent (they are aliases).",
+    "That strategy_class_alignment, hidden-field ablation/permutation, or leakage controls are strong in absolute terms (they are non-fail-able / near-vacuous / name-level respectively, though non-blocking here).",
+    "Any consciousness, subjective experience, emotion, self-awareness, autonomy, agency, AGI, or companion/EGO readiness claim."
+  ],
+
+  "next_action": "stop; preserve as negative environment evidence; close MINIMAL-ENV-SPEC-001A for candidate work; no route tournament; no candidate implementation; no push/tag/remote-anchor (PAT-bearing scripts remain BLOCKED).",
+  "remaining_unknowns": [
+    "Whether the authored pytest suite passes in a clean environment (not independently re-run; harness+self-check+probes reproduced instead).",
+    "Whether downstream consumers will respect the N1 reuse restriction (aliased battery must not become positive-claim corroboration)."
+  ],
+  "delivery": "artifacts/CLAUDE-INDEPENDENT-BASELINE-FIRST-HARNESS-001A-R1-EVIDENCE-INTEGRITY-HOSTILE-AUDIT-001A/ ; not committed, not pushed; audited bundle and repo unmodified."
+}

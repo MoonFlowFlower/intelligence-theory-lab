@@ -1,0 +1,85 @@
+{
+  "code_path_hash": "66e1459383ca9f781679e7f375fcf6dfb14da863affab0393a643fab98b7d8fd",
+  "consumed_by_final_verdict": true,
+  "producer_function": "build_rejected_sketches",
+  "rejected": [
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A1_DIRECT_LEGAL_CHANNEL_COMPUTE",
+      "per_sketch_verdict": "reject_direct_decode",
+      "rejection_stage": "independent_static_kill_scan",
+      "sketch_id": "direct_legal_channel_compute",
+      "verdict_reason": "target_deterministic_from_le_budget_visible_channels; legal_query_can_read_all_target_components"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A7_ORACLE_NOT_BUDGET_FAITHFUL",
+      "per_sketch_verdict": "reject_oracle_not_budget_faithful",
+      "rejection_stage": "independent_static_kill_scan",
+      "sketch_id": "answer_key_oracle_surface",
+      "verdict_reason": "oracle_needs_hidden_state_answer_key_or_future_labels"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A6_METRIC_DEGENERACY",
+      "per_sketch_verdict": "reject_metric_degenerate",
+      "rejection_stage": "independent_static_kill_scan",
+      "sketch_id": "metric_degenerate_predict_all_surface",
+      "verdict_reason": "metric_degenerate"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A10_ACTIVE_PLANNER_SATURATION",
+      "oracle_vs_planner_separation_status": "falsified_by_planner_results",
+      "per_sketch_verdict": "reject_active_planner_saturated",
+      "planner_family_max": 1.0,
+      "rejection_stage": "micro_probe",
+      "sketch_id": "active_planner_equivalent_surface_003a",
+      "verdict_reason": "active_planner_saturation: planner_family_max reached visible-oracle equivalence band"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A4_FITTED_CLASSICAL_LEARNER_SATURATION_OR_ABSENCE",
+      "oracle_vs_planner_separation_status": "present_not_falsified_by_micro_probe",
+      "per_sketch_verdict": "reject_no_headroom_likely",
+      "planner_family_max": 0.16666666666666666,
+      "rejection_stage": "micro_probe",
+      "sketch_id": "fitted_legal_channel_learner_saturation_003a",
+      "verdict_reason": "legal-channel compute baseline reached visible-oracle equivalence band"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A2_GRAPH_CACHE_TRANSITION_TABLE_SATURATION",
+      "oracle_vs_planner_separation_status": "present_not_falsified_by_micro_probe",
+      "per_sketch_verdict": "reject_graph_cache_saturated",
+      "planner_family_max": 0.1818181818181818,
+      "rejection_stage": "micro_probe",
+      "sketch_id": "graph_cache_family_saturated_surface_003a",
+      "verdict_reason": "full graph-cache family reached visible-oracle equivalence band"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A10_ACTIVE_PLANNER_SATURATION",
+      "oracle_vs_planner_separation_status": "missing",
+      "per_sketch_verdict": "blocked_missing_oracle_vs_planner_separation_argument",
+      "planner_family_max": 0.16666666666666666,
+      "rejection_stage": "micro_probe",
+      "sketch_id": "missing_oracle_vs_planner_separation_003a",
+      "verdict_reason": "oracle_vs_planner_separation_argument absent"
+    },
+    {
+      "fixable_implementation_omission": false,
+      "hard_failure_family_code": "A5_PASSIVE_VALUE_DECODER_LEAKAGE",
+      "oracle_vs_planner_separation_status": "present_not_falsified_by_micro_probe",
+      "per_sketch_verdict": "reject_passive_decodable",
+      "planner_family_max": 0.16666666666666666,
+      "rejection_stage": "micro_probe",
+      "sketch_id": "passive_value_decoder_leak_surface_003a",
+      "verdict_reason": "passive value-decoder family reached rejection floor"
+    }
+  ],
+  "rejected_count": 8,
+  "run_id": "BATCH-ENV-HEADROOM-SCOUT-003A-RUN-001A",
+  "schema_version": "batch_env_headroom_scout_003a_rejected_sketches_v1",
+  "task_id": "BATCH-ENV-HEADROOM-SCOUT-003A-RUN-001A"
+}

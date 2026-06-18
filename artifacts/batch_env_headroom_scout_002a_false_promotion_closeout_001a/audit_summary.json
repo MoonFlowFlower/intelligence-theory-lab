@@ -1,0 +1,81 @@
+{
+  "affected_promoted_sketch": "relational_contrast_budget_probe",
+  "affected_task": "BATCH-ENV-HEADROOM-SCOUT-002A",
+  "audit_findings": [
+    {
+      "finding_id": "static_kill_scan_echoed_author_claims",
+      "evidence": "Set-equality check showed static kill reasons equal self-declared true static_kill_flags for 16/16 sketches.",
+      "severity": "blocking"
+    },
+    {
+      "finding_id": "oracle_is_legal_compute_baseline",
+      "evidence": "Generator sets oracle_index = (contrast_a + 2 * contrast_b + phase) % 3; visible_channel_oracle queries contrast_a, contrast_b, and phase_probe under budget 3 and applies the same formula.",
+      "severity": "blocking"
+    },
+    {
+      "finding_id": "micro_probe_battery_missing_compute_baselines",
+      "evidence": "Promoted sketch baseline battery omitted exhaustive_legal_query, count_table, episodic_traversal, trace_only_replay, ngram_trace_lookup, and fitted legal-channel learner.",
+      "severity": "blocking"
+    },
+    {
+      "finding_id": "reported_gap_is_memorization_vs_compute",
+      "evidence": "Reported preliminary gap was 0.5445918326967765, but the oracle-side strategy was a fair budget-faithful legal computation not included as a baseline.",
+      "severity": "blocking"
+    }
+  ],
+  "audit_source": "attached hostile audit plus repo-local source/artifact readback",
+  "claim_ceiling": "scout-method negative evidence only",
+  "corrected_verdict": "blocked_promotion_false_positive_direct_decode",
+  "micro_probe_battery": {
+    "invoked": [
+      "budget_limited_belief_state_planner",
+      "greedy_information_gain_or_uncertainty_planner_under_budget",
+      "graph_lookup",
+      "transition_table",
+      "successor_map",
+      "fsm_planner",
+      "passive_decoder",
+      "size_only",
+      "degenerate_controls"
+    ],
+    "missing_for_promotion": [
+      "exhaustive_legal_query",
+      "count_table",
+      "episodic_traversal",
+      "trace_only_replay",
+      "ngram_trace_lookup",
+      "fitted_legal_channel_learner"
+    ]
+  },
+  "numeric_computation_fabrication": false,
+  "oracle_budget_faithful": true,
+  "oracle_field_access": {
+    "answer_key_accessed": false,
+    "future_label_accessed": false,
+    "hidden_state_accessed": false,
+    "queried_channels": [
+      "contrast_a",
+      "contrast_b",
+      "phase_probe"
+    ],
+    "query_count": 3
+  },
+  "promoted_record_readback": {
+    "degenerate_control_score": 0.1818181818181818,
+    "graph_cache_lookup_max_score": 0.3388257153474545,
+    "micro_probe_verdict": "promote_to_full_harness_candidate",
+    "oracle_score": 0.883417548044231,
+    "passive_decoder_score": 0.31003916718202434,
+    "preliminary_gap": 0.5445918326967765,
+    "size_only_score": 0.2792034632034632,
+    "strongest_cheap_baseline": "transition_table",
+    "strongest_cheap_baseline_score": 0.3388257153474545,
+    "train_test_split_resists_memorization": true
+  },
+  "schema_version": "batch_env_headroom_scout_002a_false_promotion_audit_summary_v1",
+  "source_readback": {
+    "generator_lines": "scripts/research/batch_env_headroom_scout_002a.py:506-524",
+    "oracle_lines": "scripts/research/batch_env_headroom_scout_002a.py:627-655",
+    "planner_cap_lines": "scripts/research/batch_env_headroom_scout_002a.py:690-692"
+  }
+}

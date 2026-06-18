@@ -1,0 +1,157 @@
+{
+  "schema_version": "phase0_environment_design_constraints_002c_design_constraints_v1",
+  "task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "verdict": "design_constraints_002c_recorded",
+  "current_layer": "engineering-governance / Phase-0 environment design-constraint synthesis",
+  "constraints": [
+    {
+      "constraint_id": "DC001_NON_COMPUTABLE_UNDER_BUDGET",
+      "derived_from_failures": [
+        "F001A_LEGAL_CHANNEL_BELIEF_PLANNER_SATURATION",
+        "F002A_FALSE_PROMOTION_DIRECT_DECODE",
+        "F002B_DIRECT_DECODE"
+      ],
+      "rule": "Target must not be exactly computable from <= budget legal or visible channels.",
+      "verification_requirement_for_003a": "Declare target dependency set, legal channel set, budget, and an independent static check for exact legal-channel computability.",
+      "blocks_patterns": [
+        "target_deterministic_from_le_budget_visible_channels",
+        "legal_query_can_read_all_target_components"
+      ]
+    },
+    {
+      "constraint_id": "DC002_ORACLE_AS_BASELINE_SYMMETRY",
+      "derived_from_failures": [
+        "F002A_FALSE_PROMOTION_DIRECT_DECODE"
+      ],
+      "rule": "Any oracle computation using only legal visible channels within budget must be registered and scored as a fair baseline.",
+      "verification_requirement_for_003a": "Emit oracle field-access manifest, legal query trace, oracle-as-baseline row, and reject if oracle-as-baseline enters the oracle equivalence band.",
+      "blocks_patterns": [
+        "oracle_computes_legal_channel_formula_not_mirrored_as_fair_baseline"
+      ]
+    },
+    {
+      "constraint_id": "DC003_BUDGET_FAITHFUL_ORACLE_ONLY",
+      "derived_from_failures": [
+        "F002B_ANSWER_KEY_ORACLE"
+      ],
+      "rule": "Oracle may not read hidden_state, answer_key, future labels, target aliases, or unqueried values.",
+      "verification_requirement_for_003a": "Run answer-key diagnostic oracle separately from visible-channel budget-faithful oracle; answer-key oracle may not support promotion.",
+      "blocks_patterns": [
+        "oracle_needs_hidden_state_answer_key_or_future_labels",
+        "future_label_dependency"
+      ]
+    },
+    {
+      "constraint_id": "DC004_GRAPH_CACHE_HELDOUT_RESISTANCE",
+      "derived_from_failures": [
+        "F001A_LEGAL_CHANNEL_BELIEF_PLANNER_SATURATION",
+        "F002B_GRAPH_CACHE_SATURATION"
+      ],
+      "rule": "Graph/cache/table baselines must be structurally disadvantaged on heldout generalization, not absent or partial.",
+      "verification_requirement_for_003a": "Run full six-member graph-cache family and require family_max below oracle minus band.",
+      "blocks_patterns": [
+        "graph_cache_transition_table_recovers_target_exactly",
+        "state_space_small_enough_for_trivial_lookup_saturation"
+      ]
+    },
+    {
+      "constraint_id": "DC005_LOOKUP_AND_COMPUTE_SPLIT_RESISTANCE",
+      "derived_from_failures": [
+        "F002A_FALSE_PROMOTION_DIRECT_DECODE",
+        "F002B_LOOKUP_VS_COMPUTE_ARTIFACT"
+      ],
+      "rule": "Train/test split must defeat memorization and simple legal-channel compute on the identical heldout split.",
+      "verification_requirement_for_003a": "Require lookup/NN, exhaustive legal query, fitted learner, and strongest classical method on the same heldout episodes; low lookup alone cannot support promotion.",
+      "blocks_patterns": [
+        "train_test_split_defeats_memory_but_not_compute",
+        "memory_only_battery_on_disjoint_split"
+      ]
+    },
+    {
+      "constraint_id": "DC006_FITTED_CLASSICAL_LEARNER_RESISTANCE",
+      "derived_from_failures": [
+        "F002A_FALSE_PROMOTION_DIRECT_DECODE",
+        "F002B_LOOKUP_VS_COMPUTE_ARTIFACT"
+      ],
+      "rule": "Fitted legal-channel learner and strongest applicable classical method must be present and expected to remain below oracle.",
+      "verification_requirement_for_003a": "Record real fit evidence, anti-stub guard, ml_library_used or equivalent, train rows consumed, and heldout score.",
+      "blocks_patterns": [
+        "fitted_legal_channel_learner_missing",
+        "deterministic_stub_labeled_as_learned",
+        "simple_classical_solver_reaches_oracle_band"
+      ]
+    },
+    {
+      "constraint_id": "DC007_PASSIVE_VALUE_LEAKAGE_RESISTANCE",
+      "derived_from_failures": [
+        "F002B_PASSIVE_VALUE_LEAK"
+      ],
+      "rule": "Passive visible values must not encode the target at value level.",
+      "verification_requirement_for_003a": "Run full passive value-decoder family and positive-control leakage scan; require passive family max below passive floor.",
+      "blocks_patterns": [
+        "visible_fields_leak_target",
+        "passive_decoder_likely_reaches_oracle",
+        "name_only_leakage_scan"
+      ]
+    },
+    {
+      "constraint_id": "DC008_METRIC_ROBUSTNESS",
+      "derived_from_failures": [
+        "F002B_METRIC_DEGENERACY"
+      ],
+      "rule": "Metrics must be balanced and must not reward predict_all, predict_none, constant-k, random, majority, or size-only predictors.",
+      "verification_requirement_for_003a": "Use balanced macro-F1 plus per-class precision and recall floors; run degenerate and size-only controls.",
+      "blocks_patterns": [
+        "metric_degenerate",
+        "predict_all_saturates_metric",
+        "size_only_sweep_saturates_metric"
+      ]
+    },
+    {
+      "constraint_id": "DC009_SIGNAL_FLOOR",
+      "derived_from_failures": [
+        "F002B_UNDERPOWERED_SURFACE"
+      ],
+      "rule": "Budget-faithful visible oracle must have enough legitimate signal to exceed the oracle floor before headroom can be assessed.",
+      "verification_requirement_for_003a": "Predeclare oracle signal source, expected floor, and reject underpowered surfaces before interpreting baseline gaps.",
+      "blocks_patterns": [
+        "visible_oracle_below_floor",
+        "preliminary_gap_below_threshold_due_to_weak_oracle"
+      ]
+    },
+    {
+      "constraint_id": "DC010_BASELINE_INDEPENDENCE_AND_COMPLETENESS",
+      "derived_from_failures": [
+        "F001A_LEGAL_CHANNEL_BELIEF_PLANNER_SATURATION",
+        "F002A_FALSE_PROMOTION_DIRECT_DECODE"
+      ],
+      "rule": "Baseline battery may not rely on aliases and may not omit mandatory compute, graph/cache, passive, degenerate, replay, fitted, or classical producers.",
+      "verification_requirement_for_003a": "Every baseline row must record producer_function, source_body_hash, prediction_vector_hash, input_field_manifest, strategy_signature, baseline_family, independence_family, and consumed_by_final_verdict.",
+      "blocks_patterns": [
+        "baseline_battery_aliasing",
+        "mandatory_producer_missing",
+        "unconsumed_baseline_row"
+      ]
+    },
+    {
+      "constraint_id": "DC011_STRONGEST_FALSE_EXPLANATION_FIRST",
+      "derived_from_failures": [
+        "F001A_LEGAL_CHANNEL_BELIEF_PLANNER_SATURATION",
+        "F002A_FALSE_PROMOTION_DIRECT_DECODE",
+        "F002B_LOOKUP_VS_COMPUTE_ARTIFACT"
+      ],
+      "rule": "Each sketch must state the strongest false explanation before any run and map it to A1-A9.",
+      "verification_requirement_for_003a": "Reject sketches with no explicit A1-A9 self-attack mapping and no expected strongest cheap baseline.",
+      "blocks_patterns": [
+        "headroom_by_optimistic_interpretation",
+        "lookup_failure_misread_as_headroom",
+        "baseline_omission_misread_as_headroom"
+      ]
+    }
+  ],
+  "stop_condition": {
+    "if_only_path_is_weaken_baselines": "blocked_no_valid_environment_design_grammar",
+    "if_no_budget_faithful_positive_property_exists": "blocked_no_valid_environment_design_grammar"
+  },
+  "claim_ceiling": "Phase-0 environment design-constraint synthesis only. No headroom confirmation. No Gate1 pass. No mechanism validity. No candidate feasibility. No runtime/mainline effect. No agency/autonomy/consciousness/EGO readiness."
+}

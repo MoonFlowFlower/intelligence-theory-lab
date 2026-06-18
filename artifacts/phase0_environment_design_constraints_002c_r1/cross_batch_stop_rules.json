@@ -1,0 +1,100 @@
+{
+  "schema_version": "phase0_environment_design_constraints_002c_r1_cross_batch_stop_rules_v1",
+  "task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-R1",
+  "source_task_id": "PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C",
+  "verdict": "design_constraints_002c_r1_recorded",
+  "blocked_verdict": "blocked_no_valid_environment_design_grammar",
+  "purpose": "Make the grammar-blocked verdict mechanical and prevent indefinite run-another-batch search loops.",
+  "mechanical_triggers": [
+    {
+      "trigger_id": "A_ALL_REJECTS_KNOWN_HARD_FAILURES",
+      "must_trigger_blocked_verdict_if": [
+        "a repaired batch all-rejects",
+        "every rejection belongs to saturation/leakage/direct-decode/oracle-invalid/metric-degenerate/active-planner-equivalent families",
+        "no rejection is attributable only to a fixable implementation omission"
+      ],
+      "hard_failure_families": [
+        "direct_legal_channel_compute",
+        "graph_cache_saturation",
+        "lookup_vs_compute_artifact",
+        "fitted_or_classical_solver_saturation",
+        "passive_value_leakage",
+        "metric_degeneracy",
+        "oracle_not_budget_faithful",
+        "baseline_aliasing_or_incomplete_battery",
+        "split_defeats_memory_not_compute",
+        "active_planner_saturation",
+        "active_planner_equivalent_oracle"
+      ],
+      "fixable_implementation_omission_examples": [
+        "missing field required by the frozen sketch schema before any score is computed",
+        "serialization failure that prevents an otherwise declared baseline from running",
+        "deterministic parser error unrelated to surface semantics"
+      ],
+      "non_fixable_hard_failure_examples": [
+        "planner_family_max enters oracle equivalence band",
+        "legal compute enters oracle equivalence band",
+        "passive decoder saturates",
+        "oracle requires hidden or answer-key access",
+        "metric rewards degenerate predictors",
+        "the only gap comes from an omitted or underpowered baseline"
+      ]
+    },
+    {
+      "trigger_id": "B_TWO_REPAIRED_BATCHES_ZERO_PROMOTIONS_WITH_ONLY_BASELINE_WEAKENING_PATH",
+      "must_trigger_blocked_verdict_if": [
+        "two consecutive repaired batches produce zero promoted full-harness candidates",
+        "each batch completed the required battery and independent static scan",
+        "the only proposed way to create a gap is to weaken, omit, alias, underpower, or restrict fair baselines"
+      ],
+      "batch_count_rule": {
+        "consecutive_repaired_batches_required": 2,
+        "promotion_count_required_to_avoid_trigger": ">= 1",
+        "complete_battery_required_for_counting": true,
+        "independent_static_scan_required_for_counting": true
+      }
+    },
+    {
+      "trigger_id": "C_NO_CREDIBLE_ORACLE_VS_PLANNER_SEPARATION_ARGUMENT",
+      "must_trigger_blocked_verdict_if": [
+        "no proposed sketch can supply oracle_vs_planner_separation_argument",
+        "or the argument relies on forbidden access",
+        "or the argument relies on answer-key diagnostic oracle",
+        "or the argument relies on hidden state",
+        "or the argument relies on baseline omission",
+        "or the argument relies on metric weakening"
+      ],
+      "required_argument_field": "oracle_vs_planner_separation_argument",
+      "disallowed_argument_bases": [
+        "hidden_state",
+        "answer_key",
+        "future_label",
+        "target_alias",
+        "unqueried_value",
+        "baseline_omission",
+        "baseline_aliasing",
+        "underpowered_planner_baseline",
+        "planner_budget_restriction_not_shared_by_oracle",
+        "metric_weakening"
+      ]
+    }
+  ],
+  "cross_batch_search_budget": {
+    "002c_r1_authorizes_003a": false,
+    "003a_may_be_run_only_after_002c_r1": true,
+    "003a_requires_separate_review_and_explicit_authorization": true,
+    "if_003a_zero_promotions_and_all_rejects_known_hard_failure_families": "004A_not_automatically_authorized",
+    "before_any_004a": {
+      "route_level_review_required": true,
+      "allowed_decisions": [
+        "continue_environment_search",
+        "downgrade_current_environment_grammar",
+        "replace_environment_grammar",
+        "close_phase0_environment_search"
+      ]
+    },
+    "anti_p_hacking_rule": "Do not run additional batches merely because previous batches failed. Continued search must have a route-level rationale that does not weaken, omit, alias, underpower, or restrict fair baselines.",
+    "no_indefinite_run_another_batch_loop": true
+  },
+  "claim_ceiling": "Phase-0 environment design-constraint R1 repair only. No headroom confirmation. No Gate1 pass. No mechanism validity. No candidate feasibility. No runtime/mainline effect. No agency/autonomy/consciousness/EGO readiness."
+}

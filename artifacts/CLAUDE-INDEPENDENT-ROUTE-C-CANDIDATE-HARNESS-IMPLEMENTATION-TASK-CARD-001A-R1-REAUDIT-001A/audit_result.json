@@ -1,0 +1,134 @@
+{
+  "audit_task_id": "CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A",
+  "date": "2026-06-16",
+  "role": "independent hostile auditor / red-team reviewer (CLAUDE.md Same-Agent Bridge Audit Role 001)",
+  "target_task_card": "ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1",
+  "target_card_path": "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md",
+  "target_card_sha256_recorded_in_result": "BECCF262078FD082D954CB17B25A68AB9D0785967086380FBBB4F26BD14AA6BC",
+  "target_card_sha256_independently_recomputed": "beccf262078fd082...(shell recompute matched recorded value; full digit string elided)",
+  "predecessor_audit": "CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A",
+  "predecessor_audit_verdict": "requires_task_card_revision_before_candidate_harness_implementation",
+  "predecessor_only_blocker": "B-1 decision-log false closure (self-report contradicted by artifact)",
+
+  "verdict": "accepted_for_bounded_local_candidate_harness_implementation_authorization",
+  "implementation_may_proceed_now": false,
+  "implementation_precondition": "separate operator activation card + execution-time real-run independent audit (card sections 0, 7, 26, 33, 34); this re-audit does not grant implementation authorization",
+
+  "scope_1_b1_decision_log_false_closure": {
+    "status": "repaired",
+    "method": "direct authoritative file readback (file API to host filesystem), not shell/mount",
+    "entry_present": true,
+    "entry_heading": "Route C candidate-harness 001A/R1 hostile audit preservation / decision-log provenance repair",
+    "entry_location_authoritative_read": "docs/decision_log.md lines 133-151",
+    "entry_content_matches_card_section_30": true,
+    "result_json_direct_readback_strings_verified": {
+      "ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1": "present (entry line 137)",
+      "requires_task_card_revision_before_candidate_harness_implementation": "present (entry line 138)",
+      "decision-log false closure": "present (entry line 139)",
+      "no candidate implementation authorized": "present (entry line 143)",
+      "no Gate/mainline/runtime/live authorization": "present (entry line 144)",
+      "Auto-Remote-Anchor: forbidden": "present (entry line 150)"
+    },
+    "contradicting_shell_view_adjudication": "NOT a real evidence gap; proven mount/FUSE truncation artifact",
+    "mount_truncation_forensics": {
+      "shell_mount_view_bytes": 907,
+      "shell_mount_view_lines": 17,
+      "shell_mount_view_sha256_prefix": "1d9e168c216bcf9d",
+      "shell_mount_view_terminates": "mid-line-18, mid-token, at '- Anchor: `remote-a' (cut inside the ACP-BV anchor value)",
+      "is_byte_exact_prefix_of_authoritative_file": true,
+      "authoritative_read_view_lines": 152,
+      "authoritative_read_view_coherent_and_chronological": true,
+      "corroborating_mount_corruption": "git in mount fails with 'fatal: bad config line 18 in file .git/config' (documented FUSE/.git corruption family)",
+      "mount_mtime_stale": "shell reports decision_log.md mtime 2026-06-16 05:05, predating the 001A card (2026-06-17 00:20) and R1 card (2026-06-17 00:40) that the file's authoritative content references",
+      "control_other_files_not_truncated": "freshly written R1 card shows identical sha256 (beccf262) across shell and recorded result.json; only the pre-existing decision_log.md is stale-cached/truncated in the mount"
+    },
+    "residual_non_blocking_caveat": "result.json decision_log_supporting_entry.sha256_after_entry = 9336E693... could NOT be byte-recomputed because every shell/mount reader returns the 907-byte truncated prefix; the entry CONTENT is independently verified via the authoritative reader, so this is an unverifiable-but-not-contradicted self-attested hash, not a contradiction"
+  },
+
+  "scope_2_eight_contract_layers_preserved_without_weakening": {
+    "status": "preserved_without_weakening",
+    "method": "unified diff prior-001A-card vs R1-card (no hunks in sections 7-29) + authoritative cross-read of sections 13-21 in both files (verbatim identical)",
+    "sections_7_to_29_byte_identical_between_001A_and_R1": true,
+    "layers": {
+      "scope_discipline": "preserved (sections 0/24/25/28/31/32); STRENGTHENED: 'commit' added to activation-status and section-0 forbidden lists",
+      "statistical_noise_floor_CI_binding": "preserved verbatim (section 13)",
+      "margin_and_saturation_failability": "preserved verbatim (section 17)",
+      "access_parity": "preserved verbatim (section 16)",
+      "RF1_option2_provenance_closure": "preserved verbatim (section 18)",
+      "truth_seed_isolation": "preserved verbatim (section 19)",
+      "passive_and_fair_interventional_baseline_families": "preserved verbatim (sections 14 passive 8-attacker superset + obs_only_family_max; 15 fair-interventional 6 generic + 6 graph-cache + fair_interventional_family_max)",
+      "evidence_hygiene_replay_leakage_material_row_provenance": "preserved verbatim (sections 20 ablation / 21 replay-recompute / 22 leakage 12-class / 23 material-row 13-field provenance)"
+    }
+  },
+
+  "scope_3_new_defects_introduced_by_R1": {
+    "new_authorization_leak": false,
+    "new_false_claim": false,
+    "weakened_failability_condition": false,
+    "scope_expansion": false,
+    "evidence": {
+      "authorizations_all_denied": "card sections 0/30/33 + result.json flags candidate_implementation_authorized=false, gate_mainline_runtime_live_authorized=false, source_code_created=false, tests_created_or_modified=false, scripts_created_or_modified=false, gate_runner_changed=false, mainline_runtime_bridge_scheduler_product_admission_changed=false, commit_push_tag_remote_anchor_authorized_by_revision=false, commit_push_tag_remote_anchor_performed=false, auto_remote_anchor=forbidden",
+      "only_claim_under_scrutiny_now_true": "section 30 B-1 closure claim is TRUE per authoritative readback (entry exists with matching content)",
+      "future_allowlist_unchanged": "section 24 still restricts to 4 paths (src/route_c_candidate_harness_001a/**, tests/test_route_c_candidate_harness_001a.py, artifacts/route_c_candidate_harness_001a/**, docs/research/ROUTE-C-CANDIDATE-HARNESS-EXECUTION-001A.md)",
+      "files_modified_in_R1_work_window_2026_06_17": "only artifacts/**, docs/research/**, and docs/decision_log.md entry (allowed paths); src/ and tests/ untouched (find returned none)",
+      "section_35_handling": "NEW section 35 demotes the 3 prior non-blocking notes to explicit future-activation considerations, 'not as current implementation evidence' - correct demotion, not scope creep",
+      "delta_summary": "R1 changes confined to: title/ID, activation-status wording (+commit forbidden), section 0 (provenance-repair scope), section 1 (restate verdict + B-1), section 2 (layer label), section 6 (+1 readback citation), section 30 (repair claim), section 33 (claim-ceiling reword, equivalent/tighter), section 34 (re-audit of R1), section 35 (new non-blocking notes), section 36 (renumber of old 35)"
+    }
+  },
+
+  "blocking_issues": [],
+  "non_blocking_issues": [
+    "result.json sha256_after_entry for docs/decision_log.md is self-attested and not byte-reproducible through the truncating shell mount; recommend the next layer recompute it with a non-truncating reader and embed producer provenance (producer_function, recompute command).",
+    "carried-forward future-activation notes remain open for the eventual execution card: pin minimum seed count + CI/noise-floor method (section 35); name clean_anchor_control.json symmetrically with co_forged_anchor_positive_control.json (section 35); final report should explicitly list the access-parity result (section 35)."
+  ],
+  "required_fixes": [],
+  "prior_non_blocking_not_converted_to_blockers": true,
+
+  "governance_self_modification_check": "none; R1 is a forward task-card contract and does not alter the audit protocol, trace schema, baseline contract, failure taxonomy, or evidence schema that judges it; the decision-log entry is a preservation record, not a rule change",
+
+  "anti_hardcoding_audit": {
+    "if_else_disguised_as_mechanism": "n/a (no candidate code; provenance-only repair)",
+    "label_or_oracle_leakage": "n/a (no candidate code)",
+    "threshold_tuned_after_results": "no (no scoring; margin/noise sections unchanged and predeclared-before-scoring discipline preserved)",
+    "self_report_contradicted_by_artifact": "no (the prior B-1 instance of this failure is now closed; authoritative artifact supports the claim)",
+    "renderer_or_mount_view_mistaken_for_causal_evidence": "explicitly guarded: shell/mount truncation view was NOT accepted as evidence of absence; authoritative file reader used instead"
+  },
+
+  "claim_ceiling": "R1 task-card hostile re-audit only; no mechanism evidence, no candidate evidence, no score/baseline/ablation/replay result, no Gate pass, no mainline effect, no runtime/live readiness, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness",
+
+  "what_this_does_not_prove": [
+    "that the eventual candidate harness will be authorized for implementation",
+    "that any Route C candidate can be implemented or will pass any Gate",
+    "Route C mechanism validity, hidden-self-set inference, or self-boundary evidence",
+    "any mainline, runtime, or live effect",
+    "that any prior ACSB/ACOLB/Route C artifact was stronger than its preserved claim ceiling"
+  ],
+
+  "read_only_attestation": {
+    "card_edited": false,
+    "source_changed": false,
+    "tests_changed": false,
+    "gate_runner_changed": false,
+    "mainline_runtime_bridge_scheduler_admission_changed": false,
+    "commit": false,
+    "push": false,
+    "tag": false,
+    "remote_anchor": false,
+    "pat_or_secret_accessed": false,
+    "decision_log_edited_by_this_audit": false,
+    "files_written_by_this_audit": [
+      "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/audit_result.json",
+      "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/audit_report.md",
+      "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/claim_ceiling.txt"
+    ]
+  },
+
+  "sources": [
+    "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md (target, sections 0-36)",
+    "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A.md (prior 001A card, diff baseline)",
+    "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/result.json (R1 self-record)",
+    "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/card.md (identical to docs card)",
+    "docs/decision_log.md (B-1 readback, authoritative 152-line view)",
+    "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/audit_report.md (predecessor audit: B-1 + 8-layer source)"
+  ]
+}

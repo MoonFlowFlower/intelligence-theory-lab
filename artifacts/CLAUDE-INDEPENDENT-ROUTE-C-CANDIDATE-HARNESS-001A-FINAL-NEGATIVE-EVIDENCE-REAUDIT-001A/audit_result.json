@@ -1,0 +1,114 @@
+{
+  "audit_id": "CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A",
+  "audit_type": "final_scope_locked_hostile_execution_time_reaudit_of_repaired_bundle",
+  "audit_date": "2026-06-16",
+  "auditor_role": "ITL Same-Agent Bridge Audit Role 001 (independent red-team)",
+  "target": {
+    "task_id": "ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-ACTIVATION-001A",
+    "source": "src/route_c_candidate_harness_001a/runner.py",
+    "tests": "tests/test_route_c_candidate_harness_001a.py",
+    "artifacts_dir": "artifacts/route_c_candidate_harness_001a/",
+    "prior_audit_dirs": [
+      "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/",
+      "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/"
+    ],
+    "branch": "codex/meta-theory-scaffold",
+    "head": "b45598b1c56080f2f850ae088f42cf585950483e",
+    "authoritative_runner_sha256_per_pin": "7adf7167e656e98ce4c90693dd77958117794c8c3d7fbe6b29e1c88953cb5c8d",
+    "authoritative_runner_size_bytes": 81765,
+    "prior_runner_sha256": "44b88044a3e9410640b68c1373a99665d7bfcf31acee724d3779bc5e604d1ade",
+    "prior_runner_size_bytes": 72187,
+    "reported_run_id": "route-c-candidate-harness-001a-b4-source-pin-readback-repair-001a"
+  },
+  "verdict": "accepted_computed_negative_evidence_close_or_downgrade",
+  "admission_granted": true,
+  "admission_meaning": "The repaired local harness produced ADMISSIBLE computed negative evidence that the current Route C candidate surface is saturated by the strongest fair baseline (exhaustive_legal_query) and should be closed/downgraded. Admission does NOT authorize candidate repair-to-beat-baseline, Gate execution, mainline integration, runtime/live path, or commit/push/tag/remote-anchor.",
+  "implementation_may_proceed": false,
+  "one_line": "B4 (the prior re-audit's single remaining blocker) is now SUBSTANTIVELY repaired: source-pin readback uses a real independent second signal (powershell_system_io_readallbytes) with require_comparison_signal gating that rejects self-comparison-only critical pins, prefix_truncation_detected is computed (not forced false), and a truncated-prefix positive control drives prefix_truncation_detected=true through the SAME build_source_pin_readback_report and the SAME derive_verdict_from_gates callables end-to-end to verdict=invalid; B1/B2/B3 and N2 remain repaired with no regression; the negative signal (candidate ties exhaustive_legal_query at 1.0, delta=0.0) is independently reproduced from scratch; no new computed-evidence-path blocker and no forbidden-scope change were introduced.",
+  "core_finding": {
+    "negative_signal_genuine_and_independently_reproduced": true,
+    "candidate_ties_strongest_fair_baseline_at_1_0": true,
+    "delta_vs_strongest_fair_is_0_0": true,
+    "verdict_now_computed_from_gates_and_fail_able": true,
+    "b4_source_pin_substantively_repaired": true,
+    "single_prior_blocker_b4_closed": true,
+    "independent_reproduction": "Clean-room reimplementation of the SHA-256-seeded hidden-set generator and Jaccard scorer reproduced candidate per-seed [1,1,1,1,1] mean 1.0, exhaustive_legal_query [1,1,1,1,1] mean 1.0, positional_first_k [0.5,0.5,0.5,0.0,0.5] mean 0.4, delta 0.0 - matching baseline_comparison.json exactly. Replay recomputed predictions ([0,2,3],[1,2,3],[0,2,5],[3,5,6],[1,2,5]) match the independently computed hidden sets.",
+    "verdict_failability_proven_by_execution": "Ran the EXACT repaired derive_verdict_from_gates + margin_gate + saturation_gate (verbatim from authoritative file-API source). Real inputs (cand 1.0, fair 1.0, access passed) -> close_or_downgrade / strongest_fair_baseline_saturated_candidate; fair forced to 0.0 under valid parity -> candidate_margin_cleared / candidate_margin_cleared_and_not_saturated, stop_conditions=[]. access_parity_failed -> invalid. source_pin_readback_conflict -> invalid. The verdict flips in all required directions.",
+    "b4_failability_proven_by_execution": "Ran the EXACT repaired read_file_pin (verbatim). (A) truncated prefix injected as comparison -> prefix_truncation_detected=true, conflict_status=bounded_prefix_truncation_detected. (B) critical pin with no second signal + require_comparison_signal=true -> comparison_read_source=self_comparison, comparison_signal_available=false, conflict_status=missing_independent_comparison_signal (self-comparison REJECTED). (C) matching real second signal -> no_conflict, comparison_sha==sha. (D) divergent non-prefix second signal -> unresolved_readback_conflict. Any conflict -> source_pin_readback_conflict_fail_closed -> derive_verdict_from_gates -> invalid."
+  },
+  "prior_blocker_disposition": {
+    "B4_source_pin_readback_non_fail_able_self_comparison": {
+      "status": "SUBSTANTIVELY_REPAIRED",
+      "evidence": "(1) read_file_bytes_via_comparison_process (runner.py L1055-1103) runs an independent reader process: powershell [System.IO.File]::ReadAllBytes on Windows (used in this run; artifact comparison_reader=powershell_system_io_readallbytes on all 4 pins), falling back to a python subprocess pathlib read. (2) build_source_pin_readback_report (L1208-1260) calls read_file_pin with require_comparison_signal=True (L1240); read_file_pin (L1106-1205) sets missing_comparison_signal when neither shell nor expected bytes are present -> conflict_status=missing_independent_comparison_signal -> fail closed, so self-comparison-only is rejected for critical pins. (3) prefix_truncation_detected is computed from len(shell)<len(first) and prefix test (L1149-1155), not hardcoded. (4) build_source_pin_truncation_positive_control (L1486-1566) injects a 35-byte truncated prefix (exactly the first line 'from __future__ import annotations\\n' of the 81765-byte runner.py) as comparison_read_overrides through the SAME build_source_pin_readback_report callable -> conflict_status=bounded_prefix_truncation_detected -> verdict=source_pin_readback_conflict_fail_closed -> derive_verdict_from_gates -> verdict=invalid / terminal_reason=source_pin_readback_conflict; source_pin_gate_fail_closed=true. Artifact source_pin_truncation_positive_control.json confirms prefix_truncation_detected=true and derived_verdict.verdict=invalid. The prior three required fixes are all satisfied."
+    },
+    "B1_result_json_verdict_terminal_reason_computed": {
+      "status": "REPAIRED_NO_REGRESSION",
+      "evidence": "result.json verdict/terminal_reason/stop_conditions_triggered are assigned from derive_verdict_from_gates(...) at runner.py L1904/L1905/L1954; a recompute+assert at L1980-1986 precedes the result.json write at L1987. derive_verdict_from_gates (L1447-1483) reads saturation_decision, margin_decision, access_parity, and source_pin verdicts. Execution probe confirms fail-ability in both directions."
+    },
+    "B2_access_parity_trace_derived": {
+      "status": "REPAIRED_NO_REGRESSION",
+      "evidence": "compute_access_parity_report (L698-755) compares 11 trace-derived dimensions built from real candidate trace_rows and real baseline policy execution. Negative control perturbs query_budget (artifact: baseline 39 vs candidate 40, parity false) -> access_parity_failed. Consumed by saturation_gate (access_parity_passed param) and by derive_verdict_from_gates (invalid on failure)."
+    },
+    "B3_saturation_control_dual_branch": {
+      "status": "REPAIRED_NO_REGRESSION",
+      "evidence": "build_saturation_failing_negative_control (L1263-1326) computes a saturated_case (real values -> close_or_downgrade) AND a not_saturated_case (1.0/0.0 -> not_saturated, margin_verdict candidate_margin_cleared) through the same saturation_gate callable; consumes access_parity_report verdict and sha256_file(access_parity_report_path). Artifact confirms both branches and access_parity_consumed=true."
+    },
+    "N2_leakage_real_artifact_scan": {
+      "status": "REPAIRED_NO_REGRESSION",
+      "evidence": "build_leakage_positive_controls (L931-986) runs scan_real_artifacts_for_leakage over 5 real produced artifacts + a clean_negative_control; verdict requires all 11 positives detected AND clean-negative not detected AND real-artifact scan clean. Artifact confirms verdict=leakage_positive_controls_detected, real_artifact_scan.detected=false."
+    }
+  },
+  "required_checks": {
+    "1_b4_source_pin_readback_repair": {"result": "PASS", "evidence": "Real second signal (powershell) used; self-comparison rejected via require_comparison_signal; prefix_truncation_detected computed; truncated-prefix positive control drives the real gate end-to-end to invalid; conflict fails closed through derive_verdict_from_gates; all four read_file_pin probes (truncation/self-only/clean/divergent) behave correctly."},
+    "2_b1_verdict_derivation_no_regression": {"result": "PASS", "evidence": "Computed from gates, fail-able both directions, assert before write, consistent with baseline_comparison/access-parity/source-pin gates."},
+    "3_b2_access_parity_no_regression": {"result": "PASS", "evidence": "Trace-derived 11 dims, fail-able negative control (access_parity_failed), consumed by saturation + verdict."},
+    "4_b3_saturation_control_no_regression": {"result": "PASS", "evidence": "Dual-branch (saturated + not_saturated) through the same callable, consumes access_parity_report.json."},
+    "5_negative_signal_admission": {"result": "PASS", "evidence": "candidate 1.0; strongest fair exhaustive_legal_query 1.0; delta 0.0; candidate is code-identical to exhaustive_legal_query (both call query_all_policy with budget==full legal action space); access parity holds (genuinely equal access); passive family discriminative 0.16-0.40; all 12 fair (incl. 6 graph-cache challengers) tie at 1.0; replace-with-baseline ablation == 1.0."},
+    "6_replay_ablation_leakage_provenance": {"result": "PASS_WITH_NON_BLOCKING_CAVEAT", "evidence": "Main replay recomputes predictions from legal_history (genuine, matches independent hidden sets); ablations are real interventional reruns; leakage scans real artifacts + clean-negative; provenance complete (rows callable-produced, all 13 required fields, single code_path_hash 7adf7167, roles candidate/passive/fair/control/gate/ablation/replay/leakage all present). CAVEAT N1 (carried, non-blocking): replay sub-controls corrupted_state/missing_observation/forbidden_truth_field_read remain hardcoded fail_closed literals."},
+    "7_forbidden_scope": {"result": "PASS", "evidence": "Bundle restricted to src/route_c_candidate_harness_001a, tests/test_route_c_candidate_harness_001a.py, artifacts/route_c_candidate_harness_001a; result.json forbidden_scope_clean=true; files untracked (no commit); auto_remote_anchor=forbidden. This audit performed no repo writes other than its own additive output dir, no commit/push/tag/remote-anchor, and did not read or expose the PAT in .git/config line 18."}
+  },
+  "blocking_issues": [],
+  "non_blocking_issues": [
+    "N1 (check 6, carried): replay sub-controls (corrupted_state/missing_observation/forbidden_truth_field_read) remain hardcoded fail_closed literals at runner.py L820-827, not executed. The MAIN replay recomputation is genuine and verified. Recommend executing these sub-controls through recompute_replay in a future cleanup; not admission-critical.",
+    "M1 (check 2, carried): result.json verdict_consistency_check.matches_recomputed_verdict is a hardcoded True literal (L1959). The real guarantee is the L1904 assignment of the derived verdict plus the recompute+assert at L1980-1986; the 'check' field itself is self-reported. Recommend computing it by actual comparison; not admission-critical.",
+    "P1 (provenance cleanliness): source_pin_truncation_positive_control.json and source_pin_truncation_positive_control_prefix.bin carry a later mtime (02:20) than the rest of the bundle (01:14). Content is fully internally consistent with the main run (identical run_id, identical authoritative runner sha 7adf7167, derived_verdict=invalid which is a fail-CLOSED outcome that cannot patch failure into success, prefix == current runner first line). result.json (01:14) already encodes source_pin_truncation_positive_control_result=fail_closed and the powershell second signal, so the whole bundle was produced by the B4-repaired code. The mtime split is most plausibly a known-unreliable FUSE mount mtime artifact or a deterministic standalone regeneration of the control; it does not affect admission. Recommend producing the positive control atomically within the same run for cleanliness.",
+    "C1 (bounded source-pin scope): the source-pin gate confirms that the harness's in-process authoritative read agrees with an independent-process read of the SAME file. If a future host environment truncated BOTH readers identically (e.g., the Linux FUSE mount serving runner.py at 55976 bytes), the gate could report clean. The run was a Windows-local CLI (recompute command + powershell reader confirm), where files are intact, and the positive control proves the detector fires on divergent bytes. This is an honest bounded-scope limitation, not a computed-evidence-path failure for this Windows run.",
+    "E1 (environment): live FUSE/mount truncation - the Linux mount serves runner.py at 55976 bytes (truncated mid-statement, unrunnable: SyntaxError '(' was never closed) vs authoritative 81765 bytes / 2017 lines (sha 7adf7167) via the file-API; provenance_rows.jsonl is likewise truncated on the mount. Full in-sandbox end-to-end re-execution of the harness was therefore impossible. Source and artifacts were verified via the authoritative file-API, and the negative signal + all gate fail-abilities were verified by independent clean-room reimplementation and verbatim execution of the repaired pure functions."
+  ],
+  "what_is_genuinely_sound": [
+    "B4 source-pin readback is substantively repaired: real independent second signal, self-comparison rejected, prefix_truncation_detected computed, truncated-prefix positive control drives the SAME report and verdict callables end-to-end to invalid.",
+    "B1/B2/B3 remain repaired with no regression; verdict computed from gates and fail-able in both directions (execution-verified).",
+    "The negative signal is overdetermined and independently reproduced: candidate is code-identical to exhaustive_legal_query (budget == full legal action space), both 1.0, delta 0.0; all 12 fair baselines (incl. 6 graph-cache challengers) tie at 1.0; 8 passive baselines discriminative 0.16-0.40; replace-with-baseline ablation == 1.0.",
+    "Leakage scans real artifacts with a clean-negative control; ablations are real interventional reruns; provenance is complete and callable-produced; claim ceiling enforced; auto_remote_anchor forbidden; scope clean."
+  ],
+  "routing_recommendation": {
+    "note": "Routing observation, not an authorization.",
+    "substantive_conclusion": "Preserve this accepted computed negative evidence and CLOSE/DOWNGRADE the current Route C candidate surface. The candidate is trivially saturated because the query budget equals the full legal action space, so any policy that queries every legal action recovers the hidden set; the candidate is literally query_all_policy, identical to exhaustive_legal_query.",
+    "failure_cause": "Weak SURFACE design (not merely a weak candidate, and not evidence that Route C is impossible). The candidate has zero room to express any mechanism a fair exhaustive interventional baseline cannot.",
+    "next_surface_requirements": "A non-trivial Route C surface must set query budget < full legal action space, and must otherwise prevent exhaustive_legal_query, graph_lookup/transition_table/successor_map/count_table/fsm_planner/episodic_traversal (graph-cache), lookup_imitation, and direct_objective_optimizer from trivially recovering the hidden set - so that a candidate mechanism must do something a fair interventional baseline provably cannot.",
+    "do_not": "Do NOT repair the candidate to beat the baseline; do NOT weaken exhaustive_legal_query or remove graph-cache challengers; do NOT change the scoring metric."
+  },
+  "claim_ceiling": "Final execution-time hostile re-audit of a repaired bounded local Route C candidate harness evidence bundle only. No Route C mechanism validity, no hidden-self-set inference evidence, no self-boundary evidence, no candidate success, no Gate pass, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.",
+  "what_this_audit_does_not_prove": [
+    "Does not prove Route C is viable or impossible - only that THIS candidate implementation is baseline-equivalent (saturated by exhaustive_legal_query).",
+    "Does not prove the candidate has any mechanism, self-boundary, or hidden-self-set inference capability.",
+    "Does not certify the harness integrity layer beyond the bounded Windows-local source-pin scope described in caveat C1.",
+    "Does not grant Gate, mainline, runtime, or remote-anchor admission, and does not authorize repairing the candidate to defeat the baseline."
+  ],
+  "commands_run": [
+    "git plumbing: read .git/HEAD and refs/heads/codex/meta-theory-scaffold -> HEAD b45598b1...; avoided .git/config contents (PAT in line 18, only measured line length)",
+    "file-API Read of authoritative runner.py (2018 lines / 81765 bytes / sha 7adf7167), test file, result.json, source_pin_readback_report.json, source_pin_truncation_positive_control.json, access_parity_report.json, baseline_comparison.json, replay/ablation/leakage/failure_manifest, provenance head+tail, prior REPAIRED re-audit audit_result.json",
+    "bash: wc -c + sha256 + ast.parse of mounted runner.py -> 55976 bytes truncated, SyntaxError (mount truncation confirmed, module unrunnable); head of prefix .bin == 'from __future__ import annotations'",
+    "python3 /tmp/verify.py: independent clean-room score reproduction (cand 1.0, exhaustive 1.0, positional_first_k [0.5,0.5,0.5,0.0,0.5] mean 0.4, delta 0.0) + verbatim derive_verdict_from_gates/saturation_gate/margin_gate fail-ability both directions + access-parity/source-pin gating to invalid",
+    "python3 /tmp/verify_pin.py: verbatim read_file_pin probes - truncation->bounded_prefix_truncation_detected, self-only+require->missing_independent_comparison_signal, clean second-signal->no_conflict, divergent->unresolved_readback_conflict"
+  ],
+  "scope_compliance": {
+    "repo_writes": "none other than this additive audit output dir (artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/)",
+    "source_tests_target_artifacts_modified": false,
+    "gate_run_or_modified": false,
+    "candidate_or_baseline_modified": false,
+    "metrics_or_thresholds_changed": false,
+    "commit_push_tag_remote_anchor": "none",
+    "pat_or_secret_accessed": false
+  }
+}

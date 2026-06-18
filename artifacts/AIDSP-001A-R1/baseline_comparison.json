@@ -1,0 +1,161 @@
+{
+  "family_A": {
+    "baselines": {
+      "homeostatic_rl": {
+        "M1": 1.2930975163901564,
+        "M2": 0.16041666666666668,
+        "dwell_dark": 0.00972222222222222,
+        "dwell_tv": 0.022916666666666672,
+        "architecture": "model_free_learned"
+      },
+      "behavior_tree_softmax": {
+        "M1": 1.3480953145649306,
+        "M2": 0.44444792461389,
+        "dwell_dark": 0.04722222222222223,
+        "dwell_tv": 0.050694444444444445,
+        "architecture": "model_free_reactive"
+      },
+      "random_policy": {
+        "M1": 1.0971937628580084,
+        "M2": 0.0,
+        "dwell_dark": 0.0638888888888889,
+        "dwell_tv": 0.03958333333333333,
+        "architecture": "model_free_reactive"
+      },
+      "observation_only_lookup": {
+        "M1": 1.381518494642527,
+        "M2": 0.5104166666666666,
+        "dwell_dark": 0.056944444444444436,
+        "dwell_tv": 0.07777777777777778,
+        "architecture": "model_free_reactive"
+      },
+      "count_based_rl": {
+        "M1": 0.5143252933980491,
+        "M2": 0.0,
+        "dwell_dark": 0.0,
+        "dwell_tv": 0.0,
+        "architecture": "model_free_learned"
+      },
+      "exhaustive_sweep": {
+        "M1": 1.026177622646295,
+        "M2": 0.0,
+        "dwell_dark": 0.0833333333333333,
+        "dwell_tv": 0.0833333333333333,
+        "architecture": "model_free_reactive"
+      },
+      "systematic_coverage": {
+        "M1": 1.1770108867354854,
+        "M2": 0.0,
+        "dwell_dark": 0.0833333333333333,
+        "dwell_tv": 0.0833333333333333,
+        "architecture": "model_free_reactive"
+      }
+    },
+    "candidate": {
+      "M1": 1.6922399823601852,
+      "M2": 0.3311635109728861,
+      "dwell_dark": 0.0020833333333333333,
+      "dwell_tv": 0.005555555555555555,
+      "architecture": "model_based_active_inference_pymdp_legacy"
+    },
+    "ablations": {
+      "epistemic_ablation": {
+        "M1": 1.698491112582578,
+        "M2": 0.32559874128959737
+      },
+      "no_transition": {
+        "M1": 1.0514673423804364,
+        "M2": 0.0
+      }
+    }
+  },
+  "family_B": {
+    "baselines": {
+      "homeostatic_rl": {
+        "M1": 1.1425264816749185,
+        "M2": 0.17986111111111117,
+        "dwell_dark": 0.011805555555555554,
+        "dwell_tv": 0.029166666666666667,
+        "architecture": "model_free_learned"
+      },
+      "behavior_tree_softmax": {
+        "M1": 1.261874316103725,
+        "M2": 0.41673291464811574,
+        "dwell_dark": 0.04027777777777777,
+        "dwell_tv": 0.06805555555555555,
+        "architecture": "model_free_reactive"
+      },
+      "random_policy": {
+        "M1": 0.9966686589212888,
+        "M2": 0.0,
+        "dwell_dark": 0.03888888888888888,
+        "dwell_tv": 0.03611111111111111,
+        "architecture": "model_free_reactive"
+      },
+      "observation_only_lookup": {
+        "M1": 1.2774832017558515,
+        "M2": 0.4888888888888889,
+        "dwell_dark": 0.06875,
+        "dwell_tv": 0.10000000000000002,
+        "architecture": "model_free_reactive"
+      },
+      "count_based_rl": {
+        "M1": 0.42081996481122363,
+        "M2": 0.0,
+        "dwell_dark": 0.0,
+        "dwell_tv": 0.0,
+        "architecture": "model_free_learned"
+      },
+      "exhaustive_sweep": {
+        "M1": 1.060086102569153,
+        "M2": 0.0,
+        "dwell_dark": 0.0833333333333333,
+        "dwell_tv": 0.0833333333333333,
+        "architecture": "model_free_reactive"
+      },
+      "systematic_coverage": {
+        "M1": 1.1004339710954887,
+        "M2": 0.0,
+        "dwell_dark": 0.0833333333333333,
+        "dwell_tv": 0.0833333333333333,
+        "architecture": "model_free_reactive"
+      }
+    },
+    "candidate": {
+      "M1": 1.392196413485588,
+      "M2": 0.31819041657412694,
+      "dwell_dark": 0.005555555555555555,
+      "dwell_tv": 0.006944444444444445,
+      "architecture": "model_based_active_inference_pymdp_legacy"
+    },
+    "ablations": {
+      "epistemic_ablation": {
+        "M1": 1.3956561689670839,
+        "M2": 0.3524337090487531
+      },
+      "no_transition": {
+        "M1": 0.9456922537028738,
+        "M2": 0.0
+      }
+    }
+  },
+  "architectural_asymmetries_logged": [
+    "candidate is model-based (given true likelihood A,B; food location NOT given) -- legitimate per card; baselines are model-free.",
+    "homeostatic_rl & count_based_rl are REAL tabular-Q learners trained on disjoint TRAIN_SEEDS (5000..5399); not stubs.",
+    "oracle is a probe instrument only (multi-step info ceiling); excluded."
+  ],
+  "access_parity": "identical env instances/obs interface/action space/budget/seeds; no privileged food/dark/tv labels to any agent.",
+  "provenance": {
+    "producer_function": "evaluate_family",
+    "inputs": {
+      "families": [
+        "A",
+        "B"
+      ]
+    },
+    "run_id": "20260618T002141Z_6b8a6b61",
+    "seed_episode_id": "0..1059",
+    "aggregation": "mean per family",
+    "code_path_hash": "6b8a6b61746dd02eacc6a34ab46a2823e6e50b9c072148259b78723d80ad42a0"
+  }
+}

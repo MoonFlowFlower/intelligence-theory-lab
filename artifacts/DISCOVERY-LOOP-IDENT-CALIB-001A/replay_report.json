@@ -1,0 +1,57 @@
+{
+  "replay_verdict": "loop_misses_identifiable_latent",
+  "result_verdict": "loop_misses_identifiable_latent",
+  "match": true,
+  "replay_detail": {
+    "latent_necessary": {
+      "world_verdict": "equivalent",
+      "separates_seeds": 1,
+      "equivalent_seeds": 9,
+      "n_seeds": 10
+    },
+    "latent_redundant": {
+      "world_verdict": "equivalent",
+      "separates_seeds": 0,
+      "equivalent_seeds": 10,
+      "n_seeds": 10
+    },
+    "positive_control": {
+      "world_verdict": "separates",
+      "separates_seeds": 8,
+      "equivalent_seeds": 2,
+      "n_seeds": 10
+    },
+    "negative_control": {
+      "world_verdict": "equivalent",
+      "separates_seeds": 0,
+      "equivalent_seeds": 10,
+      "n_seeds": 10
+    },
+    "eps_nats": 0.01,
+    "consistency_min": 8
+  },
+  "per_step_spot_check_seed0": {
+    "latent_necessary": {
+      "gap_from_steps": 0.008788,
+      "gap_in_trace_csv": 0.008788,
+      "match": true
+    },
+    "latent_redundant": {
+      "gap_from_steps": -0.000717,
+      "gap_in_trace_csv": -0.000717,
+      "match": true
+    },
+    "positive_control": {
+      "gap_from_steps": 0.014469,
+      "gap_in_trace_csv": 0.014469,
+      "match": true
+    },
+    "negative_control": {
+      "gap_from_steps": -2.4e-05,
+      "gap_in_trace_csv": -2.4e-05,
+      "match": true
+    }
+  },
+  "per_step_spot_check_all_match": true,
+  "method": "recompute frozen verdict from trace.csv gaps only; plus recompute seed-0 gaps from per-step trace.jsonl"
+}

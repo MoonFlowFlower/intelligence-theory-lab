@@ -1,0 +1,89 @@
+{
+  "schema_version": "minimal_env_spec_001a_validation_report_v1",
+  "task_id": "MINIMAL-ENV-SPEC-001A",
+  "verdict": "minimal_env_spec_001a_frozen",
+  "validation_timestamp": "2026-06-17T11:57:53.6456997-05:00",
+  "scope": "spec/document validation only; no baseline, oracle, replay, ablation, candidate, Gate, runtime, admission, push, tag, or anchor",
+  "summary": {
+    "total_primary_checks": 26,
+    "primary_checks_passed": 26,
+    "primary_checks_failed": 0,
+    "whitespace_errors": 0,
+    "json_parse_failures": 0,
+    "forbidden_task_paths_detected": 0
+  },
+  "json_parse_validation": [
+    {
+      "path": "artifacts/minimal_env_spec_001a/environment_schema.json",
+      "passed": true
+    },
+    {
+      "path": "artifacts/minimal_env_spec_001a/source_readback.json",
+      "passed": true
+    },
+    {
+      "path": "docs/research/MINIMAL-ENV-SPEC-001A.freeze.json",
+      "passed": true
+    },
+    {
+      "path": "artifacts/minimal_env_spec_001a/spec_hash_readback.json",
+      "passed": true
+    }
+  ],
+  "coverage_scan": {
+    "candidate_free_phase0": true,
+    "baseline_first_harness_next": true,
+    "measured_headroom_not_declared": true,
+    "strongest_fair_is_max_over_full_battery": true,
+    "budget_matched_comparison": true,
+    "budget_below_full_legal_channel_count": true,
+    "all_six_graph_cache_challengers": true,
+    "balanced_macro_f1_metric": true,
+    "per_class_precision_recall_floors": true,
+    "multi_seed_power_accounting": true,
+    "leakage_positive_controls": true,
+    "replay_recomputation": true,
+    "generator_source_provenance_gate": true,
+    "no_candidate_or_route_tournament_implementation_authorized": true,
+    "no_remote_action_authorized": true
+  },
+  "freeze_hash_readback": {
+    "spec_path": "docs/research/MINIMAL-ENV-SPEC-001A.md",
+    "spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+    "freeze_path": "docs/research/MINIMAL-ENV-SPEC-001A.freeze.json",
+    "freeze_declared_spec_sha256": "bf48145b165c5c847cecd7ecda6c2a78818ce326c44f5ad92be391d003daf658",
+    "passed": true
+  },
+  "diff_check": {
+    "method": "git diff --check --no-index against a temporary empty file for each untracked allowed file",
+    "reason": "index-based git add --intent-to-add was not continued because .git/index.lock existed and live git processes were present",
+    "paths_checked": [
+      "docs/research/MINIMAL-ENV-SPEC-001A.md",
+      "docs/research/MINIMAL-ENV-SPEC-001A.freeze.json",
+      "artifacts/minimal_env_spec_001a/environment_schema.json",
+      "artifacts/minimal_env_spec_001a/source_readback.json",
+      "artifacts/minimal_env_spec_001a/spec_hash_readback.json",
+      "artifacts/minimal_env_spec_001a/validation_report.json",
+      "artifacts/minimal_env_spec_001a/final_report.md",
+      "artifacts/minimal_env_spec_001a/claim_ceiling.txt"
+    ],
+    "whitespace_error_count": 0,
+    "passed": true
+  },
+  "forbidden_path_scan": {
+    "src_or_tests_paths_for_this_task": [],
+    "passed": true
+  },
+  "forbidden_claim_scan": {
+    "status": "passed",
+    "detail": "Forbidden claim terms appear only in explicit claim-ceiling denials or forbidden-scope statements; no headroom, Gate1 pass, mechanism validity, candidate feasibility, readiness, agency, autonomy, consciousness, emotion, or EGO readiness claim is made."
+  },
+  "git_environment_note": {
+    "index_lock_seen": true,
+    "git_processes_seen": true,
+    "index_mutation_pursued": false,
+    "commit_authorized": false,
+    "push_tag_anchor_authorized": false
+  },
+  "claim_ceiling": "frozen minimal closed-loop environment spec only"
+}

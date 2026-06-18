@@ -1,0 +1,65 @@
+{
+  "all_fixture_verdicts_match_expected": true,
+  "artifact_root": "artifacts/gate_evidence_provenance_verifier_hardening_001a",
+  "auto_remote_anchor": "forbidden",
+  "claim_ceiling": "Gate evidence-bundle provenance shape verifier only.",
+  "commit_created": false,
+  "enabled_status": "local library plus CLI only",
+  "final_verdict": "gate_evidence_provenance_verifier_hardened",
+  "layer": "engineering-governance / Gate evidence provenance verifier hardening",
+  "mainline_integration_status": "not integrated into runtime, admission, Gate4, Gate5, Route C, or scheduler paths",
+  "no_gate_pass_claim": true,
+  "push_or_tag_created": false,
+  "real_trigger_evidence": "synthetic evidence bundles parsed by verifier; no historical Gate artifact required to pass",
+  "source_hashes": {
+    "src/gate_evidence_provenance_verifier_001a/__init__.py": "3d4efed1a96f4abf4c93b9714dbe3d58b401699a20ade92f11014ac46e8ccf8d",
+    "src/gate_evidence_provenance_verifier_001a/__main__.py": "5e12dbad48c9e85ff8b419b6a3066cf74e57a1f7668f04b66db5f3bb82a77aab",
+    "src/gate_evidence_provenance_verifier_001a/schema.py": "c5edfa78abd72a4c5d58a7578e1375b08bddedd79a1b4f33f20e369463320425",
+    "src/gate_evidence_provenance_verifier_001a/verifier.py": "365326d38dd647f5fe27d8950bf9ac81af90523115255df48ea8a9c18406cc42",
+    "tests/test_gate_evidence_provenance_verifier_001a.py": "6972c03077f8fb3364338c9784242e4fd46b1df26b7080887d7f35cf41d33c41"
+  },
+  "stop_conditions_triggered": [],
+  "task_id": "GATE-EVIDENCE-PROVENANCE-VERIFIER-HARDENING-001A",
+  "validation_commands": [
+    {
+      "command": "python -m pytest tests/test_gate_evidence_provenance_verifier_001a.py -q",
+      "evidence": "6 passed in focused verifier tests",
+      "exit_code": 0
+    },
+    {
+      "command": "CLI on every fixture bundle via python -m gate_evidence_provenance_verifier_001a with PYTHONPATH=src",
+      "evidence": "8 fixture CLI verdicts matched expected invalid/wellformed verdicts",
+      "exit_code": 0
+    },
+    {
+      "command": "JSON parse validation for generated JSON files",
+      "evidence": "43 generated JSON files parsed",
+      "exit_code": 0
+    },
+    {
+      "command": "JSONL parse validation for generated JSONL files",
+      "evidence": "9 generated JSONL files parsed with 32 rows",
+      "exit_code": 0
+    },
+    {
+      "command": "python -m py_compile src/gate_evidence_provenance_verifier_001a/*.py",
+      "evidence": "new verifier package compiled",
+      "exit_code": 0
+    },
+    {
+      "command": "path allowlist check",
+      "evidence": "changed task paths limited to allowed verifier source, test, and artifact directory",
+      "exit_code": 0
+    },
+    {
+      "command": "forbidden-claim scan",
+      "evidence": "no unnegated forbidden claim found in verifier source or task artifacts",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check -- tests/test_gate_evidence_provenance_verifier_001a.py src/gate_evidence_provenance_verifier_001a",
+      "evidence": "no whitespace errors reported",
+      "exit_code": 0
+    }
+  ]
+}

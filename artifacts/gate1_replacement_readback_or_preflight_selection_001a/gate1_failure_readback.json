@@ -1,0 +1,87 @@
+{
+  "task_id": "GATE1-REPLACEMENT-READBACK-OR-PREFLIGHT-SELECTION-001A",
+  "source_documents": [
+    "docs/research/GATE1-FAILED-GRAPH-CACHE-RECONCILIATION-001A.md",
+    "docs/research/POST-GATE1-DOWNGRADE-DOWNSTREAM-DEPENDENCY-CLOSURE-001A.md",
+    "artifacts/post_freeze_gate0_3_sequential_repair_queue_001a_gate1_failed_graph_cache_reconciliation/result.json",
+    "artifacts/post_freeze_gate0_3_sequential_repair_queue_001a_gate1_failed_graph_cache_reconciliation/baseline_comparison.json",
+    "artifacts/post_gate1_downgrade_downstream_dependency_closure_001a/result.json"
+  ],
+  "old_gate1_failure_summary": {
+    "primary_closure_basis": "failed_graph_cache_collapse",
+    "positive_gate1_inheritance_allowed": false,
+    "gate1_001c_literal_pass_not_upgraded": true,
+    "fair_controls_match_or_beat_candidate": true,
+    "prior_lineage_package_verdict": "gate1_preflight_failed_graph_cache_collapse",
+    "downstream_authorization": {
+      "gate1_pass": false,
+      "gate3": false,
+      "integrated_testbed": false,
+      "gate4": false,
+      "bridge": false,
+      "admission": false,
+      "runtime": false,
+      "ego_mainline": false
+    }
+  },
+  "failure_classification": {
+    "graph_cache_collapse": {
+      "status": "fact",
+      "value": true,
+      "basis": "baseline_comparison.json reports candidate_A_graph_cache_collapse_detected=true and fair_control_match_blocks_positive_gate1_claim=true"
+    },
+    "six_member_graph_cache_panel": {
+      "status": "fact",
+      "required_members_observed": [
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal"
+      ],
+      "additional_observed_controls": [
+        "compressed_map",
+        "predecessor_map"
+      ],
+      "basis": "graph_cache_control_ledger_evidence records completed_for_all_seeds=true for each required member"
+    },
+    "lookup_imitation_or_replay_equivalence": {
+      "status": "fact",
+      "value": true,
+      "basis": "baseline_comparison.json reports candidate_A matched by generic replay controls and candidate_B matched by shuffled_replay_B"
+    },
+    "direct_objective_optimizer": {
+      "status": "unknown_for_old_gate1",
+      "value": null,
+      "basis": "direct-objective optimizer equivalence is a baseline-immunity failure family from ACOLB/Route governance, but the readback did not identify it as the decisive old Gate1 closure cause"
+    },
+    "literal_or_detached_verdict": {
+      "status": "fact_as_risk_and_context",
+      "value": true,
+      "basis": "GATE1-FAILED-GRAPH-CACHE-RECONCILIATION-001A names the apparent Gate1 001C pass as a literal-pass/report-shaped surface and refuses upgrade"
+    },
+    "leakage": {
+      "status": "unknown_for_old_gate1",
+      "value": null,
+      "basis": "leakage controls are required for replacement, but the decisive old Gate1 closure readback here is graph-cache/replay collapse"
+    },
+    "weak_replay": {
+      "status": "inference",
+      "value": true,
+      "basis": "post-Gate1 closure requires future replacement to defeat replay and recomputation controls; old replay/consolidation cannot be cited as positive inheritance"
+    },
+    "source_pin_or_readback_issue": {
+      "status": "not_primary_in_current_readback",
+      "value": false,
+      "basis": "the Gate1 closure artifacts include source artifact hashes and the current readback found the relevant files readable"
+    },
+    "baseline_panel_incompleteness": {
+      "status": "inference",
+      "value": true,
+      "basis": "positive Gate1 inheritance is closed because graph-cache family controls matched or beat the candidate; any replacement must include the full family up front"
+    }
+  },
+  "answer_to_what_exactly_failed": "Old Gate1 failed as positive parent evidence because graph/cache, transition-table, successor-map, count-table, FSM/planner, episodic-traversal, and replay/cache controls could match or beat the apparent candidate behavior under callable lineage evidence. The apparent Gate1 001C literal pass is not upgraded. The failure is evidence-governance closure, not a new mechanism result.",
+  "claim_ceiling": "Gate1 failure readback only; no Gate1 pass, replacement pass, mechanism validity, bridge/admission readiness, runtime readiness, or EGO readiness."
+}
