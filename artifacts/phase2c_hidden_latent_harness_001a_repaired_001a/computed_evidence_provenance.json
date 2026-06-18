@@ -1,0 +1,94 @@
+{
+  "producer_function": "phase2c_hidden_latent_harness_001a.runner.build_provenance",
+  "records": [
+    {
+      "producer_id": "surface_generation",
+      "producer_function": "phase2c_hidden_latent_harness_001a.runner.generate_surface",
+      "input_artifacts": [
+        "generated_phase2c_hidden_latent_surface"
+      ],
+      "run_id": "phase2c_hidden_latent_harness_001a_run_001",
+      "seed_context_episode_ids": [
+        "all"
+      ],
+      "aggregation_rule": "callable_contract_verification",
+      "code_path_hash": "1fcc470085763a6ce5b2869837b78200e9cf9541f8293a6bee0da11d1e262e91",
+      "consumed_by_final_verdict": true,
+      "value": 12
+    },
+    {
+      "producer_id": "baseline_battery",
+      "producer_function": "phase2c_hidden_latent_harness_001a.runner.run_baseline_battery",
+      "input_artifacts": [
+        "generated_phase2c_hidden_latent_surface"
+      ],
+      "run_id": "phase2c_hidden_latent_harness_001a_run_001",
+      "seed_context_episode_ids": [
+        "all"
+      ],
+      "aggregation_rule": "callable_contract_verification",
+      "code_path_hash": "342c3343b118ba1fe5994ae103fbb3759318c91602e8b58bb51e7192fb10ca5d",
+      "consumed_by_final_verdict": true,
+      "value": [
+        "count_table",
+        "episodic_traversal",
+        "exhaustive_legal_query",
+        "fsm_planner",
+        "graph_cache",
+        "lookup",
+        "majority",
+        "nearest_neighbor",
+        "observation_only",
+        "random",
+        "successor_map",
+        "trace_only_replay",
+        "transition_table"
+      ]
+    },
+    {
+      "producer_id": "leakage_scan",
+      "producer_function": "phase2c_hidden_latent_harness_001a.runner.run_leakage_scan",
+      "input_artifacts": [
+        "generated_phase2c_hidden_latent_surface"
+      ],
+      "run_id": "phase2c_hidden_latent_harness_001a_run_001",
+      "seed_context_episode_ids": [
+        "all"
+      ],
+      "aggregation_rule": "callable_contract_verification",
+      "code_path_hash": "cd787ea4ae647bc4ea28233f7aefad2dd8cba2c3e562e19c4e06b77dc5709a31",
+      "consumed_by_final_verdict": true,
+      "value": true
+    },
+    {
+      "producer_id": "replay_recomputation",
+      "producer_function": "phase2c_hidden_latent_harness_001a.runner.run_replay_check",
+      "input_artifacts": [
+        "generated_phase2c_hidden_latent_surface"
+      ],
+      "run_id": "phase2c_hidden_latent_harness_001a_run_001",
+      "seed_context_episode_ids": [
+        "all"
+      ],
+      "aggregation_rule": "callable_contract_verification",
+      "code_path_hash": "f97c8caa0e32c71586510ac19166b7404b0db8699e2e8b916cec36bb7948c6b8",
+      "consumed_by_final_verdict": true,
+      "value": true
+    },
+    {
+      "producer_id": "ablation_plan",
+      "producer_function": "phase2c_hidden_latent_harness_001a.runner.build_ablation_plan",
+      "input_artifacts": [
+        "generated_phase2c_hidden_latent_surface"
+      ],
+      "run_id": "phase2c_hidden_latent_harness_001a_run_001",
+      "seed_context_episode_ids": [
+        "all"
+      ],
+      "aggregation_rule": "callable_contract_verification",
+      "code_path_hash": "1b34adc6e028ff06b23d9c7f13b6fbf2c788be271623daf818934c02b9dcc9e1",
+      "consumed_by_final_verdict": true,
+      "value": true
+    }
+  ]
+}

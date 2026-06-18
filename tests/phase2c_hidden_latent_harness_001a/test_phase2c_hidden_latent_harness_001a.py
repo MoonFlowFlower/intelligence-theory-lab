@@ -52,6 +52,7 @@ REQUIRED_ARTIFACTS = {
     "ablation_report.json",
     "replay_report.json",
     "leakage_report.json",
+    "computed_evidence_provenance.json",
     "failure_manifest.json",
 }
 
@@ -183,7 +184,7 @@ def test_ablation_contract_artifacts_and_provenance_are_frozen_without_execution
 
     assert set(runner.DEFAULT_OUTPUT_FILES) == REQUIRED_ARTIFACTS
     assert runner.RUNNER_COMMAND == (
-        "python -m phase2c_hidden_latent_harness_001a.runner "
+        "$env:PYTHONPATH='src'; python -m phase2c_hidden_latent_harness_001a.runner "
         "--output-dir artifacts/phase2c_hidden_latent_harness_001a"
     )
     assert not (tmp_path / "artifacts").exists()
@@ -196,3 +197,42 @@ def test_ablation_contract_artifacts_and_provenance_are_frozen_without_execution
     missing = runner.verify_provenance({"records": provenance["records"][1:]})
     assert missing["passed"] is False
     assert "missing_required_provenance:surface_generation" in missing["blocking_reasons"]
+
+
+def test_run_harness_persists_execution_evidence_trace_and_provenance(tmp_path):
+    runner = _runner()
+    output_dir = tmp_path / "phase2c_repaired_output"
+
+    run = runner.run_harness(output_dir, persist_artifacts=True)
+
+    assert run["result"]["verdict"] == "candidate_free_harness_executed_valid_evidence_path"
+    assert run["result"]["harness_execution_claim"] is True
+    assert run["result"]["candidate_mechanism_run"] is False
+    assert run["result"]["phase3_opened"] is False
+    assert run["result"]["trace_row_count"] == len(run["trace"]) > 0
+    assert run["result"]["strongest_fair_baseline_id"]
+    assert run["result"]["replay_passed"] is True
+    assert run["result"]["leakage_positive_controls_passed"] is True
+    assert run["result"]["ablation_all_controls_consumed"] is True
+
+    assert {path.name for path in output_dir.iterdir()} == REQUIRED_ARTIFACTS
+
+    trace_rows = [
+        json.loads(line)
+        for line in (output_dir / "trace.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    assert len(trace_rows) == len(run["trace"]) == run["result"]["trace_row_count"]
+    for row in trace_rows:
+        assert set(REQUIRED_REPLAY_INPUTS).issubset(row["replay_inputs"])
+        visible_text = json.dumps(row["candidate_visible"], sort_keys=True).lower()
+        assert "hidden_rule" not in visible_text
+        assert "task_family" not in visible_text
+        assert "target_action" not in visible_text
+        assert "answer_map" not in visible_text
+
+    persisted_provenance = json.loads(
+        (output_dir / "computed_evidence_provenance.json").read_text(encoding="utf-8")
+    )
+    assert runner.verify_provenance(persisted_provenance)["passed"] is True
+    assert all(row["consumed_by_final_verdict"] is True for row in persisted_provenance["records"])

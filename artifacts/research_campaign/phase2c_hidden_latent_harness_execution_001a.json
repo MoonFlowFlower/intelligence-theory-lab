@@ -4,7 +4,7 @@
     "layer":  "engineering_implementation + mechanism_hypothesis_testing",
     "mainline_integration_status":  "none",
     "enabled_status":  "local_phase2c_hidden_latent_harness_command_executed_invalid_output_pending_source_repair_task_card",
-    "command":  "=\u0027src\u0027; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a",
+    "command":  "$env:PYTHONPATH=\u0027src\u0027; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a",
     "command_exit_code":  0,
     "verdict":  "invalid_execution_output_claim_ceiling_trace_empty",
     "blocking_findings":  [
@@ -128,5 +128,7 @@
                                      "No route exhaustion",
                                      "No terminal verdict",
                                      "No program completion"
-                                 ]
+                                 ],
+    "command_string_correction_applied_at":  "2026-06-18T09:42:38-05:00",
+    "command_string_correction_reason":  "Original command field was truncated by PowerShell variable expansion while writing JSON; execution evidence and verdict unchanged."
 }

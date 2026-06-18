@@ -7,10 +7,10 @@ from pathlib import Path
 from typing import Any, Callable
 
 
-TASK_ID = "RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-IMPLEMENTATION-001A"
+TASK_ID = "RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-OUTPUT-REPAIR-001A"
 RUN_ID = "phase2c_hidden_latent_harness_001a_run_001"
 RUNNER_COMMAND = (
-    "python -m phase2c_hidden_latent_harness_001a.runner "
+    "$env:PYTHONPATH='src'; python -m phase2c_hidden_latent_harness_001a.runner "
     "--output-dir artifacts/phase2c_hidden_latent_harness_001a"
 )
 ACTION_IDS = ("action_0", "action_1", "action_2", "action_3")
@@ -22,6 +22,7 @@ DEFAULT_OUTPUT_FILES = (
     "ablation_report.json",
     "replay_report.json",
     "leakage_report.json",
+    "computed_evidence_provenance.json",
     "failure_manifest.json",
 )
 REQUIRED_BASELINES = {
@@ -65,11 +66,11 @@ REQUIRED_REPLAY_INPUTS = (
     "latent_belief_or_memory_state",
 )
 CLAIM_CEILING = (
-    "Phase2C hidden-latent harness implementation only. This code does not "
-    "provide harness execution evidence, baseline headroom evidence, mechanism "
-    "validity, consciousness, real emotion, autonomy, EGO readiness, companion "
-    "readiness, runtime/mainline effect, route exhaustion, terminal verdict, or "
-    "program completion."
+    "Phase2C candidate-free hidden-latent harness execution evidence only. "
+    "This does not provide candidate validation, mechanism validity, "
+    "consciousness, real emotion, autonomy, EGO readiness, companion readiness, "
+    "runtime/mainline effect, route exhaustion, terminal verdict, or program "
+    "completion."
 )
 
 
@@ -695,17 +696,48 @@ def build_failure_manifest(
     leakage_report: dict[str, Any],
     replay_report: dict[str, Any],
     provenance_check: dict[str, Any],
+    trace_rows: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     reasons = []
     reasons.extend(f"missing_required_baseline:{baseline_id}" for baseline_id in baseline_report["missing_baseline_ids"])
     reasons.extend(leakage_report["blocking_reasons"])
     reasons.extend(replay_report["blocking_reasons"])
     reasons.extend(provenance_check["blocking_reasons"])
+    if trace_rows is not None and not trace_rows:
+        reasons.append("trace_jsonl_empty")
     return {
         "producer_function": "phase2c_hidden_latent_harness_001a.runner.build_failure_manifest",
         "blocking_reasons": reasons,
         "has_blocking_failure": bool(reasons),
     }
+
+
+def build_trace(surface: dict[str, Any]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for episode in surface["episodes"]:
+        visible = candidate_visible_episode(episode)
+        replay_inputs = {
+            "serialized_state": serialized_replay_state(episode),
+            "current_observation": copy.deepcopy(visible["current_observation"]),
+            "legal_action_or_query_schema": copy.deepcopy(visible["legal_action_or_query_schema"]),
+            "budget_state": copy.deepcopy(visible["budget_state"]),
+            "latent_belief_or_memory_state": initial_memory_state(episode),
+        }
+        rows.append(
+            {
+                "producer_function": "phase2c_hidden_latent_harness_001a.runner.build_trace",
+                "run_id": RUN_ID,
+                "episode_id": episode["episode_id"],
+                "split": episode["split"],
+                "candidate_visible": visible,
+                "candidate_decision": None,
+                "candidate_mechanism_run": False,
+                "oracle_action": oracle_policy(episode)["action"],
+                "replay_inputs": replay_inputs,
+                "consumed_by_final_verdict": True,
+            }
+        )
+    return rows
 
 
 def run_harness(output_dir: str | Path, persist_artifacts: bool = False) -> dict[str, Any]:
@@ -716,19 +748,38 @@ def run_harness(output_dir: str | Path, persist_artifacts: bool = False) -> dict
     ablation_report = build_ablation_plan(surface)
     provenance = build_provenance(surface, baseline_report, leakage_report, replay_report, ablation_report)
     provenance_check = verify_provenance(provenance)
-    failure_manifest = build_failure_manifest(baseline_report, leakage_report, replay_report, provenance_check)
+    trace = build_trace(surface)
+    failure_manifest = build_failure_manifest(
+        baseline_report,
+        leakage_report,
+        replay_report,
+        provenance_check,
+        trace,
+    )
+    execution_evidence_valid = not failure_manifest["has_blocking_failure"]
     result = {
         "task_id": TASK_ID,
         "run_id": RUN_ID,
-        "verdict": "implemented_not_executed" if not failure_manifest["has_blocking_failure"] else "invalid_evidence_path",
+        "verdict": (
+            "candidate_free_harness_executed_valid_evidence_path"
+            if execution_evidence_valid
+            else "invalid_evidence_path"
+        ),
         "candidate_mechanism_run": False,
         "phase3_opened": False,
-        "harness_execution_claim": False,
+        "harness_execution_claim": execution_evidence_valid,
+        "trace_row_count": len(trace),
+        "strongest_fair_baseline_id": baseline_report["strongest_fair_baseline"]["baseline_id"],
+        "strongest_fair_baseline_macro_accuracy": baseline_report["strongest_fair_baseline"]["macro_accuracy"],
+        "replay_passed": replay_report["passed"],
+        "leakage_positive_controls_passed": leakage_report["positive_controls_passed"],
+        "ablation_all_controls_consumed": ablation_report["all_controls_consumed_by_final_verdict"],
+        "provenance_check_passed": provenance_check["passed"],
         "claim_ceiling": CLAIM_CEILING,
     }
     run = {
         "result": result,
-        "trace": [],
+        "trace": trace,
         "baseline_comparison": baseline_report,
         "ablation_report": ablation_report,
         "replay_report": replay_report,
@@ -750,6 +801,7 @@ def write_artifacts(output_dir: Path, run: dict[str, Any]) -> None:
         ("ablation_report.json", "ablation_report"),
         ("replay_report.json", "replay_report"),
         ("leakage_report.json", "leakage_report"),
+        ("computed_evidence_provenance.json", "computed_evidence_provenance"),
         ("failure_manifest.json", "failure_manifest"),
     ):
         (output_dir / filename).write_text(json.dumps(run[key], indent=2), encoding="utf-8")
