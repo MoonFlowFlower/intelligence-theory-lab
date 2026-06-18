@@ -22,6 +22,11 @@ headroom after two prior visible-surface failures:
 - Phase2B: `count_table` again matched the visible-channel oracle at macro F1
   `1.0`.
 
+Audit shorthand for downstream machine checks:
+
+- Phase 2 `count_table` macro F1 = 1.0.
+- Phase2B `count_table` macro F1 = 1.0.
+
 The next executable work must therefore prove the surface is not solved by
 visible lookup, count table, transition table, graph-cache, nearest-neighbor,
 episodic traversal, or exhaustive legal-query routes before any mechanism
@@ -152,9 +157,13 @@ interventions fail to change behavior when they should.
 
 Decision: selected as the future executable harness route.
 
+Selected future route:
+`mechanism_faithful_hidden_latent_heldout_candidate_free_harness`.
+
 ## Reference Design Mapping
 
-The references below are design analogies only. They are not imported proof.
+The references below are design analogies only. They are not imported proof and
+do not claim benchmark success or mechanism proof.
 
 - Procgen motivates frozen train/heldout procedural splits and separate
   generalization measurement: https://arxiv.org/abs/1912.01588
@@ -280,7 +289,9 @@ The future harness must rerun episodes, not mutate stored scores, for:
 - partial-observation ablation;
 - exploration-budget ablation;
 - cross-episode state reset;
+- cross-episode reset;
 - spurious-token injection/removal;
+- spurious token injection/removal;
 - source-memory deletion or equivalent lineage test.
 
 ## Trace / Replay Requirement
@@ -310,7 +321,9 @@ The future executable harness must record callable producers for:
 - final aggregation.
 
 Every score must record producer function, input artifacts, run id,
-seed/context/episode ids, aggregation rule, and code path hash.
+seed/context/episode ids, aggregation rule, and code path hash. The
+machine-readable fields must include `producer_function`, `input artifacts`,
+`run_id`, and `code path hash`.
 
 ## Future Harness Required Artifacts
 
@@ -397,7 +410,9 @@ validation, failed audit, no-headroom, or route-decision evidence.
 - No source implementation changes.
 - No test changes.
 - No harness implementation.
+- Do not implement the harness in this checkpoint.
 - No harness execution.
+- Do not execute the harness in this checkpoint.
 - No candidate mechanism implementation.
 - No candidate score.
 - No Phase 3 mechanism search.

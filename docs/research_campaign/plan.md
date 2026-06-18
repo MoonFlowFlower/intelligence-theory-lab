@@ -32,13 +32,13 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-EXECUTABLE-HARNESS-TASK-CARD-001A`
 
-Status: `phase2c_executable_harness_task_card_validated_pending_reviewer_audit`
+Status: `phase2c_executable_harness_task_card_reviewed_success`
 
-Current stage status: `phase2c_executable_harness_task_card_validated_pending_reviewer_audit`
+Current stage status: `phase2c_executable_harness_task_card_reviewed_success`
 
-Reviewer verdict: `validated_pending_reviewer_audit`
+Reviewer verdict: `success_reached`
 
-Current stage goal: Open a bounded Phase2C executable harness task card for the audited hidden-latent heldout surface contract without implementing or executing the harness.
+Current stage goal: Complete read-only reviewer audit of the bounded Phase2C executable harness task card for the audited hidden-latent heldout surface contract without implementing or executing the harness.
 
 Stage success criteria:
 
@@ -47,14 +47,16 @@ Stage success criteria:
 - prior Phase 2 and Phase2B no-headroom evidence is cited
 - primary-source benchmark mappings are recorded as design analogies
 - focused validation passes
+- read-only reviewer audit returns `success_reached`
+- initial machine-check wording failure is preserved and repaired
 - candidate mechanisms remain unrun
 - Phase 3 remains unopened
 - route tournament remains unauthorized
 - harness implementation and execution remain unauthorized
 
-Next decision gate: Read-only reviewer audit of the validated Phase2C executable harness task-card checkpoint before implementation.
+Next decision gate: Separate bounded Phase2C harness implementation/freeze task card required before any harness implementation or execution.
 
-Next frontier: Run read-only reviewer audit of the validated Phase2C executable harness task-card checkpoint. Do not implement or execute the harness until that later audit succeeds; candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Open only a separately bounded Phase2C harness implementation/freeze task before any harness implementation or execution; candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
@@ -71,23 +73,27 @@ Validation artifact:
 `artifacts/research_campaign/phase2c_executable_harness_task_card_validation_001a.json`
 
 Audit artifact:
-not yet created; read-only reviewer audit is the next gate after focused validation.
+`artifacts/research_campaign/phase2c_executable_harness_task_card_audit_001a.json`
 
 Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local executable-harness task-card opening only. No harness
-implementation or execution is enabled.
+Enabled status: local executable-harness task-card reviewed-success checkpoint
+only. No harness implementation or execution is enabled.
 
-Real trigger evidence: audited Phase 2 and Phase2B no-headroom artifacts,
-audited Phase2C hidden-latent surface contract, current repo readback, and
-primary-source benchmark mappings used only as design analogies.
+Real trigger evidence: read-only reviewer audit over the Phase2C executable
+harness task card, validation artifact, campaign state readback, source/test
+diff guards, collision record, prior no-headroom citations, benchmark analogy
+mapping, future baseline/ablation/replay/provenance clauses, and
+forbidden-scope checks.
 
-Claim ceiling: executable-harness task-card opening only; no mechanism
-validity, learning/adaptation success, consciousness, real emotion, autonomy,
-EGO readiness, companion readiness, runtime/mainline effect, route exhaustion,
-terminal verdict, harness evidence, or candidate validation.
+Claim ceiling: read-only reviewer audit of a Phase2C executable-harness
+task-card checkpoint only; no harness implementation, harness execution,
+candidate validation, mechanism validity, learning/adaptation success,
+consciousness, real emotion, autonomy, EGO readiness, companion readiness,
+runtime/mainline effect, route exhaustion, terminal verdict, or program
+completion claim.
 
 Auto-Remote-Anchor: forbidden.
 
@@ -190,9 +196,8 @@ validation pass, or chat-only reviewer verdict cannot complete the program.
 
 ## Next Minimal Closed-Loop Action
 
-Run read-only reviewer audit for
-`RESEARCH-CAMPAIGN-PHASE2C-EXECUTABLE-HARNESS-TASK-CARD-001A` before any
-harness implementation or execution.
+Open only a separately bounded Phase2C harness implementation/freeze task
+before any harness implementation or execution.
 
 Candidate mechanisms, Phase 3, route tournament, harness implementation,
 harness execution, runtime/EGO mainline, push, tag, remote anchor, terminal
