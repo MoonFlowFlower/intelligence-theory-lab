@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T09:04:42-05:00
+Last updated: 2026-06-18T09:08:34-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -30,43 +30,38 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 ## Current Campaign State
 
-Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-IMPLEMENTATION-001A`
+Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-TASK-CARD-001A`
 
-Status: `phase2c_hidden_latent_harness_implementation_reviewed_success`
+Status: `phase2c_hidden_latent_harness_execution_task_card_validated_pending_reviewer_audit`
 
-Current stage status: `phase2c_hidden_latent_harness_implementation_reviewed_success`
+Current stage status: `phase2c_hidden_latent_harness_execution_task_card_validated_pending_reviewer_audit`
 
-Reviewer verdict: `success_reached`
+Reviewer verdict: `validated_pending_reviewer_audit`
 
-Current stage goal: Complete read-only reviewer audit of the frozen-path Phase2C hidden-latent harness source/tests before harness execution.
+Current stage goal: Open and validate a bounded Phase2C harness execution task card before running the harness or generating output artifacts.
 
 Stage success criteria:
 
-- source package exists under `src/phase2c_hidden_latent_harness_001a/`
-- tests exist under `tests/phase2c_hidden_latent_harness_001a/`
-- TDD RED missing-package failure is recorded
-- targeted unit tests pass
-- baseline registry is callable and complete
-- leakage positive controls are callable
-- replay recomputes from required inputs
-- ablation controls are callable
-- provenance verifier rejects missing producer records
-- initial validation path-predicate failure is preserved and repaired
-- read-only reviewer audit returns `success_reached`
-- harness output directory remains absent
+- execution task card exists
+- runner command is frozen
+- required output artifact list is frozen
+- implementation audit success is cited
+- no harness output directory exists
+- no execution summary artifact exists
+- focused validation passes
 - candidate mechanisms remain unrun
 - Phase 3 remains unopened
 - route tournament remains unauthorized
-- harness execution remains unauthorized
+- harness execution remains unauthorized pending reviewer audit
 
-Next decision gate: Separate bounded Phase2C harness execution task card required before running the harness or generating output artifacts.
+Next decision gate: Read-only reviewer audit of the Phase2C harness execution task card before harness execution.
 
-Next frontier: Open a separate bounded Phase2C harness execution task card before running the harness or generating output artifacts. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Run read-only reviewer audit of the Phase2C harness execution task card before any harness execution or output artifact generation. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
 Task card:
-`docs/research_campaign/phase2c_harness_implementation_freeze_task_card_001a.md`
+`docs/research_campaign/phase2c_hidden_latent_harness_execution_task_card_001a.md`
 
 Source paths:
 `src/phase2c_hidden_latent_harness_001a/`
@@ -81,28 +76,28 @@ Checkpoint artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_heldout_surface_contract_001a.json`
 
 Validation artifact:
-`artifacts/research_campaign/phase2c_hidden_latent_harness_implementation_validation_001a.json`
+`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_validation_001a.json`
 
 Audit artifact:
-`artifacts/research_campaign/phase2c_hidden_latent_harness_implementation_audit_001a.json`
+not yet created; read-only reviewer audit is the next gate after focused validation.
 
 Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local Phase2C hidden-latent harness source/tests reviewed
-success pending execution task card. Harness execution remains disabled.
+Enabled status: local Phase2C hidden-latent harness execution task card
+validated pending reviewer audit. Harness execution remains disabled.
 
-Real trigger evidence: read-only reviewer audit over committed frozen-path
-source/tests, validation artifact, targeted unit tests, no harness output
-directory, and campaign state readback.
+Real trigger evidence: focused validation over execution task-card clauses,
+implementation audit status, output artifact absence, execution summary
+absence, and campaign state readback.
 
-Claim ceiling: read-only reviewer audit of frozen-path Phase2C harness
-source/test implementation only; no harness execution, no output artifacts, no
-baseline result, no ablation result, no replay evidence, no candidate
-validation, no mechanism validity, learning/adaptation success, consciousness,
-real emotion, autonomy, EGO readiness, companion readiness, runtime/mainline
-effect, route exhaustion, terminal verdict, or program completion claim.
+Claim ceiling: Phase2C harness execution task-card opening and validation only;
+no harness execution, no output artifacts, no baseline result, no ablation
+result, no replay evidence, no candidate validation, no mechanism validity,
+learning/adaptation success, consciousness, real emotion, autonomy, EGO
+readiness, companion readiness, runtime/mainline effect, route exhaustion,
+terminal verdict, or program completion claim.
 
 Auto-Remote-Anchor: forbidden.
 
@@ -205,8 +200,8 @@ validation pass, or chat-only reviewer verdict cannot complete the program.
 
 ## Next Minimal Closed-Loop Action
 
-Open a separate bounded Phase2C harness execution task card before running the
-harness or generating output artifacts.
+Run read-only reviewer audit of the Phase2C harness execution task card before
+any harness execution or output artifact generation.
 
 Candidate mechanisms, Phase 3, route tournament, harness execution,
 runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and
