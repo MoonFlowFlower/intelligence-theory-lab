@@ -1,0 +1,266 @@
+{
+  "standard_id": "BASELINE-IMMUNITY-ADMISSION-STANDARD-001A",
+  "version": "001A",
+  "layer": "route-governance / evidence-governance documentation only",
+  "executor": "none",
+  "executor_note": "static data consumed by future preflight task cards; executable enforcer requires separate audited task card",
+  "claim_ceiling": "Reusable normative admission standard only. Not mechanism evidence. Cannot admit any Gate pass; the strongest admission is admissible_for_candidate_preflight (candidate-card drafting only). Does not prove consciousness, subjectivity, emotion, autonomy, agency, AGI, companion readiness, or any total theory.",
+  "grounding_convention": {
+    "normative_rule": "the failure family forbidden; portable; always applies regardless of pointer relocation",
+    "grounding": "ledger / artifact pointer where the evidence lives",
+    "observed_at_commit": "metadata only; records where first observed; NOT a dependency for future applicability"
+  },
+  "applies_to": "any future Gate / surface preflight task card before candidate authoring",
+  "non_authorization": [
+    "no new mechanism surface design",
+    "no candidate authoring or implementation",
+    "no Gate execution",
+    "no threshold/metric/distribution patching",
+    "no EGO mainline / runtime / scheduler / admission work",
+    "no LLM / AIRI integration",
+    "no executable enforcement of this standard",
+    "Auto-Remote-Anchor: forbidden"
+  ],
+  "admission_verdicts": [
+    { "id": "admissible_for_candidate_preflight", "kind": "admission", "meaning": "passes metric-degeneracy, information-structure, oracle re-promotion rule, and baseline registry with no stop condition", "authorizes": "candidate-card drafting only" },
+    { "id": "rejected_metric_degenerate", "kind": "block", "meaning": "a degenerate predictor reaches ceiling band, or a single-sided/size-exploitable metric is used" },
+    { "id": "rejected_no_fair_signal", "kind": "block", "meaning": "no fair legal channel separates from random / visible determination" },
+    { "id": "rejected_trivially_decodable", "kind": "block", "meaning": "target/answer directly decodable from passive values or a leakage channel" },
+    { "id": "rejected_baseline_saturated", "kind": "block", "meaning": "strongest fair baseline ties candidate at ceiling (delta <= band)" },
+    { "id": "blocked_pending_canonical_readback", "kind": "block", "meaning": "artifacts cannot be byte-faithfully read back from canonical source, or generator provenance unverifiable" }
+  ],
+  "stop_conditions": [
+    "any metric degeneracy (predict_all / predict_none / constant_k / threshold / random-band / size-exploit / single-sided metric)",
+    "fair-baseline saturation (strongest fair member ties candidate within band)",
+    "answer-key-only oracle gap with no budget-faithful visible-channel oracle",
+    "no-fair-signal result",
+    "unresolved blocked_pending_canonical_readback"
+  ],
+  "oracle_taxonomy": [
+    { "id": "answer_key_oracle", "reads_illegal_truth": true, "supports_route_re_promotion": false, "note": "establishes only solvability under illegal access" },
+    { "id": "budget_faithful_visible_channel_oracle", "reads_illegal_truth": false, "supports_route_re_promotion": true, "conditions": ["verified budget-faithful", "clears strongest fair baseline by >= band", "not reducible to a degenerate predictor"] },
+    { "id": "mechanism_oracle", "reads_illegal_truth": false, "supports_route_re_promotion": false, "note": "circular: presupposes the mechanism it is meant to validate" }
+  ],
+  "required_baseline_registry": [
+    { "class": "trivial_predictors", "members": ["predict_all", "predict_none", "constant_k_sweep", "random", "majority"], "mandatory": true },
+    { "class": "passive_baselines", "members": ["observation_only", "value_decoder_mean", "value_decoder_variance", "value_decoder_correlation", "value_decoder_pca", "nearest_neighbor_passive"], "mandatory": true },
+    { "class": "active_query_baselines", "members": ["exhaustive_legal_query", "greedy_uncertainty_query_under_budget"], "mandatory": "when the surface allows queries/actions" },
+    { "class": "graph_cache_challengers", "members": ["graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "episodic_traversal"], "mandatory": "when any representational or environment claim is made", "min_members": 6 },
+    { "class": "lookup_imitation", "members": ["trace_only_replay", "ngram_trace_lookup", "full_bundle_decoder", "serialized_state_decoder", "belief_table", "pair_count_table"], "mandatory": "when replay/memory claims are made" },
+    { "class": "direct_objective_optimizer", "members": ["discounted_wls", "least_squares", "convex_solver"], "mandatory": "when the surface objective admits a direct optimizer" },
+    { "class": "amortized_learner", "members": ["trained_legal_channel_learner"], "mandatory": "when adaptation/learning is claimed", "requirement": "must actually fit (ml_library_used = true and a real fit); deterministic stub labeled 'learned' is forbidden" },
+    { "class": "task_specific_classical", "members": ["strongest_known_classical_method_for_task_type"], "mandatory": true }
+  ],
+  "admission_rule": "Candidate must beat the strongest fair member of every applicable baseline class by >= equivalence_band. If any fair member ties candidate at ceiling, verdict = rejected_baseline_saturated and must not be relabeled with softer language.",
+  "failure_families": [
+    {
+      "failure_family_id": "recall_only_predict_all_saturation",
+      "normative_rule": "Any surface metric where predict_all reaches the oracle/ceiling is inadmissible.",
+      "description": "Recall-only / coverage-only metric with no precision or size penalty lets full-set prediction saturate.",
+      "known_trigger": "metric == recall (or coverage) without complementary penalty; predict_all not in fair panel",
+      "required_baseline_or_check": "include predict_all in trivial-predictor panel; require a balanced/cost-weighted metric or joint precision+recall reporting",
+      "blocking_verdict": "rejected_metric_degenerate",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C candidate-free separation probe rejection); artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "b45598b"
+    },
+    {
+      "failure_family_id": "predict_none_abstention_saturation",
+      "normative_rule": "Any metric where the empty prediction reaches ceiling is inadmissible.",
+      "description": "Specificity/abstention-only metric is maximized by predicting nothing, common when truth is mostly negative.",
+      "known_trigger": "metric maximized by empty output; predict_none not in fair panel",
+      "required_baseline_or_check": "include predict_none control; metric must not be maximized by trivial abstention",
+      "blocking_verdict": "rejected_metric_degenerate",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C separation probe rejection); artifacts/candidate_free_route_c_baseline_separation_probe_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "b45598b"
+    },
+    {
+      "failure_family_id": "constant_k_saturation",
+      "normative_rule": "If any constant-size-k prediction reaches ceiling across the distribution, the metric is inadmissible.",
+      "description": "A saturating predictor may sit at an interior set size, not only the predict_all / predict_none extremes.",
+      "known_trigger": "fixed-size constant prediction reaches ceiling at some k in [0..|set|]",
+      "required_baseline_or_check": "sweep k over [0..|set|]; record max constant-k score; must be < ceiling - band",
+      "blocking_verdict": "rejected_metric_degenerate",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C separation probe rejection); artifacts/candidate_free_route_c_baseline_separation_probe_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "b45598b"
+    },
+    {
+      "failure_family_id": "post_hoc_threshold_tuning",
+      "normative_rule": "A non-mechanism threshold sweep that reaches ceiling, or thresholds/clips selected after seeing results, is inadmissible.",
+      "description": "Post-hoc threshold/clip tuning manufactures separation or forges ablation degradation.",
+      "known_trigger": "threshold/clip chosen after observing candidate scores; post-hoc threshold optimizer hits ceiling",
+      "required_baseline_or_check": "post-hoc threshold-optimizer baseline on held-out split; thresholds fixed before observing candidate scores",
+      "blocking_verdict": "rejected_metric_degenerate",
+      "prior_evidence_pointer": "docs/decision_log.md; GATE4-PREFLIGHT-001B audit artifacts",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "90dc4b9"
+    },
+    {
+      "failure_family_id": "random_band_no_signal",
+      "normative_rule": "If a random predictor at matched output statistics lands inside the ceiling band, the surface carries no fair signal.",
+      "description": "Random-band proximity is the canonical no-signal tell.",
+      "known_trigger": "random baseline (matched marginal/size) approx ceiling within band",
+      "required_baseline_or_check": "random baseline matched on marginal/size; require ceiling - random >= band",
+      "blocking_verdict": "rejected_no_fair_signal",
+      "prior_evidence_pointer": "docs/decision_log.md; docs/codex/contracts/DISTRIBUTION-HEADROOM-PREFLIGHT-CONTRACT-001A.md",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "98be7f4"
+    },
+    {
+      "failure_family_id": "size_exploit_metric",
+      "normative_rule": "A metric monotone in prediction-set size toward ceiling independent of correctness is inadmissible.",
+      "description": "Recall rewards larger sets; specificity rewards empty sets; size alone should not drive the score to ceiling.",
+      "known_trigger": "score climbs to ceiling as a function of set size with content policy fixed",
+      "required_baseline_or_check": "vary set size only, holding content fixed; score must not be monotone toward ceiling",
+      "blocking_verdict": "rejected_metric_degenerate",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C separation probe rejection); artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "b45598b"
+    },
+    {
+      "failure_family_id": "single_sided_metric_imbalance",
+      "normative_rule": "Reporting recall alone or precision alone without the complementary penalty is inadmissible.",
+      "description": "A single-sided metric is saturable by a degenerate predictor.",
+      "known_trigger": "only recall (or only precision) reported; complementary term hidden",
+      "required_baseline_or_check": "balanced/cost-weighted metric (F-beta with stated beta or explicit cost), or joint precision+recall with predict_all/predict_none visible",
+      "blocking_verdict": "rejected_metric_degenerate",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C separation probe rejection); artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "b45598b"
+    },
+    {
+      "failure_family_id": "visible_target_determination",
+      "normative_rule": "The target must not be a near-deterministic function of the visible/passive channel.",
+      "description": "A same-access fair baseline that reaches ceiling proves the target is visibly determined (access-parity violation).",
+      "known_trigger": "legal same-access baseline reaches ceiling; candidate has no exclusive channel",
+      "required_baseline_or_check": "estimate target decodability from visible-only features; require strongest same-access baseline < ceiling - band",
+      "blocking_verdict": "rejected_no_fair_signal",
+      "prior_evidence_pointer": "docs/decision_log.md; artifacts/implement_future_gate4_cross_family_social_causal_transfer_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "78889b6"
+    },
+    {
+      "failure_family_id": "observation_decodable_self_set",
+      "normative_rule": "The hidden answer/self-set must not be directly decodable from passive field values.",
+      "description": "Value-level leak (not just names) lets a legal attacker decode the answer.",
+      "known_trigger": "value-level attacker (mean/var/corr/PCA/cross-ep/supervised/membership) reaches ceiling band over passive channel",
+      "required_baseline_or_check": "run value-level attacker family; gate on family_max; require family_max < ceiling band above chance",
+      "blocking_verdict": "rejected_trivially_decodable",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C preflight hostile audit blocker); artifacts/route_c_preflight_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "726f26d/278819a"
+    },
+    {
+      "failure_family_id": "identifiability_extremes_no_residual",
+      "normative_rule": "The surface must show genuine residual uncertainty under passive observation that the proposed mechanism class can reduce.",
+      "description": "If the target is fully passive-identifiable there is no role for the mechanism; if there is zero residual structure there is nothing to infer.",
+      "known_trigger": "passive channel fully identifies target, OR zero residual structure",
+      "required_baseline_or_check": "demonstrate non-identifiability under passive P(X) (e.g., twin-pair) and that the mechanism channel can reduce it; oracle must estimate the non-read quantity so it is fail-able",
+      "blocking_verdict": "rejected_no_fair_signal",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C repaired preflight re-audit); artifacts/route_c_preflight_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "278819a"
+    },
+    {
+      "failure_family_id": "side_channel_leakage",
+      "normative_rule": "Every leakage channel must have a fail-able positive control; name-only scanning is insufficient.",
+      "description": "Label leaks via observation/action names, filenames, fixtures, artifact structure, baseline_hint, planted answer-maps, value fields, or label ordering.",
+      "known_trigger": "baseline_hint == f(target); answer key under non-listed field names; always-true positive control",
+      "required_baseline_or_check": "enumerate all leakage channels; attach a verified-flip positive control to each (value-level and structural, not only names)",
+      "blocking_verdict": "rejected_trivially_decodable",
+      "prior_evidence_pointer": "docs/decision_log.md; docs/NEGATIVE_EVIDENCE_LEDGER.md (cb95bbd entry); artifacts/gate4_replacement_discriminative_social_latent_001b/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "ec11f88/cb95bbd"
+    },
+    {
+      "failure_family_id": "candidate_authored_ground_truth",
+      "normative_rule": "The candidate must not author or influence any field that determines ground truth; truth/test seeds must be disjoint from train/val/drift seeds.",
+      "description": "Candidate-controlled truth makes the harness circular (self-endorsing pass).",
+      "known_trigger": "self-endorsing candidate field -> admit; flipped field -> block; overlapping seeds",
+      "required_baseline_or_check": "specify a candidate-inaccessible generator; assert seed disjointness; verify candidate cannot write truth-determining fields",
+      "blocking_verdict": "blocked_pending_canonical_readback",
+      "prior_evidence_pointer": "docs/NEGATIVE_EVIDENCE_LEDGER.md (cb95bbd); artifacts/one_gate_future_only_non_circular_harness_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "cb95bbd"
+    },
+    {
+      "failure_family_id": "fair_baseline_saturation",
+      "normative_rule": "If the strongest fair legal-channel baseline ties the candidate at ceiling (delta <= band), the distribution is saturated; reject before candidate authoring.",
+      "description": "Discriminative margin over fair baseline is structurally unreachable on this surface.",
+      "known_trigger": "exhaustive_legal_query or parametric fair baseline == candidate at ceiling; delta == 0",
+      "required_baseline_or_check": "strongest_fair_legal_channel_baseline < ceiling - equivalence_band (see DISTRIBUTION-HEADROOM-PREFLIGHT-CONTRACT-001A)",
+      "blocking_verdict": "rejected_baseline_saturated",
+      "prior_evidence_pointer": "docs/decision_log.md (ACP-BV 001B post-anchor closure); docs/codex/contracts/DISTRIBUTION-HEADROOM-PREFLIGHT-CONTRACT-001A.md; artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "98be7f4"
+    },
+    {
+      "failure_family_id": "direct_objective_optimizer_equivalence",
+      "normative_rule": "If a direct optimizer of the surface objective (without the mechanism) matches the candidate, the candidate is not mechanism evidence.",
+      "description": "Candidate reduces algebraically to a direct optimizer (e.g., discounted weighted least squares).",
+      "known_trigger": "candidate output == discounted WLS / least-squares / convex solver on the same objective",
+      "required_baseline_or_check": "include a direct-objective optimizer baseline; require candidate - optimizer >= band",
+      "blocking_verdict": "rejected_baseline_saturated",
+      "prior_evidence_pointer": "docs/decision_log.md (ACOLB-A route closure); artifacts/acolb_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "bb65008c"
+    },
+    {
+      "failure_family_id": "graph_cache_collapse",
+      "normative_rule": "When any representational or environment claim is made, the candidate must beat the full six-member graph-cache family; ties are collapse.",
+      "description": "Lookup/cache structures reproduce candidate behavior, so the claim is not representational.",
+      "known_trigger": "graph_lookup / transition_table / successor_map / count_table / fsm_planner / episodic_traversal reach candidate ceiling",
+      "required_baseline_or_check": "include all six graph-cache challengers; require candidate - max(graph_cache) >= band",
+      "blocking_verdict": "rejected_baseline_saturated",
+      "prior_evidence_pointer": "docs/CLOSED_FAMILIES.md; Gate1 EXEC-001 graph_cache_collapse; artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "495300cb"
+    },
+    {
+      "failure_family_id": "fake_learned_deterministic_baseline",
+      "normative_rule": "A baseline labeled 'learned' must actually fit; a deterministic stub invalidates the comparison.",
+      "description": "Weakening the learned baseline manufactures candidate separation.",
+      "known_trigger": "ml_library_used == False; no fit; 'learned' baseline is deterministic",
+      "required_baseline_or_check": "require real fit (ml_library_used == true and recorded fit); reject deterministic stub baselines",
+      "blocking_verdict": "rejected_baseline_saturated",
+      "prior_evidence_pointer": "docs/decision_log.md; artifacts/claude_independent_acsb_001b_hostile_audit_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "347b75b9"
+    },
+    {
+      "failure_family_id": "mechanism_oracle_tautology",
+      "normative_rule": "An oracle/metric that presupposes the candidate's own rule cannot support any claim.",
+      "description": "Candidate scores 1.0 by construction because the metric is generated by its own mechanism (circular).",
+      "known_trigger": "candidate score == label generative; self-declared digest/verdict accepted as truth",
+      "required_baseline_or_check": "metric/oracle must be independent of the candidate's mechanism; verifier must not trust candidate-declared truth",
+      "blocking_verdict": "rejected_no_fair_signal",
+      "prior_evidence_pointer": "docs/decision_log.md; artifacts/implement_future_gate4_cross_family_social_causal_transfer_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "78889b6"
+    },
+    {
+      "failure_family_id": "answer_key_oracle_gap",
+      "normative_rule": "An answer-key-only oracle (no budget-faithful visible-channel oracle) cannot support route re-promotion.",
+      "description": "Reading the planted answer proves solvability under illegal access, not fair-channel signal.",
+      "known_trigger": "oracle/baseline reads planted answer-map or candidate-inaccessible truth",
+      "required_baseline_or_check": "require a budget-faithful visible-channel oracle that clears the strongest fair baseline by >= band and is not degenerate",
+      "blocking_verdict": "rejected_no_fair_signal",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C preflight blocker); artifacts/route_c_preflight_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "726f26d"
+    },
+    {
+      "failure_family_id": "canonical_readback_failure",
+      "normative_rule": "No admission verdict is trustworthy until preflight artifacts are byte-faithfully read back from canonical source via the authoritative file API.",
+      "description": "Mount/FUSE truncation or stale/broken git state can make an authoritative file look absent or altered.",
+      "known_trigger": "truncated mount read; stale mtime; broken git index; provenance not re-derivable",
+      "required_baseline_or_check": "canonical readback via file API (not the truncating mount); verify provenance before assigning any verdict",
+      "blocking_verdict": "blocked_pending_canonical_readback",
+      "prior_evidence_pointer": "docs/decision_log.md (Route C candidate-harness R1 re-audit); artifacts/route_c_candidate_harness_001a/",
+      "claim_ceiling": "blocks candidate preflight; bounded governance/negative evidence only",
+      "observed_at_commit": "b45598b"
+    }
+  ]
+}

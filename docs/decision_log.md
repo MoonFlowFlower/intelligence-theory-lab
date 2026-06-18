@@ -58,3 +58,177 @@
 - Real trigger evidence: operator-provided Claude independent hostile re-audit artifacts under `artifacts/CLAUDE-INDEPENDENT-ROUTE-C-PREFLIGHT-001A-REPAIR-REAUDIT-001A/`.
 - Claim ceiling: Route C repaired Phase 0 re-audit acceptance preservation only; no mechanism evidence, no candidate evidence, no Gate pass, no mainline effect, no runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness.
 - Auto-Remote-Anchor: forbidden.
+
+## Route C candidate-card R1 audit preservation / revision
+
+- Audit preservation task: `CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A`
+- Revised candidate-card: `DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1`
+- Decision: preserve the Claude read-only audit verdict `requires_candidate_card_revision_before_implementation_authorization` and draft R1 contract only.
+- Required blocker closure in R1: B1 provenance F-forge closure, B2 passive-family superset, B3 fair-interventional baseline hardening, B4 demonstrated fail-able margin/saturation gates, B5 six-member graph-cache family.
+- Candidate implementation: forbidden.
+- Gate/mainline/runtime/live integration: forbidden.
+- Push/tag/remote-anchor: forbidden.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: local file preservation and documentation artifact only; no CLI candidate, pytest candidate, Gate runner, runtime path, or live path.
+- Claim ceiling: candidate-card audit preservation and revised candidate-card contract only; no mechanism evidence, no candidate evidence, no Gate pass, no mainline effect, no runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: independent hostile audit of R1 before any separate implementation authorization.
+
+## Route C candidate implementation-card drafting boundary
+
+- R1 re-audit preservation task: `CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A`
+- Drafted implementation card: `ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A`
+- Preserved R1 hostile re-audit verdict: `accepted_for_candidate_implementation_card_drafting_only`
+- Decision: preserve the R1 re-audit locally and draft a future implementation-card contract only.
+- RF bindings: RF-1 forged-provenance option-2 closure, RF-2 pre-run mechanism-component lock, RF-3 independent B1-B5 / N1-N4 anchoring, RF-4 future implementation diff hygiene.
+- Candidate implementation: forbidden.
+- Source/test/runtime/Gate/mainline changes: forbidden.
+- Gate/mainline/runtime/live integration: forbidden.
+- Push/tag/remote-anchor: forbidden.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: local docs/artifacts only; no executable candidate, no CLI implementation, no pytest implementation, no Gate runner, no runtime/live path.
+- Claim ceiling: R1 hostile re-audit preservation and bounded candidate-implementation-card drafting only; no candidate implementation, no mechanism evidence, no Gate pass, no mainline effect, no runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: independent hostile audit of `ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A` before any Route C candidate implementation authorization.
+
+## Route C implementation-card hostile audit preservation / R1 revision
+
+- Audit preservation task: `CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A`
+- Revised implementation card: `ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1`
+- Preserved hostile audit verdict: `requires_implementation_card_revision_before_candidate_implementation`
+- Decision: preserve the independent hostile audit locally and draft R1 implementation-card revision only.
+- Required R1 blocker closure: demonstrated margin failing negative control, demonstrated saturation failing negative control with graph-cache challengers, every-material-gate demonstrated failability rule, mandatory `access_parity_report.json`, independent pre-run frozen source-pin definition, co-forged-anchor positive control, explicit `truth_seed_disjointness_report.json`.
+- Candidate implementation: forbidden.
+- Source/test/runtime/Gate/mainline changes: forbidden.
+- Gate/mainline/runtime/live integration: forbidden.
+- Push/tag/remote-anchor: forbidden.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: local docs/artifacts only; no executable candidate, no CLI implementation, no pytest implementation, no Gate runner, no runtime/live path.
+- Claim ceiling: implementation-card audit preservation and R1 revision only; no candidate implementation, no mechanism evidence, no candidate evidence, no Gate pass, no mainline effect, no runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: independent hostile audit of `ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1` before any Route C candidate implementation authorization.
+
+## Route C implementation-card R1 hostile audit acceptance / harness task-card drafting boundary
+
+- Audit preservation task: `CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A`
+- Target implementation card: `ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1`
+- Drafted future task card: `ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A`
+- Preserved hostile audit verdict: `accepted_for_candidate_harness_implementation_task_card_drafting_only`
+- Decision: preserve the R1 hostile audit locally and draft an inactive future candidate-harness implementation task card only.
+- Non-blocking audit issues carried forward: multi-seed noise-floor / CI binding, decision-log provenance nit, clean-anchor plus co-forged-anchor two-arm controls, and card-layer-not-runtime claim ceiling.
+- Candidate implementation: forbidden.
+- Source/test/runtime/Gate/mainline changes: forbidden.
+- Gate/mainline/runtime/live integration: forbidden.
+- Push/tag/remote-anchor: forbidden.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: local docs/artifacts only; no executable candidate, no CLI implementation, no pytest implementation, no Gate runner, no runtime/live path.
+- Claim ceiling: R1 hostile audit preservation and candidate-harness implementation-task-card drafting only; no candidate implementation, no mechanism evidence, no candidate evidence, no Gate pass, no mainline effect, no runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: independent hostile audit of `ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A` before any Route C candidate harness implementation authorization.
+
+## Route C candidate-harness 001A/R1 hostile audit preservation / decision-log provenance repair
+
+- Audited task card: `ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A`
+- Preserved audit task: `CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A`
+- Revised task card: `ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1`
+- Claude verdict preserved: `requires_task_card_revision_before_candidate_harness_implementation`
+- Only blocker: B-1 decision-log false closure. The 001A card and `result.json` claimed a bounded decision-log entry had closed the nit, but this file did not yet contain the supporting entry.
+- R1 repair boundary: repairs only the decision-log provenance-integrity issue by preserving the hostile audit, adding this bounded decision-log entry, and updating section 30 / `result.json` to make any decision-log closure claim directly supported by this file.
+- Accepted contract-layer requirements carried forward without weakening: statistical noise floor / CI, margin and saturation failability, `access_parity_report.json`, RF-1 option-2 provenance closure, `truth_seed_disjointness_report.json`, passive and fair-interventional baselines, evidence hygiene, replay recomputation, leakage controls, and material-row provenance.
+- Non-blocking future considerations preserved: minimum seed count / CI method, `clean_anchor_control.json` naming, and final report should explicitly list access-parity result.
+- Candidate implementation authorization: no candidate implementation authorized.
+- Gate/mainline/runtime/live authorization: no Gate/mainline/runtime/live authorization.
+- Commit/push/tag/remote-anchor authorization: no commit, push, tag, or remote anchor is authorized by this revision.
+- Mainline integration: none.
+- Enabled status: none.
+- Real trigger evidence: local hostile-audit preservation and bounded documentation/artifact repair only; no executable candidate, no CLI implementation, no pytest implementation, no Gate runner, no runtime path, and no live path.
+- Claim ceiling: ROUTE-C candidate-harness task-card R1 provenance repair only; no mechanism evidence, no candidate evidence, no score, no baseline result, no ablation result, no replay result, no Gate pass, no mainline effect, no runtime/live readiness, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, and no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: independent hostile audit of `ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1` before any separate Route C candidate harness implementation authorization or operator activation card.
+
+## Route C candidate harness 001A accepted negative evidence closure
+
+- Preservation task: `PRESERVE-ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A`
+- Final hostile re-audit: `CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A`
+- Preserved admission verdict: `accepted_computed_negative_evidence_close_or_downgrade`
+- Harness verdict preserved: `close_or_downgrade`
+- Accepted negative result: candidate score `1.0`; strongest fair baseline `exhaustive_legal_query` score `1.0`; delta `0.0`.
+- Decision: close/downgrade the current Route C candidate surface.
+- Failure interpretation: weak surface design; query budget equals the full legal action space, so exhaustive legal query trivially recovers the hidden set.
+- Boundary: this is not proof that Route C is impossible; it is accepted computed negative evidence for the current baseline-equivalent surface only.
+- Repaired evidence-path status preserved: B1 verdict derivation repaired, B2 access parity trace-derived, B3 saturation dual-branch, B4 source-pin readback substantively repaired with positive control through the same source-pin gate to `invalid`, and leakage/ablation/replay/provenance accepted within stated caveats.
+- Forbidden interpretation: no candidate success, Gate pass, mechanism evidence, mainline effect, runtime effect, agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
+- Forbidden follow-on actions from this closure: do not repair the candidate to beat the baseline, weaken `exhaustive_legal_query`, remove graph-cache challengers, or change the scoring metric.
+- Mainline integration: none.
+- Enabled status: local CLI/test harness evidence only.
+- Real trigger evidence: `artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/audit_result.json` and accepted local harness artifacts under `artifacts/route_c_candidate_harness_001a/`.
+- Claim ceiling: accepted computed negative evidence preservation and current Route C candidate surface closure only; no Route C mechanism validity, no candidate success, no Gate pass, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: post-result routing check for whether to close Route C entirely, design a new Route C surface with `query_budget < full legal action space` and baseline-immunity preflight, return to Gate-oriented route selection, or switch to a different mechanism route.
+
+## Candidate-free Route C separation probe hostile-audit rejection preservation
+
+- Preservation task: `PRESERVE-CANDIDATE-FREE-ROUTE-C-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A`
+- Rejected probe: `CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A`
+- Preserved hostile-audit verdict: `reject_as_false_positive_or_weakened_baseline`
+- Decision: the Codex candidate-free Route C separation probe is rejected as false positive / weakened-baseline evidence.
+- Blocking baseline: `predict_all` is legal, fair, non-privileged, omitted from the original baseline panel, and reaches recall `1.0 == oracle` under the recall-only metric.
+- Additional blocker: visible features and hidden membership were generated from independent salts; preserved reproduction reports `corr(visible_score, hidden_membership) = 0.0029`.
+- Old green tests are not evidence of separation because they asserted the false-positive condition.
+- Route C cannot be re-promoted from this probe.
+- Current Route C resurrection path from this probe is blocked.
+- Route consequence: return to Gate-oriented or alternative mechanism route selection.
+- No implementation, no candidate, no probe repair, no new surface, no Gate run, no commit, no push, no tag, and no remote anchor are authorized.
+- Mainline integration: none.
+- Enabled status: local docs/artifacts preservation only.
+- Real trigger evidence: hostile-audit artifact bundle plus clean-room reproduction output under `artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/`.
+- Claim ceiling: route-governance rejection preservation only; no Route C mechanism validity, no Route C impossibility, no hidden-self-set inference, no self-boundary evidence, no candidate success, no Gate pass, no mainline/runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, and no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+- Next minimal closed-loop action: return to Gate-oriented or alternative mechanism route selection unless a separately authorized route-level decision provides a new mechanism rationale and baseline-immunity argument.
+
+## BASELINE-IMMUNITY-ADMISSION-STANDARD-001A (reusable admission standard)
+
+- Task: `CLAUDE-BASELINE-IMMUNITY-ADMISSION-STANDARD-001A`.
+- Decision: codify the recorded baseline-immunity negative evidence into a reusable pre-candidate admission standard for future Gate / surface preflight tasks.
+- Artifacts: `docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md` (normative standard) + `docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json` (static, machine-readable failure-family registry; 19 families; no executor).
+- Grounding convention: normative_rule = failure family; grounding = ledger/artifact pointer; observed_at_commit = metadata only, not a future-applicability dependency.
+- Sourced families (metadata-only commits): recall/predict_all saturation (`b45598b`), threshold tuning (`90dc4b9`), fair-baseline/exhaustive-query saturation (`98be7f4`), visible-target/access-parity (`78889b6`), observation-decodable self-set (`726f26d`/`278819a`), name-list & baseline_hint leakage (`ec11f88`/`cb95bbd`), candidate-authored ground truth (`cb95bbd`), direct-optimizer equivalence (`bb65008c`), graph-cache collapse (`495300cb`), fake-learned baseline (`347b75b9`), canonical-readback/mount truncation.
+- Not designed: any new Route C or other mechanism surface.
+- Not authorized: candidate authoring/implementation, Gate execution, executable enforcement of this standard, threshold/metric/distribution patching, EGO mainline/runtime/admission work, push, tag, remote anchor.
+- Commit status: docs-only working-tree change; not committed or pushed in this session.
+- Claim ceiling: reusable route-governance / evidence-governance standard only; strongest admission it grants is `admissible_for_candidate_preflight` (candidate-card drafting under a separate audited task card). No mechanism, Gate, autonomy, agency, consciousness, emotion, stable-user-benefit, or EGO-readiness claim.
+- Auto-Remote-Anchor: forbidden.
+
+## Gate canonical inventory and return-point readback
+
+- Task: `GATE-CANONICAL-INVENTORY-AND-RETURN-POINT-READBACK-001A`.
+- Artifacts: `artifacts/gate_canonical_inventory_and_return_point_readback_001a/`.
+- Inventory recommendation: `return_to_gate_provenance_hardening`.
+- Decision: preserve the inventory as a return-point readback and require provenance/readback hardening before any Gate development resumes.
+- Gate execution: no Gate was run.
+- Mechanism claim: no mechanism claim was made.
+- Current worktree condition: dirty working-tree residue requires provenance/readback hardening before Gate development.
+- Mainline integration: none.
+- Enabled status: read-only inventory and local worktree-hygiene routing only.
+- Real trigger evidence: inventory artifact readback under `artifacts/gate_canonical_inventory_and_return_point_readback_001a/`.
+- Claim ceiling: Gate inventory and return-point recommendation only; no Gate pass, no mechanism validity, no candidate success, no mainline/runtime/live effect, no agency, no autonomy, no consciousness, no emotion, no stable user benefit, and no EGO readiness.
+- Auto-Remote-Anchor: forbidden.
+
+## Gate evidence provenance verifier 001A audit acceptance pointer
+
+- Task: `GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HISTORICAL-NEGATIVE-CALIBRATION-001A`.
+- Preserved verifier hostile-audit artifact: `artifacts/CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A/`.
+- Verifier audit verdict: `accept_as_local_provenance_shape_checker`.
+- Authorized use: local provenance-shape prefilter / admission-support tool only.
+- Not authorized: admission gate, baseline-immunity enforcement, Gate pass, runtime/mainline integration, scheduler wiring, Route C wiring, Gate4/Gate5 wiring, or live-path effect.
+- Strongest caveat: the verifier cannot catch metric degeneracy or omitted / mis-declared strongest fair baseline.
+- Mainline integration: none.
+- Enabled status: local CLI diagnostic only.
+- Real trigger evidence: independent hostile-audit artifact preserving the local-shape-checker acceptance and caveat.
+- Claim ceiling: historical diagnostic calibration of a local provenance-shape verifier only; no Gate pass, no mechanism validity, no baseline-immunity, no candidate success, no Route C viability, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
+- Next minimal closed-loop action: historical negative calibration diagnostic only.
+- Auto-Remote-Anchor: forbidden.
