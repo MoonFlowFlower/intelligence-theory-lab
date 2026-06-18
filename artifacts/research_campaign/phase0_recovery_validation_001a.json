@@ -1,0 +1,63 @@
+{
+    "task_id": "RESEARCH-CAMPAIGN-PHASE0-RECOVERY-LEDGER-HARDENING-001A",
+    "generated_at": "2026-06-17T22:03:35.6851032-05:00",
+    "producer_function": "PowerShell corrected Phase 0 recovery validation",
+    "input_artifacts": [
+        "docs/research_campaign/plan.md",
+        "docs/OVERALL_PROGRESS.md",
+        "artifacts/research_campaign/stage_scorecard.json",
+        "artifacts/research_campaign/experiment_log.jsonl",
+        "artifacts/research_campaign/phase0_recovery_inventory_001a.json"
+    ],
+    "verdict": "phase0_recovery_inventory_corrected_bounded",
+    "checks": [
+        {
+            "name": "corrected_inventory_json_parse",
+            "ok": true,
+            "detail": "dirty_item_count=103"
+        },
+        {
+            "name": "corrected_inventory_excludes_phase0_dir",
+            "ok": true,
+            "detail": "docs/research_campaign excluded from pre-existing dirty items"
+        },
+        {
+            "name": "scorecard_correction_recorded",
+            "ok": true,
+            "detail": "applied_excluded_phase0_paths"
+        },
+        {
+            "name": "experiment_log_jsonl_parse_after_correction",
+            "ok": true,
+            "detail": "parsed 39 lines"
+        },
+        {
+            "name": "correction_entry_appended",
+            "ok": true,
+            "detail": "RESEARCH_CAMPAIGN_PHASE0_RECOVERY_INVENTORY_CORRECTION_001A"
+        }
+    ],
+    "dirty_item_count": 103,
+    "dirty_category_counts": {
+        "tracked_modified_existing_state": 1,
+        "task_card_tree": 1,
+        "independent_audit_artifact_tree": 20,
+        "codex_contract_or_task_doc": 3,
+        "research_or_governance_doc": 32,
+        "evidence_or_run_artifact_tree": 33,
+        "implementation_or_test_surface": 13
+    },
+    "changed_paths": [
+        "artifacts/research_campaign/phase0_recovery_inventory_001a.json",
+        "artifacts/research_campaign/phase0_recovery_validation_001a.json",
+        "artifacts/research_campaign/stage_scorecard.json",
+        "artifacts/research_campaign/experiment_log.jsonl",
+        "docs/OVERALL_PROGRESS.md"
+    ],
+    "mainline_integration_status": "none",
+    "enabled_status": "none",
+    "real_trigger_evidence": "repo readback and campaign ledger correction only; no mechanism experiment executed",
+    "claim_ceiling": "Phase 0 recovery validation/correction only; no mechanism evidence, Gate pass, runtime readiness, consciousness, emotion, agency, autonomy, EGO readiness, or companion readiness claim",
+    "auto_remote_anchor": "forbidden",
+    "next_minimal_closed_loop_action": "Recovery closeout or independent audit before any Phase 1 proxy-formalization task card."
+}

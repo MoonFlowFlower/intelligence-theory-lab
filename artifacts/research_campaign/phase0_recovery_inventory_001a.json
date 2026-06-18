@@ -1,0 +1,894 @@
+{
+    "task_id": "RESEARCH-CAMPAIGN-PHASE0-RECOVERY-LEDGER-HARDENING-001A",
+    "generated_at": "2026-06-17T22:03:07.6019437-05:00",
+    "producer_function": "PowerShell git status porcelain classifier in Codex Phase 0 recovery pass",
+    "correction_note": "Regenerated after validation showed the first inventory counted Phase 0-created paths. This version excludes Phase 0-created/modified campaign ledger paths from pre-existing dirty state.",
+    "input_artifacts": [
+        "git status --porcelain=v1",
+        "git rev-parse --show-toplevel",
+        "git branch --show-current",
+        "git rev-parse HEAD",
+        "artifacts/research_campaign/stage_scorecard.json",
+        "artifacts/research_campaign/experiment_log.jsonl",
+        "docs/OVERALL_PROGRESS.md"
+    ],
+    "repo_readback": {
+        "root": "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+        "branch": "codex/meta-theory-scaffold",
+        "head": "b45598b1c56080f2f850ae088f42cf585950483e",
+        "git_dir": ".git",
+        "git_common_dir": ".git",
+        "is_linked_worktree": false,
+        "status_short": [
+            "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold [ahead 9]",
+            " M artifacts/research_campaign/experiment_log.jsonl",
+            " M artifacts/research_campaign/stage_scorecard.json",
+            " M docs/OVERALL_PROGRESS.md",
+            " M docs/decision_log.md",
+            "?? artifacts/AIDSP-001A-R1/",
+            "?? artifacts/CLAUDE-INDEPENDENT-BASELINE-FIRST-HARNESS-001A-R1-EVIDENCE-INTEGRITY-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-BATCH-ENV-HEADROOM-SCOUT-003A-RUN-001A-ROUTE-LEVEL-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001A-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-SURFACE-SPEC-00XA-CORE-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-HOSTILE-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/",
+            "?? artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/",
+            "?? artifacts/DISCOVERY-LOOP-IDENT-CALIB-001A/",
+            "?? artifacts/DISCOVERY-LOOP-MDE-POWER-CURVE-001A/",
+            "?? artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/",
+            "?? artifacts/GG-COBIND-ID-001A/",
+            "?? artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/",
+            "?? artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/",
+            "?? artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/",
+            "?? artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/",
+            "?? artifacts/baseline_first_harness_001a/",
+            "?? artifacts/baseline_first_harness_001a_closeout_001a/",
+            "?? artifacts/batch_env_headroom_scout_002a/",
+            "?? artifacts/batch_env_headroom_scout_002a_false_promotion_closeout_001a/",
+            "?? artifacts/batch_env_headroom_scout_002b/",
+            "?? artifacts/batch_env_headroom_scout_003a/",
+            "?? artifacts/candidate_free_route_c_baseline_separation_probe_001a/",
+            "?? artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+            "?? artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/",
+            "?? artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/",
+            "?? artifacts/gate1_replacement_preflight_00xa_run_001a/",
+            "?? artifacts/gate1_replacement_preflight_00xa_run_001b/",
+            "?? artifacts/gate1_replacement_preflight_00xa_task_card_r1/",
+            "?? artifacts/gate1_replacement_readback_or_preflight_selection_001a/",
+            "?? artifacts/gate1_replacement_surface_spec_freeze_001a/",
+            "?? artifacts/gate_canonical_inventory_and_return_point_readback_001a/",
+            "?? artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/",
+            "?? artifacts/gate_evidence_provenance_verifier_hardening_001a/",
+            "?? artifacts/gate_provenance_hardening_worktree_reconciliation_001a/",
+            "?? artifacts/minimal_env_spec_001a/",
+            "?? artifacts/phase0_environment_design_constraints_002c/",
+            "?? artifacts/phase0_environment_design_constraints_002c_r1/",
+            "?? artifacts/research_campaign/phase0_recovery_inventory_001a.json",
+            "?? artifacts/research_campaign/phase0_recovery_validation_001a.json",
+            "?? artifacts/route_c_candidate_harness_001a/",
+            "?? artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/",
+            "?? docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md",
+            "?? docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json",
+            "?? docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md",
+            "?? docs/research/ACTIVE-INFERENCE-DRIVE-AFFECT-LINEAGE-001A.md",
+            "?? docs/research/ACTIVE-INFERENCE-DRIVE-SEPARATION-PREFLIGHT-001A-R1.md",
+            "?? docs/research/ACTIVE-INFERENCE-DRIVE-SEPARATION-PREFLIGHT-001A.md",
+            "?? docs/research/BASELINE-FIRST-HARNESS-001A-R1-ACCEPTED-NO-HEADROOM-CLOSEOUT-001A.md",
+            "?? docs/research/BATCH-ENV-HEADROOM-SCOUT-002A-FALSE-PROMOTION-CLOSEOUT-001A.md",
+            "?? docs/research/BATCH-ENV-HEADROOM-SCOUT-002B-INDEPENDENT-STATIC-AND-COMPUTE-BASELINE-SCOUT-TASK-CARD-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-HOSTILE-AUDIT-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A.md",
+            "?? docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A.md",
+            "?? docs/research/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1.md",
+            "?? docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md",
+            "?? docs/research/GROUNDING-GATE-COBINDING-IDENTIFIABILITY-PROBE-001A.md",
+            "?? docs/research/GROUNDING-GATE-K1-K2-PREFLIGHT-FEASIBILITY-001A.md",
+            "?? docs/research/GROUNDING-GATE-SELF-STATE-ROUTE-NEGATIVE-EVIDENCE-CLOSEOUT-001A.md",
+            "?? docs/research/MINIMAL-ENV-SPEC-001A.freeze.json",
+            "?? docs/research/MINIMAL-ENV-SPEC-001A.md",
+            "?? docs/research/PHASE0-ENVIRONMENT-ATTACK-LIBRARY-001A.md",
+            "?? docs/research/PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-R1.md",
+            "?? docs/research/PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C.md",
+            "?? docs/research/ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A.md",
+            "?? docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md",
+            "?? docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A.md",
+            "?? docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1.md",
+            "?? docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A.md",
+            "?? docs/research/SELF-BOUNDARY-INTERVENABLE-LATENT-NEGATIVE-LINEAGE-AND-KILLER-CATALOG-001A.md",
+            "?? docs/research/SESSION-HANDOFF-001A-post-AIDSP-to-grounding-gate.md",
+            "?? docs/research/gate1_replacement_surface_spec_00xa.freeze.json",
+            "?? docs/research/gate1_replacement_surface_spec_00xa.md",
+            "?? docs/research_campaign/",
+            "?? docs/task_cards/",
+            "?? scripts/",
+            "?? src/aidsp_001a_r1/",
+            "?? src/discovery_loop_ident_calib_001a/",
+            "?? src/discovery_loop_mde_power_curve_001a/",
+            "?? src/gate1_replacement_preflight_00xa/",
+            "?? src/gate_evidence_provenance_verifier_001a/",
+            "?? src/gg_cobind_id_001a/",
+            "?? tests/gate1_replacement_preflight_00xa/",
+            "?? tests/research/",
+            "?? tests/test_aidsp_001a_r1.py",
+            "?? tests/test_discovery_loop_ident_calib_001a.py",
+            "?? tests/test_gate_evidence_provenance_verifier_001a.py",
+            "?? tests/test_gg_cobind_id_001a.py"
+        ]
+    },
+    "layer": "engineering_implementation + mechanism_hypothesis_governance",
+    "mainline_integration_status": "none",
+    "enabled_status": "none",
+    "real_trigger_evidence": "repo readback and campaign ledger recovery only; no mechanism experiment or runtime trigger executed",
+    "claim_ceiling": "Phase 0 recovery inventory only; no evidence acceptance, mechanism validity, Gate pass, mainline effect, consciousness, emotion, agency, autonomy, EGO readiness, or companion readiness claim",
+    "classification_policy": {
+        "tracked_modified_existing_state": "tracked file modified before/alongside this recovery pass; preserve and do not overwrite without explicit scope",
+        "independent_audit_artifact_tree": "untracked Claude/independent audit-looking artifact tree; classify as evidence-like pending owner review, not accepted evidence",
+        "evidence_or_run_artifact_tree": "untracked artifact/run tree; classify as evidence-like pending owner review, not accepted evidence",
+        "research_or_governance_doc": "untracked research/governance document; classify as document evidence or task-card material pending review",
+        "codex_contract_or_task_doc": "untracked Codex contract/task document; classify as governance material pending review",
+        "task_card_tree": "untracked task-card tree; classify as task-card material pending review",
+        "implementation_or_test_surface": "untracked source/test/script surface; requires separate task-card authorization before execution or staging"
+    },
+    "dirty_item_count": 103,
+    "dirty_category_counts": {
+        "tracked_modified_existing_state": 1,
+        "task_card_tree": 1,
+        "independent_audit_artifact_tree": 20,
+        "codex_contract_or_task_doc": 3,
+        "research_or_governance_doc": 32,
+        "evidence_or_run_artifact_tree": 33,
+        "implementation_or_test_surface": 13
+    },
+    "dirty_items": [
+        {
+            "status": " M",
+            "path": "docs/decision_log.md",
+            "category": "tracked_modified_existing_state",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/AIDSP-001A-R1/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-BASELINE-FIRST-HARNESS-001A-R1-EVIDENCE-INTEGRITY-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-BATCH-ENV-HEADROOM-SCOUT-003A-RUN-001A-ROUTE-LEVEL-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE-EVIDENCE-PROVENANCE-VERIFIER-001A-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-IMPLEMENTATION-CARD-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001A-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-RUN-001B-B1-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-PREFLIGHT-00XA-TASK-CARD-R1-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-GATE1-REPLACEMENT-SURFACE-SPEC-00XA-CORE-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-HOSTILE-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-EXECUTION-TIME-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-FINAL-NEGATIVE-EVIDENCE-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-001A-REPAIRED-EXECUTION-TIME-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A/",
+            "category": "independent_audit_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/DISCOVERY-LOOP-IDENT-CALIB-001A/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/DISCOVERY-LOOP-MDE-POWER-CURVE-001A/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/GG-COBIND-ID-001A/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/baseline_first_harness_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/baseline_first_harness_001a_closeout_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/batch_env_headroom_scout_002a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/batch_env_headroom_scout_002a_false_promotion_closeout_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/batch_env_headroom_scout_002b/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/batch_env_headroom_scout_003a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/candidate_free_route_c_baseline_separation_probe_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/claude_independent_candidate_free_route_c_baseline_separation_probe_001a_hostile_audit_rejection_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_preflight_00xa_implementation_card_draft_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_preflight_00xa_negative_closeout_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_preflight_00xa_run_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_preflight_00xa_run_001b/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_preflight_00xa_task_card_r1/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_readback_or_preflight_selection_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate1_replacement_surface_spec_freeze_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate_canonical_inventory_and_return_point_readback_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate_evidence_provenance_verifier_001a_historical_negative_calibration_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate_evidence_provenance_verifier_hardening_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/gate_provenance_hardening_worktree_reconciliation_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/minimal_env_spec_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/phase0_environment_design_constraints_002c/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/phase0_environment_design_constraints_002c_r1/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/route_c_candidate_harness_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "artifacts/route_c_candidate_harness_001a_accepted_negative_evidence_closure_001a/",
+            "category": "evidence_or_run_artifact_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md",
+            "category": "codex_contract_or_task_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.registry.json",
+            "category": "codex_contract_or_task_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/codex/tasks/GATE1-REPLACEMENT-PREFLIGHT-00XA.md",
+            "category": "codex_contract_or_task_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ACTIVE-INFERENCE-DRIVE-AFFECT-LINEAGE-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ACTIVE-INFERENCE-DRIVE-SEPARATION-PREFLIGHT-001A-R1.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ACTIVE-INFERENCE-DRIVE-SEPARATION-PREFLIGHT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/BASELINE-FIRST-HARNESS-001A-R1-ACCEPTED-NO-HEADROOM-CLOSEOUT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/BATCH-ENV-HEADROOM-SCOUT-002A-FALSE-PROMOTION-CLOSEOUT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/BATCH-ENV-HEADROOM-SCOUT-002B-INDEPENDENT-STATIC-AND-COMPUTE-BASELINE-SCOUT-TASK-CARD-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-CANDIDATE-FREE-ROUTE-C-BASELINE-SEPARATION-PROBE-001A-HOSTILE-AUDIT-REJECTION-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-AUDIT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1-REAUDIT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-HOSTILE-AUDIT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-AUDIT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-AUDIT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/CLAUDE-INDEPENDENT-ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1-REAUDIT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/DRAFT-ROUTE-C-CANDIDATE-CARD-001A-R1.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/GATE1-REPLACEMENT-PREFLIGHT-00XA-CLOSED-NEGATIVE-EVIDENCE-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/GROUNDING-GATE-COBINDING-IDENTIFIABILITY-PROBE-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/GROUNDING-GATE-K1-K2-PREFLIGHT-FEASIBILITY-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/GROUNDING-GATE-SELF-STATE-ROUTE-NEGATIVE-EVIDENCE-CLOSEOUT-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/MINIMAL-ENV-SPEC-001A.freeze.json",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/MINIMAL-ENV-SPEC-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/PHASE0-ENVIRONMENT-ATTACK-LIBRARY-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C-R1.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/PHASE0-ENVIRONMENT-DESIGN-CONSTRAINTS-002C.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ROUTE-C-CANDIDATE-HARNESS-001A-ACCEPTED-NEGATIVE-EVIDENCE-CLOSURE-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A-R1.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ROUTE-C-CANDIDATE-HARNESS-IMPLEMENTATION-TASK-CARD-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A-R1.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/ROUTE-C-CANDIDATE-IMPLEMENTATION-CARD-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/SELF-BOUNDARY-INTERVENABLE-LATENT-NEGATIVE-LINEAGE-AND-KILLER-CATALOG-001A.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/SESSION-HANDOFF-001A-post-AIDSP-to-grounding-gate.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/gate1_replacement_surface_spec_00xa.freeze.json",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/research/gate1_replacement_surface_spec_00xa.md",
+            "category": "research_or_governance_doc",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "docs/task_cards/",
+            "category": "task_card_tree",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "scripts/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "src/aidsp_001a_r1/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "src/discovery_loop_ident_calib_001a/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "src/discovery_loop_mde_power_curve_001a/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "src/gate1_replacement_preflight_00xa/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "src/gate_evidence_provenance_verifier_001a/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "src/gg_cobind_id_001a/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "tests/gate1_replacement_preflight_00xa/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "tests/research/",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "tests/test_aidsp_001a_r1.py",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "tests/test_discovery_loop_ident_calib_001a.py",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "tests/test_gate_evidence_provenance_verifier_001a.py",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        },
+        {
+            "status": "??",
+            "path": "tests/test_gg_cobind_id_001a.py",
+            "category": "implementation_or_test_surface",
+            "phase0_created": false,
+            "accepted_as_evidence": false
+        }
+    ],
+    "phase0_excluded_paths": [
+        "docs/research_campaign/",
+        "docs/research_campaign/plan.md",
+        "docs/OVERALL_PROGRESS.md",
+        "artifacts/research_campaign/experiment_log.jsonl",
+        "artifacts/research_campaign/stage_scorecard.json",
+        "artifacts/research_campaign/phase0_recovery_inventory_001a.json",
+        "artifacts/research_campaign/phase0_recovery_validation_001a.json"
+    ],
+    "acceptance_status": "inventory_only_pending_review",
+    "next_minimal_closed_loop_action": "validate JSON/ledger consistency, then decide recovery closeout or independent audit before any new mechanism task",
+    "auto_remote_anchor": "forbidden"
+}

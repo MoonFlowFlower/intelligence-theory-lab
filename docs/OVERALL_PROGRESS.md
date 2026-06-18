@@ -1,6 +1,48 @@
-# Overall Progress
+﻿# Overall Progress
 
-Last updated: 2026-06-07T21:48:58-05:00
+Last updated: 2026-06-17T22:03:35-05:00
+
+## Active Recovery Checkpoint
+
+```text
+task = RESEARCH-CAMPAIGN-PHASE0-RECOVERY-LEDGER-HARDENING-001A
+verdict = phase0_recovery_inventory_corrected_bounded
+layer = engineering_implementation + mechanism_hypothesis_governance
+mainline_integration_status = none
+enabled_status = none
+real_trigger_evidence = repo readback and campaign ledger recovery only
+claim_ceiling = Phase 0 recovery / evidence-hygiene hardening only
+auto_remote_anchor = forbidden
+```
+
+The current workspace is dirty and ahead of origin. Phase 0 is a recovery-first
+checkpoint: classify current dirty/untracked evidence-like state, create the
+canonical campaign plan, update the campaign ledger files, and block any new
+mechanism experiment until the recovery record validates. The Phase 0 validation artifact records the current recovery checks.
+
+Inventory correction: the recovery inventory excludes Phase 0-created campaign ledger paths from the pre-existing dirty-state count and preserves the correction in the ledger.
+
+This checkpoint does not accept any untracked artifact as valid evidence. It
+does not run a baseline battery, mechanism candidate, Gate, runtime path, EGO
+mainline path, or live trigger.
+
+Required Phase 0 artifacts:
+
+```text
+docs/research_campaign/plan.md
+artifacts/research_campaign/phase0_recovery_inventory_001a.json
+artifacts/research_campaign/phase0_recovery_validation_001a.json
+artifacts/research_campaign/experiment_log.jsonl
+artifacts/research_campaign/stage_scorecard.json
+```
+
+Next minimal closed-loop action:
+
+```text
+Run Phase 0 validation: JSON parse, ledger-schema check, plan/progress consistency
+check, and final git readback. Then decide recovery closeout or independent audit
+before any Phase 1 problem-formalization task card.
+```
 
 ## Program Goal
 
