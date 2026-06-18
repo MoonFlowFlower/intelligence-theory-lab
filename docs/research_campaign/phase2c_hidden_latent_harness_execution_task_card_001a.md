@@ -3,11 +3,20 @@
 Task ID:
 `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-TASK-CARD-001A`
 
-Status: pending focused validation.
+Status: command-contract repaired after initial exact-command import failure.
 
 This card opens a bounded future execution checkpoint for the reviewed
 Phase2C hidden-latent harness implementation. It does not run the harness and
 does not generate output artifacts.
+
+Repair note: the initial audited command
+`python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a`
+failed before generating artifacts because the package lives under `src/` and
+the repo-local Python invocation did not place `src/` on `sys.path`. The
+failure is preserved in
+`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_failure_001a.json`.
+The repaired command below follows the repo's existing PowerShell
+`PYTHONPATH=src` runner pattern.
 
 ## Problem Definition
 
@@ -133,7 +142,7 @@ Future harness execution remains disabled until:
 Future execution, if later authorized by this card's reviewer audit, must use:
 
 ```text
-python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a
+$env:PYTHONPATH='src'; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a
 ```
 
 ## Future Required Output Artifacts
@@ -232,6 +241,8 @@ This task-card-opening checkpoint is acceptable only if:
 
 - this card exists;
 - required command and artifact paths are present;
+- the repaired command includes `PYTHONPATH=src` for repo-root PowerShell
+  execution;
 - focused validation passes;
 - no files exist under `artifacts/phase2c_hidden_latent_harness_001a/`;
 - no future execution summary exists at
@@ -271,6 +282,8 @@ This execution-card-opening checkpoint may change only:
 
 - `docs/research_campaign/phase2c_hidden_latent_harness_execution_task_card_001a.md`;
 - `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_validation_001a.json`;
+- `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_failure_001a.json`;
+- `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_repair_validation_001a.json`;
 - `docs/research_campaign/plan.md`;
 - `docs/OVERALL_PROGRESS.md`;
 - `artifacts/research_campaign/stage_scorecard.json`;

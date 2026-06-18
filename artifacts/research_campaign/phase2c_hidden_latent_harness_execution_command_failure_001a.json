@@ -1,0 +1,28 @@
+﻿{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-TASK-CARD-001A",
+    "recorded_at":  "2026-06-18T09:26:34-05:00",
+    "failure_id":  "initial_exact_command_missing_src_pythonpath",
+    "failed_command":  "python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a",
+    "exit_code":  1,
+    "output":  "python : C:\\Python313\\python.exe: Error while finding module specification for \r\n\u0027phase2c_hidden_latent_harness_001a.runner\u0027 (ModuleNotFoundError: No module named \u0027phase2c_hidden_latent_harness_001a\u0027)\r\nAt line:42 char:34\r\n+ ... tedNative { python -m phase2c_hidden_latent_harness_001a.runner --out ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (C:\\Python313\\py..._harness_001a\u0027):String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError",
+    "root_cause":  "The package is under src/phase2c_hidden_latent_harness_001a, but the exact audited command did not add src to sys.path; pyproject pytest pythonpath is repo root, and tests insert src manually.",
+    "diagnostics":  {
+                        "source_runner_exists":  true,
+                        "pyproject_pythonpath":  "pythonpath = [\".\"]",
+                        "test_file_inserts_src":  true,
+                        "import_without_pythonpath_exit_code":  1,
+                        "import_without_pythonpath_output":  "python : Traceback (most recent call last):\r\nAt line:43 char:40\r\n+ ... tedNative { python -c \"import phase2c_hidden_latent_harness_001a.runn ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n  File \"\u003cstring\u003e\", line 1, in \u003cmodule\u003e\r\n    import phase2c_hidden_latent_harness_001a.runner\r\nModuleNotFoundError: No module named \u0027phase2c_hidden_latent_harness_001a\u0027",
+                        "import_with_pythonpath_exit_code":  0,
+                        "import_with_pythonpath_output":  "import_with_pythonpath=ok",
+                        "prior_repo_pattern":  "$env:PYTHONPATH=\u0027src\u0027; python -m baseline_first_harness_001a.runner --output-dir artifacts\\baseline_first_harness_001a"
+                    },
+    "preserved_script_failures":  [
+                                      "first_command_repair_validation_script_failed_while_adding_missing_scorecard_property_before_artifact_write",
+                                      "second_command_repair_validation_script_failed_because_expected_native_nonzero_exit_was_treated_as_terminating_before_artifact_write"
+                                  ],
+    "harness_execution_run":  false,
+    "harness_output_generated":  false,
+    "output_directory_exists":  false,
+    "execution_summary_exists":  false,
+    "claim_ceiling":  "Failed command-contract/import-path evidence only; no harness execution evidence and no mechanism claim."
+}

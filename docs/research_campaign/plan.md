@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T09:15:32-05:00
+Last updated: 2026-06-18T09:27:37-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -32,13 +32,13 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-TASK-CARD-001A`
 
-Status: `phase2c_hidden_latent_harness_execution_task_card_reviewed_success_run_authorized_not_executed`
+Status: `phase2c_hidden_latent_harness_execution_command_contract_repaired_run_authorized_not_executed`
 
-Current stage status: `phase2c_hidden_latent_harness_execution_task_card_reviewed_success_run_authorized_not_executed`
+Current stage status: `phase2c_hidden_latent_harness_execution_command_contract_repaired_run_authorized_not_executed`
 
 Reviewer verdict: `success_reached`
 
-Current stage goal: Preserve the reviewed Phase2C harness execution task card as the bounded authorization boundary for the next local harness run.
+Current stage goal: Preserve the failed exact command, repair the repo-root runner command contract, and run only the repaired bounded local harness command.
 
 Stage success criteria:
 
@@ -46,6 +46,8 @@ Stage success criteria:
 - runner command is frozen
 - required output artifact list is frozen
 - implementation audit success is cited
+- initial exact-command import failure is preserved
+- repaired command uses `PYTHONPATH=src`
 - no harness output directory exists
 - no execution summary artifact exists
 - focused validation passes
@@ -57,7 +59,7 @@ Stage success criteria:
 
 Next decision gate: Run the frozen local Phase2C harness command and produce only the required artifacts, then validate and audit the result.
 
-Next frontier: Run `python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a` as the next bounded local execution checkpoint, then validate and read-only audit the generated artifacts. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Run `$env:PYTHONPATH='src'; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a` as the next bounded local execution checkpoint, then validate and read-only audit the generated artifacts. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
@@ -79,6 +81,12 @@ Checkpoint artifact:
 Validation artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_validation_001a.json`
 
+Command failure artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_failure_001a.json`
+
+Command repair validation artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_repair_validation_001a.json`
+
 Audit artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_audit_001a.json`
 
@@ -86,22 +94,22 @@ Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local Phase2C hidden-latent harness execution task card
-reviewed successfully. The next bounded local harness run is authorized but
-has not executed.
+Enabled status: local Phase2C hidden-latent harness execution command
+contract repaired. The next bounded local harness run is authorized but has
+not executed.
 
-Real trigger evidence: focused validation and read-only reviewer audit over
-execution task-card clauses, implementation audit status, targeted source
+Real trigger evidence: failed exact command import readback, repo Python path
+diagnostics, repaired `PYTHONPATH=src` import check, focused validation,
+read-only reviewer audit over execution task-card clauses, targeted source
 tests, output artifact absence, execution summary absence, and campaign state
 readback.
 
-Claim ceiling: Phase2C harness execution task-card reviewer-audit success and
+Claim ceiling: Phase2C harness execution command-contract repair and
 next-run authorization only; no harness execution, no output artifacts, no
 baseline result, no ablation result, no replay evidence, no candidate
-validation, no mechanism validity, learning/adaptation success,
-consciousness, real emotion, autonomy, EGO readiness, companion readiness,
-runtime/mainline effect, route exhaustion, terminal verdict, or program
-completion claim.
+validation, no mechanism validity, learning/adaptation success, consciousness,
+real emotion, autonomy, EGO readiness, companion readiness, runtime/mainline
+effect, route exhaustion, terminal verdict, or program completion claim.
 
 Auto-Remote-Anchor: forbidden.
 
