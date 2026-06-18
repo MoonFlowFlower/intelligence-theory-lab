@@ -1,0 +1,132 @@
+﻿{
+    "task_id":  "RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-001A",
+    "recorded_at":  "2026-06-18T09:31:23-05:00",
+    "layer":  "engineering_implementation + mechanism_hypothesis_testing",
+    "mainline_integration_status":  "none",
+    "enabled_status":  "local_phase2c_hidden_latent_harness_command_executed_invalid_output_pending_source_repair_task_card",
+    "command":  "=\u0027src\u0027; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a",
+    "command_exit_code":  0,
+    "verdict":  "invalid_execution_output_claim_ceiling_trace_empty",
+    "blocking_findings":  [
+                              {
+                                  "id":  "result_disclaims_harness_execution",
+                                  "details":  false
+                              },
+                              {
+                                  "id":  "trace_jsonl_empty",
+                                  "details":  "trace row count is 0"
+                              },
+                              {
+                                  "id":  "result_verdict_implemented_not_executed",
+                                  "details":  "implemented_not_executed"
+                              }
+                          ],
+    "required_output_files":  [
+                                  "result.json",
+                                  "trace.jsonl",
+                                  "baseline_comparison.json",
+                                  "ablation_report.json",
+                                  "replay_report.json",
+                                  "leakage_report.json",
+                                  "failure_manifest.json"
+                              ],
+    "missing_required_output_files":  [
+
+                                      ],
+    "output_directory":  "artifacts/phase2c_hidden_latent_harness_001a",
+    "result_verdict":  "implemented_not_executed",
+    "harness_execution_claim":  false,
+    "trace_row_count":  0,
+    "baseline_report_present":  true,
+    "strongest_fair_baseline_id":  "fsm_planner",
+    "strongest_fair_baseline_macro_accuracy":  0.3333333333333333,
+    "baseline_ids":  [
+                         "count_table",
+                         "episodic_traversal",
+                         "exhaustive_legal_query",
+                         "fsm_planner",
+                         "graph_cache",
+                         "lookup",
+                         "majority",
+                         "nearest_neighbor",
+                         "observation_only",
+                         "random",
+                         "successor_map",
+                         "trace_only_replay",
+                         "transition_table"
+                     ],
+    "replay_passed":  true,
+    "replay_observed_input_reads":  {
+                                        "serialized_state":  true,
+                                        "current_observation":  true,
+                                        "legal_action_or_query_schema":  true,
+                                        "budget_state":  true,
+                                        "latent_belief_or_memory_state":  true
+                                    },
+    "leakage_positive_controls_passed":  true,
+    "leakage_clean_scan_passed":  true,
+    "ablation_all_controls_consumed":  true,
+    "failure_manifest_has_blocking_failure":  false,
+    "failure_manifest_blocking_reasons":  [
+
+                                          ],
+    "candidate_mechanism_run":  false,
+    "phase3_opened":  false,
+    "route_tournament_authorized":  false,
+    "auto_remote_anchor":  "forbidden",
+    "claim_ceiling":  "Invalid Phase2C execution-output evidence only; this proves the repaired command can generate files, but it does not prove valid harness execution evidence, baseline headroom evidence, candidate validation, mechanism validity, learning/adaptation success, subjectivity, consciousness, real emotion, autonomy, EGO readiness, companion readiness, runtime/mainline effect, route exhaustion, terminal verdict, or program completion.",
+    "next_minimal_closed_loop_action":  "Open a bounded source-repair task card before modifying the runner: repair run_harness so execution result is not hard-coded to implemented_not_executed, emits non-empty trace rows, persists computed provenance if required, then rerun under a reviewed output contract without treating this invalid output as evidence.",
+    "source_readback":  [
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\result.json",
+                                "sha256":  "e0b2ced905fe1e7cd1b253b908f870c5043fb6dde836e26a4d9a4a603639a5e1",
+                                "byte_count":  626
+                            },
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\trace.jsonl",
+                                "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                "byte_count":  0
+                            },
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\baseline_comparison.json",
+                                "sha256":  "c1231d6cab7a44fc9bbd464c710fb6927e37cf46699fa8dfcd435fe427559d3a",
+                                "byte_count":  15167
+                            },
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\ablation_report.json",
+                                "sha256":  "b7e4d62420b70be1170bf0a088a46f1259c1f79c5feb8e6a1ea0779a7170934f",
+                                "byte_count":  2726
+                            },
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\replay_report.json",
+                                "sha256":  "108e442547a4f96b067c64c15bce65b74878538ee6a8c31273390d6eefba5441",
+                                "byte_count":  6658
+                            },
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\leakage_report.json",
+                                "sha256":  "3bf221363f27511c6b9a268a8c252e0423f03b0886b080f76c3eb02332ae5ef8",
+                                "byte_count":  526
+                            },
+                            {
+                                "path":  "artifacts\\phase2c_hidden_latent_harness_001a\\failure_manifest.json",
+                                "sha256":  "2cfdcff2de5b2605f8a6524140103640f98db806c9c9c7ab22c88ea7cf1aa318",
+                                "byte_count":  156
+                            }
+                        ],
+    "what_this_does_not_prove":  [
+                                     "No valid harness execution evidence",
+                                     "No non-empty trace evidence",
+                                     "No candidate validation",
+                                     "No mechanism validity",
+                                     "No learning/adaptation success",
+                                     "No subjectivity or consciousness evidence",
+                                     "No real emotion evidence",
+                                     "No autonomy or agency-success evidence",
+                                     "No EGO readiness",
+                                     "No companion readiness",
+                                     "No runtime or mainline effect",
+                                     "No route exhaustion",
+                                     "No terminal verdict",
+                                     "No program completion"
+                                 ]
+}

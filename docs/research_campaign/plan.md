@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T09:27:37-05:00
+Last updated: 2026-06-18T09:31:28-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -32,13 +32,13 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-TASK-CARD-001A`
 
-Status: `phase2c_hidden_latent_harness_execution_command_contract_repaired_run_authorized_not_executed`
+Status: `phase2c_hidden_latent_harness_execution_invalid_output_trace_empty_pending_source_repair_task_card`
 
-Current stage status: `phase2c_hidden_latent_harness_execution_command_contract_repaired_run_authorized_not_executed`
+Current stage status: `phase2c_hidden_latent_harness_execution_invalid_output_trace_empty_pending_source_repair_task_card`
 
 Reviewer verdict: `success_reached`
 
-Current stage goal: Preserve the failed exact command, repair the repo-root runner command contract, and run only the repaired bounded local harness command.
+Current stage goal: Preserve the invalid Phase2C execution output and open a bounded source-repair task card before any rerun.
 
 Stage success criteria:
 
@@ -48,18 +48,20 @@ Stage success criteria:
 - implementation audit success is cited
 - initial exact-command import failure is preserved
 - repaired command uses `PYTHONPATH=src`
-- no harness output directory exists
-- no execution summary artifact exists
+- harness output directory exists and is preserved as invalid execution output
+- execution summary artifact records the invalid output boundary
 - focused validation passes
 - candidate mechanisms remain unrun
 - Phase 3 remains unopened
 - route tournament remains unauthorized
-- harness execution is authorized only for the next bounded local run checkpoint
-- harness execution has not run
+- harness execution ran once after command repair
+- generated output is invalid as execution evidence because `result.json` says
+  `implemented_not_executed`, `harness_execution_claim=false`, and
+  `trace.jsonl` is empty
 
-Next decision gate: Run the frozen local Phase2C harness command and produce only the required artifacts, then validate and audit the result.
+Next decision gate: Open a bounded source-repair task card before modifying or rerunning the Phase2C harness.
 
-Next frontier: Run `$env:PYTHONPATH='src'; python -m phase2c_hidden_latent_harness_001a.runner --output-dir artifacts/phase2c_hidden_latent_harness_001a` as the next bounded local execution checkpoint, then validate and read-only audit the generated artifacts. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Create a source-repair task card for `run_harness` so it no longer hard-codes `implemented_not_executed`, emits non-empty trace rows, and persists any required provenance before a reviewed rerun. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
@@ -87,6 +89,9 @@ Command failure artifact:
 Command repair validation artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_command_repair_validation_001a.json`
 
+Execution summary artifact:
+`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_001a.json`
+
 Audit artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_audit_001a.json`
 
@@ -94,19 +99,15 @@ Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local Phase2C hidden-latent harness execution command
-contract repaired. The next bounded local harness run is authorized but has
-not executed.
+Enabled status: local Phase2C hidden-latent harness command executed once,
+but the generated output is invalid as execution evidence.
 
-Real trigger evidence: failed exact command import readback, repo Python path
-diagnostics, repaired `PYTHONPATH=src` import check, focused validation,
-read-only reviewer audit over execution task-card clauses, targeted source
-tests, output artifact absence, execution summary absence, and campaign state
-readback.
+Real trigger evidence: repaired command exit 0, generated required filenames,
+`result.json` verdict `implemented_not_executed`,
+`harness_execution_claim=false`, and empty `trace.jsonl`.
 
-Claim ceiling: Phase2C harness execution command-contract repair and
-next-run authorization only; no harness execution, no output artifacts, no
-baseline result, no ablation result, no replay evidence, no candidate
+Claim ceiling: invalid Phase2C execution-output evidence only; no valid
+harness execution evidence, no baseline headroom evidence, no candidate
 validation, no mechanism validity, learning/adaptation success, consciousness,
 real emotion, autonomy, EGO readiness, companion readiness, runtime/mainline
 effect, route exhaustion, terminal verdict, or program completion claim.
