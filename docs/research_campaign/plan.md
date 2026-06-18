@@ -1,6 +1,6 @@
 ﻿# Strict Intelligence Mechanism Research Campaign Plan
 
-Last updated: 2026-06-18T09:31:28-05:00
+Last updated: 2026-06-18T09:35:04-05:00
 
 This file is the compact campaign controller. Historical task cards, prior
 checkpoints, and the full pre-compaction plan snapshot are preserved in:
@@ -30,15 +30,15 @@ unless a later bounded task records computed evidence for a narrower proxy.
 
 ## Current Campaign State
 
-Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-TASK-CARD-001A`
+Current iteration: `RESEARCH-CAMPAIGN-PHASE2C-HIDDEN-LATENT-HARNESS-EXECUTION-OUTPUT-REPAIR-001A`
 
-Status: `phase2c_hidden_latent_harness_execution_invalid_output_trace_empty_pending_source_repair_task_card`
+Status: `phase2c_hidden_latent_harness_execution_output_repair_task_card_validated_pending_tdd_source_repair`
 
-Current stage status: `phase2c_hidden_latent_harness_execution_invalid_output_trace_empty_pending_source_repair_task_card`
+Current stage status: `phase2c_hidden_latent_harness_execution_output_repair_task_card_validated_pending_tdd_source_repair`
 
 Reviewer verdict: `success_reached`
 
-Current stage goal: Preserve the invalid Phase2C execution output and open a bounded source-repair task card before any rerun.
+Current stage goal: Execute the validated source-repair card using TDD so the repaired run can emit non-empty trace rows, execution-scoped result fields, and persisted computed provenance.
 
 Stage success criteria:
 
@@ -59,9 +59,9 @@ Stage success criteria:
   `implemented_not_executed`, `harness_execution_claim=false`, and
   `trace.jsonl` is empty
 
-Next decision gate: Open a bounded source-repair task card before modifying or rerunning the Phase2C harness.
+Next decision gate: Add the failing focused test before source repair, then repair only the runner and focused tests.
 
-Next frontier: Create a source-repair task card for `run_harness` so it no longer hard-codes `implemented_not_executed`, emits non-empty trace rows, and persists any required provenance before a reviewed rerun. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
+Next frontier: Add a failing focused test for non-empty trace rows, execution-scoped result fields, and persisted `computed_evidence_provenance.json`; then repair only `src/phase2c_hidden_latent_harness_001a/runner.py` and the focused test file. Candidate mechanisms, Phase 3, route tournament, runtime/EGO mainline, push, tag, remote anchor, terminal verdicts, and route-exhaustion claims remain blocked.
 
 ## Active Checkpoint
 
@@ -92,6 +92,12 @@ Command repair validation artifact:
 Execution summary artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_001a.json`
 
+Repair task card:
+`docs/research_campaign/phase2c_hidden_latent_harness_execution_output_repair_task_card_001a.md`
+
+Repair task-card validation:
+`artifacts/research_campaign/phase2c_hidden_latent_harness_execution_output_repair_task_card_validation_001a.json`
+
 Audit artifact:
 `artifacts/research_campaign/phase2c_hidden_latent_harness_execution_task_card_audit_001a.json`
 
@@ -99,18 +105,18 @@ Layer: engineering implementation + mechanism-hypothesis governance.
 
 Mainline integration status: none.
 
-Enabled status: local Phase2C hidden-latent harness command executed once,
-but the generated output is invalid as execution evidence.
+Enabled status: local Phase2C execution-output repair task card validated
+pending TDD source repair.
 
-Real trigger evidence: repaired command exit 0, generated required filenames,
-`result.json` verdict `implemented_not_executed`,
-`harness_execution_claim=false`, and empty `trace.jsonl`.
+Real trigger evidence: invalid output boundary plus focused validation of the
+source-repair task card, scoped write paths, repaired-output directory absence,
+and forbidden candidate/Phase3/route-tournament flags.
 
-Claim ceiling: invalid Phase2C execution-output evidence only; no valid
-harness execution evidence, no baseline headroom evidence, no candidate
-validation, no mechanism validity, learning/adaptation success, consciousness,
-real emotion, autonomy, EGO readiness, companion readiness, runtime/mainline
-effect, route exhaustion, terminal verdict, or program completion claim.
+Claim ceiling: Phase2C execution-output source-repair task-card validation
+only; no repaired harness execution, no candidate validation, no mechanism
+validity, learning/adaptation success, consciousness, real emotion, autonomy,
+EGO readiness, companion readiness, runtime/mainline effect, route exhaustion,
+terminal verdict, or program completion claim.
 
 Auto-Remote-Anchor: forbidden.
 
