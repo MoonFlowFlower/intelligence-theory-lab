@@ -1,0 +1,81 @@
+{
+  "task_id": "TLGP-001B-R2-BANK-RECORD-001",
+  "record_type": "canonical_bank_record",
+  "bank_status": "banked_bounded_invalid",
+  "bank_label": "TLGP-001B-R2 official full run produced bounded INVALID due to learnability-floor failure under frozen prereg sha 6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+  "current_layer": "engineering evidence-governance / provenance banking only",
+  "mainline_integration_status": "none; no EGO mainline, runtime, admission, bridge, product behavior, or agent capability integration",
+  "enabled_status": "no runtime enabling; records an already accepted isolated offline TLGP-001B-R2 official full-run bundle as banked bounded INVALID",
+  "real_trigger_evidence": {
+    "operator_provided_b3_short_reaudit_verdict": "accept_b3_agents_cleanup__official_bundle_bankable_as_bounded_invalid",
+    "older_full_run_audit_before_repair": "artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-OFFICIAL-FULL-RUN-AUDIT-001/",
+    "provenance_repair_record": "artifacts/TLGP-001B-R2/PROVENANCE_REPAIR_001/",
+    "note": "The older full-run audit required B1-B3 repair before banking; this bank record is a successor record after the user-provided independent B3-only short re-audit accepted the AGENTS.md cleanup."
+  },
+  "official_scientific_verdict": "tlgp001b_r2_invalid_learnability_floor_failed",
+  "bounded_invalid_reason": "INVALID because Rung0 learnability floor failed before Rung3 could adjudicate H0/H1.",
+  "frozen_prereg_boundary": {
+    "path": "artifacts/TLGP-001B-R2/prereg.json",
+    "canonical_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "raw_bytes_sha256": "2a2c2217d61f2b598ff5a96aeabadad5a746b8b9b4bcc6caf781d2d7f6772b91"
+  },
+  "official_result_boundary": {
+    "path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/result.json",
+    "sha256": "3e0a2aaac4c76f6354ff9b4aef5c8c5e24aa0c8b349f11c7677ccc0ba23035ad",
+    "task_verdict": "tlgp001b_r2_official_full_run_completed",
+    "scientific_verdict": "tlgp001b_r2_invalid_learnability_floor_failed"
+  },
+  "trace_boundary": {
+    "path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/traces/official_trace.jsonl",
+    "sha256": "f9d5f47854b91cc107230a2335b12c8c43dad6ffc82b34a2dee0da708ab6c0fd"
+  },
+  "b3_provenance_note": {
+    "accepted_b3_short_reaudit_verdict": "accept_b3_agents_cleanup__official_bundle_bankable_as_bounded_invalid",
+    "sandbox_raw_git_output_note": "Sandbox raw git output superficially showed dirty AGENTS.md.",
+    "artifact_explanation": "That dirty view was attributed to FUSE null-padding plus CR/autocrlf environment artifacts.",
+    "decisive_proof": "Stripping only NUL and CR from worktree AGENTS.md produced bytes whose git hash-object exactly equaled git rev-parse HEAD:AGENTS.md.",
+    "content_equivalence_conclusion": "AGENTS.md content equals the HEAD governance content after removing environment artifacts.",
+    "closed_blockers": [
+      "prior forbidden governance drift closed",
+      "EOF whitespace blocker closed"
+    ],
+    "cleanup_invariants": {
+      "index_empty": true,
+      "head_unchanged": true,
+      "no_add_commit_push_tag_remote_anchor_during_b3_cleanup": true,
+      "no_tlgp001b_r2_science_prereg_result_trace_replay_leakage_ablation_artifact_modified": true
+    },
+    "b3_note_location": "artifacts/TLGP-001B-R2/BANK_RECORD_001/bank_record.json:b3_provenance_note"
+  },
+  "codex_machine_clean_readback": {
+    "git_diff_ignore_space_at_eol_agents_md": "empty",
+    "git_diff_w_agents_md": "empty",
+    "head_agents_md_blob": "742c637e8390afbb5a3af363f0d5e1762bf5724b",
+    "worktree_agents_md_hash_object": "742c637e8390afbb5a3af363f0d5e1762bf5724b",
+    "git_status_short_agents_md": "empty",
+    "git_diff_cached_name_status": "empty",
+    "git_diff_name_status": "empty",
+    "head": "c142443e9b85a2087e569a3f74a9f8fdd05ac32c"
+  },
+  "science_non_mutation_statement": {
+    "no_training_rerun": true,
+    "no_rung3_reinterpretation_as_h1": true,
+    "no_001a_downgrade": true,
+    "no_001c_advance": true,
+    "no_prereg_modification": true,
+    "no_harness_source_modification": true,
+    "no_result_modification": true,
+    "no_trace_modification": true,
+    "no_replay_artifact_modification": true,
+    "no_leakage_artifact_modification": true,
+    "no_ablation_artifact_modification": true,
+    "no_scientific_verdict_modification": true,
+    "no_threshold_budget_grid_seed_modification": true,
+    "no_agents_md_modification_by_bank_task": true,
+    "no_claude_md_modification": true,
+    "no_mainline_runtime_admission_modification": true
+  },
+  "claim_ceiling": "This bank record proves only that the TLGP-001B-R2 official full run is bankable as bounded offline INVALID due to learnability-floor failure under frozen prereg/codepath/budget/grid/seeds. It does not prove learning-as-mechanism, agency, self, feeling, subjectivity, intelligence, autonomy, runtime readiness, companion readiness, EGO readiness, mainline effect, theory failure, H0, H1, or 001A downgrade.",
+  "auto_remote_anchor": "forbidden; no remote anchor authorized by this bank-record task",
+  "next_minimal_action": "Route decision is separate after bank."
+}

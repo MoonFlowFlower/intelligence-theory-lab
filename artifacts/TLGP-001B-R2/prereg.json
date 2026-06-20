@@ -1,0 +1,391 @@
+{
+  "DELTA": 0.1,
+  "FLOOR": 0.2,
+  "N_SEEDS": 10,
+  "R0_RULES": {
+    "count": 8,
+    "note": "full value coverage for adapt AND query in rung0",
+    "selected_from": "TRAIN_RULES",
+    "selection_seed_key": "R0_RULES_SELECT_SEED",
+    "value_coverage": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "ablation": {
+    "context_ablation": "remove adaptation context -> meta MUST drop to floor; evaluated AT RUNG1 (discriminative, meta above floor); also reported at rung3 (non-discriminative when rung3 meta at floor); failure -> INVALID(discriminativeness_or_ablation), NOT H0",
+    "shuffle_structure": "reuse 001A non-compositional world; meta headroom MUST collapse (<=DELTA); failure -> INVALID(discriminativeness_or_ablation), NOT H0"
+  },
+  "authorization_gate": "DESIGN-ONLY until ALL of: (1) independent card audit passes TLGP-001B-R2-R1 [DONE: accept_for_prereg_freeze_only]; (2) explicit operator 'implement TLGP-001B-R2' referencing THIS frozen prereg sha256; (3) this frozen prereg exists & verifies. Prereg-freeze authorized NOW; implementation NOT authorized.",
+  "auto_remote_anchor_policy": "LOCAL-ONLY default; harness performs NO git op; remote BLOCKED until scripts/push.* hardcoded-PAT rotated/removed; any remote anchor operator-initiated only, scoped explicit `git add`, NEVER `git add -A`, NEVER push.py",
+  "candidate_free": true,
+  "capacity_grid": {
+    "gru": {
+      "hidden": [
+        64,
+        128,
+        256
+      ],
+      "layers": [
+        1,
+        2
+      ]
+    },
+    "mlp_summary": {
+      "hidden": [
+        [
+          128,
+          128
+        ],
+        [
+          256,
+          256
+        ]
+      ]
+    },
+    "note": "IDENTICAL to R1; MUST NOT be enlarged to chase H1 or shrunk to force H0/H1",
+    "saturation_witnesses": {
+      "gru": "hidden=256,layers=2",
+      "mlp_summary": "[256,256]",
+      "transformer": "d_model=256,layers=4"
+    },
+    "transformer": {
+      "d_model": [
+        64,
+        128,
+        256
+      ],
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": [
+        2,
+        4
+      ]
+    }
+  },
+  "card_audit_verdict": "accept_for_prereg_freeze_only",
+  "card_source": "docs/task_cards/TLGP-001B-R2-R1.md",
+  "card_version": "R2-R1",
+  "claim_ceiling": "Bounded offline evidence on whether ONE world's within-episode inference headroom survives a CAPABILITY-ESTABLISHED cross-episode PRIMARY meta. Candidate-free; tests NO mechanism. NOT learning-as-mechanism, agency, self, feeling, subjectivity, intelligence, autonomy, AGI, companion-readiness, or EGO-readiness. Seen-rule rungs (0,1,2) prove ONLY optimization/representation/amortization capability and are NEVER mechanism evidence or H1. invalid_no_capability_witness means THIS family at THIS frozen budget/grid failed to provide a capability witness -- it does NOT prove the family cannot learn with more data/training/diversity. invalid_inconclusive_underpowered means the rung3 statistic could not robustly distinguish survive vs amortize at N_SEEDS=10; it is NOT a downgrade of 001A. Any negative bounded to THIS world + THIS meta family + this frozen capacity grid.",
+  "close_fraction_min": 9,
+  "decision_statistic": {
+    "H0_requires": "ANY eligible primary family closes rung3: headroom_vs_meta <= DELTA on >= 9/10 seeds",
+    "H1_requires": "BOTH primary families eligible AND each robustly fails to close rung3: LCB(headroom) > DELTA",
+    "inconclusive": "neither robust-survive nor robust-close (CI straddles DELTA, or only one primary eligible & not closing) -> INVALID(inconclusive), NEVER auto-H0",
+    "lcb": "mean(headroom_vs_meta) - 2*std/sqrt(N_SEEDS)",
+    "rung_pass_close": "headroom <= DELTA on >= 9/10 seeds (same close rule for rung0/rung1/H0)"
+  },
+  "family_roles": {
+    "diagnostic_only": [
+      "amortized_summary_mlp"
+    ],
+    "primary_adjudicators": [
+      "in_context_gru",
+      "in_context_transformer"
+    ],
+    "rule": "diagnostic family is recorded but NEVER gates the global verdict; eligibility E = set of PRIMARY families passing rung0 AND rung1"
+  },
+  "forbidden_files": [
+    "src/tlgp_001a/**",
+    "artifacts/TLGP-001A/**",
+    "artifacts/TLGP-001A-AUDIT-001/**",
+    "artifacts/TLGP-001B/** (R1 INVALID, preserved as negative governance evidence)",
+    "artifacts/TLGP-001B-INVALID-AUDIT-001/**",
+    "docs/task_cards/TLGP-001B-R2.md (audited baseline, preserved)",
+    "scripts/push.*",
+    "CLAUDE.md",
+    "any global config",
+    "any schema",
+    "EGO mainline"
+  ],
+  "frozen_date": "2026-06-18",
+  "leakage": {
+    "boundary": "meta NEVER receives rule_id or query_e (structural boundary asserted in trace)",
+    "detector": "001A dual-target MI detector (planted + RENAMED + clean controls) on EVERY meta input channel, PER RUNG test set",
+    "extra_routes_asserted_clean": [
+      "split_ids",
+      "seed_ids",
+      "rule_membership_tags",
+      "rung_labels"
+    ],
+    "standard": "BASELINE-IMMUNITY-ADMISSION-STANDARD-001A"
+  },
+  "lineage": {
+    "extends": "TLGP-001A",
+    "supersedes_design_of": "TLGP-001B-R1 capacity-control only; R1 evidence preserved",
+    "tlgp_001a_prereg_sha256": "3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579",
+    "tlgp_001b_r1_audit": "artifacts/TLGP-001B-INVALID-AUDIT-001 (verdict B positive_control_design_flaw_likely__r2_required)",
+    "tlgp_001b_r1_prereg_sha256": "c9f4ba279b75cfc1753a6c6586f11708a9d561bbbff82e8db98859165c580d41"
+  },
+  "mainline_integration": "none",
+  "metric": {
+    "headroom_vs_meta": "ideal_mean - meta_mean",
+    "note": "ideal = TLGP-001A in-family Bayesian observer (probe ceiling, excluded from fair panel); per-rung ideal recorded, never assumed 1.0",
+    "primary": "mean over episodes of per-episode balanced accuracy on held-out queries"
+  },
+  "provenance_requirements": {
+    "code_path_provenance": "delivered_sha256 == executed_sha256 for every R2 src file, recorded",
+    "fuse_safe_write": "author in /tmp, cp to mount, sha256 readback verify",
+    "git": "NONE by the harness (no add/commit/push/tag/anchor)",
+    "prereg_pin": "this R2 prereg canonical sha256 embedded in result.json BEFORE any score"
+  },
+  "question": "Does TLGP-001A's within-episode headroom survive a CAPABILITY-ESTABLISHED cross-episode meta-learner, where capability is witnessed by a graded ladder that holds rule-novelty OUT before the unseen-rule test?",
+  "replay_requirements": {
+    "exactness": "ideal exact; baseline/meta from recorded preds exact (<=1e-12); retraining reproducibility checked separately via frozen seeds",
+    "from_trace_no_retrain": "recompute rung0/rung1 pass booleans, E, scanner outputs, ideal + baselines + meta balanced accuracy, AND the full verdict from recorded predictions vs ground truth WITHOUT retraining",
+    "power_statement": "REQUIRED on the fired verdict (min detectable headroom gap at N_SEEDS=10 + observed std)",
+    "record_every_rung": "EVERY rung's per-seed per-episode predictions for PRIMARY and DIAGNOSTIC families, INCLUDING rung0 (0a fit + 0b heldout) and rung1 capability witness (fixes R1 gap: R1 recorded only REAL preds)"
+  },
+  "research_layer": "engineering_implementation+mechanism_hypothesis_preflight",
+  "rung1_scanner": {
+    "cheap_baseline_saturation_flag": "True iff any of {lookup,count_table,predict_all,majority,no_context_meta} >= (ideal_seen1 - DELTA)",
+    "interpretation_rule": "rung1 is a capability witness, NOT required to fully beat baselines; BUT if cheap_baseline_saturation is set, rung1 proves ONLY 'training path runs' and does NOT establish 'meta uses context'; in that case context-ablation collapse at rung1 is the load-bearing check",
+    "recorded_items": [
+      "query_adapt_cell_overlap_fraction_per_episode",
+      "direct_lookup_solve_rate_rung1",
+      "rung1_balacc_count_table",
+      "rung1_balacc_predict_all",
+      "rung1_balacc_majority",
+      "rung1_balacc_no_context_meta",
+      "ideal_seen1_from_seen_rule_support_recorded_not_assumed_1.0"
+    ]
+  },
+  "rungs": {
+    "rung0_learnability_floor": {
+      "adapt_values": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "checks": {
+        "0a_fit": "train-set balanced accuracy",
+        "0b_indist_heldout": "new episodes of the SAME 8 rules, same value range"
+      },
+      "claim_ceiling": "proves ONLY optimizer+architecture can fit/represent a small fixed rule set; NOT generalization/mechanism/H1/H0",
+      "gates_global": "primary families only",
+      "n_heldout_episodes": 200,
+      "n_train_episodes": 5000,
+      "pass_rule": "both 0a AND 0b >= (ideal_R0 - DELTA) on >= 9/10 seeds, per primary family",
+      "purpose": "optimization/representation capacity floor (Zhang-style); rule out implementation/budget bug (bucket A)",
+      "query_values": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "test_rules": "R0_RULES (same 8)",
+      "train_rules": "R0_RULES (8 fixed)",
+      "trains_model": true
+    },
+    "rung1_seen_rule_capability": {
+      "adapt_values": [
+        0,
+        1,
+        2
+      ],
+      "budget_readback_required": [
+        "per-epoch val balacc (curve)",
+        "early_stop_epoch",
+        "best_checkpoint_epoch",
+        "val_still_improving_at_stop",
+        "per_family_budget_saturation_summary"
+      ],
+      "claim_ceiling": "proves ONLY in-distribution amortization/retrieval of SEEN rules at THIS frozen budget/grid; NOT mechanism/generalization/H1; NEVER mechanism evidence",
+      "gates_global": "primary families -> eligibility set E",
+      "n_test_episodes": 200,
+      "n_train_episodes": 5000,
+      "n_val_episodes": 1000,
+      "pass_rule": "meta_balacc >= (ideal_seen1 - DELTA) on >= 9/10 seeds, per primary family -> ELIGIBILITY",
+      "purpose": "PRIMARY capability witness; isolate seen-rule amortization from unseen-rule extrapolation",
+      "query_values": [
+        0,
+        1,
+        2
+      ],
+      "scanner_ref": "rung1_scanner",
+      "test_rules": "TRAIN_RULES (SEEN rules, NEW disjoint episodes)",
+      "train_rules": "TRAIN_RULES (500)",
+      "trains_model": true
+    },
+    "rung2_seen_rule_value_extrapolation": {
+      "adapt_values": [
+        0,
+        1,
+        2
+      ],
+      "branch": "REPORTED diagnostic, NOT a hard verdict branch",
+      "claim_ceiling": "bounded to value-extrapolation on SEEN rules; says NOTHING about unseen rules",
+      "evaluates_model": "the rung3 (withheld-regime) trained model per seed/family",
+      "freeze_time_operationalization": "pinned to evaluate the rung3 model (NOT a new training); surfaced to operator/re-auditor",
+      "n_test_episodes": 200,
+      "purpose": "diagnostic axis-isolation: value-extrapolation on SEEN rules; contrast vs rung3 (rule-novelty) holding query {3,4} fixed",
+      "query_values": [
+        3,
+        4
+      ],
+      "test_rules": "TRAIN_RULES (SEEN rules, NEW disjoint episodes)",
+      "trains_model": false
+    },
+    "rung3_real_unseen_rule_unseen_value": {
+      "adapt_values": [
+        0,
+        1,
+        2
+      ],
+      "adjudicated_only_after": [
+        "integrity pass",
+        "rung0 pass",
+        "rung1 eligibility (E)",
+        "discriminativeness pass"
+      ],
+      "claim_ceiling": "H1=within-episode headroom survives capability-established PRIMARY metas on THIS world+family+grid; H0=amortized by such a meta; nothing broader",
+      "n_test_episodes": 200,
+      "n_train_episodes": 5000,
+      "n_val_episodes": 1000,
+      "purpose": "the experiment (= R1 REAL): unseen-rule + unseen-value",
+      "query_values": [
+        3,
+        4
+      ],
+      "test_rules": "TEST_RULES (125 UNSEEN)",
+      "train_rules": "TRAIN_RULES (500), withheld regime (adapt+query {0,1,2})",
+      "trains_model": true
+    }
+  },
+  "seed_list": {
+    "BASELINE_FIT_SEED": 20260707,
+    "LEAK_SEED": 20260705,
+    "MODEL_SEEDS": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "R0_RULES_SELECT_SEED": 20260720,
+    "RULE_SPLIT_SEED": 20260701,
+    "RUNG0_HELDOUT_EPISODES_SEED": 20260722,
+    "RUNG0_TRAIN_EPISODES_SEED": 20260721,
+    "RUNG1_TEST_EPISODES_SEED": 20260725,
+    "RUNG1_TRAIN_EPISODES_SEED": 20260723,
+    "RUNG1_VAL_EPISODES_SEED": 20260724,
+    "RUNG2_TEST_EPISODES_SEED": 20260726,
+    "RUNG3_TEST_EPISODES_SEED": 20260729,
+    "RUNG3_TRAIN_EPISODES_SEED": 20260727,
+    "RUNG3_VAL_EPISODES_SEED": 20260728,
+    "SHUFFLE_SEED": 20260706,
+    "seed_inheritance_note": "RULE_SPLIT_SEED/MODEL_SEEDS/SHUFFLE_SEED/BASELINE_FIT_SEED/LEAK_SEED INHERITED VERBATIM from R1 (TRAIN_RULES/TEST_RULES + model seeds identical); RUNG*/R0_* are NEW, chosen WITHOUT seeing R1 scores"
+  },
+  "source_allowlist": {
+    "may_create_under": [
+      "src/tlgp_001b_r2/**",
+      "artifacts/TLGP-001B-R2/**"
+    ],
+    "may_read_only_import": [
+      "src/tlgp_001a/world.py",
+      "src/tlgp_001a/ideal_observer.py",
+      "src/tlgp_001a/metrics.py",
+      "src/tlgp_001a/leakage.py",
+      "src/tlgp_001b/meta_learners.py",
+      "src/tlgp_001b/lower_reference.py"
+    ],
+    "read_only_import_note": "reuse R1's frozen meta architectures + lower-reference baselines to avoid semantic drift; R2 adds ONLY rung-specific splits + harness + prereg mirror"
+  },
+  "split_construction": {
+    "assertions_logged": [
+      "TRAIN_RULES \u2229 TEST_RULES = empty",
+      "per-rung episode_id disjoint",
+      "rung1/rung2 test rules subset of TRAIN_RULES (seen)",
+      "rung3 test rules subset of TEST_RULES (unseen)"
+    ],
+    "episode_split": "disjoint episode_id namespaces per rung; train/val draw TRAIN_RULES, unseen-rule test draws TEST_RULES",
+    "rule_split": {
+      "method": "permutation of 625 canonical rules by RULE_SPLIT_SEED (INHERITED from R1, identical TRAIN_RULES/TEST_RULES)",
+      "test_rules": 125,
+      "train_rules": 500
+    }
+  },
+  "stage": "prereg_frozen_pre_implementation",
+  "tamper_requirements": {
+    "min_axes": [
+      "inflate primary baseline/headroom -> flip H1<->not-H1",
+      "planted leak missed -> INVALID(integrity)",
+      "break replay_exact -> INVALID(integrity)",
+      "degrade rung0 below floor -> INVALID(learnability)",
+      "make E=empty (degrade rung1 all primary) -> INVALID(no_capability_witness)",
+      "break context-ablation collapse -> INVALID(discriminativeness)",
+      "break shuffle collapse -> INVALID(discriminativeness)",
+      "set rung3 CI straddling DELTA -> INVALID(inconclusive)",
+      "close rung3 for one eligible primary -> H0"
+    ],
+    "requirement": "each of the 7 terminal branches MUST be uniquely fire-able by >=1 frozen synthetic tamper axis; report booleans + neutral classes only (never the enum string)"
+  },
+  "task_id": "TLGP-001B-R2",
+  "training_budget": {
+    "batch_size": 256,
+    "early_stop_patience": 20,
+    "identical_across_all_rungs_and_conditions": true,
+    "lr_grid": [
+      0.001,
+      0.0003
+    ],
+    "lr_selection": "best on val balanced-accuracy (preregistered)",
+    "max_epochs": 200,
+    "n_test_episodes": 200,
+    "n_train_episodes": 5000,
+    "n_val_episodes": 1000,
+    "only_permitted_cross_rung_difference": "DATA (which rules / which values / seen vs unseen) -- never compute/architecture/budget",
+    "optimizer": "adam",
+    "steps_max": 200000
+  },
+  "verdict_enum": {
+    "H0_downgrade": "tlgp001b_r2_headroom_amortized_by_capable_meta__downgrade_001a",
+    "H1_bank_within_episode": "tlgp001b_r2_within_episode_headroom_survives_capable_meta",
+    "invalid_discriminativeness_or_ablation": "tlgp001b_r2_invalid_discriminativeness_or_ablation",
+    "invalid_inconclusive_underpowered": "tlgp001b_r2_invalid_inconclusive_underpowered",
+    "invalid_leakage_or_replay": "tlgp001b_r2_invalid_leakage_or_replay",
+    "invalid_learnability_floor_failed": "tlgp001b_r2_invalid_learnability_floor_failed",
+    "invalid_no_capability_witness": "tlgp001b_r2_invalid_no_capability_witness",
+    "note": "H0 and H1 are AFFIRMATIVE; there is NO else->H0. 7 mutually-exclusive terminals; each must be uniquely fire-able by a tamper axis.",
+    "precedence_computed": [
+      "1. INVALID(leakage_or_replay) iff any planted leak uncaught OR any clean channel falsely flagged OR replay not exact for ANY rung",
+      "2. else INVALID(learnability_floor_failed) iff NO primary family passes rung0 (>=9/10)",
+      "3. else INVALID(no_capability_witness) iff >=1 primary passes rung0 but E=empty (no primary passes rung1)",
+      "4. else INVALID(discriminativeness_or_ablation) iff for any eligible primary family context-ablation does NOT collapse (rung1 meta not <= FLOOR+DELTA w/o context) OR shuffle does NOT collapse (headroom > DELTA on non-compositional world)",
+      "5. else H0 iff EXISTS family in E that closes rung3 (headroom <= DELTA on >=9/10)",
+      "6. else H1 iff E superset-of {in_context_gru,in_context_transformer} AND both robustly fail to close rung3 (LCB(headroom) > DELTA each) AND step4 passed",
+      "7. else INVALID(inconclusive_underpowered)  [NO else->H0]"
+    ]
+  },
+  "world": {
+    "ACTION_CARD": 5,
+    "D": 3,
+    "K": 5,
+    "M": 5,
+    "N_ADAPT": 24,
+    "N_QUERY": 30,
+    "heldout_values": [
+      3,
+      4
+    ],
+    "inherit": "TLGP-001A frozen world (read-only import of src/tlgp_001a.world)",
+    "rule": "effect = (sum_i w_i*x_i + c*a) mod K",
+    "rule_space_size": 625,
+    "train_values": [
+      0,
+      1,
+      2
+    ]
+  }
+}
