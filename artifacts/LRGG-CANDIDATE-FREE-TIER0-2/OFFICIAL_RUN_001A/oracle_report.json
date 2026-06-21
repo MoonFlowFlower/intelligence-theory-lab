@@ -1,0 +1,70 @@
+{
+  "blockers": [],
+  "majority_baseline": {
+    "beta": 1.0,
+    "code_path_hash": "79189b37f963f9c7ab296b5bd4186126e01016f3c1763c3cf99898090a63c4e7",
+    "confidence_interval": {
+      "alpha": 0.05,
+      "method": "BCa bootstrap",
+      "resamples": 2000
+    },
+    "kind": "majority_baseline",
+    "lcb_95_one_sided": 0.085,
+    "mean": 0.09791666666666667,
+    "metric": "F-beta",
+    "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.majority_baseline",
+    "row_count": 300,
+    "score_id": "majority"
+  },
+  "nonreading_oracle": {
+    "beta": 1.0,
+    "code_path_hash": "633ba515062d0215f8e9622be599101f16b4dcc259f864f00c8246fcbeee9ce1",
+    "confidence_interval": {
+      "alpha": 0.05,
+      "method": "BCa bootstrap",
+      "resamples": 2000
+    },
+    "kind": "nonreading_oracle",
+    "lcb_95_one_sided": 0.08333333333333333,
+    "mean": 0.09083333333333334,
+    "metric": "F-beta",
+    "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.nonreading_oracle",
+    "row_count": 300,
+    "score_id": "nonreading_oracle"
+  },
+  "oracle_score_C": {
+    "beta": 1.0,
+    "code_path_hash": "c9ff194cff4d6f115faafc4225b8822af46417144fb73348aedaed04efc81e8f",
+    "confidence_interval": {
+      "alpha": 0.05,
+      "method": "BCa bootstrap",
+      "resamples": 2000
+    },
+    "kind": "oracle",
+    "lcb_95_one_sided": 1.0,
+    "mean": 1.0,
+    "metric": "F-beta",
+    "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.budget_faithful_visible_channel_oracle",
+    "row_count": 300,
+    "score_id": "budget_faithful_visible_channel_oracle"
+  },
+  "passed": true,
+  "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.oracle_report",
+  "random_baseline": {
+    "beta": 1.0,
+    "code_path_hash": "3fc3694e6c3d2cbe359aa9bf40fc6be47b121968f35d8cb77825f05c32105d09",
+    "confidence_interval": {
+      "alpha": 0.05,
+      "method": "BCa bootstrap",
+      "resamples": 2000
+    },
+    "kind": "random_baseline",
+    "lcb_95_one_sided": 0.07791666666666666,
+    "mean": 0.08791666666666667,
+    "metric": "F-beta",
+    "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.random_baseline",
+    "row_count": 300,
+    "score_id": "random"
+  },
+  "tau_oracle": 0.9
+}

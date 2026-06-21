@@ -1,0 +1,108 @@
+{
+  "task_id": "LRGG-001B-R1-NEGATIVE-EVIDENCE-PRESERVATION-001A",
+  "verdict": "lrgg_001b_r1_negative_evidence_preserved_for_operator_route_decision",
+  "created_at_local": "2026-06-20T20:15:50.7578757-05:00",
+  "current_layer": "engineering evidence-governance / negative evidence preservation only",
+  "mainline_integration_status": "none",
+  "enabled_status": "none",
+  "real_trigger_evidence": "Operator supplied task card and current source-pinned LRGG 001A, 001B, and 001B-R1 artifacts.",
+  "claim_ceiling": "001B-R1 negative evidence preserved as route-closure/downgrade input",
+  "canonical_readback": {
+    "completed": true,
+    "blocked_pending_canonical_readback": false,
+    "blocked_hash_or_artifact_mismatch": false,
+    "branch": "codex/meta-theory-scaffold",
+    "head": "5c03e0af7ce097d9055de5f1ef17052fe3a576be",
+    "docs_route_note_created": false,
+    "docs_route_note_reason": "docs/research/lrgg does not exist; task card forbids inventing a docs hierarchy."
+  },
+  "computed_evidence_checks": {
+    "r1_result_verdict": "invalid_001b_equal_access_active_baseline_saturates",
+    "r1_result_verdict_expected": true,
+    "oracle_mean": 1.0,
+    "oracle_mean_expected": true,
+    "active_interventional_baseline_mean": 1.0,
+    "active_interventional_baseline_mean_expected": true,
+    "active_minus_oracle_gap": 0.0,
+    "active_minus_oracle_gap_expected": true,
+    "stop_condition_triggered": "active_interventional_baseline_mean >= oracle_mean - eps_equiv",
+    "stop_condition_triggered_non_null": true,
+    "generator_tuned_after_stop": false,
+    "generator_tuned_after_stop_expected": true,
+    "all_blockers_detected": [
+      "invalid_001b_equal_access_active_baseline_saturates",
+      "invalid_001b_attacker_family_collapsed"
+    ],
+    "contains_equal_access_active_baseline_saturates_blocker": true,
+    "contains_attacker_family_collapsed_blocker": true,
+    "official_001a_result_verdict": "rejected_baseline_saturated",
+    "official_001a_result_verdict_expected": true,
+    "original_001b_precheck_result_verdict": "redesign_precheck_ready_for_independent_reaudit",
+    "original_001b_precheck_result_verdict_expected": true
+  },
+  "route_closure_conclusion": {
+    "route_id": "LRGG-CANDIDATE-FREE-TIER0-2 / 001B generator design",
+    "closure_type": "downgrade_or_close_generator_design",
+    "decisive_evidence": "equal-access active-interventional baseline saturates oracle",
+    "oracle_mean": 1.0,
+    "active_interventional_baseline_mean": 1.0,
+    "gap": 0.0,
+    "probe_budget_used": 1,
+    "probe_budget_limit": 8,
+    "eps_equiv": 0.05,
+    "secondary_evidence": "attacker family collapsed"
+  },
+  "source_hashes_verified": {
+    "r1_precheck_result_json": "c7ea2f945036730b082ef1eab1cd8c955fd01ebe500be6d21075ba2d1a2f7889",
+    "r1_baseline_immunity_report_md": "f5d3172756724c66297aa0049641ebd40bd4b0d0104f676c890b4ef429aef8a8",
+    "runner_r1_py": "985d8ecf7b8ddc7f0434c1257434f0448b8a0c9673b9f5a09f5bef4fb910e5aa",
+    "r1_test_py": "9d5bf0e00255b167ef4d236cb37c35705f329732794a0750a49f1e9aeac78034",
+    "original_001b_precheck_result_json": "72efbbbf02ee5cd40914b8487043eec267621951d13b4b98018ae48f899ae1b4",
+    "official_001a_result_json": "2669dd0024a9c11a033816fe01674cc48a427b92bd18300f8b1de8161da1afd0",
+    "active_interventional_baseline_report_json": "276198da4952a9157fc5b44944c8f52f47c1fc46530b03c54d7e185f83af390f"
+  },
+  "protected_source_and_artifact_hashes_unchanged_after_bundle_write": true,
+  "test_rerun": {
+    "command": "python -m pytest tests/lrgg_candidate_free_tier0_2_001b_r1/ --import-mode=importlib",
+    "exit_code": 0,
+    "result": "16 passed in 4.99s"
+  },
+  "files_created": [
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/NEGATIVE_EVIDENCE_PRESERVATION_REPORT.md",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/canonical_readback_report.json",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/source_hashes.json",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/route_closure_record.json",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/claim_ceiling.md",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/limitations.md",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/operator_decision_options.md",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/test_rerun_report.txt",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/preservation_result.json",
+    "artifacts/LRGG-CANDIDATE-FREE-TIER0-2/NEGATIVE_EVIDENCE_PRESERVATION_001A/preservation_result.sha256"
+  ],
+  "operator_decision_options": [
+    "Option A: Close current 001B generator design.",
+    "Option B: Send preservation bundle to independent hostile review.",
+    "Option C: Start a new ENV-AUDITION route."
+  ],
+  "forbidden_verdicts_not_emitted": [
+    "pass",
+    "ready",
+    "integrated",
+    "live",
+    "mechanism-valid",
+    "EGO-ready",
+    "admissible_for_candidate_preflight",
+    "cheap_tier_plumbing_valid_not_saturated__proceed_to_separately_authorized_heavier_tiers",
+    "001C-authorized",
+    "official_result_accepted",
+    "headroom_confirmed"
+  ],
+  "remote_actions": {
+    "commit": false,
+    "push": false,
+    "tag": false,
+    "remote_anchor": false
+  },
+  "next_minimal_closed_loop_action": "Operator chooses close/downgrade, independent hostile review, or new ENV-AUDITION task card; do not patch 001B until it passes.",
+  "what_this_does_not_prove": "No LRGG admissibility, candidate-free headroom, valid oracle beyond this precheck, mechanism evidence, agency/self/subjectivity/emotion/consciousness/autonomy, EGO readiness, H0/H1, 001C authorization, Tier 3+, official Tier 0-2 result acceptance, mainline effect, pass, readiness, integration, liveness, or mechanism validity."
+}

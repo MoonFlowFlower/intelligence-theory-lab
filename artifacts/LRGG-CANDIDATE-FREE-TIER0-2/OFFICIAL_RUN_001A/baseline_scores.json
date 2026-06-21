@@ -1,0 +1,696 @@
+{
+  "baseline_saturation": {
+    "label": "rejected_baseline_saturated",
+    "threshold": 0.95,
+    "triggered_blocker": true
+  },
+  "families": {
+    "direct_objective_optimizer": {
+      "family_max": {
+        "baseline_id": "convex_objective_solver",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "9d917264293411fc46d3ec1e7457cdc5a73f91835470f0ef21722972a49d96b1",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "family": "direct_objective_optimizer",
+        "kind": "cheap_tier_baseline",
+        "lcb_95_one_sided": 1.0,
+        "mean": 1.0,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.convex_objective_solver",
+        "row_count": 300,
+        "score_id": "convex_objective_solver"
+      },
+      "member_ids": [
+        "discounted_wls",
+        "least_squares",
+        "convex_objective_solver"
+      ]
+    },
+    "graph_cache": {
+      "family_max": {
+        "baseline_id": "count_table",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "b4e97b542b75c9d053e255eb75cbd1af737e277859356d3419b396ddced01047",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "family": "graph_cache",
+        "kind": "cheap_tier_baseline",
+        "lcb_95_one_sided": 1.0,
+        "mean": 1.0,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.count_table",
+        "row_count": 300,
+        "score_id": "count_table"
+      },
+      "member_ids": [
+        "graph_lookup",
+        "transition_table",
+        "successor_map",
+        "count_table",
+        "fsm_planner",
+        "episodic_traversal"
+      ]
+    },
+    "lookup": {
+      "family_max": {
+        "baseline_id": "lookup",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "cddc26dfb41c12037fcab72db20c49a88ac9b696d74018502de514c0e04b19dd",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "family": "lookup",
+        "kind": "cheap_tier_baseline",
+        "lcb_95_one_sided": 1.0,
+        "mean": 1.0,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.lookup",
+        "row_count": 300,
+        "score_id": "lookup"
+      },
+      "member_ids": [
+        "lookup"
+      ]
+    },
+    "n_gram_history": {
+      "family_max": {
+        "baseline_id": "n_gram_h1",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "eec1c26333006e9b2c57667847ab85a99adfb9e74960af906a47a3c1874a8c9d",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "family": "n_gram_history",
+        "kind": "cheap_tier_baseline",
+        "lcb_95_one_sided": 1.0,
+        "mean": 1.0,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.n_gram_h1",
+        "row_count": 300,
+        "score_id": "n_gram_h1"
+      },
+      "member_ids": [
+        "n_gram_h1",
+        "n_gram_h2",
+        "n_gram_h3",
+        "n_gram_h5"
+      ]
+    },
+    "task_specific_classical": {
+      "family_max": {
+        "baseline_id": "DP",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "7b718e4648138364f6a19a9d6d2d1be43c2e3b5618ede71c4f32bbcc777c319d",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "family": "task_specific_classical",
+        "kind": "cheap_tier_baseline",
+        "lcb_95_one_sided": 1.0,
+        "mean": 1.0,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.DP",
+        "row_count": 300,
+        "score_id": "DP"
+      },
+      "member_ids": [
+        "DP",
+        "finite_state_filter",
+        "classical_planner"
+      ]
+    },
+    "trajectory_nearest_neighbor": {
+      "family_max": {
+        "baseline_id": "trajectory_nearest_neighbor",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "4f0213f208cff006f257fe53f0f1cf279ddd051bd9cf4405c9835b92fef1abff",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "family": "trajectory_nearest_neighbor",
+        "kind": "cheap_tier_baseline",
+        "lcb_95_one_sided": 1.0,
+        "mean": 1.0,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.trajectory_nearest_neighbor",
+        "row_count": 300,
+        "score_id": "trajectory_nearest_neighbor"
+      },
+      "member_ids": [
+        "trajectory_nearest_neighbor"
+      ]
+    }
+  },
+  "family_max": {
+    "baseline_id": "DP",
+    "family": "task_specific_classical",
+    "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.DP",
+    "score": {
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0
+    }
+  },
+  "family_max_rule": "family baselines use family_max, never selected weak baseline",
+  "obs_only_memoryless_raw_decode": {
+    "family_max": {
+      "baseline_id": "obs_only",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "59a8b873bd0f27238d677a45481b9f015dffb2b6d5894d1bc2264790eba3173d",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "kind": "trivial_decodability_probe",
+      "lcb_95_one_sided": 0.13208333333333333,
+      "mean": 0.14625,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.obs_only",
+      "row_count": 300,
+      "score_id": "obs_only"
+    },
+    "label": null,
+    "results": [
+      {
+        "baseline_id": "obs_only",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "59a8b873bd0f27238d677a45481b9f015dffb2b6d5894d1bc2264790eba3173d",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "kind": "trivial_decodability_probe",
+        "lcb_95_one_sided": 0.13208333333333333,
+        "mean": 0.14625,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.obs_only",
+        "row_count": 300,
+        "score_id": "obs_only"
+      },
+      {
+        "baseline_id": "memoryless",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "3609901ee25a2e2c0e816ba9b5b9be6a767ce528fec059d58b73903bd83a053c",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "kind": "trivial_decodability_probe",
+        "lcb_95_one_sided": 0.085,
+        "mean": 0.09791666666666667,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.memoryless",
+        "row_count": 300,
+        "score_id": "memoryless"
+      },
+      {
+        "baseline_id": "raw_observation_latent_decoder",
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "7a9cb6e2c6a6326671e4a03bbf8fcfa8db5535d7b3a0af6ebfb4040fde8cf244",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "kind": "trivial_decodability_probe",
+        "lcb_95_one_sided": 0.08,
+        "mean": 0.08625,
+        "metric": "F-beta",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.raw_observation_latent_decoder",
+        "row_count": 300,
+        "score_id": "raw_observation_latent_decoder"
+      }
+    ],
+    "triggered_blocker": false
+  },
+  "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.baseline_scores",
+  "required_baseline_ids": [
+    "DP",
+    "classical_planner",
+    "convex_objective_solver",
+    "count_table",
+    "discounted_wls",
+    "episodic_traversal",
+    "finite_state_filter",
+    "fsm_planner",
+    "graph_lookup",
+    "least_squares",
+    "lookup",
+    "n_gram_h1",
+    "n_gram_h2",
+    "n_gram_h3",
+    "n_gram_h5",
+    "successor_map",
+    "trajectory_nearest_neighbor",
+    "transition_table"
+  ],
+  "results": [
+    {
+      "baseline_id": "DP",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "7b718e4648138364f6a19a9d6d2d1be43c2e3b5618ede71c4f32bbcc777c319d",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "task_specific_classical",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.DP",
+      "row_count": 300,
+      "score_id": "DP"
+    },
+    {
+      "baseline_id": "classical_planner",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "4328adc3593ea240ed94e4b7667158af686f2f21e50b72e36f2bba0848dceab2",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "task_specific_classical",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.classical_planner",
+      "row_count": 300,
+      "score_id": "classical_planner"
+    },
+    {
+      "baseline_id": "convex_objective_solver",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "9d917264293411fc46d3ec1e7457cdc5a73f91835470f0ef21722972a49d96b1",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "direct_objective_optimizer",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.convex_objective_solver",
+      "row_count": 300,
+      "score_id": "convex_objective_solver"
+    },
+    {
+      "baseline_id": "count_table",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "b4e97b542b75c9d053e255eb75cbd1af737e277859356d3419b396ddced01047",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "graph_cache",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.count_table",
+      "row_count": 300,
+      "score_id": "count_table"
+    },
+    {
+      "baseline_id": "discounted_wls",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "208acc236efa783ba6f6e26b14fb6d2f3fa25467c8f22d6f1cbc3ec36ade4b5a",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "direct_objective_optimizer",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.discounted_wls",
+      "row_count": 300,
+      "score_id": "discounted_wls"
+    },
+    {
+      "baseline_id": "episodic_traversal",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "c69b9d94baae08dce5484dc55a24e4c5c597ce5048e693e3575522cc7343f4f9",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "graph_cache",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.episodic_traversal",
+      "row_count": 300,
+      "score_id": "episodic_traversal"
+    },
+    {
+      "baseline_id": "finite_state_filter",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "05cae11863bfc1f8059eba4fd9c696cdb4f12603fcc949fdce18ff831d66f142",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "task_specific_classical",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.finite_state_filter",
+      "row_count": 300,
+      "score_id": "finite_state_filter"
+    },
+    {
+      "baseline_id": "fsm_planner",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "9d3555bd8ea9c570ecbb6283fb13b54ff6d58efd84c4ef3c8db6a09e42b0ca99",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "graph_cache",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.fsm_planner",
+      "row_count": 300,
+      "score_id": "fsm_planner"
+    },
+    {
+      "baseline_id": "graph_lookup",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "6ec28948c4db638639ea765e0c48c0034a405f8453de0e44e9ffb235bda69512",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "graph_cache",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.graph_lookup",
+      "row_count": 300,
+      "score_id": "graph_lookup"
+    },
+    {
+      "baseline_id": "least_squares",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "4acfbc1c682cb055b9334644de7913feadb40837d4ed22516d2ab93544e175bd",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "direct_objective_optimizer",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.least_squares",
+      "row_count": 300,
+      "score_id": "least_squares"
+    },
+    {
+      "baseline_id": "lookup",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "cddc26dfb41c12037fcab72db20c49a88ac9b696d74018502de514c0e04b19dd",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "lookup",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.lookup",
+      "row_count": 300,
+      "score_id": "lookup"
+    },
+    {
+      "baseline_id": "n_gram_h1",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "eec1c26333006e9b2c57667847ab85a99adfb9e74960af906a47a3c1874a8c9d",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "n_gram_history",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.n_gram_h1",
+      "row_count": 300,
+      "score_id": "n_gram_h1"
+    },
+    {
+      "baseline_id": "n_gram_h2",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "a57e263c7a701377be02a7d32cfc0e394647aeb8d3a24e52d0768e727d42c98c",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "n_gram_history",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.n_gram_h2",
+      "row_count": 300,
+      "score_id": "n_gram_h2"
+    },
+    {
+      "baseline_id": "n_gram_h3",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "8e0b1dadd6020afb8431302fe1ef3867352ac6590e2cd7edf427f0ab5b911499",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "n_gram_history",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.n_gram_h3",
+      "row_count": 300,
+      "score_id": "n_gram_h3"
+    },
+    {
+      "baseline_id": "n_gram_h5",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "516297ef8c329d87948c65f4bf99931a9786e1699f14a3a85b9650395fe4ba11",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "n_gram_history",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.n_gram_h5",
+      "row_count": 300,
+      "score_id": "n_gram_h5"
+    },
+    {
+      "baseline_id": "successor_map",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "4074ce041149666f955cdbe2d21e9132d04a06788c1aad1437f4aa4a46dd6c5d",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "graph_cache",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.successor_map",
+      "row_count": 300,
+      "score_id": "successor_map"
+    },
+    {
+      "baseline_id": "trajectory_nearest_neighbor",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "4f0213f208cff006f257fe53f0f1cf279ddd051bd9cf4405c9835b92fef1abff",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "trajectory_nearest_neighbor",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.trajectory_nearest_neighbor",
+      "row_count": 300,
+      "score_id": "trajectory_nearest_neighbor"
+    },
+    {
+      "baseline_id": "transition_table",
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "d1e6c0b7233a2eeb3b848bf60ed8966972d18602d301c726bfe7357f16529454",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "family": "graph_cache",
+      "kind": "cheap_tier_baseline",
+      "lcb_95_one_sided": 1.0,
+      "mean": 1.0,
+      "metric": "F-beta",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.transition_table",
+      "row_count": 300,
+      "score_id": "transition_table"
+    }
+  ],
+  "trivial_predictors": {
+    "family_max": {
+      "beta": 1.0,
+      "callable_invoked": true,
+      "code_path_hash": "32fb327a757e14238e07a063566414032c3eacd73cdbeda8c3b01f717b0e004f",
+      "confidence_interval": {
+        "alpha": 0.05,
+        "method": "BCa bootstrap",
+        "resamples": 2000
+      },
+      "kind": "trivial_predictor",
+      "lcb_95_one_sided": 0.15384615384615385,
+      "mean": 0.15384615384615385,
+      "metric": "F-beta",
+      "predictor_id": "predict_all",
+      "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.predict_all",
+      "row_count": 300,
+      "score_id": "predict_all"
+    },
+    "label": null,
+    "results": [
+      {
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "32fb327a757e14238e07a063566414032c3eacd73cdbeda8c3b01f717b0e004f",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "kind": "trivial_predictor",
+        "lcb_95_one_sided": 0.15384615384615385,
+        "mean": 0.15384615384615385,
+        "metric": "F-beta",
+        "predictor_id": "predict_all",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.predict_all",
+        "row_count": 300,
+        "score_id": "predict_all"
+      },
+      {
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "8308da00c6c38bf7cb8162d1218b839982078d7d1b7c3c51c6adf25d264b1d19",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "kind": "trivial_predictor",
+        "lcb_95_one_sided": 0.0,
+        "mean": 0.0,
+        "metric": "F-beta",
+        "predictor_id": "predict_none",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.predict_none",
+        "row_count": 300,
+        "score_id": "predict_none"
+      },
+      {
+        "beta": 1.0,
+        "callable_invoked": true,
+        "code_path_hash": "fb03c64ed8fd77d9a8278d699b4b56918359866770f8ca1a84074ea9ec598c11",
+        "confidence_interval": {
+          "alpha": 0.05,
+          "method": "BCa bootstrap",
+          "resamples": 2000
+        },
+        "kind": "trivial_predictor",
+        "lcb_95_one_sided": 0.108888888888889,
+        "mean": 0.11805555555555555,
+        "metric": "F-beta",
+        "predictor_id": "constant_k_sweep",
+        "producer_function": "lrgg_candidate_free_tier0_2_001a.runner.constant_k_sweep",
+        "row_count": 300,
+        "score_id": "constant_k_sweep"
+      }
+    ],
+    "triggered_blocker": false
+  }
+}

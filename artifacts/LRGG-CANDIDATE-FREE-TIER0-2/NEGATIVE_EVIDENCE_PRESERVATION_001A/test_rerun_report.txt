@@ -1,0 +1,9 @@
+Command:
+python -m pytest tests/lrgg_candidate_free_tier0_2_001b_r1/ --import-mode=importlib
+
+Result:
+Exit code 0
+16 passed in 4.99s
+
+Scope note:
+The R1 test helper runs `R1.run_r1(tempfile.mkdtemp(), persist=False)`, so the rerun did not rewrite the protected R1 artifact directory.
