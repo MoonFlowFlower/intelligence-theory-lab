@@ -1,0 +1,160 @@
+{
+  "aggregate": {
+    "baseline_scores": {
+      "generic_fsm": -12.476190476190476,
+      "graph_cache": -2.761904761904762,
+      "obs_only_policy": -11.523809523809524,
+      "random_policy": -11.80952380952381
+    },
+    "oracle_score": 0.19047619047619047,
+    "oracle_upper_bound_valid": true,
+    "reason": "oracle_not_worse_than_required_baselines",
+    "violations": []
+  },
+  "by_stage": [
+    {
+      "baseline_scores": {
+        "generic_fsm": -10.0,
+        "graph_cache": -0.6666666666666666,
+        "obs_only_policy": -10.0,
+        "random_policy": -10.0
+      },
+      "oracle_score": 0.0,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 0,
+      "violations": []
+    },
+    {
+      "baseline_scores": {
+        "generic_fsm": -10.0,
+        "graph_cache": -5.333333333333333,
+        "obs_only_policy": -10.0,
+        "random_policy": -10.0
+      },
+      "oracle_score": 0.0,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 1,
+      "violations": []
+    },
+    {
+      "baseline_scores": {
+        "generic_fsm": -11.333333333333334,
+        "graph_cache": -4.0,
+        "obs_only_policy": -11.333333333333334,
+        "random_policy": -12.666666666666666
+      },
+      "oracle_score": 0.0,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 2,
+      "violations": []
+    },
+    {
+      "baseline_scores": {
+        "generic_fsm": -10.0,
+        "graph_cache": -4.0,
+        "obs_only_policy": -10.0,
+        "random_policy": -12.666666666666666
+      },
+      "oracle_score": 0.0,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 3,
+      "violations": []
+    },
+    {
+      "baseline_scores": {
+        "generic_fsm": -13.333333333333334,
+        "graph_cache": 0.0,
+        "obs_only_policy": -12.666666666666666,
+        "random_policy": -12.666666666666666
+      },
+      "oracle_score": 0.3333333333333333,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 4,
+      "violations": []
+    },
+    {
+      "baseline_scores": {
+        "generic_fsm": -18.0,
+        "graph_cache": -4.333333333333333,
+        "obs_only_policy": -15.333333333333334,
+        "random_policy": -10.0
+      },
+      "oracle_score": 0.3333333333333333,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 5,
+      "violations": []
+    },
+    {
+      "baseline_scores": {
+        "generic_fsm": -14.666666666666666,
+        "graph_cache": -1.0,
+        "obs_only_policy": -11.333333333333334,
+        "random_policy": -14.666666666666666
+      },
+      "oracle_score": 0.6666666666666666,
+      "oracle_upper_bound_valid": true,
+      "reason": "oracle_not_worse_than_required_baselines",
+      "stage": 6,
+      "violations": []
+    }
+  ],
+  "code_path_hash": "f64f4af41f132ca8c201030198e4266606525aa3ced99723894cc2485a81f81e",
+  "metric_orientation": {
+    "action_count": {
+      "orientation": "bounded",
+      "primary": false
+    },
+    "adaptation_lag_after_rule_shift": {
+      "orientation": "lower",
+      "primary": false
+    },
+    "collision_count": {
+      "orientation": "lower",
+      "primary": false
+    },
+    "energy_final": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "health_final": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "memory_size": {
+      "orientation": "bounded",
+      "primary": false
+    },
+    "oracle_gap": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "prediction_error_mean": {
+      "orientation": "lower",
+      "primary": false
+    },
+    "survival_ticks": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "total_reward": {
+      "orientation": "higher",
+      "primary": true
+    }
+  },
+  "primary_metric": "total_reward",
+  "primary_metric_orientation": "higher",
+  "producer_function": "itl_devbench.eval.headroom.compute_oracle_headroom_report",
+  "report_hash": "de5a1f0db56a04d1bf8061c96adcdb094351e26e7b12a2f0c1689b285fcbba8d",
+  "required_baselines": [
+    "random_policy",
+    "obs_only_policy",
+    "generic_fsm",
+    "graph_cache"
+  ]
+}

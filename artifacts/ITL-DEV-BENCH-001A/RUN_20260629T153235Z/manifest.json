@@ -1,0 +1,213 @@
+{
+  "agent_ids": [
+    "random_policy",
+    "obs_only_policy",
+    "generic_fsm",
+    "graph_cache",
+    "oracle",
+    "minimal_loop"
+  ],
+  "audit_report_path": "audit_report.json",
+  "baseline_scores_by_stage_path": "baseline_scores_by_stage.json",
+  "baseline_scores_path": "baseline_scores.json",
+  "command_line": [
+    "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\itl_devbench\\eval\\run_matrix.py",
+    "--config",
+    "configs/itl_devbench_001a.yaml",
+    "--smoke"
+  ],
+  "config": {
+    "default_rule_seed_base": 1000,
+    "episodes_per_stage_seed": 1,
+    "height": 7,
+    "heldout_rule_seeds": {
+      "0": [
+        1000,
+        1001,
+        1002
+      ],
+      "1": [
+        1100,
+        1101,
+        1102
+      ],
+      "2": [
+        1200,
+        1201,
+        1202
+      ],
+      "3": [
+        1300,
+        1301,
+        1302
+      ],
+      "4": [
+        1400,
+        1401,
+        1402
+      ],
+      "5": [
+        1500,
+        1501,
+        1502
+      ],
+      "6": [
+        1600,
+        1601,
+        1602
+      ]
+    },
+    "max_ticks": 80,
+    "official_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "rule_shift_tick": 50,
+    "smoke_seeds": [
+      0,
+      1,
+      2
+    ],
+    "stages": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "task_id": "ITL-DEV-BENCH-001A",
+    "width": 7
+  },
+  "config_hash": "56194026c730cc4a8f540bb7a31c02f1462009b626463deb0b732370f44d76fe",
+  "diagnosis_oracle_headroom_path": "diagnosis_oracle_headroom.md",
+  "git_commit": "e9900ed8fc5434dda415ef3a4c5bfad69f7fc826",
+  "git_status_branch_readback": "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold [ahead 2]\n?? artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-HARNESS-SMOKE-001-AUDIT-001/\n?? artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-OFFICIAL-FULL-RUN-AUDIT-001/\n?? artifacts/ITL-DEV-BENCH-001A/\n?? artifacts/LRGG-CANDIDATE-FREE-TIER0-2/OFFICIAL_RUN_001A_CLAUDE_HOSTILE_AUDIT_001A/\n?? artifacts/LRGG-CANDIDATE-FREE-TIER0-2/_writetest/\n?? artifacts/TLGP-001A-AUDIT-001/\n?? artifacts/TLGP-001B-INVALID-AUDIT-001/\n?? artifacts/TLGP-001B-R2/COLLISION_RECORD.md\n?? artifacts/TLGP-001B-R2/IMPLEMENTATION_REPORT.md\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/RUN_LOG.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/RUN_LOGS/\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/SHA256SUMS.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/ablation_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/all_training_records.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/claim_ceiling.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/collision_record.md\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/dataset_split_assertions.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/device_calibration.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/dry_run_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/full_command_exitcode.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/leakage_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/preflight_readback.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/replay_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/run_report.md\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung0_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung1_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung1_scanner_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung2_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung3_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/source_manifest.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/trace_manifest.json\n?? artifacts/TLGP-001B-R2/PREREG_FREEZE_REPORT.md\n?? artifacts/TLGP-001B-R2/RUN_LOGS/\n?? artifacts/TLGP-001B-R2/SCOPE_CLEANUP_REPORT.md\n?? artifacts/TLGP-001B-R2/SHA256SUMS.txt\n?? artifacts/TLGP-001B-R2/SMOKE_NON_EVIDENTIAL/\n?? artifacts/TLGP-001B-R2/claim_ceiling.txt\n?? artifacts/TLGP-001B-R2/prereg.sha256\n?? artifacts/TLGP-001B-R2/source_manifest.json\n?? artifacts/TLGP-001B/\n?? configs/\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-CHEAP-TIER-EXECUTION-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-PREFLIGHT-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-MANIFEST-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-MANIFEST-WRITE-001A.DRAFT.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-NUMERIC-RESOLUTION-AND-MANIFEST-WRITE-PREP-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-PROPOSAL-TABLE-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-IMPLEMENTATION-RUN-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-OPERATOR-FREEZE-RESOLUTION-PROPOSAL-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-LRGG-CANDIDATE-FREE-PREFLIGHT-HOSTILE-SYNTHESIS-001A.md\n?? docs/research/JOI-LIKE-BOUNDED-MECHANISM-PROXY-ROADMAP-001A.md\n?? docs/task_cards/TLGP-001B-R1.md\n?? docs/task_cards/TLGP-001B-R2-R1.md\n?? docs/task_cards/TLGP-001B-R2.md\n?? docs/task_cards/XEP-META-SAT-PROBE-001A.md\n?? docs/tasks/\n?? itl_devbench/\n?? src/__init__.py\n?? src/itl_devbench/\n?? src/lrgg_candidate_free_tier0_2_001a/\n?? src/tlgp_001b/\n?? src/tlgp_001b_r2/\n?? tests/lrgg_candidate_free_tier0_2_001a/\n?? tests/test_env_determinism.py\n?? tests/test_factorial_matrix.py\n?? tests/test_no_forbidden_claims.py\n?? tests/test_oracle_headroom_repair.py\n?? tests/test_replay.py\n?? tests/test_trace_contract.py",
+  "git_status_readback": "?? artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-HARNESS-SMOKE-001-AUDIT-001/\n?? artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-OFFICIAL-FULL-RUN-AUDIT-001/\n?? artifacts/ITL-DEV-BENCH-001A/\n?? artifacts/LRGG-CANDIDATE-FREE-TIER0-2/OFFICIAL_RUN_001A_CLAUDE_HOSTILE_AUDIT_001A/\n?? artifacts/LRGG-CANDIDATE-FREE-TIER0-2/_writetest/\n?? artifacts/TLGP-001A-AUDIT-001/\n?? artifacts/TLGP-001B-INVALID-AUDIT-001/\n?? artifacts/TLGP-001B-R2/COLLISION_RECORD.md\n?? artifacts/TLGP-001B-R2/IMPLEMENTATION_REPORT.md\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/RUN_LOG.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/RUN_LOGS/\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/SHA256SUMS.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/ablation_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/all_training_records.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/claim_ceiling.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/collision_record.md\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/dataset_split_assertions.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/device_calibration.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/dry_run_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/full_command_exitcode.txt\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/leakage_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/preflight_readback.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/replay_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/run_report.md\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung0_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung1_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung1_scanner_report.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung2_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung3_progress_summary.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/source_manifest.json\n?? artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/trace_manifest.json\n?? artifacts/TLGP-001B-R2/PREREG_FREEZE_REPORT.md\n?? artifacts/TLGP-001B-R2/RUN_LOGS/\n?? artifacts/TLGP-001B-R2/SCOPE_CLEANUP_REPORT.md\n?? artifacts/TLGP-001B-R2/SHA256SUMS.txt\n?? artifacts/TLGP-001B-R2/SMOKE_NON_EVIDENTIAL/\n?? artifacts/TLGP-001B-R2/claim_ceiling.txt\n?? artifacts/TLGP-001B-R2/prereg.sha256\n?? artifacts/TLGP-001B-R2/source_manifest.json\n?? artifacts/TLGP-001B/\n?? configs/\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-CHEAP-TIER-EXECUTION-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-PREFLIGHT-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-MANIFEST-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-MANIFEST-WRITE-001A.DRAFT.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-NUMERIC-RESOLUTION-AND-MANIFEST-WRITE-PREP-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-FREEZE-PROPOSAL-TABLE-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-IMPLEMENTATION-RUN-001A.md\n?? docs/codex/tasks/LRGG-CANDIDATE-FREE-TIER0-2-OPERATOR-FREEZE-RESOLUTION-PROPOSAL-001A.md\n?? docs/research/CLAUDE-INDEPENDENT-LRGG-CANDIDATE-FREE-PREFLIGHT-HOSTILE-SYNTHESIS-001A.md\n?? docs/research/JOI-LIKE-BOUNDED-MECHANISM-PROXY-ROADMAP-001A.md\n?? docs/task_cards/TLGP-001B-R1.md\n?? docs/task_cards/TLGP-001B-R2-R1.md\n?? docs/task_cards/TLGP-001B-R2.md\n?? docs/task_cards/XEP-META-SAT-PROBE-001A.md\n?? docs/tasks/\n?? itl_devbench/\n?? src/__init__.py\n?? src/itl_devbench/\n?? src/lrgg_candidate_free_tier0_2_001a/\n?? src/tlgp_001b/\n?? src/tlgp_001b_r2/\n?? tests/lrgg_candidate_free_tier0_2_001a/\n?? tests/test_env_determinism.py\n?? tests/test_factorial_matrix.py\n?? tests/test_no_forbidden_claims.py\n?? tests/test_oracle_headroom_repair.py\n?? tests/test_replay.py\n?? tests/test_trace_contract.py",
+  "leakage_audit_graph_cache_path": "leakage_audit_graph_cache.json",
+  "metric_orientation": {
+    "action_count": {
+      "orientation": "bounded",
+      "primary": false
+    },
+    "adaptation_lag_after_rule_shift": {
+      "orientation": "lower",
+      "primary": false
+    },
+    "collision_count": {
+      "orientation": "lower",
+      "primary": false
+    },
+    "energy_final": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "health_final": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "memory_size": {
+      "orientation": "bounded",
+      "primary": false
+    },
+    "oracle_gap": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "prediction_error_mean": {
+      "orientation": "lower",
+      "primary": false
+    },
+    "survival_ticks": {
+      "orientation": "higher",
+      "primary": false
+    },
+    "total_reward": {
+      "orientation": "higher",
+      "primary": true
+    }
+  },
+  "metrics_hash": "e2fe329164cc58c1d6b403b93b1223f1cbbfa32c9aa587c669cdf9b5a7ed6673",
+  "metrics_path": "metrics.json",
+  "minimal_loop_variants": [
+    "000",
+    "100",
+    "010",
+    "001",
+    "110",
+    "101",
+    "011",
+    "111"
+  ],
+  "oracle_headroom_report_path": "oracle_headroom_report.json",
+  "producer_function": "itl_devbench.eval.run_matrix.run_benchmark",
+  "python_version": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "replay_report_path": "replay_report.json",
+  "report_path": "report.md",
+  "report_verdict": "baseline_saturated_environment_needs_redesign",
+  "run_dir": "artifacts\\ITL-DEV-BENCH-001A\\RUN_20260629T153235Z",
+  "run_id": "RUN_20260629T153235Z",
+  "seed_list": [
+    0,
+    1,
+    2
+  ],
+  "smoke": true,
+  "source_file_hashes": {
+    "src/itl_devbench/__init__.py": "417e71af023ac32f919e1155d55f61d7549fa1069c19101d78999abff22cfb26",
+    "src/itl_devbench/agents/__init__.py": "38fdac1ace8cc07463c4aaf7e8d1175bef7e5fdfd81791860e864fb0db5e4b24",
+    "src/itl_devbench/agents/base.py": "e71798e2a937989d962e8e06690df6083f9db6b479891b1b04fd6e1010cd554e",
+    "src/itl_devbench/agents/generic_fsm.py": "b8d24c2bcb5a860fdb5453fa042664d3e990a28dc044add6baa76a0d0d2088fc",
+    "src/itl_devbench/agents/graph_cache.py": "00fe8e5d5381fa364d030dc8f520d4071a541b05bf90b10a76c3e52f8a476b70",
+    "src/itl_devbench/agents/minimal_loop.py": "1b7eaed5a2a7457cf12441c524b0303cc0599b04b17de314dee235f7801778e1",
+    "src/itl_devbench/agents/obs_only_policy.py": "50ac52a2ef486869b91fae9836d1e61180725638c3e69689d591bb19eeedf021",
+    "src/itl_devbench/agents/oracle.py": "7a7a9d96890b50fe85b1fc7f298e837d671bb6095e66d31ea326d82c8ba40f19",
+    "src/itl_devbench/agents/random_policy.py": "3335df2e8423103b709f98429c4e9c5d00ad38250cf17a9246a566e9203861d1",
+    "src/itl_devbench/core/__init__.py": "5a191ca1e7821baf2520f5a3515abb5d06bd3f732ff8c3b6a7d29fd9ac217571",
+    "src/itl_devbench/core/hashing.py": "fe9eeb61af52bce9933a418ce81534003de8bd3afac785c8a03a0920e5dcd0cf",
+    "src/itl_devbench/core/trace.py": "27584cdc428d45fdf334fc8948764262239cd9e56a52ddcd919cff11947af7e4",
+    "src/itl_devbench/core/types.py": "b938ec29cfef0946b7a2d238cf5240219a70fc52b1b02777cbd709240f18aa70",
+    "src/itl_devbench/envs/__init__.py": "447883a1ed7668a5bd8a0dd100bef535f9f145586cf5abfcae87db9c9636e32d",
+    "src/itl_devbench/envs/developmental_grid.py": "96308ac7057e35306a53cb39876b8f4649de481266e9094f85355c1db6c8a35b",
+    "src/itl_devbench/eval/__init__.py": "e14e1e34330b0b0f8552c7f3cbd0ef35b9a04986655f15972446b53ce336fc8c",
+    "src/itl_devbench/eval/audit.py": "feb020a8d845f1ebecb90fadf53b6ef7ab99c05ca4831401a1dc59db34a206b1",
+    "src/itl_devbench/eval/diagnosis.py": "57be8a954971434bd42a2b96cb251684f2253d3f5e8be8b98178ca6456947cf2",
+    "src/itl_devbench/eval/graph_cache_audit.py": "5a3a152a0d628e7a36139e7dc71c0d1ab13800245e2844111484bc020d2cb77a",
+    "src/itl_devbench/eval/headroom.py": "f64f4af41f132ca8c201030198e4266606525aa3ced99723894cc2485a81f81e",
+    "src/itl_devbench/eval/metrics.py": "dee95b00ccb8cecaf3657e5fc9b6f39ee281db550f7882108db8d426aa771758",
+    "src/itl_devbench/eval/replay.py": "879077d52fd6e508870bb4a4e7b05a17704fad6fb8a42ee6f7ebac1df87ef6b8",
+    "src/itl_devbench/eval/report.py": "b27ee8666b7024011eca0e5a60984132d04f2d3517a3660977c78215278414dd",
+    "src/itl_devbench/eval/run_matrix.py": "c5c33fbfe05675c87d33177b70eaca58cf5b95727a75bb9d2a6b2d2dc38d6115"
+  },
+  "stage_list": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "task_id": "ITL-DEV-BENCH-001A",
+  "trace_hash": "2cb8179d1eabc7e2631707e8af820e2dfd35008d9c3de432773715f91e2c5c8c",
+  "trace_path": "trace.jsonl"
+}

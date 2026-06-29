@@ -1,0 +1,44 @@
+{
+  "access_contract": {
+    "allowed_inputs": [
+      "current Observation in predict/act",
+      "post-step obs_after/reward/done/info only inside update"
+    ],
+    "cache_scope": "instance-local cache reset for every seed/stage/episode run",
+    "forbidden_inputs": [
+      "debug_hidden_state",
+      "hidden_state",
+      "future env_result before action",
+      "cross-episode cache carryover"
+    ]
+  },
+  "audit_hash": "56e8a7c0d152a52c0b39e2eebd7939c4d98b0af763c1e401ed28114b633b7701",
+  "checks": {
+    "cache_reset_scope": {
+      "detail": "reset_clears_cache_per_seed_stage_episode",
+      "ok": true
+    },
+    "cross_seed_rule_seed_contamination": {
+      "detail": "first_graph_cache_event_per_episode_has_empty_state",
+      "ok": true
+    },
+    "future_outcome_access": {
+      "detail": "predict_act_source_scan_for_future_outcome_terms",
+      "ok": true
+    },
+    "hidden_state_access": {
+      "detail": "source_scan_for_hidden_state_terms",
+      "ok": true
+    },
+    "unfair_cache_scope": {
+      "detail": "cache_is_instance_local_and_reset_per_episode",
+      "ok": true
+    }
+  },
+  "code_path_hash": "5a3a152a0d628e7a36139e7dc71c0d1ab13800245e2844111484bc020d2cb77a",
+  "failed_checks": [],
+  "producer_function": "itl_devbench.eval.graph_cache_audit.audit_graph_cache_access",
+  "source_path": "src/itl_devbench/agents/graph_cache.py",
+  "trace_path": "trace.jsonl",
+  "verdict": "graph_cache_access_contract_ok"
+}

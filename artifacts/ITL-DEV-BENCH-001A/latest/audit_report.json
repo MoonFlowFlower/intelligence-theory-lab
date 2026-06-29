@@ -1,0 +1,296 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "forbidden_claim_strings_absent",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "candidate_traces_do_not_contain_hidden_state",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "oracle_trace_clearly_labeled",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "pre_action_prediction_exists",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "pre_action_prediction_order_before_env_result",
+      "ok": true
+    },
+    {
+      "detail": [],
+      "name": "event_hash_chain_valid",
+      "ok": true
+    },
+    {
+      "detail": [
+        "000",
+        "001",
+        "010",
+        "011",
+        "100",
+        "101",
+        "110",
+        "111"
+      ],
+      "name": "all_minimal_loop_variants_present",
+      "ok": true
+    },
+    {
+      "detail": [
+        "generic_fsm",
+        "graph_cache",
+        "obs_only_policy",
+        "random_policy"
+      ],
+      "name": "all_required_frozen_baselines_present",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "graph_cache_oracle_not_mislabeled_as_candidate",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "oracle_headroom_report_exists",
+      "ok": true
+    },
+    {
+      "detail": {
+        "baseline_scores": {
+          "generic_fsm": -2.8666666666666667,
+          "graph_cache": -7.4,
+          "obs_only_policy": -2.066666666666667,
+          "random_policy": -6.733333333333333
+        },
+        "oracle_score": 11.866666666666667,
+        "oracle_upper_bound_valid": true,
+        "reason": "oracle_not_worse_than_required_baselines",
+        "violations": []
+      },
+      "name": "oracle_headroom_upper_bound_valid_or_explicit_invalid",
+      "ok": true
+    },
+    {
+      "detail": [],
+      "name": "graph_cache_access_contract_ok",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "report_verdict_metric_sourced",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "git_status_readback_recorded",
+      "ok": true
+    },
+    {
+      "detail": [
+        "src/itl_devbench/__init__.py",
+        "src/itl_devbench/agents/__init__.py",
+        "src/itl_devbench/agents/base.py",
+        "src/itl_devbench/agents/generic_fsm.py",
+        "src/itl_devbench/agents/graph_cache.py",
+        "src/itl_devbench/agents/minimal_loop.py",
+        "src/itl_devbench/agents/obs_only_policy.py",
+        "src/itl_devbench/agents/oracle.py",
+        "src/itl_devbench/agents/random_policy.py",
+        "src/itl_devbench/core/__init__.py",
+        "src/itl_devbench/core/hashing.py",
+        "src/itl_devbench/core/trace.py",
+        "src/itl_devbench/core/types.py",
+        "src/itl_devbench/envs/__init__.py",
+        "src/itl_devbench/envs/developmental_grid.py",
+        "src/itl_devbench/envs/families.py",
+        "src/itl_devbench/envs/task_family_generator.py",
+        "src/itl_devbench/eval/__init__.py",
+        "src/itl_devbench/eval/audit.py",
+        "src/itl_devbench/eval/candidate_factorial.py",
+        "src/itl_devbench/eval/diagnosis.py",
+        "src/itl_devbench/eval/family_metrics.py",
+        "src/itl_devbench/eval/graph_cache_audit.py",
+        "src/itl_devbench/eval/headroom.py",
+        "src/itl_devbench/eval/metrics.py",
+        "src/itl_devbench/eval/replay.py",
+        "src/itl_devbench/eval/report.py",
+        "src/itl_devbench/eval/run_matrix.py",
+        "src/itl_devbench/eval/saturation.py"
+      ],
+      "name": "source_hashes_exist",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "generator_spec_001c_exists",
+      "ok": true
+    },
+    {
+      "detail": [],
+      "name": "heldout_split_no_overlap",
+      "ok": true
+    },
+    {
+      "detail": {
+        "after_sha256": "1b7eaed5a2a7457cf12441c524b0303cc0599b04b17de314dee235f7801778e1",
+        "baseline_source": "artifacts\\ITL-DEV-BENCH-001A\\latest\\source_hashes_001b.json",
+        "before_sha256": "1b7eaed5a2a7457cf12441c524b0303cc0599b04b17de314dee235f7801778e1",
+        "candidate_source_unchanged": true,
+        "producer_function": "itl_devbench.eval.run_matrix._candidate_source_hash_check",
+        "source_path": "src/itl_devbench/agents/minimal_loop.py",
+        "verdict": "candidate_source_unchanged"
+      },
+      "name": "candidate_source_hash_unchanged",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "required_001c_artifact_paths_recorded",
+      "ok": true
+    },
+    {
+      "detail": [
+        "aliased_food_v1",
+        "contextual_hazard_v1",
+        "delayed_poison_v1",
+        "info_risk_tradeoff_v1",
+        "rule_reversal_return_v1"
+      ],
+      "name": "all_required_001c_families_present",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "oracle_headroom_valid_for_001c_families",
+      "ok": true
+    },
+    {
+      "detail": "per_episode",
+      "name": "graph_cache_scope_recorded",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "delayed_effect_trace_links_present",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "old_rule_return_sequence_present",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "active_experiment_scored",
+      "ok": true
+    },
+    {
+      "detail": null,
+      "name": "required_001d_artifact_paths_recorded",
+      "ok": true
+    },
+    {
+      "detail": {
+        "all_required_variants_present": true,
+        "variant_scores": {
+          "000": 0.8666666666666668,
+          "001": 0.8666666666666668,
+          "010": 0.8666666666666668,
+          "011": 0.8666666666666668,
+          "100": 0.8666666666666668,
+          "101": 0.8,
+          "110": 0.8666666666666668,
+          "111": 0.8
+        }
+      },
+      "name": "candidate_factorial_all_variants_present",
+      "ok": true
+    },
+    {
+      "detail": {
+        "memory_marginal_under_pe_planning_mean": 0.0,
+        "pe_marginal_under_memory_planning_mean": -0.0666666666666667,
+        "planner_read_marginal_under_pe_memory_mean": -0.0666666666666667,
+        "positive_any_marginal_family_count": 0,
+        "positive_three_way_family_count": 0,
+        "three_way_closure_gain_mean": -0.0666666666666667
+      },
+      "name": "candidate_factorial_interactions_computed",
+      "ok": true
+    },
+    {
+      "detail": {
+        "baseline_saturated": true,
+        "baseline_saturated_family_count": 3,
+        "family_count": 5
+      },
+      "name": "candidate_factorial_baseline_comparison_computed",
+      "ok": true
+    },
+    {
+      "detail": {
+        "src/itl_devbench/agents/generic_fsm.py": {
+          "after_sha256": "b8d24c2bcb5a860fdb5453fa042664d3e990a28dc044add6baa76a0d0d2088fc",
+          "before_sha256": "b8d24c2bcb5a860fdb5453fa042664d3e990a28dc044add6baa76a0d0d2088fc",
+          "unchanged": true
+        },
+        "src/itl_devbench/agents/graph_cache.py": {
+          "after_sha256": "00fe8e5d5381fa364d030dc8f520d4071a541b05bf90b10a76c3e52f8a476b70",
+          "before_sha256": "00fe8e5d5381fa364d030dc8f520d4071a541b05bf90b10a76c3e52f8a476b70",
+          "unchanged": true
+        },
+        "src/itl_devbench/agents/minimal_loop.py": {
+          "after_sha256": "1b7eaed5a2a7457cf12441c524b0303cc0599b04b17de314dee235f7801778e1",
+          "before_sha256": "1b7eaed5a2a7457cf12441c524b0303cc0599b04b17de314dee235f7801778e1",
+          "unchanged": true
+        },
+        "src/itl_devbench/agents/obs_only_policy.py": {
+          "after_sha256": "50ac52a2ef486869b91fae9836d1e61180725638c3e69689d591bb19eeedf021",
+          "before_sha256": "50ac52a2ef486869b91fae9836d1e61180725638c3e69689d591bb19eeedf021",
+          "unchanged": true
+        },
+        "src/itl_devbench/agents/oracle.py": {
+          "after_sha256": "e54047311f8fe8015bf83a9c32a85827774b33b8689235d59c3202abc2774dc9",
+          "before_sha256": "e54047311f8fe8015bf83a9c32a85827774b33b8689235d59c3202abc2774dc9",
+          "unchanged": true
+        },
+        "src/itl_devbench/agents/random_policy.py": {
+          "after_sha256": "3335df2e8423103b709f98429c4e9c5d00ad38250cf17a9246a566e9203861d1",
+          "before_sha256": "3335df2e8423103b709f98429c4e9c5d00ad38250cf17a9246a566e9203861d1",
+          "unchanged": true
+        },
+        "src/itl_devbench/envs/developmental_grid.py": {
+          "after_sha256": "b682f3ed9637e21754fe9fc7abbef70090e65688794338186c9079b0feedf6cb",
+          "before_sha256": "b682f3ed9637e21754fe9fc7abbef70090e65688794338186c9079b0feedf6cb",
+          "unchanged": true
+        },
+        "src/itl_devbench/envs/families.py": {
+          "after_sha256": "25f10423c660452304c475f9bbc6c42715ab7cd9ea115ae72ce33fa7f9a8cd5b",
+          "before_sha256": "25f10423c660452304c475f9bbc6c42715ab7cd9ea115ae72ce33fa7f9a8cd5b",
+          "unchanged": true
+        },
+        "src/itl_devbench/envs/task_family_generator.py": {
+          "after_sha256": "a01d2bb7e8fbfb178988530db67f9c8c81e71a61ddf0cd65f31dbbf2359903c0",
+          "before_sha256": "a01d2bb7e8fbfb178988530db67f9c8c81e71a61ddf0cd65f31dbbf2359903c0",
+          "unchanged": true
+        }
+      },
+      "name": "candidate_factorial_protected_sources_unchanged",
+      "ok": true
+    }
+  ],
+  "failed_checks": [],
+  "manifest_path": "artifacts\\ITL-DEV-BENCH-001A\\latest\\manifest.json",
+  "producer_function": "itl_devbench.eval.audit.audit_manifest",
+  "verdict": "audit_succeeded"
+}
