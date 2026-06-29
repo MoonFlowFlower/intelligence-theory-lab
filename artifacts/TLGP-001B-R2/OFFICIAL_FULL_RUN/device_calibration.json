@@ -1,0 +1,30 @@
+{
+  "cuda_available": true,
+  "cuda_device_count": 1,
+  "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "plain_value_serialization_policy": "predictions are detached to CPU and converted to Python int lists after computation",
+  "primary_families": [
+    "in_context_gru",
+    "in_context_transformer"
+  ],
+  "primary_family_cuda_probe": {
+    "in_context_gru": {
+      "model_on_cuda0": true,
+      "model_param_device": "cuda:0",
+      "tensors_on_cuda0": true,
+      "training_adaptation_query_tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "in_context_transformer": {
+      "model_on_cuda0": true,
+      "model_param_device": "cuda:0",
+      "tensors_on_cuda0": true,
+      "training_adaptation_query_tensor_devices": [
+        "cuda:0"
+      ]
+    }
+  },
+  "selected_device": "cuda:0",
+  "torch_version": "2.9.1+cu128"
+}

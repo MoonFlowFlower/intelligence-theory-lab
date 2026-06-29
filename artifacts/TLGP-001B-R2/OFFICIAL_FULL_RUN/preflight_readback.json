@@ -1,0 +1,161 @@
+{
+  "command_line": [
+    "--full"
+  ],
+  "cuda": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "plain_value_serialization_policy": "predictions are detached to CPU and converted to Python int lists after computation",
+    "primary_families": [
+      "in_context_gru",
+      "in_context_transformer"
+    ],
+    "primary_family_cuda_probe": {
+      "in_context_gru": {
+        "model_on_cuda0": true,
+        "model_param_device": "cuda:0",
+        "tensors_on_cuda0": true,
+        "training_adaptation_query_tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "in_context_transformer": {
+        "model_on_cuda0": true,
+        "model_param_device": "cuda:0",
+        "tensors_on_cuda0": true,
+        "training_adaptation_query_tensor_devices": [
+          "cuda:0"
+        ]
+      }
+    },
+    "selected_device": "cuda:0",
+    "torch_version": "2.9.1+cu128"
+  },
+  "experiment_selfcheck": {
+    "capacity_grid_counts": {
+      "amortized_summary_mlp": 2,
+      "in_context_gru": 6,
+      "in_context_transformer": 6
+    },
+    "diagnostic_family_exact": true,
+    "model_seed_count_is_10": true,
+    "no_experiment_shrinkage_detected": true,
+    "primary_families_exact": true,
+    "rung_counts": {
+      "rung0_heldout": 200,
+      "rung0_train": 5000,
+      "rung1_test": 200,
+      "rung1_train": 5000,
+      "rung1_val": 1000,
+      "rung2_test": 200,
+      "rung3_test": 200,
+      "rung3_train": 5000,
+      "rung3_val": 1000
+    },
+    "verdict_enum_count": true,
+    "verdict_tamper_synthetic_covers_all": true,
+    "witness_count_per_family": {
+      "amortized_summary_mlp": 1,
+      "in_context_gru": 1,
+      "in_context_transformer": 1
+    }
+  },
+  "git": {
+    "ahead_behind_origin": "0\t0",
+    "branch": "codex/meta-theory-scaffold",
+    "forbidden_diff_paths_checked": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "artifacts/TLGP-001A",
+      "artifacts/TLGP-001A-AUDIT-001",
+      "artifacts/TLGP-001B",
+      "artifacts/TLGP-001B-INVALID-AUDIT-001",
+      "docs/task_cards/TLGP-001B-R2.md"
+    ],
+    "forbidden_tracked_diff_empty": true,
+    "head": "c142443e9b85a2087e569a3f74a9f8fdd05ac32c",
+    "index_empty": true,
+    "status_sb": [
+      "## codex/meta-theory-scaffold...origin/codex/meta-theory-scaffold",
+      "?? artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-HARNESS-SMOKE-001-AUDIT-001/",
+      "?? artifacts/TLGP-001A-AUDIT-001/",
+      "?? artifacts/TLGP-001B-INVALID-AUDIT-001/",
+      "?? artifacts/TLGP-001B-R2/",
+      "?? artifacts/TLGP-001B/",
+      "?? docs/task_cards/TLGP-001B-R1.md",
+      "?? docs/task_cards/TLGP-001B-R2-R1.md",
+      "?? docs/task_cards/TLGP-001B-R2.md",
+      "?? src/__init__.py",
+      "?? src/tlgp_001b/",
+      "?? src/tlgp_001b_r2/"
+    ],
+    "status_short": [
+      "?? artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-HARNESS-SMOKE-001-AUDIT-001/",
+      "?? artifacts/TLGP-001A-AUDIT-001/",
+      "?? artifacts/TLGP-001B-INVALID-AUDIT-001/",
+      "?? artifacts/TLGP-001B-R2/",
+      "?? artifacts/TLGP-001B/",
+      "?? docs/task_cards/TLGP-001B-R1.md",
+      "?? docs/task_cards/TLGP-001B-R2-R1.md",
+      "?? docs/task_cards/TLGP-001B-R2.md",
+      "?? src/__init__.py",
+      "?? src/tlgp_001b/",
+      "?? src/tlgp_001b_r2/"
+    ]
+  },
+  "prereg": {
+    "canonical_sha256_expected": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "canonical_sha256_readback": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "frozen_fields": {
+      "DELTA": 0.1,
+      "FLOOR": 0.2,
+      "MODEL_SEEDS": [
+        20260710,
+        20260711,
+        20260712,
+        20260713,
+        20260714,
+        20260715,
+        20260716,
+        20260717,
+        20260718,
+        20260719
+      ],
+      "N_SEEDS": 10,
+      "diagnostic_families": [
+        "amortized_summary_mlp"
+      ],
+      "primary_families": [
+        "in_context_gru",
+        "in_context_transformer"
+      ]
+    },
+    "match": true,
+    "path": "artifacts/TLGP-001B-R2/prereg.json",
+    "raw_bytes_sha256": "2a2c2217d61f2b598ff5a96aeabadad5a746b8b9b4bcc6caf781d2d7f6772b91"
+  },
+  "run_id": "tlgp001b-r2-full-20260618-225233-edf860f0",
+  "scope_cleanup": {
+    "agents_diff_ignore_space_at_eol_empty": true,
+    "confirmations": {
+      "agents_reverted": true,
+      "full_r2_previously_unauthorized": true,
+      "no_git_mutation_cleanup": true,
+      "no_science_or_source_semantics_cleanup_change": true,
+      "src_init_accepted": true
+    },
+    "path": "artifacts/TLGP-001B-R2/SCOPE_CLEANUP_REPORT.md"
+  },
+  "source_hashes_at_preflight": {
+    "src/tlgp_001b_r2/__init__.py": "3c61963f7e387ea7f1dabc8ae31d725f8d29b57d525445d62bec017a748d183b",
+    "src/tlgp_001b_r2/harness.py": "6b32e47ef8bf9ad91716418ede7611ff011a0bdaa5a1c37ebc1b739c580c576f",
+    "src/tlgp_001b_r2/lower_reference.py": "cd701b2f4adcf9d8c66f28f0e797cdf748a7f4560c682953829b99eb85d28cf6",
+    "src/tlgp_001b_r2/meta_learners.py": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+    "src/tlgp_001b_r2/official_full.py": "1101ef25de3c60e30d1e42343d543dc6e3fd6d49aedfac1bf2e974a3f46ff6f3",
+    "src/tlgp_001b_r2/preregistration.py": "6a5a0273e7c3b0c2cce031dcf2b495646d87ecea7630d725c84def8f9ce27480",
+    "src/tlgp_001b_r2/splits.py": "ca2852a1ca69ba5277872bf5b0780163d0c79fbf0b5b2c7075bb740ef9981ad5",
+    "src/tlgp_001b_r2/verdict.py": "ac80b06083b24a43c5b3615ac0185acd1817554844ba1d145d1e380391ae2375",
+    "src/tlgp_001b_r2/world.py": "1c9bd730e79c19e5036e26cf4a45f1463dc2194217ec5ebc06e42731ca364a7c"
+  }
+}
