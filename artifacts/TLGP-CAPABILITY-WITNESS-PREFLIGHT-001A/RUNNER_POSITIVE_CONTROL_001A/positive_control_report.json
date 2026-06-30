@@ -1,0 +1,95 @@
+{
+  "claim_ceiling": "instrument-validation evidence only; not a TLGP route terminal and not a mechanism, agency, self, subjectivity, AGI, EGO, or companion-readiness claim",
+  "dataset_diagnostics": {
+    "PC_COPY": {
+      "control": "PC_COPY",
+      "copy_overlap_heldout_mean": 1.0,
+      "copy_overlap_train_mean": 1.0,
+      "fixed_single_rule_id": null,
+      "heldout_episodes": 200,
+      "single_rule_full_coverage_sample": null,
+      "train_episodes": 5000
+    },
+    "PC_SINGLE_RULE": {
+      "control": "PC_SINGLE_RULE",
+      "copy_overlap_heldout_mean": 0.2275,
+      "copy_overlap_train_mean": 0.22812666666666664,
+      "fixed_single_rule_id": 433,
+      "heldout_episodes": 200,
+      "single_rule_full_coverage_sample": {
+        "adapt_a": {
+          "all_full_coverage": true,
+          "checked_episodes": 20
+        },
+        "adapt_x": {
+          "all_full_coverage": true,
+          "checked_episodes": 20
+        },
+        "query_a": {
+          "all_full_coverage": true,
+          "checked_episodes": 20
+        },
+        "query_x": {
+          "all_full_coverage": true,
+          "checked_episodes": 20
+        }
+      },
+      "train_episodes": 5000
+    }
+  },
+  "ideal_balacc_by_control": {
+    "PC_COPY": 1.0,
+    "PC_SINGLE_RULE": 1.0
+  },
+  "input_artifacts": [
+    "docs/task_cards/TLGP-CAPABILITY-WITNESS-RUNNER-POSITIVE-CONTROL-001A.frozen_design.json",
+    "src/tlgp_capability_witness_preflight_001a/grokking_probe.py",
+    "src/tlgp_001b_r2/world.py",
+    "src/tlgp_001b_r2/meta_learners.py",
+    "artifacts/TLGP-001B-R2/prereg.json"
+  ],
+  "missing_completed_runs": {
+    "PC_COPY": [],
+    "PC_SINGLE_RULE": []
+  },
+  "per_control_seed": {
+    "PC_COPY": {
+      "20260710": {
+        "best_heldout_balacc": 0.6488860174955764,
+        "best_heldout_step": 20000,
+        "final_heldout_balacc": 0.6488860174955764,
+        "ideal_balacc": 1.0
+      },
+      "20260711": {
+        "best_heldout_balacc": 0.6379734776865291,
+        "best_heldout_step": 18000,
+        "final_heldout_balacc": 0.6375626080006594,
+        "ideal_balacc": 1.0
+      }
+    },
+    "PC_SINGLE_RULE": {
+      "20260710": {
+        "best_heldout_balacc": 1.0,
+        "best_heldout_step": 10000,
+        "final_heldout_balacc": 1.0,
+        "ideal_balacc": 1.0
+      },
+      "20260711": {
+        "best_heldout_balacc": 1.0,
+        "best_heldout_step": 8000,
+        "final_heldout_balacc": 1.0,
+        "ideal_balacc": 1.0
+      }
+    }
+  },
+  "producer_function": "src.tlgp_capability_witness_preflight_001a.positive_control.apply_go_no_go",
+  "run_id": "tlgp-runner-posctl-20260630-152252-a6c787b0",
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNNER-POSITIVE-CONTROL-001A",
+  "thresholds": {
+    "ambiguous": "anything else",
+    "representational_limit": "PC_COPY heldout >= 0.95 all seeds AND PC_SINGLE_RULE heldout < 0.70 any seed",
+    "runner_copy_fail": "PC_COPY heldout < 0.70 any seed",
+    "runner_ok": "PC_COPY heldout >= 0.95 all seeds AND PC_SINGLE_RULE heldout >= 0.85 all seeds"
+  },
+  "verdict": "runner_copy_fail"
+}

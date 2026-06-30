@@ -1,0 +1,77 @@
+{
+  "_frozen_at": "2026-06-30",
+  "_frozen_canonical_sha256": "90f2a5034747e0153f29ccc86a672a2cfcd8fe75910de54c02966149eeeef56b",
+  "_honest_note": "Candidate-free instrument validation, not a TLGP route terminal. Does NOT change any banked TLGP verdict. runner_ok upgrades confidence the rung0 negative is real (enables a clean close); copy_fail means the prior negatives are CONFOUNDED and must be re-run after a fix.",
+  "_purpose": "POSITIVE CONTROL for the instrument. The capability-witness negatives (budget + full wd spectrum, all no-grokking, heldout plateau ~0.55) are only interpretable IF the runner/arch actually works. This runs the SAME runner (transformer 256/4, AdamW, in-context train+eval from the banked grokking_probe.py) on the SAME frozen world (D=3,K=5), changing ONLY the dataset to two tasks the runner SHOULD solve. Distinguishes 'TLGP rung0 negative is a real task/family limit' from 'a runner/pipeline bug confounds every negative'.",
+  "artifact": "frozen_design",
+  "binding": {
+    "note": "route_decision.py is NOT involved (instrument validation, not a route verdict).",
+    "runner_reused_readonly": "src/tlgp_capability_witness_preflight_001a/grokking_probe.py (banked sha 9126dc9273c5aac6c909de9d503e323609dca61c6d9e51fadd0d459a89d74555) \u2014 REUSE model + train + eval + metric; do NOT edit it or the world",
+    "world": "read-only TLGP-001A frozen world, D=3 K=5 (unchanged); prereg sha 6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7"
+  },
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "capacity_FROZEN": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "in_context_transformer",
+    "note": "SAME instrument as the probes"
+  },
+  "claim_ceiling": "Instrument-validation evidence only. Confirms or refutes that the runner/arch can solve easy in-context tasks. Does NOT change banked TLGP verdicts; proves nothing about transfer/rung3/H1, mechanism, capability-witness feasibility, the GRU witness, agency, self, subjectivity, AGI, or EGO.",
+  "controls": {
+    "PC_COPY": {
+      "construction": "episodes where every query (x,a) is drawn FROM the adapt (x,a) set (query subset of adapt cells), so the correct effect is literally present in the adapt context. Same world (D=3,K=5), same effect function, rule sampled normally.",
+      "ideal_balacc_expected": "~1.0 (answer is in context)",
+      "role": "FLOOR \u2014 if this fails, the pipeline is broken and all negatives are confounded",
+      "tests": "does the model READ and USE the adapt context (in-context retrieval/copy)?"
+    },
+    "PC_SINGLE_RULE": {
+      "construction": "ONE fixed rule_id held constant across ALL train and test episodes, full value coverage [0..4] in adapt and query. The model may memorize the single mod-5 D=3 (x,a)->e table in weights.",
+      "ideal_balacc_expected": "~1.0 (deterministic fixed rule)",
+      "tests": "can the architecture REPRESENT the mod-5 D=3 mapping at all (weight-space)?"
+    }
+  },
+  "freeze_status": "FROZEN",
+  "go_no_go_predeclared": {
+    "_claim": "spend/interpretation gate only; pre-frozen; not a scientific TLGP terminal; does not alter banked TLGP verdicts.",
+    "ambiguous": "anything else -> report numbers + curves, operator decides.",
+    "representational_limit": "PC_COPY >= 0.95 but PC_SINGLE_RULE < 0.70 -> retrieval works but arch cannot represent fixed mod-5 D=3 -> close learnability route as REPRESENTATION-limited.",
+    "runner_copy_fail": "PC_COPY heldout < 0.70 (any seed) -> model not using the adapt context -> pipeline/wiring bug -> STOP. Prior capability-witness negatives are CONFOUNDED; do NOT close; open a runner-investigation card.",
+    "runner_ok": "PC_COPY heldout >= 0.95 (all seeds) AND PC_SINGLE_RULE heldout >= 0.85 (all seeds) -> instrument validated -> AUTHORIZE clean close/downgrade of the learnability route as task/family-complexity-limited."
+  },
+  "regime": {
+    "_cost": "2 controls x 2 seeds = 4 short runs; easy tasks should show signal fast",
+    "batch_size": 256,
+    "checkpoint_every_steps": 2000,
+    "early_stopping": "allowed (we want 'does it reach high heldout', not grokking)",
+    "lr": 0.0003,
+    "max_steps": 20000,
+    "optimizer": "AdamW (as in the runner)",
+    "seeds": [
+      20260710,
+      20260711
+    ],
+    "weight_decay": 0.1
+  },
+  "required_logging": {
+    "also": [
+      "ideal_balacc per control"
+    ],
+    "per_checkpoint": [
+      "step",
+      "train_balacc",
+      "heldout_balacc"
+    ]
+  },
+  "stop_conditions": [
+    "edit banked grokking_probe.py / world / any src/tlgp_001b_r2 or tlgp_001a byte",
+    "if the runner model/train/eval core cannot be reused for a new dataset WITHOUT editing banked code -> STOP and report (do NOT auto-extract/refactor)",
+    "capacity changed",
+    "go/no-go tuned after results",
+    "add extra audit/review layers",
+    "commit or push the control artifacts (leave on disk for verification)",
+    "-> STOP + failure_manifest.json"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNNER-POSITIVE-CONTROL-001A"
+}
