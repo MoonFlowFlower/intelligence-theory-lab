@@ -40,12 +40,9 @@ FROZEN_DESIGN_PATH = (
 ROUTE_DECISION_PATH = (
     REPO_ROOT / "src" / "tlgp_capability_witness_preflight_001a" / "route_decision.py"
 )
-OUT_DIR = (
-    REPO_ROOT
-    / "artifacts"
-    / "TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A"
-    / "GROKKING_PROBE_001A"
-)
+OUT_BASE_DIR = REPO_ROOT / "artifacts" / "TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A"
+OUT_SUBDIR = "GROKKING_PROBE_001A"
+OUT_DIR = OUT_BASE_DIR / OUT_SUBDIR
 
 EXPECTED_FROZEN_DESIGN_SHA256 = "93bae0c65171e35e06e2e3ca858026f623be585ae0d3873b1e253ce8b7604be6"
 EXPECTED_ROUTE_DECISION_SHA256 = "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8"
@@ -55,6 +52,7 @@ FAMILY = "in_context_transformer"
 PARAMS = {"d_model": 256, "layers": 4, "heads": 4, "ff_mult": 4}
 SEEDS = [20260710, 20260711, 20260712]
 WEIGHT_DECAYS = [0.1, 1.0]
+DEFAULT_WEIGHT_DECAY_GRID_ARG = "0.1,1.0"
 LEARNING_RATE = 0.0003
 BATCH_SIZE = 256
 MAX_STEPS = 50_000
@@ -79,16 +77,31 @@ def canonical_frozen_design_sha256(path: Path = FROZEN_DESIGN_PATH) -> str:
     return MP._canonical_sha256(MP._strip_underscore_keys(json.loads(path.read_text(encoding="utf-8"))))
 
 
-def validate_pre_result_gates() -> dict[str, Any]:
-    frozen_sha = canonical_frozen_design_sha256()
+def resolve_frozen_design_path(path: str | Path = FROZEN_DESIGN_PATH) -> Path:
+    frozen_design_path = Path(path)
+    if not frozen_design_path.is_absolute():
+        frozen_design_path = REPO_ROOT / frozen_design_path
+    return frozen_design_path.resolve()
+
+
+def expected_frozen_design_sha256(path: Path = FROZEN_DESIGN_PATH) -> str:
+    path = resolve_frozen_design_path(path)
+    design = json.loads(path.read_text(encoding="utf-8"))
+    return str(design.get("_frozen_canonical_sha256", EXPECTED_FROZEN_DESIGN_SHA256))
+
+
+def validate_pre_result_gates(frozen_design_path: Path = FROZEN_DESIGN_PATH) -> dict[str, Any]:
+    frozen_design_path = resolve_frozen_design_path(frozen_design_path)
+    frozen_sha = canonical_frozen_design_sha256(frozen_design_path)
+    expected_frozen_sha = expected_frozen_design_sha256(frozen_design_path)
     route_sha = MP.sha256_file(ROUTE_DECISION_PATH)
     prereg_sha = MP.canonical_prereg_sha256()
-    if frozen_sha != EXPECTED_FROZEN_DESIGN_SHA256:
+    if frozen_sha != expected_frozen_sha:
         raise StopGrokkingProbe(
             "frozen_design_sha",
             "frozen design canonical sha mismatch",
             frozen_sha,
-            EXPECTED_FROZEN_DESIGN_SHA256,
+            expected_frozen_sha,
         )
     if route_sha != EXPECTED_ROUTE_DECISION_SHA256:
         raise StopGrokkingProbe(
@@ -122,25 +135,43 @@ def validate_pre_result_gates() -> dict[str, Any]:
             PARAMS,
             witness_params,
         )
-    design = json.loads(FROZEN_DESIGN_PATH.read_text(encoding="utf-8"))
-    if design["capacity_FROZEN"] != {**PARAMS, "learner": FAMILY, "note": design["capacity_FROZEN"]["note"]}:
-        observed = {k: design["capacity_FROZEN"][k] for k in ("d_model", "layers", "heads", "ff_mult", "learner")}
+    design = json.loads(frozen_design_path.read_text(encoding="utf-8"))
+    observed_capacity = {k: design["capacity_FROZEN"].get(k) for k in ("d_model", "layers", "heads", "ff_mult", "learner")}
+    if observed_capacity != {**PARAMS, "learner": FAMILY}:
         raise StopGrokkingProbe(
             "frozen_design_capacity",
             "frozen design capacity does not match expected transformer 256/4",
-            observed,
+            observed_capacity,
             {**PARAMS, "learner": FAMILY},
         )
     if not torch.cuda.is_available() or str(ML.DEVICE) != "cuda:0":
         raise StopGrokkingProbe("cuda_guard", "CUDA cuda:0 unavailable", str(ML.DEVICE), "cuda:0")
     return {
         "frozen_design_sha256": frozen_sha,
+        "frozen_design_path": str(frozen_design_path.relative_to(REPO_ROOT).as_posix()),
         "route_decision_sha256": route_sha,
         "prereg_sha256": prereg_sha,
         "capacity_unchanged": True,
         "banked_source_status_empty": True,
         "protected_source_status": [],
     }
+
+
+def parse_weight_decay_grid(value: str) -> list[float]:
+    try:
+        values = [float(item.strip()) for item in value.split(",") if item.strip()]
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"invalid comma-separated float grid: {value}") from exc
+    if not values:
+        raise argparse.ArgumentTypeError("weight-decay grid must include at least one float")
+    return values
+
+
+def resolve_out_dir(out_subdir: str) -> Path:
+    subdir = Path(out_subdir)
+    if subdir.is_absolute() or ".." in subdir.parts:
+        raise argparse.ArgumentTypeError(f"out-subdir must stay under {OUT_BASE_DIR.relative_to(REPO_ROOT).as_posix()}")
+    return OUT_BASE_DIR / subdir
 
 
 def run_leakage_report(episodes) -> dict[str, Any]:
@@ -458,13 +489,22 @@ def build_route_decision_input(
     }
 
 
-def run_probe() -> dict[str, Any]:
+def run_probe(
+    weight_decays: list[float] = WEIGHT_DECAYS,
+    out_subdir: str = OUT_SUBDIR,
+    frozen_design_path: Path = FROZEN_DESIGN_PATH,
+) -> dict[str, Any]:
+    global OUT_DIR
+    weight_decays = [float(value) for value in weight_decays]
+    frozen_design_path = resolve_frozen_design_path(frozen_design_path)
+    OUT_DIR = resolve_out_dir(out_subdir)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     failure_path = OUT_DIR / "failure_manifest.json"
     if failure_path.exists():
         failure_path.unlink()
     run_id = time.strftime("tlgp-capability-grokprobe-%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:8]
-    gate = validate_pre_result_gates()
+    gate = validate_pre_result_gates(frozen_design_path)
+    design = json.loads(frozen_design_path.read_text(encoding="utf-8"))
     train_eps = S.make_episodes("rung0", "train")
     heldout_eps = S.make_episodes("rung0", "heldout")
     ideal_mean, _, _ = ideal_predictions(heldout_eps)
@@ -480,7 +520,7 @@ def run_probe() -> dict[str, Any]:
     ML.reset_device_runs()
     with curve_path.open("w", encoding="utf-8") as curve_handle:
         for seed in SEEDS:
-            for weight_decay in WEIGHT_DECAYS:
+            for weight_decay in weight_decays:
                 record = train_one_grokking_run(
                     run_id=run_id,
                     seed=int(seed),
@@ -496,12 +536,12 @@ def run_probe() -> dict[str, Any]:
     for line in curve_path.read_text(encoding="utf-8").splitlines():
         if line.strip():
             curves.append(json.loads(line))
-    if len(records) != len(SEEDS) * len(WEIGHT_DECAYS):
+    if len(records) != len(SEEDS) * len(weight_decays):
         raise StopGrokkingProbe(
             "run_count",
             "not all frozen seed x weight_decay runs completed",
             len(records),
-            len(SEEDS) * len(WEIGHT_DECAYS),
+            len(SEEDS) * len(weight_decays),
         )
     trend = compute_probe_trend_report(records, curves)
     MP.write_json(OUT_DIR / "probe_trend_report.json", trend)
@@ -531,17 +571,18 @@ def run_probe() -> dict[str, Any]:
     manifest = {
         **gate,
         "run_id": run_id,
-        "task_id": "TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001A",
+        "task_id": str(design.get("task_id", "TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001A")),
         "git_head": MP.git_output(["rev-parse", "HEAD"]).strip(),
         "git_branch": MP.git_output(["branch", "--show-current"]).strip(),
         "gpu_env": ML.device_readback(),
+        "grokking_probe_sha256": MP.sha256_file(Path(__file__).resolve()),
         "probe_capacity": {"family": FAMILY, "params": PARAMS},
         "capacity_frozen_expected": {"d_model": 256, "layers": 4, "heads": 4, "ff_mult": 4},
         "regime": {
             "rung": "rung0",
             "early_stopping": "disabled",
             "optimizer": "AdamW",
-            "weight_decay_grid": WEIGHT_DECAYS,
+            "weight_decay_grid": weight_decays,
             "lr": LEARNING_RATE,
             "batch_size": BATCH_SIZE,
             "max_steps": MAX_STEPS,
@@ -595,15 +636,30 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run", action="store_true", help="execute the authorized 6-run grokking probe")
     parser.add_argument("--validate-only", action="store_true", help="check frozen gates without training")
+    parser.add_argument(
+        "--weight-decay-grid",
+        default=DEFAULT_WEIGHT_DECAY_GRID_ARG,
+        help="comma-separated AdamW weight decay grid; default preserves 001A",
+    )
+    parser.add_argument("--out-subdir", default=OUT_SUBDIR, help="artifact subdirectory under the preflight artifact root")
+    parser.add_argument("--frozen-design", default=str(FROZEN_DESIGN_PATH), help="frozen design JSON path to validate")
     args = parser.parse_args(argv)
     try:
+        global OUT_DIR
+        weight_decays = parse_weight_decay_grid(args.weight_decay_grid)
+        frozen_design_path = resolve_frozen_design_path(args.frozen_design)
+        OUT_DIR = resolve_out_dir(args.out_subdir)
         if args.validate_only:
             OUT_DIR.mkdir(parents=True, exist_ok=True)
-            MP.write_json(OUT_DIR / "validate_only_manifest.json", validate_pre_result_gates())
+            MP.write_json(OUT_DIR / "validate_only_manifest.json", validate_pre_result_gates(frozen_design_path))
             return 0
         if not args.run:
             parser.error("use --run for the authorized probe or --validate-only")
-        run_probe()
+        run_probe(
+            weight_decays=weight_decays,
+            out_subdir=args.out_subdir,
+            frozen_design_path=frozen_design_path,
+        )
         return 0
     except BaseException as exc:
         write_failure_manifest(exc)
