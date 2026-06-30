@@ -1,0 +1,143 @@
+{
+  "aggregate_flags": {
+    "all_runs_heldout_max_le_0_60": false,
+    "all_runs_train_fit_ge_0_95": false,
+    "any_late_heldout_rise": false,
+    "positive_abs_heldout_ge_0_75": false,
+    "positive_delayed_generalization_signature": false
+  },
+  "best_overall": {
+    "best_heldout_balacc": 0.6398484307359307,
+    "best_heldout_step": 50000,
+    "final_heldout_balacc": 0.6398484307359307,
+    "final_step": 50000,
+    "final_train_balacc": 0.6584360956404707,
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "interpretation": "late rise is evaluated only after first logged train>=0.95",
+      "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+    },
+    "seed": 20260710,
+    "train_first_ge_0_95_step": null,
+    "weight_decay": 1.0
+  },
+  "claim_ceiling": "bounded trend/lean on the training-regime lever only; not a scientific route terminal and not a transfer/mechanism claim",
+  "go_no_go_verdict": "ambiguous",
+  "per_run": [
+    {
+      "best_heldout_balacc": 0.5958431096681097,
+      "best_heldout_step": 38000,
+      "final_heldout_balacc": 0.590533658008658,
+      "final_step": 50000,
+      "final_train_balacc": 1.0,
+      "late_heldout_rise": false,
+      "late_heldout_rise_detail": {
+        "first_fit_heldout_balacc": 0.557208189033189,
+        "first_fit_step": 6000,
+        "interpretation": "heldout rise is measured against heldout at first logged train>=0.95",
+        "reason": "no 3 consecutive post-fit checkpoints sustained the target",
+        "target_heldout_balacc": 0.707208189033189
+      },
+      "seed": 20260710,
+      "train_first_ge_0_95_step": 6000,
+      "weight_decay": 0.1
+    },
+    {
+      "best_heldout_balacc": 0.6398484307359307,
+      "best_heldout_step": 50000,
+      "final_heldout_balacc": 0.6398484307359307,
+      "final_step": 50000,
+      "final_train_balacc": 0.6584360956404707,
+      "late_heldout_rise": false,
+      "late_heldout_rise_detail": {
+        "interpretation": "late rise is evaluated only after first logged train>=0.95",
+        "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+      },
+      "seed": 20260710,
+      "train_first_ge_0_95_step": null,
+      "weight_decay": 1.0
+    },
+    {
+      "best_heldout_balacc": 0.5469602002164503,
+      "best_heldout_step": 48000,
+      "final_heldout_balacc": 0.545313952020202,
+      "final_step": 50000,
+      "final_train_balacc": 0.9999132857142856,
+      "late_heldout_rise": false,
+      "late_heldout_rise_detail": {
+        "first_fit_heldout_balacc": 0.5061511724386725,
+        "first_fit_step": 6000,
+        "interpretation": "heldout rise is measured against heldout at first logged train>=0.95",
+        "reason": "no 3 consecutive post-fit checkpoints sustained the target",
+        "target_heldout_balacc": 0.6561511724386725
+      },
+      "seed": 20260711,
+      "train_first_ge_0_95_step": 6000,
+      "weight_decay": 0.1
+    },
+    {
+      "best_heldout_balacc": 0.6133616612554113,
+      "best_heldout_step": 46000,
+      "final_heldout_balacc": 0.5402414772727273,
+      "final_step": 50000,
+      "final_train_balacc": 0.8276311065184815,
+      "late_heldout_rise": false,
+      "late_heldout_rise_detail": {
+        "interpretation": "late rise is evaluated only after first logged train>=0.95",
+        "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+      },
+      "seed": 20260711,
+      "train_first_ge_0_95_step": null,
+      "weight_decay": 1.0
+    },
+    {
+      "best_heldout_balacc": 0.5891112914862915,
+      "best_heldout_step": 28000,
+      "final_heldout_balacc": 0.574157251082251,
+      "final_step": 50000,
+      "final_train_balacc": 0.9998861096681098,
+      "late_heldout_rise": false,
+      "late_heldout_rise_detail": {
+        "first_fit_heldout_balacc": 0.562107711038961,
+        "first_fit_step": 6000,
+        "interpretation": "heldout rise is measured against heldout at first logged train>=0.95",
+        "reason": "no 3 consecutive post-fit checkpoints sustained the target",
+        "target_heldout_balacc": 0.712107711038961
+      },
+      "seed": 20260712,
+      "train_first_ge_0_95_step": 6000,
+      "weight_decay": 0.1
+    },
+    {
+      "best_heldout_balacc": 0.5790638167388168,
+      "best_heldout_step": 6000,
+      "final_heldout_balacc": 0.5422160984848484,
+      "final_step": 50000,
+      "final_train_balacc": 0.9237825960289711,
+      "late_heldout_rise": false,
+      "late_heldout_rise_detail": {
+        "interpretation": "late rise is evaluated only after first logged train>=0.95",
+        "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+      },
+      "seed": 20260712,
+      "train_first_ge_0_95_step": null,
+      "weight_decay": 1.0
+    }
+  ],
+  "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.compute_probe_trend_report",
+  "signature_test": {
+    "checkpoint_every_steps": 2000,
+    "interpretation": "rise measured relative to heldout at first logged train>=0.95 checkpoint",
+    "late_rise_delta": 0.15,
+    "sustained_checkpoints": 3,
+    "train_fit_threshold": 0.95
+  },
+  "thresholds": {
+    "ambiguous": "anything else",
+    "grok_negative_family_limited": "all runs train_balacc reaches >=0.95, all runs heldout stays <=0.60, and no sustained late heldout rise",
+    "grok_positive": {
+      "absolute": "any best heldout >= 0.75 by 50000 steps",
+      "delayed_generalization_signature": "heldout rises >= +0.15 sustained over >=3 consecutive checkpoints after train_balacc first reaches >=0.95"
+    }
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "_canonical_note": "sha256 over this object with all keys prefixed '_' recursively removed, json.dumps(sort_keys,separators(',',':'),ensure_ascii).",
+  "_frozen_at": "2026-06-29",
+  "_frozen_canonical_sha256": "0dd63b6323594a0597133d7460b7816b751f6efc0ee5b250fb79c2f2830f63a7",
+  "_phase0_readback_result_2026_06_29": {
+    "audit_discrepancy_to_reconcile": "The 2026-06-19 audit prose said metas 'memorize train ~0.97'; all_training_records show rung0 primary train_balacc ~0.66-0.71. The clean-room replay validated the VERDICT, not this prose number. Implementation card must reconcile (likely 0.97 referred to a best-config / different rung / different metric).",
+    "bar_attainable": "ideal_train = ideal_heldout = ideal_seen1 = 1.0 >= bar 0.9 \u2014 rung not mis-set",
+    "budget_bound_signal": "rung0 primary records: 125/140 runs hit the 200-epoch cap (gru 51/60, transformer 54/60); train_balacc mean only ~0.66-0.71 (NOT converged to ~1.0); heldout mean 0.497 (max 0.664). Hitting the cap while still under-fit => undertrained/still-climbing => floor failure looks substantially BUDGET-BOUND, not a hard family ceiling.",
+    "cheapest_next_compute": "Before any full sweep, run a MINIMAL Phase-1 probe: strongest single config (e.g. transformer d_model=256/layers=4) at rung0 ONLY, 2-3 seeds, extended budget (~600-800 epochs / higher steps_max), capacity FROZEN. If rung0 heldout climbs materially toward 0.9 => commit to full sweep (route_open trending). If flat => family-limited. NB: full Phase-1 is GPU-heavy (original run ~28-82h); the minimal probe gates that spend.",
+    "diagnostic_mlp": "amortized_summary_mlp converged (200/200) at train ~= heldout ~= 0.38 \u2014 genuinely limited, but diagnostic-only.",
+    "no_ceiling": "rung1 fair baselines weak: lookup=count_table=0.319, majority/predict_all=0.201, no_adaptation=0.200; cheap_baseline_saturation=false; query/adapt cell overlap ~0.17. Headroom ideal(1.0)-fair(0.32) ~= 0.68 unoccupied => NOT identifiability ceiling at rung0/1.",
+    "source": "banked artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/{rung0_progress_summary,rung1_progress_summary,rung1_scanner_report,all_training_records}.json (read-only, no new compute)",
+    "updated_lean": "Route is LIVE (corrects the earlier 'likely dead' lean). route_open plausibly reachable via more training budget at the FROZEN capacity grid; route_inconclusive_optimization_or_family_limited if extra budget does not lift heldout; route_closed_identifiability_ceiling unlikely at rung0/1."
+  },
+  "_scope_and_claim": "Candidate-free feasibility preflight. Uses the TLGP-R2 WORLD and rung0/rung1 DEFINITIONS as READ-ONLY inputs. Makes NO TLGP-R2 verdict (no H0/H1, no rung3). Only asks: is a rung0 (and then rung1) capability witness attainable. A positive merely unlocks drafting a candidate card; it is NOT transfer/mechanism evidence.",
+  "artifact": "preflight_plan",
+  "canonical_hash_scheme": "json.dumps(obj, sort_keys=True, separators=(',',':'), ensure_ascii=True) over the frozen subset (everything EXCEPT keys prefixed with '_').",
+  "capacity_grid": {
+    "amortized_summary_mlp": {
+      "hidden": [
+        [
+          128,
+          128
+        ],
+        [
+          256,
+          256
+        ]
+      ]
+    },
+    "gru": {
+      "hidden": [
+        64,
+        128,
+        256
+      ],
+      "layers": [
+        1,
+        2
+      ]
+    },
+    "source": "prereg.capacity_grid",
+    "status": "FROZEN \u2014 imported from prereg; NEVER enlarged or shrunk in this preflight",
+    "transformer": {
+      "d_model": [
+        64,
+        128,
+        256
+      ],
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": [
+        2,
+        4
+      ]
+    }
+  },
+  "claim_ceiling": "Bounded feasibility evidence only: whether a rung0/rung1 capability witness is attainable on this world under the frozen contract. Proves NOTHING about transfer (rung3/H1), mechanism, learning-as-mechanism, agency, self, subjectivity, AGI, or companion/EGO readiness. route_open authorizes ONLY drafting a later candidate card.",
+  "decision_function": {
+    "must_call": "the frozen prereg pass_function (no local recomputation of DELTA/close_fraction_min/seed-aggregation/metric/precedence)",
+    "name": "route_decision.py",
+    "outcomes": {
+      "inconclusive_underpowered": "CI straddles the bar at N_SEEDS",
+      "route_closed_identifiability_ceiling": "ONLY if fair baseline/graph-cache saturates the attainable bar, OR an admissible upper-bound shows no learner advantage (NOT from a learner plateau alone)",
+      "route_inconclusive_optimization_or_family_limited": "ideal PASSES; fair baseline does NOT saturate; no learner passes under the declared budget; CI does not merely straddle",
+      "route_needs_world_rung_redesign": "ideal fails the bar, or only forbidden capacity inflation would pass (requires a new card)",
+      "route_open_capability_witness_feasible": "a fair learner PASSES the prereg bar with power-backed headroom over BOTH the fair baseline AND graph-cache, leakage-clean"
+    },
+    "path": "src/tlgp_capability_witness_preflight_001a/route_decision.py",
+    "produces": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/route_decision.json",
+    "records": [
+      "bar_source_hash",
+      "pass_function_hash",
+      "per-rung/per-seed ideal+baseline+learner balacc",
+      "MDE/power for any claimed separation",
+      "leakage_detector_result"
+    ],
+    "self_test": "all 6 terminals reachable (verified); R2 rung0-as-is adjudicates route_inconclusive_optimization_or_family_limited at budget=200",
+    "sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8"
+  },
+  "fields_pending_at_freeze": [],
+  "freeze_rule": "Before ANY result is read, fill every entry in fields_pending_at_freeze, then record the canonical sha256 of this file in the implementation card. Editing this file after results are read => STOP (administrative_abandoned_no_computed_evidence).",
+  "freeze_status": "FROZEN",
+  "phase0_zero_cost_readback": {
+    "claim_ceiling": "Phase 0 alone yields only a route LEAN, never a computed route_decision (no new trace).",
+    "decision_rule": "If metas plateaued sub-bar AND fair baselines weak => lean family/capacity-limited; Phase 1 budget sweep is a long-shot, prefer cheap downgrade. If metas still-improving at stop => budget-bound hypothesis warrants Phase 1. If ideal_R0 < bar => route_needs_world_rung_redesign (report; do not retune).",
+    "inputs_read_only": [
+      "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung0_progress_summary.json",
+      "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung1_progress_summary.json",
+      "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/rung1_scanner_report.json"
+    ],
+    "purpose": "Decide, at ZERO new compute, whether the rung0 floor failure is plausibly budget-bound (warrants Phase 1) or already looks family/capacity-limited.",
+    "questions": [
+      "Q0a: per primary family at rung0, was val_still_improving_at_stop true (budget-bound) or plateaued (family/capacity-limited)?",
+      "Q0b: ideal_R0 value \u2014 is the bar (ideal_R0 - DELTA) attainable in principle (ideal high)?",
+      "Q0c: fair-baseline (lookup/count_table) rung0 balacc \u2014 are they weak, i.e. is there real headroom a learner could occupy?"
+    ]
+  },
+  "phase1_budget_sweep": {
+    "_swept_note": "200 epochs / 200000 steps / lr {0.001,0.0003} == the TLGP-R2 frozen budget (the baseline rung of the sweep); the larger values are the diagnostic extension. Final grid values are PENDING_AT_FREEZE pending Phase 0 (e.g. if still-improving, push higher; if plateaued, the sweep may be skipped).",
+    "baselines_equal_access": [
+      "lookup",
+      "count_table",
+      "predict_all",
+      "majority",
+      "no_adaptation",
+      "graph_cache",
+      "ideal"
+    ],
+    "budget_readback_required": [
+      "per-epoch val balacc curve",
+      "early_stop_epoch",
+      "best_checkpoint_epoch",
+      "val_still_improving_at_stop",
+      "per_family_budget_saturation_summary"
+    ],
+    "frozen": {
+      "batch_size": 256,
+      "capacity_grid": "see capacity_grid (NOT swept)",
+      "data_regime_per_rung": "prereg rung defs",
+      "early_stop_patience": 20,
+      "optimizer": "adam",
+      "world": "prereg"
+    },
+    "learners": [
+      "in_context_gru",
+      "in_context_transformer",
+      "amortized_summary_mlp(diagnostic)"
+    ],
+    "metric": "balanced_accuracy on held-out queries (prereg primary metric key)",
+    "permitted_relaxation_vs_tlgp_r2": "TRAINING BUDGET ONLY (max_epochs / steps_max / lr_grid) at FROZEN capacity. This is explicitly NOT a TLGP-R2 run and asserts no H0/H1; it diagnoses budget-sensitivity of the rung0 floor.",
+    "rungs_out_of_scope": [
+      "rung2 (diagnostic)",
+      "rung3 REAL unseen-rule/unseen-value (the transfer experiment \u2014 this preflight NEVER touches it)"
+    ],
+    "rungs_tested": [
+      "rung0_learnability_floor (checks 0a fit + 0b in-distribution heldout of the SAME 8 rules)",
+      "rung1_seen_rule_capability (ONLY if rung0 passes)"
+    ],
+    "runs_only_if": "Phase 0 readback indicates budget-bound (DONE: 125/140 rung0 runs hit the 200-epoch cap, train sub-1.0). The MINIMAL probe (phase1_minimal_probe) runs first and GATES this full sweep: only on trend_positive. Operator authorizes full sweep explicitly.",
+    "seeds": "prereg seed_list.MODEL_SEEDS (N_SEEDS = 10)",
+    "swept_budget_grid": {
+      "lr_grid": [
+        0.001,
+        0.0003,
+        0.0001
+      ],
+      "max_epochs": [
+        200,
+        400,
+        800
+      ],
+      "steps_max": [
+        200000,
+        400000,
+        800000
+      ]
+    }
+  },
+  "phase1_minimal_probe": {
+    "budget_grid": {
+      "batch_size": 256,
+      "early_stop_patience": 20,
+      "lr_grid": [
+        0.001,
+        0.0003
+      ],
+      "max_epochs": [
+        200,
+        600,
+        800
+      ],
+      "optimizer": "adam",
+      "steps_max": [
+        200000,
+        600000,
+        800000
+      ]
+    },
+    "claim_ceiling": "probe trend is a spend-gating signal only; proves nothing about capability-witness feasibility on its own",
+    "config": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4,
+      "learner": "in_context_transformer",
+      "note": "prereg transformer saturation witness; capacity FROZEN"
+    },
+    "go_no_go_predeclared": {
+      "ambiguous": "anything between -> report numbers, escalate to operator; do NOT auto-authorize full sweep",
+      "note": "these thresholds gate SPEND only; they are pre-declared here before any result and are NOT a scientific route terminal. The scientific verdict comes only from the FULL 10-seed sweep via route_decision.py.",
+      "trend_flat_downgrade_family_limited": "(800ep mean - 200ep mean) < +0.05 AND 800ep mean <= ~0.664 (no material gain over R2)",
+      "trend_positive_authorize_full_sweep": "mean(best heldout over 3 seeds) at 800 epochs >= 0.75 AND (800ep mean - 200ep mean) >= +0.10"
+    },
+    "purpose": "CHEAP go/no-go that GATES the expensive full sweep. NOT a formal route_decision (underpowered by design: <N_SEEDS); route_decision.py on this data returns inconclusive_underpowered. The SIGNAL is the budget->heldout trend.",
+    "record": [
+      "per-epoch val balacc curve",
+      "val_still_improving_at_stop",
+      "best heldout per seed/budget",
+      "train_balacc per seed/budget"
+    ],
+    "reference_point": "R2 rung0 transformer heldout max was 0.664 at budget=200; bar = ideal(1.0) - DELTA(0.1) = 0.9",
+    "rung": "rung0 only (checks 0a fit + 0b in-distribution heldout of the SAME 8 rules)",
+    "seeds": [
+      20260710,
+      20260711,
+      20260712
+    ]
+  },
+  "prereg_binding": {
+    "bar_source": "artifacts/TLGP-001B-R2/prereg.json",
+    "bar_source_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "frozen_constants_inherited": {
+      "DELTA": 0.1,
+      "FLOOR": 0.2,
+      "N_SEEDS": 10,
+      "R0_RULES_count": 8,
+      "close_fraction_min": 9,
+      "diagnostic_family": [
+        "amortized_summary_mlp"
+      ],
+      "primary_families": [
+        "in_context_gru",
+        "in_context_transformer"
+      ],
+      "world": {
+        "ACTION_CARD": 5,
+        "D": 3,
+        "K": 5,
+        "N_ADAPT": 24,
+        "N_QUERY": 30,
+        "heldout_values": [
+          3,
+          4
+        ],
+        "rule": "(sum_i w_i*x_i + c*a) mod 5",
+        "train_values": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "must_not_modify": [
+      "prereg.json",
+      "verdict.py precedence",
+      "trace schema",
+      "baseline contract",
+      "failure taxonomy",
+      "capacity grid"
+    ],
+    "pass_function_sha256": "ac80b06083b24a43c5b3615ac0185acd1817554844ba1d145d1e380391ae2375",
+    "pass_function_source": "read-only: rung0/rung1 pass_rule from prereg + src/tlgp_001b_r2/verdict.py (banked sha256 ac80b060...) + lower_reference.rung1_scanner; reproduced (not redefined) in route_decision.py",
+    "world_source": "read-only import of src.tlgp_001a.world via TLGP-R2 frozen world"
+  },
+  "stop_conditions": [
+    "capacity grid enlarged/shrunk => STOP",
+    "bar/threshold tuned after seeing results => STOP",
+    "leakage detected => STOP",
+    "this plan not frozen (sha recorded) before results, or edited after => STOP",
+    "route verdict not derivable from route_decision.py => STOP",
+    "no sweep executed after two critique-only iterations => emit administrative_abandoned_no_computed_evidence (NOT route_closed, NOT banked as negative, NOT written to route_decision.json)"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A",
+  "traps_wired_into_decision_function": [
+    "equal_access_parity: any fair baseline matching the best learner at the witness rung => ceiling, not headroom",
+    "predict_all_eq_oracle / majority_as_oracle guard",
+    "small_data_separation_evaporation: separation must rest on an asymptotic gap > eps; report MDE/power not a point gap",
+    "leakage: meta never receives rule_id or query_e; frozen 001A dual-target MI detector per channel per rung",
+    "capacity_inflation_guard: capacity grid frozen; only budget sweeps; any grid change => STOP",
+    "K1_obs_decodability / K2_interventional_saturation checks"
+  ]
+}

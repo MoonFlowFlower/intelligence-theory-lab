@@ -1,0 +1,35 @@
+{
+  "detail": {
+    "DELTA": 0.1,
+    "FLOOR": 0.2,
+    "N_SEEDS": 10,
+    "admissible_upper_bound_no_learner_advantage": false,
+    "all_primary_pass_seed_rule": false,
+    "all_primary_powered_headroom": false,
+    "bar": 0.9,
+    "bar_source": "artifacts/TLGP-001B-R2/prereg.json",
+    "ci_straddles_bar": false,
+    "fair_baseline_balacc": {
+      "count_table": 0.22633160173160177,
+      "graph_cache": 0.22633160173160177,
+      "lookup": 0.22633160173160177,
+      "majority": 0.20024999999999998,
+      "no_adaptation": 0.2109039862914863,
+      "predict_all": 0.20024999999999998
+    },
+    "fair_max": 0.22633160173160177,
+    "ideal_balacc": 1.0,
+    "leakage_clean": true,
+    "n_seeds_observed": 3,
+    "need_seeds": 9,
+    "pass_function_ref": "prereg rung pass_rule via src/tlgp_001b_r2/verdict.py: balacc >= (ideal - DELTA) on >= close_fraction_min/N_SEEDS seeds, per primary family",
+    "per_family_seed_pass_count": {
+      "in_context_transformer": 0
+    },
+    "prereg_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "rung": "rung0"
+  },
+  "producer_function": "src.tlgp_capability_witness_preflight_001a.route_decision.compute_route_decision",
+  "reason": "n_seeds 3 < N_SEEDS 10",
+  "route": "inconclusive_underpowered"
+}

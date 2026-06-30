@@ -1,0 +1,82 @@
+{
+  "artifact_paths": {
+    "leakage_report": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/MINIMAL_PROBE_001A/leakage_report.json",
+    "probe_trace": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/MINIMAL_PROBE_001A/probe_trace.jsonl",
+    "probe_trend_report": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/MINIMAL_PROBE_001A/probe_trend_report.json",
+    "route_decision": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/MINIMAL_PROBE_001A/route_decision.json",
+    "route_decision_input": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/MINIMAL_PROBE_001A/route_decision_input.json",
+    "training_records": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/MINIMAL_PROBE_001A/training_records.json"
+  },
+  "banked_tlgp_source_diff_after_run": [],
+  "banked_tlgp_source_diff_empty": true,
+  "banked_tlgp_source_diff_empty_after_run": true,
+  "budget_grid": {
+    "batch_size": 256,
+    "lr_grid": [
+      0.001,
+      0.0003
+    ],
+    "max_epochs": [
+      200,
+      600,
+      800
+    ],
+    "seeds": [
+      20260710,
+      20260711,
+      20260712
+    ],
+    "steps_max": [
+      200000,
+      600000,
+      800000
+    ]
+  },
+  "capacity_unchanged": true,
+  "claim_ceiling": "spend-gating trend evidence only; no capability-witness, transfer, mechanism, agency, self, subjectivity, AGI, or EGO claim",
+  "frozen_plan_sha256": "0dd63b6323594a0597133d7460b7816b751f6efc0ee5b250fb79c2f2830f63a7",
+  "git_branch": "codex/meta-theory-scaffold",
+  "git_head": "63d5177480506f05c9783e00525177d4d048489e",
+  "gpu_env": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "meta_learner_device_runs": {
+      "in_context_transformer": {
+        "all_runs_on_selected_device": true,
+        "any_run_on_cuda": true,
+        "any_run_on_selected_device": true,
+        "last_model_device": "cuda:0",
+        "last_tensor_devices": [
+          "cuda:0"
+        ],
+        "predictions_serialized_on_cpu": true,
+        "train_select_calls": 18
+      }
+    },
+    "meta_learner_ran_on_cuda": {
+      "amortized_summary_mlp": false,
+      "in_context_gru": false,
+      "in_context_transformer": true
+    },
+    "meta_learner_ran_on_selected_device": {
+      "amortized_summary_mlp": false,
+      "in_context_gru": false,
+      "in_context_transformer": true
+    },
+    "selected_device": "cuda:0",
+    "torch_version": "2.9.1+cu128"
+  },
+  "prereg_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+  "probe_capacity": {
+    "family": "in_context_transformer",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    }
+  },
+  "route_decision_sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+  "run_id": "tlgp-capability-minprobe-20260629-155149-e3cadbb6"
+}

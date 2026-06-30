@@ -1,0 +1,54 @@
+{
+  "task_id": "TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001B",
+  "status": "stopped_before_training",
+  "failed_step": "runner_parameterization_preflight",
+  "reason": "The card requires invoking the unmodified grokking_probe.py with the 001B frozen design, output directory, weight_decay grid [0.3, 0.5], and fit-conditioned go/no-go semantics. The current runner exposes only --run and --validate-only and is hard-coded to the 001A frozen design, 001A output directory, weight_decay grid [0.1, 1.0], and 001A all-runs-fit verdict semantics. The task card says to stop if grokking_probe.py is not cleanly parameterizable by weight decay without an edit, and it forbids editing grokking_probe.py.",
+  "observed": {
+    "runner_cli": [
+      "--run",
+      "--validate-only"
+    ],
+    "runner_frozen_design_path": "docs/task_cards/TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001A.frozen_design.json",
+    "runner_output_dir": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/GROKKING_PROBE_001A",
+    "runner_weight_decay_grid": [
+      0.1,
+      1.0
+    ],
+    "runner_verdict_semantics": "001A all-runs-fit/all-heldout-low negative condition"
+  },
+  "expected": {
+    "frozen_design_path": "docs/task_cards/TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001B.frozen_design.json",
+    "output_dir": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/GROKKING_PROBE_001B",
+    "weight_decay_grid": [
+      0.3,
+      0.5
+    ],
+    "verdict_semantics": "001B fit-conditioned go/no-go over fitted cells only"
+  },
+  "source_integrity_readback": {
+    "frozen_design_001b_canonical_stripped_sha256": "515a415b7e2ae41f51d703c131b73927edcacbf92f8e32d34e1cfb815e117e55",
+    "route_decision_py_file_sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+    "grokking_probe_py_file_sha256": "bf1afbefa73689095871cf214164b8db3aa6265a2f649698d395045da10114bf",
+    "prereg_canonical_json_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7"
+  },
+  "git_readback_at_stop": {
+    "repo": "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+    "branch": "codex/meta-theory-scaffold",
+    "head_short": "63d5177",
+    "pre_existing_untracked_scope_observed": true,
+    "protected_status_readback": [
+      "?? docs/task_cards/TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001B.frozen_design.json",
+      "?? docs/task_cards/TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001B.md",
+      "?? src/tlgp_capability_witness_preflight_001a/grokking_probe.py",
+      "?? src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "?? src/tlgp_capability_witness_preflight_001a/route_decision.py"
+    ]
+  },
+  "stop_condition_triggered": "grokking_probe.py is not cleanly parameterizable for 001B without a forbidden runner edit",
+  "training_started": false,
+  "route_decision_run": false,
+  "leakage_scan_run": false,
+  "remote_push": false,
+  "claim_ceiling": "No 001B grokking-probe evidence was produced. This artifact only records a pre-training execution blocker under the task card stop rule.",
+  "next_minimal_action": "Draft a repair card authorizing either a narrow parameterization-only runner change or a separate 001B wrapper with explicit hash/semantic gates, then rerun preflight before any GPU training."
+}

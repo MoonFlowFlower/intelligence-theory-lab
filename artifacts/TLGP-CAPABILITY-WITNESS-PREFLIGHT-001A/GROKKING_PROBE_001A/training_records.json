@@ -1,0 +1,323 @@
+[
+  {
+    "aggregation_rule": "mean over episodes of per-episode balanced_accuracy",
+    "batch_size": 256,
+    "best_heldout_balacc": 0.5958431096681097,
+    "best_heldout_step": 38000,
+    "best_train_balacc": 1.0,
+    "budget_capped": true,
+    "checkpoint_every_steps": 2000,
+    "device": {
+      "model_device": "cuda:0",
+      "predictions_serialized_on_cpu": true,
+      "ran_on_cuda": true,
+      "ran_on_selected_device": true,
+      "selected_device": "cuda:0",
+      "tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "early_stopping": "disabled",
+    "epochs_run": 2500,
+    "family": "in_context_transformer",
+    "final_heldout_balacc": 0.590533658008658,
+    "final_train_balacc": 1.0,
+    "input_artifacts": [
+      "src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "src/tlgp_001b_r2/meta_learners.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/world.py"
+    ],
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "first_fit_heldout_balacc": 0.557208189033189,
+      "first_fit_step": 6000,
+      "interpretation": "heldout rise is measured against heldout at first logged train>=0.95",
+      "reason": "no 3 consecutive post-fit checkpoints sustained the target",
+      "target_heldout_balacc": 0.707208189033189
+    },
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "num_checkpoints": 25,
+    "optimizer": "AdamW",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.train_one_grokking_run",
+    "run_id": "tlgp-capability-grokprobe-20260629-225741-6306799b",
+    "seed": 20260710,
+    "status": "completed",
+    "steps_run": 50000,
+    "train_first_ge_0_95_step": 6000,
+    "weight_decay": 0.1
+  },
+  {
+    "aggregation_rule": "mean over episodes of per-episode balanced_accuracy",
+    "batch_size": 256,
+    "best_heldout_balacc": 0.6398484307359307,
+    "best_heldout_step": 50000,
+    "best_train_balacc": 0.9091060664058165,
+    "budget_capped": true,
+    "checkpoint_every_steps": 2000,
+    "device": {
+      "model_device": "cuda:0",
+      "predictions_serialized_on_cpu": true,
+      "ran_on_cuda": true,
+      "ran_on_selected_device": true,
+      "selected_device": "cuda:0",
+      "tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "early_stopping": "disabled",
+    "epochs_run": 2500,
+    "family": "in_context_transformer",
+    "final_heldout_balacc": 0.6398484307359307,
+    "final_train_balacc": 0.6584360956404707,
+    "input_artifacts": [
+      "src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "src/tlgp_001b_r2/meta_learners.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/world.py"
+    ],
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "interpretation": "late rise is evaluated only after first logged train>=0.95",
+      "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+    },
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "num_checkpoints": 25,
+    "optimizer": "AdamW",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.train_one_grokking_run",
+    "run_id": "tlgp-capability-grokprobe-20260629-225741-6306799b",
+    "seed": 20260710,
+    "status": "completed",
+    "steps_run": 50000,
+    "train_first_ge_0_95_step": null,
+    "weight_decay": 1.0
+  },
+  {
+    "aggregation_rule": "mean over episodes of per-episode balanced_accuracy",
+    "batch_size": 256,
+    "best_heldout_balacc": 0.5469602002164503,
+    "best_heldout_step": 48000,
+    "best_train_balacc": 1.0,
+    "budget_capped": true,
+    "checkpoint_every_steps": 2000,
+    "device": {
+      "model_device": "cuda:0",
+      "predictions_serialized_on_cpu": true,
+      "ran_on_cuda": true,
+      "ran_on_selected_device": true,
+      "selected_device": "cuda:0",
+      "tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "early_stopping": "disabled",
+    "epochs_run": 2500,
+    "family": "in_context_transformer",
+    "final_heldout_balacc": 0.545313952020202,
+    "final_train_balacc": 0.9999132857142856,
+    "input_artifacts": [
+      "src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "src/tlgp_001b_r2/meta_learners.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/world.py"
+    ],
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "first_fit_heldout_balacc": 0.5061511724386725,
+      "first_fit_step": 6000,
+      "interpretation": "heldout rise is measured against heldout at first logged train>=0.95",
+      "reason": "no 3 consecutive post-fit checkpoints sustained the target",
+      "target_heldout_balacc": 0.6561511724386725
+    },
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "num_checkpoints": 25,
+    "optimizer": "AdamW",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.train_one_grokking_run",
+    "run_id": "tlgp-capability-grokprobe-20260629-225741-6306799b",
+    "seed": 20260711,
+    "status": "completed",
+    "steps_run": 50000,
+    "train_first_ge_0_95_step": 6000,
+    "weight_decay": 0.1
+  },
+  {
+    "aggregation_rule": "mean over episodes of per-episode balanced_accuracy",
+    "batch_size": 256,
+    "best_heldout_balacc": 0.6133616612554113,
+    "best_heldout_step": 46000,
+    "best_train_balacc": 0.8901181660700411,
+    "budget_capped": true,
+    "checkpoint_every_steps": 2000,
+    "device": {
+      "model_device": "cuda:0",
+      "predictions_serialized_on_cpu": true,
+      "ran_on_cuda": true,
+      "ran_on_selected_device": true,
+      "selected_device": "cuda:0",
+      "tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "early_stopping": "disabled",
+    "epochs_run": 2500,
+    "family": "in_context_transformer",
+    "final_heldout_balacc": 0.5402414772727273,
+    "final_train_balacc": 0.8276311065184815,
+    "input_artifacts": [
+      "src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "src/tlgp_001b_r2/meta_learners.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/world.py"
+    ],
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "interpretation": "late rise is evaluated only after first logged train>=0.95",
+      "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+    },
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "num_checkpoints": 25,
+    "optimizer": "AdamW",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.train_one_grokking_run",
+    "run_id": "tlgp-capability-grokprobe-20260629-225741-6306799b",
+    "seed": 20260711,
+    "status": "completed",
+    "steps_run": 50000,
+    "train_first_ge_0_95_step": null,
+    "weight_decay": 1.0
+  },
+  {
+    "aggregation_rule": "mean over episodes of per-episode balanced_accuracy",
+    "batch_size": 256,
+    "best_heldout_balacc": 0.5891112914862915,
+    "best_heldout_step": 28000,
+    "best_train_balacc": 0.9999942857142858,
+    "budget_capped": true,
+    "checkpoint_every_steps": 2000,
+    "device": {
+      "model_device": "cuda:0",
+      "predictions_serialized_on_cpu": true,
+      "ran_on_cuda": true,
+      "ran_on_selected_device": true,
+      "selected_device": "cuda:0",
+      "tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "early_stopping": "disabled",
+    "epochs_run": 2500,
+    "family": "in_context_transformer",
+    "final_heldout_balacc": 0.574157251082251,
+    "final_train_balacc": 0.9998861096681098,
+    "input_artifacts": [
+      "src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "src/tlgp_001b_r2/meta_learners.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/world.py"
+    ],
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "first_fit_heldout_balacc": 0.562107711038961,
+      "first_fit_step": 6000,
+      "interpretation": "heldout rise is measured against heldout at first logged train>=0.95",
+      "reason": "no 3 consecutive post-fit checkpoints sustained the target",
+      "target_heldout_balacc": 0.712107711038961
+    },
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "num_checkpoints": 25,
+    "optimizer": "AdamW",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.train_one_grokking_run",
+    "run_id": "tlgp-capability-grokprobe-20260629-225741-6306799b",
+    "seed": 20260712,
+    "status": "completed",
+    "steps_run": 50000,
+    "train_first_ge_0_95_step": 6000,
+    "weight_decay": 0.1
+  },
+  {
+    "aggregation_rule": "mean over episodes of per-episode balanced_accuracy",
+    "batch_size": 256,
+    "best_heldout_balacc": 0.5790638167388168,
+    "best_heldout_step": 6000,
+    "best_train_balacc": 0.9237825960289711,
+    "budget_capped": true,
+    "checkpoint_every_steps": 2000,
+    "device": {
+      "model_device": "cuda:0",
+      "predictions_serialized_on_cpu": true,
+      "ran_on_cuda": true,
+      "ran_on_selected_device": true,
+      "selected_device": "cuda:0",
+      "tensor_devices": [
+        "cuda:0"
+      ]
+    },
+    "early_stopping": "disabled",
+    "epochs_run": 2500,
+    "family": "in_context_transformer",
+    "final_heldout_balacc": 0.5422160984848484,
+    "final_train_balacc": 0.9237825960289711,
+    "input_artifacts": [
+      "src/tlgp_capability_witness_preflight_001a/minimal_probe.py",
+      "src/tlgp_001b_r2/meta_learners.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/world.py"
+    ],
+    "late_heldout_rise": false,
+    "late_heldout_rise_detail": {
+      "interpretation": "late rise is evaluated only after first logged train>=0.95",
+      "reason": "train_balacc never reached 0.95 at a logged checkpoint"
+    },
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "num_checkpoints": 25,
+    "optimizer": "AdamW",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.grokking_probe.train_one_grokking_run",
+    "run_id": "tlgp-capability-grokprobe-20260629-225741-6306799b",
+    "seed": 20260712,
+    "status": "completed",
+    "steps_run": 50000,
+    "train_first_ge_0_95_step": null,
+    "weight_decay": 1.0
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "_design_fix_vs_001A": "001A's grok_negative required 'ALL runs train>=0.95 & heldout<=0.60' -> wd=1.0 couldn't fit -> unsatisfiable -> spec-artifact 'ambiguous'. 001B conditions the verdict ONLY on cells that actually FIT (train>=0.95). A wd that never fits is marked uninformative, not blocking.",
+  "_frozen_at": "2026-06-29",
+  "_frozen_canonical_sha256": "515a415b7e2ae41f51d703c131b73927edcacbf92f8e32d34e1cfb815e117e55",
+  "_honest_prior": "Given 001A wd=0.1 fully fit then ran 34k more steps with heldout flat ~0.55-0.59 (no late rise), I expect 001B most likely confirms grok_negative. The fit+reg band is nonetheless the genuine untested spot, so this is a legitimate last check. In-context per-episode rule inference is not classic grokking; do not over-read.",
+  "_purpose": "LAST cheap learnability probe. The fit+regularization 'Goldilocks' band is the only untested spot: 001A had wd=0.1 (fit, NO grokking) and wd=1.0 (over-regularized, did NOT fit). Test wd in {0.3,0.5} (fit AND regularized) for the SAME frozen transformer 256/4 on rung0. Resolves the route either way (escalate or close); no more single-config probes after this.",
+  "_underpowered_by_design": "3 seeds x 2 wd = 6 runs; route_decision.py returns inconclusive_underpowered BY DESIGN; signal = fitted-cell val-curve shape + trend.",
+  "artifact": "frozen_design",
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "capacity_FROZEN": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "in_context_transformer"
+  },
+  "claim_ceiling": "Bounded trend/lean on the fit+regularization band only. Closes/escalates the CHEAP learnability route for the transformer-256/4 rung0 witness. Proves nothing about transfer/rung3/H1, mechanism, capability-witness feasibility as a formal terminal, GRU witness, agency, self, subjectivity, AGI, EGO.",
+  "cost_bound": {
+    "runs": "6 (3 seeds x wd{0.3,0.5}) to 50000 steps",
+    "wall_clock_cap_per_run": "operator-set; record partial+budget_capped if exceeded; no silent extend"
+  },
+  "freeze_status": "FROZEN",
+  "go_no_go_predeclared_fit_conditioned": {
+    "_claim": "spend-gating/lean ONLY; thresholds pre-frozen; not a scientific terminal.",
+    "_step1": "FITTED cells = (seed,wd) whose train_balacc reaches >=0.95 at any checkpoint.",
+    "grok_negative_close": ">=1 FITTED cell exists AND every FITTED cell plateaus (heldout <= 0.60, no sustained late rise). -> CLOSE/DOWNGRADE the cheap learnability route as family/capacity-limited for this witness (decisive; combined with 001A budget+wd0.1 negatives).",
+    "grok_positive_escalate": "among FITTED cells: best heldout >= 0.75 by max_steps, OR a sustained late rise (heldout +>=0.15 over >=3 consecutive checkpoints AFTER first train>=0.95). -> ESCALATE: draft powered 10-seed grokking-regime sweep card (NOT route_open; still underpowered).",
+    "no_fitting_regime_uninformative": "NO cell in {0.3,0.5} reaches train>=0.95 -> report; fit+reg band empty for this config; operator decides (do NOT auto-close on this)."
+  },
+  "prereg_binding": {
+    "bar_source": "artifacts/TLGP-001B-R2/prereg.json",
+    "bar_source_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "pass_function_sha256": "ac80b06083b24a43c5b3615ac0185acd1817554844ba1d145d1e380391ae2375",
+    "route_decision_sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+    "world_rung0_source": "read-only import of TLGP-R2 world + rung0; NO edit to src/tlgp_001b_r2/* or src/tlgp_001a/*"
+  },
+  "reference_points": {
+    "bar": 0.9,
+    "fair_baseline_max": 0.32,
+    "ideal_balacc": 1.0,
+    "prior_001A_wd0.1": "train->1.0 by 16k, heldout flat ~0.55-0.59 to 50k, no late rise",
+    "prior_001A_wd1.0": "train never >=0.95 (over-regularized)"
+  },
+  "regime": {
+    "batch_size": 256,
+    "early_stopping": "DISABLED",
+    "extension_rule": "only if a fitted cell shows a late heldout rise trending-but-uncrossed AND operator authorizes; never auto",
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "max_steps_extension_if_trending": 100000,
+    "optimizer": "AdamW",
+    "weight_decay_grid": [
+      0.3,
+      0.5
+    ]
+  },
+  "required_logging": {
+    "checkpoint_every_steps": 2000,
+    "log_per_checkpoint": [
+      "step",
+      "train_balacc",
+      "heldout_balacc"
+    ]
+  },
+  "rung": "rung0 only (0a fit + 0b in-distribution heldout, same 8 rules)",
+  "seeds": [
+    20260710,
+    20260711,
+    20260712
+  ],
+  "stop_conditions": [
+    "capacity changed",
+    "go/no-go tuned after results",
+    "leakage",
+    "any banked TLGP-R2/TLGP-001A byte edited",
+    "frozen design edited after results",
+    "auto-extend beyond 50000 without operator OK",
+    "-> STOP + failure_manifest.json"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001B"
+}

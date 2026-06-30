@@ -1,0 +1,83 @@
+{
+  "_frozen_at": "2026-06-29",
+  "_frozen_canonical_sha256": "93bae0c65171e35e06e2e3ca858026f623be585ae0d3873b1e253ce8b7604be6",
+  "_honest_caveat": "Canonical grokking is single-table memorize->generalize in weight space. Here the task is in-context PER-EPISODE rule inference (infer rule from 24 examples -> apply), which is NOT classic grokking. Delayed generalization MAY simply not apply. A negative is informative but the analogy is imperfect; do not over-read either outcome.",
+  "_purpose": "Test whether the rung0 capability-witness failure SURVIVES a long-horizon, regularized (grokking) training regime, i.e. whether the minimal-probe 'budget-bound falsified / family-limited' lean was confounded by early-stop (~6k steps). Candidate-free; capacity FROZEN; NOT a TLGP-R2 run; makes NO H0/H1 claim.",
+  "_underpowered_by_design": "3 seeds < N_SEEDS=10. route_decision.py on this data returns inconclusive_underpowered BY DESIGN. The SIGNAL is the val-curve shape + trend, not a formal terminal.",
+  "artifact": "frozen_design",
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "capacity_FROZEN": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "in_context_transformer",
+    "note": "same prereg saturation witness as the minimal probe; capacity is NOT a variable here"
+  },
+  "claim_ceiling": "Bounded trend/lean on the TRAINING-REGIME lever only. Proves nothing about transfer (rung3/H1), mechanism, learning-as-mechanism, capability-witness feasibility as a formal terminal, agency, self, subjectivity, AGI, or EGO. Even grok_positive only unlocks drafting a powered sweep; even grok_negative is a lean (underpowered, 1 config, GRU witness untested).",
+  "cost_bound": {
+    "checkpointing": "required, so runs are observable/resumable",
+    "runs": "6 (3 seeds x 2 weight_decay) to max_steps_primary 50000 (~8x the minimal probe's step count)",
+    "wall_clock_cap_per_run": "operator-set; if exceeded, record the partial curve + mark budget_capped; do NOT silently extend"
+  },
+  "freeze_status": "FROZEN",
+  "go_no_go_predeclared": {
+    "_claim": "spend-gating / lean ONLY; NOT a scientific route terminal; thresholds are pre-frozen here and may not be tuned after results.",
+    "ambiguous": "anything else (e.g. train never fits, or partial uncrossed rise) -> report numbers + curves, escalate to operator; do NOT auto-decide.",
+    "grok_negative_family_limited": "across all runs, train_balacc reaches >= 0.95 (fit) but heldout stays <= 0.60 with NO sustained late rise through max_steps -> DOWNGRADE: training regime ruled out; honest family/capacity-limited lean for this learner at frozen capacity; route hold/downgrade.",
+    "grok_positive_escalate": "best (seed,wd) rung0 heldout >= 0.75 by max_steps, OR a delayed-generalization signature: heldout rises >= +0.15 AND is sustained over >= 3 consecutive checkpoints AFTER train_balacc first reaches >= 0.95 -> ESCALATE: draft a full powered (10-seed) grokking-regime sweep card. NOT route_open (still underpowered)."
+  },
+  "prereg_binding": {
+    "bar_source": "artifacts/TLGP-001B-R2/prereg.json",
+    "bar_source_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "pass_function_sha256": "ac80b06083b24a43c5b3615ac0185acd1817554844ba1d145d1e380391ae2375",
+    "route_decision_sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+    "world_rung0_source": "read-only import of TLGP-R2 world + rung0 data construction; NO edit to src/tlgp_001b_r2/* or src/tlgp_001a/*"
+  },
+  "reference_points": {
+    "bar": 0.9,
+    "fair_baseline_max": 0.32,
+    "ideal_balacc": 1.0,
+    "minimal_probe_heldout_plateau": "~0.53 mean, 0.601 max",
+    "minimal_probe_train_balacc_at_lr3e4": "~0.88-0.997 (fit)"
+  },
+  "regime_relaxation_vs_tlgp_r2": {
+    "_minimal_probe_was": "early_stop_patience=20, ~6k steps, no weight decay declared -> grokking-hostile",
+    "batch_size": 256,
+    "early_stopping": "DISABLED (grokking emerges AFTER apparent convergence; early-stop@20 in the minimal probe killed exactly that window)",
+    "extension_rule": "only if a late heldout rise is trending but has not crossed by 50k AND operator authorizes; never auto-extend",
+    "lr": 0.0003,
+    "max_steps_extension_if_trending": 100000,
+    "max_steps_primary": 50000,
+    "optimizer": "AdamW",
+    "weight_decay_grid": [
+      0.1,
+      1.0
+    ],
+    "what_changes": "TRAINING REGIME ONLY (the explicit, declared scope extension beyond the minimal probe's epoch-only sweep)"
+  },
+  "required_logging": {
+    "checkpoint_every_steps": 2000,
+    "log_per_checkpoint": [
+      "step",
+      "train_balacc",
+      "heldout_balacc"
+    ],
+    "rationale": "the grokking signature is a LATE heldout rise AFTER train saturates; dense train+heldout curves are mandatory to SEE it even if the bar is not crossed"
+  },
+  "rung": "rung0 only (0a train fit + 0b in-distribution heldout of the SAME 8 rules)",
+  "seeds": [
+    20260710,
+    20260711,
+    20260712
+  ],
+  "stop_conditions": [
+    "capacity changed/enlarged",
+    "go/no-go thresholds tuned after results",
+    "leakage detected",
+    "any banked TLGP-R2/TLGP-001A source byte edited",
+    "this frozen design edited after results",
+    "-> STOP + failure_manifest.json, do not proceed"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-GROKKING-PROBE-001A"
+}
