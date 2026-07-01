@@ -1,0 +1,183 @@
+{
+  "_frozen_at": "2026-07-01",
+  "_frozen_canonical_sha256": "c2a32ed8612d53186dff54245d9c8c8a86abcdc2f020e78dcd2f6910c2b0d706",
+  "_honest_note": "Candidate-free rung3 identifiability probe only. A headroom_exists verdict authorizes a separate powered learner run; it is not transfer evidence and not a GPU-skip.",
+  "_purpose": "Freeze the rung3 identifiability probe design before reading any real rung3 split result.",
+  "artifact": "frozen_design",
+  "auto_remote_anchor": "forbidden",
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "claim_ceiling": "bounded candidate-free no-GPU probe: decides only whether the TLGP rung3 in-family ideal observer has balanced-accuracy headroom over equal-access fair baselines on unseen rules. It proves no learner transfer, mechanism validity, agency, self, subjectivity, AGI, EGO readiness, or companion readiness.",
+  "collision_record": {
+    "candidates": [
+      {
+        "approach": "minimal_ideal_vs_existing_lr_only",
+        "evidence_it_would_produce": "ideal observer balanced accuracy and LR five fair-baseline balanced accuracy on controls and rung3",
+        "expected_failure_mode": "false headroom because the fair panel omits the graph-cache-family challenger required by the task card",
+        "leakage_or_hardcoding_risk": "low direct leakage risk, high under-baselining risk",
+        "smallest_falsifying_test": "a real equal-access graph cache matches or materially reduces the apparent ideal headroom",
+        "strongest_cheap_baseline_that_could_match": "successor_map or transition_table cache built from the 24 adapt examples"
+      },
+      {
+        "approach": "strongest_shortcut_baseline_first",
+        "evidence_it_would_produce": "graph-cache predictions, query-cell miss rate, and balanced accuracy under equal adapt access",
+        "expected_failure_mode": "cannot extrapolate to unseen query inputs and unseen values except exact adapt cell repeats",
+        "leakage_or_hardcoding_risk": "aliasing risk if graph_cache is implemented as max(lookup,count_table) instead of its own map",
+        "smallest_falsifying_test": "query cells not present in adapt must use graph_cache's own default rather than true answers or another baseline's score",
+        "strongest_cheap_baseline_that_could_match": "the graph-cache challenger itself under access parity"
+      },
+      {
+        "approach": "mechanism_faithful_candidate_free_probe",
+        "evidence_it_would_produce": "controls, leakage, ideal/fair balanced accuracy, per-seed headroom, LCB, adapt-size ablation, replay-from-trace verdict reconstruction, and frozen adjudicator output",
+        "expected_failure_mode": "controls fail, leakage detector fails, trace replay mismatch, or fair baselines saturate the ideal headroom",
+        "leakage_or_hardcoding_risk": "managed by forbidden-input assertions, source hashes, positive-control leakage, and trace replay",
+        "smallest_falsifying_test": "positive rung0 control reports ceiling or negative N_ADAPT=1 control reports headroom",
+        "strongest_cheap_baseline_that_could_match": "equal-access graph_cache plus LR lookup/count_table/predict_all/majority/no_adaptation"
+      }
+    ],
+    "selected_approach": "mechanism_faithful_candidate_free_probe",
+    "selection_reason": "Only the selected approach keeps the required graph-cache challenger, controls-first gate, leakage positive controls, replay path, and frozen adjudicator while avoiding any learner, GPU, training, or banked-source edits."
+  },
+  "controls": {
+    "negative": {
+      "expected_terminal": [
+        "route_closed_identifiability_ceiling",
+        "inconclusive_underpowered"
+      ],
+      "n_adapt": 1,
+      "rung": "rung3_real_unseen_rule_unseen_value",
+      "split": "test",
+      "stop_if": "reports rung3_headroom_exists_authorize_powered_learner"
+    },
+    "positive": {
+      "expected_terminal": "rung3_headroom_exists_authorize_powered_learner",
+      "rung": "rung0_learnability_floor",
+      "split": "heldout",
+      "stop_if": "reports route_closed_identifiability_ceiling"
+    },
+    "run_before_real_rung3": true
+  },
+  "fair_panel": [
+    "lookup",
+    "count_table",
+    "predict_all",
+    "majority",
+    "no_adaptation",
+    "graph_cache"
+  ],
+  "forbidden_agent_inputs": [
+    "rule_id",
+    "query_e"
+  ],
+  "implementation_files": {
+    "create": [
+      "src/tlgp_capability_witness_preflight_001a/rung3_graph_cache_baselines.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_identifiability_adjudicator.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_identifiability_probe.py"
+    ],
+    "read_only": [
+      "src/tlgp_001a/**",
+      "src/tlgp_001b_r2/**",
+      "src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+      "src/tlgp_capability_witness_preflight_001a/route_decision.py",
+      "src/tlgp_capability_witness_preflight_001a/grokking_probe.py"
+    ]
+  },
+  "leakage_standard": {
+    "detector": "src.tlgp_001a.leakage.detect",
+    "planted_controls_must_be_caught": true,
+    "real_channels_must_be_clean": true,
+    "targets": [
+      "rule_id",
+      "answer"
+    ]
+  },
+  "metric": {
+    "episode_score": "balanced_accuracy",
+    "headroom": "ideal - max(fair_panel)",
+    "lcb": "mean(per_seed_headroom) - 2*std(per_seed_headroom)/sqrt(N_SEEDS)",
+    "never_use": "recall_only"
+  },
+  "preregistration": {
+    "DELTA": 0.1,
+    "FLOOR": 0.2,
+    "N_SEEDS": 10,
+    "close_fraction_min": 9,
+    "expected_canonical_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "model_seeds": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ]
+  },
+  "prior_negative_evidence": [
+    "TLGP-001B-R1 was preserved as invalid negative governance evidence; do not reinterpret old failures as stronger claims.",
+    "Standing identifiability-ceiling challenger: with equal access, a fair baseline may inherit the same identifiability and close the route.",
+    "Route-C lesson: an underpowered or recall-only baseline can create false headroom, so predict_all and majority stay in the balanced-accuracy fair panel."
+  ],
+  "replay_requirement": {
+    "source": "trace.jsonl only",
+    "must_reconstruct": [
+      "per-seed headroom",
+      "fair_max",
+      "route_decision_input",
+      "route_decision"
+    ],
+    "tolerance": 1e-9
+  },
+  "rung3_real_split": {
+    "adapt_values": [
+      0,
+      1,
+      2
+    ],
+    "assertions": [
+      "TRAIN_RULES intersection query_rules is empty",
+      "rung3 test rules subset of TEST_RULES",
+      "query values are [3,4]"
+    ],
+    "query_values": [
+      3,
+      4
+    ],
+    "rung": "rung3_real_unseen_rule_unseen_value",
+    "split": "test"
+  },
+  "run_order": [
+    "verify prereg canonical sha",
+    "self-test adjudicator terminals",
+    "positive control",
+    "negative control",
+    "real rung3 split",
+    "leakage scan",
+    "adapt-size ablation",
+    "trace replay",
+    "frozen adjudicator"
+  ],
+  "stop_conditions": [
+    "positive control fails",
+    "negative control fails",
+    "leakage planted channel not caught",
+    "real channel leakage flagged",
+    "ideal reads forbidden input",
+    "graph_cache is an alias",
+    "unseen split assertion fails",
+    "DELTA or thresholds changed after result",
+    "verdict not produced by frozen self-tested adjudicator",
+    "any banked or frozen source edited"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG3-IDENTIFIABILITY-PROBE-001A",
+  "terminals": [
+    "route_closed_identifiability_ceiling",
+    "rung3_headroom_exists_authorize_powered_learner",
+    "route_needs_world_rung_redesign",
+    "inconclusive_underpowered",
+    "invalid_leakage"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "collision_record": {
+    "candidates": [
+      {
+        "approach": "minimal_ideal_vs_existing_lr_only",
+        "evidence_it_would_produce": "ideal observer balanced accuracy and LR five fair-baseline balanced accuracy on controls and rung3",
+        "expected_failure_mode": "false headroom because the fair panel omits the graph-cache-family challenger required by the task card",
+        "leakage_or_hardcoding_risk": "low direct leakage risk, high under-baselining risk",
+        "smallest_falsifying_test": "a real equal-access graph cache matches or materially reduces the apparent ideal headroom",
+        "strongest_cheap_baseline_that_could_match": "successor_map or transition_table cache built from the 24 adapt examples"
+      },
+      {
+        "approach": "strongest_shortcut_baseline_first",
+        "evidence_it_would_produce": "graph-cache predictions, query-cell miss rate, and balanced accuracy under equal adapt access",
+        "expected_failure_mode": "cannot extrapolate to unseen query inputs and unseen values except exact adapt cell repeats",
+        "leakage_or_hardcoding_risk": "aliasing risk if graph_cache is implemented as max(lookup,count_table) instead of its own map",
+        "smallest_falsifying_test": "query cells not present in adapt must use graph_cache's own default rather than true answers or another baseline's score",
+        "strongest_cheap_baseline_that_could_match": "the graph-cache challenger itself under access parity"
+      },
+      {
+        "approach": "mechanism_faithful_candidate_free_probe",
+        "evidence_it_would_produce": "controls, leakage, ideal/fair balanced accuracy, per-seed headroom, LCB, adapt-size ablation, replay-from-trace verdict reconstruction, and frozen adjudicator output",
+        "expected_failure_mode": "controls fail, leakage detector fails, trace replay mismatch, or fair baselines saturate the ideal headroom",
+        "leakage_or_hardcoding_risk": "managed by forbidden-input assertions, source hashes, positive-control leakage, and trace replay",
+        "smallest_falsifying_test": "positive rung0 control reports ceiling or negative N_ADAPT=1 control reports headroom",
+        "strongest_cheap_baseline_that_could_match": "equal-access graph_cache plus LR lookup/count_table/predict_all/majority/no_adaptation"
+      }
+    ],
+    "selected_approach": "mechanism_faithful_candidate_free_probe",
+    "selection_reason": "Only the selected approach keeps the required graph-cache challenger, controls-first gate, leakage positive controls, replay path, and frozen adjudicator while avoiding any learner, GPU, training, or banked-source edits."
+  },
+  "frozen_design_sha256": "c2a32ed8612d53186dff54245d9c8c8a86abcdc2f020e78dcd2f6910c2b0d706",
+  "source": "docs/task_cards/TLGP-CAPABILITY-WITNESS-RUNG3-IDENTIFIABILITY-PROBE-001A.frozen_design.json",
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG3-IDENTIFIABILITY-PROBE-001A"
+}
