@@ -1,0 +1,32 @@
+{
+  "architecture": {
+    "d_model": 256,
+    "dropout": 0.0,
+    "encoder": "torch.nn.TransformerEncoder",
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "segment_embeddings": [
+      "adapt",
+      "query"
+    ]
+  },
+  "claim_ceiling": "retrieval-model architecture description only; not TLGP route, mechanism, agency, self, AGI, or EGO evidence",
+  "family": "icl_retrieval_transformer",
+  "parameter_count": 3167749,
+  "params": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4
+  },
+  "tokenization": {
+    "adapt_token": "sum of learned embeddings for each discrete x dimension, action a, observed effect e, plus adapt segment embedding",
+    "attention": "full TransformerEncoder self-attention over adapt and query tokens; no causal mask",
+    "input_source": "normalized tensors from src.tlgp_001b_r2.meta_learners.build_tensors are rounded back to frozen discrete values for embedding lookup",
+    "pooling": "none; adapt examples are not mean-pooled or collapsed to a fixed summary before query readout",
+    "query_token": "sum of learned embeddings for each discrete x dimension and action a, plus query segment embedding; no effect e input",
+    "readout": "each query token output is passed through a Linear head to K logits",
+    "sequence": "[adapt_1 ... adapt_24, query_1 ... query_30]"
+  }
+}

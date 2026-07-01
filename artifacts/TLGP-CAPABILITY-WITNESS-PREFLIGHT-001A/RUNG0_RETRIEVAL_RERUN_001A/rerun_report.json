@@ -1,0 +1,114 @@
+{
+  "claim_ceiling": "bounded 3-seed rung0 trend only; route_decision is underpowered by design and this is not a route terminal, transfer, mechanism, agency, self, AGI, or EGO claim",
+  "dataset_diagnostics": {
+    "heldout_episodes": 200,
+    "heldout_query_adapt_overlap_mean": 0.03966666666666667,
+    "heldout_rule_ids_observed": [
+      39,
+      130,
+      155,
+      251,
+      379,
+      382,
+      433,
+      580
+    ],
+    "r0_rule_ids": [
+      39,
+      130,
+      155,
+      251,
+      379,
+      382,
+      433,
+      580
+    ],
+    "train_episodes": 5000,
+    "train_query_adapt_overlap_mean": 0.0382,
+    "train_rule_ids_observed": [
+      39,
+      130,
+      155,
+      251,
+      379,
+      382,
+      433,
+      580
+    ]
+  },
+  "fair_baseline_max": 0.22633160173160177,
+  "fair_baselines": {
+    "count_table": 0.22633160173160177,
+    "graph_cache": 0.22633160173160177,
+    "lookup": 0.22633160173160177,
+    "majority": 0.20024999999999998,
+    "predict_all": 0.20024999999999998
+  },
+  "fitted_seed_count": 3,
+  "heldout_pass_seed_count": 3,
+  "ideal_balacc": 1.0,
+  "ideal_score_min": 1.0,
+  "input_artifacts": [
+    "docs/task_cards/TLGP-CAPABILITY-WITNESS-RUNG0-RETRIEVAL-RERUN-001A.frozen_design.json",
+    "src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+    "src/tlgp_capability_witness_preflight_001a/grokking_probe.py::_eval_checkpoint",
+    "src/tlgp_001b_r2/splits.py::make_episodes",
+    "src/tlgp_001b_r2/lower_reference.py::evaluate"
+  ],
+  "missing_completed_runs": [],
+  "model": {
+    "family": "icl_retrieval_transformer",
+    "parameter_count": 3167749,
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    }
+  },
+  "per_seed": {
+    "20260710": {
+      "best_heldout_balacc_0b": 0.9617319173881674,
+      "best_heldout_step": 42000,
+      "best_train_balacc_0a": 1.0,
+      "best_train_step": 2000,
+      "early_stopped": true,
+      "fair_baseline_max": 0.22633160173160177,
+      "fitted": true,
+      "ideal_balacc": 1.0,
+      "steps_run": 42000
+    },
+    "20260711": {
+      "best_heldout_balacc_0b": 0.9483307720057721,
+      "best_heldout_step": 18000,
+      "best_train_balacc_0a": 1.0,
+      "best_train_step": 2000,
+      "early_stopped": true,
+      "fair_baseline_max": 0.22633160173160177,
+      "fitted": true,
+      "ideal_balacc": 1.0,
+      "steps_run": 18000
+    },
+    "20260712": {
+      "best_heldout_balacc_0b": 0.9485841991341991,
+      "best_heldout_step": 24000,
+      "best_train_balacc_0a": 1.0,
+      "best_train_step": 2000,
+      "early_stopped": true,
+      "fair_baseline_max": 0.22633160173160177,
+      "fitted": true,
+      "ideal_balacc": 1.0,
+      "steps_run": 24000
+    }
+  },
+  "producer_function": "src.tlgp_capability_witness_preflight_001a.rung0_retrieval_rerun.apply_fit_conditioned_go_no_go",
+  "run_id": "tlgp-rung0-retrieval-rerun-20260630-175905-75736115",
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG0-RETRIEVAL-RERUN-001A",
+  "thresholds": {
+    "ambiguous": "0b between 0.65 and 0.80, or no seed fits 0a",
+    "fitted_seed": "best train_balacc_0a >= 0.95",
+    "witness_trend_fail": "all FITTED seeds best heldout_balacc_0b <= 0.65",
+    "witness_trend_pass": "among FITTED seeds, best heldout_balacc_0b >= 0.80 on >=2 seeds"
+  },
+  "verdict": "witness_trend_pass"
+}

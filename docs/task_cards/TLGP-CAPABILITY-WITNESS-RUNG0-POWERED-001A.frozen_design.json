@@ -1,0 +1,75 @@
+{
+  "_frozen_at": "2026-06-30",
+  "_frozen_canonical_sha256": "69e86cb1df0f29c60f0d9d3046ea65e13a246a1d809a1afb8139bc6019ae5cb8",
+  "_honest_note": "Still rung0 = SEEN rules (the capability-witness PREREQUISITE), NOT transfer. A formal route_open here only unlocks rung1/rung3; it is not transfer/mechanism evidence. The retrieval model likely passes by recognizing which of 8 seen rules from adapt + applying it \u2014 rung3 (unseen rules) remains the real test where identifiability lives.",
+  "_purpose": "Convert the 3-seed rung0 trend (witness_trend_pass, 0b~0.95) into a FORMAL terminal: run the validated retrieval model on real rung0 at the prereg's full power (N_SEEDS=10) and adjudicate with the UNMODIFIED route_decision.py against the prereg rung0 pass rule + fair/graph-cache headroom.",
+  "artifact": "frozen_design",
+  "binding": {
+    "model": "src/tlgp_capability_witness_preflight_001a/retrieval_model.py (validated runner_ok; sha 0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb)",
+    "prereg_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "route_decision_sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+    "task": "real TLGP rung0: R0_RULES(8), adapt+query full [0..4], n_train 5000 / n_heldout 200; reuse rung0 construction + _eval_checkpoint READ-ONLY; query/adapt overlap ~4% (genuine inference); no rule_id/query_e model inputs"
+  },
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "capacity": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "retrieval_model"
+  },
+  "claim_ceiling": "formal rung0 SEEN-RULE capability-witness terminal only. Proves nothing about rung3/transfer, the identifiability ceiling, mechanism, agency, self, subjectivity, AGI, or EGO. route_open unlocks only drafting rung1/rung3.",
+  "formal_pass_rule_prereg": {
+    "bar": "ideal_R0(1.0) - DELTA(0.1) = 0.9",
+    "rule": "both 0a(train) AND 0b(in-dist heldout) >= 0.9 on >= close_fraction_min=9/10 seeds"
+  },
+  "freeze_status": "FROZEN",
+  "regime": {
+    "_seeds_note": "prereg MODEL_SEEDS, N_SEEDS=10",
+    "batch_size": 256,
+    "checkpoint_every_steps": 2000,
+    "early_stopping": "allowed",
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "optimizer": "AdamW",
+    "seeds": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "weight_decay": 0.1
+  },
+  "route_decision_inputs_required": {
+    "fair_baseline_balacc": [
+      "lookup",
+      "count_table",
+      "predict_all",
+      "majority",
+      "no_adaptation",
+      "graph_cache"
+    ],
+    "headroom_power": "MDE/power for the learner-vs-fair separation",
+    "ideal_balacc": "recorded",
+    "leakage_clean": "frozen 001A dual-target MI detector, per rung",
+    "learner_per_seed_balacc": "retrieval model 0b per seed (10)",
+    "n_seeds": 10
+  },
+  "stop_conditions": [
+    "edit any banked file (retrieval_model post-bank/rung0 construction/route_decision/meta_learners/world/tlgp_001b_r2/tlgp_001a)",
+    "capacity changed",
+    "pass rule or thresholds tuned after results",
+    "route verdict not from the unmodified route_decision.py",
+    "add audit layers",
+    "commit or push (leave artifacts for verification)",
+    "-> STOP + failure_manifest.json"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG0-POWERED-001A",
+  "verdict": "the UNMODIFIED route_decision.py output is the formal terminal (expected route_open_capability_witness_feasible IF 0b passes 9/10 with power-backed headroom over fair+graph_cache and leakage clean; else the honest computed terminal). NOT tuned."
+}

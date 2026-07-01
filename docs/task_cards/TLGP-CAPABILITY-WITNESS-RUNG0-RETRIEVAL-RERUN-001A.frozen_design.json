@@ -1,0 +1,69 @@
+{
+  "_frozen_at": "2026-06-30",
+  "_frozen_canonical_sha256": "e917ad29cc00cb8e48740883a10596829cec52cc2b10032698cf1c2adc61b9af",
+  "_honest_note": "PC_COPY (query in adapt) only proved retrieval; rung0 0b requires INFERENCE (infer which of 8 seen rules + generalize to query cells NOT in adapt). Retrieval-capable != inference-capable. Both outcomes are informative. Trend probe (3 seeds, underpowered); route_decision.py returns inconclusive_underpowered by design; the SIGNAL is the 0b trend.",
+  "_purpose": "FIRST interpretable capability-witness experiment: run the REAL TLGP rung0 (seen-rule in-distribution-heldout) with the validated retrieval model (PC_COPY=1.0, PC_SINGLE_RULE=1.0). The prior rung0 negatives (pooling metas ~0.37-0.55) were CONFOUNDED by the mean-pool bottleneck; this re-run is not. Either the witness is now attainable (route reopens) or it is a REAL un-confounded negative (clean close).",
+  "artifact": "frozen_design",
+  "binding": {
+    "bar": "ideal_R0(=1.0) - DELTA(0.1) = 0.9, per prereg rung0 pass_rule",
+    "model": "src/tlgp_capability_witness_preflight_001a/retrieval_model.py (validated runner_ok on frozen positive control 90f2a503; 3.17M params; no adapt pooling)",
+    "route_decision": "0dcf3659... (powered follow-up only)",
+    "task": "REAL TLGP rung0 from the frozen prereg (prereg sha 6e61a831...): train_rules=R0_RULES(8 fixed), test_rules=R0_RULES, adapt_values & query_values = full [0..4], n_train_episodes=5000, n_heldout_episodes=200. Reuse the world + rung0 data construction READ-ONLY; do NOT edit banked source."
+  },
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "capacity": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "retrieval_model (in-context, per-example attention)",
+    "note": "the validated retrieval arch; NOT the frozen pooling family"
+  },
+  "claim_ceiling": "First interpretable bounded rung0 result with a validated instrument. A pass only authorizes a powered run (not transfer/H1). A fail is a real un-confounded rung0 negative, still bounded to this world+arch+budget. Proves nothing about rung3/transfer, mechanism, agency, self, subjectivity, AGI, EGO.",
+  "freeze_status": "FROZEN",
+  "go_no_go_predeclared_fit_conditioned": {
+    "_claim": "trend/lean only; pre-frozen; the formal terminal needs the powered 10-seed run via route_decision.py.",
+    "_fitted": "FITTED seeds = train(0a) reaches >= 0.95.",
+    "ambiguous": "0b between 0.65 and 0.80, or no seed fits 0a -> report curves + numbers, operator decides.",
+    "witness_trend_fail": "all FITTED seeds plateau 0b <= 0.65 (no material gain over the confounded pooling metas ~0.55) -> REAL UN-CONFOUNDED NEGATIVE: even a validated in-context learner cannot infer the seen-rule rung0 from sparse adapt -> CLOSE/downgrade the rung0 witness as a genuine learnability limit (now interpretable).",
+    "witness_trend_pass": "among FITTED seeds, 0b heldout >= 0.80 on >= 2/3 seeds -> the witness looks attainable with a working ICL learner -> ESCALATE: draft a powered 10-seed rung0 run + (if it passes) rung1; this REOPENS the capability-witness route."
+  },
+  "regime": {
+    "batch_size": 256,
+    "checkpoint_every_steps": 2000,
+    "checks": {
+      "0a_fit": "train balanced accuracy",
+      "0b_indist_heldout": "new episodes of the SAME 8 rules, full value coverage"
+    },
+    "early_stopping": "allowed",
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "optimizer": "AdamW",
+    "seeds": [
+      20260710,
+      20260711,
+      20260712
+    ],
+    "weight_decay": 0.1
+  },
+  "required_logging": {
+    "also": [
+      "ideal_balacc(~1.0)",
+      "fair_baseline rung0 balacc (lookup/count_table/predict_all/majority)"
+    ],
+    "per_checkpoint": [
+      "step",
+      "train_balacc(0a)",
+      "heldout_balacc(0b)"
+    ]
+  },
+  "stop_conditions": [
+    "edit banked source (meta_learners/positive_control/grokking_probe/route_decision/retrieval_model post-bank/world/tlgp_001b_r2/tlgp_001a)",
+    "capacity changed",
+    "go/no-go tuned after results",
+    "add audit layers",
+    "commit or push (leave artifacts for verification)",
+    "-> STOP + failure_manifest.json"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG0-RETRIEVAL-RERUN-001A"
+}
