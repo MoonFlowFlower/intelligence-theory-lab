@@ -1,0 +1,112 @@
+{
+  "artifact_paths": {
+    "manifest": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/manifest.json",
+    "powered_report": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/powered_report.json",
+    "route_decision": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/route_decision.json",
+    "route_decision_input": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/route_decision_input.json",
+    "training_records": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/training_records.json",
+    "val_curves": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/val_curves.jsonl"
+  },
+  "banked_source_diff_empty": true,
+  "banked_source_status_after_run": [],
+  "capacity": {
+    "family": "icl_retrieval_transformer",
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    }
+  },
+  "capacity_unchanged": true,
+  "claim_ceiling": "formal rung0 seen-rule capability-witness terminal only; not transfer/rung3, mechanism, agency, self, AGI, or EGO evidence",
+  "dependency_status": [
+    "A  src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+    "A  src/tlgp_capability_witness_preflight_001a/rung0_retrieval_rerun.py"
+  ],
+  "dependency_status_after_run": [],
+  "formal_prereg_rule_pass": true,
+  "frozen_design_sha256": "69e86cb1df0f29c60f0d9d3046ea65e13a246a1d809a1afb8139bc6019ae5cb8",
+  "git_branch": "codex/meta-theory-scaffold",
+  "git_head": "06307c5ce8ca56e050d969259aa666cdd592f886",
+  "gpu_env": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "meta_learner_device_runs": {
+      "icl_retrieval_transformer": {
+        "all_runs_on_selected_device": true,
+        "any_run_on_cuda": true,
+        "any_run_on_selected_device": true,
+        "last_model_device": "cuda:0",
+        "last_tensor_devices": [
+          "cuda:0"
+        ],
+        "predictions_serialized_on_cpu": true,
+        "train_select_calls": 10
+      }
+    },
+    "meta_learner_ran_on_cuda": {
+      "amortized_summary_mlp": false,
+      "in_context_gru": false,
+      "in_context_transformer": false
+    },
+    "meta_learner_ran_on_selected_device": {
+      "amortized_summary_mlp": false,
+      "in_context_gru": false,
+      "in_context_transformer": false
+    },
+    "selected_device": "cuda:0",
+    "torch_version": "2.9.1+cu128"
+  },
+  "grokking_probe_sha256": "9126dc9273c5aac6c909de9d503e323609dca61c6d9e51fadd0d459a89d74555",
+  "meta_learners_sha256": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+  "model": {
+    "family": "icl_retrieval_transformer",
+    "learner_key": "retrieval_model",
+    "parameter_count": 3167749,
+    "params": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    }
+  },
+  "positive_control_sha256": "b06112b59b3388886b5770a628e6361958fe07b004e34d3bf21e08588cf91749",
+  "prereg_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+  "protected_source_status": [],
+  "regime": {
+    "batch_size": 256,
+    "checkpoint_every_steps": 2000,
+    "early_stopping": "allowed only when both train and heldout reach formal bar",
+    "lr": 0.0003,
+    "max_steps": 50000,
+    "n_heldout": 200,
+    "n_train": 5000,
+    "optimizer": "AdamW",
+    "rung": "rung0",
+    "seeds": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "weight_decay": 0.1
+  },
+  "retrieval_model_sha256": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+  "retrieval_model_sha256_after_run": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+  "retrieval_model_unchanged": true,
+  "route_decision_route": "route_open_capability_witness_feasible",
+  "route_decision_sha256": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+  "route_decision_sha256_after_run": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+  "route_decision_unchanged": true,
+  "run_id": "tlgp-rung0-powered-20260630-194845-d5d54d2c",
+  "rung0_retrieval_rerun_sha256": "fee06b4fb12dd6453ac0df9de26b8a30672d1604b4b82a8e4ec747c1092e4088",
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG0-POWERED-001A"
+}

@@ -1,0 +1,66 @@
+{
+  "fair_baseline_balacc": {
+    "count_table": 0.22633160173160177,
+    "graph_cache": 0.22633160173160177,
+    "lookup": 0.22633160173160177,
+    "majority": 0.20024999999999998,
+    "no_adaptation": 0.2109039862914863,
+    "predict_all": 0.20024999999999998
+  },
+  "formal_pass_rule_context": {
+    "bar": 0.9,
+    "prereg_rule_pass": true,
+    "seed_pass_count_both_train_and_heldout": 10,
+    "seed_pass_required": 9
+  },
+  "graph_cache_note": "conservative rung0 alias: max(lookup,count_table); no separate R2 graph-cache implementation exists",
+  "headroom_power": {
+    "retrieval_model": {
+      "alpha": 0.05,
+      "fair_max": 0.22633160173160177,
+      "learner_mean": 0.9517534027777778,
+      "mde_for_80pct_power": 0.01466794408980799,
+      "mean_margin_over_fair_max": 0.725421801046176,
+      "method": "one-sided normal approximation over seed-level retrieval-vs-max-fair margins; fair_max includes graph_cache",
+      "n": 10,
+      "observed_power_approx": 1.0,
+      "one_sided_lower95_margin": 0.7157186580870094,
+      "passes_power": true,
+      "producer_function": "src.tlgp_capability_witness_preflight_001a.rung0_retrieval_powered.compute_headroom_power",
+      "sample_sd_margin": 0.018654567014611368,
+      "seed_margin_values": [
+        0.7354003156565656,
+        0.7219991702741704,
+        0.7222525974025973,
+        0.7204064213564214,
+        0.718059641053391,
+        0.7196349927849928,
+        0.7287604617604617,
+        0.7621520923520924,
+        0.6881014880952381,
+        0.7374508297258295
+      ],
+      "standard_error_margin": 0.005899092053041947,
+      "target_power": 0.8
+    }
+  },
+  "ideal_balacc": 1.0,
+  "leakage_clean": true,
+  "learner_per_seed_balacc": {
+    "retrieval_model": [
+      0.9617319173881674,
+      0.9483307720057721,
+      0.9485841991341991,
+      0.9467380230880231,
+      0.9443912427849928,
+      0.9459665945165945,
+      0.9550920634920635,
+      0.9884836940836941,
+      0.9144330898268399,
+      0.9637824314574314
+    ]
+  },
+  "n_seeds": 10,
+  "rung": "rung0",
+  "selection_rule": "best heldout checkpoint per seed; powered_report separately records both-train-and-heldout prereg seed pass"
+}
