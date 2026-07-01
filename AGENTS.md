@@ -252,6 +252,13 @@ If the target mechanism is behaviorally equivalent to a simpler baseline, report
 
 Do not patch around equivalence.
 
+### Reusable baseline / success standards (consult before authoring a learning / generalization candidate)
+
+- `docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md` — control baselines that INVALIDATE a result (predict_all / predict_none, saturation, observation-decodable).
+- `docs/codex/contracts/LEARNING-SUCCESS-CRITERION-STANDARD-001A.md` — what COUNTS as flexible-learning success: rival vs control baselines, the positive generality criterion (one system across a task distribution, held-out novelty, few-shot, breadth-over-peak, ideal-observer headroom), the genuine-learning signature (learning curve + forward transfer + ablation-destroys + non-memorization), and a mandatory falsifier.
+
+Rival vs control: a task-specialist rival matching the candidate on its own narrow task is NOT a candidate failure; a control baseline (memorization / lookup / no-update / observation-decoder / from-scratch / candidate's own rule amortized) matching the candidate IS. Do not conflate them.
+
 ## Development Rules
 
 Prefer isolated files.
