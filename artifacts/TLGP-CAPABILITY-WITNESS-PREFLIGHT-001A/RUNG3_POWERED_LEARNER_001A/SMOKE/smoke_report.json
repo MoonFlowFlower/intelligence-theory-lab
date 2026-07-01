@@ -1,0 +1,4479 @@
+{
+  "adjudicator_input": {
+    "context_ablation_collapse": true,
+    "integrity": {
+      "clean_false_flag": false,
+      "family_substitution_not_declared": false,
+      "planted_leak_uncaught": false,
+      "protected_source_guard_failed": false,
+      "replay_exact_by_rung": {
+        "rung1": true,
+        "rung3": true
+      }
+    },
+    "no_adapt_collapse": true,
+    "rung0_pass": true,
+    "rung1_pass": false,
+    "rung3_fair_max": 0.21666666666666667,
+    "rung3_headroom_vs_meta": [
+      0.7949712555962556
+    ],
+    "rung3_ideal_mean": 1.0,
+    "shuffle_adapt_collapse": true
+  },
+  "adjudicator_self_test": {
+    "all_terminals_covered": true,
+    "claim_ceiling": "adjudicator branch-coverage self-test only; not TLGP evidence",
+    "evidential": false,
+    "expected_terminal_count": 8,
+    "expected_terminal_keys": [
+      "baseline_saturation",
+      "h0_amortized",
+      "h1_headroom_survives",
+      "invalid_discriminativeness_or_ablation",
+      "invalid_inconclusive_underpowered",
+      "invalid_integrity_or_governance",
+      "invalid_no_rung1_eligibility",
+      "invalid_rung0_reference_missing"
+    ],
+    "fixtures": {
+      "ablation_failure_fixture": {
+        "reason": "required context-ablation collapse did not hold",
+        "terminal": "invalid_discriminativeness_or_ablation"
+      },
+      "baseline_saturation_fixture": {
+        "reason": "fair or graph-cache panel reaches the rung3 bar; do not report H1",
+        "terminal": "baseline_saturation"
+      },
+      "h0_fixture": {
+        "reason": "retrieval closes to ideal under the prereg close-count statistic",
+        "terminal": "h0_amortized"
+      },
+      "h1_fixture": {
+        "reason": "LCB(headroom_vs_meta) is above DELTA for the scoped retrieval family",
+        "terminal": "h1_headroom_survives"
+      },
+      "integrity_failure_fixture": {
+        "reason": "integrity, replay, source, or declared-substitution guard failed",
+        "terminal": "invalid_integrity_or_governance"
+      },
+      "rung0_missing_fixture": {
+        "reason": "rung0 retrieval reference pass was not present",
+        "terminal": "invalid_rung0_reference_missing"
+      },
+      "rung1_eligibility_failure_fixture": {
+        "reason": "retrieval family did not meet rung1 eligibility",
+        "terminal": "invalid_no_rung1_eligibility"
+      },
+      "underpowered_fixture": {
+        "reason": "observed 1 seed(s), expected 10",
+        "terminal": "invalid_inconclusive_underpowered"
+      }
+    },
+    "official_verdict": "NOT_EMITTED",
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_single_family_adjudicator.synthetic_terminal_coverage",
+    "terminal_coverage_count": 8,
+    "terminal_keys_covered": [
+      "baseline_saturation",
+      "h0_amortized",
+      "h1_headroom_survives",
+      "invalid_discriminativeness_or_ablation",
+      "invalid_inconclusive_underpowered",
+      "invalid_integrity_or_governance",
+      "invalid_no_rung1_eligibility",
+      "invalid_rung0_reference_missing"
+    ],
+    "uses_synthetic_fixtures_only": true
+  },
+  "adjudicator_verdict": {
+    "detail": {
+      "DELTA": 0.1,
+      "baseline_saturates": false,
+      "claim_ceiling": "Scoped retrieval-family decision only; no mechanism, agency, self, subjectivity, AGI, EGO, or runtime readiness claim.",
+      "close_count_headroom_lte_delta": 0,
+      "close_fraction_min": 9,
+      "context_ablation_collapse": true,
+      "expected_model_seeds": 10,
+      "family_scope": "single retrieval_model family",
+      "integrity_invalid": false,
+      "lcb_headroom_vs_meta": 0.7949712555962556,
+      "no_adapt_collapse": true,
+      "observed_model_seeds": 1,
+      "rung0_pass": true,
+      "rung1_pass": false,
+      "rung3_bar_ideal_minus_delta": 0.9,
+      "rung3_fair_max": 0.21666666666666667,
+      "rung3_ideal_mean": 1.0,
+      "shuffle_adapt_collapse": true
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_single_family_adjudicator.compute_verdict",
+    "reason": "retrieval family did not meet rung1 eligibility",
+    "verdict": "invalid_no_rung1_eligibility"
+  },
+  "claim_ceiling": "Phase A smoke-only wiring proof. No H0/H1 evidence, no mechanism/agency/self/subjectivity/AGI/EGO claim, and no production/mainline effect.",
+  "evidential": false,
+  "full_run_launched": false,
+  "governance": {
+    "capacity": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "design_canonical_sha256": "12e2a81c3ae418bf328481c8622cf45e4acc7237ffa06a8fafad4f6f781cafff",
+    "device": {
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+      "meta_learner_device_runs": {
+        "icl_retrieval_transformer": {
+          "all_runs_on_selected_device": true,
+          "any_run_on_cuda": true,
+          "any_run_on_selected_device": true,
+          "last_model_device": "cuda:0",
+          "last_tensor_devices": [
+            "cuda:0"
+          ],
+          "predictions_serialized_on_cpu": true,
+          "train_select_calls": 1
+        }
+      },
+      "meta_learner_ran_on_cuda": {
+        "amortized_summary_mlp": false,
+        "in_context_gru": false,
+        "in_context_transformer": false
+      },
+      "meta_learner_ran_on_selected_device": {
+        "amortized_summary_mlp": false,
+        "in_context_gru": false,
+        "in_context_transformer": false
+      },
+      "selected_device": "cuda:0",
+      "torch_version": "2.9.1+cu128"
+    },
+    "family_substitution_declared": true,
+    "git_branch": "codex/meta-theory-scaffold",
+    "git_head": "7f7de677008b02d257da3a030a7d1e840999072a",
+    "model_seeds": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "prereg_canonical_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_powered_learner.validate_governance",
+    "protected_tracked_diff_names": [],
+    "source_hashes": {
+      "grokking_probe_sha256": "9126dc9273c5aac6c909de9d503e323609dca61c6d9e51fadd0d459a89d74555",
+      "meta_learners_sha256": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+      "retrieval_model_sha256": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+      "rung3_graph_cache_baselines_sha256": "921d44078a7b77e60c61b9bc5c5e2986228c4134a30ef2703c5fc52890229eaa"
+    },
+    "training_budget": {
+      "batch_size": 256,
+      "early_stop_patience": 20,
+      "identical_across_all_rungs_and_conditions": true,
+      "lr_grid": [
+        0.001,
+        0.0003
+      ],
+      "lr_selection": "best on val balanced-accuracy (preregistered)",
+      "max_epochs": 200,
+      "n_test_episodes": 200,
+      "n_train_episodes": 5000,
+      "n_val_episodes": 1000,
+      "only_permitted_cross_rung_difference": "DATA (which rules / which values / seen vs unseen) -- never compute/architecture/budget",
+      "optimizer": "adam",
+      "steps_max": 200000
+    }
+  },
+  "leakage_reports": {
+    "rung1": {
+      "all_planted_caught": true,
+      "answer_leak_caught": true,
+      "clean_false_flags": [],
+      "clean_report": {
+        "adapt_a_00": {
+          "flagged": false,
+          "mi_answer_bits": 0.0469,
+          "mi_rule_bits": 2.0675,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_01": {
+          "flagged": false,
+          "mi_answer_bits": 0.1233,
+          "mi_rule_bits": 2.081,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_02": {
+          "flagged": false,
+          "mi_answer_bits": 0.0596,
+          "mi_rule_bits": 2.111,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_03": {
+          "flagged": false,
+          "mi_answer_bits": 0.0516,
+          "mi_rule_bits": 2.0319,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_04": {
+          "flagged": false,
+          "mi_answer_bits": 0.0997,
+          "mi_rule_bits": 2.076,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_05": {
+          "flagged": false,
+          "mi_answer_bits": 0.0637,
+          "mi_rule_bits": 2.0645,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_06": {
+          "flagged": false,
+          "mi_answer_bits": 0.0721,
+          "mi_rule_bits": 2.0759,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_07": {
+          "flagged": false,
+          "mi_answer_bits": 0.0459,
+          "mi_rule_bits": 2.0588,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_08": {
+          "flagged": false,
+          "mi_answer_bits": 0.0999,
+          "mi_rule_bits": 2.0658,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_09": {
+          "flagged": false,
+          "mi_answer_bits": 0.058,
+          "mi_rule_bits": 2.0288,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_10": {
+          "flagged": false,
+          "mi_answer_bits": 0.0386,
+          "mi_rule_bits": 2.1185,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_11": {
+          "flagged": false,
+          "mi_answer_bits": 0.0354,
+          "mi_rule_bits": 2.1122,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_12": {
+          "flagged": false,
+          "mi_answer_bits": 0.0607,
+          "mi_rule_bits": 2.0482,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_13": {
+          "flagged": false,
+          "mi_answer_bits": 0.0521,
+          "mi_rule_bits": 2.0595,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_14": {
+          "flagged": false,
+          "mi_answer_bits": 0.0509,
+          "mi_rule_bits": 2.0865,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_15": {
+          "flagged": false,
+          "mi_answer_bits": 0.0795,
+          "mi_rule_bits": 2.0335,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_16": {
+          "flagged": false,
+          "mi_answer_bits": 0.0658,
+          "mi_rule_bits": 2.0599,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_17": {
+          "flagged": false,
+          "mi_answer_bits": 0.0859,
+          "mi_rule_bits": 2.0981,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_18": {
+          "flagged": false,
+          "mi_answer_bits": 0.042,
+          "mi_rule_bits": 2.049,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_19": {
+          "flagged": false,
+          "mi_answer_bits": 0.0618,
+          "mi_rule_bits": 2.0954,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_20": {
+          "flagged": false,
+          "mi_answer_bits": 0.0479,
+          "mi_rule_bits": 2.1026,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_21": {
+          "flagged": false,
+          "mi_answer_bits": 0.0797,
+          "mi_rule_bits": 2.0794,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_22": {
+          "flagged": false,
+          "mi_answer_bits": 0.0833,
+          "mi_rule_bits": 2.0743,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_a_23": {
+          "flagged": false,
+          "mi_answer_bits": 0.0601,
+          "mi_rule_bits": 2.0429,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_00": {
+          "flagged": false,
+          "mi_answer_bits": 0.0936,
+          "mi_rule_bits": 2.0152,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_01": {
+          "flagged": false,
+          "mi_answer_bits": 0.0658,
+          "mi_rule_bits": 2.0467,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_02": {
+          "flagged": false,
+          "mi_answer_bits": 0.0615,
+          "mi_rule_bits": 2.0746,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_03": {
+          "flagged": false,
+          "mi_answer_bits": 0.0486,
+          "mi_rule_bits": 2.1106,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_04": {
+          "flagged": false,
+          "mi_answer_bits": 0.035,
+          "mi_rule_bits": 2.0645,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_05": {
+          "flagged": false,
+          "mi_answer_bits": 0.0355,
+          "mi_rule_bits": 2.1093,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_06": {
+          "flagged": false,
+          "mi_answer_bits": 0.0574,
+          "mi_rule_bits": 2.0514,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_07": {
+          "flagged": false,
+          "mi_answer_bits": 0.0532,
+          "mi_rule_bits": 2.056,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_08": {
+          "flagged": false,
+          "mi_answer_bits": 0.0786,
+          "mi_rule_bits": 2.0766,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_09": {
+          "flagged": false,
+          "mi_answer_bits": 0.0829,
+          "mi_rule_bits": 2.075,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_10": {
+          "flagged": false,
+          "mi_answer_bits": 0.0733,
+          "mi_rule_bits": 2.058,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_11": {
+          "flagged": false,
+          "mi_answer_bits": 0.0546,
+          "mi_rule_bits": 2.0709,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_12": {
+          "flagged": false,
+          "mi_answer_bits": 0.0262,
+          "mi_rule_bits": 2.0833,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_13": {
+          "flagged": false,
+          "mi_answer_bits": 0.052,
+          "mi_rule_bits": 2.0772,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_14": {
+          "flagged": false,
+          "mi_answer_bits": 0.0598,
+          "mi_rule_bits": 2.1176,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_15": {
+          "flagged": false,
+          "mi_answer_bits": 0.1016,
+          "mi_rule_bits": 2.0132,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_16": {
+          "flagged": false,
+          "mi_answer_bits": 0.0453,
+          "mi_rule_bits": 2.0899,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_17": {
+          "flagged": false,
+          "mi_answer_bits": 0.057,
+          "mi_rule_bits": 2.053,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_18": {
+          "flagged": false,
+          "mi_answer_bits": 0.0269,
+          "mi_rule_bits": 2.0718,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_19": {
+          "flagged": false,
+          "mi_answer_bits": 0.0396,
+          "mi_rule_bits": 2.1022,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_20": {
+          "flagged": false,
+          "mi_answer_bits": 0.0618,
+          "mi_rule_bits": 2.0528,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_21": {
+          "flagged": false,
+          "mi_answer_bits": 0.1028,
+          "mi_rule_bits": 2.0973,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_22": {
+          "flagged": false,
+          "mi_answer_bits": 0.0771,
+          "mi_rule_bits": 2.0653,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_e_23": {
+          "flagged": false,
+          "mi_answer_bits": 0.0382,
+          "mi_rule_bits": 2.1403,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_00_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0527,
+          "mi_rule_bits": 1.3838,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_00_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0237,
+          "mi_rule_bits": 1.4247,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_00_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0162,
+          "mi_rule_bits": 1.3374,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_01_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.035,
+          "mi_rule_bits": 1.3463,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_01_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0278,
+          "mi_rule_bits": 1.3729,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_01_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0209,
+          "mi_rule_bits": 1.4019,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_02_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0309,
+          "mi_rule_bits": 1.4665,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_02_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0214,
+          "mi_rule_bits": 1.3663,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_02_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.039,
+          "mi_rule_bits": 1.3963,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_03_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0346,
+          "mi_rule_bits": 1.3861,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_03_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0181,
+          "mi_rule_bits": 1.3771,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_03_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0158,
+          "mi_rule_bits": 1.425,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_04_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0174,
+          "mi_rule_bits": 1.4459,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_04_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.023,
+          "mi_rule_bits": 1.3713,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_04_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0535,
+          "mi_rule_bits": 1.3712,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_05_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0321,
+          "mi_rule_bits": 1.3894,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_05_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0294,
+          "mi_rule_bits": 1.3546,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_05_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.042,
+          "mi_rule_bits": 1.3767,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_06_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0133,
+          "mi_rule_bits": 1.3657,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_06_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0229,
+          "mi_rule_bits": 1.3774,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_06_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0187,
+          "mi_rule_bits": 1.4289,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_07_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0326,
+          "mi_rule_bits": 1.3801,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_07_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0105,
+          "mi_rule_bits": 1.3901,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_07_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0229,
+          "mi_rule_bits": 1.4016,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_08_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0394,
+          "mi_rule_bits": 1.3894,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_08_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0122,
+          "mi_rule_bits": 1.3961,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_08_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0292,
+          "mi_rule_bits": 1.329,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_09_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0091,
+          "mi_rule_bits": 1.4031,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_09_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0202,
+          "mi_rule_bits": 1.3227,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_09_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0399,
+          "mi_rule_bits": 1.3654,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_10_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0278,
+          "mi_rule_bits": 1.418,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_10_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0336,
+          "mi_rule_bits": 1.4274,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_10_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0252,
+          "mi_rule_bits": 1.401,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_11_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0284,
+          "mi_rule_bits": 1.349,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_11_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0477,
+          "mi_rule_bits": 1.3561,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_11_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0243,
+          "mi_rule_bits": 1.3929,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_12_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0193,
+          "mi_rule_bits": 1.3861,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_12_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0292,
+          "mi_rule_bits": 1.3455,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_12_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.023,
+          "mi_rule_bits": 1.383,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_13_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0251,
+          "mi_rule_bits": 1.3755,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_13_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0068,
+          "mi_rule_bits": 1.3854,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_13_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0179,
+          "mi_rule_bits": 1.4035,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_14_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.036,
+          "mi_rule_bits": 1.4261,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_14_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0104,
+          "mi_rule_bits": 1.385,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_14_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0245,
+          "mi_rule_bits": 1.414,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_15_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0272,
+          "mi_rule_bits": 1.403,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_15_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0201,
+          "mi_rule_bits": 1.3629,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_15_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0398,
+          "mi_rule_bits": 1.3829,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_16_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0409,
+          "mi_rule_bits": 1.4063,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_16_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.009,
+          "mi_rule_bits": 1.3476,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_16_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0123,
+          "mi_rule_bits": 1.3511,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_17_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0116,
+          "mi_rule_bits": 1.3945,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_17_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0222,
+          "mi_rule_bits": 1.3961,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_17_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0112,
+          "mi_rule_bits": 1.373,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_18_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0386,
+          "mi_rule_bits": 1.4388,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_18_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0769,
+          "mi_rule_bits": 1.3341,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_18_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0239,
+          "mi_rule_bits": 1.4447,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_19_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0394,
+          "mi_rule_bits": 1.4045,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_19_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0142,
+          "mi_rule_bits": 1.3786,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_19_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0142,
+          "mi_rule_bits": 1.3548,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_20_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0268,
+          "mi_rule_bits": 1.3635,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_20_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0119,
+          "mi_rule_bits": 1.397,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_20_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.04,
+          "mi_rule_bits": 1.3768,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_21_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0219,
+          "mi_rule_bits": 1.372,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_21_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0234,
+          "mi_rule_bits": 1.3982,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_21_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0416,
+          "mi_rule_bits": 1.4123,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_22_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0405,
+          "mi_rule_bits": 1.3476,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_22_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0147,
+          "mi_rule_bits": 1.3491,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_22_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0669,
+          "mi_rule_bits": 1.3755,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_23_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0523,
+          "mi_rule_bits": 1.3935,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_23_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0351,
+          "mi_rule_bits": 1.379,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "adapt_x_23_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0377,
+          "mi_rule_bits": 1.4352,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_00": {
+          "flagged": false,
+          "mi_answer_bits": 0.0569,
+          "mi_rule_bits": 2.043,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_01": {
+          "flagged": false,
+          "mi_answer_bits": 0.0405,
+          "mi_rule_bits": 2.0594,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_02": {
+          "flagged": false,
+          "mi_answer_bits": 0.0775,
+          "mi_rule_bits": 2.1098,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_03": {
+          "flagged": false,
+          "mi_answer_bits": 0.0521,
+          "mi_rule_bits": 2.0577,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_04": {
+          "flagged": false,
+          "mi_answer_bits": 0.0715,
+          "mi_rule_bits": 2.0827,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_05": {
+          "flagged": false,
+          "mi_answer_bits": 0.0556,
+          "mi_rule_bits": 2.086,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_06": {
+          "flagged": false,
+          "mi_answer_bits": 0.0833,
+          "mi_rule_bits": 2.0928,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_07": {
+          "flagged": false,
+          "mi_answer_bits": 0.0731,
+          "mi_rule_bits": 2.0978,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_08": {
+          "flagged": false,
+          "mi_answer_bits": 0.0613,
+          "mi_rule_bits": 2.0749,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_09": {
+          "flagged": false,
+          "mi_answer_bits": 0.0684,
+          "mi_rule_bits": 2.1053,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_10": {
+          "flagged": false,
+          "mi_answer_bits": 0.0569,
+          "mi_rule_bits": 2.092,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_11": {
+          "flagged": false,
+          "mi_answer_bits": 0.0309,
+          "mi_rule_bits": 2.0618,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_12": {
+          "flagged": false,
+          "mi_answer_bits": 0.0505,
+          "mi_rule_bits": 2.0683,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_13": {
+          "flagged": false,
+          "mi_answer_bits": 0.0665,
+          "mi_rule_bits": 2.1099,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_14": {
+          "flagged": false,
+          "mi_answer_bits": 0.0859,
+          "mi_rule_bits": 2.0878,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_15": {
+          "flagged": false,
+          "mi_answer_bits": 0.0764,
+          "mi_rule_bits": 2.0856,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_16": {
+          "flagged": false,
+          "mi_answer_bits": 0.0561,
+          "mi_rule_bits": 2.0835,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_17": {
+          "flagged": false,
+          "mi_answer_bits": 0.05,
+          "mi_rule_bits": 2.0576,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_18": {
+          "flagged": false,
+          "mi_answer_bits": 0.0455,
+          "mi_rule_bits": 2.078,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_19": {
+          "flagged": false,
+          "mi_answer_bits": 0.0223,
+          "mi_rule_bits": 2.1,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_20": {
+          "flagged": false,
+          "mi_answer_bits": 0.0773,
+          "mi_rule_bits": 2.1007,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_21": {
+          "flagged": false,
+          "mi_answer_bits": 0.0761,
+          "mi_rule_bits": 2.0702,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_22": {
+          "flagged": false,
+          "mi_answer_bits": 0.0684,
+          "mi_rule_bits": 2.0726,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_23": {
+          "flagged": false,
+          "mi_answer_bits": 0.0638,
+          "mi_rule_bits": 2.0859,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_24": {
+          "flagged": false,
+          "mi_answer_bits": 0.0521,
+          "mi_rule_bits": 2.0769,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_25": {
+          "flagged": false,
+          "mi_answer_bits": 0.0283,
+          "mi_rule_bits": 2.0999,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_26": {
+          "flagged": false,
+          "mi_answer_bits": 0.0429,
+          "mi_rule_bits": 2.0622,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_27": {
+          "flagged": false,
+          "mi_answer_bits": 0.0752,
+          "mi_rule_bits": 2.1012,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_28": {
+          "flagged": false,
+          "mi_answer_bits": 0.0497,
+          "mi_rule_bits": 2.0881,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_a_29": {
+          "flagged": false,
+          "mi_answer_bits": 0.0643,
+          "mi_rule_bits": 2.0674,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_00_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0218,
+          "mi_rule_bits": 1.3868,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_00_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0222,
+          "mi_rule_bits": 1.4164,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_00_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0164,
+          "mi_rule_bits": 1.3845,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_01_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0282,
+          "mi_rule_bits": 1.404,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_01_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0296,
+          "mi_rule_bits": 1.4194,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_01_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0376,
+          "mi_rule_bits": 1.379,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_02_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0229,
+          "mi_rule_bits": 1.4047,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_02_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0074,
+          "mi_rule_bits": 1.3977,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_02_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.028,
+          "mi_rule_bits": 1.4033,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_03_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0254,
+          "mi_rule_bits": 1.3639,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_03_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0305,
+          "mi_rule_bits": 1.41,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_03_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0278,
+          "mi_rule_bits": 1.4107,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_04_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0251,
+          "mi_rule_bits": 1.3554,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_04_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0428,
+          "mi_rule_bits": 1.4508,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_04_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0483,
+          "mi_rule_bits": 1.4254,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_05_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0353,
+          "mi_rule_bits": 1.3319,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_05_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.024,
+          "mi_rule_bits": 1.3848,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_05_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0295,
+          "mi_rule_bits": 1.3927,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_06_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.019,
+          "mi_rule_bits": 1.3985,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_06_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0233,
+          "mi_rule_bits": 1.38,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_06_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0243,
+          "mi_rule_bits": 1.4097,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_07_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0209,
+          "mi_rule_bits": 1.3754,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_07_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0401,
+          "mi_rule_bits": 1.3894,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_07_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0367,
+          "mi_rule_bits": 1.4312,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_08_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0254,
+          "mi_rule_bits": 1.3673,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_08_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0311,
+          "mi_rule_bits": 1.3721,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_08_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.042,
+          "mi_rule_bits": 1.4007,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_09_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0361,
+          "mi_rule_bits": 1.3861,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_09_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0081,
+          "mi_rule_bits": 1.3923,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_09_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0349,
+          "mi_rule_bits": 1.4068,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_10_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0293,
+          "mi_rule_bits": 1.3482,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_10_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0536,
+          "mi_rule_bits": 1.4257,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_10_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0116,
+          "mi_rule_bits": 1.4007,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_11_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0118,
+          "mi_rule_bits": 1.379,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_11_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0241,
+          "mi_rule_bits": 1.4407,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_11_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0232,
+          "mi_rule_bits": 1.4035,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_12_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0128,
+          "mi_rule_bits": 1.399,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_12_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0382,
+          "mi_rule_bits": 1.3603,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_12_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.013,
+          "mi_rule_bits": 1.394,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_13_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.027,
+          "mi_rule_bits": 1.355,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_13_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0257,
+          "mi_rule_bits": 1.3811,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_13_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0146,
+          "mi_rule_bits": 1.3897,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_14_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0474,
+          "mi_rule_bits": 1.3404,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_14_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.005,
+          "mi_rule_bits": 1.3873,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_14_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0247,
+          "mi_rule_bits": 1.3879,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_15_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0177,
+          "mi_rule_bits": 1.3754,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_15_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0291,
+          "mi_rule_bits": 1.3655,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_15_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0352,
+          "mi_rule_bits": 1.3965,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_16_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.042,
+          "mi_rule_bits": 1.3845,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_16_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.005,
+          "mi_rule_bits": 1.4145,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_16_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0296,
+          "mi_rule_bits": 1.4259,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_17_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0159,
+          "mi_rule_bits": 1.42,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_17_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0206,
+          "mi_rule_bits": 1.365,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_17_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0255,
+          "mi_rule_bits": 1.3647,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_18_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0248,
+          "mi_rule_bits": 1.4156,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_18_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.034,
+          "mi_rule_bits": 1.372,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_18_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.028,
+          "mi_rule_bits": 1.4345,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_19_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0218,
+          "mi_rule_bits": 1.3436,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_19_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0635,
+          "mi_rule_bits": 1.4472,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_19_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0819,
+          "mi_rule_bits": 1.4033,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_20_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.018,
+          "mi_rule_bits": 1.4351,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_20_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0265,
+          "mi_rule_bits": 1.3507,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_20_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0264,
+          "mi_rule_bits": 1.3859,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_21_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0116,
+          "mi_rule_bits": 1.3963,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_21_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0362,
+          "mi_rule_bits": 1.3845,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_21_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0122,
+          "mi_rule_bits": 1.3561,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_22_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0094,
+          "mi_rule_bits": 1.3976,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_22_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0106,
+          "mi_rule_bits": 1.4364,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_22_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0264,
+          "mi_rule_bits": 1.4309,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_23_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0192,
+          "mi_rule_bits": 1.3504,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_23_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0081,
+          "mi_rule_bits": 1.4349,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_23_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.023,
+          "mi_rule_bits": 1.4121,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_24_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0526,
+          "mi_rule_bits": 1.3209,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_24_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.034,
+          "mi_rule_bits": 1.3462,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_24_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0125,
+          "mi_rule_bits": 1.414,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_25_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0597,
+          "mi_rule_bits": 1.3576,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_25_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0261,
+          "mi_rule_bits": 1.384,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_25_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0313,
+          "mi_rule_bits": 1.4085,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_26_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0085,
+          "mi_rule_bits": 1.3611,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_26_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0906,
+          "mi_rule_bits": 1.3636,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_26_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0325,
+          "mi_rule_bits": 1.3836,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_27_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.022,
+          "mi_rule_bits": 1.3571,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_27_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0192,
+          "mi_rule_bits": 1.3821,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_27_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0602,
+          "mi_rule_bits": 1.3735,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_28_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0165,
+          "mi_rule_bits": 1.3604,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_28_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0162,
+          "mi_rule_bits": 1.4068,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_28_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0239,
+          "mi_rule_bits": 1.381,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_29_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0337,
+          "mi_rule_bits": 1.4272,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_29_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0277,
+          "mi_rule_bits": 1.3636,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "query_x_29_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0324,
+          "mi_rule_bits": 1.3558,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        }
+      },
+      "detector_valid": true,
+      "episodes": 200,
+      "meta_forbidden_inputs": [
+        "rule_id",
+        "query_e"
+      ],
+      "meta_input_channels_declared": [
+        "adapt_x",
+        "adapt_a",
+        "adapt_e",
+        "query_x",
+        "query_a"
+      ],
+      "no_clean_false_flag": true,
+      "planted_missed": [],
+      "planted_report": {
+        "calib_value": {
+          "flagged": true,
+          "mi_answer_bits": 2.3149,
+          "mi_rule_bits": 2.0773,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "rule_id_channel": {
+          "flagged": true,
+          "mi_answer_bits": 2.0773,
+          "mi_rule_bits": 7.3563,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        },
+        "telemetry_7": {
+          "flagged": true,
+          "mi_answer_bits": 2.0773,
+          "mi_rule_bits": 7.3563,
+          "thr_answer_bits": 1.1574,
+          "thr_rule_bits": 3.6782
+        }
+      },
+      "producer_function": "src.tlgp_001a.leakage.detect",
+      "renamed_leak_caught": true,
+      "rung": "rung1"
+    },
+    "rung3": {
+      "all_planted_caught": true,
+      "answer_leak_caught": true,
+      "clean_false_flags": [],
+      "clean_report": {
+        "adapt_a_00": {
+          "flagged": false,
+          "mi_answer_bits": 0.0678,
+          "mi_rule_bits": 1.5749,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_01": {
+          "flagged": false,
+          "mi_answer_bits": 0.0603,
+          "mi_rule_bits": 1.5812,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_02": {
+          "flagged": false,
+          "mi_answer_bits": 0.0244,
+          "mi_rule_bits": 1.56,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_03": {
+          "flagged": false,
+          "mi_answer_bits": 0.0509,
+          "mi_rule_bits": 1.5041,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_04": {
+          "flagged": false,
+          "mi_answer_bits": 0.0879,
+          "mi_rule_bits": 1.4762,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_05": {
+          "flagged": false,
+          "mi_answer_bits": 0.0408,
+          "mi_rule_bits": 1.5396,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_06": {
+          "flagged": false,
+          "mi_answer_bits": 0.0697,
+          "mi_rule_bits": 1.5678,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_07": {
+          "flagged": false,
+          "mi_answer_bits": 0.0173,
+          "mi_rule_bits": 1.533,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_08": {
+          "flagged": false,
+          "mi_answer_bits": 0.0444,
+          "mi_rule_bits": 1.5073,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_09": {
+          "flagged": false,
+          "mi_answer_bits": 0.0641,
+          "mi_rule_bits": 1.5415,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_10": {
+          "flagged": false,
+          "mi_answer_bits": 0.0657,
+          "mi_rule_bits": 1.5566,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_11": {
+          "flagged": false,
+          "mi_answer_bits": 0.0638,
+          "mi_rule_bits": 1.549,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_12": {
+          "flagged": false,
+          "mi_answer_bits": 0.0537,
+          "mi_rule_bits": 1.6066,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_13": {
+          "flagged": false,
+          "mi_answer_bits": 0.0588,
+          "mi_rule_bits": 1.5601,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_14": {
+          "flagged": false,
+          "mi_answer_bits": 0.0395,
+          "mi_rule_bits": 1.475,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_15": {
+          "flagged": false,
+          "mi_answer_bits": 0.044,
+          "mi_rule_bits": 1.5339,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_16": {
+          "flagged": false,
+          "mi_answer_bits": 0.0356,
+          "mi_rule_bits": 1.5262,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_17": {
+          "flagged": false,
+          "mi_answer_bits": 0.0565,
+          "mi_rule_bits": 1.5828,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_18": {
+          "flagged": false,
+          "mi_answer_bits": 0.1281,
+          "mi_rule_bits": 1.5649,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_19": {
+          "flagged": false,
+          "mi_answer_bits": 0.107,
+          "mi_rule_bits": 1.5925,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_20": {
+          "flagged": false,
+          "mi_answer_bits": 0.0689,
+          "mi_rule_bits": 1.512,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_21": {
+          "flagged": false,
+          "mi_answer_bits": 0.0525,
+          "mi_rule_bits": 1.579,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_22": {
+          "flagged": false,
+          "mi_answer_bits": 0.0518,
+          "mi_rule_bits": 1.5889,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_a_23": {
+          "flagged": false,
+          "mi_answer_bits": 0.0875,
+          "mi_rule_bits": 1.5462,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_00": {
+          "flagged": false,
+          "mi_answer_bits": 0.1039,
+          "mi_rule_bits": 1.6755,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_01": {
+          "flagged": false,
+          "mi_answer_bits": 0.0898,
+          "mi_rule_bits": 1.4935,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_02": {
+          "flagged": false,
+          "mi_answer_bits": 0.0702,
+          "mi_rule_bits": 1.5324,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_03": {
+          "flagged": false,
+          "mi_answer_bits": 0.0426,
+          "mi_rule_bits": 1.5852,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_04": {
+          "flagged": false,
+          "mi_answer_bits": 0.0665,
+          "mi_rule_bits": 1.4985,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_05": {
+          "flagged": false,
+          "mi_answer_bits": 0.0901,
+          "mi_rule_bits": 1.5954,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_06": {
+          "flagged": false,
+          "mi_answer_bits": 0.0615,
+          "mi_rule_bits": 1.5093,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_07": {
+          "flagged": false,
+          "mi_answer_bits": 0.0347,
+          "mi_rule_bits": 1.5535,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_08": {
+          "flagged": false,
+          "mi_answer_bits": 0.0735,
+          "mi_rule_bits": 1.5488,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_09": {
+          "flagged": false,
+          "mi_answer_bits": 0.0768,
+          "mi_rule_bits": 1.5585,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_10": {
+          "flagged": false,
+          "mi_answer_bits": 0.0486,
+          "mi_rule_bits": 1.5187,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_11": {
+          "flagged": false,
+          "mi_answer_bits": 0.066,
+          "mi_rule_bits": 1.463,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_12": {
+          "flagged": false,
+          "mi_answer_bits": 0.0606,
+          "mi_rule_bits": 1.5837,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_13": {
+          "flagged": false,
+          "mi_answer_bits": 0.1008,
+          "mi_rule_bits": 1.5647,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_14": {
+          "flagged": false,
+          "mi_answer_bits": 0.0367,
+          "mi_rule_bits": 1.593,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_15": {
+          "flagged": false,
+          "mi_answer_bits": 0.0584,
+          "mi_rule_bits": 1.5247,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_16": {
+          "flagged": false,
+          "mi_answer_bits": 0.0443,
+          "mi_rule_bits": 1.6067,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_17": {
+          "flagged": false,
+          "mi_answer_bits": 0.0702,
+          "mi_rule_bits": 1.614,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_18": {
+          "flagged": false,
+          "mi_answer_bits": 0.0466,
+          "mi_rule_bits": 1.6206,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_19": {
+          "flagged": false,
+          "mi_answer_bits": 0.0611,
+          "mi_rule_bits": 1.5207,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_20": {
+          "flagged": false,
+          "mi_answer_bits": 0.0453,
+          "mi_rule_bits": 1.5623,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_21": {
+          "flagged": false,
+          "mi_answer_bits": 0.0512,
+          "mi_rule_bits": 1.5795,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_22": {
+          "flagged": false,
+          "mi_answer_bits": 0.068,
+          "mi_rule_bits": 1.5476,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_e_23": {
+          "flagged": false,
+          "mi_answer_bits": 0.0281,
+          "mi_rule_bits": 1.6246,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_00_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0381,
+          "mi_rule_bits": 0.9329,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_00_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0146,
+          "mi_rule_bits": 0.9692,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_00_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0475,
+          "mi_rule_bits": 0.9728,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_01_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0256,
+          "mi_rule_bits": 1.0476,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_01_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0308,
+          "mi_rule_bits": 0.9732,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_01_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0465,
+          "mi_rule_bits": 1.0227,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_02_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0308,
+          "mi_rule_bits": 1.0522,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_02_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0249,
+          "mi_rule_bits": 0.9938,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_02_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0189,
+          "mi_rule_bits": 0.9943,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_03_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0528,
+          "mi_rule_bits": 0.9376,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_03_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0084,
+          "mi_rule_bits": 1.0083,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_03_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.025,
+          "mi_rule_bits": 0.9747,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_04_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0212,
+          "mi_rule_bits": 0.9559,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_04_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0329,
+          "mi_rule_bits": 0.9212,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_04_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0248,
+          "mi_rule_bits": 0.9667,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_05_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.05,
+          "mi_rule_bits": 0.995,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_05_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0267,
+          "mi_rule_bits": 0.9267,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_05_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0175,
+          "mi_rule_bits": 0.9747,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_06_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0212,
+          "mi_rule_bits": 0.9655,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_06_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0261,
+          "mi_rule_bits": 0.9589,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_06_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0237,
+          "mi_rule_bits": 1.0185,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_07_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.029,
+          "mi_rule_bits": 0.9674,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_07_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0228,
+          "mi_rule_bits": 0.9709,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_07_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.017,
+          "mi_rule_bits": 0.9947,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_08_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0152,
+          "mi_rule_bits": 1.0052,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_08_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0303,
+          "mi_rule_bits": 0.9774,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_08_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.021,
+          "mi_rule_bits": 1.0129,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_09_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0285,
+          "mi_rule_bits": 0.9967,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_09_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0248,
+          "mi_rule_bits": 1.0121,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_09_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0365,
+          "mi_rule_bits": 0.9818,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_10_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0222,
+          "mi_rule_bits": 0.9884,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_10_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0264,
+          "mi_rule_bits": 0.9619,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_10_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0602,
+          "mi_rule_bits": 0.8999,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_11_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0192,
+          "mi_rule_bits": 0.9369,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_11_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0172,
+          "mi_rule_bits": 0.8845,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_11_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0103,
+          "mi_rule_bits": 0.9205,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_12_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0544,
+          "mi_rule_bits": 1.0082,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_12_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0529,
+          "mi_rule_bits": 0.9489,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_12_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0183,
+          "mi_rule_bits": 0.9953,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_13_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0653,
+          "mi_rule_bits": 0.9643,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_13_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0421,
+          "mi_rule_bits": 0.9959,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_13_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0313,
+          "mi_rule_bits": 1.0014,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_14_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.028,
+          "mi_rule_bits": 1.0155,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_14_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0168,
+          "mi_rule_bits": 0.8726,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_14_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0346,
+          "mi_rule_bits": 0.9595,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_15_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0224,
+          "mi_rule_bits": 0.9592,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_15_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0235,
+          "mi_rule_bits": 1.0059,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_15_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0157,
+          "mi_rule_bits": 0.9375,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_16_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0114,
+          "mi_rule_bits": 0.9363,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_16_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.022,
+          "mi_rule_bits": 0.8885,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_16_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0138,
+          "mi_rule_bits": 0.9738,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_17_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0249,
+          "mi_rule_bits": 0.9609,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_17_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0236,
+          "mi_rule_bits": 1.0082,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_17_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0137,
+          "mi_rule_bits": 0.988,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_18_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0214,
+          "mi_rule_bits": 1.048,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_18_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0428,
+          "mi_rule_bits": 0.9959,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_18_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0417,
+          "mi_rule_bits": 0.9239,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_19_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0405,
+          "mi_rule_bits": 1.0059,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_19_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0131,
+          "mi_rule_bits": 0.9906,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_19_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0146,
+          "mi_rule_bits": 0.9516,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_20_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0389,
+          "mi_rule_bits": 0.9414,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_20_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0225,
+          "mi_rule_bits": 1.0474,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_20_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0325,
+          "mi_rule_bits": 1.015,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_21_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.033,
+          "mi_rule_bits": 1.0209,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_21_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0213,
+          "mi_rule_bits": 0.9541,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_21_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0173,
+          "mi_rule_bits": 1.0502,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_22_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0263,
+          "mi_rule_bits": 1.0169,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_22_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0276,
+          "mi_rule_bits": 0.9611,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_22_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0671,
+          "mi_rule_bits": 0.9529,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_23_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.024,
+          "mi_rule_bits": 0.9068,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_23_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0556,
+          "mi_rule_bits": 0.9374,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "adapt_x_23_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0271,
+          "mi_rule_bits": 1.0259,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_00": {
+          "flagged": false,
+          "mi_answer_bits": 0.0792,
+          "mi_rule_bits": 1.5857,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_01": {
+          "flagged": false,
+          "mi_answer_bits": 0.0404,
+          "mi_rule_bits": 1.5115,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_02": {
+          "flagged": false,
+          "mi_answer_bits": 0.0477,
+          "mi_rule_bits": 1.5648,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_03": {
+          "flagged": false,
+          "mi_answer_bits": 0.0468,
+          "mi_rule_bits": 1.5793,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_04": {
+          "flagged": false,
+          "mi_answer_bits": 0.0464,
+          "mi_rule_bits": 1.4896,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_05": {
+          "flagged": false,
+          "mi_answer_bits": 0.026,
+          "mi_rule_bits": 1.544,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_06": {
+          "flagged": false,
+          "mi_answer_bits": 0.0633,
+          "mi_rule_bits": 1.5414,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_07": {
+          "flagged": false,
+          "mi_answer_bits": 0.0705,
+          "mi_rule_bits": 1.573,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_08": {
+          "flagged": false,
+          "mi_answer_bits": 0.0755,
+          "mi_rule_bits": 1.5455,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_09": {
+          "flagged": false,
+          "mi_answer_bits": 0.0316,
+          "mi_rule_bits": 1.5668,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_10": {
+          "flagged": false,
+          "mi_answer_bits": 0.0642,
+          "mi_rule_bits": 1.5208,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_11": {
+          "flagged": false,
+          "mi_answer_bits": 0.0727,
+          "mi_rule_bits": 1.5586,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_12": {
+          "flagged": false,
+          "mi_answer_bits": 0.0784,
+          "mi_rule_bits": 1.5509,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_13": {
+          "flagged": false,
+          "mi_answer_bits": 0.0685,
+          "mi_rule_bits": 1.5404,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_14": {
+          "flagged": false,
+          "mi_answer_bits": 0.0495,
+          "mi_rule_bits": 1.6527,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_15": {
+          "flagged": false,
+          "mi_answer_bits": 0.0721,
+          "mi_rule_bits": 1.5939,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_16": {
+          "flagged": false,
+          "mi_answer_bits": 0.0659,
+          "mi_rule_bits": 1.5702,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_17": {
+          "flagged": false,
+          "mi_answer_bits": 0.0619,
+          "mi_rule_bits": 1.551,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_18": {
+          "flagged": false,
+          "mi_answer_bits": 0.0746,
+          "mi_rule_bits": 1.6099,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_19": {
+          "flagged": false,
+          "mi_answer_bits": 0.0487,
+          "mi_rule_bits": 1.4685,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_20": {
+          "flagged": false,
+          "mi_answer_bits": 0.0949,
+          "mi_rule_bits": 1.5968,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_21": {
+          "flagged": false,
+          "mi_answer_bits": 0.0526,
+          "mi_rule_bits": 1.5842,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_22": {
+          "flagged": false,
+          "mi_answer_bits": 0.0617,
+          "mi_rule_bits": 1.5371,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_23": {
+          "flagged": false,
+          "mi_answer_bits": 0.0596,
+          "mi_rule_bits": 1.5946,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_24": {
+          "flagged": false,
+          "mi_answer_bits": 0.0755,
+          "mi_rule_bits": 1.5972,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_25": {
+          "flagged": false,
+          "mi_answer_bits": 0.0709,
+          "mi_rule_bits": 1.5561,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_26": {
+          "flagged": false,
+          "mi_answer_bits": 0.0666,
+          "mi_rule_bits": 1.5699,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_27": {
+          "flagged": false,
+          "mi_answer_bits": 0.0597,
+          "mi_rule_bits": 1.4952,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_28": {
+          "flagged": false,
+          "mi_answer_bits": 0.0718,
+          "mi_rule_bits": 1.6096,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_a_29": {
+          "flagged": false,
+          "mi_answer_bits": 0.0594,
+          "mi_rule_bits": 1.5828,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_00_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0162,
+          "mi_rule_bits": 0.54,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_00_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0333,
+          "mi_rule_bits": 0.5558,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_00_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0091,
+          "mi_rule_bits": 0.51,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_01_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0032,
+          "mi_rule_bits": 0.5762,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_01_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0158,
+          "mi_rule_bits": 0.5468,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_01_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.017,
+          "mi_rule_bits": 0.5206,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_02_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0226,
+          "mi_rule_bits": 0.5252,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_02_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.001,
+          "mi_rule_bits": 0.572,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_02_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0082,
+          "mi_rule_bits": 0.6469,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_03_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.008,
+          "mi_rule_bits": 0.5938,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_03_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0039,
+          "mi_rule_bits": 0.5834,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_03_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0249,
+          "mi_rule_bits": 0.5624,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_04_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0148,
+          "mi_rule_bits": 0.5975,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_04_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0379,
+          "mi_rule_bits": 0.5476,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_04_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0165,
+          "mi_rule_bits": 0.4976,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_05_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0098,
+          "mi_rule_bits": 0.5979,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_05_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0154,
+          "mi_rule_bits": 0.5568,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_05_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0038,
+          "mi_rule_bits": 0.5711,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_06_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0038,
+          "mi_rule_bits": 0.5571,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_06_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0126,
+          "mi_rule_bits": 0.5452,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_06_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0143,
+          "mi_rule_bits": 0.5529,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_07_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0193,
+          "mi_rule_bits": 0.5255,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_07_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0167,
+          "mi_rule_bits": 0.6043,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_07_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0116,
+          "mi_rule_bits": 0.6068,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_08_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0098,
+          "mi_rule_bits": 0.4496,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_08_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0039,
+          "mi_rule_bits": 0.58,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_08_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0097,
+          "mi_rule_bits": 0.5951,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_09_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0034,
+          "mi_rule_bits": 0.4562,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_09_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0032,
+          "mi_rule_bits": 0.6168,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_09_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0084,
+          "mi_rule_bits": 0.6411,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_10_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0013,
+          "mi_rule_bits": 0.57,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_10_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0088,
+          "mi_rule_bits": 0.653,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_10_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0044,
+          "mi_rule_bits": 0.5819,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_11_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0129,
+          "mi_rule_bits": 0.5644,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_11_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.026,
+          "mi_rule_bits": 0.6695,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_11_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0156,
+          "mi_rule_bits": 0.6208,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_12_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0096,
+          "mi_rule_bits": 0.5787,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_12_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0024,
+          "mi_rule_bits": 0.5675,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_12_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0337,
+          "mi_rule_bits": 0.5506,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_13_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0071,
+          "mi_rule_bits": 0.4831,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_13_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0193,
+          "mi_rule_bits": 0.5068,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_13_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0384,
+          "mi_rule_bits": 0.6798,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_14_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0256,
+          "mi_rule_bits": 0.5355,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_14_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0265,
+          "mi_rule_bits": 0.5313,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_14_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0206,
+          "mi_rule_bits": 0.5701,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_15_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0325,
+          "mi_rule_bits": 0.5921,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_15_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0106,
+          "mi_rule_bits": 0.514,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_15_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0192,
+          "mi_rule_bits": 0.5339,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_16_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0117,
+          "mi_rule_bits": 0.5902,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_16_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0031,
+          "mi_rule_bits": 0.5683,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_16_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0046,
+          "mi_rule_bits": 0.5076,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_17_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0125,
+          "mi_rule_bits": 0.5124,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_17_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.034,
+          "mi_rule_bits": 0.547,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_17_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0257,
+          "mi_rule_bits": 0.5601,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_18_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0085,
+          "mi_rule_bits": 0.5349,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_18_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.03,
+          "mi_rule_bits": 0.5397,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_18_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0156,
+          "mi_rule_bits": 0.5568,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_19_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0205,
+          "mi_rule_bits": 0.5862,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_19_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0097,
+          "mi_rule_bits": 0.5793,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_19_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0089,
+          "mi_rule_bits": 0.6075,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_20_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0454,
+          "mi_rule_bits": 0.6235,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_20_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0019,
+          "mi_rule_bits": 0.5417,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_20_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.006,
+          "mi_rule_bits": 0.5373,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_21_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0112,
+          "mi_rule_bits": 0.6157,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_21_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0091,
+          "mi_rule_bits": 0.6087,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_21_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0134,
+          "mi_rule_bits": 0.5777,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_22_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0039,
+          "mi_rule_bits": 0.5677,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_22_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0146,
+          "mi_rule_bits": 0.5955,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_22_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0087,
+          "mi_rule_bits": 0.6047,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_23_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0364,
+          "mi_rule_bits": 0.579,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_23_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.01,
+          "mi_rule_bits": 0.5617,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_23_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0125,
+          "mi_rule_bits": 0.579,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_24_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0063,
+          "mi_rule_bits": 0.5568,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_24_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0391,
+          "mi_rule_bits": 0.5435,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_24_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0294,
+          "mi_rule_bits": 0.5749,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_25_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0163,
+          "mi_rule_bits": 0.5855,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_25_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0055,
+          "mi_rule_bits": 0.613,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_25_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0007,
+          "mi_rule_bits": 0.5483,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_26_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0021,
+          "mi_rule_bits": 0.6044,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_26_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0216,
+          "mi_rule_bits": 0.5947,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_26_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0029,
+          "mi_rule_bits": 0.5498,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_27_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0076,
+          "mi_rule_bits": 0.5315,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_27_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0218,
+          "mi_rule_bits": 0.5295,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_27_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0112,
+          "mi_rule_bits": 0.5755,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_28_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0199,
+          "mi_rule_bits": 0.5508,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_28_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0106,
+          "mi_rule_bits": 0.5493,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_28_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0208,
+          "mi_rule_bits": 0.5555,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_29_0": {
+          "flagged": false,
+          "mi_answer_bits": 0.0072,
+          "mi_rule_bits": 0.5652,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_29_1": {
+          "flagged": false,
+          "mi_answer_bits": 0.0256,
+          "mi_rule_bits": 0.5367,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "query_x_29_2": {
+          "flagged": false,
+          "mi_answer_bits": 0.0059,
+          "mi_rule_bits": 0.5539,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        }
+      },
+      "detector_valid": true,
+      "episodes": 200,
+      "meta_forbidden_inputs": [
+        "rule_id",
+        "query_e"
+      ],
+      "meta_input_channels_declared": [
+        "adapt_x",
+        "adapt_a",
+        "adapt_e",
+        "query_x",
+        "query_a"
+      ],
+      "no_clean_false_flag": true,
+      "planted_missed": [],
+      "planted_report": {
+        "calib_value": {
+          "flagged": true,
+          "mi_answer_bits": 2.319,
+          "mi_rule_bits": 1.6457,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "rule_id_channel": {
+          "flagged": true,
+          "mi_answer_bits": 1.6457,
+          "mi_rule_bits": 6.6667,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        },
+        "telemetry_7": {
+          "flagged": true,
+          "mi_answer_bits": 1.6457,
+          "mi_rule_bits": 6.6667,
+          "thr_answer_bits": 1.1595,
+          "thr_rule_bits": 3.3334
+        }
+      },
+      "producer_function": "src.tlgp_001a.leakage.detect",
+      "renamed_leak_caught": true,
+      "rung": "rung3"
+    }
+  },
+  "phase": "A_freeze_implement_tiny_smoke_only",
+  "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_powered_learner.run_tiny_smoke",
+  "run_id": "tlgp-rung3-powered-phase-a-smoke-20260701-011517-a0f16962",
+  "rung1": {
+    "claim_ceiling": "tiny smoke metric readback only; not evidence",
+    "context_ablation": {
+      "both_ablation_paths_ran": true,
+      "both_collapsed_toward_fair": true,
+      "claim_ceiling": "context-use smoke only; not formal discriminativeness evidence",
+      "episodes": 8,
+      "eval_scope": "tiny_train_fit_smoke_not_evidence",
+      "fair_baseline_balacc": {
+        "count_table": 0.3317559523809524,
+        "graph_cache": 0.3180357142857143,
+        "lookup": 0.3317559523809524,
+        "majority": 0.2,
+        "no_adaptation": 0.15337301587301588,
+        "predict_all": 0.2
+      },
+      "fair_max": 0.3317559523809524,
+      "no_adapt": {
+        "collapse_toward_fair_or_through_fair": true,
+        "distance_to_fair_delta": 0.23559523809523814,
+        "drop_from_normal": 0.23559523809523814,
+        "score": 0.4084126984126984
+      },
+      "normal_meta_balacc": 0.6440079365079365,
+      "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_powered_learner.context_ablation_report",
+      "rung": "rung1",
+      "shuffle_adapt": {
+        "collapse_toward_fair_or_through_fair": true,
+        "distance_to_fair_delta": 0.2366071428571429,
+        "drop_from_normal": 0.2366071428571429,
+        "score": 0.4074007936507936
+      }
+    },
+    "fair_baseline_balacc": {
+      "count_table": 0.35750992063492065,
+      "graph_cache": 0.36100198412698414,
+      "lookup": 0.35750992063492065,
+      "majority": 0.2,
+      "no_adaptation": 0.25210317460317455,
+      "predict_all": 0.2
+    },
+    "fair_detail": {
+      "fair_baseline_balacc": {
+        "count_table": 0.35750992063492065,
+        "graph_cache": 0.36100198412698414,
+        "lookup": 0.35750992063492065,
+        "majority": 0.2,
+        "no_adaptation": 0.25210317460317455,
+        "predict_all": 0.2
+      },
+      "fair_max": 0.36100198412698414,
+      "producer_functions": [
+        "src.tlgp_001b_r2.lower_reference.evaluate",
+        "src.tlgp_capability_witness_preflight_001a.rung3_graph_cache_baselines.evaluate"
+      ],
+      "records_sample": {
+        "graph_cache_first": {
+          "graph_cache": [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        "lower_reference_first": {
+          "count_table": [
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          "lookup": [
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          "majority": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "no_adaptation": [
+            2,
+            4,
+            0,
+            4,
+            1,
+            4,
+            3,
+            4,
+            4,
+            4,
+            1,
+            3,
+            4,
+            0,
+            2,
+            4,
+            4,
+            1,
+            3,
+            4,
+            0,
+            2,
+            1,
+            3,
+            4,
+            2,
+            0,
+            3,
+            4,
+            0
+          ],
+          "predict_all": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      }
+    },
+    "fair_max": 0.36100198412698414,
+    "headroom_vs_meta": 0.819375,
+    "ideal_mean": 1.0,
+    "ideal_predictions_first": [
+      2,
+      2,
+      0,
+      4,
+      2,
+      3,
+      2,
+      2,
+      4,
+      0,
+      1,
+      0,
+      4,
+      1,
+      2,
+      1,
+      0,
+      4,
+      4,
+      0,
+      4,
+      3,
+      3,
+      0,
+      4,
+      3,
+      4,
+      2,
+      4,
+      3
+    ],
+    "ideal_score_min": 1.0,
+    "meta_mean": 0.18062499999999998,
+    "meta_train_fit_balacc": 0.6440079365079365,
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_powered_learner.run_one_rung",
+    "rung": "rung1",
+    "rung_source_arg": "rung1",
+    "seed": 20260710,
+    "test_episodes": 8,
+    "tiny_verdict": "smoke_seed_below_formal_bar",
+    "train_episodes": 8,
+    "training": {
+      "device": {
+        "model_device": "cuda:0",
+        "predictions_serialized_on_cpu": true,
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "family": "icl_retrieval_transformer",
+      "lr_policy": "prereg lr_grid with validation-balanced-accuracy selection",
+      "lr_results": [
+        {
+          "best_val_balacc": 0.26202374014874014,
+          "curve": [
+            {
+              "lr": 0.001,
+              "step": 50,
+              "train_balacc": 0.2,
+              "val_balacc": 0.21666666666666667
+            },
+            {
+              "lr": 0.001,
+              "step": 100,
+              "train_balacc": 0.6440079365079365,
+              "val_balacc": 0.26202374014874014
+            },
+            {
+              "lr": 0.001,
+              "step": 150,
+              "train_balacc": 1.0,
+              "val_balacc": 0.23913322788322786
+            },
+            {
+              "lr": 0.001,
+              "step": 200,
+              "train_balacc": 1.0,
+              "val_balacc": 0.22712925962925962
+            }
+          ],
+          "lr": 0.001,
+          "steps_run": 200
+        },
+        {
+          "best_val_balacc": 0.23439151126651125,
+          "curve": [
+            {
+              "lr": 0.0003,
+              "step": 50,
+              "train_balacc": 0.990625,
+              "val_balacc": 0.22048937173937172
+            },
+            {
+              "lr": 0.0003,
+              "step": 100,
+              "train_balacc": 1.0,
+              "val_balacc": 0.2302431596181596
+            },
+            {
+              "lr": 0.0003,
+              "step": 150,
+              "train_balacc": 1.0,
+              "val_balacc": 0.23439151126651125
+            },
+            {
+              "lr": 0.0003,
+              "step": 200,
+              "train_balacc": 1.0,
+              "val_balacc": 0.23439151126651125
+            }
+          ],
+          "lr": 0.0003,
+          "steps_run": 200
+        }
+      ],
+      "parameter_count": 3167749,
+      "params": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      },
+      "selected_best_val_balacc": 0.26202374014874014,
+      "selected_lr": 0.001,
+      "steps_per_lr_max": 200
+    },
+    "val_episodes": 8
+  },
+  "rung3": {
+    "claim_ceiling": "tiny smoke metric readback only; not evidence",
+    "context_ablation": {
+      "both_ablation_paths_ran": true,
+      "both_collapsed_toward_fair": true,
+      "claim_ceiling": "context-use smoke only; not formal discriminativeness evidence",
+      "episodes": 8,
+      "eval_scope": "tiny_train_fit_smoke_not_evidence",
+      "fair_baseline_balacc": {
+        "count_table": 0.29654761904761906,
+        "graph_cache": 0.2943650793650794,
+        "lookup": 0.29654761904761906,
+        "majority": 0.2,
+        "no_adaptation": 0.16090277777777778,
+        "predict_all": 0.2
+      },
+      "fair_max": 0.29654761904761906,
+      "no_adapt": {
+        "collapse_toward_fair_or_through_fair": true,
+        "distance_to_fair_delta": 0.2894444444444444,
+        "drop_from_normal": 0.2894444444444444,
+        "score": 0.5844246031746032
+      },
+      "normal_meta_balacc": 0.8738690476190476,
+      "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_powered_learner.context_ablation_report",
+      "rung": "rung3",
+      "shuffle_adapt": {
+        "collapse_toward_fair_or_through_fair": true,
+        "distance_to_fair_delta": 0.3157738095238095,
+        "drop_from_normal": 0.3157738095238095,
+        "score": 0.5580952380952381
+      }
+    },
+    "fair_baseline_balacc": {
+      "count_table": 0.21666666666666667,
+      "graph_cache": 0.21666666666666667,
+      "lookup": 0.21666666666666667,
+      "majority": 0.21666666666666667,
+      "no_adaptation": 0.1802744708994709,
+      "predict_all": 0.21666666666666667
+    },
+    "fair_detail": {
+      "fair_baseline_balacc": {
+        "count_table": 0.21666666666666667,
+        "graph_cache": 0.21666666666666667,
+        "lookup": 0.21666666666666667,
+        "majority": 0.21666666666666667,
+        "no_adaptation": 0.1802744708994709,
+        "predict_all": 0.21666666666666667
+      },
+      "fair_max": 0.21666666666666667,
+      "producer_functions": [
+        "src.tlgp_001b_r2.lower_reference.evaluate",
+        "src.tlgp_capability_witness_preflight_001a.rung3_graph_cache_baselines.evaluate"
+      ],
+      "records_sample": {
+        "graph_cache_first": {
+          "graph_cache": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "lower_reference_first": {
+          "count_table": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "lookup": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "majority": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_adaptation": [
+            3,
+            2,
+            1,
+            1,
+            4,
+            2,
+            0,
+            4,
+            2,
+            2,
+            3,
+            4,
+            1,
+            1,
+            0,
+            0,
+            0,
+            4,
+            0,
+            2,
+            1,
+            4,
+            3,
+            1,
+            3,
+            4,
+            1,
+            4,
+            3,
+            0
+          ],
+          "predict_all": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "fair_max": 0.21666666666666667,
+    "headroom_vs_meta": 0.7949712555962556,
+    "ideal_mean": 1.0,
+    "ideal_predictions_first": [
+      4,
+      2,
+      4,
+      3,
+      2,
+      3,
+      2,
+      2,
+      4,
+      4,
+      2,
+      0,
+      4,
+      0,
+      1,
+      4,
+      0,
+      1,
+      4,
+      2,
+      1,
+      4,
+      4,
+      0,
+      1,
+      1,
+      4,
+      2,
+      0,
+      3
+    ],
+    "ideal_score_min": 1.0,
+    "meta_mean": 0.2050287444037444,
+    "meta_train_fit_balacc": 0.8738690476190476,
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_powered_learner.run_one_rung",
+    "rung": "rung3",
+    "rung_source_arg": "rung3",
+    "seed": 20260710,
+    "test_episodes": 8,
+    "tiny_verdict": "smoke_seed_below_formal_bar",
+    "train_episodes": 8,
+    "training": {
+      "device": {
+        "model_device": "cuda:0",
+        "predictions_serialized_on_cpu": true,
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "family": "icl_retrieval_transformer",
+      "lr_policy": "prereg lr_grid with validation-balanced-accuracy selection",
+      "lr_results": [
+        {
+          "best_val_balacc": 0.22834325396825395,
+          "curve": [
+            {
+              "lr": 0.001,
+              "step": 50,
+              "train_balacc": 0.24720238095238095,
+              "val_balacc": 0.17907738095238096
+            },
+            {
+              "lr": 0.001,
+              "step": 100,
+              "train_balacc": 0.8738690476190476,
+              "val_balacc": 0.22834325396825395
+            },
+            {
+              "lr": 0.001,
+              "step": 150,
+              "train_balacc": 1.0,
+              "val_balacc": 0.1963988095238095
+            },
+            {
+              "lr": 0.001,
+              "step": 200,
+              "train_balacc": 1.0,
+              "val_balacc": 0.20830357142857142
+            }
+          ],
+          "lr": 0.001,
+          "steps_run": 200
+        },
+        {
+          "best_val_balacc": 0.19654761904761903,
+          "curve": [
+            {
+              "lr": 0.0003,
+              "step": 50,
+              "train_balacc": 0.96875,
+              "val_balacc": 0.16902777777777778
+            },
+            {
+              "lr": 0.0003,
+              "step": 100,
+              "train_balacc": 1.0,
+              "val_balacc": 0.18880952380952382
+            },
+            {
+              "lr": 0.0003,
+              "step": 150,
+              "train_balacc": 1.0,
+              "val_balacc": 0.19654761904761903
+            },
+            {
+              "lr": 0.0003,
+              "step": 200,
+              "train_balacc": 1.0,
+              "val_balacc": 0.19654761904761903
+            }
+          ],
+          "lr": 0.0003,
+          "steps_run": 200
+        }
+      ],
+      "parameter_count": 3167749,
+      "params": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      },
+      "selected_best_val_balacc": 0.22834325396825395,
+      "selected_lr": 0.001,
+      "steps_per_lr_max": 200
+    },
+    "val_episodes": 8
+  },
+  "smoke_budget": {
+    "batch_size": 8,
+    "episodes_per_split": 8,
+    "full_prereg_model_seed_count": 10,
+    "full_prereg_steps_max": 200000,
+    "lr_grid": [
+      0.001,
+      0.0003
+    ],
+    "seeds": [
+      20260710
+    ],
+    "steps_per_lr_max": 200
+  },
+  "smoke_task_id": "TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/SMOKE",
+  "source_copies": {
+    "src/tlgp_capability_witness_preflight_001a/rung3_powered_learner.py": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/SMOKE/rung3_powered_learner.py",
+    "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/SMOKE/rung3_single_family_adjudicator.py"
+  },
+  "split_assertions": {
+    "all_required_pass": true,
+    "assertions": {
+      "episode_ids_disjoint_across_supplied_sets": true,
+      "r0_rules_count": 8,
+      "r0_rules_subset_of_train_rules": true,
+      "rung1_rules_subset_of_train": true,
+      "rung2_rules_subset_of_train": true,
+      "rung3_test_rules_subset_of_test": true,
+      "rung3_train_rules_subset_of_train": true,
+      "test_rules_count": 125,
+      "train_rules_count": 500,
+      "train_test_rule_overlap_empty": true
+    },
+    "producer_function": "src.tlgp_001b_r2.splits.split_assertions",
+    "required_true": [
+      "train_test_rule_overlap_empty",
+      "rung1_rules_subset_of_train",
+      "rung2_rules_subset_of_train",
+      "rung3_test_rules_subset_of_test",
+      "rung3_train_rules_subset_of_train",
+      "episode_ids_disjoint_across_supplied_sets"
+    ]
+  },
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG3-POWERED-LEARNER-001A"
+}

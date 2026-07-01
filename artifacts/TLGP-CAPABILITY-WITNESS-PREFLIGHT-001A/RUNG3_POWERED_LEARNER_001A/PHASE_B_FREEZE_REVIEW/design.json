@@ -1,0 +1,317 @@
+{
+  "_frozen_at": "2026-07-01",
+  "_frozen_canonical_sha256": "88b9f3af0bee52331b9ec6e702349477db48cdd1b244386586f77b5d150664d5",
+  "_phase": "PHASE_B_FREEZE_REVIEW_PRE_FULL_RUN",
+  "_status": "FROZEN_BEFORE_PHASE_B_FULL_10_SEED_RUN_RESULTS",
+  "artifact": "frozen_design",
+  "auto_remote_anchor": "forbidden",
+  "bounded_deep_audit": {
+    "falsifies_current_framing": "Any source-pin drift, split assertion failure, leakage positive-control miss, source/frozen edit, full-run launch before review, or ablation report showing train-set scope or closer-to-fair criterion falsifies this freeze.",
+    "hardcoding_checks": [
+      "no rule_id/query_e model input",
+      "no threshold tuning after results",
+      "no source edit to adjudicator/prereg/banked runner",
+      "no schema change to make failure disappear",
+      "no renderer/UI behavior used as evidence"
+    ],
+    "insufficient_evidence": "Tiny re-smoke metrics, normal/ablated score movement, passing synthetic adjudicator coverage, and design SHA do not establish H0/H1 or capability; they only show wiring.",
+    "mechanism_vs_behavioral_resemblance": "The full run tests bounded learning/adaptation under baseline, ablation, leakage, and replay controls; it remains proxy evidence, not subjectivity or mechanism proof.",
+    "problem_definition_check": "Existing Phase A smoke design/runner used train_eps for context_ablation_report and a closer-to-fair collapse flag; that is insufficient for Phase B because ablation must be measured on the same eval sets as headroom and eligibility.",
+    "rollback_plan": "Delete the new Phase B freeze-review artifact directory; no source rollback is required because no source files are edited.",
+    "stop_condition": "Stop before full run for freeze review; later stop with failure_manifest on any violated gate.",
+    "strongest_baseline_explanation": "A cheap context-free, lookup/count_table, majority/predict_all, no-adaptation, or real graph_cache successor_map baseline may explain apparent success; if fair_max saturates the rung3 bar, report baseline_saturation instead of H1.",
+    "strongest_invalidity_reason": "A model can look good because the ablation is evaluated off-target, the collapse criterion only moves closer to fair while preserving advantage, or a hidden second logic path feeds stale booleans into the adjudicator."
+  },
+  "canonical_hash_scheme": "sha256 over this object after recursively removing keys prefixed '_' and dumping JSON with sort_keys=True,separators=(',',':'),ensure_ascii=True",
+  "capacity": {
+    "capacity_frozen": true,
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "icl_retrieval_transformer",
+    "source": "src/tlgp_capability_witness_preflight_001a/retrieval_model.py"
+  },
+  "claim_ceiling": "Bounded retrieval-family rung3 transfer evidence on this TLGP world/grid only after the full run. This freeze review proves only design and smoke wiring. No mechanism validity, agency, self, subjectivity, consciousness, autonomy, AGI, EGO readiness, companion readiness, or runtime/mainline effect claim.",
+  "collision_record": {
+    "candidates": [
+      {
+        "approach": "reuse Phase A smoke design unchanged",
+        "evidence_it_would_produce": "Old smoke-style ablation and existing adjudicator branch coverage",
+        "expected_failure_mode": "False pass-shaped discriminativeness; full-run waste",
+        "leakage_or_hardcoding_risk": "High; FIX-1 and FIX-2 are not encoded, so Phase B could treat weak ablation as discriminative evidence",
+        "smallest_falsifying_test": "Inspect design/report and find eval_scope=train or collapse_toward_fair_or_through_fair",
+        "strongest_cheap_baseline_that_could_match": "A model or baseline that only appears to collapse under train-set or closer-to-fair ablation"
+      },
+      {
+        "approach": "edit existing banked runner/adjudicator to add fixes",
+        "evidence_it_would_produce": "A cleaner reusable source path",
+        "expected_failure_mode": "STOP under hard rule: no banked/frozen source edits",
+        "leakage_or_hardcoding_risk": "Governance-self-modification and frozen-source drift",
+        "smallest_falsifying_test": "git diff or sha mismatch on rung3_single_family_adjudicator.py / prereg / banked source",
+        "strongest_cheap_baseline_that_could_match": "N/A if source governance is already violated"
+      },
+      {
+        "approach": "freeze a new Phase B design and re-smoke the corrected ablation semantics without source edits",
+        "evidence_it_would_produce": "New canonical design SHA plus callable tiny re-smoke proving test-set inputs and advantage-destroyed collapse booleans",
+        "expected_failure_mode": "Freeze rejected before full run; no expensive evidence claim emitted",
+        "leakage_or_hardcoding_risk": "Managed by source pins, unchanged adjudicator, explicit EPSILON, and re-smoke assertions that reject train scope / closer-to-fair-only collapse",
+        "smallest_falsifying_test": "Re-smoke report fields show ablation_eval_split != test or any mode collapse true while ablated_balacc > fair_max + EPSILON",
+        "strongest_cheap_baseline_that_could_match": "Fair panel and graph_cache can still saturate the full-run bar, which is explicitly routed to baseline_saturation"
+      }
+    ],
+    "selected_approach": "freeze a new Phase B design and re-smoke the corrected ablation semantics without source edits",
+    "selection_reason": "This is the only candidate that applies the audit fixes while preserving frozen-source boundaries and stopping before the full GPU launch."
+  },
+  "current_layer": "engineering implementation + mechanism hypothesis testing / learning-adaptation measurement",
+  "decision_statistic": {
+    "DELTA": 0.1,
+    "H0": "close_count(headroom_vs_meta <= DELTA) >= close_fraction_min after all gates",
+    "H1": "LCB(headroom_vs_meta) = mean - 2*std/sqrt(N_SEEDS) > DELTA after all gates and after baseline saturation check",
+    "adjudicator_reuse": "src.tlgp_capability_witness_preflight_001a.rung3_single_family_adjudicator.compute_verdict unchanged",
+    "baseline_saturation": "if rung3 fair_max >= ideal_mean - DELTA, report baseline_saturation before H1",
+    "close_fraction_min": 9,
+    "invalid": "integrity, source, leakage, replay, eligibility, discriminativeness/ablation, split, underpowered, or inconclusive statistic failure"
+  },
+  "enabled_status": "full 10-seed run not launched; freeze-review artifacts only until operator clears the frozen design",
+  "evidence_outputs_required_after_clearance": {
+    "artifact_dir": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/",
+    "failure_file_on_stop": "failure_manifest.json",
+    "replay_tolerance": 1e-09,
+    "required_files": [
+      "result.json",
+      "trace.jsonl",
+      "val_curves.jsonl",
+      "baseline_comparison.json",
+      "ablation_report.json",
+      "eligibility_report.json",
+      "leakage_report.json",
+      "replay_report.json",
+      "route_decision_input.json",
+      "route_decision.json",
+      "manifest.json"
+    ],
+    "trace_lfs_required": true,
+    "val_curves_lfs_required": true
+  },
+  "family_substitution": {
+    "adjudicator": "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py reused unmodified",
+    "declaration": "The validated retrieval_model replaces the prereg pooling primaries for this scoped run; H0/H1 are single-family retrieval-family decisions only.",
+    "declared_deviation": true,
+    "original_prereg_primaries": [
+      "in_context_gru",
+      "in_context_transformer"
+    ],
+    "single_family_scope": true,
+    "substituted_primary_family": "icl_retrieval_transformer"
+  },
+  "fixes_frozen_for_phase_b": {
+    "FIX_1_ablation_eval_sets": {
+      "description": "context_ablation_report is run on eval/test sets, not train_eps",
+      "forbidden": "train_eps ablation scope for Phase B gates",
+      "rung1": {
+        "ablation_eval_rules": "TRAIN_RULES seen-disjoint test",
+        "ablation_eval_split": "test",
+        "headroom_eval_split": "test",
+        "train": "TRAIN_RULES values {0,1,2}"
+      },
+      "rung3": {
+        "ablation_eval_rules": "125 TEST_RULES unseen; query values {3,4}",
+        "ablation_eval_split": "test",
+        "headroom_eval_split": "test",
+        "train": "withheld-regime TRAIN_RULES values {0,1,2}"
+      }
+    },
+    "FIX_2_advantage_destroyed_collapse": {
+      "DELTA": 0.1,
+      "EPSILON": 0.1,
+      "EPSILON_source": "pinned equal to prereg DELTA for Phase B freeze",
+      "description": "A mode collapses iff ablated_balacc <= fair_max + EPSILON on that same eval set; closer-to-fair is not sufficient",
+      "forbidden": "distance-to-fair, closer-to-fair, crossed-or-closer, or drop-only criteria",
+      "modes": [
+        "shuffle_adapt",
+        "no_adapt"
+      ],
+      "per_rung_aggregation_rule": "collapse_pass = count(collapsed_seed) >= close_fraction_min over MODEL_SEEDS; report per-mode counts and every seed row",
+      "per_seed_both_rule": "collapsed_seed = shuffle_adapt.collapsed_mode_seed and no_adapt.collapsed_mode_seed",
+      "per_seed_mode_rule": "collapsed_mode_seed = (ablated_balacc <= fair_max + EPSILON)"
+    }
+  },
+  "full_run_launch_status": "not_launched_waiting_for_operator_freeze_clearance",
+  "mainline_integration_status": "none; offline TLGP lab artifact path only, no EGO/runtime/UI/LLM/AIRI path",
+  "phase_b_budget": {
+    "MODEL_SEEDS": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "N_SEEDS": 10,
+    "batch_size": 256,
+    "capacity_change_allowed": false,
+    "early_stop_patience": 20,
+    "identical_across_rungs": true,
+    "lr_grid": [
+      0.001,
+      0.0003
+    ],
+    "lr_selection": "best on val balanced-accuracy (preregistered)",
+    "max_epochs": 200,
+    "n_test_episodes": 200,
+    "n_train_episodes": 5000,
+    "n_val_episodes": 1000,
+    "optimizer": "adam",
+    "steps_max": 200000
+  },
+  "provenance_gate": {
+    "baselines_independent_callable": true,
+    "leakage_positive_control_required": true,
+    "per_score_fields": [
+      "producer_function",
+      "input_artifacts_or_episode_ids",
+      "run_id",
+      "seed",
+      "aggregation_rule",
+      "code_path_hash"
+    ],
+    "prereg_canonical_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "replay_recompute_from_trace_required": true,
+    "source_pins": {
+      "src/tlgp_001a/leakage.py": "387c413d6af816216c73b45316bf854e3ef906e575bffc96cea1f6353e90bef1",
+      "src/tlgp_001b_r2/lower_reference.py": "cd701b2f4adcf9d8c66f28f0e797cdf748a7f4560c682953829b99eb85d28cf6",
+      "src/tlgp_001b_r2/meta_learners.py": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+      "src/tlgp_001b_r2/preregistration.py": "6a5a0273e7c3b0c2cce031dcf2b495646d87ecea7630d725c84def8f9ce27480",
+      "src/tlgp_001b_r2/splits.py": "ca2852a1ca69ba5277872bf5b0780163d0c79fbf0b5b2c7075bb740ef9981ad5",
+      "src/tlgp_001b_r2/world.py": "1c9bd730e79c19e5036e26cf4a45f1463dc2194217ec5ebc06e42731ca364a7c",
+      "src/tlgp_capability_witness_preflight_001a/retrieval_model.py": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+      "src/tlgp_capability_witness_preflight_001a/rung3_graph_cache_baselines.py": "921d44078a7b77e60c61b9bc5c5e2986228c4134a30ef2703c5fc52890229eaa",
+      "src/tlgp_capability_witness_preflight_001a/rung3_powered_learner.py": "841a68502cb9a693f6bb2aea03992ace5267e3dd92f41c107fa3be0c54fab591",
+      "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py": "5773f5d14cde442002c4c69e4d8d37302df40a863b01f97f86336a53a3fa9120"
+    }
+  },
+  "real_objective": "Avoid wasting a 10-seed GPU run by freezing the corrected Phase B design before any result-bearing full-run launch, specifically fixing test-set ablation scope and advantage-destroyed collapse semantics.",
+  "real_trigger_evidence_required": "After clearance, real trigger must be command invocation of the full run against this frozen design, with GPU env and artifact readback recorded. This freeze review itself is not the full trigger.",
+  "repo_readback": {
+    "git_branch": "codex/meta-theory-scaffold",
+    "git_head": "7f7de677008b02d257da3a030a7d1e840999072a",
+    "repo_root": "D:/Project/AIProject/MyProject/intelligence-theory-lab",
+    "worktree_policy": "pre-existing noisy untracked state allowed only as background; this task writes only the Phase B freeze-review artifact directory; no staging or commit"
+  },
+  "rung_stage_rules": {
+    "stage_1_rung1_eligibility": {
+      "ablation": "FIX-1/FIX-2 context ablation on rung1 test; both modes per seed; aggregate >= close_fraction_min",
+      "eligibility_rule": "meta_balacc >= ideal_seen1 - DELTA on >= close_fraction_min seeds",
+      "gate": "if eligibility/scanner/discriminativeness/leakage fails, STOP with failure_manifest and do not adjudicate rung3",
+      "scanner": "rung1_scanner cheap-baseline saturation check",
+      "test": "TRAIN_RULES (SEEN rules, NEW disjoint episodes)",
+      "train": "TRAIN_RULES (500)",
+      "values": {
+        "adapt": [
+          0,
+          1,
+          2
+        ],
+        "query": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "stage_2_rung3_real": {
+      "ablation": "FIX-1/FIX-2 context ablation on rung3 unseen test; both modes per seed; aggregate >= close_fraction_min",
+      "adjudicator_input": "booleans and per-seed headroom supplied to unchanged rung3_single_family_adjudicator.compute_verdict",
+      "baselines": [
+        "ideal",
+        "lookup",
+        "count_table",
+        "predict_all",
+        "majority",
+        "no_adaptation",
+        "real_graph_cache_successor_map"
+      ],
+      "headroom": "ideal_mean - meta_mean per seed on rung3 test",
+      "terminals": [
+        "h0_amortized",
+        "h1_headroom_survives",
+        "baseline_saturation",
+        "invalid_integrity_or_governance",
+        "invalid_no_rung1_eligibility",
+        "invalid_discriminativeness_or_ablation",
+        "invalid_inconclusive_underpowered"
+      ],
+      "test": "TEST_RULES (125 UNSEEN)",
+      "train": "TRAIN_RULES (500), withheld regime (adapt+query {0,1,2})",
+      "values": {
+        "adapt": [
+          0,
+          1,
+          2
+        ],
+        "query": [
+          3,
+          4
+        ]
+      }
+    },
+    "stage_3_rung2_diagnostic": {
+      "gating": "reported diagnostic only; cannot upgrade or rescue H0/H1",
+      "query_values": [
+        3,
+        4
+      ],
+      "reuses": "stage-2 rung3 trained model per seed",
+      "test": "TRAIN_RULES (SEEN rules, NEW disjoint episodes)",
+      "trains_model": false
+    }
+  },
+  "split_assertions_required": [
+    "train_test_rule_overlap_empty",
+    "rung1_rules_subset_of_train",
+    "rung3_train_rules_subset_of_train",
+    "rung3_test_rules_subset_of_test",
+    "episode_ids_disjoint_across_supplied_sets"
+  ],
+  "task_card_fields": {
+    "ablation_requirement": "context ablation on test sets for rung1 and rung3; both shuffle-adapt and no-adapt must satisfy advantage-destroyed per-seed criterion",
+    "acceptance_gate": "rung1 eligibility + rung1 scanner + rung1 test-set ablation pass before rung3; rung3 baseline/fair, test-set ablation, leakage, replay, and unchanged single-family adjudicator decide terminal",
+    "auto_remote_anchor": "forbidden",
+    "claim_ceiling": "single retrieval-family bounded TLGP transfer evidence only after full run",
+    "computed_evidence_provenance_gate": "all scores/baselines/ablations/leakage/replay/verdicts come from callable computation paths with producer_function, inputs, run_id, seed/episode ids, aggregation rule, and code/source hashes",
+    "current_stage": "Phase B Step 0 freeze-review before full 10-seed GPU run",
+    "enabled_state_requirement": "full run remains disabled until operator clears this frozen design SHA",
+    "expected_changed_files": [
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/PHASE_B_FREEZE_REVIEW/design.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/PHASE_B_FREEZE_REVIEW/freeze_review_smoke_report.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/PHASE_B_FREEZE_REVIEW/freeze_review_failure_manifest.json if STOP during re-smoke"
+    ],
+    "forbidden_changes": [
+      "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_powered_learner.py",
+      "src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_graph_cache_baselines.py",
+      "src/tlgp_001b_r2/*",
+      "src/tlgp_001a/*",
+      "docs/task_cards/TLGP-CAPABILITY-WITNESS-RUNG3-POWERED-LEARNER-001A.md",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/SMOKE/*"
+    ],
+    "hypothesis": {
+      "H0": "headroom_vs_meta <= DELTA on >= close_fraction_min seeds",
+      "H1": "LCB(headroom_vs_meta) > DELTA after eligibility/discriminativeness/integrity gates"
+    },
+    "mainline_target": "offline artifact-producing TLGP runner only",
+    "problem_definition": "Can the validated retrieval_model learn to amortize unseen-rule inference, or does rung3 within-episode headroom survive, after rung1 eligibility and discriminativeness are established?",
+    "real_trigger_evidence_requirement": "full-run command, GPU device readback, artifact manifest, trace/replay outputs, and no second logic path",
+    "rollback_plan": "delete Phase B freeze-review artifacts; no source rollback",
+    "stop_condition": "any frozen-source edit, source hash mismatch, prereg/design mismatch, leakage miss, split failure, ablation scope/criterion violation, runner not callable, or full-run launch before clearance",
+    "strongest_baseline": "fair panel including lookup, count_table, predict_all, majority, no_adaptation, and real graph_cache successor_map",
+    "trace_replay_requirement": "trace.jsonl plus replay_report must reconstruct per-seed headroom and final verdict within 1e-9 from serialized predictions/labels, without retraining"
+  },
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG3-POWERED-LEARNER-001A"
+}

@@ -1,0 +1,245 @@
+{
+  "_frozen_at": "2026-07-01",
+  "_frozen_canonical_sha256": "12e2a81c3ae418bf328481c8622cf45e4acc7237ffa06a8fafad4f6f781cafff",
+  "_phase": "PHASE_A_FREEZE_IMPLEMENT_TINY_SMOKE_ONLY",
+  "_status": "FROZEN_BEFORE_SMOKE_RESULTS",
+  "artifact": "frozen_design",
+  "auto_remote_anchor": "forbidden",
+  "canonical_hash_scheme": "sha256 over this object with all keys prefixed '_' recursively removed; json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True).",
+  "capacity": {
+    "d_model": 256,
+    "ff_mult": 4,
+    "heads": 4,
+    "layers": 4,
+    "learner": "retrieval_model",
+    "source": "src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+    "source_sha256": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb"
+  },
+  "claim_ceiling": "Phase A smoke-only wiring proof for the single retrieval-family rung3 powered learner path on this offline TLGP lab. It is not evidence for H0, H1, mechanism validity, agency, self, subjectivity, AGI, EGO readiness, companion readiness, or any production/runtime effect.",
+  "collision_record": {
+    "candidates": [
+      {
+        "approach": "minimal_runner_without_new_adjudicator",
+        "evidence_it_would_produce": "training path and metric emission through existing runner-style code",
+        "expected_failure_mode": "the banked verdict.py two-primary-family H1 clause cannot express a single validated retrieval family without silent reinterpretation",
+        "leakage_or_hardcoding_risk": "high claim-scope risk because the prereg primary families are pooling instruments and the H1 branch requires both primaries",
+        "smallest_falsifying_test": "self-test fixture with one eligible retrieval family cannot reach a scoped H1 branch without modifying verdict.py",
+        "strongest_cheap_baseline_that_could_match": "context-free or graph-cache baseline could still explain smoke-level behavior"
+      },
+      {
+        "approach": "shortcut_baseline_first_only",
+        "evidence_it_would_produce": "lower-reference and graph-cache scores on rung1/rung3 smoke episodes",
+        "expected_failure_mode": "does not prove retrieval_model training, evaluation, ablation, or adjudicator wiring runs end-to-end",
+        "leakage_or_hardcoding_risk": "low model-leakage risk, but high under-testing risk for the powered learner path",
+        "smallest_falsifying_test": "a tiny training smoke fails even though baselines compute",
+        "strongest_cheap_baseline_that_could_match": "successor_map graph-cache with fixed default under equal adapt access"
+      },
+      {
+        "approach": "mechanism_faithful_phase_a_smoke",
+        "evidence_it_would_produce": "frozen design, new single-family adjudicator self-test across all terminals, rung1 and rung3 tiny training, ideal/meta/fair/headroom metrics, leakage positive control, context-ablation smoke, split assertions, and protected-source guards",
+        "expected_failure_mode": "protected hash/status drift, capacity/prereg mismatch, full-budget launch, planted leak not caught, split assertion failure, or adjudicator terminal coverage failure",
+        "leakage_or_hardcoding_risk": "managed by read-only imports, source hashes, no rule_id/query_e model inputs, planted leakage controls, and smoke-only claim ceiling",
+        "smallest_falsifying_test": "1-seed 4-episode smoke cannot run both normal and ablated paths or adjudicator self-test misses a terminal",
+        "strongest_cheap_baseline_that_could_match": "lower_reference lookup/count_table/predict_all/majority/no_adaptation plus real successor_map graph-cache"
+      }
+    ],
+    "selected_approach": "mechanism_faithful_phase_a_smoke",
+    "selection_reason": "It is the smallest option that tests the requested implementation wiring while keeping the family substitution explicit, preserving banked files read-only, and avoiding any full 10-seed evidence run."
+  },
+  "controls": {
+    "context_ablation": {
+      "collapse_definition_for_smoke": "normal_meta_minus_ablated_meta is recorded against fair_max for shuffle-adapt and no-adapt; smoke records numbers only and does not adjudicate scientific pass/fail.",
+      "modes": [
+        "shuffle_adapt",
+        "no_adapt"
+      ],
+      "required_paths": [
+        "rung1",
+        "rung3"
+      ]
+    },
+    "leakage": {
+      "detector": "src.tlgp_001a.leakage.detect",
+      "planted_controls_must_be_caught": true,
+      "real_channels_must_be_clean": true,
+      "targets": [
+        "rule_id",
+        "answer"
+      ]
+    },
+    "rung1_scanner": {
+      "source": "src.tlgp_001b_r2.lower_reference.rung1_scanner",
+      "purpose": "cheap-baseline saturation readback for seen-rule capability path"
+    },
+    "split_assertions": {
+      "must_hold": [
+        "rung3_test_rules_subset_of_test",
+        "rung3_train_rules_subset_of_train",
+        "rung1_rules_subset_of_train",
+        "train_test_rule_overlap_empty",
+        "episode_ids_disjoint_across_supplied_sets"
+      ],
+      "source": "src.tlgp_001b_r2.splits.split_assertions"
+    }
+  },
+  "decision_statistic": {
+    "DELTA_source": "artifacts/TLGP-001B-R2/prereg.json",
+    "H0_single_family": "headroom_vs_meta <= DELTA on at least close_fraction_min seeds",
+    "H1_single_family": "LCB(headroom_vs_meta) > DELTA for the single eligible retrieval family",
+    "close_count_rule": "count(seed_headroom <= DELTA)",
+    "headroom_vs_meta": "ideal_mean - meta_mean on rung3 test",
+    "inconclusive": "CI straddles DELTA, eligibility/discriminativeness/integrity is not clean, or seed count is below MODEL_SEEDS for formal evidence",
+    "lcb": "mean(headroom) - 2 * std(headroom) / sqrt(n)",
+    "scope": "single validated retrieval_model family only; not the prereg two-primary-family H1 clause"
+  },
+  "family_substitution": {
+    "declared_deviation": true,
+    "deviation_text": "The prereg primary pooling families are not used as primaries for this Phase A path. The validated retrieval_model is substituted as the single scoped primary family because the pooling primaries are confounded for in-context retrieval.",
+    "original_prereg_primaries": [
+      "in_context_gru",
+      "in_context_transformer"
+    ],
+    "scope_limit": "Only the retrieval family is adjudicated; two-family prereg H1 is not claimed.",
+    "substituted_primary_family": "icl_retrieval_transformer",
+    "validated_model_reference": "retrieval_model sha256 0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb"
+  },
+  "forbidden_changes": [
+    "docs/task_cards/TLGP-CAPABILITY-WITNESS-RUNG3-POWERED-LEARNER-001A.md",
+    "src/tlgp_001b_r2/verdict.py",
+    "src/tlgp_capability_witness_preflight_001a/route_decision.py",
+    "src/tlgp_001b_r2/meta_learners.py",
+    "src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+    "src/tlgp_001b_r2/*",
+    "src/tlgp_001a/*"
+  ],
+  "governance_asserts": {
+    "auto_remote_anchor": "forbidden",
+    "banked_frozen_edits_allowed": false,
+    "capacity_required": {
+      "d_model": 256,
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": 4
+    },
+    "family_substitution_frozen_and_declared": true,
+    "full_10_seed_run_allowed_in_phase_a": false,
+    "new_source_files_only": [
+      "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_powered_learner.py"
+    ],
+    "phase_a_seed_limit": 2,
+    "prereg_delta_seed_budget_required": true
+  },
+  "implementation_files": {
+    "create": [
+      "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_powered_learner.py"
+    ],
+    "read_only": [
+      "src/tlgp_001a/world.py",
+      "src/tlgp_001a/leakage.py",
+      "src/tlgp_001b_r2/world.py",
+      "src/tlgp_001b_r2/splits.py",
+      "src/tlgp_001b_r2/lower_reference.py",
+      "src/tlgp_001b_r2/preregistration.py",
+      "src/tlgp_capability_witness_preflight_001a/retrieval_model.py",
+      "src/tlgp_capability_witness_preflight_001a/rung3_graph_cache_baselines.py",
+      "src/tlgp_capability_witness_preflight_001a/grokking_probe.py"
+    ]
+  },
+  "metrics": {
+    "episode_score": "balanced_accuracy",
+    "fair_panel": [
+      "lookup",
+      "count_table",
+      "predict_all",
+      "majority",
+      "no_adaptation",
+      "graph_cache"
+    ],
+    "graph_cache": "src.tlgp_capability_witness_preflight_001a.rung3_graph_cache_baselines.successor_map",
+    "headroom_vs_meta": "ideal_mean - meta_mean",
+    "ideal": "src.tlgp_001b_r2.world.ideal_predictions"
+  },
+  "phase_a_smoke_budget": {
+    "batch_size_max": 8,
+    "episodes_per_split_max": 8,
+    "full_budget_forbidden": true,
+    "purpose": "wiring proof only, not evidence",
+    "seeds": [
+      20260710
+    ],
+    "steps_max": 200
+  },
+  "preregistration": {
+    "DELTA": 0.1,
+    "FLOOR": 0.2,
+    "N_SEEDS": 10,
+    "close_fraction_min": 9,
+    "expected_canonical_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "model_seeds": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "training_budget": {
+      "batch_size": 256,
+      "early_stop_patience": 20,
+      "identical_across_all_rungs_and_conditions": true,
+      "lr_grid": [
+        0.001,
+        0.0003
+      ],
+      "lr_selection": "best on val balanced-accuracy (preregistered)",
+      "max_epochs": 200,
+      "n_test_episodes": 200,
+      "n_train_episodes": 5000,
+      "n_val_episodes": 1000,
+      "only_permitted_cross_rung_difference": "DATA (which rules / which values / seen vs unseen) -- never compute/architecture/budget",
+      "optimizer": "adam",
+      "steps_max": 200000
+    }
+  },
+  "rung_pass_rules": {
+    "rung1_eligibility": {
+      "formal_rule": "meta_balacc >= ideal_seen1 - DELTA on at least close_fraction_min MODEL_SEEDS",
+      "phase_a_smoke": "compute ideal/meta/fair/headroom and scanner only; do not claim eligibility from smoke"
+    },
+    "rung3_single_family": {
+      "formal_H0": "close_count(headroom_vs_meta <= DELTA) >= close_fraction_min",
+      "formal_H1": "LCB(headroom_vs_meta) > DELTA after retrieval eligibility and discriminativeness",
+      "phase_a_smoke": "adjudicator emits a verdict over tiny recorded fields, marked non-evidential"
+    }
+  },
+  "source_pins": {
+    "grokking_probe_sha256": "9126dc9273c5aac6c909de9d503e323609dca61c6d9e51fadd0d459a89d74555",
+    "leakage_sha256": "387c413d6af816216c73b45316bf854e3ef906e575bffc96cea1f6353e90bef1",
+    "lower_reference_sha256": "cd701b2f4adcf9d8c66f28f0e797cdf748a7f4560c682953829b99eb85d28cf6",
+    "meta_learners_sha256": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+    "preregistration_sha256": "6a5a0273e7c3b0c2cce031dcf2b495646d87ecea7630d725c84def8f9ce27480",
+    "retrieval_model_sha256": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+    "rung3_graph_cache_baselines_sha256": "921d44078a7b77e60c61b9bc5c5e2986228c4134a30ef2703c5fc52890229eaa",
+    "splits_sha256": "ca2852a1ca69ba5277872bf5b0780163d0c79fbf0b5b2c7075bb740ef9981ad5",
+    "verdict_py_sha256_read_only_not_used_for_single_family": "ac80b06083b24a43c5b3615ac0185acd1817554844ba1d145d1e380391ae2375",
+    "world_r2_sha256": "1c9bd730e79c19e5036e26cf4a45f1463dc2194217ec5ebc06e42731ca364a7c"
+  },
+  "stop_conditions": [
+    "family substitution not frozen or not declared",
+    "capacity differs from 256/4/4/4",
+    "DELTA, MODEL_SEEDS, close_fraction_min, or training budget differ from prereg",
+    "any banked or frozen source edit appears",
+    "full 10-seed budget launches during Phase A",
+    "planted leakage control is not caught",
+    "split assertions fail",
+    "context-ablation path does not execute for rung1 and rung3",
+    "adjudicator self-test does not reach all terminals"
+  ],
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG3-POWERED-LEARNER-001A"
+}

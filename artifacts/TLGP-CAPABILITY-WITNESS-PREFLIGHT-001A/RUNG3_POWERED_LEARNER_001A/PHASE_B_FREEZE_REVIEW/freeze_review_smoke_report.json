@@ -1,0 +1,699 @@
+{
+  "DELTA": 0.1,
+  "EPSILON": 0.1,
+  "adjudicator_reused_unmodified": true,
+  "adjudicator_self_test": {
+    "all_terminals_covered": true,
+    "claim_ceiling": "adjudicator branch-coverage self-test only; not TLGP evidence",
+    "evidential": false,
+    "expected_terminal_count": 8,
+    "expected_terminal_keys": [
+      "baseline_saturation",
+      "h0_amortized",
+      "h1_headroom_survives",
+      "invalid_discriminativeness_or_ablation",
+      "invalid_inconclusive_underpowered",
+      "invalid_integrity_or_governance",
+      "invalid_no_rung1_eligibility",
+      "invalid_rung0_reference_missing"
+    ],
+    "fixtures": {
+      "ablation_failure_fixture": {
+        "reason": "required context-ablation collapse did not hold",
+        "terminal": "invalid_discriminativeness_or_ablation"
+      },
+      "baseline_saturation_fixture": {
+        "reason": "fair or graph-cache panel reaches the rung3 bar; do not report H1",
+        "terminal": "baseline_saturation"
+      },
+      "h0_fixture": {
+        "reason": "retrieval closes to ideal under the prereg close-count statistic",
+        "terminal": "h0_amortized"
+      },
+      "h1_fixture": {
+        "reason": "LCB(headroom_vs_meta) is above DELTA for the scoped retrieval family",
+        "terminal": "h1_headroom_survives"
+      },
+      "integrity_failure_fixture": {
+        "reason": "integrity, replay, source, or declared-substitution guard failed",
+        "terminal": "invalid_integrity_or_governance"
+      },
+      "rung0_missing_fixture": {
+        "reason": "rung0 retrieval reference pass was not present",
+        "terminal": "invalid_rung0_reference_missing"
+      },
+      "rung1_eligibility_failure_fixture": {
+        "reason": "retrieval family did not meet rung1 eligibility",
+        "terminal": "invalid_no_rung1_eligibility"
+      },
+      "underpowered_fixture": {
+        "reason": "observed 1 seed(s), expected 10",
+        "terminal": "invalid_inconclusive_underpowered"
+      }
+    },
+    "official_verdict": "NOT_EMITTED",
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung3_single_family_adjudicator.synthetic_terminal_coverage",
+    "terminal_coverage_count": 8,
+    "terminal_keys_covered": [
+      "baseline_saturation",
+      "h0_amortized",
+      "h1_headroom_survives",
+      "invalid_discriminativeness_or_ablation",
+      "invalid_inconclusive_underpowered",
+      "invalid_integrity_or_governance",
+      "invalid_no_rung1_eligibility",
+      "invalid_rung0_reference_missing"
+    ],
+    "uses_synthetic_fixtures_only": true
+  },
+  "claim_ceiling": "Tiny freeze-review smoke only: proves FIX-1/FIX-2 wiring and design hash readback, not eligibility, H0, H1, transfer, mechanism validity, agency, self, subjectivity, AGI, EGO readiness, or mainline effect.",
+  "design_canonical_sha256_computed": "88b9f3af0bee52331b9ec6e702349477db48cdd1b244386586f77b5d150664d5",
+  "design_canonical_sha256_recorded": "88b9f3af0bee52331b9ec6e702349477db48cdd1b244386586f77b5d150664d5",
+  "design_path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/PHASE_B_FREEZE_REVIEW/design.json",
+  "evidential": false,
+  "fix_checks": {
+    "FIX_1_ablation_on_test_sets": true,
+    "FIX_2_advantage_destroyed_criterion": true,
+    "all_wiring_checks_passed": true,
+    "closer_to_fair_not_sufficient_self_check": {
+      "EPSILON": 0.1,
+      "ablated_balacc": 0.45,
+      "description": "synthetic case where closer-to-fair would pass but advantage-destroyed must fail",
+      "fair_max": 0.2,
+      "new_advantage_destroyed_flag": false,
+      "normal_balacc": 0.8,
+      "old_closer_to_fair_flag": true
+    }
+  },
+  "full_run_launched": false,
+  "git_branch": "codex/meta-theory-scaffold",
+  "git_head": "7f7de677008b02d257da3a030a7d1e840999072a",
+  "next_required_action": "STOP for operator freeze review; do not launch full 10-seed GPU run until cleared.",
+  "phase": "PHASE_B_FREEZE_REVIEW_RESMOKE_ONLY",
+  "prereg_canonical_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+  "producer_function": "phase_b_freeze_review.inline_resmoke_main",
+  "protected_source_diff_names": [],
+  "run_id": "phase-b-freeze-review-smoke-20260701-013110-16812dd9",
+  "rung1_seen_disjoint_test": {
+    "fixed_context_ablation": {
+      "FIX_1_test_eval_scope_pass": true,
+      "FIX_2_criterion_pass": true,
+      "ablation_eval_episode_ids": [
+        22000000,
+        22000001,
+        22000002,
+        22000003
+      ],
+      "ablation_eval_split": "test",
+      "both_modes_advantage_destroyed": true,
+      "episodes": 4,
+      "fair_baseline_balacc": {
+        "count_table": 0.3133730158730159,
+        "graph_cache": 0.32726190476190475,
+        "lookup": 0.3133730158730159,
+        "majority": 0.2,
+        "no_adaptation": 0.2528373015873016,
+        "predict_all": 0.2
+      },
+      "fair_detail_producer_functions": [
+        "src.tlgp_001b_r2.lower_reference.evaluate",
+        "src.tlgp_capability_witness_preflight_001a.rung3_graph_cache_baselines.evaluate"
+      ],
+      "fair_max": 0.32726190476190475,
+      "headroom_eval_split": "test",
+      "headroom_vs_meta": 0.8027777777777778,
+      "ideal_mean": 1.0,
+      "meta_test_balacc": 0.19722222222222224,
+      "modes": {
+        "no_adapt": {
+          "EPSILON": 0.1,
+          "ablated_balacc": 0.2222222222222222,
+          "advantage_destroyed_collapse": true,
+          "advantage_destroyed_threshold": 0.42726190476190473,
+          "distance_to_fair_delta_for_audit_only": 0.024999999999999967,
+          "drop_from_normal": -0.024999999999999967,
+          "fair_max": 0.32726190476190475,
+          "normal_balacc": 0.19722222222222224,
+          "old_closer_to_fair_flag_for_audit_only": false
+        },
+        "shuffle_adapt": {
+          "EPSILON": 0.1,
+          "ablated_balacc": 0.19722222222222224,
+          "advantage_destroyed_collapse": true,
+          "advantage_destroyed_threshold": 0.42726190476190473,
+          "distance_to_fair_delta_for_audit_only": 0.0,
+          "drop_from_normal": 0.0,
+          "fair_max": 0.32726190476190475,
+          "normal_balacc": 0.19722222222222224,
+          "old_closer_to_fair_flag_for_audit_only": false
+        }
+      },
+      "predictions_sample": {
+        "ideal_first_episode": [
+          2,
+          2,
+          0,
+          4,
+          2,
+          3,
+          2,
+          2,
+          4,
+          0,
+          1,
+          0,
+          4,
+          1,
+          2,
+          1,
+          0,
+          4,
+          4,
+          0,
+          4,
+          3,
+          3,
+          0,
+          4,
+          3,
+          4,
+          2,
+          4,
+          3
+        ],
+        "ideal_scores": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "no_adapt_first_episode": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3
+        ],
+        "normal_first_episode": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3
+        ],
+        "shuffle_first_episode": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          3
+        ]
+      },
+      "producer_function": "phase_b_freeze_review.inline_fixed_context_ablation",
+      "rung": "rung1",
+      "rung1_scanner": {
+        "cheap_baseline_saturation": false,
+        "cheap_baseline_saturation_threshold": 0.9,
+        "direct_lookup_solve_rate_rung1": 0.26666666666666666,
+        "ideal_seen1": 1.0,
+        "query_adapt_cell_overlap_fraction_mean": 0.14166666666666666,
+        "query_adapt_cell_overlap_fraction_per_episode": [
+          0.16666666666666666,
+          0.13333333333333333,
+          0.1,
+          0.16666666666666666
+        ],
+        "rung1_balacc": {
+          "count_table": 0.3133730158730159,
+          "lookup": 0.3133730158730159,
+          "majority": 0.2,
+          "no_context_meta": 0.2222222222222222,
+          "predict_all": 0.2
+        }
+      },
+      "seed": 20260710,
+      "train_episode_ids": [
+        20000000,
+        20000001,
+        20000002,
+        20000003
+      ],
+      "train_eval_episode_overlap_count": 0,
+      "train_split": "train"
+    },
+    "training": {
+      "batch_size": 4,
+      "device": {
+        "model_device": "cuda:0",
+        "predictions_serialized_on_cpu": true,
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "family": "icl_retrieval_transformer",
+      "lr_policy": "prereg lr_grid with validation-balanced-accuracy selection",
+      "lr_results": [
+        {
+          "best_val_balacc": 0.20416666666666666,
+          "curve": [
+            {
+              "lr": 0.001,
+              "step": 10,
+              "train_balacc": 0.2,
+              "val_balacc": 0.2
+            },
+            {
+              "lr": 0.001,
+              "step": 20,
+              "train_balacc": 0.20555555555555555,
+              "val_balacc": 0.20416666666666666
+            }
+          ],
+          "lr": 0.001,
+          "steps_run": 20
+        },
+        {
+          "best_val_balacc": 0.15942460317460316,
+          "curve": [
+            {
+              "lr": 0.0003,
+              "step": 10,
+              "train_balacc": 0.4615476190476191,
+              "val_balacc": 0.15942460317460316
+            },
+            {
+              "lr": 0.0003,
+              "step": 20,
+              "train_balacc": 0.6814880952380953,
+              "val_balacc": 0.14115079365079364
+            }
+          ],
+          "lr": 0.0003,
+          "steps_run": 20
+        }
+      ],
+      "parameter_count": 3167749,
+      "params": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      },
+      "selected_best_val_balacc": 0.20416666666666666,
+      "selected_lr": 0.001,
+      "steps_per_lr_max": 20,
+      "test_balacc": 0.19722222222222224,
+      "train_balacc": 0.20555555555555555
+    }
+  },
+  "rung3_unseen_test": {
+    "fixed_context_ablation": {
+      "FIX_1_test_eval_scope_pass": true,
+      "FIX_2_criterion_pass": true,
+      "ablation_eval_episode_ids": [
+        42000000,
+        42000001,
+        42000002,
+        42000003
+      ],
+      "ablation_eval_split": "test",
+      "both_modes_advantage_destroyed": true,
+      "episodes": 4,
+      "fair_baseline_balacc": {
+        "count_table": 0.23333333333333334,
+        "graph_cache": 0.23333333333333334,
+        "lookup": 0.23333333333333334,
+        "majority": 0.23333333333333334,
+        "no_adaptation": 0.21767195767195766,
+        "predict_all": 0.23333333333333334
+      },
+      "fair_detail_producer_functions": [
+        "src.tlgp_001b_r2.lower_reference.evaluate",
+        "src.tlgp_capability_witness_preflight_001a.rung3_graph_cache_baselines.evaluate"
+      ],
+      "fair_max": 0.23333333333333334,
+      "headroom_eval_split": "test",
+      "headroom_vs_meta": 0.7666666666666666,
+      "ideal_mean": 1.0,
+      "meta_test_balacc": 0.23333333333333334,
+      "modes": {
+        "no_adapt": {
+          "EPSILON": 0.1,
+          "ablated_balacc": 0.23333333333333334,
+          "advantage_destroyed_collapse": true,
+          "advantage_destroyed_threshold": 0.33333333333333337,
+          "distance_to_fair_delta_for_audit_only": 0.0,
+          "drop_from_normal": 0.0,
+          "fair_max": 0.23333333333333334,
+          "normal_balacc": 0.23333333333333334,
+          "old_closer_to_fair_flag_for_audit_only": false
+        },
+        "shuffle_adapt": {
+          "EPSILON": 0.1,
+          "ablated_balacc": 0.23333333333333334,
+          "advantage_destroyed_collapse": true,
+          "advantage_destroyed_threshold": 0.33333333333333337,
+          "distance_to_fair_delta_for_audit_only": 0.0,
+          "drop_from_normal": 0.0,
+          "fair_max": 0.23333333333333334,
+          "normal_balacc": 0.23333333333333334,
+          "old_closer_to_fair_flag_for_audit_only": false
+        }
+      },
+      "predictions_sample": {
+        "ideal_first_episode": [
+          4,
+          2,
+          4,
+          3,
+          2,
+          3,
+          2,
+          2,
+          4,
+          4,
+          2,
+          0,
+          4,
+          0,
+          1,
+          4,
+          0,
+          1,
+          4,
+          2,
+          1,
+          4,
+          4,
+          0,
+          1,
+          1,
+          4,
+          2,
+          0,
+          3
+        ],
+        "ideal_scores": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "no_adapt_first_episode": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "normal_first_episode": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "shuffle_first_episode": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "producer_function": "phase_b_freeze_review.inline_fixed_context_ablation",
+      "rung": "rung3",
+      "rung1_scanner": null,
+      "seed": 20260710,
+      "train_episode_ids": [
+        40000000,
+        40000001,
+        40000002,
+        40000003
+      ],
+      "train_eval_episode_overlap_count": 0,
+      "train_split": "train"
+    },
+    "training": {
+      "batch_size": 4,
+      "device": {
+        "model_device": "cuda:0",
+        "predictions_serialized_on_cpu": true,
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "family": "icl_retrieval_transformer",
+      "lr_policy": "prereg lr_grid with validation-balanced-accuracy selection",
+      "lr_results": [
+        {
+          "best_val_balacc": 0.2,
+          "curve": [
+            {
+              "lr": 0.001,
+              "step": 10,
+              "train_balacc": 0.2476388888888889,
+              "val_balacc": 0.17517857142857143
+            },
+            {
+              "lr": 0.001,
+              "step": 20,
+              "train_balacc": 0.2,
+              "val_balacc": 0.2
+            }
+          ],
+          "lr": 0.001,
+          "steps_run": 20
+        },
+        {
+          "best_val_balacc": 0.1629761904761905,
+          "curve": [
+            {
+              "lr": 0.0003,
+              "step": 10,
+              "train_balacc": 0.41589285714285723,
+              "val_balacc": 0.1629761904761905
+            },
+            {
+              "lr": 0.0003,
+              "step": 20,
+              "train_balacc": 0.6806349206349207,
+              "val_balacc": 0.1240079365079365
+            }
+          ],
+          "lr": 0.0003,
+          "steps_run": 20
+        }
+      ],
+      "parameter_count": 3167749,
+      "params": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      },
+      "selected_best_val_balacc": 0.2,
+      "selected_lr": 0.001,
+      "steps_per_lr_max": 20,
+      "test_balacc": 0.23333333333333334,
+      "train_balacc": 0.2
+    }
+  },
+  "smoke_budget": {
+    "batch_size": 4,
+    "episodes_per_split": 4,
+    "full_budget_forbidden_in_this_resmoke": true,
+    "lr_grid": [
+      0.001,
+      0.0003
+    ],
+    "seed": 20260710,
+    "steps_per_lr_max": 20
+  },
+  "source_hashes": {
+    "retrieval_model.py": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+    "rung3_powered_learner.py": "841a68502cb9a693f6bb2aea03992ace5267e3dd92f41c107fa3be0c54fab591",
+    "rung3_single_family_adjudicator.py": "5773f5d14cde442002c4c69e4d8d37302df40a863b01f97f86336a53a3fa9120"
+  },
+  "split_assertions": {
+    "all_required_pass": true,
+    "assertions": {
+      "episode_ids_disjoint_across_supplied_sets": true,
+      "r0_rules_count": 8,
+      "r0_rules_subset_of_train_rules": true,
+      "rung1_rules_subset_of_train": true,
+      "rung2_rules_subset_of_train": true,
+      "rung3_test_rules_subset_of_test": true,
+      "rung3_train_rules_subset_of_train": true,
+      "test_rules_count": 125,
+      "train_rules_count": 500,
+      "train_test_rule_overlap_empty": true
+    },
+    "producer_function": "src.tlgp_001b_r2.splits.split_assertions",
+    "required_true": [
+      "train_test_rule_overlap_empty",
+      "rung1_rules_subset_of_train",
+      "rung2_rules_subset_of_train",
+      "rung3_test_rules_subset_of_test",
+      "rung3_train_rules_subset_of_train",
+      "episode_ids_disjoint_across_supplied_sets"
+    ]
+  },
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG3-POWERED-LEARNER-001A"
+}
