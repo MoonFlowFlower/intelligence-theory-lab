@@ -7,8 +7,12 @@ from src.fsp_pum_env.ideal_observer import (
     ExactBayesFilter,
     PrefixEvent,
     ThetaGridSpec,
+    make_fixed_probe_schedules,
     make_s2_variant_wrappers,
     run_pc_ideal_sanity,
+    run_pc_z_sensitivity,
+    run_s2_tractability_benchmark,
+    run_z_marginalization_convergence,
 )
 from src.fsp_pum_env.simulator import SimulatorVariant
 
@@ -40,9 +44,10 @@ def test_exact_filter_updates_posterior_from_prefix_events_without_hidden_state(
     grid = ThetaGridSpec.micro_pc_grid(design)
     filt = ExactBayesFilter(
         design,
-        master_seed=20260708,
+        filter_seed=20260708,
         variant=SimulatorVariant.CAMOUFLAGE_OFF,
         grid_spec=grid,
+        style_map=tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"])),
     )
 
     before = filt.posterior_entropy()
@@ -53,10 +58,59 @@ def test_exact_filter_updates_posterior_from_prefix_events_without_hidden_state(
     assert filt.posterior_mass() == pytest.approx(1.0, abs=1e-12)
 
 
+def test_filter_requires_explicit_style_map_and_rejects_true_seed_reuse():
+    design = _design()
+    grid = ThetaGridSpec.micro_pc_grid(design)
+
+    with pytest.raises(TypeError, match="style_map"):
+        ExactBayesFilter(
+            design,
+            filter_seed=20260708,
+            variant=SimulatorVariant.CAMOUFLAGE_OFF,
+            grid_spec=grid,
+        )
+
+    with pytest.raises(ValueError, match="independent"):
+        ExactBayesFilter(
+            design,
+            filter_seed=20260708,
+            true_environment_seed=20260708,
+            variant=SimulatorVariant.CAMOUFLAGE_OFF,
+            grid_spec=grid,
+            style_map=tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"])),
+        )
+
+
+def test_task_likelihood_uses_z_marginalization_not_filter_seed_replay():
+    design = _design()
+    grid = ThetaGridSpec.micro_pc_grid(design)
+    style = tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"]))
+    args = dict(
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=grid,
+        style_map=style,
+        z_quadrature_points=3,
+    )
+    filt_a = ExactBayesFilter(design, filter_seed=1111, **args)
+    filt_b = ExactBayesFilter(design, filter_seed=2222, **args)
+
+    assert filt_a.predict_distribution("task_topic_0") == pytest.approx(
+        filt_b.predict_distribution("task_topic_0"), abs=1e-12
+    )
+    assert filt_a.information_interface()["sees_sampling_seeds"] is False
+    assert filt_a.information_interface()["sees_z_realization"] is False
+
+
 def test_s2_variants_are_thin_wrappers_over_exact_filter_core():
     design = _design()
     grid = ThetaGridSpec.micro_pc_grid(design)
-    wrappers = make_s2_variant_wrappers(design, master_seed=20260709, grid_spec=grid)
+    wrappers = make_s2_variant_wrappers(
+        design,
+        filter_seed=20260709,
+        grid_spec=grid,
+        style_map=tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"])),
+        variant=SimulatorVariant.NULL_ENV,
+    )
 
     assert set(wrappers) == {
         "full_history",
@@ -69,18 +123,38 @@ def test_s2_variants_are_thin_wrappers_over_exact_filter_core():
     assert all(type(wrapper.core) is ExactBayesFilter for wrapper in wrappers.values())
     assert wrappers["truncation_B30"].history_limit == 30
     assert wrappers["full_history"].history_limit is None
+    assert all(wrapper.core.variant is SimulatorVariant.NULL_ENV for wrapper in wrappers.values())
 
 
 def test_policy_wrappers_select_actions_without_second_filter_logic():
     design = _design()
     grid = ThetaGridSpec.micro_pc_grid(design)
-    wrappers = make_s2_variant_wrappers(design, master_seed=20260709, grid_spec=grid)
+    wrappers = make_s2_variant_wrappers(
+        design,
+        filter_seed=20260709,
+        grid_spec=grid,
+        style_map=tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"])),
+    )
 
     assert wrappers["passive"].select_action(0).startswith("task_topic_")
     assert wrappers["fixed_schedule_grid"].select_action(0).startswith("probe_")
     assert wrappers["myopic_IG"].select_action(0).startswith("probe_")
     assert wrappers["ucb1"].select_action(0).startswith("probe_")
     assert all(type(wrapper.core) is ExactBayesFilter for wrapper in wrappers.values())
+
+
+def test_fixed_probe_grid_implements_all_fifteen_frozen_schedules():
+    design = _design()
+    schedules = make_fixed_probe_schedules(design)
+
+    assert len(schedules) == 15
+    assert {(s.probe_rate, s.placement) for s in schedules} == {
+        (rate, placement)
+        for rate in (0.0, 0.05, 0.1, 0.2, 0.4)
+        for placement in ("front_loaded", "uniform", "back_loaded")
+    }
+    assert schedules[0].actions_for_episode(design).count("probe_0") == 0
+    assert sum(action.startswith("probe_") for action in schedules[-1].actions_for_episode(design)) == 120
 
 
 def test_pc_ideal_sanity_writes_provenance_and_wall_clock(tmp_path):
@@ -98,3 +172,32 @@ def test_pc_ideal_sanity_writes_provenance_and_wall_clock(tmp_path):
     assert len(report["code_path_hash"]) == 64
     assert report["claim_ceiling"] == "PC-IDEAL-SANITY instrument evidence only"
     assert json.loads(report_path.read_text(encoding="utf-8")) == report
+
+
+def test_s2b_artifact_producers_write_required_new_reports(tmp_path):
+    convergence = run_z_marginalization_convergence(
+        FROZEN,
+        output_path=tmp_path / "z_marginalization_convergence.json",
+        base_g=3,
+    )
+    sensitivity = run_pc_z_sensitivity(
+        FROZEN,
+        output_path=tmp_path / "pc_z_sensitivity_s2b.json",
+    )
+    tractability = run_s2_tractability_benchmark(
+        FROZEN,
+        output_path=tmp_path / "s2_tractability_report.json",
+        benchmark_turns=12,
+        benchmark_queries=4,
+    )
+
+    assert convergence["passed"]
+    assert convergence["max_abs_prediction_delta"] < 1e-3
+    assert sensitivity["passed"]
+    assert sensitivity["z_marginalized_mean_log_likelihood"] > sensitivity["wrong_fixed_z_mean_log_likelihood"]
+    assert tractability["full_grid_atom_count"] == 7077888
+    assert tractability["projected_s5_cpu_hours"] <= 24.0
+    assert tractability["decision"] == "tractable"
+    assert (tmp_path / "z_marginalization_convergence.json").exists()
+    assert (tmp_path / "pc_z_sensitivity_s2b.json").exists()
+    assert (tmp_path / "s2_tractability_report.json").exists()

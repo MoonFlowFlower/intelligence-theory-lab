@@ -2,7 +2,7 @@
   "aggregation_rule": "mean modal-response accuracy over micro theta cases and query actions",
   "atom_count": 16,
   "claim_ceiling": "PC-IDEAL-SANITY instrument evidence only",
-  "code_path_hash": "eccb5745aea9b29e3f14ae9c9aee514a34a22386a4118245c50a487436e309eb",
+  "code_path_hash": "9ef6da6bdf2b46e9f0f6b89b621e3dbf3d170065f9ca009fedeffbcbc007f701",
   "estimated_full_d1_atom_count": 7077888,
   "factor_groups": [
     "topic_7",
@@ -23,6 +23,21 @@
     "trust_decay_beta",
     "disclosure_threshold_d"
   ],
+  "information_interface": {
+    "generator_access": [
+      "distribution_kernels",
+      "per_user_style_map"
+    ],
+    "prefix_only": true,
+    "sees_sampling_seeds": false,
+    "sees_theta": false,
+    "sees_z_realization": false,
+    "z_marginalization": {
+      "node_count": 125,
+      "points_per_dim": 5,
+      "scheme": "tensor_gauss_hermite_stationary_z_marginal"
+    }
+  },
   "input_artifacts": [
     "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json"
   ],
@@ -33,6 +48,7 @@
   "producer_function": "src.fsp_pum_env.ideal_observer.run_pc_ideal_sanity",
   "run_id": "FSP-PUM-ENV-IDPROBE-001A:S2:PC-IDEAL-SANITY:20260710",
   "seed_context_episode_ids": {
+    "filter_seed": 9928874053092764098,
     "master_seed": 20260710,
     "micro_case_ids": [
       "micro_case_00",
@@ -68,5 +84,5 @@
   "stage": "S2",
   "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
   "threshold": 0.95,
-  "wall_clock_seconds": 0.20876210002461448
+  "wall_clock_seconds": 0.14186269999481738
 }
