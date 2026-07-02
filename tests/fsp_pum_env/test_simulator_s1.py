@@ -6,6 +6,7 @@ import pytest
 from src.fsp_pum_env.simulator import (
     FspPumSimulator,
     SimulatorVariant,
+    _SessionState,
     contains_latent_leak,
 )
 
@@ -61,6 +62,81 @@ def test_probe_actions_reduce_observation_informativeness_via_trust_direction():
     probe_distance = _uniform_distance(probe_sim.response_distribution(probe_user, "task_topic_4"))
 
     assert task_distance > probe_distance
+
+
+def test_session_boundaries_reset_z_from_stationary_distribution_and_preserve_trust():
+    sim = _base_sim(seed=20260706)
+    controlled_theta = {
+        "sensitivity_flags": [1, 0],
+        "topic_values": [0.5, -0.5, 1.5, -1.5, 0.5, -0.5, 1.5, -1.5],
+        "trust_gain_alpha": 0.05,
+        "trust_decay_beta": 0.9,
+        "disclosure_threshold_d": 0.7,
+    }
+    style = tuple(range(sim.alphabet_size))
+
+    low_z_user = sim.start_user(user_id=51, controlled_theta=controlled_theta, style_map=style)
+    high_z_user = sim.start_user(user_id=51, controlled_theta=controlled_theta, style_map=style)
+    for user, z_value in ((low_z_user, -100.0), (high_z_user, 100.0)):
+        user.trust = 0.37
+        user.z_state = _SessionState(valence=z_value, arousal=z_value, stress=z_value)
+        user.turn_index = sim.turns_per_session
+        user.session_index = 0
+        user.turn_in_session = sim.turns_per_session
+
+    low_dist = sim.response_distribution(low_z_user, "task_topic_0")
+    high_dist = sim.response_distribution(high_z_user, "task_topic_0")
+
+    assert low_dist == pytest.approx(high_dist, abs=1e-12)
+    assert low_z_user.session_index == 1
+    assert high_z_user.session_index == 1
+    assert low_z_user.turn_in_session == 0
+    assert high_z_user.turn_in_session == 0
+    assert low_z_user.trust == pytest.approx(0.37, abs=1e-12)
+    assert high_z_user.trust == pytest.approx(0.37, abs=1e-12)
+
+    sim.step(low_z_user, "task_topic_0")
+    assert low_z_user.session_index == 1
+    assert low_z_user.turn_in_session == 1
+
+
+def test_null_env_response_distribution_is_theta_invariant_for_all_actions_including_probes():
+    sim = _base_sim(seed=20260707, variant=SimulatorVariant.NULL_ENV)
+    style = tuple(range(sim.alphabet_size))
+    low_theta = {
+        "sensitivity_flags": [0, 0],
+        "topic_values": [-1.5] * 8,
+        "trust_gain_alpha": 0.05,
+        "trust_decay_beta": 0.9,
+        "disclosure_threshold_d": 0.3,
+    }
+    high_theta = {
+        "sensitivity_flags": [1, 1],
+        "topic_values": [1.5] * 8,
+        "trust_gain_alpha": 0.2,
+        "trust_decay_beta": 0.98,
+        "disclosure_threshold_d": 0.7,
+    }
+    low_user = sim.start_user(user_id=61, controlled_theta=low_theta, style_map=style)
+    high_user = sim.start_user(user_id=61, controlled_theta=high_theta, style_map=style)
+
+    assert low_user.theta.disclosure_threshold_d != high_user.theta.disclosure_threshold_d
+    low_user.trust = 0.2
+    high_user.trust = 0.2
+
+    for action in sim.all_actions:
+        assert sim.response_distribution(low_user, action) == pytest.approx(
+            sim.response_distribution(high_user, action), abs=1e-12
+        )
+
+    for action in ("probe_0", "task_topic_0", "probe_3", "recommend"):
+        sim.step(low_user, action)
+        sim.step(high_user, action)
+
+    for action in sim.all_actions:
+        assert sim.response_distribution(low_user, action) == pytest.approx(
+            sim.response_distribution(high_user, action), abs=1e-12
+        )
 
 
 def test_probe_only_dimensions_are_silent_for_passive_actions_at_interface():

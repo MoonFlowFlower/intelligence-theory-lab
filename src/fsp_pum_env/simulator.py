@@ -63,6 +63,8 @@ class _UserState:
     trust: float
     z_state: _SessionState
     stable_fact_symbol: int
+    session_index: int = 0
+    turn_in_session: int = 0
     turn_index: int = 0
 
 
@@ -120,8 +122,11 @@ class FspPumSimulator:
         action_set = env["action_set"]
         theta = env["theta_structure"]
         renderer = env["renderer"]
+        episodes = env["episodes"]
 
         self.alphabet_size = int(renderer["response_alphabet_size"])
+        self.sessions_per_user = int(episodes["N_sessions_per_user"])
+        self.turns_per_session = int(episodes["T_turns_per_session"])
         self.task_actions = tuple(action_set["task_actions"])
         self.recommend_actions = tuple(action_set["recommend_actions"])
         self.probe_actions = tuple(item["name"] for item in action_set["probe_actions"])
@@ -183,12 +188,13 @@ class FspPumSimulator:
             theta=theta,
             style_map=style,
             trust=self._trust_init,
-            z_state=self._initial_z_state(int(user_id)),
+            z_state=self._initial_z_state(int(user_id), session_index=0),
             stable_fact_symbol=stable_fact_symbol,
         )
 
     def response_distribution(self, user: _UserState, action: str) -> list[float]:
         self._validate_action(action)
+        self._ensure_session_started(user)
         if self.variant is SimulatorVariant.GRAPH_CACHE_SHOULD_WIN_LOW_DIVERSITY_TEMPLATES:
             base = self._low_diversity_template_distribution(action)
         elif self.variant is SimulatorVariant.RAG_SHOULD_WIN_STABLE_FACTS and action == "recommend":
@@ -214,6 +220,7 @@ class FspPumSimulator:
         probe_cost = self._probe_trust_cost(action)
         self._update_trust(user, action, probe_cost)
         self._update_z(user)
+        user.turn_in_session += 1
         user.turn_index += 1
 
         return StepResult(
@@ -229,12 +236,21 @@ class FspPumSimulator:
     def _sample_theta(self, rng: np.random.Generator, controlled_theta: Mapping[str, Sequence[float | int]] | None) -> _Theta:
         topics = tuple(float(rng.choice(self.theta_topic_levels)) for _ in range(8))
         flags = tuple(int(rng.choice(self._sensitivity_levels)) for _ in range(2))
+        alpha = float(rng.choice(self._alpha_levels))
+        beta = float(rng.choice(self._beta_levels))
+        disclosure_threshold = float(rng.choice(self._d_levels))
 
         if controlled_theta is not None:
             if "topic_values" in controlled_theta:
                 topics = tuple(float(value) for value in controlled_theta["topic_values"])
             if "sensitivity_flags" in controlled_theta:
                 flags = tuple(int(value) for value in controlled_theta["sensitivity_flags"])
+            if "trust_gain_alpha" in controlled_theta:
+                alpha = float(controlled_theta["trust_gain_alpha"])  # type: ignore[arg-type]
+            if "trust_decay_beta" in controlled_theta:
+                beta = float(controlled_theta["trust_decay_beta"])  # type: ignore[arg-type]
+            if "disclosure_threshold_d" in controlled_theta:
+                disclosure_threshold = float(controlled_theta["disclosure_threshold_d"])  # type: ignore[arg-type]
             if len(topics) != 8 or len(flags) != 2:
                 raise ValueError("controlled_theta must provide 8 topics and 2 sensitivity flags when present")
 
@@ -245,9 +261,9 @@ class FspPumSimulator:
         return _Theta(
             topic_values=topics,
             sensitivity_flags=(int(flags[0]), int(flags[1])),
-            trust_gain_alpha=float(rng.choice(self._alpha_levels)),
-            trust_decay_beta=float(rng.choice(self._beta_levels)),
-            disclosure_threshold_d=float(rng.choice(self._d_levels)),
+            trust_gain_alpha=alpha,
+            trust_decay_beta=beta,
+            disclosure_threshold_d=disclosure_threshold,
         )
 
     def _style_map_for_user(self, user_id: int) -> tuple[int, ...]:
@@ -257,8 +273,8 @@ class FspPumSimulator:
         rng = self._rng(f"{stream}:style:{user_id}")
         return tuple(int(value) for value in rng.permutation(self.alphabet_size))
 
-    def _initial_z_state(self, user_id: int) -> _SessionState:
-        rng = self._rng(f"session_state:init:{user_id}")
+    def _initial_z_state(self, user_id: int, *, session_index: int) -> _SessionState:
+        rng = self._rng(f"session_state:init:{user_id}:{int(session_index)}")
 
         def draw(dim: str) -> float:
             rho = self._z_rho[dim]
@@ -335,6 +351,8 @@ class FspPumSimulator:
         return _softmax(logits)
 
     def _apply_low_trust(self, distribution: np.ndarray, user: _UserState) -> np.ndarray:
+        if self.variant is SimulatorVariant.NULL_ENV:
+            return distribution
         threshold = max(user.theta.disclosure_threshold_d, 1e-12)
         if user.trust >= threshold:
             return distribution
@@ -351,11 +369,21 @@ class FspPumSimulator:
         user.trust = float(np.clip(next_trust, 0.0, 1.0))
 
     def _update_z(self, user: _UserState) -> None:
-        rng = self._rng(f"session_state:step:{user.user_id}:{user.turn_index}")
+        rng = self._rng(f"session_state:step:{user.user_id}:{user.session_index}:{user.turn_in_session}")
         for dim in ("valence", "arousal", "stress"):
             current = getattr(user.z_state, dim)
             updated = self._z_rho[dim] * current + float(rng.normal(0.0, self._z_sigma))
             setattr(user.z_state, dim, updated)
+
+    def _ensure_session_started(self, user: _UserState) -> None:
+        if user.turn_in_session < self.turns_per_session:
+            return
+        next_session = user.session_index + 1
+        if next_session >= self.sessions_per_user:
+            raise ValueError("episode is complete; no additional session is available")
+        user.session_index = next_session
+        user.turn_in_session = 0
+        user.z_state = self._initial_z_state(user.user_id, session_index=next_session)
 
     def _probe_trust_cost(self, action: str) -> float:
         if action not in self.probe_actions or self.variant is SimulatorVariant.TRUST_COST_OFF:

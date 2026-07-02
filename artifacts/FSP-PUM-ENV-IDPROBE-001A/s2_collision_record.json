@@ -1,0 +1,71 @@
+{
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S2 ideal observers, Track-F session",
+  "record_type": "collision_before_collapse",
+  "created_by": "Codex",
+  "claim_ceiling": "S2 instrument code plus PC evidence only; zero environment-validity, mechanism, user-model, social, subjectivity, agency, or EGO-mainline claims",
+  "frozen_authority_readback": {
+    "ledger_entry": "L-004 P0.2 ACTIVE",
+    "card_sha": "0a5e38a5dbe979f138231fab9870bd16f60abca7",
+    "constitution_sha": "882a68de2973ec1dedb588b85c6ee2703b897a4f",
+    "execution_plan_sha": "c07eec2ac38423bed6788904bc15013e6e755410",
+    "frozen_design_sha": "32d2cbd538f31694246b2e6bb7fd5377a329478f",
+    "verification_method": "git hash-object --path against artifacts/FSP-PUM-ENV-IDPROBE-001A/freeze_record.json"
+  },
+  "problem_definition": "Repair S1 generator audit blockers, then implement S2 exact-grid ideal-observer instrumentation and PC-IDEAL-SANITY evidence without modifying frozen governance sources.",
+  "candidates": [
+    {
+      "name": "minimal_implementation",
+      "description": "Patch only the simulator session counter/NULL_ENV leak, add a narrow exact-grid observer sufficient for the no-camouflage PC.",
+      "evidence_it_would_produce": "Focused unit tests and a PC sanity artifact showing the observer can recover an enumerable micro-config.",
+      "strongest_cheap_baseline_that_could_match": "Action-only/probe-label lookup can match if the PC uses a single deterministic probe action or leaks action names as labels.",
+      "leakage_or_hardcoding_risk": "High if PC queries are fixed to one theta atom, if expected values are literal-coded, or if filter variants fork into independent logic paths.",
+      "smallest_falsifying_test": "Shuffle controlled theta across all probe actions; the posterior must track observations through likelihood calls rather than action name literals.",
+      "expected_failure_mode": "PC passes but does not prove tractable full S2 behavior beyond the micro-config."
+    },
+    {
+      "name": "strongest_baseline_shortcut_explanation",
+      "description": "Treat S2 as an action-symbol lookup or fixed-probe decoder with access to the micro-config schedule.",
+      "evidence_it_would_produce": "Can produce high PC accuracy on a narrow no-camouflage schedule without maintaining a Bayes posterior.",
+      "strongest_cheap_baseline_that_could_match": "It is itself the shortcut baseline: table lookup over observed probe symbol centers.",
+      "leakage_or_hardcoding_risk": "High: would conflate renderer-visible probe codes with latent inference and would not satisfy exact Bayes or prefix-only requirements.",
+      "smallest_falsifying_test": "Require posterior normalization, multiple theta atoms, and likelihood recomputation from simulator distributions for every prefix event.",
+      "expected_failure_mode": "Fails when symbols are remapped, history is truncated, or action set includes passive/task actions."
+    },
+    {
+      "name": "mechanism_faithful_implementation",
+      "description": "One exact-grid Bayes core enumerates the frozen D1 theta grid, maintains per-atom trust/session state through prefix events, and exposes all variants as thin policy/history wrappers.",
+      "evidence_it_would_produce": "Callable producer paths for PC-IDEAL-SANITY, tractability timing, posterior update provenance, and wrapper parity.",
+      "strongest_cheap_baseline_that_could_match": "A table decoder can still match the no-camouflage PC but cannot provide normalized posterior state or thin-wrapper equivalence over the same core.",
+      "leakage_or_hardcoding_risk": "Medium: the filter has generator access by design, so tests must prove it consumes only prefix observation/action events and not hidden user state.",
+      "smallest_falsifying_test": "Construct histories from public step outputs only, remove latent user objects before filter update, and require PC failure manifest on subthreshold sanity.",
+      "expected_failure_mode": "Combinatorial wall-clock blowup or state synchronization drift between simulator sessions and filter atoms."
+    }
+  ],
+  "selected_approach": "mechanism_faithful_implementation_with_micro_pc_first",
+  "selection_reason": "It is the only candidate that can satisfy exact Bayes, prefix-only, thin-wrapper, and tractability logging without claiming S5 environment validity.",
+  "frozen_metric_baseline_ablation_contract": {
+    "pc_ideal_sanity_threshold": 0.95,
+    "null_env_control_rule": "NULL_ENV response distributions must be invariant to controlled theta for all actions including probes.",
+    "session_rule": "20 sessions x 15 turns; z is reinitialized from stationary distribution at each session start; trust persists.",
+    "baseline_boundary": "S2 wrappers are oracle/policy instrumentation only; fair battery baselines remain S3.",
+    "ablation_boundary": "Only generator audit fixes and PC-IDEAL-SANITY are executed here; no S5 ablation verdicts."
+  },
+  "anti_hardcoding_audit": {
+    "no_literal_verdict": true,
+    "no_threshold_motion": true,
+    "no_second_logic_path_for_tests": true,
+    "no_hidden_theta_in_filter_interface": true,
+    "no_frozen_source_modification": true,
+    "no_tlgp_paths": true
+  },
+  "stop_conditions": [
+    "frozen SHA mismatch",
+    "PC-IDEAL-SANITY below 0.95",
+    "NULL_ENV theta side-channel persists",
+    "filter cannot update from prefix-only event records",
+    "wall-clock tractability is not measured",
+    "any protected frozen source is modified"
+  ],
+  "rollback_plan": "Revert only files added or edited under src/fsp_pum_env, tests/fsp_pum_env, and artifacts/FSP-PUM-ENV-IDPROBE-001A; do not touch git index or commits."
+}
