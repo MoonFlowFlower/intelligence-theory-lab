@@ -1,0 +1,40 @@
+{
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S1 sealed simulator",
+  "manifest_type": "implementation_hash_pin_not_evidence",
+  "claim_ceiling": "S1 implementation status only; zero environment-validity evidence and no mechanism, user-model, social, or subject-adjacent claim",
+  "frozen_source_hashes_verified": {
+    "card": "0a5e38a5dbe979f138231fab9870bd16f60abca7",
+    "constitution": "882a68de2973ec1dedb588b85c6ee2703b897a4f",
+    "execution_plan": "c07eec2ac38423bed6788904bc15013e6e755410",
+    "frozen_design": "32d2cbd538f31694246b2e6bb7fd5377a329478f"
+  },
+  "implemented_source_hashes": {
+    "src/fsp_pum_env/__init__.py": "73a02dc758dd48bc9b0e42072a3fba971f367cf5",
+    "src/fsp_pum_env/simulator.py": "c3a6147b600cda0047f5998bd7cb707e93b441d9",
+    "tests/fsp_pum_env/test_simulator_s1.py": "13154cba7017ec74ad17c2ed4a4df50975c0c18f"
+  },
+  "focused_verification_commands": [
+    {
+      "command": "python -m pytest tests/fsp_pum_env/test_simulator_s1.py -q",
+      "result": "14 passed"
+    },
+    {
+      "command": "python -m pytest tests/fsp_pum_env -q",
+      "result": "15 passed"
+    },
+    {
+      "command": "python tests/fsp_pum_env/test_frozen_design.py",
+      "result": "PASS: frozen_design.json schema-valid, zero TBD, thresholds match card literals."
+    }
+  ],
+  "not_authorized": [
+    "S2 ideal observer work",
+    "fair battery work",
+    "certification run",
+    "adjudication",
+    "git add",
+    "git commit",
+    "remote anchor"
+  ]
+}
