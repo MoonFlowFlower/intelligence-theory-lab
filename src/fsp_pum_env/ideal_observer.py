@@ -1053,3 +1053,11 @@ def _modal_symbol(distribution: Sequence[float]) -> int:
 
 def _code_path_hash() -> str:
     return hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
+
+from .factored_filter import (  # noqa: E402
+    FactoredExactFilter,
+    run_factored_equivalence_certificate,
+    run_pc_z_sensitivity_addendum,
+    run_s2_tractability_benchmark_v2,
+)

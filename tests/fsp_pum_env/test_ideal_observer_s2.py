@@ -5,13 +5,17 @@ import pytest
 
 from src.fsp_pum_env.ideal_observer import (
     ExactBayesFilter,
+    FactoredExactFilter,
     PrefixEvent,
     ThetaGridSpec,
     make_fixed_probe_schedules,
     make_s2_variant_wrappers,
+    run_factored_equivalence_certificate,
     run_pc_ideal_sanity,
     run_pc_z_sensitivity,
+    run_pc_z_sensitivity_addendum,
     run_s2_tractability_benchmark,
+    run_s2_tractability_benchmark_v2,
     run_z_marginalization_convergence,
 )
 from src.fsp_pum_env.simulator import SimulatorVariant
@@ -201,3 +205,80 @@ def test_s2b_artifact_producers_write_required_new_reports(tmp_path):
     assert (tmp_path / "z_marginalization_convergence.json").exists()
     assert (tmp_path / "pc_z_sensitivity_s2b.json").exists()
     assert (tmp_path / "s2_tractability_report.json").exists()
+
+
+def test_factored_exact_filter_matches_exact_filter_on_preregistered_certificate(tmp_path):
+    report_path = tmp_path / "factored_equivalence_certificate.json"
+
+    report = run_factored_equivalence_certificate(FROZEN, output_path=report_path)
+
+    assert report["passed"]
+    assert report["max_abs_prediction_delta"] <= 1e-12
+    assert {case["case_id"] for case in report["cases"]} == {
+        "topic7_flags_trust_432",
+        "paired_topic_1_2_trust_432",
+    }
+    assert json.loads(report_path.read_text(encoding="utf-8")) == report
+
+
+def test_factored_filter_keeps_joint_log_weight_vector_and_updates_from_real_likelihoods():
+    design = _design()
+    grid = ThetaGridSpec.micro_pc_grid(design)
+    style = tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"]))
+    factored = FactoredExactFilter(
+        design,
+        filter_seed=20260714,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=grid,
+        style_map=style,
+        z_quadrature_points=5,
+    )
+    exact = ExactBayesFilter(
+        design,
+        filter_seed=20260714,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=grid,
+        style_map=style,
+        z_quadrature_points=5,
+    )
+
+    assert factored.atom_count == exact.atom_count == 16
+    assert factored.log_weights.shape == (16,)
+    assert factored.log_weights.dtype.name == "float64"
+    assert factored.index_arrays_dtype == "int32"
+
+    event = PrefixEvent(action="probe_3", symbol=18)
+    factored.observe(event)
+    exact.observe(event)
+
+    assert factored.posterior_mass() == pytest.approx(1.0, abs=1e-12)
+    assert factored.predict_distribution("recommend") == pytest.approx(
+        exact.predict_distribution("recommend"), abs=1e-12
+    )
+
+
+def test_v2_benchmark_and_z_zero_addendum_write_provenance_reports(tmp_path):
+    benchmark = run_s2_tractability_benchmark_v2(
+        FROZEN,
+        output_path=tmp_path / "s2_tractability_report_v2.json",
+        grid_spec=ThetaGridSpec.micro_pc_grid(_design()),
+        benchmark_turns=3,
+        benchmark_queries=2,
+    )
+    addendum = run_pc_z_sensitivity_addendum(
+        FROZEN,
+        output_path=tmp_path / "pc_z_sensitivity_addendum_s2c.json",
+    )
+
+    assert benchmark["implementation_path"].startswith("FactoredExactFilter")
+    assert benchmark["measured_updates"] == 3
+    assert benchmark["measured_counterfactual_queries"] == 2
+    assert benchmark["decision_rule"] == "projected_s5_cpu_hours <= 24"
+    assert benchmark["full_grid_atom_count"] == 7077888
+    assert benchmark["measured_grid_atom_count"] == 16
+    assert benchmark["producer_function"] == "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v2"
+    assert addendum["pc_name"] == "PC-Z-SENSITIVITY-Z0-ADDENDUM"
+    assert addendum["fixed_z_zero"] == [0.0, 0.0, 0.0]
+    assert "z0_fixed_mean_log_likelihood" in addendum
+    assert (tmp_path / "s2_tractability_report_v2.json").exists()
+    assert (tmp_path / "pc_z_sensitivity_addendum_s2c.json").exists()

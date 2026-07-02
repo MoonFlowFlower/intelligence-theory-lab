@@ -1,0 +1,65 @@
+{
+  "artifact": "s2_tractability_report_v2",
+  "benchmark_scope": {
+    "complete_full_grid_run": true,
+    "fixed_schedule": "probe_rate=0.2, placement=uniform",
+    "full_episode_counterfactual_queries": 72,
+    "full_episode_turns": 300,
+    "measured_counterfactual_queries": 72,
+    "measured_turns": 300
+  },
+  "claim_ceiling": "S2c FactoredExactFilter tractability evidence only; no S3, environment-validity, learning, agency, or EGO-mainline claim",
+  "code_path_hash": "bea2e0e2f862c1f4323028f2f4d4bc377936e8bea0828bf075ff3eb2773e7d57",
+  "decision": "stop_N0_F3_required",
+  "decision_projection_basis": "single fixed 0.2-uniform policy workload requested for this benchmark; policy-class sweeps multiply separately",
+  "decision_rule": "projected_s5_cpu_hours <= 24",
+  "full_grid_atom_count": 7077888,
+  "implementation_path": "FactoredExactFilter full joint posterior vector with factored likelihood tables; no atom-grid downsizing; no mean-field posterior factorization",
+  "initialization_seconds": 0.7199804999982007,
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json"
+  ],
+  "invalid_prior_artifact_preserved": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report.json",
+  "measured_counterfactual_queries": 72,
+  "measured_grid_atom_count": 7077888,
+  "measured_updates": 300,
+  "measured_wall_clock_seconds": 61.15761469997233,
+  "peak_memory": {
+    "filter_array_bytes": 452985048,
+    "measurement_note": "RSS sampled after initialization, every update, and every counterfactual query; transient native allocation peaks between samples may be missed.",
+    "peak_observed_rss_bytes": 497270784,
+    "tracemalloc_peak_bytes": 795533160
+  },
+  "policy_class_multiplier": {
+    "fixed_schedule_grid": 15,
+    "ideal_with_probes": 1,
+    "myopic_IG": 1,
+    "naive_total_multiplier": 20,
+    "passive": 1,
+    "projected_s5_cpu_hours_if_all_policy_classes_run_naively": 679.5290522219148,
+    "truncation_ideal_B30": 1,
+    "ucb1": 1
+  },
+  "posterior_vector": {
+    "bytes": 56623104,
+    "dtype": "float64",
+    "shape": [
+      7077888
+    ]
+  },
+  "precomputed_index_arrays": {
+    "action_array_count": 13,
+    "bytes": 396361728,
+    "dtype": "int32"
+  },
+  "prediction_checksum": 1.8572562982354066,
+  "producer_function": "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v2",
+  "projected_one_user_seconds": 61.15761469997233,
+  "projected_s5_cpu_hours": 33.97645261109574,
+  "query_wall_clock_seconds": 6.307557800435461,
+  "stage": "S2c",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "update_wall_clock_seconds": 53.978359700064175,
+  "z_node_count": 125,
+  "z_quadrature_points_per_dim": 5
+}
