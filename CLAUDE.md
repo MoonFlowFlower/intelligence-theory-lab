@@ -169,6 +169,7 @@ Do not patch around equivalence.
 
 - `docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md` — control baselines that INVALIDATE a result (predict_all / predict_none, saturation, observation-decodable).
 - `docs/codex/contracts/LEARNING-SUCCESS-CRITERION-STANDARD-001A.md` — what COUNTS as flexible-learning success: rival vs control baselines, the positive generality criterion (one system across a task distribution, held-out novelty, few-shot, breadth-over-peak, ideal-observer headroom), the genuine-learning signature (learning curve + forward transfer + ablation-destroys + non-memorization), and a mandatory falsifier.
+- `docs/codex/contracts/MECHANISM-SIGNATURE-VERDICT-STANDARD-001A.md` — how admitted candidate outcomes are CLASSIFIED when score and signature disagree: signature components S1-S5 (control separation non-negotiable; signature set frozen at card time), verdict subtypes LOW_SCORE_SIGNATURE_PRESENT / HIGH_SCORE_NO_ATTRIBUTION, predicted-failure-geography requirement, product-vs-science claim separation. Do not adjudicate a candidate card on absolute score.
 
 Rival vs control: a task-specialist rival matching the candidate on its own narrow task is NOT a candidate failure; a control baseline (memorization / lookup / no-update / observation-decoder / from-scratch / candidate's own rule amortized) matching the candidate IS. Do not conflate them.
 
