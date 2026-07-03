@@ -1,0 +1,23 @@
+{
+  "artifact": "s3c_projection_failure_manifest_v2",
+  "claim_ceiling": "S3c-R2 projection stop only; no tuning sweep, environment-validity, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
+  "code_path_hash": "f19f54a51739ea2db2258f407e71f05c4619bd262796468a0bff114f8c074371",
+  "cpu_hour_limit": 24.0,
+  "input_artifacts": [
+    "s3c_compute_projection_v2"
+  ],
+  "preserved_failure": true,
+  "prior_stop_artifacts_preserved": [
+    "s3c_failure_manifest.json",
+    "s3c_compute_projection.json",
+    "s3c_projection_failure_manifest.json"
+  ],
+  "producer_function": "src.fsp_pum_env.battery.obs_decoders.write_s3c_projection_failure_manifest_v2",
+  "projection_cpu_hours": 24.256926470195516,
+  "run_finished_at": "2026-07-03T06:19:36Z",
+  "run_started_at": "2026-07-03T06:19:36Z",
+  "stage": "S3c-R2",
+  "stop_condition": "Projection > 24 CPU-h",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "verdict": "STOP"
+}

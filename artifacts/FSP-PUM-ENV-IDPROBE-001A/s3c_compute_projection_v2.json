@@ -1,0 +1,442 @@
+{
+  "artifact": "s3c_compute_projection_v2",
+  "claim_ceiling": "PART 0 v2 compute projection only; no tuning scores, heldout numbers, environment-validity, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
+  "code_path_hash": "f19f54a51739ea2db2258f407e71f05c4619bd262796468a0bff114f8c074371",
+  "cpu_hour_limit": 24.0,
+  "decision": "stop_projection_exceeds_24_cpu_hours",
+  "decision_rule": "projection_cpu_hours <= 24.0 permits the frozen S3c sweep; >24.0 triggers STOP",
+  "framework_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.17.0",
+    "sklearn": "1.9.0",
+    "torch": "2.9.1+cu128"
+  },
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\f2_ngram_vocabulary.json"
+  ],
+  "measurements": {
+    "gbt": {
+      "class_count_seen": 32,
+      "config_id": "obs_decoder_gbt_cfg00",
+      "config_index": 0,
+      "cost_class": "gbt",
+      "feature_dimension": 2157,
+      "features": "F2",
+      "fit_and_metric_wall_clock_seconds": 561.3772794000106,
+      "fit_examples": 96000,
+      "fit_matrix_nnz": 32428326,
+      "fit_plus_validation_wall_clock_seconds": 646.0691335999873,
+      "fit_user_filter": "user_id % 2 == 0",
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.03310137742734786,
+      "internal_validation_matrix_nnz": 16161003,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "matrix_build_wall_clock_seconds": 84.69185419997666,
+      "member": "obs_decoder_gbt",
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_sklearn_one_set",
+      "records_consumed": {
+        "fit_records": 96000,
+        "fit_records_skipped_by_budget": 96000,
+        "internal_validation_records": 48000
+      },
+      "set_id": "set_00"
+    },
+    "gru": {
+      "config_id": "obs_decoder_gru_cfg00",
+      "config_index": 0,
+      "cost_class": "gru",
+      "device": "cpu",
+      "environment": {
+        "cpu_hour_limit": 24.0,
+        "env_threads": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "single_thread_accounting": true,
+        "threadpool_info": [
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "vcomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          }
+        ],
+        "torch_device": "cpu",
+        "torch_num_interop_threads": 1,
+        "torch_num_threads": 1
+      },
+      "epochs_run": 10,
+      "fit_and_metric_wall_clock_seconds": 6.893444399989676,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 44.95842129999073,
+      "fit_sequences": 640,
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "torch.nn.GRU",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.03113385543033985,
+      "internal_validation_sequences": 160,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "member": "obs_decoder_gru",
+      "offline_compute_units": 1920000,
+      "per_example_prefix_reencoding": false,
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_gru_one_set",
+      "query_time_single_prefix_encoding": true,
+      "sequence_collect_wall_clock_seconds": 38.06497690000106,
+      "set_id": "set_00",
+      "single_thread_accounting": true,
+      "teacher_forced_one_pass_per_user_sequence_per_epoch": true
+    },
+    "logreg_F1": {
+      "class_count_seen": 32,
+      "config_id": "obs_decoder_logreg_cfg00",
+      "config_index": 0,
+      "cost_class": "logreg_F1",
+      "feature_dimension": 1133,
+      "features": "F1",
+      "fit_and_metric_wall_clock_seconds": 144.3417920000502,
+      "fit_examples": 192000,
+      "fit_matrix_nnz": 35695696,
+      "fit_plus_validation_wall_clock_seconds": 213.52840160008054,
+      "fit_user_filter": "all fit users",
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "sklearn.linear_model.LogisticRegression",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.029883497511228076,
+      "internal_validation_matrix_nnz": 8912242,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "matrix_build_wall_clock_seconds": 69.18660960003035,
+      "member": "obs_decoder_logreg",
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_sklearn_one_set",
+      "records_consumed": {
+        "fit_records": 192000,
+        "fit_records_skipped_by_budget": 0,
+        "internal_validation_records": 48000
+      },
+      "set_id": "set_00"
+    },
+    "logreg_F2": {
+      "class_count_seen": 32,
+      "config_id": "obs_decoder_logreg_cfg04",
+      "config_index": 4,
+      "cost_class": "logreg_F2",
+      "feature_dimension": 2157,
+      "features": "F2",
+      "fit_and_metric_wall_clock_seconds": 259.83938489999855,
+      "fit_examples": 192000,
+      "fit_matrix_nnz": 64818847,
+      "fit_plus_validation_wall_clock_seconds": 372.8790042999899,
+      "fit_user_filter": "all fit users",
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "sklearn.linear_model.LogisticRegression",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.029948667274623142,
+      "internal_validation_matrix_nnz": 16161003,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "matrix_build_wall_clock_seconds": 113.03961939999135,
+      "member": "obs_decoder_logreg",
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_sklearn_one_set",
+      "records_consumed": {
+        "fit_records": 192000,
+        "fit_records_skipped_by_budget": 0,
+        "internal_validation_records": 48000
+      },
+      "set_id": "set_00"
+    },
+    "seq_W15": {
+      "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg00",
+      "config_index": 0,
+      "cost_class": "seq_W15",
+      "device": "cpu",
+      "environment": {
+        "cpu_hour_limit": 24.0,
+        "env_threads": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "single_thread_accounting": true,
+        "threadpool_info": [
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "vcomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          }
+        ],
+        "torch_device": "cpu",
+        "torch_num_interop_threads": 1,
+        "torch_num_threads": 1
+      },
+      "epochs_run": 9,
+      "fit_and_metric_wall_clock_seconds": 6.112129100016318,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 49.6942688000272,
+      "fit_sequences": 12800,
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "torch.nn.GRU",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.03169564961147146,
+      "internal_validation_sequences": 3200,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+      "offline_compute_units": 1728000,
+      "per_example_prefix_reencoding": false,
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_gru_one_set",
+      "query_time_single_prefix_encoding": true,
+      "sequence_collect_wall_clock_seconds": 43.582139700010885,
+      "set_id": "set_00",
+      "single_thread_accounting": true,
+      "teacher_forced_one_pass_per_user_sequence_per_epoch": true
+    },
+    "seq_full": {
+      "config_id": "seq_full_history_no_action_conditioning_cfg00",
+      "config_index": 0,
+      "cost_class": "seq_full",
+      "device": "cpu",
+      "environment": {
+        "cpu_hour_limit": 24.0,
+        "env_threads": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "single_thread_accounting": true,
+        "threadpool_info": [
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "vcomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          }
+        ],
+        "torch_device": "cpu",
+        "torch_num_interop_threads": 1,
+        "torch_num_threads": 1
+      },
+      "epochs_run": 10,
+      "fit_and_metric_wall_clock_seconds": 6.120408100017812,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 50.77137460000813,
+      "fit_sequences": 640,
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "torch.nn.GRU",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.03171785307132153,
+      "internal_validation_sequences": 160,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "member": "seq_full_history_no_action_conditioning",
+      "offline_compute_units": 1920000,
+      "per_example_prefix_reencoding": false,
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_gru_one_set",
+      "query_time_single_prefix_encoding": true,
+      "sequence_collect_wall_clock_seconds": 44.65096649999032,
+      "set_id": "set_00",
+      "single_thread_accounting": true,
+      "teacher_forced_one_pass_per_user_sequence_per_epoch": true
+    }
+  },
+  "one_time_costs": {
+    "data_materialization_seconds": 0.0,
+    "vocabulary_build_seconds": 549.183192699973
+  },
+  "producer_function": "src.fsp_pum_env.battery.obs_decoders.write_s3c_compute_projection_v2",
+  "projection": {
+    "config_counts_by_class": {
+      "gbt": 8,
+      "gru": 8,
+      "logreg_F1": 4,
+      "logreg_F2": 4,
+      "seq_W15": 8,
+      "seq_full": 8
+    },
+    "cost_classes": [
+      "logreg_F1",
+      "logreg_F2",
+      "gbt",
+      "gru",
+      "seq_full",
+      "seq_W15"
+    ],
+    "cpu_hour_limit": 24.0,
+    "decision": "stop_projection_exceeds_24_cpu_hours",
+    "fit_sets": 10,
+    "linear_in_sets_scaling_assumption": true,
+    "one_time_costs": {
+      "data_materialization_seconds": 0.0,
+      "vocabulary_build_seconds": 549.183192699973
+    },
+    "per_class_projection_seconds": {
+      "gbt": 51685.53068799898,
+      "gru": 3596.6737039992586,
+      "logreg_F1": 8541.136064003222,
+      "logreg_F2": 14915.160171999596,
+      "seq_W15": 3975.541504002176,
+      "seq_full": 4061.7099680006504
+    },
+    "projection_cpu_hours": 24.256926470195516,
+    "projection_seconds": 87324.93529270386
+  },
+  "projection_cpu_hours": 24.256926470195516,
+  "projection_seconds": 87324.93529270386,
+  "run_finished_at": "2026-07-03T06:19:36Z",
+  "run_id": "s3c-compute-projection-v2-2026-07-03T05:56:34Z",
+  "run_started_at": "2026-07-03T05:56:34Z",
+  "single_thread_environment": {
+    "cpu_hour_limit": 24.0,
+    "env_threads": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "single_thread_accounting": true,
+    "threadpool_info": [
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas"
+      },
+      {
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "vcomp",
+        "user_api": "openmp"
+      },
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas"
+      }
+    ],
+    "torch_device": "cpu",
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1
+  },
+  "stage": "S3c-R2",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "wall_clock_seconds": 1381.724688700051
+}

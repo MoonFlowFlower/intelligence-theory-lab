@@ -7,6 +7,7 @@ from src.fsp_pum_env.battery.seq_models import (
     build_full_history_symbol_sequence,
     build_w15_action_conditioned_sequence,
     sequence_grid,
+    sequence_training_contract,
 )
 
 
@@ -72,3 +73,17 @@ def test_w15_predictor_prediction_format_and_frozen_grid():
     validate_prediction(prediction, design, actions)
     assert len(sequence_grid("seq_full_history_no_action_conditioning")) == 8
     assert len(sequence_grid("seq_window_with_action_conditioning_W15_no_cross_session_persistence")) == 8
+
+
+def test_gru_class_sequence_training_contract_is_teacher_forced_cpu_one_pass():
+    for member in (
+        "obs_decoder_gru",
+        "seq_full_history_no_action_conditioning",
+        "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+    ):
+        contract = sequence_training_contract(member)
+        assert contract["framework"] == "torch.nn.GRU"
+        assert contract["device"] == "cpu"
+        assert contract["teacher_forced"] is True
+        assert contract["one_pass_per_user_sequence_per_epoch"] is True
+        assert contract["per_example_prefix_reencoding"] is False

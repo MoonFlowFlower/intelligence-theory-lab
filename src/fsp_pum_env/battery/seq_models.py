@@ -88,6 +88,21 @@ def sequence_grid(member_name: str) -> list[dict[str, Any]]:
     return obs_decoders._gru_grid(member_name)
 
 
+def sequence_training_contract(member_name: str) -> dict[str, Any]:
+    if member_name not in {"obs_decoder_gru", *SEQUENCE_MEMBER_NAMES}:
+        raise ValueError(f"unknown S3c GRU-class member: {member_name}")
+    return {
+        "member": member_name,
+        "framework": "torch.nn.GRU",
+        "device": "cpu",
+        "teacher_forced": True,
+        "one_pass_per_user_sequence_per_epoch": True,
+        "per_example_prefix_reencoding": False,
+        "query_time_single_prefix_encoding": True,
+        "shuffle_seed_stream": "baseline_fit",
+    }
+
+
 def _require_member(design: Mapping[str, Any], member: str) -> None:
     if member not in design["battery_membership"]["members"]:
         raise ValueError(f"frozen battery_membership missing {member}")

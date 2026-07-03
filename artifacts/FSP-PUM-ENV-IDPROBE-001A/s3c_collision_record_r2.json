@@ -1,0 +1,79 @@
+{
+  "artifact": "s3c_collision_record_r2",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "stage": "S3c-R2",
+  "run_record": "second rerun under S3C-BATTERY-SPEC-001B",
+  "created_before_implementation_edits": true,
+  "collision_protocol": "collision-before-collapse",
+  "claim_ceiling": "S3c-R2 implementation-choice and tuning-procedure evidence only; no environment-validity, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
+  "candidates": [
+    {
+      "candidate": "minimal_implementation",
+      "description": "Patch the R1 projection path to lower its estimate and leave the existing full-vocabulary feature code mostly intact.",
+      "evidence_it_would_produce": "A faster-looking projection artifact and unchanged basic interface tests.",
+      "strongest_cheap_baseline_that_could_match": "A projection-only shortcut could satisfy artifact shape while leaving the actual sweep infeasible.",
+      "leakage_or_hardcoding_risk": "High: it would tune around the compute line instead of implementing the frozen 001B F2 vocabulary, per-class measurement, and efficiency requirements.",
+      "smallest_falsifying_test": "Require a persisted top-1024 fit-only vocabulary, incremental-vs-naive equivalence, per-class measurements, and thread/CPU assertions in the sweep entry path.",
+      "expected_failure_mode": "Fails 001B as a report repair rather than a callable tuning procedure."
+    },
+    {
+      "candidate": "strongest_baseline_or_shortcut_explanation",
+      "description": "Replace GRU-class members with count-table or classifier recipes that emit plausible next-symbol distributions without teacher-forced one-pass sequence training.",
+      "evidence_it_would_produce": "Quick internal-validation metrics and compact persisted recipes.",
+      "strongest_cheap_baseline_that_could_match": "The shortcut is itself a cheap same-access behavioral baseline, not the frozen S3c member family.",
+      "leakage_or_hardcoding_risk": "Medium to high: it can avoid heldout leakage but silently substitutes member classes and erases the cost-class distinction the R2 projection must measure.",
+      "smallest_falsifying_test": "Assert GRU-class measurement records declare teacher_forced_one_pass_per_sequence_per_epoch and CPU torch device enforcement.",
+      "expected_failure_mode": "Invalid S3c battery because frozen member identities were replaced."
+    },
+    {
+      "candidate": "mechanism_faithful_implementation",
+      "description": "Implement the 001B delta exactly: top-1024 fit-only F2 vocabulary, incremental prefix feature materialization, GBT half fit-user budget, CPU/thread guards, six measured one-set cost classes, and the frozen sweep only if projection is under 24 CPU-h.",
+      "evidence_it_would_produce": "Fresh vocabulary/projection/tuning/manifest artifacts or a preserved STOP manifest, with code hashes, wall-clock measurements, framework versions, and guard tests.",
+      "strongest_cheap_baseline_that_could_match": "Later S3d scoring may still show simpler access-parity baselines match these members; S3c-R2 only proves the member construction and tuning procedure ran under the frozen constraints.",
+      "leakage_or_hardcoding_risk": "Main risks are fit/internal-val/heldout split leakage, accidental cross-session carryover in W15, action leakage in seq_full, GPU use, multi-thread accounting drift, and report literals not tied to callable producers.",
+      "smallest_falsifying_test": "Run S3c guard tests, generate the vocabulary before tuning, verify projection arithmetic from six callable measurements, and stop if projection exceeds 24 CPU-h.",
+      "expected_failure_mode": "Projection may still exceed the frozen compute line; that must become operator-decision evidence rather than an executor-side grid shrink."
+    }
+  ],
+  "selected_candidate": "mechanism_faithful_implementation",
+  "selection_reason": "It is the only candidate that preserves the 001A grids while applying the 001B efficiency and compute-accounting amendments without member substitution.",
+  "falsifier_for_current_framing": "A measured R2 projection greater than 24 CPU-h falsifies executor authorization to run the sweep, not the broader environment hypothesis.",
+  "insufficient_evidence": [
+    "Passing S3c tests alone is not S3d should-win evidence.",
+    "A tuning report without heldout access is still not environment-validity evidence.",
+    "A projection under the line does not prove baseline power or mechanism adequacy."
+  ],
+  "acceptance_signal": "Fresh S3c-R2 tests pass and the callable projection either authorizes the frozen sweep or writes a preserved STOP manifest without touching prior STOP artifacts.",
+  "stop_condition": "Projection > 24 CPU-h, missing required framework, undefined governing-spec decision, heldout access during S3c, or any frozen-source hash mismatch.",
+  "rollback_plan": "Revert only this slice's source/test edits and preserve any generated STOP artifact as negative procedure evidence if a stop condition triggers.",
+  "expected_changed_files": [
+    "src/fsp_pum_env/battery/obs_decoders.py",
+    "src/fsp_pum_env/battery/seq_models.py",
+    "tests/fsp_pum_env/test_s3c_obs_decoders.py",
+    "tests/fsp_pum_env/test_s3c_seq_models.py",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_collision_record_r2.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_models/f2_ngram_vocabulary.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_compute_projection_v2.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_projection_failure_manifest_v2.json"
+  ],
+  "forbidden_changes": [
+    "No git commands.",
+    "No edits to frozen source documents.",
+    "No edits to S3a/S3b files.",
+    "No edits or deletion of prior S3c STOP artifacts.",
+    "No grid shrinking, member substitution, GPU use, heldout access, or EGO mainline integration."
+  ],
+  "final_decision": {
+    "decision": "STOP",
+    "stop_condition_triggered": "Projection > 24 CPU-h",
+    "projection_cpu_hours": 24.256926470195516,
+    "cpu_hour_limit": 24.0,
+    "evidence_artifacts": [
+      "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_compute_projection_v2.json",
+      "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_projection_failure_manifest_v2.json"
+    ],
+    "sweep_ran": false,
+    "claim_ceiling": "operator-decision compute STOP evidence only"
+  },
+  "auto_remote_anchor": "forbidden"
+}
