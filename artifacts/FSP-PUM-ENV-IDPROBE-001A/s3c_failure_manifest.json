@@ -1,0 +1,83 @@
+{
+  "artifact": "s3c_failure_manifest",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "slice": "S3c implementation slice",
+  "created_at": "2026-07-02T21:59:37.6633626-05:00",
+  "verdict": "blocked_by_missing_or_ambiguous_frozen_s3c_spec",
+  "current_layer": "engineering implementation + mechanism-hypothesis preflight",
+  "mainline_integration_status": "not integrated; S3c source files were not created",
+  "enabled_status": "not enabled",
+  "real_trigger_evidence": "frozen-source preflight and targeted source-field search only; no S3c predictor run was launched",
+  "claim_ceiling": "instrument-governance stop evidence only; no environment-validity, baseline-power, gap, mechanism, learning-capability, agency, or EGO claim",
+  "stop_condition_verbatim": "If the battery-decoder tuning budget or feature spec is missing/ambiguous in the frozen sources (do not conflate the battery members with the T5.2 obs_decoder_gate instrument), STOP and report the gap.",
+  "freeze_verification": {
+    "method": "git blob SHA-1 formula computed directly from file bytes; no git command invoked",
+    "sources": {
+      "docs/task_cards/FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A.md": {
+        "expected": "0a5e38a5dbe979f138231fab9870bd16f60abca7",
+        "observed": "0a5e38a5dbe979f138231fab9870bd16f60abca7",
+        "match": true
+      },
+      "docs/research/FSP-ENV-DESIGN-CONSTRAINTS-001A.md": {
+        "expected": "882a68de2973ec1dedb588b85c6ee2703b897a4f",
+        "observed": "882a68de2973ec1dedb588b85c6ee2703b897a4f",
+        "match": true
+      },
+      "docs/codex/tasks/FSP-PUM-ENV-IDPROBE-001A-EXECUTION-PLAN-001A.md": {
+        "expected": "c07eec2ac38423bed6788904bc15013e6e755410",
+        "observed": "c07eec2ac38423bed6788904bc15013e6e755410",
+        "match": true
+      },
+      "artifacts/FSP-PUM-ENV-IDPROBE-001A/frozen_design.json": {
+        "expected": "32d2cbd538f31694246b2e6bb7fd5377a329478f",
+        "observed": "32d2cbd538f31694246b2e6bb7fd5377a329478f",
+        "match": true
+      }
+    }
+  },
+  "frozen_source_gap": {
+    "battery_decoder_exact_config_grid": {
+      "status": "missing",
+      "evidence": "frozen_design.json contains obs_decoder_gate.tuning_budget as text: max 24 hyperparameter configs per architecture; no exact per-member grid is frozen for obs_decoder_logreg, obs_decoder_gbt, or obs_decoder_gru"
+    },
+    "battery_decoder_feature_map": {
+      "status": "ambiguous",
+      "evidence": "frozen_design.json contains obs_decoder_gate.architectures feature strings for the T5.2 theta-decoder gate, while S3c requires fair-battery PrefixOnlyPredictor members that emit per-counterfactual-action 32-symbol response distributions"
+    },
+    "battery_decoder_train_validation_split": {
+      "status": "missing",
+      "evidence": "frozen_design.json says selection on validation split of train users but does not freeze the split rule, split fraction, seed, or fold convention"
+    },
+    "sequence_model_exact_config_and_budget": {
+      "status": "missing",
+      "evidence": "battery_membership.names seq_full_history_no_action_conditioning and seq_window_with_action_conditioning_W15_no_cross_session_persistence, but no frozen architecture, hyperparameter grid, training budget, padding, empty-prefix, unseen-symbol, or fitting convention is specified"
+    },
+    "compute_projection": {
+      "status": "blocked",
+      "evidence": "Part 0 requires projecting all configs x all sets plus sequence-model training cost; the config cardinality and sequence budget are not frozen, so a projection would invent task parameters"
+    }
+  },
+  "anti_hardcoding_audit": {
+    "no_new_numbers_invented": true,
+    "no_thresholds_changed": true,
+    "no_second_schema_added": true,
+    "no_s3a_s3b_files_modified": true,
+    "no_model_training_launched": true,
+    "no_git_commands_invoked": true
+  },
+  "expected_changed_files": [
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_failure_manifest.json"
+  ],
+  "forbidden_changes_respected": [
+    "src/fsp_pum_env/trajectory_sets.py",
+    "src/fsp_pum_env/leak_scan.py",
+    "src/fsp_pum_env/s3b_artifacts.py",
+    "src/fsp_pum_env/battery/base.py",
+    "src/fsp_pum_env/battery/degenerates.py",
+    "src/fsp_pum_env/battery/ls_regressors.py",
+    "src/fsp_pum_env/battery/graph_cache.py",
+    "src/fsp_pum_env/battery/rag_nn.py",
+    "prior S3a/S3b manifests and reports"
+  ],
+  "next_minimal_closed_loop_action": "Repair or supersede the frozen S3c contract with an exact battery-decoder config grid, feature map keyed to the five S3c member names, train-validation split rule, and sequence-model budget/conventions; then rerun S3c from freeze verification."
+}
