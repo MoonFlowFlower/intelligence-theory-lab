@@ -22,6 +22,8 @@ def _imports(path: Path):
 def test_battery_code_has_no_simulator_import_path_or_internal_symbol_reachability():
     battery_files = sorted(BATTERY.glob("*.py"))
     assert battery_files
+    assert BATTERY / "graph_cache.py" in battery_files
+    assert BATTERY / "rag_nn.py" in battery_files
 
     forbidden_text = {"controlled_theta", "response_distribution"}
     for path in battery_files:

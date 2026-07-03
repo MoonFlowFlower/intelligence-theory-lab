@@ -1,0 +1,71 @@
+{
+  "artifact": "s3b_alias_report_fsm_planner",
+  "claim_ceiling": "S3b alias/key coverage instrumentation only; no gap or baseline-power claim",
+  "code_path_hash": "4c16202cda01a413078fd4d97470d57ca7a7139554abbceac220f8a5aa3924d5",
+  "collision_aliasing_statistics": {
+    "keys_with_multiple_symbols": 23725,
+    "max_records_per_key": 4126,
+    "max_symbols_per_key": 32,
+    "total_observations": 2400000
+  },
+  "distinct_key_count": 24422,
+  "fitting_data_contract": {
+    "coverage_partition_reported": "heldout",
+    "env_master_seeds": [
+      20260701,
+      20260702,
+      20260703,
+      20260704,
+      20260705,
+      20260706,
+      20260707,
+      20260708,
+      20260709,
+      20260710
+    ],
+    "fit_partition": "train",
+    "member_view_fields_only": true,
+    "regime": "LOG-PARITY",
+    "sets": [
+      "set_00",
+      "set_01",
+      "set_02",
+      "set_03",
+      "set_04",
+      "set_05",
+      "set_06",
+      "set_07",
+      "set_08",
+      "set_09"
+    ],
+    "source_fields": [
+      "evaluation_regimes_per_gap.gap1",
+      "evaluation_regimes_per_gap.gap3",
+      "population_and_data.N_train_users",
+      "population_and_data.N_heldout_users",
+      "population_and_data.env_master_seeds",
+      "population_and_data.train_heldout_disjoint"
+    ]
+  },
+  "heldout_key_coverage": {
+    "coverage_fraction": 0.9946222791293213,
+    "keys_seen_in_fitted_table": 19420,
+    "total_keys": 19525,
+    "total_records": 600000
+  },
+  "heldout_records_used_for_fitting": false,
+  "key_construction": "coarse session index, turn-in-session, previous symbol, and candidate action",
+  "member": "fsm_planner",
+  "producer_function": "src.fsp_pum_env.battery.graph_cache.build_graph_cache_alias_report",
+  "run_finished_at": "2026-07-03T02:20:26Z",
+  "run_id": "s3b-alias-fsm_planner-2026-07-03T02:08:18Z",
+  "run_started_at": "2026-07-03T02:08:18Z",
+  "stage": "S3b",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "train_key_coverage": {
+    "coverage_fraction": 1.0,
+    "keys_seen_in_fitted_table": 24422,
+    "total_keys": 24422,
+    "total_records": 2400000
+  }
+}

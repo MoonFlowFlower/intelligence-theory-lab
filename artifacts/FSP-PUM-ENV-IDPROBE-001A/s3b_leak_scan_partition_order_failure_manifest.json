@@ -1,0 +1,27 @@
+{
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S3b",
+  "artifact": "s3b_leak_scan_partition_order_failure_manifest",
+  "status": "diagnosed_and_repaired_in_s3b_producer",
+  "stop_condition_hit_verbatim": "member_view_sha256_mismatch",
+  "failed_attempt": {
+    "producer_function": "src.fsp_pum_env.s3b_artifacts.write_materialized_leak_scan_report",
+    "set_id": "set_00",
+    "expected_member_view_sha256": "0077f0b7173a34b2c6f3dfaf6081386ade3ee626d4a2369b76b6a619689c0154",
+    "regenerated_member_view_sha256": "6a411128b756db8cd8d9de34d47d3fb85747a68930078449f5e5c014900d05fb",
+    "records_scanned": 0,
+    "sha256_verified": false
+  },
+  "root_cause": "The new S3b producer reconstructed partitions in JSON key order after sorted artifact readback, yielding heldout-before-train. The S3a canonical stream was generated train-before-heldout.",
+  "minimal_diagnostic_result": {
+    "command_wall_clock_seconds": 52.523,
+    "explicit_train_then_heldout_recomputed_sha256": "0077f0b7173a34b2c6f3dfaf6081386ade3ee626d4a2369b76b6a619689c0154",
+    "matched_s3a_manifest": true
+  },
+  "repair": {
+    "code_path": "src/fsp_pum_env.s3b_artifacts._spec_from_entry",
+    "regression_test": "tests/fsp_pum_env/test_s3b_leak_scan_materialized.py::test_materialized_leak_scan_uses_canonical_train_then_heldout_partition_order",
+    "final_s3b_leak_scan_report": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3b_leak_scan_report.json"
+  },
+  "claim_ceiling": "Producer bug diagnosis only; not evidence of environment validity, baseline power, gap, mechanism, learning, agency, or EGO readiness."
+}

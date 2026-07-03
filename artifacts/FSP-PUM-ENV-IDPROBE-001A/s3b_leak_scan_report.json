@@ -1,0 +1,114 @@
+{
+  "aggregation_rule": "pass iff every set sha matches, every set record count matches, and no key/type findings are emitted",
+  "artifact": "s3b_leak_scan_report",
+  "claim": "key/type-based scan of regenerated in-memory member-view records only; not leak-proof",
+  "claim_ceiling": "S3b leak-scan instrumentation only; planted value mutant remains S4",
+  "code_path_hash": "0bb2e27077bff66d16bb3d036db76d28e7a3fd58fc0f5e5320b981fb24f5cd2e",
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json"
+  ],
+  "known_limitation": "Scanner is key/type-based; a real planted-VALUE leak mutant is a registered S4 obligation. This report must not be read as leak-proof.",
+  "passed": true,
+  "producer_function": "src.fsp_pum_env.s3b_artifacts.write_materialized_leak_scan_report",
+  "run_finished_at": "2026-07-03T02:41:54Z",
+  "run_id": "s3b-leak-scan-2026-07-03T02:24:11Z",
+  "run_started_at": "2026-07-03T02:24:11Z",
+  "scanned_files": [],
+  "sets": [
+    {
+      "expected_member_view_sha256": "0077f0b7173a34b2c6f3dfaf6081386ade3ee626d4a2369b76b6a619689c0154",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "0077f0b7173a34b2c6f3dfaf6081386ade3ee626d4a2369b76b6a619689c0154",
+      "set_id": "set_00",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "193ab28adbcb8c41d046e6cf11084a25c56ec8a3519f73008e2d9b8010bacc86",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "193ab28adbcb8c41d046e6cf11084a25c56ec8a3519f73008e2d9b8010bacc86",
+      "set_id": "set_01",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "bd9baff58ef644d94b79c3478a5715de37d9e490f6b202f9f55a204951e5d275",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "bd9baff58ef644d94b79c3478a5715de37d9e490f6b202f9f55a204951e5d275",
+      "set_id": "set_02",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "9f10f29834cb135be5ecfe341dc1c5c25c4d410f3040061d59a3882f9680c733",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "9f10f29834cb135be5ecfe341dc1c5c25c4d410f3040061d59a3882f9680c733",
+      "set_id": "set_03",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "986a5a7814208e14f2d53cd07cc00b8e114c078289935db0de2c48a7fbf35881",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "986a5a7814208e14f2d53cd07cc00b8e114c078289935db0de2c48a7fbf35881",
+      "set_id": "set_04",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "c43175d9106fdfb47acd017c90fe7169119d6e929e4252e9b64f2fe24328798d",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "c43175d9106fdfb47acd017c90fe7169119d6e929e4252e9b64f2fe24328798d",
+      "set_id": "set_05",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "0cac96d4bcbc5c87503b188e6fee89211b45a6354b96532e057a65d016d951cb",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "0cac96d4bcbc5c87503b188e6fee89211b45a6354b96532e057a65d016d951cb",
+      "set_id": "set_06",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "3369e74100e7855ee943011262259e8fe24f0dcf59a429d403f9b91d50873814",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "3369e74100e7855ee943011262259e8fe24f0dcf59a429d403f9b91d50873814",
+      "set_id": "set_07",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "12251b30e4d0abd12877d36c53d2d61e122c73f38c89792fdcf73d5eef4ad627",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "12251b30e4d0abd12877d36c53d2d61e122c73f38c89792fdcf73d5eef4ad627",
+      "set_id": "set_08",
+      "sha256_verified": true
+    },
+    {
+      "expected_member_view_sha256": "f8f577e8787da10245ff4be19a018f3e732d63a006197bc77e752b5ff44552be",
+      "findings": [],
+      "member_view_record_count": 300000,
+      "records_scanned": 300000,
+      "regenerated_member_view_sha256": "f8f577e8787da10245ff4be19a018f3e732d63a006197bc77e752b5ff44552be",
+      "set_id": "set_09",
+      "sha256_verified": true
+    }
+  ],
+  "stage": "S3b",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "trajectory_manifest_path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json",
+  "wall_clock_seconds": 1062.4596125999815
+}
