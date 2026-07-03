@@ -1,0 +1,19 @@
+{
+  "artifact": "s3c_models_stop_record",
+  "claim_ceiling": "S3c projection-stop model persistence record only; no fitted-model, tuning, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
+  "code_path_hash": "ffcdfce4367e33612479ec556f6ca05e07c2c8dfdb21462ea1a510d61628ebf5",
+  "cpu_hour_limit": 24.0,
+  "input_artifacts": [
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3c_compute_projection.json"
+  ],
+  "models_persisted": false,
+  "producer_function": "ad_hoc_stop_record_after_src.fsp_pum_env.battery.obs_decoders.write_s3c_compute_projection",
+  "projection_cpu_hours": 4748.762000777373,
+  "reason": "Frozen PART 0 compute projection exceeded the pre-registered S3c CPU line, so tuning and model persistence were not launched.",
+  "recipes_persisted": false,
+  "run_finished_at": "2026-07-03T03:33:44Z",
+  "run_started_at": "2026-07-03T03:33:44Z",
+  "stage": "S3c",
+  "stop_condition": "Projection > 24 CPU-h",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A"
+}

@@ -24,6 +24,8 @@ def test_battery_code_has_no_simulator_import_path_or_internal_symbol_reachabili
     assert battery_files
     assert BATTERY / "graph_cache.py" in battery_files
     assert BATTERY / "rag_nn.py" in battery_files
+    assert BATTERY / "obs_decoders.py" in battery_files
+    assert BATTERY / "seq_models.py" in battery_files
 
     forbidden_text = {"controlled_theta", "response_distribution"}
     for path in battery_files:

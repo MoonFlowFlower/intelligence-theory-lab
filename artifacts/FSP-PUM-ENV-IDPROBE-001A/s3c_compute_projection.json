@@ -1,0 +1,255 @@
+{
+  "artifact": "s3c_compute_projection",
+  "claim_ceiling": "PART 0 compute projection only; no tuning, scoring, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
+  "code_path_hash": "ffcdfce4367e33612479ec556f6ca05e07c2c8dfdb21462ea1a510d61628ebf5",
+  "cpu_hour_limit": 24.0,
+  "decision": "stop_projection_exceeds_24_cpu_hours",
+  "decision_rule": "projection_cpu_hours <= 24.0 permits the frozen S3c sweep; >24.0 triggers STOP",
+  "feature_maps": {
+    "F1": {
+      "dimension": 1133,
+      "families": [
+        "prefix_symbol_counts",
+        "prefix_symbol_rates",
+        "first_order_transition_counts",
+        "last_symbol_one_hot",
+        "candidate_action_one_hot"
+      ],
+      "sparse": true
+    },
+    "F2": {
+      "dense_required_by_hist_gradient_boosting": true,
+      "dimension": 34957,
+      "families": [
+        "F1",
+        "within_session_ngram_counts_n_le_3"
+      ],
+      "ngram_dimension": 33824,
+      "sparse_for_logreg": true
+    }
+  },
+  "framework_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.17.0",
+    "sklearn": "1.9.0",
+    "torch": "2.9.1+cu128"
+  },
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json"
+  ],
+  "measured_cheapest_config": {
+    "class_count_seen": 32,
+    "config_id": "obs_decoder_logreg_cfg00",
+    "feature_dimension": 1133,
+    "features": "F1",
+    "fit_and_metric_wall_clock_seconds": 206.73430040001404,
+    "fit_examples": 192000,
+    "fit_matrix_nnz": 35695696,
+    "fit_plus_validation_wall_clock_seconds": 324.81288330000825,
+    "fit_user_range": [
+      0,
+      639
+    ],
+    "framework": "sklearn.linear_model.LogisticRegression",
+    "heldout_touched": false,
+    "internal_validation_examples": 48000,
+    "internal_validation_macro_balanced_accuracy": 0.02998925243718253,
+    "internal_validation_matrix_nnz": 8912242,
+    "internal_validation_user_range": [
+      640,
+      799
+    ],
+    "matrix_build_wall_clock_seconds": 118.07858289999422,
+    "member": "obs_decoder_logreg",
+    "records_consumed": {
+      "fit_records": 192000,
+      "internal_validation_records": 48000
+    },
+    "set_id": "set_00"
+  },
+  "producer_function": "src.fsp_pum_env.battery.obs_decoders.write_s3c_compute_projection",
+  "projection_cpu_hours": 4748.762000777373,
+  "projection_seconds": 17095543.20279854,
+  "projection_weights": {
+    "basis": "measured cheapest logreg F1 one-set config scaled by frozen config count, all 10 sets, F2 dimensionality, GBT dense-HGB cost, GRU max-epoch hidden-size cost, and W15 sequence length",
+    "decoder_gru_config_weights": [
+      {
+        "config_id": "obs_decoder_gru_cfg00",
+        "weight": 10.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg01",
+        "weight": 11.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg02",
+        "weight": 10.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg03",
+        "weight": 11.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg04",
+        "weight": 20.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg05",
+        "weight": 22.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg06",
+        "weight": 20.0
+      },
+      {
+        "config_id": "obs_decoder_gru_cfg07",
+        "weight": 22.0
+      }
+    ],
+    "f2_to_f1_dimension_ratio": 30.853486319505738,
+    "fit_sets": 10,
+    "gbt_config_weights": [
+      {
+        "config_id": "obs_decoder_gbt_cfg00",
+        "weight": 123.41394527802295
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg01",
+        "weight": 250.80898556501438
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg02",
+        "weight": 370.24183583406887
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg03",
+        "weight": 752.4269566950431
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg04",
+        "weight": 123.41394527802295
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg05",
+        "weight": 250.80898556501438
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg06",
+        "weight": 370.24183583406887
+      },
+      {
+        "config_id": "obs_decoder_gbt_cfg07",
+        "weight": 752.4269566950431
+      }
+    ],
+    "logreg_config_weights": [
+      {
+        "config_id": "obs_decoder_logreg_cfg00",
+        "weight": 1.0
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg01",
+        "weight": 1.0
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg02",
+        "weight": 1.0
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg03",
+        "weight": 1.0
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg04",
+        "weight": 30.853486319505738
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg05",
+        "weight": 30.853486319505738
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg06",
+        "weight": 30.853486319505738
+      },
+      {
+        "config_id": "obs_decoder_logreg_cfg07",
+        "weight": 30.853486319505738
+      }
+    ],
+    "per_set_equivalent_one_set_multiplier": 5263.197392022322,
+    "sequence_gru_config_weights": [
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg00",
+        "weight": 10.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg01",
+        "weight": 11.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg02",
+        "weight": 10.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg03",
+        "weight": 11.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg04",
+        "weight": 20.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg05",
+        "weight": 22.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg06",
+        "weight": 20.0
+      },
+      {
+        "config_id": "seq_full_history_no_action_conditioning_cfg07",
+        "weight": 22.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg00",
+        "weight": 150.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg01",
+        "weight": 165.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg02",
+        "weight": 150.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg03",
+        "weight": 165.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg04",
+        "weight": 300.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg05",
+        "weight": 330.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg06",
+        "weight": 300.0
+      },
+      {
+        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg07",
+        "weight": 330.0
+      }
+    ],
+    "total_equivalent_one_set_multiplier": 52631.973920223216
+  },
+  "run_finished_at": "2026-07-03T03:33:05Z",
+  "run_id": "s3c-compute-projection-2026-07-03T03:27:38Z",
+  "run_started_at": "2026-07-03T03:27:38Z",
+  "stage": "S3c",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "wall_clock_seconds": 327.0541500999825
+}
