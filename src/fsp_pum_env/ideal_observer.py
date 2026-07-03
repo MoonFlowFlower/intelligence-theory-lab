@@ -1061,5 +1061,6 @@ from .factored_filter import (  # noqa: E402
     run_pc_z_sensitivity_addendum,
     run_s2_tractability_benchmark_v2,
     run_s2_tractability_benchmark_v3,
+    run_s2_tractability_benchmark_v4,
     run_z_quadrature_selection_certificate,
 )

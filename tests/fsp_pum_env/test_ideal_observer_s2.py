@@ -17,6 +17,7 @@ from src.fsp_pum_env.ideal_observer import (
     run_s2_tractability_benchmark,
     run_s2_tractability_benchmark_v2,
     run_s2_tractability_benchmark_v3,
+    run_s2_tractability_benchmark_v4,
     run_z_marginalization_convergence,
     run_z_quadrature_selection_certificate,
 )
@@ -281,8 +282,9 @@ def test_factored_filter_reports_float64_scatter_kernel_and_stays_exact_on_small
     )
 
     kernel = factored.scatter_kernel_certificate()
-    assert kernel["posterior_storage"] == "normalized_float64_weight_vector"
-    assert kernel["update_kernel"] == "np.take into reusable scratch then in-place multiply"
+    assert kernel["posterior_storage"] == "unnormalized_float64_log_weight_vector"
+    assert kernel["update_kernel"] == "in-place log_weight_vector += log_likelihood_by_class[class_indices]"
+    assert kernel["normalization_policy"] == "query-time logsumexp shift; no per-observation normalization"
     assert kernel["approximation"] == "none"
     assert factored.log_weights.dtype.name == "float64"
 
@@ -372,4 +374,72 @@ def test_v3_benchmark_writes_policy_class_cost_note_and_preserves_decision_rule(
     assert report["policy_class_cost_note"]["probe_actions_evaluated"] == 4
     assert report["policy_class_cost_note"]["measured_wall_clock_seconds"] >= 0.0
     assert report["producer_function"] == "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v3"
+    assert json.loads(report_path.read_text(encoding="utf-8")) == report
+
+
+def test_s2e_factored_filter_uses_log_domain_updates_and_preserves_exact_queries():
+    design = _design()
+    grid = ThetaGridSpec.micro_pc_grid(design)
+    style = tuple(range(design["env_parameters"]["renderer"]["response_alphabet_size"]))
+    factored = FactoredExactFilter(
+        design,
+        filter_seed=20260719,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=grid,
+        style_map=style,
+        z_quadrature_points=3,
+    )
+    exact = ExactBayesFilter(
+        design,
+        filter_seed=20260719,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=grid,
+        style_map=style,
+        z_quadrature_points=3,
+    )
+
+    kernel = factored.scatter_kernel_certificate()
+    assert kernel["posterior_storage"] == "unnormalized_float64_log_weight_vector"
+    assert kernel["update_kernel"] == "in-place log_weight_vector += log_likelihood_by_class[class_indices]"
+    assert kernel["normalization_policy"] == "query-time logsumexp shift; no per-observation normalization"
+    assert kernel["overflow_bound"]["max_turns"] == 300
+    assert kernel["overflow_bound"]["float64_path_can_overflow"] is False
+    assert factored.log_weights.dtype.name == "float64"
+
+    for event in (
+        PrefixEvent(action="probe_0", symbol=2),
+        PrefixEvent(action="task_topic_7", symbol=8),
+        PrefixEvent(action="recommend", symbol=13),
+    ):
+        factored.observe(event)
+        exact.observe(event)
+
+    assert factored.posterior_mass() == pytest.approx(1.0, abs=1e-12)
+    assert factored.predict_distribution("probe_3") == pytest.approx(
+        exact.predict_distribution("probe_3"), abs=1e-12
+    )
+
+
+def test_v4_benchmark_writes_step_profile_and_preserves_decision_rule(tmp_path):
+    report_path = tmp_path / "s2_tractability_report_v4.json"
+    design = _design()
+
+    report = run_s2_tractability_benchmark_v4(
+        FROZEN,
+        output_path=report_path,
+        grid_spec=ThetaGridSpec.micro_pc_grid(design),
+        benchmark_turns=3,
+        benchmark_queries=2,
+        z_quadrature_points=3,
+    )
+
+    assert report["artifact"] == "s2_tractability_report_v4"
+    assert report["stage"] == "S2e"
+    assert report["decision_rule"] == "projected_s5_cpu_hours <= 24"
+    assert report["full_grid_atom_count"] == 7077888
+    assert report["measured_grid_atom_count"] == 16
+    assert report["step_cost_breakdown"]["after"]["profile_scope"].startswith("one full-grid update step")
+    assert "before" in report["step_cost_breakdown"]
+    assert report["single_thread_wall_clock_seconds"] == report["measured_wall_clock_seconds"]
+    assert report["producer_function"] == "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v4"
     assert json.loads(report_path.read_text(encoding="utf-8")) == report

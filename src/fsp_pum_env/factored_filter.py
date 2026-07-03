@@ -1,4 +1,4 @@
-"""Factored exact posterior updates for FSP-PUM S2c tractability checks.
+"""Factored exact posterior updates for FSP-PUM S2 tractability checks.
 
 The factorization here is only a likelihood-computation factorization. The
 posterior remains one full joint log-weight vector over the enumerated theta
@@ -68,9 +68,9 @@ class _FactoredIndex:
 class FactoredExactFilter:
     """Exact full-grid Bayes filter with factored likelihood tables.
 
-    The object keeps one normalized float64 weight per theta atom. Per-action
-    equivalence class arrays only decide which likelihood-table row each atom
-    receives.
+    The object keeps one unnormalized float64 log-weight per theta atom.
+    Per-action equivalence class arrays only decide which likelihood-table row
+    each atom receives.
     """
 
     def __init__(
@@ -101,14 +101,17 @@ class FactoredExactFilter:
             float(design["env_parameters"]["trust_dynamics"]["init"]),
             dtype=np.float64,
         )
-        self.weights = np.full(self._index.atom_count, 1.0 / self._index.atom_count, dtype=np.float64)
-        self._atom_likelihood_scratch = np.empty(self._index.atom_count, dtype=np.float64)
+        self._initial_log_weight = -math.log(self._index.atom_count)
+        self._log_weights = np.full(self._index.atom_count, self._initial_log_weight, dtype=np.float64)
+        self._normalized_weight_scratch = np.empty(self._index.atom_count, dtype=np.float64)
+        self._normalized_weights_valid = False
+        self._cached_log_norm = math.nan
         self.events: list[PrefixEvent] = []
         self._table_cache: dict[str, np.ndarray] = {}
 
     @property
     def atom_count(self) -> int:
-        return int(self.weights.size)
+        return int(self._log_weights.size)
 
     @property
     def index_arrays_dtype(self) -> str:
@@ -116,11 +119,16 @@ class FactoredExactFilter:
 
     @property
     def log_weights(self) -> np.ndarray:
-        return np.log(np.maximum(self.weights, 1e-300))
+        return self._log_weights
+
+    @property
+    def weights(self) -> np.ndarray:
+        return self._ensure_normalized_weights()
 
     def reset(self) -> None:
         self._trust_values.fill(float(self.design["env_parameters"]["trust_dynamics"]["init"]))
-        self.weights.fill(1.0 / self._index.atom_count)
+        self._log_weights.fill(self._initial_log_weight)
+        self._invalidate_normalized_weights()
         self.events = []
         self._table_cache.clear()
 
@@ -132,10 +140,9 @@ class FactoredExactFilter:
 
         table = self._distribution_table(prefix_event.action)
         class_indices = self._index.action_class_indices[prefix_event.action]
-        likelihood_by_class = np.maximum(table[:, prefix_event.symbol], 1e-300)
-        np.take(likelihood_by_class, class_indices, out=self._atom_likelihood_scratch)
-        np.multiply(self.weights, self._atom_likelihood_scratch, out=self.weights)
-        self._normalize()
+        log_likelihood_by_class = np.log(np.maximum(table[:, prefix_event.symbol], 1e-300))
+        self._log_weights += log_likelihood_by_class[class_indices]
+        self._invalidate_normalized_weights()
         self._advance_trust(prefix_event.action)
         self.events.append(prefix_event)
         self._table_cache.clear()
@@ -144,7 +151,7 @@ class FactoredExactFilter:
         self.simulator._validate_action(action)
         table = self._distribution_table(action)
         class_indices = self._index.action_class_indices[action]
-        class_masses = np.bincount(class_indices, weights=self.weights, minlength=table.shape[0])
+        class_masses = np.bincount(class_indices, weights=self._ensure_normalized_weights(), minlength=table.shape[0])
         mixture = class_masses @ table
         total = float(mixture.sum())
         if total <= 0.0:
@@ -152,26 +159,24 @@ class FactoredExactFilter:
         return (mixture / total).tolist()
 
     def posterior_mass(self) -> float:
-        return float(self.weights.sum())
+        return float(self._ensure_normalized_weights().sum())
 
     def posterior_entropy(self) -> float:
-        np.maximum(self.weights, 1e-300, out=self._atom_likelihood_scratch)
-        np.log(self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
-        np.multiply(self.weights, self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
-        return -float(self._atom_likelihood_scratch.sum())
+        weights = self._ensure_normalized_weights()
+        log_probabilities = self._log_weights - self._cached_log_norm
+        return -float(np.dot(weights, log_probabilities))
 
     def expected_entropy_after_observation(self, action: str) -> float:
         self.simulator._validate_action(action)
         table = self._distribution_table(action)
         class_indices = self._index.action_class_indices[action]
-        class_masses = np.bincount(class_indices, weights=self.weights, minlength=table.shape[0])
+        weights = self._ensure_normalized_weights()
+        class_masses = np.bincount(class_indices, weights=weights, minlength=table.shape[0])
 
-        np.maximum(self.weights, 1e-300, out=self._atom_likelihood_scratch)
-        np.log(self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
-        np.multiply(self.weights, self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
+        weight_log_terms = weights * (self._log_weights - self._cached_log_norm)
         class_weight_log_sums = np.bincount(
             class_indices,
-            weights=self._atom_likelihood_scratch,
+            weights=weight_log_terms,
             minlength=table.shape[0],
         )
 
@@ -191,23 +196,25 @@ class FactoredExactFilter:
 
     def array_bytes(self) -> int:
         return int(
-            self.weights.nbytes
-            + self._atom_likelihood_scratch.nbytes
+            self._log_weights.nbytes
+            + self._normalized_weight_scratch.nbytes
             + self._index.index_arrays_bytes
             + self._trust_values.nbytes
         )
 
     def scatter_kernel_certificate(self) -> dict[str, Any]:
         return {
-            "posterior_storage": "normalized_float64_weight_vector",
+            "posterior_storage": "unnormalized_float64_log_weight_vector",
             "posterior_representation": "full_joint_posterior_over_theta_atoms",
-            "posterior_dtype": str(self.weights.dtype),
+            "posterior_dtype": str(self._log_weights.dtype),
             "atom_count": self.atom_count,
-            "update_kernel": "np.take into reusable scratch then in-place multiply",
-            "prediction_kernel": "np.bincount over precomputed per-action class indices",
+            "update_kernel": "in-place log_weight_vector += log_likelihood_by_class[class_indices]",
+            "normalization_policy": "query-time logsumexp shift; no per-observation normalization",
+            "prediction_kernel": "np.bincount over precomputed per-action class indices using cached exp-shifted weights",
             "precomputed_class_index_dtype": self.index_arrays_dtype,
-            "scratch_dtype": str(self._atom_likelihood_scratch.dtype),
-            "scratch_bytes": int(self._atom_likelihood_scratch.nbytes),
+            "scratch_dtype": str(self._normalized_weight_scratch.dtype),
+            "scratch_bytes": int(self._normalized_weight_scratch.nbytes),
+            "overflow_bound": _log_domain_overflow_bound(),
             "approximation": "none",
         }
 
@@ -218,7 +225,7 @@ class FactoredExactFilter:
             "sees_z_realization": False,
             "sees_sampling_seeds": False,
             "prefix_only": True,
-            "posterior_representation": "full_joint_normalized_weight_vector",
+            "posterior_representation": "full_joint_log_weight_vector",
             "likelihood_factorization_only": True,
             "z_marginalization": {
                 "scheme": self.z_quadrature.scheme,
@@ -227,11 +234,25 @@ class FactoredExactFilter:
             },
         }
 
-    def _normalize(self) -> None:
-        norm = float(self.weights.sum())
-        if norm <= 0.0:
+    def _invalidate_normalized_weights(self) -> None:
+        self._normalized_weights_valid = False
+        self._cached_log_norm = math.nan
+
+    def _ensure_normalized_weights(self) -> np.ndarray:
+        if self._normalized_weights_valid:
+            return self._normalized_weight_scratch
+        max_log_weight = float(np.max(self._log_weights))
+        if not math.isfinite(max_log_weight):
+            raise ValueError("posterior log weights are not finite")
+        np.subtract(self._log_weights, max_log_weight, out=self._normalized_weight_scratch)
+        np.exp(self._normalized_weight_scratch, out=self._normalized_weight_scratch)
+        total = float(self._normalized_weight_scratch.sum())
+        if total <= 0.0:
             raise ValueError("posterior weights have zero mass")
-        self.weights /= norm
+        self._normalized_weight_scratch /= total
+        self._cached_log_norm = max_log_weight + math.log(total)
+        self._normalized_weights_valid = True
+        return self._normalized_weight_scratch
 
     def _advance_trust(self, action: str) -> None:
         cost = self.simulator._probe_trust_cost(action)
@@ -739,10 +760,10 @@ def run_s2_tractability_benchmark_v3(
                 "no mean-field posterior factorization"
             ),
             "posterior_vector": {
-                "dtype": str(policy_filter.weights.dtype),
-                "bytes": int(policy_filter.weights.nbytes),
-                "shape": list(policy_filter.weights.shape),
-                "storage": "normalized_float64_weight_vector",
+                "dtype": str(policy_filter.log_weights.dtype),
+                "bytes": int(policy_filter.log_weights.nbytes),
+                "shape": list(policy_filter.log_weights.shape),
+                "storage": "unnormalized_float64_log_weight_vector",
             },
             "scatter_kernel": policy_filter.scatter_kernel_certificate(),
             "z_selection_contract": {
@@ -755,6 +776,109 @@ def run_s2_tractability_benchmark_v3(
             "producer_function": "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v3",
             "code_path_hash": _factored_code_path_hash(),
             "claim_ceiling": "S2d FactoredExactFilter tractability evidence only; no S3, environment-validity, learning, agency, or EGO-mainline claim",
+        }
+    )
+    _write_json_if_requested(output_path, report)
+    return report
+
+
+def run_s2_tractability_benchmark_v4(
+    frozen_design_path: str | Path,
+    *,
+    output_path: str | Path | None = None,
+    master_seed: int = 20260715,
+    z_quadrature_points: int = 3,
+    benchmark_turns: int | None = None,
+    benchmark_queries: int | None = None,
+    grid_spec: ThetaGridSpec | None = None,
+    before_profile_path: str | Path | None = None,
+) -> dict[str, Any]:
+    path = Path(frozen_design_path)
+    report = run_s2_tractability_benchmark_v2(
+        path,
+        master_seed=master_seed,
+        z_quadrature_points=z_quadrature_points,
+        benchmark_turns=benchmark_turns,
+        benchmark_queries=benchmark_queries,
+        grid_spec=grid_spec,
+    )
+    design = json.loads(path.read_text(encoding="utf-8-sig"))
+    full_grid = ThetaGridSpec.from_design(design)
+    measured_grid = grid_spec or full_grid
+    env = design["env_parameters"]
+    style_map = tuple(range(int(env["renderer"]["response_alphabet_size"])))
+    policy_filter_start = time.perf_counter()
+    policy_filter = FactoredExactFilter(
+        design,
+        filter_seed=independent_filter_seed(master_seed, "s2e_myopic_ig_cost_note"),
+        true_environment_seed=master_seed,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=measured_grid,
+        user_id=0,
+        style_map=style_map,
+        z_quadrature_points=z_quadrature_points,
+    )
+    policy_filter_init_seconds = time.perf_counter() - policy_filter_start
+    policy_class_cost_note = _measure_myopic_ig_policy_class_cost(policy_filter)
+    policy_class_cost_note["filter_initialization_seconds"] = policy_filter_init_seconds
+    policy_class_cost_note["cost_note_scope"] = (
+        "One myopic-IG action selection only: 4 probe actions times expected-entropy computation; "
+        "optimized-kernel remeasure, not included in the fixed-schedule S5 decision projection."
+    )
+
+    before_path = Path(before_profile_path) if before_profile_path is not None else path.with_name("s2e_step0_profile_before.json")
+    before_profile = _read_json_if_exists(before_path)
+    after_profile = _profile_factored_update_step(
+        design,
+        grid_spec=full_grid,
+        master_seed=master_seed,
+        z_quadrature_points=z_quadrature_points,
+        profile_id="s2e_step_profile_after",
+    )
+
+    report.update(
+        {
+            "stage": "S2e",
+            "artifact": "s2_tractability_report_v4",
+            "invalid_prior_artifact_preserved": [
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report.json",
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report_v2.json",
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report_v3.json",
+            ],
+            "implementation_path": (
+                "FactoredExactFilter full joint posterior vector with float64 log-domain updates, "
+                "precomputed int32 class indices, query-time logsumexp normalization, certificate-selected "
+                "z quadrature, no atom-grid downsizing, no threshold movement, and no mean-field posterior factorization"
+            ),
+            "posterior_vector": {
+                "dtype": str(policy_filter.log_weights.dtype),
+                "bytes": int(policy_filter.log_weights.nbytes),
+                "shape": list(policy_filter.log_weights.shape),
+                "storage": "unnormalized_float64_log_weight_vector",
+            },
+            "scatter_kernel": policy_filter.scatter_kernel_certificate(),
+            "step_cost_breakdown": {
+                "before_profile_path": str(before_path) if before_profile is not None else None,
+                "before": before_profile,
+                "after": after_profile,
+            },
+            "log_domain_overflow_bound": _log_domain_overflow_bound(),
+            "single_thread_wall_clock_seconds": report["measured_wall_clock_seconds"],
+            "single_thread_accounting": {
+                "explicit_threads": 1,
+                "numba_or_threading_used": False,
+                "cpu_hour_line_counts_this_number": True,
+            },
+            "z_selection_contract": {
+                "candidate_g_values": [3, 4],
+                "selection_rule": "smallest g with g-vs-2g max_abs_prediction_delta < 1e-3",
+                "selected_g_used_by_this_report": int(z_quadrature_points),
+                "threshold": Z_CONVERGENCE_THRESHOLD,
+            },
+            "policy_class_cost_note": policy_class_cost_note,
+            "producer_function": "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v4",
+            "code_path_hash": _factored_code_path_hash(),
+            "claim_ceiling": "S2e log-domain FactoredExactFilter tractability evidence only; no S3, environment-validity, learning, agency, or EGO-mainline claim",
         }
     )
     _write_json_if_requested(output_path, report)
@@ -1118,6 +1242,142 @@ def _measure_myopic_ig_policy_class_cost(filt: FactoredExactFilter) -> dict[str,
         "measured_wall_clock_seconds": time.perf_counter() - start,
         "producer_function": "src.fsp_pum_env.ideal_observer._measure_myopic_ig_policy_class_cost",
         "claim_ceiling": "S4 budgeting note only; no policy-class decision line and no tractability verdict change",
+    }
+
+
+def _profile_factored_update_step(
+    design: Mapping[str, Any],
+    *,
+    grid_spec: ThetaGridSpec,
+    master_seed: int,
+    z_quadrature_points: int,
+    profile_id: str,
+) -> dict[str, Any]:
+    env = design["env_parameters"]
+    style_map = tuple(range(int(env["renderer"]["response_alphabet_size"])))
+    true_sim = FspPumSimulator(design, master_seed=master_seed, variant=SimulatorVariant.CAMOUFLAGE_OFF)
+    true_user = true_sim.start_user(user_id=0, style_map=style_map)
+    init_start = time.perf_counter()
+    filt = FactoredExactFilter(
+        design,
+        filter_seed=independent_filter_seed(master_seed, profile_id),
+        true_environment_seed=master_seed,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=grid_spec,
+        user_id=0,
+        style_map=style_map,
+        z_quadrature_points=z_quadrature_points,
+    )
+    init_seconds = time.perf_counter() - init_start
+    schedule = FixedProbeSchedule(probe_rate=0.2, placement="uniform").actions_for_episode(design)
+    action = schedule[0]
+    result = true_sim.step(true_user, action)
+    symbol = int(result.observation["symbol"])
+
+    profile_start = time.perf_counter()
+    step_start = time.perf_counter()
+    table = filt._distribution_table(action)
+    table_seconds = time.perf_counter() - step_start
+    class_indices = filt._index.action_class_indices[action]
+    step_start = time.perf_counter()
+    log_likelihood_by_class = np.log(np.maximum(table[:, symbol], 1e-300))
+    temporaries_seconds = time.perf_counter() - step_start
+    step_start = time.perf_counter()
+    filt.log_weights[:] += log_likelihood_by_class[class_indices]
+    indexed_log_add_seconds = time.perf_counter() - step_start
+    step_start = time.perf_counter()
+    filt._invalidate_normalized_weights()
+    filt._advance_trust(action)
+    filt.events.append(PrefixEvent(action=action, symbol=symbol))
+    filt._table_cache.clear()
+    bookkeeping_seconds = time.perf_counter() - step_start
+    manual_update_seconds = time.perf_counter() - profile_start
+
+    query_action = "task_topic_0"
+    step_start = time.perf_counter()
+    query_table = filt._distribution_table(query_action)
+    query_table_seconds = time.perf_counter() - step_start
+    step_start = time.perf_counter()
+    query_weights = filt._ensure_normalized_weights()
+    query_exp_shift_seconds = time.perf_counter() - step_start
+    step_start = time.perf_counter()
+    query_classes = filt._index.action_class_indices[query_action]
+    class_masses = np.bincount(query_classes, weights=query_weights, minlength=query_table.shape[0])
+    query_bincount_seconds = time.perf_counter() - step_start
+    step_start = time.perf_counter()
+    mixture = class_masses @ query_table
+    query_mix_seconds = time.perf_counter() - step_start
+    step_start = time.perf_counter()
+    query_total = float(mixture.sum())
+    prediction = (mixture / query_total).tolist()
+    query_normalize_seconds = time.perf_counter() - step_start
+
+    return {
+        "profile_scope": "one full-grid update step plus one class-aggregated query path after S2e log-domain optimization",
+        "full_grid_atom_count": int(grid_spec.atom_count),
+        "posterior_vector_bytes": int(filt.log_weights.nbytes),
+        "class_indices_dtype": str(class_indices.dtype),
+        "z_quadrature_points_per_dim": int(z_quadrature_points),
+        "z_node_count": int(z_quadrature_points) ** 3,
+        "action_profiled": action,
+        "observed_symbol": symbol,
+        "initialization_seconds": init_seconds,
+        "update_breakdown_seconds": {
+            "likelihood_table_build": table_seconds,
+            "temporaries": temporaries_seconds,
+            "indexed_log_add": indexed_log_add_seconds,
+            "gather": 0.0,
+            "multiply": 0.0,
+            "normalize": 0.0,
+            "advance_trust_and_bookkeeping": bookkeeping_seconds,
+            "manual_update_total": manual_update_seconds,
+        },
+        "query_profile": {
+            "query_action": query_action,
+            "likelihood_table_build": query_table_seconds,
+            "exp_shifted_weight_normalization": query_exp_shift_seconds,
+            "class_bincount": query_bincount_seconds,
+            "small_table_mix": query_mix_seconds,
+            "normalize_distribution": query_normalize_seconds,
+            "query_total": query_table_seconds
+            + query_exp_shift_seconds
+            + query_bincount_seconds
+            + query_mix_seconds
+            + query_normalize_seconds,
+            "prediction_checksum": float(prediction[0]),
+        },
+        "atom_vector_pass_estimate": {
+            "indexed_log_add_atom_vector_passes": "one advanced-index gather plus in-place log-vector add",
+            "per_step_normalization_atom_vector_passes": 0,
+            "query_time_exp_shift_atom_vector_passes": "only on first query after an update; cached for sibling query actions",
+        },
+        "producer_function": "src.fsp_pum_env.factored_filter._profile_factored_update_step",
+        "code_path_hash": _factored_code_path_hash(),
+        "claim_ceiling": "S2e post-change profile only; no tractability verdict and no environment-validity claim",
+    }
+
+
+def _read_json_if_exists(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def _log_domain_overflow_bound() -> dict[str, Any]:
+    min_log_likelihood = math.log(1e-300)
+    max_turns = 300
+    worst_case_log_weight_after_300 = -math.log(7_077_888) + max_turns * min_log_likelihood
+    return {
+        "max_turns": max_turns,
+        "likelihood_floor": 1e-300,
+        "min_log_likelihood_per_turn": min_log_likelihood,
+        "initial_full_grid_log_weight": -math.log(7_077_888),
+        "worst_case_log_weight_after_300_floor_hits": worst_case_log_weight_after_300,
+        "float64_min_finite": float(np.finfo(np.float64).min),
+        "float64_max_finite": float(np.finfo(np.float64).max),
+        "query_exp_shift_max_exponent": 0.0,
+        "float64_path_can_overflow": False,
+        "argument": "Log weights only add finite log likelihoods; after logsumexp shifting, every exponent is <= 0, so exp cannot overflow over the frozen 300-step horizon.",
     }
 
 

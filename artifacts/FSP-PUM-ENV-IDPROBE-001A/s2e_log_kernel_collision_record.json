@@ -1,0 +1,82 @@
+{
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S2e",
+  "track": "Track-F N0.F3 second-round exact optimization",
+  "current_layer": "engineering implementation + mechanism-hypothesis preflight instrumentation",
+  "real_objective": "Preserve exact full-grid S2 ideal-observer semantics while reducing the full 7,077,888-atom update kernel enough to re-evaluate the frozen S5 CPU-hour decision rule.",
+  "frozen_preflight": {
+    "source": "artifacts/FSP-PUM-ENV-IDPROBE-001A/freeze_record.json",
+    "required_blob_shas": {
+      "card": "0a5e38a5dbe979f138231fab9870bd16f60abca7",
+      "constitution": "882a68de2973ec1dedb588b85c6ee2703b897a4f",
+      "execution_plan": "c07eec2ac38423bed6788904bc15013e6e755410",
+      "frozen_design": "32d2cbd538f31694246b2e6bb7fd5377a329478f"
+    },
+    "matched_before_edits": true,
+    "hash_method": "local git-blob SHA1 reimplementation; no git command invoked"
+  },
+  "candidate_approaches": [
+    {
+      "name": "minimal implementation",
+      "description": "Keep normalized float64 weights but fuse the gather and multiply path where possible.",
+      "evidence_it_would_produce": "Lower update wall-clock with unchanged small-grid exactness certificate.",
+      "strongest_cheap_baseline_that_could_match": "A temporary scratch optimization that only moves allocation cost while still touching the 56.6MB vector several times per update.",
+      "leakage_or_hardcoding_risk": "Low leakage risk, but high risk of local performance polish without changing the real cost driver.",
+      "smallest_falsifying_test": "Profile still shows normalization and scratch vector passes dominate update time.",
+      "expected_failure_mode": "Wall-clock remains above the 24 CPU-hour decision line."
+    },
+    {
+      "name": "strongest shortcut explanation",
+      "description": "Reduce runtime by downsizing the atom grid, changing the theta grid, moving the CPU-hour accounting line, or launching the particle-filter branch.",
+      "evidence_it_would_produce": "Apparent tractability improvement without preserving the frozen exact full-grid contract.",
+      "strongest_cheap_baseline_that_could_match": "Any smaller-grid or approximate filter can match faster wall-clock under unequal access.",
+      "leakage_or_hardcoding_risk": "High governance risk: would violate the frozen theta grid, the no-particle-filter instruction, or the unchanged decision rule.",
+      "smallest_falsifying_test": "Full-grid atom count differs from 7077888, decision_rule differs from projected_s5_cpu_hours <= 24, or complete_full_grid_run is false.",
+      "expected_failure_mode": "Invalid tractability artifact; STOP and preserve failure rather than patching the decision line."
+    },
+    {
+      "name": "mechanism-faithful implementation",
+      "description": "Move the exact posterior to float64 log-weights, add log likelihood by precomputed int32 class index in one in-place indexed add per update, and normalize only through logsumexp-shifted weights at query/entropy time.",
+      "evidence_it_would_produce": "Before/after decomposed profile, <=1e-12 FactoredExactFilter-vs-ExactBayesFilter certificate on the 432-atom g=3 sub-grid, complete full-grid v4 benchmark, unchanged decision rule, and updated myopic-IG cost note.",
+      "strongest_cheap_baseline_that_could_match": "Vectorized normalized weights may match correctness but should not match the expected single-pass update profile when normalization is removed.",
+      "leakage_or_hardcoding_risk": "Low if likelihood tables remain generator-derived, class indices stay precomputed from the frozen grid, and no thresholds or grid parameters change.",
+      "smallest_falsifying_test": "Small-grid exactness delta exceeds 1e-12, posterior predictive differs from the old exact filter, v4 complete_full_grid_run is not true, or profile shows hidden 7M-vector passes remain.",
+      "expected_failure_mode": "Exactness regression from log/weight conversion or query-time normalization bug."
+    }
+  ],
+  "selected_approach": "mechanism-faithful implementation",
+  "selection_reason": "It is the only candidate that targets the measured 7M-vector update cost while preserving the frozen exact full-grid posterior and the unchanged CPU-hour decision rule.",
+  "claim_ceiling": "Instrument code and S2 tractability evidence only; no S3, environment-validity, learning, agency, EGO-mainline, or subjectivity claim.",
+  "minimal_validation": [
+    "STEP 0 pre-change decomposed profile on the full grid",
+    "targeted tests for log-domain posterior storage and exact query normalization",
+    "FactoredExactFilter-vs-ExactBayesFilter certificate at g=3 on the 432-atom sub-grid with max delta <= 1e-12",
+    "existing pytest suite green",
+    "complete full-grid v4 benchmark with 300 turns and 72 queries"
+  ],
+  "stop_condition": [
+    "frozen SHA mismatch",
+    "theta grid or 24 CPU-hour decision rule touched",
+    "particle filter branch started",
+    "full-grid v4 projected_s5_cpu_hours remains > 24 after exact-preserving levers 1-3",
+    "exactness certificate delta exceeds 1e-12"
+  ],
+  "rollback_plan": "Revert only S2e edits under src/fsp_pum_env/, tests/fsp_pum_env/, and newly generated S2e/v4 artifacts under artifacts/FSP-PUM-ENV-IDPROBE-001A/; preserve all prior artifacts.",
+  "expected_changed_files": [
+    "src/fsp_pum_env/factored_filter.py",
+    "tests/fsp_pum_env/test_ideal_observer_s2.py",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2e_log_kernel_collision_record.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2e_step0_profile_before.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/factored_equivalence_certificate_s2e_g3.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report_v4.json"
+  ],
+  "forbidden_changes": [
+    "particle filter implementation or launch",
+    "24 CPU-hour decision rule",
+    "theta grid",
+    "frozen card, constitution, execution plan, or frozen_design.json",
+    "EGO mainline runtime, UI, LLM, AIRI, deployment, or external services",
+    "prior artifact deletion or rewrite"
+  ],
+  "auto_remote_anchor": "forbidden"
+}
