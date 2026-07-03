@@ -1,0 +1,132 @@
+{
+  "artifact": "s2_tractability_report_v3",
+  "benchmark_scope": {
+    "complete_full_grid_run": true,
+    "fixed_schedule": "probe_rate=0.2, placement=uniform",
+    "full_episode_counterfactual_queries": 72,
+    "full_episode_turns": 300,
+    "measured_counterfactual_queries": 72,
+    "measured_turns": 300
+  },
+  "claim_ceiling": "S2d FactoredExactFilter tractability evidence only; no S3, environment-validity, learning, agency, or EGO-mainline claim",
+  "code_path_hash": "2eb436dd51a26808d980f5332fc394a54203b882fac13e498cb5851d1b4ad8cd",
+  "decision": "stop_N0_F3_required",
+  "decision_projection_basis": "single fixed 0.2-uniform policy workload requested for this benchmark; policy-class sweeps multiply separately",
+  "decision_rule": "projected_s5_cpu_hours <= 24",
+  "full_grid_atom_count": 7077888,
+  "implementation_path": "FactoredExactFilter full joint posterior vector with certificate-selected z quadrature and exact float64 scatter-kernel optimization; no atom-grid downsizing; no threshold movement; no mean-field posterior factorization",
+  "initialization_seconds": 1.336756400007289,
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json"
+  ],
+  "invalid_prior_artifact_preserved": [
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report_v2.json"
+  ],
+  "measured_counterfactual_queries": 72,
+  "measured_grid_atom_count": 7077888,
+  "measured_updates": 300,
+  "measured_wall_clock_seconds": 54.074365700013004,
+  "peak_memory": {
+    "filter_array_bytes": 509608152,
+    "measurement_note": "RSS sampled after initialization, every update, and every counterfactual query; transient native allocation peaks between samples may be missed.",
+    "peak_observed_rss_bytes": 553213952,
+    "tracemalloc_peak_bytes": 795525682
+  },
+  "policy_class_cost_note": {
+    "best_information_gain": 0.2977809897297359,
+    "claim_ceiling": "S4 budgeting note only; no policy-class decision line and no tractability verdict change",
+    "cost_note_scope": "One myopic-IG action selection only: 4 probe actions times expected-entropy computation; not included in the fixed-schedule S5 decision projection.",
+    "current_entropy": 15.772486116083568,
+    "expected_entropy_computations": 4,
+    "filter_initialization_seconds": 1.225976699963212,
+    "measured_grid_atom_count": 7077888,
+    "measured_wall_clock_seconds": 0.951797500019893,
+    "policy_class": "myopic_IG",
+    "probe_actions_evaluated": 4,
+    "producer_function": "src.fsp_pum_env.ideal_observer._measure_myopic_ig_policy_class_cost",
+    "rows": [
+      {
+        "action": "probe_0",
+        "expected_entropy": 15.648492872342661,
+        "information_gain": 0.12399324374090703,
+        "wall_clock_seconds": 0.19717669999226928
+      },
+      {
+        "action": "probe_1",
+        "expected_entropy": 15.648492872342661,
+        "information_gain": 0.12399324374090703,
+        "wall_clock_seconds": 0.21536400000331923
+      },
+      {
+        "action": "probe_2",
+        "expected_entropy": 15.474705126353832,
+        "information_gain": 0.2977809897297359,
+        "wall_clock_seconds": 0.21896109997760504
+      },
+      {
+        "action": "probe_3",
+        "expected_entropy": 15.683822918219267,
+        "information_gain": 0.08866319786430132,
+        "wall_clock_seconds": 0.21546430001035333
+      }
+    ],
+    "selected_action": "probe_2",
+    "z_node_count": 27,
+    "z_quadrature_points_per_dim": 3
+  },
+  "policy_class_multiplier": {
+    "fixed_schedule_grid": 15,
+    "ideal_with_probes": 1,
+    "myopic_IG": 1,
+    "naive_total_multiplier": 20,
+    "passive": 1,
+    "projected_s5_cpu_hours_if_all_policy_classes_run_naively": 600.8262855557,
+    "truncation_ideal_B30": 1,
+    "ucb1": 1
+  },
+  "posterior_vector": {
+    "bytes": 56623104,
+    "dtype": "float64",
+    "shape": [
+      7077888
+    ],
+    "storage": "normalized_float64_weight_vector"
+  },
+  "precomputed_index_arrays": {
+    "action_array_count": 13,
+    "bytes": 396361728,
+    "dtype": "int32"
+  },
+  "prediction_checksum": 1.857256294955789,
+  "producer_function": "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v3",
+  "projected_one_user_seconds": 54.074365700013004,
+  "projected_s5_cpu_hours": 30.041314277785002,
+  "query_wall_clock_seconds": 4.471647500118706,
+  "scatter_kernel": {
+    "approximation": "none",
+    "atom_count": 7077888,
+    "posterior_dtype": "float64",
+    "posterior_representation": "full_joint_posterior_over_theta_atoms",
+    "posterior_storage": "normalized_float64_weight_vector",
+    "precomputed_class_index_dtype": "int32",
+    "prediction_kernel": "np.bincount over precomputed per-action class indices",
+    "scratch_bytes": 56623104,
+    "scratch_dtype": "float64",
+    "update_kernel": "np.take into reusable scratch then in-place multiply"
+  },
+  "stage": "S2d",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "update_wall_clock_seconds": 47.961677000508644,
+  "z_node_count": 27,
+  "z_quadrature_points_per_dim": 3,
+  "z_selection_contract": {
+    "candidate_g_values": [
+      3,
+      4
+    ],
+    "selected_g_used_by_this_report": 3,
+    "selection_rule": "smallest g with g-vs-2g max_abs_prediction_delta < 1e-3",
+    "threshold": 0.001
+  }
+}

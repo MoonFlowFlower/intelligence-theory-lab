@@ -27,6 +27,7 @@ from .ideal_observer import (
     PrefixEvent,
     S5_CPU_HOUR_LIMIT,
     ThetaGridSpec,
+    Z_CONVERGENCE_THRESHOLD,
     _advance_without_sampling,
     _clone_user,
     _code_path_hash,
@@ -36,6 +37,7 @@ from .ideal_observer import (
     _write_json_if_requested,
     independent_filter_seed,
     make_z_quadrature,
+    run_z_marginalization_convergence,
 )
 from .simulator import FspPumSimulator, SimulatorVariant, _SessionState
 
@@ -66,8 +68,9 @@ class _FactoredIndex:
 class FactoredExactFilter:
     """Exact full-grid Bayes filter with factored likelihood tables.
 
-    The object keeps one log-weight per theta atom. Per-action equivalence class
-    arrays only decide which likelihood-table row each atom receives.
+    The object keeps one normalized float64 weight per theta atom. Per-action
+    equivalence class arrays only decide which likelihood-table row each atom
+    receives.
     """
 
     def __init__(
@@ -98,21 +101,26 @@ class FactoredExactFilter:
             float(design["env_parameters"]["trust_dynamics"]["init"]),
             dtype=np.float64,
         )
-        self.log_weights = np.full(self._index.atom_count, -math.log(self._index.atom_count), dtype=np.float64)
+        self.weights = np.full(self._index.atom_count, 1.0 / self._index.atom_count, dtype=np.float64)
+        self._atom_likelihood_scratch = np.empty(self._index.atom_count, dtype=np.float64)
         self.events: list[PrefixEvent] = []
         self._table_cache: dict[str, np.ndarray] = {}
 
     @property
     def atom_count(self) -> int:
-        return int(self.log_weights.size)
+        return int(self.weights.size)
 
     @property
     def index_arrays_dtype(self) -> str:
         return "int32"
 
+    @property
+    def log_weights(self) -> np.ndarray:
+        return np.log(np.maximum(self.weights, 1e-300))
+
     def reset(self) -> None:
         self._trust_values.fill(float(self.design["env_parameters"]["trust_dynamics"]["init"]))
-        self.log_weights.fill(-math.log(self._index.atom_count))
+        self.weights.fill(1.0 / self._index.atom_count)
         self.events = []
         self._table_cache.clear()
 
@@ -125,7 +133,8 @@ class FactoredExactFilter:
         table = self._distribution_table(prefix_event.action)
         class_indices = self._index.action_class_indices[prefix_event.action]
         likelihood_by_class = np.maximum(table[:, prefix_event.symbol], 1e-300)
-        self.log_weights += np.log(likelihood_by_class[class_indices])
+        np.take(likelihood_by_class, class_indices, out=self._atom_likelihood_scratch)
+        np.multiply(self.weights, self._atom_likelihood_scratch, out=self.weights)
         self._normalize()
         self._advance_trust(prefix_event.action)
         self.events.append(prefix_event)
@@ -135,8 +144,7 @@ class FactoredExactFilter:
         self.simulator._validate_action(action)
         table = self._distribution_table(action)
         class_indices = self._index.action_class_indices[action]
-        weights = np.exp(self.log_weights)
-        class_masses = np.bincount(class_indices, weights=weights, minlength=table.shape[0])
+        class_masses = np.bincount(class_indices, weights=self.weights, minlength=table.shape[0])
         mixture = class_masses @ table
         total = float(mixture.sum())
         if total <= 0.0:
@@ -144,10 +152,64 @@ class FactoredExactFilter:
         return (mixture / total).tolist()
 
     def posterior_mass(self) -> float:
-        return float(np.exp(self.log_weights).sum())
+        return float(self.weights.sum())
+
+    def posterior_entropy(self) -> float:
+        np.maximum(self.weights, 1e-300, out=self._atom_likelihood_scratch)
+        np.log(self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
+        np.multiply(self.weights, self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
+        return -float(self._atom_likelihood_scratch.sum())
+
+    def expected_entropy_after_observation(self, action: str) -> float:
+        self.simulator._validate_action(action)
+        table = self._distribution_table(action)
+        class_indices = self._index.action_class_indices[action]
+        class_masses = np.bincount(class_indices, weights=self.weights, minlength=table.shape[0])
+
+        np.maximum(self.weights, 1e-300, out=self._atom_likelihood_scratch)
+        np.log(self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
+        np.multiply(self.weights, self._atom_likelihood_scratch, out=self._atom_likelihood_scratch)
+        class_weight_log_sums = np.bincount(
+            class_indices,
+            weights=self._atom_likelihood_scratch,
+            minlength=table.shape[0],
+        )
+
+        predictive = class_masses @ table
+        table_log_terms = table * np.log(np.maximum(table, 1e-300))
+        weighted_log_prior = class_weight_log_sums @ table
+        weighted_log_likelihood = class_masses @ table_log_terms
+        positive = predictive > 0.0
+        expected_entropy = -float(
+            np.sum(
+                weighted_log_prior[positive]
+                + weighted_log_likelihood[positive]
+                - predictive[positive] * np.log(predictive[positive])
+            )
+        )
+        return expected_entropy
 
     def array_bytes(self) -> int:
-        return int(self.log_weights.nbytes + self._index.index_arrays_bytes + self._trust_values.nbytes)
+        return int(
+            self.weights.nbytes
+            + self._atom_likelihood_scratch.nbytes
+            + self._index.index_arrays_bytes
+            + self._trust_values.nbytes
+        )
+
+    def scatter_kernel_certificate(self) -> dict[str, Any]:
+        return {
+            "posterior_storage": "normalized_float64_weight_vector",
+            "posterior_representation": "full_joint_posterior_over_theta_atoms",
+            "posterior_dtype": str(self.weights.dtype),
+            "atom_count": self.atom_count,
+            "update_kernel": "np.take into reusable scratch then in-place multiply",
+            "prediction_kernel": "np.bincount over precomputed per-action class indices",
+            "precomputed_class_index_dtype": self.index_arrays_dtype,
+            "scratch_dtype": str(self._atom_likelihood_scratch.dtype),
+            "scratch_bytes": int(self._atom_likelihood_scratch.nbytes),
+            "approximation": "none",
+        }
 
     def information_interface(self) -> dict[str, Any]:
         return {
@@ -156,7 +218,7 @@ class FactoredExactFilter:
             "sees_z_realization": False,
             "sees_sampling_seeds": False,
             "prefix_only": True,
-            "posterior_representation": "full_joint_log_weight_vector",
+            "posterior_representation": "full_joint_normalized_weight_vector",
             "likelihood_factorization_only": True,
             "z_marginalization": {
                 "scheme": self.z_quadrature.scheme,
@@ -166,9 +228,10 @@ class FactoredExactFilter:
         }
 
     def _normalize(self) -> None:
-        max_value = float(np.max(self.log_weights))
-        norm = max_value + math.log(float(np.exp(self.log_weights - max_value).sum()))
-        self.log_weights -= norm
+        norm = float(self.weights.sum())
+        if norm <= 0.0:
+            raise ValueError("posterior weights have zero mass")
+        self.weights /= norm
 
     def _advance_trust(self, action: str) -> None:
         cost = self.simulator._probe_trust_cost(action)
@@ -408,6 +471,51 @@ def run_factored_equivalence_certificate(
     return report
 
 
+def run_z_quadrature_selection_certificate(
+    frozen_design_path: str | Path,
+    *,
+    output_path: str | Path | None = None,
+    master_seed: int = 20260717,
+    candidate_g_values: Sequence[int] = (3, 4),
+) -> dict[str, Any]:
+    start = time.perf_counter()
+    path = Path(frozen_design_path)
+    candidate_runs = [
+        run_z_marginalization_convergence(
+            path,
+            master_seed=master_seed,
+            base_g=int(base_g),
+        )
+        for base_g in candidate_g_values
+    ]
+    passing = [
+        run
+        for run in candidate_runs
+        if bool(run["passed"]) and float(run["max_abs_prediction_delta"]) < Z_CONVERGENCE_THRESHOLD
+    ]
+    selected = min(passing, key=lambda run: int(run["base_g"])) if passing else None
+    report = {
+        "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+        "stage": "S2d",
+        "artifact": "z_marginalization_convergence_s2d_g_selection",
+        "scheme": "same g-vs-2g tensor Gauss-Hermite convergence method as z_marginalization_convergence.json",
+        "candidate_g_values": [int(value) for value in candidate_g_values],
+        "threshold": Z_CONVERGENCE_THRESHOLD,
+        "candidate_runs": candidate_runs,
+        "selected_g": int(selected["base_g"]) if selected is not None else None,
+        "selected_node_count": int(selected["base_g"]) ** 3 if selected is not None else None,
+        "selected_max_abs_prediction_delta": float(selected["max_abs_prediction_delta"]) if selected is not None else None,
+        "passed": selected is not None,
+        "wall_clock_seconds": time.perf_counter() - start,
+        "producer_function": "src.fsp_pum_env.ideal_observer.run_z_quadrature_selection_certificate",
+        "input_artifacts": [str(path)],
+        "code_path_hash": _factored_code_path_hash(),
+        "claim_ceiling": "S2d z-quadrature selection certificate only; theta grid and thresholds unchanged",
+    }
+    _write_json_if_requested(output_path, report)
+    return report
+
+
 def run_s2_tractability_benchmark_v2(
     frozen_design_path: str | Path,
     *,
@@ -571,6 +679,84 @@ def run_s2_tractability_benchmark_v2(
         "code_path_hash": _factored_code_path_hash(),
         "claim_ceiling": "S2c FactoredExactFilter tractability evidence only; no S3, environment-validity, learning, agency, or EGO-mainline claim",
     }
+    _write_json_if_requested(output_path, report)
+    return report
+
+
+def run_s2_tractability_benchmark_v3(
+    frozen_design_path: str | Path,
+    *,
+    output_path: str | Path | None = None,
+    master_seed: int = 20260715,
+    z_quadrature_points: int = 3,
+    benchmark_turns: int | None = None,
+    benchmark_queries: int | None = None,
+    grid_spec: ThetaGridSpec | None = None,
+) -> dict[str, Any]:
+    path = Path(frozen_design_path)
+    report = run_s2_tractability_benchmark_v2(
+        path,
+        master_seed=master_seed,
+        z_quadrature_points=z_quadrature_points,
+        benchmark_turns=benchmark_turns,
+        benchmark_queries=benchmark_queries,
+        grid_spec=grid_spec,
+    )
+    design = json.loads(path.read_text(encoding="utf-8-sig"))
+    measured_grid = grid_spec or ThetaGridSpec.from_design(design)
+    env = design["env_parameters"]
+    style_map = tuple(range(int(env["renderer"]["response_alphabet_size"])))
+    policy_filter_start = time.perf_counter()
+    policy_filter = FactoredExactFilter(
+        design,
+        filter_seed=independent_filter_seed(master_seed, "s2d_myopic_ig_cost_note"),
+        true_environment_seed=master_seed,
+        variant=SimulatorVariant.CAMOUFLAGE_OFF,
+        grid_spec=measured_grid,
+        user_id=0,
+        style_map=style_map,
+        z_quadrature_points=z_quadrature_points,
+    )
+    policy_filter_init_seconds = time.perf_counter() - policy_filter_start
+    policy_class_cost_note = _measure_myopic_ig_policy_class_cost(policy_filter)
+    policy_class_cost_note["filter_initialization_seconds"] = policy_filter_init_seconds
+    policy_class_cost_note["cost_note_scope"] = (
+        "One myopic-IG action selection only: 4 probe actions times expected-entropy computation; "
+        "not included in the fixed-schedule S5 decision projection."
+    )
+
+    report.update(
+        {
+            "stage": "S2d",
+            "artifact": "s2_tractability_report_v3",
+            "invalid_prior_artifact_preserved": [
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report.json",
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report_v2.json",
+            ],
+            "implementation_path": (
+                "FactoredExactFilter full joint posterior vector with certificate-selected z quadrature "
+                "and exact float64 scatter-kernel optimization; no atom-grid downsizing; no threshold movement; "
+                "no mean-field posterior factorization"
+            ),
+            "posterior_vector": {
+                "dtype": str(policy_filter.weights.dtype),
+                "bytes": int(policy_filter.weights.nbytes),
+                "shape": list(policy_filter.weights.shape),
+                "storage": "normalized_float64_weight_vector",
+            },
+            "scatter_kernel": policy_filter.scatter_kernel_certificate(),
+            "z_selection_contract": {
+                "candidate_g_values": [3, 4],
+                "selection_rule": "smallest g with g-vs-2g max_abs_prediction_delta < 1e-3",
+                "selected_g_used_by_this_report": int(z_quadrature_points),
+                "threshold": Z_CONVERGENCE_THRESHOLD,
+            },
+            "policy_class_cost_note": policy_class_cost_note,
+            "producer_function": "src.fsp_pum_env.ideal_observer.run_s2_tractability_benchmark_v3",
+            "code_path_hash": _factored_code_path_hash(),
+            "claim_ceiling": "S2d FactoredExactFilter tractability evidence only; no S3, environment-validity, learning, agency, or EGO-mainline claim",
+        }
+    )
     _write_json_if_requested(output_path, report)
     return report
 
@@ -894,6 +1080,45 @@ def _equivalence_cases(design: Mapping[str, Any]) -> list[dict[str, Any]]:
             },
         },
     ]
+
+
+def _measure_myopic_ig_policy_class_cost(filt: FactoredExactFilter) -> dict[str, Any]:
+    start = time.perf_counter()
+    current_entropy = filt.posterior_entropy()
+    rows: list[dict[str, Any]] = []
+    best_action = filt.simulator.probe_actions[0]
+    best_gain = -math.inf
+    for action in filt.simulator.probe_actions:
+        action_start = time.perf_counter()
+        expected_entropy = filt.expected_entropy_after_observation(action)
+        action_seconds = time.perf_counter() - action_start
+        information_gain = current_entropy - expected_entropy
+        rows.append(
+            {
+                "action": action,
+                "expected_entropy": expected_entropy,
+                "information_gain": information_gain,
+                "wall_clock_seconds": action_seconds,
+            }
+        )
+        if information_gain > best_gain:
+            best_gain = information_gain
+            best_action = action
+    return {
+        "policy_class": "myopic_IG",
+        "probe_actions_evaluated": len(filt.simulator.probe_actions),
+        "expected_entropy_computations": len(filt.simulator.probe_actions),
+        "measured_grid_atom_count": filt.atom_count,
+        "z_quadrature_points_per_dim": filt.z_quadrature.points_per_dim,
+        "z_node_count": filt.z_quadrature.node_count,
+        "current_entropy": current_entropy,
+        "selected_action": best_action,
+        "best_information_gain": best_gain,
+        "rows": rows,
+        "measured_wall_clock_seconds": time.perf_counter() - start,
+        "producer_function": "src.fsp_pum_env.ideal_observer._measure_myopic_ig_policy_class_cost",
+        "claim_ceiling": "S4 budgeting note only; no policy-class decision line and no tractability verdict change",
+    }
 
 
 def _factored_code_path_hash() -> str:

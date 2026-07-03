@@ -1,0 +1,69 @@
+{
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S2d",
+  "branch": "N0.F3 instrument fallback - further exact factorization",
+  "current_layer": "engineering implementation + mechanism-test evidence",
+  "real_objective": "Bring the real full-grid FactoredExactFilter benchmark under the unchanged 24 CPU-h decision line by reducing exact-preserving computation only.",
+  "frozen_sha_preflight": {
+    "source": "artifacts/FSP-PUM-ENV-IDPROBE-001A/freeze_record.json",
+    "status": "passed before this artifact was written",
+    "card": "0a5e38a5dbe979f138231fab9870bd16f60abca7",
+    "constitution": "882a68de2973ec1dedb588b85c6ee2703b897a4f",
+    "execution_plan": "c07eec2ac38423bed6788904bc15013e6e755410",
+    "frozen_design": "32d2cbd538f31694246b2e6bb7fd5377a329478f"
+  },
+  "candidate_approaches": [
+    {
+      "candidate": "minimal_implementation",
+      "description": "Run the existing v2 benchmark at a smaller z quadrature g selected by a g-vs-2g convergence certificate, with no code-path optimization.",
+      "evidence_it_would_produce": "A new convergence certificate and full-grid wall-clock at the selected g.",
+      "strongest_cheap_baseline_that_could_match": "Numerical integration is over-resolved at g=5; reducing g alone may explain the improvement without any further factorization.",
+      "leakage_or_hardcoding_risk": "Low for theta leakage, but it could become a disguised threshold move if the existing 1e-3 convergence line is loosened or if only g=3 is tested.",
+      "smallest_falsifying_test": "Run both g=3 vs 6 and g=4 vs 8 checks with max_abs_prediction_delta < 1e-3 required before using the smaller g.",
+      "expected_failure_mode": "The wall-clock remains above 24 CPU-h because per-atom scatter dominates."
+    },
+    {
+      "candidate": "strongest_baseline_or_shortcut_explanation",
+      "description": "Downsize the theta grid, reduce benchmark turns or queries, or move the 24 CPU-h / 1e-3 thresholds.",
+      "evidence_it_would_produce": "A faster report that does not preserve the frozen benchmark contract.",
+      "strongest_cheap_baseline_that_could_match": "Any smaller benchmark can look tractable while leaving the real S2 workload unresolved.",
+      "leakage_or_hardcoding_risk": "High; this route directly violates the task and would create pass-shaped evidence without full-grid effect.",
+      "smallest_falsifying_test": "v3 benchmark_scope.complete_full_grid_run must be true with 300 measured turns, 72 measured queries, and 7077888 measured atoms.",
+      "expected_failure_mode": "Stop immediately as invalid evidence if any theta-grid, threshold, turn, query, or decision-rule change appears."
+    },
+    {
+      "candidate": "mechanism_faithful_implementation",
+      "description": "Keep the full joint posterior, choose z g by convergence certificate, and replace avoidable log/exp scatter temporaries with a float64 normalized-weight scatter kernel using precomputed per-action class indices and scratch buffers.",
+      "evidence_it_would_produce": "A same-g FactoredExactFilter-vs-ExactBayesFilter certificate on the 432-atom sub-grids, a full-grid v3 wall-clock report, and a policy_class_cost_note for one myopic-IG step.",
+      "strongest_cheap_baseline_that_could_match": "The result may still be only computation-speed evidence; it does not show S3 environment validity or any functional-subject mechanism.",
+      "leakage_or_hardcoding_risk": "Medium if a second prediction path is added or if weights stop representing the same full joint posterior; guarded by the same-g exactness certificate.",
+      "smallest_falsifying_test": "Exactness delta must remain <= 1e-12 on the 432-atom certificate at the selected g, and v3 must report the unchanged decision rule.",
+      "expected_failure_mode": "If projected_s5_cpu_hours remains > 24, stop and preserve v3 as negative tractability evidence; do not start the particle-filter fallback in this session."
+    }
+  ],
+  "selected_approach": "mechanism_faithful_implementation",
+  "frozen_metric_baseline_ablation_contract": {
+    "metric": "projected_s5_cpu_hours from a real full-grid 300-turn + 72-query benchmark",
+    "decision_rule": "projected_s5_cpu_hours <= 24",
+    "baseline": "s2_tractability_report_v2.json remains preserved as prior full-grid FactoredExactFilter evidence at g=5",
+    "ablation_or_invariant": "FactoredExactFilter-vs-per-atom ExactBayesFilter exactness at the selected g on the 432-atom sub-grids must stay <= 1e-12",
+    "z_selection": "Test g in {3,4} with the existing g-vs-2g convergence method and threshold max_abs_prediction_delta < 1e-3; pick the smallest passing g."
+  },
+  "computed_evidence_requirements": {
+    "certificate_artifacts": [
+      "artifacts/FSP-PUM-ENV-IDPROBE-001A/z_marginalization_convergence_s2d_g_selection.json",
+      "artifacts/FSP-PUM-ENV-IDPROBE-001A/factored_equivalence_certificate_s2d_g*.json"
+    ],
+    "benchmark_artifact": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s2_tractability_report_v3.json",
+    "freshness": "Report sha256 hashes, new wall-clocks, pytest count, selected g, convergence delta, exactness delta, measured wall-clock, projected S5 CPU-h, and myopic-IG per-step cost."
+  },
+  "claim_ceiling": "Instrument code plus tractability evidence only; no S3, environment-validity, learning, agency, consciousness, or EGO-mainline claim.",
+  "stop_conditions": [
+    "Frozen SHA mismatch",
+    "Any theta-grid downsizing, benchmark-turn/query downsizing, or threshold movement",
+    "Selected-g exactness delta > 1e-12 on the float64 path",
+    "v3 projected_s5_cpu_hours > 24 after exact-preserving levers 1-2"
+  ],
+  "rollback_plan": "Keep existing artifacts including v2; revert only this S2d implementation/artifact lane if tests or certificates show invalid evidence.",
+  "auto_remote_anchor": "forbidden"
+}
