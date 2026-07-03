@@ -1,0 +1,64 @@
+{
+  "artifact": "s3a_battery_manifest",
+  "claim_ceiling": "S3a battery member interface and manifest only; no baseline-power or gap claim",
+  "code_path_hash": "4d4961fa39d11c9cc267a07a0c9a11e400ac7f32cd8e438acd521548da7c7b03",
+  "degenerate_conventions": {
+    "global_prior": {
+      "description": "emits the empirical response-symbol frequencies from the observed prefix for every counterfactual action",
+      "empty_prefix_fallback": "uniform over frozen response alphabet",
+      "type": "prefix_empirical_symbol_distribution"
+    },
+    "majority": {
+      "description": "emits a point mass on the modal observed prefix symbol; empty prefix falls back to symbol 0",
+      "empty_prefix_fallback_symbol": 0,
+      "tie_break": "lowest response symbol index",
+      "type": "prefix_modal_symbol_one_hot"
+    },
+    "predict_all": {
+      "description": "emits a point mass on response symbol 31 for every counterfactual action",
+      "symbol": 31,
+      "type": "one_hot"
+    },
+    "predict_none": {
+      "description": "emits a point mass on response symbol 0 for every counterfactual action",
+      "symbol": 0,
+      "type": "one_hot"
+    }
+  },
+  "implemented_members": [
+    "predict_all",
+    "predict_none",
+    "majority",
+    "global_prior",
+    "discounted_LS_lambda_0.95",
+    "running_average_preference_regressor"
+  ],
+  "not_in_s3a": [
+    "gap scoring",
+    "headroom numbers",
+    "should-win certificates"
+  ],
+  "prediction_format": {
+    "counterfactual_action_set_per_query": [
+      "probe_0",
+      "probe_1",
+      "probe_2",
+      "probe_3",
+      "task_topic_0",
+      "task_topic_2",
+      "task_topic_5",
+      "task_topic_7",
+      "recommend"
+    ],
+    "format": "mapping from counterfactual action name to a full probability distribution over the frozen response alphabet",
+    "prediction_target": "full response distribution over the 32-symbol alphabet for each counterfactual action",
+    "response_alphabet_size": 32
+  },
+  "prefix_only_contract": "inputs are past actions, observations, session boundaries, and step indices only; no future observations or simulator internals",
+  "producer_function": "src.fsp_pum_env.battery.degenerates.write_battery_manifest",
+  "run_finished_at": "2026-07-03T01:13:39Z",
+  "run_started_at": "2026-07-03T01:13:39Z",
+  "stage": "S3a",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "wall_clock_seconds": 0.0012470000074245036
+}
