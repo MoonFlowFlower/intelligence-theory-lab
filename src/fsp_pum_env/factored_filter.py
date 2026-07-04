@@ -108,6 +108,16 @@ class FactoredExactFilter:
         self._cached_log_norm = math.nan
         self.events: list[PrefixEvent] = []
         self._table_cache: dict[str, np.ndarray] = {}
+        self._stable_fact_log_weights: np.ndarray | None = None
+        self._stable_fact_weight_scratch: np.ndarray | None = None
+        self._stable_fact_weights_valid = False
+        if self.variant is SimulatorVariant.RAG_SHOULD_WIN_STABLE_FACTS:
+            self._stable_fact_log_weights = np.full(
+                self.simulator.alphabet_size,
+                -math.log(self.simulator.alphabet_size),
+                dtype=np.float64,
+            )
+            self._stable_fact_weight_scratch = np.empty(self.simulator.alphabet_size, dtype=np.float64)
 
     @property
     def atom_count(self) -> int:
@@ -129,6 +139,9 @@ class FactoredExactFilter:
         self._trust_values.fill(float(self.design["env_parameters"]["trust_dynamics"]["init"]))
         self._log_weights.fill(self._initial_log_weight)
         self._invalidate_normalized_weights()
+        if self._stable_fact_log_weights is not None:
+            self._stable_fact_log_weights.fill(-math.log(self.simulator.alphabet_size))
+            self._invalidate_stable_fact_weights()
         self.events = []
         self._table_cache.clear()
 
@@ -137,6 +150,16 @@ class FactoredExactFilter:
         self.simulator._validate_action(prefix_event.action)
         if not 0 <= prefix_event.symbol < self.simulator.alphabet_size:
             raise ValueError("prefix-only observation symbol outside response alphabet")
+
+        if (
+            self.variant is SimulatorVariant.RAG_SHOULD_WIN_STABLE_FACTS
+            and prefix_event.action in self.simulator.recommend_actions
+        ):
+            self._observe_stable_fact_observation(prefix_event.symbol)
+            self._advance_trust(prefix_event.action)
+            self.events.append(prefix_event)
+            self._table_cache.clear()
+            return
 
         table = self._distribution_table(prefix_event.action)
         class_indices = self._index.action_class_indices[prefix_event.action]
@@ -195,12 +218,17 @@ class FactoredExactFilter:
         return expected_entropy
 
     def array_bytes(self) -> int:
-        return int(
+        total = (
             self._log_weights.nbytes
             + self._normalized_weight_scratch.nbytes
             + self._index.index_arrays_bytes
             + self._trust_values.nbytes
         )
+        if self._stable_fact_log_weights is not None:
+            total += self._stable_fact_log_weights.nbytes
+        if self._stable_fact_weight_scratch is not None:
+            total += self._stable_fact_weight_scratch.nbytes
+        return int(total)
 
     def scatter_kernel_certificate(self) -> dict[str, Any]:
         return {
@@ -254,6 +282,33 @@ class FactoredExactFilter:
         self._normalized_weights_valid = True
         return self._normalized_weight_scratch
 
+    def _invalidate_stable_fact_weights(self) -> None:
+        self._stable_fact_weights_valid = False
+
+    def _ensure_stable_fact_weights(self) -> np.ndarray:
+        if self._stable_fact_log_weights is None or self._stable_fact_weight_scratch is None:
+            raise ValueError("stable-fact posterior is only available for rag_should_win_stable_facts")
+        if self._stable_fact_weights_valid:
+            return self._stable_fact_weight_scratch
+        max_log_weight = float(np.max(self._stable_fact_log_weights))
+        if not math.isfinite(max_log_weight):
+            raise ValueError("stable-fact posterior log weights are not finite")
+        np.subtract(self._stable_fact_log_weights, max_log_weight, out=self._stable_fact_weight_scratch)
+        np.exp(self._stable_fact_weight_scratch, out=self._stable_fact_weight_scratch)
+        total = float(self._stable_fact_weight_scratch.sum())
+        if total <= 0.0:
+            raise ValueError("stable-fact posterior weights have zero mass")
+        self._stable_fact_weight_scratch /= total
+        self._stable_fact_weights_valid = True
+        return self._stable_fact_weight_scratch
+
+    def _observe_stable_fact_observation(self, symbol: int) -> None:
+        if self._stable_fact_log_weights is None:
+            raise ValueError("stable-fact posterior is only available for rag_should_win_stable_facts")
+        candidate_table = self._stable_fact_candidate_table()
+        self._stable_fact_log_weights += np.log(np.maximum(candidate_table[:, int(symbol)], 1e-300))
+        self._invalidate_stable_fact_weights()
+
     def _advance_trust(self, action: str) -> None:
         cost = self.simulator._probe_trust_cost(action)
         if action in self.simulator.probe_actions:
@@ -277,8 +332,10 @@ class FactoredExactFilter:
             return self._low_diversity_table(action)
         if self.variant is SimulatorVariant.PROBE_CHANNEL_OFF and action in self.simulator.probe_actions:
             return self._action_only_table(action, low_trust=True)
-        if self.variant in {SimulatorVariant.RAG_SHOULD_WIN_STABLE_FACTS, SimulatorVariant.FLAT_THETA}:
-            raise ValueError(f"FactoredExactFilter does not support variant {self.variant.value}")
+        if self.variant is SimulatorVariant.RAG_SHOULD_WIN_STABLE_FACTS:
+            return self._stable_facts_table(action)
+        if self.variant is SimulatorVariant.FLAT_THETA:
+            return self._flat_theta_table(action)
 
         if action in self.simulator.probe_actions:
             return self._probe_table(action)
@@ -312,6 +369,108 @@ class FactoredExactFilter:
             self.simulator.alphabet_size,
         ).reshape(spec.theta_class_count, len(self._trust_values), self.simulator.alphabet_size)
         return _apply_style_map(self._apply_low_trust(base).reshape(-1, self.simulator.alphabet_size), self.style_map)
+
+    def _flat_theta_table(self, action: str) -> np.ndarray:
+        if action in self.simulator.probe_actions:
+            return self._flat_theta_probe_table(action)
+        if action in self.simulator.task_actions:
+            return self._flat_theta_task_table(action)
+        if action in self.simulator.recommend_actions:
+            return self._flat_theta_recommend_table()
+        raise ValueError(f"unknown action: {action}")
+
+    def _flat_theta_probe_table(self, action: str) -> np.ndarray:
+        spec = self._index.action_specs[action]
+        trust_count = len(self._trust_values)
+        topic0_level = int(self.simulator._topic_level_index(0.0))
+        if action == "probe_0":
+            center = 2
+            strength = 2.7
+        elif action == "probe_1":
+            center = 6
+            strength = 2.7
+        elif action == "probe_2":
+            center = 10 + topic0_level
+            strength = 2.9
+        else:
+            center = 16 + (topic0_level % 8)
+            strength = 1.75
+        rows = spec.theta_class_count * trust_count
+        base = _peaked_distribution(
+            np.full(rows, center, dtype=np.int32),
+            np.full(rows, strength, dtype=np.float64),
+            self.simulator.alphabet_size,
+        ).reshape(spec.theta_class_count, trust_count, self.simulator.alphabet_size)
+        return _apply_style_map(self._apply_low_trust(base).reshape(-1, self.simulator.alphabet_size), self.style_map)
+
+    def _flat_theta_task_table(self, action: str) -> np.ndarray:
+        topic_index = int(action.rsplit("_", 1)[1])
+        spec = self._index.action_specs[action]
+        trust_count = len(self._trust_values)
+        z_count = self.z_quadrature.node_count
+        z_valence = np.asarray([node[0] for node in self.z_quadrature.nodes], dtype=np.float64)
+        z_stress = np.asarray([node[2] for node in self.z_quadrature.nodes], dtype=np.float64)
+        z_term = 0.35 * z_valence - 0.15 * z_stress
+        center = (topic_index * 3 + 8) % self.simulator.alphabet_size
+        rows = spec.theta_class_count * trust_count * z_count
+        base = _peaked_distribution(
+            np.full(rows, center, dtype=np.int32),
+            np.full(rows, 1.35, dtype=np.float64) + np.tile(z_term, spec.theta_class_count * trust_count),
+            self.simulator.alphabet_size,
+        )
+        base = base.reshape(spec.theta_class_count, trust_count, z_count, self.simulator.alphabet_size)
+        degraded = self._apply_low_trust(base)
+        weights = np.asarray(self.z_quadrature.weights, dtype=np.float64)
+        marginalized = np.tensordot(degraded, weights, axes=([2], [0]))
+        return _apply_style_map(marginalized.reshape(-1, self.simulator.alphabet_size), self.style_map)
+
+    def _flat_theta_recommend_table(self) -> np.ndarray:
+        spec = self._index.action_specs["recommend"]
+        trust_count = len(self._trust_values)
+        z_count = self.z_quadrature.node_count
+        z_valence = np.asarray([node[0] for node in self.z_quadrature.nodes], dtype=np.float64)
+        z_arousal = np.asarray([node[1] for node in self.z_quadrature.nodes], dtype=np.float64)
+        z_term = 0.2 * z_valence + 0.1 * z_arousal
+        center = 13 % self.simulator.alphabet_size
+        rows = spec.theta_class_count * trust_count * z_count
+        base = _peaked_distribution(
+            np.full(rows, center, dtype=np.int32),
+            np.full(rows, 1.1, dtype=np.float64) + np.tile(z_term, spec.theta_class_count * trust_count),
+            self.simulator.alphabet_size,
+        )
+        base = base.reshape(spec.theta_class_count, trust_count, z_count, self.simulator.alphabet_size)
+        degraded = self._apply_low_trust(base)
+        weights = np.asarray(self.z_quadrature.weights, dtype=np.float64)
+        marginalized = np.tensordot(degraded, weights, axes=([2], [0]))
+        return _apply_style_map(marginalized.reshape(-1, self.simulator.alphabet_size), self.style_map)
+
+    def _stable_facts_table(self, action: str) -> np.ndarray:
+        if action in self.simulator.probe_actions:
+            return self._probe_table(action)
+        if action in self.simulator.task_actions:
+            return self._task_table(action)
+        if action not in self.simulator.recommend_actions:
+            raise ValueError(f"unknown action: {action}")
+
+        spec = self._index.action_specs[action]
+        trust_count = len(self._trust_values)
+        candidate_table = self._stable_fact_candidate_table()
+        mixture = self._ensure_stable_fact_weights() @ candidate_table
+        base = np.broadcast_to(
+            mixture.reshape(1, 1, self.simulator.alphabet_size),
+            (spec.theta_class_count, trust_count, self.simulator.alphabet_size),
+        ).copy()
+        degraded = self._apply_low_trust(base)
+        return degraded.reshape(-1, self.simulator.alphabet_size)
+
+    def _stable_fact_candidate_table(self) -> np.ndarray:
+        candidates = np.arange(self.simulator.alphabet_size, dtype=np.int32)
+        base = _peaked_distribution(
+            candidates,
+            np.full(self.simulator.alphabet_size, 3.2, dtype=np.float64),
+            self.simulator.alphabet_size,
+        )
+        return _apply_style_map(base, self.style_map)
 
     def _probe_table(self, action: str) -> np.ndarray:
         spec = self._index.action_specs[action]
