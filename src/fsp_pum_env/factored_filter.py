@@ -39,7 +39,7 @@ from .ideal_observer import (
     make_z_quadrature,
     run_z_marginalization_convergence,
 )
-from .simulator import FspPumSimulator, SimulatorVariant, _SessionState
+from .simulator import FspPumSimulator, SimulatorVariant, _CONSTANT_CERT_VARIANTS, _SessionState
 
 
 @dataclass(frozen=True)
@@ -328,6 +328,8 @@ class FactoredExactFilter:
     def _compute_distribution_table(self, action: str) -> np.ndarray:
         if self.variant is SimulatorVariant.NULL_ENV:
             return self._action_only_table(action, low_trust=False)
+        if self.variant in _CONSTANT_CERT_VARIANTS:
+            return self._constant_cert_table(action)
         if self.variant is SimulatorVariant.GRAPH_CACHE_SHOULD_WIN_LOW_DIVERSITY_TEMPLATES:
             return self._low_diversity_table(action)
         if self.variant is SimulatorVariant.PROBE_CHANNEL_OFF and action in self.simulator.probe_actions:
@@ -344,6 +346,22 @@ class FactoredExactFilter:
         if action in self.simulator.recommend_actions:
             return self._recommend_table()
         raise ValueError(f"unknown action: {action}")
+
+    def _constant_cert_table(self, action: str) -> np.ndarray:
+        spec = self._index.action_specs[action]
+        user = self.simulator.start_user(user_id=self.user_id, style_map=self.style_map)
+        surface = np.asarray(self.simulator.response_distribution(user, action), dtype=np.float64)
+        generator_distribution = np.asarray(self.simulator._constant_cert_distribution(), dtype=np.float64)
+        if surface.shape != (self.simulator.alphabet_size,):
+            raise ValueError("constant cert distribution has invalid alphabet shape")
+        if generator_distribution.shape != (self.simulator.alphabet_size,):
+            raise ValueError("raw constant cert distribution has invalid alphabet shape")
+        if not math.isclose(float(surface.sum()), 1.0, rel_tol=0.0, abs_tol=1e-12):
+            raise ValueError("constant cert distribution must sum to one")
+        if not math.isclose(float(generator_distribution.sum()), 1.0, rel_tol=0.0, abs_tol=1e-12):
+            raise ValueError("raw constant cert distribution must sum to one")
+        rows = spec.theta_class_count * len(self._trust_values)
+        return np.broadcast_to(surface.reshape(1, self.simulator.alphabet_size), (rows, self.simulator.alphabet_size)).copy()
 
     def _action_only_table(self, action: str, *, low_trust: bool) -> np.ndarray:
         spec = self._index.action_specs[action]

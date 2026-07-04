@@ -85,9 +85,11 @@ FROZEN_DESIGN = ARTIFACT_ROOT / "frozen_design.json"
 S3A_MANIFEST = ARTIFACT_ROOT / "s3a_trajectory_set_manifest.json"
 VOCABULARY = ARTIFACT_ROOT / "s3c_models" / "f2_ngram_vocabulary.json"
 EXEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A.md"
-SPEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001A.md"
+SPEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001B.md"
+SPEC_CARD_001A_SUPERSEDED = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001A.md"
 BUDGET_DECISION = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BUDGET-DECISION-001A.md"
 ORIGINAL_PART0_RUNNER = ARTIFACT_ROOT / "s3d_part0_projection_runner.py"
+S3D_001B_IMPL_REPORT = ARTIFACT_ROOT / "s3d_001b_impl_report.json"
 
 PROTECTED_BANKED_ARTIFACTS = (
     ARTIFACT_ROOT / "s3d_compute_projection_v1.json",
@@ -196,6 +198,25 @@ CERT_MEMBER_SPECS: tuple[dict[str, Any], ...] = (
 )
 
 NULL_MEMBER_NAMES: tuple[str, ...] = tuple(str(item["member"]) for item in CERT_MEMBER_SPECS)
+S3D_001B_GUARD_K = 5.0
+CANONICAL_SCORER_ID = (
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py"
+    "::_score_payload/_metric_for_scope/_metric_from_resampled_users"
+)
+CANONICAL_SCORER_RECONCILIATION = {
+    "canonical_scorer": CANONICAL_SCORER_ID,
+    "canonical_fixture_function": "_canonical_scorer_fixture",
+    "old_inline_diagnostic_value": 0.05864197530864198,
+    "banked_runner_canonical_value": 0.1363095238095238,
+    "difference_source": (
+        "The 0.0586 value came from a non-canonical inline stable-facts diagnostic path over a k=10 "
+        "fractional eval-user sample. The 0.1363 value came from the banked runner metric helpers over "
+        "the preregistered k=15 headroom-precheck sample, using pooled recommend-turn-conditional "
+        "macro-balanced accuracy from per-user confusion rows. The old inline diagnostic scorer is not "
+        "used for adjudication."
+    ),
+    "old_inline_scorer_void_for_adjudication": True,
+}
 
 
 def run() -> dict[str, Any]:
@@ -224,16 +245,26 @@ def run() -> dict[str, Any]:
                 details=precondition,
                 protected_before=protected_before,
             )
+            precondition_artifacts = _write_precondition_stop_artifacts(precondition, manifest)
             _write_json(ARTIFACT_ROOT / "s3d_battery_precondition_failure_manifest.json", manifest)
+            _write_json(FAILURE_MANIFEST, manifest)
             result_payload.update(
                 {
                     "verdict": "STOP_PRECONDITION_UNMET",
                     "s3d_results_void": True,
                     "stop_condition": manifest["stop_condition"],
                     "protected_artifacts_after": _protected_artifact_hashes(),
+                    "trace_artifacts": [_artifact_ref(TRACE_JSONL), _artifact_ref(TRACE_CSV)],
+                    "certificate_report": _artifact_ref(CERTIFICATE_REPORT),
+                    "null_env_report": _artifact_ref(NULL_ENV_REPORT),
+                    "baseline_comparison": _artifact_ref(BASELINE_COMPARISON),
+                    "ablation_report": _artifact_ref(ABLATION_REPORT),
+                    "replay_report": _artifact_ref(REPLAY_REPORT),
+                    "new_artifacts": precondition_artifacts,
                 }
             )
             _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
+            _write_operator_bank_ops(result_payload)
             return result_payload
 
         applied_line = float(precondition["signed_budget"]["line_cpu_hours"])
@@ -436,6 +467,7 @@ def run() -> dict[str, Any]:
 def _verify_preconditions() -> dict[str, Any]:
     errors: list[str] = []
     signed = _parse_signed_budget_decision()
+    signed_spec_001b = _parse_signed_spec_001b_decision()
     if not signed["option_b_checked"]:
         errors.append("BUDGET-DECISION §8 does not check Option B")
     if signed["line_cpu_hours"] is None:
@@ -444,10 +476,26 @@ def _verify_preconditions() -> dict[str, Any]:
         errors.append("BUDGET-DECISION §8 operator is missing")
     if not signed["date"]:
         errors.append("BUDGET-DECISION §8 date is missing")
+    if signed_spec_001b["guard_basis"] != "2a":
+        errors.append("001B §7 does not select guard basis 2a")
+    if signed_spec_001b["k"] != 5.0:
+        errors.append("001B §7 does not pin k=5")
+    if not signed_spec_001b["anti_tuning_firewall_acknowledged"]:
+        errors.append("001B §7 anti-tuning firewall acknowledgment is missing")
+    if not signed_spec_001b["invariants_acknowledged"]:
+        errors.append("001B §7 invariants acknowledgment is missing")
+    if not signed_spec_001b["operator"]:
+        errors.append("001B §7 operator is missing")
+    if not signed_spec_001b["date"]:
+        errors.append("001B §7 date is missing")
 
     git_readback = _read_git_state_without_git()
+    if not git_readback.get("spec_001b_committed_at_head"):
+        errors.append("signed 001B rule source is not identical to HEAD tree")
     if not git_readback.get("budget_note_committed_at_head"):
         errors.append("signed BUDGET-DECISION note is not identical to HEAD tree")
+    if not git_readback.get("s3d_001b_impl_report_banked"):
+        errors.append("001B implementation report is not present in HEAD tree")
     if not git_readback.get("variance_probe_banked"):
         errors.append("variance-probe artifact is not present in HEAD tree")
     if not git_readback.get("stop_commit_17cce05_in_history"):
@@ -457,12 +505,14 @@ def _verify_preconditions() -> dict[str, Any]:
         "passed": not errors,
         "errors": errors,
         "signed_budget": signed,
+        "signed_spec_001b": signed_spec_001b,
         "git_readback_without_git_command": git_readback,
         "read_only_rule_sources": [
             str(EXEC_CARD.relative_to(ROOT)),
             str(SPEC_CARD.relative_to(ROOT)),
             str(BUDGET_DECISION.relative_to(ROOT)),
         ],
+        "superseded_historical_spec_source": str(SPEC_CARD_001A_SUPERSEDED.relative_to(ROOT)),
         "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_verify_preconditions",
         "run_started_at": _utc_timestamp(),
         "claim_ceiling": "precondition readback only",
@@ -489,6 +539,37 @@ def _parse_signed_budget_decision() -> dict[str, Any]:
         "line_number": int(operator_line_index),
         "signed_line_text": operator_line,
         "source_path": str(BUDGET_DECISION.relative_to(ROOT)),
+    }
+
+
+def _parse_signed_spec_001b_decision() -> dict[str, Any]:
+    text = SPEC_CARD.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    section_start = next((idx for idx, line in enumerate(lines) if line.startswith("## 7.")), 0)
+    section = "\n".join(lines[section_start:])
+    guard_line_index = next((idx for idx, line in enumerate(lines, start=1) if "Guard basis" in line), -1)
+    operator_line_index = next((idx for idx, line in enumerate(lines, start=1) if "Operator:" in line and "Date:" in line), -1)
+    guard_line = lines[guard_line_index - 1] if guard_line_index > 0 else ""
+    operator_line = lines[operator_line_index - 1] if operator_line_index > 0 else ""
+    guard_2a = bool(re.search(r"\[x\]\s*2a\s+k\s*=\s*__\s*5\s*__", guard_line, flags=re.IGNORECASE))
+    k_match = re.search(r"\[x\]\s*2a\s+k\s*=\s*__\s*([0-9]+(?:\.[0-9]+)?)\s*__", guard_line, flags=re.IGNORECASE)
+    anti_tuning = bool(re.search(r"Confirm anti-tuning firewall.*\[x\]\s*yes", section, flags=re.IGNORECASE))
+    invariants = bool(re.search(r"Confirm invariants.*\[x\]\s*yes", section, flags=re.IGNORECASE))
+    operator_match = re.search(r"Operator:\s*_+([^_]+?)_+\s+Date:", operator_line)
+    date_match = re.search(r"Date:\s*_+([^_]+?)_+", operator_line)
+    return {
+        "guard_basis": "2a" if guard_2a else "",
+        "k": float(k_match.group(1)) if k_match else None,
+        "anti_tuning_firewall_acknowledged": anti_tuning,
+        "invariants_acknowledged": invariants,
+        "operator": operator_match.group(1).strip() if operator_match else "",
+        "date": date_match.group(1).strip() if date_match else "",
+        "guard_line_number": int(guard_line_index),
+        "operator_line_number": int(operator_line_index),
+        "guard_line_text": guard_line,
+        "operator_line_text": operator_line,
+        "source_path": str(SPEC_CARD.relative_to(ROOT)),
+        "rule_source_status": "001B supersedes 001A for S3d execution",
     }
 
 
@@ -547,8 +628,12 @@ def _read_git_state_without_git() -> dict[str, Any]:
             return None
         return obj.as_raw_string()
 
+    spec_001b_rel = str(SPEC_CARD.relative_to(ROOT)).replace("\\", "/")
+    impl_report_rel = str(S3D_001B_IMPL_REPORT.relative_to(ROOT)).replace("\\", "/")
     budget_rel = str(BUDGET_DECISION.relative_to(ROOT)).replace("\\", "/")
+    spec_001b_blob = blob_bytes_at(head_hash, spec_001b_rel)
     budget_blob = blob_bytes_at(head_hash, budget_rel)
+    impl_report_blob = blob_bytes_at(head_hash, impl_report_rel)
     variance_rel = "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe.json"
     variance_blob = blob_bytes_at(head_hash, variance_rel)
     variance_trace_blob = blob_bytes_at(head_hash, "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_trace.csv")
@@ -578,7 +663,9 @@ def _read_git_state_without_git() -> dict[str, Any]:
         "branch_ref": head_ref,
         "head_hash": head_hash,
         "status_without_git_command": status_payload,
+        "spec_001b_committed_at_head": spec_001b_blob == SPEC_CARD.read_bytes(),
         "budget_note_committed_at_head": budget_blob == BUDGET_DECISION.read_bytes(),
+        "s3d_001b_impl_report_banked": impl_report_blob is not None,
         "variance_probe_banked": variance_blob is not None and variance_trace_blob is not None,
         "stop_projection_banked": stop_projection_blob is not None,
         "stop_commit_17cce05_in_history": bool(found_stop),
@@ -1130,11 +1217,56 @@ def _score_payload(
         "recommend_turn_count": len(recommend_indices),
         "per_user_confusion": list(per_user),
         "per_user_confusion_sha256": _sha256_json(per_user),
+        "canonical_scorer_id": CANONICAL_SCORER_ID,
+        "canonical_scorer_pinned": True,
         "metric_aggregation_rule": "macro-balanced accuracy over classes with >=1 true occurrence in eval slice",
         "recommend_metric_aggregation_rule": "same macro-balanced accuracy restricted to logged action == recommend",
     }
     payload.update(dict(extra))
     return payload
+
+
+def _canonical_scorer_fixture() -> dict[str, Any]:
+    targets = [0, 0, 1, 1, 2, 2]
+    predictions = [0, 1, 1, 0, 2, 0]
+    actions = ["recommend", "task_topic_0", "recommend", "task_topic_1", "recommend", "task_topic_2"]
+    per_user = [_per_user_confusion(999001, targets, predictions, actions)]
+    payload = _score_payload(
+        targets,
+        predictions,
+        actions,
+        per_user,
+        extra={"fixture_id": "canonical_recommend_conditional_metric_fixture_001B"},
+    )
+    expected_overall = 0.5
+    expected_recommend = 1.0
+    return {
+        "fixture_id": "canonical_recommend_conditional_metric_fixture_001B",
+        "targets": targets,
+        "predictions": predictions,
+        "actions": actions,
+        "expected_overall_macro_balanced_accuracy": expected_overall,
+        "actual_overall_macro_balanced_accuracy": float(payload["metric"]),
+        "expected_recommend_turn_conditional_macro_balanced_accuracy": expected_recommend,
+        "actual_recommend_turn_conditional_macro_balanced_accuracy": float(
+            payload["recommend_turn_conditional_metric"]
+        ),
+        "recommend_turn_count": int(payload["recommend_turn_count"]),
+        "passed": bool(
+            math.isclose(float(payload["metric"]), expected_overall, rel_tol=0.0, abs_tol=1e-12)
+            and math.isclose(
+                float(payload["recommend_turn_conditional_metric"]),
+                expected_recommend,
+                rel_tol=0.0,
+                abs_tol=1e-12,
+            )
+            and int(payload["recommend_turn_count"]) == 3
+        ),
+        "canonical_scorer_id": CANONICAL_SCORER_ID,
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_canonical_scorer_fixture"
+        ),
+    }
 
 
 def _validation_events_in_prediction_order(
@@ -1254,6 +1386,18 @@ def _build_reports(
         for result in unit_results.values()
         if str(result["unit_type"]) == "member" and str(result["phase"]) == "null"
     }
+    guard_scope_by_cell: dict[str, str] = {}
+    for member_spec in CERT_MEMBER_SPECS:
+        cell_id = str(member_spec["cell_id"])
+        scope = str(member_spec["metric_scope"])
+        existing = guard_scope_by_cell.get(cell_id)
+        if existing is not None and existing != scope:
+            raise RuntimeError(f"mixed_guard_metric_scopes_for_cell:{cell_id}:{existing}:{scope}")
+        guard_scope_by_cell[cell_id] = scope
+    cell_guard_by_cell = {
+        cell_id: _cell_validity_guard_001b(ideal_by_cell[cell_id], scope)
+        for cell_id, scope in sorted(guard_scope_by_cell.items())
+    }
     cert_rows = []
     cell_headroom_defects = []
     cert_failures = []
@@ -1267,7 +1411,8 @@ def _build_reports(
         member_metric = _metric_for_scope(result, scope)
         ideal_metric = _metric_for_scope(ideal, scope)
         ideal_headroom = float(ideal_metric - CHANCE_CELL)
-        if ideal_headroom < 0.10:
+        guard = cell_guard_by_cell[cell_id]
+        if not bool(guard["passed"]):
             cell_headroom_defects.append(cell_id)
         rho = (float(member_metric) - CHANCE_CELL) / ideal_headroom if ideal_headroom > 0.0 else math.nan
         ci = _bootstrap_rho_ci(result["per_user_confusion"], ideal["per_user_confusion"], scope, member, cell_id)
@@ -1276,7 +1421,7 @@ def _build_reports(
         fallback_pass = True
         if fallback_rate is not None:
             fallback_pass = bool(float(fallback_rate) < float(member_spec.get("fallback_rate_max", 1.0)))
-        passed = bool(pass_threshold and fallback_pass and ideal_headroom >= 0.10)
+        passed = bool(pass_threshold and fallback_pass and guard["passed"])
         if not passed:
             cert_failures.append(member)
         cert_rows.append(
@@ -1293,6 +1438,13 @@ def _build_reports(
                 "ideal_metric_used_for_rho": float(ideal_metric),
                 "chance_cell": CHANCE_CELL,
                 "ideal_headroom": ideal_headroom,
+                "cell_validity_guard_basis": "001B: ideal_metric - chance_cell >= k * SE_cell",
+                "cell_validity_guard_k": float(guard["k"]),
+                "cell_validity_guard_n_cell": int(guard["n_cell"]),
+                "cell_validity_guard_SE_cell": float(guard["SE_cell"]),
+                "cell_validity_guard_k_times_SE_cell": float(guard["k_times_SE_cell"]),
+                "cell_validity_guard_passed": bool(guard["passed"]),
+                "cell_validity_guard_computed_from_ideal_only": True,
                 "rho": float(rho),
                 "rho_threshold": threshold,
                 "bootstrap_95_ci_on_rho": ci,
@@ -1353,7 +1505,7 @@ def _build_reports(
     elif cell_headroom_defects:
         final_verdict = {
             "verdict": "s3d_cell_headroom_defect",
-            "stop_condition": "ideal_cell - chance_cell < 0.10 in at least one should-win cell",
+            "stop_condition": "ideal_cell - chance_cell < k * SE_cell in at least one should-win cell",
             "s3d_results_void": True,
             "cell_headroom_defects": sorted(set(cell_headroom_defects)),
         }
@@ -1386,6 +1538,19 @@ def _build_reports(
         "runtime_guard": runtime_guard,
         "parallelism": parallelism,
         "serial_equivalence_assertion": serial_assertion,
+        "cell_validity_guard": {
+            "basis": "001B signed 2a statistical distinguishability guard",
+            "k": S3D_001B_GUARD_K,
+            "formula": "ideal_metric - chance_cell >= k * sqrt(chance_cell * (1 - chance_cell) / n_cell)",
+            "computed_on": "ideal results only",
+            "computed_before_member_adjudication_in_build_reports": True,
+            "per_cell": cell_guard_by_cell,
+        },
+        "canonical_scorer_pin": {
+            "canonical_scorer_id": CANONICAL_SCORER_ID,
+            "fixture": _canonical_scorer_fixture(),
+            "reconciliation": CANONICAL_SCORER_RECONCILIATION,
+        },
         "run_finished_at": _utc_timestamp(),
         "code_path_hash": _code_path_hash(),
         "claim_ceiling": CLAIM_CEILING,
@@ -1452,6 +1617,40 @@ def _metric_for_scope(result: Mapping[str, Any], scope: str) -> float:
     raise ValueError(f"unknown metric scope: {scope}")
 
 
+def _n_cell_for_scope(result: Mapping[str, Any], scope: str) -> int:
+    if scope == "overall":
+        return int(result["n_eval_points"])
+    if scope == "recommend":
+        return int(result["recommend_turn_count"])
+    raise ValueError(f"unknown metric scope: {scope}")
+
+
+def _cell_validity_guard_001b(ideal_result: Mapping[str, Any], scope: str) -> dict[str, Any]:
+    ideal_metric = _metric_for_scope(ideal_result, scope)
+    n_cell = _n_cell_for_scope(ideal_result, scope)
+    if n_cell <= 0:
+        se_cell = math.inf
+    else:
+        se_cell = math.sqrt(CHANCE_CELL * (1.0 - CHANCE_CELL) / float(n_cell))
+    k_times_se = S3D_001B_GUARD_K * se_cell
+    ideal_headroom = float(ideal_metric - CHANCE_CELL)
+    return {
+        "cell_id": str(ideal_result["cell_id"]),
+        "metric_scope": scope,
+        "ideal_metric": float(ideal_metric),
+        "chance_cell": float(CHANCE_CELL),
+        "ideal_minus_chance": ideal_headroom,
+        "n_cell": int(n_cell),
+        "SE_cell": float(se_cell),
+        "k": float(S3D_001B_GUARD_K),
+        "k_times_SE_cell": float(k_times_se),
+        "passed": bool(n_cell > 0 and ideal_headroom >= k_times_se),
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_cell_validity_guard_001b"
+        ),
+    }
+
+
 def _bootstrap_rho_ci(
     member_per_user: Sequence[Mapping[str, Any]],
     ideal_per_user: Sequence[Mapping[str, Any]],
@@ -1509,7 +1708,7 @@ def _build_replay_report(
     ]
     if null_breaches:
         replay_verdict = "FAIL_NULL_FALSE_HEADROOM"
-    elif any(float(row["ideal_headroom"]) < 0.10 for row in certificate_report["rows"]):
+    elif any(not bool(row["cell_validity_guard_passed"]) for row in certificate_report["rows"]):
         replay_verdict = "s3d_cell_headroom_defect"
     elif cert_failures:
         replay_verdict = "FAIL_BASELINE_UNDERPOWERED"
@@ -1769,10 +1968,124 @@ def _finalize_result_payload(payload: Mapping[str, Any], perf_start: float, cpu_
     return final
 
 
+def _write_precondition_stop_artifacts(precondition: Mapping[str, Any], manifest: Mapping[str, Any]) -> list[str]:
+    run_started_at = _utc_timestamp()
+    common = {
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "stage": "S3d",
+        "verdict": "STOP_PRECONDITION_UNMET",
+        "stop_condition": manifest["stop_condition"],
+        "s3d_results_void": True,
+        "precondition": precondition,
+        "run_started_at": run_started_at,
+        "run_finished_at": _utc_timestamp(),
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py"
+            "::_write_precondition_stop_artifacts"
+        ),
+        "code_path_hash": _code_path_hash(),
+        "claim_ceiling": "precondition STOP evidence only; no S3d certificate, NULL-env, gap, mechanism, learning, agency, or EGO claim",
+    }
+    certificate_report = {
+        **common,
+        "artifact": "s3d_certificate_report",
+        "rows": [],
+        "not_run_reason": "precondition failed before PART-0 re-gate; no member or ideal cert cell was scored",
+    }
+    null_report = {
+        **common,
+        "artifact": "s3d_null_env_report",
+        "rows": [],
+        "breaches": [],
+        "not_run_reason": "precondition failed before PART-0 re-gate; NULL-env was not scored",
+    }
+    baseline_report = {
+        **common,
+        "artifact": "baseline_comparison",
+        "comparison_scope": "not run",
+        "not_run_reason": "precondition failed before PART-0 re-gate",
+    }
+    ablation_report = {
+        **common,
+        "artifact": "ablation_report",
+        "not_run_reason": "precondition failed before PART-0 re-gate; BASE-invariance and cert-only ablation were not rerun",
+    }
+    replay_report = {
+        **common,
+        "artifact": "replay_report",
+        "replay_scope": "not run",
+        "verdict_match": True,
+        "not_run_reason": "precondition failed before PART-0 re-gate; no scored trace exists to replay",
+    }
+    trace_row = {
+        **common,
+        "artifact": "trace",
+        "event_type": "precondition_stop",
+        "unit_id": "precondition::STOP_PRECONDITION_UNMET",
+        "unit_type": "precondition",
+        "phase": "preflight",
+        "member": "none",
+        "cell_id": "none",
+        "metric": None,
+        "n_eval_points": 0,
+        "heldout_users_800_999_touched": False,
+        "future_observations_used": False,
+    }
+    _write_json(CERTIFICATE_REPORT, certificate_report)
+    _write_json(NULL_ENV_REPORT, null_report)
+    _write_json(BASELINE_COMPARISON, baseline_report)
+    _write_json(ABLATION_REPORT, ablation_report)
+    _write_json(REPLAY_REPORT, replay_report)
+    with TRACE_JSONL.open("w", encoding="utf-8") as handle:
+        handle.write(json.dumps(_jsonable(trace_row), sort_keys=True) + "\n")
+    with TRACE_CSV.open("w", newline="", encoding="utf-8") as handle:
+        fields = [
+            "event_type",
+            "unit_id",
+            "unit_type",
+            "phase",
+            "member",
+            "cell_id",
+            "verdict",
+            "stop_condition",
+            "n_eval_points",
+            "heldout_users_800_999_touched",
+            "future_observations_used",
+            "run_started_at",
+            "run_finished_at",
+            "producer_function",
+            "code_path_hash",
+        ]
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerow({field: trace_row.get(field) for field in fields})
+    candidate_paths = [
+        Path(__file__),
+        RESULT,
+        FAILURE_MANIFEST,
+        ARTIFACT_ROOT / "s3d_battery_precondition_failure_manifest.json",
+        TRACE_JSONL,
+        TRACE_CSV,
+        CERTIFICATE_REPORT,
+        NULL_ENV_REPORT,
+        BASELINE_COMPARISON,
+        ABLATION_REPORT,
+        REPLAY_REPORT,
+        ARTIFACT_ROOT / "result_pre_ideal_repair_failure_v1.json",
+        ARTIFACT_ROOT / "failure_manifest_pre_ideal_repair_failure_v1.json",
+        ARTIFACT_ROOT / "trace_pre_ideal_repair_failure_v1.jsonl",
+        ARTIFACT_ROOT / "trace_pre_ideal_repair_failure_v1.csv",
+        ARTIFACT_ROOT / "s3d_compute_projection_line30.0_pre_ideal_repair_failure_v1.json",
+        ARTIFACT_ROOT / "s3d_freshness_manifest_pre_ideal_repair_failure_v1.json",
+    ]
+    return [str(path.relative_to(ROOT)).replace("\\", "/") for path in candidate_paths if path.exists()]
+
+
 def _write_operator_bank_ops(result_payload: Mapping[str, Any]) -> None:
     bank_ops = ARTIFACT_ROOT / "s3d_operator_bank_ops_proposal_line30.ps1"
     head_pin = result_payload.get("precondition", {}).get("git_readback_without_git_command", {}).get("head_hash", "UNKNOWN_HEAD_NO_GIT_COMMAND_USED")
-    allowlist = _expected_new_artifact_paths(include_failure=FAILURE_MANIFEST.exists())
+    allowlist = list(result_payload.get("new_artifacts") or _expected_new_artifact_paths(include_failure=FAILURE_MANIFEST.exists()))
     allowlist.append(str(bank_ops.relative_to(ROOT)).replace("\\", "/"))
     rendered = "\n".join(f"  '{item}'" for item in allowlist)
     script = f"""# Proposed operator-only bank ops for {TASK_CARD_ID}
