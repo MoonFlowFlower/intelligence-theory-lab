@@ -1,0 +1,113 @@
+{
+  "artifact": "s3d_compute_projection",
+  "camouflage_off_ideal_projected_cpu_hours": 1.1263661155555584,
+  "claim_ceiling": "PART 0 compute projection only; no certificate, NULL, environment-validity, baseline-power, gap, mechanism, agency, or EGO claim",
+  "code_path_hash": "2f96d8dec57b1da2bf29ab79d30aa26ea77af3ccd47b498af1c32561c7e52d13",
+  "cpu_hour_limit": 12.0,
+  "decision": "projection_lower_bound_within_12_cpu_hours_full_part0_required",
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json"
+  ],
+  "measurements": {
+    "cert_set_generation": {
+      "adjudicator_only_estimated_raw_bytes": 151962774,
+      "adjudicator_only_sha256": "3b963bddf2f4f18b79b10d53aa36346d03a8c4b09db701cef506ba9aa4239085",
+      "cell_id": "constant_none",
+      "member_view_estimated_raw_bytes": 32138389,
+      "member_view_record_count": 240000,
+      "member_view_sha256": "9df435def1045d95f139f30d1f515705b8ad6be8fb6af3f3e5b5edcde61551f7",
+      "unit": "one_cert_set_generation",
+      "variant": "degenerate_should_win_constant_none",
+      "wall_clock_seconds": 34.4163641999985
+    },
+    "fit_score_cost_classes": [],
+    "ideal_per_user_one_cell": {
+      "atom_count": 7077888,
+      "cell_id": "camouflage_off",
+      "classes_present": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "cpu_hours": 0.0070397882222222406,
+      "filter_class": "src.fsp_pum_env.factored_filter.FactoredExactFilter",
+      "metric": 0.09948462995337995,
+      "posterior_array_bytes": 509608152,
+      "producer_function": "src.fsp_pum_env.s3d_certificates.measure_s3d_ideal_one_eval_user",
+      "turns": 300,
+      "unit": "S2_ideal_one_eval_user_full_300_turn_prefix",
+      "user_id": 640,
+      "variant": "camouflage_off",
+      "wall_clock_seconds": 25.343237600000066,
+      "z_quadrature_points_per_dim": 3
+    }
+  },
+  "part": "PART 0",
+  "producer_function": "src.fsp_pum_env.s3d_certificates.run_s3d_part0_projection",
+  "projected_cpu_hours": 1.1263661155555584,
+  "projection_lower_bound_cpu_hours": 1.1263661155555584,
+  "projection_rule": {
+    "camouflage_off_eval_users": 160,
+    "declared_assumption": "linear projection from measured per-user full-prefix S2 ideal cost; one camouflage_off cell has 160 eval users",
+    "lower_bound_basis": "camouflage_off S2 ideal alone, excluding generation, fitting, scoring, other cells, bootstrap, and NULL-env"
+  },
+  "run_finished_at": "2026-07-04T03:11:06Z",
+  "run_started_at": "2026-07-04T03:10:00Z",
+  "runtime_guard_decision": "projection_lower_bound_within_12_cpu_hours_full_part0_required",
+  "single_thread_environment": {
+    "env_threads": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "single_thread_accounting": true,
+    "torch_device": "cpu",
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1
+  },
+  "stage": "S3d",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "unmeasured_required_cost_classes_after_decisive_lower_bound": [
+    "logreg_F1_or_F2",
+    "gbt",
+    "gru",
+    "seq",
+    "table-family",
+    "retrieval-family",
+    "degenerates",
+    "remaining ideal cells",
+    "NULL-env full battery",
+    "bootstrap"
+  ],
+  "wall_clock_seconds": 66.58505700000023
+}

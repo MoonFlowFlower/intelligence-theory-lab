@@ -1,0 +1,971 @@
+{
+  "artifact": "s3d_compute_projection",
+  "camouflage_off_ideal_projected_cpu_hours": 1.1263661155555584,
+  "claim_ceiling": "PART 0 compute projection only; no certificate, NULL, environment-validity, baseline-power, gap, mechanism, learning-capability, agency, or EGO claim",
+  "code_path_hash": "717ae19f64c89777788144223bbda858c0a18b123ca805ed8dc8b428756f99cd",
+  "cpu_hour_limit": 12.0,
+  "decision": "STOP_s3d_part0_projection_exceeds_12_cpu_hours",
+  "full_part0_measurements": {
+    "bootstrap": {
+      "bootstrap_resamples": 1000,
+      "ci95": [
+        0.4994791666666667,
+        0.5084588541666667
+      ],
+      "eval_users": 160,
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_bootstrap_unit",
+      "unit": "1000_resamples_over_160_eval_users_one_member_cell",
+      "wall_clock_seconds": 0.01931960000001709
+    },
+    "degenerate_family": {
+      "cell_id": "constant_none",
+      "heldout_users_800_999_touched": false,
+      "members": {
+        "global_prior": {
+          "cell_id": "constant_none",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.04058179999992717,
+          "member": "global_prior",
+          "one_eval_user_macro_balanced_accuracy": 1.0,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 0.4451897999533685,
+          "score_one_eval_user_wall_clock_seconds": 0.0025287999997090083,
+          "variant": "degenerate_should_win_constant_none",
+          "wall_clock_seconds": 0.04340140000022075
+        },
+        "majority": {
+          "cell_id": "constant_none",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.041602100000091013,
+          "member": "majority",
+          "one_eval_user_macro_balanced_accuracy": 1.0,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 0.9285781000380666,
+          "score_one_eval_user_wall_clock_seconds": 0.0055436000002373476,
+          "variant": "degenerate_should_win_constant_none",
+          "wall_clock_seconds": 0.04762699999992037
+        },
+        "predict_all": {
+          "cell_id": "constant_none",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.023565000001326553,
+          "member": "predict_all",
+          "one_eval_user_macro_balanced_accuracy": 0.0,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 0.734925000133444,
+          "score_one_eval_user_wall_clock_seconds": 0.004446000000825734,
+          "variant": "degenerate_should_win_constant_none",
+          "wall_clock_seconds": 0.028217200000653975
+        },
+        "predict_none": {
+          "cell_id": "constant_none",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.019397400001253118,
+          "member": "predict_none",
+          "one_eval_user_macro_balanced_accuracy": 1.0,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 0.3864214001532673,
+          "score_one_eval_user_wall_clock_seconds": 0.0022939000009500887,
+          "variant": "degenerate_should_win_constant_none",
+          "wall_clock_seconds": 0.021972499998810235
+        }
+      },
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+      "projection_unit": "fit_640_users_plus_score_one_eval_user_scaled_to_160_eval_users",
+      "record_collection_wall_clock_seconds": 58.066262799999095,
+      "variant": "degenerate_should_win_constant_none",
+      "wall_clock_seconds": 58.20749849999993
+    },
+    "gbt_half_data_selected": {
+      "cell_id": "camouflage_off",
+      "class_count_seen": 32,
+      "config_id": "obs_decoder_gbt_cfg00",
+      "config_index": 0,
+      "cost_class": "gbt",
+      "feature_dimension": 2157,
+      "features": "F2",
+      "fit_and_metric_wall_clock_seconds": 1141.637142200001,
+      "fit_examples": 96000,
+      "fit_matrix_nnz": 32359571,
+      "fit_plus_validation_wall_clock_seconds": 1252.7067341000002,
+      "fit_user_filter": "user_id % 2 == 0",
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.08774933067785454,
+      "internal_validation_matrix_nnz": 16208142,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "matrix_build_wall_clock_seconds": 111.06959189999907,
+      "member": "obs_decoder_gbt",
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_sklearn_one_set",
+      "records_consumed": {
+        "fit_records": 96000,
+        "fit_records_skipped_by_budget": 96000,
+        "internal_validation_records": 48000
+      },
+      "selected_recipe_measurement": true,
+      "set_id": "s3d_camouflage_off",
+      "variant": "camouflage_off"
+    },
+    "gru_selected": {
+      "cell_id": "camouflage_off",
+      "config_id": "obs_decoder_gru_cfg01",
+      "config_index": 1,
+      "cost_class": "gru",
+      "device": "cpu",
+      "environment": {
+        "cpu_hour_limit": 24.0,
+        "env_threads": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "r3_runtime_cpu_hour_limit": 30.0,
+        "single_thread_accounting": true,
+        "threadpool_info": [
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "vcomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          }
+        ],
+        "torch_device": "cpu",
+        "torch_num_interop_threads": 1,
+        "torch_num_threads": 1
+      },
+      "epochs_run": 10,
+      "fit_and_metric_wall_clock_seconds": 10.671238599999924,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 79.66081400000076,
+      "fit_sequences": 640,
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "torch.nn.GRU",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.052629802815217855,
+      "internal_validation_sequences": 160,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "member": "obs_decoder_gru",
+      "offline_compute_units": 1920000,
+      "per_example_prefix_reencoding": false,
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_gru_one_set",
+      "query_time_single_prefix_encoding": true,
+      "selected_recipe_measurement": true,
+      "sequence_collect_wall_clock_seconds": 68.98957540000083,
+      "set_id": "s3d_camouflage_off",
+      "single_thread_accounting": true,
+      "teacher_forced_one_pass_per_user_sequence_per_epoch": true,
+      "variant": "camouflage_off"
+    },
+    "logreg_F1_selected": {
+      "cell_id": "camouflage_off",
+      "class_count_seen": 32,
+      "config_id": "obs_decoder_logreg_cfg01",
+      "config_index": 1,
+      "cost_class": "logreg_F1",
+      "feature_dimension": 1133,
+      "features": "F1",
+      "fit_and_metric_wall_clock_seconds": 145.30779690000054,
+      "fit_examples": 192000,
+      "fit_matrix_nnz": 35687157,
+      "fit_plus_validation_wall_clock_seconds": 212.6772183000012,
+      "fit_user_filter": "all fit users",
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "sklearn.linear_model.LogisticRegression",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.06058498429276097,
+      "internal_validation_matrix_nnz": 8933505,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "matrix_build_wall_clock_seconds": 67.36942140000065,
+      "member": "obs_decoder_logreg",
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_sklearn_one_set",
+      "records_consumed": {
+        "fit_records": 192000,
+        "fit_records_skipped_by_budget": 0,
+        "internal_validation_records": 48000
+      },
+      "selected_recipe_measurement": true,
+      "set_id": "s3d_camouflage_off",
+      "variant": "camouflage_off"
+    },
+    "logreg_F2_reference": {
+      "cell_id": "camouflage_off",
+      "class_count_seen": 32,
+      "config_id": "obs_decoder_logreg_cfg04",
+      "config_index": 4,
+      "cost_class": "logreg_F2",
+      "feature_dimension": 2157,
+      "features": "F2",
+      "fit_and_metric_wall_clock_seconds": 312.23730910000086,
+      "fit_examples": 192000,
+      "fit_matrix_nnz": 64712439,
+      "fit_plus_validation_wall_clock_seconds": 454.53153400000156,
+      "fit_user_filter": "all fit users",
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "sklearn.linear_model.LogisticRegression",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.061738681040191215,
+      "internal_validation_matrix_nnz": 16208142,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "matrix_build_wall_clock_seconds": 142.2942249000007,
+      "member": "obs_decoder_logreg",
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_sklearn_one_set",
+      "records_consumed": {
+        "fit_records": 192000,
+        "fit_records_skipped_by_budget": 0,
+        "internal_validation_records": 48000
+      },
+      "selected_recipe_measurement": true,
+      "set_id": "s3d_camouflage_off",
+      "variant": "camouflage_off"
+    },
+    "ls_online_family": {
+      "cell_id": "flat_theta",
+      "heldout_users_800_999_touched": false,
+      "members": {
+        "discounted_LS_lambda_0.95": {
+          "cell_id": "flat_theta",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.2958739000005153,
+          "member": "discounted_LS_lambda_0.95",
+          "one_eval_user_macro_balanced_accuracy": 0.030853174603174605,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 10127.231857899866,
+          "score_one_eval_user_wall_clock_seconds": 63.29334989999916,
+          "variant": "flat_theta",
+          "wall_clock_seconds": 63.58950550000009
+        },
+        "running_average_preference_regressor": {
+          "cell_id": "flat_theta",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.09568949999993492,
+          "member": "running_average_preference_regressor",
+          "one_eval_user_macro_balanced_accuracy": 0.02483974358974359,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 5.949721499770021,
+          "score_one_eval_user_wall_clock_seconds": 0.03658769999856304,
+          "variant": "flat_theta",
+          "wall_clock_seconds": 0.1605814000013197
+        }
+      },
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+      "projection_unit": "fit_640_users_plus_score_one_eval_user_scaled_to_160_eval_users",
+      "record_collection_wall_clock_seconds": 76.96123590000025,
+      "variant": "flat_theta",
+      "wall_clock_seconds": 140.7113305999992
+    },
+    "retrieval_family": {
+      "cell_id": "stable_facts",
+      "heldout_users_800_999_touched": false,
+      "members": {
+        "nearest_neighbor_user_matching": {
+          "cell_id": "stable_facts",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.04060600000047998,
+          "member": "nearest_neighbor_user_matching",
+          "one_eval_user_macro_balanced_accuracy": 0.048496815684315686,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 7586.759934000036,
+          "score_one_eval_user_wall_clock_seconds": 47.41699580000022,
+          "variant": "rag_should_win_stable_facts",
+          "wall_clock_seconds": 47.457862999999634
+        },
+        "rag_k5_episode_retrieval": {
+          "cell_id": "stable_facts",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.07688310000048659,
+          "member": "rag_k5_episode_retrieval",
+          "one_eval_user_macro_balanced_accuracy": 0.04143252580752581,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 524.1589951000333,
+          "score_one_eval_user_wall_clock_seconds": 3.275513200000205,
+          "variant": "rag_should_win_stable_facts",
+          "wall_clock_seconds": 3.3525988000001234
+        }
+      },
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+      "projection_unit": "fit_640_users_plus_score_one_eval_user_scaled_to_160_eval_users",
+      "record_collection_wall_clock_seconds": 69.03585769999881,
+      "variant": "rag_should_win_stable_facts",
+      "wall_clock_seconds": 119.84633219999887
+    },
+    "seq_W15_selected": {
+      "cell_id": "low_diversity",
+      "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg01",
+      "config_index": 1,
+      "cost_class": "seq_W15",
+      "device": "cpu",
+      "environment": {
+        "cpu_hour_limit": 24.0,
+        "env_threads": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "r3_runtime_cpu_hour_limit": 30.0,
+        "single_thread_accounting": true,
+        "threadpool_info": [
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "vcomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          }
+        ],
+        "torch_device": "cpu",
+        "torch_num_interop_threads": 1,
+        "torch_num_threads": 1
+      },
+      "epochs_run": 10,
+      "fit_and_metric_wall_clock_seconds": 9.690451800001028,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 78.15398470000036,
+      "fit_sequences": 12800,
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "torch.nn.GRU",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.07488582606492974,
+      "internal_validation_sequences": 3200,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+      "offline_compute_units": 1920000,
+      "per_example_prefix_reencoding": false,
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_gru_one_set",
+      "query_time_single_prefix_encoding": true,
+      "selected_recipe_measurement": true,
+      "sequence_collect_wall_clock_seconds": 68.46353289999934,
+      "set_id": "s3d_low_diversity",
+      "single_thread_accounting": true,
+      "teacher_forced_one_pass_per_user_sequence_per_epoch": true,
+      "variant": "graph_cache_should_win_low_diversity_templates"
+    },
+    "seq_full_selected": {
+      "cell_id": "constant_none",
+      "config_id": "seq_full_history_no_action_conditioning_cfg02",
+      "config_index": 2,
+      "cost_class": "seq_full",
+      "device": "cpu",
+      "environment": {
+        "cpu_hour_limit": 24.0,
+        "env_threads": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "r3_runtime_cpu_hour_limit": 30.0,
+        "single_thread_accounting": true,
+        "threadpool_info": [
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "vcomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openblas",
+            "num_threads": 1,
+            "prefix": "libscipy_openblas",
+            "user_api": "blas"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          },
+          {
+            "internal_api": "openmp",
+            "num_threads": 1,
+            "prefix": "libiomp",
+            "user_api": "openmp"
+          }
+        ],
+        "torch_device": "cpu",
+        "torch_num_interop_threads": 1,
+        "torch_num_threads": 1
+      },
+      "epochs_run": 10,
+      "fit_and_metric_wall_clock_seconds": 9.123848699999144,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 68.05070919999889,
+      "fit_sequences": 640,
+      "fit_user_range": [
+        0,
+        639
+      ],
+      "framework": "torch.nn.GRU",
+      "heldout_touched": false,
+      "internal_validation_examples": 48000,
+      "internal_validation_macro_balanced_accuracy": 0.0,
+      "internal_validation_sequences": 160,
+      "internal_validation_user_range": [
+        640,
+        799
+      ],
+      "member": "seq_full_history_no_action_conditioning",
+      "offline_compute_units": 1920000,
+      "per_example_prefix_reencoding": false,
+      "producer_function": "src.fsp_pum_env.battery.obs_decoders._measure_gru_one_set",
+      "query_time_single_prefix_encoding": true,
+      "selected_recipe_measurement": true,
+      "sequence_collect_wall_clock_seconds": 58.92686049999975,
+      "set_id": "s3d_constant_none",
+      "single_thread_accounting": true,
+      "teacher_forced_one_pass_per_user_sequence_per_epoch": true,
+      "variant": "degenerate_should_win_constant_none"
+    },
+    "table_family": {
+      "cell_id": "low_diversity",
+      "heldout_users_800_999_touched": false,
+      "members": {
+        "count_table": {
+          "cell_id": "low_diversity",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.1419865000007121,
+          "member": "count_table",
+          "one_eval_user_macro_balanced_accuracy": 0.04954292546421084,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 0.9717785000048025,
+          "score_one_eval_user_wall_clock_seconds": 0.005186200000025565,
+          "variant": "graph_cache_should_win_low_diversity_templates",
+          "wall_clock_seconds": 0.14736090000042168
+        },
+        "episodic_traversal": {
+          "cell_id": "low_diversity",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.9446296000005532,
+          "member": "episodic_traversal",
+          "one_eval_user_macro_balanced_accuracy": 0.041159535268701745,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 352.99202160009554,
+          "score_one_eval_user_wall_clock_seconds": 2.2002962000005937,
+          "variant": "graph_cache_should_win_low_diversity_templates",
+          "wall_clock_seconds": 3.1451137000003655
+        },
+        "fsm_planner": {
+          "cell_id": "low_diversity",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.2551534000012907,
+          "member": "fsm_planner",
+          "one_eval_user_macro_balanced_accuracy": 0.05280949596052564,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 36.137329399869486,
+          "score_one_eval_user_wall_clock_seconds": 0.22426359999917622,
+          "variant": "graph_cache_should_win_low_diversity_templates",
+          "wall_clock_seconds": 0.47960520000015094
+        },
+        "successor_map": {
+          "cell_id": "low_diversity",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.1669175000006362,
+          "member": "successor_map",
+          "one_eval_user_macro_balanced_accuracy": 0.04451141900233018,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 3.532021499968323,
+          "score_one_eval_user_wall_clock_seconds": 0.021031899999798043,
+          "variant": "graph_cache_should_win_low_diversity_templates",
+          "wall_clock_seconds": 0.1889062999998714
+        },
+        "transition_table": {
+          "cell_id": "low_diversity",
+          "eval_records_one_user": 300,
+          "eval_user_id_measured": 640,
+          "eval_users_projected_per_member_cell": 160,
+          "fit_records": 192000,
+          "fit_users": 640,
+          "fit_wall_clock_seconds": 0.18539160000000265,
+          "member": "transition_table",
+          "one_eval_user_macro_balanced_accuracy": 0.05003837226714585,
+          "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+          "projected_one_member_cell_seconds": 2.2949436001836148,
+          "score_one_eval_user_wall_clock_seconds": 0.013184700001147576,
+          "variant": "graph_cache_should_win_low_diversity_templates",
+          "wall_clock_seconds": 0.198783399999229
+        }
+      },
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_measure_prefix_family_one_eval_user",
+      "projection_unit": "fit_640_users_plus_score_one_eval_user_scaled_to_160_eval_users",
+      "record_collection_wall_clock_seconds": 69.73430920000101,
+      "variant": "graph_cache_should_win_low_diversity_templates",
+      "wall_clock_seconds": 73.89410410000164
+    }
+  },
+  "full_part0_projection": {
+    "components": {
+      "bootstrap_18_certificate_member_rows": {
+        "measured_seconds": 0.01931960000001709,
+        "note": "rho bootstrap CI for 18 certificate member rows; NULL table has no rho CI",
+        "null_env_units_included": 0.0,
+        "projected_cpu_hours": 9.659800000008545e-05,
+        "projected_seconds": 0.3477528000003076,
+        "projected_units": 18.0
+      },
+      "degenerate_family_global_prior_cert_plus_NULL": {
+        "measured_seconds": 0.4451897999533685,
+        "note": "global_prior: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.00024732766664076027,
+        "projected_seconds": 0.890379599906737,
+        "projected_units": 2.0
+      },
+      "degenerate_family_majority_cert_plus_NULL": {
+        "measured_seconds": 0.9285781000380666,
+        "note": "majority: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.0005158767222433703,
+        "projected_seconds": 1.8571562000761332,
+        "projected_units": 2.0
+      },
+      "degenerate_family_predict_all_cert_plus_NULL": {
+        "measured_seconds": 0.734925000133444,
+        "note": "predict_all: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.0004082916667408022,
+        "projected_seconds": 1.469850000266888,
+        "projected_units": 2.0
+      },
+      "degenerate_family_predict_none_cert_plus_NULL": {
+        "measured_seconds": 0.3864214001532673,
+        "note": "predict_none: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.00021467855564070407,
+        "projected_seconds": 0.7728428003065346,
+        "projected_units": 2.0
+      },
+      "gbt_half_data_selected_cert_plus_NULL": {
+        "measured_seconds": 1252.7067341000002,
+        "note": "obs_decoder_gbt selected F2 half-data config on camouflage_off plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.6959481856111112,
+        "projected_seconds": 2505.4134682000004,
+        "projected_units": 2.0
+      },
+      "generation_all_7_cert_sets": {
+        "measured_seconds": 34.4163641999985,
+        "note": "one measured cert-set generation x 7 S3d cells",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.06692070816666375,
+        "projected_seconds": 240.91454939998948,
+        "projected_units": 7.0
+      },
+      "gru_selected_cert_plus_NULL": {
+        "measured_seconds": 79.66081400000076,
+        "note": "obs_decoder_gru selected config on camouflage_off plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.044256007777778196,
+        "projected_seconds": 159.3216280000015,
+        "projected_units": 2.0
+      },
+      "ideal_all_7_cells_160_eval_users": {
+        "measured_seconds": 25.343237600000066,
+        "note": "one measured S2 ideal eval user x 160 eval users x 7 cells including NULL_env",
+        "null_env_units_included": 160.0,
+        "projected_cpu_hours": 7.8845628088889095,
+        "projected_seconds": 28384.426112000074,
+        "projected_units": 1120.0
+      },
+      "logreg_F1_selected_cert_plus_NULL": {
+        "measured_seconds": 212.6772183000012,
+        "note": "obs_decoder_logreg selected F1 config on camouflage_off plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.11815401016666732,
+        "projected_seconds": 425.3544366000024,
+        "projected_units": 2.0
+      },
+      "logreg_F2_reference_measured_not_counted": {
+        "measured_seconds": 454.53153400000156,
+        "note": "measured because PART 0 names F1/F2; not counted because selected logreg recipe is F1",
+        "null_env_units_included": 0.0,
+        "projected_cpu_hours": 0.0,
+        "projected_seconds": 0.0,
+        "projected_units": 0.0
+      },
+      "ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL": {
+        "measured_seconds": 10127.231857899866,
+        "note": "discounted_LS_lambda_0.95: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 5.626239921055481,
+        "projected_seconds": 20254.46371579973,
+        "projected_units": 2.0
+      },
+      "ls_online_family_running_average_preference_regressor_cert_plus_NULL": {
+        "measured_seconds": 5.949721499770021,
+        "note": "running_average_preference_regressor: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.0033054008332055675,
+        "projected_seconds": 11.899442999540042,
+        "projected_units": 2.0
+      },
+      "retrieval_family_nearest_neighbor_user_matching_cert_plus_NULL": {
+        "measured_seconds": 7586.759934000036,
+        "note": "nearest_neighbor_user_matching: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 4.21486663000002,
+        "projected_seconds": 15173.519868000072,
+        "projected_units": 2.0
+      },
+      "retrieval_family_rag_k5_episode_retrieval_cert_plus_NULL": {
+        "measured_seconds": 524.1589951000333,
+        "note": "rag_k5_episode_retrieval: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.2911994417222407,
+        "projected_seconds": 1048.3179902000666,
+        "projected_units": 2.0
+      },
+      "seq_W15_selected_cert_plus_NULL": {
+        "measured_seconds": 78.15398470000036,
+        "note": "seq_W15 selected config on low_diversity plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.043418880388889095,
+        "projected_seconds": 156.30796940000073,
+        "projected_units": 2.0
+      },
+      "seq_full_selected_cert_plus_NULL": {
+        "measured_seconds": 68.05070919999889,
+        "note": "seq_full selected config on constant_none plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.03780594955555494,
+        "projected_seconds": 136.10141839999778,
+        "projected_units": 2.0
+      },
+      "table_family_count_table_cert_plus_NULL": {
+        "measured_seconds": 0.9717785000048025,
+        "note": "count_table: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.0005398769444471125,
+        "projected_seconds": 1.943557000009605,
+        "projected_units": 2.0
+      },
+      "table_family_episodic_traversal_cert_plus_NULL": {
+        "measured_seconds": 352.99202160009554,
+        "note": "episodic_traversal: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.19610667866671974,
+        "projected_seconds": 705.9840432001911,
+        "projected_units": 2.0
+      },
+      "table_family_fsm_planner_cert_plus_NULL": {
+        "measured_seconds": 36.137329399869486,
+        "note": "fsm_planner: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.020076294111038603,
+        "projected_seconds": 72.27465879973897,
+        "projected_units": 2.0
+      },
+      "table_family_successor_map_cert_plus_NULL": {
+        "measured_seconds": 3.532021499968323,
+        "note": "successor_map: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.0019622341666490684,
+        "projected_seconds": 7.064042999936646,
+        "projected_units": 2.0
+      },
+      "table_family_transition_table_cert_plus_NULL": {
+        "measured_seconds": 2.2949436001836148,
+        "note": "transition_table: projected one member-cell x favorable cert cell plus NULL_env",
+        "null_env_units_included": 1.0,
+        "projected_cpu_hours": 0.0012749686667686748,
+        "projected_seconds": 4.5898872003672295,
+        "projected_units": 2.0
+      }
+    },
+    "cpu_hour_limit": 12.0,
+    "linear_projection_assumptions": [
+      "cert-set generation scales linearly across the 7 S3d cells",
+      "S2 ideal cost scales from one eval user to 160 eval users per cell across 7 cells",
+      "sklearn/GRU selected-recipe measurements are one full fit+validation member-cell units",
+      "prefix-family measurements are fit_640 plus one eval user scoring, scaled to 160 eval users per member-cell",
+      "each measured member-cell is counted once for its favorable certificate cell and once for NULL_env",
+      "logreg_F2 is measured for named PART 0 coverage but not counted because the banked selected logreg recipe is F1"
+    ],
+    "null_env_projected_cpu_hours_included": 6.784196543861143,
+    "null_env_projected_seconds_included": 24423.107557900115,
+    "total_projected_cpu_hours": 19.248120769333408,
+    "total_projected_seconds": 69293.23476960027
+  },
+  "initial_lower_bound_artifact": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_compute_projection_v1.json",
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_compute_projection_v1.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\f2_ngram_vocabulary.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\obs_decoder_logreg_selected_recipe.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\obs_decoder_gbt_selected_recipe.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\obs_decoder_gru_selected_recipe.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\seq_full_history_no_action_conditioning_selected_recipe.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\seq_window_with_action_conditioning_W15_no_cross_session_persistence_selected_recipe.json"
+  ],
+  "measurements": {
+    "cert_set_generation": {
+      "adjudicator_only_estimated_raw_bytes": 151962774,
+      "adjudicator_only_sha256": "3b963bddf2f4f18b79b10d53aa36346d03a8c4b09db701cef506ba9aa4239085",
+      "cell_id": "constant_none",
+      "member_view_estimated_raw_bytes": 32138389,
+      "member_view_record_count": 240000,
+      "member_view_sha256": "9df435def1045d95f139f30d1f515705b8ad6be8fb6af3f3e5b5edcde61551f7",
+      "unit": "one_cert_set_generation",
+      "variant": "degenerate_should_win_constant_none",
+      "wall_clock_seconds": 34.4163641999985
+    },
+    "fit_score_cost_classes": [],
+    "ideal_per_user_one_cell": {
+      "atom_count": 7077888,
+      "cell_id": "camouflage_off",
+      "classes_present": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "cpu_hours": 0.0070397882222222406,
+      "filter_class": "src.fsp_pum_env.factored_filter.FactoredExactFilter",
+      "metric": 0.09948462995337995,
+      "posterior_array_bytes": 509608152,
+      "producer_function": "src.fsp_pum_env.s3d_certificates.measure_s3d_ideal_one_eval_user",
+      "turns": 300,
+      "unit": "S2_ideal_one_eval_user_full_300_turn_prefix",
+      "user_id": 640,
+      "variant": "camouflage_off",
+      "wall_clock_seconds": 25.343237600000066,
+      "z_quadrature_points_per_dim": 3
+    }
+  },
+  "part": "PART 0 full projection",
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::run_full_projection_extension",
+  "projected_cpu_hours": 19.248120769333408,
+  "projection_cpu_hours": 19.248120769333408,
+  "projection_lower_bound_cpu_hours": 1.1263661155555584,
+  "projection_rule": {
+    "camouflage_off_eval_users": 160,
+    "declared_assumption": "linear projection from measured per-user full-prefix S2 ideal cost; one camouflage_off cell has 160 eval users",
+    "lower_bound_basis": "camouflage_off S2 ideal alone, excluding generation, fitting, scoring, other cells, bootstrap, and NULL-env"
+  },
+  "projection_total_cpu_hours": 19.248120769333408,
+  "run_finished_at": "2026-07-04T04:00:01Z",
+  "run_id": "s3d-part0-full-projection-2026-07-04T03:17:27Z",
+  "run_started_at": "2026-07-04T03:17:27Z",
+  "runtime_guard_decision": "STOP_s3d_part0_projection_exceeds_12_cpu_hours",
+  "selected_recipe_sha256": {
+    "obs_decoder_gbt": "f2a091c9dc3b93a2b258ee3dfb4bf5515911cafc8b9b2564613b2f10d9e338fc",
+    "obs_decoder_gru": "8341f5d1221817258f5696bdf08feb663c03e6345aa3ec84b925350b8ed30bd1",
+    "obs_decoder_logreg": "c331b27db21ae4d2d9e6d6e94e35110565b8786b134bcaf1be50a8e7dad76388",
+    "seq_full_history_no_action_conditioning": "723bf89d13af3d154b2f9ebf208998f0d2924942b343864a26cb2a04d0b5deb5",
+    "seq_window_with_action_conditioning_W15_no_cross_session_persistence": "37ae0e00df2acb5aabfe663a141a2d59096985d9f31393105f448b2565a504b3"
+  },
+  "single_thread_environment": {
+    "cpu_hour_limit": 24.0,
+    "env_threads": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "r3_runtime_cpu_hour_limit": 30.0,
+    "single_thread_accounting": true,
+    "threadpool_info": [
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas"
+      },
+      {
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "vcomp",
+        "user_api": "openmp"
+      },
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas"
+      }
+    ],
+    "torch_device": "cpu",
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1
+  },
+  "stage": "S3d",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "unmeasured_required_cost_classes_after_decisive_lower_bound": [
+    "logreg_F1_or_F2",
+    "gbt",
+    "gru",
+    "seq",
+    "table-family",
+    "retrieval-family",
+    "degenerates",
+    "remaining ideal cells",
+    "NULL-env full battery",
+    "bootstrap"
+  ],
+  "wall_clock_seconds": 2553.9668629999996
+}
