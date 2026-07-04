@@ -1,0 +1,68 @@
+{
+  "artifact": "s3d_preflight_guard_report",
+  "base_invariance_regression": {
+    "banked_member_view_sha256": "0077f0b7173a34b2c6f3dfaf6081386ade3ee626d4a2369b76b6a619689c0154",
+    "declared_slice": "full banked set_00 member-view stream; stronger than >=2 users full horizon",
+    "guard": "BASE-invariance regression",
+    "passed": true,
+    "regenerated_member_view_sha256": "0077f0b7173a34b2c6f3dfaf6081386ade3ee626d4a2369b76b6a619689c0154",
+    "wall_clock_seconds": 69.02795440000045
+  },
+  "claim_ceiling": "S3d preflight guard evidence only; no certificate, NULL, environment-validity, baseline-power, gap, mechanism, agency, or EGO claim",
+  "code_path_hash": "2f96d8dec57b1da2bf29ab79d30aa26ea77af3ccd47b498af1c32561c7e52d13",
+  "ideal_filter_micro_sanity": [
+    {
+      "max_abs_delta": 0.0,
+      "micro_config": "ThetaGridSpec.micro_pc_grid, identity style_map, z_quadrature_points=3",
+      "passed": true,
+      "tolerance": 1e-09,
+      "variant": "degenerate_should_win_constant_none",
+      "wall_clock_seconds": 0.010462300000654068
+    },
+    {
+      "max_abs_delta": 0.0,
+      "micro_config": "ThetaGridSpec.micro_pc_grid, identity style_map, z_quadrature_points=3",
+      "passed": true,
+      "tolerance": 1e-09,
+      "variant": "degenerate_should_win_constant_saturated",
+      "wall_clock_seconds": 0.010290700000041397
+    }
+  ],
+  "input_artifacts": [
+    "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json"
+  ],
+  "new_variant_guards": [
+    {
+      "max_theta_distribution_delta": 0.0,
+      "min_target_probability": 1.0,
+      "no_new_observation_fields": true,
+      "passed": true,
+      "sample_concentration": 1.0,
+      "samples": 10000,
+      "target_symbol": 0,
+      "variant": "degenerate_should_win_constant_none",
+      "wall_clock_seconds": 0.5354154000015114
+    },
+    {
+      "max_theta_distribution_delta": 0.0,
+      "min_target_probability": 1.0,
+      "no_new_observation_fields": true,
+      "passed": true,
+      "sample_concentration": 1.0,
+      "samples": 10000,
+      "target_symbol": 31,
+      "variant": "degenerate_should_win_constant_saturated",
+      "wall_clock_seconds": 0.4725240000007034
+    }
+  ],
+  "passed": true,
+  "producer_function": "src.fsp_pum_env.s3d_certificates.run_s3d_preflight_guards",
+  "run_finished_at": "2026-07-04T06:32:30Z",
+  "run_started_at": "2026-07-04T06:31:20Z",
+  "sealing_import_graph_test": "must be run via python -m pytest tests/fsp_pum_env/test_s3a_sealing_import_graph.py -q",
+  "stage": "S3d",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "verdict": "guards_passed",
+  "wall_clock_seconds": 70.05775999999969
+}
