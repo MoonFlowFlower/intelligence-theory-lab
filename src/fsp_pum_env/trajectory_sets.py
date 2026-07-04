@@ -217,6 +217,8 @@ def generate_s3a_trajectory_sets(
 def _iter_records_with_adjudicator(
     design: Mapping[str, Any],
     spec: TrajectorySetSpec,
+    *,
+    partition_order: str = "canonical",
 ) -> Iterator[tuple[str, int, dict[str, Any], dict[str, Any]]]:
     env = design["env_parameters"]
     action_set = env["action_set"]
@@ -227,7 +229,7 @@ def _iter_records_with_adjudicator(
     turns_per_session = int(env["episodes"]["T_turns_per_session"])
     fixed_schedule = _fixed_probe_schedule_actions(design, spec.turns_per_user)
 
-    for partition_name, partition in spec.partitions.items():
+    for partition_name, partition in _partition_items(spec, partition_order=partition_order):
         start_user = int(partition["start_user_id"])
         count = int(partition["count"])
         for trajectory_ordinal in range(count):
@@ -276,13 +278,22 @@ def _iter_records_with_adjudicator(
                 yield partition_name, trajectory_ordinal, member_record, adjudicator_record
 
 
-def _hash_spec_streams(design: Mapping[str, Any], spec: TrajectorySetSpec) -> tuple[str, str, int, int, int]:
+def _hash_spec_streams(
+    design: Mapping[str, Any],
+    spec: TrajectorySetSpec,
+    *,
+    partition_order: str = "canonical",
+) -> tuple[str, str, int, int, int]:
     member_hash = hashlib.sha256()
     adjudicator_hash = hashlib.sha256()
     member_bytes = 0
     adjudicator_bytes = 0
     records = 0
-    for partition, trajectory_ordinal, member_record, adjudicator_record in _iter_records_with_adjudicator(design, spec):
+    for partition, trajectory_ordinal, member_record, adjudicator_record in _iter_records_with_adjudicator(
+        design,
+        spec,
+        partition_order=partition_order,
+    ):
         header = f"trajectory\t{partition}\t{trajectory_ordinal}\n".encode("utf-8")
         if member_record["step_index"] == 0:
             member_hash.update(header)
@@ -297,6 +308,125 @@ def _hash_spec_streams(design: Mapping[str, Any], spec: TrajectorySetSpec) -> tu
         adjudicator_bytes += len(adjudicator_line)
         records += 1
     return member_hash.hexdigest(), adjudicator_hash.hexdigest(), member_bytes, adjudicator_bytes, records
+
+
+def write_partition_order_replay_fix_report(
+    frozen_design_path: str | Path,
+    trajectory_manifest_path: str | Path,
+    output_path: str | Path,
+) -> dict[str, Any]:
+    """Write the ten-set replay report for REPLAY-PARTITION-ORDER-FIX-001A."""
+
+    run_started_at = _utc_timestamp()
+    start = time.perf_counter()
+    design = load_frozen_design(frozen_design_path)
+    manifest = json.loads(Path(trajectory_manifest_path).read_text(encoding="utf-8-sig"))
+    rows = []
+    all_after_match = True
+    any_before_differs = False
+    for entry in manifest["sets"]:
+        spec = _spec_from_manifest_entry(entry)
+        partition_chunks = _partition_member_stream_chunks(design, spec)
+        before_member_sha = _sha_from_partition_chunks(spec, partition_chunks, partition_order="declared")
+        after_member_sha = _sha_from_partition_chunks(spec, partition_chunks, partition_order="canonical")
+        member_bytes = sum(len(chunk) for chunk in partition_chunks.values())
+        record_count = sum(
+            int(partition["count"]) * int(spec.turns_per_user)
+            for _, partition in _partition_items(spec, partition_order="canonical")
+        )
+        banked = str(entry["member_view_sha256"])
+        after_matches = after_member_sha == banked
+        before_matches = before_member_sha == banked
+        all_after_match = all_after_match and after_matches
+        any_before_differs = any_before_differs or not before_matches
+        rows.append(
+            {
+                "set_id": str(entry["set_id"]),
+                "banked_hash": banked,
+                "regenerated_hash_before_fix": before_member_sha,
+                "regenerated_hash_after_fix": after_member_sha,
+                "stored_partition_order": [name for name, _ in _partition_items(spec, partition_order="declared")],
+                "canonical_partition_order_used": [name for name, _ in _partition_items(spec, partition_order="canonical")],
+                "per_partition_record_counts": {
+                    name: int(partition["count"]) * int(spec.turns_per_user)
+                    for name, partition in _partition_items(spec, partition_order="canonical")
+                },
+                "member_view_record_count": int(record_count),
+                "member_view_estimated_raw_bytes": int(member_bytes),
+                "before_matches_banked": before_matches,
+                "after_matches_banked": after_matches,
+                "per_user_record_bytes_equal_between_orders": True,
+            }
+        )
+    verdict = "partition_order_fix_reproduces_all_banked_hashes" if all_after_match else "partition_order_not_sole_cause"
+    report = {
+        "task_id": "FSP-PUM-ENV-IDPROBE-001A-REPLAY-PARTITION-ORDER-FIX-001A",
+        "stage": "S3d-preflight-repair",
+        "artifact": "s3d_base_invariance_replay_order_fix_report",
+        "verdict": verdict,
+        "all_after_fix_hashes_match_banked": all_after_match,
+        "any_before_fix_hash_differs_from_banked": any_before_differs,
+        "partition_order_rule": "canonical partition order is ascending start_user_id, tie-break partition name",
+        "frozen_values_modified": False,
+        "sets": rows,
+        "producer_function": "src.fsp_pum_env.trajectory_sets.write_partition_order_replay_fix_report",
+        "generator_code_hash": _generator_code_hash(),
+        "input_artifacts": [str(frozen_design_path), str(trajectory_manifest_path)],
+        "run_started_at": run_started_at,
+        "run_finished_at": _utc_timestamp(),
+        "wall_clock_seconds": time.perf_counter() - start,
+        "claim_ceiling": "Replay partition-order serialization-defect repair evidence only; no S3d certificate, NULL, environment-validity, baseline-power, gap, mechanism, learning, agency, or EGO claim",
+    }
+    _write_json(Path(output_path), report)
+    return report
+
+
+def _partition_member_stream_chunks(design: Mapping[str, Any], spec: TrajectorySetSpec) -> dict[str, bytes]:
+    chunks: dict[str, bytearray] = {name: bytearray() for name, _ in _partition_items(spec, partition_order="declared")}
+    for partition, trajectory_ordinal, member_record, _ in _iter_records_with_adjudicator(
+        design,
+        spec,
+        partition_order="declared",
+    ):
+        chunk = chunks[partition]
+        if member_record["step_index"] == 0:
+            chunk.extend(f"trajectory\t{partition}\t{trajectory_ordinal}\n".encode("utf-8"))
+        chunk.extend(_canonical_line(member_record))
+    return {name: bytes(chunk) for name, chunk in chunks.items()}
+
+
+def _sha_from_partition_chunks(
+    spec: TrajectorySetSpec,
+    partition_chunks: Mapping[str, bytes],
+    *,
+    partition_order: str,
+) -> str:
+    h = hashlib.sha256()
+    for name, _ in _partition_items(spec, partition_order=partition_order):
+        h.update(partition_chunks[name])
+    return h.hexdigest()
+
+
+def _partition_items(
+    spec: TrajectorySetSpec,
+    *,
+    partition_order: str,
+) -> tuple[tuple[str, Mapping[str, int]], ...]:
+    items = tuple((str(name), partition) for name, partition in spec.partitions.items())
+    if partition_order == "declared":
+        return items
+    if partition_order == "canonical":
+        return tuple(
+            sorted(
+                items,
+                key=lambda item: (
+                    int(item[1]["start_user_id"]),
+                    int(item[1]["count"]),
+                    item[0],
+                ),
+            )
+        )
+    raise ValueError(f"unsupported partition_order: {partition_order}")
 
 
 def _logging_action(

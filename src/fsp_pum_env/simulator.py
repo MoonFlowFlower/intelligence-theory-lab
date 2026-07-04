@@ -19,6 +19,8 @@ import numpy as np
 class SimulatorVariant(str, Enum):
     BASE = "base"
     NULL_ENV = "NULL_env"
+    DEGENERATE_SHOULD_WIN_CONSTANT_NONE = "degenerate_should_win_constant_none"
+    DEGENERATE_SHOULD_WIN_CONSTANT_SATURATED = "degenerate_should_win_constant_saturated"
     CAMOUFLAGE_OFF = "camouflage_off"
     PROBE_CHANNEL_OFF = "probe_channel_off"
     FLAT_THETA = "flat_theta"
@@ -27,6 +29,13 @@ class SimulatorVariant(str, Enum):
     RAG_SHOULD_WIN_STABLE_FACTS = "rag_should_win_stable_facts"
     SURFACE_REMAP_FRESH_RENDERER = "surface_remap_fresh_renderer"
 
+
+_CONSTANT_CERT_VARIANTS = frozenset(
+    {
+        SimulatorVariant.DEGENERATE_SHOULD_WIN_CONSTANT_NONE,
+        SimulatorVariant.DEGENERATE_SHOULD_WIN_CONSTANT_SATURATED,
+    }
+)
 
 _LATENT_KEYS = {
     "theta",
@@ -195,6 +204,8 @@ class FspPumSimulator:
     def response_distribution(self, user: _UserState, action: str) -> list[float]:
         self._validate_action(action)
         self._ensure_session_started(user)
+        if self.variant in _CONSTANT_CERT_VARIANTS:
+            return self._constant_cert_distribution()
         if self.variant is SimulatorVariant.GRAPH_CACHE_SHOULD_WIN_LOW_DIVERSITY_TEMPLATES:
             base = self._low_diversity_template_distribution(action)
         elif self.variant is SimulatorVariant.RAG_SHOULD_WIN_STABLE_FACTS and action == "recommend":
@@ -361,6 +372,8 @@ class FspPumSimulator:
         return (1.0 - weight) * distribution + weight * uniform
 
     def _update_trust(self, user: _UserState, action: str, probe_cost: float) -> None:
+        if self.variant in _CONSTANT_CERT_VARIANTS:
+            return
         theta = user.theta
         if action in self.probe_actions:
             next_trust = theta.trust_decay_beta * user.trust - probe_cost
@@ -386,9 +399,19 @@ class FspPumSimulator:
         user.z_state = self._initial_z_state(user.user_id, session_index=next_session)
 
     def _probe_trust_cost(self, action: str) -> float:
-        if action not in self.probe_actions or self.variant is SimulatorVariant.TRUST_COST_OFF:
+        if (
+            action not in self.probe_actions
+            or self.variant is SimulatorVariant.TRUST_COST_OFF
+            or self.variant in _CONSTANT_CERT_VARIANTS
+        ):
             return 0.0
         return float(self._probe_specs[action]["trust_cost"])
+
+    def _constant_cert_distribution(self) -> list[float]:
+        target = 0 if self.variant is SimulatorVariant.DEGENERATE_SHOULD_WIN_CONSTANT_NONE else self.alphabet_size - 1
+        distribution = [0.0] * self.alphabet_size
+        distribution[target] = 1.0
+        return distribution
 
     def _topic_level_index(self, value: float) -> int:
         distances = [abs(float(value) - level) for level in self.theta_topic_levels]
