@@ -1,0 +1,513 @@
+{
+  "ablation": "N/A by task-card design; timing-measurement addendum only",
+  "aggregation_rule": "population mean/std/min/max over k=5 pre-registered users; prefix projections use one fit wall plus aggregate score wall * 160, then original full-projection component units",
+  "artifact": "s3d_part0_variance_probe",
+  "baseline": "N/A by task-card design; timing-measurement addendum only",
+  "certificate_battery_started": false,
+  "claim_ceiling": "PART 0 compute-projection refinement / single-user timing variance only; no certificate, NULL, environment-validity, baseline-power, headroom, gap, mechanism, learning, agency, EGO-mainline, or banked-STOP upgrade claim",
+  "code_path_hash": "3e5c4cc94ec388c8a30c786623842655b561cb6143b0d6b6dbf3603855ff271a",
+  "forbidden_reports_absent": {
+    "s3d_certificate_report.json": true,
+    "s3d_null_env_report.json": true
+  },
+  "heldout_users_800_999_touched": false,
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_compute_projection.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_part0_projection_runner.py"
+  ],
+  "measurements": {
+    "discounted_LS_lambda_0.95_score_flat_theta": {
+      "aggregation_rule": "population mean/std/min/max over k=5 pre-registered eval users",
+      "cell_id": "flat_theta",
+      "eval_users_projected_per_member_cell": 160,
+      "fit_once_wall_clock_seconds": 0.14471620000040275,
+      "fit_records": 192000,
+      "fit_users": 640,
+      "measurement_kind": "prefix_family_fit_once_score_per_eval_user",
+      "member": "discounted_LS_lambda_0.95",
+      "one_member_cell_projection_cpu_hours": {
+        "max": 1.838031936722187,
+        "mean": 1.651440745611048,
+        "min": 1.4885685722777726
+      },
+      "one_member_cell_projection_seconds": {
+        "max": 6616.914972199873,
+        "mean": 5945.186684199773,
+        "min": 5358.846860199981
+      },
+      "original_runner_measurement_loop_mirrored": "fit/observe train users 0..639 once, deepcopy fitted predictor per eval user, then predict/observe eval prefix",
+      "per_user": [
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.030853174603174605,
+          "score_wall_seconds": 41.3548140999992,
+          "user_id": 640
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.013020833333333332,
+          "score_wall_seconds": 39.07299729999795,
+          "user_id": 680
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.02755456349206349,
+          "score_wall_seconds": 37.5375787999983,
+          "user_id": 720
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.030996130605505608,
+          "score_wall_seconds": 33.49188839999988,
+          "user_id": 759
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.03495592948717949,
+          "score_wall_seconds": 34.325282899997546,
+          "user_id": 799
+        }
+      ],
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py::_measure_prefix_member_variance",
+      "projection_rule": "fit_once_wall_clock_seconds + aggregate_score_wall_seconds * 160",
+      "record_collection_wall_clock_seconds": 223.73439940000026,
+      "reference_user_640": {
+        "eval_records": 300,
+        "macro_balanced_accuracy": 0.030853174603174605,
+        "score_wall_seconds": 41.3548140999992,
+        "user_id": 640
+      },
+      "reused_original_runner_functions": [
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_records_by_user",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_single_thread_environment"
+      ],
+      "score_wall_seconds": {
+        "count": 5.0,
+        "max": 41.3548140999992,
+        "mean": 37.156512299998575,
+        "min": 33.49188839999988,
+        "std": 2.9287947241281693
+      },
+      "selected_user_ids": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "term": "discounted_LS_lambda_0.95_score_flat_theta",
+      "variant": "flat_theta"
+    },
+    "ideal_one_cell_camouflage_off": {
+      "aggregation_rule": "population mean/std/min/max over k=5 pre-registered eval users",
+      "cell_id": "camouflage_off",
+      "fit_once_wall_clock_seconds": null,
+      "measurement_kind": "ideal_one_cell_per_eval_user_wall",
+      "member": "FactoredExactFilter",
+      "per_user": [
+        {
+          "atom_count": 7077888,
+          "metric": 0.09948462995337995,
+          "turns": 300,
+          "user_id": 640,
+          "wall_seconds": 35.03736030000073
+        },
+        {
+          "atom_count": 7077888,
+          "metric": 0.14722304605117104,
+          "turns": 300,
+          "user_id": 680,
+          "wall_seconds": 33.27826199999981
+        },
+        {
+          "atom_count": 7077888,
+          "metric": 0.07391002073906486,
+          "turns": 300,
+          "user_id": 720,
+          "wall_seconds": 33.30345550000129
+        },
+        {
+          "atom_count": 7077888,
+          "metric": 0.13005627185314683,
+          "turns": 300,
+          "user_id": 759,
+          "wall_seconds": 32.04817620000176
+        },
+        {
+          "atom_count": 7077888,
+          "metric": 0.07590022824397824,
+          "turns": 300,
+          "user_id": 799,
+          "wall_seconds": 31.314665999998397
+        }
+      ],
+      "per_user_wall_seconds": {
+        "count": 5.0,
+        "max": 35.03736030000073,
+        "mean": 32.9963840000004,
+        "min": 31.314665999998397,
+        "std": 1.270165802851619
+      },
+      "producer_function": "src.fsp_pum_env.s3d_certificates.measure_s3d_ideal_one_eval_user",
+      "projection_cpu_hours": {
+        "max": 10.90051209333356,
+        "mean": 10.265541688889012,
+        "min": 9.742340533332834
+      },
+      "projection_rule": "mean_per_user_wall_seconds * 1120 (7 S3d cells * 160 eval users)",
+      "projection_seconds": {
+        "max": 39241.843536000815,
+        "mean": 36955.950080000446,
+        "min": 35072.425919998204
+      },
+      "projection_units": 1120.0,
+      "reference_user_640": {
+        "atom_count": 7077888,
+        "metric": 0.09948462995337995,
+        "turns": 300,
+        "user_id": 640,
+        "wall_seconds": 35.03736030000073
+      },
+      "selected_user_ids": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "single_thread_accounting": true,
+      "term": "ideal_one_cell_camouflage_off"
+    },
+    "nearest_neighbor_user_matching_score_stable_facts": {
+      "aggregation_rule": "population mean/std/min/max over k=5 pre-registered eval users",
+      "cell_id": "stable_facts",
+      "eval_users_projected_per_member_cell": 160,
+      "fit_once_wall_clock_seconds": 0.019501899998431327,
+      "fit_records": 192000,
+      "fit_users": 640,
+      "measurement_kind": "prefix_family_fit_once_score_per_eval_user",
+      "member": "nearest_neighbor_user_matching",
+      "one_member_cell_projection_cpu_hours": {
+        "max": 1.2758132260832937,
+        "mean": 1.0020189371944486,
+        "min": 0.8649550483054483
+      },
+      "one_member_cell_projection_seconds": {
+        "max": 4592.9276138998575,
+        "mean": 3607.2681739000145,
+        "min": 3113.838173899614
+      },
+      "original_runner_measurement_loop_mirrored": "fit/observe train users 0..639 once, deepcopy fitted predictor per eval user, then predict/observe eval prefix",
+      "per_user": [
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.048496815684315686,
+          "score_wall_seconds": 19.461366699997598,
+          "user_id": 640
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.029280411173793527,
+          "score_wall_seconds": 19.898166999999376,
+          "user_id": 680
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.026089362026862024,
+          "score_wall_seconds": 20.897632400003204,
+          "user_id": 720
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.03816964285714285,
+          "score_wall_seconds": 23.763679200001206,
+          "user_id": 759
+        },
+        {
+          "eval_records": 300,
+          "macro_balanced_accuracy": 0.035293786075036075,
+          "score_wall_seconds": 28.70567569999912,
+          "user_id": 799
+        }
+      ],
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py::_measure_prefix_member_variance",
+      "projection_rule": "fit_once_wall_clock_seconds + aggregate_score_wall_seconds * 160",
+      "record_collection_wall_clock_seconds": 139.4463692999998,
+      "reference_user_640": {
+        "eval_records": 300,
+        "macro_balanced_accuracy": 0.048496815684315686,
+        "score_wall_seconds": 19.461366699997598,
+        "user_id": 640
+      },
+      "reused_original_runner_functions": [
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_records_by_user",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_single_thread_environment"
+      ],
+      "score_wall_seconds": {
+        "count": 5.0,
+        "max": 28.70567569999912,
+        "mean": 22.5453042000001,
+        "min": 19.461366699997598,
+        "std": 3.425418014744543
+      },
+      "selected_user_ids": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "term": "nearest_neighbor_user_matching_score_stable_facts",
+      "variant": "rag_should_win_stable_facts"
+    }
+  },
+  "null_env_started": false,
+  "pre_registered_sampling": {
+    "fractional_indices": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "heldout_range_forbidden": [
+      800,
+      999
+    ],
+    "k": 5,
+    "reference_user_id": 640,
+    "resolved_user_ids_by_term": {
+      "discounted_LS_lambda_0.95_score_flat_theta": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "ideal_one_cell_camouflage_off": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "nearest_neighbor_user_matching_score_stable_facts": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ]
+    },
+    "selection_rule": "sort eval-user ids ascending; index = round(fraction * (n - 1)); preserve ascending resolved ids"
+  },
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py::run_variance_probe",
+  "reference_user_640": {
+    "discounted_LS_lambda_0.95_score_flat_theta": {
+      "eval_records": 300,
+      "macro_balanced_accuracy": 0.030853174603174605,
+      "score_wall_seconds": 41.3548140999992,
+      "user_id": 640
+    },
+    "ideal_one_cell_camouflage_off": {
+      "atom_count": 7077888,
+      "metric": 0.09948462995337995,
+      "turns": 300,
+      "user_id": 640,
+      "wall_seconds": 35.03736030000073
+    },
+    "nearest_neighbor_user_matching_score_stable_facts": {
+      "eval_records": 300,
+      "macro_balanced_accuracy": 0.048496815684315686,
+      "score_wall_seconds": 19.461366699997598,
+      "user_id": 640
+    }
+  },
+  "replay_structure": {
+    "absolute_timings_machine_dependent": true,
+    "callable_paths": {
+      "discounted_LS_lambda_0.95_score_flat_theta": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_records_by_user + isolated fit-once score loop matching _measure_prefix_family_one_eval_user",
+      "ideal_one_cell_camouflage_off": "src.fsp_pum_env.s3d_certificates.measure_s3d_ideal_one_eval_user",
+      "nearest_neighbor_user_matching_score_stable_facts": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::_records_by_user + isolated fit-once score loop matching _measure_prefix_family_one_eval_user"
+    },
+    "replay_requirement": "rerun this script with the recorded selected_user_ids_by_term and single-thread environment; selection and callable paths must reproduce"
+  },
+  "revised_projection": {
+    "band_crosses_12_0_cpu_hours": false,
+    "band_relation_to_12_0_cpu_hours": "entire_min_max_band_above_12_0",
+    "cpu_hour_line_unchanged": 12.0,
+    "does_not_overturn_or_strengthen_banked_stop": true,
+    "min_max_band_cpu_hours": [
+      15.971839183888275,
+      18.650653828333517
+    ],
+    "min_max_band_seconds": [
+      57498.62106199779,
+      67142.35378200066
+    ],
+    "original_total_projected_cpu_hours": 19.248120769333408,
+    "original_total_projected_seconds": 69293.23476960027,
+    "projection_formula": "original full projection with the three target components replaced by k=5 mean/min/max timing; non-target components kept from s3d_compute_projection.json",
+    "revised_total_projected_cpu_hours": 17.094912463889003,
+    "revised_total_projected_seconds": 61541.68487000041,
+    "static_non_target_projected_cpu_hours": 1.5224514093889976,
+    "static_non_target_projected_seconds": 5480.825073800392,
+    "term_contributions": {
+      "discounted_LS_lambda_0.95_score_flat_theta": {
+        "full_projection_component_units": 2.0,
+        "original_component": "ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL",
+        "original_projected_cpu_hours": 5.626239921055481,
+        "original_projected_seconds": 20254.46371579973,
+        "revised_component_projection_cpu_hours": {
+          "max": 3.676063873444374,
+          "mean": 3.302881491222096,
+          "min": 2.9771371445555452
+        },
+        "revised_component_projection_seconds": {
+          "max": 13233.829944399746,
+          "mean": 11890.373368399545,
+          "min": 10717.693720399962
+        }
+      },
+      "ideal_one_cell_camouflage_off": {
+        "full_projection_component_units": 1.0,
+        "original_component": "ideal_all_7_cells_160_eval_users",
+        "original_projected_cpu_hours": 7.8845628088889095,
+        "original_projected_seconds": 28384.426112000074,
+        "revised_component_projection_cpu_hours": {
+          "max": 10.90051209333356,
+          "mean": 10.265541688889012,
+          "min": 9.742340533332834
+        },
+        "revised_component_projection_seconds": {
+          "max": 39241.843536000815,
+          "mean": 36955.950080000446,
+          "min": 35072.425919998204
+        }
+      },
+      "nearest_neighbor_user_matching_score_stable_facts": {
+        "full_projection_component_units": 2.0,
+        "original_component": "retrieval_family_nearest_neighbor_user_matching_cert_plus_NULL",
+        "original_projected_cpu_hours": 4.21486663000002,
+        "original_projected_seconds": 15173.519868000072,
+        "revised_component_projection_cpu_hours": {
+          "max": 2.5516264521665875,
+          "mean": 2.004037874388897,
+          "min": 1.7299100966108967
+        },
+        "revised_component_projection_seconds": {
+          "max": 9185.855227799715,
+          "mean": 7214.536347800029,
+          "min": 6227.676347799228
+        }
+      }
+    }
+  },
+  "run_finished_at": "2026-07-04T04:53:43Z",
+  "run_id": "s3d-part0-variance-probe-2026-07-04T04:44:48Z",
+  "run_started_at": "2026-07-04T04:44:48Z",
+  "seed_context_episode_ids": {
+    "cells": {
+      "discounted_LS_lambda_0.95_score_flat_theta": "flat_theta",
+      "ideal_one_cell_camouflage_off": "camouflage_off",
+      "nearest_neighbor_user_matching_score_stable_facts": "stable_facts"
+    },
+    "master_seeds": {
+      "discounted_LS_lambda_0.95_score_flat_theta": 20260716,
+      "ideal_one_cell_camouflage_off": 20260713,
+      "nearest_neighbor_user_matching_score_stable_facts": 20260715
+    },
+    "selected_user_ids_by_term": {
+      "discounted_LS_lambda_0.95_score_flat_theta": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "ideal_one_cell_camouflage_off": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ],
+      "nearest_neighbor_user_matching_score_stable_facts": [
+        640,
+        680,
+        720,
+        759,
+        799
+      ]
+    }
+  },
+  "single_thread_environment": {
+    "cpu_hour_limit": 24.0,
+    "env_threads": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "r3_runtime_cpu_hour_limit": 30.0,
+    "single_thread_accounting": true,
+    "threadpool_info": [
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas"
+      },
+      {
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "vcomp",
+        "user_api": "openmp"
+      },
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas"
+      }
+    ],
+    "torch_device": "cpu",
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1,
+    "variance_probe_env_threads": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "variance_probe_single_thread_accounting": true
+  },
+  "source_code_hashes": {
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_part0_projection_runner.py": "d686cfa5f798e6561737c206e3cf6f4507cb3c7e30ba24ef715f2fd06982d6ec",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_part0_variance_probe_runner.py": "1eb7b4ec49de4704d6960b1b10d01b31eb9ab74eff03f1a8d5637c4bffe6c6ce",
+    "src\\fsp_pum_env\\battery\\base.py": "4803762bc2faae65771509379e517a8a450f2d13d4c11c9d0c2eaa981b8a1102",
+    "src\\fsp_pum_env\\battery\\degenerates.py": "a1a6d539ed92849a1ba4c4ab68e75f3bcbf6de1ec104b02728cbcb4049dffcf2",
+    "src\\fsp_pum_env\\battery\\graph_cache.py": "c1e5ca6288eb51c065ff158bbb4dddadb9de37b0d593c4bc3bb072013e35580c",
+    "src\\fsp_pum_env\\battery\\ls_regressors.py": "188789caa093d367eff9f61b54cd010e2502879aeb59cafa1350a92602906402",
+    "src\\fsp_pum_env\\battery\\obs_decoders.py": "16de6f3feecac43e5ec7f6b9a04960863f26689e3c24bf51bb9ab6a6e17a0829",
+    "src\\fsp_pum_env\\battery\\rag_nn.py": "7165fcd2be5143c7828b2947fff45a117feb2a42a6259bffd6f49d74a49173c0",
+    "src\\fsp_pum_env\\battery\\seq_models.py": "b6ef0cf0e772a36f9e66bb47b4caf2864b54d0d8662d42d3ac53b82ed9a41486",
+    "src\\fsp_pum_env\\factored_filter.py": "d617835c5c5178f65622bf497eaf420112aceb382923f7c58f62d0f40fabcb31",
+    "src\\fsp_pum_env\\s3d_certificates.py": "20e4fbc45be7734f6f4d898707b40672217732c0bf96bf9a0071964a2854ece1",
+    "src\\fsp_pum_env\\simulator.py": "8aad69dbc5ed501ee2507f274ceca046695b91a960a1071149c43b50dfb55e26",
+    "src\\fsp_pum_env\\trajectory_sets.py": "b95d591f20b80e2f11857636aa7467fd61a9926994a9ac8bf1b0bcc92576138a"
+  },
+  "stage": "S3d PART 0 projection refinement",
+  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-PART0-VARIANCE-PROBE-001A",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "trace_artifact": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_part0_variance_probe_trace.csv",
+  "trace_schema": [
+    "user_id",
+    "term",
+    "wall_seconds",
+    "thread_env"
+  ],
+  "verdict": "measurement_emitted",
+  "wall_clock_seconds": 534.9867550999988
+}
