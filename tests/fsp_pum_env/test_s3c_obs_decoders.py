@@ -9,6 +9,8 @@ from src.fsp_pum_env.battery.obs_decoders import (
     F2_NGRAM_VOCABULARY_SIZE,
     S3C_COST_CLASSES,
     S3C_CPU_HOUR_LIMIT,
+    S3C_R3_CPU_HOUR_LIMIT,
+    build_s3c_r3_runtime_trace,
     build_f2_ngram_vocabulary,
     configure_s3c_single_thread_cpu_environment,
     decoder_grid,
@@ -17,9 +19,12 @@ from src.fsp_pum_env.battery.obs_decoders import (
     materialize_prefix_feature_rows_incremental,
     materialize_prefix_feature_rows_naive,
     project_s3c_r2_from_measurements,
+    s3c_sweep_config_specs,
     s3c_split_for_user,
     validate_s3c_training_user_id,
     ObsDecoderLogRegPredictor,
+    _empty_sweep_aggregators,
+    _update_sweep_aggregator,
 )
 from src.fsp_pum_env.trajectory_sets import TrajectorySetSpec
 
@@ -209,6 +214,72 @@ def test_projection_v2_uses_six_measured_classes_and_one_time_costs():
     assert projection["projection_seconds"] == expected_seconds
     assert projection["projection_cpu_hours"] == expected_seconds / 3600.0
     assert projection["decision"] == "projection_within_24_cpu_hours"
+
+
+def test_r3_runtime_trace_uses_operator_signed_30_cpu_hour_line():
+    trace = build_s3c_r3_runtime_trace(
+        [
+            {
+                "member": "obs_decoder_logreg",
+                "config_id": "obs_decoder_logreg_cfg00",
+                "config_index": 0,
+                "wall_clock_seconds": 3600.0,
+            },
+            {
+                "member": "obs_decoder_gbt",
+                "config_id": "obs_decoder_gbt_cfg00",
+                "config_index": 0,
+                "wall_clock_seconds": 29.1 * 3600.0,
+            },
+        ],
+        wall_clock_seconds=7200.0,
+    )
+
+    assert S3C_R3_CPU_HOUR_LIMIT == 30.0
+    assert trace["cpu_hour_limit"] == 30.0
+    assert trace["total_sweep_cpu_hours"] == pytest.approx(30.1)
+    assert trace["wall_clock_hours"] == pytest.approx(2.0)
+    assert trace["single_thread_accounting"] is True
+    assert trace["decision"] == "stop_runtime_exceeds_30_cpu_hours"
+    assert trace["cumulative_cpu_hours_trace"][-1]["cumulative_cpu_hours"] == pytest.approx(30.1)
+
+
+def test_r3_sweep_config_specs_cover_forty_frozen_configs():
+    configs = s3c_sweep_config_specs()
+
+    assert len(configs) == 40
+    assert len({config["config_id"] for config in configs}) == 40
+    assert [config["member"] for config in configs].count("obs_decoder_logreg") == 8
+    assert [config["member"] for config in configs].count("obs_decoder_gbt") == 8
+    assert [config["member"] for config in configs].count("obs_decoder_gru") == 8
+    assert [config["member"] for config in configs].count("seq_full_history_no_action_conditioning") == 8
+    assert (
+        [config["member"] for config in configs].count(
+            "seq_window_with_action_conditioning_W15_no_cross_session_persistence"
+        )
+        == 8
+    )
+
+
+def test_sweep_aggregator_accounts_full_config_wall_clock_when_available():
+    config = decoder_grid("obs_decoder_logreg")[0]
+    aggregators = _empty_sweep_aggregators()
+    result = {
+        "targets": [0, 1],
+        "predictions": [0, 1],
+        "fit_and_predict_wall_clock_seconds": 2.0,
+        "fit_plus_validation_wall_clock_seconds": 5.0,
+        "fit_examples": 10,
+        "internal_validation_examples": 2,
+        "offline_compute_units": 20,
+    }
+
+    _update_sweep_aggregator(aggregators, config, result, {"fit_records": 10}, "set_00")
+
+    item = aggregators[config["config_id"]]
+    assert item["wall_clock_seconds"] == 5.0
+    assert item["set_results"][0]["wall_clock_seconds"] == 5.0
+    assert item["set_results"][0]["model_fit_predict_wall_clock_seconds"] == 2.0
 
 
 def test_single_thread_cpu_environment_is_asserted_in_sweep_entry_path(monkeypatch):

@@ -1,0 +1,28 @@
+{
+  "artifact": "s3c_r3_fp_nondeterminism_declaration",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S3c-R3",
+  "drafted_by": "Claude (lab auditor role) at operator instruction, 2026-07-03, per S3C-R3-BANK-OPS-001A PART A",
+  "scope_members": [
+    "obs_decoder_logreg",
+    "obs_decoder_gbt",
+    "obs_decoder_gru",
+    "seq_full_history_no_action_conditioning",
+    "seq_window_with_action_conditioning_W15_no_cross_session_persistence"
+  ],
+  "determinism_basis": "deterministic_training_recipe: per-member config_seed + frozen S3a trajectory sets + code identity (component_code_hashes in s3c_battery_manifest.json) + threads=1 + framework_versions as recorded in s3c_battery_manifest.json (numpy 2.2.6, scipy 1.17.0, sklearn 1.9.0, torch 2.9.1+cu128, CPU-only)",
+  "declared_fp_nondeterminism_sources": [
+    "sklearn lbfgs / HistGradientBoosting floating-point reduction order under BLAS/threadpool variation",
+    "torch CPU kernel implementation differences across builds and platforms",
+    "compiler and BLAS library differences across hosts"
+  ],
+  "reproducibility_claim": "bitwise reproducibility is expected only on same platform + same framework versions + threads=1; cross-platform replay tolerance is NOT declared here and must be adjudicated at recipe consumption time (S3d/S5)",
+  "recipe_files_sha256": {
+    "obs_decoder_logreg_selected_recipe.json": "c331b27db21ae4d2d9e6d6e94e35110565b8786b134bcaf1be50a8e7dad76388",
+    "obs_decoder_gbt_selected_recipe.json": "f2a091c9dc3b93a2b258ee3dfb4bf5515911cafc8b9b2564613b2f10d9e338fc",
+    "obs_decoder_gru_selected_recipe.json": "8341f5d1221817258f5696bdf08feb663c03e6345aa3ec84b925350b8ed30bd1",
+    "seq_full_history_no_action_conditioning_selected_recipe.json": "723bf89d13af3d154b2f9ebf208998f0d2924942b343864a26cb2a04d0b5deb5",
+    "seq_window_with_action_conditioning_W15_no_cross_session_persistence_selected_recipe.json": "37ae0e00df2acb5aabfe663a141a2d59096985d9f31393105f448b2565a504b3"
+  },
+  "claim_ceiling": "declaration only; no reproducibility evidence claim"
+}

@@ -1,0 +1,168 @@
+{
+  "artifact": "obs_decoder_gbt_selected_recipe",
+  "claim_ceiling": "deterministic recipe persistence only; no model-quality or mechanism claim",
+  "code_path_hash": "8b59885602eea45796128fdc4ecc6345954dce29fa13b4361651ba544197f1c4",
+  "config_seed": 4269006709,
+  "fit_contract": "train fit users 0..639 for all ten S3a trajectory sets; GBT uses user_id % 2 == 0 fit budget",
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\f2_ngram_vocabulary.json"
+  ],
+  "member": "obs_decoder_gbt",
+  "persistence_type": "deterministic_training_recipe",
+  "reason_parameters_not_persisted": "selected multi-set fitted parameter family is treated as over the 50 MB persistence line; recipe records exact sources, config, seeds, and code hash",
+  "selected_config": {
+    "config": {
+      "config_id": "obs_decoder_gbt_cfg00",
+      "config_index": 0,
+      "features": "F2",
+      "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
+      "learning_rate": 0.05,
+      "max_iter": 100,
+      "max_leaf_nodes": 31,
+      "member": "obs_decoder_gbt"
+    },
+    "config_id": "obs_decoder_gbt_cfg00",
+    "config_index": 0,
+    "fit_examples": 960000,
+    "internal_validation_examples": 480000,
+    "internal_validation_macro_balanced_accuracy": 0.03180773177374268,
+    "member": "obs_decoder_gbt",
+    "offline_compute_units": 96000000,
+    "set_results": [
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 488.3714442999917,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_00",
+        "wall_clock_seconds": 521.8562949000043
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 332.60466870001983,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_01",
+        "wall_clock_seconds": 364.62738459999673
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 490.33553189999657,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_02",
+        "wall_clock_seconds": 523.8487061999622
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 381.6668126999866,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_03",
+        "wall_clock_seconds": 414.33297519996995
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 364.54393289994914,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_04",
+        "wall_clock_seconds": 396.65732230001595
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 674.1273941000109,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_05",
+        "wall_clock_seconds": 705.786023600027
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 489.4322904999717,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_06",
+        "wall_clock_seconds": 521.1065567000187
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 530.2883298000088,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_07",
+        "wall_clock_seconds": 561.970590699988
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 438.0398896999541,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_08",
+        "wall_clock_seconds": 469.50467319996096
+      },
+      {
+        "fit_examples": 96000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 519.5587216000422,
+        "offline_compute_units": 9600000,
+        "records_consumed": {
+          "fit_records": 96000,
+          "fit_records_skipped_by_budget": 96000,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_09",
+        "wall_clock_seconds": 551.0358167999657
+      }
+    ],
+    "wall_clock_seconds": 5030.726344199909
+  },
+  "sha256": "7081fe7faba854c6cc9a8cd708445c3d7e617e284cee32641110a417c625ecc1"
+}

@@ -1,373 +1,62 @@
 {
-  "artifact": "s3c_battery_manifest",
-  "claim_ceiling": "S3c instrument code and tuning-procedure metadata only; no environment-validity, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
-  "code_path_hash": "8b59885602eea45796128fdc4ecc6345954dce29fa13b4361651ba544197f1c4",
-  "component_code_hashes": {
-    "base": "4803762bc2faae65771509379e517a8a450f2d13d4c11c9d0c2eaa981b8a1102",
-    "obs_decoders": "16de6f3feecac43e5ec7f6b9a04960863f26689e3c24bf51bb9ab6a6e17a0829",
-    "seq_models": "b6ef0cf0e772a36f9e66bb47b4caf2864b54d0d8662d42d3ac53b82ed9a41486"
-  },
-  "decoder_grids": {
-    "obs_decoder_gbt": [
-      {
-        "config_id": "obs_decoder_gbt_cfg00",
-        "config_index": 0,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.05,
-        "max_iter": 100,
-        "max_leaf_nodes": 31,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg01",
-        "config_index": 1,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.05,
-        "max_iter": 100,
-        "max_leaf_nodes": 63,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg02",
-        "config_index": 2,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.05,
-        "max_iter": 300,
-        "max_leaf_nodes": 31,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg03",
-        "config_index": 3,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.05,
-        "max_iter": 300,
-        "max_leaf_nodes": 63,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg04",
-        "config_index": 4,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.1,
-        "max_iter": 100,
-        "max_leaf_nodes": 31,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg05",
-        "config_index": 5,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.1,
-        "max_iter": 100,
-        "max_leaf_nodes": 63,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg06",
-        "config_index": 6,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.1,
-        "max_iter": 300,
-        "max_leaf_nodes": 31,
-        "member": "obs_decoder_gbt"
-      },
-      {
-        "config_id": "obs_decoder_gbt_cfg07",
-        "config_index": 7,
-        "features": "F2",
-        "framework": "sklearn.ensemble.HistGradientBoostingClassifier",
-        "learning_rate": 0.1,
-        "max_iter": 300,
-        "max_leaf_nodes": 63,
-        "member": "obs_decoder_gbt"
-      }
-    ],
-    "obs_decoder_gru": [
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg00",
-        "config_index": 0,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg01",
-        "config_index": 1,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg02",
-        "config_index": 2,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg03",
-        "config_index": 3,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg04",
-        "config_index": 4,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg05",
-        "config_index": 5,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg06",
-        "config_index": 6,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "obs_decoder_gru_cfg07",
-        "config_index": 7,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "obs_decoder_gru",
-        "symbol_embedding_dim": 16
-      }
-    ],
-    "obs_decoder_logreg": [
-      {
-        "C": 0.01,
-        "config_id": "obs_decoder_logreg_cfg00",
-        "config_index": 0,
-        "features": "F1",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 0.1,
-        "config_id": "obs_decoder_logreg_cfg01",
-        "config_index": 1,
-        "features": "F1",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 1.0,
-        "config_id": "obs_decoder_logreg_cfg02",
-        "config_index": 2,
-        "features": "F1",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 10.0,
-        "config_id": "obs_decoder_logreg_cfg03",
-        "config_index": 3,
-        "features": "F1",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 0.01,
-        "config_id": "obs_decoder_logreg_cfg04",
-        "config_index": 4,
-        "features": "F2",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 0.1,
-        "config_id": "obs_decoder_logreg_cfg05",
-        "config_index": 5,
-        "features": "F2",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 1.0,
-        "config_id": "obs_decoder_logreg_cfg06",
-        "config_index": 6,
-        "features": "F2",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      },
-      {
-        "C": 10.0,
-        "config_id": "obs_decoder_logreg_cfg07",
-        "config_index": 7,
-        "features": "F2",
-        "framework": "sklearn.linear_model.LogisticRegression",
-        "max_iter": 200,
-        "member": "obs_decoder_logreg",
-        "solver": "lbfgs"
-      }
-    ]
-  },
-  "feature_maps": {
-    "F1": {
-      "dimension": 1133,
-      "families": [
-        "prefix_symbol_counts",
-        "prefix_symbol_rates",
-        "first_order_transition_counts",
-        "last_symbol_one_hot",
-        "candidate_action_one_hot"
-      ],
-      "sparse": true
+  "artifact": "s3c_collision_record_r3",
+  "budget_line_cpu_hours": 30.0,
+  "candidate_approaches": [
+    {
+      "evidence_it_would_produce": "A valid tuning report if allowed to run sequentially.",
+      "expected_failure_mode": "Excessive wall-clock or missing R3 accounting.",
+      "leakage_or_hardcoding_risk": "Low leakage risk, but no 001C runtime guard in the pre-R3 code path.",
+      "name": "minimal_existing_sequential_runner",
+      "smallest_falsifying_test": "R3 runtime trace must expose 30.0 CPU-h and per-completed-config cumulative accounting.",
+      "strongest_cheap_baseline_that_could_match": "Idle artifact refresh without practical sweep execution because wall-clock is near total CPU-h."
     },
-    "F2": {
-      "definition": "001B Amendment 1: pooled FIT-user count >=100, ranked by count, top 1024, lexicographic tie-break",
-      "dense_required_by_hist_gradient_boosting": true,
-      "dimension": 2157,
-      "families": [
-        "F1",
-        "thresholded_within_session_ngram_counts_n_le_3"
-      ],
-      "ngram_dimension": 1024,
-      "sparse_for_logreg": true
+    {
+      "evidence_it_would_produce": "Could reuse projection or prior STOP artifacts and appear complete without fitting all 40 configs.",
+      "expected_failure_mode": "Detected as artifact-only re-description.",
+      "leakage_or_hardcoding_risk": "High anti-idle failure: no fresh wall-clocks, no fresh selected configs, no fresh recipes.",
+      "name": "strongest shortcut explanation",
+      "smallest_falsifying_test": "Tuning report must contain 40 fresh per-config metrics, selected configs, cumulative CPU-h trace, and new model recipes.",
+      "strongest_cheap_baseline_that_could_match": "Static report generation from preserved R2 projection numbers."
+    },
+    {
+      "evidence_it_would_produce": "Fresh 40-config internal-validation tuning report, per-config wall clocks including materialization/validation, cumulative CPU-h trace, selected recipe artifacts, and manifest.",
+      "expected_failure_mode": "Runtime guard STOP or worker failure before all configs complete.",
+      "leakage_or_hardcoding_risk": "Heldout access remains blocked by split guards; F2 vocabulary is reused by verified sha256 and not rebuilt.",
+      "name": "config-level threads=1 process sweep",
+      "smallest_falsifying_test": "Any heldout user access, vocabulary hash mismatch, runtime CPU-h > 30.0, missing per-config result, or missing recipe artifact.",
+      "strongest_cheap_baseline_that_could_match": "None for freshness; adequacy remains deferred to S3d should-win and NULL-env controls."
     }
-  },
-  "fitting_contract": {
-    "f2_definition": "001B Amendment 1 thresholded top-1024 n-gram vocabulary from fit users only",
-    "fit_users": "user_id 0..639 within each train partition",
-    "gbt_fit_budget": "001B Amendment 2 deterministic half of fit users, user_id % 2 == 0",
-    "governing_spec": "S3C-BATTERY-SPEC-001A as amended by S3C-BATTERY-SPEC-001B and operator budget decision S3C-BATTERY-SPEC-001C",
-    "heldout_users": "user_id 800..999 never touched by S3c",
-    "internal_validation_users": "user_id 640..799 within each train partition",
-    "r3_runtime_cpu_hour_limit": 30.0,
-    "selection_rule": "highest internal-validation macro-balanced accuracy on logged-action next-symbol prediction; ties use lower config_index",
-    "sets": "set_00..set_09 from S3a trajectory recipes",
-    "single_thread_accounting": true,
-    "torch_device": "cpu"
-  },
+  ],
+  "claim_ceiling": "Instrument code + tuning-procedure evidence only; internal-validation numbers are tuning bookkeeping, not baseline-power or gap evidence.",
+  "code_path_hash": "8b59885602eea45796128fdc4ecc6345954dce29fa13b4361651ba544197f1c4",
   "framework_versions": {
     "numpy": "2.2.6",
     "scipy": "1.17.0",
     "sklearn": "1.9.0",
     "torch": "2.9.1+cu128"
   },
-  "implemented_members": [
-    "obs_decoder_logreg",
-    "obs_decoder_gbt",
-    "obs_decoder_gru",
-    "seq_full_history_no_action_conditioning",
-    "seq_window_with_action_conditioning_W15_no_cross_session_persistence"
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\f2_ngram_vocabulary.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_decoder_tuning_report.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_battery_manifest.json"
   ],
-  "model_artifacts": {
-    "obs_decoder_gbt": {
-      "path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\obs_decoder_gbt_selected_recipe.json",
-      "persistence_type": "deterministic_training_recipe",
-      "sha256": "7081fe7faba854c6cc9a8cd708445c3d7e617e284cee32641110a417c625ecc1"
-    },
-    "obs_decoder_gru": {
-      "path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\obs_decoder_gru_selected_recipe.json",
-      "persistence_type": "deterministic_training_recipe",
-      "sha256": "2c6492336d9b5cce57be955e7c8b6f7d8a3745af32c0e33b0df4c4b649923860"
-    },
-    "obs_decoder_logreg": {
-      "path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\obs_decoder_logreg_selected_recipe.json",
-      "persistence_type": "deterministic_training_recipe",
-      "sha256": "a6eb2738c95f9dc225d8414feadeab35c6b4da93ab158eb9aac9b4f8d07cf05c"
-    },
-    "seq_full_history_no_action_conditioning": {
-      "path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\seq_full_history_no_action_conditioning_selected_recipe.json",
-      "persistence_type": "deterministic_training_recipe",
-      "sha256": "fd99e8e4dbc5a9c187f2641daa9925c6e5a5425214421b73efa49ab7280b9c9f"
-    },
-    "seq_window_with_action_conditioning_W15_no_cross_session_persistence": {
-      "path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\seq_window_with_action_conditioning_W15_no_cross_session_persistence_selected_recipe.json",
-      "persistence_type": "deterministic_training_recipe",
-      "sha256": "fa5c552dec4056178103e879dc4584bbb23a19b16b1e99135a30c0edd60bc8b3"
-    }
+  "layer": "engineering implementation + tuning-procedure evidence bookkeeping",
+  "max_workers": 3,
+  "offline_compute_units": {
+    "obs_decoder_gbt": 96000000,
+    "obs_decoder_gru": 19200000,
+    "obs_decoder_logreg": 384000000,
+    "seq_full_history_no_action_conditioning": 19200000,
+    "seq_window_with_action_conditioning_W15_no_cross_session_persistence": 15360000
   },
-  "producer_function": "src.fsp_pum_env.battery.obs_decoders.write_s3c_battery_manifest",
+  "producer_function": "s3c_r3_sweep_launcher.inline_python",
+  "real_objective": "Execute the frozen S3c fair-battery tuning sweep under the operator-signed 30.0 CPU-h line without touching heldout users or rebuilding the F2 vocabulary.",
   "run_finished_at": "2026-07-03T20:43:05Z",
-  "run_id": "s3c-battery-manifest-2026-07-03T20:43:05Z",
-  "run_started_at": "2026-07-03T20:43:05Z",
+  "run_started_at": "2026-07-03T14:23:20Z",
+  "runtime_guard_decision": "runtime_within_30_cpu_hours",
+  "selected_approach": "config-level threads=1 process sweep",
   "selected_configs": {
     "obs_decoder_gbt": {
       "config": {
@@ -1022,243 +711,9 @@
       "wall_clock_seconds": 44.30105189990718
     }
   },
-  "sequence_conventions": {
-    "padding": "zero-embedding padding for short prefixes",
-    "seq_full_history_no_action_conditioning": "symbol sequence only; no action fields; full user history across sessions",
-    "seq_window_with_action_conditioning_W15_no_cross_session_persistence": "last 15 in-session (symbol, action) pairs; hidden state reset at every session boundary",
-    "training": "teacher-forced one pass per user-sequence per epoch; no per-example prefix re-encoding"
-  },
-  "sequence_grids": {
-    "seq_full_history_no_action_conditioning": [
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg00",
-        "config_index": 0,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg01",
-        "config_index": 1,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg02",
-        "config_index": 2,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg03",
-        "config_index": 3,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg04",
-        "config_index": 4,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg05",
-        "config_index": 5,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg06",
-        "config_index": 6,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_full_history_no_action_conditioning_cfg07",
-        "config_index": 7,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_full_history_no_action_conditioning",
-        "symbol_embedding_dim": 16
-      }
-    ],
-    "seq_window_with_action_conditioning_W15_no_cross_session_persistence": [
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg00",
-        "config_index": 0,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg01",
-        "config_index": 1,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg02",
-        "config_index": 2,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg03",
-        "config_index": 3,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 32,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg04",
-        "config_index": 4,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg05",
-        "config_index": 5,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.001,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg06",
-        "config_index": 6,
-        "dropout": 0.0,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      },
-      {
-        "action_embedding_dim": 8,
-        "batch_size": 256,
-        "config_id": "seq_window_with_action_conditioning_W15_no_cross_session_persistence_cfg07",
-        "config_index": 7,
-        "dropout": 0.1,
-        "early_stop_patience": 2,
-        "framework": "torch.nn.GRU",
-        "hidden": 64,
-        "lr": 0.0003,
-        "max_epochs": 10,
-        "member": "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        "symbol_embedding_dim": 16
-      }
-    ]
-  },
-  "stage": "S3c",
+  "selection_reason": "It preserves the frozen 40-config contract and 001C CPU-h accounting while avoiding the near-CPU-hour wall-clock of the old sequential path.",
+  "stage": "S3c-R3",
   "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
-  "wall_clock_seconds": 0.0013894999865442514
+  "total_sweep_cpu_hours": 15.02953779208338,
+  "wall_clock_hours": 6.3289901861944395
 }

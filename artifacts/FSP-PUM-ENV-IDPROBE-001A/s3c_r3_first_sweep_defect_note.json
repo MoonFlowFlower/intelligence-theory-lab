@@ -1,0 +1,28 @@
+{
+  "artifact": "s3c_r3_first_sweep_defect_note",
+  "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+  "stage": "S3c-R3",
+  "drafted_by": "Claude (lab auditor role) at operator instruction, 2026-07-03, per S3C-R3-BANK-OPS-001A PART A; executor (Codex) session values were not available at drafting time, so v1 fields are recorded as unknown rather than reconstructed",
+  "defect": "first completed R3 sweep's CPU-h meter summed model fit/predict wall-clock only, excluding feature/sequence materialization; nonconformant to the 001C accounting definition (CPU-h = per-config whole wall-clock at threads=1)",
+  "discovery": "found by executor's own artifact-validation pass before reporting; not caught by pre-run tests",
+  "remedy": "accounting corrected in src/fsp_pum_env/battery/obs_decoders.py; regression tests added; full 40-config rerun under corrected meter, run_id s3c-decoder-tuning-2026-07-03T14:23:20Z",
+  "incentive_direction": "defect undercounted CPU-h; the correction counts more time and is against executor interest w.r.t. the 30.0 CPU-h runtime guard",
+  "evidence_loss": {
+    "v1_tuning_report": "overwritten by rerun, unrecoverable",
+    "v1_stdout_stderr_logs": "overwritten by rerun, unrecoverable",
+    "v1_total_cpu_hours": "unknown",
+    "v1_scores_bitwise_identical_to_rerun": "unknown",
+    "recovered_values_provenance": null
+  },
+  "corrected_code_identity": {
+    "code_path_hash": "8b59885602eea45796128fdc4ecc6345954dce29fa13b4361651ba544197f1c4",
+    "component_code_hashes": {
+      "base": "4803762bc2faae65771509379e517a8a450f2d13d4c11c9d0c2eaa981b8a1102",
+      "obs_decoders": "16de6f3feecac43e5ec7f6b9a04960863f26689e3c24bf51bb9ab6a6e17a0829",
+      "seq_models": "b6ef0cf0e772a36f9e66bb47b4caf2864b54d0d8662d42d3ac53b82ed9a41486"
+    }
+  },
+  "process_rule_violated": "preserve failure artifacts (lab evidence contract); defective-run outputs should have been renamed to versioned *_v1 files before rerun, per the s2_tractability_report v2/v3/v4 precedent",
+  "process_rule_forward": "any future instrument-defect discovery: preserve the defective outputs under versioned names BEFORE rerunning",
+  "claim_ceiling": "process defect record only; no performance, baseline-power, environment-validity, mechanism, learning-capability, agency, or EGO claim"
+}

@@ -1,0 +1,168 @@
+{
+  "artifact": "obs_decoder_logreg_selected_recipe",
+  "claim_ceiling": "deterministic recipe persistence only; no model-quality or mechanism claim",
+  "code_path_hash": "8b59885602eea45796128fdc4ecc6345954dce29fa13b4361651ba544197f1c4",
+  "config_seed": 607070160,
+  "fit_contract": "train fit users 0..639 for all ten S3a trajectory sets; GBT uses user_id % 2 == 0 fit budget",
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\frozen_design.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3a_trajectory_set_manifest.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\f2_ngram_vocabulary.json"
+  ],
+  "member": "obs_decoder_logreg",
+  "persistence_type": "deterministic_training_recipe",
+  "reason_parameters_not_persisted": "selected multi-set fitted parameter family is treated as over the 50 MB persistence line; recipe records exact sources, config, seeds, and code hash",
+  "selected_config": {
+    "config": {
+      "C": 0.1,
+      "config_id": "obs_decoder_logreg_cfg01",
+      "config_index": 1,
+      "features": "F1",
+      "framework": "sklearn.linear_model.LogisticRegression",
+      "max_iter": 200,
+      "member": "obs_decoder_logreg",
+      "solver": "lbfgs"
+    },
+    "config_id": "obs_decoder_logreg_cfg01",
+    "config_index": 1,
+    "fit_examples": 1920000,
+    "internal_validation_examples": 480000,
+    "internal_validation_macro_balanced_accuracy": 0.03035867715162771,
+    "member": "obs_decoder_logreg",
+    "offline_compute_units": 384000000,
+    "set_results": [
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 126.24706169997808,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_00",
+        "wall_clock_seconds": 149.32557280000765
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 127.04168619995471,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_01",
+        "wall_clock_seconds": 147.88488829997368
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 126.4484003999969,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_02",
+        "wall_clock_seconds": 146.08603639999637
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 130.46270749997348,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_03",
+        "wall_clock_seconds": 150.57494849996874
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 129.10083720000694,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_04",
+        "wall_clock_seconds": 149.05725130002247
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 125.06868839997333,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_05",
+        "wall_clock_seconds": 144.76525250001578
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 124.6260617999942,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_06",
+        "wall_clock_seconds": 144.52262929995777
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 127.60309089999646,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_07",
+        "wall_clock_seconds": 147.3064888000372
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 125.85167689999798,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_08",
+        "wall_clock_seconds": 145.44031559996074
+      },
+      {
+        "fit_examples": 192000,
+        "internal_validation_examples": 48000,
+        "model_fit_predict_wall_clock_seconds": 123.59014839999145,
+        "offline_compute_units": 38400000,
+        "records_consumed": {
+          "fit_records": 192000,
+          "fit_records_skipped_by_budget": 0,
+          "internal_validation_records": 48000
+        },
+        "set_id": "set_09",
+        "wall_clock_seconds": 143.3743307000259
+      }
+    ],
+    "wall_clock_seconds": 1468.3377141999663
+  },
+  "sha256": "a6eb2738c95f9dc225d8414feadeab35c6b4da93ab158eb9aac9b4f8d07cf05c"
+}

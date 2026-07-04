@@ -37,6 +37,7 @@ from .base import (
 
 DECODER_MEMBER_NAMES = ["obs_decoder_logreg", "obs_decoder_gbt", "obs_decoder_gru"]
 S3C_CPU_HOUR_LIMIT = 24.0
+S3C_R3_CPU_HOUR_LIMIT = 30.0
 TRAIN_FIT_USER_MAX = 639
 INTERNAL_VALIDATION_USER_MIN = 640
 TRAIN_USER_MAX = 799
@@ -185,6 +186,7 @@ def configure_s3c_single_thread_cpu_environment() -> dict[str, Any]:
         "torch_device": str(device),
         "threadpool_info": threadpool_info_payload,
         "cpu_hour_limit": S3C_CPU_HOUR_LIMIT,
+        "r3_runtime_cpu_hour_limit": S3C_R3_CPU_HOUR_LIMIT,
     }
 
 
@@ -466,100 +468,252 @@ def project_s3c_r2_from_measurements(
     }
 
 
+def s3c_sweep_config_specs() -> list[dict[str, Any]]:
+    return [
+        *decoder_grid("obs_decoder_logreg"),
+        *decoder_grid("obs_decoder_gbt"),
+        *_gru_grid("obs_decoder_gru"),
+        *_gru_grid("seq_full_history_no_action_conditioning"),
+        *_gru_grid("seq_window_with_action_conditioning_W15_no_cross_session_persistence"),
+    ]
+
+
+def build_s3c_r3_runtime_trace(
+    per_config: Sequence[Mapping[str, Any]],
+    *,
+    wall_clock_seconds: float,
+    cpu_hour_limit: float = S3C_R3_CPU_HOUR_LIMIT,
+) -> dict[str, Any]:
+    cumulative_seconds = 0.0
+    trace: list[dict[str, Any]] = []
+    for item in per_config:
+        config_seconds = float(item["wall_clock_seconds"])
+        cumulative_seconds += config_seconds
+        cumulative_cpu_hours = cumulative_seconds / 3600.0
+        trace.append(
+            {
+                "member": str(item["member"]),
+                "config_id": str(item["config_id"]),
+                "config_index": int(item["config_index"]),
+                "config_wall_clock_seconds": config_seconds,
+                "config_cpu_hours": config_seconds / 3600.0,
+                "cumulative_cpu_hours": cumulative_cpu_hours,
+                "cpu_hour_limit": float(cpu_hour_limit),
+                "limit_exceeded_after_this_config": cumulative_cpu_hours > float(cpu_hour_limit),
+            }
+        )
+    total_cpu_hours = cumulative_seconds / 3600.0
+    return {
+        "single_thread_accounting": True,
+        "cpu_hour_limit": float(cpu_hour_limit),
+        "wall_clock_seconds": float(wall_clock_seconds),
+        "wall_clock_hours": float(wall_clock_seconds) / 3600.0,
+        "total_sweep_wall_clock_seconds": cumulative_seconds,
+        "total_sweep_cpu_hours": total_cpu_hours,
+        "decision": "stop_runtime_exceeds_30_cpu_hours"
+        if total_cpu_hours > float(cpu_hour_limit)
+        else "runtime_within_30_cpu_hours",
+        "cumulative_cpu_hours_trace": trace,
+    }
+
+
+def _run_s3c_configs_for_tuning(
+    frozen_design_path: str | Path,
+    trajectory_manifest_path: str | Path,
+    vocabulary_path: str | Path,
+    *,
+    max_workers: int,
+    start_time: float,
+    runtime_failure_manifest_path: str | Path,
+) -> list[dict[str, Any]]:
+    worker_payloads = [
+        (str(frozen_design_path), str(trajectory_manifest_path), str(vocabulary_path), str(config["config_id"]))
+        for config in s3c_sweep_config_specs()
+    ]
+    completed: list[dict[str, Any]] = []
+    if int(max_workers) <= 1:
+        for payload in worker_payloads:
+            completed.append(_run_s3c_config_worker(payload))
+            _raise_if_r3_runtime_exceeded(completed, start_time, runtime_failure_manifest_path)
+        return completed
+
+    from concurrent.futures import ProcessPoolExecutor, as_completed
+
+    with ProcessPoolExecutor(max_workers=int(max_workers)) as executor:
+        futures = [executor.submit(_run_s3c_config_worker, payload) for payload in worker_payloads]
+        for future in as_completed(futures):
+            completed.append(future.result())
+            _raise_if_r3_runtime_exceeded(completed, start_time, runtime_failure_manifest_path)
+    return completed
+
+
+def _run_s3c_config_worker(payload: tuple[str, str, str, str]) -> dict[str, Any]:
+    frozen_design_path, trajectory_manifest_path, vocabulary_path, config_id = payload
+    configure_s3c_single_thread_cpu_environment()
+    design = _read_json(frozen_design_path)
+    manifest = _read_json(trajectory_manifest_path)
+    vocabulary = _read_json(vocabulary_path)
+    config = _s3c_config_by_id(config_id)
+    aggregators = _empty_sweep_aggregators()
+    config_aggregator = {config_id: aggregators[config_id]}
+    actions = frozen_action_list(design)
+    alphabet_size = response_alphabet_size(design)
+    for entry in manifest["sets"]:
+        spec = _train_only_spec_from_entry(entry)
+        events_by_split = _collect_train_events_one_set(design, spec)
+        result, counts = _fit_eval_s3c_config_on_events(
+            design,
+            config,
+            events_by_split,
+            actions,
+            alphabet_size=alphabet_size,
+            vocabulary=vocabulary,
+        )
+        _update_sweep_aggregator(config_aggregator, config, result, counts, spec.set_id)
+    return _finalize_sweep_config(config_aggregator[config_id])
+
+
+def _fit_eval_s3c_config_on_events(
+    design: Mapping[str, Any],
+    config: Mapping[str, Any],
+    events_by_split: Mapping[str, Mapping[int, Sequence[PrefixEvent]]],
+    actions: Sequence[str],
+    *,
+    alphabet_size: int,
+    vocabulary: Mapping[str, Any],
+) -> tuple[dict[str, Any], Mapping[str, Any]]:
+    config_start = time.perf_counter()
+    member = str(config["member"])
+    if member in {"obs_decoder_logreg", "obs_decoder_gbt"}:
+        fit_user_filter = set(gbt_fit_user_ids()) if member == "obs_decoder_gbt" else None
+        x_fit, y_fit, x_val, y_val, counts = _build_feature_matrices_from_user_events(
+            events_by_split,
+            actions,
+            alphabet_size=alphabet_size,
+            features=str(config["features"]),
+            vocabulary=vocabulary if str(config["features"]) == "F2" else None,
+            fit_user_filter=fit_user_filter,
+        )
+        result = _fit_eval_sklearn_config(design, config, x_fit, y_fit, x_val, y_val)
+        result["model_fit_predict_wall_clock_seconds"] = float(result["fit_and_predict_wall_clock_seconds"])
+        result["fit_plus_validation_wall_clock_seconds"] = time.perf_counter() - config_start
+        return result, counts
+
+    fit_sequences, val_sequences = _sequences_from_user_events(events_by_split, member)
+    result = _fit_eval_gru_sequences(design, config, member, fit_sequences, val_sequences)
+    result["model_fit_predict_wall_clock_seconds"] = float(result["fit_and_predict_wall_clock_seconds"])
+    result["fit_plus_validation_wall_clock_seconds"] = time.perf_counter() - config_start
+    return result, {}
+
+
+def _s3c_config_by_id(config_id: str) -> dict[str, Any]:
+    for config in s3c_sweep_config_specs():
+        if str(config["config_id"]) == str(config_id):
+            return dict(config)
+    raise ValueError(f"unknown S3c sweep config_id: {config_id}")
+
+
+def _raise_if_r3_runtime_exceeded(
+    completed: Sequence[Mapping[str, Any]],
+    start_time: float,
+    runtime_failure_manifest_path: str | Path,
+) -> None:
+    trace = build_s3c_r3_runtime_trace(completed, wall_clock_seconds=time.perf_counter() - start_time)
+    if trace["decision"] == "runtime_within_30_cpu_hours":
+        return
+    manifest = {
+        "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
+        "stage": "S3c-R3",
+        "artifact": "s3c_runtime_guard_failure_manifest_r3",
+        "verdict": "STOP",
+        "stop_condition": "cumulative measured CPU-h exceeded 30.0 after a completed config",
+        "runtime_guard": trace,
+        "completed_config_count": len(completed),
+        "preserved_failure": True,
+        "claim_ceiling": "S3c-R3 runtime guard failure only; no heldout numbers, environment-validity, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
+        "producer_function": "src.fsp_pum_env.battery.obs_decoders._raise_if_r3_runtime_exceeded",
+        "code_path_hash": s3c_code_hash(),
+        "run_started_at": _utc_timestamp(),
+        "run_finished_at": _utc_timestamp(),
+    }
+    _write_json(runtime_failure_manifest_path, manifest)
+    raise RuntimeError(f"STOP_RUNTIME_GUARD_EXCEEDED: wrote {runtime_failure_manifest_path}")
+
+
+def _s3c_set_summaries_from_per_config(per_config: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    by_set: dict[str, dict[str, Any]] = {}
+    for item in per_config:
+        for result in item["set_results"]:
+            set_id = str(result["set_id"])
+            summary = by_set.setdefault(set_id, {"set_id": set_id, "configs": [], "wall_clock_seconds": 0.0})
+            summary["configs"].append(
+                {
+                    "set_id": set_id,
+                    "member": str(item["member"]),
+                    "config_id": str(item["config_id"]),
+                    "config_index": int(item["config_index"]),
+                    "wall_clock_seconds": float(result["wall_clock_seconds"]),
+                    "fit_examples": int(result["fit_examples"]),
+                    "internal_validation_examples": int(result["internal_validation_examples"]),
+                    "offline_compute_units": int(result["offline_compute_units"]),
+                }
+            )
+            summary["wall_clock_seconds"] += float(result["wall_clock_seconds"])
+    return [by_set[key] for key in sorted(by_set)]
+
+
 def write_s3c_decoder_tuning_report(
     frozen_design_path: str | Path,
     trajectory_manifest_path: str | Path,
     vocabulary_path: str | Path,
     output_path: str | Path,
     model_dir: str | Path,
+    *,
+    max_workers: int = 1,
+    runtime_failure_manifest_path: str | Path | None = None,
 ) -> dict[str, Any]:
     run_started_at = _utc_timestamp()
     start = time.perf_counter()
     environment = configure_s3c_single_thread_cpu_environment()
-    design = _read_json(frozen_design_path)
-    manifest = _read_json(trajectory_manifest_path)
-    vocabulary = _read_json(vocabulary_path)
-    actions = frozen_action_list(design)
-    alphabet_size = response_alphabet_size(design)
-    aggregators = _empty_sweep_aggregators()
-    set_summaries: list[dict[str, Any]] = []
-    for entry in manifest["sets"]:
-        set_start = time.perf_counter()
-        spec = _train_only_spec_from_entry(entry)
-        events_by_split = _collect_train_events_one_set(design, spec)
-        set_summary = {"set_id": str(spec.set_id), "configs": []}
-
-        x_fit_f1, y_fit_f1, x_val_f1, y_val_f1, counts_f1 = _build_feature_matrices_from_user_events(
-            events_by_split,
-            actions,
-            alphabet_size=alphabet_size,
-            features="F1",
-            vocabulary=None,
-        )
-        for config in [cfg for cfg in decoder_grid("obs_decoder_logreg") if cfg["features"] == "F1"]:
-            result = _fit_eval_sklearn_config(design, config, x_fit_f1, y_fit_f1, x_val_f1, y_val_f1)
-            _update_sweep_aggregator(aggregators, config, result, counts_f1, spec.set_id)
-            set_summary["configs"].append(_set_config_summary(config, result, spec.set_id))
-        del x_fit_f1, y_fit_f1, x_val_f1, y_val_f1
-
-        x_fit_f2, y_fit_f2, x_val_f2, y_val_f2, counts_f2 = _build_feature_matrices_from_user_events(
-            events_by_split,
-            actions,
-            alphabet_size=alphabet_size,
-            features="F2",
-            vocabulary=vocabulary,
-        )
-        for config in [cfg for cfg in decoder_grid("obs_decoder_logreg") if cfg["features"] == "F2"]:
-            result = _fit_eval_sklearn_config(design, config, x_fit_f2, y_fit_f2, x_val_f2, y_val_f2)
-            _update_sweep_aggregator(aggregators, config, result, counts_f2, spec.set_id)
-            set_summary["configs"].append(_set_config_summary(config, result, spec.set_id))
-        del x_fit_f2, y_fit_f2, x_val_f2, y_val_f2
-
-        x_fit_gbt, y_fit_gbt, x_val_gbt, y_val_gbt, counts_gbt = _build_feature_matrices_from_user_events(
-            events_by_split,
-            actions,
-            alphabet_size=alphabet_size,
-            features="F2",
-            vocabulary=vocabulary,
-            fit_user_filter=set(gbt_fit_user_ids()),
-        )
-        for config in decoder_grid("obs_decoder_gbt"):
-            result = _fit_eval_sklearn_config(design, config, x_fit_gbt, y_fit_gbt, x_val_gbt, y_val_gbt)
-            _update_sweep_aggregator(aggregators, config, result, counts_gbt, spec.set_id)
-            set_summary["configs"].append(_set_config_summary(config, result, spec.set_id))
-        del x_fit_gbt, y_fit_gbt, x_val_gbt, y_val_gbt
-
-        for member_kind in (
-            "obs_decoder_gru",
-            "seq_full_history_no_action_conditioning",
-            "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
-        ):
-            fit_sequences, val_sequences = _sequences_from_user_events(events_by_split, member_kind)
-            for config in _gru_grid(member_kind):
-                result = _fit_eval_gru_sequences(design, config, member_kind, fit_sequences, val_sequences)
-                _update_sweep_aggregator(aggregators, config, result, {}, spec.set_id)
-                set_summary["configs"].append(_set_config_summary(config, result, spec.set_id))
-
-        set_summary["wall_clock_seconds"] = time.perf_counter() - set_start
-        set_summaries.append(set_summary)
-
-    per_config = [_finalize_sweep_config(item) for item in aggregators.values()]
+    per_config_completion_order = _run_s3c_configs_for_tuning(
+        frozen_design_path,
+        trajectory_manifest_path,
+        vocabulary_path,
+        max_workers=max_workers,
+        start_time=start,
+        runtime_failure_manifest_path=runtime_failure_manifest_path
+        or Path(output_path).with_name("s3c_runtime_guard_failure_manifest_r3.json"),
+    )
+    config_order = {str(config["config_id"]): index for index, config in enumerate(s3c_sweep_config_specs())}
+    per_config = sorted(per_config_completion_order, key=lambda item: config_order[str(item["config_id"])])
+    runtime_trace = build_s3c_r3_runtime_trace(per_config_completion_order, wall_clock_seconds=time.perf_counter() - start)
     selected_configs = _select_s3c_configs(per_config)
     model_artifacts = write_s3c_model_recipes(model_dir, selected_configs, frozen_design_path, trajectory_manifest_path, vocabulary_path)
     report = {
         "task_id": "FSP-PUM-ENV-IDENTIFIABILITY-PROBE-001A",
-        "stage": "S3c-R2",
+        "stage": "S3c-R3",
         "artifact": "s3c_decoder_tuning_report",
         "claim_ceiling": "S3c internal-validation tuning procedure only; no heldout numbers, environment-validity, baseline-power, gap, headroom, mechanism, learning-capability, agency, or EGO claim",
         "selection_rule": "highest aggregated internal-validation macro-balanced accuracy on logged-action next-symbol prediction; ties use lower config_index",
         "heldout_numbers_present": False,
         "single_thread_environment": environment,
+        "runtime_guard": runtime_trace,
+        "cpu_hour_limit": runtime_trace["cpu_hour_limit"],
+        "total_sweep_cpu_hours": runtime_trace["total_sweep_cpu_hours"],
+        "wall_clock_hours": runtime_trace["wall_clock_hours"],
+        "runtime_guard_decision": runtime_trace["decision"],
+        "cumulative_cpu_hours_trace": runtime_trace["cumulative_cpu_hours_trace"],
+        "config_completion_order": [
+            {"member": item["member"], "config_id": item["config_id"], "config_index": item["config_index"]}
+            for item in per_config_completion_order
+        ],
+        "max_workers": int(max_workers),
         "f2_definition": "001B Amendment 1 thresholded top-1024 fit-user-only n-gram vocabulary",
         "gbt_data_budget": "fit users restricted to user_id % 2 == 0; internal validation unchanged",
         "per_config_internal_validation": sorted(per_config, key=lambda item: (item["member"], item["config_index"])),
         "selected_configs": selected_configs,
         "model_artifacts": model_artifacts,
-        "set_summaries": set_summaries,
+        "set_summaries": _s3c_set_summaries_from_per_config(per_config),
         "framework_versions": framework_versions(),
         "input_artifacts": [str(frozen_design_path), str(trajectory_manifest_path), str(vocabulary_path)],
         "producer_function": "src.fsp_pum_env.battery.obs_decoders.write_s3c_decoder_tuning_report",
@@ -674,11 +828,12 @@ def s3c_battery_manifest_payload(
             "internal_validation_users": "user_id 640..799 within each train partition",
             "heldout_users": "user_id 800..999 never touched by S3c",
             "selection_rule": "highest internal-validation macro-balanced accuracy on logged-action next-symbol prediction; ties use lower config_index",
-            "governing_spec": "S3C-BATTERY-SPEC-001A as amended by S3C-BATTERY-SPEC-001B",
+            "governing_spec": "S3C-BATTERY-SPEC-001A as amended by S3C-BATTERY-SPEC-001B and operator budget decision S3C-BATTERY-SPEC-001C",
             "f2_definition": "001B Amendment 1 thresholded top-1024 n-gram vocabulary from fit users only",
             "gbt_fit_budget": "001B Amendment 2 deterministic half of fit users, user_id % 2 == 0",
             "single_thread_accounting": True,
             "torch_device": "cpu",
+            "r3_runtime_cpu_hour_limit": S3C_R3_CPU_HOUR_LIMIT,
         },
         "feature_maps": feature_map_summary(design),
         "decoder_grids": {name: decoder_grid(name) for name in DECODER_MEMBER_NAMES},
@@ -1309,18 +1464,23 @@ def _update_sweep_aggregator(
     set_id: str,
 ) -> None:
     item = aggregators[str(config["config_id"])]
+    accounted_seconds = float(
+        result.get("fit_plus_validation_wall_clock_seconds", result["fit_and_predict_wall_clock_seconds"])
+    )
     item["targets"].extend(int(value) for value in result["targets"])
     item["predictions"].extend(int(value) for value in result["predictions"])
-    item["wall_clock_seconds"] += float(result["fit_and_predict_wall_clock_seconds"])
+    item["wall_clock_seconds"] += accounted_seconds
     item["offline_compute_units"] += int(result["offline_compute_units"])
     item["fit_examples"] += int(result["fit_examples"])
     item["internal_validation_examples"] += int(result["internal_validation_examples"])
     item["set_results"].append(
         {
             "set_id": str(set_id),
-            "wall_clock_seconds": float(result["fit_and_predict_wall_clock_seconds"]),
+            "wall_clock_seconds": accounted_seconds,
+            "model_fit_predict_wall_clock_seconds": float(result["fit_and_predict_wall_clock_seconds"]),
             "fit_examples": int(result["fit_examples"]),
             "internal_validation_examples": int(result["internal_validation_examples"]),
+            "offline_compute_units": int(result["offline_compute_units"]),
             "records_consumed": dict(counts),
         }
     )
