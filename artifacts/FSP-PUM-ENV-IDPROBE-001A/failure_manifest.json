@@ -2,24 +2,34 @@
   "artifact": "failure_manifest",
   "banked_stop_probe_artifacts_byte_unchanged": true,
   "claim_ceiling": "S3d STOP/failure boundary only; no environment-validity, gap, mechanism, learning, agency, EGO, or companion claim",
-  "code_path_hash": "b2c2930c4614dbb95a58ef1d65fc776b74ad964e082475de08420936a73ba320",
-  "current_cputime_regate_artifact": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_line30.0_cputime_regate.json",
-  "current_cputime_regate_line_relation": "within_line",
-  "current_cputime_regate_verdict": "S3D_PART0_CPUTIME_REGATE_WITHIN_LINE_PENDING_AUDIT",
+  "code_path_hash": "cfb57d5a9ffaf65f18bf58b00d2215c4bf734b52fb65966daf9ad4e726a538b7",
   "details": {
-    "part0_projection": {
-      "exists": true,
-      "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_line30.0.json",
-      "sha256": "42be81db45ad48f0f0db6a54488960b2b217037818e11320ed6e0cc9fd0294c4",
-      "size_bytes": 40109
+    "runtime_guard": {
+      "applied_cpu_hour_limit": 30.0,
+      "battery_units_contention_robust_cpu_hours": 30.950555555555557,
+      "completed_unit_count": 41,
+      "contention_robust_cpu_hours": 31.95161892361111,
+      "decision": "STOP_runtime_guard_exceeded_signed_line",
+      "expected_unit_count": 43,
+      "initial_part0_contention_robust_cpu_hours_included": 1.0010633680555556,
+      "parallel_elapsed_wall_clock_seconds": 15060.709786600011,
+      "run_finished_at": "2026-07-05T10:14:45Z",
+      "run_started_at": "2026-07-05T06:03:45Z",
+      "stop_reason": "runtime_guard_exceeded_after_ideal::cert::flat_theta",
+      "trace_path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\trace.jsonl",
+      "wall_clock_based_cpu_hours_disclosed": 33.39922914533332,
+      "wall_cpu_ratio_flag_count": 0,
+      "wall_cpu_ratio_flag_unit_ids": []
     },
-    "projection_decision": "STOP_s3d_part0_projection_exceeds_signed_line"
+    "trace_artifact": {
+      "exists": true,
+      "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.jsonl",
+      "sha256": "6161c1728090f4a1247ee39994421df78e14e04312cc45488df49228a7632c01",
+      "size_bytes": 3267904
+    }
   },
-  "failure_manifest_scope": "historical_wall_gate_noncompliant_v1",
-  "normalization_note": "N1 normalization only: prior wall-gated STOP manifest now has s3d_results_void=true like the other wall-gated STOP reports. The unpatched original was preserved as *_wall_gate_noncompliant_v1.",
   "preserved_failure": true,
   "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_failure_manifest_payload",
-  "producer_function_normalization": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_cputime_regate_runner.py::_normalize_historical_wall_failure_manifest",
   "protected_artifacts_after": {
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection.json": {
       "exists": true,
@@ -104,13 +114,12 @@
       "size_bytes": 3158
     }
   },
-  "run_finished_at": "2026-07-04T21:46:57Z",
-  "run_started_at": "2026-07-04T21:46:57Z",
+  "run_finished_at": "2026-07-05T10:14:46Z",
+  "run_started_at": "2026-07-05T10:14:46Z",
   "s3d_results_void": true,
   "stage": "S3d",
-  "stop_condition": "PART-0 projection 32.00740120549966 CPU-h exceeded signed line 30.0",
+  "stop_condition": "runtime_guard_exceeded_after_ideal::cert::flat_theta",
   "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A",
   "task_id": "FSP-PUM-ENV-IDPROBE-001A",
-  "verdict": "STOP_s3d_part0_projection_exceeds_line",
-  "wall_gate_noncompliant_copy": "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_wall_gate_noncompliant_v1.json"
+  "verdict": "STOP_runtime_guard_exceeded_signed_line"
 }
