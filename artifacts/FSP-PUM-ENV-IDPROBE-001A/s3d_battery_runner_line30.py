@@ -23,6 +23,7 @@ import math
 import os
 from pathlib import Path
 import re
+import statistics
 import subprocess
 import sys
 import time
@@ -199,6 +200,7 @@ CERT_MEMBER_SPECS: tuple[dict[str, Any], ...] = (
 
 NULL_MEMBER_NAMES: tuple[str, ...] = tuple(str(item["member"]) for item in CERT_MEMBER_SPECS)
 S3D_001B_GUARD_K = 5.0
+DOMINANT_REMEASURE_USERS = (640, 720, 799)
 CANONICAL_SCORER_ID = (
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py"
     "::_score_payload/_metric_for_scope/_metric_from_resampled_users"
@@ -680,39 +682,549 @@ def _decode_status_path(item: Any) -> str:
     return str(item).replace("\\", "/")
 
 
-def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[str, Any]:
-    run_started_at = _utc_timestamp()
-    start_wall = time.perf_counter()
-    start_cpu = time.process_time()
-    design = load_frozen_design(FROZEN_DESIGN)
-    environment = _single_thread_environment()
-    specs = {spec.cell_id: spec for spec in build_s3d_cert_set_specs(design)}
+def project_s3d_part0_cpu_time_units(units: Sequence[Mapping[str, Any]], applied_line: float) -> dict[str, Any]:
+    """Shared S3d PART-0 projection gate from measured wall/process CPU seconds.
 
-    generation_start = time.perf_counter()
-    generation_cpu_start = time.process_time()
+    This is the single projection multiplication/summation routine used by the
+    canonical battery launch runner and by the standalone CPU-time re-gate runner.
+    It deliberately accepts already-measured units so fit/score/certificate/NULL
+    metric logic stays outside the cost-gate math.
+    """
+
+    components: dict[str, Any] = {}
+    for unit in units:
+        name = str(unit["component"])
+        wall_seconds = float(unit["measured_wall_seconds"])
+        cpu_seconds = float(unit["measured_process_cpu_seconds"])
+        projected_units = float(unit["projected_units"])
+        projected_wall = wall_seconds * projected_units
+        projected_cpu = cpu_seconds * projected_units
+        ratio = _ratio(wall_seconds, cpu_seconds)
+        components[name] = {
+            "measured_wall_seconds": wall_seconds,
+            "measured_process_cpu_seconds": cpu_seconds,
+            "projected_units": projected_units,
+            "projected_wall_seconds": projected_wall,
+            "projected_process_cpu_seconds": projected_cpu,
+            "projected_wall_hours": projected_wall / 3600.0,
+            "projected_cpu_hours": projected_cpu / 3600.0,
+            "wall_cpu_ratio": ratio,
+            "wall_cpu_ratio_flag_gt_1_25": bool(ratio > 1.25),
+            "null_env_units_included": float(unit.get("null_env_units_included", 0.0)),
+            "note": str(unit.get("note", "")),
+            "timing_source": str(unit.get("timing_source", "")),
+            "replaced_by_serial_mean": bool(unit.get("replaced_by_serial_mean", False)),
+        }
+        for optional_key in ("cell_id", "member", "eval_user_id_measured", "phase", "aggregation_rule"):
+            if optional_key in unit:
+                components[name][optional_key] = unit[optional_key]
+
+    total_wall = float(sum(item["projected_wall_seconds"] for item in components.values()))
+    total_cpu = float(sum(item["projected_process_cpu_seconds"] for item in components.values()))
+    null_wall = float(
+        sum(
+            item["measured_wall_seconds"] * item["null_env_units_included"]
+            for item in components.values()
+            if item["null_env_units_included"]
+        )
+    )
+    null_cpu = float(
+        sum(
+            item["measured_process_cpu_seconds"] * item["null_env_units_included"]
+            for item in components.values()
+            if item["null_env_units_included"]
+        )
+    )
+    total_cpu_hours = total_cpu / 3600.0
+    relation = "within_line" if total_cpu_hours <= float(applied_line) else "exceeds_line"
+    decision = (
+        "s3d_part0_projection_within_signed_line"
+        if relation == "within_line"
+        else "STOP_s3d_part0_projection_exceeds_signed_line"
+    )
+    flags = [name for name, item in components.items() if bool(item["wall_cpu_ratio_flag_gt_1_25"])]
+    return {
+        "cpu_hour_limit": float(applied_line),
+        "metric_basis": "per-unit process CPU-time (time.process_time user+sys)",
+        "components": components,
+        "total_projected_wall_seconds": total_wall,
+        "total_projected_process_cpu_seconds": total_cpu,
+        "total_projected_wall_hours": total_wall / 3600.0,
+        "total_projected_cpu_hours": total_cpu_hours,
+        "projected_cpu_hours": total_cpu_hours,
+        "projected_wall_hours_disclosed": total_wall / 3600.0,
+        "gate_relation": relation,
+        "line_relation": relation,
+        "signed_line_relation": "within_signed_line" if relation == "within_line" else "exceeds_signed_line",
+        "decision": decision,
+        "wall_cpu_ratio_flag_count": len(flags),
+        "wall_cpu_ratio_flag_components": flags,
+        "null_env_projected_wall_seconds_included": null_wall,
+        "null_env_projected_cpu_seconds_included": null_cpu,
+        "null_env_projected_wall_hours_included": null_wall / 3600.0,
+        "null_env_projected_cpu_hours_included": null_cpu / 3600.0,
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::"
+            "project_s3d_part0_cpu_time_units"
+        ),
+    }
+
+
+def s3d_part0_projection_units_from_measurements(
+    measurements: Mapping[str, Any],
+    *,
+    replacements: Mapping[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    replacement_map = _replacement_component_values(replacements or {})
+    units: list[dict[str, Any]] = []
+
+    def add(
+        name: str,
+        wall_seconds: float,
+        cpu_seconds: float,
+        projected_units: float,
+        note: str,
+        *,
+        null_units: float = 0.0,
+        source: str,
+        replaced_by_serial_mean: bool = False,
+        context: Mapping[str, Any] | None = None,
+    ) -> None:
+        units.append(
+            {
+                "component": name,
+                "measured_wall_seconds": float(wall_seconds),
+                "measured_process_cpu_seconds": float(cpu_seconds),
+                "projected_units": float(projected_units),
+                "note": note,
+                "null_env_units_included": float(null_units),
+                "timing_source": source,
+                "replaced_by_serial_mean": bool(replaced_by_serial_mean),
+                **dict(context or {}),
+            }
+        )
+
+    gen = measurements["cert_set_generation"]
+    add(
+        "generation_all_7_cert_sets",
+        float(gen["wall_clock_seconds"]),
+        float(gen["process_cpu_seconds"]),
+        7.0,
+        "one measured cert-set generation x 7 S3d cells",
+        null_units=1.0,
+        source="fresh_cpu_timed_measurement",
+        context={"cell_id": gen.get("cell_id"), "aggregation_rule": "one measured cert-set generation multiplied by seven S3d cells"},
+    )
+    ideal = measurements["ideal_per_user_one_cell"]
+    ideal_repl = replacement_map.get("ideal_all_7_cells_160_eval_users")
+    add(
+        "ideal_all_7_cells_160_eval_users",
+        float(ideal_repl["wall_seconds"] if ideal_repl else ideal["wall_clock_seconds"]),
+        float(ideal_repl["cpu_seconds"] if ideal_repl else ideal["process_cpu_seconds"]),
+        7.0 * 160.0,
+        "one measured S2 ideal eval user x 160 eval users x 7 cells including NULL_env",
+        null_units=160.0,
+        source=str(ideal_repl["source"] if ideal_repl else "fresh_cpu_timed_measurement"),
+        replaced_by_serial_mean=bool(ideal_repl),
+        context={
+            "cell_id": ideal.get("cell_id"),
+            "eval_user_id_measured": ideal.get("user_id"),
+            "aggregation_rule": "one ideal eval user for one cell multiplied by seven cells and 160 eval users per cell",
+        },
+    )
+    for name, key, note, projected_units, null_units in (
+        ("logreg_F1_selected_cert_plus_NULL", "logreg_F1_selected", "obs_decoder_logreg selected F1 config on camouflage_off plus NULL_env", 2.0, 1.0),
+        ("logreg_F2_reference_measured_not_counted", "logreg_F2_reference", "measured because PART 0 names F1/F2; not counted because selected logreg recipe is F1", 0.0, 0.0),
+        ("gbt_half_data_selected_cert_plus_NULL", "gbt_half_data_selected", "obs_decoder_gbt selected F2 half-data config on camouflage_off plus NULL_env", 2.0, 1.0),
+        ("gru_selected_cert_plus_NULL", "gru_selected", "obs_decoder_gru selected config on camouflage_off plus NULL_env", 2.0, 1.0),
+        ("seq_full_selected_cert_plus_NULL", "seq_full_selected", "seq_full selected config on constant_none plus NULL_env", 2.0, 1.0),
+        ("seq_W15_selected_cert_plus_NULL", "seq_W15_selected", "seq_W15 selected config on low_diversity plus NULL_env", 2.0, 1.0),
+    ):
+        m = measurements[key]
+        add(
+            name,
+            float(m["fit_plus_validation_wall_clock_seconds"]),
+            float(m["fit_plus_validation_process_cpu_seconds"]),
+            projected_units,
+            note,
+            null_units=null_units,
+            source="fresh_outer_process_time_bracket",
+            context={"cell_id": m.get("cell_id"), "member": m.get("member"), "aggregation_rule": m.get("aggregation_rule", "")},
+        )
+
+    for family_name, units_by_member in (
+        (
+            "table_family",
+            {
+                "successor_map": 2.0,
+                "transition_table": 2.0,
+                "count_table": 2.0,
+                "fsm_planner": 2.0,
+                "episodic_traversal": 2.0,
+            },
+        ),
+        ("retrieval_family", {"rag_k5_episode_retrieval": 2.0, "nearest_neighbor_user_matching": 2.0}),
+        (
+            "degenerate_family",
+            {"predict_all": 2.0, "predict_none": 2.0, "majority": 2.0, "global_prior": 2.0},
+        ),
+        (
+            "ls_online_family",
+            {"discounted_LS_lambda_0.95": 2.0, "running_average_preference_regressor": 2.0},
+        ),
+    ):
+        for member, projected_units in units_by_member.items():
+            component_name = f"{family_name}_{member}_cert_plus_NULL"
+            repl = replacement_map.get(component_name)
+            m = measurements[family_name]["members"][member]
+            add(
+                component_name,
+                float(repl["wall_seconds"] if repl else m["projected_one_member_cell_wall_seconds"]),
+                float(repl["cpu_seconds"] if repl else m["projected_one_member_cell_process_cpu_seconds"]),
+                projected_units,
+                f"{member}: projected one member-cell x favorable cert cell plus NULL_env",
+                null_units=1.0,
+                source=str(repl["source"] if repl else "fresh_process_time_fit_score_brackets"),
+                replaced_by_serial_mean=bool(repl),
+                context={
+                    "cell_id": m.get("cell_id"),
+                    "member": member,
+                    "eval_user_id_measured": m.get("eval_user_id_measured"),
+                    "aggregation_rule": "projected fit+160*score unit",
+                },
+            )
+
+    bootstrap = measurements["bootstrap"]
+    add(
+        "bootstrap_18_certificate_member_rows",
+        float(bootstrap["wall_clock_seconds"]),
+        float(bootstrap["process_cpu_seconds"]),
+        18.0,
+        "rho bootstrap CI for 18 certificate member rows; NULL table has no rho CI",
+        source="fresh_outer_process_time_bracket",
+        context={"cell_id": bootstrap.get("cell_id"), "member": bootstrap.get("member")},
+    )
+    return units
+
+
+def _measure_generation_cputime(design: Mapping[str, Any], spec: Any, run_id: str) -> dict[str, Any]:
+    wall_start = time.perf_counter()
+    cpu_start = time.process_time()
     member_sha, adjudicator_sha, member_bytes, adjudicator_bytes, record_count = _hash_spec_streams(
         design,
-        specs["constant_none"].trajectory_spec,
+        spec.trajectory_spec,
     )
-    generation_measurement = {
+    wall_seconds = time.perf_counter() - wall_start
+    cpu_seconds = time.process_time() - cpu_start
+    ratio = _ratio(wall_seconds, cpu_seconds)
+    return {
         "unit": "one_cert_set_generation",
-        "cell_id": "constant_none",
-        "variant": specs["constant_none"].variant,
+        "cell_id": spec.cell_id,
+        "variant": spec.variant,
         "member_view_sha256": member_sha,
         "adjudicator_only_sha256": adjudicator_sha,
         "member_view_record_count": int(record_count),
         "member_view_estimated_raw_bytes": int(member_bytes),
         "adjudicator_only_estimated_raw_bytes": int(adjudicator_bytes),
-        "wall_clock_seconds": time.perf_counter() - generation_start,
-        "process_cpu_seconds": time.process_time() - generation_cpu_start,
+        "wall_clock_seconds": wall_seconds,
+        "process_cpu_seconds": cpu_seconds,
+        "wall_cpu_ratio": ratio,
+        "wall_cpu_ratio_flag_gt_1_25": bool(ratio > 1.25),
+        "producer_function": "src.fsp_pum_env.trajectory_sets._hash_spec_streams",
+        "timing_producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_measure_generation_cputime",
+        "run_id": run_id,
+        "aggregation_rule": "one measured cert-set generation multiplied by seven S3d cells",
     }
 
-    ideal_cpu_start = time.process_time()
+
+def _measure_ideal_cputime(
+    design: Mapping[str, Any],
+    spec: Any,
+    *,
+    user_id: int,
+    run_id: str,
+) -> dict[str, Any]:
+    if not 640 <= int(user_id) <= 799:
+        raise RuntimeError(f"forbidden_ideal_eval_user:{user_id}")
     from src.fsp_pum_env.s3d_certificates import measure_s3d_ideal_one_eval_user
 
-    ideal_measurement = measure_s3d_ideal_one_eval_user(design, specs["camouflage_off"], user_id=640)
-    ideal_measurement["process_cpu_seconds"] = time.process_time() - ideal_cpu_start
-    lower_bound_cpu_hours = float(ideal_measurement["wall_clock_seconds"]) * 160.0 / 3600.0
+    wall_start = time.perf_counter()
+    cpu_start = time.process_time()
+    measurement = measure_s3d_ideal_one_eval_user(design, spec, user_id=int(user_id))
+    outer_wall = time.perf_counter() - wall_start
+    cpu_seconds = time.process_time() - cpu_start
+    ratio = _ratio(float(measurement["wall_clock_seconds"]), cpu_seconds)
+    measurement["process_cpu_seconds"] = cpu_seconds
+    measurement["process_cpu_hours"] = cpu_seconds / 3600.0
+    measurement["legacy_cpu_hours_field_basis"] = "wall_clock_seconds/3600 from src.fsp_pum_env.s3d_certificates.measure_s3d_ideal_one_eval_user"
+    measurement["outer_wall_clock_seconds"] = outer_wall
+    measurement["wall_cpu_ratio"] = ratio
+    measurement["wall_cpu_ratio_flag_gt_1_25"] = bool(ratio > 1.25)
+    measurement["timing_producer_function"] = "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_measure_ideal_cputime"
+    measurement["run_id"] = run_id
+    measurement["aggregation_rule"] = "one ideal eval user for one cell multiplied by seven cells and 160 eval users per cell"
+    return measurement
+
+
+def _timed_selected_measurement(
+    label: str,
+    call: Callable[[], dict[str, Any]],
+    *,
+    run_id: str,
+    projected_seconds_key: str,
+) -> dict[str, Any]:
+    wall_start = time.perf_counter()
+    cpu_start = time.process_time()
+    measurement = call()
+    outer_wall = time.perf_counter() - wall_start
+    cpu_seconds = time.process_time() - cpu_start
+    if projected_seconds_key == "fit_plus_validation":
+        wall_for_ratio = float(measurement["fit_plus_validation_wall_clock_seconds"])
+        measurement["fit_plus_validation_process_cpu_seconds"] = cpu_seconds
+    elif projected_seconds_key == "wall_clock":
+        wall_for_ratio = float(measurement["wall_clock_seconds"])
+        measurement["process_cpu_seconds"] = cpu_seconds
+    else:
+        raise ValueError(projected_seconds_key)
+    ratio = _ratio(wall_for_ratio, cpu_seconds)
+    measurement["outer_wall_clock_seconds"] = outer_wall
+    measurement["outer_process_cpu_seconds"] = cpu_seconds
+    measurement["process_cpu_seconds"] = cpu_seconds
+    measurement["wall_cpu_ratio"] = ratio
+    measurement["wall_cpu_ratio_flag_gt_1_25"] = bool(ratio > 1.25)
+    measurement["timing_label"] = label
+    measurement["timing_producer_function"] = "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_timed_selected_measurement"
+    measurement["run_id"] = run_id
+    measurement["aggregation_rule"] = "selected sklearn/GRU/bootstrap measurement call bracketed by time.process_time without changing fit/score logic"
+    return measurement
+
+
+def _measure_prefix_family_one_eval_user_cputime(
+    part0: Any,
+    design: Mapping[str, Any],
+    spec: Any,
+    member_classes: Mapping[str, Callable[..., Any]],
+    *,
+    eval_user_id: int,
+    run_id: str,
+) -> dict[str, Any]:
+    if not 640 <= int(eval_user_id) <= 799:
+        raise RuntimeError(f"forbidden_prefix_eval_user:{eval_user_id}")
+    wall_start = time.perf_counter()
+    cpu_start = time.process_time()
+    collect_wall_start = time.perf_counter()
+    collect_cpu_start = time.process_time()
+    records_by_user = part0._records_by_user(design, spec.trajectory_spec)
+    fit_records = [record for user_id in range(0, 640) for record in records_by_user[user_id]]
+    eval_records = records_by_user[int(eval_user_id)]
+    collect_wall_seconds = time.perf_counter() - collect_wall_start
+    collect_cpu_seconds = time.process_time() - collect_cpu_start
+    members: dict[str, Any] = {}
+    for member, cls in member_classes.items():
+        member_wall_start = time.perf_counter()
+        member_cpu_start = time.process_time()
+        predictor = cls.from_design(design)
+        fit_wall_start = time.perf_counter()
+        fit_cpu_start = time.process_time()
+        if hasattr(predictor, "fit"):
+            predictor.fit(fit_records)
+        else:
+            for record in fit_records:
+                predictor.observe(record)
+        fit_wall_seconds = time.perf_counter() - fit_wall_start
+        fit_cpu_seconds = time.process_time() - fit_cpu_start
+        score_wall_start = time.perf_counter()
+        score_cpu_start = time.process_time()
+        query_predictor = copy.deepcopy(predictor)
+        y_true: list[int] = []
+        y_pred: list[int] = []
+        for record in eval_records:
+            parsed = event_from_mapping(record)
+            prediction = query_predictor.predict([parsed.action])
+            distribution = prediction[str(parsed.action)]
+            y_pred.append(int(np.argmax(np.asarray(distribution, dtype=float))))
+            y_true.append(int(parsed.observation["symbol"]))
+            query_predictor.observe(parsed)
+        score_wall_seconds = time.perf_counter() - score_wall_start
+        score_cpu_seconds = time.process_time() - score_cpu_start
+        projected_wall = fit_wall_seconds + (score_wall_seconds * 160.0)
+        projected_cpu = fit_cpu_seconds + (score_cpu_seconds * 160.0)
+        ratio = _ratio(projected_wall, projected_cpu)
+        members[member] = {
+            "member": member,
+            "cell_id": spec.cell_id,
+            "variant": spec.variant,
+            "fit_users": 640,
+            "eval_user_id_measured": int(eval_user_id),
+            "eval_users_projected_per_member_cell": 160,
+            "fit_records": len(fit_records),
+            "eval_records_one_user": len(eval_records),
+            "fit_wall_clock_seconds": fit_wall_seconds,
+            "fit_process_cpu_seconds": fit_cpu_seconds,
+            "score_one_eval_user_wall_clock_seconds": score_wall_seconds,
+            "score_one_eval_user_process_cpu_seconds": score_cpu_seconds,
+            "projected_one_member_cell_seconds": projected_wall,
+            "projected_one_member_cell_wall_seconds": projected_wall,
+            "projected_one_member_cell_process_cpu_seconds": projected_cpu,
+            "one_eval_user_macro_balanced_accuracy": macro_balanced_accuracy(
+                y_true,
+                y_pred,
+                alphabet_size=response_alphabet_size(design),
+            ),
+            "producer_function": (
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::"
+                "_measure_prefix_family_one_eval_user"
+            ),
+            "timing_producer_function": (
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::"
+                "_measure_prefix_family_one_eval_user_cputime"
+            ),
+            "wall_clock_seconds": time.perf_counter() - member_wall_start,
+            "process_cpu_seconds": time.process_time() - member_cpu_start,
+            "wall_cpu_ratio": ratio,
+            "wall_cpu_ratio_flag_gt_1_25": bool(ratio > 1.25),
+            "run_id": run_id,
+            "aggregation_rule": "fit_640 process CPU plus one eval-user score process CPU scaled to 160 eval users",
+        }
+    return {
+        "cell_id": spec.cell_id,
+        "variant": spec.variant,
+        "members": members,
+        "record_collection_wall_clock_seconds": collect_wall_seconds,
+        "record_collection_process_cpu_seconds": collect_cpu_seconds,
+        "projection_unit": "fit_640_users_plus_score_one_eval_user_scaled_to_160_eval_users",
+        "heldout_users_800_999_touched": False,
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py::"
+            "_measure_prefix_family_one_eval_user"
+        ),
+        "timing_producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::"
+            "_measure_prefix_family_one_eval_user_cputime"
+        ),
+        "wall_clock_seconds": time.perf_counter() - wall_start,
+        "process_cpu_seconds": time.process_time() - cpu_start,
+        "run_id": run_id,
+    }
+
+
+def _run_dominant_serial_remeasurements(
+    part0: Any,
+    design: Mapping[str, Any],
+    specs: Mapping[str, Any],
+    run_id: str,
+) -> dict[str, Any]:
+    ideal_rows = [
+        _measure_ideal_cputime(design, specs["camouflage_off"], user_id=user_id, run_id=run_id)
+        for user_id in DOMINANT_REMEASURE_USERS
+    ]
+    nearest_rows = [
+        _measure_prefix_family_one_eval_user_cputime(
+            part0,
+            design,
+            specs["stable_facts"],
+            {"nearest_neighbor_user_matching": NearestNeighborUserMatchingPredictor},
+            eval_user_id=user_id,
+            run_id=run_id,
+        )["members"]["nearest_neighbor_user_matching"]
+        for user_id in DOMINANT_REMEASURE_USERS
+    ]
+    discounted_rows = [
+        _measure_prefix_family_one_eval_user_cputime(
+            part0,
+            design,
+            specs["flat_theta"],
+            {"discounted_LS_lambda_0.95": DiscountedLeastSquaresPredictor},
+            eval_user_id=user_id,
+            run_id=run_id,
+        )["members"]["discounted_LS_lambda_0.95"]
+        for user_id in DOMINANT_REMEASURE_USERS
+    ]
+    return {
+        "eval_users": list(DOMINANT_REMEASURE_USERS),
+        "heldout_users_800_999_touched": False,
+        "ideal_all_7_cells_160_eval_users": {
+            "unit": "ideal_per_user_one_cell",
+            "component_replaced": "ideal_all_7_cells_160_eval_users",
+            "rows": ideal_rows,
+            "wall_seconds_mean_se": _mean_se([float(row["wall_clock_seconds"]) for row in ideal_rows]),
+            "process_cpu_seconds_mean_se": _mean_se([float(row["process_cpu_seconds"]) for row in ideal_rows]),
+            "aggregation_rule": "replace one-user one-cell ideal unit with serial-isolation mean over eval users 640, 720, 799",
+        },
+        "retrieval_family_nearest_neighbor_user_matching_cert_plus_NULL": {
+            "unit": "nearest_neighbor_user_matching_projected_one_member_cell",
+            "component_replaced": "retrieval_family_nearest_neighbor_user_matching_cert_plus_NULL",
+            "rows": nearest_rows,
+            "projected_wall_seconds_mean_se": _mean_se([float(row["projected_one_member_cell_wall_seconds"]) for row in nearest_rows]),
+            "projected_process_cpu_seconds_mean_se": _mean_se(
+                [float(row["projected_one_member_cell_process_cpu_seconds"]) for row in nearest_rows]
+            ),
+            "aggregation_rule": "replace projected one-member-cell nearest-neighbor unit with serial-isolation mean over eval users 640, 720, 799",
+        },
+        "ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL": {
+            "unit": "discounted_LS_lambda_0.95_projected_one_member_cell",
+            "component_replaced": "ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL",
+            "rows": discounted_rows,
+            "projected_wall_seconds_mean_se": _mean_se([float(row["projected_one_member_cell_wall_seconds"]) for row in discounted_rows]),
+            "projected_process_cpu_seconds_mean_se": _mean_se(
+                [float(row["projected_one_member_cell_process_cpu_seconds"]) for row in discounted_rows]
+            ),
+            "aggregation_rule": "replace projected one-member-cell discounted-LS unit with serial-isolation mean over eval users 640, 720, 799",
+        },
+    }
+
+
+def _replacement_component_values(remeasurements: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+    if not remeasurements:
+        return {}
+    values: dict[str, dict[str, Any]] = {}
+    ideal = remeasurements.get("ideal_all_7_cells_160_eval_users")
+    if ideal:
+        values["ideal_all_7_cells_160_eval_users"] = {
+            "wall_seconds": ideal["wall_seconds_mean_se"]["mean"],
+            "cpu_seconds": ideal["process_cpu_seconds_mean_se"]["mean"],
+            "source": "dominant_serial_remeasurement_mean_eval_users_640_720_799",
+        }
+    nn = remeasurements.get("retrieval_family_nearest_neighbor_user_matching_cert_plus_NULL")
+    if nn:
+        values["retrieval_family_nearest_neighbor_user_matching_cert_plus_NULL"] = {
+            "wall_seconds": nn["projected_wall_seconds_mean_se"]["mean"],
+            "cpu_seconds": nn["projected_process_cpu_seconds_mean_se"]["mean"],
+            "source": "dominant_serial_remeasurement_mean_eval_users_640_720_799",
+        }
+    ls = remeasurements.get("ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL")
+    if ls:
+        values["ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL"] = {
+            "wall_seconds": ls["projected_wall_seconds_mean_se"]["mean"],
+            "cpu_seconds": ls["projected_process_cpu_seconds_mean_se"]["mean"],
+            "source": "dominant_serial_remeasurement_mean_eval_users_640_720_799",
+        }
+    return values
+
+
+def _mean_se(values: Sequence[float]) -> dict[str, Any]:
+    vals = [float(value) for value in values]
+    mean = float(statistics.mean(vals))
+    se = float(statistics.stdev(vals) / math.sqrt(len(vals))) if len(vals) > 1 else 0.0
+    return {"n": len(vals), "mean": mean, "se": se, "values": vals}
+
+
+def _ratio(wall_seconds: float, cpu_seconds: float) -> float:
+    return float(wall_seconds) / max(float(cpu_seconds), 1e-12)
+
+
+def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[str, Any]:
+    run_started_at = _utc_timestamp()
+    start_wall = time.perf_counter()
+    start_cpu = time.process_time()
+    run_id = f"s3d-part0-line{_line_label(applied_line)}-{run_started_at}"
+    design = load_frozen_design(FROZEN_DESIGN)
+    environment = _single_thread_environment()
+    specs = {spec.cell_id: spec for spec in build_s3d_cert_set_specs(design)}
+
+    generation_measurement = _measure_generation_cputime(design, specs["constant_none"], run_id)
+    ideal_measurement = _measure_ideal_cputime(design, specs["camouflage_off"], user_id=640, run_id=run_id)
+    lower_bound_cpu_hours = float(ideal_measurement["process_cpu_seconds"]) * 160.0 / 3600.0
     initial_projection = {
         "task_id": TASK_ID,
         "stage": "S3d",
@@ -729,14 +1241,14 @@ def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[s
         },
         "projection_rule": {
             "declared_assumption": "linear projection from measured per-user full-prefix S2 ideal cost; one camouflage_off cell has 160 eval users",
-            "lower_bound_basis": "camouflage_off S2 ideal alone, excluding generation, fitting, scoring, other cells, bootstrap, and NULL-env",
+            "lower_bound_basis": "camouflage_off S2 ideal process CPU-time alone, excluding generation, fitting, scoring, other cells, bootstrap, and NULL-env",
             "camouflage_off_eval_users": 160,
         },
         "projection_lower_bound_cpu_hours": lower_bound_cpu_hours,
         "camouflage_off_ideal_projected_cpu_hours": lower_bound_cpu_hours,
         "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_run_part0_projection_line",
         "input_artifacts": [str(FROZEN_DESIGN.relative_to(ROOT)), str(BUDGET_DECISION.relative_to(ROOT))],
-        "run_id": f"s3d-part0-line{_line_label(applied_line)}-{run_started_at}",
+        "run_id": run_id,
         "run_started_at": run_started_at,
         "code_path_hash": _code_path_hash(),
     }
@@ -758,47 +1270,81 @@ def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[s
     selected_recipes = _selected_recipe_configs()
     selected_recipe_hashes = {name: _sha256(path) for name, path in _selected_recipe_paths().items()}
 
-    measurements: dict[str, Any] = {}
-    measurements["logreg_F1_selected"] = projection_runner._measure_sklearn_selected(
-        design,
-        specs["camouflage_off"],
-        selected_recipes["obs_decoder_logreg"],
-        features="F1",
+    measurements: dict[str, Any] = {
+        "cert_set_generation": generation_measurement,
+        "ideal_per_user_one_cell": ideal_measurement,
+    }
+    measurements["logreg_F1_selected"] = _timed_selected_measurement(
+        "logreg_F1_selected",
+        lambda: projection_runner._measure_sklearn_selected(
+            design,
+            specs["camouflage_off"],
+            selected_recipes["obs_decoder_logreg"],
+            features="F1",
+        ),
+        run_id=run_id,
+        projected_seconds_key="fit_plus_validation",
     )
-    measurements["logreg_F2_reference"] = projection_runner._measure_sklearn_selected(
-        design,
-        specs["camouflage_off"],
-        obs_decoders.decoder_grid("obs_decoder_logreg")[4],
-        features="F2",
-        vocabulary=vocabulary,
+    measurements["logreg_F2_reference"] = _timed_selected_measurement(
+        "logreg_F2_reference",
+        lambda: projection_runner._measure_sklearn_selected(
+            design,
+            specs["camouflage_off"],
+            obs_decoders.decoder_grid("obs_decoder_logreg")[4],
+            features="F2",
+            vocabulary=vocabulary,
+        ),
+        run_id=run_id,
+        projected_seconds_key="fit_plus_validation",
     )
-    measurements["gbt_half_data_selected"] = projection_runner._measure_sklearn_selected(
-        design,
-        specs["camouflage_off"],
-        selected_recipes["obs_decoder_gbt"],
-        features="F2",
-        vocabulary=vocabulary,
-        fit_user_filter=set(obs_decoders.gbt_fit_user_ids()),
+    measurements["gbt_half_data_selected"] = _timed_selected_measurement(
+        "gbt_half_data_selected",
+        lambda: projection_runner._measure_sklearn_selected(
+            design,
+            specs["camouflage_off"],
+            selected_recipes["obs_decoder_gbt"],
+            features="F2",
+            vocabulary=vocabulary,
+            fit_user_filter=set(obs_decoders.gbt_fit_user_ids()),
+        ),
+        run_id=run_id,
+        projected_seconds_key="fit_plus_validation",
     )
-    measurements["gru_selected"] = projection_runner._measure_gru_selected(
-        design,
-        specs["camouflage_off"],
-        selected_recipes["obs_decoder_gru"],
-        member_kind="obs_decoder_gru",
+    measurements["gru_selected"] = _timed_selected_measurement(
+        "gru_selected",
+        lambda: projection_runner._measure_gru_selected(
+            design,
+            specs["camouflage_off"],
+            selected_recipes["obs_decoder_gru"],
+            member_kind="obs_decoder_gru",
+        ),
+        run_id=run_id,
+        projected_seconds_key="fit_plus_validation",
     )
-    measurements["seq_full_selected"] = projection_runner._measure_gru_selected(
-        design,
-        specs["constant_none"],
-        selected_recipes["seq_full_history_no_action_conditioning"],
-        member_kind="seq_full_history_no_action_conditioning",
+    measurements["seq_full_selected"] = _timed_selected_measurement(
+        "seq_full_selected",
+        lambda: projection_runner._measure_gru_selected(
+            design,
+            specs["constant_none"],
+            selected_recipes["seq_full_history_no_action_conditioning"],
+            member_kind="seq_full_history_no_action_conditioning",
+        ),
+        run_id=run_id,
+        projected_seconds_key="fit_plus_validation",
     )
-    measurements["seq_W15_selected"] = projection_runner._measure_gru_selected(
-        design,
-        specs["low_diversity"],
-        selected_recipes["seq_window_with_action_conditioning_W15_no_cross_session_persistence"],
-        member_kind="seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+    measurements["seq_W15_selected"] = _timed_selected_measurement(
+        "seq_W15_selected",
+        lambda: projection_runner._measure_gru_selected(
+            design,
+            specs["low_diversity"],
+            selected_recipes["seq_window_with_action_conditioning_W15_no_cross_session_persistence"],
+            member_kind="seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+        ),
+        run_id=run_id,
+        projected_seconds_key="fit_plus_validation",
     )
-    measurements["table_family"] = projection_runner._measure_prefix_family_one_eval_user(
+    measurements["table_family"] = _measure_prefix_family_one_eval_user_cputime(
+        projection_runner,
         design,
         specs["low_diversity"],
         {
@@ -809,8 +1355,10 @@ def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[s
             "episodic_traversal": EpisodicTraversalPredictor,
         },
         eval_user_id=640,
+        run_id=run_id,
     )
-    measurements["retrieval_family"] = projection_runner._measure_prefix_family_one_eval_user(
+    measurements["retrieval_family"] = _measure_prefix_family_one_eval_user_cputime(
+        projection_runner,
         design,
         specs["stable_facts"],
         {
@@ -818,8 +1366,10 @@ def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[s
             "nearest_neighbor_user_matching": NearestNeighborUserMatchingPredictor,
         },
         eval_user_id=640,
+        run_id=run_id,
     )
-    measurements["degenerate_family"] = projection_runner._measure_prefix_family_one_eval_user(
+    measurements["degenerate_family"] = _measure_prefix_family_one_eval_user_cputime(
+        projection_runner,
         design,
         specs["constant_none"],
         {
@@ -829,8 +1379,10 @@ def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[s
             "global_prior": GlobalPriorPredictor,
         },
         eval_user_id=640,
+        run_id=run_id,
     )
-    measurements["ls_online_family"] = projection_runner._measure_prefix_family_one_eval_user(
+    measurements["ls_online_family"] = _measure_prefix_family_one_eval_user_cputime(
+        projection_runner,
         design,
         specs["flat_theta"],
         {
@@ -838,34 +1390,51 @@ def _run_part0_projection_line(applied_line: float, output_path: Path) -> dict[s
             "running_average_preference_regressor": RunningAveragePreferenceRegressor,
         },
         eval_user_id=640,
+        run_id=run_id,
     )
-    measurements["bootstrap"] = projection_runner._measure_bootstrap_unit()
+    measurements["bootstrap"] = _timed_selected_measurement(
+        "bootstrap",
+        lambda: projection_runner._measure_bootstrap_unit(),
+        run_id=run_id,
+        projected_seconds_key="wall_clock",
+    )
 
-    full_projection = projection_runner._project_total(initial_projection, measurements)
-    full_projection["cpu_hour_limit"] = float(applied_line)
-    full_projection["line_relation"] = "within_signed_line" if float(full_projection["total_projected_cpu_hours"]) <= applied_line else "exceeds_signed_line"
-    decision = (
-        "STOP_s3d_part0_projection_exceeds_signed_line"
-        if float(full_projection["total_projected_cpu_hours"]) > applied_line
-        else "s3d_part0_projection_within_signed_line"
-    )
+    initial_units = s3d_part0_projection_units_from_measurements(measurements, replacements=None)
+    initial_cpu_projection = project_s3d_part0_cpu_time_units(initial_units, applied_line)
+    dominant_serial_remeasurements = _run_dominant_serial_remeasurements(projection_runner, design, specs, run_id)
+    final_units = s3d_part0_projection_units_from_measurements(measurements, replacements=dominant_serial_remeasurements)
+    full_projection = project_s3d_part0_cpu_time_units(final_units, applied_line)
+    full_projection["line_relation"] = full_projection["signed_line_relation"]
+    full_projection["linear_projection_assumptions"] = [
+        "cert-set generation scales linearly across the 7 S3d cells",
+        "S2 ideal cost scales from one eval user to 160 eval users per cell across 7 cells",
+        "sklearn/GRU selected-recipe measurements are one full fit+validation member-cell units",
+        "prefix-family measurements are fit_640 plus one eval user scoring, scaled to 160 eval users per member-cell",
+        "each measured member-cell is counted once for its favorable certificate cell and once for NULL_env",
+        "logreg_F2 is measured for named PART 0 coverage but not counted because the banked selected logreg recipe is F1",
+    ]
+
+    decision = str(full_projection["decision"])
     final = {
         **initial_projection,
         "artifact": f"s3d_compute_projection_line{_line_label(applied_line)}",
         "part": "PART 0 full projection under signed line",
         "selected_recipe_sha256": selected_recipe_hashes,
         "full_part0_measurements": measurements,
+        "initial_cpu_time_projection_before_dominant_remeasure": initial_cpu_projection,
+        "dominant_serial_remeasurements": dominant_serial_remeasurements,
         "full_part0_projection": full_projection,
         "projected_cpu_hours": float(full_projection["total_projected_cpu_hours"]),
         "projection_cpu_hours": float(full_projection["total_projected_cpu_hours"]),
         "projection_total_cpu_hours": float(full_projection["total_projected_cpu_hours"]),
+        "projected_wall_hours_disclosed": float(full_projection["total_projected_wall_hours"]),
         "decision": decision,
         "runtime_guard_decision": decision,
         "run_finished_at": _utc_timestamp(),
         "wall_clock_seconds": time.perf_counter() - start_wall,
         "process_cpu_seconds": time.process_time() - start_cpu,
-        "wall_clock_based_cpu_hours_disclosed": (time.perf_counter() - start_wall) / 3600.0,
-        "contention_robust_cpu_hours": (time.process_time() - start_cpu) / 3600.0,
+        "wall_clock_based_cpu_hours_disclosed": float(full_projection["total_projected_wall_hours"]),
+        "contention_robust_cpu_hours": float(full_projection["total_projected_cpu_hours"]),
     }
     _write_json(output_path, final)
     return final
@@ -2210,7 +2779,16 @@ def _read_json(path: str | Path) -> dict[str, Any]:
 def _write_json(path: str | Path, payload: Mapping[str, Any]) -> None:
     target = Path(path)
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps(_jsonable(payload), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    text = json.dumps(_jsonable(payload), indent=2, sort_keys=True)
+    target.write_text(text, encoding="utf-8")
+    raw = target.read_bytes()
+    if not raw:
+        raise AssertionError(f"empty_json_write:{target}")
+    if b"\x00" in raw:
+        raise AssertionError(f"nul_byte_after_json_write:{target}")
+    if raw[-1:] in b" \t\r\n":
+        raise AssertionError(f"trailing_whitespace_after_json_write:{target}")
+    json.loads(raw.decode("utf-8-sig"))
 
 
 def _jsonable(value: Any) -> Any:
