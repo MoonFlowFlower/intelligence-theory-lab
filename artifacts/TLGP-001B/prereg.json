@@ -1,0 +1,231 @@
+{
+  "DELTA": 0.1,
+  "FLOOR": 0.2,
+  "N_SEEDS": 10,
+  "ablation": {
+    "context_ablation": "remove adaptation context; meta MUST drop to FLOOR (proves context use)",
+    "shuffle_structure": "reuse 001A shuffle world; meta headroom MUST collapse (<=DELTA)"
+  },
+  "authorization_gate": "Implementation requires (1) explicit operator 'implement TLGP-001B' instruction AND (2) reference to THIS frozen prereg sha256. Until both, design-only.",
+  "auto_remote_anchor_policy": "LOCAL-ONLY default; harness performs NO git op; remote BLOCKED until scripts/push.* hardcoded-PAT rotated/removed; any remote anchor operator-initiated only, scoped explicit `git add`, NEVER `git add -A`, NEVER push.py",
+  "candidate_free": true,
+  "capacity_grid": {
+    "gru": {
+      "hidden": [
+        64,
+        128,
+        256
+      ],
+      "layers": [
+        1,
+        2
+      ]
+    },
+    "mlp_summary": {
+      "hidden": [
+        [
+          128,
+          128
+        ],
+        [
+          256,
+          256
+        ]
+      ]
+    },
+    "saturation_witnesses": {
+      "gru": "hidden=256,layers=2",
+      "mlp_summary": "[256,256]",
+      "transformer": "d_model=256,layers=4"
+    },
+    "transformer": {
+      "d_model": [
+        64,
+        128,
+        256
+      ],
+      "ff_mult": 4,
+      "heads": 4,
+      "layers": [
+        2,
+        4
+      ]
+    }
+  },
+  "claim_ceiling": "Bounded offline evidence on whether ONE procedural world's within-episode inference headroom survives cross-episode amortization. Candidate-free; tests NO mechanism. NOT learning-as-mechanism, agency, self, feeling, subjectivity, intelligence, or EGO-readiness evidence. A negative in either direction is bounded to THIS world + THIS meta-learner family + this pre-registered capacity grid.",
+  "decision_statistic": {
+    "H1_requires": "LCB > DELTA at the LARGEST capacity of every meta-learner family",
+    "capacity_control_requires": "headroom_vs_meta <= DELTA on >= 9/10 seeds",
+    "lcb": "mean(headroom_vs_meta) - 2*std/sqrt(N_SEEDS)"
+  },
+  "forbidden_files": [
+    "src/tlgp_001a/**",
+    "artifacts/TLGP-001A/**",
+    "artifacts/TLGP-001A-AUDIT-001/**",
+    "scripts/push.*",
+    "CLAUDE.md",
+    "any global config",
+    "any schema",
+    "EGO mainline"
+  ],
+  "frozen_date": "2026-06-18",
+  "lineage": {
+    "extends": "TLGP-001A",
+    "tlgp_001a_audit": "artifacts/TLGP-001A-AUDIT-001 (verdict BANK candidate-free gap-testbed)",
+    "tlgp_001a_prereg_sha256": "3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579"
+  },
+  "metric": {
+    "headroom_vs_meta": "ideal_mean - meta_mean",
+    "note": "ideal = TLGP-001A in-family Bayesian observer (probe ceiling, excluded from fair panel)",
+    "primary": "mean over episodes of per-episode balanced accuracy on held-out queries"
+  },
+  "panel": {
+    "graph_cache_family_note": "graph_lookup/transition_table/successor_map/count_table/episodic_traversal provably dominated by unseen-value split; include count_table witness, expect floor; coverage by construction, not independent corroboration",
+    "lower_reference": [
+      "predict_all",
+      "no_adaptation",
+      "lookup",
+      "knn1",
+      "logistic",
+      "mlp",
+      "random_forest"
+    ],
+    "new_fair_meta": [
+      "in_context_gru",
+      "in_context_transformer",
+      "amortized_summary_mlp"
+    ]
+  },
+  "positive_control": {
+    "leakage": "meta NEVER receives rule_id or query_e; reuse 001A dual-target MI detector (planted + RENAMED + clean controls) on every meta input channel",
+    "meta_learner_capable": "SAME architecture+budget trained on CAPACITY_CONTROL regime MUST close headroom on >=9/10 seeds; else INVALID (underpowered meta-learner)"
+  },
+  "provenance_requirements": {
+    "code_path_provenance": "delivered_sha256 == executed_sha256 for every src file, recorded",
+    "fuse_safe_write": "author in /tmp, cp to mount, sha256 readback verify",
+    "git": "NONE by the harness (no add/commit/push/tag/anchor)",
+    "prereg_pin": "this prereg sha256 embedded in result.json before any score is computed"
+  },
+  "question": "Does TLGP-001A's within-episode headroom survive a capacity-saturated cross-episode meta-learner that may amortize the mod-K rule family across episodes?",
+  "replay_requirements": {
+    "exactness": "ideal exact; baseline/meta from recorded preds exact; stochastic retraining reproducibility checked separately via frozen MODEL_SEEDS + capacity control",
+    "from_trace_no_retrain": "recompute ideal + every baseline + meta balanced accuracy AND the verdict from recorded predictions vs ground truth, WITHOUT retraining",
+    "power_statement": "REQUIRED on the fired verdict (min detectable headroom gap at N_SEEDS=10 + observed std)"
+  },
+  "research_layer": "engineering_implementation+mechanism_hypothesis_preflight",
+  "seed_list": {
+    "BASELINE_FIT_SEED": 20260707,
+    "LEAK_SEED": 20260705,
+    "MODEL_SEEDS": [
+      20260710,
+      20260711,
+      20260712,
+      20260713,
+      20260714,
+      20260715,
+      20260716,
+      20260717,
+      20260718,
+      20260719
+    ],
+    "RULE_SPLIT_SEED": 20260701,
+    "SHUFFLE_SEED": 20260706,
+    "TEST_EPISODES_SEED": 20260704,
+    "TRAIN_EPISODES_SEED": 20260702,
+    "VAL_EPISODES_SEED": 20260703
+  },
+  "source_allowlist": {
+    "may_create_under": [
+      "src/tlgp_001b/**",
+      "artifacts/TLGP-001B/**"
+    ],
+    "may_read_only_import": [
+      "src/tlgp_001a/world.py",
+      "src/tlgp_001a/ideal_observer.py",
+      "src/tlgp_001a/metrics.py",
+      "src/tlgp_001a/leakage.py"
+    ],
+    "new_files_expected": [
+      "src/tlgp_001b/__init__.py",
+      "src/tlgp_001b/meta_learners.py",
+      "src/tlgp_001b/splits.py",
+      "src/tlgp_001b/harness.py",
+      "src/tlgp_001b/preregistration.py(mirrors THIS frozen artifact)"
+    ]
+  },
+  "split_construction": {
+    "assertions_logged": [
+      "TRAIN_RULES \u2229 TEST_RULES = empty",
+      "train/val/test episode_id disjoint",
+      "test set identical across REAL and CONTROL"
+    ],
+    "episode_split": "train/val draw rules from TRAIN_RULES only; test draws from TEST_RULES only; episode_id disjoint across splits",
+    "rule_split": {
+      "method": "permutation of the 625 canonical-order rules by RULE_SPLIT_SEED; disjoint",
+      "test_rules": 125,
+      "train_rules": 500
+    },
+    "value_regime": {
+      "CAPACITY_CONTROL": "identical EXCEPT train+val episode QUERIES may also draw {3,4} (adapt still {0,1,2}); test identical to REAL",
+      "REAL_withheld": "train+val episodes use values {0,1,2} for BOTH adaptation and queries (meta never sees 3/4); test uses 001A protocol (adapt {0,1,2}, query {3,4})"
+    }
+  },
+  "stage": "prereg_frozen_pre_implementation",
+  "tamper_requirements": {
+    "axes": [
+      "inflate a fair baseline above FLOOR+DELTA -> not-H1",
+      "mark a planted leak missed -> INVALID",
+      "break shuffle collapse -> not-H1",
+      "break replay_exact -> not-H1",
+      "degrade meta_learner_capable below close threshold -> INVALID"
+    ],
+    "min_probes": 5,
+    "requirement": "each probe MUST flip the computed verdict (fail-able both ways)"
+  },
+  "task_id": "TLGP-001B",
+  "training_budget": {
+    "batch_size": 256,
+    "early_stop_patience": 20,
+    "identical_across_conditions": true,
+    "lr_grid": [
+      0.001,
+      0.0003
+    ],
+    "lr_selection": "best on val balanced-accuracy (preregistered)",
+    "max_epochs": 200,
+    "n_test_episodes": 200,
+    "n_train_episodes": 5000,
+    "n_val_episodes": 1000,
+    "only_permitted_condition_difference": "train/val query value-regime flag (never compute/architecture)",
+    "optimizer": "adam",
+    "steps_max": 200000
+  },
+  "verdict_enum": {
+    "H0_downgrade": "tlgp001b_headroom_amortized_by_meta__downgrade_001a",
+    "H1_bank_within_episode": "tlgp001b_within_episode_headroom_survives_meta",
+    "invalid": "tlgp001b_invalid_capacity_or_leakage_or_replay",
+    "precedence_computed": [
+      "INVALID iff (capacity_control fails to close on >=9/10 seeds for any family) OR (any planted leak uncaught) OR (any clean channel falsely flagged) OR (replay not exact)",
+      "else SURVIVES (H1) iff for the largest capacity of every family: LCB(headroom_vs_meta) > DELTA AND context-ablation collapses (meta <= FLOOR+DELTA) AND shuffle collapses (meta headroom <= DELTA)",
+      "else DOWNGRADE (H0)"
+    ]
+  },
+  "world": {
+    "ACTION_CARD": 5,
+    "D": 3,
+    "K": 5,
+    "M": 5,
+    "heldout_values": [
+      3,
+      4
+    ],
+    "inherit": "TLGP-001A frozen world (read-only import of src/tlgp_001a.world)",
+    "rule": "effect = (sum_i w_i*x_i + c*a) mod K",
+    "rule_space_size": 625,
+    "train_values": [
+      0,
+      1,
+      2
+    ]
+  }
+}

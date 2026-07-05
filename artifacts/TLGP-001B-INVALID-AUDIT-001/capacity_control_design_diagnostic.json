@@ -1,0 +1,78 @@
+{
+  "NON_EVIDENTIAL": true,
+  "check1_test_identical_real_vs_control": {
+    "detail": "identical",
+    "identical": true,
+    "n_episodes": 300
+  },
+  "check2_value_regimes": {
+    "CONTROL_train_adapt_values": [
+      0,
+      1,
+      2
+    ],
+    "CONTROL_train_query_values": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "REAL_train_adapt_values": [
+      0,
+      1,
+      2
+    ],
+    "REAL_train_query_values": [
+      0,
+      1,
+      2
+    ],
+    "control_adapt_still_excludes_34": true,
+    "control_adds_34_to_train_queries": true,
+    "real_train_queries_exclude_34": true,
+    "test_adapt_values": [
+      0,
+      1,
+      2
+    ],
+    "test_query_values": [
+      3,
+      4
+    ]
+  },
+  "check3_unseen_rule_generalization": {
+    "n_distinct_test_rules_sampled": 112,
+    "n_test_rules": 125,
+    "n_train_rules": 500,
+    "test_rules_subset_of_TEST_RULES": true,
+    "test_train_rule_overlap_empty": true
+  },
+  "check4_closed_seed_recompute": {
+    "DELTA": 0.1,
+    "match_official": true,
+    "need_close": 9,
+    "per_family": {
+      "amortized_summary_mlp": {
+        "closed_seeds_recomputed": 0,
+        "max_control_headroom": 0.8155,
+        "min_control_headroom": 0.7969,
+        "official": 0
+      },
+      "in_context_gru": {
+        "closed_seeds_recomputed": 0,
+        "max_control_headroom": 0.8145,
+        "min_control_headroom": 0.797,
+        "official": 0
+      },
+      "in_context_transformer": {
+        "closed_seeds_recomputed": 0,
+        "max_control_headroom": 0.8164,
+        "min_control_headroom": 0.8037,
+        "official": 0
+      }
+    }
+  },
+  "emits_no_verdict": true,
+  "task": "TLGP-001B-INVALID-AUDIT-001"
+}

@@ -1,0 +1,140 @@
+{
+  "calibration_budget": {
+    "batch_size": 256,
+    "early_stop_patience": 1,
+    "lr_grid": [
+      0.001
+    ],
+    "max_epochs": 1,
+    "optimizer": "adam",
+    "steps_max": 200000
+  },
+  "calibration_scope": "one epoch, one lr, REAL condition, witness-sized model per family; timing only; no verdict logic",
+  "claim_ceiling": "Runtime calibration only. Not TLGP-001B evidence; not H0/H1/INVALID; not mechanism evidence.",
+  "device_readback_after_calibration": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "meta_learner_device_runs": {
+      "amortized_summary_mlp": {
+        "all_runs_on_selected_device": true,
+        "any_run_on_cuda": true,
+        "last_model_device": "cuda:0",
+        "last_tensor_devices": [
+          "cuda:0"
+        ],
+        "train_select_calls": 1
+      },
+      "in_context_gru": {
+        "all_runs_on_selected_device": true,
+        "any_run_on_cuda": true,
+        "last_model_device": "cuda:0",
+        "last_tensor_devices": [
+          "cuda:0"
+        ],
+        "train_select_calls": 1
+      },
+      "in_context_transformer": {
+        "all_runs_on_selected_device": true,
+        "any_run_on_cuda": true,
+        "last_model_device": "cuda:0",
+        "last_tensor_devices": [
+          "cuda:0"
+        ],
+        "train_select_calls": 1
+      }
+    },
+    "meta_learner_ran_on_cuda": {
+      "amortized_summary_mlp": true,
+      "in_context_gru": true,
+      "in_context_transformer": true
+    },
+    "selected_device": "cuda:0",
+    "torch_version": "2.9.1+cu128"
+  },
+  "evidential": false,
+  "families": {
+    "amortized_summary_mlp": {
+      "calibration_seconds_one_epoch_one_lr_real_condition": 0.23719899996649474,
+      "device": {
+        "model_device": "cuda:0",
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "epochs_run": 1,
+      "evidential": false,
+      "score_fields_omitted": true,
+      "steps_run": 20,
+      "witness_params": {
+        "hidden": [
+          256,
+          256
+        ]
+      }
+    },
+    "in_context_gru": {
+      "calibration_seconds_one_epoch_one_lr_real_condition": 1.1556849000044167,
+      "device": {
+        "model_device": "cuda:0",
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "epochs_run": 1,
+      "evidential": false,
+      "score_fields_omitted": true,
+      "steps_run": 20,
+      "witness_params": {
+        "hidden": 256,
+        "layers": 2
+      }
+    },
+    "in_context_transformer": {
+      "calibration_seconds_one_epoch_one_lr_real_condition": 0.6413748000049964,
+      "device": {
+        "model_device": "cuda:0",
+        "ran_on_cuda": true,
+        "ran_on_selected_device": true,
+        "selected_device": "cuda:0",
+        "tensor_devices": [
+          "cuda:0"
+        ]
+      },
+      "epochs_run": 1,
+      "evidential": false,
+      "score_fields_omitted": true,
+      "steps_run": 20,
+      "witness_params": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      }
+    }
+  },
+  "full_budget_trainings": {
+    "families": 3,
+    "runs_per_family": 80,
+    "total_trainings": 240
+  },
+  "official_full_budget_not_launched": true,
+  "official_verdict": "NOT_EMITTED",
+  "prereg_canonical_sha256": "c9f4ba279b75cfc1753a6c6586f11708a9d561bbbff82e8db98859165c580d41",
+  "prereg_match": true,
+  "rough_linear_estimate": {
+    "linear_estimate_hours_200_epochs_all_240_trainings": 9.041149777670702,
+    "linear_estimate_hours_60_epochs_all_240_trainings": 2.7123449333012104,
+    "linear_estimate_seconds_200_epochs_all_240_trainings": 32548.139199614525,
+    "linear_estimate_seconds_60_epochs_all_240_trainings": 9764.441759884357
+  },
+  "setup_seconds": 0.9569752999814227,
+  "status": "non_evidential_gpu_runtime_calibration_only",
+  "task_id": "TLGP-001B"
+}

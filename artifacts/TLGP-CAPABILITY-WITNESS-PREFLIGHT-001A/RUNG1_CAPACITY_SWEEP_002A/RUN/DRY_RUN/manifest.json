@@ -1,0 +1,191 @@
+{
+  "auto_remote_anchor": "forbidden",
+  "c0_anchor": {
+    "banked_reference_meta": 0.52,
+    "capacity_tag": "C0",
+    "failure_label": "RECIPE_HARMFUL_C0_ANCHOR_FAIL",
+    "minimum_meta": 0.49,
+    "requires_trainability_pass": true,
+    "rule_count": 172,
+    "stop_if_miss": true,
+    "tolerance": 0.03
+  },
+  "capacity_grid": {
+    "phase1": {
+      "C0": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      },
+      "C1": {
+        "d_model": 512,
+        "ff_mult": 4,
+        "heads": 8,
+        "layers": 6
+      },
+      "C2": {
+        "d_model": 768,
+        "ff_mult": 4,
+        "heads": 12,
+        "layers": 8
+      }
+    },
+    "phase2": [
+      "C0",
+      "C1",
+      "C2"
+    ]
+  },
+  "device_readback": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "meta_learner_device_runs": {
+      "icl_retrieval_transformer": {
+        "all_runs_on_selected_device": true,
+        "any_run_on_cuda": true,
+        "any_run_on_selected_device": true,
+        "last_model_device": "cuda:0",
+        "last_tensor_devices": [
+          "cuda:0"
+        ],
+        "predictions_serialized_on_cpu": true,
+        "train_select_calls": 2
+      }
+    },
+    "meta_learner_ran_on_cuda": {
+      "amortized_summary_mlp": false,
+      "in_context_gru": false,
+      "in_context_transformer": false
+    },
+    "meta_learner_ran_on_selected_device": {
+      "amortized_summary_mlp": false,
+      "in_context_gru": false,
+      "in_context_transformer": false
+    },
+    "selected_device": "cuda:0",
+    "torch_version": "2.9.1+cu128"
+  },
+  "dry_run": true,
+  "evidential": false,
+  "full_scout_launched": false,
+  "gpu_env": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "selected_device": "cuda:0",
+    "torch_version": "2.9.1+cu128"
+  },
+  "grid": {
+    "phase2": {
+      "eval": "held-out episode evaluation on selected seen train-pool rules; 172 uses exact rung1 task",
+      "rule_counts": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        172
+      ],
+      "rule_subset": {
+        "disjoint_from_test_rules": true,
+        "pool": "TRAIN_RULES",
+        "seed_name": "RUNG1_SWEEP_SUBSET_SEED",
+        "seed_value": 20260730,
+        "selection": "deterministic no-replacement subsample of k TRAIN-pool rules for k<172"
+      },
+      "stage": "trainability_gated_breakpoint_map"
+    },
+    "trainability_control": {
+      "failure_interpretation": "INVALID optimization/untrained capacity; exclude from breakpoint map and do not read as architecture-limited",
+      "failure_label": "TRAINABILITY_FAIL",
+      "must_run_first_for_each_capacity": true,
+      "required_clear_count": 2,
+      "rule_count": 2,
+      "stage": "per_capacity_trainability_control",
+      "threshold_meta": 0.9
+    }
+  },
+  "per_cell_parameter_count": {
+    "C0": 3167749,
+    "C1": 18931717,
+    "C2": 56729093
+  },
+  "phase_design_sha256": "ca22dbcea8c4e99b4b25ff96560d02ba4335cee9f6400fc21d6369ce6420f88c",
+  "prereg_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+  "protected_tracked_diff_names": [],
+  "recipe": {
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "early_stop_min_epochs": 35,
+    "early_stop_min_epochs_rule": "warmup_epochs + 20",
+    "early_stop_patience": 20,
+    "grad_clip_global_norm": 1.0,
+    "lr_schedule": "linear_warmup_then_cosine_decay",
+    "min_lr_fraction": 0.1,
+    "optimizer": "AdamW",
+    "peak_lr_grid": [
+      0.0003,
+      0.0001,
+      3e-05
+    ],
+    "warmup_epochs": 15,
+    "weight_decay": 0.1,
+    "weight_decay_scope": "2D weight matrices only; no decay on biases, LayerNorm, or 1D params"
+  },
+  "required_files": [
+    "result.json",
+    "trace.jsonl",
+    "val_curves.jsonl",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "leakage_report.json",
+    "replay_report.json",
+    "manifest.json",
+    "dry_run_report.json"
+  ],
+  "retrieval_model_sha256": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+  "run_id": "tlgp-rung1-capacity-sweep-002a-dry-20260701-112921-c554cf16",
+  "runner_sha256": "71ca8584d56d5925f82bac3e3db05717cf8485055bbab27ffb201e3fef36f461",
+  "source_pins": {
+    "all_match": true,
+    "observed": {
+      "src/tlgp_001a/leakage.py": "387c413d6af816216c73b45316bf854e3ef906e575bffc96cea1f6353e90bef1",
+      "src/tlgp_001b_r2/lower_reference.py": "cd701b2f4adcf9d8c66f28f0e797cdf748a7f4560c682953829b99eb85d28cf6",
+      "src/tlgp_001b_r2/meta_learners.py": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+      "src/tlgp_001b_r2/preregistration.py": "6a5a0273e7c3b0c2cce031dcf2b495646d87ecea7630d725c84def8f9ce27480",
+      "src/tlgp_001b_r2/splits.py": "ca2852a1ca69ba5277872bf5b0780163d0c79fbf0b5b2c7075bb740ef9981ad5",
+      "src/tlgp_001b_r2/world.py": "1c9bd730e79c19e5036e26cf4a45f1463dc2194217ec5ebc06e42731ca364a7c",
+      "src/tlgp_capability_witness_preflight_001a/retrieval_model.py": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+      "src/tlgp_capability_witness_preflight_001a/route_decision.py": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+      "src/tlgp_capability_witness_preflight_001a/rung1_capacity_sweep.py": "863b2b439f2fe147d9728aab0b4cd63010822806e5ea3b71fc2e6b008c8779cd",
+      "src/tlgp_capability_witness_preflight_001a/rung3_graph_cache_baselines.py": "921d44078a7b77e60c61b9bc5c5e2986228c4134a30ef2703c5fc52890229eaa",
+      "src/tlgp_capability_witness_preflight_001a/rung3_powered_full_run.py": "a0dcea8d51a49d8af4118ea62810952ee8b68528108f4e75f212001e73103be5",
+      "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py": "5773f5d14cde442002c4c69e4d8d37302df40a863b01f97f86336a53a3fa9120"
+    },
+    "pins": {
+      "src/tlgp_001a/leakage.py": "387c413d6af816216c73b45316bf854e3ef906e575bffc96cea1f6353e90bef1",
+      "src/tlgp_001b_r2/lower_reference.py": "cd701b2f4adcf9d8c66f28f0e797cdf748a7f4560c682953829b99eb85d28cf6",
+      "src/tlgp_001b_r2/meta_learners.py": "358d2bb2449f88ff5c73de52fcabcbba17f40b22dabc5c484f7b67da627e1b6f",
+      "src/tlgp_001b_r2/preregistration.py": "6a5a0273e7c3b0c2cce031dcf2b495646d87ecea7630d725c84def8f9ce27480",
+      "src/tlgp_001b_r2/splits.py": "ca2852a1ca69ba5277872bf5b0780163d0c79fbf0b5b2c7075bb740ef9981ad5",
+      "src/tlgp_001b_r2/world.py": "1c9bd730e79c19e5036e26cf4a45f1463dc2194217ec5ebc06e42731ca364a7c",
+      "src/tlgp_capability_witness_preflight_001a/retrieval_model.py": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+      "src/tlgp_capability_witness_preflight_001a/route_decision.py": "0dcf3659df802912ff2f760e9875526887e14c4c14d1e0cc91c0cb4d8863c0c8",
+      "src/tlgp_capability_witness_preflight_001a/rung1_capacity_sweep.py": "863b2b439f2fe147d9728aab0b4cd63010822806e5ea3b71fc2e6b008c8779cd",
+      "src/tlgp_capability_witness_preflight_001a/rung3_graph_cache_baselines.py": "921d44078a7b77e60c61b9bc5c5e2986228c4134a30ef2703c5fc52890229eaa",
+      "src/tlgp_capability_witness_preflight_001a/rung3_powered_full_run.py": "a0dcea8d51a49d8af4118ea62810952ee8b68528108f4e75f212001e73103be5",
+      "src/tlgp_capability_witness_preflight_001a/rung3_single_family_adjudicator.py": "5773f5d14cde442002c4c69e4d8d37302df40a863b01f97f86336a53a3fa9120"
+    },
+    "producer_function": "src.tlgp_capability_witness_preflight_001a.rung1_capacity_sweep_002a.source_pin_report",
+    "retrieval_model_sha256": "0cba923965f305c6c8cab41a8dd033d7a34bf1c3cd60b0ea27a7fdcc698bf2bb",
+    "rung3_powered_full_run_sha256": "a0dcea8d51a49d8af4118ea62810952ee8b68528108f4e75f212001e73103be5",
+    "runner_path": "src/tlgp_capability_witness_preflight_001a/rung1_capacity_sweep_002a.py",
+    "runner_sha256": "71ca8584d56d5925f82bac3e3db05717cf8485055bbab27ffb201e3fef36f461"
+  },
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG1-CAPACITY-SWEEP-002A",
+  "trace_lfs_required_by_gitattributes": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/**/*.jsonl"
+}

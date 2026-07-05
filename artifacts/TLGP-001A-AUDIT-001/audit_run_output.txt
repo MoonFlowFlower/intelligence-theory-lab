@@ -1,0 +1,37 @@
+/sessions/practical-dazzling-clarke/.local/lib/python3.10/site-packages/sklearn/neural_network/_multilayer_perceptron.py:781: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (600) reached and the optimization hasn't converged yet.
+  warnings.warn(
+=== A. INDEPENDENT REPLAY (recomputed from raw trace, no repo imports) ===
+integrity_violations (query_e != rule(x,a))      : 0/200
+n_consistent match recorded                       : 200/200
+ideal_mean  recomputed=1.000000  recorded=1.000000  match=True
+max_fair    recomputed=0.202538  recorded=0.196811  diff=0.0057
+headroom    recomputed=0.797462  recorded=0.803189
+single_step recomputed=0.197679  recorded=0.199690
+per-baseline recomputed vs recorded:
+   predict_all    mine=0.1963  recorded=0.1963
+   lookup         mine=0.1963  recorded=0.1963
+   no_adaptation  mine=0.2025  recorded=0.1968
+   knn1           mine=0.1957  recorded=0.1957
+   logistic       mine=0.1954  recorded=0.1954
+   mlp            mine=0.1940  recorded=0.1940
+   random_forest  mine=0.1945  recorded=0.1945
+
+INDEPENDENT verdict = world_discriminates_structure_inference
+recorded   verdict = world_discriminates_structure_inference   match=True
+checks: {'headroom_ok': True, 'baselines_fail': True, 'single_step_floor': True, 'ideal_high': True, 'shuffle_collapse': True, 'replay_exact': True}
+
+=== B. TAMPER / FAIL-ABILITY PROBES (reimplemented verdict) ===
+T1 baseline score 0.197->0.50 : world_cannot_discriminate__lookup_or_degenerate   flipped=True
+T2 planted leak marked missed : invalid_due_to_leakage_or_contract_failure   flipped=True
+T3 shuffle headroom 0->0.50   : world_cannot_discriminate__lookup_or_degenerate   flipped=True
+T4 replay_exact False         : world_cannot_discriminate__lookup_or_degenerate   flipped=True
+T5 single_step 0.197->0.50    : world_cannot_discriminate__lookup_or_degenerate   flipped=True
+
+=== C. PROVENANCE ===
+prereg sha (recomputed from embedded dict)=3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579
+prereg sha recorded                       =3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579  match=True
+all live src sha256 == recorded delivered_sha256 : True
+
+=== D. CANDIDATE-FREE ===
+prereg candidate_free flag = True
+AGENTS = ideal + 7 fair baselines; 'candidate' token present in result: False

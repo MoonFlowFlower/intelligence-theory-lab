@@ -72,7 +72,7 @@ No candidate mechanism was implemented.
 ## Scope Readback
 
 - Branch: `codex/meta-theory-scaffold`
-- HEAD: `dae76a8f490606ae1919522232cbab635a9b0bec`
+- HEAD: `4afcceec0b5f6f0433ae170a51795d2639cbaeb7`
 - Forbidden files modified: `[]`
 - Old CTSR/COMPOSITE artifacts unchanged: `True`
 - Old CTSR/COMPOSITE source files unchanged: `True`

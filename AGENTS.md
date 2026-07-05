@@ -7,6 +7,7 @@ It is not a companion demo.
 It is not a personality simulation project.
 It is not an agent-behavior showcase.
 
+
 The purpose of this lab is to run bounded, falsifiable experiments on candidate mechanisms for AI functional-subject proxies.
 
 Every successor task must search and cite relevant prior negative evidence before proposing a new gate, bridge, or implementation.
@@ -274,6 +275,10 @@ Do not import hidden labels into the model under test.
 Do not use future observations during prediction.
 
 Do not add broad architecture proposals to code comments, docs, or final reports.
+
+Spend time on thinking; you do not need to use the commentary channel to report progress to me.
+
+DO NOT send optional commentary.
 
 ## Auto-Remote-Anchor Policy
 

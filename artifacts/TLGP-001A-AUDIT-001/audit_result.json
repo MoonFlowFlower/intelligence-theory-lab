@@ -1,0 +1,53 @@
+{
+  "audit_id": "TLGP-001A-AUDIT-001",
+  "audited_task": "TLGP-001A",
+  "date": "2026-06-18",
+  "auditor_role": "Same-Agent Bridge Audit Role 001 (independent, read-only)",
+  "audit_type": "independent from-raw reproduction + fail-ability + provenance",
+  "verdict": "BANK_AS_CANDIDATE_FREE_GAP_TESTBED",
+  "implementation_authorized": false,
+  "blocking_issues": [],
+  "method": "Independent script (NO repo imports): own 625-rule enumeration, own ideal observer, own balanced_accuracy, all 7 baselines re-fit from raw trace data. Strictly stronger than the run's own replay_report (which trusts recorded predictions/scores).",
+  "independent_replay": {
+    "integrity_violations_query_e_vs_rule": "0/200",
+    "n_consistent_match": "200/200",
+    "ideal_mean": {"recomputed": 1.0, "recorded": 1.0, "match": true},
+    "max_fair_baseline": {"recomputed": 0.202538, "recorded": 0.196811,
+      "note": "divergence is the stochastic no_adaptation baseline only; all FITTED baselines match to 4 dp; both far below FLOOR+DELTA=0.30 so baselines_fail holds robustly"},
+    "single_step_clean": {"recomputed": 0.197679, "recorded": 0.199690},
+    "headroom": {"recomputed": 0.797462, "recorded": 0.803189},
+    "per_baseline_mine_vs_recorded": {
+      "predict_all": [0.1963, 0.1963], "lookup": [0.1963, 0.1963],
+      "no_adaptation": [0.2025, 0.1968], "knn1": [0.1957, 0.1957],
+      "logistic": [0.1954, 0.1954], "mlp": [0.1940, 0.1940], "random_forest": [0.1945, 0.1945]
+    },
+    "independent_verdict": "world_discriminates_structure_inference",
+    "recorded_verdict": "world_discriminates_structure_inference",
+    "verdict_match": true,
+    "checks": {"headroom_ok": true, "baselines_fail": true, "single_step_floor": true,
+               "ideal_high": true, "shuffle_collapse": true, "replay_exact": true}
+  },
+  "fail_ability_probes": {
+    "T1_baseline_0p197_to_0p50": "world_cannot_discriminate__lookup_or_degenerate (flipped)",
+    "T2_planted_leak_marked_missed": "invalid_due_to_leakage_or_contract_failure (flipped)",
+    "T3_shuffle_headroom_to_0p50": "world_cannot_discriminate__lookup_or_degenerate (flipped)",
+    "T4_replay_exact_false": "world_cannot_discriminate__lookup_or_degenerate (flipped)",
+    "T5_single_step_to_0p50": "world_cannot_discriminate__lookup_or_degenerate (flipped)",
+    "all_five_flip": true
+  },
+  "provenance": {
+    "preregistration_sha256_recomputed": "3fdad0f323cbccdd3652848dd491c8ec250a4d73bddd924cd013253796a82579",
+    "preregistration_sha256_match": true,
+    "source_files_sha256_delivered_equals_executed_equals_audited": "9/9",
+    "note": "Audited source is byte-for-byte the source whose hash was recorded as delivered AND executed; no FUSE-truncation fork, no hidden second code path."
+  },
+  "candidate_free": {"prereg_flag": true,
+    "agents": "ideal + 7 fair baselines; no candidate token", "confirmed": true},
+  "non_blocking_residuals": [
+    "Shuffle ablation and leakage datasets use separate seeds (SEED_SHUFFLE/SEED_LEAK) and are NOT in trace.jsonl; verified by source-logic review + internal arithmetic consistency + fail-ability (T2/T3), NOT regenerated from seed (numpy rng reproduction fragility). Zero-residual closure = a full re-run from the sha-verified source.",
+    "Prereg 'frozen-before-run' rests on same-artifact hash self-consistency, not an external timestamp; the large non-knife-edge margins argue against post-hoc threshold tuning."
+  ],
+  "claim_ceiling": "TLGP-001A is a candidate-free gap-testbed: ONE procedural world separating a family-knowing in-family Bayesian observer from family-ignorant per-episode fair baselines on a held-out, balanced, leak-audited, extrapolative metric, with a fail-able computed verdict, independently reproduced from raw trace. This audit BANKS the testbed at that ceiling ONLY. NOT mechanism / learning-as-mechanism / agency / self / feeling / subjectivity / intelligence / EGO-readiness evidence. Does NOT show any learner can acquire the rule family (open: TLGP-001B).",
+  "next_step": "TLGP-001B candidate-free cross-episode meta-learner panel extension (R1 card drafted). Requires explicit operator implementation authorization + frozen prereg before execution.",
+  "git": "No git commit/push/tag/anchor performed; local artifact only."
+}

@@ -1,0 +1,103 @@
+{
+  "artifact": "failure_manifest",
+  "banked_stop_probe_artifacts_byte_unchanged": true,
+  "claim_ceiling": "S3d STOP/failure boundary only; no environment-validity, gap, mechanism, learning, agency, EGO, or companion claim",
+  "code_path_hash": "4ee9b56fcb2b956fcc53b7b7df53a1f52391220f295d58686aefefff8dcc3387",
+  "details": {
+    "traceback": "concurrent.futures.process._RemoteTraceback: \n\"\"\"\nTraceback (most recent call last):\n  File \"C:\\Python313\\Lib\\concurrent\\futures\\process.py\", line 254, in _process_worker\n    r = call_item.fn(*call_item.args, **call_item.kwargs)\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_battery_runner_line30.py\", line 908, in _run_unit_worker\n    scored = _score_ideal_cell(design, specs[cell_id])\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_battery_runner_line30.py\", line 967, in _score_ideal_cell\n    distribution = filt.predict_distribution(action)\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\fsp_pum_env\\factored_filter.py\", line 152, in predict_distribution\n    table = self._distribution_table(action)\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\fsp_pum_env\\factored_filter.py\", line 269, in _distribution_table\n    table = self._compute_distribution_table(action)\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\src\\fsp_pum_env\\factored_filter.py\", line 281, in _compute_distribution_table\n    raise ValueError(f\"FactoredExactFilter does not support variant {self.variant.value}\")\nValueError: FactoredExactFilter does not support variant rag_should_win_stable_facts\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_battery_runner_line30.py\", line 314, in run\n    trace_rows, unit_results, runtime_guard = _run_units_parallel(\n                                              ~~~~~~~~~~~~~~~~~~~^\n        unit_payloads,\n        ^^^^^^^^^^^^^^\n    ...<2 lines>...\n        initial_cpu_hours=float(projection[\"process_cpu_seconds\"]) / 3600.0,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab\\artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_battery_runner_line30.py\", line 852, in _run_units_parallel\n    result = future.result()\n  File \"C:\\Python313\\Lib\\concurrent\\futures\\_base.py\", line 449, in result\n    return self.__get_result()\n           ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python313\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\nValueError: FactoredExactFilter does not support variant rag_should_win_stable_facts\n"
+  },
+  "preserved_failure": true,
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_failure_manifest_payload",
+  "protected_artifacts_after": {
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection.json": {
+      "exists": true,
+      "sha256": "413ac0c70ce1f358c87a0fc468fbe91f194faf2cc12fc09924b0e34f66ec38a7",
+      "size_bytes": 41302
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_v1.json": {
+      "exists": true,
+      "sha256": "fb40a41d3447d7c95da2cebb57a59ec50fcd16bd8d70fd6f80a7e7f16f0455db",
+      "size_bytes": 3726
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_failure_manifest.json": {
+      "exists": true,
+      "sha256": "22a4519f113f2cf7f891be9558fda5187112925fdcf2916086e997adab1055f9",
+      "size_bytes": 881
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py": {
+      "exists": true,
+      "sha256": "d686cfa5f798e6561737c206e3cf6f4507cb3c7e30ba24ef715f2fd06982d6ec",
+      "size_bytes": 26708
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe.json": {
+      "exists": true,
+      "sha256": "9e41251414c4dfde98198df292f81d8d48e5fd6ccc265d5e2ef6405e5c249680",
+      "size_bytes": 19628
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_bank_ops.ps1": {
+      "exists": true,
+      "sha256": "d71b453ad7acb17bd0fd4d8ccd2289f8437de7931560dd75f4ab557a88030ead",
+      "size_bytes": 2161
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py": {
+      "exists": true,
+      "sha256": "1eb7b4ec49de4704d6960b1b10d01b31eb9ab74eff03f1a8d5637c4bffe6c6ce",
+      "size_bytes": 33656
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_trace.csv": {
+      "exists": true,
+      "sha256": "729e4b9e6ceecfac05ff48f47cfdc6b282cf786657c368d87e25e42d1e365417",
+      "size_bytes": 3158
+    }
+  },
+  "protected_artifacts_before": {
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection.json": {
+      "exists": true,
+      "sha256": "413ac0c70ce1f358c87a0fc468fbe91f194faf2cc12fc09924b0e34f66ec38a7",
+      "size_bytes": 41302
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_v1.json": {
+      "exists": true,
+      "sha256": "fb40a41d3447d7c95da2cebb57a59ec50fcd16bd8d70fd6f80a7e7f16f0455db",
+      "size_bytes": 3726
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_failure_manifest.json": {
+      "exists": true,
+      "sha256": "22a4519f113f2cf7f891be9558fda5187112925fdcf2916086e997adab1055f9",
+      "size_bytes": 881
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py": {
+      "exists": true,
+      "sha256": "d686cfa5f798e6561737c206e3cf6f4507cb3c7e30ba24ef715f2fd06982d6ec",
+      "size_bytes": 26708
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe.json": {
+      "exists": true,
+      "sha256": "9e41251414c4dfde98198df292f81d8d48e5fd6ccc265d5e2ef6405e5c249680",
+      "size_bytes": 19628
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_bank_ops.ps1": {
+      "exists": true,
+      "sha256": "d71b453ad7acb17bd0fd4d8ccd2289f8437de7931560dd75f4ab557a88030ead",
+      "size_bytes": 2161
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py": {
+      "exists": true,
+      "sha256": "1eb7b4ec49de4704d6960b1b10d01b31eb9ab74eff03f1a8d5637c4bffe6c6ce",
+      "size_bytes": 33656
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_trace.csv": {
+      "exists": true,
+      "sha256": "729e4b9e6ceecfac05ff48f47cfdc6b282cf786657c368d87e25e42d1e365417",
+      "size_bytes": 3158
+    }
+  },
+  "run_finished_at": "2026-07-04T08:40:35Z",
+  "run_started_at": "2026-07-04T08:40:35Z",
+  "s3d_results_void": true,
+  "stage": "S3d",
+  "stop_condition": "ValueError: FactoredExactFilter does not support variant rag_should_win_stable_facts",
+  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "verdict": "STOP_UNEXPECTED_EXCEPTION"
+}

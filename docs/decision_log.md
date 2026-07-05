@@ -232,3 +232,16 @@
 - Claim ceiling: historical diagnostic calibration of a local provenance-shape verifier only; no Gate pass, no mechanism validity, no baseline-immunity, no candidate success, no Route C viability, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
 - Next minimal closed-loop action: historical negative calibration diagnostic only.
 - Auto-Remote-Anchor: forbidden.
+
+## Categorical-priors design amendment registration (CPL) and external chat-report archival
+
+- Date: 2026-07-02.
+- Document: `docs/research/FSP-DESIGN-AMENDMENT-CATEGORICAL-PRIORS-001A.md` (design-only, non-executable, dormant until post-S6 of `FSP-PUM-ENV-IDPROBE-001A`).
+- Source archived verbatim: `docs/research/EXTERNAL-CHATREPORT-KCP-OUROBOROS-VERBATIM-20260702.txt`, sha256 `407898d2988772c4910cb1d6aaeb2422bdb34a08104da1d9c2ce1f1efc6832d8` (61,809 bytes).
+- Registered: single candidate entry CPL (all source aliases KCP/M13/A3/A4/Route2-K/MPVL-K collapsed); governance adoptions G1 (format_matched / schema_shuffled / wrong_prior controls), G2 (four category failure terminal states), G3 (evidence type system, design-only), G4 (loop-edge declaration predicate), G5 (anti-hardcoding A/B/C trichotomy); mandatory category-vocabulary/environment coupling firewall.
+- Rejected: 7-term lambda objective, "conservation quantities" rhetoric, M-numbering, flat category table priority, ouroboros-as-mechanism.
+- Frozen contracts untouched; no git operations performed (P0.1 rung1 running).
+- Mainline integration: none.
+- Real trigger evidence: none (theory registration only; no experiment executed).
+- Claim ceiling: theory/governance registration only; no CPL evidence, no mechanism validity, no candidate success, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
+- Auto-Remote-Anchor: forbidden.

@@ -1,0 +1,146 @@
+{
+  "_freeze_note": "Canonical SHA is computed after stripping underscore-prefixed keys, with json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=True), matching the TLGP frozen-design scheme.",
+  "_frozen_canonical_sha256": "ca22dbcea8c4e99b4b25ff96560d02ba4335cee9f6400fc21d6369ce6420f88c",
+  "budget": {
+    "batch_size": 256,
+    "inherited_from_prereg_sha256": "6e61a831c6f287c10c25cccbb09a40671410cd4805214dbd91d62528b2c3d5a7",
+    "lr_selection": "validation balanced accuracy max; selected checkpoint is best validation epoch",
+    "max_epochs": 200,
+    "n_test": 200,
+    "n_train": 5000,
+    "n_val": 1000,
+    "optimizer": "adamw",
+    "steps_max": 200000
+  },
+  "c0_anchor": {
+    "banked_reference_meta": 0.52,
+    "capacity_tag": "C0",
+    "failure_label": "RECIPE_HARMFUL_C0_ANCHOR_FAIL",
+    "minimum_meta": 0.49,
+    "requires_trainability_pass": true,
+    "rule_count": 172,
+    "stop_if_miss": true,
+    "tolerance": 0.03
+  },
+  "capacity_grid": {
+    "phase1": {
+      "C0": {
+        "d_model": 256,
+        "ff_mult": 4,
+        "heads": 4,
+        "layers": 4
+      },
+      "C1": {
+        "d_model": 512,
+        "ff_mult": 4,
+        "heads": 8,
+        "layers": 6
+      },
+      "C2": {
+        "d_model": 768,
+        "ff_mult": 4,
+        "heads": 12,
+        "layers": 8
+      }
+    },
+    "phase2": [
+      "C0",
+      "C1",
+      "C2"
+    ]
+  },
+  "claim_ceiling": "Rung1 seen-rule capacity-vs-architecture diagnostic only, and only among capacities that demonstrate trainability under the frozen recipe. No rung3, transfer, H0, H1, mechanism, agency, self, AGI, EGO, runtime, companion, or mainline claim.",
+  "clear_threshold": {
+    "delta": 0.1,
+    "epsilon": 0.1,
+    "per_seed_clear_rule": "meta >= ideal - DELTA",
+    "required_clear_count": 2,
+    "seed_count": 3
+  },
+  "decision_rules": {
+    "H_arch_legit": "all relevant capacities are trainability-admissible and bp is flat/non-increasing; route architecture_limited_over_swept_range",
+    "H_cap": "bp increases across ADMISSIBLE trained capacities; route reopen_rung3_powered_after_powered_rung1_confirm",
+    "INCONCLUSIVE_optimization": "any larger capacity fails trainability under this recipe; route optimization_unresolved_recipe_or_scale; not an architecture claim",
+    "inadmissible": "leakage invalid, fair saturation on a claimed clear, ablation non-collapse on a claimed clear, replay mismatch, protected-source mismatch, C0 anchor miss, or trainability failure blocks architecture interpretation"
+  },
+  "family": "icl_retrieval_transformer",
+  "full_scout_forbidden_until_review": true,
+  "phase2": {
+    "eval": "held-out episode evaluation on selected seen train-pool rules; 172 uses exact rung1 task",
+    "rule_counts": [
+      8,
+      16,
+      32,
+      64,
+      128,
+      172
+    ],
+    "rule_subset": {
+      "disjoint_from_test_rules": true,
+      "pool": "TRAIN_RULES",
+      "seed_name": "RUNG1_SWEEP_SUBSET_SEED",
+      "seed_value": 20260730,
+      "selection": "deterministic no-replacement subsample of k TRAIN-pool rules for k<172"
+    },
+    "stage": "trainability_gated_breakpoint_map"
+  },
+  "recipe": {
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "early_stop_min_epochs": 35,
+    "early_stop_min_epochs_rule": "warmup_epochs + 20",
+    "early_stop_patience": 20,
+    "grad_clip_global_norm": 1.0,
+    "lr_schedule": "linear_warmup_then_cosine_decay",
+    "min_lr_fraction": 0.1,
+    "optimizer": "AdamW",
+    "peak_lr_grid": [
+      0.0003,
+      0.0001,
+      3e-05
+    ],
+    "warmup_epochs": 15,
+    "weight_decay": 0.1,
+    "weight_decay_scope": "2D weight matrices only; no decay on biases, LayerNorm, or 1D params"
+  },
+  "run_contract": {
+    "dry_run_report": "dry_run_report.json with evidential=false and full_scout_launched=false",
+    "failure_manifest_on_stop": true,
+    "jsonl_lfs_required": true,
+    "per_cell_files": [
+      "result.json",
+      "trace.jsonl",
+      "val_curves.jsonl",
+      "baseline_comparison.json",
+      "ablation_report.json",
+      "leakage_report.json",
+      "replay_report.json",
+      "manifest.json"
+    ]
+  },
+  "seeds": {
+    "model_seeds": [
+      20260710,
+      20260711,
+      20260712
+    ],
+    "source": "first 3 prereg MODEL_SEEDS"
+  },
+  "supersedes_interpretation_of": "TLGP-CAPABILITY-WITNESS-RUNG1-CAPACITY-SWEEP-001A_INVALID_optimization_confound",
+  "task_id": "TLGP-CAPABILITY-WITNESS-RUNG1-CAPACITY-SWEEP-002A",
+  "trainability_control": {
+    "failure_interpretation": "INVALID optimization/untrained capacity; exclude from breakpoint map and do not read as architecture-limited",
+    "failure_label": "TRAINABILITY_FAIL",
+    "must_run_first_for_each_capacity": true,
+    "required_clear_count": 2,
+    "rule_count": 2,
+    "stage": "per_capacity_trainability_control",
+    "threshold_meta": 0.9
+  },
+  "wall_clock": {
+    "per_cell_wall_clock_cap_hours": null,
+    "review_note": "Claude sets any cap after dry-run review; null means no cap is frozen for this dry-run authoring step."
+  }
+}
