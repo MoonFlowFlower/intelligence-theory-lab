@@ -227,3 +227,134 @@ def test_t3_run_part0_projection_line_records_process_cpu_for_every_projection_u
     assert "ls_online_family_discounted_LS_lambda_0.95_cert_plus_NULL" in component_names
     for component in projection["full_part0_projection"]["components"].values():
         assert "measured_process_cpu_seconds" in component
+
+
+def test_t4_budget_decision_002a_parser_reads_signed_section6_line_and_firewall():
+    battery = _load_module(BATTERY_RUNNER, "s3d_battery_runner_line30_t4")
+
+    signed = battery._parse_signed_budget_decision()
+
+    assert signed["source_path"].endswith("S3D-BUDGET-DECISION-002A.md")
+    assert signed["zero_score_exposure_confirmed"] is True
+    assert signed["resume_mode"] == "reuse-completed"
+    assert signed["line_cpu_hours"] == 38.0
+    assert signed["endgame_acknowledged"] is True
+    assert signed["firewall_acknowledged"] is True
+    assert signed["operator"] == "Leo"
+    assert signed["date"] == "2026-07-05"
+
+
+def test_t5_trace_reconstruction_persists_reusable_unit_result_with_input_hash(tmp_path, monkeypatch):
+    battery = _load_module(BATTERY_RUNNER, "s3d_battery_runner_line30_t5")
+    monkeypatch.setattr(battery, "UNIT_RESULTS_DIR", tmp_path)
+    monkeypatch.setattr(battery, "_sha256", lambda path: "frozen-design-sha256")
+    monkeypatch.setattr(
+        battery,
+        "_unit_input_record",
+        lambda payload: {
+            "unit_payload": dict(payload),
+            "frozen_design_sha256": "frozen-design-sha256",
+            "cell": {"master_seed": 123, "variant": "constant_none"},
+        },
+    )
+    row = {
+        "unit_id": "member::cert::predict_none::constant_none",
+        "unit_type": "member",
+        "phase": "cert",
+        "member": "predict_none",
+        "cell_id": "constant_none",
+        "metric": 1.0,
+        "recommend_turn_conditional_metric": None,
+        "n_eval_points": 2,
+        "wall_clock_seconds": 1.5,
+        "process_cpu_seconds": 1.25,
+        "wall_cpu_ratio": 1.2,
+        "wall_cpu_ratio_flag_gt_1_25": False,
+        "cumulative_contention_robust_cpu_hours": 0.01,
+        "run_started_at": "2026-07-05T00:00:00Z",
+        "run_finished_at": "2026-07-05T00:00:01Z",
+        "heldout_users_800_999_touched": False,
+        "future_observations_used": False,
+        "per_user_confusion": [
+            {
+                "user_id": 640,
+                "n": 2,
+                "totals": [2] + [0] * 31,
+                "correct": [2] + [0] * 31,
+                "recommend_totals": [0] * 32,
+                "recommend_correct": [0] * 32,
+            }
+        ],
+    }
+    row["metric_digest"] = battery._metric_digest(battery._score_payload_from_trace_row(row))
+
+    persisted = battery._persist_reconstructed_unit_from_trace(row, void_code_path_hash="void-code-hash")
+
+    assert persisted["unit_id"] == row["unit_id"]
+    assert persisted["score_payload"]["code_path_hash"] == "void-code-hash"
+    assert persisted["score_payload"]["input_hash"]
+    assert persisted["score_payload"]["per_user_confusion_sha256"] == battery._sha256_json(row["per_user_confusion"])
+    assert persisted["score_payload"]["metric_digest"] == row["metric_digest"]
+    assert persisted["score_payload"]["classes_present"] == [0]
+    assert persisted["score_payload"]["recommend_turn_count"] == 0
+    assert (tmp_path / "member__cert__predict_none__constant_none.json").exists()
+
+
+def test_t6_spot_check_gate_is_seeded_and_blocks_digest_or_confusion_mismatch(monkeypatch):
+    battery = _load_module(BATTERY_RUNNER, "s3d_battery_runner_line30_t6")
+    payloads = [
+        {"unit_id": f"unit::{idx}", "unit_type": "member", "phase": "cert", "cell_id": "constant_none", "member": "predict_none"}
+        for idx in range(5)
+    ]
+    persisted = {}
+    for payload in payloads:
+        score = {
+            **payload,
+            "metric": 1.0,
+            "recommend_turn_conditional_metric": None,
+            "n_eval_points": 1,
+            "classes_present": [0],
+            "class_count_present": 1,
+            "per_user_confusion": [{"user_id": 640, "n": 1, "totals": [1] + [0] * 31, "correct": [1] + [0] * 31, "recommend_totals": [0] * 32, "recommend_correct": [0] * 32}],
+            "per_user_confusion_sha256": "confusion-sha",
+            "metric_digest": "digest-ok",
+            "process_cpu_seconds": 0.25,
+        }
+        persisted[payload["unit_id"]] = {"score_payload": score, "input_hash": "input-hash", "code_path_hash": "void-code"}
+
+    selected = battery._select_spot_check_unit_ids([p["unit_id"] for p in payloads], seed_text="fixed-seed", count=3)
+
+    def exact_worker(payload):
+        return {
+            **persisted[payload["unit_id"]]["score_payload"],
+            "metric_digest": "digest-ok",
+            "per_user_confusion_sha256": "confusion-sha",
+            "process_cpu_seconds": 0.5,
+        }
+
+    monkeypatch.setattr(battery, "_run_unit_worker", exact_worker)
+    passed = battery._spot_check_reused_units(
+        payloads,
+        persisted,
+        seed_text="fixed-seed",
+        count=3,
+    )
+    assert passed["passed"] is True
+    assert passed["selected_unit_ids"] == selected
+    assert passed["spot_check_process_cpu_seconds"] == pytest.approx(1.5)
+
+    def mismatch_worker(payload):
+        result = exact_worker(payload)
+        if payload["unit_id"] == selected[0]:
+            result["metric_digest"] = "digest-mismatch"
+        return result
+
+    monkeypatch.setattr(battery, "_run_unit_worker", mismatch_worker)
+    failed = battery._spot_check_reused_units(
+        payloads,
+        persisted,
+        seed_text="fixed-seed",
+        count=3,
+    )
+    assert failed["passed"] is False
+    assert failed["mismatches"][0]["unit_id"] == selected[0]

@@ -1,10 +1,14 @@
-# Proposed operator-only bank ops for FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A
-# Codex generated this script but did not run it. No push is performed.
-# Pattern: HEAD-pinned, git reset first, allowlist-scoped add/commit,
-# required-core-subset existence, zero deletion, no unexpected staged paths.
+# Corrected operator-only bank ops for FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A STOP.
+# Correction vs s3d_operator_bank_ops_proposal_line30.ps1 (kept as emitted record, also banked):
+#   1. HEAD pin updated 5416206 -> eadcba8 (operator banked the 20260705A handoff after Codex's
+#      dulwich readback; the original pin would throw).
+#   2. Adds this corrected script + the original proposal to the allowlist.
+#   3. Stale .git\index.lock guard (standing lesson).
+# Auditor: Claude, 2026-07-05. Pattern: HEAD-pinned, git reset first, allowlist-scoped
+# add/commit, required-core-subset, zero deletion, no unexpected staged paths, no push.
 $ErrorActionPreference = 'Stop'
-$ExpectedHead = '5416206de9f823f92524bcb7e6fde860562944e9'
-$CommitMessage = 'bank FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A resume artifacts'
+$ExpectedHead = 'eadcba858546690dff5c5c75953805fd32e68e8d'
+$CommitMessage = 'FSP-PUM-ENV-IDPROBE-001A S3d resume STOP resume_reuse_gate_failed (spot-check mismatch; GRU nondeterminism evidence)'
 $Allowlist = @(
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/baseline_comparison_void_line30_v1.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json'
@@ -17,6 +21,7 @@ $Allowlist = @(
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_ideal_kernel_analysis_001a.md'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_null_env_report_void_line30_v1.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_operator_bank_ops_proposal_line30.ps1'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_stop_bank_ops_corrected_001a.ps1'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__camouflage_off.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__constant_none.json'
@@ -67,12 +72,17 @@ $RequiredCoreSubset = @(
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py'
   'tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/result_void_line30_v1.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_void_line30_v1.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.jsonl'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.csv'
 )
+
+if (Test-Path -LiteralPath '.git\index.lock') {
+  throw 'Stale .git\index.lock present. Confirm no live git process, remove it manually, re-run.'
+}
 
 $ActualHead = (git rev-parse HEAD).Trim()
 if ($ActualHead -ne $ExpectedHead) {
@@ -112,4 +122,4 @@ foreach ($Path in $ExistingAllowlist) {
 
 git commit -m $CommitMessage -- $ExistingAllowlist
 
-Write-Host 'Banked scoped S3d line30 battery artifacts locally. No push was performed.'
+Write-Host 'Banked S3d resume STOP evidence locally. No push was performed.'

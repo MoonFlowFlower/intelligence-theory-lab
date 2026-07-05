@@ -22,7 +22,9 @@ import json
 import math
 import os
 from pathlib import Path
+import random
 import re
+import shutil
 import statistics
 import subprocess
 import sys
@@ -80,15 +82,18 @@ from src.fsp_pum_env.trajectory_sets import _hash_spec_streams, _iter_records_wi
 
 
 TASK_ID = "FSP-PUM-ENV-IDPROBE-001A"
-TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A"
+TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A"
+EXEC_TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A"
 ARTIFACT_ROOT = ROOT / "artifacts" / TASK_ID
 FROZEN_DESIGN = ARTIFACT_ROOT / "frozen_design.json"
 S3A_MANIFEST = ARTIFACT_ROOT / "s3a_trajectory_set_manifest.json"
 VOCABULARY = ARTIFACT_ROOT / "s3c_models" / "f2_ngram_vocabulary.json"
 EXEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A.md"
+RESUME_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A.md"
+INTERPRETATION_PREREG = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-INTERPRETATION-PREREG-001A.md"
 SPEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001B.md"
 SPEC_CARD_001A_SUPERSEDED = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001A.md"
-BUDGET_DECISION = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BUDGET-DECISION-001A.md"
+BUDGET_DECISION = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BUDGET-DECISION-002A.md"
 ORIGINAL_PART0_RUNNER = ARTIFACT_ROOT / "s3d_part0_projection_runner.py"
 S3D_001B_IMPL_REPORT = ARTIFACT_ROOT / "s3d_001b_impl_report.json"
 
@@ -113,6 +118,10 @@ BASELINE_COMPARISON = ARTIFACT_ROOT / "baseline_comparison.json"
 ABLATION_REPORT = ARTIFACT_ROOT / "ablation_report.json"
 REPLAY_REPORT = ARTIFACT_ROOT / "replay_report.json"
 FAILURE_MANIFEST = ARTIFACT_ROOT / "failure_manifest.json"
+UNIT_RESULTS_DIR = ARTIFACT_ROOT / "s3d_unit_results"
+RESUME_MANIFEST = ARTIFACT_ROOT / "s3d_resume_manifest.json"
+IDEAL_KERNEL_ANALYSIS = ARTIFACT_ROOT / "s3d_ideal_kernel_analysis_001a.md"
+SPOT_CHECK_SEED_TEXT = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:001"
 
 CLAIM_CEILING = (
     "line L under the frozen contract: S3d should-win + NULL-env instrument evidence only; "
@@ -270,25 +279,31 @@ def run() -> dict[str, Any]:
             return result_payload
 
         applied_line = float(precondition["signed_budget"]["line_cpu_hours"])
-        line_label = _line_label(applied_line)
-        projection_path = ARTIFACT_ROOT / f"s3d_compute_projection_line{line_label}.json"
+        projection_path = ARTIFACT_ROOT / "s3d_compute_projection_line30.0.json"
         result_payload["applied_cpu_hour_limit"] = applied_line
         result_payload["applied_line_source"] = precondition["signed_budget"]
         result_payload["single_line_application"] = {
             "source": str(BUDGET_DECISION.relative_to(ROOT)),
             "line_number": int(precondition["signed_budget"]["line_number"]),
-            "applied_to": ["PART-0 re-gate", "runtime guard"],
+            "applied_to": ["unit-level resume runtime guard"],
             "no_second_test_path": True,
         }
 
-        projection = _run_part0_projection_line(applied_line, projection_path)
+        void_preservation = _preserve_void_line30_outputs()
+        result_payload["void_line30_preservation"] = void_preservation
+        ideal_analysis = _write_ideal_kernel_analysis_note()
+        result_payload["s3d_ideal_kernel_analysis"] = ideal_analysis
         result_payload["part0_projection_artifact"] = str(projection_path.relative_to(ROOT))
-        result_payload["part0_projection_decision"] = projection["decision"]
-        if float(projection["projected_cpu_hours"]) > applied_line:
+        result_payload["part0_projection_decision"] = "resume_uses_void_line30_measured_cumulative_not_new_part0_regate"
+
+        unit_payloads = _battery_unit_payloads()
+        resume_reuse = _prepare_resume_reuse(unit_payloads, void_preservation)
+        result_payload["resume_reuse"] = resume_reuse
+        if not bool(resume_reuse["passed"]):
             manifest = _failure_manifest_payload(
-                verdict="STOP_s3d_part0_projection_exceeds_line",
-                stop_condition=f"PART-0 projection {projection['projected_cpu_hours']} CPU-h exceeded signed line {applied_line}",
-                details={"part0_projection": _artifact_ref(projection_path), "projection_decision": projection["decision"]},
+                verdict="STOP_RESUME_REUSE_GATE_FAILED",
+                stop_condition=str(resume_reuse["stop_condition"]),
+                details={"resume_reuse": resume_reuse},
                 protected_before=protected_before,
             )
             _write_json(FAILURE_MANIFEST, manifest)
@@ -298,9 +313,15 @@ def run() -> dict[str, Any]:
                     "s3d_results_void": True,
                     "stop_condition": manifest["stop_condition"],
                     "protected_artifacts_after": _protected_artifact_hashes(),
+                    "new_artifacts": _expected_new_artifact_paths(
+                        include_failure=True,
+                        include_reports=False,
+                        include_resume=True,
+                    ),
                 }
             )
             _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
+            _write_operator_bank_ops(result_payload)
             return result_payload
 
         ablation = run_s3d_preflight_guards(FROZEN_DESIGN, S3A_MANIFEST, ABLATION_REPORT)
@@ -318,9 +339,16 @@ def run() -> dict[str, Any]:
                     "s3d_results_void": True,
                     "stop_condition": manifest["stop_condition"],
                     "protected_artifacts_after": _protected_artifact_hashes(),
+                    "new_artifacts": _expected_new_artifact_paths(
+                        include_failure=True,
+                        include_reports=False,
+                        include_resume=True,
+                        include_ablation=True,
+                    ),
                 }
             )
             _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
+            _write_operator_bank_ops(result_payload)
             return result_payload
 
         cert_sets_manifest = generate_s3d_cert_sets_manifest(FROZEN_DESIGN, CERT_SETS_MANIFEST)
@@ -328,8 +356,8 @@ def run() -> dict[str, Any]:
         result_payload["ablation_report"] = _artifact_ref(ABLATION_REPORT)
 
         physical_cores = _physical_core_count()
-        unit_payloads = _battery_unit_payloads()
-        n_workers = min(int(physical_cores["physical_cores"]), len(unit_payloads))
+        missing_count = len(resume_reuse["missing_unit_ids"])
+        n_workers = min(int(physical_cores["physical_cores"]), max(1, missing_count))
         if n_workers < 1:
             n_workers = 1
         if n_workers > int(physical_cores["physical_cores"]):
@@ -344,14 +372,15 @@ def run() -> dict[str, Any]:
         }
         result_payload["parallelism"] = parallelism
 
-        trace_rows, unit_results, runtime_guard = _run_units_parallel(
+        trace_rows, unit_results, runtime_guard = _run_units_resume(
             unit_payloads,
+            resume_reuse=resume_reuse,
             max_workers=n_workers,
             applied_line=applied_line,
-            initial_cpu_hours=float(projection["process_cpu_seconds"]) / 3600.0,
         )
         _write_trace_jsonl(TRACE_JSONL, trace_rows)
         _write_trace_csv(TRACE_CSV, trace_rows)
+        result_payload["resume_manifest"] = _artifact_ref(RESUME_MANIFEST)
 
         if runtime_guard["decision"] != "runtime_within_signed_line":
             protected_after = _protected_artifact_hashes()
@@ -372,7 +401,14 @@ def run() -> dict[str, Any]:
                     "protected_artifacts_before": protected_before,
                     "protected_artifacts_after": protected_after,
                     "banked_stop_probe_artifacts_byte_unchanged": _protected_hash_match(protected_before, protected_after),
-                    "new_artifacts": _expected_new_artifact_paths(include_failure=True),
+                    "new_artifacts": _expected_new_artifact_paths(
+                        include_failure=True,
+                        include_reports=False,
+                        include_resume=True,
+                        include_ablation=True,
+                        include_cert_sets=True,
+                        include_trace=True,
+                    ),
                 }
             )
             _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
@@ -433,7 +469,13 @@ def run() -> dict[str, Any]:
                 "heldout_users_800_999_touched": bool(any(row.get("heldout_users_800_999_touched") for row in trace_rows)),
                 "future_observations_used": False,
                 "torch_device": "cpu",
-                "new_artifacts": _expected_new_artifact_paths(include_failure=FAILURE_MANIFEST.exists()),
+                "new_artifacts": _expected_new_artifact_paths(
+                    include_failure=FAILURE_MANIFEST.exists(),
+                    include_reports=True,
+                    include_resume=True,
+                    include_ablation=True,
+                    include_trace=True,
+                ),
             }
         )
         _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
@@ -470,14 +512,20 @@ def _verify_preconditions() -> dict[str, Any]:
     errors: list[str] = []
     signed = _parse_signed_budget_decision()
     signed_spec_001b = _parse_signed_spec_001b_decision()
-    if not signed["option_b_checked"]:
-        errors.append("BUDGET-DECISION §8 does not check Option B")
+    if not signed["zero_score_exposure_confirmed"]:
+        errors.append("BUDGET-DECISION-002A §6 zero-score exposure confirmation is missing")
+    if signed["resume_mode"] != "reuse-completed":
+        errors.append("BUDGET-DECISION-002A §6 does not select reuse-completed mode")
     if signed["line_cpu_hours"] is None:
-        errors.append("BUDGET-DECISION §8 does not contain a concrete New line value")
+        errors.append("BUDGET-DECISION-002A §6 does not contain a concrete New line value")
+    if not signed["endgame_acknowledged"]:
+        errors.append("BUDGET-DECISION-002A §6 endgame acknowledgment is missing")
+    if not signed["firewall_acknowledged"]:
+        errors.append("BUDGET-DECISION-002A §6 firewall acknowledgment is missing")
     if not signed["operator"]:
-        errors.append("BUDGET-DECISION §8 operator is missing")
+        errors.append("BUDGET-DECISION-002A §6 operator is missing")
     if not signed["date"]:
-        errors.append("BUDGET-DECISION §8 date is missing")
+        errors.append("BUDGET-DECISION-002A §6 date is missing")
     if signed_spec_001b["guard_basis"] != "2a":
         errors.append("001B §7 does not select guard basis 2a")
     if signed_spec_001b["k"] != 5.0:
@@ -496,6 +544,12 @@ def _verify_preconditions() -> dict[str, Any]:
         errors.append("signed 001B rule source is not identical to HEAD tree")
     if not git_readback.get("budget_note_committed_at_head"):
         errors.append("signed BUDGET-DECISION note is not identical to HEAD tree")
+    if not git_readback.get("resume_card_committed_at_head"):
+        errors.append("resume card is not identical to HEAD tree")
+    if not git_readback.get("interpretation_prereg_committed_at_head"):
+        errors.append("interpretation pre-registration card is not identical to HEAD tree")
+    if not git_readback.get("line30_stop_evidence_banked"):
+        errors.append("L=30 STOP evidence core is not present in HEAD tree")
     if not git_readback.get("s3d_001b_impl_report_banked"):
         errors.append("001B implementation report is not present in HEAD tree")
     if not git_readback.get("variance_probe_banked"):
@@ -510,11 +564,13 @@ def _verify_preconditions() -> dict[str, Any]:
         "signed_spec_001b": signed_spec_001b,
         "git_readback_without_git_command": git_readback,
         "read_only_rule_sources": [
+            str(RESUME_CARD.relative_to(ROOT)),
             str(EXEC_CARD.relative_to(ROOT)),
+            str(INTERPRETATION_PREREG.relative_to(ROOT)),
             str(SPEC_CARD.relative_to(ROOT)),
+            str(SPEC_CARD_001A_SUPERSEDED.relative_to(ROOT)),
             str(BUDGET_DECISION.relative_to(ROOT)),
         ],
-        "superseded_historical_spec_source": str(SPEC_CARD_001A_SUPERSEDED.relative_to(ROOT)),
         "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_verify_preconditions",
         "run_started_at": _utc_timestamp(),
         "claim_ceiling": "precondition readback only",
@@ -524,22 +580,33 @@ def _verify_preconditions() -> dict[str, Any]:
 def _parse_signed_budget_decision() -> dict[str, Any]:
     text = BUDGET_DECISION.read_text(encoding="utf-8")
     lines = text.splitlines()
-    section_start = next((idx for idx, line in enumerate(lines) if line.startswith("## 8.")), 0)
+    section_start = next((idx for idx, line in enumerate(lines) if line.startswith("## 6.")), 0)
     section = "\n".join(lines[section_start:])
-    option_b = bool(re.search(r"\[X\]\s*B\s+Raise line", section))
-    operator_line_index = next((idx for idx, line in enumerate(lines, start=1) if "Operator:" in line and "New line" in line), -1)
+    zero_score = bool(re.search(r"Zero-score-exposure confirmed.*\[[xX]\]\s*yes", section))
+    reuse_checked = bool(re.search(r"Resume mode.*\[[xX]\]\s*reuse-completed", section))
+    full_rerun_checked = bool(re.search(r"Resume mode.*\[[xX]\]\s*full re-run", section))
+    line_number = next((idx for idx, line in enumerate(lines, start=1) if "New line L" in line), -1)
+    line_text = lines[line_number - 1] if line_number > 0 else ""
+    line_match = re.search(r"New line L\s*=\s*([0-9]+(?:\.[0-9]+)?)\s*CPU-h", line_text)
+    endgame = bool(re.search(r"Endgame clause.*\[[xX]\]\s*yes", section))
+    firewall = bool(re.search(r"Firewall.*\[[xX]\]\s*yes", section))
+    operator_line_index = next((idx for idx, line in enumerate(lines, start=1) if "Operator:" in line and "Date:" in line), -1)
     operator_line = lines[operator_line_index - 1] if operator_line_index > 0 else ""
-    line_match = re.search(r"New line \(if B\):\s*_+\s*([0-9]+(?:\.[0-9]+)?)\s*_*\s*CPU-h", operator_line)
     operator_match = re.search(r"Operator:\s*_+([^_]+?)_+\s+Date:", operator_line)
-    date_match = re.search(r"Date:\s*_+([^_]+?)_+\s+New line", operator_line)
+    date_match = re.search(r"Date:\s*_+([^_]+?)_+", operator_line)
     line_value = float(line_match.group(1)) if line_match else None
     return {
-        "option_b_checked": option_b,
+        "zero_score_exposure_confirmed": zero_score,
+        "resume_mode": "reuse-completed" if reuse_checked else ("full-rerun" if full_rerun_checked else ""),
         "line_cpu_hours": line_value,
+        "endgame_acknowledged": endgame,
+        "firewall_acknowledged": firewall,
         "operator": operator_match.group(1).strip() if operator_match else "",
         "date": date_match.group(1).strip() if date_match else "",
-        "line_number": int(operator_line_index),
-        "signed_line_text": operator_line,
+        "line_number": int(line_number),
+        "operator_line_number": int(operator_line_index),
+        "signed_line_text": line_text,
+        "operator_line_text": operator_line,
         "source_path": str(BUDGET_DECISION.relative_to(ROOT)),
     }
 
@@ -631,15 +698,38 @@ def _read_git_state_without_git() -> dict[str, Any]:
         return obj.as_raw_string()
 
     spec_001b_rel = str(SPEC_CARD.relative_to(ROOT)).replace("\\", "/")
+    spec_001a_rel = str(SPEC_CARD_001A_SUPERSEDED.relative_to(ROOT)).replace("\\", "/")
+    resume_card_rel = str(RESUME_CARD.relative_to(ROOT)).replace("\\", "/")
+    prereg_rel = str(INTERPRETATION_PREREG.relative_to(ROOT)).replace("\\", "/")
     impl_report_rel = str(S3D_001B_IMPL_REPORT.relative_to(ROOT)).replace("\\", "/")
     budget_rel = str(BUDGET_DECISION.relative_to(ROOT)).replace("\\", "/")
     spec_001b_blob = blob_bytes_at(head_hash, spec_001b_rel)
+    spec_001a_blob = blob_bytes_at(head_hash, spec_001a_rel)
+    resume_card_blob = blob_bytes_at(head_hash, resume_card_rel)
+    prereg_blob = blob_bytes_at(head_hash, prereg_rel)
     budget_blob = blob_bytes_at(head_hash, budget_rel)
     impl_report_blob = blob_bytes_at(head_hash, impl_report_rel)
     variance_rel = "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe.json"
     variance_blob = blob_bytes_at(head_hash, variance_rel)
     variance_trace_blob = blob_bytes_at(head_hash, "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_trace.csv")
     stop_projection_blob = blob_bytes_at(head_hash, "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection.json")
+    line30_stop_paths = [
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.jsonl",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.csv",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_freshness_manifest.json",
+    ]
+    line30_stop_blobs = {path: blob_bytes_at(head_hash, path) for path in line30_stop_paths}
+    line30_result_verdict = None
+    line30_result_void = None
+    if line30_stop_blobs[line30_stop_paths[0]] is not None:
+        try:
+            line30_result = json.loads(line30_stop_blobs[line30_stop_paths[0]].decode("utf-8-sig"))
+            line30_result_verdict = line30_result.get("verdict")
+            line30_result_void = line30_result.get("s3d_results_void")
+        except Exception:
+            line30_result_verdict = "UNPARSEABLE"
     found_stop = [
         {"hash": commit_hash, "subject": (commit.message.decode(errors="replace").splitlines() or [""])[0]}
         for commit_hash, commit in walk_commits(head_hash)
@@ -666,10 +756,22 @@ def _read_git_state_without_git() -> dict[str, Any]:
         "head_hash": head_hash,
         "status_without_git_command": status_payload,
         "spec_001b_committed_at_head": spec_001b_blob == SPEC_CARD.read_bytes(),
+        "spec_001a_committed_at_head": spec_001a_blob == SPEC_CARD_001A_SUPERSEDED.read_bytes(),
+        "resume_card_committed_at_head": resume_card_blob == RESUME_CARD.read_bytes(),
+        "interpretation_prereg_committed_at_head": prereg_blob == INTERPRETATION_PREREG.read_bytes(),
         "budget_note_committed_at_head": budget_blob == BUDGET_DECISION.read_bytes(),
         "s3d_001b_impl_report_banked": impl_report_blob is not None,
         "variance_probe_banked": variance_blob is not None and variance_trace_blob is not None,
         "stop_projection_banked": stop_projection_blob is not None,
+        "line30_stop_evidence_banked": all(blob is not None for blob in line30_stop_blobs.values())
+        and line30_result_verdict == "STOP_runtime_guard_exceeded_signed_line"
+        and line30_result_void is True,
+        "line30_stop_evidence_head_paths": {
+            path: {"exists": blob is not None, "sha256": hashlib.sha256(blob).hexdigest() if blob is not None else None}
+            for path, blob in line30_stop_blobs.items()
+        },
+        "line30_stop_result_verdict_at_head": line30_result_verdict,
+        "line30_stop_result_void_at_head": line30_result_void,
         "stop_commit_17cce05_in_history": bool(found_stop),
         "stop_commit_matches": found_stop,
         "implementation": "dulwich object/index readback; no git executable invoked",
@@ -1549,6 +1651,311 @@ def _run_units_parallel(
     return trace_rows, unit_results, runtime_guard
 
 
+def _preserve_void_line30_outputs() -> dict[str, Any]:
+    """Copy the void L=30 outputs to *_void_line30_v1 names before resume overwrite."""
+
+    pairs = [
+        (RESULT, ARTIFACT_ROOT / "result_void_line30_v1.json"),
+        (FAILURE_MANIFEST, ARTIFACT_ROOT / "failure_manifest_void_line30_v1.json"),
+        (TRACE_JSONL, ARTIFACT_ROOT / "trace_void_line30_v1.jsonl"),
+        (TRACE_CSV, ARTIFACT_ROOT / "trace_void_line30_v1.csv"),
+        (CERTIFICATE_REPORT, ARTIFACT_ROOT / "s3d_certificate_report_void_line30_v1.json"),
+        (NULL_ENV_REPORT, ARTIFACT_ROOT / "s3d_null_env_report_void_line30_v1.json"),
+        (BASELINE_COMPARISON, ARTIFACT_ROOT / "baseline_comparison_void_line30_v1.json"),
+        (REPLAY_REPORT, ARTIFACT_ROOT / "replay_report_void_line30_v1.json"),
+    ]
+    preserved = []
+    for source, target in pairs:
+        record = {
+            "source": str(source.relative_to(ROOT)).replace("\\", "/"),
+            "target": str(target.relative_to(ROOT)).replace("\\", "/"),
+            "source_exists": source.exists(),
+            "target_exists_before": target.exists(),
+            "copied": False,
+            "already_preserved_same_bytes": False,
+        }
+        if not source.exists():
+            preserved.append(record)
+            continue
+        source_sha = _sha256(source)
+        record["source_sha256"] = source_sha
+        record["source_size_bytes"] = source.stat().st_size
+        if target.exists():
+            target_sha = _sha256(target)
+            record["target_sha256_before"] = target_sha
+            record["target_size_bytes_before"] = target.stat().st_size
+            if target_sha == source_sha:
+                record["already_preserved_same_bytes"] = True
+            else:
+                record["already_preserved_existing_target_source_now_differs"] = True
+        else:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
+            record["copied"] = True
+        record["target_sha256_after"] = _sha256(target)
+        record["target_size_bytes_after"] = target.stat().st_size
+        preserved.append(record)
+
+    trace_rows = _load_trace_rows(ARTIFACT_ROOT / "trace_void_line30_v1.jsonl")
+    void_result = _read_json(ARTIFACT_ROOT / "result_void_line30_v1.json")
+    return {
+        "artifact": "void_line30_preservation",
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_preserve_void_line30_outputs",
+        "preserved": preserved,
+        "all_required_sources_present": all(item["source_exists"] for item in preserved),
+        "trace_has_per_user_confusion": all("per_user_confusion" in row for row in trace_rows),
+        "void_trace_row_count": len(trace_rows),
+        "void_result_verdict": void_result.get("verdict"),
+        "void_result_s3d_results_void": void_result.get("s3d_results_void"),
+        "void_result_code_path_hash": void_result.get("code_path_hash"),
+        "void_runtime_guard": void_result.get("runtime_guard"),
+        "run_finished_at": _utc_timestamp(),
+    }
+
+
+def _write_ideal_kernel_analysis_note() -> dict[str, Any]:
+    note = f"""# S3d ideal kernel analysis 001A
+
+Task: FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A.
+
+Finding: the S3d cert-cell per-cell ideal path already instantiates
+`src.fsp_pum_env.factored_filter.FactoredExactFilter` from the committed
+runner's `_score_ideal_cell` path. The filter stores a full joint float64
+log-weight vector and its `scatter_kernel_certificate()` reports in-place
+log-weight updates plus query-time logsumexp normalization.
+
+Resume decision: no faster flag or alternate ideal path was enabled in this
+resume. Therefore no byte-identical regression proof was required here. The
+required camouflage_off ideal exact value/regression proof would be mandatory
+only if this card enabled a different path.
+
+Claim ceiling: code-path analysis only; no new equivalence certificate, no
+metric result, no speedup claim, and no science-rule change.
+
+Producer: artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_write_ideal_kernel_analysis_note
+Code path hash at write time: {_code_path_hash()}
+"""
+    IDEAL_KERNEL_ANALYSIS.write_text(note, encoding="utf-8")
+    return _artifact_ref(IDEAL_KERNEL_ANALYSIS)
+
+
+def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_preservation: Mapping[str, Any]) -> dict[str, Any]:
+    trace_rows = _load_trace_rows(ARTIFACT_ROOT / "trace_void_line30_v1.jsonl")
+    expected_ids = [str(payload["unit_id"]) for payload in unit_payloads]
+    completed_ids = [str(row["unit_id"]) for row in trace_rows]
+    missing_ids = [unit_id for unit_id in expected_ids if unit_id not in set(completed_ids)]
+    unexpected_ids = [unit_id for unit_id in completed_ids if unit_id not in set(expected_ids)]
+    duplicate_completed_ids = sorted(
+        unit_id for unit_id in set(completed_ids) if completed_ids.count(unit_id) > 1
+    )
+    void_code_hash = str(void_preservation.get("void_result_code_path_hash") or "")
+
+    persisted_records = []
+    for row in trace_rows:
+        persisted_records.append(_persist_reconstructed_unit_from_trace(row, void_code_hash))
+
+    persisted_by_id = _load_persisted_unit_results(completed_ids)
+    payload_by_id = {str(payload["unit_id"]): dict(payload) for payload in unit_payloads}
+    trace_by_id = {str(row["unit_id"]): row for row in trace_rows}
+    reuse_errors = []
+    metric_equality = []
+    for unit_id in completed_ids:
+        persisted = persisted_by_id.get(unit_id)
+        if persisted is None:
+            reuse_errors.append(f"persisted_result_missing:{unit_id}")
+            continue
+        score_payload = persisted["score_payload"]
+        expected_input_hash = _unit_input_hash(payload_by_id[unit_id])
+        if str(score_payload.get("code_path_hash")) != void_code_hash:
+            reuse_errors.append(f"code_path_hash_mismatch:{unit_id}")
+        if str(score_payload.get("input_hash")) != expected_input_hash:
+            reuse_errors.append(f"input_hash_mismatch:{unit_id}")
+        trace_row = trace_by_id[unit_id]
+        metric_equal = float(score_payload["metric"]) == float(trace_row["metric"])
+        digest_equal = str(score_payload["metric_digest"]) == str(trace_row["metric_digest"])
+        metric_equality.append(
+            {
+                "unit_id": unit_id,
+                "metric_equal_to_void_trace": bool(metric_equal),
+                "metric_digest_equal_to_void_trace": bool(digest_equal),
+            }
+        )
+        if not metric_equal or not digest_equal:
+            reuse_errors.append(f"metric_not_bit_exact_to_void_trace:{unit_id}")
+
+    spot_check = {
+        "passed": False,
+        "not_run_reason": "reuse precheck failed before spot-check",
+        "spot_check_process_cpu_seconds": 0.0,
+    }
+    if not reuse_errors and not unexpected_ids and not duplicate_completed_ids:
+        spot_payloads = [payload_by_id[unit_id] for unit_id in completed_ids]
+        spot_check = _spot_check_reused_units(
+            spot_payloads,
+            persisted_by_id,
+            seed_text=SPOT_CHECK_SEED_TEXT,
+            count=3,
+        )
+        if not bool(spot_check["passed"]):
+            reuse_errors.append("spot_check_mismatch")
+
+    passed = not reuse_errors and not unexpected_ids and not duplicate_completed_ids
+    stop_condition = None
+    if unexpected_ids:
+        stop_condition = "void_trace_has_unexpected_unit_ids"
+    elif duplicate_completed_ids:
+        stop_condition = "void_trace_has_duplicate_unit_ids"
+    elif reuse_errors:
+        stop_condition = "resume_reuse_gate_failed"
+
+    manifest = {
+        "artifact": "s3d_resume_manifest",
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "expected_unit_count": len(expected_ids),
+        "completed_unit_count_from_void_trace": len(completed_ids),
+        "reused_unit_count": len(completed_ids) if passed else 0,
+        "missing_unit_count": len(missing_ids),
+        "expected_unit_ids_sha256": _sha256_json(expected_ids),
+        "completed_unit_ids_sha256": _sha256_json(completed_ids),
+        "missing_unit_ids": missing_ids,
+        "unexpected_unit_ids": unexpected_ids,
+        "duplicate_completed_unit_ids": duplicate_completed_ids,
+        "void_code_path_hash": void_code_hash,
+        "trace_has_per_user_confusion": bool(void_preservation.get("trace_has_per_user_confusion")),
+        "persisted_unit_result_count": len(persisted_records),
+        "persisted_unit_result_paths": [
+            str(_unit_artifact_path(unit_id).relative_to(ROOT)).replace("\\", "/")
+            for unit_id in completed_ids
+        ],
+        "reuse_errors": reuse_errors,
+        "reuse_metric_equality": metric_equality,
+        "spot_check": spot_check,
+        "passed": passed,
+        "stop_condition": stop_condition,
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_prepare_resume_reuse",
+        "code_path_hash": _code_path_hash(),
+        "run_finished_at": _utc_timestamp(),
+        "claim_ceiling": "resume provenance and scheduling gate only; no S3d adjudication",
+    }
+    _write_json(RESUME_MANIFEST, manifest)
+    return {
+        "passed": passed,
+        "stop_condition": stop_condition,
+        "expected_unit_count": len(expected_ids),
+        "completed_unit_count_from_void_trace": len(completed_ids),
+        "reused_unit_count": len(completed_ids) if passed else 0,
+        "missing_unit_count": len(missing_ids),
+        "reused_unit_ids": completed_ids if passed else [],
+        "missing_unit_ids": missing_ids,
+        "void_code_path_hash": void_code_hash,
+        "trace_has_per_user_confusion": bool(void_preservation.get("trace_has_per_user_confusion")),
+        "spot_check": spot_check,
+        "resume_manifest": _artifact_ref(RESUME_MANIFEST),
+        "unit_results_dir": str(UNIT_RESULTS_DIR.relative_to(ROOT)).replace("\\", "/"),
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_prepare_resume_reuse",
+    }
+
+
+def _run_units_resume(
+    unit_payloads: Sequence[Mapping[str, Any]],
+    *,
+    resume_reuse: Mapping[str, Any],
+    max_workers: int,
+    applied_line: float,
+) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]], dict[str, Any]]:
+    run_started_at = _utc_timestamp()
+    parallel_wall_start = time.perf_counter()
+    trace_rows = _load_trace_rows(ARTIFACT_ROOT / "trace_void_line30_v1.jsonl")
+    completed_ids = [str(row["unit_id"]) for row in trace_rows]
+    persisted_by_id = _load_persisted_unit_results(completed_ids)
+    unit_results: dict[str, dict[str, Any]] = {
+        unit_id: dict(persisted_by_id[unit_id]["score_payload"])
+        for unit_id in completed_ids
+    }
+    missing_ids = [str(unit_id) for unit_id in resume_reuse["missing_unit_ids"]]
+    missing_payloads = [dict(payload) for payload in unit_payloads if str(payload["unit_id"]) in set(missing_ids)]
+    if [str(payload["unit_id"]) for payload in missing_payloads] != missing_ids:
+        raise RuntimeError("missing_unit_payload_order_mismatch")
+
+    cumulative_cpu_hours = float(trace_rows[-1]["cumulative_contention_robust_cpu_hours"]) if trace_rows else 0.0
+    reused_recorded_process_cpu_seconds = sum(float(row["process_cpu_seconds"]) for row in trace_rows)
+    newly_executed_process_cpu_seconds = 0.0
+    stopped = False
+    stop_reason = None
+
+    futures: dict[Any, dict[str, Any]] = {}
+    pending_iter = iter(missing_payloads)
+    with ProcessPoolExecutor(max_workers=int(max_workers)) as executor:
+        for _ in range(min(int(max_workers), len(missing_payloads))):
+            try:
+                payload = next(pending_iter)
+            except StopIteration:
+                break
+            futures[executor.submit(_run_unit_worker, payload)] = payload
+        while futures:
+            done, _ = wait(tuple(futures), return_when=FIRST_COMPLETED)
+            for future in done:
+                payload = futures.pop(future)
+                result = future.result()
+                unit_id = str(result["unit_id"])
+                result["input_hash"] = _unit_input_hash(payload)
+                result["input_record"] = _unit_input_record(payload)
+                unit_results[unit_id] = result
+                _persist_fresh_unit_result(result)
+                newly_executed_process_cpu_seconds += float(result["process_cpu_seconds"])
+                cumulative_cpu_hours += float(result["process_cpu_seconds"]) / 3600.0
+                row = _trace_row_from_unit(result, cumulative_cpu_hours)
+                trace_rows.append(row)
+                _append_trace_jsonl(TRACE_JSONL, row)
+                if cumulative_cpu_hours > float(applied_line):
+                    stopped = True
+                    stop_reason = f"runtime_guard_exceeded_after_{unit_id}"
+                    for pending in futures:
+                        pending.cancel()
+                    break
+                try:
+                    payload_next = next(pending_iter)
+                except StopIteration:
+                    continue
+                futures[executor.submit(_run_unit_worker, payload_next)] = payload_next
+            if stopped:
+                break
+
+    total_unit_wall_sum = sum(float(row["wall_clock_seconds"]) for row in trace_rows)
+    total_unit_cpu_sum = sum(float(row["process_cpu_seconds"]) for row in trace_rows)
+    wall_cpu_flags = [row for row in trace_rows if bool(row["wall_cpu_ratio_flag_gt_1_25"])]
+    runtime_guard = {
+        "run_started_at": run_started_at,
+        "run_finished_at": _utc_timestamp(),
+        "parallel_elapsed_wall_clock_seconds": time.perf_counter() - parallel_wall_start,
+        "applied_cpu_hour_limit": float(applied_line),
+        "resume_mode": "reuse-completed",
+        "reused_completed_unit_count": len(completed_ids),
+        "newly_executed_unit_count": len([unit_id for unit_id in missing_ids if unit_id in unit_results]),
+        "missing_unit_count_at_start": len(missing_ids),
+        "missing_unit_ids_at_start": missing_ids,
+        "completed_unit_count": len(trace_rows),
+        "expected_unit_count": len(unit_payloads),
+        "contention_robust_cpu_hours": float(cumulative_cpu_hours),
+        "battery_units_contention_robust_cpu_hours": float(total_unit_cpu_sum) / 3600.0,
+        "reused_recorded_process_cpu_seconds": float(reused_recorded_process_cpu_seconds),
+        "reused_recorded_cpu_hours": float(reused_recorded_process_cpu_seconds) / 3600.0,
+        "newly_executed_process_cpu_seconds": float(newly_executed_process_cpu_seconds),
+        "newly_executed_cpu_hours": float(newly_executed_process_cpu_seconds) / 3600.0,
+        "void_cumulative_cpu_hours_before_resume": float(trace_rows[len(completed_ids) - 1]["cumulative_contention_robust_cpu_hours"]) if completed_ids else 0.0,
+        "spot_check_process_cpu_seconds_excluded_from_line": float(resume_reuse["spot_check"].get("spot_check_process_cpu_seconds", 0.0)),
+        "wall_clock_based_cpu_hours_disclosed": float(total_unit_wall_sum) / 3600.0,
+        "wall_cpu_ratio_flag_count": len(wall_cpu_flags),
+        "wall_cpu_ratio_flag_unit_ids": [str(row["unit_id"]) for row in wall_cpu_flags],
+        "decision": "STOP_runtime_guard_exceeded_signed_line" if stopped else "runtime_within_signed_line",
+        "stop_reason": stop_reason,
+        "trace_path": str(TRACE_JSONL.relative_to(ROOT)),
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_run_units_resume",
+    }
+    return trace_rows, unit_results, runtime_guard
+
+
 def _run_unit_worker(payload: Mapping[str, Any]) -> dict[str, Any]:
     _configure_worker_environment()
     run_started_at = _utc_timestamp()
@@ -2341,6 +2748,242 @@ def _serial_equivalence_assertion(unit_results: Mapping[str, Mapping[str, Any]])
     }
 
 
+def _load_trace_rows(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows = []
+    with path.open("r", encoding="utf-8-sig") as handle:
+        for line in handle:
+            if line.strip():
+                rows.append(json.loads(line))
+    return rows
+
+
+def _unit_artifact_path(unit_id: str) -> Path:
+    safe = re.sub(r"[^A-Za-z0-9_.-]+", "__", str(unit_id)).strip("_")
+    if not safe:
+        raise ValueError("empty_unit_id_for_artifact_path")
+    return UNIT_RESULTS_DIR / f"{safe}.json"
+
+
+def _score_payload_from_trace_row(row: Mapping[str, Any]) -> dict[str, Any]:
+    per_user = list(row["per_user_confusion"])
+    totals = np.zeros(32, dtype=np.int64)
+    recommend_totals = np.zeros(32, dtype=np.int64)
+    for item in per_user:
+        totals += np.asarray(item["totals"], dtype=np.int64)
+        recommend_totals += np.asarray(item["recommend_totals"], dtype=np.int64)
+    classes_present = [int(index) for index, value in enumerate(totals.tolist()) if int(value) > 0]
+    payload = {
+        "unit_id": str(row["unit_id"]),
+        "unit_type": str(row["unit_type"]),
+        "phase": str(row["phase"]),
+        "member": str(row["member"]),
+        "cell_id": str(row["cell_id"]),
+        "metric": float(row["metric"]),
+        "recommend_turn_conditional_metric": row.get("recommend_turn_conditional_metric"),
+        "n_eval_points": int(row["n_eval_points"]),
+        "classes_present": classes_present,
+        "class_count_present": len(classes_present),
+        "recommend_turn_count": int(recommend_totals.sum()),
+        "per_user_confusion": per_user,
+        "per_user_confusion_sha256": _sha256_json(per_user),
+        "wall_clock_seconds": float(row["wall_clock_seconds"]),
+        "process_cpu_seconds": float(row["process_cpu_seconds"]),
+        "wall_cpu_ratio": float(row["wall_cpu_ratio"]),
+        "wall_cpu_ratio_flag_gt_1_25": bool(row["wall_cpu_ratio_flag_gt_1_25"]),
+        "run_started_at": str(row["run_started_at"]),
+        "run_finished_at": str(row["run_finished_at"]),
+        "heldout_users_800_999_touched": bool(row["heldout_users_800_999_touched"]),
+        "future_observations_used": bool(row["future_observations_used"]),
+        "canonical_scorer_id": CANONICAL_SCORER_ID,
+        "canonical_scorer_pinned": True,
+        "metric_aggregation_rule": "macro-balanced accuracy over classes with >=1 true occurrence in eval slice",
+        "recommend_metric_aggregation_rule": "same macro-balanced accuracy restricted to logged action == recommend",
+        "reconstructed_from_trace": True,
+        "trace_source": str((ARTIFACT_ROOT / "trace_void_line30_v1.jsonl").relative_to(ROOT)).replace("\\", "/"),
+    }
+    if row.get("metric_digest") is not None:
+        payload["metric_digest"] = str(row["metric_digest"])
+        recomputed = _metric_digest(payload)
+        if recomputed != payload["metric_digest"]:
+            raise RuntimeError(f"trace_metric_digest_reconstruction_mismatch:{row['unit_id']}:{recomputed}:{payload['metric_digest']}")
+    return payload
+
+
+def _persist_reconstructed_unit_from_trace(row: Mapping[str, Any], void_code_path_hash: str) -> dict[str, Any]:
+    payload = _score_payload_from_trace_row(row)
+    input_record = _unit_input_record(payload)
+    input_hash = _sha256_json(input_record)
+    payload.update(
+        {
+            "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_run_unit_worker",
+            "code_path_hash": str(void_code_path_hash),
+            "input_artifacts": [str(FROZEN_DESIGN.relative_to(ROOT))],
+            "input_record": input_record,
+            "input_hash": input_hash,
+        }
+    )
+    payload.setdefault("metric_digest", _metric_digest(payload))
+    artifact = {
+        "artifact": "s3d_resume_unit_result",
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "unit_id": payload["unit_id"],
+        "source": "void_trace_reconstruction",
+        "code_path_hash": str(void_code_path_hash),
+        "input_hash": input_hash,
+        "score_payload": payload,
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_persist_reconstructed_unit_from_trace",
+        "run_finished_at": _utc_timestamp(),
+        "claim_ceiling": "per-unit result preservation for resume only; no new metric computed",
+    }
+    path = _unit_artifact_path(str(payload["unit_id"]))
+    if path.exists():
+        existing = _read_json(path)
+        existing_score = existing.get("score_payload", {})
+        same = (
+            existing.get("unit_id") == artifact["unit_id"]
+            and existing.get("code_path_hash") == artifact["code_path_hash"]
+            and existing.get("input_hash") == artifact["input_hash"]
+            and existing_score.get("metric_digest") == payload.get("metric_digest")
+            and existing_score.get("per_user_confusion_sha256") == payload.get("per_user_confusion_sha256")
+        )
+        if not same:
+            raise RuntimeError(f"unit_artifact_collision:{path.relative_to(ROOT)}")
+        return existing
+    _write_json(path, artifact)
+    return artifact
+
+
+def _persist_fresh_unit_result(result: Mapping[str, Any]) -> dict[str, Any]:
+    artifact = {
+        "artifact": "s3d_resume_unit_result",
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "unit_id": str(result["unit_id"]),
+        "source": "fresh_resume_execution",
+        "code_path_hash": str(result["code_path_hash"]),
+        "input_hash": str(result["input_hash"]),
+        "score_payload": dict(result),
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_persist_fresh_unit_result",
+        "run_finished_at": _utc_timestamp(),
+        "claim_ceiling": "fresh per-unit result from resume execution only",
+    }
+    path = _unit_artifact_path(str(result["unit_id"]))
+    _write_json(path, artifact)
+    return artifact
+
+
+def _load_persisted_unit_results(unit_ids: Sequence[str]) -> dict[str, dict[str, Any]]:
+    out: dict[str, dict[str, Any]] = {}
+    for unit_id in unit_ids:
+        path = _unit_artifact_path(str(unit_id))
+        if path.exists():
+            out[str(unit_id)] = _read_json(path)
+    return out
+
+
+def _unit_input_hash(payload: Mapping[str, Any]) -> str:
+    return _sha256_json(_unit_input_record(payload))
+
+
+def _unit_input_record(payload: Mapping[str, Any]) -> dict[str, Any]:
+    design = load_frozen_design(FROZEN_DESIGN)
+    specs = {spec.cell_id: spec for spec in build_s3d_cert_set_specs(design)}
+    cell_id = str(payload["cell_id"])
+    spec = specs[cell_id]
+    record: dict[str, Any] = {
+        "unit_payload": {
+            "unit_id": str(payload["unit_id"]),
+            "unit_type": str(payload["unit_type"]),
+            "phase": str(payload["phase"]),
+            "cell_id": cell_id,
+            "member": str(payload["member"]),
+        },
+        "frozen_design_sha256": _sha256(FROZEN_DESIGN),
+        "cert_cell": {
+            "cell_id": spec.cell_id,
+            "variant": spec.variant,
+            "master_seed": int(spec.master_seed),
+            "fit_user_range": list(spec.fit_user_range),
+            "eval_user_range": list(spec.eval_user_range),
+            "trajectory_spec": spec.trajectory_spec.to_json_dict(),
+        },
+    }
+    member = str(payload["member"])
+    recipe_name = SELECTED_RECIPE_BY_MEMBER.get(member)
+    if recipe_name is not None:
+        recipe_path = ARTIFACT_ROOT / "s3c_models" / recipe_name
+        record["selected_recipe"] = {
+            "path": str(recipe_path.relative_to(ROOT)).replace("\\", "/"),
+            "sha256": _sha256(recipe_path),
+        }
+    if member in PREFIX_MEMBER_CLASSES:
+        cls = PREFIX_MEMBER_CLASSES[member]
+        record["predictor_class"] = f"{cls.__module__}.{cls.__name__}"
+    return record
+
+
+def _select_spot_check_unit_ids(unit_ids: Sequence[str], *, seed_text: str, count: int) -> list[str]:
+    ordered = sorted(str(unit_id) for unit_id in unit_ids)
+    if len(ordered) < int(count):
+        raise ValueError("not_enough_units_for_spot_check")
+    seed_int = _seed_from_text(seed_text)
+    rng = random.Random(seed_int)
+    return rng.sample(ordered, int(count))
+
+
+def _spot_check_reused_units(
+    payloads: Sequence[Mapping[str, Any]],
+    persisted_by_id: Mapping[str, Mapping[str, Any]],
+    *,
+    seed_text: str,
+    count: int,
+) -> dict[str, Any]:
+    payload_by_id = {str(payload["unit_id"]): dict(payload) for payload in payloads}
+    selected = _select_spot_check_unit_ids(list(payload_by_id), seed_text=seed_text, count=count)
+    checks = []
+    mismatches = []
+    spot_cpu = 0.0
+    for unit_id in selected:
+        recomputed = _run_unit_worker(payload_by_id[unit_id])
+        spot_cpu += float(recomputed["process_cpu_seconds"])
+        stored = persisted_by_id[unit_id]["score_payload"]
+        stored_confusion_sha = str(stored.get("per_user_confusion_sha256") or _sha256_json(stored["per_user_confusion"]))
+        recomputed_confusion_sha = str(
+            recomputed.get("per_user_confusion_sha256") or _sha256_json(recomputed["per_user_confusion"])
+        )
+        metric_digest_equal = str(recomputed["metric_digest"]) == str(stored["metric_digest"])
+        confusion_equal = recomputed_confusion_sha == stored_confusion_sha
+        row = {
+            "unit_id": unit_id,
+            "stored_metric_digest": str(stored["metric_digest"]),
+            "recomputed_metric_digest": str(recomputed["metric_digest"]),
+            "stored_per_user_confusion_sha256": stored_confusion_sha,
+            "recomputed_per_user_confusion_sha256": recomputed_confusion_sha,
+            "metric_digest_equal": bool(metric_digest_equal),
+            "per_user_confusion_sha256_equal": bool(confusion_equal),
+            "recompute_process_cpu_seconds": float(recomputed["process_cpu_seconds"]),
+        }
+        checks.append(row)
+        if not metric_digest_equal or not confusion_equal:
+            mismatches.append(row)
+    return {
+        "passed": not mismatches,
+        "seed_text": seed_text,
+        "seed_int": _seed_from_text(seed_text),
+        "selected_unit_ids": selected,
+        "checks": checks,
+        "mismatches": mismatches,
+        "spot_check_process_cpu_seconds": float(spot_cpu),
+        "spot_check_cpu_hours": float(spot_cpu) / 3600.0,
+        "count": int(count),
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_spot_check_reused_units",
+        "line_accounting": "verification overhead; excluded from runtime guard cumulative by task card",
+    }
+
+
 def _trace_row_from_unit(result: Mapping[str, Any], cumulative_cpu_hours: float) -> dict[str, Any]:
     return {
         "unit_id": str(result["unit_id"]),
@@ -2514,7 +3157,14 @@ def _failure_manifest_payload(
         "stop_condition": stop_condition,
         "details": details,
         "preserved_failure": True,
-        "s3d_results_void": verdict in {"FAIL_NULL_FALSE_HEADROOM", "STOP_PRECONDITION_UNMET", "s3d_cell_headroom_defect", "STOP_runtime_guard_exceeded_signed_line", "STOP_UNEXPECTED_EXCEPTION"},
+        "s3d_results_void": verdict in {
+            "FAIL_NULL_FALSE_HEADROOM",
+            "STOP_PRECONDITION_UNMET",
+            "s3d_cell_headroom_defect",
+            "STOP_runtime_guard_exceeded_signed_line",
+            "STOP_RESUME_REUSE_GATE_FAILED",
+            "STOP_UNEXPECTED_EXCEPTION",
+        },
         "protected_artifacts_before": protected_before,
         "protected_artifacts_after": protected_after,
         "banked_stop_probe_artifacts_byte_unchanged": _protected_hash_match(protected_before, protected_after),
@@ -2654,16 +3304,45 @@ def _write_precondition_stop_artifacts(precondition: Mapping[str, Any], manifest
 def _write_operator_bank_ops(result_payload: Mapping[str, Any]) -> None:
     bank_ops = ARTIFACT_ROOT / "s3d_operator_bank_ops_proposal_line30.ps1"
     head_pin = result_payload.get("precondition", {}).get("git_readback_without_git_command", {}).get("head_hash", "UNKNOWN_HEAD_NO_GIT_COMMAND_USED")
-    allowlist = list(result_payload.get("new_artifacts") or _expected_new_artifact_paths(include_failure=FAILURE_MANIFEST.exists()))
+    allowlist = list(
+        result_payload.get("new_artifacts")
+        or _expected_new_artifact_paths(
+            include_failure=FAILURE_MANIFEST.exists(),
+            include_reports=not bool(result_payload.get("s3d_results_void", False)),
+            include_resume=True,
+            include_ablation=ABLATION_REPORT.exists(),
+            include_trace=TRACE_JSONL.exists() and TRACE_CSV.exists(),
+        )
+    )
     allowlist.append(str(bank_ops.relative_to(ROOT)).replace("\\", "/"))
+    allowlist = sorted(dict.fromkeys(allowlist))
+    core_candidates = [
+        f"artifacts/{TASK_ID}/s3d_battery_runner_line30.py",
+        "tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py",
+        f"artifacts/{TASK_ID}/result.json",
+        f"artifacts/{TASK_ID}/trace.jsonl",
+        f"artifacts/{TASK_ID}/trace.csv",
+        f"artifacts/{TASK_ID}/s3d_resume_manifest.json",
+        f"artifacts/{TASK_ID}/result_void_line30_v1.json",
+        f"artifacts/{TASK_ID}/failure_manifest_void_line30_v1.json",
+        f"artifacts/{TASK_ID}/trace_void_line30_v1.jsonl",
+        f"artifacts/{TASK_ID}/trace_void_line30_v1.csv",
+    ]
+    required_core = [item for item in core_candidates if item in allowlist]
     rendered = "\n".join(f"  '{item}'" for item in allowlist)
+    rendered_required = "\n".join(f"  '{item}'" for item in required_core)
     script = f"""# Proposed operator-only bank ops for {TASK_CARD_ID}
 # Codex generated this script but did not run it. No push is performed.
+# Pattern: HEAD-pinned, git reset first, allowlist-scoped add/commit,
+# required-core-subset existence, zero deletion, no unexpected staged paths.
 $ErrorActionPreference = 'Stop'
 $ExpectedHead = '{head_pin}'
-$CommitMessage = 'bank {TASK_CARD_ID} line30 battery artifacts'
+$CommitMessage = 'bank {TASK_CARD_ID} resume artifacts'
 $Allowlist = @(
 {rendered}
+)
+$RequiredCoreSubset = @(
+{rendered_required}
 )
 
 $ActualHead = (git rev-parse HEAD).Trim()
@@ -2672,6 +3351,11 @@ if ($ActualHead -ne $ExpectedHead) {{
 }}
 
 git reset --
+
+$MissingCore = @($RequiredCoreSubset | Where-Object {{ -not (Test-Path -LiteralPath $_) }})
+if ($MissingCore.Count -ne 0) {{
+  throw "Required core subset missing on disk: $($MissingCore -join ', ')"
+}}
 
 $ExistingAllowlist = @()
 foreach ($Path in $Allowlist) {{
@@ -2683,10 +3367,6 @@ foreach ($Path in $Allowlist) {{
 git add -- $ExistingAllowlist
 
 $Staged = @(git diff --cached --name-only)
-if ($Staged.Count -ne $ExistingAllowlist.Count) {{
-  throw "Staged count mismatch: expected $($ExistingAllowlist.Count) got $($Staged.Count): $($Staged -join ', ')"
-}}
-
 $Unexpected = @($Staged | Where-Object {{ $Allowlist -notcontains $_ }})
 if ($Unexpected.Count -ne 0) {{
   throw "Unexpected staged paths: $($Unexpected -join ', ')"
@@ -2708,23 +3388,59 @@ Write-Host 'Banked scoped S3d line30 battery artifacts locally. No push was perf
     bank_ops.write_text(script, encoding="utf-8")
 
 
-def _expected_new_artifact_paths(*, include_failure: bool) -> list[str]:
+def _expected_new_artifact_paths(
+    *,
+    include_failure: bool,
+    include_reports: bool,
+    include_resume: bool,
+    include_ablation: bool = False,
+    include_cert_sets: bool = False,
+    include_trace: bool = False,
+) -> list[str]:
     paths = [
         f"artifacts/{TASK_ID}/s3d_battery_runner_line30.py",
-        f"artifacts/{TASK_ID}/s3d_compute_projection_line30.0.json",
-        f"artifacts/{TASK_ID}/s3d_cert_sets_manifest.json",
-        f"artifacts/{TASK_ID}/s3d_certificate_report.json",
-        f"artifacts/{TASK_ID}/s3d_null_env_report.json",
+        "tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py",
         f"artifacts/{TASK_ID}/result.json",
-        f"artifacts/{TASK_ID}/trace.jsonl",
-        f"artifacts/{TASK_ID}/trace.csv",
-        f"artifacts/{TASK_ID}/baseline_comparison.json",
-        f"artifacts/{TASK_ID}/ablation_report.json",
-        f"artifacts/{TASK_ID}/replay_report.json",
     ]
+    if include_trace:
+        paths.extend([f"artifacts/{TASK_ID}/trace.jsonl", f"artifacts/{TASK_ID}/trace.csv"])
+    if include_ablation:
+        paths.append(f"artifacts/{TASK_ID}/ablation_report.json")
+    if include_cert_sets and not include_reports:
+        paths.append(f"artifacts/{TASK_ID}/s3d_cert_sets_manifest.json")
+    if include_reports:
+        paths.extend(
+            [
+                f"artifacts/{TASK_ID}/s3d_cert_sets_manifest.json",
+                f"artifacts/{TASK_ID}/s3d_certificate_report.json",
+                f"artifacts/{TASK_ID}/s3d_null_env_report.json",
+                f"artifacts/{TASK_ID}/baseline_comparison.json",
+                f"artifacts/{TASK_ID}/replay_report.json",
+            ]
+        )
+    if include_resume:
+        paths.extend(
+            [
+                f"artifacts/{TASK_ID}/s3d_resume_manifest.json",
+                f"artifacts/{TASK_ID}/s3d_ideal_kernel_analysis_001a.md",
+                f"artifacts/{TASK_ID}/result_void_line30_v1.json",
+                f"artifacts/{TASK_ID}/failure_manifest_void_line30_v1.json",
+                f"artifacts/{TASK_ID}/trace_void_line30_v1.jsonl",
+                f"artifacts/{TASK_ID}/trace_void_line30_v1.csv",
+                f"artifacts/{TASK_ID}/s3d_certificate_report_void_line30_v1.json",
+                f"artifacts/{TASK_ID}/s3d_null_env_report_void_line30_v1.json",
+                f"artifacts/{TASK_ID}/baseline_comparison_void_line30_v1.json",
+                f"artifacts/{TASK_ID}/replay_report_void_line30_v1.json",
+            ]
+        )
+        if UNIT_RESULTS_DIR.exists():
+            paths.extend(
+                str(path.relative_to(ROOT)).replace("\\", "/")
+                for path in sorted(UNIT_RESULTS_DIR.glob("*.json"))
+            )
     if include_failure:
         paths.append(f"artifacts/{TASK_ID}/failure_manifest.json")
-    return paths
+    return sorted(dict.fromkeys(path for path in paths if (ROOT / path).exists() or path.endswith(".py") or path.startswith("tests/")))
 
 
 def _protected_artifact_hashes() -> dict[str, Any]:
