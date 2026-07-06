@@ -1,77 +1,63 @@
-# Proposed operator-only bank ops for FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A
+# Proposed operator-only bank ops for FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A
 # Codex generated this script but did not run it. No push is performed.
 # Pattern: HEAD-pinned, git reset first, allowlist-scoped add/commit,
 # required-core-subset existence, zero deletion, no unexpected staged paths.
+# Allowlist is limited to paths currently modified/untracked in Codex readback.
 $ErrorActionPreference = 'Stop'
-$ExpectedHead = '5416206de9f823f92524bcb7e6fde860562944e9'
-$CommitMessage = 'bank FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A resume artifacts'
+$ExpectedHead = '273137f06218313abc074a4b5ef78ae9ccd934d4'
+$CommitMessage = 'bank FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A artifacts'
 $Allowlist = @(
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/baseline_comparison_void_line30_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/ablation_report.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/baseline_comparison.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_void_line30_v1.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/replay_report_void_line30_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_reuse_gate_stop_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/replay_report.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/result_void_line30_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/result_reuse_gate_stop_v1.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_certificate_report_void_line30_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_cert_sets_manifest.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_certificate_report.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_decision.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_gbt_control.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_gru_A.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_gru_B.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gates.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gbt_control.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gru_postfix_A.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gru_postfix_B.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_running_average_control.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_ideal_kernel_analysis_001a.md'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_null_env_report_void_line30_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_null_env_report.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_operator_bank_ops_proposal_line30.ps1'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__camouflage_off.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__constant_none.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__constant_saturated.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__flat_theta.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__stable_facts.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__null__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__count_table__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__episodic_traversal__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__fsm_planner__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__global_prior__constant_none.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__majority__constant_none.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__nearest_neighbor_user_matching__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_gbt__camouflage_off.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest_reuse_gate_stop_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__discounted_LS_lambda_0.95__flat_theta.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_gru__camouflage_off.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_logreg__camouflage_off.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__predict_all__constant_saturated.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__predict_none__constant_none.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__rag_k5_episode_retrieval__stable_facts.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__running_average_preference_regressor__flat_theta.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__seq_full_history_no_action_conditioning__constant_none.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__seq_window_with_action_conditioning_W15_no_cross_session_persistence__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__successor_map__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__transition_table__low_diversity.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__count_table__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__episodic_traversal__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__fsm_planner__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__global_prior__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__majority__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__nearest_neighbor_user_matching__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_gbt__NULL_env.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__discounted_LS_lambda_0.95__NULL_env.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_gru__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_logreg__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__predict_all__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__predict_none__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__rag_k5_episode_retrieval__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__running_average_preference_regressor__NULL_env.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__seq_full_history_no_action_conditioning__NULL_env.json'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__seq_window_with_action_conditioning_W15_no_cross_session_persistence__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__successor_map__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__transition_table__NULL_env.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.csv'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.jsonl'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.csv'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.jsonl'
+  'src/fsp_pum_env/battery/obs_decoders.py'
   'tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py'
 )
 $RequiredCoreSubset = @(
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py'
+  'src/fsp_pum_env/battery/obs_decoders.py'
   'tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.jsonl'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.csv'
   'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/result_void_line30_v1.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_void_line30_v1.json'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.jsonl'
-  'artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.csv'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_decision.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gates.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/result_reuse_gate_stop_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_reuse_gate_stop_v1.json'
+  'artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest_reuse_gate_stop_v1.json'
 )
 
 $ActualHead = (git rev-parse HEAD).Trim()
@@ -93,12 +79,22 @@ foreach ($Path in $Allowlist) {
   }
 }
 
+$DeletedAllowlist = @($Allowlist | Where-Object { -not (Test-Path -LiteralPath $_) })
+if ($DeletedAllowlist.Count -ne 0) {
+  throw "Allowlist contains missing/deleted paths: $($DeletedAllowlist -join ', ')"
+}
+
 git add -- $ExistingAllowlist
 
 $Staged = @(git diff --cached --name-only)
 $Unexpected = @($Staged | Where-Object { $Allowlist -notcontains $_ })
 if ($Unexpected.Count -ne 0) {
   throw "Unexpected staged paths: $($Unexpected -join ', ')"
+}
+
+$MissingStaged = @($ExistingAllowlist | Where-Object { $Staged -notcontains $_ })
+if ($MissingStaged.Count -ne 0) {
+  throw "Allowlisted path did not stage a change: $($MissingStaged -join ', ')"
 }
 
 $Deleted = @(git diff --cached --name-status | Where-Object { $_ -match '^D\s' })
@@ -112,4 +108,4 @@ foreach ($Path in $ExistingAllowlist) {
 
 git commit -m $CommitMessage -- $ExistingAllowlist
 
-Write-Host 'Banked scoped S3d line30 battery artifacts locally. No push was performed.'
+Write-Host 'Banked scoped S3d GRU determinism repair artifacts locally. No push was performed.'

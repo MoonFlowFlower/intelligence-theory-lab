@@ -1,0 +1,244 @@
+{
+  "artifact": "s3d_gru_determinism_stage1_decision",
+  "claim_ceiling": "Stage 1 GRU process-nondeterminism diagnostic only; no S3d adjudication",
+  "code_path_hash": "d3984d37036337c80521092a39810ce028856051d924de26d2aeeada0d81d443",
+  "cpu_accounting": {
+    "line_accounting": "Stage 1 diagnosis overhead; excluded from L=38 runtime guard by task card",
+    "line_guard_cpu_hours": 0.0,
+    "verification_overhead_cpu_hours": 0.09677951388888889,
+    "verification_overhead_process_cpu_seconds": 348.40625
+  },
+  "decision_table_outcome": "A_ne_B_and_gbt_control_passes",
+  "gbt_control": {
+    "code_path_hash": "d3984d37036337c80521092a39810ce028856051d924de26d2aeeada0d81d443",
+    "metric": 0.031023208265942286,
+    "metric_digest": "5d55da27bc85fae43c0960bcc5176c710e5a3fe25d6f01648263a049ba8ca368",
+    "per_user_confusion_sha256": "c39259d193db54aa20d1f77b01b70796abf77d8ab541de2d638d2091226a5e64",
+    "process_cpu_seconds": 275.546875,
+    "unit_id": "member::null::obs_decoder_gbt::NULL_env",
+    "wall_clock_seconds": 280.50505800000974
+  },
+  "gbt_control_passed": true,
+  "gru_A": {
+    "code_path_hash": "d3984d37036337c80521092a39810ce028856051d924de26d2aeeada0d81d443",
+    "metric": 0.030675559917212804,
+    "metric_digest": "2acbf07397c83917066d0e41c631b269bdfdd1b59c472cc179322eb321deab3c",
+    "per_user_confusion_sha256": "147e78cdd27dd90d21c0be45bbf10e2366ca7ff74a80fd038bf4c27423a756fd",
+    "process_cpu_seconds": 36.921875,
+    "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env",
+    "wall_clock_seconds": 37.80446410001605
+  },
+  "gru_B": {
+    "code_path_hash": "d3984d37036337c80521092a39810ce028856051d924de26d2aeeada0d81d443",
+    "metric": 0.030829846781364717,
+    "metric_digest": "b8b471d158182f422e465f82c838a68fd742f3d171ca436d17e4942170072983",
+    "per_user_confusion_sha256": "52776396f54450ef98881a0e2006fdaf3b3311832c448d2601bdaf49225f437e",
+    "process_cpu_seconds": 35.9375,
+    "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env",
+    "wall_clock_seconds": 36.52174029999878
+  },
+  "gru_a_eq_b": false,
+  "gru_a_eq_void": false,
+  "payload_artifacts": {
+    "gbt_control": {
+      "exists": true,
+      "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_gbt_control.json",
+      "sha256": "732de9abf6e042d440dd40e392b6bacd540574b5be54f193b565942a19680baf",
+      "size_bytes": 327626
+    },
+    "gru_A": {
+      "exists": true,
+      "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_gru_A.json",
+      "sha256": "2fc4d6efa26b4b650b01b843598ee9c9cb5928d0b82141da604b3ec45e81bf20",
+      "size_bytes": 327757
+    },
+    "gru_B": {
+      "exists": true,
+      "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage1_gru_B.json",
+      "sha256": "2d64cdfb3cc0ce791db3e0d5b750b4dc50613ac54a6b3ff03db4ce9aade5bd0a",
+      "size_bytes": 327750
+    }
+  },
+  "precondition": {
+    "claim_ceiling": "precondition readback only",
+    "errors": [],
+    "git_readback_without_git_command": {
+      "branch_ref": "ref: refs/heads/codex/meta-theory-scaffold",
+      "budget_note_committed_at_head": true,
+      "gru_repair_card_committed_at_head": true,
+      "head_hash": "273137f06218313abc074a4b5ef78ae9ccd934d4",
+      "implementation": "dulwich object/index readback; no git executable invoked",
+      "interpretation_prereg_committed_at_head": true,
+      "line30_stop_evidence_banked": false,
+      "line30_stop_evidence_head_paths": {
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json": {
+          "exists": true,
+          "sha256": "f44ae734178bb97c32168e5724f61469f826c9878c9f3f379026e8c76cf21dff"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json": {
+          "exists": true,
+          "sha256": "e901a27d63f9b883cb598584bcb4ea64e0a0a8253a375504089093f7fd8b973d"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_freshness_manifest.json": {
+          "exists": true,
+          "sha256": "c19857661b9e348a84605d6c89b1138307a60794889a3cd8610a9ff7fa7e78d3"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.csv": {
+          "exists": true,
+          "sha256": "7f5b78b71706ac37f495b5cdd7197af9f988a30f76caa3d1941a1ad4325163e2"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace.jsonl": {
+          "exists": true,
+          "sha256": "36560ea16c671e76b75909ab0c1a844630a6d83363274d4345d3608d7ee2dcb6"
+        }
+      },
+      "line30_stop_result_verdict_at_head": "STOP_RESUME_REUSE_GATE_FAILED",
+      "line30_stop_result_void_at_head": true,
+      "repo_root": "D:\\Project\\AIProject\\MyProject\\intelligence-theory-lab",
+      "resume_card_committed_at_head": true,
+      "resume_stop_evidence_banked": true,
+      "resume_stop_evidence_head_paths": {
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json": {
+          "exists": true,
+          "sha256": "f44ae734178bb97c32168e5724f61469f826c9878c9f3f379026e8c76cf21dff"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json": {
+          "exists": true,
+          "sha256": "e901a27d63f9b883cb598584bcb4ea64e0a0a8253a375504089093f7fd8b973d"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json": {
+          "exists": true,
+          "sha256": "3903a195bf9ac834b30df8c31e6058bfdfaa75efe6aec66a56c5f46ceb4df9d1"
+        }
+      },
+      "resume_stop_failure_verdict_at_head": "STOP_RESUME_REUSE_GATE_FAILED",
+      "resume_stop_manifest_passed_at_head": false,
+      "resume_stop_result_verdict_at_head": "STOP_RESUME_REUSE_GATE_FAILED",
+      "s3d_001b_impl_report_banked": true,
+      "spec_001a_committed_at_head": true,
+      "spec_001b_committed_at_head": true,
+      "status_without_git_command": {
+        "fsp_relevant_unstaged": [
+          "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py",
+          "tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py"
+        ],
+        "staged": {
+          "add": [],
+          "delete": [],
+          "modify": []
+        },
+        "unstaged_count": 2,
+        "untracked_count": 0
+      },
+      "stop_commit_17cce05_in_history": true,
+      "stop_commit_matches": [
+        {
+          "hash": "17cce05396c000097a4939aafe6f026322a36dd6",
+          "subject": "FSP-PUM-ENV-IDPROBE-001A S3d PART0 projection STOP >12 CPU-h"
+        }
+      ],
+      "stop_projection_banked": true,
+      "variance_probe_banked": true,
+      "void_line30_v1_evidence_banked": true,
+      "void_line30_v1_evidence_head_paths": {
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_void_line30_v1.json": {
+          "exists": true,
+          "sha256": "b55ed60681c788f11f777d7a3dd36e910f0669db2b381dd8507b8b8e77d7ad61"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/result_void_line30_v1.json": {
+          "exists": true,
+          "sha256": "3621a27644fafaffc72823e6b35d36b7cbbfa96680ef7ad5eab815a7cdb78e5b"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.csv": {
+          "exists": true,
+          "sha256": "7f5b78b71706ac37f495b5cdd7197af9f988a30f76caa3d1941a1ad4325163e2"
+        },
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.jsonl": {
+          "exists": true,
+          "sha256": "36560ea16c671e76b75909ab0c1a844630a6d83363274d4345d3608d7ee2dcb6"
+        }
+      }
+    },
+    "passed": true,
+    "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_verify_preconditions",
+    "read_only_rule_sources": [
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A.md",
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A.md",
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A.md",
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-INTERPRETATION-PREREG-001A.md",
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001B.md",
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001A.md",
+      "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-BUDGET-DECISION-002A.md"
+    ],
+    "run_started_at": "2026-07-05T18:29:55Z",
+    "signed_budget": {
+      "date": "2026-07-05",
+      "endgame_acknowledged": true,
+      "firewall_acknowledged": true,
+      "line_cpu_hours": 38.0,
+      "line_number": 79,
+      "operator": "Leo",
+      "operator_line_number": 82,
+      "operator_line_text": "Operator: ___________Leo_________   Date: ____ 2026-07-05_____",
+      "resume_mode": "reuse-completed",
+      "signed_line_text": "New line L = 38 CPU-h    Formula + arithmetic used: ___Formula + arithmetic used: 31.95 measured (41 units + PART0, exact) + ~6 margin for the 2 unmeasured discounted_LS units (proj 5.3 / adverse 9.5); resume makes a re-breach cost only the marginal unit_____________________________________",
+      "source_path": "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-BUDGET-DECISION-002A.md",
+      "zero_score_exposure_confirmed": true
+    },
+    "signed_gru_repair": {
+      "date": "2026-07-05",
+      "l38_acknowledged": true,
+      "l38_line_number": 139,
+      "l38_line_text": "L stays 38 CPU-h per 002A \u00a76: [x] acknowledged (no re-raise).",
+      "operator": "Leo",
+      "operator_line_number": 140,
+      "operator_line_text": "Operator: Leo  Date: 2026-07-05",
+      "route": "A",
+      "route_line_number": 135,
+      "route_line_text": "- [x] **A (auditor-recommended)** \u2014 Stage 2 seed repair + Stage 3 partial reuse (35 reused + 8 fresh under L=38).",
+      "source_path": "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A.md",
+      "stage2_stage3_authorized": true
+    },
+    "signed_spec_001b": {
+      "anti_tuning_firewall_acknowledged": true,
+      "date": "26/7/4",
+      "guard_basis": "2a",
+      "guard_line_number": 80,
+      "guard_line_text": "Guard basis (choose one):  [x] 2a k = __5__ (recommended k=5)   [ ] 2b (redesign cells)   [ ] 2c ______",
+      "invariants_acknowledged": true,
+      "k": 5.0,
+      "operator": "leo",
+      "operator_line_number": 84,
+      "operator_line_text": "Operator: __________leo____________   Date: ____26/7/4______",
+      "rule_source_status": "001B supersedes 001A for S3d execution",
+      "source_path": "docs\\codex\\tasks\\FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001B.md"
+    }
+  },
+  "process_cpu_seconds": 4.875,
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::run_gru_determinism_stage1",
+  "run_finished_at": "2026-07-05T18:36:05Z",
+  "run_started_at": "2026-07-05T18:29:50Z",
+  "stage": "stage1",
+  "stage2_eligible": true,
+  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "void_failing_unit": {
+    "code_path_hash": "",
+    "metric": 0.031293262103089706,
+    "metric_digest": "46d28b73042f9261d263ed97f508d478eeece44f0cf6ce167b8374b651a8b67f",
+    "per_user_confusion_sha256": "76d12a073fa216397ea20d826cd50168c85ae452c6fd4bc6c9ec527bd9ee2869",
+    "process_cpu_seconds": 164.6875,
+    "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env",
+    "wall_clock_seconds": 188.36549659998855
+  },
+  "void_gbt_control": {
+    "code_path_hash": "",
+    "metric": 0.031023208265942286,
+    "metric_digest": "5d55da27bc85fae43c0960bcc5176c710e5a3fe25d6f01648263a049ba8ca368",
+    "per_user_confusion_sha256": "c39259d193db54aa20d1f77b01b70796abf77d8ab541de2d638d2091226a5e64",
+    "process_cpu_seconds": 898.125,
+    "unit_id": "member::null::obs_decoder_gbt::NULL_env",
+    "wall_clock_seconds": 1027.0419412000047
+  },
+  "wall_clock_seconds": 375.6035084000032
+}
