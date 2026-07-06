@@ -1,0 +1,432 @@
+{
+  "base_seed": 20260706,
+  "claim_ceiling": "SBMC env-headroom bit only; not mechanism evidence, not N2 pass, not consistency-detection-works, not agency, not consciousness, not EGO readiness.",
+  "collision_record": {
+    "candidates": [
+      {
+        "evidence_it_would_produce": "Fast frozen generator plus schema checks, but weak assurance that baselines/leakage were actually represented.",
+        "expected_failure_mode": "false headroom from direct decode or style artifact",
+        "leakage_or_hardcoding_risk": "high if values/labels/provenance leak into bag vectors or tests only assert pass",
+        "name": "minimal implementation",
+        "smallest_falsifying_test": "surface decoder above leakage max on clean bag vectors or contaminated value not marginally plausible",
+        "strongest_cheap_baseline_that_could_match": "surface decoder or frequency marginal exploiting visible tuple/value artifacts"
+      },
+      {
+        "evidence_it_would_produce": "Shows whether cheap floors, predict_all/none/majority, and canary leakage scanner can explain apparent separation.",
+        "expected_failure_mode": "baseline panel incomplete, repeating BATCH-ENV-HEADROOM-SCOUT-002A false-promotion pattern",
+        "leakage_or_hardcoding_risk": "medium if the scanner is self-reported rather than feature-name computed",
+        "name": "strongest baseline / shortcut explanation",
+        "smallest_falsifying_test": "positive-control canary fails to raise decoder accuracy and scanner does not fire",
+        "strongest_cheap_baseline_that_could_match": "legal-channel compute over globally visible relation, lookup/frequency, or surface canary"
+      },
+      {
+        "evidence_it_would_produce": "Relational joint violations with marginal plausibility, metadata-stripped style-matched bag vectors, guarded non-ideal detectors, frozen thresholds, and unrun replay/scoring definitions.",
+        "expected_failure_mode": "headroom may be present but unreachable by fair inference; this is a middle verdict, not a pass",
+        "leakage_or_hardcoding_risk": "lower, provided tuple structure is legal only for detectors and surface bag remains value-free",
+        "name": "mechanism-faithful implementation",
+        "smallest_falsifying_test": "guard allows theta/label access or clean bag features contain theta/label/source/user metadata",
+        "strongest_cheap_baseline_that_could_match": "fair_inference from trusted_seed or cheap floors in STEP-B; if they match ideal, report baseline equivalence instead of rescuing"
+      }
+    ],
+    "producer": "Codex pre-implementation bounded audit",
+    "selected_candidate": "mechanism-faithful relational contamination pre-registration"
+  },
+  "current_layer": "Phase-0 P0.5 env-cert PREFLIGHT scout / engineering implementation + mechanism-hypothesis testing support",
+  "decision_table": [
+    {
+      "condition": "ideal_macroF1 < 0.70 or ideal_macroF1 - cheap_max < G",
+      "decision": "ideal_gate_fails",
+      "route": "if baseline saturates near ideal, N2.F1 engineering-sufficient close; if ideal near chance, env impossible -> redesign-once or close"
+    },
+    {
+      "condition": "ideal gate passes and fair_inference_macroF1 - cheap_max >= G_reach",
+      "decision": "build_full_P0.5_env_cert",
+      "route": "build full P0.5 env-cert only after STEP-B and audit"
+    },
+    {
+      "condition": "ideal gate passes and fair_inference_macroF1 - cheap_max < G_reach",
+      "decision": "headroom_present_but_unreachable_by_cheap_inference",
+      "route": "operator decides build-stronger-mechanism vs close; do not auto-build"
+    }
+  ],
+  "design_sha256": "78dd5673bf6c4939b57c46e06e12c45db8210e4bf680af74691e0fd71d03f91a",
+  "detectors": {
+    "embedding_outlier": "kNN/density over style-matched bag vectors",
+    "fair_inference": "trusted_seed-only pairwise consistency table; no theta, no test labels, no other users",
+    "frequency_marginal": "flags values absent from user's trusted corpus",
+    "ideal": "theta-access upper-bound reference; flags relation violation",
+    "immunity_floors": [
+      "predict_all",
+      "predict_none",
+      "majority"
+    ],
+    "non_ideal_guard": "GuardedMapping raises on theta/label/audit/provenance/source/user_id reads",
+    "registered_detector_names": [
+      "ideal",
+      "fair_inference",
+      "embedding_outlier",
+      "frequency_marginal",
+      "predict_all",
+      "predict_none",
+      "majority"
+    ],
+    "signature": "(item_repr, user_context, seed)",
+    "surface_decoder": "sklearn LogisticRegression(solver='lbfgs', fixed random_state) on bag vectors; train/eval user sets disjoint"
+  },
+  "device": "cpu",
+  "enabled_status": "no runtime/mainline/admission/bridge path enabled",
+  "environment": {
+    "K": 6,
+    "V": 4,
+    "actual_relation_density_by_edge": {
+      "0-1": 0.5,
+      "0-2": 0.5,
+      "1-3": 0.5,
+      "2-4": 0.5,
+      "3-5": 0.5
+    },
+    "constraint_density_target": 0.5,
+    "constraint_edge_seed": 1514873326,
+    "constraint_relation_tables": {
+      "0-1": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "0-2": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "1-3": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "2-4": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "3-5": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    "contamination_rule": "assert true first attribute and a second value that violates the edge relation while remaining marginally plausible for that edge",
+    "frozen_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "metadata_stripped": true,
+    "n_edges": 5,
+    "style_matching": "genuine and contaminated use the same template_id and bag vocabulary; clean bag vectors carry template+edge only, no value/label/theta/provenance",
+    "theta_sampling": "uniform over satisfying assignments using derived seed (purpose='theta', user_id)"
+  },
+  "evaluation_plan_step_b_unrun": {
+    "aggregation": "balanced macro-F1 contaminated-vs-genuine per detector over 200 eval users",
+    "eval_item_count": 3200,
+    "n_users_eval": 200,
+    "n_users_surface_train": 200,
+    "result_json_forbidden_in_step_a": true,
+    "surface_train_eval_disjoint": true,
+    "test_items": 16,
+    "trusted_seed": 8
+  },
+  "forbidden_step_a_outputs": [
+    "result.json",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "replay_report.json"
+  ],
+  "frozen_module_sha256": {
+    "detectors": "e88e3a6b521183006dca49aca3500d1c4e72bb47b28b0e21fc7f94653d712fe6",
+    "gen_model": "a48286dd40da8d2bfe800c7b9ce56062aa96e6a12d79fbf7f3242ccb030728ee",
+    "harness": "8c6c83bc06af70f2f618c206a494380ecb941b36993d772725468900862326d4"
+  },
+  "frozen_thresholds": {
+    "G": 0.15,
+    "G_gte_1_5x_MDE": true,
+    "G_reach": 0.1,
+    "H": 0.2,
+    "MDE": 0.0350198152264121,
+    "ideal_macroF1_min": 0.7,
+    "power_assertion": "G >= 1.5*MDE else STOP_UNDERPOWERED",
+    "surface_leakage_max": 0.5350198152264121
+  },
+  "mainline_integration_status": "none; isolated offline package only",
+  "mde_power": {
+    "alpha": 0.05,
+    "mde": 0.0350198152264121,
+    "method": "two-proportion normal approximation at p=0.50, two-sided alpha",
+    "n_eval_items": 3200,
+    "power": 0.8,
+    "producer_function": "two_proportion_mde",
+    "z_alpha_two_sided": 1.9599639845400536,
+    "z_power": 0.8416212335729144
+  },
+  "prior_negative_evidence_cited": [
+    {
+      "finding": "PUM-ENV v0 is terminal INVALID_INSTRUMENT; N2 requires its own environment certification and cannot reuse tombstoned PUM-ENV.",
+      "source": "docs/research/FSP-STAGE-LEDGER.md L-005/L-011"
+    },
+    {
+      "finding": "TLGP passive route closed as bounded-negative at tested scales/configs; no mechanism/theory/N1 claim.",
+      "source": "docs/research/FSP-STAGE-LEDGER.md L-007"
+    },
+    {
+      "finding": "Prior minimal environment had no measured headroom because fair cheap baselines saturated the visible oracle.",
+      "source": "docs/research/BASELINE-FIRST-HARNESS-001A-R1-ACCEPTED-NO-HEADROOM-CLOSEOUT-001A.md"
+    },
+    {
+      "finding": "Prior batch scout promotion was blocked as false-positive direct decode / incomplete-baseline evidence.",
+      "source": "docs/research/BATCH-ENV-HEADROOM-SCOUT-002A-FALSE-PROMOTION-CLOSEOUT-001A.md"
+    },
+    {
+      "finding": "predict_all, predict_none, visible-target decoding, threshold/surface shortcuts, and lookup controls can invalidate apparent evidence.",
+      "source": "docs/codex/contracts/BASELINE-IMMUNITY-ADMISSION-STANDARD-001A.md"
+    }
+  ],
+  "real_trigger_evidence_required_for_step_b": "explicit STEP-B execution after Claude Red-audit; STEP-A must not call evaluate_headroom_gate or write result.json",
+  "schema_version": "sbmc_headroom_scout_001a.preregistration.v1",
+  "step": "STEP-A",
+  "step_a_self_tests": [
+    "no GPU framework imports in package",
+    "theta and label absent from item_repr",
+    "non-ideal guard raises on forbidden audit reads",
+    "marginal plausibility invariant for contaminated items",
+    "identical template set for genuine and contaminated items",
+    "theta-canary leakage positive control fires",
+    "preregistration validates and G>=1.5*MDE",
+    "build five dummy users under three seconds without metric aggregation"
+  ],
+  "step_status": "pre_registered_unrun",
+  "task_card": {
+    "ablation_requirement": "STEP-B must rerun detector episodes under cheap-baseline, no-action/no-transition where applicable, and theta-canary leakage interventions; STEP-A only freezes these requirements.",
+    "acceptance_gate": "Preregistration JSON validates; module hashes/design hash frozen; invariants and leakage positive control self-tests pass; no aggregate detector F1 or result.json produced.",
+    "auto_remote_anchor_decision": "forbidden for tag/anchor; branch push is explicitly requested by the task text after scoped commit",
+    "claim_ceiling": "Pre-registration and unrun harness only; no headroom result or mechanism claim.",
+    "computed_evidence_provenance_gate": "Every STEP-B metric must record producer_function, input artifacts, run_id, seed/user IDs, aggregation rule, and code_path_hash.",
+    "current_stage": "Phase-0 P0.5 env-cert PREFLIGHT scout; N0-independent; N2 environment certification prerequisite only.",
+    "enabled_state_requirement": "No scoring path enabled by default; STEP-B must be separately authorized.",
+    "expected_changed_files": [
+      "src/sbmc_headroom_scout_001a/__init__.py",
+      "src/sbmc_headroom_scout_001a/gen_model.py",
+      "src/sbmc_headroom_scout_001a/detectors.py",
+      "src/sbmc_headroom_scout_001a/harness.py",
+      "src/sbmc_headroom_scout_001a/preregister.py",
+      "tests/test_sbmc_headroom_scout_001a_preflight.py",
+      "artifacts/P0.5-SBMC-ENV-HEADROOM-SCOUT-001A/preregistration.json",
+      "docs/research/FSP-STAGE-LEDGER.md"
+    ],
+    "forbidden_changes": [
+      "scoring",
+      "detector macro-F1 computation during STEP-A",
+      "result.json",
+      "GPU frameworks",
+      "touching dirty S3d files",
+      "other src modules",
+      "contracts",
+      "frozen plans",
+      "N1 packages",
+      "threshold tuning after results"
+    ],
+    "hypothesis": "Joint relational contamination may create ideal-vs-cheap headroom after metadata/style channels are stripped, while fair inference from trusted genuine items tests whether the headroom is reachable without theta.",
+    "mainline_target": "none in STEP-A; isolated pre-registration artifact and callable definitions only",
+    "problem_definition": "Freeze a tiny relational-contamination SBMC environment and unrun detector/headroom harness to test whether an ideal semantic-consistency detector has reachable headroom over cheap baselines in a metadata-stripped, style-matched regime.",
+    "real_trigger_evidence_requirement": "STEP-B must show callable run invocation, trace rows, replay recomputation, leakage scan with positive control, and computed metrics from serialized inputs.",
+    "rollback_plan": "Revert only the isolated package/test/preregistration/ledger append from this task; preserve pre-existing dirty S3d files untouched.",
+    "stop_condition": "Stop if artifact scope drifts, theta/label enters item_repr, contaminated values are not marginally plausible, clean surface scanner fires, train/eval users overlap, G < 1.5*MDE, or any scoring/result artifact is produced.",
+    "strongest_baseline": "Surface/frequency/lookup/metadata decoders or legal-channel compute may explain any apparent gap; prior Route-C and batch-scout failures show direct decode and baseline omission can manufacture false promotion.",
+    "trace_replay_requirement": "Replay must recompute non-ideal detector behavior from serialized item_repr plus trusted_seed only, forbidding theta/label/future info; hash-only replay is insufficient."
+  },
+  "task_id": "P0.5-SBMC-ENV-HEADROOM-SCOUT-001A",
+  "trace_replay_contract": {
+    "positive_control": "theta-derived canary features make surface decoder rise and feature-name scanner fire",
+    "replay_forbidden": [
+      "theta for non-ideal detectors",
+      "label",
+      "future test labels",
+      "stored-output-only replay"
+    ],
+    "replay_input_allowed": [
+      "item_repr",
+      "trusted_seed",
+      "detector name",
+      "seed"
+    ],
+    "trace_row": [
+      "user_id",
+      "edge",
+      "asserted_tuple",
+      "item_bow",
+      "label_AUDIT_ONLY",
+      "detector_scores",
+      "theta_AUDIT_ONLY"
+    ]
+  }
+}
