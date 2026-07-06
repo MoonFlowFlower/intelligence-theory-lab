@@ -314,3 +314,14 @@
 - Claim ceiling: bounded tested-scale negative only; not a universal/proven floor, no mechanism/theory/N1/Gate/agency/consciousness/EGO-readiness claim.
 - No-compute posture: docs-only ledger closure; no experiment, training, GPU, or implementation.
 - Auto-Remote-Anchor: forbidden.
+
+## N1-ACTIVE-ADMIT-001 active admission-probe spec (L-008)
+
+- Task: create `docs/codex/tasks/N1-ACTIVE-ADMIT-001.md` and append ledger entry `L-008`.
+- Decision: active-interventional axis admitted to a bounded admission probe only; not admitted to N1 or mechanism validation.
+- Basis: A0 one-shot paper gate yields a narrow-pass probe specification via double-dissociation, while structural Bayes-EVI absorbs the candidate as an upper-bound reference.
+- Auditor tightenings: operative fair baseline is tractable amortized active learner; held-out varied-a* non-memorization ablation is mandatory.
+- Compute posture: tiny CPU toy or program-level bounded-negative B; no GPU route and no Track-T expansion.
+- No-compute posture: this step banks only the spec and ledger transition; no experiment, training, implementation, or side-scan execution.
+- Claim ceiling: admission-probe specification only; no mechanism validity, N1 readiness, Gate pass, agency, autonomy, consciousness, or EGO-readiness claim.
+- Auto-Remote-Anchor: forbidden.
