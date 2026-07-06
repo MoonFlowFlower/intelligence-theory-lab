@@ -36,7 +36,7 @@
     "claim_ceiling": "signature-level admission only; not mechanism / N1 / agency / consciousness",
     "computed_evidence_provenance_gate": "all later scores must record producer_function, input rows, run_id, seed/episode ids, aggregation rule, and code_path_hash",
     "current_layer": "engineering implementation plus mechanism-hypothesis admission probe",
-    "current_stage": "STEP-A pre-registration + harness only",
+    "current_stage": "STEP-A2 pre-scoring instrument fix + harness only",
     "enabled_state_requirement": "scoring functions defined but not executed in STEP-A",
     "expected_changed_files": [
       "src/n1_active_admit_001a/__init__.py",
@@ -52,10 +52,10 @@
     "forbidden_changes": "old artifacts, existing src modules, standards/contracts, task cards, EGO runtime, UI, external services, and result.json",
     "hypothesis": "active intervention can separate passive-observation weakness on E_causal while not exceeding UCB on E_bandit",
     "mainline_target": "isolated offline package; no EGO runtime or production path",
-    "problem_definition": "Freeze E_causal, E_bandit, a*, thresholds, and unrun scoring/replay/leakage harness before any STEP-B scoring.",
-    "real_trigger_evidence_requirement": "targeted preflight tests only; STEP-B must separately execute scoring from this commit",
+    "problem_definition": "Supersede STEP-A pre-scoring instrument wiring while preserving frozen thresholds and no-scoring boundary.",
+    "real_trigger_evidence_requirement": "targeted preflight tests only; STEP-B must separately execute scoring from this superseding commit",
     "rollback_plan": "revert the isolated package, single test file, preregistration artifact, and appended ledger line only",
-    "stop_condition": "no STEP-A scoring; STEP-B stops on close_conditions, leakage, underpower, saturation, or weak-baseline solution",
+    "stop_condition": "no STEP-A2 scoring; STEP-B stops on close_conditions, leakage, underpower, saturation, or weak-baseline solution",
     "strongest_baseline": "same-access weak active baselines plus future fair amortized active learner; structural EVI oracle is upper-bound reference only",
     "trace_replay_requirement": "trace rows must serialize observation, allowed_memory, outcome, candidate state, baseline choices, and replay recomputation path"
   },
@@ -93,10 +93,24 @@
       "strongest_cheap_baseline": "fair amortized active learner or structural EVI absorbs the gap"
     }
   ],
-  "design_sha256": "1a9ed3b94ccea965ea5ff77579f019b30c2c0cc2a50d30b72cfa3892289cba91",
+  "controls_protocol": {
+    "equal_access": "every policy receives the per-episode equivalence-class context",
+    "j_in_context_is_intended": "j* is revealed by the explicit equivalence-class context; this is the problem statement, NOT leakage; no gate on obs_decoder_j-with-context",
+    "obs_decoder_j": "decode j from RAW O only (no context); gate <= 0.25+MDE (anti-smuggling)",
+    "obs_decoder_m": "decode m from features = concat(flatten(O), context_j_onehot); gate <= 0.5+MDE (DECISIVE)",
+    "obs_decoder_train_eval": "disjoint seed split (train seeds != eval seeds); STEP-B executes"
+  },
+  "design_sha256": "f842746453b1a5ad0b10c0399b2ca181b5de5203d93549251be3f03ee095c334",
   "device": "cpu",
   "experiment_accuracy_computed": false,
+  "frozen_module_sha256": {
+    "src/n1_active_admit_001a/env_bandit.py": "d3eb40a4bfe83ec7b990182b8fd998a31c3b8d52373dd9a41fd8c220237642c2",
+    "src/n1_active_admit_001a/env_causal.py": "0a1551590df3ac02bf574625ee2436ec4c57958ad508f26d9ff296741f8675c9",
+    "src/n1_active_admit_001a/harness.py": "cb52ea3b563e6604a03c15af038bee7e89d6ea601163ca6ac251298b72fde6f8",
+    "src/n1_active_admit_001a/policies.py": "476c8b3ffdda6c1b67d70fa958f42e1995f572ac20e3eb1ffe9634a38cfc175d"
+  },
   "harness_freeze": {
+    "episode_context_memory": "per-episode observational-equivalence class: shared j*, both m values, equal access",
     "leakage_positive_control_defined": "synthetic_canary_leakage_positive_control",
     "replay_function_defined": "replay_trace_row",
     "scoring_functions_defined": [
@@ -104,6 +118,7 @@
       "aggregate_accuracy",
       "evaluate_acceptance_gate"
     ],
+    "step_a2_execution_boundary": "pre-scoring instrument fix only; no result.json; no candidate/baseline accuracy computed",
     "step_a_execution_boundary": "no result.json; no candidate/baseline accuracy computed",
     "trace_schema_fields": [
       "t",
@@ -122,7 +137,7 @@
   },
   "layer": "admission-probe / mechanism-hypothesis layer",
   "policies_and_controls": {
-    "candidate": "counterfactual-controllability active policy over the structure family; no true structure field in callable signature",
+    "candidate": "counterfactual-controllability active policy over the per-episode equivalence-class context; no true answer m in callable signature",
     "evi_oracle": "upper-bound reference over belief on structure family",
     "fixed_amem": "TRAIN diagnostic-frequency positive control",
     "graph_cache": "O-only control placeholder",
@@ -151,9 +166,11 @@
     "rule": "delta>=1.5*MDE else STOP_UNDERPOWERED"
   },
   "result_json_written": false,
+  "revision": "STEP-A2",
   "scoring_run_executed": false,
   "status": "PREREGISTERED_UNRUN",
   "step": "STEP-A",
+  "supersedes": "STEP-A commit 7265eacf4e3975bb1687650bb96a68edba382255",
   "task_id": "N1-ACTIVE-ADMIT-001",
   "thresholds": {
     "bandit_saturation_guard": "INVALID if ucb_normreward>=0.95 AND candidate_normreward>=0.95",

@@ -106,6 +106,45 @@ def test_leakage_scanner_positive_control_fires_on_synthetic_canary():
     assert report["score"] > report["chance"]
 
 
+def test_candidate_selects_true_diagnostic_slot_from_equivalence_context():
+    env_causal = importlib.import_module(f"{PACKAGE}.env_causal")
+    harness = importlib.import_module(f"{PACKAGE}.harness")
+    policies = importlib.import_module(f"{PACKAGE}.policies")
+
+    causal = env_causal.CausalEnv()
+    for j_star in (2, 3):
+        structure_index = next(
+            index for index, structure in enumerate(causal.structures)
+            if structure.m == 0 and structure.j == j_star
+        )
+        episode = causal.sample_episode(structure_index=structure_index, seed_index=17 + j_star)
+        memory = harness._episode_context_memory(episode)
+
+        assert policies.candidate(episode.observation, memory, None)["slot_selected"] == j_star
+        assert policies.fixed_amem(episode.observation, memory, None)["slot_selected"] in (0, 1)
+        assert policies.fixed_amem(episode.observation, memory, None)["slot_selected"] != j_star
+        assert policies.myopic_ig(episode.observation, memory, None)["slot_selected"] == 0
+
+
+def test_equivalence_context_reveals_j_not_m():
+    env_causal = importlib.import_module(f"{PACKAGE}.env_causal")
+    harness = importlib.import_module(f"{PACKAGE}.harness")
+
+    causal = env_causal.CausalEnv()
+    structure_index = next(
+        index for index, structure in enumerate(causal.structures)
+        if structure.m == 1 and structure.j == 2
+    )
+    episode = causal.sample_episode(structure_index=structure_index, seed_index=29)
+    memory = harness._episode_context_memory(episode)
+
+    ms = sorted(structure.m for structure in memory["structure_family"])
+    assert ms == [0, 1]
+    assert all(structure.j == 2 for structure in memory["structure_family"])
+    assert all(structure.structure_id < 0 for structure in memory["structure_family"])
+    assert len({structure.structure_id for structure in memory["structure_family"]}) == 2
+
+
 def test_preregistration_json_is_written_and_power_gate_holds():
     preregister = importlib.import_module(f"{PACKAGE}.preregister")
 
@@ -125,6 +164,23 @@ def test_preregistration_json_is_written_and_power_gate_holds():
     assert loaded["thresholds"]["delta_causal_margin"] == 0.20
     assert loaded["thresholds"]["candidate_min_heldout_acc"] == 0.85
     assert loaded["thresholds"]["epsilon_bandit_noninferior"] == 0.05
+    assert loaded["controls_protocol"]["obs_decoder_m"] == (
+        "decode m from features = concat(flatten(O), context_j_onehot); gate <= 0.5+MDE (DECISIVE)"
+    )
+    assert loaded["controls_protocol"]["obs_decoder_j"] == (
+        "decode j from RAW O only (no context); gate <= 0.25+MDE (anti-smuggling)"
+    )
+    assert loaded["controls_protocol"]["equal_access"] == (
+        "every policy receives the per-episode equivalence-class context"
+    )
+    assert loaded["supersedes"] == "STEP-A commit 7265eacf4e3975bb1687650bb96a68edba382255"
+    assert sorted(loaded["frozen_module_sha256"]) == [
+        "src/n1_active_admit_001a/env_bandit.py",
+        "src/n1_active_admit_001a/env_causal.py",
+        "src/n1_active_admit_001a/harness.py",
+        "src/n1_active_admit_001a/policies.py",
+    ]
+    assert all(len(value) == 64 for value in loaded["frozen_module_sha256"].values())
     assert loaded["power"]["delta_margin_power_gate_passed"] is True
     assert loaded["thresholds"]["delta_causal_margin"] >= 1.5 * loaded["power"]["MDE"]
     assert isinstance(loaded["design_sha256"], str)

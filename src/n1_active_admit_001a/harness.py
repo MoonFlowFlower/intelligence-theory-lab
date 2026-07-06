@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 
 from . import BASE_SEED, TASK_ID
 from .env_bandit import BanditEnv
-from .env_causal import CausalEnv, enumerate_structures
+from .env_causal import CausalEnv, CausalEpisode, CausalStructure, enumerate_structures
 from .policies import build_policy_registry, candidate
 
 
@@ -39,11 +39,20 @@ TRACE_SCHEMA_FIELDS = [
 ]
 
 
-def _legal_memory() -> dict[str, Any]:
+def _episode_context_memory(episode: CausalEpisode) -> dict[str, Any]:
+    # Observational-equivalence class for this episode: both m values for the
+    # true diagnostic slot j*. This reveals the distinguishing intervention
+    # target, not the answer m, and is shared with every policy.
+    j_star = episode.structure.j
+    pair = [
+        CausalStructure(structure_id=-2, m=0, j=j_star),
+        CausalStructure(structure_id=-1, m=1, j=j_star),
+    ]
     return {
-        "structure_family": enumerate_structures(),
+        "structure_family": pair,
         "train_diagnostic_counts": {0: 2, 1: 2, 2: 0, 3: 0},
         "ucb_stats": {},
+        "ucb_learned_best_slot": None,
         "graph_cache_default_prediction": 0,
     }
 
@@ -69,7 +78,7 @@ def produce_episode_trace_row(
 ) -> dict[str, Any]:
     env = CausalEnv()
     episode = env.sample_episode(structure_index=structure_index, seed_index=seed_index)
-    memory = _legal_memory()
+    memory = _episode_context_memory(episode)
     policies = policy_registry or build_policy_registry()
     candidate_before = policies["candidate"](episode.observation, memory, None)
     selected_slot = int(candidate_before["slot_selected"])
@@ -312,7 +321,9 @@ def candidate_symmetry_audit_note() -> dict[str, Any]:
         "audit_function": "src.n1_active_admit_001a.harness:candidate_symmetry_audit_note",
         "code_path_hash": code_path_hash(candidate_symmetry_audit_note),
         "slot_scores_under_uniform_prior": slot_scores,
-        "interpretation": "pre-outcome selection is symmetric when passive observation is uninformative",
+        "interpretation": (
+            "pre-outcome selection is symmetric under the STEP-A all-8 memory; "
+            "STEP-A2 replaces that instrument with the per-episode equivalence-class context"
+        ),
         "score_claim": "none",
     }
-

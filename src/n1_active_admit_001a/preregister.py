@@ -10,12 +10,26 @@ from typing import Any
 from . import BASE_SEED, STEP, TASK_ID
 
 ARTIFACT_PATH = Path("artifacts/N1-ACTIVE-ADMIT-001/preregistration.json")
+SUPERSEDES = "STEP-A commit 7265eacf4e3975bb1687650bb96a68edba382255"
+MODULE_HASH_PATHS = [
+    "src/n1_active_admit_001a/env_causal.py",
+    "src/n1_active_admit_001a/env_bandit.py",
+    "src/n1_active_admit_001a/policies.py",
+    "src/n1_active_admit_001a/harness.py",
+]
 
 
 def two_proportion_mde(null_p: float, n_per_group: int, alpha: float, power: float) -> float:
     z_alpha = NormalDist().inv_cdf(1.0 - alpha / 2.0)
     z_power = NormalDist().inv_cdf(power)
     return (z_alpha + z_power) * math.sqrt(2.0 * null_p * (1.0 - null_p) / n_per_group)
+
+
+def frozen_module_sha256() -> dict[str, str]:
+    return {
+        path: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+        for path in MODULE_HASH_PATHS
+    }
 
 
 def _frozen_constants_without_design_hash() -> dict[str, Any]:
@@ -41,6 +55,8 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
         "task_id": TASK_ID,
         "step": STEP,
         "status": status,
+        "revision": "STEP-A2",
+        "supersedes": SUPERSEDES,
         "layer": "admission-probe / mechanism-hypothesis layer",
         "base_seed": BASE_SEED,
         "device": "cpu",
@@ -48,12 +64,12 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
         "result_json_written": False,
         "experiment_accuracy_computed": False,
         "bounded_task_card": {
-            "problem_definition": "Freeze E_causal, E_bandit, a*, thresholds, and unrun scoring/replay/leakage harness before any STEP-B scoring.",
-            "current_stage": "STEP-A pre-registration + harness only",
+            "problem_definition": "Supersede STEP-A pre-scoring instrument wiring while preserving frozen thresholds and no-scoring boundary.",
+            "current_stage": "STEP-A2 pre-scoring instrument fix + harness only",
             "current_layer": "engineering implementation plus mechanism-hypothesis admission probe",
             "mainline_target": "isolated offline package; no EGO runtime or production path",
             "enabled_state_requirement": "scoring functions defined but not executed in STEP-A",
-            "real_trigger_evidence_requirement": "targeted preflight tests only; STEP-B must separately execute scoring from this commit",
+            "real_trigger_evidence_requirement": "targeted preflight tests only; STEP-B must separately execute scoring from this superseding commit",
             "hypothesis": "active intervention can separate passive-observation weakness on E_causal while not exceeding UCB on E_bandit",
             "strongest_baseline": "same-access weak active baselines plus future fair amortized active learner; structural EVI oracle is upper-bound reference only",
             "ablation_requirement": "non-memorization held-out diagnostic-slot identity and fixed_amem positive control are frozen for later execution",
@@ -61,7 +77,7 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
             "computed_evidence_provenance_gate": "all later scores must record producer_function, input rows, run_id, seed/episode ids, aggregation rule, and code_path_hash",
             "acceptance_gate": "threshold conjunction in this file; no threshold changes after STEP-A",
             "claim_ceiling": "signature-level admission only; not mechanism / N1 / agency / consciousness",
-            "stop_condition": "no STEP-A scoring; STEP-B stops on close_conditions, leakage, underpower, saturation, or weak-baseline solution",
+            "stop_condition": "no STEP-A2 scoring; STEP-B stops on close_conditions, leakage, underpower, saturation, or weak-baseline solution",
             "rollback_plan": "revert the isolated package, single test file, preregistration artifact, and appended ledger line only",
             "expected_changed_files": [
                 "src/n1_active_admit_001a/__init__.py",
@@ -76,6 +92,13 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
             ],
             "forbidden_changes": "old artifacts, existing src modules, standards/contracts, task cards, EGO runtime, UI, external services, and result.json",
             "auto_remote_anchor_decision": "forbidden",
+        },
+        "controls_protocol": {
+            "obs_decoder_m": "decode m from features = concat(flatten(O), context_j_onehot); gate <= 0.5+MDE (DECISIVE)",
+            "obs_decoder_j": "decode j from RAW O only (no context); gate <= 0.25+MDE (anti-smuggling)",
+            "j_in_context_is_intended": "j* is revealed by the explicit equivalence-class context; this is the problem statement, NOT leakage; no gate on obs_decoder_j-with-context",
+            "obs_decoder_train_eval": "disjoint seed split (train seeds != eval seeds); STEP-B executes",
+            "equal_access": "every policy receives the per-episode equivalence-class context",
         },
         "collision_record": [
             {
@@ -124,7 +147,7 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
             "horizon": 100,
         },
         "policies_and_controls": {
-            "candidate": "counterfactual-controllability active policy over the structure family; no true structure field in callable signature",
+            "candidate": "counterfactual-controllability active policy over the per-episode equivalence-class context; no true answer m in callable signature",
             "passive_lookup": "O-only",
             "nearest_neighbor": "O-only",
             "graph_cache": "O-only control placeholder",
@@ -155,6 +178,7 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
             "feasibility not tiny",
         ],
         "harness_freeze": {
+            "episode_context_memory": "per-episode observational-equivalence class: shared j*, both m values, equal access",
             "trace_schema_fields": [
                 "t",
                 "env",
@@ -177,7 +201,9 @@ def _frozen_constants_without_design_hash() -> dict[str, Any]:
             "replay_function_defined": "replay_trace_row",
             "leakage_positive_control_defined": "synthetic_canary_leakage_positive_control",
             "step_a_execution_boundary": "no result.json; no candidate/baseline accuracy computed",
+            "step_a2_execution_boundary": "pre-scoring instrument fix only; no result.json; no candidate/baseline accuracy computed",
         },
+        "frozen_module_sha256": frozen_module_sha256(),
         "claim_ceiling": "signature-level admission only; not mechanism / N1 / agency / consciousness",
     }
 
@@ -208,4 +234,3 @@ def write_preregistration(path: str | Path = ARTIFACT_PATH) -> dict[str, Any]:
 
 if __name__ == "__main__":
     write_preregistration()
-
