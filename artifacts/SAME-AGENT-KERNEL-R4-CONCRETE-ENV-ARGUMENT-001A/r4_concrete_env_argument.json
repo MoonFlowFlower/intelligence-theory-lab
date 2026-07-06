@@ -1,0 +1,99 @@
+{
+  "task_id": "SAME-AGENT-KERNEL-R4-CONCRETE-ENV-ARGUMENT-001A",
+  "satisfies": "SAME-AGENT-KERNEL-DISCRIMINABILITY-SPEC-001A",
+  "requirement": "R4 (on-paper cache-cannot-match argument) instantiated on one concrete frozen env",
+  "kind": "design_argument/pre_registration_gate",
+  "layer": "mechanism-hypothesis + engineering design (route governance)",
+  "subordinate_to": "L-015; on any conflict L-015 governs. Inherits its formal object, frozen baseline family, R1-R6, decision table, H_null verbatim. Adds no threshold, weakens no baseline, adds no schema.",
+  "not": [
+    "mechanism_evidence",
+    "kernel_authorization",
+    "experiment",
+    "code",
+    "scoring",
+    "headroom_existence_claim"
+  ],
+  "environment_E_star": {
+    "type": "action-conditioned factored-relational world (features x relations)",
+    "factors": "row r in {1..n} (type), col k in {1..n} (context); n large e.g. 20; squareness not required",
+    "latent_code": "a:{1..n}->Z_L, b:{1..n}->Z_L i.i.d. uniform over Z_L={0..L-1}, L>=3 (concrete L=5); codes LATENT, never observed, never in any field",
+    "outcome_rule": "phi(r,k) = (a(r)+b(k)) mod L = additive Cayley table over Z_L = a Latin square",
+    "prediction_target": "y = phi(r,k)",
+    "chance_level": "1/L (concrete 0.20); majority-class also 1/L by marginal balance",
+    "coverage_conditions": {
+      "C1_novel_combination": "every test cell (r*,k*) not in Omega_train (cache-void by absence)",
+      "C2_marginal_cover_and_balance": "each factor individually observed with other partners (learnable); training partners' residues mod L (near-)uniform so every single-factor marginal of y is (near-)uniform",
+      "C3_connectivity": "G_train bipartite graph connected -> a,b identifiable up to a global additive constant; y=a+b invariant to it, so y[r*,k*] fully identified by solving the connected additive system. C3 is what lets learners solve the STATIONARY regime and is exactly what R4(b) must break."
+    },
+    "structural_properties": {
+      "P1_marginal_balance": "one-factor information is zero information about y",
+      "P2_joint_determinacy": "recovering (a(r),b(k)) via matrix completion / additive fit solves any cell incl held-out"
+    }
+  },
+  "R4a_cache_void_proof": {
+    "verdict": "HOLDS on paper: every frozen cache member = chance (1/L) on Omega_test",
+    "chance": "1/L",
+    "lemma": "cache members use only: (i) exact cell (absent by C1), (ii) single-factor marginals (uniform by P1), (iii) one-factor-overlap retrieval (independent residues). Each is independent of y[r*,k*]=(a(r*)+b(k*)) mod L under the uniform-code prior => MI=0 => expected accuracy = 1/L. Finite-sample bounded by pre-registered MDE, self-tested at STEP-A.",
+    "per_member": {
+      "no_update": "fixed prior; global freq uniform (P1) => 1/L",
+      "count_table": "key (r*,k*) count 0 (C1); backoff to uniform marginal (P1) => 1/L; cannot form a(r*)+b(k*) (that is the learner)",
+      "transition_table": "same tuple-keyed lookup, unseen held-out key -> backoff => 1/L; factor-wise dynamics carry no cross-term info",
+      "successor_map": "novel key; nearest stored key differs one factor, value off by independent residue (uniform mod L) => 1/L",
+      "episodic_traversal": "nearest neighbour shares one factor; E[match]=P[b(k_j)==b(k*)]=1/L; voting over many same-row neighbours = i.i.d. uniform => 1/L",
+      "rag_summary": "retrieved set shares one factor, labels i.i.d. uniform in target residue class -> summary uninformative => 1/L"
+    },
+    "boundary_statement": "the ONLY sufficient statistic recovering y[r*,k*] is the reconstructed pair (a,b) via matrix completion / additive-model fit = a LEARNING op, performed by no enumerated cache member.",
+    "adversarial_anti_smuggling": "a cache member strengthened until it fits the additive/log-linear model has LEFT the cache family and JOINED the learning sub-family; adjudicated by R3/R4(b), not credited as cache pass. STEP-A R1 self-test asserts each cache member macro-acc <= 1/L + MDE; exceeding => leakage (R5) or mislabeled learner => STOP.",
+    "group_identity_note": "the group identity y[r*,k*]=(y[r*,k0]+y[r0,k*]-y[r0,k0]) mod L (a 2x2 additive minor / 3-point completion) DOES reconstruct the held-out cell from three stored cells, but evaluating it is modular additive arithmetic over retrieved labels = the additive-model fit itself, performed by no enumerated cache member (retrieval returns a label/vote; count returns an argmax; none combine labels as label_A+label_B-label_C mod L). This IS the cache/learner boundary."
+  },
+  "R4b_regime_G_star": {
+    "verdict": "NAMES a testable regime + its decisive challenger; does NOT establish headroom on paper (OPEN)",
+    "regime_spec": {
+      "sparse_disconnected_slices": "each episode reveals small slice S_e, |S_e|<<n, G_{S_e} disconnected/under-determined; connectivity only over UNION of many episodes -> identifiability requires cross-episode aggregation",
+      "recurring_nonstationarity": "code drawn from small latent library {(a^1,b^1)..(a^g,b^g)}, switches between episodes so regimes RECUR NON-ADJACENTLY (Markov/interleaved)",
+      "bounded_online_compute": "per-step O(|S_e|); cannot re-solve full accumulated system each step",
+      "deployment_resampled_library": "regime library resampled per deployment/meta-test -> no fixed amortized obs->code map transfers; identify within deployment",
+      "heldout": "novel cells of a regime whose non-adjacent slices union to connected; cache-void per Section 2 regime-by-regime"
+    },
+    "failure_geography": {
+      "cache_family": "chance (R4a), regime-by-regime",
+      "online_no_replay": "bounded compute + single pass; cannot back-solve emergent-connectivity system; forgets across switching -> fails",
+      "from_scratch_per_task_episode": "each slice disconnected/under-determined -> fails",
+      "from_scratch_per_task_deployment": "needs batch solve (=R6 batch control) AND segmentation",
+      "vanilla_experience_replay": "regime-blind uniform replay POOLS across interleaved regimes -> averaged wrong code -> fails",
+      "standard_continual_replay_regime_blind": "averages across regimes or discards non-adjacent same-regime evidence -> fails unless augmented with regime inference (=> becomes the challenger)",
+      "strong_meta_learner": "deployment-resampling defeats amortizing specific codes; can only amortize the procedure segment+pool+solve which IS the consolidation mechanism (baseline equivalence) unless procedure fails to transfer"
+    },
+    "residual_headroom_hypothesis": "offline consolidation = unbounded retrospective re-processing that (i) segments stream by regime, (ii) RETROACTIVELY links non-adjacent same-regime episodes, (iii) pools sparse slices into a connected per-regime system and solves it, (iv) writes regime-indexed schema to C. Headroom source = offline GLOBAL RETROACTIVE linkage a forward-only bounded regime-blind online learner cannot do.",
+    "strongest_challenger_to_beat": "standard_continual_replay instantiated as DRIFT-AWARE / REGIME-INFERRING continual learner: online change-point detection + regime-indexed replay buffer + per-regime online additive/low-rank completion. Still a learning-sub-family member. H_null: it MATCHES the kernel in G* (segment+pool can be done online-incrementally). Restates N2 'constraint propagation belongs in the floor' as 'drift-aware replay belongs in the learning family'.",
+    "narrow_testable_cracks": {
+      "retroactive_re_segmentation": "online change-point mis-assigns early episodes and cannot un-mix; offline global clustering corrects. Falsifier: give online challenger a look-back re-labeling buffer; gap closes => no headroom.",
+      "bounded_resource_asymmetry": "offline re-solve under SAME data budget but a memory/compute budget where BATCH is inadmissible (batch needs all cells resident). Only defensible headroom is RESOURCE-BOUNDED. Falsifier: unbounded-budget batch additive-fit + segmentation matches => R6 downgrade 'offline==batch'."
+    },
+    "honest_narrowing": "kernel BEST-CASE positive = RESOURCE-BOUNDED headroom over {online_no_replay, vanilla_experience_replay, regime-blind standard_continual_replay} in G* -- NOT over unbounded batch, NOT over the drift-aware regime-inferring continual learner unless both cracks empirically hold. Prior that they do not (H_null) is LIKELY."
+  },
+  "R1_R6_mapping": {
+    "R1": "SATISFIED by construction; STEP-A self-test each cache member <= 1/L + MDE",
+    "R2": "DEFERRED to STEP-B; corrupted-replay AND no-replay must destroy gain; necessary-not-sufficient (challenger collapses too)",
+    "R3": "frozen family unchanged; decisive member in G* = drift-aware regime-inferring continual learner; tie = baseline equivalence",
+    "R5": "O = factor indices + outcomes only; no field encodes a,b, target, or LATENT regime id; names carry no label; exposing regime id leaks segmentation -> forbidden",
+    "R6": "beat (i) vanilla replay (fails by mixing) AND (ii) batch-precompute on same data (HARD; escape only via bounded-memory making batch inadmissible); plus non-memorization (C1 guarantees held-out not epsilon-close in cell space)"
+  },
+  "decision": {
+    "R4a": "HOLDS (cache = 1/L on Omega_test)",
+    "R4b": "NAMES testable regime G* + decisive challenger",
+    "gate_outcome": "decision-table ROW 3 (PROCEED to draft kernel STEP-A) -- QUALIFIED: R4(b) does not establish paper headroom; it locates the single decisive contrast; honest prior H_null = TIE = downgrade",
+    "cheapest_validation_step": "do NOT build full kernel first; scope STEP-A first experiment to the decisive contrast (kernel vs drift-aware regime-inferring continual replay in G*, equal data + stated budget) as a tiny CPU toy (small n, L=5, g in {2,3}). Tie within equivalence band => STOP/downgrade before kernel plumbing."
+  },
+  "falsifiers": {
+    "F1": "any cache member > 1/L + MDE on Omega_test -> R5 leakage or mislabeled learner -> STOP",
+    "F2": "drift-aware regime-inferring continual learner matches consolidator in G* (equal data+budget) -> baseline equivalence -> downgrade (expected H_null)",
+    "F3": "batch-precompute matches consolidator at kernel budget -> 'offline==batch' -> R6 downgrade",
+    "F4": "connectivity within one episode OR non-resampled library -> whole learning family solves -> no headroom -> redesign/close",
+    "F5": "same-regime slices never union to connected -> Omega_test unidentifiable theta-free -> env_impossible; do not auto-build to reach it"
+  },
+  "known_limitation": "under 2026-07-05C solo protocol Claude is BOTH red-first designer and hostile auditor of this argument (relaxes role separation, per L-015). Compensating: falsifiable by F1-F5 at STEP-B + commit-order pre-registration. Treat R4(b) as a hypothesis to break at STEP-B, not settled.",
+  "claim_ceiling": "design + pre-registration only; cannot show kernel success, mechanism validity, learning, headroom existence, agency, self, emotion, consciousness, or EGO readiness. Passing authorizes only DRAFTING the kernel STEP-A card.",
+  "what_this_does_not_prove": "nothing about kernel success, mechanism validity, learning, headroom existence, belief maintenance, agency, autonomy, subjectivity, emotion, self-awareness, consciousness, stable user benefit, or EGO readiness. It fixes one env where the cache family is provably at chance and names one testable regime whose most probable outcome is a bounded baseline-equivalence negative.",
+  "feeds": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A STEP-A must cite this id and L-015, instantiate E*/G* (or a declared variant), freeze its generator, run the decisive contrast FIRST, satisfy R1/R2/R3/R5/R6 empirically before any build beyond the toy."
+}

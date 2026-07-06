@@ -325,3 +325,15 @@
 - No-compute posture: this step banks only the spec and ledger transition; no experiment, training, implementation, or side-scan execution.
 - Claim ceiling: admission-probe specification only; no mechanism validity, N1 readiness, Gate pass, agency, autonomy, consciousness, or EGO-readiness claim.
 - Auto-Remote-Anchor: forbidden.
+
+## SAME-AGENT-KERNEL-R4-CONCRETE-ENV-ARGUMENT-001A — R4 concrete-env argument (L-016)
+
+- Task: create docs/codex/tasks/SAME-AGENT-KERNEL-R4-CONCRETE-ENV-ARGUMENT-001A.md + artifacts/SAME-AGENT-KERNEL-R4-CONCRETE-ENV-ARGUMENT-001A/r4_concrete_env_argument.json; append ledger L-016. Design-only, no code, no scoring.
+- Satisfies R4 of SAME-AGENT-KERNEL-DISCRIMINABILITY-SPEC-001A (L-015) against one concrete frozen env E* (additive Latin-square outcome (a(r)+b(k)) mod L over sparse coverage).
+- R4(a) HOLDS on paper: frozen cache sub-family = chance (1/L) on the compositional held-out; MI=0 per-member proof; cache/learner boundary = modular additive completion (3-point / matrix completion) performed by no cache member.
+- R4(b) NAMES a testable regime G* (sparse disconnected per-episode slices + recurring non-adjacent non-stationarity + bounded online compute + deployment-resampled library) where weak learning members + cache fail; residual headroom hypothesis = offline retroactive cross-regime linkage; strongest challenger to beat = drift-aware regime-inferring continual replay (still a learning-sub-family member).
+- Honest prior H_null (LIKELY): baseline equivalence to that challenger. Best-case positive is RESOURCE-BOUNDED headroom only (unbounded batch matches per R6).
+- Gate outcome: decision-table row 3 PROCEED-to-draft-kernel-STEP-A, QUALIFIED. Cheapest validation binds STEP-A to run the decisive contrast FIRST as a tiny CPU toy; tie within equivalence band => STOP/downgrade before kernel plumbing.
+- Governance: inherits L-015 verbatim; adds no threshold; weakens no baseline; Claude dual-role (designer+auditor) per L-015, compensated by STEP-B falsifiers F1-F5 + commit-order pre-registration.
+- Claim ceiling: bounded offline design/pre-registration only; no mechanism/kernel/learning/agency/consciousness/EGO claim.
+- Auto-Remote-Anchor: forbidden.
