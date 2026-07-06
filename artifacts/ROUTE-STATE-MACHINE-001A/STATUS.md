@@ -7,10 +7,100 @@
 - Enabled status: local CLI only.
 - Real trigger evidence: callable `routectl validate` output recorded in
   `validation_report.json`.
-- Claim ceiling: local route-state validation only.
-- Current frontier route id: `N2-SBMC-ENV-REDESIGN-001A`.
+- Claim ceiling: local route-state synchronization and negative-evidence
+  bookkeeping only.
+- Current governed boundary route id: `SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A`.
+- Current route posture: `kernel_tiny_contrast_closed_default_A`.
+- Active mechanism frontier: `none`.
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
+
+## Same-agent runtime-kernel fork sync readback
+
+- Sync task card:
+  `docs/codex/tasks/ROUTE-STATE-MACHINE-001C-SAME-AGENT-KERNEL-FORK-SYNC.md`.
+- Banked tiny-contrast commit:
+  `48269bd61d809b95cd3a4b1d3e9f7f064fd2626f`.
+- Fork-decision commit:
+  `9b168cb790634b0765bc29729aab3fee311c9828`.
+- Same-agent route packet:
+  `artifacts/ROUTE-STATE-MACHINE-001A/routes/SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A/`.
+
+## Current same-agent kernel packet status
+
+The included `SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A` route packet records the tiny passive/offline
+runtime-kernel contrast as closed/downgraded by baseline equivalence:
+
+- `current_state`: `ADJUDICATED`
+- `frontier_scope`: `terminal_tiny_passive_offline_contrast_baseline_equivalence`
+- `closure_type`: `BASELINE_EQUIVALENCE`
+- closed object: `tiny_passive_offline_contrast_mechanism_headroom_only`
+- closure wording:
+  `baseline_equivalence_closure / no_mechanism_headroom_under_drift_aware_continual_replay`
+- candidate score: `1.0`
+- strongest fair baseline:
+  `drift_aware_regime_inferring_continual_replay`
+- strongest fair baseline score: `1.0`
+- further saturation readback: `batch_precompute=1.0`,
+  `strong_meta_learner=1.0`
+- mechanism validity: `unknown`
+- theory validity: `unknown`
+- mechanism evidence authorization: `false`
+- theory pressure authorization: `false`
+
+Ablation, replay, leakage positive-control, and provenance controls are
+recorded as present in the banked artifacts. They do not rescue the
+mechanism-headroom claim because the strongest fair baseline tied the candidate.
+
+## Runtime-kernel-v0 scaffold status
+
+Runtime-kernel-v0 is preserved as engineering runtime/infrastructure only. The
+same-agent packet does not validate it as a mechanism, does not claim a
+runtime-kernel pass, and does not close it as an engineering scaffold/direction.
+
+## Fork posture
+
+- Default fork selection: `A` ? close this contrast and keep the kernel as
+  engineering runtime/infrastructure.
+- `C` is allowed only as a design-only preflight if an ex-ante
+  active/interventional separation can be stated before implementation.
+- No `C` implementation is authorized by this route-state sync.
+- If drafted later, the `C` preflight must face fair active baselines including
+  UCB, max-information-gain/myopic information gain, Bayesian active learner,
+  POMDP belief planner, drift-aware active replay baseline, structural
+  Bayes/EVI or oracle upper bound where tractable, and no-update/no-memory/
+  random-action/cost-blind controls.
+
+## N2 packet status
+
+`N2-SBMC-ENV-REDESIGN-001A` remains an accepted terminal baseline-equivalence
+closure boundary and is not modified by this same-agent sync:
+
+- `current_state`: `ADJUDICATED`
+- `frontier_scope`: `terminal_baseline_equivalence_closure_adjudicated`
+- `closure_type`: `BASELINE_EQUIVALENCE`
+- mechanism validity: `unknown`
+- theory validity: `unknown`
+- scoring authorization: `false`
+- experiment execution authorization: `false`
+
+The source readback cites `FSP-STAGE-LEDGER.md` `L-014`, `L-017`, and `L-018`.
+This route packet does not authorize scoring, mechanism experiments,
+mechanism-validity claims, theory-pressure claims, successor route execution, or
+EGO mainline integration.
+
+## PUM-ENV-v0 packet status
+
+The included `PUM-ENV-v0` route packet is conservative historical readback:
+
+- `current_state`: `TOMBSTONED`
+- `closure_type`: `INSTRUMENT_INVALID`
+- mechanism validity: `unknown`
+- theory validity: `unknown`
+- fresh adjudication: `not_performed`
+
+This packet does not authorize reuse of PUM-ENV v0 as a certified environment
+and does not infer mechanism or theory failure.
 
 ## Historical repo preflight readback used for the 001B current-frontier packet
 
@@ -40,50 +130,8 @@
   `N2-SBMC-ENV-REDESIGN-001A`, `state=CLOSURE_REVIEW_REQUIRED`,
   `closure=BASELINE_EQUIVALENCE`, validator verdict `pass`.
 
-## PUM-ENV-v0 packet status
-
-The included `PUM-ENV-v0` route packet is conservative historical readback:
-
-- `current_state`: `TOMBSTONED`
-- `closure_type`: `INSTRUMENT_INVALID`
-- mechanism validity: `unknown`
-- theory validity: `unknown`
-- fresh adjudication: `not_performed`
-
-This packet does not authorize reuse of PUM-ENV v0 as a certified environment
-and does not infer mechanism or theory failure.
-
-## Current N2 packet status
-
-The included `N2-SBMC-ENV-REDESIGN-001A` route packet is now an accepted
-terminal baseline-equivalence closure boundary:
-
-- `current_state`: `ADJUDICATED`
-- `frontier_scope`: `terminal_baseline_equivalence_closure_adjudicated`
-- `closure_type`: `BASELINE_EQUIVALENCE`
-- mechanism validity: `unknown`
-- theory validity: `unknown`
-- scoring authorization: `false`
-- experiment execution authorization: `false`
-
-The source readback cites `FSP-STAGE-LEDGER.md` `L-014`, `L-017`, and `L-018`.
-This route packet does not authorize scoring, mechanism experiments,
-mechanism-validity claims, theory-pressure claims, successor route execution, or
-EGO mainline integration.
-
-## Closure acceptance readback
-
-- Accepted closure task:
-  `docs/codex/tasks/N2-SBMC-ENV-REDESIGN-001A-CLOSURE-ACCEPTANCE-001A.md`
-- Operator approval: explicit current-session approval on 2026-07-06.
-- Route-state transition:
-  `CLOSURE_REVIEW_REQUIRED` -> `ADJUDICATED`.
-- Terminal interpretation: pure-relational N2 surface is closed as
-  `BASELINE_EQUIVALENCE` because `graph_closure` reached ideal headroom in the
-  candidate-free STEP-B packet.
-- Claim ceiling: local route-governance terminal closure only.
-
 ## Transition command
 
-`transition` is deferred in this first local version. Mutating route state needs
-a separate safe-write authorization boundary.
+`transition` is deferred in this local version. Mutating route state still needs
+a bounded task card naming the exact state transition, allowed files, stop
+condition, rollback plan, and claim ceiling.
