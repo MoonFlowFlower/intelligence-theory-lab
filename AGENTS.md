@@ -192,6 +192,42 @@ For Gate 1 / replay / consolidation lineage, graph-cache family challengers are 
 
 Formal gates and same-agent bridge tasks still require stronger predeclared metrics, baselines, ablations, run ledger, and freeze rules.
 
+## Route State Machine Governance 001
+
+`ROUTE-STATE-MACHINE-001A` is the repo-local route control-plane artifact for
+route state, closure packets, allowed / forbidden next actions, and validation
+readback. When present, current route-state claims must be grounded in:
+
+- `artifacts/ROUTE-STATE-MACHINE-001A/routes/*/state.json`
+- `artifacts/ROUTE-STATE-MACHINE-001A/routes/*/closure.json`
+- `artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json`
+- `docs/research/ROUTE-STATE-MACHINE-001A.md`
+
+For route, gate, bridge, frontier, tombstone, closure, or roadmap-like work:
+
+1. Read the route state artifacts before proposing or implementing a successor
+   route.
+2. If any route is `CLOSURE_REVIEW_REQUIRED`, do not create roadmap-like,
+   mechanism-route, bridge, admission, runtime, or frontier changes unless the
+   active task card explicitly authorizes the exact paths and local validation
+   reports no blocking error.
+3. Treat `routectl validate/status/dashboard` as local governance validation
+   only. A `pass` verdict does not prove mechanism validity, theory pressure,
+   agency, autonomy, subjectivity, consciousness, EGO readiness, companion
+   readiness, production readiness, or mainline effect.
+4. Do not mutate route state or run a transition writer without a bounded task
+   card naming the exact state transition, allowed files, stop condition,
+   rollback plan, and claim ceiling.
+5. Historical packets such as `PUM-ENV-v0` may be cited only at their recorded
+   claim ceiling. `TOMBSTONED` / `INSTRUMENT_INVALID` means the named instrument
+   is closed or invalid at that route boundary; it does not imply theory
+   falsification, mechanism absence, or a fresh adjudication unless a separate
+   computed evidence packet supports that stronger claim.
+
+Route-state readback never overrides the append-only stage ledger or frozen
+source artifacts. If the state machine, ledger, and artifacts disagree, stop and
+report the conflict rather than selecting the convenient source.
+
 ## Collision-before-collapse protocol
 
 For EGO / ITL mechanism, gate, harness, evidence, baseline, or route tasks:

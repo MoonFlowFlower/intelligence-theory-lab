@@ -276,6 +276,44 @@ For Gate 1 / replay / consolidation lineage, graph-cache family challengers are 
 * fsm_planner
 * episodic_traversal
 
+## Route State Machine Governance 001
+
+`ROUTE-STATE-MACHINE-001A` is the repo-local route control-plane artifact for
+route state, closure packets, allowed / forbidden next actions, and validation
+readback. Claude audits should require route-state claims to be grounded in:
+
+- `artifacts/ROUTE-STATE-MACHINE-001A/routes/*/state.json`
+- `artifacts/ROUTE-STATE-MACHINE-001A/routes/*/closure.json`
+- `artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json`
+- `docs/research/ROUTE-STATE-MACHINE-001A.md`
+
+For route, gate, bridge, frontier, tombstone, closure, or roadmap-like work,
+Claude should check:
+
+1. Codex read the route state artifacts before proposing or implementing a
+   successor route.
+2. If any route is `CLOSURE_REVIEW_REQUIRED`, roadmap-like, mechanism-route,
+   bridge, admission, runtime, or frontier changes are blocked unless the active
+   task card explicitly authorizes the exact paths and local validation reports
+   no blocking error.
+3. `routectl validate/status/dashboard` is local governance validation only. A
+   `pass` verdict does not prove mechanism validity, theory pressure, agency,
+   autonomy, subjectivity, consciousness, EGO readiness, companion readiness,
+   production readiness, or mainline effect.
+4. Route state mutation or transition writing requires a bounded task card
+   naming the exact state transition, allowed files, stop condition, rollback
+   plan, and claim ceiling.
+5. Historical packets such as `PUM-ENV-v0` may be cited only at their recorded
+   claim ceiling. `TOMBSTONED` / `INSTRUMENT_INVALID` means the named instrument
+   is closed or invalid at that route boundary; it does not imply theory
+   falsification, mechanism absence, or a fresh adjudication unless a separate
+   computed evidence packet supports that stronger claim.
+
+Route-state readback never overrides the append-only stage ledger or frozen
+source artifacts. If the state machine, ledger, and artifacts disagree, Claude
+should report the conflict as blocking instead of accepting the convenient
+source.
+
 ## Solo Development Protocol — Green / Yellow / Red (2026-07-05C)
 
 Single-operator loop. Codex is the bounded primary driver; Claude is an independent auditor at high-risk boundaries only — not a serial pre-approver of every step. The multi-party signing ceremony is retired; the scientific gates are not.
