@@ -303,3 +303,14 @@
 - No-compute posture: no experiment, no training, no GPU, no new control/mechanism implementation.
 - Mainline integration: none; enabled status: offline lab artifact only.
 - Auto-Remote-Anchor: forbidden.
+
+## P0.1 TLGP learnability route closure (L-007)
+
+- Task: P0.1 TLGP learnability route closure; ledger entry `L-007` appended to `docs/research/FSP-STAGE-LEDGER.md`.
+- Verdict: `H0_REAL_FLOOR_SUPPORTED_BY_EXISTING` carried forward as bounded-negative at tested scales/configs only.
+- Cross-lineage caveat: capability support comes from capability-witness lineage rung0/capacity-sweep seen-rule evidence, while the R2 hard-floor lineage's own rung0 failed; cite with this caveat.
+- Declined clean GPU run: capability-witness rung3 hard-unseen run was never executed, gated off at rung1 eligibility `0/10`, and is declined as low-EV GPU-scale.
+- Program-direction residue: active intervention-policy axis (`A` vs fair UCB / max-info-gain with double dissociation) remains unclosed.
+- Claim ceiling: bounded tested-scale negative only; not a universal/proven floor, no mechanism/theory/N1/Gate/agency/consciousness/EGO-readiness claim.
+- No-compute posture: docs-only ledger closure; no experiment, training, GPU, or implementation.
+- Auto-Remote-Anchor: forbidden.
