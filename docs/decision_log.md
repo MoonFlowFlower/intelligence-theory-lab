@@ -259,3 +259,4 @@
 - Real trigger evidence: committed artifact readback from `baseline_comparison.json` and `s3d_null_env_report.json` plus pinned diagnostic commits; no battery re-run was performed for this closure.
 - Claim ceiling: S3d v0 instrument closure/tombstone only; no mechanism absence, theory falsification, learning/adaptation, agency, EGO readiness, companion readiness, autonomy, self-awareness, emotion, or consciousness claim.
 - Auto-Remote-Anchor: forbidden.
+- Operator signature: WAIVED per solo-efficiency policy (operator decision 2026-07-05). Void/negative closures bank via scoped commit; R2 reopen conditions remain pre-registered and binding. Bank (commit+push) delegated to Codex; Claude performs post-bank verification.

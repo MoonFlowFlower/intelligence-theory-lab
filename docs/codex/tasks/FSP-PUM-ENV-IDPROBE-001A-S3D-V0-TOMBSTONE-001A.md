@@ -1,6 +1,6 @@
 # FSP-PUM-ENV-IDPROBE-001A — S3D-V0-TOMBSTONE-001A
 
-Status: **CLOSURE CARD (route downgrade). Requires operator signature before bank.**
+Status: **CLOSURE CARD (route downgrade). Operator signature WAIVED per solo-efficiency policy (2026-07-05); banks via scoped commit. R2 reopen conditions below remain pre-registered and binding.**
 Auditor-drafted (Claude), 2026-07-05. This card closes the S3d v0 instrument. It changes no
 science code and no banked experiment artifact; it records the closure, pins the evidence, and
 pre-registers the only conditions under which a successor (R2) may reopen the route.
@@ -110,7 +110,8 @@ artifacts remain untouched.
 Rewriting/patching void artifacts to pass; modifying src / spec / frozen_design; auto-reopening v0;
 making any mechanism or theory claim from the void numbers.
 
-## §operator signature (required before bank)
-- [ ] I accept `S3D_V0_TOMBSTONED` and the two grounds above.
-- [ ] I accept the pre-registered R2 reopen conditions.
-Operator: ______  Date: ______
+## §operator acceptance (signature waived — solo project, 2026-07-05)
+Per solo-efficiency policy, no per-card operator signature is required to bank this void/negative closure. Recorded as operator policy:
+- [x] `S3D_V0_TOMBSTONED` and the two grounds accepted.
+- [x] Pre-registered R2 reopen conditions accepted and binding.
+Operator: Zhouyu (policy, unsigned)  Date: 2026-07-05
