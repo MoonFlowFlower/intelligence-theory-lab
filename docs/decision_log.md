@@ -284,3 +284,12 @@
 - Layer: engineering / route-governance only. No experiment executed.
 - Claim ceiling: process/governance change only; no mechanism, theory, autonomy, agency, consciousness, emotion, stable-user-benefit, or EGO-readiness claim.
 - Auto-Remote-Anchor: forbidden.
+
+## P0 Fork-C Track-T L-005 reconciliation closed (2026-07-05C)
+
+- Task: P0 Fork-C closure / Track-T rung1 L-005 reconciliation.
+- Artifacts already tracked: `trace.jsonl` + `val_curves.jsonl` at `2575d1a909ca7be00b1265a3e85dc8b66311c5da`; `{ablation_report, baseline_comparison, leakage_report, manifest, replay_report, result}.json` at `273137f06218313abc074a4b5ef78ae9ccd934d4`.
+- Verification: `git ls-files` + `git log --oneline -1 -- <path>` for the named FULL_SCOUT paths; no experiment executed.
+- Claim ceiling: housekeeping reconciliation only; H_cap segment-bounded claim ceiling unchanged.
+- No mechanism, theory, S4/N1 pass, Gate pass, mainline effect, agency, autonomy, consciousness, emotion, stable-user-benefit, or EGO-readiness claim.
+- Auto-Remote-Anchor: forbidden.
