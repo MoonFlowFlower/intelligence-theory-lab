@@ -1,3 +1,5 @@
+STATUS 2026-07-06: PAUSED (route L-011). Realigned to the N1.5/EFE admission-scout axis (NOT plan-N1). Not scored. STEP-A2 pre-registration f9ff5bb preserved. Resume only if operator reweights back to the active axis.
+
 # N1-ACTIVE-ADMIT-001
 
 Status: ADMISSION-PROBE SPEC (Red-audited gate). Names a tiny CPU toy probe OR closes the active route. NOT mechanism validation. Flat, no signature. Descends from FSP ledger L-007 (passive route closed) / L-008 (this admission).
