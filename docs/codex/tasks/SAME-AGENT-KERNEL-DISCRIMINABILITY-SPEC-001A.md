@@ -1,3 +1,11 @@
+# SAME-AGENT-KERNEL-DISCRIMINABILITY-SPEC-001A
+
+Status: DESIGN SPEC (Red / pre-registration governance). Freezes the discriminability gate that
+the same-agent kernel route must pass ON PAPER before any kernel is built. NOT mechanism evidence,
+NOT a kernel authorization, NOT an experiment. It gates the future kernel card
+`SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A`. It does not close or supersede N2/SBMC; N2 may later be
+one mechanism instance tested on the kernel, but that is not decided here.
+
 ## task id
 SAME-AGENT-KERNEL-DISCRIMINABILITY-SPEC-001A
 
