@@ -1,57 +1,40 @@
 {
-  "applied_cpu_hour_limit": 30.0,
   "artifact": "replay_report",
-  "banked_stop_probe_artifacts_byte_unchanged": true,
-  "claim_ceiling": "PART-0 projection STOP under line 30 and frozen 001B execution contract only; no S3d certificate, NULL-env, environment-validity, gap, mechanism, learning, agency, EGO, companion, or readiness claim",
-  "code_path_hash": "de5f757aa58d32539531b20c66bf904b73abfed9d74510e31a6306ea7c434b19",
-  "full_battery_replay": "not_run_part0_projection_stop",
-  "generated_at_utc": "2026-07-04T21:49:45Z",
-  "not_run_reason": "PART-0 projection exceeded signed L=30 before scored battery trace generation.",
-  "part0_projection": {
-    "exists": true,
-    "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_line30.0.json",
-    "sha256": "42be81db45ad48f0f0db6a54488960b2b217037818e11320ed6e0cc9fd0294c4",
-    "size_bytes": 40109
-  },
-  "part0_projection_replay": {
-    "aggregation_rule": "projected_cpu_hours > signed_line_cpu_hours => STOP before full battery",
-    "code_path_hash": "de5f757aa58d32539531b20c66bf904b73abfed9d74510e31a6306ea7c434b19",
-    "expected_verdict_if_exceeds": "STOP_s3d_part0_projection_exceeds_line",
-    "input_artifacts": [
-      {
-        "exists": true,
-        "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json",
-        "sha256": "58619bdf55595fbe6a0d4cfb097958ec724aa71276761d081c6f040d62f9b369",
-        "size_bytes": 6955
-      },
-      {
-        "exists": true,
-        "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_line30.0.json",
-        "sha256": "42be81db45ad48f0f0db6a54488960b2b217037818e11320ed6e0cc9fd0294c4",
-        "size_bytes": 40109
-      }
-    ],
-    "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_stop_report_generator.py::_stop_replay",
-    "projected_cpu_hours": 32.00740120549966,
-    "projected_minus_line_cpu_hours": 2.0074012054996615,
-    "projection_artifact_decision": "STOP_s3d_part0_projection_exceeds_signed_line",
-    "recomputed_relation": "exceeds_signed_line",
-    "result_verdict": "STOP_s3d_part0_projection_exceeds_line",
-    "run_id": "s3d-part0-line30.0-2026-07-04T20:52:22Z",
-    "signed_line_cpu_hours": 30.0,
-    "verdict_match": true
-  },
-  "precondition_errors": [],
-  "precondition_passed": true,
-  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_stop_report_generator.py::build_reports",
-  "replay_scope": "PART-0 projection STOP only; no scored should-win/NULL trace exists to replay.",
-  "run_finished_at": "2026-07-04T21:46:57Z",
-  "run_started_at": "2026-07-04T20:52:03Z",
-  "s3d_results_void": true,
+  "certificate_failures_recomputed": [
+    "seq_full_history_no_action_conditioning",
+    "obs_decoder_logreg",
+    "obs_decoder_gbt",
+    "obs_decoder_gru",
+    "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+    "successor_map",
+    "transition_table",
+    "count_table",
+    "fsm_planner",
+    "episodic_traversal",
+    "nearest_neighbor_user_matching",
+    "discounted_LS_lambda_0.95",
+    "running_average_preference_regressor"
+  ],
+  "claim_ceiling": "line L under the frozen contract: S3d should-win + NULL-env instrument evidence only; not environment-validity, gap, mechanism, learning, agency, EGO, companion, or readiness evidence",
+  "code_path_hash": "3300643d91a493c948329210881d5b37114a53b227ae5b12a3afedf06fbe76d7",
+  "input_artifacts": [
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\trace.jsonl",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_certificate_report.json",
+    "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3d_null_env_report.json"
+  ],
+  "null_breaches_recomputed": [
+    "ideal"
+  ],
+  "original_verdict": "FAIL_NULL_FALSE_HEADROOM",
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_build_replay_report",
+  "recomputed_verdict": "FAIL_NULL_FALSE_HEADROOM",
+  "replay_scope": "verdict reconstruction from recorded trace/report metrics and thresholds; no hidden future observations",
+  "report_unit_ids_sha256": "fa00fe36b18d8902d491c14de0b14c3076aa6f834b3afcaff10baa5262c2ca13",
+  "run_finished_at": "2026-07-05T21:43:56Z",
+  "run_started_at": "2026-07-05T21:43:56Z",
   "stage": "S3d",
-  "stop_condition": "PART-0 projection 32.00740120549966 CPU-h exceeded signed line 30.0",
-  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A",
   "task_id": "FSP-PUM-ENV-IDPROBE-001A",
-  "verdict": "STOP_s3d_part0_projection_exceeds_line",
+  "trace_unit_count": 43,
+  "trace_unit_ids_sha256": "47c7fb6fe7f36aeee2a01ede42104781955cde4e14f70d19a5a58f9279deb424",
   "verdict_match": true
 }

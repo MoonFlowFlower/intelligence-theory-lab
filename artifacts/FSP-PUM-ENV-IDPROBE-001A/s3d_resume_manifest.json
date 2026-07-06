@@ -1,236 +1,159 @@
 {
   "artifact": "s3d_resume_manifest",
   "claim_ceiling": "resume provenance and scheduling gate only; no S3d adjudication",
-  "code_path_hash": "39a1afcb9d025e1a5820aab1b21da4aa6125710b5f8a73f77c727cc21e0927b4",
+  "code_path_hash": "3300643d91a493c948329210881d5b37114a53b227ae5b12a3afedf06fbe76d7",
   "completed_unit_count_from_void_trace": 41,
   "completed_unit_ids_sha256": "f468b5d9ad5f326466c0eb2d4b95fa45b6977f06bce7dcba75fd7792439ba3ac",
   "duplicate_completed_unit_ids": [],
+  "excluded_nondeterministic_completed_unit_ids": [
+    "member::cert::seq_full_history_no_action_conditioning::constant_none",
+    "member::cert::obs_decoder_gru::camouflage_off",
+    "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+    "member::null::seq_full_history_no_action_conditioning::NULL_env",
+    "member::null::obs_decoder_gru::NULL_env",
+    "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env"
+  ],
   "expected_unit_count": 43,
   "expected_unit_ids_sha256": "07207ef8dd5886aad22466a9792c2a44615f43749b2f4d263a05c15e91e86434",
-  "missing_unit_count": 2,
+  "missing_unit_count": 8,
   "missing_unit_ids": [
+    "member::cert::seq_full_history_no_action_conditioning::constant_none",
+    "member::cert::obs_decoder_gru::camouflage_off",
+    "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
     "member::cert::discounted_LS_lambda_0.95::flat_theta",
+    "member::null::seq_full_history_no_action_conditioning::NULL_env",
+    "member::null::obs_decoder_gru::NULL_env",
+    "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env",
     "member::null::discounted_LS_lambda_0.95::NULL_env"
   ],
-  "passed": false,
+  "passed": true,
   "persisted_unit_result_count": 41,
   "persisted_unit_result_paths": [
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__predict_none__constant_none.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__predict_all__constant_saturated.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__global_prior__constant_none.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__majority__constant_none.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__seq_full_history_no_action_conditioning__constant_none.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__seq_window_with_action_conditioning_W15_no_cross_session_persistence__low_diversity.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_gru__camouflage_off.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__transition_table__low_diversity.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__successor_map__low_diversity.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__count_table__low_diversity.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__fsm_planner__low_diversity.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__predict_none__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__running_average_preference_regressor__flat_theta.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__majority__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__global_prior__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__seq_full_history_no_action_conditioning__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_logreg__camouflage_off.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__predict_all__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_gru__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__seq_window_with_action_conditioning_W15_no_cross_session_persistence__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__successor_map__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__transition_table__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__episodic_traversal__low_diversity.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__count_table__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_logreg__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__fsm_planner__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__rag_k5_episode_retrieval__stable_facts.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_gbt__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__running_average_preference_regressor__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__episodic_traversal__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__rag_k5_episode_retrieval__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_gbt__camouflage_off.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__constant_none.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__null__NULL_env.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__constant_saturated.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__nearest_neighbor_user_matching__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__camouflage_off.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__low_diversity.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__stable_facts.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__camouflage_off.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__flat_theta.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__null__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__predict_none__constant_none.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__majority__constant_none.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__global_prior__constant_none.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__predict_all__constant_saturated.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_logreg__camouflage_off.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__obs_decoder_gbt__camouflage_off.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__successor_map__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__transition_table__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__count_table__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__fsm_planner__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__episodic_traversal__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__rag_k5_episode_retrieval__stable_facts.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__nearest_neighbor_user_matching__low_diversity.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__cert__running_average_preference_regressor__flat_theta.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__predict_none__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__majority__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__global_prior__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__predict_all__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_logreg__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__obs_decoder_gbt__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__successor_map__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__transition_table__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__count_table__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__fsm_planner__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__episodic_traversal__NULL_env.json",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__rag_k5_episode_retrieval__NULL_env.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__nearest_neighbor_user_matching__NULL_env.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/ideal__cert__flat_theta.json"
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results/member__null__running_average_preference_regressor__NULL_env.json"
   ],
   "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_prepare_resume_reuse",
-  "reuse_errors": [
-    "spot_check_mismatch"
-  ],
+  "repair_resume_plan": {
+    "excluded_nondeterministic_completed_unit_count": 6,
+    "excluded_nondeterministic_completed_unit_ids": [
+      "member::cert::seq_full_history_no_action_conditioning::constant_none",
+      "member::cert::obs_decoder_gru::camouflage_off",
+      "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+      "member::null::seq_full_history_no_action_conditioning::NULL_env",
+      "member::null::obs_decoder_gru::NULL_env",
+      "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env"
+    ],
+    "expected_stage3_shape": {
+      "fresh_discounted_LS_units": 2,
+      "fresh_gru_units": 6,
+      "reused_non_gru_units": 35
+    },
+    "fresh_discounted_ls_unit_ids": [
+      "member::cert::discounted_LS_lambda_0.95::flat_theta",
+      "member::null::discounted_LS_lambda_0.95::NULL_env"
+    ],
+    "fresh_gru_unit_ids": [
+      "member::cert::seq_full_history_no_action_conditioning::constant_none",
+      "member::cert::obs_decoder_gru::camouflage_off",
+      "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+      "member::null::seq_full_history_no_action_conditioning::NULL_env",
+      "member::null::obs_decoder_gru::NULL_env",
+      "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env"
+    ],
+    "fresh_unit_ids": [
+      "member::cert::seq_full_history_no_action_conditioning::constant_none",
+      "member::cert::obs_decoder_gru::camouflage_off",
+      "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+      "member::cert::discounted_LS_lambda_0.95::flat_theta",
+      "member::null::seq_full_history_no_action_conditioning::NULL_env",
+      "member::null::obs_decoder_gru::NULL_env",
+      "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env",
+      "member::null::discounted_LS_lambda_0.95::NULL_env"
+    ],
+    "observed_stage3_shape": {
+      "fresh_discounted_LS_units": 2,
+      "fresh_gru_units": 6,
+      "reused_non_gru_units": 35
+    },
+    "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_repair_resume_unit_plan",
+    "reused_unit_ids": [
+      "ideal::cert::constant_none",
+      "ideal::cert::constant_saturated",
+      "ideal::cert::camouflage_off",
+      "ideal::cert::low_diversity",
+      "ideal::cert::stable_facts",
+      "ideal::cert::flat_theta",
+      "ideal::null::NULL_env",
+      "member::cert::predict_none::constant_none",
+      "member::cert::majority::constant_none",
+      "member::cert::global_prior::constant_none",
+      "member::cert::predict_all::constant_saturated",
+      "member::cert::obs_decoder_logreg::camouflage_off",
+      "member::cert::obs_decoder_gbt::camouflage_off",
+      "member::cert::successor_map::low_diversity",
+      "member::cert::transition_table::low_diversity",
+      "member::cert::count_table::low_diversity",
+      "member::cert::fsm_planner::low_diversity",
+      "member::cert::episodic_traversal::low_diversity",
+      "member::cert::rag_k5_episode_retrieval::stable_facts",
+      "member::cert::nearest_neighbor_user_matching::low_diversity",
+      "member::cert::running_average_preference_regressor::flat_theta",
+      "member::null::predict_none::NULL_env",
+      "member::null::majority::NULL_env",
+      "member::null::global_prior::NULL_env",
+      "member::null::predict_all::NULL_env",
+      "member::null::obs_decoder_logreg::NULL_env",
+      "member::null::obs_decoder_gbt::NULL_env",
+      "member::null::successor_map::NULL_env",
+      "member::null::transition_table::NULL_env",
+      "member::null::count_table::NULL_env",
+      "member::null::fsm_planner::NULL_env",
+      "member::null::episodic_traversal::NULL_env",
+      "member::null::rag_k5_episode_retrieval::NULL_env",
+      "member::null::nearest_neighbor_user_matching::NULL_env",
+      "member::null::running_average_preference_regressor::NULL_env"
+    ],
+    "spot_check_seed_text": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:002"
+  },
+  "reuse_errors": [],
   "reuse_metric_equality": [
     {
       "metric_digest_equal_to_void_trace": true,
       "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::predict_none::constant_none"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::predict_all::constant_saturated"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::global_prior::constant_none"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::majority::constant_none"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::seq_full_history_no_action_conditioning::constant_none"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::obs_decoder_gru::camouflage_off"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::transition_table::low_diversity"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::successor_map::low_diversity"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::count_table::low_diversity"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::fsm_planner::low_diversity"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::predict_none::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::running_average_preference_regressor::flat_theta"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::majority::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::global_prior::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::obs_decoder_logreg::camouflage_off"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::predict_all::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::obs_decoder_gru::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::successor_map::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::transition_table::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::episodic_traversal::low_diversity"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::count_table::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::obs_decoder_logreg::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::fsm_planner::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::rag_k5_episode_retrieval::stable_facts"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::obs_decoder_gbt::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::running_average_preference_regressor::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::episodic_traversal::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::null::rag_k5_episode_retrieval::NULL_env"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::obs_decoder_gbt::camouflage_off"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
       "unit_id": "ideal::cert::constant_none"
-    },
-    {
-      "metric_digest_equal_to_void_trace": true,
-      "metric_equal_to_void_trace": true,
-      "unit_id": "ideal::null::NULL_env"
     },
     {
       "metric_digest_equal_to_void_trace": true,
@@ -240,7 +163,7 @@
     {
       "metric_digest_equal_to_void_trace": true,
       "metric_equal_to_void_trace": true,
-      "unit_id": "member::cert::nearest_neighbor_user_matching::low_diversity"
+      "unit_id": "ideal::cert::camouflage_off"
     },
     {
       "metric_digest_equal_to_void_trace": true,
@@ -255,7 +178,142 @@
     {
       "metric_digest_equal_to_void_trace": true,
       "metric_equal_to_void_trace": true,
-      "unit_id": "ideal::cert::camouflage_off"
+      "unit_id": "ideal::cert::flat_theta"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "ideal::null::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::predict_none::constant_none"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::majority::constant_none"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::global_prior::constant_none"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::predict_all::constant_saturated"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::obs_decoder_logreg::camouflage_off"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::obs_decoder_gbt::camouflage_off"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::successor_map::low_diversity"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::transition_table::low_diversity"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::count_table::low_diversity"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::fsm_planner::low_diversity"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::episodic_traversal::low_diversity"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::rag_k5_episode_retrieval::stable_facts"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::nearest_neighbor_user_matching::low_diversity"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::cert::running_average_preference_regressor::flat_theta"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::predict_none::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::majority::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::global_prior::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::predict_all::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::obs_decoder_logreg::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::obs_decoder_gbt::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::successor_map::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::transition_table::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::count_table::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::fsm_planner::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::episodic_traversal::NULL_env"
+    },
+    {
+      "metric_digest_equal_to_void_trace": true,
+      "metric_equal_to_void_trace": true,
+      "unit_id": "member::null::rag_k5_episode_retrieval::NULL_env"
     },
     {
       "metric_digest_equal_to_void_trace": true,
@@ -265,72 +323,98 @@
     {
       "metric_digest_equal_to_void_trace": true,
       "metric_equal_to_void_trace": true,
-      "unit_id": "ideal::cert::flat_theta"
+      "unit_id": "member::null::running_average_preference_regressor::NULL_env"
     }
   ],
-  "reused_unit_count": 0,
-  "run_finished_at": "2026-07-05T16:26:39Z",
+  "reused_unit_count": 35,
+  "reused_unit_ids": [
+    "ideal::cert::constant_none",
+    "ideal::cert::constant_saturated",
+    "ideal::cert::camouflage_off",
+    "ideal::cert::low_diversity",
+    "ideal::cert::stable_facts",
+    "ideal::cert::flat_theta",
+    "ideal::null::NULL_env",
+    "member::cert::predict_none::constant_none",
+    "member::cert::majority::constant_none",
+    "member::cert::global_prior::constant_none",
+    "member::cert::predict_all::constant_saturated",
+    "member::cert::obs_decoder_logreg::camouflage_off",
+    "member::cert::obs_decoder_gbt::camouflage_off",
+    "member::cert::successor_map::low_diversity",
+    "member::cert::transition_table::low_diversity",
+    "member::cert::count_table::low_diversity",
+    "member::cert::fsm_planner::low_diversity",
+    "member::cert::episodic_traversal::low_diversity",
+    "member::cert::rag_k5_episode_retrieval::stable_facts",
+    "member::cert::nearest_neighbor_user_matching::low_diversity",
+    "member::cert::running_average_preference_regressor::flat_theta",
+    "member::null::predict_none::NULL_env",
+    "member::null::majority::NULL_env",
+    "member::null::global_prior::NULL_env",
+    "member::null::predict_all::NULL_env",
+    "member::null::obs_decoder_logreg::NULL_env",
+    "member::null::obs_decoder_gbt::NULL_env",
+    "member::null::successor_map::NULL_env",
+    "member::null::transition_table::NULL_env",
+    "member::null::count_table::NULL_env",
+    "member::null::fsm_planner::NULL_env",
+    "member::null::episodic_traversal::NULL_env",
+    "member::null::rag_k5_episode_retrieval::NULL_env",
+    "member::null::nearest_neighbor_user_matching::NULL_env",
+    "member::null::running_average_preference_regressor::NULL_env"
+  ],
+  "run_finished_at": "2026-07-05T19:54:13Z",
   "spot_check": {
     "checks": [
       {
-        "metric_digest_equal": false,
-        "per_user_confusion_sha256_equal": false,
-        "recompute_process_cpu_seconds": 103.796875,
-        "recomputed_metric_digest": "6934ec2f574d1a1b051a452b4c99e4d991005aa314a5a343cc6ce17020dde67b",
-        "recomputed_per_user_confusion_sha256": "cb992a7b741562b8732870f21aaec8f9e1bc9072225012735c07fde2b0ba1c70",
-        "stored_metric_digest": "46d28b73042f9261d263ed97f508d478eeece44f0cf6ce167b8374b651a8b67f",
-        "stored_per_user_confusion_sha256": "76d12a073fa216397ea20d826cd50168c85ae452c6fd4bc6c9ec527bd9ee2869",
-        "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env"
+        "metric_digest_equal": true,
+        "per_user_confusion_sha256_equal": true,
+        "recompute_process_cpu_seconds": 27.21875,
+        "recomputed_metric_digest": "ef2674b9b523261e7b909e43c5223005736ba8cfec718823e0b6446dd9041656",
+        "recomputed_per_user_confusion_sha256": "19e308edc27d8b5b37f523279785c26ee311989d2a5e2c24e75464368baf9955",
+        "stored_metric_digest": "ef2674b9b523261e7b909e43c5223005736ba8cfec718823e0b6446dd9041656",
+        "stored_per_user_confusion_sha256": "19e308edc27d8b5b37f523279785c26ee311989d2a5e2c24e75464368baf9955",
+        "unit_id": "member::cert::transition_table::low_diversity"
       },
       {
         "metric_digest_equal": true,
         "per_user_confusion_sha256_equal": true,
-        "recompute_process_cpu_seconds": 551.953125,
-        "recomputed_metric_digest": "5d55da27bc85fae43c0960bcc5176c710e5a3fe25d6f01648263a049ba8ca368",
-        "recomputed_per_user_confusion_sha256": "c39259d193db54aa20d1f77b01b70796abf77d8ab541de2d638d2091226a5e64",
-        "stored_metric_digest": "5d55da27bc85fae43c0960bcc5176c710e5a3fe25d6f01648263a049ba8ca368",
-        "stored_per_user_confusion_sha256": "c39259d193db54aa20d1f77b01b70796abf77d8ab541de2d638d2091226a5e64",
-        "unit_id": "member::null::obs_decoder_gbt::NULL_env"
+        "recompute_process_cpu_seconds": 29.296875,
+        "recomputed_metric_digest": "59358092b3452f956843a51b03407d055ce5426e6ceafd3d35bd1dc9c12dee67",
+        "recomputed_per_user_confusion_sha256": "102af464f293850bb9edbc286d787e538deec9f135c5bfc596f5a3b6614fdce2",
+        "stored_metric_digest": "59358092b3452f956843a51b03407d055ce5426e6ceafd3d35bd1dc9c12dee67",
+        "stored_per_user_confusion_sha256": "102af464f293850bb9edbc286d787e538deec9f135c5bfc596f5a3b6614fdce2",
+        "unit_id": "member::null::predict_none::NULL_env"
       },
       {
         "metric_digest_equal": true,
         "per_user_confusion_sha256_equal": true,
-        "recompute_process_cpu_seconds": 97.296875,
-        "recomputed_metric_digest": "b144032d3742dbf36ef14f28f14ccc495041c9591f19fa7d9358a960ff866b24",
-        "recomputed_per_user_confusion_sha256": "9f2854170f133aa47dcad297a6d681092176ca39e292454333406ec7bae1cfbe",
-        "stored_metric_digest": "b144032d3742dbf36ef14f28f14ccc495041c9591f19fa7d9358a960ff866b24",
-        "stored_per_user_confusion_sha256": "9f2854170f133aa47dcad297a6d681092176ca39e292454333406ec7bae1cfbe",
-        "unit_id": "member::cert::running_average_preference_regressor::flat_theta"
+        "recompute_process_cpu_seconds": 4106.046875,
+        "recomputed_metric_digest": "98543b2c6bafaa01018374bdfe76c9c3d105ade6dd730b7aa09bb2ee63a46ff2",
+        "recomputed_per_user_confusion_sha256": "bcc1b6ef3990a0275a440995ee056bdd8518c908a148351d17c84171f3f2fa6b",
+        "stored_metric_digest": "98543b2c6bafaa01018374bdfe76c9c3d105ade6dd730b7aa09bb2ee63a46ff2",
+        "stored_per_user_confusion_sha256": "bcc1b6ef3990a0275a440995ee056bdd8518c908a148351d17c84171f3f2fa6b",
+        "unit_id": "ideal::cert::stable_facts"
       }
     ],
     "count": 3,
     "line_accounting": "verification overhead; excluded from runtime guard cumulative by task card",
-    "mismatches": [
-      {
-        "metric_digest_equal": false,
-        "per_user_confusion_sha256_equal": false,
-        "recompute_process_cpu_seconds": 103.796875,
-        "recomputed_metric_digest": "6934ec2f574d1a1b051a452b4c99e4d991005aa314a5a343cc6ce17020dde67b",
-        "recomputed_per_user_confusion_sha256": "cb992a7b741562b8732870f21aaec8f9e1bc9072225012735c07fde2b0ba1c70",
-        "stored_metric_digest": "46d28b73042f9261d263ed97f508d478eeece44f0cf6ce167b8374b651a8b67f",
-        "stored_per_user_confusion_sha256": "76d12a073fa216397ea20d826cd50168c85ae452c6fd4bc6c9ec527bd9ee2869",
-        "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env"
-      }
-    ],
-    "passed": false,
+    "mismatches": [],
+    "passed": true,
     "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_spot_check_reused_units",
-    "seed_int": 4190761574369028085,
-    "seed_text": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:001",
+    "seed_int": 7240837613313915936,
+    "seed_text": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:002",
     "selected_unit_ids": [
-      "member::null::seq_full_history_no_action_conditioning::NULL_env",
-      "member::null::obs_decoder_gbt::NULL_env",
-      "member::cert::running_average_preference_regressor::flat_theta"
+      "member::cert::transition_table::low_diversity",
+      "member::null::predict_none::NULL_env",
+      "ideal::cert::stable_facts"
     ],
-    "spot_check_cpu_hours": 0.2091796875,
-    "spot_check_process_cpu_seconds": 753.046875
+    "spot_check_cpu_hours": 1.1562673611111112,
+    "spot_check_process_cpu_seconds": 4162.5625
   },
-  "stop_condition": "resume_reuse_gate_failed",
-  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A",
+  "stop_condition": null,
+  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A",
   "task_id": "FSP-PUM-ENV-IDPROBE-001A",
   "trace_has_per_user_confusion": true,
   "unexpected_unit_ids": [],

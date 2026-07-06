@@ -17,4 +17,4 @@ Claim ceiling: code-path analysis only; no new equivalence certificate, no
 metric result, no speedup claim, and no science-rule change.
 
 Producer: artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_write_ideal_kernel_analysis_note
-Code path hash at write time: 39a1afcb9d025e1a5820aab1b21da4aa6125710b5f8a73f77c727cc21e0927b4
+Code path hash at write time: 3300643d91a493c948329210881d5b37114a53b227ae5b12a3afedf06fbe76d7

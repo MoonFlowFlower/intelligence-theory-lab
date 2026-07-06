@@ -1,10 +1,10 @@
 {
   "artifact": "s3d_resume_unit_result",
-  "claim_ceiling": "per-unit result preservation for resume only; no new metric computed",
-  "code_path_hash": "cfb57d5a9ffaf65f18bf58b00d2215c4bf734b52fb65966daf9ad4e726a538b7",
+  "claim_ceiling": "fresh per-unit result from resume execution only",
+  "code_path_hash": "3300643d91a493c948329210881d5b37114a53b227ae5b12a3afedf06fbe76d7",
   "input_hash": "29fcdadd5f3d0a33fc1ab1e4b3fa75ce415ac40700b244e11c4f47b74f0256ad",
-  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_persist_reconstructed_unit_from_trace",
-  "run_finished_at": "2026-07-05T15:41:52Z",
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_persist_fresh_unit_result",
+  "run_finished_at": "2026-07-05T20:00:10Z",
   "score_payload": {
     "canonical_scorer_id": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_score_payload/_metric_for_scope/_metric_from_resampled_users",
     "canonical_scorer_pinned": true,
@@ -13,7 +13,17 @@
     "classes_present": [
       0
     ],
-    "code_path_hash": "cfb57d5a9ffaf65f18bf58b00d2215c4bf734b52fb65966daf9ad4e726a538b7",
+    "code_path_hash": "3300643d91a493c948329210881d5b37114a53b227ae5b12a3afedf06fbe76d7",
+    "event_collect_wall_clock_seconds": 40.043214300007094,
+    "fit_eval_result": {
+      "epochs_run": 10,
+      "fit_and_predict_wall_clock_seconds": 8.042367500020191,
+      "fit_examples": 192000,
+      "fit_plus_validation_wall_clock_seconds": 9.776112999999896,
+      "internal_validation_examples": 48000,
+      "model_fit_predict_wall_clock_seconds": 8.042367500020191,
+      "offline_compute_units": 1920000
+    },
     "future_observations_used": false,
     "heldout_users_800_999_touched": false,
     "input_artifacts": [
@@ -77,6 +87,7 @@
         "unit_type": "member"
       }
     },
+    "master_seed": 20260711,
     "member": "seq_full_history_no_action_conditioning",
     "metric": 0.0,
     "metric_aggregation_rule": "macro-balanced accuracy over classes with >=1 true occurrence in eval slice",
@@ -22486,23 +22497,51 @@
     ],
     "per_user_confusion_sha256": "d3e6d829afdedfd2624fe178cb09ab8e7914cb4d0a89cd4ce3721b583083e6b2",
     "phase": "cert",
-    "process_cpu_seconds": 122.796875,
+    "process_cpu_seconds": 49.03125,
     "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_run_unit_worker",
+    "recipe_path": "artifacts\\FSP-PUM-ENV-IDPROBE-001A\\s3c_models\\seq_full_history_no_action_conditioning_selected_recipe.json",
+    "recipe_sha256": "723bf89d13af3d154b2f9ebf208998f0d2924942b343864a26cb2a04d0b5deb5",
     "recommend_metric_aggregation_rule": "same macro-balanced accuracy restricted to logged action == recommend",
     "recommend_turn_conditional_metric": 0.0,
     "recommend_turn_count": 914,
-    "reconstructed_from_trace": true,
-    "run_finished_at": "2026-07-05T06:06:21Z",
-    "run_started_at": "2026-07-05T06:04:01Z",
-    "trace_source": "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.jsonl",
+    "records_consumed": {},
+    "run_finished_at": "2026-07-05T20:00:10Z",
+    "run_started_at": "2026-07-05T19:59:20Z",
+    "selected_config": {
+      "action_embedding_dim": 8,
+      "batch_size": 256,
+      "config_id": "seq_full_history_no_action_conditioning_cfg02",
+      "config_index": 2,
+      "dropout": 0.0,
+      "early_stop_patience": 2,
+      "framework": "torch.nn.GRU",
+      "hidden": 32,
+      "lr": 0.0003,
+      "max_epochs": 10,
+      "member": "seq_full_history_no_action_conditioning",
+      "symbol_embedding_dim": 16
+    },
+    "single_thread_environment": {
+      "env_threads": {
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "single_thread_accounting": true,
+      "torch_device": "cpu",
+      "torch_num_interop_threads": 1,
+      "torch_num_threads": 1
+    },
     "unit_id": "member::cert::seq_full_history_no_action_conditioning::constant_none",
     "unit_type": "member",
-    "wall_clock_seconds": 140.20876660000067,
-    "wall_cpu_ratio": 1.1417942565720884,
+    "variant": "degenerate_should_win_constant_none",
+    "wall_clock_seconds": 49.949654199997894,
+    "wall_cpu_ratio": 1.0187309970681533,
     "wall_cpu_ratio_flag_gt_1_25": false
   },
-  "source": "void_trace_reconstruction",
-  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A",
+  "source": "fresh_resume_execution",
+  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A",
   "task_id": "FSP-PUM-ENV-IDPROBE-001A",
   "unit_id": "member::cert::seq_full_history_no_action_conditioning::constant_none"
 }

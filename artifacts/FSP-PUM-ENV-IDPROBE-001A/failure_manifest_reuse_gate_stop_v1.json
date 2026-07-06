@@ -1,0 +1,184 @@
+{
+  "artifact": "failure_manifest",
+  "banked_stop_probe_artifacts_byte_unchanged": true,
+  "claim_ceiling": "S3d STOP/failure boundary only; no environment-validity, gap, mechanism, learning, agency, EGO, or companion claim",
+  "code_path_hash": "39a1afcb9d025e1a5820aab1b21da4aa6125710b5f8a73f77c727cc21e0927b4",
+  "details": {
+    "resume_reuse": {
+      "completed_unit_count_from_void_trace": 41,
+      "expected_unit_count": 43,
+      "missing_unit_count": 2,
+      "missing_unit_ids": [
+        "member::cert::discounted_LS_lambda_0.95::flat_theta",
+        "member::null::discounted_LS_lambda_0.95::NULL_env"
+      ],
+      "passed": false,
+      "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_prepare_resume_reuse",
+      "resume_manifest": {
+        "exists": true,
+        "path": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json",
+        "sha256": "7f1bd87020dfdb54e2fb652b612b5dab9437403a30684e4c0ed2041d53576cb8",
+        "size_bytes": 16496
+      },
+      "reused_unit_count": 0,
+      "reused_unit_ids": [],
+      "spot_check": {
+        "checks": [
+          {
+            "metric_digest_equal": false,
+            "per_user_confusion_sha256_equal": false,
+            "recompute_process_cpu_seconds": 103.796875,
+            "recomputed_metric_digest": "6934ec2f574d1a1b051a452b4c99e4d991005aa314a5a343cc6ce17020dde67b",
+            "recomputed_per_user_confusion_sha256": "cb992a7b741562b8732870f21aaec8f9e1bc9072225012735c07fde2b0ba1c70",
+            "stored_metric_digest": "46d28b73042f9261d263ed97f508d478eeece44f0cf6ce167b8374b651a8b67f",
+            "stored_per_user_confusion_sha256": "76d12a073fa216397ea20d826cd50168c85ae452c6fd4bc6c9ec527bd9ee2869",
+            "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env"
+          },
+          {
+            "metric_digest_equal": true,
+            "per_user_confusion_sha256_equal": true,
+            "recompute_process_cpu_seconds": 551.953125,
+            "recomputed_metric_digest": "5d55da27bc85fae43c0960bcc5176c710e5a3fe25d6f01648263a049ba8ca368",
+            "recomputed_per_user_confusion_sha256": "c39259d193db54aa20d1f77b01b70796abf77d8ab541de2d638d2091226a5e64",
+            "stored_metric_digest": "5d55da27bc85fae43c0960bcc5176c710e5a3fe25d6f01648263a049ba8ca368",
+            "stored_per_user_confusion_sha256": "c39259d193db54aa20d1f77b01b70796abf77d8ab541de2d638d2091226a5e64",
+            "unit_id": "member::null::obs_decoder_gbt::NULL_env"
+          },
+          {
+            "metric_digest_equal": true,
+            "per_user_confusion_sha256_equal": true,
+            "recompute_process_cpu_seconds": 97.296875,
+            "recomputed_metric_digest": "b144032d3742dbf36ef14f28f14ccc495041c9591f19fa7d9358a960ff866b24",
+            "recomputed_per_user_confusion_sha256": "9f2854170f133aa47dcad297a6d681092176ca39e292454333406ec7bae1cfbe",
+            "stored_metric_digest": "b144032d3742dbf36ef14f28f14ccc495041c9591f19fa7d9358a960ff866b24",
+            "stored_per_user_confusion_sha256": "9f2854170f133aa47dcad297a6d681092176ca39e292454333406ec7bae1cfbe",
+            "unit_id": "member::cert::running_average_preference_regressor::flat_theta"
+          }
+        ],
+        "count": 3,
+        "line_accounting": "verification overhead; excluded from runtime guard cumulative by task card",
+        "mismatches": [
+          {
+            "metric_digest_equal": false,
+            "per_user_confusion_sha256_equal": false,
+            "recompute_process_cpu_seconds": 103.796875,
+            "recomputed_metric_digest": "6934ec2f574d1a1b051a452b4c99e4d991005aa314a5a343cc6ce17020dde67b",
+            "recomputed_per_user_confusion_sha256": "cb992a7b741562b8732870f21aaec8f9e1bc9072225012735c07fde2b0ba1c70",
+            "stored_metric_digest": "46d28b73042f9261d263ed97f508d478eeece44f0cf6ce167b8374b651a8b67f",
+            "stored_per_user_confusion_sha256": "76d12a073fa216397ea20d826cd50168c85ae452c6fd4bc6c9ec527bd9ee2869",
+            "unit_id": "member::null::seq_full_history_no_action_conditioning::NULL_env"
+          }
+        ],
+        "passed": false,
+        "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_spot_check_reused_units",
+        "seed_int": 4190761574369028085,
+        "seed_text": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:001",
+        "selected_unit_ids": [
+          "member::null::seq_full_history_no_action_conditioning::NULL_env",
+          "member::null::obs_decoder_gbt::NULL_env",
+          "member::cert::running_average_preference_regressor::flat_theta"
+        ],
+        "spot_check_cpu_hours": 0.2091796875,
+        "spot_check_process_cpu_seconds": 753.046875
+      },
+      "stop_condition": "resume_reuse_gate_failed",
+      "trace_has_per_user_confusion": true,
+      "unit_results_dir": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_unit_results",
+      "void_code_path_hash": "cfb57d5a9ffaf65f18bf58b00d2215c4bf734b52fb65966daf9ad4e726a538b7"
+    }
+  },
+  "preserved_failure": true,
+  "producer_function": "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_failure_manifest_payload",
+  "protected_artifacts_after": {
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection.json": {
+      "exists": true,
+      "sha256": "413ac0c70ce1f358c87a0fc468fbe91f194faf2cc12fc09924b0e34f66ec38a7",
+      "size_bytes": 41302
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_v1.json": {
+      "exists": true,
+      "sha256": "fb40a41d3447d7c95da2cebb57a59ec50fcd16bd8d70fd6f80a7e7f16f0455db",
+      "size_bytes": 3726
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_failure_manifest.json": {
+      "exists": true,
+      "sha256": "22a4519f113f2cf7f891be9558fda5187112925fdcf2916086e997adab1055f9",
+      "size_bytes": 881
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py": {
+      "exists": true,
+      "sha256": "d686cfa5f798e6561737c206e3cf6f4507cb3c7e30ba24ef715f2fd06982d6ec",
+      "size_bytes": 26708
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe.json": {
+      "exists": true,
+      "sha256": "9e41251414c4dfde98198df292f81d8d48e5fd6ccc265d5e2ef6405e5c249680",
+      "size_bytes": 19628
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_bank_ops.ps1": {
+      "exists": true,
+      "sha256": "d71b453ad7acb17bd0fd4d8ccd2289f8437de7931560dd75f4ab557a88030ead",
+      "size_bytes": 2161
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py": {
+      "exists": true,
+      "sha256": "1eb7b4ec49de4704d6960b1b10d01b31eb9ab74eff03f1a8d5637c4bffe6c6ce",
+      "size_bytes": 33656
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_trace.csv": {
+      "exists": true,
+      "sha256": "729e4b9e6ceecfac05ff48f47cfdc6b282cf786657c368d87e25e42d1e365417",
+      "size_bytes": 3158
+    }
+  },
+  "protected_artifacts_before": {
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection.json": {
+      "exists": true,
+      "sha256": "413ac0c70ce1f358c87a0fc468fbe91f194faf2cc12fc09924b0e34f66ec38a7",
+      "size_bytes": 41302
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_compute_projection_v1.json": {
+      "exists": true,
+      "sha256": "fb40a41d3447d7c95da2cebb57a59ec50fcd16bd8d70fd6f80a7e7f16f0455db",
+      "size_bytes": 3726
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_failure_manifest.json": {
+      "exists": true,
+      "sha256": "22a4519f113f2cf7f891be9558fda5187112925fdcf2916086e997adab1055f9",
+      "size_bytes": 881
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_projection_runner.py": {
+      "exists": true,
+      "sha256": "d686cfa5f798e6561737c206e3cf6f4507cb3c7e30ba24ef715f2fd06982d6ec",
+      "size_bytes": 26708
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe.json": {
+      "exists": true,
+      "sha256": "9e41251414c4dfde98198df292f81d8d48e5fd6ccc265d5e2ef6405e5c249680",
+      "size_bytes": 19628
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_bank_ops.ps1": {
+      "exists": true,
+      "sha256": "d71b453ad7acb17bd0fd4d8ccd2289f8437de7931560dd75f4ab557a88030ead",
+      "size_bytes": 2161
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_runner.py": {
+      "exists": true,
+      "sha256": "1eb7b4ec49de4704d6960b1b10d01b31eb9ab74eff03f1a8d5637c4bffe6c6ce",
+      "size_bytes": 33656
+    },
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_part0_variance_probe_trace.csv": {
+      "exists": true,
+      "sha256": "729e4b9e6ceecfac05ff48f47cfdc6b282cf786657c368d87e25e42d1e365417",
+      "size_bytes": 3158
+    }
+  },
+  "run_finished_at": "2026-07-05T16:26:39Z",
+  "run_started_at": "2026-07-05T16:26:39Z",
+  "s3d_results_void": true,
+  "stage": "S3d",
+  "stop_condition": "resume_reuse_gate_failed",
+  "task_card_id": "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A",
+  "task_id": "FSP-PUM-ENV-IDPROBE-001A",
+  "verdict": "STOP_RESUME_REUSE_GATE_FAILED"
+}
