@@ -32,6 +32,8 @@ def cmd_status(args: argparse.Namespace) -> int:
         f"task_id: {status['task_id']}",
         f"verdict: {status['verdict']}",
         f"route_count: {status['route_count']}",
+        f"current_frontier_route_id: {status['current_frontier_route_id']}",
+        f"program_state_verdict: {status['program_state_verdict']}",
         f"validation_errors: {status['validation_error_count']}",
         f"validation_warnings: {status['validation_warning_count']}",
         "routes:",

@@ -58,6 +58,22 @@ def _non_empty_string_list(value: Any) -> bool:
     return isinstance(value, list) and any(isinstance(item, str) and item.strip() for item in value)
 
 
+def _string_values(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, dict):
+        strings: list[str] = []
+        for item in value.values():
+            strings.extend(_string_values(item))
+        return strings
+    if isinstance(value, list):
+        strings = []
+        for item in value:
+            strings.extend(_string_values(item))
+        return strings
+    return []
+
+
 def _normalized_set(paths: list[str] | tuple[str, ...] | None) -> set[str]:
     return {_posix(path).strip().lstrip("./") for path in (paths or [])}
 
@@ -79,6 +95,48 @@ def is_roadmap_like_changed_file(path: str) -> bool:
     basename = normalized.rsplit("/", 1)[-1]
     searchable = f"{normalized} {basename.replace('_', '-')}"
     return any(marker in searchable for marker in state_machine.ROADMAP_LIKE_MARKERS)
+
+
+def _claim_ceiling_has_max(payload: Any) -> bool:
+    return isinstance(payload, dict) and isinstance(payload.get("max"), str) and bool(payload["max"].strip())
+
+
+def _source_readback_has_l014_or_equivalent(source_readback: Any) -> bool:
+    strings = [item.strip() for item in _string_values(source_readback) if item.strip()]
+    joined = "\n".join(strings)
+    return "L-014" in joined or "L014" in joined
+
+
+def _is_authorizing_value(value: Any) -> bool:
+    if value is True:
+        return True
+    if isinstance(value, str):
+        return value.strip().lower() in {"true", "yes", "authorized", "allow", "allowed"}
+    return False
+
+
+def _forbidden_current_frontier_authorizations(
+    *,
+    program_state_payload: dict[str, Any],
+    route_state_payload: dict[str, Any],
+) -> list[str]:
+    found: set[str] = set()
+
+    authorizations = route_state_payload.get("authorizations")
+    if isinstance(authorizations, dict):
+        for key in state_machine.CURRENT_FRONTIER_FORBIDDEN_AUTHORIZATIONS:
+            if _is_authorizing_value(authorizations.get(key)):
+                found.add(key)
+
+    route_allowed_actions = route_state_payload.get("allowed_next_actions")
+    program_allowed_actions = program_state_payload.get("allowed_next_actions")
+    for action in _string_values(route_allowed_actions) + _string_values(program_allowed_actions):
+        normalized = action.lower().replace("-", "_")
+        for token in state_machine.CURRENT_FRONTIER_FORBIDDEN_ACTION_TOKENS:
+            if token in normalized:
+                found.add(token)
+
+    return sorted(found)
 
 
 def validate_route_payload(
@@ -356,6 +414,149 @@ def validate_routes_tree(
     }
 
 
+def _parse_program_state_file(path: Path, errors: list[dict[str, Any]]) -> dict[str, Any] | None:
+    if not path.exists():
+        errors.append(_new_error("missing_program_state_json", "Program state is missing.", path=_posix(path)))
+        return None
+    try:
+        payload = load_json(path)
+    except json.JSONDecodeError as exc:
+        errors.append(
+            _new_error(
+                "invalid_program_state_json",
+                "program_state.json could not be parsed.",
+                path=_posix(path),
+                error=str(exc),
+            )
+        )
+        return None
+    if not isinstance(payload, dict):
+        errors.append(
+            _new_error("program_state_not_object", "program_state.json must contain an object.", path=_posix(path))
+        )
+        return None
+    return payload
+
+
+def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    program_state_path = artifact_dir / state_machine.PROGRAM_STATE_FILENAME
+    program_state_payload = _parse_program_state_file(program_state_path, errors)
+    if program_state_payload is None:
+        return {
+            "producer_function": "validate_program_state",
+            "input_artifacts": [],
+            "current_frontier_route_id": None,
+            "validation_errors": errors,
+            "validation_warnings": warnings,
+            "verdict": "fail",
+        }
+
+    current_frontier_route_id = program_state_payload.get("current_frontier_route_id")
+    if not isinstance(current_frontier_route_id, str) or not current_frontier_route_id.strip():
+        errors.append(
+            _new_error(
+                "missing_current_frontier_route_id",
+                "program_state.json must include current_frontier_route_id.",
+            )
+        )
+        current_frontier_route_id = None
+    else:
+        current_frontier_route_id = current_frontier_route_id.strip()
+
+    if not _non_empty_string_list(program_state_payload.get("allowed_next_actions")):
+        errors.append(
+            _new_error(
+                "program_state_missing_allowed_next_actions",
+                "program_state.json must include non-empty allowed_next_actions.",
+            )
+        )
+
+    if not _non_empty_string_list(program_state_payload.get("forbidden_next_actions")):
+        errors.append(
+            _new_error(
+                "program_state_missing_forbidden_next_actions",
+                "program_state.json must include non-empty forbidden_next_actions.",
+            )
+        )
+
+    if not _claim_ceiling_has_max(program_state_payload.get("claim_ceiling")):
+        errors.append(
+            _new_error(
+                "program_state_missing_claim_ceiling_max",
+                "program_state.json must include claim_ceiling.max.",
+            )
+        )
+
+    input_artifacts = [_relative_posix(program_state_path, artifact_dir.parent.parent)]
+
+    if current_frontier_route_id:
+        current_frontier_route_dir = routes_dir / current_frontier_route_id
+        if not current_frontier_route_dir.exists():
+            errors.append(
+                _new_error(
+                    "missing_current_frontier_route_directory",
+                    "current_frontier_route_id must point to an existing route directory.",
+                    current_frontier_route_id=current_frontier_route_id,
+                    path=_posix(current_frontier_route_dir),
+                )
+            )
+        else:
+            route_state_errors: list[dict[str, Any]] = []
+            route_state_payload = _parse_json_file(current_frontier_route_dir / "state.json", route_state_errors)
+            errors.extend(route_state_errors)
+            if route_state_payload is not None:
+                input_artifacts.append(
+                    _relative_posix(current_frontier_route_dir / "state.json", artifact_dir.parent.parent)
+                )
+                current_state = route_state_payload.get("current_state")
+                if current_state == "TOMBSTONED":
+                    errors.append(
+                        _new_error(
+                            "current_frontier_route_tombstoned",
+                            "current_frontier_route_id cannot point to a TOMBSTONED route.",
+                            current_frontier_route_id=current_frontier_route_id,
+                        )
+                    )
+
+                if current_state == "REGISTERED":
+                    forbidden_authorizations = _forbidden_current_frontier_authorizations(
+                        program_state_payload=program_state_payload,
+                        route_state_payload=route_state_payload,
+                    )
+                    if forbidden_authorizations:
+                        errors.append(
+                            _new_error(
+                                "registered_current_frontier_authorizes_forbidden_capability",
+                                "REGISTERED current frontier cannot authorize mechanism validity, theory pressure, scoring, or experiment execution.",
+                                current_frontier_route_id=current_frontier_route_id,
+                                forbidden_authorizations=forbidden_authorizations,
+                            )
+                        )
+
+                if (
+                    current_frontier_route_id == state_machine.CURRENT_FRONTIER_ROUTE_ID
+                    and not _source_readback_has_l014_or_equivalent(route_state_payload.get("source_readback"))
+                ):
+                    errors.append(
+                        _new_error(
+                            "n2_frontier_missing_l014_source_readback",
+                            "N2-SBMC-ENV-REDESIGN-001A must cite L-014 or equivalent current ledger evidence in source_readback.",
+                            current_frontier_route_id=current_frontier_route_id,
+                        )
+                    )
+
+    return {
+        "producer_function": "validate_program_state",
+        "input_artifacts": sorted(set(input_artifacts)),
+        "current_frontier_route_id": current_frontier_route_id,
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
 def git_changed_files(repo_root: Path) -> list[str]:
     try:
         completed = subprocess.run(
@@ -397,23 +598,31 @@ def build_validation_report(
         changed_files=effective_changed_files,
         authorized_paths=effective_authorized_paths,
     )
+    artifact_dir = root / state_machine.TASK_ARTIFACT_DIR
+    program_state = validate_program_state(artifact_dir=artifact_dir, routes_dir=routes_dir)
     input_artifacts = [
         f"{state_machine.TASK_ARTIFACT_DIR}/routes/{artifact}"
         for artifact in route_tree["input_artifacts"]
     ]
+    input_artifacts.extend(program_state["input_artifacts"])
     schema_dir = root / state_machine.TASK_ARTIFACT_DIR / "schemas"
     for schema in sorted(schema_dir.glob("*.schema.json")) if schema_dir.exists() else []:
         input_artifacts.append(_relative_posix(schema, root))
 
+    validation_errors = route_tree["validation_errors"] + program_state["validation_errors"]
+    validation_warnings = route_tree["validation_warnings"] + program_state["validation_warnings"]
+
     return {
         "task_id": state_machine.TASK_ID,
         "producer_function": "build_validation_report",
-        "input_artifacts": sorted(input_artifacts),
+        "input_artifacts": sorted(set(input_artifacts)),
         "run_id": f"{state_machine.TASK_ID.lower()}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}",
-        "aggregation_rule": "verdict is pass iff validate_routes_tree returns zero validation_errors",
+        "aggregation_rule": "verdict is pass iff validate_routes_tree and validate_program_state return zero validation_errors",
         "code_path_hash": code_path_hash(),
-        "validation_errors": route_tree["validation_errors"],
-        "validation_warnings": route_tree["validation_warnings"],
+        "validation_errors": validation_errors,
+        "validation_warnings": validation_warnings,
+        "current_frontier_route_id": program_state["current_frontier_route_id"],
+        "program_state_verdict": program_state["verdict"],
         "route_count": route_tree["route_count"],
         "routes": [
             {
@@ -427,7 +636,7 @@ def build_validation_report(
         "changed_files": route_tree["changed_files"],
         "authorized_paths": sorted(effective_authorized_paths),
         "claim_ceiling": "local route-governance validation only; no mechanism, theory, agency, autonomy, subjectivity, consciousness, EGO readiness, companion readiness, or mainline-effect claim",
-        "verdict": route_tree["verdict"],
+        "verdict": "pass" if not validation_errors else "fail",
     }
 
 
@@ -447,6 +656,8 @@ def build_status(repo_root: str | Path) -> dict[str, Any]:
         "task_id": state_machine.TASK_ID,
         "route_count": report["route_count"],
         "verdict": report["verdict"],
+        "current_frontier_route_id": report["current_frontier_route_id"],
+        "program_state_verdict": report["program_state_verdict"],
         "routes": report["routes"],
         "validation_error_count": len(report["validation_errors"]),
         "validation_warning_count": len(report["validation_warnings"]),
@@ -461,6 +672,8 @@ def build_dashboard(repo_root: str | Path) -> dict[str, Any]:
         "producer_function": "build_dashboard",
         "verdict": report["verdict"],
         "route_count": report["route_count"],
+        "current_frontier_route_id": report["current_frontier_route_id"],
+        "program_state_verdict": report["program_state_verdict"],
         "routes": report["routes"],
         "validation_error_codes": sorted({error["code"] for error in report["validation_errors"]}),
         "validation_warning_codes": sorted({warning["code"] for warning in report["validation_warnings"]}),

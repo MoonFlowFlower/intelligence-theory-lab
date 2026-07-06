@@ -58,6 +58,62 @@ def _valid_state(current_state: str = "TOMBSTONED") -> dict:
     }
 
 
+def _valid_n2_frontier_state(current_state: str = "REGISTERED") -> dict:
+    return {
+        "route_id": "N2-SBMC-ENV-REDESIGN-001A",
+        "current_state": current_state,
+        "route_family": "N2-SBMC",
+        "frontier_scope": "design_pre_registration_current_frontier",
+        "updated_at_utc": "2026-07-06T00:00:00Z",
+        "authorizations": {
+            "mechanism_validity": False,
+            "theory_pressure": False,
+            "scoring": False,
+            "experiment_execution": False,
+        },
+        "source_readback": {
+            "ledger_entries": [
+                {
+                    "entry": "L-014",
+                    "path": "docs/research/FSP-STAGE-LEDGER.md",
+                    "readback": (
+                        "N2-SBMC-ENV-REDESIGN-001A banked as "
+                        "design/pre-registration; candidate-free preflight; "
+                        "NO code/scoring in this bank."
+                    ),
+                }
+            ]
+        },
+    }
+
+
+def _valid_program_state() -> dict:
+    return {
+        "task_id": "ROUTE-STATE-MACHINE-001A",
+        "current_frontier_route_id": "N2-SBMC-ENV-REDESIGN-001A",
+        "allowed_next_actions": [
+            "preserve_current_frontier_registration",
+            "draft_bounded_task_card_before_any_future_code",
+        ],
+        "forbidden_next_actions": [
+            "run_scoring",
+            "run_mechanism_experiment",
+            "claim_mechanism_validity",
+            "claim_theory_pressure",
+        ],
+        "claim_ceiling": {
+            "max": "local route-governance validation only",
+            "forbidden_claims": [
+                "mechanism_validity",
+                "theory_pressure",
+                "scoring_authorization",
+                "experiment_execution",
+            ],
+        },
+        "updated_at_utc": "2026-07-06T00:00:00Z",
+    }
+
+
 def _valid_closure(closure_type: str = "INSTRUMENT_INVALID") -> dict:
     return {
         "route_id": "PUM-ENV-v0",
@@ -98,6 +154,35 @@ def _valid_closure(closure_type: str = "INSTRUMENT_INVALID") -> dict:
 
 def _error_codes(result: dict) -> set[str]:
     return {error["code"] for error in result["validation_errors"]}
+
+
+def _write_valid_route_artifacts(tmp_path, *, include_program_state: bool = True) -> None:
+    _, validator = _validator()
+    artifact_dir = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A"
+    pum_route_dir = artifact_dir / "routes" / "PUM-ENV-v0"
+    pum_route_dir.mkdir(parents=True)
+    validator.write_json(pum_route_dir / "state.json", _valid_state())
+    validator.write_json(pum_route_dir / "closure.json", _valid_closure())
+    (pum_route_dir / "events.jsonl").write_text(
+        '{"event":"closure_packet_created","route_id":"PUM-ENV-v0"}\n',
+        encoding="utf-8",
+    )
+
+    n2_route_dir = artifact_dir / "routes" / "N2-SBMC-ENV-REDESIGN-001A"
+    n2_route_dir.mkdir(parents=True)
+    validator.write_json(n2_route_dir / "state.json", _valid_n2_frontier_state())
+    (n2_route_dir / "events.jsonl").write_text(
+        '{"event":"current_frontier_registered","route_id":"N2-SBMC-ENV-REDESIGN-001A"}\n',
+        encoding="utf-8",
+    )
+
+    if include_program_state:
+        validator.write_json(artifact_dir / "program_state.json", _valid_program_state())
+
+
+def _build_report_for_tmp_tree(tmp_path) -> dict:
+    _, validator = _validator()
+    return validator.build_validation_report(tmp_path, changed_files=[], authorized_paths=[])
 
 
 def test_state_and_closure_enums_are_exact():
@@ -331,3 +416,165 @@ def test_missing_closure_type_fails():
     )
 
     assert "missing_closure_type" in _error_codes(result)
+
+
+def test_valid_program_state_plus_n2_current_frontier_passes(tmp_path):
+    _write_valid_route_artifacts(tmp_path)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert report["verdict"] == "pass"
+    assert report["current_frontier_route_id"] == "N2-SBMC-ENV-REDESIGN-001A"
+    assert report["route_count"] == 2
+
+
+def test_missing_program_state_fails(tmp_path):
+    _write_valid_route_artifacts(tmp_path, include_program_state=False)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "missing_program_state_json" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_missing_current_frontier_route_id_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    program_state_path = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A" / "program_state.json"
+    program_state = _valid_program_state()
+    del program_state["current_frontier_route_id"]
+    validator.write_json(program_state_path, program_state)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "missing_current_frontier_route_id" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_current_frontier_route_missing_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    n2_route_dir = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A" / "routes" / "N2-SBMC-ENV-REDESIGN-001A"
+    for child in n2_route_dir.iterdir():
+        child.unlink()
+    n2_route_dir.rmdir()
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "missing_current_frontier_route_directory" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_current_frontier_tombstoned_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    n2_state_path = (
+        tmp_path
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "N2-SBMC-ENV-REDESIGN-001A"
+        / "state.json"
+    )
+    validator.write_json(n2_state_path, _valid_n2_frontier_state(current_state="TOMBSTONED"))
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "current_frontier_route_tombstoned" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_program_state_missing_allowed_next_actions_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    program_state_path = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A" / "program_state.json"
+    program_state = _valid_program_state()
+    program_state["allowed_next_actions"] = []
+    validator.write_json(program_state_path, program_state)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "program_state_missing_allowed_next_actions" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_program_state_missing_forbidden_next_actions_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    program_state_path = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A" / "program_state.json"
+    program_state = _valid_program_state()
+    program_state["forbidden_next_actions"] = []
+    validator.write_json(program_state_path, program_state)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "program_state_missing_forbidden_next_actions" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_program_state_missing_claim_ceiling_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    program_state_path = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A" / "program_state.json"
+    program_state = _valid_program_state()
+    program_state["claim_ceiling"] = {}
+    validator.write_json(program_state_path, program_state)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "program_state_missing_claim_ceiling_max" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+@pytest.mark.parametrize(
+    "authorization_key",
+    ["mechanism_validity", "theory_pressure", "scoring", "experiment_execution"],
+)
+def test_registered_current_frontier_authorizing_forbidden_capability_fails(tmp_path, authorization_key: str):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    n2_state_path = (
+        tmp_path
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "N2-SBMC-ENV-REDESIGN-001A"
+        / "state.json"
+    )
+    n2_state = _valid_n2_frontier_state()
+    n2_state["authorizations"][authorization_key] = True
+    validator.write_json(n2_state_path, n2_state)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "registered_current_frontier_authorizes_forbidden_capability" in _error_codes(report)
+    assert report["verdict"] == "fail"
+
+
+def test_n2_current_frontier_without_l014_source_evidence_fails(tmp_path):
+    _, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    n2_state_path = (
+        tmp_path
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "N2-SBMC-ENV-REDESIGN-001A"
+        / "state.json"
+    )
+    n2_state = _valid_n2_frontier_state()
+    n2_state["source_readback"] = {
+        "ledger_entries": [
+            {
+                "entry": "L-013",
+                "path": "docs/research/FSP-STAGE-LEDGER.md",
+                "readback": "Frontier reuse scan only.",
+            }
+        ]
+    }
+    validator.write_json(n2_state_path, n2_state)
+
+    report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "n2_frontier_missing_l014_source_readback" in _error_codes(report)
+    assert report["verdict"] == "fail"

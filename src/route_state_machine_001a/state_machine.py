@@ -2,6 +2,8 @@ from __future__ import annotations
 
 TASK_ID = "ROUTE-STATE-MACHINE-001A"
 TASK_ARTIFACT_DIR = "artifacts/ROUTE-STATE-MACHINE-001A"
+PROGRAM_STATE_FILENAME = "program_state.json"
+CURRENT_FRONTIER_ROUTE_ID = "N2-SBMC-ENV-REDESIGN-001A"
 
 ROUTE_STATES = (
     "PROPOSED",
@@ -41,19 +43,42 @@ REQUIRED_THEORY_PRESSURE_EVIDENCE = (
     "provenance",
 )
 
+CURRENT_FRONTIER_FORBIDDEN_AUTHORIZATIONS = (
+    "mechanism_validity",
+    "theory_pressure",
+    "scoring",
+    "experiment_execution",
+)
+
+CURRENT_FRONTIER_FORBIDDEN_ACTION_TOKENS = (
+    "mechanism_validity",
+    "mechanism validity",
+    "theory_pressure",
+    "theory pressure",
+    "score",
+    "scoring",
+    "experiment",
+    "execution",
+)
+
 AUTHORIZED_TASK_PATHS = (
     "docs/codex/tasks/ROUTE-STATE-MACHINE-001A.md",
+    "docs/codex/tasks/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
+    "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
     "src/route_state_machine_001a/__init__.py",
     "src/route_state_machine_001a/routectl.py",
     "src/route_state_machine_001a/state_machine.py",
     "src/route_state_machine_001a/validator.py",
     "tests/route_state_machine_001a/test_validator.py",
+    "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/route_state.schema.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/closure_packet.schema.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/closure.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/events.jsonl",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/state.json",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
 )

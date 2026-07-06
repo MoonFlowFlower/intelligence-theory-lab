@@ -1,7 +1,10 @@
 {
-  "aggregation_rule": "verdict is pass iff validate_routes_tree returns zero validation_errors",
+  "aggregation_rule": "verdict is pass iff validate_routes_tree and validate_program_state return zero validation_errors",
   "authorized_paths": [
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
+    "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/events.jsonl",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/closure.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/state.json",
@@ -9,7 +12,9 @@
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/route_state.schema.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
     "docs/codex/tasks/ROUTE-STATE-MACHINE-001A.md",
+    "docs/codex/tasks/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
+    "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
     "src/route_state_machine_001a/__init__.py",
     "src/route_state_machine_001a/routectl.py",
     "src/route_state_machine_001a/state_machine.py",
@@ -17,17 +22,11 @@
     "tests/route_state_machine_001a/test_validator.py"
   ],
   "changed_files": [
+    "AGENTS.md",
+    "CLAUDE.md",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_operator_bank_ops_proposal_line30.ps1",
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
-    "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/closure.json",
-    "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/events.jsonl",
-    "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/state.json",
-    "artifacts/ROUTE-STATE-MACHINE-001A/schemas/closure_packet.schema.json",
-    "artifacts/ROUTE-STATE-MACHINE-001A/schemas/route_state.schema.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
-    "docs/codex/tasks/ROUTE-STATE-MACHINE-001A.md",
-    "docs/research/ROUTE-STATE-MACHINE-001A.md",
-    "src/route_state_machine_001a/__init__.py",
     "src/route_state_machine_001a/routectl.py",
     "src/route_state_machine_001a/state_machine.py",
     "src/route_state_machine_001a/validator.py",
@@ -40,11 +39,20 @@
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gbt_control.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gru_postfix_A.json",
     "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_gru_postfix_B.json",
-    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_running_average_control.json"
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_gru_determinism_diag/stage2_running_average_control.json",
+    "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/events.jsonl",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/state.json",
+    "docs/codex/tasks/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
+    "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md"
   ],
   "claim_ceiling": "local route-governance validation only; no mechanism, theory, agency, autonomy, subjectivity, consciousness, EGO readiness, companion readiness, or mainline-effect claim",
-  "code_path_hash": "525145d9814b04b11a00bae03c03ea0c91753c131cd765663bb4de1ae1cda584",
+  "code_path_hash": "c78ff99bc1b505256b789077291072afa6cfde69a669894250ddfd0a4056f539",
+  "current_frontier_route_id": "N2-SBMC-ENV-REDESIGN-001A",
   "input_artifacts": [
+    "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/events.jsonl",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/closure.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/state.json",
@@ -52,8 +60,15 @@
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/route_state.schema.json"
   ],
   "producer_function": "build_validation_report",
-  "route_count": 1,
+  "program_state_verdict": "pass",
+  "route_count": 2,
   "routes": [
+    {
+      "closure_type": null,
+      "current_state": "REGISTERED",
+      "route_id": "N2-SBMC-ENV-REDESIGN-001A",
+      "verdict": "pass"
+    },
     {
       "closure_type": "INSTRUMENT_INVALID",
       "current_state": "TOMBSTONED",
@@ -61,7 +76,7 @@
       "verdict": "pass"
     }
   ],
-  "run_id": "route-state-machine-001a-20260706T144549Z-c88bd9af",
+  "run_id": "route-state-machine-001a-20260706T150604Z-0ead7d81",
   "task_id": "ROUTE-STATE-MACHINE-001A",
   "validation_errors": [],
   "validation_warnings": [],
