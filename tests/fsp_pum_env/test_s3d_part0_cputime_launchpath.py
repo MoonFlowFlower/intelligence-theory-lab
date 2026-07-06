@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import re
 from types import SimpleNamespace
 
 import pytest
@@ -10,6 +11,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 BATTERY_RUNNER = ROOT / "artifacts" / "FSP-PUM-ENV-IDPROBE-001A" / "s3d_battery_runner_line30.py"
 REGATE_RUNNER = ROOT / "artifacts" / "FSP-PUM-ENV-IDPROBE-001A" / "s3d_part0_cputime_regate_runner.py"
+OBS_DECODERS = ROOT / "src" / "fsp_pum_env" / "battery" / "obs_decoders.py"
 
 
 def _load_module(path: Path, name: str):
@@ -358,3 +360,66 @@ def test_t6_spot_check_gate_is_seeded_and_blocks_digest_or_confusion_mismatch(mo
     )
     assert failed["passed"] is False
     assert failed["mismatches"][0]["unit_id"] == selected[0]
+
+
+def test_t7_gru_training_seeds_torch_from_existing_config_seed_before_model_construction():
+    source = OBS_DECODERS.read_text(encoding="utf-8")
+
+    function_body = re.search(
+        r"def _fit_eval_gru_sequences\([\s\S]*?\n\n\ndef _empty_sweep_aggregators",
+        source,
+    )
+    assert function_body is not None
+    body = function_body.group(0)
+    seed_call = 'torch.manual_seed(_derive_config_seed(design, str(config["config_id"])))'
+    model_call = "model = _make_torch_next_symbol_gru("
+
+    assert seed_call in body
+    assert body.index(seed_call) < body.index(model_call)
+
+
+def test_t8_repair_resume_plan_reuses_only_deterministic_completed_units_and_spot_check_002():
+    battery = _load_module(BATTERY_RUNNER, "s3d_battery_runner_line30_t8")
+    expected_ids = [
+        "member::cert::obs_decoder_gru::camouflage_off",
+        "member::null::obs_decoder_gru::NULL_env",
+        "member::cert::seq_full_history_no_action_conditioning::constant_none",
+        "member::null::seq_full_history_no_action_conditioning::NULL_env",
+        "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+        "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env",
+        "member::cert::obs_decoder_gbt::camouflage_off",
+        "member::null::obs_decoder_gbt::NULL_env",
+        "member::cert::discounted_LS_lambda_0.95::flat_theta",
+        "member::null::discounted_LS_lambda_0.95::NULL_env",
+    ]
+    completed_ids = [
+        unit_id
+        for unit_id in expected_ids
+        if "discounted_LS_lambda_0.95" not in unit_id
+    ]
+
+    plan = battery._repair_resume_unit_plan(expected_ids, completed_ids)
+
+    assert plan["spot_check_seed_text"] == "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:002"
+    assert plan["reused_unit_ids"] == [
+        "member::cert::obs_decoder_gbt::camouflage_off",
+        "member::null::obs_decoder_gbt::NULL_env",
+    ]
+    assert plan["excluded_nondeterministic_completed_unit_ids"] == [
+        "member::cert::obs_decoder_gru::camouflage_off",
+        "member::null::obs_decoder_gru::NULL_env",
+        "member::cert::seq_full_history_no_action_conditioning::constant_none",
+        "member::null::seq_full_history_no_action_conditioning::NULL_env",
+        "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+        "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env",
+    ]
+    assert plan["fresh_unit_ids"] == [
+        "member::cert::obs_decoder_gru::camouflage_off",
+        "member::null::obs_decoder_gru::NULL_env",
+        "member::cert::seq_full_history_no_action_conditioning::constant_none",
+        "member::null::seq_full_history_no_action_conditioning::NULL_env",
+        "member::cert::seq_window_with_action_conditioning_W15_no_cross_session_persistence::low_diversity",
+        "member::null::seq_window_with_action_conditioning_W15_no_cross_session_persistence::NULL_env",
+        "member::cert::discounted_LS_lambda_0.95::flat_theta",
+        "member::null::discounted_LS_lambda_0.95::NULL_env",
+    ]

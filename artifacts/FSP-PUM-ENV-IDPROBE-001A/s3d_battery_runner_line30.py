@@ -20,6 +20,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import multiprocessing
 import os
 from pathlib import Path
 import random
@@ -82,7 +83,8 @@ from src.fsp_pum_env.trajectory_sets import _hash_spec_streams, _iter_records_wi
 
 
 TASK_ID = "FSP-PUM-ENV-IDPROBE-001A"
-TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A"
+TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A"
+RESUME_TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A"
 EXEC_TASK_CARD_ID = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A"
 ARTIFACT_ROOT = ROOT / "artifacts" / TASK_ID
 FROZEN_DESIGN = ARTIFACT_ROOT / "frozen_design.json"
@@ -90,6 +92,7 @@ S3A_MANIFEST = ARTIFACT_ROOT / "s3a_trajectory_set_manifest.json"
 VOCABULARY = ARTIFACT_ROOT / "s3c_models" / "f2_ngram_vocabulary.json"
 EXEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-EXEC-001A.md"
 RESUME_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A.md"
+GRU_REPAIR_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-GRU-SEED-DETERMINISM-REPAIR-001A.md"
 INTERPRETATION_PREREG = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-INTERPRETATION-PREREG-001A.md"
 SPEC_CARD = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001B.md"
 SPEC_CARD_001A_SUPERSEDED = ROOT / "docs" / "codex" / "tasks" / "FSP-PUM-ENV-IDPROBE-001A-S3D-SHOULD-WIN-NULL-ENV-SPEC-001A.md"
@@ -120,8 +123,21 @@ REPLAY_REPORT = ARTIFACT_ROOT / "replay_report.json"
 FAILURE_MANIFEST = ARTIFACT_ROOT / "failure_manifest.json"
 UNIT_RESULTS_DIR = ARTIFACT_ROOT / "s3d_unit_results"
 RESUME_MANIFEST = ARTIFACT_ROOT / "s3d_resume_manifest.json"
+GRU_DETERMINISM_DIAG_DIR = ARTIFACT_ROOT / "s3d_gru_determinism_diag"
 IDEAL_KERNEL_ANALYSIS = ARTIFACT_ROOT / "s3d_ideal_kernel_analysis_001a.md"
-SPOT_CHECK_SEED_TEXT = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:001"
+SPOT_CHECK_SEED_TEXT = "FSP-PUM-ENV-IDPROBE-001A-S3D-BATTERY-RESUME-001A:spot-check:002"
+GRU_FAMILY_MEMBERS = frozenset(
+    {
+        "obs_decoder_gru",
+        "seq_full_history_no_action_conditioning",
+        "seq_window_with_action_conditioning_W15_no_cross_session_persistence",
+    }
+)
+GRU_STAGE1_FAILING_UNIT_ID = "member::null::seq_full_history_no_action_conditioning::NULL_env"
+GRU_STAGE1_GBT_CONTROL_UNIT_ID = "member::null::obs_decoder_gbt::NULL_env"
+GRU_STAGE2_RUNNING_AVG_CONTROL_UNIT_ID = "member::cert::running_average_preference_regressor::flat_theta"
+GRU_STAGE1_DECISION = GRU_DETERMINISM_DIAG_DIR / "stage1_decision.json"
+GRU_STAGE2_GATES = GRU_DETERMINISM_DIAG_DIR / "stage2_gates.json"
 
 CLAIM_CEILING = (
     "line L under the frozen contract: S3d should-win + NULL-env instrument evidence only; "
@@ -285,9 +301,67 @@ def run() -> dict[str, Any]:
         result_payload["single_line_application"] = {
             "source": str(BUDGET_DECISION.relative_to(ROOT)),
             "line_number": int(precondition["signed_budget"]["line_number"]),
-            "applied_to": ["unit-level resume runtime guard"],
+            "applied_to": ["unit-level repair-resume runtime guard"],
             "no_second_test_path": True,
         }
+
+        reuse_stop_preservation = _preserve_reuse_gate_stop_outputs()
+        result_payload["reuse_gate_stop_preservation"] = reuse_stop_preservation
+        stage1_decision = _load_gru_stage1_decision()
+        result_payload["gru_stage1_determinism_decision"] = stage1_decision
+        if not bool(stage1_decision.get("stage2_eligible")):
+            manifest = _failure_manifest_payload(
+                verdict="STOP_GRU_STAGE1_NOT_ELIGIBLE",
+                stop_condition=str(stage1_decision.get("decision_table_outcome", "missing_stage1_decision")),
+                details={"stage1_decision": stage1_decision},
+                protected_before=protected_before,
+            )
+            _write_json(FAILURE_MANIFEST, manifest)
+            result_payload.update(
+                {
+                    "verdict": manifest["verdict"],
+                    "s3d_results_void": True,
+                    "stop_condition": manifest["stop_condition"],
+                    "protected_artifacts_after": _protected_artifact_hashes(),
+                    "new_artifacts": _expected_new_artifact_paths(
+                        include_failure=True,
+                        include_reports=False,
+                        include_resume=True,
+                        include_gru_diag=True,
+                    ),
+                }
+            )
+            _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
+            _write_operator_bank_ops(result_payload)
+            return result_payload
+
+        stage2_gates = run_gru_seed_repair_stage2_gates()
+        result_payload["gru_stage2_repair_gates"] = stage2_gates
+        if not bool(stage2_gates.get("passed")):
+            manifest = _failure_manifest_payload(
+                verdict="STOP_GRU_STAGE2_GATE_FAILED",
+                stop_condition=str(stage2_gates.get("stop_condition", "gru_seed_repair_gate_failed")),
+                details={"stage2_gates": stage2_gates},
+                protected_before=protected_before,
+            )
+            _write_json(FAILURE_MANIFEST, manifest)
+            result_payload.update(
+                {
+                    "verdict": manifest["verdict"],
+                    "s3d_results_void": True,
+                    "stop_condition": manifest["stop_condition"],
+                    "protected_artifacts_after": _protected_artifact_hashes(),
+                    "new_artifacts": _expected_new_artifact_paths(
+                        include_failure=True,
+                        include_reports=False,
+                        include_resume=True,
+                        include_gru_diag=True,
+                    ),
+                }
+            )
+            _write_json(RESULT, _finalize_result_payload(result_payload, perf_start, cpu_start))
+            _write_operator_bank_ops(result_payload)
+            return result_payload
 
         void_preservation = _preserve_void_line30_outputs()
         result_payload["void_line30_preservation"] = void_preservation
@@ -317,6 +391,7 @@ def run() -> dict[str, Any]:
                         include_failure=True,
                         include_reports=False,
                         include_resume=True,
+                        include_gru_diag=True,
                     ),
                 }
             )
@@ -344,6 +419,7 @@ def run() -> dict[str, Any]:
                         include_reports=False,
                         include_resume=True,
                         include_ablation=True,
+                        include_gru_diag=True,
                     ),
                 }
             )
@@ -408,6 +484,7 @@ def run() -> dict[str, Any]:
                         include_ablation=True,
                         include_cert_sets=True,
                         include_trace=True,
+                        include_gru_diag=True,
                     ),
                 }
             )
@@ -475,6 +552,7 @@ def run() -> dict[str, Any]:
                     include_resume=True,
                     include_ablation=True,
                     include_trace=True,
+                    include_gru_diag=True,
                 ),
             }
         )
@@ -512,6 +590,7 @@ def _verify_preconditions() -> dict[str, Any]:
     errors: list[str] = []
     signed = _parse_signed_budget_decision()
     signed_spec_001b = _parse_signed_spec_001b_decision()
+    signed_gru_repair = _parse_signed_gru_repair_decision()
     if not signed["zero_score_exposure_confirmed"]:
         errors.append("BUDGET-DECISION-002A §6 zero-score exposure confirmation is missing")
     if signed["resume_mode"] != "reuse-completed":
@@ -538,8 +617,18 @@ def _verify_preconditions() -> dict[str, Any]:
         errors.append("001B §7 operator is missing")
     if not signed_spec_001b["date"]:
         errors.append("001B §7 date is missing")
+    if signed_gru_repair["route"] != "A":
+        errors.append("GRU determinism repair card §7 does not select route A")
+    if not signed_gru_repair["l38_acknowledged"]:
+        errors.append("GRU determinism repair card §7 does not acknowledge L=38")
+    if not signed_gru_repair["operator"]:
+        errors.append("GRU determinism repair card §7 operator is missing")
+    if not signed_gru_repair["date"]:
+        errors.append("GRU determinism repair card §7 date is missing")
 
     git_readback = _read_git_state_without_git()
+    if not git_readback.get("gru_repair_card_committed_at_head"):
+        errors.append("GRU determinism repair card is not identical to HEAD tree")
     if not git_readback.get("spec_001b_committed_at_head"):
         errors.append("signed 001B rule source is not identical to HEAD tree")
     if not git_readback.get("budget_note_committed_at_head"):
@@ -548,8 +637,10 @@ def _verify_preconditions() -> dict[str, Any]:
         errors.append("resume card is not identical to HEAD tree")
     if not git_readback.get("interpretation_prereg_committed_at_head"):
         errors.append("interpretation pre-registration card is not identical to HEAD tree")
-    if not git_readback.get("line30_stop_evidence_banked"):
-        errors.append("L=30 STOP evidence core is not present in HEAD tree")
+    if not git_readback.get("resume_stop_evidence_banked"):
+        errors.append("resume STOP reuse-gate evidence core is not present in HEAD tree")
+    if not git_readback.get("void_line30_v1_evidence_banked"):
+        errors.append("preserved void line30 evidence is not present in HEAD tree")
     if not git_readback.get("s3d_001b_impl_report_banked"):
         errors.append("001B implementation report is not present in HEAD tree")
     if not git_readback.get("variance_probe_banked"):
@@ -562,8 +653,10 @@ def _verify_preconditions() -> dict[str, Any]:
         "errors": errors,
         "signed_budget": signed,
         "signed_spec_001b": signed_spec_001b,
+        "signed_gru_repair": signed_gru_repair,
         "git_readback_without_git_command": git_readback,
         "read_only_rule_sources": [
+            str(GRU_REPAIR_CARD.relative_to(ROOT)),
             str(RESUME_CARD.relative_to(ROOT)),
             str(EXEC_CARD.relative_to(ROOT)),
             str(INTERPRETATION_PREREG.relative_to(ROOT)),
@@ -642,6 +735,37 @@ def _parse_signed_spec_001b_decision() -> dict[str, Any]:
     }
 
 
+def _parse_signed_gru_repair_decision() -> dict[str, Any]:
+    text = GRU_REPAIR_CARD.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    section_start = next((idx for idx, line in enumerate(lines) if "operator signature" in line), 0)
+    section = "\n".join(lines[section_start:])
+    route_line_index = next((idx for idx, line in enumerate(lines, start=1) if "A (auditor-recommended)" in line), -1)
+    l38_line_index = next((idx for idx, line in enumerate(lines, start=1) if "L stays 38 CPU-h" in line), -1)
+    operator_line_index = next((idx for idx, line in enumerate(lines, start=1) if line.startswith("Operator:") and "Date:" in line), -1)
+    route_line = lines[route_line_index - 1] if route_line_index > 0 else ""
+    l38_line = lines[l38_line_index - 1] if l38_line_index > 0 else ""
+    operator_line = lines[operator_line_index - 1] if operator_line_index > 0 else ""
+    route_a = bool(re.search(r"\[[xX]\].*A \(auditor-recommended\)", route_line))
+    l38_ack = bool(re.search(r"L stays 38 CPU-h.*\[[xX]\]\s*acknowledged", l38_line))
+    operator_match = re.search(r"Operator:\s*([A-Za-z0-9_. -]+?)\s+Date:", operator_line)
+    date_match = re.search(r"Date:\s*([0-9]{4}-[0-9]{2}-[0-9]{2})", operator_line)
+    return {
+        "route": "A" if route_a else "",
+        "l38_acknowledged": l38_ack,
+        "operator": operator_match.group(1).strip() if operator_match else "",
+        "date": date_match.group(1).strip() if date_match else "",
+        "route_line_number": int(route_line_index),
+        "l38_line_number": int(l38_line_index),
+        "operator_line_number": int(operator_line_index),
+        "route_line_text": route_line,
+        "l38_line_text": l38_line,
+        "operator_line_text": operator_line,
+        "source_path": str(GRU_REPAIR_CARD.relative_to(ROOT)),
+        "stage2_stage3_authorized": bool(route_a and l38_ack and operator_match and date_match),
+    }
+
+
 def _read_git_state_without_git() -> dict[str, Any]:
     """Read HEAD/history/index via dulwich; no git executable is invoked."""
 
@@ -700,12 +824,14 @@ def _read_git_state_without_git() -> dict[str, Any]:
     spec_001b_rel = str(SPEC_CARD.relative_to(ROOT)).replace("\\", "/")
     spec_001a_rel = str(SPEC_CARD_001A_SUPERSEDED.relative_to(ROOT)).replace("\\", "/")
     resume_card_rel = str(RESUME_CARD.relative_to(ROOT)).replace("\\", "/")
+    gru_repair_card_rel = str(GRU_REPAIR_CARD.relative_to(ROOT)).replace("\\", "/")
     prereg_rel = str(INTERPRETATION_PREREG.relative_to(ROOT)).replace("\\", "/")
     impl_report_rel = str(S3D_001B_IMPL_REPORT.relative_to(ROOT)).replace("\\", "/")
     budget_rel = str(BUDGET_DECISION.relative_to(ROOT)).replace("\\", "/")
     spec_001b_blob = blob_bytes_at(head_hash, spec_001b_rel)
     spec_001a_blob = blob_bytes_at(head_hash, spec_001a_rel)
     resume_card_blob = blob_bytes_at(head_hash, resume_card_rel)
+    gru_repair_card_blob = blob_bytes_at(head_hash, gru_repair_card_rel)
     prereg_blob = blob_bytes_at(head_hash, prereg_rel)
     budget_blob = blob_bytes_at(head_hash, budget_rel)
     impl_report_blob = blob_bytes_at(head_hash, impl_report_rel)
@@ -730,6 +856,31 @@ def _read_git_state_without_git() -> dict[str, Any]:
             line30_result_void = line30_result.get("s3d_results_void")
         except Exception:
             line30_result_verdict = "UNPARSEABLE"
+    void_line30_v1_paths = [
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/result_void_line30_v1.json",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest_void_line30_v1.json",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.jsonl",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/trace_void_line30_v1.csv",
+    ]
+    void_line30_v1_blobs = {path: blob_bytes_at(head_hash, path) for path in void_line30_v1_paths}
+    resume_stop_paths = [
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/result.json",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/failure_manifest.json",
+        "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_resume_manifest.json",
+    ]
+    resume_stop_blobs = {path: blob_bytes_at(head_hash, path) for path in resume_stop_paths}
+    resume_result_verdict = None
+    resume_failure_verdict = None
+    resume_manifest_passed = None
+    try:
+        if resume_stop_blobs[resume_stop_paths[0]] is not None:
+            resume_result_verdict = json.loads(resume_stop_blobs[resume_stop_paths[0]].decode("utf-8-sig")).get("verdict")
+        if resume_stop_blobs[resume_stop_paths[1]] is not None:
+            resume_failure_verdict = json.loads(resume_stop_blobs[resume_stop_paths[1]].decode("utf-8-sig")).get("verdict")
+        if resume_stop_blobs[resume_stop_paths[2]] is not None:
+            resume_manifest_passed = json.loads(resume_stop_blobs[resume_stop_paths[2]].decode("utf-8-sig")).get("passed")
+    except Exception:
+        resume_result_verdict = "UNPARSEABLE"
     found_stop = [
         {"hash": commit_hash, "subject": (commit.message.decode(errors="replace").splitlines() or [""])[0]}
         for commit_hash, commit in walk_commits(head_hash)
@@ -755,6 +906,7 @@ def _read_git_state_without_git() -> dict[str, Any]:
         "branch_ref": head_ref,
         "head_hash": head_hash,
         "status_without_git_command": status_payload,
+        "gru_repair_card_committed_at_head": gru_repair_card_blob == GRU_REPAIR_CARD.read_bytes(),
         "spec_001b_committed_at_head": spec_001b_blob == SPEC_CARD.read_bytes(),
         "spec_001a_committed_at_head": spec_001a_blob == SPEC_CARD_001A_SUPERSEDED.read_bytes(),
         "resume_card_committed_at_head": resume_card_blob == RESUME_CARD.read_bytes(),
@@ -766,6 +918,22 @@ def _read_git_state_without_git() -> dict[str, Any]:
         "line30_stop_evidence_banked": all(blob is not None for blob in line30_stop_blobs.values())
         and line30_result_verdict == "STOP_runtime_guard_exceeded_signed_line"
         and line30_result_void is True,
+        "void_line30_v1_evidence_banked": all(blob is not None for blob in void_line30_v1_blobs.values()),
+        "resume_stop_evidence_banked": all(blob is not None for blob in resume_stop_blobs.values())
+        and resume_result_verdict == "STOP_RESUME_REUSE_GATE_FAILED"
+        and resume_failure_verdict == "STOP_RESUME_REUSE_GATE_FAILED"
+        and resume_manifest_passed is False,
+        "resume_stop_result_verdict_at_head": resume_result_verdict,
+        "resume_stop_failure_verdict_at_head": resume_failure_verdict,
+        "resume_stop_manifest_passed_at_head": resume_manifest_passed,
+        "resume_stop_evidence_head_paths": {
+            path: {"exists": blob is not None, "sha256": hashlib.sha256(blob).hexdigest() if blob is not None else None}
+            for path, blob in resume_stop_blobs.items()
+        },
+        "void_line30_v1_evidence_head_paths": {
+            path: {"exists": blob is not None, "sha256": hashlib.sha256(blob).hexdigest() if blob is not None else None}
+            for path, blob in void_line30_v1_blobs.items()
+        },
         "line30_stop_evidence_head_paths": {
             path: {"exists": blob is not None, "sha256": hashlib.sha256(blob).hexdigest() if blob is not None else None}
             for path, blob in line30_stop_blobs.items()
@@ -1578,6 +1746,326 @@ def _battery_unit_payloads() -> list[dict[str, Any]]:
     return payloads
 
 
+def _is_gru_family_unit_id(unit_id: str) -> bool:
+    parts = str(unit_id).split("::")
+    return len(parts) >= 3 and parts[0] == "member" and parts[2] in GRU_FAMILY_MEMBERS
+
+
+def _repair_resume_unit_plan(expected_ids: Sequence[str], completed_ids: Sequence[str]) -> dict[str, Any]:
+    expected = [str(unit_id) for unit_id in expected_ids]
+    completed_set = {str(unit_id) for unit_id in completed_ids}
+    excluded_gru = [unit_id for unit_id in expected if unit_id in completed_set and _is_gru_family_unit_id(unit_id)]
+    reused = [
+        unit_id
+        for unit_id in expected
+        if unit_id in completed_set and not _is_gru_family_unit_id(unit_id)
+    ]
+    fresh = [unit_id for unit_id in expected if unit_id not in completed_set or unit_id in set(excluded_gru)]
+    discounted_ls_fresh = [unit_id for unit_id in fresh if "::discounted_LS_lambda_0.95::" in unit_id]
+    return {
+        "spot_check_seed_text": SPOT_CHECK_SEED_TEXT,
+        "reused_unit_ids": reused,
+        "fresh_unit_ids": fresh,
+        "excluded_nondeterministic_completed_unit_ids": excluded_gru,
+        "excluded_nondeterministic_completed_unit_count": len(excluded_gru),
+        "fresh_gru_unit_ids": [unit_id for unit_id in fresh if _is_gru_family_unit_id(unit_id)],
+        "fresh_discounted_ls_unit_ids": discounted_ls_fresh,
+        "expected_stage3_shape": {
+            "reused_non_gru_units": 35,
+            "fresh_gru_units": 6,
+            "fresh_discounted_LS_units": 2,
+        },
+        "observed_stage3_shape": {
+            "reused_non_gru_units": len(reused),
+            "fresh_gru_units": len([unit_id for unit_id in fresh if _is_gru_family_unit_id(unit_id)]),
+            "fresh_discounted_LS_units": len(discounted_ls_fresh),
+        },
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_repair_resume_unit_plan"
+        ),
+    }
+
+
+def _run_unit_in_fresh_spawned_worker(payload: Mapping[str, Any]) -> dict[str, Any]:
+    context = multiprocessing.get_context("spawn")
+    with ProcessPoolExecutor(max_workers=1, mp_context=context) as executor:
+        future = executor.submit(_run_unit_worker, dict(payload))
+        return future.result()
+
+
+def _payload_digest_summary(payload: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        "unit_id": str(payload["unit_id"]),
+        "metric": float(payload["metric"]),
+        "metric_digest": str(payload["metric_digest"]),
+        "per_user_confusion_sha256": str(
+            payload.get("per_user_confusion_sha256") or _sha256_json(payload["per_user_confusion"])
+        ),
+        "process_cpu_seconds": float(payload.get("process_cpu_seconds", 0.0)),
+        "wall_clock_seconds": float(payload.get("wall_clock_seconds", 0.0)),
+        "code_path_hash": str(payload.get("code_path_hash", "")),
+    }
+
+
+def _void_score_payload_for_unit(unit_id: str) -> dict[str, Any]:
+    for row in _load_trace_rows(ARTIFACT_ROOT / "trace_void_line30_v1.jsonl"):
+        if str(row["unit_id"]) == str(unit_id):
+            return _score_payload_from_trace_row(row)
+    raise KeyError(f"unit_not_found_in_void_trace:{unit_id}")
+
+
+def _write_gru_diag_payload(name: str, payload: Mapping[str, Any], *, stage: str) -> dict[str, Any]:
+    GRU_DETERMINISM_DIAG_DIR.mkdir(parents=True, exist_ok=True)
+    path = GRU_DETERMINISM_DIAG_DIR / f"{name}.json"
+    artifact = {
+        "artifact": "s3d_gru_determinism_payload",
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "stage": stage,
+        "payload_name": name,
+        "unit_id": str(payload["unit_id"]),
+        "score_payload": dict(payload),
+        "payload_summary": _payload_digest_summary(payload),
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_write_gru_diag_payload"
+        ),
+        "run_finished_at": _utc_timestamp(),
+        "claim_ceiling": "unit-level determinism/provenance diagnostic only; no S3d adjudication",
+    }
+    _write_json(path, artifact)
+    return _artifact_ref(path)
+
+
+def run_gru_determinism_stage1() -> dict[str, Any]:
+    run_started_at = _utc_timestamp()
+    start_wall = time.perf_counter()
+    start_cpu = time.process_time()
+    ARTIFACT_ROOT.mkdir(parents=True, exist_ok=True)
+    precondition = _verify_preconditions()
+    if not bool(precondition["passed"]):
+        reuse_stop_preservation = _preserve_reuse_gate_stop_outputs()
+        manifest = _failure_manifest_payload(
+            verdict="STOP_PRECONDITION_UNMET",
+            stop_condition="GRU repair precondition failed before Stage 1",
+            details=precondition,
+            protected_before=_protected_artifact_hashes(),
+        )
+        _write_json(FAILURE_MANIFEST, manifest)
+        result = _finalize_result_payload(
+            {
+                "task_id": TASK_ID,
+                "task_card_id": TASK_CARD_ID,
+                "verdict": "STOP_PRECONDITION_UNMET",
+                "s3d_results_void": True,
+                "precondition": precondition,
+                "reuse_gate_stop_preservation": reuse_stop_preservation,
+                "run_started_at": run_started_at,
+                "producer_function": (
+                    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::run_gru_determinism_stage1"
+                ),
+                "claim_ceiling": CLAIM_CEILING,
+                "code_path_hash": _code_path_hash(),
+            },
+            start_wall,
+            start_cpu,
+        )
+        _write_json(RESULT, result)
+        _write_operator_bank_ops(result)
+        return result
+
+    payload_by_id = {str(payload["unit_id"]): payload for payload in _battery_unit_payloads()}
+    failing_payload = payload_by_id[GRU_STAGE1_FAILING_UNIT_ID]
+    gbt_payload = payload_by_id[GRU_STAGE1_GBT_CONTROL_UNIT_ID]
+    void_failing = _void_score_payload_for_unit(GRU_STAGE1_FAILING_UNIT_ID)
+    void_gbt = _void_score_payload_for_unit(GRU_STAGE1_GBT_CONTROL_UNIT_ID)
+
+    gru_a = _run_unit_in_fresh_spawned_worker(failing_payload)
+    gru_b = _run_unit_in_fresh_spawned_worker(failing_payload)
+    gbt = _run_unit_in_fresh_spawned_worker(gbt_payload)
+    payload_refs = {
+        "gru_A": _write_gru_diag_payload("stage1_gru_A", gru_a, stage="stage1"),
+        "gru_B": _write_gru_diag_payload("stage1_gru_B", gru_b, stage="stage1"),
+        "gbt_control": _write_gru_diag_payload("stage1_gbt_control", gbt, stage="stage1"),
+    }
+
+    a_summary = _payload_digest_summary(gru_a)
+    b_summary = _payload_digest_summary(gru_b)
+    void_failing_summary = _payload_digest_summary(void_failing)
+    gbt_summary = _payload_digest_summary(gbt)
+    void_gbt_summary = _payload_digest_summary(void_gbt)
+    gru_a_eq_b = (
+        a_summary["metric_digest"] == b_summary["metric_digest"]
+        and a_summary["per_user_confusion_sha256"] == b_summary["per_user_confusion_sha256"]
+    )
+    gru_a_eq_void = (
+        a_summary["metric_digest"] == void_failing_summary["metric_digest"]
+        and a_summary["per_user_confusion_sha256"] == void_failing_summary["per_user_confusion_sha256"]
+    )
+    gbt_control_passed = (
+        gbt_summary["metric_digest"] == void_gbt_summary["metric_digest"]
+        and gbt_summary["per_user_confusion_sha256"] == void_gbt_summary["per_user_confusion_sha256"]
+    )
+    if not gbt_control_passed:
+        outcome = "gbt_control_mismatch"
+    elif not gru_a_eq_b:
+        outcome = "A_ne_B_and_gbt_control_passes"
+    elif gru_a_eq_void:
+        outcome = "A_eq_B_eq_void"
+    else:
+        outcome = "A_eq_B_ne_void"
+    decision = {
+        "artifact": "s3d_gru_determinism_stage1_decision",
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "stage": "stage1",
+        "decision_table_outcome": outcome,
+        "stage2_eligible": bool(outcome == "A_ne_B_and_gbt_control_passes"),
+        "gru_a_eq_b": bool(gru_a_eq_b),
+        "gru_a_eq_void": bool(gru_a_eq_void),
+        "gbt_control_passed": bool(gbt_control_passed),
+        "void_failing_unit": void_failing_summary,
+        "gru_A": a_summary,
+        "gru_B": b_summary,
+        "void_gbt_control": void_gbt_summary,
+        "gbt_control": gbt_summary,
+        "payload_artifacts": payload_refs,
+        "cpu_accounting": {
+            "verification_overhead_process_cpu_seconds": float(
+                a_summary["process_cpu_seconds"] + b_summary["process_cpu_seconds"] + gbt_summary["process_cpu_seconds"]
+            ),
+            "verification_overhead_cpu_hours": float(
+                (a_summary["process_cpu_seconds"] + b_summary["process_cpu_seconds"] + gbt_summary["process_cpu_seconds"])
+                / 3600.0
+            ),
+            "line_guard_cpu_hours": 0.0,
+            "line_accounting": "Stage 1 diagnosis overhead; excluded from L=38 runtime guard by task card",
+        },
+        "precondition": precondition,
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::run_gru_determinism_stage1"
+        ),
+        "code_path_hash": _code_path_hash(),
+        "run_started_at": run_started_at,
+        "run_finished_at": _utc_timestamp(),
+        "wall_clock_seconds": time.perf_counter() - start_wall,
+        "process_cpu_seconds": time.process_time() - start_cpu,
+        "claim_ceiling": "Stage 1 GRU process-nondeterminism diagnostic only; no S3d adjudication",
+    }
+    _write_json(GRU_STAGE1_DECISION, decision)
+    return decision
+
+
+def _load_gru_stage1_decision() -> dict[str, Any]:
+    if not GRU_STAGE1_DECISION.exists():
+        return {
+            "stage2_eligible": False,
+            "decision_table_outcome": "missing_stage1_decision",
+            "expected_path": str(GRU_STAGE1_DECISION.relative_to(ROOT)).replace("\\", "/"),
+            "producer_function": (
+                "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_load_gru_stage1_decision"
+            ),
+        }
+    return _read_json(GRU_STAGE1_DECISION)
+
+
+def run_gru_seed_repair_stage2_gates() -> dict[str, Any]:
+    run_started_at = _utc_timestamp()
+    start_wall = time.perf_counter()
+    start_cpu = time.process_time()
+    payload_by_id = {str(payload["unit_id"]): payload for payload in _battery_unit_payloads()}
+    void_failing = _void_score_payload_for_unit(GRU_STAGE1_FAILING_UNIT_ID)
+    void_gbt = _void_score_payload_for_unit(GRU_STAGE1_GBT_CONTROL_UNIT_ID)
+    void_running_avg = _void_score_payload_for_unit(GRU_STAGE2_RUNNING_AVG_CONTROL_UNIT_ID)
+
+    gru_a = _run_unit_in_fresh_spawned_worker(payload_by_id[GRU_STAGE1_FAILING_UNIT_ID])
+    gru_b = _run_unit_in_fresh_spawned_worker(payload_by_id[GRU_STAGE1_FAILING_UNIT_ID])
+    gbt = _run_unit_in_fresh_spawned_worker(payload_by_id[GRU_STAGE1_GBT_CONTROL_UNIT_ID])
+    running_avg = _run_unit_in_fresh_spawned_worker(payload_by_id[GRU_STAGE2_RUNNING_AVG_CONTROL_UNIT_ID])
+    payload_refs = {
+        "gru_postfix_A": _write_gru_diag_payload("stage2_gru_postfix_A", gru_a, stage="stage2"),
+        "gru_postfix_B": _write_gru_diag_payload("stage2_gru_postfix_B", gru_b, stage="stage2"),
+        "gbt_control": _write_gru_diag_payload("stage2_gbt_control", gbt, stage="stage2"),
+        "running_average_control": _write_gru_diag_payload("stage2_running_average_control", running_avg, stage="stage2"),
+    }
+
+    a_summary = _payload_digest_summary(gru_a)
+    b_summary = _payload_digest_summary(gru_b)
+    void_failing_summary = _payload_digest_summary(void_failing)
+    gbt_summary = _payload_digest_summary(gbt)
+    void_gbt_summary = _payload_digest_summary(void_gbt)
+    running_avg_summary = _payload_digest_summary(running_avg)
+    void_running_avg_summary = _payload_digest_summary(void_running_avg)
+    gru_postfix_deterministic = (
+        a_summary["metric_digest"] == b_summary["metric_digest"]
+        and a_summary["per_user_confusion_sha256"] == b_summary["per_user_confusion_sha256"]
+    )
+    gbt_unchanged = (
+        gbt_summary["metric_digest"] == void_gbt_summary["metric_digest"]
+        and gbt_summary["per_user_confusion_sha256"] == void_gbt_summary["per_user_confusion_sha256"]
+    )
+    running_avg_unchanged = (
+        running_avg_summary["metric_digest"] == void_running_avg_summary["metric_digest"]
+        and running_avg_summary["per_user_confusion_sha256"] == void_running_avg_summary["per_user_confusion_sha256"]
+    )
+    errors = []
+    if not gru_postfix_deterministic:
+        errors.append("postfix_gru_failing_unit_not_bit_identical_across_spawned_workers")
+    if not gbt_unchanged:
+        errors.append("gbt_control_changed_after_gru_seed_repair")
+    if not running_avg_unchanged:
+        errors.append("running_average_control_changed_after_gru_seed_repair")
+    gates = {
+        "artifact": "s3d_gru_seed_repair_stage2_gates",
+        "task_id": TASK_ID,
+        "task_card_id": TASK_CARD_ID,
+        "stage": "stage2",
+        "passed": not errors,
+        "stop_condition": "gru_seed_repair_gate_failed" if errors else None,
+        "errors": errors,
+        "postfix_gru_deterministic": bool(gru_postfix_deterministic),
+        "gbt_control_unchanged": bool(gbt_unchanged),
+        "running_average_control_unchanged": bool(running_avg_unchanged),
+        "void_failing_unit": void_failing_summary,
+        "gru_postfix_A": a_summary,
+        "gru_postfix_B": b_summary,
+        "void_gbt_control": void_gbt_summary,
+        "gbt_control": gbt_summary,
+        "void_running_average_control": void_running_avg_summary,
+        "running_average_control": running_avg_summary,
+        "payload_artifacts": payload_refs,
+        "cpu_accounting": {
+            "verification_overhead_process_cpu_seconds": float(
+                a_summary["process_cpu_seconds"]
+                + b_summary["process_cpu_seconds"]
+                + gbt_summary["process_cpu_seconds"]
+                + running_avg_summary["process_cpu_seconds"]
+            ),
+            "verification_overhead_cpu_hours": float(
+                (
+                    a_summary["process_cpu_seconds"]
+                    + b_summary["process_cpu_seconds"]
+                    + gbt_summary["process_cpu_seconds"]
+                    + running_avg_summary["process_cpu_seconds"]
+                )
+                / 3600.0
+            ),
+            "line_guard_cpu_hours": 0.0,
+            "line_accounting": "Stage 2 repair gate overhead; excluded from L=38 runtime guard by task card",
+        },
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::run_gru_seed_repair_stage2_gates"
+        ),
+        "code_path_hash": _code_path_hash(),
+        "run_started_at": run_started_at,
+        "run_finished_at": _utc_timestamp(),
+        "wall_clock_seconds": time.perf_counter() - start_wall,
+        "process_cpu_seconds": time.process_time() - start_cpu,
+        "claim_ceiling": "Stage 2 GRU determinism repair gates only; no S3d adjudication",
+    }
+    _write_json(GRU_STAGE2_GATES, gates)
+    return gates
+
+
 def _run_units_parallel(
     unit_payloads: Sequence[Mapping[str, Any]],
     *,
@@ -1649,6 +2137,41 @@ def _run_units_parallel(
         "trace_path": str(TRACE_JSONL.relative_to(ROOT)),
     }
     return trace_rows, unit_results, runtime_guard
+
+
+def _preserve_reuse_gate_stop_outputs() -> dict[str, Any]:
+    """Copy the banked resume reuse-gate STOP outputs before result/failure overwrite."""
+
+    copies = [
+        (RESULT, ARTIFACT_ROOT / "result_reuse_gate_stop_v1.json"),
+        (FAILURE_MANIFEST, ARTIFACT_ROOT / "failure_manifest_reuse_gate_stop_v1.json"),
+        (RESUME_MANIFEST, ARTIFACT_ROOT / "s3d_resume_manifest_reuse_gate_stop_v1.json"),
+    ]
+    records = []
+    for source, target in copies:
+        if source.exists() and not target.exists():
+            shutil.copy2(source, target)
+        records.append(
+            {
+                "source": str(source.relative_to(ROOT)).replace("\\", "/"),
+                "target": str(target.relative_to(ROOT)).replace("\\", "/"),
+                "source_exists": source.exists(),
+                "target_exists": target.exists(),
+                "source_sha256": _sha256(source) if source.exists() else None,
+                "target_sha256": _sha256(target) if target.exists() else None,
+                "byte_identical": bool(source.exists() and target.exists() and _sha256(source) == _sha256(target)),
+            }
+        )
+    return {
+        "artifact": "s3d_reuse_gate_stop_preservation",
+        "records": records,
+        "all_byte_identical": all(record["byte_identical"] for record in records),
+        "producer_function": (
+            "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_battery_runner_line30.py::_preserve_reuse_gate_stop_outputs"
+        ),
+        "run_finished_at": _utc_timestamp(),
+        "claim_ceiling": "pre-overwrite preservation of prior STOP artifacts only",
+    }
 
 
 def _preserve_void_line30_outputs() -> dict[str, Any]:
@@ -1743,7 +2266,9 @@ def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_prese
     trace_rows = _load_trace_rows(ARTIFACT_ROOT / "trace_void_line30_v1.jsonl")
     expected_ids = [str(payload["unit_id"]) for payload in unit_payloads]
     completed_ids = [str(row["unit_id"]) for row in trace_rows]
-    missing_ids = [unit_id for unit_id in expected_ids if unit_id not in set(completed_ids)]
+    repair_plan = _repair_resume_unit_plan(expected_ids, completed_ids)
+    reused_ids = [str(unit_id) for unit_id in repair_plan["reused_unit_ids"]]
+    missing_ids = [str(unit_id) for unit_id in repair_plan["fresh_unit_ids"]]
     unexpected_ids = [unit_id for unit_id in completed_ids if unit_id not in set(expected_ids)]
     duplicate_completed_ids = sorted(
         unit_id for unit_id in set(completed_ids) if completed_ids.count(unit_id) > 1
@@ -1754,12 +2279,12 @@ def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_prese
     for row in trace_rows:
         persisted_records.append(_persist_reconstructed_unit_from_trace(row, void_code_hash))
 
-    persisted_by_id = _load_persisted_unit_results(completed_ids)
+    persisted_by_id = _load_persisted_unit_results(reused_ids)
     payload_by_id = {str(payload["unit_id"]): dict(payload) for payload in unit_payloads}
     trace_by_id = {str(row["unit_id"]): row for row in trace_rows}
     reuse_errors = []
     metric_equality = []
-    for unit_id in completed_ids:
+    for unit_id in reused_ids:
         persisted = persisted_by_id.get(unit_id)
         if persisted is None:
             reuse_errors.append(f"persisted_result_missing:{unit_id}")
@@ -1789,15 +2314,18 @@ def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_prese
         "spot_check_process_cpu_seconds": 0.0,
     }
     if not reuse_errors and not unexpected_ids and not duplicate_completed_ids:
-        spot_payloads = [payload_by_id[unit_id] for unit_id in completed_ids]
+        spot_payloads = [payload_by_id[unit_id] for unit_id in reused_ids]
         spot_check = _spot_check_reused_units(
             spot_payloads,
             persisted_by_id,
-            seed_text=SPOT_CHECK_SEED_TEXT,
+            seed_text=str(repair_plan["spot_check_seed_text"]),
             count=3,
         )
         if not bool(spot_check["passed"]):
             reuse_errors.append("spot_check_mismatch")
+    observed_shape = repair_plan["observed_stage3_shape"]
+    if observed_shape != repair_plan["expected_stage3_shape"]:
+        reuse_errors.append(f"stage3_shape_mismatch:{observed_shape}")
 
     passed = not reuse_errors and not unexpected_ids and not duplicate_completed_ids
     stop_condition = None
@@ -1814,11 +2342,14 @@ def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_prese
         "task_card_id": TASK_CARD_ID,
         "expected_unit_count": len(expected_ids),
         "completed_unit_count_from_void_trace": len(completed_ids),
-        "reused_unit_count": len(completed_ids) if passed else 0,
+        "reused_unit_count": len(reused_ids) if passed else 0,
         "missing_unit_count": len(missing_ids),
         "expected_unit_ids_sha256": _sha256_json(expected_ids),
         "completed_unit_ids_sha256": _sha256_json(completed_ids),
+        "repair_resume_plan": repair_plan,
         "missing_unit_ids": missing_ids,
+        "reused_unit_ids": reused_ids if passed else [],
+        "excluded_nondeterministic_completed_unit_ids": repair_plan["excluded_nondeterministic_completed_unit_ids"],
         "unexpected_unit_ids": unexpected_ids,
         "duplicate_completed_unit_ids": duplicate_completed_ids,
         "void_code_path_hash": void_code_hash,
@@ -1826,7 +2357,7 @@ def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_prese
         "persisted_unit_result_count": len(persisted_records),
         "persisted_unit_result_paths": [
             str(_unit_artifact_path(unit_id).relative_to(ROOT)).replace("\\", "/")
-            for unit_id in completed_ids
+            for unit_id in reused_ids
         ],
         "reuse_errors": reuse_errors,
         "reuse_metric_equality": metric_equality,
@@ -1844,10 +2375,12 @@ def _prepare_resume_reuse(unit_payloads: Sequence[Mapping[str, Any]], void_prese
         "stop_condition": stop_condition,
         "expected_unit_count": len(expected_ids),
         "completed_unit_count_from_void_trace": len(completed_ids),
-        "reused_unit_count": len(completed_ids) if passed else 0,
+        "reused_unit_count": len(reused_ids) if passed else 0,
         "missing_unit_count": len(missing_ids),
-        "reused_unit_ids": completed_ids if passed else [],
+        "reused_unit_ids": reused_ids if passed else [],
         "missing_unit_ids": missing_ids,
+        "excluded_nondeterministic_completed_unit_ids": repair_plan["excluded_nondeterministic_completed_unit_ids"],
+        "repair_resume_plan": repair_plan,
         "void_code_path_hash": void_code_hash,
         "trace_has_per_user_confusion": bool(void_preservation.get("trace_has_per_user_confusion")),
         "spot_check": spot_check,
@@ -1866,20 +2399,23 @@ def _run_units_resume(
 ) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]], dict[str, Any]]:
     run_started_at = _utc_timestamp()
     parallel_wall_start = time.perf_counter()
-    trace_rows = _load_trace_rows(ARTIFACT_ROOT / "trace_void_line30_v1.jsonl")
-    completed_ids = [str(row["unit_id"]) for row in trace_rows]
-    persisted_by_id = _load_persisted_unit_results(completed_ids)
-    unit_results: dict[str, dict[str, Any]] = {
-        unit_id: dict(persisted_by_id[unit_id]["score_payload"])
-        for unit_id in completed_ids
-    }
+    reused_ids = [str(unit_id) for unit_id in resume_reuse["reused_unit_ids"]]
+    persisted_by_id = _load_persisted_unit_results(reused_ids)
+    unit_results: dict[str, dict[str, Any]] = {}
+    trace_rows: list[dict[str, Any]] = []
+    cumulative_cpu_hours = 0.0
+    reused_recorded_process_cpu_seconds = 0.0
+    for unit_id in reused_ids:
+        result = dict(persisted_by_id[unit_id]["score_payload"])
+        unit_results[unit_id] = result
+        reused_recorded_process_cpu_seconds += float(result["process_cpu_seconds"])
+        cumulative_cpu_hours += float(result["process_cpu_seconds"]) / 3600.0
+        trace_rows.append(_trace_row_from_unit(result, cumulative_cpu_hours))
     missing_ids = [str(unit_id) for unit_id in resume_reuse["missing_unit_ids"]]
     missing_payloads = [dict(payload) for payload in unit_payloads if str(payload["unit_id"]) in set(missing_ids)]
     if [str(payload["unit_id"]) for payload in missing_payloads] != missing_ids:
         raise RuntimeError("missing_unit_payload_order_mismatch")
 
-    cumulative_cpu_hours = float(trace_rows[-1]["cumulative_contention_robust_cpu_hours"]) if trace_rows else 0.0
-    reused_recorded_process_cpu_seconds = sum(float(row["process_cpu_seconds"]) for row in trace_rows)
     newly_executed_process_cpu_seconds = 0.0
     stopped = False
     stop_reason = None
@@ -1931,7 +2467,9 @@ def _run_units_resume(
         "parallel_elapsed_wall_clock_seconds": time.perf_counter() - parallel_wall_start,
         "applied_cpu_hour_limit": float(applied_line),
         "resume_mode": "reuse-completed",
-        "reused_completed_unit_count": len(completed_ids),
+        "reused_completed_unit_count": len(reused_ids),
+        "excluded_nondeterministic_completed_unit_count": len(resume_reuse.get("excluded_nondeterministic_completed_unit_ids", [])),
+        "excluded_nondeterministic_completed_unit_ids": list(resume_reuse.get("excluded_nondeterministic_completed_unit_ids", [])),
         "newly_executed_unit_count": len([unit_id for unit_id in missing_ids if unit_id in unit_results]),
         "missing_unit_count_at_start": len(missing_ids),
         "missing_unit_ids_at_start": missing_ids,
@@ -1943,7 +2481,7 @@ def _run_units_resume(
         "reused_recorded_cpu_hours": float(reused_recorded_process_cpu_seconds) / 3600.0,
         "newly_executed_process_cpu_seconds": float(newly_executed_process_cpu_seconds),
         "newly_executed_cpu_hours": float(newly_executed_process_cpu_seconds) / 3600.0,
-        "void_cumulative_cpu_hours_before_resume": float(trace_rows[len(completed_ids) - 1]["cumulative_contention_robust_cpu_hours"]) if completed_ids else 0.0,
+        "void_cumulative_cpu_hours_before_resume": float(reused_recorded_process_cpu_seconds) / 3600.0,
         "spot_check_process_cpu_seconds_excluded_from_line": float(resume_reuse["spot_check"].get("spot_check_process_cpu_seconds", 0.0)),
         "wall_clock_based_cpu_hours_disclosed": float(total_unit_wall_sum) / 3600.0,
         "wall_cpu_ratio_flag_count": len(wall_cpu_flags),
@@ -3312,17 +3850,24 @@ def _write_operator_bank_ops(result_payload: Mapping[str, Any]) -> None:
             include_resume=True,
             include_ablation=ABLATION_REPORT.exists(),
             include_trace=TRACE_JSONL.exists() and TRACE_CSV.exists(),
+            include_gru_diag=True,
         )
     )
     allowlist.append(str(bank_ops.relative_to(ROOT)).replace("\\", "/"))
     allowlist = sorted(dict.fromkeys(allowlist))
     core_candidates = [
         f"artifacts/{TASK_ID}/s3d_battery_runner_line30.py",
+        "src/fsp_pum_env/battery/obs_decoders.py",
         "tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py",
         f"artifacts/{TASK_ID}/result.json",
         f"artifacts/{TASK_ID}/trace.jsonl",
         f"artifacts/{TASK_ID}/trace.csv",
         f"artifacts/{TASK_ID}/s3d_resume_manifest.json",
+        f"artifacts/{TASK_ID}/s3d_gru_determinism_diag/stage1_decision.json",
+        f"artifacts/{TASK_ID}/s3d_gru_determinism_diag/stage2_gates.json",
+        f"artifacts/{TASK_ID}/result_reuse_gate_stop_v1.json",
+        f"artifacts/{TASK_ID}/failure_manifest_reuse_gate_stop_v1.json",
+        f"artifacts/{TASK_ID}/s3d_resume_manifest_reuse_gate_stop_v1.json",
         f"artifacts/{TASK_ID}/result_void_line30_v1.json",
         f"artifacts/{TASK_ID}/failure_manifest_void_line30_v1.json",
         f"artifacts/{TASK_ID}/trace_void_line30_v1.jsonl",
@@ -3337,7 +3882,7 @@ def _write_operator_bank_ops(result_payload: Mapping[str, Any]) -> None:
 # required-core-subset existence, zero deletion, no unexpected staged paths.
 $ErrorActionPreference = 'Stop'
 $ExpectedHead = '{head_pin}'
-$CommitMessage = 'bank {TASK_CARD_ID} resume artifacts'
+$CommitMessage = 'bank {TASK_CARD_ID} artifacts'
 $Allowlist = @(
 {rendered}
 )
@@ -3396,9 +3941,11 @@ def _expected_new_artifact_paths(
     include_ablation: bool = False,
     include_cert_sets: bool = False,
     include_trace: bool = False,
+    include_gru_diag: bool = False,
 ) -> list[str]:
     paths = [
         f"artifacts/{TASK_ID}/s3d_battery_runner_line30.py",
+        "src/fsp_pum_env/battery/obs_decoders.py",
         "tests/fsp_pum_env/test_s3d_part0_cputime_launchpath.py",
         f"artifacts/{TASK_ID}/result.json",
     ]
@@ -3431,6 +3978,9 @@ def _expected_new_artifact_paths(
                 f"artifacts/{TASK_ID}/s3d_null_env_report_void_line30_v1.json",
                 f"artifacts/{TASK_ID}/baseline_comparison_void_line30_v1.json",
                 f"artifacts/{TASK_ID}/replay_report_void_line30_v1.json",
+                f"artifacts/{TASK_ID}/result_reuse_gate_stop_v1.json",
+                f"artifacts/{TASK_ID}/failure_manifest_reuse_gate_stop_v1.json",
+                f"artifacts/{TASK_ID}/s3d_resume_manifest_reuse_gate_stop_v1.json",
             ]
         )
         if UNIT_RESULTS_DIR.exists():
@@ -3438,6 +3988,11 @@ def _expected_new_artifact_paths(
                 str(path.relative_to(ROOT)).replace("\\", "/")
                 for path in sorted(UNIT_RESULTS_DIR.glob("*.json"))
             )
+    if include_gru_diag and GRU_DETERMINISM_DIAG_DIR.exists():
+        paths.extend(
+            str(path.relative_to(ROOT)).replace("\\", "/")
+            for path in sorted(GRU_DETERMINISM_DIAG_DIR.glob("*.json"))
+        )
     if include_failure:
         paths.append(f"artifacts/{TASK_ID}/failure_manifest.json")
     return sorted(dict.fromkeys(path for path in paths if (ROOT / path).exists() or path.endswith(".py") or path.startswith("tests/")))
@@ -3564,12 +4119,25 @@ def _utc_timestamp() -> str:
 
 
 def main() -> int:
-    payload = run()
+    mode = os.environ.get("S3D_GRU_REPAIR_MODE", "run").strip().lower()
+    if mode == "stage1":
+        payload = run_gru_determinism_stage1()
+    elif mode == "stage2-gates":
+        payload = run_gru_seed_repair_stage2_gates()
+    elif mode == "run":
+        payload = run()
+    else:
+        raise ValueError(f"unknown S3D_GRU_REPAIR_MODE: {mode}")
     print(
         json.dumps(
             {
+                "mode": mode,
                 "result_path": str(RESULT.relative_to(ROOT)),
+                "stage1_decision_path": str(GRU_STAGE1_DECISION.relative_to(ROOT)),
+                "stage2_gates_path": str(GRU_STAGE2_GATES.relative_to(ROOT)),
                 "verdict": payload.get("verdict"),
+                "decision_table_outcome": payload.get("decision_table_outcome"),
+                "passed": payload.get("passed"),
                 "applied_cpu_hour_limit": payload.get("applied_cpu_hour_limit"),
                 "claim_ceiling": payload.get("claim_ceiling"),
             },

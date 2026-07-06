@@ -1380,6 +1380,7 @@ def _fit_eval_gru_sequences(
     actions = frozen_action_list(design)
     action_to_index = {action: idx for idx, action in enumerate(actions)}
     use_actions = member_kind in {"obs_decoder_gru", "seq_window_with_action_conditioning_W15_no_cross_session_persistence"}
+    torch.manual_seed(_derive_config_seed(design, str(config["config_id"])))
     model = _make_torch_next_symbol_gru(
         alphabet_size=alphabet_size,
         action_count=len(actions),
