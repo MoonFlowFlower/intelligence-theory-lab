@@ -260,3 +260,19 @@
 - Claim ceiling: S3d v0 instrument closure/tombstone only; no mechanism absence, theory falsification, learning/adaptation, agency, EGO readiness, companion readiness, autonomy, self-awareness, emotion, or consciousness claim.
 - Auto-Remote-Anchor: forbidden.
 - Operator signature: WAIVED per solo-efficiency policy (operator decision 2026-07-05). Void/negative closures bank via scoped commit; R2 reopen conditions remain pre-registered and binding. Bank (commit+push) delegated to Codex; Claude performs post-bank verification.
+
+## P0 route decision + N1 admission banking
+
+- Date: 2026-07-05.
+- Decision cards banked: `docs/codex/tasks/FSP-PUM-ENV-IDPROBE-001A-P0-ROUTE-DECISION-POST-S3D-001A.md` and `docs/codex/tasks/N1-ADMIT-IDENTIFIABILITY-001.md`.
+- P0 route decision: operator-delegated selection A+C; close P0 / PUM-ENV as `INVALID_INSTRUMENT`; PUM-ENV v0 is not a qualified S4/N1 instrument; this is the 2nd identifiability-ceiling instance.
+- P0 evidence pointer: S3d v0 tombstone at commit `70cdf7e`; no experiment was rerun for this route decision.
+- Reallocation decision: clear Track-T L-005 bank for the already-audited rung1 `H_cap` segment-bounded artifacts; this is housekeeping preservation, not a substitute P0 pass.
+- N1 admission decision: `NEEDS_ONE_MINIMAL_PROBE`, target `TLGP-LEARNABILITY-FLOOR-DIAG-001`.
+- N1 execution status: diagnostic execution is not authorized; it requires a separate execution card with compute posture and budget resolved.
+- Mainline integration: none.
+- Enabled status: documentation/ledger banking only; no runtime path.
+- Real trigger evidence: operator-delegated selections in the two decision cards and append-only ledger entry `L-005`.
+- Claim ceiling: route/admission banking only; no mechanism validity, no theory validity, no S4/N1 pass, no Gate pass, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
+- Push status: branch push authorized by the banking task; no tag or remote-anchor claim authorized here.
+- Next minimal closed-loop action: perform the scoped Track-T L-005 artifact bank if and only if the outstanding file list is exact and unambiguous.
