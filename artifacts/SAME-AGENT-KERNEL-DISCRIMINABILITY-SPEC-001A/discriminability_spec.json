@@ -1,0 +1,52 @@
+{
+  "task_id": "SAME-AGENT-KERNEL-DISCRIMINABILITY-SPEC-001A",
+  "kind": "design_spec/pre_registration_gate",
+  "gates_route": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A",
+  "not": ["mechanism_evidence", "kernel_authorization", "experiment", "n2_closure"],
+  "core_reframe": "A closed loop only buys ablation surfaces; it does not buy discrimination. The fair legal-channel baseline for an integrated loop is the INTEGRATED CACHE family, which must be beaten on a cache-void compositional held-out. Discrimination comes from env+schema+held-out structure, not from closing the loop.",
+  "inherited_contracts": {
+    "DISTRIBUTION-HEADROOM-PREFLIGHT-CONTRACT-001A": "saturation STOP-gate: strongest_fair_legal_channel_baseline < ceiling - equivalence_band, applied with the integrated-cache family as that baseline",
+    "LEARNING-SUCCESS-CRITERION-STANDARD-001A": "control vs rival; reducibility control (online must beat batch precompute); held-out novelty / few-shot / breadth-over-peak; genuine-learning signature",
+    "BASELINE-IMMUNITY-ADMISSION-STANDARD-001A": "predict_all/none, saturation, observation-decodable invalidators",
+    "MECHANISM-SIGNATURE-VERDICT-STANDARD-001A": "S1 control-separation non-negotiable; verdict by signature not absolute score"
+  },
+  "formal_object": {
+    "S": "persistent latent state s_t (serializable, hashable)",
+    "O": "observation o_t", "A": "action a_t", "outcome": "environment return",
+    "M": "memory = (episodic trace E, consolidated store C)",
+    "prediction": "pred_t = P_theta(s_t, a_t) action-conditioned, no future info",
+    "prediction_error": "PE_t = d(pred_t, outcome_t)",
+    "update": "s_{t+1} = U_theta(s_t,o_t,a_t,outcome_t,PE_t); memory_write appends to E; C <- Consolidate_theta(E,C); s may update by replaying C offline",
+    "objective_V": "performance on HELD-OUT compositional behavior (novel factor combinations), not seen-state accuracy",
+    "boundary": "agent-controlled {a_t,s_t,M,theta} vs env {o_t,outcome_t}; self-boundary = posterior over action-caused outcome-variance, TESTED LAST, not built or claimed here",
+    "same_agent_label_ceiling": "one persistent hash-chained state with causal replay effect; NOT unified subject/self/agency"
+  },
+  "integrated_baseline_family_frozen": {
+    "cache_subfamily_expected_to_lose_R1": ["episodic_traversal", "count_table", "transition_table", "successor_map", "rag_summary", "no_update"],
+    "learning_subfamily_the_hard_bar": ["online_no_replay", "vanilla_experience_replay", "standard_continual_replay", "from_scratch_per_task", "strong_meta_learner"],
+    "tie_rule": "a tie with ANY member = baseline equivalence = route downgrade, NOT mechanism evidence"
+  },
+  "requirements": {
+    "R1_cache_void_heldout": "held-out = compositions with no correct cache entry; per item nearest/count/traversal answer provably <= chance",
+    "R2_causal_routing_ablation": "corrupted-replay AND no-replay both destroy held-out gain; NECESSARY NOT SUFFICIENT (cache passes it too)",
+    "R3_integrated_baseline_family": "mechanism must beat max over BOTH sub-families under equal data/access",
+    "R4_on_paper_cache_cannot_match": "before code: (a) cache subfamily provably <= chance on R1 held-out; (b) name the specific sparse/non-stationary regime where offline consolidation could beat the learning subfamily. (b) is OPEN; likely outcome = baseline equivalence. Proceed only if (a) holds AND (b) names a testable regime, else STOP",
+    "R5_schema_anti_leakage": "no baked-in answer: no self-label, no target-encoding field, no label-leaking action/observation names",
+    "R6_reducibility_non_experience_replay_collapse": "consolidation must (i) beat vanilla experience replay, (ii) beat batch-precompute on same data; else 're-derived experience replay' downgrade; plus non-memorization (held-out not epsilon-close to trained)"
+  },
+  "honest_prior": {
+    "H_null_LIKELY": "a strong learning-subfamily member (continual-replay/meta-learner) matches the kernel -> baseline equivalence -> valid negative",
+    "H_target_UNLIKELY": "a sparse/non-stationary regime where offline consolidation extracts a transferable schema that online+vanilla-replay+cache all miss",
+    "design_directive": "design to DETECT which holds, not toward H_target"
+  },
+  "decision_table": [
+    {"cond": "R4(a) fails on paper", "verdict": "STOP/redesign env; do NOT build kernel"},
+    {"cond": "R4(a) holds, R4(b) names no testable regime", "verdict": "DOWNGRADE to auditable engineering demo; infrastructure claim only, not mechanism"},
+    {"cond": "R4(a) holds AND R4(b) names testable regime", "verdict": "PROCEED to draft kernel STEP-A; must then empirically satisfy R2/R3/R6"},
+    {"cond": "kernel STEP-B ties any learning-subfamily member", "verdict": "baseline equivalence = valid negative; route closes (expected H_null)"}
+  ],
+  "acceptance_gate_this_card": "formal object + R1-R6 consistent; both baseline sub-families frozen; R4 argument drafted and falsifiable; H_null prior recorded; contracts cited; NO code, NO scoring, NO result.json",
+  "known_limitation": "under 2026-07-05C solo protocol Claude is BOTH red-first designer and hostile auditor (relaxes DISTRIBUTION-HEADROOM role separation). Compensating: R4 is falsifiable at STEP-B + commit-order pre-registration. Not a full substitute; treat R4 as a hypothesis to break at STEP-B.",
+  "claim_ceiling": "design + pre-registration only; cannot show kernel success, mechanism validity, learning, agency, self, emotion, consciousness, or EGO readiness. Passing authorizes only DRAFTING the kernel STEP-A card.",
+  "feeds": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A STEP-A must cite this id, satisfy R1-R6, carry the R4 argument for its concrete env before any build."
+}
