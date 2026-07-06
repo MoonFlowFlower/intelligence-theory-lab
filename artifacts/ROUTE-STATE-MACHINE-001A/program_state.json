@@ -1,8 +1,8 @@
 {
   "allowed_next_actions": [
-    "preserve_current_closure_review_packet",
-    "review_n2_baseline_equivalence_closure",
-    "draft_new_bounded_task_card_before_any_successor_route"
+    "preserve_n2_baseline_equivalence_terminal_closure",
+    "draft_new_bounded_task_card_before_any_successor_frontier",
+    "assign_new_frontier_only_under_separate_route_state_task_card"
   ],
   "claim_ceiling": {
     "forbidden_claims": [
@@ -24,9 +24,16 @@
     "claim_theory_pressure",
     "modify_ego_runtime",
     "modify_llm_airi_deployment_or_api_key_files",
+    "start_successor_route_without_bounded_task_card",
     "push_tag_or_remote_anchor_without_explicit_authorization"
   ],
   "source_readback": {
+    "closure_acceptance": {
+      "entry": "L-018",
+      "path": "docs/research/FSP-STAGE-LEDGER.md",
+      "readback": "N2 baseline-equivalence closure accepted and recorded as terminal governance boundary.",
+      "transition_task": "docs/codex/tasks/N2-SBMC-ENV-REDESIGN-001A-CLOSURE-ACCEPTANCE-001A.md"
+    },
     "ledger_entries": [
       {
         "entry": "L-017",
@@ -36,5 +43,5 @@
     ]
   },
   "task_id": "ROUTE-STATE-MACHINE-001A",
-  "updated_at_utc": "2026-07-06T15:49:17Z"
+  "updated_at_utc": "2026-07-06T16:11:01Z"
 }

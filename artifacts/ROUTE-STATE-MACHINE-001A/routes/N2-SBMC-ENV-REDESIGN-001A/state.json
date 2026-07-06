@@ -1,4 +1,12 @@
 {
+  "adjudication": {
+    "accepted_at_utc": "2026-07-06T16:11:01Z",
+    "accepted_by": "operator_explicit_approval_current_session",
+    "claim_ceiling": "local route-governance terminal closure only",
+    "closure_type": "BASELINE_EQUIVALENCE",
+    "terminal_state": "ADJUDICATED",
+    "transition_task_id": "N2-SBMC-ENV-REDESIGN-001A-CLOSURE-ACCEPTANCE-001A"
+  },
   "authorizations": {
     "future_scoring": false,
     "mechanism_experiment": false,
@@ -6,8 +14,8 @@
     "theory_pressure": false
   },
   "created_by_task": "N2-SBMC-ENV-REDESIGN-001A-STEP-A-STEP-B-001A",
-  "current_state": "CLOSURE_REVIEW_REQUIRED",
-  "frontier_scope": "candidate_free_step_b_completed",
+  "current_state": "ADJUDICATED",
+  "frontier_scope": "terminal_baseline_equivalence_closure_adjudicated",
   "mechanism_validity": "unknown",
   "route_family": "N2-SBMC",
   "route_id": "N2-SBMC-ENV-REDESIGN-001A",
@@ -22,8 +30,18 @@
         "entry": "L-017",
         "path": "docs/research/FSP-STAGE-LEDGER.md",
         "readback": "Candidate-free STEP-B completed; graph_closure reached ideal headroom; baseline-equivalence closure review required."
+      },
+      {
+        "entry": "L-018",
+        "path": "docs/research/FSP-STAGE-LEDGER.md",
+        "readback": "Operator accepted N2 baseline-equivalence closure; route-state moved to ADJUDICATED terminal governance boundary."
       }
     ],
+    "operator_approval": {
+      "readback": "Operator explicitly agreed to closure and authorized moving N2-SBMC-ENV-REDESIGN-001A from CLOSURE_REVIEW_REQUIRED to terminal closure.",
+      "session_date": "2026-07-06",
+      "transition_task": "docs/codex/tasks/N2-SBMC-ENV-REDESIGN-001A-CLOSURE-ACCEPTANCE-001A.md"
+    },
     "task_card": "docs/codex/tasks/N2-SBMC-ENV-REDESIGN-001A-STEP-A-STEP-B-001A.md"
   },
   "step_b_result": {
@@ -33,5 +51,5 @@
     "verdict": "headroom_reachable_by_graph_closure"
   },
   "theory_validity": "unknown",
-  "updated_at_utc": "2026-07-06T15:49:17Z"
+  "updated_at_utc": "2026-07-06T16:11:01Z"
 }

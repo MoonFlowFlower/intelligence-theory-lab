@@ -12,7 +12,7 @@
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
 
-## Repo preflight readback used for this packet
+## Historical repo preflight readback used for the 001B current-frontier packet
 
 - Repo root: `D:/Project/AIProject/MyProject/intelligence-theory-lab`
 - Branch: `codex/meta-theory-scaffold`
@@ -28,6 +28,18 @@
   registering `N2-SBMC-ENV-REDESIGN-001A` as a design/pre-registration current
   frontier and explicitly records candidate-free preflight with NO code/scoring.
 
+## Repo preflight readback used for closure acceptance
+
+- Repo root: `D:/Project/AIProject/MyProject/intelligence-theory-lab`
+- Branch: `codex/meta-theory-scaffold`
+- HEAD at preflight: `1cb35f64b302ee937b84a840519db994247f00a6`
+- Remote relation at preflight: ahead 6.
+- `.git/index.lock`: absent.
+- Pre-existing dirty/staged paths observed before planned edits: none.
+- Initial route state before closure acceptance:
+  `N2-SBMC-ENV-REDESIGN-001A`, `state=CLOSURE_REVIEW_REQUIRED`,
+  `closure=BASELINE_EQUIVALENCE`, validator verdict `pass`.
+
 ## PUM-ENV-v0 packet status
 
 The included `PUM-ENV-v0` route packet is conservative historical readback:
@@ -41,21 +53,35 @@ The included `PUM-ENV-v0` route packet is conservative historical readback:
 This packet does not authorize reuse of PUM-ENV v0 as a certified environment
 and does not infer mechanism or theory failure.
 
-## Current frontier packet status
+## Current N2 packet status
 
-The included `N2-SBMC-ENV-REDESIGN-001A` route packet is a current-frontier
-registration only:
+The included `N2-SBMC-ENV-REDESIGN-001A` route packet is now an accepted
+terminal baseline-equivalence closure boundary:
 
-- `current_state`: `REGISTERED`
-- `frontier_scope`: `design_pre_registration_current_frontier`
+- `current_state`: `ADJUDICATED`
+- `frontier_scope`: `terminal_baseline_equivalence_closure_adjudicated`
+- `closure_type`: `BASELINE_EQUIVALENCE`
 - mechanism validity: `unknown`
 - theory validity: `unknown`
 - scoring authorization: `false`
 - experiment execution authorization: `false`
 
-The source readback cites `FSP-STAGE-LEDGER.md` `L-014`. This route packet does
-not authorize scoring, mechanism experiments, mechanism-validity claims, theory
-pressure claims, or EGO mainline integration.
+The source readback cites `FSP-STAGE-LEDGER.md` `L-014`, `L-017`, and `L-018`.
+This route packet does not authorize scoring, mechanism experiments,
+mechanism-validity claims, theory-pressure claims, successor route execution, or
+EGO mainline integration.
+
+## Closure acceptance readback
+
+- Accepted closure task:
+  `docs/codex/tasks/N2-SBMC-ENV-REDESIGN-001A-CLOSURE-ACCEPTANCE-001A.md`
+- Operator approval: explicit current-session approval on 2026-07-06.
+- Route-state transition:
+  `CLOSURE_REVIEW_REQUIRED` -> `ADJUDICATED`.
+- Terminal interpretation: pure-relational N2 surface is closed as
+  `BASELINE_EQUIVALENCE` because `graph_closure` reached ideal headroom in the
+  candidate-free STEP-B packet.
+- Claim ceiling: local route-governance terminal closure only.
 
 ## Transition command
 

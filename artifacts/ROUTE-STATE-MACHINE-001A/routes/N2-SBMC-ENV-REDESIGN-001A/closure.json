@@ -1,8 +1,20 @@
 {
+  "adjudication": {
+    "accepted_at_utc": "2026-07-06T16:11:01Z",
+    "accepted_by": "operator_explicit_approval_current_session",
+    "basis": [
+      "artifacts/N2-SBMC-ENV-REDESIGN-001A/result.json verdict=headroom_reachable_by_graph_closure",
+      "graph_closure strongest fair baseline reached ideal_macro_f1=1.0",
+      "operator accepted baseline-equivalence closure on 2026-07-06"
+    ],
+    "status": "accepted_terminal_closure",
+    "terminal_state": "ADJUDICATED",
+    "transition_task_id": "N2-SBMC-ENV-REDESIGN-001A-CLOSURE-ACCEPTANCE-001A"
+  },
   "allowed_next_actions": [
-    "preserve_candidate_free_n2_negative_evidence",
-    "review_baseline_equivalence_closure_packet",
-    "design_fresh_learning_regime_only_under_new_bounded_task_card"
+    "preserve_n2_baseline_equivalence_terminal_closure",
+    "draft_successor_runtime_kernel_task_card_only_under_new_bounded_task_card",
+    "assign_new_frontier_only_under_separate_route_state_task_card"
   ],
   "claim_ceiling": {
     "forbidden_claims": [
@@ -34,12 +46,14 @@
     "claim_theory_pressure",
     "treat_graph_closure_equivalence_as_mechanism_pass",
     "reuse_this_as_ego_mainline_or_runtime_evidence",
+    "start_successor_route_inside_this_closure_task",
     "push_tag_or_remote_anchor_without_explicit_authorization"
   ],
   "mechanism_evidence_authorized": false,
   "notes": [
     "graph_closure is the strongest fair baseline and reaches the ideal headroom",
-    "baseline equivalence is a valid negative / engineering-sufficient closure candidate, not a mechanism pass"
+    "baseline equivalence is terminal route closure for this pure-relational N2 surface, not a mechanism pass",
+    "successor runtime-kernel work requires a separate bounded task card and fresh baseline contract"
   ],
   "route_id": "N2-SBMC-ENV-REDESIGN-001A",
   "source_evidence": [
