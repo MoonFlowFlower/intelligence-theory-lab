@@ -1,0 +1,78 @@
+{
+  "$id": "https://local.invalid/ROUTE-STATE-MACHINE-001A/closure_packet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "allowed_next_actions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "claim_ceiling": {
+      "additionalProperties": true,
+      "properties": {
+        "forbidden_claims": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "max": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "max"
+      ],
+      "type": "object"
+    },
+    "closure_type": {
+      "enum": [
+        "THEORY_PRESSURE",
+        "INSTRUMENT_INVALID",
+        "BASELINE_EQUIVALENCE",
+        "IMPLEMENTATION_DEFECT",
+        "OPERATION_ERROR",
+        "LEAKAGE_OR_CHEATING",
+        "METRIC_DEGENERACY",
+        "UNDERPOWERED",
+        "GOVERNANCE_STOP",
+        "INCONCLUSIVE",
+        "SCOPE_MISMATCH",
+        "ARTIFACT_ONLY"
+      ],
+      "type": "string"
+    },
+    "evidence_status": {
+      "type": "object"
+    },
+    "forbidden_next_actions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "mechanism_evidence_authorized": {
+      "type": "boolean"
+    },
+    "route_id": {
+      "type": "string"
+    },
+    "theory_pressure_authorized": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "route_id",
+    "closure_type",
+    "allowed_next_actions",
+    "forbidden_next_actions",
+    "claim_ceiling"
+  ],
+  "title": "ROUTE-STATE-MACHINE-001A closure packet",
+  "type": "object"
+}

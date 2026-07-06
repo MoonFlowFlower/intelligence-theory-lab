@@ -1,0 +1,55 @@
+{
+  "allowed_next_actions": [
+    "preserve_historical_negative_evidence",
+    "cite_as_instrument_invalid_example",
+    "design_fresh_certified_environment",
+    "run_route_state_machine_validation"
+  ],
+  "claim_ceiling": {
+    "forbidden_claims": [
+      "mechanism_validity",
+      "mechanism_invalidity",
+      "theory_pressure",
+      "theory_failure",
+      "agency",
+      "autonomy",
+      "subjectivity",
+      "consciousness",
+      "ego_readiness",
+      "companion_readiness",
+      "mainline_effect",
+      "fresh_adjudication"
+    ],
+    "max": "historical PUM-ENV v0 instrument-invalid route packet only; no fresh adjudication and no mechanism or theory claim"
+  },
+  "closure_type": "INSTRUMENT_INVALID",
+  "evidence_status": {
+    "ablation": "present",
+    "baseline": "present",
+    "fresh_adjudication": "not_performed",
+    "mechanism_validity": "unknown",
+    "provenance": "present",
+    "replay": "present",
+    "theory_validity": "unknown"
+  },
+  "forbidden_next_actions": [
+    "infer_theory_failure",
+    "infer_mechanism_invalidity",
+    "reuse_pum_env_v0_as_certified_environment",
+    "start_new_mechanism_route_on_pum_env_v0",
+    "relax_thresholds_to_reopen_v0"
+  ],
+  "mechanism_evidence_authorized": false,
+  "notes": [
+    "closure_type maps repo wording INVALID_INSTRUMENT to enum value INSTRUMENT_INVALID",
+    "packet is a historical example backed by current repo readback, not a fresh adjudication"
+  ],
+  "route_id": "PUM-ENV-v0",
+  "source_evidence": [
+    "docs/research/FSP-STAGE-LEDGER.md#L-005",
+    "docs/research/FSP-STAGE-LEDGER.md#L-011",
+    "docs/codex/tasks/FSP-PUM-ENV-IDPROBE-001A-S3D-V0-TOMBSTONE-001A.md",
+    "artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_v0_closure_record.json"
+  ],
+  "theory_pressure_authorized": false
+}

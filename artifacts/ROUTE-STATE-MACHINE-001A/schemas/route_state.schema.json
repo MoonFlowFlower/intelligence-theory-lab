@@ -1,0 +1,49 @@
+{
+  "$id": "https://local.invalid/ROUTE-STATE-MACHINE-001A/route_state.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "current_state": {
+      "enum": [
+        "PROPOSED",
+        "REGISTERED",
+        "READY_TO_IMPLEMENT",
+        "IMPLEMENTING",
+        "RUN_ATTEMPTED",
+        "EVIDENCE_PACKET_READY",
+        "CLOSURE_REVIEW_REQUIRED",
+        "ADJUDICATED",
+        "NEXT_FRONTIER_ASSIGNED",
+        "REDESIGN_REQUIRED",
+        "RERUN_REQUIRED",
+        "OPS_FIX_REQUIRED",
+        "TOMBSTONED"
+      ],
+      "type": "string"
+    },
+    "fresh_adjudication": {
+      "type": "string"
+    },
+    "route_family": {
+      "type": "string"
+    },
+    "route_id": {
+      "type": "string"
+    },
+    "source_readback": {
+      "type": "object"
+    },
+    "updated_at_utc": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "route_id",
+    "current_state",
+    "route_family",
+    "updated_at_utc",
+    "source_readback"
+  ],
+  "title": "ROUTE-STATE-MACHINE-001A route state",
+  "type": "object"
+}
