@@ -245,3 +245,17 @@
 - Real trigger evidence: none (theory registration only; no experiment executed).
 - Claim ceiling: theory/governance registration only; no CPL evidence, no mechanism validity, no candidate success, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
 - Auto-Remote-Anchor: forbidden.
+
+## FSP-PUM-ENV-IDPROBE-001A S3d v0 tombstone
+
+- Task: `FSP-PUM-ENV-IDPROBE-001A-S3D-V0-TOMBSTONE-001A`.
+- Decision: close S3d v0 as `S3D_V0_TOMBSTONED`; no S3d v0 reopen, no S3d v0 fix, no S3d v0 rerun, and no R2 drafting in this closure task.
+- Ground 1: instrument identifiability failure / style-map privilege. The committed NULL report has ideal NULL metric `0.07211008467764463` > null limit `0.03625`, with all 18 non-ideal members passing the NULL guard; pinned diagnostics classify the cause as `RESIDUAL_ACTION_STRUCTURE_VIA_STYLEMAP` (`30caa7f1566cfaab58f0f5195bb786cd731f5be8`) and `PRIVILEGE_RHO_WIDE` (`5cb90397e883a778fd30e82db0160c08de261428`).
+- Ground 2: denominator-free baseline dominance / no assigned discriminative member pass. In the committed battery evidence, `nearest_neighbor_user_matching` raw metric `0.1619477671141543` exceeds assigned `seq_window_with_action_conditioning_W15_no_cross_session_persistence` raw metric `0.07510552484241281` in `low_diversity` (ratio `2.1562696945924387`), and the assigned members for `camouflage_off`, `low_diversity`, and `flat_theta` all have `passed=false`.
+- Evidence pins: void battery-run-2 evidence commit `397df1255b9eb53fded854dbb0702c34e7506859`; `baseline_comparison.json` sha256 `d657be43c6809035bed7c634935f11c5489b7fb883c814d6e9c7dc907befad60`; `s3d_null_env_report.json` sha256 `3633d10f5b769d23c5dbfee55a7cf8a8fbd9ffe0b3786035c92f832c176322c6`; closure record `artifacts/FSP-PUM-ENV-IDPROBE-001A/s3d_v0_closure_record.json`.
+- Verification gates: G-a/G-b/G-c/G-d passed locally by re-reading committed artifacts and pinned diagnostic commits; no card/record mismatch found.
+- Mainline integration: none; offline lab documentation/evidence pin only.
+- Enabled status: not enabled in any EGO/runtime/mainline path.
+- Real trigger evidence: committed artifact readback from `baseline_comparison.json` and `s3d_null_env_report.json` plus pinned diagnostic commits; no battery re-run was performed for this closure.
+- Claim ceiling: S3d v0 instrument closure/tombstone only; no mechanism absence, theory falsification, learning/adaptation, agency, EGO readiness, companion readiness, autonomy, self-awareness, emotion, or consciousness claim.
+- Auto-Remote-Anchor: forbidden.
