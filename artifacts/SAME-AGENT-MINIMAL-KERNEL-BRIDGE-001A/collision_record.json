@@ -1,0 +1,31 @@
+{
+  "candidates": [
+    {
+      "evidence": "loop trace and state changes only",
+      "expected_failure_mode": "infrastructure-only",
+      "id": "minimal_engineering_scaffold",
+      "leakage_hardcoding_risk": "high",
+      "smallest_falsifier": "same observation with different memory does not change action",
+      "strongest_cheap_baseline": "scripted feedback-reactive policy / lookup"
+    },
+    {
+      "evidence": "drift-aware continual replay and batch comparisons",
+      "expected_failure_mode": "baseline equivalence",
+      "id": "strongest_baseline_shortcut",
+      "leakage_hardcoding_risk": "medium",
+      "smallest_falsifier": "baseline ties under clean access parity",
+      "strongest_cheap_baseline": "the baseline itself"
+    },
+    {
+      "evidence": "live loop, replay recomputation, ablations, baseline comparison",
+      "expected_failure_mode": "route downgrades to baseline equivalence",
+      "id": "mechanism_faithful_runtime_kernel",
+      "leakage_hardcoding_risk": "high without schema freeze",
+      "smallest_falsifier": "baseline ties, ablations insensitive, or replay invalid",
+      "strongest_cheap_baseline": "drift-aware regime-inferring continual replay / batch precompute"
+    }
+  ],
+  "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.build_collision_record",
+  "selected": "Candidate 3 mechanism-faithful target, with Candidate 2 decisive contrast executed first",
+  "task_id": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A"
+}

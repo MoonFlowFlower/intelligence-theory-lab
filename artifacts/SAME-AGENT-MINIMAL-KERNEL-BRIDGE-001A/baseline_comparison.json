@@ -1,0 +1,406 @@
+{
+  "baseline_ids": [
+    "batch_precompute",
+    "count_table",
+    "drift_aware_regime_inferring_continual_replay",
+    "episodic_traversal",
+    "from_scratch_per_task",
+    "majority",
+    "no_update",
+    "online_no_replay",
+    "rag_summary",
+    "random",
+    "standard_continual_replay",
+    "strong_meta_learner",
+    "successor_map",
+    "transition_table",
+    "vanilla_experience_replay"
+  ],
+  "declared_baseline_ids": [
+    "batch_precompute",
+    "count_table",
+    "drift_aware_regime_inferring_continual_replay",
+    "episodic_traversal",
+    "from_scratch_per_task",
+    "majority",
+    "no_update",
+    "online_no_replay",
+    "rag_summary",
+    "random",
+    "standard_continual_replay",
+    "strong_meta_learner",
+    "successor_map",
+    "transition_table",
+    "vanilla_experience_replay"
+  ],
+  "missing_baseline_ids": [],
+  "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.run_baseline_comparison",
+  "results": [
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "81991dac8dd4c43bee6a7d50b069bbb7ee28345398824c768e0277f56ff6604a",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.batch_precompute",
+      "producer_id": "batch_precompute",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 1.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "0e13db00da3d6c0b5a4d9f063cf8452532d8bfab4b10d90bb4cc28483e9c1145",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.count_table",
+      "producer_id": "count_table",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "744469056d76aacb0187bc226bb6c82d933c9a4322fd5c3a918539be971f3777",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.drift_aware_regime_inferring_continual_replay",
+      "producer_id": "drift_aware_regime_inferring_continual_replay",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 1.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "87a79410489ff0a32a4ac9945946b2a2bc7406b43b8f8c5983547723482b8cee",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.episodic_traversal",
+      "producer_id": "episodic_traversal",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "e3f163461b16cae94c7f63ecf1ec832c07b5f57db0df9c5d4ceafd66a4d49c78",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.from_scratch_per_task",
+      "producer_id": "from_scratch_per_task",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.75,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "74d2f974c74ce370712557100d03969a140111a9589a7804c89dcaba9b532659",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.majority",
+      "producer_id": "majority",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "74d2f974c74ce370712557100d03969a140111a9589a7804c89dcaba9b532659",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.no_update",
+      "producer_id": "no_update",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "fc41be3855e1440bcf1499a3c1ab4870315323ce89bc8b203b15c95b76bceca9",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.online_no_replay",
+      "producer_id": "online_no_replay",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.75,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "c0cdb21a92fb6498b54c2b0d727518643e1c9348d22a2dc643115d7a1ce1f511",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.rag_summary",
+      "producer_id": "rag_summary",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "4f7e984ccfc801c514cd878481db412dfe96e3f3521506ab6a19fd5e02594c3d",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.random",
+      "producer_id": "random",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.125,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "e22ee88a5ba763d6ae56eb3f1525ce690b8b6fab9ca7bb907626fa27f653ac62",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.standard_continual_replay",
+      "producer_id": "standard_continual_replay",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.625,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "8f4e88b4ee56eb12cba15fbb80e5677bc7cf3372aaef48b10466833993478b57",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.strong_meta_learner",
+      "producer_id": "strong_meta_learner",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 1.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "231df5d09f4fc302965febc0af3a2ea2dc94854e442d5a9ea2c2a3fe55be3b70",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.successor_map",
+      "producer_id": "successor_map",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "0b25a2d7ee68b3d07013d7bc65fe6850ca89f576bb1f594380c755166a261630",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.transition_table",
+      "producer_id": "transition_table",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.0,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    },
+    {
+      "aggregation_rule": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+      "code_path_hash": "ef8c28dc75ce68ac7525e99f1b713381c58d11a0c047c39a11c60c2d195bb423",
+      "consumed_by_final_verdict": true,
+      "input_artifacts": [
+        "frozen_deployment_generator",
+        "training_feedback_stream",
+        "heldout_cases"
+      ],
+      "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.vanilla_experience_replay",
+      "producer_id": "vanilla_experience_replay",
+      "run_id": "same_agent_minimal_kernel_bridge_001a_tiny_cpu_001",
+      "score": 0.625,
+      "seed_context_episode_ids": [
+        "regime_0_heldout_0_1",
+        "regime_0_heldout_1_2",
+        "regime_0_heldout_2_3",
+        "regime_0_heldout_3_0",
+        "regime_1_heldout_0_1",
+        "regime_1_heldout_1_2",
+        "regime_1_heldout_2_3",
+        "regime_1_heldout_3_0"
+      ]
+    }
+  ],
+  "strongest_fair_baseline": {
+    "baseline_id": "drift_aware_regime_inferring_continual_replay",
+    "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.drift_aware_regime_inferring_continual_replay",
+    "score": 1.0
+  },
+  "strongest_fair_is_max_over_full_battery": true
+}

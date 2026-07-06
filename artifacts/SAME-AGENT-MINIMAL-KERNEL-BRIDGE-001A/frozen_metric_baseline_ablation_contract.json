@@ -1,0 +1,50 @@
+{
+  "claim_ceiling": "bounded offline minimal runtime-kernel contrast evidence only; no mechanism validity, no agency, no autonomy, no subjectivity, no consciousness, no EGO readiness, and no mainline effect",
+  "environment": {
+    "audit_regime_code_hashes": [
+      "37c68848bd8bc0580f27e39a7135365f313a1704fa5c7dd8f3e8bedc7e10fa76",
+      "44a370f6f205682b26ccf34cb3ad9288c45a015b8b04847ddcf6b001b8ddff61"
+    ],
+    "g": 2,
+    "heldout_case_count": 8,
+    "l": 5,
+    "latent_codes_exposed_to_candidate": false,
+    "n": 4,
+    "schema_version": "same_agent_minimal_kernel_bridge_001a.v1",
+    "seed": 20260706,
+    "train_slice_count": 18
+  },
+  "equivalence_band": 0.01,
+  "leakage_contract": "scanner must pass clean candidate inputs and fire on positive-control leaked regime/target fields",
+  "metric": "heldout_multiclass_accuracy_over_contextualized_novel_cells",
+  "producer_function": "same_agent_minimal_kernel_bridge_001a.runner.build_contract",
+  "replay_contract": "recompute action and post-update state from serialized_state + observation + feedback",
+  "required_ablations": [
+    "action_conditioning_disabled",
+    "consolidation_deletion",
+    "corrupted_replay",
+    "counterfactual_memory",
+    "no_memory_read",
+    "no_replay",
+    "no_update",
+    "prediction_error_shuffle"
+  ],
+  "required_baselines": [
+    "batch_precompute",
+    "count_table",
+    "drift_aware_regime_inferring_continual_replay",
+    "episodic_traversal",
+    "from_scratch_per_task",
+    "majority",
+    "no_update",
+    "online_no_replay",
+    "rag_summary",
+    "random",
+    "standard_continual_replay",
+    "strong_meta_learner",
+    "successor_map",
+    "transition_table",
+    "vanilla_experience_replay"
+  ],
+  "task_id": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A"
+}
