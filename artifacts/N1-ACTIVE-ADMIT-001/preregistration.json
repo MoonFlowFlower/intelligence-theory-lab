@@ -1,0 +1,168 @@
+{
+  "E_bandit": {
+    "K_arms": 10,
+    "best_arm": "uniform-random-per-seed",
+    "horizon": 100,
+    "p_best": 0.6,
+    "p_others": 0.5
+  },
+  "E_causal": {
+    "K_slots": 4,
+    "N_obs": 64,
+    "Y_star": "m",
+    "budget": 1,
+    "chance": 0.5,
+    "diag_outcome": {
+      "m0": 0.1,
+      "m1": 0.9
+    },
+    "heldout_j": [
+      2,
+      3
+    ],
+    "nondiag_outcome": 0.5,
+    "passive_observation": "64 iid Bernoulli(0.5) length-4 samples, independent of S",
+    "structures": "m{0,1}xj{0,1,2,3}",
+    "train_j": [
+      0,
+      1
+    ]
+  },
+  "base_seed": 20260706,
+  "bounded_task_card": {
+    "ablation_requirement": "non-memorization held-out diagnostic-slot identity and fixed_amem positive control are frozen for later execution",
+    "acceptance_gate": "threshold conjunction in this file; no threshold changes after STEP-A",
+    "auto_remote_anchor_decision": "forbidden",
+    "claim_ceiling": "signature-level admission only; not mechanism / N1 / agency / consciousness",
+    "computed_evidence_provenance_gate": "all later scores must record producer_function, input rows, run_id, seed/episode ids, aggregation rule, and code_path_hash",
+    "current_layer": "engineering implementation plus mechanism-hypothesis admission probe",
+    "current_stage": "STEP-A pre-registration + harness only",
+    "enabled_state_requirement": "scoring functions defined but not executed in STEP-A",
+    "expected_changed_files": [
+      "src/n1_active_admit_001a/__init__.py",
+      "src/n1_active_admit_001a/env_causal.py",
+      "src/n1_active_admit_001a/env_bandit.py",
+      "src/n1_active_admit_001a/policies.py",
+      "src/n1_active_admit_001a/harness.py",
+      "src/n1_active_admit_001a/preregister.py",
+      "tests/test_n1_active_admit_001a_preflight.py",
+      "artifacts/N1-ACTIVE-ADMIT-001/preregistration.json",
+      "docs/research/FSP-STAGE-LEDGER.md"
+    ],
+    "forbidden_changes": "old artifacts, existing src modules, standards/contracts, task cards, EGO runtime, UI, external services, and result.json",
+    "hypothesis": "active intervention can separate passive-observation weakness on E_causal while not exceeding UCB on E_bandit",
+    "mainline_target": "isolated offline package; no EGO runtime or production path",
+    "problem_definition": "Freeze E_causal, E_bandit, a*, thresholds, and unrun scoring/replay/leakage harness before any STEP-B scoring.",
+    "real_trigger_evidence_requirement": "targeted preflight tests only; STEP-B must separately execute scoring from this commit",
+    "rollback_plan": "revert the isolated package, single test file, preregistration artifact, and appended ledger line only",
+    "stop_condition": "no STEP-A scoring; STEP-B stops on close_conditions, leakage, underpower, saturation, or weak-baseline solution",
+    "strongest_baseline": "same-access weak active baselines plus future fair amortized active learner; structural EVI oracle is upper-bound reference only",
+    "trace_replay_requirement": "trace rows must serialize observation, allowed_memory, outcome, candidate state, baseline choices, and replay recomputation path"
+  },
+  "claim_ceiling": "signature-level admission only; not mechanism / N1 / agency / consciousness",
+  "close_conditions": [
+    "candidate<=weak in E_causal",
+    "candidate>ucb+eps in E_bandit",
+    "ucb or myopic_ig alone solve E_causal (redesign once or close)",
+    "fair amortized active learner absorbs gap (future card, not here)",
+    "feasibility not tiny"
+  ],
+  "collision_record": [
+    {
+      "candidate_approach": "minimal implementation",
+      "evidence_it_would_produce": "deterministic env construction plus callable unrun harness",
+      "expected_failure_mode": "uniform-prior slot symmetry",
+      "leakage_or_hardcoding_risk": "low if hidden audit fields stay out of policy inputs; high if diagnostic identity leaks into allowed_memory",
+      "smallest_falsifying_test": "STEP-B held-out correct-slot rate fails nonmemo_min_correct_slot",
+      "strongest_cheap_baseline": "fixed-slot or passive predictor can match if the active policy cannot identify the diagnostic slot before outcome"
+    },
+    {
+      "candidate_approach": "strongest shortcut explanation",
+      "evidence_it_would_produce": "baseline equivalence or chance performance under zero-information passive observations",
+      "expected_failure_mode": "candidate threshold unattainable without extra information",
+      "leakage_or_hardcoding_risk": "would pass only if hidden structure or slot identity leaks",
+      "smallest_falsifying_test": "positive-control leak scanner plus obs_decoder_j gate",
+      "strongest_cheap_baseline": "myopic/fixed-slot selection with outcome-as-prediction"
+    },
+    {
+      "candidate_approach": "mechanism-faithful implementation",
+      "evidence_it_would_produce": "trace/replay evidence of intervention-conditioned posterior update under frozen thresholds",
+      "expected_failure_mode": "oracle upper bound proves the signature is not mechanism-specific",
+      "leakage_or_hardcoding_risk": "posterior over the structure family can be mistaken for true-structure access",
+      "smallest_falsifying_test": "fair learner or UCB/myopic_ig alone solves E_causal, or candidate beats UCB on E_bandit",
+      "strongest_cheap_baseline": "fair amortized active learner or structural EVI absorbs the gap"
+    }
+  ],
+  "design_sha256": "1a9ed3b94ccea965ea5ff77579f019b30c2c0cc2a50d30b72cfa3892289cba91",
+  "device": "cpu",
+  "experiment_accuracy_computed": false,
+  "harness_freeze": {
+    "leakage_positive_control_defined": "synthetic_canary_leakage_positive_control",
+    "replay_function_defined": "replay_trace_row",
+    "scoring_functions_defined": [
+      "score_predictions",
+      "aggregate_accuracy",
+      "evaluate_acceptance_gate"
+    ],
+    "step_a_execution_boundary": "no result.json; no candidate/baseline accuracy computed",
+    "trace_schema_fields": [
+      "t",
+      "env",
+      "seed_index",
+      "structure_id(AUDIT-ONLY)",
+      "b_before",
+      "slot_selected",
+      "cf_predictions_per_structure",
+      "outcome_actual",
+      "b_after",
+      "Y_star_true",
+      "Y_star_pred_per_agent",
+      "baseline_slot_choices"
+    ]
+  },
+  "layer": "admission-probe / mechanism-hypothesis layer",
+  "policies_and_controls": {
+    "candidate": "counterfactual-controllability active policy over the structure family; no true structure field in callable signature",
+    "evi_oracle": "upper-bound reference over belief on structure family",
+    "fixed_amem": "TRAIN diagnostic-frequency positive control",
+    "graph_cache": "O-only control placeholder",
+    "myopic_ig": "observational-model entropy only; no do-operator",
+    "nearest_neighbor": "O-only",
+    "obs_decoder": "sklearn LogisticRegression decoders for m and j",
+    "passive_lookup": "O-only",
+    "ucb": "UCB1 over slots with TRAIN-pooled stats, held-out learned-best slot"
+  },
+  "power": {
+    "MDE": 0.09905099528998362,
+    "MDE_by_null_p": {
+      "0.25": 0.08578067819125859,
+      "0.5": 0.09905099528998362
+    },
+    "alpha": 0.05,
+    "delta_margin_power_gate_passed": true,
+    "method": "normal-approximation two-proportion MDE",
+    "n_per_group": 400,
+    "n_seeds": 400,
+    "null_p": {
+      "j": 0.25,
+      "m": 0.5
+    },
+    "power": 0.8,
+    "rule": "delta>=1.5*MDE else STOP_UNDERPOWERED"
+  },
+  "result_json_written": false,
+  "scoring_run_executed": false,
+  "status": "PREREGISTERED_UNRUN",
+  "step": "STEP-A",
+  "task_id": "N1-ACTIVE-ADMIT-001",
+  "thresholds": {
+    "bandit_saturation_guard": "INVALID if ucb_normreward>=0.95 AND candidate_normreward>=0.95",
+    "candidate_min_heldout_acc": 0.85,
+    "delta_causal_margin": 0.2,
+    "epsilon_bandit_noninferior": 0.05,
+    "fixed_amem_max_heldout_acc": 0.5990509952899836,
+    "nonmemo_min_correct_slot": 0.85,
+    "obs_decoder_j_max": 0.3490509952899836,
+    "obs_decoder_m_max": 0.5990509952899836
+  }
+}
