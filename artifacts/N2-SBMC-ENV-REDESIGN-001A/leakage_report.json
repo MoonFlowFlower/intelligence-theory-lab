@@ -1,0 +1,36 @@
+{
+  "blocking_reasons": [],
+  "canary_accuracy": 1.0,
+  "canary_scan": {
+    "fires": true,
+    "hits": [
+      "theta_canary_asserted_matches_hidden_target"
+    ],
+    "patterns": [
+      "theta",
+      "label",
+      "provenance",
+      "source",
+      "user_id",
+      "audit"
+    ],
+    "producer_function": "n2_sbmc_env_redesign_001a.detectors.scan_feature_names_for_leakage"
+  },
+  "clean_accuracy": 0.5,
+  "clean_scan": {
+    "fires": false,
+    "hits": [],
+    "patterns": [
+      "theta",
+      "label",
+      "provenance",
+      "source",
+      "user_id",
+      "audit"
+    ],
+    "producer_function": "n2_sbmc_env_redesign_001a.detectors.scan_feature_names_for_leakage"
+  },
+  "clean_scan_passed": true,
+  "positive_control_fires": true,
+  "producer_function": "n2_sbmc_env_redesign_001a.runner.run_leakage_scan"
+}
