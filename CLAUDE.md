@@ -275,3 +275,23 @@ For Gate 1 / replay / consolidation lineage, graph-cache family challengers are 
 * count_table
 * fsm_planner
 * episodic_traversal
+
+## Solo Development Protocol — Green / Yellow / Red (2026-07-05C)
+
+Single-operator loop. Codex is the bounded primary driver; Claude is an independent auditor at high-risk boundaries only — not a serial pre-approver of every step. The multi-party signing ceremony is retired; the scientific gates are not.
+
+Loop. Operator runs Codex on a task; Codex executes and banks; Claude audits per the tier below. Claude drafts high-risk cards and Codex instructions in chat and edits only its own out-of-repo memory. Codex is the sole writer of repository files and the sole runner of git (the sandbox mount Claude sees can be stale or error out — the host git view is authoritative).
+
+Tiering is decided by which field a change touches, not by the action's label. A "card patch", "small implementation", or "test fix" that touches a governance-affecting field (threshold / guard / claim ceiling / baseline family / frozen spec / "what counts as success or cost") is Red regardless of how small it looks.
+
+- Green — Codex does it directly, no Claude gate: repo readback; dirty-tree / stale-handoff realignment; handoff updates; card completion NOT touching a governance field; scoped banking of an already-decided card; preservation of negative / failure artifacts; test fixes that do not upgrade a claim; route-state tidying.
+- Yellow — Codex does it, Claude post-checks (blocking / non-blocking): negative tombstones; route closures; baseline-equivalence conclusions; artifact banking that carries a result; anything touching evidence validity (determinism, replay, leakage, baseline fairness). Evidence validity is never Green.
+- Red — Claude pre-checks before it lands / before the gated run: new mechanism-route admission; positive Gate / pass / mechanism-evidence claim; threshold / schema / frozen-design change; disputed claim ceiling; baseline-family fairness definition; remote-anchor of a result as a canonical boundary.
+
+Anti-tuning (replaces the signature). A Red change must be (a) flagged in the card with its ex-ante rationale, (b) pre-registered in a commit that is an ancestor of the run it gates (commit order is the un-backdatable ex-ante proof), (c) verified by Claude for commit-ordering and for landing on environment properties, not on saving a member. A positive mechanism claim additionally carries a positive-claim flag and is evidence only after Claude's full hostile audit.
+
+One-round rule (anti-stagnation). A Claude audit produces only blocking and non-blocking findings. Blocking is fixed; non-blocking does not stop progress. The same finding gets at most one rework round; after that the item must execute a minimal probe, close, or downgrade. A genuinely new, materially different finding restarts the clock but must be named as new.
+
+Codex git discipline. Per scoped commit: `git reset` → explicit `git add -- <paths>` (never -A / .) → porcelain gate → commit → push. One logical change per commit; unrelated dirty files are triaged, not swept in.
+
+Red lines (unchanged — scientific gates, not version-control ceremony). baseline / ablation / null / claim ceiling / anti-oracle-leakage audit / pre-registered thresholds / independent number re-check / no-delete no-rewrite of prior artifacts / machine-readable evidence under artifacts/<task_id>/. The compression removes signing and version-control bureaucracy only; it does not soften rigor.

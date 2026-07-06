@@ -276,3 +276,11 @@
 - Claim ceiling: route/admission banking only; no mechanism validity, no theory validity, no S4/N1 pass, no Gate pass, no mainline/runtime/live effect, no agency, autonomy, consciousness, emotion, stable user benefit, or EGO readiness.
 - Push status: branch push authorized by the banking task; no tag or remote-anchor claim authorized here.
 - Next minimal closed-loop action: perform the scoped Track-T L-005 artifact bank if and only if the outstanding file list is exact and unambiguous.
+
+## Solo development protocol Green/Yellow/Red adopted (2026-07-05C)
+
+- Date: 2026-07-05. Operator-directed governance change (additive; scientific sections untouched).
+- Model: Codex = bounded primary driver + sole git owner; Claude = independent auditor at high-risk boundaries only, not a serial pre-approver. Tiers Green/Yellow/Red defined in CLAUDE.md; tier decided by which field a change touches, not the action label; evidence-validity (determinism/replay/leakage/baseline-fairness) is never Green; anti-tuning = flag + ancestor-commit pre-registration + post-bank commit-order audit; one-round blocking/non-blocking rule.
+- Layer: engineering / route-governance only. No experiment executed.
+- Claim ceiling: process/governance change only; no mechanism, theory, autonomy, agency, consciousness, emotion, stable-user-benefit, or EGO-readiness claim.
+- Auto-Remote-Anchor: forbidden.
