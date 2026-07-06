@@ -293,3 +293,13 @@
 - Claim ceiling: housekeeping reconciliation only; H_cap segment-bounded claim ceiling unchanged.
 - No mechanism, theory, S4/N1 pass, Gate pass, mainline effect, agency, autonomy, consciousness, emotion, stable-user-benefit, or EGO-readiness claim.
 - Auto-Remote-Anchor: forbidden.
+
+## TLGP-LEARNABILITY-FLOOR-DIAG-001 zero-compute synthesis
+
+- Task: `TLGP-LEARNABILITY-FLOOR-DIAG-001`; artifact: `artifacts/TLGP-LEARNABILITY-FLOOR-DIAG-001/existing_evidence_synthesis.json`.
+- Verdict enum: `H0_REAL_FLOOR_SUPPORTED_BY_EXISTING`.
+- Key numbers: 001B control invalid because CONTROL test equals REAL test over 300 episodes / 125 unseen rules and capacity control closed 0/10 seeds per family; rung0-SEEN valid easy control closed 10/10 seeds with heldout mean `0.9517534027777778`; R2 hard held-out/rung3 primary close counts `0/10` per family with rung3 test means `0.20498162853078297` and `0.20493933393189198`; rung3 powered full run remained config-limited negative with eligibility `0/10` and no H0/H1 evidence emitted.
+- Claim ceiling: bounded offline evidence-synthesis over existing records for the H0/H1 route question only; no mechanism, theory truth/falsity, N1 readiness, agency, consciousness, or stronger restatement of prior banked results.
+- No-compute posture: no experiment, no training, no GPU, no new control/mechanism implementation.
+- Mainline integration: none; enabled status: offline lab artifact only.
+- Auto-Remote-Anchor: forbidden.

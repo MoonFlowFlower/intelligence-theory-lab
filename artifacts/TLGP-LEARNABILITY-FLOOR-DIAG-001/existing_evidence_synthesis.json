@@ -1,0 +1,1143 @@
+{
+  "task_id": "TLGP-LEARNABILITY-FLOOR-DIAG-001",
+  "artifact": "existing_evidence_synthesis.json",
+  "generated_utc": "2026-07-06T02:56:04.579210+00:00",
+  "current_layer": "engineering implementation + learning/adaptation route-evidence synthesis",
+  "mainline_integration_status": "none; offline lab artifact only",
+  "enabled_status": "not enabled in any runtime or EGO mainline path",
+  "real_trigger_evidence": "existing banked artifacts read from repo; no experiment/training/GPU/new control/mechanism implementation",
+  "no_compute_attestation": {
+    "experiment_run": false,
+    "training_run": false,
+    "gpu_used": false,
+    "new_control_or_mechanism_implemented": false,
+    "operations_performed": [
+      "read banked artifacts",
+      "parse existing JSON/Markdown",
+      "derive route verdict from read numbers",
+      "write synthesis JSON"
+    ]
+  },
+  "synthesis_provenance": {
+    "producer_function": "inline_existing_evidence_synthesis_builder_v1_compact",
+    "run_id": "TLGP-LEARNABILITY-FLOOR-DIAG-001-zero-compute-synthesis",
+    "input_artifacts": [
+      "artifacts/TLGP-001B-INVALID-AUDIT-001/AUDIT_REPORT.md",
+      "artifacts/TLGP-001B/positive_control_report.json",
+      "artifacts/TLGP-001B/failure_manifest.json",
+      "artifacts/TLGP-001B/result.json",
+      "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/result.json",
+      "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/val_curves.jsonl",
+      "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/all_training_records.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/result.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/baseline_comparison.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/ablation_report.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/manifest.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/powered_report.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/route_decision.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/route_decision_input.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/FULL_RUN/failure_manifest.json",
+      "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/FULL_RUN/eligibility_report.json",
+      "docs/decision_log.md"
+    ],
+    "aggregation_rule": "valid_easy_control_present and hard_condition_failed => H0_REAL_FLOOR_SUPPORTED_BY_EXISTING; valid easy control present but not closed => H1_DEFECT_SUPPORTED_BY_EXISTING; otherwise unresolved requiring one corrected-control spec-only run",
+    "code_path_hash": "3e3c9754aa7e8de67ccf08ac5a4a82e97c5c1b61612d2e7cbd56844ee08cc72e"
+  },
+  "files_read": [
+    {
+      "path": "artifacts/TLGP-001B-INVALID-AUDIT-001/AUDIT_REPORT.md",
+      "present": true,
+      "bytes": 8291,
+      "sha256": "85c52e9dc6baaa389c85a87bd35050a9b0cd3c7aea9eb4d840214b51d72ef43e"
+    },
+    {
+      "path": "artifacts/TLGP-001B/positive_control_report.json",
+      "present": true,
+      "bytes": 1993,
+      "sha256": "31efb7f214a825856e3a4ebcd5bfefe5a5ac0d2ba088742f067d99a9099484f0"
+    },
+    {
+      "path": "artifacts/TLGP-001B/failure_manifest.json",
+      "present": true,
+      "bytes": 114,
+      "sha256": "d008a3a0df3a8727401525ea97bd72263dccbf89c37a8a94e2531e24351892e3"
+    },
+    {
+      "path": "artifacts/TLGP-001B/result.json",
+      "present": true,
+      "bytes": 17220,
+      "sha256": "732e0f49b4234260e62249b8c1630f2b65e496c17e510178c5331fee369c4827"
+    },
+    {
+      "path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/result.json",
+      "present": true,
+      "bytes": 232675,
+      "sha256": "3e0a2aaac4c76f6354ff9b4aef5c8c5e24aa0c8b349f11c7677ccc0ba23035ad"
+    },
+    {
+      "path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/val_curves.jsonl",
+      "present": false
+    },
+    {
+      "path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/all_training_records.json",
+      "present": true,
+      "bytes": 202021,
+      "sha256": "85a55ade30a38d37b4741e08177f9163444b7269a06046b8923a4719892227ac"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/result.json",
+      "present": true,
+      "bytes": 2261801,
+      "sha256": "3635ef3363229e0582931718f69c24780e12389488a3e18e2799d640454529e8"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/baseline_comparison.json",
+      "present": true,
+      "bytes": 911122,
+      "sha256": "27d5daf56632dc1dbe81bb16cce72ed62c131b652f86eb2d327f0b2f1c1d4e4a"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/ablation_report.json",
+      "present": true,
+      "bytes": 150282,
+      "sha256": "b7cd402faa079420f6507db570c9f4725f331aa38331ab8eaf68ea72071587e8"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/manifest.json",
+      "present": true,
+      "bytes": 4484,
+      "sha256": "2844dbb201d9dc4b179c3f55ca3a3c55ecd3b95f97ca7d411c9060f1886d4ece"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/powered_report.json",
+      "present": true,
+      "bytes": 56789,
+      "sha256": "f87896d886d0634621f9da07d1ecf5f3516948818525de43d26d32ded69bb21d"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/route_decision.json",
+      "present": true,
+      "bytes": 1405,
+      "sha256": "a91c187fe90f738f6423fefbf239c56dd88525de1bc34d7c9179ecaa122456f5"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/route_decision_input.json",
+      "present": true,
+      "bytes": 2249,
+      "sha256": "da66827a440b7df5331113744e7c0abaf44c7d9a9bfb1539661a0364aec93f4d"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/FULL_RUN/failure_manifest.json",
+      "present": true,
+      "bytes": 378356,
+      "sha256": "7d70534f082464f797db43dd7f9e104e0b0169b274ac1cd600aec590bee0213c"
+    },
+    {
+      "path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/FULL_RUN/eligibility_report.json",
+      "present": true,
+      "bytes": 338662,
+      "sha256": "50603824e1846e256de13f9eeb9e46e1c7f21038cdb3271e697e8ffba055f6d4"
+    },
+    {
+      "path": "docs/decision_log.md",
+      "present": true,
+      "bytes": 30234,
+      "sha256": "4db08383a52ade4ab424cc628d2ca052daca35673c550d8b5044fcb81fc608df"
+    }
+  ],
+  "source_commits_located": [
+    {
+      "commit": "7dfb0bde9e05869c8ed304144161329dc1a5860a",
+      "meaning": "TLGP powered rung0 formal terminal; route_open_capability_witness_feasible; 10/10 seeds leakage-clean"
+    },
+    {
+      "commit": "d00932d934e81abcfa5bd9e8689d61959f94bb01",
+      "meaning": "TLGP powered rung3 valid bounded config-limited negative; rung1 eligibility fail 0/10; rung3 gated off"
+    }
+  ],
+  "collision_record": [
+    {
+      "candidate": "zero-compute existing-evidence synthesis",
+      "strongest_baseline": "report-only consistency without discriminating a valid easy control",
+      "falsifier": "valid_easy_control_present is false or hard_condition_failed is false when parsed",
+      "selected": true
+    },
+    {
+      "candidate": "treat TLGP-001B invalid control as decisive",
+      "strongest_baseline": "CONTROL equals REAL; capacity failure is confounded",
+      "falsifier": "independent seen-rule control closes",
+      "selected": false
+    },
+    {
+      "candidate": "launch corrected-control run",
+      "strongest_baseline": "not allowed in zero-compute task",
+      "falsifier": "existing banked valid easy control already resolves discrimination",
+      "selected": false
+    }
+  ],
+  "key_numbers_quoted": [
+    {
+      "name": "001B invalid capacity-control outcome",
+      "source_path": "artifacts/TLGP-001B/result.json",
+      "numbers": {
+        "capacity_control_closed_seeds": {
+          "amortized_summary_mlp": 0,
+          "in_context_gru": 0,
+          "in_context_transformer": 0
+        },
+        "need_close_seeds": 9,
+        "verdict": "tlgp001b_invalid_capacity_or_leakage_or_replay",
+        "failure_manifest": {
+          "invalid": true,
+          "stop_triggered": true,
+          "verdict": "tlgp001b_invalid_capacity_or_leakage_or_replay"
+        },
+        "real_test_balacc_by_family": {
+          "amortized_summary_mlp": {
+            "n": 10,
+            "min": 0.18927206490405019,
+            "max": 0.2059166666666667,
+            "mean": 0.19858578700711055
+          },
+          "in_context_gru": {
+            "n": 10,
+            "min": 0.1978635359194183,
+            "max": 0.20521378822702352,
+            "mean": 0.20258854395468368
+          },
+          "in_context_transformer": {
+            "n": 10,
+            "min": 0.19091666666666668,
+            "max": 0.22124771218705042,
+            "mean": 0.20007561558324718
+          }
+        },
+        "control_headroom_vs_meta_by_family": {
+          "amortized_summary_mlp": {
+            "n": 10,
+            "min": 0.7969091234405572,
+            "max": 0.8155425037925038,
+            "mean": 0.805666063740253
+          },
+          "in_context_gru": {
+            "n": 10,
+            "min": 0.7970052081453978,
+            "max": 0.8144850644385571,
+            "mean": 0.8079268203922625
+          },
+          "in_context_transformer": {
+            "n": 10,
+            "min": 0.8036511860885216,
+            "max": 0.8163699286824287,
+            "mean": 0.8101922121010153
+          }
+        }
+      }
+    },
+    {
+      "name": "001B leakage/control scanner status",
+      "source_path": "artifacts/TLGP-001B/positive_control_report.json",
+      "numbers": {
+        "all_planted_caught": true,
+        "renamed_leak_caught": true,
+        "no_clean_false_flag": true,
+        "detector_valid": true,
+        "structural_boundary_ok": true,
+        "H_answer_bits": 2.3199,
+        "H_rule_bits": 6.4628,
+        "meta_forbidden_inputs": [
+          "rule_id",
+          "query_e(held_out_answer)"
+        ]
+      }
+    },
+    {
+      "name": "control_equals_real_confirmation",
+      "source_path": "artifacts/TLGP-001B-INVALID-AUDIT-001/AUDIT_REPORT.md",
+      "source_locator": "AUDIT_REPORT.md:58-68",
+      "numbers": {
+        "control_test_equals_real_test_episodes": 300,
+        "test_rules_count": 125,
+        "train_rules_count": 500,
+        "heldout_values": [
+          3,
+          4
+        ],
+        "real_train_query_values": [
+          0,
+          1,
+          2
+        ],
+        "control_train_query_values": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "capacity_control_closed_seeds_from_audit": {
+          "amortized_summary_mlp": 0,
+          "in_context_gru": 0,
+          "in_context_transformer": 0
+        },
+        "required_balanced_accuracy_called_out_by_audit": ">=0.9 on 125 unseen mod-5 rules",
+        "audit_conclusion": "001B control embeds the full held-out-rule difficulty; its 0/10 failure is confounded with the hard task"
+      }
+    },
+    {
+      "name": "rung0_SEEN_valid_easy_control_accuracy",
+      "source_path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/powered_report.json",
+      "numbers": {
+        "task_id": "TLGP-CAPABILITY-WITNESS-RUNG0-POWERED-001A",
+        "run_id": "tlgp-rung0-powered-20260630-194845-d5d54d2c",
+        "formal_pass_rule": "both 0a(train) AND 0b(in-dist heldout) >= ideal-DELTA on >= 9/10 seeds",
+        "formal_bar": 0.9,
+        "n_seeds": 10,
+        "seed_pass_count": 10,
+        "seed_pass_required": 9,
+        "prereg_rule_pass": true,
+        "leakage_clean": true,
+        "best_train_balacc_0a": {
+          "n": 10,
+          "min": 1.0,
+          "max": 1.0,
+          "mean": 1.0
+        },
+        "best_train_balacc_0a_by_seed": {
+          "20260710": 1.0,
+          "20260711": 1.0,
+          "20260712": 1.0,
+          "20260713": 1.0,
+          "20260714": 1.0,
+          "20260715": 1.0,
+          "20260716": 1.0,
+          "20260717": 1.0,
+          "20260718": 1.0,
+          "20260719": 1.0
+        },
+        "best_heldout_balacc_0b": {
+          "n": 10,
+          "min": 0.9144330898268399,
+          "max": 0.9884836940836941,
+          "mean": 0.9517534027777778
+        },
+        "best_heldout_balacc_0b_by_seed": {
+          "20260710": 0.9617319173881674,
+          "20260711": 0.9483307720057721,
+          "20260712": 0.9485841991341991,
+          "20260713": 0.9467380230880231,
+          "20260714": 0.9443912427849928,
+          "20260715": 0.9459665945165945,
+          "20260716": 0.9550920634920635,
+          "20260717": 0.9884836940836941,
+          "20260718": 0.9144330898268399,
+          "20260719": 0.9637824314574314
+        },
+        "learner_mean_from_headroom_power": 0.9517534027777778,
+        "fair_baseline_max_including_graph_cache": 0.22633160173160177,
+        "observed_power_approx": 1.0,
+        "claim_ceiling": "formal rung0 seen-rule prerequisite only; not transfer, rung3, mechanism, agency, self, AGI, or EGO evidence"
+      }
+    },
+    {
+      "name": "rung1_capacity_sweep_002A_segment_bounded_readback",
+      "source_path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG1_CAPACITY_SWEEP_002A/RUN/FULL_SCOUT/result.json",
+      "numbers": {
+        "route_decision": {
+          "admissible_caps": [
+            "C0",
+            "C1",
+            "C2"
+          ],
+          "breakpoints": {
+            "C0": 8,
+            "C1": 16,
+            "C2": 16
+          },
+          "claim_ceiling": "Rung1 seen-rule capacity-vs-architecture diagnostic only, and only among capacities that demonstrate trainability under the frozen recipe. No rung3, transfer, H0, H1, mechanism, agency, self, AGI, EGO, runtime, companion, or mainline claim.",
+          "route": "reopen_rung3_powered_after_powered_rung1_confirm",
+          "trainability_failed_caps": [],
+          "verdict": "H_cap"
+        },
+        "claim_ceiling": "Rung1 seen-rule capacity-vs-architecture diagnostic only, and only among capacities that demonstrate trainability under the frozen recipe. No rung3, transfer, H0, H1, mechanism, agency, self, AGI, EGO, runtime, companion, or mainline claim.",
+        "trainability_control_compact": {
+          "admissible_caps": [
+            "C0",
+            "C1",
+            "C2"
+          ],
+          "failed_caps": [],
+          "per_capacity": {
+            "C0": {
+              "gate_pass": true,
+              "pass_count": 3,
+              "required_pass_count": 2,
+              "threshold_meta": 0.9,
+              "observed_meta_by_seed": {
+                "20260710": 0.9997777777777778,
+                "20260711": 1.0,
+                "20260712": 1.0
+              }
+            },
+            "C1": {
+              "gate_pass": true,
+              "pass_count": 3,
+              "required_pass_count": 2,
+              "threshold_meta": 0.9,
+              "observed_meta_by_seed": {
+                "20260710": 1.0,
+                "20260711": 1.0,
+                "20260712": 1.0
+              }
+            },
+            "C2": {
+              "gate_pass": true,
+              "pass_count": 3,
+              "required_pass_count": 2,
+              "threshold_meta": 0.9,
+              "observed_meta_by_seed": {
+                "20260710": 1.0,
+                "20260711": 1.0,
+                "20260712": 1.0
+              }
+            }
+          }
+        },
+        "c0_anchor": {
+          "asserted": true,
+          "gate_pass": true,
+          "minimum_meta": 0.49,
+          "pass_count": 2,
+          "per_seed": [
+            {
+              "minimum_meta": 0.49,
+              "observed_meta": 0.5061910096847597,
+              "seed": 20260710,
+              "within_anchor": true
+            },
+            {
+              "minimum_meta": 0.49,
+              "observed_meta": 0.49418827353202355,
+              "seed": 20260711,
+              "within_anchor": true
+            },
+            {
+              "minimum_meta": 0.49,
+              "observed_meta": 0.48241563228438233,
+              "seed": 20260712,
+              "within_anchor": false
+            }
+          ],
+          "producer_function": "src.tlgp_capability_witness_preflight_001a.rung1_capacity_sweep_002a.c0_anchor_result",
+          "required_pass_count": 2,
+          "requires_trainability_pass": true,
+          "trainability_gate_pass": true
+        },
+        "phase2_breakpoint_cells_compact": [
+          {
+            "capacity_tag": "C0",
+            "rule_count": 8,
+            "seed_clear_count": 3,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": true,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.9985825396825396,
+              "max": 0.9989666666666668,
+              "mean": 0.9988239417989419
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.34977728676552206,
+              "max": 0.34977728676552206,
+              "mean": 0.34977728676552206
+            }
+          },
+          {
+            "capacity_tag": "C1",
+            "rule_count": 8,
+            "seed_clear_count": 3,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": true,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.999425,
+              "max": 1.0,
+              "mean": 0.9996416666666667
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.34977728676552206,
+              "max": 0.34977728676552206,
+              "mean": 0.34977728676552206
+            }
+          },
+          {
+            "capacity_tag": "C2",
+            "rule_count": 8,
+            "seed_clear_count": 3,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": true,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.9995833333333333,
+              "max": 1.0,
+              "mean": 0.9997222222222222
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.34977728676552206,
+              "max": 0.34977728676552206,
+              "mean": 0.34977728676552206
+            }
+          },
+          {
+            "capacity_tag": "C0",
+            "rule_count": 16,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.8124002886002886,
+              "max": 0.8787672077922077,
+              "mean": 0.8521628667628667
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.33507579365079365,
+              "max": 0.33507579365079365,
+              "mean": 0.3350757936507936
+            }
+          },
+          {
+            "capacity_tag": "C1",
+            "rule_count": 16,
+            "seed_clear_count": 3,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": true,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.9928321067821068,
+              "max": 0.9996666666666667,
+              "mean": 0.9959032948532949
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.33507579365079365,
+              "max": 0.33507579365079365,
+              "mean": 0.3350757936507936
+            }
+          },
+          {
+            "capacity_tag": "C2",
+            "rule_count": 16,
+            "seed_clear_count": 3,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": true,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.9991555555555556,
+              "max": 0.9998333333333334,
+              "mean": 0.9995042328042327
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.33507579365079365,
+              "max": 0.33507579365079365,
+              "mean": 0.3350757936507936
+            }
+          },
+          {
+            "capacity_tag": "C0",
+            "rule_count": 32,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.7110244512432012,
+              "max": 0.7217443015318016,
+              "mean": 0.7153393456080956
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3364712148962149,
+              "max": 0.3364712148962149,
+              "mean": 0.33647121489621484
+            }
+          },
+          {
+            "capacity_tag": "C1",
+            "rule_count": 32,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.7731933226495726,
+              "max": 0.7920420260295259,
+              "mean": 0.7855321368446369
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3364712148962149,
+              "max": 0.3364712148962149,
+              "mean": 0.33647121489621484
+            }
+          },
+          {
+            "capacity_tag": "C2",
+            "rule_count": 32,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.8297839500777,
+              "max": 0.8451832348207349,
+              "mean": 0.8350397283272283
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3364712148962149,
+              "max": 0.3364712148962149,
+              "mean": 0.33647121489621484
+            }
+          },
+          {
+            "capacity_tag": "C0",
+            "rule_count": 64,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.5510627563226247,
+              "max": 0.5617760518721046,
+              "mean": 0.5548525049998734
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3322712823725982,
+              "max": 0.3322712823725982,
+              "mean": 0.3322712823725982
+            }
+          },
+          {
+            "capacity_tag": "C1",
+            "rule_count": 64,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.6232091991341993,
+              "max": 0.644929888167388,
+              "mean": 0.6337578523328523
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3322712823725982,
+              "max": 0.3322712823725982,
+              "mean": 0.3322712823725982
+            }
+          },
+          {
+            "capacity_tag": "C2",
+            "rule_count": 64,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.6736701479076479,
+              "max": 0.6903398268398269,
+              "mean": 0.6829208573833574
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3322712823725982,
+              "max": 0.3322712823725982,
+              "mean": 0.3322712823725982
+            }
+          },
+          {
+            "capacity_tag": "C0",
+            "rule_count": 128,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.5026591658341658,
+              "max": 0.5327985743423242,
+              "mean": 0.5143944562382062
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.33082765151515153,
+              "max": 0.33082765151515153,
+              "mean": 0.33082765151515153
+            }
+          },
+          {
+            "capacity_tag": "C1",
+            "rule_count": 128,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.5196795038295038,
+              "max": 0.5295625652125652,
+              "mean": 0.524100181993932
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.33082765151515153,
+              "max": 0.33082765151515153,
+              "mean": 0.33082765151515153
+            }
+          },
+          {
+            "capacity_tag": "C2",
+            "rule_count": 128,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.5368497446997448,
+              "max": 0.5622187506937507,
+              "mean": 0.5473145484145484
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.33082765151515153,
+              "max": 0.33082765151515153,
+              "mean": 0.33082765151515153
+            }
+          },
+          {
+            "capacity_tag": "C0",
+            "rule_count": 172,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.48241563228438233,
+              "max": 0.5061910096847597,
+              "mean": 0.4942649718337219
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3320459706959707,
+              "max": 0.3320459706959707,
+              "mean": 0.3320459706959707
+            }
+          },
+          {
+            "capacity_tag": "C1",
+            "rule_count": 172,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.5352424284049284,
+              "max": 0.5593453879453879,
+              "mean": 0.5456495028120028
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3320459706959707,
+              "max": 0.3320459706959707,
+              "mean": 0.3320459706959707
+            }
+          },
+          {
+            "capacity_tag": "C2",
+            "rule_count": 172,
+            "seed_clear_count": 0,
+            "ablation_destroyed_count": 3,
+            "admissible_clear": false,
+            "fair_saturation": false,
+            "meta_mean": {
+              "n": 3,
+              "min": 0.5673285187035187,
+              "max": 0.6749904068154068,
+              "mean": 0.6091389219576719
+            },
+            "fair_max": {
+              "n": 3,
+              "min": 0.3320459706959707,
+              "max": 0.3320459706959707,
+              "mean": 0.3320459706959707
+            }
+          }
+        ],
+        "baseline_producer_function": "src.tlgp_capability_witness_preflight_001a.rung1_capacity_sweep_002a.evaluate_fair_panel",
+        "ablation_producer_function": "src.tlgp_capability_witness_preflight_001a.rung1_capacity_sweep_002a.context_ablation_report"
+      }
+    },
+    {
+      "name": "R2_seen_vs_heldout_if_available",
+      "source_path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/all_training_records.json",
+      "numbers": {
+        "final_official_verdict": "tlgp001b_r2_invalid_learnability_floor_failed",
+        "verdict_detail": {
+          "DELTA": 0.1,
+          "FLOOR": 0.2,
+          "branch_index": 2,
+          "context_ablation_collapse_by_family": {
+            "in_context_gru": true,
+            "in_context_transformer": true
+          },
+          "eligible_primary_families": [],
+          "need_close": 9,
+          "rung0_pass_by_family": {
+            "in_context_gru": false,
+            "in_context_transformer": false
+          },
+          "rung1_pass_by_family": {
+            "in_context_gru": false,
+            "in_context_transformer": false
+          },
+          "rung3_close_counts": {
+            "in_context_gru": 0,
+            "in_context_transformer": 0
+          },
+          "rung3_lcb_by_family": {
+            "in_context_gru": 0.7928221321858354,
+            "in_context_transformer": 0.7920113413341182
+          },
+          "shuffle_collapse_by_family": {
+            "in_context_gru": true,
+            "in_context_transformer": true
+          },
+          "terminal_key": "invalid_learnability_floor"
+        },
+        "rung0_rung1_rung3_witness_stats": {
+          "rung0/in_context_gru": {
+            "n": 10,
+            "config_ids": [
+              "in_context_gru__cfg06"
+            ],
+            "train_balacc": {
+              "n": 10,
+              "min": 0.9599245084915085,
+              "max": 0.9915931296203797,
+              "mean": 0.9811458367660117
+            },
+            "heldout_balacc": {
+              "n": 10,
+              "min": 0.4167894570707071,
+              "max": 0.5106617694805194,
+              "mean": 0.4704822186147187
+            }
+          },
+          "rung0/in_context_transformer": {
+            "n": 10,
+            "config_ids": [
+              "in_context_transformer__cfg06"
+            ],
+            "train_balacc": {
+              "n": 10,
+              "min": 0.7812637516788767,
+              "max": 0.9379504816572316,
+              "mean": 0.904716269030969
+            },
+            "heldout_balacc": {
+              "n": 10,
+              "min": 0.4339461850649351,
+              "max": 0.6040842352092352,
+              "mean": 0.5392878463203463
+            }
+          },
+          "rung0/amortized_summary_mlp": {
+            "n": 10,
+            "config_ids": [
+              "amortized_summary_mlp__cfg02"
+            ],
+            "train_balacc": {
+              "n": 10,
+              "min": 0.3906271772671773,
+              "max": 0.3968429904817405,
+              "mean": 0.3940725592296592
+            },
+            "heldout_balacc": {
+              "n": 10,
+              "min": 0.3799426046176046,
+              "max": 0.38874650974025976,
+              "mean": 0.3850576650432901
+            }
+          },
+          "rung1/in_context_gru": {
+            "n": 10,
+            "config_ids": [
+              "in_context_gru__cfg06"
+            ],
+            "test_balacc": {
+              "n": 10,
+              "min": 0.20595680708180708,
+              "max": 0.22490384546009545,
+              "mean": 0.21740797979797982
+            },
+            "best_val_balacc": {
+              "n": 10,
+              "min": 0.2233184203296703,
+              "max": 0.2283768833943834,
+              "mean": 0.22540934495134496
+            }
+          },
+          "rung1/in_context_transformer": {
+            "n": 10,
+            "config_ids": [
+              "in_context_transformer__cfg06"
+            ],
+            "test_balacc": {
+              "n": 10,
+              "min": 0.19861219960594959,
+              "max": 0.2545570054945055,
+              "mean": 0.22662532703407706
+            },
+            "best_val_balacc": {
+              "n": 10,
+              "min": 0.21110646756021756,
+              "max": 0.25750974715099717,
+              "mean": 0.2335402027093277
+            }
+          },
+          "rung1/amortized_summary_mlp": {
+            "n": 10,
+            "config_ids": [
+              "amortized_summary_mlp__cfg02"
+            ],
+            "test_balacc": {
+              "n": 10,
+              "min": 0.1988019320956821,
+              "max": 0.21495494574869575,
+              "mean": 0.20827577554390056
+            },
+            "best_val_balacc": {
+              "n": 10,
+              "min": 0.21800662189662187,
+              "max": 0.22271990282865284,
+              "mean": 0.22012163845413846
+            }
+          },
+          "rung3/in_context_gru": {
+            "n": 10,
+            "config_ids": [
+              "in_context_gru__cfg06"
+            ],
+            "rung2_test_balacc_using_rung3_model": {
+              "n": 10,
+              "min": 0.19975617854367855,
+              "max": 0.20477539682539686,
+              "mean": 0.20189191067095674
+            },
+            "rung3_test_balacc": {
+              "n": 10,
+              "min": 0.1970791250537961,
+              "max": 0.20875684523809526,
+              "mean": 0.20498162853078297
+            },
+            "best_val_balacc": {
+              "n": 10,
+              "min": 0.22147986944428122,
+              "max": 0.22576580850794084,
+              "mean": 0.22299806561194796
+            }
+          },
+          "rung3/in_context_transformer": {
+            "n": 10,
+            "config_ids": [
+              "in_context_transformer__cfg06"
+            ],
+            "rung2_test_balacc_using_rung3_model": {
+              "n": 10,
+              "min": 0.19225865395569344,
+              "max": 0.2122573809231704,
+              "mean": 0.2001605393704736
+            },
+            "rung3_test_balacc": {
+              "n": 10,
+              "min": 0.19788272907647908,
+              "max": 0.2135302698519804,
+              "mean": 0.20493933393189198
+            },
+            "best_val_balacc": {
+              "n": 10,
+              "min": 0.21183963658618069,
+              "max": 0.25839466544893014,
+              "mean": 0.23747531368576955
+            }
+          },
+          "rung3/amortized_summary_mlp": {
+            "n": 10,
+            "config_ids": [
+              "amortized_summary_mlp__cfg02"
+            ],
+            "rung2_test_balacc_using_rung3_model": {
+              "n": 10,
+              "min": 0.19737297286047287,
+              "max": 0.20804737507862506,
+              "mean": 0.20178553774928779
+            },
+            "rung3_test_balacc": {
+              "n": 10,
+              "min": 0.18602470636089052,
+              "max": 0.20800000000000002,
+              "mean": 0.19910701214842663
+            },
+            "best_val_balacc": {
+              "n": 10,
+              "min": 0.2201782972474149,
+              "max": 0.2239918247629277,
+              "mean": 0.22163543611481112
+            }
+          }
+        },
+        "rung_summaries_compact": {
+          "rung0": {
+            "ideal_train": 1.0,
+            "ideal_heldout": 1.0,
+            "primary_pass_counts": {
+              "in_context_gru": 0,
+              "in_context_transformer": 0
+            },
+            "primary_pass_by_family": {
+              "in_context_gru": false,
+              "in_context_transformer": false
+            }
+          },
+          "rung1": {
+            "ideal_seen1": 1.0,
+            "primary_pass_counts": {
+              "in_context_gru": 0,
+              "in_context_transformer": 0
+            },
+            "primary_pass_by_family": {
+              "in_context_gru": false,
+              "in_context_transformer": false
+            },
+            "lower_reference_means": {
+              "count_table": 0.3185643432955933,
+              "lookup": 0.3185643432955933,
+              "majority": 0.20125,
+              "no_adaptation": 0.1998037982850483,
+              "predict_all": 0.20125
+            }
+          },
+          "rung3": {
+            "ideal_unseen_rule_unseen_value": 1.0,
+            "primary_close_counts": {
+              "in_context_gru": 0,
+              "in_context_transformer": 0
+            },
+            "primary_lcb_by_family": {
+              "in_context_gru": 0.7928221321858354,
+              "in_context_transformer": 0.7920113413341182
+            }
+          }
+        },
+        "claim_ceiling": "Bounded offline evidence on whether ONE world's within-episode inference headroom survives a CAPABILITY-ESTABLISHED cross-episode PRIMARY meta. Candidate-free; tests NO mechanism. NOT learning-as-mechanism, agency, self, feeling, subjectivity, intelligence, autonomy, AGI, companion-readiness, or EGO-readiness. Seen-rule rungs (0,1,2) prove ONLY optimization/representation/amortization capability and are NEVER mechanism evidence or H1. invalid_no_capability_witness means THIS family at THIS frozen budget/grid failed to provide a capability witness -- it does NOT prove the family cannot learn with more data/training/diversity. invalid_inconclusive_underpowered means the rung3 statistic could not robustly distinguish survive vs amortize at N_SEEDS=10; it is NOT a downgrade of 001A. Any negative bounded to THIS world + THIS meta family + this frozen capacity grid."
+      }
+    },
+    {
+      "name": "rung3_or_heldout_hard_condition_failure",
+      "source_path": "artifacts/TLGP-001B-R2/OFFICIAL_FULL_RUN/result.json",
+      "numbers": {
+        "r2_final_official_verdict": "tlgp001b_r2_invalid_learnability_floor_failed",
+        "r2_rung3_close_counts": {
+          "in_context_gru": 0,
+          "in_context_transformer": 0
+        },
+        "r2_need_close": 9,
+        "r2_rung3_lcb_by_family": {
+          "in_context_gru": 0.7928221321858354,
+          "in_context_transformer": 0.7920113413341182
+        },
+        "r2_primary_rung0_pass_by_family": {
+          "in_context_gru": false,
+          "in_context_transformer": false
+        },
+        "r2_primary_rung1_pass_by_family": {
+          "in_context_gru": false,
+          "in_context_transformer": false
+        },
+        "r2_primary_rung3_test_balacc_means": {
+          "in_context_gru": 0.20498162853078297,
+          "in_context_transformer": 0.20493933393189198
+        }
+      }
+    },
+    {
+      "name": "rung3_powered_config_limited_negative",
+      "source_path": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG3_POWERED_LEARNER_001A/FULL_RUN/failure_manifest.json",
+      "numbers": {
+        "failure_reason": "rung1 eligibility/discriminativeness gate failed",
+        "failed_step": "stage1_gate",
+        "full_run_launched": false,
+        "evidential": false,
+        "failure_claim_ceiling": "executor stopped; no TLGP H0/H1 evidence emitted",
+        "eligibility_stage": "stage1_rung1_eligibility",
+        "eligibility_pass_count": 0,
+        "scanner_pass_count": 10,
+        "formal_gate_pass": false,
+        "dry_run_gate_pass": false,
+        "eligibility_claim_ceiling": "rung1 eligibility gate only; not rung3 transfer evidence"
+      }
+    }
+  ],
+  "valid_easy_control_present": true,
+  "valid_easy_control_artifact": "artifacts/TLGP-CAPABILITY-WITNESS-PREFLIGHT-001A/RUNG0_POWERED_001A/powered_report.json",
+  "valid_easy_control_reason": "RUNG0_POWERED_001A uses a formal seen-rule prerequisite with train and in-distribution heldout conditions, not rung3 transfer/unseen-rule generalization; it reports leakage_clean=true, prereg_rule_pass=true, seed_pass_count=10/9, formal_bar=0.9, heldout mean=0.9517534027777778. This is independent of the 001B invalid CONTROL==REAL held-out-rule confound.",
+  "derived_inputs": {
+    "001B_own_control_valid": false,
+    "001B_own_control_invalid_reason": "AUDIT_REPORT.md:60-68 says CONTROL test is episode-for-episode identical to REAL over 300 episodes and still requires 125 unseen-rule generalization; capacity closed seeds were 0/10 for all three families.",
+    "rung0_easy_control_closed": true,
+    "rung0_easy_control_not_confounded": true,
+    "r2_hard_heldout_failed": true,
+    "rung3_powered_config_limited_negative": true,
+    "hard_condition_failed": true
+  },
+  "derived_verdict": "H0_REAL_FLOOR_SUPPORTED_BY_EXISTING",
+  "minimal_new_run_if_unresolved": null,
+  "claim_ceiling": "bounded offline evidence-synthesis over existing records for the H0/H1 route question ONLY; proves no mechanism, no theory truth/falsity, no N1 readiness, no agency/consciousness; does not restate any prior result stronger than banked.",
+  "prior_claim_ceilings_carried_forward_unchanged": {
+    "001B": "Bounded offline evidence on whether ONE procedural world's within-episode inference headroom survives cross-episode amortization. Candidate-free; tests NO mechanism. NOT learning-as-mechanism, agency, self, feeling, subjectivity, intelligence, or EGO-readiness evidence. A negative in either direction is bounded to THIS world + THIS meta-learner family + this pre-registered capacity grid.",
+    "001B_R2": "Bounded offline evidence on whether ONE world's within-episode inference headroom survives a CAPABILITY-ESTABLISHED cross-episode PRIMARY meta. Candidate-free; tests NO mechanism. NOT learning-as-mechanism, agency, self, feeling, subjectivity, intelligence, autonomy, AGI, companion-readiness, or EGO-readiness. Seen-rule rungs (0,1,2) prove ONLY optimization/representation/amortization capability and are NEVER mechanism evidence or H1. invalid_no_capability_witness means THIS family at THIS frozen budget/grid failed to provide a capability witness -- it does NOT prove the family cannot learn with more data/training/diversity. invalid_inconclusive_underpowered means the rung3 statistic could not robustly distinguish survive vs amortize at N_SEEDS=10; it is NOT a downgrade of 001A. Any negative bounded to THIS world + THIS meta family + this frozen capacity grid.",
+    "rung0_powered": "formal rung0 seen-rule prerequisite only; not transfer, rung3, mechanism, agency, self, AGI, or EGO evidence",
+    "rung1_capacity_sweep_002A": "Rung1 seen-rule capacity-vs-architecture diagnostic only, and only among capacities that demonstrate trainability under the frozen recipe. No rung3, transfer, H0, H1, mechanism, agency, self, AGI, EGO, runtime, companion, or mainline claim.",
+    "rung3_powered_full_run": "executor stopped; no TLGP H0/H1 evidence emitted"
+  },
+  "what_this_does_not_prove": [
+    "Does not prove a mechanism, functional subject, agency, autonomy, consciousness, emotion, stable user benefit, companion readiness, EGO readiness, Gate pass, or N1 readiness.",
+    "Does not prove a universal learnability floor; any negative remains bounded to the banked TLGP world, learner/config family, frozen budgets, and cited artifacts.",
+    "Does not upgrade TLGP-001B: its own capacity-positive control remains invalid because CONTROL test was byte-identical to REAL.",
+    "Does not upgrade rung1 capacity sweep beyond segment-bounded H_cap / seen-rule capacity-vs-architecture diagnostics.",
+    "Does not upgrade rung3 powered full-run failure beyond config-limited negative / rung1 eligibility-gate failure; that artifact itself emitted no TLGP H0/H1 evidence.",
+    "Does not show that stronger budgets, different architectures, corrected future controls, or new fair meta-baselines would fail."
+  ]
+}
