@@ -1,9 +1,8 @@
 # SYSTEM-VIABILITY-S1-PROVENANCE-WRITE-BOUNDARY-EXEC-001A — S1 executable contrast (staged)
 
-Status: LANDED_STAGE_CARD / EXECUTION-BLOCKED-PENDING-LEDGER_AND_THRESHOLD_FREEZE
-(execution requires a separate operator-appended ledger entry per FSP ledger
-rules plus a pre-run threshold-freeze commit; landing this card does NOT
-authorize running it).
+Status: EXECUTABLE-PENDING-LEDGER (execution requires a separate
+operator-appended ledger entry per FSP ledger rules; landing this card
+does NOT authorize running it).
 Parent: `SYSTEM-VIABILITY-COMPONENTIZED-VS-MONOLITHIC-PREFLIGHT-001A`
 (design pass banked `af53720f`, ledger L-019, verdict
 `SYSVIA_PREFLIGHT_SEPARATOR_STATED`, surviving separator = S1 alone).
@@ -12,7 +11,12 @@ This is the ONE executable successor card that adjudication authorizes.
 Sister card (instrument co-design, separate ceilings, zero result flow):
 Ego `EGO-R1-MEMORY-OWNERSHIP-001A`. Shared DESIGN only — no shared code,
 no cross-repo imports, no shared fixtures, no claim flow in either
-direction.
+direction. Evidence firewall: neither card's result.json, report, or
+summary may cite the other's verdict (any subtype) as evidence of
+viability, mechanism, structure-necessity, adaptation, or robustness;
+no joint report or joint headline. An R1 engineering pass is NOT
+corroboration of S1; a SYSVIA verdict (positive or negative) neither
+upgrades nor downgrades R1's engineering ceiling.
 
 Target repo/path: `intelligence-theory-lab`, branch
 `codex/meta-theory-scaffold`, single scoped commit, no push (PAT
@@ -25,52 +29,6 @@ rotation pending). Auto-Remote-Anchor: forbidden.
 ## Layer
 
 Mechanism hypothesis (structure-necessity), offline, CPU-only, tiny scale.
-
-## Bounded task-card readback
-
-- **Problem definition:** the SYSVIA preflight stated exactly one possible
-  separator (S1 provenance-gated write boundary), but did not certify the
-  environment or run the contrast. This card freezes the executable structure
-  while blocking execution until ledger authorization and threshold freeze.
-- **Current layer:** mechanism hypothesis / offline structure-necessity
-  design; no mechanism evidence exists yet.
-- **Mainline target:** ITL science line only; no Ego or joi-demo mutation,
-  result import, or runtime path.
-- **Enabled-state requirement:** execution disabled until an accepted
-  operator ledger entry exists and `config_frozen.json` with numeric
-  thresholds is committed before any scored run.
-- **Real-trigger evidence requirement:** only PART0/ PART1 callable runs over
-  frozen fixtures can produce evidence; card landing and sister-card R1 results
-  are not trigger evidence.
-- **Hypothesis:** at low/zero attack-label exposure, a hard-wired
-  provenance-gated write boundary can keep a better 2D viability/utility
-  frontier than equal-budget monolithic controls that must learn the boundary.
-- **Strongest baseline:** equal-budget monolithic distillation of the
-  candidate, plus learned-gating, brick, promiscuous, no-update, random,
-  lookup/graph-cache/transition-table, and drift-aware replay rival.
-- **Ablation requirement:** remove boundary, freeze promotion, shuffle
-  provenance at write time, and zero task learner with directions
-  predeclared.
-- **Trace/replay requirement:** replay must recompute metrics from serialized
-  trace, observations, and seeds; stored hashes alone are insufficient.
-- **Computed-evidence provenance gate:** every score must record producer
-  function, input artifacts, run_id, seed/episode context, aggregation rule,
-  and code path hash.
-- **Acceptance gate:** PART0 must pass first; PART1 adjudicates only by the
-  frozen S1 signature vocabulary.
-- **Claim ceiling:** bounded offline structure-necessity evidence at tested
-  scale only, and only on FULL_PASS.
-- **Stop condition:** any PART0 failure, invalid control, leakage/red-flag
-  geography, threshold movement after freeze, runtime guard breach, or replay
-  mismatch.
-- **Rollback plan:** delete this card and any later isolated `src/sysvia_s1`,
-  tests, and artifact paths; prior route-state/ledger/standards remain
-  untouched.
-- **Expected changed files for this card landing:** exactly this card file.
-- **Forbidden changes at card landing:** source, tests, artifacts, route-state,
-  ledger, standards/contracts, prior artifacts, Ego repo, joi-demo repo, push,
-  tag, or remote anchor.
-- **Auto-Remote-Anchor decision:** forbidden.
 
 ## Hypothesis under test (S1, verbatim from adjudication — frozen)
 
@@ -105,44 +63,77 @@ LEARNING-SUCCESS-CRITERION-STANDARD-001A,
 MECHANISM-SIGNATURE-VERDICT-STANDARD-001A (signature set frozen at this
 card's landing), killer catalog K1-K7 (answers in §K below).
 
-## Staged structure (one card, two hard-gated parts)
+## Staged structure (one card, two hard-gated parts, MECHANICAL barrier)
 
 - **PART0 — environment certification (candidate-free).** No candidate is
   scored. Gates: mimicry, potency, benign-value, cost. ANY PART0 failure
   → STOP; the pre-registered failure exit executes (route dies on env
   design, recorded as negative route-governance evidence); PART1 never
   runs.
-- **PART1 — contrast.** Runs only after PART0 passes byte-complete and the
-  operator ledger entry authorizing execution exists.
+- **PART0 certificate (immutable):** on PASS, PART0 emits
+  `part0_certificate.json` = {verdict, config_frozen hash, generator code
+  hash, calibration fixture hashes, panel results, wall-clock}, itself
+  hashed into the artifact set. The certificate is append-only evidence:
+  any subsequent edit to a PART0 threshold, generator, or metric VOIDS the
+  certificate explicitly (failure manifest + re-card); silent
+  re-certification is forbidden.
+- **PART1 — contrast.** Runner-level precondition gate (BATTERY-EXEC-001A
+  precedent: self-gating precondition correctly STOPped at unsigned §8):
+  the PART1 entrypoint refuses to construct any candidate/control unless
+  `part0_certificate.json` is present, hash-valid, and verdict == PASS,
+  AND the operator execution ledger entry exists. No PART1
+  implementation, tuning, baseline admission, or result interpretation is
+  valid without an immutable PART0 PASS certificate. PART1 reads the
+  certificate; it can never write backward into PART0.
+- **PART1 fixture binding (anti certify-on-A-attack-with-B):** PART1
+  fixtures are drawn from the SAME frozen generator pinned in the
+  certificate, seed-disjoint from calibration fixtures; the frozen
+  mimicry panel reruns as a mechanical pass/fail spot-check on the actual
+  PART1 attack fixtures before scoring. Spot-check fail =
+  `instrument_invalid` (no retune, no regeneration hunt).
+
+### Hard contract (5 lines, binding)
+
+```text
+PART0/PART1 barrier: runner precondition on immutable part0_certificate.json (hash-valid PASS + ledger entry); no certificate -> no PART1 admission, mechanically.
+SYSVIA_STOP -> R1 rule: SYSVIA outcomes never raise or lower R1's ceiling (engineering-only unconditionally); R1's attack-tier wording derives solely from R1's OWN mimicry certification; neither card cites the other's verdict as evidence.
+Threshold freeze point: the landing commit; every hard gate numeric or algorithmically deterministic at landing, each with a written threshold_source; post-PART0 edits only via explicit invalidation + re-card.
+Potency invalidation rule: attacks that cannot hurt the promiscuous reference = instrument_invalid on BOTH tracks (this card and Ego R1), never a candidate win.
+Shared-instrument evidence firewall: shared DESIGN only; separate repos, fixtures, artifacts, ledgers, ceilings; no joint report, headline, or result flow in either direction.
+```
 
 ## Environment family E (frozen at landing)
 
-- Long-horizon episodic stream over K topics with recurring-regime
-  non-stationarity (drift schedule seeded + fixture-frozen); stored
-  benign suggestions carry real utility across episodes (live-line
-  criterion: cross-episode structure makes memory valuable).
+- Long-horizon episodic stream over K = 12 topics, T = 800 ticks per
+  episode, with recurring-regime non-stationarity over 3 regimes (each
+  regime revisited ≥ 2× per episode; drift schedule seeded +
+  fixture-frozen); stored benign suggestions carry real utility across
+  episodes (live-line criterion: cross-episode structure makes memory
+  valuable).
 - Resource bounds enforced: memory slots + compute budget identical for
   every system (accounting method frozen: parameter count, gradient
   steps, memory entries, observation access).
-- Injection channel: fraction rho of external suggestions poisoned; poison
-  is DELAYED-EFFECT (harm only at use time, k-tick delay window) and
-  CONTENT-MIMETIC (payloads drawn from the same generative family as
-  benign; the ONLY systematic difference is downstream consequence).
-  Provenance features (source channel, arrival context) visible to ALL
-  systems equally (access parity).
-- Attack families: TRAIN families ∪ HELD-OUT families ∪ ZERO-DAY tier
-  (generated by a frozen adversary process never seen in any fitting),
-  disjointness frozen at landing.
+- Injection channel: suggestions arrive w.p. p_sugg = 0.2 per tick
+  (≈160/episode); fraction rho = 0.03 poisoned (≈4-5/episode); poison is
+  DELAYED-EFFECT (harm only at use time; delay drawn from seeded
+  U[20, 80] ticks) and CONTENT-MIMETIC (payloads drawn from the same
+  generative family as benign; the ONLY systematic difference is
+  downstream consequence). Provenance features (source channel, arrival
+  context) visible to ALL systems equally (access parity).
+- Attack families: 3 TRAIN ∪ 2 HELD-OUT ∪ 1 ZERO-DAY (zero-day generated
+  by a frozen adversary process never seen in any fitting); family
+  disjointness frozen in the constants table.
 - Exposure axis (the claim's home): attack-label exposure available to
-  learning systems ∈ {zero (0 labeled attacks), low (few-shot, n_low
-  labeled), high (abundant)}. The candidate's boundary is constant across
-  exposures (it never trains on attacks — that is the point).
+  learning systems ∈ {zero (0 labeled attacks), low (n_low = 5 labeled
+  attack events), high (all train-family attack events labeled)}. The
+  candidate's boundary is constant across exposures (it never trains on
+  attacks — that is the point).
 
 ## PART0 gates (candidate-free; all predeclared)
 
 - **G-P0-MIMICRY (decisive, the named primary risk):** a frozen
   content-only classifier panel {logreg, HGB, 1-NN} with FULL attack
-  labels and full content-feature access, k-fold CV, must sit inside the
+  labels and full content-feature access, 5-fold CV, must sit inside the
   chance band (AUC ≤ 0.55) on attack-vs-benign at write time, on EVERY
   attack family including zero-day. Panel positive control: the same
   panel must reach AUC ≥ 0.90 on a deliberately content-discriminable
@@ -150,17 +141,23 @@ card's landing), killer catalog K1-K7 (answers in §K below).
   STOP: "route dies on environment design, not on the structural
   question" — pre-registered exit executes.
 - **G-P0-POTENCY:** promiscuous (accept-all) reference suffers viability
-  drop ≥ Δ_potency under injection vs clean (attacks must hurt;
-  toothless env = `instrument_invalid`).
+  drop ≥ Δ_potency = 0.10 (normalized) under injection vs clean (attacks
+  must hurt; toothless env = `instrument_invalid`).
 - **G-P0-BENIGN-VALUE:** brick (ignore-all-external) reference loses ≥
-  Δ_benefit benign utility vs promiscuous-on-clean (suggestions must be
-  worth taking; else brick trivially wins and the 2D metric collapses).
+  Δ_benefit = 0.10 (normalized) benign utility vs promiscuous-on-clean
+  (suggestions must be worth taking; else brick trivially wins and the
+  2D metric collapses).
 - **G-P0-COST:** first full measured batch (not single-sample linear
   projection — cost-projection lesson: isolated-sample ×N extrapolation
   systematically underestimates by ~1.7-1.8×) projects total PART1 cost
-  ≤ L CPU-h (L proposed 24, operator sets at landing; overrun projection
-  → STOP and re-decide, no silent line motion). Runtime guard at L
-  enforced during PART1.
+  ≤ L = 24 CPU-h (overrun projection → STOP and re-decide by explicit
+  operator note, no silent line motion). Runtime guard at L enforced
+  during PART1. Calibration containment: cost-timing runs
+  execute on CALIBRATION fixtures only (never PART1 fixtures); their
+  score outputs are sealed/discarded — only wall-clock/CPU accounting is
+  recorded in the certificate; calibration traces are never reused in
+  PART1 contrast. Measured-first calibrates the LINE's denominator, never
+  a gate threshold after seeing candidate results.
 
 ## Systems (PART1; all on identical fixtures)
 
@@ -260,9 +257,9 @@ engineering convenience; 100% weight to the engineering track).
   equivalence.
 - K4 fake challengers: every learned control/rival really fits (training
   curves + final-loss sanity in artifacts); distillation quality gate:
-  student must reach pre-registered imitation fidelity on clean episodes
-  before fine-tuning (a bad student = handicapped control = invalid
-  comparison, not a candidate win).
+  student must reach action agreement ≥ 0.90 with the candidate on clean
+  calibration episodes before fine-tuning (a bad student = handicapped
+  control = invalid comparison, not a candidate win).
 - K5 unfailable self-declared fields: every certification detector has a
   negative/positive control (mimicry panel calibration family; potency
   via promiscuous; benign-value via brick; quarantine checker analog =
@@ -273,29 +270,49 @@ engineering convenience; 100% weight to the engineering track).
 - K7 claim-ceiling leakage: buildable ≠ passed; a pass = bounded offline
   structure-necessity evidence at tested scale, nothing more (below).
 
-## Threshold-freeze rule
-
-This card intentionally leaves numeric thresholds symbolic. That is allowed
-only because execution is blocked. Before PART0 or PART1 can run, a separate
-threshold-freeze commit must land `config_frozen.json` with rho, k-delay,
-n_low, Delta_potency, Delta_benefit, margins, MDE, L, N_ep, seeds, fixture
-rules, cost accounting, and aggregation rules. That threshold-freeze commit
-must include a power/cost note, must be an ancestor of every scored run, and
-must pass Red-tier pre-review. The card-landing commit alone authorizes no
-scoring.
-
-## Predeclared run plan (thresholds frozen before execution)
+## Predeclared run plan (frozen at landing)
 
 Grid: {candidate + 7 controls + 1 rival} × exposure {zero, low, high} ×
-N_ep episodes × seeds S (proposed N_ep >= 20, |S| >= 5; final numbers
-frozen before execution with a power note for the TOST MDE). Fixtures generated
-once, saved, shared across all systems, ablations, and replay. Trace
-schema: per-tick belief/action/write/promotion/use/harm events sufficient
-to replay every reported metric. All thresholds (rho, k-delay, n_low,
-Δ_potency, Δ_benefit, margins, MDE, L) live in `config_frozen.json`
-hashed into the threshold-freeze commit; both the card-landing commit and the
-threshold-freeze commit must be ancestors of every scored run (07-05C
-commit-order rule).
+N_ep = 20 episodes over seeds {101, 103, 107, 109, 113} (4 episodes per
+seed). Power note: with per-episode metric SD ≤ 0.06 (design-computable
+on the degenerate controls), N_ep = 20 gives TOST power ≥ 0.8 at MDE
+±0.03. Pre-registered escalation: if candidate-free calibration variance
+measured at PART0 exceeds SD 0.06, N_ep escalates to 40 — decided at
+certificate time from calibration traces only, within the cost line;
+never after seeing any candidate result. Fixtures generated once, saved,
+shared across all systems, ablations, and replay. Trace schema: per-tick
+belief/action/write/promotion/use/harm events sufficient to replay every
+reported metric.
+
+Threshold freeze: every hard gate value is numeric in the
+frozen-constants table below, each with a written threshold_source (no
+value depends on any candidate result; Claude Red pre-review
+2026-07-07). `config_frozen.json` at implementation must byte-match the
+table. The landing commit must be an ancestor of every scored run
+(07-05C commit-order rule). After PART0 measurement, threshold edits are
+forbidden except via explicit certificate invalidation + re-card.
+
+## Frozen constants (threshold_source table; Claude Red pre-review 2026-07-07)
+
+| constant | value | threshold_source (ex ante; no value depends on any candidate result) |
+|---|---|---|
+| K_topics | 12 | room for 6 family-disjoint attack families across topics |
+| regimes | 3, recurring, ≥2 revisits/episode | recurring-regime non-stationarity = live-line criterion |
+| T_ticks | 800 | long horizon; regime revisits + delayed harm windows fit |
+| p_sugg | 0.2 | ≈160 suggestions/episode; benign utility measurable |
+| rho | 0.03 | "rare" tier; ≈4-5 poison/episode |
+| harm delay | U[20, 80] ticks | forces delayed-effect beyond any write-time check window |
+| attack families | 3 train / 2 held-out / 1 zero-day | generalization + frozen-adversary zero-day tier |
+| exposures | {0, 5, full-train-labels} | day-0 / few-shot / abundant — the claim's exposure axis |
+| memory_cap | 64 entries per system | equal-memory budget; moderate eviction pressure |
+| param parity | candidate total ±5% | equal-parameter accounting rule, frozen method |
+| distill fidelity | action agreement ≥ 0.90 on clean calibration episodes | below = handicapped control = invalid comparison |
+| frontier win margin | 0.05 at 95% LCB per dim | conservative separation floor on normalized dims |
+| TOST MDE | ±0.03, power ≥ 0.8 | equivalence claims; N_ep 20→40 escalation pre-registered |
+| mimicry band | AUC ≤ 0.55; panel positive control ≥ 0.90; 5-fold | decisive PART0 gate + unfailable-detector guard |
+| Δ_potency / Δ_benefit | 0.10 / 0.10 | corner references must have teeth/value by construction |
+| L | 24 CPU-h | S2e-precedent scale; measured-first denominator on calibration fixtures |
+| run grid | 9 systems × 3 exposures × 20 ep, seeds {101,103,107,109,113} | power note in run plan; seeds disjoint from Ego R1 |
 
 ## Artifacts
 
@@ -312,6 +329,13 @@ artifacts/SYSTEM-VIABILITY-S1-PROVENANCE-WRITE-BOUNDARY-EXEC-001A/
   replay_report.json
   failure_manifest.json  # on any failure; preserved, never patched
 ```
+
+Computed-evidence provenance gate (R0-report discipline, absorbed from the
+superseded v1 landing): every score in result.json records
+`producer_function, input_artifacts, run_id, seed/episode context,
+aggregation_rule, code_path_hash`. Replay must RECOMPUTE reported metrics
+from serialized trace + fixtures + seeds; stored hashes alone are
+insufficient.
 
 ## Stop conditions
 
@@ -332,13 +356,10 @@ artifacts/SYSTEM-VIABILITY-S1-PROVENANCE-WRITE-BOUNDARY-EXEC-001A/
 
 - LANDING commit (now): exactly one file — this card under
   `docs/codex/tasks/`. Nothing else.
-- THRESHOLD-FREEZE phase (post-landing, pre-execution): `config_frozen.json`
-  under the future isolated task artifact/config path, with no scoring.
-- EXECUTION phase (post-ledger and post-threshold-freeze only):
-  `src/sysvia_s1/**` (isolated, new), `tests/test_sysvia_s1*.py`,
-  `artifacts/<task_id>/**`, plus the frozen `config_frozen.json`. Forbidden:
-  route-state files, ledger, contracts, standards docs, prior artifacts, any
-  existing src, Ego/joi-demo repos.
+- EXECUTION phase (post-ledger only): `src/sysvia_s1/**` (isolated, new),
+  `tests/test_sysvia_s1*.py`, `artifacts/<task_id>/**`, plus the frozen
+  `config_frozen.json`. Forbidden: route-state files, ledger, contracts,
+  standards docs, prior artifacts, any existing src, Ego/joi-demo repos.
 
 ## Rollback
 
