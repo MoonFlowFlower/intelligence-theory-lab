@@ -1,0 +1,60 @@
+{
+  "artifact_files": [
+    "baseline_comparison.json",
+    "claim_ceiling.txt",
+    "failure_manifest.json",
+    "replay_report.json",
+    "result.json",
+    "reuse_matrix.json",
+    "trace.jsonl"
+  ],
+  "borrowed_headroom_envs": [],
+  "candidate_envs_scored": [],
+  "claim_ceiling": "BORROW-FIRST env-selection STEP-B (B-iii): bounded NEGATIVE. No borrowed symbolic env cleared the\nheadroom bar under the frozen fair floor. bsuite memory_len/0, memory_size/0, umbrella_length/0 =\nSATURATED_BY_LEGAL_OBSERVATION_DECODER (target trivially decodable from the full legal observation\nhistory; interface-level determination under the equal-access full-history O, NOT a universal claim\nabout bsuite). MiniGrid MemoryS13Random + KeyCorridorS3R1 = DROP_INVALID_TARGET_NOT_O_DETERMINED.\ndm_alchemy = DROP_UNAVAILABLE. probe_valid = true (POS E* = HEADROOM, NEG 5a846d5 = SATURATED). The\nonly HEADROOM is the internal bespoke control E*, a privileged-ceiling gap per R4(a), NOT\nmechanism-relevant. Proves env-selection headroom bits + probe-validity only. Does NOT prove\nmechanism validity, learning, transfer, survival, agency, autonomy, emotion, self-awareness,\nconsciousness, or EGO/companion readiness.",
+  "control_verdicts": {
+    "NEG_5A846D5_SCOUT": "SATURATED",
+    "POS_INTERNAL_ESTAR": "HEADROOM"
+  },
+  "hard_gates": {
+    "failures": [],
+    "passed": true,
+    "policy": "BANK_STEP_B_NEGATIVE",
+    "producer_function": "_bank_hard_gates"
+  },
+  "headroom_envs": [
+    "POS_INTERNAL_ESTAR"
+  ],
+  "only_headroom_is_internal_control_estar": true,
+  "overall_verdict": "BOUNDED_NEGATIVE_NO_BORROWED_HEADROOM",
+  "per_env_verdicts": {
+    "NEG_5A846D5_SCOUT": "SATURATED",
+    "POS_INTERNAL_ESTAR": "HEADROOM",
+    "bsuite:memory_len/0": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+    "bsuite:memory_size/0": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+    "bsuite:umbrella_length/0": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+    "dm_alchemy:symbolic_default": "DROP_UNAVAILABLE",
+    "minigrid:MiniGrid-KeyCorridorS3R1-v0": "DROP_INVALID_TARGET_NOT_O_DETERMINED",
+    "minigrid:MiniGrid-MemoryS13Random-v0": "DROP_INVALID_TARGET_NOT_O_DETERMINED"
+  },
+  "phase": "PHASE_BIII_BORROWED_ENV_NEGATIVE_BANK",
+  "probe_valid": {
+    "candidate_verdict_policy": "ALLOW_CANDIDATE_VERDICTS",
+    "expected": {
+      "NEG_5A846D5_SCOUT": "SATURATED",
+      "POS_INTERNAL_ESTAR": "HEADROOM"
+    },
+    "mismatches": {},
+    "observed": {
+      "NEG_5A846D5_SCOUT": "SATURATED",
+      "POS_INTERNAL_ESTAR": "HEADROOM"
+    },
+    "probe_valid": true,
+    "producer_function": "probe_valid_gate"
+  },
+  "producer_function": "bank_step_b_payload.result",
+  "replay_bit_exact": true,
+  "run_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A/phase_biii_negative_bank/seed-20260708",
+  "score_digest": "e8e8aea1a607567b6f37d77f67f9c3d2852fa9833acb29ea502fbdfed0234092",
+  "seed": 20260708,
+  "task_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A"
+}

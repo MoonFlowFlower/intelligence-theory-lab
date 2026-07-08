@@ -229,8 +229,7 @@ def test_contract_cli_is_fresh_process_and_does_not_write_official_artifacts(tmp
         / "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A"
         / "result.json"
     )
-    if official_artifact.exists():
-        raise AssertionError(f"pre-existing forbidden artifact: {official_artifact}")
+    preexisting_bytes = official_artifact.read_bytes() if official_artifact.exists() else None
 
     proc = subprocess.run(
         [
@@ -249,7 +248,10 @@ def test_contract_cli_is_fresh_process_and_does_not_write_official_artifacts(tmp
 
     assert payload["phase"] == "PHASE_A_PREREG_NO_SCORING"
     assert payload["official_scoring_enabled"] is False
-    assert not official_artifact.exists()
+    if preexisting_bytes is None:
+        assert not official_artifact.exists()
+    else:
+        assert official_artifact.read_bytes() == preexisting_bytes
 
 
 def test_controls_score_mode_is_guarded_and_emits_required_artifact_set(tmp_path):

@@ -1,22 +1,48 @@
 {
-  "failures": [
+  "borrowed_drop_records": [
     {
-      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
-      "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
-      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target branch; prior target used private unwrapped.success_pos absent from O"
+      "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
+      "adapter_id": "dm_alchemy:symbolic_default",
+      "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible",
+      "verdict": "DROP_UNAVAILABLE"
     },
     {
       "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
       "adapter_id": "minigrid:MiniGrid-KeyCorridorS3R1-v0",
-      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target object identity; prior target used private unwrapped.obj absent from O"
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target object identity; prior target used private unwrapped.obj absent from O",
+      "verdict": "DROP_INVALID_TARGET_NOT_O_DETERMINED"
     },
+    {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target branch; prior target used private unwrapped.success_pos absent from O",
+      "verdict": "DROP_INVALID_TARGET_NOT_O_DETERMINED"
+    }
+  ],
+  "failures": [
     {
       "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
       "adapter_id": "dm_alchemy:symbolic_default",
-      "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible"
+      "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible",
+      "verdict": "DROP_UNAVAILABLE"
+    },
+    {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-KeyCorridorS3R1-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target object identity; prior target used private unwrapped.obj absent from O",
+      "verdict": "DROP_INVALID_TARGET_NOT_O_DETERMINED"
+    },
+    {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target branch; prior target used private unwrapped.success_pos absent from O",
+      "verdict": "DROP_INVALID_TARGET_NOT_O_DETERMINED"
     }
   ],
-  "phase": "PHASE_BII_R1_ADAPTER_FAIRNESS_REPAIR_ONLY",
-  "policy": "DROP_INVALID_OR_NONCHEAP_ADAPTERS_DO_NOT_FAKE_DO_NOT_SCORE",
-  "producer_function": "build_borrowed_adapter_manifest.failure_manifest"
+  "hard_failures": [],
+  "phase": "PHASE_BIII_BORROWED_ENV_NEGATIVE_BANK",
+  "policy": "DROPS_RECORDED_NO_BANK_FAILURES",
+  "producer_function": "emit_bank_artifacts.failure_manifest",
+  "run_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A/phase_biii_negative_bank/seed-20260708",
+  "task_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A"
 }
