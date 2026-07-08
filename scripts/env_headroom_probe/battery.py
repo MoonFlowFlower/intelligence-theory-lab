@@ -9,7 +9,12 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import ProbeRecord, canonical_json
-from .contract import EQUIVALENCE_BAND, FAIR_BASELINE_FLOOR, CONTROL_EXPECTED_VERDICTS
+from .contract import (
+    CONTROL_EXPECTED_VERDICTS,
+    EQUIVALENCE_BAND,
+    FAIR_BASELINE_FLOOR,
+    STRUCTURAL_FAIR_BASELINES,
+)
 
 
 def seed_everything(seed: int) -> dict[str, Any]:
@@ -82,6 +87,97 @@ def aggregate_score(eval_rows: list[ProbeRecord], predictions: list[tuple[str, .
         sum(set_f1_score(row.y, pred) for row, pred in zip(eval_rows, predictions))
         / len(eval_rows)
     )
+
+
+def prediction_variation_report(
+    predictions: dict[str, list[tuple[str, ...]]],
+) -> dict[str, dict[str, Any]]:
+    """Record whether each baseline's predictions vary on eval rows."""
+
+    report: dict[str, dict[str, Any]] = {}
+    for name, preds in sorted(predictions.items()):
+        unique = {canonical_json(pred) for pred in preds}
+        report[name] = {
+            "unique_prediction_count": len(unique),
+            "varies": len(unique) > 1,
+        }
+    return report
+
+
+def floor_competence_gate(
+    prediction_variation: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    """Guard against envs whose structural floor members are all constant/no-op."""
+
+    structural_members = [
+        name for name in STRUCTURAL_FAIR_BASELINES if name in prediction_variation
+    ]
+    constant_members = [
+        name
+        for name in structural_members
+        if not bool(prediction_variation[name].get("varies", False))
+    ]
+    floor_degenerate = not structural_members or len(constant_members) == len(structural_members)
+    return {
+        "producer_function": "floor_competence_gate",
+        "structural_members": structural_members,
+        "constant_members": constant_members,
+        "floor_degenerate": floor_degenerate,
+        "void_verdict": "VOID_FLOOR_DEGENERATE" if floor_degenerate else None,
+    }
+
+
+def shuffle_leakage_report(
+    scores_shuffled: dict[str, float],
+    *,
+    chance_score: float,
+    tol: float = EQUIVALENCE_BAND,
+) -> dict[str, Any]:
+    """Check structural fair baselines after observation-target shuffling.
+
+    The privileged ideal/oracle is intentionally not part of this leakage
+    target; it may track the shuffled y* reference.
+    """
+
+    threshold = float(chance_score) + float(tol)
+    offenders = {
+        name: float(scores_shuffled[name])
+        for name in STRUCTURAL_FAIR_BASELINES
+        if name in scores_shuffled and float(scores_shuffled[name]) > threshold
+    }
+    return {
+        "producer_function": "shuffle_leakage_ok",
+        "chance_score": float(chance_score),
+        "tol": float(tol),
+        "threshold": threshold,
+        "structural_baselines": list(STRUCTURAL_FAIR_BASELINES),
+        "offenders": offenders,
+        "shuffle_leakage_ok": not offenders,
+        "ignored_privileged_reference": "ideal_oracle",
+    }
+
+
+def shuffle_leakage_ok(
+    scores_shuffled: dict[str, float],
+    *,
+    chance_score: float,
+    tol: float = EQUIVALENCE_BAND,
+) -> bool:
+    """Return True iff all structural fair baselines fall to chance + tol."""
+
+    return bool(
+        shuffle_leakage_report(
+            scores_shuffled,
+            chance_score=chance_score,
+            tol=tol,
+        )["shuffle_leakage_ok"]
+    )
+
+
+def chance_score_from_label_space(label_space: tuple[str, ...]) -> float:
+    """Conservative single-label chance proxy for the frozen shuffle guard."""
+
+    return 1.0 / max(1, len(label_space))
 
 
 def _majority_label(train: list[ProbeRecord], default: str = "") -> tuple[str, ...]:
@@ -276,6 +372,23 @@ def run_battery(
         name: aggregate_score(eval_rows, preds)
         for name, preds in sorted(predictions.items())
     }
+    variation = prediction_variation_report(predictions)
+    floor_competence = floor_competence_gate(variation)
+    chance_score = chance_score_from_label_space(label_space)
+    shuffle_report = (
+        shuffle_leakage_report(
+            scores,
+            chance_score=chance_score,
+            tol=EQUIVALENCE_BAND,
+        )
+        if shuffle_targets
+        else {
+            "producer_function": "shuffle_leakage_ok",
+            "evaluated": False,
+            "shuffle_leakage_ok": True,
+            "ignored_privileged_reference": "ideal_oracle",
+        }
+    )
     return {
         "producer_function": "run_battery",
         "seed_report": seed_report,
@@ -285,12 +398,29 @@ def run_battery(
         "include_graph_closure": bool(include_graph_closure),
         "shuffle_targets": bool(shuffle_targets),
         "scores": scores,
-        "verdict": evaluate_verdict(scores, equivalence_band=EQUIVALENCE_BAND),
+        "prediction_variation": variation,
+        "floor_competence": floor_competence,
+        "chance_score": chance_score,
+        "shuffle_leakage": shuffle_report,
+        "verdict": evaluate_verdict(
+            scores,
+            equivalence_band=EQUIVALENCE_BAND,
+            floor_degenerate=bool(floor_competence["floor_degenerate"]),
+            shuffle_leakage_ok=bool(shuffle_report["shuffle_leakage_ok"]),
+            chance_score=chance_score,
+        ),
         "code_path_hash": code_path_hash(),
     }
 
 
-def evaluate_verdict(scores: dict[str, float], *, equivalence_band: float) -> dict[str, Any]:
+def evaluate_verdict(
+    scores: dict[str, float],
+    *,
+    equivalence_band: float,
+    floor_degenerate: bool = False,
+    shuffle_leakage_ok: bool = True,
+    chance_score: float | None = None,
+) -> dict[str, Any]:
     """Compute HEADROOM vs SATURATED from score data, not expected literals."""
 
     if "ideal_oracle" not in scores:
@@ -305,7 +435,18 @@ def evaluate_verdict(scores: dict[str, float], *, equivalence_band: float) -> di
     strongest_id, strongest_score = max(fair_scores.items(), key=lambda kv: kv[1])
     ceiling = float(scores["ideal_oracle"])
     gap = ceiling - strongest_score
-    verdict = "HEADROOM" if gap > float(equivalence_band) else "SATURATED"
+    if floor_degenerate:
+        verdict = "VOID_FLOOR_DEGENERATE"
+        rule = "VOID because all structural floor members were no-op/constant"
+    elif not shuffle_leakage_ok:
+        verdict = "VOID_SHUFFLE_LEAKAGE"
+        rule = "VOID because a structural fair baseline stayed above chance + tol under shuffle_O_y"
+    elif chance_score is not None and ceiling <= float(chance_score) + float(equivalence_band):
+        verdict = "UNIDENTIFIABLE"
+        rule = "UNIDENTIFIABLE because ideal_oracle is at/near chance"
+    else:
+        verdict = "HEADROOM" if gap > float(equivalence_band) else "SATURATED"
+        rule = "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED"
     return {
         "producer_function": "evaluate_verdict",
         "ceiling_score": ceiling,
@@ -314,7 +455,10 @@ def evaluate_verdict(scores: dict[str, float], *, equivalence_band: float) -> di
         "equivalence_band": float(equivalence_band),
         "gap": gap,
         "verdict": verdict,
-        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "floor_degenerate": bool(floor_degenerate),
+        "shuffle_leakage_ok": bool(shuffle_leakage_ok),
+        "chance_score": None if chance_score is None else float(chance_score),
+        "aggregation_rule": rule,
     }
 
 

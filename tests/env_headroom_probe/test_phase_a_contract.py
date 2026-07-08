@@ -10,6 +10,7 @@ def test_prereg_contract_freezes_band_controls_and_floor_family():
         EQUIVALENCE_BAND,
         FAIR_BASELINE_FLOOR,
         PHASE_B_CANDIDATE_ENVS,
+        STRUCTURAL_FAIR_BASELINES,
         build_prereg_contract,
     )
 
@@ -34,7 +35,24 @@ def test_prereg_contract_freezes_band_controls_and_floor_family():
     assert contract["official_scoring_enabled"] is False
     assert len(PHASE_B_CANDIDATE_ENVS) == 6
     assert "ideal_oracle" not in FAIR_BASELINE_FLOOR
+    assert STRUCTURAL_FAIR_BASELINES == (
+        "per_user_lookup",
+        "nearest_neighbor",
+        "count_table",
+        "frequency_marginal",
+        "graph_closure",
+        "obs_only_decoder",
+    )
+    assert "predict_all" not in STRUCTURAL_FAIR_BASELINES
+    assert "predict_none" not in STRUCTURAL_FAIR_BASELINES
     assert contract["ceiling"]["reference"] == "ideal_oracle"
+    assert contract["shuffle_leakage_criterion"]["callable"] == "shuffle_leakage_ok"
+    assert contract["floor_key_contract"] == {
+        "per_user_lookup": ["lookup_key"],
+        "count_table": ["cache_key"],
+        "graph_closure": ["relation_pairs", "asserted_tuple"],
+        "frequency_marginal": ["frequency_value"],
+    }
 
 
 def test_verdict_function_uses_computed_scores_not_expected_verdict_literals():
@@ -73,6 +91,109 @@ def test_verdict_function_uses_computed_scores_not_expected_verdict_literals():
     assert headroom["strongest_fair_baseline_id"] == "obs_only_decoder"
     assert saturated["verdict"] == "SATURATED"
     assert saturated["strongest_fair_baseline_id"] == "graph_closure"
+
+
+def test_shuffle_leakage_ok_blocks_structural_baselines_but_ignores_oracle():
+    from scripts.env_headroom_probe.battery import shuffle_leakage_ok
+
+    shuffled_scores = {
+        "ideal_oracle": 1.0,
+        "predict_all": 0.8,
+        "predict_none": 0.0,
+        "per_user_lookup": 0.25,
+        "nearest_neighbor": 0.30,
+        "count_table": 0.20,
+        "frequency_marginal": 0.26,
+        "graph_closure": 0.0,
+        "obs_only_decoder": 0.29,
+    }
+    assert shuffle_leakage_ok(shuffled_scores, chance_score=0.25, tol=0.05) is True
+
+    leaked = dict(shuffled_scores)
+    leaked["obs_only_decoder"] = 0.31
+    assert shuffle_leakage_ok(leaked, chance_score=0.25, tol=0.05) is False
+
+
+def test_verdict_voids_when_shuffle_leakage_or_floor_degeneracy_blocks_phase_b():
+    from scripts.env_headroom_probe.battery import evaluate_verdict
+
+    scores = {
+        "ideal_oracle": 1.0,
+        "predict_all": 0.1,
+        "predict_none": 0.0,
+        "per_user_lookup": 0.2,
+        "nearest_neighbor": 0.2,
+        "count_table": 0.2,
+        "frequency_marginal": 0.2,
+        "graph_closure": 0.2,
+        "obs_only_decoder": 0.2,
+    }
+
+    shuffle_void = evaluate_verdict(
+        scores,
+        equivalence_band=0.05,
+        shuffle_leakage_ok=False,
+    )
+    floor_void = evaluate_verdict(
+        scores,
+        equivalence_band=0.05,
+        floor_degenerate=True,
+    )
+
+    assert shuffle_void["verdict"] == "VOID_SHUFFLE_LEAKAGE"
+    assert floor_void["verdict"] == "VOID_FLOOR_DEGENERATE"
+
+
+def test_run_battery_records_prediction_variation_and_voids_all_constant_structural_floor():
+    from scripts.env_headroom_probe.adapters import ProbeRecord
+    from scripts.env_headroom_probe.battery import run_battery
+    from scripts.env_headroom_probe.contract import STRUCTURAL_FAIR_BASELINES
+
+    records = []
+    for split in ("train", "eval"):
+        for idx in range(3):
+            records.append(
+                ProbeRecord(
+                    record_id=f"degenerate-{split}-{idx}",
+                    split=split,
+                    group_id="degenerate",
+                    O={
+                        "schema_version": "env_headroom_probe.observation.v1",
+                        "feature": f"{split}-{idx}",
+                    },
+                    y=("positive",),
+                    y_star=("positive",),
+                )
+            )
+
+    result = run_battery(records, seed=7)
+    variation = result["prediction_variation"]
+
+    assert result["verdict"]["verdict"] == "VOID_FLOOR_DEGENERATE"
+    assert result["floor_competence"]["floor_degenerate"] is True
+    assert set(result["floor_competence"]["structural_members"]) == set(STRUCTURAL_FAIR_BASELINES)
+    assert all(variation[name]["varies"] is False for name in STRUCTURAL_FAIR_BASELINES)
+
+
+def test_parent_card_documents_b2_b3_rework_contract():
+    repo = Path(__file__).resolve().parents[2]
+    card = (
+        repo
+        / "docs"
+        / "codex"
+        / "tasks"
+        / "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A.md"
+    ).read_text(encoding="utf-8")
+
+    assert "Status: DESIGN CARD" in card
+    assert "ideal MUST collapse" not in card
+    assert "shuffle_leakage_ok(scores_shuffled) -> bool" in card
+    assert "VOID_FLOOR_DEGENERATE" in card
+    assert "lookup_key" in card
+    assert "cache_key" in card
+    assert "relation_pairs" in card
+    assert "asserted_tuple" in card
+    assert "frequency_value" in card
 
 
 def test_probe_valid_gate_voids_on_either_control_mismatch():

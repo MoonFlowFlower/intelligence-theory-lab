@@ -24,6 +24,22 @@ FAIR_BASELINE_FLOOR: tuple[str, ...] = (
     "obs_only_decoder",
 )
 
+STRUCTURAL_FAIR_BASELINES: tuple[str, ...] = (
+    "per_user_lookup",
+    "nearest_neighbor",
+    "count_table",
+    "frequency_marginal",
+    "graph_closure",
+    "obs_only_decoder",
+)
+
+FLOOR_KEY_CONTRACT: dict[str, tuple[str, ...]] = {
+    "per_user_lookup": ("lookup_key",),
+    "count_table": ("cache_key",),
+    "graph_closure": ("relation_pairs", "asserted_tuple"),
+    "frequency_marginal": ("frequency_value",),
+}
+
 PHASE_B_CANDIDATE_ENVS: tuple[dict[str, str], ...] = (
     {
         "env_id": "minigrid:MiniGrid-MemoryS13Random-v0",
@@ -94,6 +110,11 @@ def build_prereg_contract(repo_root: Path | None = None) -> dict[str, Any]:
         "control_env_sources": CONTROL_ENV_SOURCES,
         "phase_b_candidate_envs": list(PHASE_B_CANDIDATE_ENVS),
         "fair_baseline_floor": list(FAIR_BASELINE_FLOOR),
+        "structural_fair_baselines": list(STRUCTURAL_FAIR_BASELINES),
+        "floor_key_contract": {
+            baseline_id: list(required_fields)
+            for baseline_id, required_fields in FLOOR_KEY_CONTRACT.items()
+        },
         "ceiling": {
             "reference": "ideal_oracle",
             "rule": "ceiling_score = ideal_oracle_score; HEADROOM iff ceiling - max(fair_floor) > equivalence_band",
@@ -105,6 +126,22 @@ def build_prereg_contract(repo_root: Path | None = None) -> dict[str, Any]:
                 "larger band makes HEADROOM harder and should not decide the "
                 "large-margin controls"
             ),
+        },
+        "shuffle_leakage_criterion": {
+            "callable": "shuffle_leakage_ok",
+            "rule": (
+                "under shuffle_O_y, every structural fair baseline must score "
+                "<= chance + tol; ideal_oracle is privileged and ignored by "
+                "this leakage criterion"
+            ),
+            "structural_baselines": list(STRUCTURAL_FAIR_BASELINES),
+            "tol": EQUIVALENCE_BAND,
+            "blocking_policy": "VOID candidate verdicts if any structural baseline remains above chance + tol",
+        },
+        "floor_competence_guard": {
+            "callable": "floor_competence_gate",
+            "void_verdict": "VOID_FLOOR_DEGENERATE",
+            "rule": "if all structural floor members are no-op/constant on an env, that env verdict is VOID",
         },
         "ablations": ["drop_graph_closure", "shuffle_O_y"],
         "fresh_process_recompute": {

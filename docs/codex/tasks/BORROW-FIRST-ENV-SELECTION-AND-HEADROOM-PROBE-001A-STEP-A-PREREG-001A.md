@@ -61,7 +61,8 @@ Phase A real-trigger evidence is limited to:
 Phase B real-trigger evidence, not authorized here, must include explicit CLI
 invocation, two fresh-process recomputes, `probe_valid==true`, trace rows,
 baseline comparison, ablation report, replay report, reuse matrix, and a failure
-manifest when anything fails.
+manifest when anything fails. Phase-B verdicts must also consume the blocking
+`shuffle_leakage_ok` and floor-competence guards.
 
 ## Hypothesis
 
@@ -173,6 +174,24 @@ observations, or filenames. If an adapter requires a baseline stronger than this
 family, Phase B must add it before scoring or VOID the environment; it must not
 score first and then repair the floor.
 
+Structural fair floor members for shuffle and floor-competence guards are:
+`per_user_lookup`, `nearest_neighbor`, `count_table`, `frequency_marginal`,
+`graph_closure`, and `obs_only_decoder`. `predict_all` / `predict_none` are
+degeneracy guards, not structural leakage targets; `ideal_oracle` is privileged
+ceiling reference, not a fair floor member.
+
+Each Phase-B borrowed adapter MUST populate the floor key contract with legal
+observation-derived values or explicitly declare the member legitimately N/A
+before scoring:
+
+- `per_user_lookup`: `lookup_key`;
+- `count_table`: `cache_key`;
+- `graph_closure`: `relation_pairs`, `asserted_tuple`;
+- `frequency_marginal`: `frequency_value`.
+
+If all structural floor members are no-op / constant on an env, that env's
+verdict is `VOID_FLOOR_DEGENERATE`, never HEADROOM.
+
 ## Ceiling definition
 
 `ceiling_score = ideal_oracle_score`, computed by comparing `ideal_oracle(O,
@@ -216,9 +235,12 @@ Phase B must rerun the battery under both interventions:
 1. `drop_graph_closure`: remove `graph_closure` from the fair floor. This tests
    whether SATURATED verdicts are specifically graph-closure driven.
 2. `shuffle_O_y`: seeded permutation of eval targets across unchanged
-   observations. Fair baselines must not preserve headroom under broken
-   observation-target alignment. If they do, suspect leakage or direct target
-   encoding.
+   observations. Every structural fair baseline must fall to `<= chance + tol`
+   under broken observation-target alignment. The privileged `ideal_oracle` is
+   expected to track the shuffled `y*` reference and is not the target of this
+   leakage criterion. `shuffle_leakage_ok(scores_shuffled) -> bool` is a
+   blocking input to Phase-B verdicts; a structural fair baseline staying high
+   means leakage and VOIDs candidate verdicts.
 
 Phase A only implements these callable interventions and synthetic unit tests;
 it does not execute official control/candidate ablations.
@@ -327,6 +349,9 @@ Stop if:
 - the equivalence band is changed after any scoring;
 - a fair baseline reads `y`, `y*`, labels, hidden state, future observations, or
   filenames;
+- a structural fair baseline stays above `chance + tol` under `shuffle_O_y`;
+- all structural fair floor members are no-op / constant on an env and the
+  verdict path does not return `VOID_FLOOR_DEGENERATE`;
 - `src/` mechanism code, N2/R4 frozen specs, global config, credentials, or
   runtime files are modified;
 - a borrowed env requires pixel/physics state;
