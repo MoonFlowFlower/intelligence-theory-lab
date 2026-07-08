@@ -7,10 +7,11 @@ of the banked pair before Phase-2. Codex sole writer. NO self-CLEAR.
 1. 001A STEP-0 ideal-gap REJECTED (definitional): in a POMDP the history-conditioned recurrent
    meta-policy ≡ belief-state optimal policy under unbounded resources; online-ideal − amortized-ideal
    ≡ 0 (always SATURATED); memoryless amortized = strawman.
-2. 001A banked prereg (50c6ca82) SUPERSEDED pre-run: HAZARD_COVERAGE_ASYMMETRY — candidate hazard prior
-   included the eval hazard 0.10 while C-MetaRecurrent trained only on {0.02,0.05}; a win was
-   unattributable among {structured probing | broader coverage | RL² extrapolating unsupported hazard}
-   = HIGH_SCORE_NO_ATTRIBUTION.
+2. 001A banked prereg (50c6ca82) SUPERSEDED pre-run: HAZARD_COVERAGE_ASYMMETRY — the candidate hazard
+   prior support included the primary eval hazard while C-MetaRecurrent trained on a strictly narrower
+   hazard set (001A values; corrected matched-coverage config in PREREG §2); a win was unattributable
+   among {structured probing | broader coverage | RL² extrapolating unsupported hazard} =
+   HIGH_SCORE_NO_ATTRIBUTION.
 
 ## layer / claim ceiling
 learning-adaptation / mechanism-hypothesis benchmark design. Ceiling: disclosed-structure,
@@ -39,22 +40,33 @@ adequacy requirement) or (b) true extrapolation beyond support — but for a Bay
 ability = a broad prior = the coverage/inductive-bias advantage itself, which is NOT equal-access
 mechanism and would re-import the confound. THEREFORE: do NOT redesign toward "extrapolation" to
 manufacture headroom. Run 002A as a cheap decisive kill-test expecting SATURATED; a PROCEED would
-require explicit structure to beat an adequately-trained amortizer at equal coverage — a high bar.
+require explicit structure to beat a max-feasible-trained amortizer at equal coverage — a high bar.
+After the audit-R2 B4 fix (max-feasible baseline rung + adequacy bar = MDE), the bar is near-absolute:
+since R_ref = the known-params version of the same candidate policy, candidate ≲ R_ref ≈ a max-feasible
+adequate Broad, so sep_broad is structurally pinned within ~MDE. The only PROCEED window is the thin
+myopic-exploration edge where candidate > R_ref (flagged by R_REF_EXCEEDED_FLAG). Honest prior is now
+near-certain SATURATED_BASELINE_EQUIVALENCE or UNDERPOWERED_BASELINE — weigh this against running.
 
 ## mechanism object / controls (design; full callables in PREREG-002A)
 S=latent (g_t,h) restless changepoint bandit; O=(a_t,r_t) partial; A=arm choice (exploit/probe);
-M=candidate posterior b_t(g,h); U=action-conditioned Bayesian filter+one-step KG (no free β); J=regret.
-Controls: C-MetaRecurrent-BROAD = PRIMARY comparator (train hazard=Uniform(H_grid)); C-MetaRecurrent-
-NARROW = DIAGNOSTIC ONLY (train {0.02,0.05}; measures coverage_confound; MAY NOT establish PROCEED);
-R* = known-params receding-horizon planner (metric ceiling, validated upper bound); weak controls
+M=candidate posterior b_t(g,h); U=action-conditioned Bayesian filter+one-step KG (no free β); J=raw reward.
+Controls: C-MetaRecurrent-BROAD = PRIMARY comparator (train hazard = candidate prior support, PREREG §2);
+C-MetaRecurrent-NARROW = DIAGNOSTIC ONLY (narrower diagnostic hazard set per PREREG §2; measures
+coverage_confound; MAY NOT establish PROCEED); R_ref = known-params §4-candidate (one-step KG) LOGGED
+reference per PREREG §5 (NOT a metric denominator, NOT a proven ceiling); weak controls
 (memoryless/random/majority/myopic/lookup) = engineering-sufficient only. Access = DISCLOSED
 MODEL_FORM_ACCESS (hazard prior now coverage-matched to Broad; reward levels disclosed but same-family
 in-distribution).
 
 ## primary framing (matched-support, NOT OOD)
-Primary cell = F_MATCHED_SUPPORT_PRIMARY (hazard 0.10 ∈ H_grid ∈ Broad training; in-distribution for
-BOTH; NOT held-out, NOT hazard-OOD). Reported grid {0.08,0.10,0.12} likewise in-support. Any true
-extrapolation lives only in F_EXTRAPOLATION_SECONDARY (diagnostic; never in the primary verdict).
+Primary cell = F_MATCHED_SUPPORT_PRIMARY (primary hazard value ∈ H_grid ∈ Broad training, value in
+PREREG §2; in-distribution for BOTH; NOT held-out, NOT hazard-OOD). Reported grid (PREREG §2) likewise
+in-support. Any true extrapolation lives only in F_EXTRAPOLATION_SECONDARY (diagnostic; never in the
+primary verdict).
+
+## metric (RAW; full callable in PREREG §6)
+Primary verdict metric = RAW mean reward/step difference (candidate vs BROAD); no normalization, no
+ceiling denominator (audit-R1 fix). R_ref logged for context only. MDE/BAND frozen in PREREG §6.
 
 ## frozen signature (summary; callable in prereg)
 S1 control separation vs BROAD; S2 tracking curve; S3 (demoted) held-in-support consistency across grid
@@ -75,10 +87,10 @@ Stop on any non-PROCEED terminal; preserve failure artifacts; never patch. Rollb
 commit(s); 001A + this pair preserved (no-delete). Files: this card + PREREG-002A (Phase-1 docs-only);
 src/drift_capability_acbu/ + artifacts/DRIFT-AXIS-CAPABILITY-ACBU-002A/ (Phase-2). Forbidden:
 EGO/LLM/AIRI/UI/emotion/proactive, global schema, any prior artifact, credentials, pixel/physics,
-StructuredInferred at STEP-0, using Narrow to establish PROCEED, calling the primary cell OOD, changing
-any frozen value post-score, weakening Broad/MDE/band to move a verdict, chasing extrapolation to
-manufacture headroom.
+StructuredInferred at STEP-0, using Narrow to establish PROCEED, using a weaker-than-max-feasible baseline
+rung, calling the primary cell OOD, changing any frozen value post-score, weakening Broad/MDE/BAND or the
+adequacy=MDE bar to move a verdict, chasing extrapolation to manufacture headroom.
 
 ## sequencing / role
-Phase-1: Codex banks THIS card + PREREG-002A (docs-only, supersede 001A, no-delete). Independent
-Red-audit of the banked pair. Phase-2 (run) only after CLEAR. Designer does NOT self-CLEAR.
+Phase-1: Codex banks THIS card + PREREG-002A (docs-only, supersede-in-place, no-delete of PREREG-001A).
+Independent Red-audit of the banked pair. Phase-2 (run) only after CLEAR. Designer does NOT self-CLEAR.
