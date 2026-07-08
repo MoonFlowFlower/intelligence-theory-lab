@@ -264,64 +264,161 @@ def _common_non_contamination_floor_status() -> dict[str, dict[str, str]]:
     }
 
 
-def build_minigrid_symbolic_records(env_id: str, seed: int = 20260708, episodes: int = 8) -> list[ProbeRecord]:
-    """Build MiniGrid borrowed symbolic adapter records without scoring.
+def _as_label_tuple(value: Any) -> tuple[str, ...] | None:
+    if value is None:
+        return None
+    if isinstance(value, tuple):
+        return tuple(str(item) for item in value)
+    if isinstance(value, list):
+        return tuple(str(item) for item in value)
+    return (str(value),)
 
-    The adapter uses the public Gymnasium observation (`image`, `direction`) as
-    O. Mission strings that contain target color/type are not copied into O;
-    the target is kept only in y/y_star for audit/label separation.
+
+def decode_oracle_from_O_explicit_field(O: dict[str, Any]) -> tuple[str, ...] | None:
+    """Reference decoder for tests: reads only an explicitly legal O field."""
+
+    return _as_label_tuple(O.get("oracle_from_O_target"))
+
+
+def decode_oracle_from_O_bsuite(O: dict[str, Any]) -> tuple[str, ...] | None:
+    """Compute bsuite targets from legal serialized observation history only.
+
+    This function receives only ``O``. It must not inspect private env state,
+    rewards, wrappers, filenames, record ids, ``y``, or ``y_star``.
     """
 
-    import gymnasium as gym  # type: ignore
-    import minigrid  # type: ignore  # registers MiniGrid env ids
+    history = O.get("observation_history")
+    env_id = str(O.get("env_id", ""))
+    if not isinstance(history, list) or not history:
+        return None
+    try:
+        first_row = history[0][0]
+        if env_id.startswith("bsuite:memory_"):
+            num_bits = max(0, len(first_row) - 2)
+            if num_bits <= 0:
+                return None
+            query_row = None
+            for candidate in reversed(history):
+                row = candidate[0]
+                if len(row) >= 2 + num_bits and any(float(v) != 0.0 for v in row[2:]):
+                    continue
+                if len(row) >= 2 and float(row[0]) > 0.0:
+                    query_row = row
+                    break
+            query = 0 if query_row is None else int(float(query_row[1]))
+            if query < 0 or query >= num_bits:
+                return None
+            bit_value = 1 if float(first_row[2 + query]) > 0.0 else 0
+            return (f"correct_action:{bit_value}",)
+        if env_id.startswith("bsuite:umbrella_"):
+            need_umbrella = 1 if float(first_row[0]) > 0.0 else 0
+            return (f"correct_pickup:{need_umbrella}",)
+    except (IndexError, TypeError, ValueError):
+        return None
+    return None
 
-    _ = minigrid
 
-    records: list[ProbeRecord] = []
-    for episode_idx in range(int(episodes)):
-        env = gym.make(env_id, render_mode=None)
-        try:
-            obs, _info = env.reset(seed=int(seed) + episode_idx)
-            unwrapped = env.unwrapped
-            image = _canonical_array(obs["image"])
-            direction = int(obs["direction"])
-            image_hash = _hash_obj(image)
-            if env_id == "MiniGrid-MemoryS13Random-v0":
-                success_pos = tuple(int(v) for v in getattr(unwrapped, "success_pos"))
-                center_y = int(getattr(unwrapped, "height")) // 2
-                target = "match_branch:upper" if success_pos[1] < center_y else "match_branch:lower"
-                mission_schema = "go_to_matching_object_constant"
-            elif env_id == "MiniGrid-KeyCorridorS3R1-v0":
-                obj = getattr(unwrapped, "obj")
-                target = f"pickup:{str(obj.color)}:{str(obj.type)}"
-                mission_schema = "pick_up_color_object_target_redacted"
-            else:
-                raise ValueError(f"unsupported MiniGrid borrowed env: {env_id}")
+def evaluate_oracle_from_O_admission(
+    adapter_id: str,
+    records: list[ProbeRecord],
+    decoder: Callable[[dict[str, Any]], tuple[str, ...] | None],
+    *,
+    ceiling: float = 1.0,
+    tolerance: float = 0.0,
+) -> dict[str, Any]:
+    """Evaluate whether ``y`` is determined by legal observation ``O``.
 
-            O = {
-                "schema_version": "env_headroom_probe.observation.v1",
-                "adapter_family": "minigrid_symbolic",
-                "env_id": f"minigrid:{env_id}",
-                "observation_kind": "gymnasium_reset_symbolic",
-                "image": image,
-                "direction": direction,
-                "mission_schema": mission_schema,
-                "lookup_key": f"minigrid:{env_id}:view:{image_hash}:dir:{direction}",
-                "cache_key": f"minigrid:{env_id}:view:{image_hash}",
-            }
-            records.append(
-                ProbeRecord(
-                    record_id=f"minigrid-{env_id}-seed{seed}-ep{episode_idx}",
-                    split=_split_for_index(episode_idx, int(episodes)),
-                    group_id=f"minigrid:{env_id}",
-                    O=O,
-                    y=(target,),
-                    y_star=(target,),
-                )
-            )
-        finally:
-            env.close()
-    return records
+    This is an adapter admission check, not candidate scoring. The decoder is
+    called with ``record.O`` only; it never receives private env state, rewards,
+    ``y``, or ``y_star``.
+    """
+
+    eval_rows = [record for record in records if record.split == "eval"]
+    if not eval_rows:
+        raise ValueError(f"{adapter_id} emitted no eval rows for oracle_from_O admission")
+    predictions: list[tuple[str, ...] | None] = [decoder(record.O) for record in eval_rows]
+    correct = sum(1 for record, pred in zip(eval_rows, predictions) if pred == record.y)
+    score = float(correct / len(eval_rows))
+    reaches_ceiling = score >= float(ceiling) - float(tolerance)
+    admission_status = (
+        "ADMISSIBLE_O_DETERMINED" if reaches_ceiling else "INVALID_TARGET_NOT_O_DETERMINED"
+    )
+    mismatches = [
+        {
+            "record_id": record.record_id,
+            "expected_y": list(record.y),
+            "oracle_from_O_pred": None if pred is None else list(pred),
+        }
+        for record, pred in zip(eval_rows, predictions)
+        if pred != record.y
+    ]
+    trivial_guard = (
+        {
+            "producer_function": "trivial_legal_decoder_guard",
+            "guard": "VOID_TRIVIALLY_DECODABLE",
+            "future_floor_effect": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+            "reason": (
+                "a legal O-only reference decoder reaches the ceiling; future borrowed-env "
+                "selection must treat this as floor saturation / void trivial decodability, "
+                "not as headroom"
+            ),
+        }
+        if reaches_ceiling
+        else {
+            "producer_function": "trivial_legal_decoder_guard",
+            "guard": "DROP_INVALID_ADAPTER",
+            "future_floor_effect": None,
+            "reason": "target is not determined by legal O at the declared ceiling",
+        }
+    )
+    return {
+        "producer_function": "evaluate_oracle_from_O_admission",
+        "adapter_id": adapter_id,
+        "oracle_from_O": {
+            "decoder": getattr(decoder, "__name__", str(decoder)),
+            "input_boundary": "record.O only; no private env state, y, y_star, rewards, filenames, or audit labels",
+            "score": score,
+            "ceiling": float(ceiling),
+            "tolerance": float(tolerance),
+            "eval_record_count": len(eval_rows),
+            "correct_eval_count": correct,
+            "admission_status": admission_status,
+            "mismatch_count": len(mismatches),
+            "mismatches_preview": mismatches[:5],
+        },
+        "trivial_floor_guard": trivial_guard,
+        "scoring_performed": False,
+        "candidate_verdict_computed": False,
+    }
+
+
+def evaluate_borrowed_adapter_admission(
+    env_id: str,
+    records: list[ProbeRecord],
+) -> dict[str, Any]:
+    """Run the R1 legal-O admission check for an active borrowed adapter."""
+
+    if env_id.startswith("bsuite:"):
+        decoder = decode_oracle_from_O_bsuite
+    else:
+        raise ValueError(f"no oracle_from_O decoder registered for borrowed adapter {env_id}")
+    return evaluate_oracle_from_O_admission(env_id, records, decoder)
+
+
+def build_minigrid_symbolic_records(env_id: str, seed: int = 20260708, episodes: int = 8) -> list[ProbeRecord]:
+    """MiniGrid reset-only adapter is intentionally blocked after R1.
+
+    Claude's fairness finding is accepted here: the prior reset-only O did not
+    determine the Memory branch or KeyCorridor object identity, and the target
+    would have required private ``unwrapped`` state absent from O.  A future
+    card may redesign this as full legal episode-history O, but this callable
+    must not emit private-state targets.
+    """
+
+    _ = seed, episodes
+    raise RuntimeError(
+        f"{env_id} MiniGrid reset-only adapter dropped by Phase B-ii-R1: target is not O-determined"
+    )
 
 
 def _bsuite_env_episode_target(env: Any, bsuite_id: str) -> tuple[str, dict[str, Any]]:
@@ -381,8 +478,7 @@ def build_bsuite_symbolic_records(bsuite_id: str, seed: int = 20260708, episodes
             "lookup_key": f"bsuite:{bsuite_id}:history:{history_hash}",
             "cache_key": f"bsuite:{bsuite_id}:history:{history_hash}",
         }
-        if "query_index" in target_meta:
-            O["query_index_from_legal_final_observation"] = target_meta["query_index"]
+        _ = target_meta
         records.append(
             ProbeRecord(
                 record_id=f"bsuite-{bsuite_id.replace('/', '_')}-seed{seed}-ep{episode_idx}",
@@ -406,28 +502,10 @@ def _bsuite_builder(bsuite_id: str) -> Callable[[int], list[ProbeRecord]]:
 
 
 BORROWED_ADAPTERS: dict[str, AdapterSpec] = {
-    "minigrid:MiniGrid-MemoryS13Random-v0": AdapterSpec(
-        env_id="minigrid:MiniGrid-MemoryS13Random-v0",
-        source="minigrid==3.1.0 / gymnasium==1.3.0 symbolic reset observation adapter",
-        status="phase_bii_wired_unscored_pending_claude_red_precheck",
-        build_records=_minigrid_builder("MiniGrid-MemoryS13Random-v0"),
-        floor_member_status=_common_non_contamination_floor_status(),
-        dependency_names=("minigrid", "gymnasium"),
-        asset_fetch_record=("pip install minigrid==3.1.0 gymnasium==1.3.0; no env assets fetched by adapter",),
-    ),
-    "minigrid:MiniGrid-KeyCorridorS3R1-v0": AdapterSpec(
-        env_id="minigrid:MiniGrid-KeyCorridorS3R1-v0",
-        source="minigrid==3.1.0 / gymnasium==1.3.0 symbolic reset observation adapter",
-        status="phase_bii_wired_unscored_pending_claude_red_precheck",
-        build_records=_minigrid_builder("MiniGrid-KeyCorridorS3R1-v0"),
-        floor_member_status=_common_non_contamination_floor_status(),
-        dependency_names=("minigrid", "gymnasium"),
-        asset_fetch_record=("pip install minigrid==3.1.0 gymnasium==1.3.0; no env assets fetched by adapter",),
-    ),
     "bsuite:memory_len/0": AdapterSpec(
         env_id="bsuite:memory_len/0",
         source="bsuite==0.3.6 symbolic dm_env observation-history adapter",
-        status="phase_bii_wired_unscored_pending_claude_red_precheck",
+        status="phase_bii_r1_admissible_o_determined_trivial_decoder_guarded_unscored",
         build_records=_bsuite_builder("memory_len/0"),
         floor_member_status=_common_non_contamination_floor_status(),
         dependency_names=("bsuite", "dm_env"),
@@ -436,7 +514,7 @@ BORROWED_ADAPTERS: dict[str, AdapterSpec] = {
     "bsuite:memory_size/0": AdapterSpec(
         env_id="bsuite:memory_size/0",
         source="bsuite==0.3.6 symbolic dm_env observation-history adapter",
-        status="phase_bii_wired_unscored_pending_claude_red_precheck",
+        status="phase_bii_r1_admissible_o_determined_trivial_decoder_guarded_unscored",
         build_records=_bsuite_builder("memory_size/0"),
         floor_member_status=_common_non_contamination_floor_status(),
         dependency_names=("bsuite", "dm_env"),
@@ -445,7 +523,7 @@ BORROWED_ADAPTERS: dict[str, AdapterSpec] = {
     "bsuite:umbrella_length/0": AdapterSpec(
         env_id="bsuite:umbrella_length/0",
         source="bsuite==0.3.6 symbolic dm_env observation-history adapter",
-        status="phase_bii_wired_unscored_pending_claude_red_precheck",
+        status="phase_bii_r1_admissible_o_determined_trivial_decoder_guarded_unscored",
         build_records=_bsuite_builder("umbrella_length/0"),
         floor_member_status=_common_non_contamination_floor_status(),
         dependency_names=("bsuite", "dm_env"),
@@ -455,43 +533,61 @@ BORROWED_ADAPTERS: dict[str, AdapterSpec] = {
 
 
 def build_borrowed_adapter_manifest(seed: int = 20260708) -> dict[str, Any]:
-    """Return B-ii borrowed-adapter manifest. Does not score or compute verdicts."""
+    """Return B-ii-R1 borrowed-adapter manifest. Does not score or compute verdicts."""
 
     wired = {}
     for env_id, spec in sorted(BORROWED_ADAPTERS.items()):
         records = spec.build_records(int(seed))
+        admission = evaluate_borrowed_adapter_admission(env_id, records)
         wired[env_id] = {
             "source": spec.source,
             "status": spec.status,
             "record_count": len(records),
             "splits": sorted({record.split for record in records}),
             "record_digest": record_digest(records),
+            "oracle_from_O_admission": admission,
             "floor_member_status": spec.floor_member_status,
             "dependency_names": list(spec.dependency_names),
             "asset_fetch_record": list(spec.asset_fetch_record),
         }
 
+    failures = [
+        {
+            "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
+            "reason": (
+                "Phase B-ii-R1 fairness repair: single reset observation O does not determine "
+                "the target branch; prior target used private unwrapped.success_pos absent from O"
+            ),
+            "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+        },
+        {
+            "adapter_id": "minigrid:MiniGrid-KeyCorridorS3R1-v0",
+            "reason": (
+                "Phase B-ii-R1 fairness repair: single reset observation O does not determine "
+                "the target object identity; prior target used private unwrapped.obj absent from O"
+            ),
+            "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+        },
+        {
+            "adapter_id": "dm_alchemy:symbolic_default",
+            "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible",
+            "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
+        },
+    ]
     failure_manifest = {
         "producer_function": "build_borrowed_adapter_manifest.failure_manifest",
-        "phase": "PHASE_BII_BORROWED_ADAPTER_WIRING_ONLY",
-        "policy": "DROP_OPTIONAL_DM_ALCHEMY_DO_NOT_FAKE",
-        "failures": [
-            {
-                "adapter_id": "dm_alchemy:symbolic_default",
-                "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible",
-                "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
-            }
-        ],
+        "phase": "PHASE_BII_R1_ADAPTER_FAIRNESS_REPAIR_ONLY",
+        "policy": "DROP_INVALID_OR_NONCHEAP_ADAPTERS_DO_NOT_FAKE_DO_NOT_SCORE",
+        "failures": failures,
     }
     return {
         "producer_function": "build_borrowed_adapter_manifest",
-        "phase": "PHASE_BII_BORROWED_ADAPTER_WIRING_ONLY",
+        "phase": "PHASE_BII_R1_ADAPTER_FAIRNESS_REPAIR_ONLY",
         "scoring_performed": False,
+        "probe_valid_computed": False,
         "candidate_verdicts_computed": False,
         "wired_adapters": wired,
-        "dropped_adapters": {
-            "dm_alchemy:symbolic_default": failure_manifest["failures"][0],
-        },
+        "dropped_adapters": {entry["adapter_id"]: entry for entry in failures},
         "dependency_pins": {
             "minigrid": dependency_pin("minigrid"),
             "gymnasium": dependency_pin("gymnasium"),
@@ -501,7 +597,10 @@ def build_borrowed_adapter_manifest(seed: int = 20260708) -> dict[str, Any]:
             "symbolic_alchemy": dependency_pin("symbolic_alchemy"),
         },
         "failure_manifest": failure_manifest,
-        "claim_ceiling": "borrowed-adapter wiring only; no headroom, no probe result, no mechanism, no mainline effect",
+        "claim_ceiling": (
+            "borrowed-adapter fairness hygiene only; no scoring, no headroom, "
+            "no probe result, no candidate verdict, no mechanism, no mainline effect"
+        ),
     }
 
 

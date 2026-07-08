@@ -1,12 +1,22 @@
 {
   "failures": [
     {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target branch; prior target used private unwrapped.success_pos absent from O"
+    },
+    {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-KeyCorridorS3R1-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target object identity; prior target used private unwrapped.obj absent from O"
+    },
+    {
       "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
       "adapter_id": "dm_alchemy:symbolic_default",
       "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible"
     }
   ],
-  "phase": "PHASE_BII_BORROWED_ADAPTER_WIRING_ONLY",
-  "policy": "DROP_OPTIONAL_DM_ALCHEMY_DO_NOT_FAKE",
+  "phase": "PHASE_BII_R1_ADAPTER_FAIRNESS_REPAIR_ONLY",
+  "policy": "DROP_INVALID_OR_NONCHEAP_ADAPTERS_DO_NOT_FAKE_DO_NOT_SCORE",
   "producer_function": "build_borrowed_adapter_manifest.failure_manifest"
 }

@@ -1,6 +1,6 @@
 {
   "candidate_verdicts_computed": false,
-  "claim_ceiling": "borrowed-adapter wiring only; no headroom, no probe result, no mechanism, no mainline effect",
+  "claim_ceiling": "borrowed-adapter fairness hygiene only; no scoring, no headroom, no probe result, no candidate verdict, no mechanism, no mainline effect",
   "dependency_pins": {
     "bsuite": {
       "distribution": "bsuite",
@@ -56,21 +56,42 @@
       "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
       "adapter_id": "dm_alchemy:symbolic_default",
       "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible"
+    },
+    "minigrid:MiniGrid-KeyCorridorS3R1-v0": {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-KeyCorridorS3R1-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target object identity; prior target used private unwrapped.obj absent from O"
+    },
+    "minigrid:MiniGrid-MemoryS13Random-v0": {
+      "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+      "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
+      "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target branch; prior target used private unwrapped.success_pos absent from O"
     }
   },
   "failure_manifest": {
     "failures": [
+      {
+        "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+        "adapter_id": "minigrid:MiniGrid-MemoryS13Random-v0",
+        "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target branch; prior target used private unwrapped.success_pos absent from O"
+      },
+      {
+        "action": "DROP_INVALID_NOT_SINGLE_OBS_ADAPTABLE_BEFORE_SCORING",
+        "adapter_id": "minigrid:MiniGrid-KeyCorridorS3R1-v0",
+        "reason": "Phase B-ii-R1 fairness repair: single reset observation O does not determine the target object identity; prior target used private unwrapped.obj absent from O"
+      },
       {
         "action": "DROP_OPTIONAL_ADAPTER_BEFORE_SCORING",
         "adapter_id": "dm_alchemy:symbolic_default",
         "reason": "dm_alchemy/symbolic_alchemy modules unavailable in current environment; cheap symbolic wiring not feasible"
       }
     ],
-    "phase": "PHASE_BII_BORROWED_ADAPTER_WIRING_ONLY",
-    "policy": "DROP_OPTIONAL_DM_ALCHEMY_DO_NOT_FAKE",
+    "phase": "PHASE_BII_R1_ADAPTER_FAIRNESS_REPAIR_ONLY",
+    "policy": "DROP_INVALID_OR_NONCHEAP_ADAPTERS_DO_NOT_FAKE_DO_NOT_SCORE",
     "producer_function": "build_borrowed_adapter_manifest.failure_manifest"
   },
-  "phase": "PHASE_BII_BORROWED_ADAPTER_WIRING_ONLY",
+  "phase": "PHASE_BII_R1_ADAPTER_FAIRNESS_REPAIR_ONLY",
+  "probe_valid_computed": false,
   "producer_function": "build_borrowed_adapter_manifest",
   "scoring_performed": false,
   "wired_adapters": {
@@ -108,14 +129,38 @@
           "status": "populated"
         }
       },
+      "oracle_from_O_admission": {
+        "adapter_id": "bsuite:memory_len/0",
+        "candidate_verdict_computed": false,
+        "oracle_from_O": {
+          "admission_status": "ADMISSIBLE_O_DETERMINED",
+          "ceiling": 1.0,
+          "correct_eval_count": 4,
+          "decoder": "decode_oracle_from_O_bsuite",
+          "eval_record_count": 4,
+          "input_boundary": "record.O only; no private env state, y, y_star, rewards, filenames, or audit labels",
+          "mismatch_count": 0,
+          "mismatches_preview": [],
+          "score": 1.0,
+          "tolerance": 0.0
+        },
+        "producer_function": "evaluate_oracle_from_O_admission",
+        "scoring_performed": false,
+        "trivial_floor_guard": {
+          "future_floor_effect": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+          "guard": "VOID_TRIVIALLY_DECODABLE",
+          "producer_function": "trivial_legal_decoder_guard",
+          "reason": "a legal O-only reference decoder reaches the ceiling; future borrowed-env selection must treat this as floor saturation / void trivial decodability, not as headroom"
+        }
+      },
       "record_count": 8,
-      "record_digest": "91f3b01be132deaf8b0e37d8d81db6d10372b66bb11ebb4ac58351df05f7ed53",
+      "record_digest": "519aa59471eeec420ec4ed032e23c45f86859e983161bcdb865746e0e0f57017",
       "source": "bsuite==0.3.6 symbolic dm_env observation-history adapter",
       "splits": [
         "eval",
         "train"
       ],
-      "status": "phase_bii_wired_unscored_pending_claude_red_precheck"
+      "status": "phase_bii_r1_admissible_o_determined_trivial_decoder_guarded_unscored"
     },
     "bsuite:memory_size/0": {
       "asset_fetch_record": [
@@ -151,14 +196,38 @@
           "status": "populated"
         }
       },
+      "oracle_from_O_admission": {
+        "adapter_id": "bsuite:memory_size/0",
+        "candidate_verdict_computed": false,
+        "oracle_from_O": {
+          "admission_status": "ADMISSIBLE_O_DETERMINED",
+          "ceiling": 1.0,
+          "correct_eval_count": 4,
+          "decoder": "decode_oracle_from_O_bsuite",
+          "eval_record_count": 4,
+          "input_boundary": "record.O only; no private env state, y, y_star, rewards, filenames, or audit labels",
+          "mismatch_count": 0,
+          "mismatches_preview": [],
+          "score": 1.0,
+          "tolerance": 0.0
+        },
+        "producer_function": "evaluate_oracle_from_O_admission",
+        "scoring_performed": false,
+        "trivial_floor_guard": {
+          "future_floor_effect": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+          "guard": "VOID_TRIVIALLY_DECODABLE",
+          "producer_function": "trivial_legal_decoder_guard",
+          "reason": "a legal O-only reference decoder reaches the ceiling; future borrowed-env selection must treat this as floor saturation / void trivial decodability, not as headroom"
+        }
+      },
       "record_count": 8,
-      "record_digest": "e0233459d71d941c70284e8519f006fabef3518fdb9b32b2a110b36973b564d5",
+      "record_digest": "3a0030024c6c64169d6575fe13c65436f93f1ce6c381df55b9b8f848eaa2b330",
       "source": "bsuite==0.3.6 symbolic dm_env observation-history adapter",
       "splits": [
         "eval",
         "train"
       ],
-      "status": "phase_bii_wired_unscored_pending_claude_red_precheck"
+      "status": "phase_bii_r1_admissible_o_determined_trivial_decoder_guarded_unscored"
     },
     "bsuite:umbrella_length/0": {
       "asset_fetch_record": [
@@ -194,6 +263,30 @@
           "status": "populated"
         }
       },
+      "oracle_from_O_admission": {
+        "adapter_id": "bsuite:umbrella_length/0",
+        "candidate_verdict_computed": false,
+        "oracle_from_O": {
+          "admission_status": "ADMISSIBLE_O_DETERMINED",
+          "ceiling": 1.0,
+          "correct_eval_count": 4,
+          "decoder": "decode_oracle_from_O_bsuite",
+          "eval_record_count": 4,
+          "input_boundary": "record.O only; no private env state, y, y_star, rewards, filenames, or audit labels",
+          "mismatch_count": 0,
+          "mismatches_preview": [],
+          "score": 1.0,
+          "tolerance": 0.0
+        },
+        "producer_function": "evaluate_oracle_from_O_admission",
+        "scoring_performed": false,
+        "trivial_floor_guard": {
+          "future_floor_effect": "SATURATED_BY_LEGAL_OBSERVATION_DECODER",
+          "guard": "VOID_TRIVIALLY_DECODABLE",
+          "producer_function": "trivial_legal_decoder_guard",
+          "reason": "a legal O-only reference decoder reaches the ceiling; future borrowed-env selection must treat this as floor saturation / void trivial decodability, not as headroom"
+        }
+      },
       "record_count": 8,
       "record_digest": "9e56bc17746987dbc77566c7bd9a9d866bc5030f1b01decd3512225e9c732ea5",
       "source": "bsuite==0.3.6 symbolic dm_env observation-history adapter",
@@ -201,93 +294,7 @@
         "eval",
         "train"
       ],
-      "status": "phase_bii_wired_unscored_pending_claude_red_precheck"
-    },
-    "minigrid:MiniGrid-KeyCorridorS3R1-v0": {
-      "asset_fetch_record": [
-        "pip install minigrid==3.1.0 gymnasium==1.3.0; no env assets fetched by adapter"
-      ],
-      "dependency_names": [
-        "minigrid",
-        "gymnasium"
-      ],
-      "floor_member_status": {
-        "count_table": {
-          "legal_source": "adapter observation-derived cache_key",
-          "status": "populated"
-        },
-        "frequency_marginal": {
-          "reason": "non-contamination env; current frequency_marginal baseline emits contaminated/genuine labels and would be a straw floor",
-          "status": "N/A"
-        },
-        "graph_closure": {
-          "reason": "no legal relation_pairs/asserted_tuple arc-consistency surface in symbolic adapter",
-          "status": "N/A"
-        },
-        "nearest_neighbor": {
-          "legal_source": "full legal observation object",
-          "status": "populated"
-        },
-        "obs_only_decoder": {
-          "legal_source": "legal symbolic observation object",
-          "status": "populated"
-        },
-        "per_user_lookup": {
-          "legal_source": "adapter observation-derived lookup_key",
-          "status": "populated"
-        }
-      },
-      "record_count": 8,
-      "record_digest": "1d115bfb35160c1f1c6e5b8ba6fa1874f3fbdaf795286090914784b9b83adc0e",
-      "source": "minigrid==3.1.0 / gymnasium==1.3.0 symbolic reset observation adapter",
-      "splits": [
-        "eval",
-        "train"
-      ],
-      "status": "phase_bii_wired_unscored_pending_claude_red_precheck"
-    },
-    "minigrid:MiniGrid-MemoryS13Random-v0": {
-      "asset_fetch_record": [
-        "pip install minigrid==3.1.0 gymnasium==1.3.0; no env assets fetched by adapter"
-      ],
-      "dependency_names": [
-        "minigrid",
-        "gymnasium"
-      ],
-      "floor_member_status": {
-        "count_table": {
-          "legal_source": "adapter observation-derived cache_key",
-          "status": "populated"
-        },
-        "frequency_marginal": {
-          "reason": "non-contamination env; current frequency_marginal baseline emits contaminated/genuine labels and would be a straw floor",
-          "status": "N/A"
-        },
-        "graph_closure": {
-          "reason": "no legal relation_pairs/asserted_tuple arc-consistency surface in symbolic adapter",
-          "status": "N/A"
-        },
-        "nearest_neighbor": {
-          "legal_source": "full legal observation object",
-          "status": "populated"
-        },
-        "obs_only_decoder": {
-          "legal_source": "legal symbolic observation object",
-          "status": "populated"
-        },
-        "per_user_lookup": {
-          "legal_source": "adapter observation-derived lookup_key",
-          "status": "populated"
-        }
-      },
-      "record_count": 8,
-      "record_digest": "76815bdc901d2fcde43ef506389db56ce1dfec33842c885bf1c2d7199681d08a",
-      "source": "minigrid==3.1.0 / gymnasium==1.3.0 symbolic reset observation adapter",
-      "splits": [
-        "eval",
-        "train"
-      ],
-      "status": "phase_bii_wired_unscored_pending_claude_red_precheck"
+      "status": "phase_bii_r1_admissible_o_determined_trivial_decoder_guarded_unscored"
     }
   }
 }
