@@ -250,3 +250,77 @@ def test_contract_cli_is_fresh_process_and_does_not_write_official_artifacts(tmp
     assert payload["phase"] == "PHASE_A_PREREG_NO_SCORING"
     assert payload["official_scoring_enabled"] is False
     assert not official_artifact.exists()
+
+
+def test_controls_score_mode_is_guarded_and_emits_required_artifact_set(tmp_path):
+    repo = Path(__file__).resolve().parents[2]
+
+    blocked = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "scripts.env_headroom_probe.runner",
+            "--mode",
+            "score",
+            "--emit-artifacts",
+            "--artifact-dir",
+            str(tmp_path),
+        ],
+        cwd=repo,
+        text=True,
+        capture_output=True,
+    )
+    assert blocked.returncode != 0
+    assert "--phase-b-authorized" in (blocked.stderr + blocked.stdout)
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "scripts.env_headroom_probe.runner",
+            "--mode",
+            "score",
+            "--phase-b-authorized",
+            "--emit-artifacts",
+            "--artifact-dir",
+            str(tmp_path),
+        ],
+        cwd=repo,
+        text=True,
+        capture_output=True,
+    )
+    assert proc.returncode in {0, 1}
+
+    expected_files = {
+        "controls_result.json",
+        "trace.jsonl",
+        "baseline_comparison.json",
+        "ablation_report.json",
+        "replay_report.json",
+        "probe_valid.json",
+        "claim_ceiling.txt",
+    }
+    assert expected_files <= {p.name for p in tmp_path.iterdir()}
+
+    controls_result = json.loads((tmp_path / "controls_result.json").read_text(encoding="utf-8"))
+    replay_report = json.loads((tmp_path / "replay_report.json").read_text(encoding="utf-8"))
+    trace_rows = [
+        json.loads(line)
+        for line in (tmp_path / "trace.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+    assert set(controls_result["per_control"]) == {"POS_INTERNAL_ESTAR", "NEG_5A846D5_SCOUT"}
+    assert controls_result["candidate_envs_scored"] == []
+    assert controls_result["equivalence_band"] == 0.05
+    assert replay_report["fresh_process_recompute_count"] == 2
+    assert "bit_exact" in replay_report
+    assert {row["env_id"] for row in trace_rows} == {
+        "POS_INTERNAL_ESTAR",
+        "NEG_5A846D5_SCOUT",
+    }
+    assert {row["mode"] for row in trace_rows} == {
+        "normal",
+        "drop_graph_closure",
+        "shuffle_o_y",
+    }

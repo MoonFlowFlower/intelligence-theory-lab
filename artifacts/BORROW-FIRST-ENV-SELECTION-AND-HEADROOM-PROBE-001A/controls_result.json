@@ -1,0 +1,185 @@
+{
+  "artifact_files": [
+    "controls_result.json",
+    "trace.jsonl",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "replay_report.json",
+    "probe_valid.json",
+    "claim_ceiling.txt"
+  ],
+  "candidate_envs_scored": [],
+  "control_expected_verdicts": {
+    "NEG_5A846D5_SCOUT": "SATURATED",
+    "POS_INTERNAL_ESTAR": "HEADROOM"
+  },
+  "control_verdicts": {
+    "NEG_5A846D5_SCOUT": "SATURATED",
+    "POS_INTERNAL_ESTAR": "HEADROOM"
+  },
+  "equivalence_band": 0.05,
+  "hard_gates": {
+    "failures": [],
+    "passed": true,
+    "policy": "CONTROLS_CALIBRATION_ADMISSIBLE",
+    "producer_function": "_control_hard_gates"
+  },
+  "per_control": {
+    "NEG_5A846D5_SCOUT": {
+      "adapter_source": "git commit 5a846d51e / src/sbmc_headroom_scout_001a",
+      "adapter_status": "phase_a_registered_control_unscored_until_phase_b_authorized",
+      "drop_graph_closure_verdict": {
+        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "ceiling_score": 1.0,
+        "chance_score": 0.5,
+        "equivalence_band": 0.05,
+        "floor_degenerate": false,
+        "gap": 0.0625,
+        "producer_function": "evaluate_verdict",
+        "shuffle_leakage_ok": true,
+        "strongest_fair_baseline_id": "frequency_marginal",
+        "strongest_fair_baseline_score": 0.9375,
+        "verdict": "HEADROOM"
+      },
+      "floor_competence": {
+        "constant_members": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "obs_only_decoder"
+        ],
+        "floor_degenerate": false,
+        "producer_function": "floor_competence_gate",
+        "structural_members": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "void_verdict": null
+      },
+      "input_record_digest": "04ce5aae382d18b47602852140d63e989a9c9619107f52f9a3cabdd8f6c5a92a",
+      "normal_verdict": {
+        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "ceiling_score": 1.0,
+        "chance_score": 0.5,
+        "equivalence_band": 0.05,
+        "floor_degenerate": false,
+        "gap": 0.0,
+        "producer_function": "evaluate_verdict",
+        "shuffle_leakage_ok": true,
+        "strongest_fair_baseline_id": "graph_closure",
+        "strongest_fair_baseline_score": 1.0,
+        "verdict": "SATURATED"
+      },
+      "shuffle_leakage": {
+        "chance_score": 0.5,
+        "ignored_privileged_reference": "ideal_oracle",
+        "offenders": {},
+        "producer_function": "shuffle_leakage_ok",
+        "shuffle_leakage_ok": true,
+        "structural_baselines": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "threshold": 0.55,
+        "tol": 0.05
+      }
+    },
+    "POS_INTERNAL_ESTAR": {
+      "adapter_source": "docs/codex/tasks/SAME-AGENT-KERNEL-R4-CONCRETE-ENV-ARGUMENT-001A.md",
+      "adapter_status": "phase_a_registered_control_unscored_until_phase_b_authorized",
+      "drop_graph_closure_verdict": {
+        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "ceiling_score": 1.0,
+        "chance_score": 0.2,
+        "equivalence_band": 0.05,
+        "floor_degenerate": false,
+        "gap": 0.6666666666666667,
+        "producer_function": "evaluate_verdict",
+        "shuffle_leakage_ok": true,
+        "strongest_fair_baseline_id": "predict_all",
+        "strongest_fair_baseline_score": 0.3333333333333333,
+        "verdict": "HEADROOM"
+      },
+      "floor_competence": {
+        "constant_members": [
+          "per_user_lookup",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "floor_degenerate": false,
+        "producer_function": "floor_competence_gate",
+        "structural_members": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "void_verdict": null
+      },
+      "input_record_digest": "0c12659bd72d2bcc85017675aca52f64a55d9050f68a850140ece1ac39675177",
+      "normal_verdict": {
+        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "ceiling_score": 1.0,
+        "chance_score": 0.2,
+        "equivalence_band": 0.05,
+        "floor_degenerate": false,
+        "gap": 0.6666666666666667,
+        "producer_function": "evaluate_verdict",
+        "shuffle_leakage_ok": true,
+        "strongest_fair_baseline_id": "predict_all",
+        "strongest_fair_baseline_score": 0.3333333333333333,
+        "verdict": "HEADROOM"
+      },
+      "shuffle_leakage": {
+        "chance_score": 0.2,
+        "ignored_privileged_reference": "ideal_oracle",
+        "offenders": {},
+        "producer_function": "shuffle_leakage_ok",
+        "shuffle_leakage_ok": true,
+        "structural_baselines": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "threshold": 0.25,
+        "tol": 0.05
+      }
+    }
+  },
+  "phase": "PHASE_BI_CONTROLS_ONLY",
+  "probe_valid": {
+    "candidate_verdict_policy": "ALLOW_CANDIDATE_VERDICTS",
+    "expected": {
+      "NEG_5A846D5_SCOUT": "SATURATED",
+      "POS_INTERNAL_ESTAR": "HEADROOM"
+    },
+    "mismatches": {},
+    "observed": {
+      "NEG_5A846D5_SCOUT": "SATURATED",
+      "POS_INTERNAL_ESTAR": "HEADROOM"
+    },
+    "probe_valid": true,
+    "producer_function": "probe_valid_gate"
+  },
+  "producer_function": "score_controls_payload.controls_result",
+  "replay_bit_exact": true,
+  "run_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A/phase_bi_controls/seed-20260708",
+  "scope": "registered_controls_only",
+  "score_digest": "0995544b1b24e9c621827ca209f3645229c9a2af435e700e660ea361d56ae65c",
+  "task_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A"
+}

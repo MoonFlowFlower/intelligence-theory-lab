@@ -1,0 +1,173 @@
+{
+  "per_control": {
+    "NEG_5A846D5_SCOUT": {
+      "floor_competence": {
+        "constant_members": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "obs_only_decoder"
+        ],
+        "floor_degenerate": false,
+        "producer_function": "floor_competence_gate",
+        "structural_members": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "void_verdict": null
+      },
+      "prediction_variation": {
+        "count_table": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "frequency_marginal": {
+          "unique_prediction_count": 2,
+          "varies": true
+        },
+        "graph_closure": {
+          "unique_prediction_count": 2,
+          "varies": true
+        },
+        "ideal_oracle": {
+          "unique_prediction_count": 2,
+          "varies": true
+        },
+        "nearest_neighbor": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "obs_only_decoder": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "per_user_lookup": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "predict_all": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "predict_none": {
+          "unique_prediction_count": 1,
+          "varies": false
+        }
+      },
+      "scores": {
+        "count_table": 0.5,
+        "frequency_marginal": 0.9375,
+        "graph_closure": 1.0,
+        "ideal_oracle": 1.0,
+        "nearest_neighbor": 0.5,
+        "obs_only_decoder": 0.5,
+        "per_user_lookup": 0.5,
+        "predict_all": 0.6666666666666666,
+        "predict_none": 0.0
+      },
+      "verdict": {
+        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "ceiling_score": 1.0,
+        "chance_score": 0.5,
+        "equivalence_band": 0.05,
+        "floor_degenerate": false,
+        "gap": 0.0,
+        "producer_function": "evaluate_verdict",
+        "shuffle_leakage_ok": true,
+        "strongest_fair_baseline_id": "graph_closure",
+        "strongest_fair_baseline_score": 1.0,
+        "verdict": "SATURATED"
+      }
+    },
+    "POS_INTERNAL_ESTAR": {
+      "floor_competence": {
+        "constant_members": [
+          "per_user_lookup",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "floor_degenerate": false,
+        "producer_function": "floor_competence_gate",
+        "structural_members": [
+          "per_user_lookup",
+          "nearest_neighbor",
+          "count_table",
+          "frequency_marginal",
+          "graph_closure",
+          "obs_only_decoder"
+        ],
+        "void_verdict": null
+      },
+      "prediction_variation": {
+        "count_table": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "frequency_marginal": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "graph_closure": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "ideal_oracle": {
+          "unique_prediction_count": 5,
+          "varies": true
+        },
+        "nearest_neighbor": {
+          "unique_prediction_count": 4,
+          "varies": true
+        },
+        "obs_only_decoder": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "per_user_lookup": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "predict_all": {
+          "unique_prediction_count": 1,
+          "varies": false
+        },
+        "predict_none": {
+          "unique_prediction_count": 1,
+          "varies": false
+        }
+      },
+      "scores": {
+        "count_table": 0.1875,
+        "frequency_marginal": 0.1875,
+        "graph_closure": 0.0,
+        "ideal_oracle": 1.0,
+        "nearest_neighbor": 0.0,
+        "obs_only_decoder": 0.1875,
+        "per_user_lookup": 0.1875,
+        "predict_all": 0.3333333333333333,
+        "predict_none": 0.0
+      },
+      "verdict": {
+        "aggregation_rule": "HEADROOM iff ideal_oracle - max(fair floor) > equivalence_band; otherwise SATURATED",
+        "ceiling_score": 1.0,
+        "chance_score": 0.2,
+        "equivalence_band": 0.05,
+        "floor_degenerate": false,
+        "gap": 0.6666666666666667,
+        "producer_function": "evaluate_verdict",
+        "shuffle_leakage_ok": true,
+        "strongest_fair_baseline_id": "predict_all",
+        "strongest_fair_baseline_score": 0.3333333333333333,
+        "verdict": "HEADROOM"
+      }
+    }
+  },
+  "producer_function": "score_controls_payload.baseline_comparison",
+  "run_id": "BORROW-FIRST-ENV-SELECTION-AND-HEADROOM-PROBE-001A/phase_bi_controls/seed-20260708"
+}
