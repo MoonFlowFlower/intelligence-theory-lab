@@ -349,3 +349,6 @@
 - Scope: fork-A is not a tracked route in ROUTE-STATE-MACHINE-001A; this entry does not create or mutate any route state.json/closure.json/events.jsonl. A formal state-machine transition is a separate Red card.
 - Claim ceiling: bounded offline analysis only; no mechanism/subject/consciousness/agency/EGO claim; proves neither fork A possible nor impossible.
 - Auto-Remote-Anchor: forbidden.
+
+## 2026-07-09 — UNCERTAINTY-VOI-REQUEST-MECHANISM route CLOSED (bounded negative)
+Lineage 001A→002A→003A closed at terminal verdict STATIC_SUFFICIENT (003A R3'' `67edff12`, positive_claim=false). The KG-VOI mechanism beats random active gathering with an attributable signature but does not beat a tuned age-threshold heuristic within the 10% MDE on fresh seeds 9401-9420. 001A was INSTRUMENT_INVALID (metric blind on info steps + KG never exploits); 002A's banked ATTRIBUTION_FAILURE is a frozen-gate artifact (G2/G3 mislabeled collapse-to-negative as survival), corrected and superseded by 003A. All prior artifacts preserved. Record: docs/research/UNCERTAINTY-VOI-REQUEST-MECHANISM-CLOSURE-001.md. Reopening only via a new pre-registered age⊥uncertainty environment (new route, not a rescue). Claude Yellow audit 2026-07-09.

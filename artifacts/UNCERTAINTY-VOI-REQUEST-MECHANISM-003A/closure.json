@@ -1,0 +1,18 @@
+{
+  "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-CLOSURE-001",
+  "lineage": ["UNCERTAINTY-VOI-REQUEST-MECHANISM-001A", "UNCERTAINTY-VOI-REQUEST-MECHANISM-002A", "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A"],
+  "status": "CLOSED_BOUNDED_NEGATIVE",
+  "terminal_verdict": "STATIC_SUFFICIENT",
+  "terminal_commit": "67edff12e7803f410264aee366889870c89d7245",
+  "positive_claim": false,
+  "stage_verdicts": {
+    "001A": {"verdict": "INSTRUMENT_INVALID", "gated_commit": "7be268043c3991b5d5a5857e1bd1bd69c6fab456", "note": "metric blind on info steps + KG never exploits; env valid"},
+    "002A": {"verdict": "ATTRIBUTION_FAILURE", "gated_commit": "e54e8e2b93aa56465e037d34f57d0805c9c88a78", "note": "frozen-gate artifact: G2/G3 mislabeled collapse-to-negative as survival; superseded by 003A corrected gates; banked label preserved unchanged"},
+    "003A": {"verdict": "STATIC_SUFFICIENT", "gated_commit": "67edff12e7803f410264aee366889870c89d7245", "note": "fresh seeds 9401-9420; beats random_active (attributable) but not tuned static within 10% MDE"}
+  },
+  "claim_ceiling": "Bounded toy evidence: Kalman+myopic-KG VOI mechanism uses feedback and uncertainty (attributable) and beats random active gathering, but does not outperform a tuned age-threshold heuristic; uncertainty estimate uncalibrated. Proves neither VOI-superior nor VOI-worthless; nothing about intelligence/adaptation/subject/pet.",
+  "reopening_condition": "New pre-registered hypothesis with an environment where age is a poor proxy for uncertainty (e.g. per-arm heterogeneous observation noise, age⊥uncertainty), flagged for anti-pattern risk; a NEW route, not a rescue.",
+  "closure_record": "docs/research/UNCERTAINTY-VOI-REQUEST-MECHANISM-CLOSURE-001.md",
+  "audited_by": "Claude Yellow post-check 2026-07-09",
+  "prereg_sha256": {"001A": "46031e0340f0e3eb3f65f22a1728eb925840dba9c890aa1aece375141b740180", "002A": "bc087cfc13102a57a624b7bb5d8684b50303db7c9be701bdd08d709bffffdf73", "003A": "9964fbce108228cf32cd2df8834ed8b002bb27bc210956c3186c3fd7b96a5b26"}
+}
