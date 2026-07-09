@@ -1,0 +1,222 @@
+{
+  "G4a": {
+    "coverage90_fraction": 0.97315625,
+    "mean_z2": 0.45422301577061586,
+    "passed": false,
+    "tolerance": [
+      0.7,
+      1.5
+    ]
+  },
+  "G4b": {
+    "advantage_stats": {
+      "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+      "ci95": [
+        -0.014335351108233243,
+        4.274267762273074
+      ],
+      "effect_size_mean_over_sd": 0.5154686426748677,
+      "mean": 1.9267820649190497,
+      "n": 10,
+      "std": 3.737922941191147,
+      "values": [
+        10.890959502066432,
+        3.0355071497520782,
+        1.6231289273710967,
+        2.5780695702939216,
+        -1.7454182276208332,
+        1.4301918514004264,
+        -3.4084286916832465,
+        2.274663451882809,
+        1.8093331373320218,
+        0.7798139783957954
+      ]
+    },
+    "passed": false
+  },
+  "claim_ceiling": "Bounded VOI mechanism-proxy in one toy; not intelligence / adaptation / world-model / subject; not a claim about the pet. Strongest positive outcome = a bounded, replayable, attribution-checked VOI-mechanism-proxy that beats a tuned static rival and a random-active baseline on this hold-and-observe toy, with advantage collapsing under corrupted feedback and uncertainty ablation. Calibration is not claimed if the verdict is UNCALIBRATED.",
+  "code_path_hash": "9074341e69baea2667da9040424ebd1f3ae54a038d604771a1dd0c12c9cd5885",
+  "producer_function": "uncertainty_voi.runner_003._build_artifacts_payload/calibration_transfer_report",
+  "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+  "transfer": {
+    "advantage_better_rival_stats": {
+      "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+      "ci95": [
+        -0.014335351108233243,
+        4.274267762273074
+      ],
+      "effect_size_mean_over_sd": 0.5154686426748677,
+      "mean": 1.9267820649190497,
+      "n": 10,
+      "std": 3.737922941191147,
+      "values": [
+        10.890959502066432,
+        3.0355071497520782,
+        1.6231289273710967,
+        2.5780695702939216,
+        -1.7454182276208332,
+        1.4301918514004264,
+        -3.4084286916832465,
+        2.274663451882809,
+        1.8093331373320218,
+        0.7798139783957954
+      ]
+    },
+    "advantage_random_active_stats": {
+      "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+      "ci95": [
+        3.561137609908824,
+        7.979023850250173
+      ],
+      "effect_size_mean_over_sd": 1.561624404815074,
+      "mean": 5.766985946190598,
+      "n": 10,
+      "std": 3.692940458927778,
+      "values": [
+        10.890959502066432,
+        3.0355071497520782,
+        11.30794555318413,
+        5.346870163674289,
+        5.860686411533415,
+        5.496320411877294,
+        0.508670695450915,
+        6.412161350981098,
+        8.030924244990535,
+        0.7798139783957954
+      ]
+    },
+    "advantage_static_stats": {
+      "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+      "ci95": [
+        0.3419430867900396,
+        5.833052421063951
+      ],
+      "effect_size_mean_over_sd": 0.6054714035225707,
+      "mean": 2.789950173954385,
+      "n": 10,
+      "std": 4.607897512124834,
+      "values": [
+        13.613959495312658,
+        5.8306605420878945,
+        1.6231289273710967,
+        2.5780695702939216,
+        -1.7454182276208332,
+        1.4301918514004264,
+        -3.4084286916832465,
+        2.274663451882809,
+        1.8093331373320218,
+        3.8933416831670975
+      ]
+    },
+    "advantages_vs_better_rival": [
+      10.890959502066432,
+      3.0355071497520782,
+      1.6231289273710967,
+      2.5780695702939216,
+      -1.7454182276208332,
+      1.4301918514004264,
+      -3.4084286916832465,
+      2.274663451882809,
+      1.8093331373320218,
+      0.7798139783957954
+    ],
+    "advantages_vs_random_active": [
+      10.890959502066432,
+      3.0355071497520782,
+      11.30794555318413,
+      5.346870163674289,
+      5.860686411533415,
+      5.496320411877294,
+      0.508670695450915,
+      6.412161350981098,
+      8.030924244990535,
+      0.7798139783957954
+    ],
+    "advantages_vs_static": [
+      13.613959495312658,
+      5.8306605420878945,
+      1.6231289273710967,
+      2.5780695702939216,
+      -1.7454182276208332,
+      1.4301918514004264,
+      -3.4084286916832465,
+      2.274663451882809,
+      1.8093331373320218,
+      3.8933416831670975
+    ],
+    "calibration": {
+      "count": 16000,
+      "coverage90_fraction": 0.97825,
+      "mean_z2": 0.42047452406961966
+    },
+    "mechanism_action_counts": {
+      "noop": 1180,
+      "oracle": 0,
+      "query": 798,
+      "request": 22
+    },
+    "mechanism_regrets": [
+      6.876998030187073,
+      13.036454898778775,
+      6.302260457573772,
+      8.93056049028843,
+      12.366776150437708,
+      7.034325274029996,
+      12.82470211998286,
+      8.327582382826872,
+      8.11932192862277,
+      12.10488512768369
+    ],
+    "policy_id": "mechanism",
+    "producer_function": "uncertainty_voi.runner_003._condition_results",
+    "random_active_action_counts": {
+      "noop": 0,
+      "oracle": 0,
+      "query": 2000,
+      "request": 0
+    },
+    "random_active_regrets": [
+      17.767957532253504,
+      16.071962048530853,
+      17.610206010757903,
+      14.27743065396272,
+      18.227462561971123,
+      12.53064568590729,
+      13.333372815433775,
+      14.73974373380797,
+      16.150246173613304,
+      12.884699106079486
+    ],
+    "reused_callable": "uncertainty_voi.runner_002._condition_results",
+    "seeds": [
+      9421,
+      9422,
+      9423,
+      9424,
+      9425,
+      9426,
+      9427,
+      9428,
+      9429,
+      9430
+    ],
+    "static_action_counts": {
+      "noop": 1518,
+      "oracle": 0,
+      "query": 392,
+      "request": 90
+    },
+    "static_regrets": [
+      20.49095752549973,
+      18.86711544086667,
+      7.925389384944869,
+      11.508630060582352,
+      10.621357922816875,
+      8.464517125430422,
+      9.416273428299613,
+      10.60224583470968,
+      9.928655065954791,
+      15.998226810850788
+    ]
+  }
+}

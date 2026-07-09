@@ -1,0 +1,748 @@
+{
+  "code_path_hash": "e63bddd48e22153e94d4f41cc9514e1153af818a2f0867f3b3e4b1da052c4291",
+  "producer_function": "uncertainty_voi.runner_003._metric_records",
+  "records": [
+    {
+      "aggregation_rule": "paired bootstrap mean CIs vs static_threshold, random_active, and per-seed better rival",
+      "code_path_hash": "07f56650c54d13ee2398595d8a2207b2ccb9b777bc53709b7926415874e31809",
+      "input_artifacts": [
+        "preregistration.md"
+      ],
+      "metric_id": "clean_advantage_vs_static_and_random_active",
+      "producer_function": "uncertainty_voi.runner_003._condition_results",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9401,
+        9402,
+        9403,
+        9404,
+        9405,
+        9406,
+        9407,
+        9408,
+        9409,
+        9410,
+        9411,
+        9412,
+        9413,
+        9414,
+        9415,
+        9416,
+        9417,
+        9418,
+        9419,
+        9420
+      ],
+      "value": {
+        "G1a_static": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -2.4927294372626707,
+            4.302712864600265
+          ],
+          "effect_size_mean_over_sd": 0.12836480754338184,
+          "mean": 1.0218027472636921,
+          "n": 20,
+          "std": 7.960147074721911,
+          "values": [
+            -0.1285609641550991,
+            -0.14594965988044617,
+            -0.5524971666737324,
+            -0.00788763432558337,
+            4.050684333819085,
+            -2.2033264669309975,
+            -4.483862998647815,
+            -6.204272478698578,
+            12.203892206600855,
+            3.9823488241754887,
+            -22.254373033823533,
+            -0.7257420546881175,
+            0.44450001128468264,
+            18.48101567416669,
+            8.746801881358763,
+            1.7186033633192324,
+            -0.3691946925597476,
+            4.1063193013547155,
+            -2.508717973126555,
+            6.28627447270453
+          ]
+        },
+        "G1b_random_active": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            2.8059770656589875,
+            5.981436479578988
+          ],
+          "effect_size_mean_over_sd": 1.13548498603311,
+          "mean": 4.352819132526021,
+          "n": 20,
+          "std": 3.8334449033385063,
+          "values": [
+            4.3166719653565355,
+            8.670287530128792,
+            3.3101115977848865,
+            3.1766130057857698,
+            1.6167468074296174,
+            1.2906234482632915,
+            4.5792254826073755,
+            1.1576471489374338,
+            7.6787696829206045,
+            9.333994763490004,
+            -4.706218094380876,
+            4.153843553080446,
+            12.743731199228069,
+            5.625295794562035,
+            9.756216533835325,
+            2.5465773493952906,
+            3.0412725811950407,
+            3.529877195525464,
+            2.82884905005227,
+            2.4062460553230487
+          ]
+        },
+        "better_rival": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -3.026199597529248,
+            2.197075100605042
+          ],
+          "effect_size_mean_over_sd": -0.030078202215534974,
+          "mean": -0.19175977538056327,
+          "n": 20,
+          "std": 6.375373568089186,
+          "values": [
+            -0.1285609641550991,
+            -0.14594965988044617,
+            -0.5524971666737324,
+            -0.00788763432558337,
+            1.6167468074296174,
+            -2.2033264669309975,
+            -4.483862998647815,
+            -6.204272478698578,
+            7.6787696829206045,
+            3.9823488241754887,
+            -22.254373033823533,
+            -0.7257420546881175,
+            0.44450001128468264,
+            5.625295794562035,
+            8.746801881358763,
+            1.7186033633192324,
+            -0.3691946925597476,
+            3.529877195525464,
+            -2.508717973126555,
+            2.4062460553230487
+          ]
+        }
+      }
+    },
+    {
+      "aggregation_rule": "minimize mean cumulative regret over frozen tuning seeds; ties by theta then request_period",
+      "code_path_hash": "dec9dce3717edf63b21cc36b06c162605b9805152611d3df5406341358049c2b",
+      "input_artifacts": [
+        "preregistration.md"
+      ],
+      "metric_id": "static_threshold_tuning",
+      "producer_function": "uncertainty_voi.runner_003.tune_static_threshold",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9301,
+        9302,
+        9303,
+        9304,
+        9305,
+        9306,
+        9307,
+        9308,
+        9309,
+        9310
+      ],
+      "value": {
+        "request_period": 20,
+        "theta": 34
+      }
+    },
+    {
+      "aggregation_rule": "collapse iff A_C ci95 upper <= 0 and clean_minus_control ci95 lower > 0; survival iff A_C ci95 lower > 0",
+      "code_path_hash": "ad0891209b6fcf1bfea9e1a46080545dfadd34d2648107099bd9c9a710345c6b",
+      "input_artifacts": [
+        "falsifier_report.json"
+      ],
+      "metric_id": "G2_corrected_falsifier_collapse",
+      "producer_function": "uncertainty_voi.runner_003._derive_verdict",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9401,
+        9402,
+        9403,
+        9404,
+        9405,
+        9406,
+        9407,
+        9408,
+        9409,
+        9410,
+        9411,
+        9412,
+        9413,
+        9414,
+        9415,
+        9416,
+        9417,
+        9418,
+        9419,
+        9420
+      ],
+      "value": {
+        "clean_minus_shuffled": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            59.58936735358168,
+            78.22617593007911
+          ],
+          "effect_size_mean_over_sd": 3.2062020088467267,
+          "mean": 68.8848190631081,
+          "n": 20,
+          "std": 21.484865542794047,
+          "values": [
+            82.04017083835535,
+            109.94272370894623,
+            70.21801784704509,
+            70.32252844738478,
+            89.17216802020258,
+            62.87574170784345,
+            67.91388340630053,
+            88.43776697937787,
+            83.68975779612147,
+            41.42020165991504,
+            27.038725344941355,
+            67.98002910921056,
+            108.94419609979822,
+            51.029165845721316,
+            62.00082237641676,
+            51.20189462845702,
+            65.9166442786882,
+            67.30610518263711,
+            36.715812287775485,
+            73.53002569702387
+          ]
+        },
+        "clean_minus_wrong_sign": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            105.94671285549462,
+            137.06142949197547
+          ],
+          "effect_size_mean_over_sd": 3.3556857170174803,
+          "mean": 122.20420974162474,
+          "n": 20,
+          "std": 36.4170604898719,
+          "values": [
+            176.36233953411738,
+            125.96936863905063,
+            92.26001260553797,
+            121.7090219543809,
+            152.9379657687081,
+            155.65999609637697,
+            117.47882590761569,
+            131.05560785504989,
+            149.8845178830773,
+            148.47870425159823,
+            110.45685796256913,
+            76.01384132778519,
+            170.0028887868796,
+            43.72284983598355,
+            95.29688010288855,
+            78.17053828968214,
+            165.13480747056488,
+            73.41453060804706,
+            128.0568214664956,
+            132.01781848608624
+          ]
+        },
+        "collapse_signature": {
+          "shuffled": {
+            "clean_minus_control_ci_lower_gt_zero": true,
+            "collapsed": true,
+            "control_ci_upper_le_zero": true,
+            "survived": false
+          },
+          "wrong_sign": {
+            "clean_minus_control_ci_lower_gt_zero": true,
+            "collapsed": true,
+            "control_ci_upper_le_zero": true,
+            "survived": false
+          }
+        },
+        "corrected_rule": "collapse iff A_C ci95 upper <= 0 and clean_minus_control ci95 lower > 0; survival iff A_C ci95 lower > 0",
+        "passed": true,
+        "shuffled_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -77.94985208532158,
+            -60.447703391902266
+          ],
+          "effect_size_mean_over_sd": -3.3662551695639946,
+          "mean": -69.07657883848867,
+          "n": 20,
+          "std": 20.52030382694834,
+          "values": [
+            -82.16873180251045,
+            -110.08867336882668,
+            -70.77051501371882,
+            -70.33041608171037,
+            -87.55542121277296,
+            -65.07906817477445,
+            -72.39774640494835,
+            -94.64203945807645,
+            -76.01098811320087,
+            -37.43785283573955,
+            -49.29309837876489,
+            -68.70577116389867,
+            -108.49969608851353,
+            -45.40387005115928,
+            -53.25402049505799,
+            -49.48329126513779,
+            -66.28583897124794,
+            -63.776227987111646,
+            -39.22453026090204,
+            -71.12377964170082
+          ]
+        },
+        "survival_signature": {
+          "shuffled": false,
+          "wrong_sign": false
+        },
+        "wrong_sign_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -137.84735462487316,
+            -106.40193500299186
+          ],
+          "effect_size_mean_over_sd": -3.2672371214976934,
+          "mean": -122.39596951700533,
+          "n": 20,
+          "std": 37.46161204880634,
+          "values": [
+            -176.49090049827248,
+            -126.11531829893107,
+            -92.8125097722117,
+            -121.71690958870649,
+            -151.32121896127848,
+            -157.86332256330797,
+            -121.9626889062635,
+            -137.25988033374847,
+            -142.2057482001567,
+            -144.49635542742274,
+            -132.71123099639266,
+            -76.7395833824733,
+            -169.55838877559492,
+            -38.09755404142152,
+            -86.55007822152979,
+            -76.45193492636291,
+            -165.50400216312462,
+            -69.8846534125216,
+            -130.56553943962214,
+            -129.6115724307632
+          ]
+        }
+      }
+    },
+    {
+      "aggregation_rule": "uncertainty ablation must collapse; value ablation must significantly reduce clean advantage",
+      "code_path_hash": "ad0891209b6fcf1bfea9e1a46080545dfadd34d2648107099bd9c9a710345c6b",
+      "input_artifacts": [
+        "ablation_report.json"
+      ],
+      "metric_id": "G3_corrected_ablation_collapse",
+      "producer_function": "uncertainty_voi.runner_003._derive_verdict",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9401,
+        9402,
+        9403,
+        9404,
+        9405,
+        9406,
+        9407,
+        9408,
+        9409,
+        9410,
+        9411,
+        9412,
+        9413,
+        9414,
+        9415,
+        9416,
+        9417,
+        9418,
+        9419,
+        9420
+      ],
+      "value": {
+        "clean_minus_uncertainty_ablation": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            11.06204551719598,
+            23.621638310160943
+          ],
+          "effect_size_mean_over_sd": 1.195386093219732,
+          "mean": 17.10509334665193,
+          "n": 20,
+          "std": 14.309262458106685,
+          "values": [
+            9.584335002551558,
+            1.474784836109409,
+            0.18955020139851175,
+            10.548941083508769,
+            9.549563109695853,
+            20.59914081528293,
+            52.410852681532994,
+            -1.7787963903405482,
+            2.828463037157956,
+            36.6348340717978,
+            30.43913859701059,
+            20.57368657617701,
+            3.547997942431377,
+            35.23326732981101,
+            26.125816261078448,
+            14.646627948299884,
+            13.637046544080384,
+            11.327820357807155,
+            29.828143198674933,
+            14.700653728972618
+          ]
+        },
+        "clean_minus_value_ablation": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -1.6978984226883367,
+            3.3988907454105317
+          ],
+          "effect_size_mean_over_sd": 0.21605765781337735,
+          "mean": 1.3063176842097521,
+          "n": 20,
+          "std": 6.046153130744855,
+          "values": [
+            3.9354691468097798,
+            4.04721104613999,
+            3.738355463176858,
+            3.6991727902351386,
+            -0.11056756295737458,
+            1.0111791039169002,
+            2.1024560308735154,
+            1.6441740931934916,
+            6.222487851792879,
+            3.714136482844598,
+            -21.462574011398736,
+            0.5091926647699747,
+            6.747993019181669,
+            3.7112840828594944,
+            -6.547369521669578,
+            2.0718310390570807,
+            4.312917409527606,
+            2.2472366783916327,
+            0.36819262626634774,
+            4.163575251183776
+          ]
+        },
+        "collapse_signature": {
+          "uncertainty_ablation": {
+            "clean_minus_control_ci_lower_gt_zero": true,
+            "collapsed": true,
+            "control_ci_upper_le_zero": true,
+            "survived": false
+          }
+        },
+        "corrected_rule": "uncertainty_ablation must collapse; value_ablation is load-bearing iff clean_minus_value ci95 lower > 0",
+        "passed": false,
+        "survival_signature": {
+          "uncertainty_ablation": false
+        },
+        "uncertainty_ablation_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -24.786395150985825,
+            -10.40877520918118
+          ],
+          "effect_size_mean_over_sd": -1.0461439914374988,
+          "mean": -17.296853122032495,
+          "n": 20,
+          "std": 16.533912409385458,
+          "values": [
+            -9.712895966706657,
+            -1.620734495989855,
+            -0.7420473680722441,
+            -10.556828717834353,
+            -7.932816302266236,
+            -22.802467282213925,
+            -56.89471568018081,
+            -4.42547608835803,
+            4.8503066457626485,
+            -32.65248524762231,
+            -52.693511630834124,
+            -21.29942863086513,
+            -3.1034979311466944,
+            -29.60797153524897,
+            -17.379014379719685,
+            -12.928024584980651,
+            -14.00624123664013,
+            -7.79794316228169,
+            -32.33686117180149,
+            -12.29440767364957
+          ]
+        },
+        "value_ablation_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -3.335809032267263,
+            0.8233722908274328
+          ],
+          "effect_size_mean_over_sd": -0.30566876356195105,
+          "mean": -1.4980774595903157,
+          "n": 20,
+          "std": 4.900983149646217,
+          "values": [
+            -4.064030110964879,
+            -4.193160706020437,
+            -4.2908526298505905,
+            -3.707060424560722,
+            1.727314370386992,
+            -3.214505570847898,
+            -6.586319029521331,
+            -7.84844657189207,
+            1.4562818311277255,
+            0.2682123413308908,
+            -0.7917990224247973,
+            -1.2349347194580922,
+            -6.303493007896986,
+            1.9140117117025408,
+            15.294171403028342,
+            -0.3532276757378483,
+            -4.682112102087354,
+            1.2826405171338315,
+            -2.876910599392903,
+            -1.7573291958607271
+          ]
+        },
+        "value_load_bearing": false
+      }
+    },
+    {
+      "aggregation_rule": "offline calibration diagnostic plus transfer paired CI against better rival",
+      "code_path_hash": "ad0891209b6fcf1bfea9e1a46080545dfadd34d2648107099bd9c9a710345c6b",
+      "input_artifacts": [
+        "calibration_transfer_report.json"
+      ],
+      "metric_id": "G4_calibration_transfer",
+      "producer_function": "uncertainty_voi.runner_003._derive_verdict",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9401,
+        9402,
+        9403,
+        9404,
+        9405,
+        9406,
+        9407,
+        9408,
+        9409,
+        9410,
+        9411,
+        9412,
+        9413,
+        9414,
+        9415,
+        9416,
+        9417,
+        9418,
+        9419,
+        9420,
+        9421,
+        9422,
+        9423,
+        9424,
+        9425,
+        9426,
+        9427,
+        9428,
+        9429,
+        9430
+      ],
+      "value": {
+        "G4a": {
+          "coverage90_fraction": 0.97315625,
+          "mean_z2": 0.45422301577061586,
+          "passed": false,
+          "tolerance": [
+            0.7,
+            1.5
+          ]
+        },
+        "G4b": {
+          "advantage_stats": {
+            "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+            "ci95": [
+              -0.014335351108233243,
+              4.274267762273074
+            ],
+            "effect_size_mean_over_sd": 0.5154686426748677,
+            "mean": 1.9267820649190497,
+            "n": 10,
+            "std": 3.737922941191147,
+            "values": [
+              10.890959502066432,
+              3.0355071497520782,
+              1.6231289273710967,
+              2.5780695702939216,
+              -1.7454182276208332,
+              1.4301918514004264,
+              -3.4084286916832465,
+              2.274663451882809,
+              1.8093331373320218,
+              0.7798139783957954
+            ]
+          },
+          "passed": false
+        }
+      }
+    },
+    {
+      "aggregation_rule": "trace replay recomputes action/state and RNG audit positive control fires",
+      "code_path_hash": "08cd0355158327046c9efab5b02326edb63849885c782428896cdb1603c790d0",
+      "input_artifacts": [
+        "trace.jsonl",
+        "replay_report.json"
+      ],
+      "metric_id": "G5_replay_rng_trace",
+      "producer_function": "uncertainty_voi.runner_003.replay_trace",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9401,
+        9402,
+        9403,
+        9404,
+        9405,
+        9406,
+        9407,
+        9408,
+        9409,
+        9410,
+        9411,
+        9412,
+        9413,
+        9414,
+        9415,
+        9416,
+        9417,
+        9418,
+        9419,
+        9420
+      ],
+      "value": {
+        "fresh_process_bit_exact": true,
+        "passed": true,
+        "replay_bit_exact": true,
+        "rng_audit_passed": true,
+        "tamper_negative_control_detected": true,
+        "trace_size_bytes": 4464864,
+        "trace_size_cap_bytes": 26214400
+      }
+    },
+    {
+      "aggregation_rule": "two fresh-process core recomputes must match canonical core digest",
+      "code_path_hash": "ae1f352f2f5aa58b51a296b9b328b9c27d5fa5866b3498cbbb6ef91648ee55db",
+      "input_artifacts": [
+        "result.json"
+      ],
+      "metric_id": "fresh_process_recompute",
+      "producer_function": "uncertainty_voi.runner_003._fresh_process_recompute",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [
+        9401,
+        9402,
+        9403,
+        9404,
+        9405,
+        9406,
+        9407,
+        9408,
+        9409,
+        9410,
+        9411,
+        9412,
+        9413,
+        9414,
+        9415,
+        9416,
+        9417,
+        9418,
+        9419,
+        9420,
+        9421,
+        9422,
+        9423,
+        9424,
+        9425,
+        9426,
+        9427,
+        9428,
+        9429,
+        9430,
+        9301,
+        9302,
+        9303,
+        9304,
+        9305,
+        9306,
+        9307,
+        9308,
+        9309,
+        9310
+      ],
+      "value": {
+        "bit_exact": true,
+        "code_path_hash": "ae1f352f2f5aa58b51a296b9b328b9c27d5fa5866b3498cbbb6ef91648ee55db",
+        "digests": [
+          "3c1bf643bf57306e2a150596f2c85c9d05a2d701e3b1ceddbb3a7a007341f897",
+          "3c1bf643bf57306e2a150596f2c85c9d05a2d701e3b1ceddbb3a7a007341f897"
+        ],
+        "expected_digest": "3c1bf643bf57306e2a150596f2c85c9d05a2d701e3b1ceddbb3a7a007341f897",
+        "fresh_process_recompute_count": 2,
+        "outputs": [
+          {
+            "core_digest": "3c1bf643bf57306e2a150596f2c85c9d05a2d701e3b1ceddbb3a7a007341f897",
+            "stopped": false,
+            "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+            "verdict": "STATIC_SUFFICIENT"
+          },
+          {
+            "core_digest": "3c1bf643bf57306e2a150596f2c85c9d05a2d701e3b1ceddbb3a7a007341f897",
+            "stopped": false,
+            "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+            "verdict": "STATIC_SUFFICIENT"
+          }
+        ],
+        "producer_function": "uncertainty_voi.runner_003._fresh_process_recompute"
+      }
+    },
+    {
+      "aggregation_rule": "LF-normalized SHA-256 readback",
+      "code_path_hash": "b2d1b3a408485b8d2a6065ab184b21bab20086cbf1b9fc6ae80b7cbf59590f97",
+      "input_artifacts": [
+        "preregistration.md",
+        "runner_003.py",
+        "runner_002.py"
+      ],
+      "metric_id": "config_shas",
+      "producer_function": "uncertainty_voi.runner_003.sha256_lf",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A",
+      "seed_ids": [],
+      "value": {
+        "preregistration_lf_sha256": "9964fbce108228cf32cd2df8834ed8b002bb27bc210956c3186c3fd7b96a5b26",
+        "runner_002_source_lf_sha256": "d52838c07b728735c7eb7a175242a787f3dbadaf17c6f1d080f04f3bdb381e9d",
+        "runner_003_source_lf_sha256": "9074341e69baea2667da9040424ebd1f3ae54a038d604771a1dd0c12c9cd5885"
+      }
+    }
+  ],
+  "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-003A"
+}
