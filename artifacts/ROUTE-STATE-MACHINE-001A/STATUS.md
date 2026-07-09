@@ -10,7 +10,8 @@
 - Claim ceiling: local K0 supersession/dependency governance and prior
   negative-evidence bookkeeping only.
 - Current governed boundary route id: `K0-DUAL-TRACK-SUPERSESSION-001A`.
-- Current route posture: `k0_dual_track_registered_children_gated`.
+- Current route posture:
+  `k0_dual_track_child_cards_banked_ready_transition_required`.
 - Active mechanism frontier: `none`.
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
@@ -21,11 +22,15 @@
 - Ledger transition: append-only `FSP-STAGE-LEDGER.md` entry `L-020`, accepted
   by the operator in-session on 2026-07-09.
 - Route state: `REGISTERED`; phase
-  `PARENT_REGISTERED_CHILD_CARDS_PENDING`.
+  `CHILD_CARDS_BANKED_READY_TRANSITION_REQUIRED`.
 - Parent implementation authorization: `false`.
-- Allowed next actions: bank the ordered child cards and re-run local route
-  validation. Ego child cards must pin this canonical ITL parent commit; no
-  second parent authority is permitted.
+- Banked child commits: Ego Foundation
+  `13bd9268993f74a41b4cc219855761681ab12b66`; Ego Reference Kernel
+  `0f043254710b47700f2088213232aba777bd3f46`; ITL Instrument/Freeze/Formal
+  `56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92`.
+- No child implementation is authorized. The next boundary is a separate
+  fail-closed `READY_TO_IMPLEMENT` transition card pinning these commits; until
+  then Foundation, H0, K0-R, H1, Freeze, and Formal remain disabled.
 - The parent freezes a two-axis component verdict and dependency-scoped
   integrity matrix. It does not report any component as tested or present.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
