@@ -1,0 +1,92 @@
+{
+  "task_id": "CDAP-001A",
+  "revision": "R1",
+  "rows": [
+    {
+      "id": 1,
+      "family": "TASK-COMPETITION / SCORE",
+      "score_object": "aggregate task return/accuracy on a held-out task set from a fixed, finite, learnable task family, > threshold",
+      "cert_type": "REDUCTION+CITE",
+      "verdict": "SHADOW_DOMINATED",
+      "cite": "docs/research/DRIFT-AXIS-CAPABILITY-ACBU-002A-CLOSEOUT-001A.md@28d2ead306b1895e5b03ae91aac6824dfcf62ca0"
+    },
+    {
+      "id": 2,
+      "family": "INTERVENTIONAL PREDICTION (CSSP c1)",
+      "score_object": "accuracy of predicted P(Y|do(X=x)) on a held-out do-query set vs true interventional outcomes, > threshold",
+      "cert_type": "PROOF",
+      "verdict": "SHADOW_DOMINATED",
+      "cite": "CONJECTURE"
+    },
+    {
+      "id": 3,
+      "family": "COUNTERFACTUAL (Pearl rung-3)",
+      "score_object": "accuracy of counterfactual predictions Y_x | (X=x', Y=y') on held-out CF queries",
+      "cert_type": "PROOF",
+      "verdict": "SHADOW_DOMINATED",
+      "cite": "NO_PRIOR_CITE_REQUIRED"
+    },
+    {
+      "id": 4,
+      "family": "CALIBRATION / KNOWS-WHAT-IT-DOESNT-KNOW",
+      "score_object": "strictly proper scoring rule on the agent's reported predictive distribution q over outcomes, including correctly widening on non-identifiable queries",
+      "cert_type": "PROOF",
+      "verdict": "SHADOW_DOMINATED",
+      "cite": "NO_PRIOR_CITE_REQUIRED"
+    },
+    {
+      "id": 5,
+      "family": "BELIEF-UPDATE / ACTION-CONDITIONED LATENT",
+      "score_object": "correct action-conditioned belief update in observable-consequence mode or true-latent-match mode",
+      "cert_type": "REDUCTION+CITE",
+      "verdict": "SHADOW_DOMINATED|ORACLE_SCORED",
+      "cite": "docs/research/GROUNDING-GATE-K1-K2-PREFLIGHT-FEASIBILITY-001A.md@15489ee07ad52640bde6e7b7f23d5bcbd189abdb; docs/research/GROUNDING-GATE-SELF-STATE-ROUTE-NEGATIVE-EVIDENCE-CLOSEOUT-001A.md@15489ee07ad52640bde6e7b7f23d5bcbd189abdb"
+    },
+    {
+      "id": 6,
+      "family": "SELF / NON-SELF BOUNDARY",
+      "score_object": "sub-modes: a1 prediction, a2 bounded-stationary maintenance policy, a3 actively-constructed/embodied non-stationary boundary, b true-label match",
+      "cert_type": "REDUCTION+CITE",
+      "verdict": "SHADOW_DOMINATED|ORACLE_SCORED|ROUTE_TO_FORK_A",
+      "cite": "docs/research/DRIFT-AXIS-CAPABILITY-ACBU-002A-CLOSEOUT-001A.md@28d2ead306b1895e5b03ae91aac6824dfcf62ca0; docs/research/SELF-BOUNDARY-INTERVENABLE-LATENT-NEGATIVE-LINEAGE-AND-KILLER-CATALOG-001A.md@15489ee07ad52640bde6e7b7f23d5bcbd189abdb"
+    },
+    {
+      "id": 7,
+      "family": "INTERNAL SELF-REPORT vs TRUTH",
+      "score_object": "match between the agent's self-report and the ground-truth internal structure/latent",
+      "cert_type": "REDUCTION+CITE",
+      "verdict": "ORACLE_SCORED",
+      "cite": "docs/research/CLAUDE-INDEPENDENT-AUDIT-IMPLEMENT-FUTURE-GATE4-CROSS-FAMILY-SOCIAL-CAUSAL-TRANSFER-001A.md@23aa206cf6400f59443327ea1091113f310d9013; artifacts/preserve_claude_independent_audit_implement_future_gate4_001a_invalid_self_report_restore_worktree_001a/invalid_self_report_classification.json@23aa206cf6400f59443327ea1091113f310d9013"
+    },
+    {
+      "id": 8,
+      "family": "TRACE / SIGNATURE MATCH",
+      "score_object": "similarity of the agent's emitted trace/signature to a genuine-subject reference",
+      "cert_type": "REDUCTION+CITE",
+      "verdict": "SHADOW_DOMINATED",
+      "cite": "CONJECTURE; docs/LATENT-MULTISTEP-CONSISTENCY-RESIDUE-001A.md@6a7923b7d3fc8616e54255140ae56d77adc01e31; artifacts/latent_multistep_consistency_residue_001a/result.json@d35bd2387a70b47b6d0ae8076316e1329af85b3c"
+    },
+    {
+      "id": 9,
+      "family": "CROSS-EPISODE / OPEN-ENDED / EMBODIED",
+      "score_object": "cumulative adaptation advantage over a generative / agent-coupled process",
+      "cert_type": "ROUTING",
+      "verdict": "OUT_OF_BOUNDED_CONTRACT_ROUTE_TO_FORK_A",
+      "cite": "docs/codex/tasks/N1-ADMIT-IDENTIFIABILITY-001.md@cbd8a2efbedc0811e42cdf93c9dae368a3a9e48f; docs/research/FSP-STAGE-LEDGER.md@af53720f6fffb5cbacc22f5df8b684b3102467d3"
+    }
+  ],
+  "table_verdict": "CLOSED_OVER_NAMED_FAMILIES",
+  "admissible_bounded_target": "none",
+  "not_proven": [
+    "universal_closure",
+    "fork_A_success",
+    "mechanism",
+    "functional_subject",
+    "agency",
+    "subjectivity",
+    "consciousness"
+  ],
+  "claim_ceiling": "CLAIM CEILING — what this does NOT prove: global impossibility of the goal; that fork A separates or succeeds; any mechanism / functional-subject / agency / subjectivity / consciousness evidence; and it authorizes NO STEP-B agent run. Designer ≠ self-CLEAR; independent Red-audit = CONDITIONAL CLEAR pending provenance resolution at bank.",
+  "designer_self_clear": false,
+  "independent_red_audit": "conditional_clear_patches_A_B_provenance"
+}
