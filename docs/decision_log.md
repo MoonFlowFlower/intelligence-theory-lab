@@ -337,3 +337,15 @@
 - Governance: inherits L-015 verbatim; adds no threshold; weakens no baseline; Claude dual-role (designer+auditor) per L-015, compensated by STEP-B falsifiers F1-F5 + commit-order pre-registration.
 - Claim ceiling: bounded offline design/pre-registration only; no mechanism/kernel/learning/agency/consciousness/EGO claim.
 - Auto-Remote-Anchor: forbidden.
+
+## FACG-S1-NR-DRAFT-001 — Non-Realizability reframe of fork-A / S-1 (bounded-analysis route downgrade)
+
+- Task: bank docs/research/FACG-S1-NR-DRAFT-001.md + artifacts/FACG-001A/s1-nr-draft-001/{result.json,claim_ceiling.txt}; append this entry. Analysis-only; no code, no run, no route-state mutation.
+- Reframe (grounded in Genewein et al., ICML 2023): escape from the equal-access amortization wall (CSSP/CDAP) must be a realizability/convergence failure of amortized meta-learning. Tests whether "non-realizable Bayes-optimal" is a falsifiable S-1 subject-separator.
+- Verdict: NOT a working separator. Two-horn collapse — intractable-ideal -> S-2 CAPABILITY_NOT_SUBJECT -> fork B; no-ideal -> UNMEASURABLE/SPECIFICATION_GAP. Strongest self-referential (diagonal) patch collapses via equal-embedding -> MECHANISM_FAMILY_REPLICATION.
+- Root obstruction: equal access is symmetric under BOTH compute-scaling and embedding.
+- Route disposition (recommended, not enforced): fork-A-as-subject-separation DOWNGRADED toward CLOSED_BY_BOUNDED_ANALYSIS; fork B continues.
+- Reopen hook (ONLY): an access asymmetry that is not compute-closable, not embedding-grantable, and still measurable — status unknown / none constructed.
+- Scope: fork-A is not a tracked route in ROUTE-STATE-MACHINE-001A; this entry does not create or mutate any route state.json/closure.json/events.jsonl. A formal state-machine transition is a separate Red card.
+- Claim ceiling: bounded offline analysis only; no mechanism/subject/consciousness/agency/EGO claim; proves neither fork A possible nor impossible.
+- Auto-Remote-Anchor: forbidden.

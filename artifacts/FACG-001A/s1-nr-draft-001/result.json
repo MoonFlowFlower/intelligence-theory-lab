@@ -1,0 +1,36 @@
+{
+  "task_id": "FACG-S1-NR-DRAFT-001",
+  "title": "Non-Realizability version of the S-1 / fork-A criterion (design note)",
+  "parent_gate": "FACG-001A-R3",
+  "layer": "mechanism-hypothesis / identifiability instrument (analysis-only, paper, no run)",
+  "bank_color": "Yellow",
+  "designer_self_clear": false,
+  "is_working_separator": false,
+  "disposition": "ROUTE_DOWNGRADE_RECOMMENDED",
+  "route_disposition": "fork-A-as-subject-separation -> CLOSED_BY_BOUNDED_ANALYSIS (recommended), pending a Section-5 symmetry-breaker; fork B continues",
+  "collapse": {
+    "horn_A": "s*_G exists but intractable -> K-A1a caps + non-realizability = compute/sample gap = S-2 -> CAPABILITY_NOT_SUBJECT -> fork B",
+    "horn_B": "no fixed s*_G -> nothing to score a shortfall against -> UNMEASURABLE_NOT_FALSIFIABLE / SPECIFICATION_GAP",
+    "strongest_patch": "diagonal/self-referential non-amortizability -> equal-access forces embedding every baseline -> same self-referential position -> MECHANISM_FAMILY_REPLICATION; self-reference is a property of being-embedded, grantable, not M-specific (or else circular)"
+  },
+  "root_obstruction": "equal access is symmetric under BOTH compute-scaling and embedding; any constructible non-amortizability collapses into a capability gap or a mechanism-family property",
+  "reopen_hook_ONLY": "exhibit an access asymmetry that is simultaneously (i) not compute-closable, (ii) not grantable to an equal-access embedded baseline, (iii) still measurable. Status: UNKNOWN / none constructed; appears near-contradictory without smuggling subjecthood or losing measurability",
+  "minimal_falsifier": "bounded paper design sweep: name ONE G that is measurable AND has provably no amortizable dominating reference AND whose M-edge is diagnosably neither tractability nor embeddedness. None within budget -> route CLOSED_BY_BOUNDED_ANALYSIS; one -> POTENTIAL_SURVIVOR -> mandatory hostile re-audit",
+  "grounded_in": "Genewein et al., ICML 2023 (memory-based meta-learning amortizes non-stationary sources conditional on realizability + convergence)",
+  "relates": {
+    "parent": "FACG-001A-R3",
+    "first_tuple": "FACG-TUPLE-001A (CLOSED; S-1 not established)",
+    "sharpens": "the fork-A near-contradiction / the S-1 requirement"
+  },
+  "route_state_machine_scope": "fork-A is NOT a tracked route in ROUTE-STATE-MACHINE-001A (it tracks N2-SBMC-ENV-REDESIGN-001A / PUM-ENV-v0 / SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A). This note does NOT create or mutate any route state.json/closure.json/events.jsonl. A formal state-machine route + transition is a SEPARATE Red step.",
+  "not_authorized": [
+    "subject_separation",
+    "consciousness",
+    "electronic_life",
+    "fork_A_impossibility_proof",
+    "fork_A_possibility_proof",
+    "mechanism_evidence",
+    "route_state_transition"
+  ],
+  "claim_ceiling": "Bounded offline analysis only: a sharper statement of the fork-A near-contradiction. Recommends (does not enforce) a route downgrade. Proves neither fork A possible nor impossible; authorizes no subject / consciousness / electronic-life / mechanism claim; performs no route-state transition."
+}
