@@ -176,6 +176,84 @@ def validate_route_payload(
             )
         )
 
+    if route_id == state_machine.K0_PARENT_ROUTE_ID:
+        if current_state != "REGISTERED":
+            errors.append(
+                _new_error(
+                    "k0_parent_state_not_registered",
+                    "This parent boundary is frozen at REGISTERED until a separate transition card changes the contract.",
+                    current_state=current_state,
+                )
+            )
+        if closure_payload is not None:
+            errors.append(
+                _new_error(
+                    "k0_registered_parent_has_unexpected_closure",
+                    "The registered K0 parent must not have a closure packet.",
+                )
+            )
+        if state_payload.get("implementation_authorized") is not False:
+            errors.append(
+                _new_error(
+                    "k0_registered_parent_implementation_not_explicitly_false",
+                    "The registered K0 parent must set implementation_authorized to false.",
+                )
+            )
+        authorizations = state_payload.get("authorizations")
+        invalid_authorizations = [
+            key
+            for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+            if not isinstance(authorizations, dict) or authorizations.get(key) is not False
+        ]
+        if invalid_authorizations:
+            errors.append(
+                _new_error(
+                    "k0_registered_parent_forbidden_authorization",
+                    "Every K0 parent implementation, runtime, claim, and publication authorization must be explicit false.",
+                    invalid_or_missing=invalid_authorizations,
+                )
+            )
+        allowed_actions = state_payload.get("allowed_next_actions")
+        if not isinstance(allowed_actions, list) or set(allowed_actions) != set(
+            state_machine.K0_PARENT_ALLOWED_ACTIONS
+        ):
+            errors.append(
+                _new_error(
+                    "k0_registered_parent_allowed_actions_mismatch",
+                    "The registered K0 parent may only authorize child-card banking and route validation.",
+                    expected=list(state_machine.K0_PARENT_ALLOWED_ACTIONS),
+                    actual=allowed_actions,
+                )
+            )
+        source_readback = state_payload.get("source_readback")
+        ledger_readback = source_readback.get("ledger") if isinstance(source_readback, dict) else None
+        if not isinstance(ledger_readback, dict):
+            errors.append(
+                _new_error(
+                    "k0_registered_parent_ledger_declaration_missing",
+                    "The registered K0 parent must declare its exact append-only ledger dependency.",
+                )
+            )
+        else:
+            if ledger_readback.get("path") != state_machine.K0_PARENT_LEDGER_PATH:
+                errors.append(
+                    _new_error(
+                        "k0_registered_parent_ledger_path_mismatch",
+                        "The K0 parent ledger path must equal the frozen repo-relative path.",
+                        expected=state_machine.K0_PARENT_LEDGER_PATH,
+                        actual=ledger_readback.get("path"),
+                    )
+                )
+            if ledger_readback.get("required_entry_prefix") != state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX:
+                errors.append(
+                    _new_error(
+                        "k0_registered_parent_ledger_prefix_mismatch",
+                        "The K0 parent ledger prefix must include the frozen task-specific transition text.",
+                        expected=state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+                        actual=ledger_readback.get("required_entry_prefix"),
+                    )
+                )
+
     if current_state == "CLOSURE_REVIEW_REQUIRED" and closure_payload is None:
         errors.append(
             _new_error(
@@ -510,6 +588,109 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                 input_artifacts.append(
                     _relative_posix(current_frontier_route_dir / "state.json", artifact_dir.parent.parent)
                 )
+                source_readback = route_state_payload.get("source_readback")
+                ledger_readback = source_readback.get("ledger") if isinstance(source_readback, dict) else None
+                if current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID and not isinstance(
+                    ledger_readback, dict
+                ):
+                    errors.append(
+                        _new_error(
+                            "current_frontier_ledger_declaration_missing",
+                            "The K0 parent current frontier must declare its exact append-only ledger dependency.",
+                            current_frontier_route_id=current_frontier_route_id,
+                        )
+                    )
+                if isinstance(ledger_readback, dict):
+                    ledger_relative_path = ledger_readback.get("path")
+                    required_entry_prefix = ledger_readback.get("required_entry_prefix")
+                    if not isinstance(ledger_relative_path, str) or not ledger_relative_path.strip():
+                        errors.append(
+                            _new_error(
+                                "current_frontier_ledger_path_missing",
+                                "Declared current-frontier ledger readback must include a repo-relative path.",
+                                current_frontier_route_id=current_frontier_route_id,
+                            )
+                        )
+                    elif not isinstance(required_entry_prefix, str) or not required_entry_prefix.strip():
+                        errors.append(
+                            _new_error(
+                                "current_frontier_ledger_entry_prefix_missing",
+                                "Declared current-frontier ledger readback must include required_entry_prefix.",
+                                current_frontier_route_id=current_frontier_route_id,
+                            )
+                        )
+                    elif (
+                        current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
+                        and (
+                            ledger_relative_path != state_machine.K0_PARENT_LEDGER_PATH
+                            or required_entry_prefix != state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
+                        )
+                    ):
+                        errors.append(
+                            _new_error(
+                                "current_frontier_k0_ledger_contract_mismatch",
+                                "The K0 parent ledger declaration must match the frozen path and task-specific prefix.",
+                                current_frontier_route_id=current_frontier_route_id,
+                                expected_path=state_machine.K0_PARENT_LEDGER_PATH,
+                                actual_path=ledger_relative_path,
+                                expected_entry_prefix=state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+                                actual_entry_prefix=required_entry_prefix,
+                            )
+                        )
+                    else:
+                        repo_root = artifact_dir.parent.parent.resolve()
+                        ledger_path = (repo_root / ledger_relative_path).resolve()
+                        try:
+                            ledger_path.relative_to(repo_root)
+                        except ValueError:
+                            errors.append(
+                                _new_error(
+                                    "current_frontier_ledger_path_outside_repo",
+                                    "Declared ledger path must stay inside the repository.",
+                                    current_frontier_route_id=current_frontier_route_id,
+                                    path=_posix(ledger_path),
+                                )
+                            )
+                        else:
+                            input_artifacts.append(_relative_posix(ledger_path, repo_root))
+                            if not ledger_path.is_file():
+                                errors.append(
+                                    _new_error(
+                                        "current_frontier_ledger_missing",
+                                        "Declared current-frontier ledger file is missing.",
+                                        current_frontier_route_id=current_frontier_route_id,
+                                        path=_posix(ledger_path),
+                                    )
+                                )
+                            else:
+                                ledger_lines = ledger_path.read_text(encoding="utf-8").splitlines()
+                                matching_lines = [
+                                    line for line in ledger_lines if line.startswith(required_entry_prefix)
+                                ]
+                                if not matching_lines:
+                                    errors.append(
+                                        _new_error(
+                                            "current_frontier_ledger_entry_missing",
+                                            "Declared current-frontier ledger entry prefix was not found.",
+                                            current_frontier_route_id=current_frontier_route_id,
+                                            required_entry_prefix=required_entry_prefix,
+                                            path=_posix(ledger_path),
+                                        )
+                                    )
+                                elif (
+                                    current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
+                                    and len(matching_lines) != 1
+                                ):
+                                    errors.append(
+                                        _new_error(
+                                            "current_frontier_k0_ledger_entry_not_unique",
+                                            "The frozen K0 parent ledger entry must occur exactly once.",
+                                            current_frontier_route_id=current_frontier_route_id,
+                                            required_entry_prefix=required_entry_prefix,
+                                            match_count=len(matching_lines),
+                                            path=_posix(ledger_path),
+                                        )
+                                    )
                 current_state = route_state_payload.get("current_state")
                 if current_state == "TOMBSTONED":
                     errors.append(

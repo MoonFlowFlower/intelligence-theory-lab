@@ -4,6 +4,35 @@ TASK_ID = "ROUTE-STATE-MACHINE-001A"
 TASK_ARTIFACT_DIR = "artifacts/ROUTE-STATE-MACHINE-001A"
 PROGRAM_STATE_FILENAME = "program_state.json"
 CURRENT_FRONTIER_ROUTE_ID = "N2-SBMC-ENV-REDESIGN-001A"
+K0_PARENT_ROUTE_ID = "K0-DUAL-TRACK-SUPERSESSION-001A"
+K0_PARENT_ALLOWED_ACTIONS = (
+    "bank_ordered_child_cards",
+    "run_route_state_machine_validation",
+)
+K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS = (
+    "agency",
+    "autonomy",
+    "consciousness",
+    "ego_mainline_runtime",
+    "experiment_execution",
+    "formal_run",
+    "foundation_implementation",
+    "freeze",
+    "h1_implementation",
+    "k0_reference_implementation",
+    "mechanism_validity",
+    "remote_anchor",
+    "scoring",
+    "subjectivity",
+    "theory_pressure",
+    "ui_llm_deployment",
+)
+K0_PARENT_LEDGER_PATH = "docs/research/FSP-STAGE-LEDGER.md"
+K0_PARENT_LEDGER_ENTRY_PREFIX = (
+    "- L-020 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | "
+    "K0 dual-track supersession REGISTERED under "
+    "`docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`."
+)
 
 ROUTE_STATES = (
     "PROPOSED",
@@ -64,6 +93,8 @@ CURRENT_FRONTIER_FORBIDDEN_ACTION_TOKENS = (
 AUTHORIZED_TASK_PATHS = (
     "docs/codex/tasks/ROUTE-STATE-MACHINE-001A.md",
     "docs/codex/tasks/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
+    "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
+    "docs/research/FSP-STAGE-LEDGER.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
     "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
     "src/route_state_machine_001a/__init__.py",
@@ -79,6 +110,8 @@ AUTHORIZED_TASK_PATHS = (
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/PUM-ENV-v0/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/events.jsonl",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/state.json",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
 )

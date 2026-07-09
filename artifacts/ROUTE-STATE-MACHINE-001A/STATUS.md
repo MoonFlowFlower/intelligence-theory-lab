@@ -7,13 +7,29 @@
 - Enabled status: local CLI only.
 - Real trigger evidence: callable `routectl validate` output recorded in
   `validation_report.json`.
-- Claim ceiling: local route-state synchronization and negative-evidence
-  bookkeeping only.
-- Current governed boundary route id: `SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A`.
-- Current route posture: `kernel_tiny_contrast_closed_default_A`.
+- Claim ceiling: local K0 supersession/dependency governance and prior
+  negative-evidence bookkeeping only.
+- Current governed boundary route id: `K0-DUAL-TRACK-SUPERSESSION-001A`.
+- Current route posture: `k0_dual_track_registered_children_gated`.
 - Active mechanism frontier: `none`.
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
+
+## K0 dual-track parent registration
+
+- Parent card: `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.
+- Ledger transition: append-only `FSP-STAGE-LEDGER.md` entry `L-020`, accepted
+  by the operator in-session on 2026-07-09.
+- Route state: `REGISTERED`; phase
+  `PARENT_REGISTERED_CHILD_CARDS_PENDING`.
+- Parent implementation authorization: `false`.
+- Allowed next actions: bank the ordered child cards and re-run local route
+  validation. Ego child cards must pin this canonical ITL parent commit; no
+  second parent authority is permitted.
+- The parent freezes a two-axis component verdict and dependency-scoped
+  integrity matrix. It does not report any component as tested or present.
+- The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
+  remain unchanged; no prior negative result is rescued.
 
 ## Same-agent runtime-kernel fork sync readback
 
@@ -26,7 +42,7 @@
 - Same-agent route packet:
   `artifacts/ROUTE-STATE-MACHINE-001A/routes/SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A/`.
 
-## Current same-agent kernel packet status
+## Preserved predecessor: same-agent kernel packet status
 
 The included `SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A` route packet records the tiny passive/offline
 runtime-kernel contrast as closed/downgraded by baseline equivalence:

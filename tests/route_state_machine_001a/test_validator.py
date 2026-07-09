@@ -87,6 +87,27 @@ def _valid_n2_frontier_state(current_state: str = "REGISTERED") -> dict:
     }
 
 
+def _valid_k0_parent_state() -> dict:
+    state_machine, _ = _validator()
+    return {
+        "route_id": state_machine.K0_PARENT_ROUTE_ID,
+        "current_state": "REGISTERED",
+        "route_family": "K0-DUAL-TRACK",
+        "updated_at_utc": "2026-07-09T00:00:00Z",
+        "authorizations": {
+            key: False for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+        },
+        "implementation_authorized": False,
+        "allowed_next_actions": list(state_machine.K0_PARENT_ALLOWED_ACTIONS),
+        "source_readback": {
+            "ledger": {
+                "path": state_machine.K0_PARENT_LEDGER_PATH,
+                "required_entry_prefix": state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+            }
+        },
+    }
+
+
 def _valid_program_state() -> dict:
     return {
         "task_id": "ROUTE-STATE-MACHINE-001A",
@@ -190,6 +211,103 @@ def test_state_and_closure_enums_are_exact():
 
     assert state_machine.ROUTE_STATES == EXPECTED_ROUTE_STATES
     assert state_machine.CLOSURE_TYPES == EXPECTED_CLOSURE_TYPES
+
+
+def test_k0_parent_route_paths_are_explicitly_authorized():
+    state_machine, _ = _validator()
+
+    assert "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md" in state_machine.AUTHORIZED_TASK_PATHS
+    assert (
+        "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/state.json"
+        in state_machine.AUTHORIZED_TASK_PATHS
+    )
+
+
+@pytest.mark.parametrize(
+    "authorization_key",
+    (
+        "agency",
+        "autonomy",
+        "consciousness",
+        "ego_mainline_runtime",
+        "experiment_execution",
+        "formal_run",
+        "foundation_implementation",
+        "freeze",
+        "h1_implementation",
+        "k0_reference_implementation",
+        "mechanism_validity",
+        "remote_anchor",
+        "scoring",
+        "subjectivity",
+        "theory_pressure",
+        "ui_llm_deployment",
+    ),
+)
+def test_k0_registered_parent_rejects_every_forbidden_authorization(authorization_key):
+    _, validator = _validator()
+    state = _valid_k0_parent_state()
+    state["authorizations"][authorization_key] = True
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_registered_parent_forbidden_authorization" in _error_codes(result)
+
+
+def test_k0_registered_parent_rejects_root_implementation_authorization():
+    _, validator = _validator()
+    state = _valid_k0_parent_state()
+    state["implementation_authorized"] = True
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_registered_parent_implementation_not_explicitly_false" in _error_codes(result)
+
+
+def test_k0_registered_parent_rejects_closure_packet_and_missing_ledger():
+    _, validator = _validator()
+    state = _valid_k0_parent_state()
+    del state["source_readback"]["ledger"]
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=_valid_closure(),
+        changed_files=[],
+    )
+
+    codes = _error_codes(result)
+    assert "k0_registered_parent_has_unexpected_closure" in codes
+    assert "k0_registered_parent_ledger_declaration_missing" in codes
+
+
+@pytest.mark.parametrize(
+    "current_state",
+    tuple(state for state in EXPECTED_ROUTE_STATES if state != "REGISTERED"),
+)
+def test_k0_parent_rejects_state_transition_without_separate_contract(current_state):
+    _, validator = _validator()
+    state = _valid_k0_parent_state()
+    state["current_state"] = current_state
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_parent_state_not_registered" in _error_codes(result)
 
 
 def test_valid_pum_env_v0_closure_packet_passes():
@@ -426,6 +544,42 @@ def test_valid_program_state_plus_n2_current_frontier_passes(tmp_path):
     assert report["verdict"] == "pass"
     assert report["current_frontier_route_id"] == "N2-SBMC-ENV-REDESIGN-001A"
     assert report["route_count"] == 2
+
+
+def test_declared_current_frontier_ledger_entry_is_fail_closed(tmp_path):
+    state_machine, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    artifact_dir = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A"
+    route_dir = artifact_dir / "routes" / "K0-DUAL-TRACK-SUPERSESSION-001A"
+    route_dir.mkdir(parents=True)
+    validator.write_json(route_dir / "state.json", _valid_k0_parent_state())
+    program_state = _valid_program_state()
+    program_state["current_frontier_route_id"] = "K0-DUAL-TRACK-SUPERSESSION-001A"
+    program_state["allowed_next_actions"] = ["bank_ordered_child_cards"]
+    validator.write_json(artifact_dir / "program_state.json", program_state)
+
+    missing_report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "current_frontier_ledger_missing" in _error_codes(missing_report)
+
+    ledger_path = tmp_path / "docs" / "research" / "FSP-STAGE-LEDGER.md"
+    ledger_path.parent.mkdir(parents=True)
+    ledger_path.write_text(f"{state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX} details\n", encoding="utf-8")
+
+    present_report = _build_report_for_tmp_tree(tmp_path)
+
+    assert present_report["verdict"] == "pass"
+    assert "docs/research/FSP-STAGE-LEDGER.md" in present_report["input_artifacts"]
+
+    ledger_path.write_text(
+        f"{state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX} first\n"
+        f"{state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX} duplicate\n",
+        encoding="utf-8",
+    )
+
+    duplicate_report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "current_frontier_k0_ledger_entry_not_unique" in _error_codes(duplicate_report)
 
 
 def test_missing_program_state_fails(tmp_path):
