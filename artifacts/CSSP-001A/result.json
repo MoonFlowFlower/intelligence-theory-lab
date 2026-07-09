@@ -1,0 +1,44 @@
+{
+  "task_id": "CSSP-001A",
+  "title": "CRITERION-SHADOW-SEPARABILITY-PROBE - c1 analytic closure",
+  "audit_date": "2026-07-08",
+  "bank_date": "2026-07-09",
+  "layer": "mechanism-hypothesis / identifiability instrument (analysis-only)",
+  "disposition": "CLOSED_BY_BOUNDED_ANALYSIS",
+  "build_status": "NO_CLEAR_FOR_BUILD (docs-only bank; no callable, no STEP-B, no agent)",
+  "bank_color": "Yellow",
+  "designer_self_clear": false,
+  "criterion_c1": "held-out do-query interventional-prediction accuracy over a fixed threshold",
+  "core_result": {
+    "s_star": "equal-access Bayes-optimal DECISION RULE under C's own loss/threshold (0-1 accuracy -> posterior mode) on equal-access data + the same prior Pi",
+    "domination_claim": "no equal-access learner (including a candidate-learned model) beats s* in expectation",
+    "identifiability_dichotomy": {
+      "identifiable": "SHADOW_COLLAPSE - s* computes over-threshold on the enumerable SCM; the separation vanishes",
+      "non_identifiable": "INDUCTIVE_BIAS_ONLY - within the Markov-equivalence class no equal-access learner beats the posterior spread, so the candidate also fails; only a STRUCTURE_HANDED prior passes (smuggled access, not a foothold)"
+    },
+    "separating_equal_access": "UNREACHABLE in expectation for c1",
+    "residual_channel": "finite-sample inductive-bias fluke -> classed NON_FOOTHOLD"
+  },
+  "load_bearing_assumption": "closure is CONDITIONAL on s* being the correct equal-access Bayes-optimal rule; a candidate that appears to beat threshold is a MANDATORY re-audit trigger (s*-optimality / access-symmetry / compute-&-H match / oracle-label / leakage), NOT a subject foothold",
+  "hostile_rounds": "R1-R3 converged and adopted: (1) s* = C-loss Bayes-optimal decision rule, not a generic posterior predictive; (2) no Bayesian-average -> pointwise-impossibility swap; (3) c2 downgraded to candidate-internal sanity, so the separation verdict lands on c1 ONLY (prevents architecture-as-ticket false separation)",
+  "precise_conclusion": "given any fixed finite (data, compute, prior) closure, a criterion 'a true subject satisfies it but the equal-access shadow cannot' is provably non-existent; the necessary condition can only possibly hold in fork A (non-stationary / generated access, where 'Bayes-optimal-given-access' is not a well-defined dominating object); fork A itself yields only un-shadowable mechanism evidence and does not cross the functional->phenomenal gap",
+  "relations": {
+    "isomorphic_to": "DRIFT-AXIS-CAPABILITY-ACBU-002A-CLOSEOUT-001A (matched = equal-access Bayes-optimal => candidate <= baseline)",
+    "generalized_by": "CDAP-001A-R1 (bounded-criterion search CLOSED_OVER_NAMED_FAMILIES; c1 is its Row 2)",
+    "resolves_provenance_for": "CDAP-001A-R1 rows 2 & 8 [CONJECTURE] cites (now in-repo). Additive only: this bank does NOT modify CDAP-001A-R1. The cited object is an analytic near-theorem argument, not an executed computation."
+  },
+  "artifacts_narrowing": "paper-only analytic closure; no run => no trace / baseline_comparison / ablation / replay artifacts. result.json is the result artifact. Fabricating run artifacts would violate the anti-hardcoding rule; their absence is correct and documented.",
+  "not_authorized": [
+    "consciousness",
+    "subjective_experience",
+    "real_emotion",
+    "agency",
+    "autonomy",
+    "functional_subject",
+    "electronic_life",
+    "global_impossibility_of_goal",
+    "fork_A_closure",
+    "executed_proof_overread"
+  ],
+  "claim_ceiling": "Bounded analytic (near-theorem) closure of the c1 criterion under equal-access predictive-functional framing + same-prior computed Bayes-optimal shadow + this tiny enumerable toy. Conditional on s*-optimality. Does not prove global impossibility, does not close fork A, authorizes no subject/consciousness/electronic-life claim."
+}
