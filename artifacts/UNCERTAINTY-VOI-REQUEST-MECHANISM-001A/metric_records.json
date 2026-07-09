@@ -1,0 +1,613 @@
+{
+  "code_path_hash": "91de5366324451f7fac9fec621522f5cdbd00407e631d3b1437373278513e434",
+  "producer_function": "uncertainty_voi.runner._metric_records",
+  "records": [
+    {
+      "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+      "code_path_hash": "716dae24bae13ee940d0cb4ab8567d7fd0498804cf26560af7cba69438bf3df5",
+      "input_artifacts": [
+        "preregistration.md"
+      ],
+      "metric_id": "clean_advantage",
+      "producer_function": "uncertainty_voi.runner._condition_results",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:0ccda53f7fa1",
+      "seed_ids": [
+        9101,
+        9102,
+        9103,
+        9104,
+        9105,
+        9106,
+        9107,
+        9108,
+        9109,
+        9110,
+        9111,
+        9112,
+        9113,
+        9114,
+        9115,
+        9116,
+        9117,
+        9118,
+        9119,
+        9120
+      ],
+      "value": {
+        "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+        "ci95": [
+          -151.21307066541192,
+          -131.06024010247754
+        ],
+        "effect_size_mean_over_sd": -5.806047772204659,
+        "mean": -141.40936419186534,
+        "n": 20,
+        "std": 24.35552887953068,
+        "values": [
+          -117.60842294906526,
+          -131.7281790062911,
+          -173.83291213319518,
+          -153.28663627382898,
+          -179.35290144189835,
+          -162.90705474356062,
+          -170.9333405046702,
+          -101.60237670428921,
+          -93.87310051928041,
+          -123.40286934531959,
+          -148.74392389246083,
+          -148.08742502377146,
+          -111.71110311444338,
+          -164.35159496840356,
+          -148.08761073992457,
+          -137.00018168193898,
+          -132.6140150914988,
+          -122.02957655219893,
+          -144.59702033791908,
+          -162.437038813348
+        ]
+      }
+    },
+    {
+      "aggregation_rule": "minimize mean cumulative regret over frozen tuning seeds; ties by theta then request_period",
+      "code_path_hash": "c4bd8b5ada25241e9a177f7cfbb50817848015bfde72ca0593db952821ddfd5d",
+      "input_artifacts": [
+        "preregistration.md"
+      ],
+      "metric_id": "static_threshold_tuning",
+      "producer_function": "uncertainty_voi.runner.tune_static_threshold",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:619200f46773",
+      "seed_ids": [
+        9301,
+        9302,
+        9303,
+        9304,
+        9305,
+        9306,
+        9307,
+        9308,
+        9309,
+        9310
+      ],
+      "value": {
+        "request_period": 40,
+        "theta": 144
+      }
+    },
+    {
+      "aggregation_rule": "wrong_sign and shuffled collapse gates from paired callable reruns",
+      "code_path_hash": "4fcd9f714e1e3f4ebe161a87d8bea05af1b342422877980870934e049773b317",
+      "input_artifacts": [
+        "falsifier_report.json"
+      ],
+      "metric_id": "G2_falsifiers",
+      "producer_function": "uncertainty_voi.runner._derive_verdict",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:48bcd4e2ae83",
+      "seed_ids": [
+        9101,
+        9102,
+        9103,
+        9104,
+        9105,
+        9106,
+        9107,
+        9108,
+        9109,
+        9110,
+        9111,
+        9112,
+        9113,
+        9114,
+        9115,
+        9116,
+        9117,
+        9118,
+        9119,
+        9120
+      ],
+      "value": {
+        "clean_minus_shuffled": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "effect_size_mean_over_sd": null,
+          "mean": 0.0,
+          "n": 20,
+          "std": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "clean_minus_wrong_sign": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "effect_size_mean_over_sd": null,
+          "mean": 0.0,
+          "n": 20,
+          "std": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "passed": false,
+        "shuffled_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -151.3322963709638,
+            -130.90552254494366
+          ],
+          "effect_size_mean_over_sd": -5.806047772204659,
+          "mean": -141.40936419186534,
+          "n": 20,
+          "std": 24.35552887953068,
+          "values": [
+            -117.60842294906526,
+            -131.7281790062911,
+            -173.83291213319518,
+            -153.28663627382898,
+            -179.35290144189835,
+            -162.90705474356062,
+            -170.9333405046702,
+            -101.60237670428921,
+            -93.87310051928041,
+            -123.40286934531959,
+            -148.74392389246083,
+            -148.08742502377146,
+            -111.71110311444338,
+            -164.35159496840356,
+            -148.08761073992457,
+            -137.00018168193898,
+            -132.6140150914988,
+            -122.02957655219893,
+            -144.59702033791908,
+            -162.437038813348
+          ]
+        },
+        "wrong_sign_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -151.9641222739665,
+            -130.53825222288714
+          ],
+          "effect_size_mean_over_sd": -5.806047772204659,
+          "mean": -141.40936419186534,
+          "n": 20,
+          "std": 24.35552887953068,
+          "values": [
+            -117.60842294906526,
+            -131.7281790062911,
+            -173.83291213319518,
+            -153.28663627382898,
+            -179.35290144189835,
+            -162.90705474356062,
+            -170.9333405046702,
+            -101.60237670428921,
+            -93.87310051928041,
+            -123.40286934531959,
+            -148.74392389246083,
+            -148.08742502377146,
+            -111.71110311444338,
+            -164.35159496840356,
+            -148.08761073992457,
+            -137.00018168193898,
+            -132.6140150914988,
+            -122.02957655219893,
+            -144.59702033791908,
+            -162.437038813348
+          ]
+        }
+      }
+    },
+    {
+      "aggregation_rule": "uncertainty and value ablations rerun under real interventions",
+      "code_path_hash": "4fcd9f714e1e3f4ebe161a87d8bea05af1b342422877980870934e049773b317",
+      "input_artifacts": [
+        "ablation_report.json"
+      ],
+      "metric_id": "G3_ablations",
+      "producer_function": "uncertainty_voi.runner._derive_verdict",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:7470036d826c",
+      "seed_ids": [
+        9101,
+        9102,
+        9103,
+        9104,
+        9105,
+        9106,
+        9107,
+        9108,
+        9109,
+        9110,
+        9111,
+        9112,
+        9113,
+        9114,
+        9115,
+        9116,
+        9117,
+        9118,
+        9119,
+        9120
+      ],
+      "value": {
+        "clean_minus_value_ablation": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "effect_size_mean_over_sd": null,
+          "mean": 0.0,
+          "n": 20,
+          "std": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "passed": false,
+        "uncertainty_ablation_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -151.3271504830153,
+            -131.2354127309718
+          ],
+          "effect_size_mean_over_sd": -5.806047772204659,
+          "mean": -141.40936419186534,
+          "n": 20,
+          "std": 24.35552887953068,
+          "values": [
+            -117.60842294906526,
+            -131.7281790062911,
+            -173.83291213319518,
+            -153.28663627382898,
+            -179.35290144189835,
+            -162.90705474356062,
+            -170.9333405046702,
+            -101.60237670428921,
+            -93.87310051928041,
+            -123.40286934531959,
+            -148.74392389246083,
+            -148.08742502377146,
+            -111.71110311444338,
+            -164.35159496840356,
+            -148.08761073992457,
+            -137.00018168193898,
+            -132.6140150914988,
+            -122.02957655219893,
+            -144.59702033791908,
+            -162.437038813348
+          ]
+        },
+        "value_ablation_advantage_stats": {
+          "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+          "ci95": [
+            -151.67432030495138,
+            -130.93830068997502
+          ],
+          "effect_size_mean_over_sd": -5.806047772204659,
+          "mean": -141.40936419186534,
+          "n": 20,
+          "std": 24.35552887953068,
+          "values": [
+            -117.60842294906526,
+            -131.7281790062911,
+            -173.83291213319518,
+            -153.28663627382898,
+            -179.35290144189835,
+            -162.90705474356062,
+            -170.9333405046702,
+            -101.60237670428921,
+            -93.87310051928041,
+            -123.40286934531959,
+            -148.74392389246083,
+            -148.08742502377146,
+            -111.71110311444338,
+            -164.35159496840356,
+            -148.08761073992457,
+            -137.00018168193898,
+            -132.6140150914988,
+            -122.02957655219893,
+            -144.59702033791908,
+            -162.437038813348
+          ]
+        }
+      }
+    },
+    {
+      "aggregation_rule": "offline calibration from hidden values for scoring only plus transfer paired CI",
+      "code_path_hash": "4fcd9f714e1e3f4ebe161a87d8bea05af1b342422877980870934e049773b317",
+      "input_artifacts": [
+        "calibration_transfer_report.json"
+      ],
+      "metric_id": "G4_calibration_transfer",
+      "producer_function": "uncertainty_voi.runner._derive_verdict",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:a1cbf91d16ea",
+      "seed_ids": [
+        9101,
+        9102,
+        9103,
+        9104,
+        9105,
+        9106,
+        9107,
+        9108,
+        9109,
+        9110,
+        9111,
+        9112,
+        9113,
+        9114,
+        9115,
+        9116,
+        9117,
+        9118,
+        9119,
+        9120,
+        9201,
+        9202,
+        9203,
+        9204,
+        9205,
+        9206,
+        9207,
+        9208,
+        9209,
+        9210
+      ],
+      "value": {
+        "G4a": {
+          "coverage90_fraction": 0.984375,
+          "mean_z2": 0.35864303220354493,
+          "passed": false,
+          "tolerance": [
+            0.7,
+            1.5
+          ]
+        },
+        "G4b": {
+          "advantage_stats": {
+            "aggregation_rule": "paired bootstrap mean CI with 4000 resamples",
+            "ci95": [
+              -169.60147765702993,
+              -133.6140476156743
+            ],
+            "effect_size_mean_over_sd": -4.9718350624598395,
+            "mean": -153.03516519955647,
+            "n": 10,
+            "std": 30.78041875424596,
+            "values": [
+              -132.33170100114177,
+              -125.20498846122905,
+              -91.94807789199717,
+              -164.29695081433684,
+              -182.3073062405176,
+              -170.03619262223953,
+              -174.23033393304897,
+              -181.66542767300848,
+              -177.05551506943374,
+              -131.27515828861146
+            ]
+          },
+          "passed": false
+        }
+      }
+    },
+    {
+      "aggregation_rule": "trace replay recomputes action/state and RNG audit positive control fires",
+      "code_path_hash": "a3fd7617bd63dc83aea2a35badec494a37131b30416db1f5271951bda44affb3",
+      "input_artifacts": [
+        "trace.jsonl",
+        "replay_report.json"
+      ],
+      "metric_id": "G5_replay_rng_trace",
+      "producer_function": "uncertainty_voi.runner.replay_trace",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:bcf693a23246",
+      "seed_ids": [
+        9101,
+        9102,
+        9103,
+        9104,
+        9105,
+        9106,
+        9107,
+        9108,
+        9109,
+        9110,
+        9111,
+        9112,
+        9113,
+        9114,
+        9115,
+        9116,
+        9117,
+        9118,
+        9119,
+        9120
+      ],
+      "value": {
+        "fresh_process_bit_exact": true,
+        "passed": true,
+        "replay_bit_exact": true,
+        "rng_audit_passed": true,
+        "tamper_negative_control_detected": true,
+        "trace_size_bytes": 4728071,
+        "trace_size_cap_bytes": 26214400
+      }
+    },
+    {
+      "aggregation_rule": "two fresh-process core recomputes must match canonical core digest",
+      "code_path_hash": "cb9d25d1a28b7e808573c73ea690f53aa39370813abb4b331b2e3a574475b2ba",
+      "input_artifacts": [
+        "result.json"
+      ],
+      "metric_id": "fresh_process_recompute",
+      "producer_function": "uncertainty_voi.runner._fresh_process_recompute",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:25307fc1fdd8",
+      "seed_ids": [
+        9101,
+        9102,
+        9103,
+        9104,
+        9105,
+        9106,
+        9107,
+        9108,
+        9109,
+        9110,
+        9111,
+        9112,
+        9113,
+        9114,
+        9115,
+        9116,
+        9117,
+        9118,
+        9119,
+        9120,
+        9201,
+        9202,
+        9203,
+        9204,
+        9205,
+        9206,
+        9207,
+        9208,
+        9209,
+        9210,
+        9301,
+        9302,
+        9303,
+        9304,
+        9305,
+        9306,
+        9307,
+        9308,
+        9309,
+        9310
+      ],
+      "value": {
+        "bit_exact": true,
+        "code_path_hash": "cb9d25d1a28b7e808573c73ea690f53aa39370813abb4b331b2e3a574475b2ba",
+        "digests": [
+          "894dcf68ca29e3583c1288cde2e9e1431d3d7b6a80b03cd808df9da9afcdc67c",
+          "894dcf68ca29e3583c1288cde2e9e1431d3d7b6a80b03cd808df9da9afcdc67c"
+        ],
+        "expected_digest": "894dcf68ca29e3583c1288cde2e9e1431d3d7b6a80b03cd808df9da9afcdc67c",
+        "fresh_process_recompute_count": 2,
+        "outputs": [
+          {
+            "core_digest": "894dcf68ca29e3583c1288cde2e9e1431d3d7b6a80b03cd808df9da9afcdc67c",
+            "stopped": false,
+            "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A",
+            "verdict": "INSTRUMENT_INVALID"
+          },
+          {
+            "core_digest": "894dcf68ca29e3583c1288cde2e9e1431d3d7b6a80b03cd808df9da9afcdc67c",
+            "stopped": false,
+            "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A",
+            "verdict": "INSTRUMENT_INVALID"
+          }
+        ],
+        "producer_function": "uncertainty_voi.runner._fresh_process_recompute"
+      }
+    },
+    {
+      "aggregation_rule": "LF-normalized SHA-256 readback",
+      "code_path_hash": "b2d1b3a408485b8d2a6065ab184b21bab20086cbf1b9fc6ae80b7cbf59590f97",
+      "input_artifacts": [
+        "preregistration.md",
+        "runner.py"
+      ],
+      "metric_id": "config_shas",
+      "producer_function": "uncertainty_voi.runner.sha256_lf",
+      "run_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A:R3:fbaac7334daa",
+      "seed_ids": [],
+      "value": {
+        "preregistration_lf_sha256": "46031e0340f0e3eb3f65f22a1728eb925840dba9c890aa1aece375141b740180",
+        "runner_source_lf_sha256": "b435dbfeb84ec9b37ddce3e226093fb69e3531395473c90fe635a525debd4661"
+      }
+    }
+  ],
+  "task_id": "UNCERTAINTY-VOI-REQUEST-MECHANISM-001A"
+}
