@@ -2,69 +2,46 @@
 
 ## Local status
 
-- Layer: engineering implementation / route-governance evidence hygiene only.
-- Mainline integration status: not integrated; no EGO runtime or production path.
-- Enabled status: Foundation remains authorized; H0 is authorized only as a
-  bank action under both exact Red-field overlay pins. K0-R, H1, Freeze,
-  Formal, scoring, runtime/mainline, and claims remain disabled.
-- Real trigger evidence: callable `routectl validate` over serialized route
-  state plus committed Git-object and SHA-256 readback of both Red-field cards
-  and contracts, recorded in `validation_report.json`.
-- Claim ceiling: local additive task-card/schema/control-plane enforcement only.
-- Current governed boundary route id: `K0-DUAL-TRACK-SUPERSESSION-001A`.
-- Current route posture:
-  `k0_dual_track_first_pair_ready_with_red_field_correction`.
-- Active mechanism frontier: `none`.
-- Program-state gate: `program_state.json` is required and validated by the
-  local CLI path.
-
-## K0 dual-track Red-field additive enforcement
-
-- Parent card: `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.
-- Transition card:
-  `docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md`.
-- Addendum card:
-  `docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md`.
-- Original machine contract:
-  `artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json`.
-- Correction card:
-  `docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md`.
-- Correction machine contract:
-  `artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json`.
-- Ledger transitions: append-only `FSP-STAGE-LEDGER.md` entries `L-020`
-  (registration), `L-021` (exact first-pair readiness), `L-022` (Red-field
-  addendum bank/enforcement), and `L-023` (semantic correction bank/enforcement),
-  authorized by the operator in-session on 2026-07-09. Callable validation pins
-  the full-line hashes of L-020 through L-022 and requires L-023 exactly once.
+- Layer: engineering evidence-governance plus mechanism-hypothesis schema.
+- Mainline integration status: none; ITL remains offline and no EGO runtime or
+  production path was modified.
 - Route state: `READY_TO_IMPLEMENT`; phase
-  `FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION`.
-- Exact implementation authorizations:
-  `EGO-K0-FOUNDATION-001A` and
-  `ITL-K0-H0-H1-INSTRUMENT-001A:H0` only, with H0 usable only for a bank that
-  consumes and satisfies both Red-field pins.
-- Addendum bank commit:
-  `bfbe215518a8f31fd300e600c73bb9d59e635335`; card blob
-  `cc8b2720374bec1b566ede3c11d87c2290fb8345`; contract blob
-  `ba1c55cfeeffbbf7e3c0da15b8b52dd836ef6511`; contract SHA-256
-  `c1ada02360b26892ca4728b4c53ae36fa8dbf7f7202697c4288f64a1cb7be59c`.
-- Correction bank commit:
-  `882be402395e7301cf69fcc0a0bae1eca8dfcd68`; card blob
-  `a186c78028a69a81c408f3985fa0112fae10b9a0`; contract blob
-  `9fcb9a0036fe09232f5a8619c755b24703d2c2d9`; contract SHA-256
-  `2faa270dabebc4f83b8d51b689592a28fdfee96e44a80049835b40b31e304399`.
-- Banked child commits: Ego Foundation
-  `13bd9268993f74a41b4cc219855761681ab12b66`; Ego Reference Kernel
-  `0f043254710b47700f2088213232aba777bd3f46`; ITL Instrument/Freeze/Formal
-  `56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92`.
-- `EGO-K0-REFERENCE-KERNEL-001A`, H1, Freeze, Formal, scoring, experiment
-  execution, runtime/mainline, claims, and remote publication remain explicit
-  `false`. No H0/H1/K0-R/Freeze/Formal implementation, bank, scoring, or run
-  occurred in this transition.
-- The original additive contract remains enforced. The correction additionally
-  freezes dominated terminals, six component formulas, powered causal absence,
-  exhaustive coverage, per-source RNG evidence, seed/power provenance, and the
-  exact machine claim ceiling. Neither contract reports a component as tested
-  or present.
+  `FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED`.
+- Enabled status: Foundation=true. H0=false. H1, K0-R, Freeze, Formal, scoring,
+  experiment execution, EGO mainline/runtime, claims, and remote publication
+  remain false.
+- Current route posture:
+  `foundation_ready_h0_admission_002a_review_required`.
+- Active mechanism frontier: `none`.
+- Real trigger evidence: one appended route event
+  `h0_admission_contract_002a_banked_review_required`, one append-only L-024,
+  callable structured terminal resolution, 73,728-case cross-field truth-table
+  validation, 90-tuple atomic-bijection schema validation, exact H0 path
+  authority, and committed-object/ancestry/SHA readback.
+- Claim ceiling: consolidated H0 admission task-card/schema/control-plane
+  enforcement only.
+
+## Consolidated H0 admission enforcement 002A
+
+- Task card:
+  `docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md`.
+- Sole effective semantic source:
+  `artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json`.
+- Bank commit: `baa7751cb04d2d365e50f2cd15e799bc40641042`.
+- Card blob: `3e785f5b67212a0cc5d7f956126093c0b2ecd3d6`.
+- Contract blob: `cd00a47810d7ed7218d22c24bac1a6cdcf152b6d`.
+- Contract SHA-256:
+  `668c52e0b4b9fc9a6405791a6b520b4a216bb1bd2b6578c0e3f9b2463091cfc8`.
+- Pin status: `BANKED_ENFORCED_REVIEW_REQUIRED`.
+- Historical authority: the original H0 card and Red addendum/correction
+  card/contract objects remain byte-pinned provenance only. They have no
+  implicit residual semantic authority.
+- Ledger: L-020 through L-023 remain byte-pinned; L-024 occurs exactly once and
+  records this replacement/simplification boundary.
+- Event history: all five prior event lines remain byte-identical; the 002A
+  review-required event occurs exactly once.
+- H0 cannot become true until independent review and a separate bounded READY
+  transition. No H0 bank or run occurred.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
   remain unchanged; no prior negative result is rescued.
 
@@ -187,5 +164,6 @@ and does not infer mechanism or theory failure.
 
 `transition` remains deferred in this local version. This bounded transition was
 performed through the exact serialized artifact paths named by
-`K0-DUAL-TRACK-READY-TRANSITION-001A` and revalidated by callable
-`routectl`; no generic transition writer or second authorization path exists.
+`ITL-K0-H0-ADMISSION-CONTRACT-002A` and revalidated by callable `routectl`; no
+generic transition writer or second authorization path exists. The transition
+sets H0 false and authorizes review only.

@@ -1,7 +1,7 @@
 {
   "allowed_next_actions": [
     "implement_EGO-K0-FOUNDATION-001A",
-    "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0",
+    "review_ITL-K0-H0-ADMISSION-CONTRACT-002A",
     "run_route_state_machine_validation"
   ],
   "authorizations": {
@@ -13,7 +13,7 @@
     "formal_run": false,
     "foundation_implementation": true,
     "freeze": false,
-    "h0_implementation": true,
+    "h0_implementation": false,
     "h1_implementation": false,
     "k0_reference_implementation": false,
     "mechanism_validity": false,
@@ -24,12 +24,11 @@
     "ui_llm_deployment": false
   },
   "authorized_implementation_targets": [
-    "EGO-K0-FOUNDATION-001A",
-    "ITL-K0-H0-H1-INSTRUMENT-001A:H0"
+    "EGO-K0-FOUNDATION-001A"
   ],
   "child_authorizations": {
     "EGO-K0-FOUNDATION-001A": true,
-    "ITL-K0-H0-H1-INSTRUMENT-001A:H0": true,
+    "ITL-K0-H0-H1-INSTRUMENT-001A:H0": false,
     "EGO-K0-REFERENCE-KERNEL-001A": false,
     "ITL-K0-H0-H1-INSTRUMENT-001A:H1": false,
     "K0-IMMUTABLE-FREEZE-001A": false,
@@ -40,11 +39,36 @@
     "ego_k0_foundation_001a": "card_banked_ready_to_implement",
     "ego_k0_reference_kernel_001a": "card_banked_and_blocked_on_foundation_plus_h0",
     "itl_k0_formal_evidence_001a": "card_banked_and_blocked_on_freeze",
-    "itl_k0_h0_h1_instrument_001a": "card_banked_h0_ready_only_under_both_pinned_red_field_overlays_h1_blocked_on_h0",
+    "itl_k0_h0_h1_instrument_001a": "card_banked_h0_blocked_on_admission_002a_independent_review_and_separate_ready_transition_h1_blocked_on_h0",
     "k0_immutable_freeze_001a": "card_banked_and_blocked_on_k0r_plus_h1"
   },
   "implementation_authorized": true,
-  "phase": "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION",
+  "effective_h0_authority": {
+    "historical_pins_retained": true,
+    "historical_pins_semantic_authority": false,
+    "implicit_historical_inheritance": false,
+    "single_effective_semantic_source": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json"
+  },
+  "h0_admission_contract_pin": {
+    "applies_to": [
+      "K0-DUAL-TRACK",
+      "ITL-K0-H0-H1-INSTRUMENT-001A:H0"
+    ],
+    "bank_commit": "baa7751cb04d2d365e50f2cd15e799bc40641042",
+    "card_blob": "3e785f5b67212a0cc5d7f956126093c0b2ecd3d6",
+    "card_path": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
+    "contract_blob": "cd00a47810d7ed7218d22c24bac1a6cdcf152b6d",
+    "contract_path": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
+    "contract_sha256": "668c52e0b4b9fc9a6405791a6b520b4a216bb1bd2b6578c0e3f9b2463091cfc8",
+    "precedence": "sole_effective_h0_semantic_source_no_implicit_inheritance",
+    "required_before": [
+      "independent_review",
+      "separate_ready_transition"
+    ],
+    "status": "BANKED_ENFORCED_REVIEW_REQUIRED",
+    "task_id": "ITL-K0-H0-ADMISSION-CONTRACT-002A"
+  },
+  "phase": "FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED",
   "red_field_addendum_pin": {
     "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
     "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
@@ -104,22 +128,27 @@
       "preserved_entry_prefixes": [
         "- L-020 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | K0 dual-track supersession REGISTERED under `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.",
         "- L-021 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | K0 dual-track moved REGISTERED -> READY_TO_IMPLEMENT for exactly `EGO-K0-FOUNDATION-001A` and `ITL-K0-H0-H1-INSTRUMENT-001A:H0`.",
-        "- L-022 | 2026-07-09 | governance_addendum (operator authorized; transcribed by Codex) | K0 Red-field addendum `K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A` banked and enforced as the H0 prerequisite."
+        "- L-022 | 2026-07-09 | governance_addendum (operator authorized; transcribed by Codex) | K0 Red-field addendum `K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A` banked and enforced as the H0 prerequisite.",
+        "- L-023 | 2026-07-09 | governance_correction (operator authorized; transcribed by Codex) | K0 Red-field semantic correction `K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A` banked and enforced as the final H0 prerequisite."
       ],
       "preserved_entry_sha256": {
         "L-020": "6dbc32929d0df4e646ce1af3a8010cf17f9d46ca79586f1c98075b0648f325cb",
         "L-021": "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5",
-        "L-022": "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46"
+        "L-022": "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46",
+        "L-023": "aa4be0e838de1769e6583b108f82700d3627ffeb5023ad46dc40a89ea6dfa909"
       },
+      "h0_admission_contract_transition": "L-024",
       "red_field_addendum_transition": "L-022",
       "red_field_correction_transition": "L-023",
-      "required_entry_prefix": "- L-023 | 2026-07-09 | governance_correction (operator authorized; transcribed by Codex) | K0 Red-field semantic correction `K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A` banked and enforced as the final H0 prerequisite."
+      "required_entry_prefix": "- L-024 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | Consolidated H0 admission contract `ITL-K0-H0-ADMISSION-CONTRACT-002A` banked and enforced as the sole effective H0 semantic source; H0 moved true -> false pending independent review and a separate READY transition."
     },
     "parent_card": "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
     "red_field_addendum_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
     "red_field_correction_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
     "red_field_correction_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
     "red_field_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
+    "h0_admission_contract_card": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
+    "h0_effective_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
     "transition_card": "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "child_card_banks": {
       "ego_foundation": "13bd9268993f74a41b4cc219855761681ab12b66",
@@ -187,5 +216,5 @@
       "route_id": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A"
     }
   },
-  "updated_at_utc": "2026-07-10T02:45:00Z"
+  "updated_at_utc": "2026-07-10T03:43:57Z"
 }

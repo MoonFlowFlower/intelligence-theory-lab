@@ -29,19 +29,19 @@ K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS = (
     "ui_llm_deployment",
 )
 K0_RED_FIELD_ADDENDUM_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM"
-K0_READY_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION"
+K0_RED_FIELD_CORRECTION_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION"
+K0_READY_PHASE = "FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED"
 K0_READY_ALLOWED_ACTIONS = (
     "implement_EGO-K0-FOUNDATION-001A",
-    "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0",
+    "review_ITL-K0-H0-ADMISSION-CONTRACT-002A",
     "run_route_state_machine_validation",
 )
 K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS = (
     "EGO-K0-FOUNDATION-001A",
-    "ITL-K0-H0-H1-INSTRUMENT-001A:H0",
 )
 K0_READY_CHILD_AUTHORIZATIONS = {
     "EGO-K0-FOUNDATION-001A": True,
-    "ITL-K0-H0-H1-INSTRUMENT-001A:H0": True,
+    "ITL-K0-H0-H1-INSTRUMENT-001A:H0": False,
     "EGO-K0-REFERENCE-KERNEL-001A": False,
     "ITL-K0-H0-H1-INSTRUMENT-001A:H1": False,
     "K0-IMMUTABLE-FREEZE-001A": False,
@@ -49,7 +49,6 @@ K0_READY_CHILD_AUTHORIZATIONS = {
 }
 K0_READY_REQUIRED_TRUE_AUTHORIZATIONS = (
     "foundation_implementation",
-    "h0_implementation",
 )
 K0_READY_REQUIRED_FALSE_AUTHORIZATIONS = tuple(
     key
@@ -159,14 +158,106 @@ K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX = (
     "- L-023 | 2026-07-09 | governance_correction (operator authorized; transcribed by Codex) | "
     "K0 Red-field semantic correction `K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A` banked and enforced as the final H0 prerequisite."
 )
+K0_H0_ADMISSION_CARD_PATH = "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md"
+K0_H0_EFFECTIVE_CONTRACT_PATH = (
+    "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json"
+)
+K0_H0_ADMISSION_PIN = {
+    "task_id": "ITL-K0-H0-ADMISSION-CONTRACT-002A",
+    "bank_commit": "baa7751cb04d2d365e50f2cd15e799bc40641042",
+    "card_path": K0_H0_ADMISSION_CARD_PATH,
+    "card_blob": "3e785f5b67212a0cc5d7f956126093c0b2ecd3d6",
+    "contract_path": K0_H0_EFFECTIVE_CONTRACT_PATH,
+    "contract_blob": "cd00a47810d7ed7218d22c24bac1a6cdcf152b6d",
+    "contract_sha256": "668c52e0b4b9fc9a6405791a6b520b4a216bb1bd2b6578c0e3f9b2463091cfc8",
+    "applies_to": ["K0-DUAL-TRACK", "ITL-K0-H0-H1-INSTRUMENT-001A:H0"],
+    "precedence": "sole_effective_h0_semantic_source_no_implicit_inheritance",
+    "required_before": ["independent_review", "separate_ready_transition"],
+    "status": "BANKED_ENFORCED_REVIEW_REQUIRED",
+}
+K0_H0_EFFECTIVE_AUTHORITY = {
+    "single_effective_semantic_source": K0_H0_EFFECTIVE_CONTRACT_PATH,
+    "implicit_historical_inheritance": False,
+    "historical_pins_retained": True,
+    "historical_pins_semantic_authority": False,
+}
+K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX = (
+    "- L-024 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | "
+    "Consolidated H0 admission contract `ITL-K0-H0-ADMISSION-CONTRACT-002A` banked and enforced as the sole effective H0 semantic source; H0 moved true -> false pending independent review and a separate READY transition."
+)
 K0_PARENT_LEDGER_LINE_SHA256 = "6dbc32929d0df4e646ce1af3a8010cf17f9d46ca79586f1c98075b0648f325cb"
 K0_READY_LEDGER_LINE_SHA256 = "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5"
 K0_RED_FIELD_LEDGER_LINE_SHA256 = "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46"
+K0_RED_FIELD_CORRECTION_LEDGER_LINE_SHA256 = "aa4be0e838de1769e6583b108f82700d3627ffeb5023ad46dc40a89ea6dfa909"
 K0_RED_FIELD_PRESERVED_LEDGER_HASHES = {
     "L-020": K0_PARENT_LEDGER_LINE_SHA256,
     "L-021": K0_READY_LEDGER_LINE_SHA256,
     "L-022": K0_RED_FIELD_LEDGER_LINE_SHA256,
+    "L-023": K0_RED_FIELD_CORRECTION_LEDGER_LINE_SHA256,
 }
+K0_H0_ADMISSION_EVENT = "h0_admission_contract_002a_banked_review_required"
+K0_H0_PRESERVED_EVENT_COUNT = 5
+K0_H0_PRESERVED_EVENTS_SHA256 = "bcdbd498c02b1c5d8c4f71870b1e452702c23c575fb6ea5f0215d05b8a5427b5"
+K0_H0_EVIDENCE_COMPONENT_IDS = (
+    "V_model",
+    "V_online",
+    "V_replay",
+    "V_memory",
+    "V_transfer",
+)
+K0_H0_EVIDENCE_STATES = (
+    "NOT_TESTED",
+    "INVALID_INSTRUMENT",
+    "ABSENT",
+    "PRESENT_BOUNDED",
+)
+K0_H0_ADMISSION_CLAIM_CEILING = (
+    "consolidated H0 admission task-card/schema/control-plane enforcement only"
+)
+K0_H0_FUTURE_CLAIM_CEILING = "immutable instrument preregistration contract banked only"
+K0_H0_ORIGINAL_ARTIFACT_FILENAMES = (
+    "h0_contract.json",
+    "task_family_manifest.json",
+    "generator_distribution.json",
+    "adapter_capability_manifest.json",
+    "access_budget_manifest.json",
+    "metric_mde_contract.json",
+    "baseline_panel.json",
+    "component_control_mapping.json",
+    "component_dependency_matrix.json",
+    "protocol_manifest.json",
+    "positive_control_manifest.json",
+    "heldout_preimage_schema.json",
+    "heldout_seal_manifest.json",
+    "own_rule_constructor_contract.json",
+    "public_dev_fixture_manifest.json",
+    "smoke_contract.json",
+    "h0_acceptance.json",
+    "claim_ceiling.txt",
+)
+K0_H0_ADDED_ARTIFACT_FILENAMES = (
+    "control_signature_contract.json",
+    "control_signature_simulation.json",
+    "determinism_contract.json",
+    "control_signature_coverage_report.json",
+)
+K0_H0_FAILURE_ARTIFACT_FILENAME = "failure_manifest.json"
+K0_H0_REPO_WRITE_ALLOWLIST = (
+    "src/itl_k0_h0_h1_instrument_001a/__init__.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_freeze.py",
+    "tests/itl_k0_h0_h1_instrument_001a/test_h0_freeze.py",
+    *(
+        f"artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/{name}"
+        for name in (
+            K0_H0_ORIGINAL_ARTIFACT_FILENAMES
+            + K0_H0_ADDED_ARTIFACT_FILENAMES
+            + (K0_H0_FAILURE_ARTIFACT_FILENAME,)
+        )
+    ),
+)
+K0_H0_EXTERNAL_SIDE_EFFECT_ALLOWLIST = (
+    "C:/Users/LEO/AppData/Local/EGO_K0_SEALED/ITL-K0-H0-H1-INSTRUMENT-001A/heldout_preimage.json",
+)
 K0_RED_FIELD_EVIDENCE_STATES = (
     "NOT_TESTED",
     "INVALID_INSTRUMENT",
@@ -302,6 +393,7 @@ AUTHORIZED_TASK_PATHS = (
     "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
+    "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
     "docs/research/FSP-STAGE-LEDGER.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
     "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
@@ -324,6 +416,7 @@ AUTHORIZED_TASK_PATHS = (
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
+    "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
 )
 
 ROADMAP_LIKE_MARKERS = (

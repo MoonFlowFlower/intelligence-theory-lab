@@ -2,12 +2,11 @@
   "active_mechanism_frontier": "none",
   "allowed_next_actions": [
     "implement_EGO-K0-FOUNDATION-001A",
-    "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0",
+    "review_ITL-K0-H0-ADMISSION-CONTRACT-002A",
     "run_route_state_machine_validation"
   ],
   "authorized_implementation_targets": [
-    "EGO-K0-FOUNDATION-001A",
-    "ITL-K0-H0-H1-INSTRUMENT-001A:H0"
+    "EGO-K0-FOUNDATION-001A"
   ],
   "c_preflight_status": "design_only_allowed_if_ex_ante_active_interventional_separation_stated",
   "claim_ceiling": {
@@ -25,13 +24,13 @@
       "user_benefit",
       "mainline_effect"
     ],
-    "max": "local additive Red-field correction task-card/schema/control-plane enforcement for the first-pair boundary only"
+    "max": "consolidated H0 admission task-card/schema/control-plane enforcement only"
   },
   "current_frontier_route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
-  "current_route_posture": "k0_dual_track_first_pair_ready_with_red_field_correction",
+  "current_route_posture": "foundation_ready_h0_admission_002a_review_required",
   "child_authorizations": {
     "EGO-K0-FOUNDATION-001A": true,
-    "ITL-K0-H0-H1-INSTRUMENT-001A:H0": true,
+    "ITL-K0-H0-H1-INSTRUMENT-001A:H0": false,
     "EGO-K0-REFERENCE-KERNEL-001A": false,
     "ITL-K0-H0-H1-INSTRUMENT-001A:H1": false,
     "K0-IMMUTABLE-FREEZE-001A": false,
@@ -47,6 +46,7 @@
     "start_C_implementation_without_design_only_preflight_and_separate_authorization",
     "start_B_passive_successor_without_ex_ante_differentiator",
     "implement_any_k0_child_outside_exact_first_pair",
+    "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0_before_independent_review_and_separate_ready_transition",
     "implement_EGO-K0-REFERENCE-KERNEL-001A",
     "implement_ITL-K0-H0-H1-INSTRUMENT-001A_H1",
     "execute_K0-IMMUTABLE-FREEZE-001A",
@@ -56,8 +56,33 @@
     "modify_llm_airi_deployment_or_api_key_files",
     "push_tag_or_remote_anchor_without_explicit_authorization"
   ],
-  "parent_task_status": "ready_to_implement_exact_first_pair_only_under_both_red_field_overlays",
-  "ready_transition_status": "banked_foundation_and_h0_under_both_red_field_overlays_only",
+  "effective_h0_authority": {
+    "historical_pins_retained": true,
+    "historical_pins_semantic_authority": false,
+    "implicit_historical_inheritance": false,
+    "single_effective_semantic_source": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json"
+  },
+  "h0_admission_contract_pin": {
+    "applies_to": [
+      "K0-DUAL-TRACK",
+      "ITL-K0-H0-H1-INSTRUMENT-001A:H0"
+    ],
+    "bank_commit": "baa7751cb04d2d365e50f2cd15e799bc40641042",
+    "card_blob": "3e785f5b67212a0cc5d7f956126093c0b2ecd3d6",
+    "card_path": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
+    "contract_blob": "cd00a47810d7ed7218d22c24bac1a6cdcf152b6d",
+    "contract_path": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
+    "contract_sha256": "668c52e0b4b9fc9a6405791a6b520b4a216bb1bd2b6578c0e3f9b2463091cfc8",
+    "precedence": "sole_effective_h0_semantic_source_no_implicit_inheritance",
+    "required_before": [
+      "independent_review",
+      "separate_ready_transition"
+    ],
+    "status": "BANKED_ENFORCED_REVIEW_REQUIRED",
+    "task_id": "ITL-K0-H0-ADMISSION-CONTRACT-002A"
+  },
+  "parent_task_status": "foundation_ready_h0_admission_002a_review_required",
+  "ready_transition_status": "foundation_only_h0_false_pending_independent_review_and_separate_ready_transition",
   "red_field_addendum_pin": {
     "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
     "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
@@ -109,18 +134,19 @@
         "itl_instrument_freeze_formal": "56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92"
       },
       "authorized_implementation_targets": [
-        "EGO-K0-FOUNDATION-001A",
-        "ITL-K0-H0-H1-INSTRUMENT-001A:H0"
+        "EGO-K0-FOUNDATION-001A"
       ],
       "implementation_authorized": true,
-      "ledger_entry": "docs/research/FSP-STAGE-LEDGER.md#L-023",
+      "ledger_entry": "docs/research/FSP-STAGE-LEDGER.md#L-024",
+      "h0_admission_contract_card": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
+      "h0_effective_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
       "parent_card": "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
       "red_field_addendum_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
       "red_field_correction_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
       "red_field_correction_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
       "red_field_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
       "transition_card": "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
-      "phase": "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION",
+      "phase": "FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED",
       "route_id": "K0-DUAL-TRACK-SUPERSESSION-001A"
     },
     "n2_terminal_boundary": {
@@ -145,5 +171,5 @@
     "sync_task_card": "docs/codex/tasks/ROUTE-STATE-MACHINE-001C-SAME-AGENT-KERNEL-FORK-SYNC.md"
   },
   "task_id": "ROUTE-STATE-MACHINE-001A",
-  "updated_at_utc": "2026-07-10T01:21:05Z"
+  "updated_at_utc": "2026-07-10T03:43:57Z"
 }

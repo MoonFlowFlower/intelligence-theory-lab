@@ -122,6 +122,8 @@ def _valid_k0_ready_state() -> dict:
     state["child_authorizations"] = deepcopy(state_machine.K0_READY_CHILD_AUTHORIZATIONS)
     state["red_field_addendum_pin"] = deepcopy(state_machine.K0_RED_FIELD_ADDENDUM_PIN)
     state["red_field_correction_pin"] = deepcopy(state_machine.K0_RED_FIELD_CORRECTION_PIN)
+    state["h0_admission_contract_pin"] = deepcopy(state_machine.K0_H0_ADMISSION_PIN)
+    state["effective_h0_authority"] = deepcopy(state_machine.K0_H0_EFFECTIVE_AUTHORITY)
     state["authorizations"] = {
         key: key in state_machine.K0_READY_REQUIRED_TRUE_AUTHORIZATIONS
         for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
@@ -132,11 +134,12 @@ def _valid_k0_ready_state() -> dict:
         "transition_card": state_machine.K0_READY_TRANSITION_CARD_PATH,
         "ledger": {
             "path": state_machine.K0_PARENT_LEDGER_PATH,
-            "required_entry_prefix": state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX,
+            "required_entry_prefix": state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX,
             "preserved_entry_prefixes": [
                 state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
+                state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX,
             ],
             "preserved_entry_sha256": deepcopy(state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES),
         },
@@ -169,7 +172,7 @@ def _valid_k0_red_field_correction_event() -> dict:
         "event": "red_field_semantic_correction_banked_and_enforced",
         "route_id": state_machine.K0_PARENT_ROUTE_ID,
         "current_state": "READY_TO_IMPLEMENT",
-        "phase": state_machine.K0_READY_PHASE,
+        "phase": state_machine.K0_RED_FIELD_CORRECTION_PHASE,
         "red_field_addendum_pin": deepcopy(state_machine.K0_RED_FIELD_ADDENDUM_PIN),
         "red_field_correction_pin": deepcopy(state_machine.K0_RED_FIELD_CORRECTION_PIN),
         "foundation_authorized": True,
@@ -180,6 +183,21 @@ def _valid_k0_red_field_correction_event() -> dict:
             "K0-IMMUTABLE-FREEZE-001A",
             "ITL-K0-FORMAL-EVIDENCE-001A",
         ],
+    }
+
+
+def _valid_k0_h0_admission_event() -> dict:
+    state_machine, _ = _validator()
+    return {
+        "event": state_machine.K0_H0_ADMISSION_EVENT,
+        "route_id": state_machine.K0_PARENT_ROUTE_ID,
+        "current_state": "READY_TO_IMPLEMENT",
+        "phase": state_machine.K0_READY_PHASE,
+        "h0_admission_contract_pin": deepcopy(state_machine.K0_H0_ADMISSION_PIN),
+        "effective_h0_authority": deepcopy(state_machine.K0_H0_EFFECTIVE_AUTHORITY),
+        "foundation_authorized": True,
+        "h0_authorized": False,
+        "downstream_children_authorized": False,
     }
 
 
@@ -202,6 +220,17 @@ def _red_field_correction_contract() -> dict:
         / "artifacts"
         / "K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A"
         / "red_field_correction_contract.json"
+    )
+
+
+def _effective_h0_contract() -> dict:
+    _, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    return validator.load_json(
+        repo_root
+        / "artifacts"
+        / "ITL-K0-H0-ADMISSION-CONTRACT-002A"
+        / "effective_h0_contract.json"
     )
 
 
@@ -425,6 +454,227 @@ def test_valid_k0_ready_first_pair_contract_passes():
     assert result["validation_errors"] == []
 
 
+def test_h0_c1_c4_collision_resolves_once_without_component_erasure():
+    _, validator = _validator()
+    component_states = {
+        component_id: "PRESENT_BOUNDED"
+        for component_id in validator.state_machine.K0_H0_EVIDENCE_COMPONENT_IDS
+    }
+
+    result = validator.resolve_h0_terminal_bundle(
+        component_states=component_states,
+        integrity_valid=True,
+        control_state="CONTROL_EQUIVALENT",
+        rival_state="RIVAL_SEPARATED",
+    )
+
+    assert result["component_evidence"] == component_states
+    assert result["specialness_claim"] == {
+        "admissible": False,
+        "reason": "control_not_separated",
+    }
+    assert "evidence_state" not in result["specialness_claim"]
+
+
+@pytest.mark.parametrize("proof_kind", ("CAUSAL_NO_CONTRIBUTION", "CAUSAL_WRONG_SIGN"))
+def test_h0_powered_causal_absence_proof_kinds_resolve_absent(proof_kind):
+    _, validator = _validator()
+    result = validator.resolve_component_terminal_state(
+        required_run_started=True,
+        integrity_valid=True,
+        causal_comparisons=[{"power_target_met": True, "proof_kind": proof_kind}],
+    )
+    assert result["evidence_state"] == "ABSENT"
+
+
+def test_h0_causal_underpower_resolves_invalid_instrument():
+    _, validator = _validator()
+    result = validator.resolve_component_terminal_state(
+        required_run_started=True,
+        integrity_valid=True,
+        causal_comparisons=[
+            {"power_target_met": False, "proof_kind": "CAUSAL_NO_CONTRIBUTION"}
+        ],
+    )
+    assert result == {
+        "evidence_state": "INVALID_INSTRUMENT",
+        "reason": "causal_comparison_underpowered",
+    }
+
+
+@pytest.mark.parametrize(
+    ("panel_kind", "expected"),
+    (("control", "CONTROL_INCONCLUSIVE"), ("rival", "RIVAL_INCONCLUSIVE")),
+)
+def test_h0_comparison_underpower_is_inconclusive_only(panel_kind, expected):
+    _, validator = _validator()
+    assert (
+        validator.resolve_comparison_terminal_state(
+            panel_kind=panel_kind,
+            run_started=True,
+            power_target_met=False,
+            relation="powered_parity",
+        )
+        == expected
+    )
+
+
+@pytest.mark.parametrize("mutation", ("delete", "duplicate", "aggregate_only"))
+def test_h0_atomic_tuple_bijection_rejects_missing_duplicate_and_aggregate_only(mutation):
+    _, validator = _validator()
+    contract = _effective_h0_contract()
+    panels = deepcopy(contract["component_panels"])
+    specs = validator._build_atomic_bijection_witness(panels)
+    if mutation == "delete":
+        specs.pop()
+    elif mutation == "duplicate":
+        duplicate = deepcopy(specs[0])
+        duplicate["atomic_contrast_id"] += "::duplicate"
+        specs.append(duplicate)
+    else:
+        panels[0]["causal"]["arm_ids"] = []
+    result = validator.validate_atomic_contrast_bijection(
+        panels,
+        specs,
+        required_fields=contract["atomic_contrast_bijection"]["required_atomic_spec_fields"],
+    )
+    codes = _error_codes(result)
+    assert codes & {
+        "h0_atomic_tuple_missing",
+        "h0_atomic_tuple_duplicate",
+        "h0_atomic_aggregate_only_coverage",
+        "h0_atomic_tuple_orphan",
+    }
+
+
+@pytest.mark.parametrize(
+    "filename",
+    (
+        "control_signature_contract.json",
+        "control_signature_simulation.json",
+        "determinism_contract.json",
+        "control_signature_coverage_report.json",
+    ),
+)
+def test_h0_effective_path_authority_rejects_each_missing_added_artifact(filename):
+    _, validator = _validator()
+    contract = _effective_h0_contract()
+    contract["path_authority"]["repo_write_allowlist"].remove(
+        f"artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/{filename}"
+    )
+    result = validator.validate_effective_h0_path_authority(contract)
+    assert "h0_path_authority_allowlist_mismatch" in _error_codes(result)
+
+
+def test_h0_effective_path_authority_rejects_unlisted_filename():
+    _, validator = _validator()
+    result = validator.validate_effective_h0_path_authority(
+        _effective_h0_contract(),
+        candidate_paths=[
+            "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/unlisted_result.json"
+        ],
+    )
+    assert "h0_path_authority_unauthorized_path" in _error_codes(result)
+
+
+def test_h0_true_while_admission_review_required_fails():
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["child_authorizations"]["ITL-K0-H0-H1-INSTRUMENT-001A:H0"] = True
+    state["authorizations"]["h0_implementation"] = True
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+    codes = _error_codes(result)
+    assert "k0_h0_true_while_admission_review_required" in codes
+    assert "k0_ready_child_authorizations_mismatch" in codes
+
+
+@pytest.mark.parametrize(
+    "child_id",
+    (
+        "EGO-K0-REFERENCE-KERNEL-001A",
+        "ITL-K0-H0-H1-INSTRUMENT-001A:H1",
+        "K0-IMMUTABLE-FREEZE-001A",
+        "ITL-K0-FORMAL-EVIDENCE-001A",
+    ),
+)
+def test_h0_admission_review_required_rejects_each_downstream_child(child_id):
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["child_authorizations"][child_id] = True
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+    assert "k0_ready_child_authorizations_mismatch" in _error_codes(result)
+
+
+@pytest.mark.parametrize("field", ("bank_commit", "card_blob", "contract_blob", "contract_sha256"))
+def test_h0_admission_new_object_pin_drift_fails(field):
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["h0_admission_contract_pin"][field] = "0" * len(
+        state["h0_admission_contract_pin"][field]
+    )
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+    assert "k0_h0_admission_pin_mismatch" in _error_codes(result)
+
+
+def test_h0_admission_l024_declaration_drift_fails():
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["source_readback"]["ledger"]["required_entry_prefix"] = (
+        validator.state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX
+    )
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+    assert "k0_parent_ledger_prefix_mismatch" in _error_codes(result)
+
+
+def test_h0_admission_claim_ceilings_cannot_be_swapped_or_expanded():
+    _, validator = _validator()
+    swapped = _effective_h0_contract()
+    swapped["claim_ceilings"]["admission_task"]["exact"], swapped["claim_ceilings"][
+        "future_h0"
+    ]["exact"] = (
+        swapped["claim_ceilings"]["future_h0"]["exact"],
+        swapped["claim_ceilings"]["admission_task"]["exact"],
+    )
+    assert "h0_effective_claim_ceilings_invalid" in _error_codes(
+        validator.validate_effective_h0_contract(swapped)
+    )
+
+    expanded = _effective_h0_contract()
+    expanded["claim_ceilings"]["admission_task"]["exact"] += " plus H0 readiness"
+    assert "h0_effective_claim_ceilings_invalid" in _error_codes(
+        validator.validate_effective_h0_contract(expanded)
+    )
+
+
+def test_h0_admission_contract_rejects_deleted_historical_pin():
+    _, validator = _validator()
+    contract = _effective_h0_contract()
+    contract["historical_provenance"]["objects"].pop()
+    assert "h0_effective_historical_pins_invalid" in _error_codes(
+        validator.validate_effective_h0_contract(contract)
+    )
+
+
 @pytest.mark.parametrize(
     "child_id",
     (
@@ -459,7 +709,11 @@ def test_k0_ready_rejects_each_downstream_child_authorization(child_id):
 def test_k0_ready_rejects_phase_or_target_drift(field, expected_code):
     _, validator = _validator()
     state = _valid_k0_ready_state()
-    state[field] = "drifted" if field == "phase" else ["EGO-K0-FOUNDATION-001A"]
+    state[field] = (
+        "drifted"
+        if field == "phase"
+        else ["EGO-K0-FOUNDATION-001A", "ITL-K0-H0-H1-INSTRUMENT-001A:H0"]
+    )
 
     result = validator.validate_route_payload(
         route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
@@ -530,7 +784,6 @@ def test_k0_ready_rejects_missing_red_field_addendum_pin():
 
     codes = _error_codes(result)
     assert "k0_red_field_addendum_pin_missing" in codes
-    assert "k0_h0_authorized_without_enforced_red_field_gate" in codes
 
 
 @pytest.mark.parametrize(
@@ -566,7 +819,6 @@ def test_k0_ready_rejects_h0_true_when_red_field_gate_not_enforced():
 
     codes = _error_codes(result)
     assert "k0_red_field_addendum_pin_mismatch" in codes
-    assert "k0_h0_authorized_without_enforced_red_field_gate" in codes
 
 
 def test_k0_ready_rejects_missing_red_field_correction_pin():
@@ -583,7 +835,6 @@ def test_k0_ready_rejects_missing_red_field_correction_pin():
 
     codes = _error_codes(result)
     assert "k0_red_field_correction_pin_missing" in codes
-    assert "k0_h0_authorized_without_enforced_red_field_gate" in codes
 
 
 @pytest.mark.parametrize(
@@ -619,7 +870,6 @@ def test_k0_ready_rejects_h0_true_when_correction_gate_not_enforced():
 
     codes = _error_codes(result)
     assert "k0_red_field_correction_pin_mismatch" in codes
-    assert "k0_h0_authorized_without_enforced_red_field_gate" in codes
 
 
 def test_valid_committed_red_field_addendum_repository_contract_passes():
@@ -646,6 +896,57 @@ def test_valid_committed_red_field_correction_repository_contract_passes():
 
     assert result["verdict"] == "pass"
     assert result["validation_errors"] == []
+
+
+def test_valid_committed_h0_admission_repository_contract_passes():
+    _, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    result = validator.validate_h0_admission_repository(
+        repo_root=repo_root,
+        route_state_payload=_valid_k0_ready_state(),
+    )
+    assert result["verdict"] == "pass"
+    assert result["truth_table_scenarios"] == 73728
+    assert result["atomic_tuple_count"] > 0
+
+
+def test_h0_admission_repository_rejects_non_ancestor_bank(monkeypatch):
+    _, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    original = validator._git_is_ancestor
+
+    def selective_ancestry(root, ancestor, descendant="HEAD"):
+        if ancestor == validator.state_machine.K0_H0_ADMISSION_PIN["bank_commit"]:
+            return False
+        return original(root, ancestor, descendant)
+
+    monkeypatch.setattr(validator, "_git_is_ancestor", selective_ancestry)
+    result = validator.validate_h0_admission_repository(
+        repo_root=repo_root,
+        route_state_payload=_valid_k0_ready_state(),
+    )
+    assert "h0_admission_bank_commit_not_ancestor" in _error_codes(result)
+
+
+def test_h0_admission_repository_rejects_modified_historical_bytes(monkeypatch):
+    _, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    original_read_bytes = Path.read_bytes
+
+    def altered_read_bytes(path):
+        data = original_read_bytes(path)
+        if path.as_posix().endswith(
+            "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json"
+        ):
+            return data + b"drift"
+        return data
+
+    monkeypatch.setattr(Path, "read_bytes", altered_read_bytes)
+    result = validator.validate_h0_admission_repository(
+        repo_root=repo_root,
+        route_state_payload=_valid_k0_ready_state(),
+    )
+    assert "h0_admission_historical_object_drift" in _error_codes(result)
 
 
 def test_red_field_correction_repository_rejects_non_ancestor_bank(monkeypatch):
@@ -952,6 +1253,46 @@ def test_k0_red_field_correction_event_rejects_missing_or_duplicate(tmp_path):
     assert "k0_red_field_correction_event_missing_or_duplicate" in _error_codes(duplicate)
 
 
+def test_h0_admission_event_is_unique_and_exact(tmp_path):
+    _, validator = _validator()
+    import json
+
+    repo_root = Path(__file__).resolve().parents[2]
+    live_path = (
+        repo_root
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "K0-DUAL-TRACK-SUPERSESSION-001A"
+        / "events.jsonl"
+    )
+    lines = live_path.read_text(encoding="utf-8").splitlines()
+    assert validator.validate_k0_red_field_event(live_path)["verdict"] == "pass"
+
+    missing_path = tmp_path / "missing.jsonl"
+    missing_path.write_text("\n".join(lines[:-1]) + "\n", encoding="utf-8")
+    assert "k0_h0_admission_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(missing_path)
+    )
+
+    duplicate_path = tmp_path / "duplicate.jsonl"
+    duplicate_path.write_text("\n".join(lines + [lines[-1]]) + "\n", encoding="utf-8")
+    assert "k0_h0_admission_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(duplicate_path)
+    )
+
+    drifted = json.loads(lines[-1])
+    drifted["h0_authorized"] = True
+    drift_path = tmp_path / "drift.jsonl"
+    drift_path.write_text(
+        "\n".join(lines[:-1] + [json.dumps(drifted, sort_keys=True)]) + "\n",
+        encoding="utf-8",
+    )
+    assert "k0_h0_admission_event_contract_mismatch" in _error_codes(
+        validator.validate_k0_red_field_event(drift_path)
+    )
+
+
 def test_valid_pum_env_v0_closure_packet_passes():
     _, validator = _validator()
 
@@ -1237,6 +1578,8 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
         json.dumps(_valid_k0_red_field_event(), sort_keys=True)
         + "\n"
         + json.dumps(_valid_k0_red_field_correction_event(), sort_keys=True)
+        + "\n"
+        + json.dumps(_valid_k0_h0_admission_event(), sort_keys=True)
         + "\n",
         encoding="utf-8",
     )
@@ -1249,7 +1592,9 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     program_state["child_authorizations"] = deepcopy(state_machine.K0_READY_CHILD_AUTHORIZATIONS)
     program_state["red_field_addendum_pin"] = deepcopy(state_machine.K0_RED_FIELD_ADDENDUM_PIN)
     program_state["red_field_correction_pin"] = deepcopy(state_machine.K0_RED_FIELD_CORRECTION_PIN)
-    program_state["current_route_posture"] = "k0_dual_track_first_pair_ready_with_red_field_correction"
+    program_state["h0_admission_contract_pin"] = deepcopy(state_machine.K0_H0_ADMISSION_PIN)
+    program_state["effective_h0_authority"] = deepcopy(state_machine.K0_H0_EFFECTIVE_AUTHORITY)
+    program_state["current_route_posture"] = "foundation_ready_h0_admission_002a_review_required"
     validator.write_json(artifact_dir / "program_state.json", program_state)
     ledger_path = tmp_path / "docs" / "research" / "FSP-STAGE-LEDGER.md"
     ledger_path.parent.mkdir(parents=True)
@@ -1260,11 +1605,17 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     l020 = next(line for line in live_ledger_lines if line.startswith(state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX))
     l021 = next(line for line in live_ledger_lines if line.startswith(state_machine.K0_READY_LEDGER_ENTRY_PREFIX))
     l022 = next(line for line in live_ledger_lines if line.startswith(state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX))
+    l023 = next(
+        line
+        for line in live_ledger_lines
+        if line.startswith(state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX)
+    )
     ledger_path.write_text(
         f"{l020}\n"
         f"{l021}\n"
         f"{l022}\n"
-        f"{state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX} correction\n",
+        f"{l023}\n"
+        f"{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} admission\n",
         encoding="utf-8",
     )
 
@@ -1274,19 +1625,19 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     assert "current_frontier_ledger_entry_missing" not in present_codes
     assert "current_frontier_k0_preserved_ledger_line_drift" not in present_codes
 
-    for rewritten_index in range(3):
-        preserved_lines = [l020, l021, l022]
+    for rewritten_index in range(4):
+        preserved_lines = [l020, l021, l022, l023]
         preserved_lines[rewritten_index] += " rewritten"
         ledger_path.write_text(
             "\n".join(preserved_lines)
-            + f"\n{state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX} correction\n",
+            + f"\n{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} admission\n",
             encoding="utf-8",
         )
         rewritten_report = _build_report_for_tmp_tree(tmp_path)
         assert "current_frontier_k0_preserved_ledger_line_drift" in _error_codes(rewritten_report)
 
     ledger_path.write_text(
-        f"{l020}\n{l021}\n{l022}\n",
+        f"{l020}\n{l021}\n{l022}\n{l023}\n",
         encoding="utf-8",
     )
 
@@ -1295,9 +1646,9 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     assert "current_frontier_ledger_entry_missing" in _error_codes(missing_ready_report)
 
     ledger_path.write_text(
-        f"{l020}\n{l021}\n{l022}\n"
-        f"{state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX} first\n"
-        f"{state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX} duplicate\n",
+        f"{l020}\n{l021}\n{l022}\n{l023}\n"
+        f"{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} first\n"
+        f"{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} duplicate\n",
         encoding="utf-8",
     )
     duplicate_report = _build_report_for_tmp_tree(tmp_path)

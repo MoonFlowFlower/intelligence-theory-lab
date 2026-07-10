@@ -5,6 +5,7 @@ import json
 import subprocess
 import uuid
 from datetime import datetime, timezone
+from itertools import product
 from pathlib import Path
 from typing import Any
 
@@ -113,6 +114,470 @@ def _is_authorizing_value(value: Any) -> bool:
     if isinstance(value, str):
         return value.strip().lower() in {"true", "yes", "authorized", "allow", "allowed"}
     return False
+
+
+def resolve_component_terminal_state(
+    *,
+    required_run_started: bool,
+    integrity_valid: bool,
+    causal_comparisons: list[dict[str, Any]],
+) -> dict[str, str]:
+    """Resolve one evidence component without consulting control or rival results."""
+    if not integrity_valid:
+        return {"evidence_state": "INVALID_INSTRUMENT", "reason": "integrity_dependency_invalid"}
+    if not required_run_started:
+        return {"evidence_state": "NOT_TESTED", "reason": "required_run_not_started"}
+    if not causal_comparisons:
+        return {"evidence_state": "INVALID_INSTRUMENT", "reason": "mandatory_causal_comparison_missing"}
+
+    absence_kinds = {"CAUSAL_NO_CONTRIBUTION", "CAUSAL_WRONG_SIGN"}
+    for comparison in causal_comparisons:
+        if comparison.get("power_target_met") is not True:
+            return {"evidence_state": "INVALID_INSTRUMENT", "reason": "causal_comparison_underpowered"}
+        proof_kind = comparison.get("proof_kind")
+        if proof_kind in absence_kinds:
+            return {"evidence_state": "ABSENT", "reason": proof_kind.lower()}
+        if proof_kind != "CAUSAL_CONTRIBUTION_EXPECTED_SIGN":
+            return {"evidence_state": "INVALID_INSTRUMENT", "reason": "causal_proof_kind_invalid"}
+    return {"evidence_state": "PRESENT_BOUNDED", "reason": "all_mandatory_causal_contrasts_supported"}
+
+
+def resolve_comparison_terminal_state(
+    *,
+    panel_kind: str,
+    run_started: bool,
+    power_target_met: bool,
+    relation: str,
+) -> str:
+    if panel_kind not in {"control", "rival"}:
+        raise ValueError("panel_kind must be control or rival")
+    prefix = "CONTROL" if panel_kind == "control" else "RIVAL"
+    if not run_started:
+        return f"{prefix}_NOT_RUN"
+    if not power_target_met:
+        return f"{prefix}_INCONCLUSIVE"
+    if relation == "candidate_superior":
+        return f"{prefix}_SEPARATED"
+    if relation == "comparator_superior":
+        return f"{prefix}_DOMINATED"
+    if relation in {"powered_parity", "frozen_ceiling_saturation"}:
+        return "CONTROL_EQUIVALENT" if panel_kind == "control" else "RIVAL_SATURATED"
+    raise ValueError("relation is not a frozen powered comparison terminal")
+
+
+def resolve_specialness_admissibility(
+    *,
+    component_states: dict[str, str],
+    integrity_valid: bool,
+    control_state: str,
+    rival_state: str,
+) -> dict[str, Any]:
+    """Resolve the panel-relative claim predicate; never emit an evidence_state."""
+    expected_components = set(state_machine.K0_H0_EVIDENCE_COMPONENT_IDS)
+    if set(component_states) != expected_components:
+        return {"admissible": False, "reason": "component_state_set_invalid"}
+    if not integrity_valid:
+        return {"admissible": False, "reason": "integrity_dependency_invalid"}
+    non_present = sorted(
+        component_id
+        for component_id, evidence_state in component_states.items()
+        if evidence_state != "PRESENT_BOUNDED"
+    )
+    if non_present:
+        return {
+            "admissible": False,
+            "reason": "referenced_component_not_present_bounded",
+            "component_ids": non_present,
+        }
+    if control_state != "CONTROL_SEPARATED":
+        return {"admissible": False, "reason": "control_not_separated"}
+    if rival_state != "RIVAL_SEPARATED":
+        return {"admissible": False, "reason": "rival_not_separated"}
+    return {"admissible": True, "reason": "all_admissibility_predicates_satisfied"}
+
+
+def resolve_h0_terminal_bundle(
+    *,
+    component_states: dict[str, str],
+    integrity_valid: bool,
+    control_state: str,
+    rival_state: str,
+) -> dict[str, Any]:
+    valid_component_states = set(state_machine.K0_H0_EVIDENCE_STATES)
+    if set(component_states) != set(state_machine.K0_H0_EVIDENCE_COMPONENT_IDS):
+        raise ValueError("component_states must name the exact five evidence components")
+    if any(state not in valid_component_states for state in component_states.values()):
+        raise ValueError("component_states contains a value outside the frozen evidence_state enum")
+    if control_state not in state_machine.K0_RED_FIELD_CORRECTED_CONTROL_STATES:
+        raise ValueError("control_state is outside the frozen control comparison enum")
+    if rival_state not in state_machine.K0_RED_FIELD_CORRECTED_RIVAL_STATES:
+        raise ValueError("rival_state is outside the frozen rival comparison enum")
+    specialness = resolve_specialness_admissibility(
+        component_states=component_states,
+        integrity_valid=integrity_valid,
+        control_state=control_state,
+        rival_state=rival_state,
+    )
+    return {
+        "component_evidence": dict(component_states),
+        "control_comparison_state": control_state,
+        "rival_comparison_state": rival_state,
+        "specialness_claim": specialness,
+    }
+
+
+def _atomic_tuple_key(spec: dict[str, Any]) -> tuple[Any, Any, Any, Any]:
+    return tuple(spec.get(field) for field in ("component_id", "panel_id", "arm_id", "arm_role"))
+
+
+def _build_atomic_bijection_witness(component_panels: Any) -> list[dict[str, Any]]:
+    specs: list[dict[str, Any]] = []
+    if not isinstance(component_panels, list):
+        return specs
+    for component in component_panels:
+        if not isinstance(component, dict):
+            continue
+        component_id = component.get("component_id")
+        for panel_kind in ("causal", "control", "rival", "integrity"):
+            panel = component.get(panel_kind)
+            if not isinstance(panel, dict):
+                continue
+            panel_id = panel.get("panel_id")
+            arm_role = panel.get("arm_role")
+            for arm_id in panel.get("arm_ids") or []:
+                atomic_id = f"atomic::{component_id}::{panel_id}::{arm_id}::{arm_role}"
+                specs.append(
+                    {
+                        "atomic_contrast_id": atomic_id,
+                        "component_id": component_id,
+                        "panel_id": panel_id,
+                        "arm_id": arm_id,
+                        "arm_role": arm_role,
+                        "full_arm_id": "candidate_full",
+                        "intervention_arm_id": arm_id,
+                        "reference_arm_id": "candidate_full",
+                        "family_ids": ["A", "B", "C"],
+                        "protocol_ids": ["fresh_init", "persistent_sequence"],
+                        "estimand_id": f"estimand::{component_id}::{arm_id}",
+                        "expected_sign": f"expected_sign::{arm_role}",
+                        "success_signature": f"success::{arm_role}",
+                        "failure_signature": f"failure::{arm_role}",
+                        "ambiguous_signature": f"ambiguous::{arm_role}",
+                        "power_spec_id": f"power::{component_id}::{panel_kind}",
+                        "seed_block_id": f"seed::{component_id}::{panel_kind}",
+                        "blast_radius_id": f"blast::{component_id}::{arm_id}",
+                        "resolver_function": "resolve_component_terminal_state"
+                        if arm_role == "CAUSAL_ABLATION"
+                        else "resolve_h0_terminal_bundle",
+                    }
+                )
+    return specs
+
+
+def validate_atomic_contrast_bijection(
+    component_panels: Any,
+    atomic_specs: Any,
+    *,
+    required_fields: Any,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    expected_tuples: list[tuple[Any, Any, Any, Any]] = []
+    if not isinstance(component_panels, list):
+        errors.append(_new_error("h0_atomic_component_panels_invalid", "component_panels must be a list."))
+        component_panels = []
+    for component in component_panels:
+        if not isinstance(component, dict):
+            errors.append(_new_error("h0_atomic_component_panel_invalid", "Each component panel must be an object."))
+            continue
+        component_id = component.get("component_id")
+        for panel_kind in ("causal", "control", "rival", "integrity"):
+            panel = component.get(panel_kind)
+            if not isinstance(panel, dict):
+                errors.append(
+                    _new_error(
+                        "h0_atomic_panel_kind_missing",
+                        "Each evidence component must declare causal, control, rival, and integrity panels.",
+                        component_id=component_id,
+                        panel_kind=panel_kind,
+                    )
+                )
+                continue
+            arm_ids = panel.get("arm_ids")
+            if not isinstance(arm_ids, list) or not arm_ids:
+                errors.append(
+                    _new_error(
+                        "h0_atomic_aggregate_only_coverage",
+                        "Aggregate panel ids cannot substitute for per-arm atomic coverage.",
+                        component_id=component_id,
+                        panel_kind=panel_kind,
+                    )
+                )
+                continue
+            for arm_id in arm_ids:
+                expected_tuples.append((component_id, panel.get("panel_id"), arm_id, panel.get("arm_role")))
+    if len(expected_tuples) != len(set(expected_tuples)):
+        errors.append(_new_error("h0_atomic_declared_tuple_duplicate", "Declared component/panel/arm/role tuples must be unique."))
+
+    required_field_set = set(required_fields) if isinstance(required_fields, list) else set()
+    if not isinstance(atomic_specs, list):
+        errors.append(_new_error("h0_atomic_specs_invalid", "atomic_specs must be a list."))
+        atomic_specs = []
+    actual_tuples: list[tuple[Any, Any, Any, Any]] = []
+    atomic_ids: list[Any] = []
+    for spec in atomic_specs:
+        if not isinstance(spec, dict):
+            errors.append(_new_error("h0_atomic_spec_not_object", "Each atomic contrast spec must be an object."))
+            continue
+        missing = sorted(field for field in required_field_set if field not in spec or spec[field] in (None, "", []))
+        if missing:
+            errors.append(
+                _new_error(
+                    "h0_atomic_spec_required_field_missing",
+                    "Every atomic contrast spec must carry the full frozen field set.",
+                    missing=missing,
+                )
+            )
+        actual_tuples.append(_atomic_tuple_key(spec))
+        atomic_ids.append(spec.get("atomic_contrast_id"))
+    if len(actual_tuples) != len(set(actual_tuples)):
+        errors.append(_new_error("h0_atomic_tuple_duplicate", "One tuple may map to only one atomic contrast."))
+    if len(atomic_ids) != len(set(atomic_ids)):
+        errors.append(_new_error("h0_atomic_id_duplicate", "atomic_contrast_id values must be unique."))
+    missing_tuples = sorted(set(expected_tuples) - set(actual_tuples), key=str)
+    orphan_tuples = sorted(set(actual_tuples) - set(expected_tuples), key=str)
+    if missing_tuples:
+        errors.append(
+            _new_error(
+                "h0_atomic_tuple_missing",
+                "Every declared component/panel/arm/role tuple requires an atomic contrast spec.",
+                missing=[list(item) for item in missing_tuples],
+            )
+        )
+    if orphan_tuples:
+        errors.append(
+            _new_error(
+                "h0_atomic_tuple_orphan",
+                "Atomic specs may not refer to undeclared or aggregate-only tuples.",
+                orphan=[list(item) for item in orphan_tuples],
+            )
+        )
+    return {
+        "producer_function": "validate_atomic_contrast_bijection",
+        "tuple_count": len(expected_tuples),
+        "validation_errors": errors,
+        "validation_warnings": [],
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
+def validate_effective_h0_path_authority(
+    contract_payload: Any,
+    *,
+    candidate_paths: list[str] | None = None,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    authority = contract_payload.get("path_authority") if isinstance(contract_payload, dict) else None
+    authority = authority if isinstance(authority, dict) else {}
+    actual_allowlist = authority.get("repo_write_allowlist")
+    if actual_allowlist != list(state_machine.K0_H0_REPO_WRITE_ALLOWLIST):
+        errors.append(
+            _new_error(
+                "h0_path_authority_allowlist_mismatch",
+                "The effective H0 contract must name the exact source/test and 23-artifact write allowlist.",
+                expected=list(state_machine.K0_H0_REPO_WRITE_ALLOWLIST),
+                actual=actual_allowlist,
+            )
+        )
+    if authority.get("allowed_external_side_effects") != list(
+        state_machine.K0_H0_EXTERNAL_SIDE_EFFECT_ALLOWLIST
+    ):
+        errors.append(
+            _new_error(
+                "h0_path_authority_external_side_effect_mismatch",
+                "Exactly one sealed heldout-preimage side effect is allowed outside the repo.",
+            )
+        )
+    allowed = set(state_machine.K0_H0_REPO_WRITE_ALLOWLIST)
+    unauthorized = sorted(_normalized_set(candidate_paths) - allowed)
+    if unauthorized:
+        errors.append(
+            _new_error(
+                "h0_path_authority_unauthorized_path",
+                "An H0 write path is not authorized by the effective contract.",
+                paths=unauthorized,
+            )
+        )
+    return {
+        "producer_function": "validate_effective_h0_path_authority",
+        "validation_errors": errors,
+        "validation_warnings": [],
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
+def validate_terminal_truth_table(contract_payload: Any) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    payload = contract_payload if isinstance(contract_payload, dict) else {}
+    evidence = payload.get("evidence_schema")
+    comparison = payload.get("comparison_contract")
+    specialness = payload.get("specialness_predicate")
+    evidence = evidence if isinstance(evidence, dict) else {}
+    comparison = comparison if isinstance(comparison, dict) else {}
+    specialness = specialness if isinstance(specialness, dict) else {}
+    if evidence.get("evidence_components") != list(state_machine.K0_H0_EVIDENCE_COMPONENT_IDS):
+        errors.append(_new_error("h0_truth_table_component_enum_invalid", "The evidence component enum must be the exact five-component list."))
+    if evidence.get("evidence_state") != list(state_machine.K0_H0_EVIDENCE_STATES):
+        errors.append(_new_error("h0_truth_table_evidence_state_invalid", "The evidence_state enum is incomplete or drifted."))
+    if evidence.get("v_special_is_evidence_component") is not False or evidence.get(
+        "fourth_verdict_axis_forbidden"
+    ) is not True:
+        errors.append(_new_error("h0_truth_table_v_special_axis_invalid", "V_special must remain a non-axis claim predicate."))
+    if comparison.get("control_comparison_state") != list(state_machine.K0_RED_FIELD_CORRECTED_CONTROL_STATES):
+        errors.append(_new_error("h0_truth_table_control_enum_invalid", "The control comparison enum is incomplete or drifted."))
+    if comparison.get("rival_comparison_state") != list(state_machine.K0_RED_FIELD_CORRECTED_RIVAL_STATES):
+        errors.append(_new_error("h0_truth_table_rival_enum_invalid", "The rival comparison enum is incomplete or drifted."))
+    if comparison.get("comparison_may_change_component_evidence_to_absent") is not False:
+        errors.append(_new_error("h0_truth_table_comparator_erasure_allowed", "Comparator results may not erase component evidence."))
+    if specialness.get("referenced_components") != list(state_machine.K0_H0_EVIDENCE_COMPONENT_IDS):
+        errors.append(_new_error("h0_truth_table_specialness_components_invalid", "Specialness must reference exactly the five evidence components."))
+
+    scenario_count = 0
+    for state_values in product(state_machine.K0_H0_EVIDENCE_STATES, repeat=5):
+        component_states = dict(zip(state_machine.K0_H0_EVIDENCE_COMPONENT_IDS, state_values))
+        for control_state, rival_state, integrity_valid in product(
+            state_machine.K0_RED_FIELD_CORRECTED_CONTROL_STATES,
+            state_machine.K0_RED_FIELD_CORRECTED_RIVAL_STATES,
+            (False, True),
+        ):
+            first = resolve_h0_terminal_bundle(
+                component_states=component_states,
+                integrity_valid=integrity_valid,
+                control_state=control_state,
+                rival_state=rival_state,
+            )
+            second = resolve_h0_terminal_bundle(
+                component_states=component_states,
+                integrity_valid=integrity_valid,
+                control_state=control_state,
+                rival_state=rival_state,
+            )
+            scenario_count += 1
+            if first != second or first["component_evidence"] != component_states:
+                errors.append(_new_error("h0_truth_table_non_deterministic_or_erasing", "The terminal resolver is not deterministic or preserved component evidence was erased."))
+                break
+        if errors and errors[-1]["code"] == "h0_truth_table_non_deterministic_or_erasing":
+            break
+    return {
+        "producer_function": "validate_terminal_truth_table",
+        "scenario_count": scenario_count,
+        "validation_errors": errors,
+        "validation_warnings": [],
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
+def validate_effective_h0_contract(contract_payload: Any) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    payload = contract_payload if isinstance(contract_payload, dict) else {}
+    if not isinstance(contract_payload, dict):
+        errors.append(_new_error("h0_effective_contract_not_object", "The effective H0 contract must be a JSON object."))
+    if payload.get("task_id") != state_machine.K0_H0_ADMISSION_PIN["task_id"]:
+        errors.append(_new_error("h0_effective_contract_task_id_mismatch", "The effective contract task id is drifted."))
+    authority = payload.get("authority")
+    authority = authority if isinstance(authority, dict) else {}
+    if (
+        authority.get("effective_semantic_source") != state_machine.K0_H0_EFFECTIVE_CONTRACT_PATH
+        or authority.get("single_effective_semantic_source") is not True
+        or authority.get("implicit_inheritance_forbidden") is not True
+        or authority.get("historical_objects_have_no_implicit_semantic_authority") is not True
+        or authority.get("omitted_historical_fields_remain_effective") is not False
+    ):
+        errors.append(_new_error("h0_effective_authority_invalid", "The replacement must be the sole explicit semantic source with no implicit inheritance."))
+
+    ceilings = payload.get("claim_ceilings")
+    ceilings = ceilings if isinstance(ceilings, dict) else {}
+    admission = ceilings.get("admission_task") if isinstance(ceilings.get("admission_task"), dict) else {}
+    future = ceilings.get("future_h0") if isinstance(ceilings.get("future_h0"), dict) else {}
+    if (
+        admission.get("exact") != state_machine.K0_H0_ADMISSION_CLAIM_CEILING
+        or future.get("exact") != state_machine.K0_H0_FUTURE_CLAIM_CEILING
+        or ceilings.get("interchangeable") is not False
+    ):
+        errors.append(_new_error("h0_effective_claim_ceilings_invalid", "Admission and future-H0 claim ceilings are exact, separate, and non-interchangeable."))
+
+    absence = payload.get("component_absence_contract")
+    absence = absence if isinstance(absence, dict) else {}
+    if (
+        absence.get("allowed_powered_proof_kinds")
+        != ["CAUSAL_NO_CONTRIBUTION", "CAUSAL_WRONG_SIGN"]
+        or absence.get("causal_underpowered_mapping") != "INVALID_INSTRUMENT"
+        or absence.get("failure_to_reject_is_absence") is not False
+        or absence.get("powered_decision_required") is not True
+    ):
+        errors.append(_new_error("h0_effective_absence_contract_invalid", "ABSENT must require one of two powered causal proof kinds; underpower is invalid."))
+    comparison = payload.get("comparison_contract")
+    comparison = comparison if isinstance(comparison, dict) else {}
+    if (
+        comparison.get("control_underpowered_mapping") != "CONTROL_INCONCLUSIVE"
+        or comparison.get("rival_underpowered_mapping") != "RIVAL_INCONCLUSIVE"
+        or comparison.get("comparison_may_change_component_evidence_to_absent") is not False
+    ):
+        errors.append(_new_error("h0_effective_comparison_contract_invalid", "Control/rival underpower and comparator scope are drifted."))
+
+    truth_table = validate_terminal_truth_table(payload)
+    errors.extend(truth_table["validation_errors"])
+    path_authority = validate_effective_h0_path_authority(payload)
+    errors.extend(path_authority["validation_errors"])
+    bijection_contract = payload.get("atomic_contrast_bijection")
+    bijection_contract = bijection_contract if isinstance(bijection_contract, dict) else {}
+    expected_atomic_fields = {
+        "atomic_contrast_id", "component_id", "panel_id", "arm_id", "arm_role",
+        "full_arm_id", "intervention_arm_id", "reference_arm_id", "family_ids",
+        "protocol_ids", "estimand_id", "expected_sign", "success_signature",
+        "failure_signature", "ambiguous_signature", "power_spec_id", "seed_block_id",
+        "blast_radius_id", "resolver_function",
+    }
+    required_atomic_fields = bijection_contract.get("required_atomic_spec_fields")
+    if (
+        set(required_atomic_fields or []) != expected_atomic_fields
+        or bijection_contract.get("one_tuple_to_one_atomic_contrast") is not True
+        or bijection_contract.get("aggregate_panel_id_substitution_forbidden") is not True
+        or bijection_contract.get("orphan_atomic_spec_forbidden") is not True
+    ):
+        errors.append(_new_error("h0_effective_atomic_contract_invalid", "The atomic tuple/spec bijection schema is incomplete or drifted."))
+    atomic_witness = _build_atomic_bijection_witness(payload.get("component_panels"))
+    atomic_result = validate_atomic_contrast_bijection(
+        payload.get("component_panels"),
+        atomic_witness,
+        required_fields=required_atomic_fields,
+    )
+    errors.extend(atomic_result["validation_errors"])
+
+    historical = payload.get("historical_provenance")
+    historical = historical if isinstance(historical, dict) else {}
+    historical_objects = historical.get("objects")
+    if historical.get("semantic_status") != "HISTORICAL_PINS_ONLY" or not isinstance(
+        historical_objects, list
+    ) or len(historical_objects) != 5:
+        errors.append(_new_error("h0_effective_historical_pins_invalid", "All five historical card/contract objects must remain pinned as provenance only."))
+
+    acceptance = payload.get("acceptance_contract")
+    acceptance = acceptance if isinstance(acceptance, dict) else {}
+    if (
+        acceptance.get("h0_acceptance_hashes_all_required_siblings") is not True
+        or acceptance.get("h0_acceptance_self_hash_forbidden") is not True
+        or acceptance.get("h0_acceptance_self_path_excluded_from_sibling_manifest") is not True
+    ):
+        errors.append(_new_error("h0_effective_acceptance_hash_contract_invalid", "h0_acceptance must hash all required siblings while excluding itself."))
+    return {
+        "producer_function": "validate_effective_h0_contract",
+        "truth_table_scenarios": truth_table["scenario_count"],
+        "atomic_tuple_count": atomic_result["tuple_count"],
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
 
 
 def validate_red_field_contract(contract_payload: Any) -> dict[str, Any]:
@@ -1416,6 +1881,172 @@ def validate_red_field_correction_repository(
     }
 
 
+def validate_h0_admission_repository(
+    *,
+    repo_root: Path,
+    route_state_payload: Any,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    input_artifacts = [
+        state_machine.K0_H0_ADMISSION_CARD_PATH,
+        state_machine.K0_H0_EFFECTIVE_CONTRACT_PATH,
+        state_machine.K0_RED_FIELD_ADDENDUM_CARD_PATH,
+        state_machine.K0_RED_FIELD_CONTRACT_PATH,
+        state_machine.K0_RED_FIELD_CORRECTION_CARD_PATH,
+        state_machine.K0_RED_FIELD_CORRECTION_CONTRACT_PATH,
+        "docs/codex/tasks/ITL-K0-H0-H1-INSTRUMENT-001A.md",
+    ]
+    state = route_state_payload if isinstance(route_state_payload, dict) else {}
+    if not isinstance(route_state_payload, dict):
+        errors.append(_new_error("h0_admission_route_state_missing", "The K0 route state is required for effective-contract validation."))
+    if state.get("h0_admission_contract_pin") != state_machine.K0_H0_ADMISSION_PIN:
+        errors.append(
+            _new_error(
+                "h0_admission_pin_mismatch",
+                "The route must carry the exact Phase-A admission card/contract pin.",
+                expected=state_machine.K0_H0_ADMISSION_PIN,
+                actual=state.get("h0_admission_contract_pin"),
+            )
+        )
+    if state.get("red_field_addendum_pin") != state_machine.K0_RED_FIELD_ADDENDUM_PIN:
+        errors.append(_new_error("h0_admission_historical_addendum_pin_missing_or_drifted", "The original Red addendum pin must remain as historical provenance."))
+    if state.get("red_field_correction_pin") != state_machine.K0_RED_FIELD_CORRECTION_PIN:
+        errors.append(_new_error("h0_admission_historical_correction_pin_missing_or_drifted", "The original Red correction pin must remain as historical provenance."))
+    if state.get("effective_h0_authority") != state_machine.K0_H0_EFFECTIVE_AUTHORITY:
+        errors.append(_new_error("h0_admission_effective_authority_mismatch", "The route must identify one effective H0 semantic source and deny historical implicit inheritance."))
+
+    pin = state_machine.K0_H0_ADMISSION_PIN
+    contract_payload: Any = None
+    try:
+        head = str(_git_output(repo_root, "rev-parse", "HEAD"))
+        if not _git_is_ancestor(repo_root, pin["bank_commit"], head):
+            errors.append(
+                _new_error(
+                    "h0_admission_bank_commit_not_ancestor",
+                    "The Phase-A bank commit must be an ancestor of Phase-B validation HEAD.",
+                    bank_commit=pin["bank_commit"],
+                    validation_head=head,
+                )
+            )
+        actual_card_blob = str(
+            _git_output(repo_root, "rev-parse", f"{pin['bank_commit']}:{pin['card_path']}")
+        )
+        actual_contract_blob = str(
+            _git_output(repo_root, "rev-parse", f"{pin['bank_commit']}:{pin['contract_path']}")
+        )
+        card_bytes = _git_output(repo_root, "cat-file", "blob", actual_card_blob, text=False)
+        contract_bytes = _git_output(repo_root, "cat-file", "blob", actual_contract_blob, text=False)
+        assert isinstance(card_bytes, bytes)
+        assert isinstance(contract_bytes, bytes)
+        actual_pin = {
+            "card_blob": actual_card_blob,
+            "contract_blob": actual_contract_blob,
+            "contract_sha256": hashlib.sha256(contract_bytes).hexdigest(),
+        }
+        expected_pin = {
+            key: pin[key] for key in ("card_blob", "contract_blob", "contract_sha256")
+        }
+        if actual_pin != expected_pin:
+            errors.append(
+                _new_error(
+                    "h0_admission_committed_object_pin_drift",
+                    "The committed Phase-A card/contract object readback does not match its pin.",
+                    expected=expected_pin,
+                    actual=actual_pin,
+                )
+            )
+        if (
+            (repo_root / pin["card_path"]).read_bytes() != card_bytes
+            or (repo_root / pin["contract_path"]).read_bytes() != contract_bytes
+        ):
+            errors.append(
+                _new_error(
+                    "h0_admission_phase_a_working_bytes_drift",
+                    "The Phase-A card and contract working-tree bytes must remain identical to the banked objects.",
+                )
+            )
+        contract_payload = json.loads(contract_bytes.decode("utf-8"))
+        card_text = card_bytes.decode("utf-8")
+        for exact_ceiling in (
+            state_machine.K0_H0_ADMISSION_CLAIM_CEILING,
+            state_machine.K0_H0_FUTURE_CLAIM_CEILING,
+        ):
+            if exact_ceiling not in card_text:
+                errors.append(
+                    _new_error(
+                        "h0_admission_card_claim_ceiling_missing",
+                        "The committed task card must contain both exact, separate claim ceilings.",
+                        ceiling=exact_ceiling,
+                    )
+                )
+    except (
+        AssertionError,
+        UnicodeDecodeError,
+        json.JSONDecodeError,
+        OSError,
+        subprocess.SubprocessError,
+    ) as exc:
+        errors.append(
+            _new_error(
+                "h0_admission_committed_object_readback_failed",
+                "The Phase-A card/contract committed objects could not be read and parsed.",
+                error=str(exc),
+            )
+        )
+
+    contract_result = validate_effective_h0_contract(contract_payload)
+    errors.extend(contract_result["validation_errors"])
+    warnings.extend(contract_result["validation_warnings"])
+    historical = contract_payload.get("historical_provenance", {}) if isinstance(
+        contract_payload, dict
+    ) else {}
+    historical_objects = historical.get("objects") if isinstance(historical, dict) else []
+    if isinstance(historical_objects, list):
+        for historical_pin in historical_objects:
+            if not isinstance(historical_pin, dict):
+                errors.append(_new_error("h0_admission_historical_object_invalid", "Historical provenance entries must be objects."))
+                continue
+            try:
+                if not _git_is_ancestor(repo_root, historical_pin["bank_commit"], "HEAD"):
+                    raise ValueError("historical bank commit is not an ancestor")
+                actual_blob = str(
+                    _git_output(
+                        repo_root,
+                        "rev-parse",
+                        f"{historical_pin['bank_commit']}:{historical_pin['path']}",
+                    )
+                )
+                committed_bytes = _git_output(repo_root, "cat-file", "blob", actual_blob, text=False)
+                assert isinstance(committed_bytes, bytes)
+                working_path = repo_root / historical_pin["path"]
+                working_bytes = working_path.read_bytes()
+                if (
+                    actual_blob != historical_pin.get("blob")
+                    or hashlib.sha256(committed_bytes).hexdigest() != historical_pin.get("sha256")
+                    or working_bytes != committed_bytes
+                ):
+                    raise ValueError("historical object pin or working-tree bytes drifted")
+            except (AssertionError, KeyError, OSError, subprocess.SubprocessError, ValueError) as exc:
+                errors.append(
+                    _new_error(
+                        "h0_admission_historical_object_drift",
+                        "A historical H0/Red card or contract was deleted, rewritten, or no longer matches its committed pin.",
+                        path=historical_pin.get("path"),
+                        error=str(exc),
+                    )
+                )
+    return {
+        "producer_function": "validate_h0_admission_repository",
+        "input_artifacts": input_artifacts,
+        "truth_table_scenarios": contract_result.get("truth_table_scenarios", 0),
+        "atomic_tuple_count": contract_result.get("atomic_tuple_count", 0),
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
 def _forbidden_current_frontier_authorizations(
     *,
     program_state_payload: dict[str, Any],
@@ -1537,7 +2168,7 @@ def validate_route_payload(
                 errors.append(
                     _new_error(
                         "k0_ready_implementation_authorization_not_explicitly_true",
-                        "READY_TO_IMPLEMENT must explicitly authorize only the frozen first-pair targets.",
+                        "READY_TO_IMPLEMENT must explicitly authorize only Foundation while H0 admission is review-required.",
                     )
                 )
             if state_payload.get("phase") != state_machine.K0_READY_PHASE:
@@ -1569,7 +2200,7 @@ def validate_route_payload(
                 errors.append(
                     _new_error(
                         "k0_ready_authorizations_mismatch",
-                        "READY_TO_IMPLEMENT may authorize Foundation and H0 only; every other authorization must remain explicit false.",
+                        "READY_TO_IMPLEMENT may authorize Foundation only; H0 and every downstream authorization must remain explicit false.",
                         invalid_true=invalid_true_authorizations,
                         invalid_false=invalid_false_authorizations,
                         unexpected_or_missing_keys=sorted(actual_authorization_keys ^ expected_authorization_keys),
@@ -1579,7 +2210,7 @@ def validate_route_payload(
                 errors.append(
                     _new_error(
                         "k0_ready_allowed_actions_mismatch",
-                        "The READY_TO_IMPLEMENT boundary must expose only the frozen first-pair actions and validation.",
+                        "The review-required boundary may expose Foundation implementation, independent admission review, and validation only.",
                         expected=list(state_machine.K0_READY_ALLOWED_ACTIONS),
                         actual=allowed_actions,
                     )
@@ -1590,7 +2221,7 @@ def validate_route_payload(
                 errors.append(
                     _new_error(
                         "k0_ready_implementation_targets_mismatch",
-                        "The READY_TO_IMPLEMENT boundary must name exactly Foundation and H0 in frozen order.",
+                        "The review-required boundary must name Foundation as the sole implementation target.",
                         expected=list(state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS),
                         actual=state_payload.get("authorized_implementation_targets"),
                     )
@@ -1599,7 +2230,7 @@ def validate_route_payload(
                 errors.append(
                     _new_error(
                         "k0_ready_child_authorizations_mismatch",
-                        "The child authorization map must contain exactly two true and four false frozen child entries.",
+                        "The child authorization map must keep Foundation true and H0 plus all downstream children false.",
                         expected=state_machine.K0_READY_CHILD_AUTHORIZATIONS,
                         actual=state_payload.get("child_authorizations"),
                     )
@@ -1671,24 +2302,37 @@ def validate_route_payload(
                         actual=red_field_correction_pin,
                     )
                 )
-            if (
-                isinstance(state_payload.get("child_authorizations"), dict)
-                and state_payload["child_authorizations"].get("ITL-K0-H0-H1-INSTRUMENT-001A:H0") is True
-                and (
-                    not isinstance(red_field_pin, dict)
-                    or red_field_pin.get("red_field_gate_status") != "BANKED_AND_ENFORCED"
-                    or not isinstance(red_field_correction_pin, dict)
-                    or red_field_correction_pin.get("red_field_correction_gate_status")
-                    != "BANKED_AND_ENFORCED"
+            admission_pin = state_payload.get("h0_admission_contract_pin")
+            if admission_pin != state_machine.K0_H0_ADMISSION_PIN:
+                errors.append(
+                    _new_error(
+                        "k0_h0_admission_pin_mismatch",
+                        "The route must carry the exact banked/enforced/review-required admission pin.",
+                        expected=state_machine.K0_H0_ADMISSION_PIN,
+                        actual=admission_pin,
+                    )
                 )
+            if state_payload.get("effective_h0_authority") != state_machine.K0_H0_EFFECTIVE_AUTHORITY:
+                errors.append(
+                    _new_error(
+                        "k0_h0_effective_authority_mismatch",
+                        "The consolidated contract must be the sole effective H0 semantic source.",
+                        expected=state_machine.K0_H0_EFFECTIVE_AUTHORITY,
+                        actual=state_payload.get("effective_h0_authority"),
+                    )
+                )
+            child_authorizations = state_payload.get("child_authorizations")
+            if (
+                isinstance(child_authorizations, dict)
+                and child_authorizations.get("ITL-K0-H0-H1-INSTRUMENT-001A:H0") is True
             ):
                 errors.append(
                     _new_error(
-                        "k0_h0_authorized_without_enforced_red_field_gate",
-                        "H0 may remain true only when both exact Red-field gates are banked and enforced.",
+                        "k0_h0_true_while_admission_review_required",
+                        "H0 must remain false while the consolidated admission contract is review-required.",
                     )
                 )
-            expected_ledger_prefix = state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX
+            expected_ledger_prefix = state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX
 
         if not isinstance(ledger_readback, dict):
             errors.append(
@@ -1721,12 +2365,13 @@ def validate_route_payload(
                     state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                     state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
                     state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
+                    state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX,
                 ]
                 if ledger_readback.get("preserved_entry_prefixes") != expected_preserved_prefixes:
                     errors.append(
                         _new_error(
                             "k0_ready_preserved_ledger_prefix_mismatch",
-                            "The corrected Red-field READY_TO_IMPLEMENT boundary must preserve L-020 through L-022.",
+                            "The consolidated admission boundary must preserve L-020 through L-023.",
                             expected=expected_preserved_prefixes,
                             actual=ledger_readback.get("preserved_entry_prefixes"),
                         )
@@ -1735,7 +2380,7 @@ def validate_route_payload(
                     errors.append(
                         _new_error(
                             "k0_ready_preserved_ledger_hash_mismatch",
-                            "The Red-field route must pin the exact full-line SHA-256 values for L-020 and L-021.",
+                            "The admission route must pin the exact full-line SHA-256 values for L-020 through L-023.",
                             expected=state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES,
                             actual=ledger_readback.get("preserved_entry_sha256"),
                         )
@@ -1898,7 +2543,20 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
             )
         )
     else:
-        for line_number, line in enumerate(events_path.read_text(encoding="utf-8").splitlines(), start=1):
+        raw_event_bytes = events_path.read_bytes()
+        preserved_prefix_bytes = b"".join(
+            raw_event_bytes.splitlines(keepends=True)[: state_machine.K0_H0_PRESERVED_EVENT_COUNT]
+        )
+        if hashlib.sha256(preserved_prefix_bytes).hexdigest() != state_machine.K0_H0_PRESERVED_EVENTS_SHA256:
+            errors.append(
+                _new_error(
+                    "k0_h0_preserved_event_bytes_drift",
+                    "The five historical K0 event lines must remain byte-identical.",
+                    expected_sha256=state_machine.K0_H0_PRESERVED_EVENTS_SHA256,
+                    actual_sha256=hashlib.sha256(preserved_prefix_bytes).hexdigest(),
+                )
+            )
+        for line_number, line in enumerate(raw_event_bytes.decode("utf-8").splitlines(), start=1):
             if not line.strip():
                 continue
             try:
@@ -1976,7 +2634,7 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
         event = correction_matches[0]
         if (
             event.get("route_id") != state_machine.K0_PARENT_ROUTE_ID
-            or event.get("phase") != state_machine.K0_READY_PHASE
+            or event.get("phase") != state_machine.K0_RED_FIELD_CORRECTION_PHASE
             or event.get("current_state") != "READY_TO_IMPLEMENT"
             or event.get("red_field_addendum_pin") != state_machine.K0_RED_FIELD_ADDENDUM_PIN
             or event.get("red_field_correction_pin") != state_machine.K0_RED_FIELD_CORRECTION_PIN
@@ -1994,6 +2652,37 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
                 _new_error(
                     "k0_red_field_correction_event_contract_mismatch",
                     "The correction event must carry the exact phase, both pins, and preserved authorization boundary.",
+                )
+            )
+
+    admission_matches = [
+        event for event in events if event.get("event") == state_machine.K0_H0_ADMISSION_EVENT
+    ]
+    if len(admission_matches) != 1:
+        errors.append(
+            _new_error(
+                "k0_h0_admission_event_missing_or_duplicate",
+                "Exactly one consolidated H0 admission review-required event must be appended.",
+                match_count=len(admission_matches),
+                path=_posix(events_path),
+            )
+        )
+    else:
+        event = admission_matches[0]
+        if (
+            event.get("route_id") != state_machine.K0_PARENT_ROUTE_ID
+            or event.get("current_state") != "READY_TO_IMPLEMENT"
+            or event.get("phase") != state_machine.K0_READY_PHASE
+            or event.get("h0_admission_contract_pin") != state_machine.K0_H0_ADMISSION_PIN
+            or event.get("effective_h0_authority") != state_machine.K0_H0_EFFECTIVE_AUTHORITY
+            or event.get("foundation_authorized") is not True
+            or event.get("h0_authorized") is not False
+            or event.get("downstream_children_authorized") is not False
+        ):
+            errors.append(
+                _new_error(
+                    "k0_h0_admission_event_contract_mismatch",
+                    "The admission event must carry the exact review-required phase, pin, authority, and false H0/downstream boundary.",
                 )
             )
 
@@ -2218,7 +2907,9 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                         "child_authorizations": state_machine.K0_READY_CHILD_AUTHORIZATIONS,
                         "red_field_addendum_pin": state_machine.K0_RED_FIELD_ADDENDUM_PIN,
                         "red_field_correction_pin": state_machine.K0_RED_FIELD_CORRECTION_PIN,
-                        "current_route_posture": "k0_dual_track_first_pair_ready_with_red_field_correction",
+                        "h0_admission_contract_pin": state_machine.K0_H0_ADMISSION_PIN,
+                        "effective_h0_authority": state_machine.K0_H0_EFFECTIVE_AUTHORITY,
+                        "current_route_posture": "foundation_ready_h0_admission_002a_review_required",
                     }
                     for field, expected in expected_program_fields.items():
                         if program_state_payload.get(field) != expected:
@@ -2248,7 +2939,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                     ledger_relative_path = ledger_readback.get("path")
                     required_entry_prefix = ledger_readback.get("required_entry_prefix")
                     expected_k0_ledger_prefix = (
-                        state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX
+                        state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX
                         if route_current_state == "READY_TO_IMPLEMENT"
                         else state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
                     )
@@ -2349,12 +3040,13 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                         state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                                         state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
                                         state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
+                                        state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX,
                                     ]
                                     if preserved_prefixes != expected_preserved_prefixes:
                                         errors.append(
                                             _new_error(
                                                 "current_frontier_k0_preserved_ledger_contract_mismatch",
-                                                "The corrected Red-field READY_TO_IMPLEMENT frontier must preserve L-020 through L-022.",
+                                                "The consolidated H0 admission frontier must preserve L-020 through L-023.",
                                                 expected=expected_preserved_prefixes,
                                                 actual=preserved_prefixes,
                                             )
@@ -2365,7 +3057,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                             errors.append(
                                                 _new_error(
                                                     "current_frontier_k0_preserved_ledger_hash_contract_mismatch",
-                                                    "The route state must pin the exact L-020/L-021 full-line hashes.",
+                                                    "The route state must pin the exact L-020 through L-023 full-line hashes.",
                                                     expected=state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES,
                                                     actual=preserved_hashes,
                                                 )
@@ -2374,6 +3066,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                             state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX: state_machine.K0_PARENT_LEDGER_LINE_SHA256,
                                             state_machine.K0_READY_LEDGER_ENTRY_PREFIX: state_machine.K0_READY_LEDGER_LINE_SHA256,
                                             state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX: state_machine.K0_RED_FIELD_LEDGER_LINE_SHA256,
+                                            state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX: state_machine.K0_RED_FIELD_CORRECTION_LEDGER_LINE_SHA256,
                                         }
                                         for preserved_prefix in preserved_prefixes:
                                             preserved_matches = [
@@ -2508,6 +3201,13 @@ def build_validation_report(
         "validation_warnings": [],
         "verdict": "not_applicable",
     }
+    h0_admission = {
+        "producer_function": "validate_h0_admission_repository",
+        "input_artifacts": [],
+        "validation_errors": [],
+        "validation_warnings": [],
+        "verdict": "not_applicable",
+    }
     k0_state_path = routes_dir / state_machine.K0_PARENT_ROUTE_ID / "state.json"
     if k0_state_path.is_file():
         try:
@@ -2523,6 +3223,10 @@ def build_validation_report(
                 repo_root=root,
                 route_state_payload=k0_state_payload,
             )
+            h0_admission = validate_h0_admission_repository(
+                repo_root=root,
+                route_state_payload=k0_state_payload,
+            )
     input_artifacts = [
         f"{state_machine.TASK_ARTIFACT_DIR}/routes/{artifact}"
         for artifact in route_tree["input_artifacts"]
@@ -2530,6 +3234,7 @@ def build_validation_report(
     input_artifacts.extend(program_state["input_artifacts"])
     input_artifacts.extend(red_field_addendum["input_artifacts"])
     input_artifacts.extend(red_field_correction["input_artifacts"])
+    input_artifacts.extend(h0_admission["input_artifacts"])
     schema_dir = root / state_machine.TASK_ARTIFACT_DIR / "schemas"
     for schema in sorted(schema_dir.glob("*.schema.json")) if schema_dir.exists() else []:
         input_artifacts.append(_relative_posix(schema, root))
@@ -2539,12 +3244,14 @@ def build_validation_report(
         + program_state["validation_errors"]
         + red_field_addendum["validation_errors"]
         + red_field_correction["validation_errors"]
+        + h0_admission["validation_errors"]
     )
     validation_warnings = (
         route_tree["validation_warnings"]
         + program_state["validation_warnings"]
         + red_field_addendum["validation_warnings"]
         + red_field_correction["validation_warnings"]
+        + h0_admission["validation_warnings"]
     )
 
     return {
@@ -2552,7 +3259,7 @@ def build_validation_report(
         "producer_function": "build_validation_report",
         "input_artifacts": sorted(set(input_artifacts)),
         "run_id": f"{state_machine.TASK_ID.lower()}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}",
-        "aggregation_rule": "verdict is pass iff validate_routes_tree, validate_program_state, and applicable original-addendum and correction committed-object validators return zero validation_errors",
+        "aggregation_rule": "verdict is pass iff route/program validation, historical Red-object validation, and the sole effective H0 admission contract repository validator return zero validation_errors",
         "code_path_hash": code_path_hash(),
         "validation_errors": validation_errors,
         "validation_warnings": validation_warnings,
@@ -2560,6 +3267,9 @@ def build_validation_report(
         "program_state_verdict": program_state["verdict"],
         "red_field_addendum_verdict": red_field_addendum["verdict"],
         "red_field_correction_verdict": red_field_correction["verdict"],
+        "h0_admission_contract_verdict": h0_admission["verdict"],
+        "h0_admission_truth_table_scenarios": h0_admission.get("truth_table_scenarios", 0),
+        "h0_admission_atomic_tuple_count": h0_admission.get("atomic_tuple_count", 0),
         "route_count": route_tree["route_count"],
         "routes": [
             {
@@ -2597,6 +3307,9 @@ def build_status(repo_root: str | Path) -> dict[str, Any]:
         "program_state_verdict": report["program_state_verdict"],
         "red_field_addendum_verdict": report["red_field_addendum_verdict"],
         "red_field_correction_verdict": report["red_field_correction_verdict"],
+        "h0_admission_contract_verdict": report["h0_admission_contract_verdict"],
+        "h0_admission_truth_table_scenarios": report["h0_admission_truth_table_scenarios"],
+        "h0_admission_atomic_tuple_count": report["h0_admission_atomic_tuple_count"],
         "routes": report["routes"],
         "validation_error_count": len(report["validation_errors"]),
         "validation_warning_count": len(report["validation_warnings"]),
@@ -2615,6 +3328,9 @@ def build_dashboard(repo_root: str | Path) -> dict[str, Any]:
         "program_state_verdict": report["program_state_verdict"],
         "red_field_addendum_verdict": report["red_field_addendum_verdict"],
         "red_field_correction_verdict": report["red_field_correction_verdict"],
+        "h0_admission_contract_verdict": report["h0_admission_contract_verdict"],
+        "h0_admission_truth_table_scenarios": report["h0_admission_truth_table_scenarios"],
+        "h0_admission_atomic_tuple_count": report["h0_admission_atomic_tuple_count"],
         "routes": report["routes"],
         "validation_error_codes": sorted({error["code"] for error in report["validation_errors"]}),
         "validation_warning_codes": sorted({warning["code"] for warning in report["validation_warnings"]}),
