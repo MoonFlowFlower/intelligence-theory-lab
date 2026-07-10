@@ -122,8 +122,11 @@ def _valid_k0_ready_state() -> dict:
     state["child_authorizations"] = deepcopy(state_machine.K0_READY_CHILD_AUTHORIZATIONS)
     state["red_field_addendum_pin"] = deepcopy(state_machine.K0_RED_FIELD_ADDENDUM_PIN)
     state["red_field_correction_pin"] = deepcopy(state_machine.K0_RED_FIELD_CORRECTION_PIN)
-    state["h0_admission_contract_pin"] = deepcopy(state_machine.K0_H0_ADMISSION_PIN)
-    state["effective_h0_authority"] = deepcopy(state_machine.K0_H0_EFFECTIVE_AUTHORITY)
+    state["h0_admission_contract_pin"] = deepcopy(
+        state_machine.K0_H0_ADMISSION_HISTORICAL_PIN
+    )
+    state["effective_h0_authority"] = deepcopy(state_machine.K0_CODE_FIRST_AUTHORITY)
+    state["code_first_prebank_task_pin"] = deepcopy(state_machine.K0_CODE_FIRST_TASK_PIN)
     state["authorizations"] = {
         key: key in state_machine.K0_READY_REQUIRED_TRUE_AUTHORIZATIONS
         for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
@@ -134,14 +137,17 @@ def _valid_k0_ready_state() -> dict:
         "transition_card": state_machine.K0_READY_TRANSITION_CARD_PATH,
         "ledger": {
             "path": state_machine.K0_PARENT_LEDGER_PATH,
-            "required_entry_prefix": state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX,
+            "required_entry_prefix": state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX,
             "preserved_entry_prefixes": [
                 state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX,
+                state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX,
             ],
-            "preserved_entry_sha256": deepcopy(state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES),
+            "preserved_entry_sha256": deepcopy(
+                state_machine.K0_CODE_FIRST_PRESERVED_LEDGER_HASHES
+            ),
         },
     }
     return state
@@ -192,10 +198,29 @@ def _valid_k0_h0_admission_event() -> dict:
         "event": state_machine.K0_H0_ADMISSION_EVENT,
         "route_id": state_machine.K0_PARENT_ROUTE_ID,
         "current_state": "READY_TO_IMPLEMENT",
-        "phase": state_machine.K0_READY_PHASE,
+        "phase": state_machine.K0_H0_ADMISSION_PHASE,
         "h0_admission_contract_pin": deepcopy(state_machine.K0_H0_ADMISSION_PIN),
         "effective_h0_authority": deepcopy(state_machine.K0_H0_EFFECTIVE_AUTHORITY),
         "foundation_authorized": True,
+        "h0_authorized": False,
+        "downstream_children_authorized": False,
+    }
+
+
+def _valid_k0_code_first_prebank_event() -> dict:
+    state_machine, _ = _validator()
+    return {
+        "event": state_machine.K0_CODE_FIRST_AUTH_EVENT,
+        "route_id": state_machine.K0_PARENT_ROUTE_ID,
+        "current_state": "READY_TO_IMPLEMENT",
+        "phase": state_machine.K0_READY_PHASE,
+        "code_first_prebank_task_pin": deepcopy(state_machine.K0_CODE_FIRST_TASK_PIN),
+        "authorized_implementation_targets": list(
+            state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS
+        ),
+        "h0_admission_002a_status": "ADMISSION_SEMANTIC_REVIEW_FAILED_HISTORICAL_ONLY",
+        "foundation_authorized": True,
+        "code_first_prebank_authorized": True,
         "h0_authorized": False,
         "downstream_children_authorized": False,
     }
@@ -898,16 +923,22 @@ def test_valid_committed_red_field_correction_repository_contract_passes():
     assert result["validation_errors"] == []
 
 
-def test_valid_committed_h0_admission_repository_contract_passes():
+def test_current_route_uses_historical_pins_without_semantic_revalidation():
     _, validator = _validator()
     repo_root = Path(__file__).resolve().parents[2]
-    result = validator.validate_h0_admission_repository(
+    result = validator.validate_historical_h0_object_pins(
         repo_root=repo_root,
         route_state_payload=_valid_k0_ready_state(),
     )
     assert result["verdict"] == "pass"
-    assert result["truth_table_scenarios"] == 73728
-    assert result["atomic_tuple_count"] > 0
+    assert result["historical_only"] is True
+    assert result["semantic_validation_performed"] is False
+
+    task_result = validator.validate_code_first_prebank_task_pin(
+        repo_root=repo_root,
+        route_state_payload=_valid_k0_ready_state(),
+    )
+    assert task_result["verdict"] == "pass"
 
 
 def test_h0_admission_repository_rejects_non_ancestor_bank(monkeypatch):
@@ -921,11 +952,11 @@ def test_h0_admission_repository_rejects_non_ancestor_bank(monkeypatch):
         return original(root, ancestor, descendant)
 
     monkeypatch.setattr(validator, "_git_is_ancestor", selective_ancestry)
-    result = validator.validate_h0_admission_repository(
+    result = validator.validate_historical_h0_object_pins(
         repo_root=repo_root,
         route_state_payload=_valid_k0_ready_state(),
     )
-    assert "h0_admission_bank_commit_not_ancestor" in _error_codes(result)
+    assert "h0_historical_committed_object_drift" in _error_codes(result)
 
 
 def test_h0_admission_repository_rejects_modified_historical_bytes(monkeypatch):
@@ -942,11 +973,11 @@ def test_h0_admission_repository_rejects_modified_historical_bytes(monkeypatch):
         return data
 
     monkeypatch.setattr(Path, "read_bytes", altered_read_bytes)
-    result = validator.validate_h0_admission_repository(
+    result = validator.validate_historical_h0_object_pins(
         repo_root=repo_root,
         route_state_payload=_valid_k0_ready_state(),
     )
-    assert "h0_admission_historical_object_drift" in _error_codes(result)
+    assert "h0_historical_committed_object_drift" in _error_codes(result)
 
 
 def test_red_field_correction_repository_rejects_non_ancestor_bank(monkeypatch):
@@ -1253,7 +1284,7 @@ def test_k0_red_field_correction_event_rejects_missing_or_duplicate(tmp_path):
     assert "k0_red_field_correction_event_missing_or_duplicate" in _error_codes(duplicate)
 
 
-def test_h0_admission_event_is_unique_and_exact(tmp_path):
+def test_code_first_prebank_event_is_unique_and_exact(tmp_path):
     _, validator = _validator()
     import json
 
@@ -1271,13 +1302,13 @@ def test_h0_admission_event_is_unique_and_exact(tmp_path):
 
     missing_path = tmp_path / "missing.jsonl"
     missing_path.write_text("\n".join(lines[:-1]) + "\n", encoding="utf-8")
-    assert "k0_h0_admission_event_missing_or_duplicate" in _error_codes(
+    assert "k0_code_first_prebank_event_missing_or_duplicate" in _error_codes(
         validator.validate_k0_red_field_event(missing_path)
     )
 
     duplicate_path = tmp_path / "duplicate.jsonl"
     duplicate_path.write_text("\n".join(lines + [lines[-1]]) + "\n", encoding="utf-8")
-    assert "k0_h0_admission_event_missing_or_duplicate" in _error_codes(
+    assert "k0_code_first_prebank_event_missing_or_duplicate" in _error_codes(
         validator.validate_k0_red_field_event(duplicate_path)
     )
 
@@ -1288,8 +1319,16 @@ def test_h0_admission_event_is_unique_and_exact(tmp_path):
         "\n".join(lines[:-1] + [json.dumps(drifted, sort_keys=True)]) + "\n",
         encoding="utf-8",
     )
-    assert "k0_h0_admission_event_contract_mismatch" in _error_codes(
+    assert "k0_code_first_prebank_event_contract_mismatch" in _error_codes(
         validator.validate_k0_red_field_event(drift_path)
+    )
+
+    historical_missing_path = tmp_path / "historical-missing.jsonl"
+    historical_missing_path.write_text(
+        "\n".join(lines[:5] + lines[6:]) + "\n", encoding="utf-8"
+    )
+    assert "k0_h0_admission_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(historical_missing_path)
     )
 
 
@@ -1580,6 +1619,8 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
         + json.dumps(_valid_k0_red_field_correction_event(), sort_keys=True)
         + "\n"
         + json.dumps(_valid_k0_h0_admission_event(), sort_keys=True)
+        + "\n"
+        + json.dumps(_valid_k0_code_first_prebank_event(), sort_keys=True)
         + "\n",
         encoding="utf-8",
     )
@@ -1592,9 +1633,12 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     program_state["child_authorizations"] = deepcopy(state_machine.K0_READY_CHILD_AUTHORIZATIONS)
     program_state["red_field_addendum_pin"] = deepcopy(state_machine.K0_RED_FIELD_ADDENDUM_PIN)
     program_state["red_field_correction_pin"] = deepcopy(state_machine.K0_RED_FIELD_CORRECTION_PIN)
-    program_state["h0_admission_contract_pin"] = deepcopy(state_machine.K0_H0_ADMISSION_PIN)
-    program_state["effective_h0_authority"] = deepcopy(state_machine.K0_H0_EFFECTIVE_AUTHORITY)
-    program_state["current_route_posture"] = "foundation_ready_h0_admission_002a_review_required"
+    program_state["h0_admission_contract_pin"] = deepcopy(
+        state_machine.K0_H0_ADMISSION_HISTORICAL_PIN
+    )
+    program_state["effective_h0_authority"] = deepcopy(state_machine.K0_CODE_FIRST_AUTHORITY)
+    program_state["code_first_prebank_task_pin"] = deepcopy(state_machine.K0_CODE_FIRST_TASK_PIN)
+    program_state["current_route_posture"] = "code_first_h0_prebank_authorized"
     validator.write_json(artifact_dir / "program_state.json", program_state)
     ledger_path = tmp_path / "docs" / "research" / "FSP-STAGE-LEDGER.md"
     ledger_path.parent.mkdir(parents=True)
@@ -1610,12 +1654,18 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
         for line in live_ledger_lines
         if line.startswith(state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX)
     )
+    l024 = next(
+        line
+        for line in live_ledger_lines
+        if line.startswith(state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX)
+    )
     ledger_path.write_text(
         f"{l020}\n"
         f"{l021}\n"
         f"{l022}\n"
         f"{l023}\n"
-        f"{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} admission\n",
+        f"{l024}\n"
+        f"{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} authorization\n",
         encoding="utf-8",
     )
 
@@ -1625,19 +1675,19 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     assert "current_frontier_ledger_entry_missing" not in present_codes
     assert "current_frontier_k0_preserved_ledger_line_drift" not in present_codes
 
-    for rewritten_index in range(4):
-        preserved_lines = [l020, l021, l022, l023]
+    for rewritten_index in range(5):
+        preserved_lines = [l020, l021, l022, l023, l024]
         preserved_lines[rewritten_index] += " rewritten"
         ledger_path.write_text(
             "\n".join(preserved_lines)
-            + f"\n{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} admission\n",
+            + f"\n{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} authorization\n",
             encoding="utf-8",
         )
         rewritten_report = _build_report_for_tmp_tree(tmp_path)
         assert "current_frontier_k0_preserved_ledger_line_drift" in _error_codes(rewritten_report)
 
     ledger_path.write_text(
-        f"{l020}\n{l021}\n{l022}\n{l023}\n",
+        f"{l020}\n{l021}\n{l022}\n{l023}\n{l024}\n",
         encoding="utf-8",
     )
 
@@ -1646,9 +1696,9 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     assert "current_frontier_ledger_entry_missing" in _error_codes(missing_ready_report)
 
     ledger_path.write_text(
-        f"{l020}\n{l021}\n{l022}\n{l023}\n"
-        f"{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} first\n"
-        f"{state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX} duplicate\n",
+        f"{l020}\n{l021}\n{l022}\n{l023}\n{l024}\n"
+        f"{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} first\n"
+        f"{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} duplicate\n",
         encoding="utf-8",
     )
     duplicate_report = _build_report_for_tmp_tree(tmp_path)

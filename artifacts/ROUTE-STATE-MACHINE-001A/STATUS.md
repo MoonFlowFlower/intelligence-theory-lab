@@ -6,42 +6,53 @@
 - Mainline integration status: none; ITL remains offline and no EGO runtime or
   production path was modified.
 - Route state: `READY_TO_IMPLEMENT`; phase
-  `FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED`.
-- Enabled status: Foundation=true. H0=false. H1, K0-R, Freeze, Formal, scoring,
-  experiment execution, EGO mainline/runtime, claims, and remote publication
-  remain false.
+  `CODE_FIRST_H0_PREBANK_AUTHORIZED`.
+- Enabled status: Foundation=true and the bounded code-first prebank
+  source/test/freeze/evidence implementation=true. H0=false. H1, K0-R, Freeze,
+  Formal, scoring, experiment execution, EGO mainline/runtime, external writes,
+  claims, and remote publication remain false.
 - Current route posture:
-  `foundation_ready_h0_admission_002a_review_required`.
+  `code_first_h0_prebank_authorized`.
 - Active mechanism frontier: `none`.
 - Real trigger evidence: one appended route event
-  `h0_admission_contract_002a_banked_review_required`, one append-only L-024,
-  callable structured terminal resolution, 73,728-case cross-field truth-table
-  validation, 90-tuple atomic-bijection schema validation, exact H0 path
-  authority, and committed-object/ancestry/SHA readback.
-- Claim ceiling: consolidated H0 admission task-card/schema/control-plane
-  enforcement only.
+  `h0_admission_002a_semantic_review_failed_code_first_prebank_authorized`, one
+  append-only L-025, and callable commit/blob/SHA/ancestry/task-pin validation.
+  No package source, official prebank trigger, H0 execution, or H0 evidence
+  exists yet.
+- Claim ceiling: code-first H0 contract prebank authorization and historical
+  object pin enforcement only.
 
-## Consolidated H0 admission enforcement 002A
+## Code-first H0 prebank authorization
+
+- Task card:
+  `docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md`.
+- Bank commit: `1fcafdc317fb3aed3b3e1cbf057e1f460e9308bd`.
+- Card blob: `523ea303c62b893d62db62fe6febb2ca3f2a5a88`.
+- Route validator checks its exact task pin, route authorization, exact paths,
+  ledger/event uniqueness, claim ceiling, and downstream false state. It does
+  not implement or interpret H0 reducer/oracle/atomic-spec domain semantics.
+
+## Historical H0 admission 002A
 
 - Task card:
   `docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md`.
-- Sole effective semantic source:
+- Historical contract object:
   `artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json`.
 - Bank commit: `baa7751cb04d2d365e50f2cd15e799bc40641042`.
 - Card blob: `3e785f5b67212a0cc5d7f956126093c0b2ecd3d6`.
 - Contract blob: `cd00a47810d7ed7218d22c24bac1a6cdcf152b6d`.
 - Contract SHA-256:
   `668c52e0b4b9fc9a6405791a6b520b4a216bb1bd2b6578c0e3f9b2463091cfc8`.
-- Pin status: `BANKED_ENFORCED_REVIEW_REQUIRED`.
+- Pin status: `ADMISSION_SEMANTIC_REVIEW_FAILED_HISTORICAL_ONLY`.
 - Historical authority: the original H0 card and Red addendum/correction
   card/contract objects remain byte-pinned provenance only. They have no
-  implicit residual semantic authority.
-- Ledger: L-020 through L-023 remain byte-pinned; L-024 occurs exactly once and
-  records this replacement/simplification boundary.
-- Event history: all five prior event lines remain byte-identical; the 002A
-  review-required event occurs exactly once.
-- H0 cannot become true until independent review and a separate bounded READY
-  transition. No H0 bank or run occurred.
+  implicit residual semantic authority. Current validation checks only their
+  commit/blob/SHA/ancestry identity.
+- Ledger: L-020 through L-024 remain byte-pinned; L-025 occurs exactly once and
+  records the semantic-review failure plus code-first replacement boundary.
+- Event history: all six prior event lines remain byte-identical; the code-first
+  prebank authorization event occurs exactly once.
+- H0 remains false. No H0 bank, formal run, or mechanism episode occurred.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
   remain unchanged; no prior negative result is rescued.
 

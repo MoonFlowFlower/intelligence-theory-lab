@@ -2,11 +2,12 @@
   "active_mechanism_frontier": "none",
   "allowed_next_actions": [
     "implement_EGO-K0-FOUNDATION-001A",
-    "review_ITL-K0-H0-ADMISSION-CONTRACT-002A",
+    "implement_ITL-K0-H0-CODE-FIRST-PREBANK-001A",
     "run_route_state_machine_validation"
   ],
   "authorized_implementation_targets": [
-    "EGO-K0-FOUNDATION-001A"
+    "EGO-K0-FOUNDATION-001A",
+    "ITL-K0-H0-CODE-FIRST-PREBANK-001A"
   ],
   "c_preflight_status": "design_only_allowed_if_ex_ante_active_interventional_separation_stated",
   "claim_ceiling": {
@@ -24,10 +25,10 @@
       "user_benefit",
       "mainline_effect"
     ],
-    "max": "consolidated H0 admission task-card/schema/control-plane enforcement only"
+    "max": "code-first H0 contract prebank authorization and historical-object pin enforcement only"
   },
   "current_frontier_route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
-  "current_route_posture": "foundation_ready_h0_admission_002a_review_required",
+  "current_route_posture": "code_first_h0_prebank_authorized",
   "child_authorizations": {
     "EGO-K0-FOUNDATION-001A": true,
     "ITL-K0-H0-H1-INSTRUMENT-001A:H0": false,
@@ -57,10 +58,12 @@
     "push_tag_or_remote_anchor_without_explicit_authorization"
   ],
   "effective_h0_authority": {
-    "historical_pins_retained": true,
-    "historical_pins_semantic_authority": false,
-    "implicit_historical_inheritance": false,
-    "single_effective_semantic_source": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json"
+    "code_first_task_card": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
+    "domain_semantics_location": "src/itl_k0_h0_h1_instrument_001a/",
+    "historical_admission_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
+    "historical_contract_semantic_authority": false,
+    "route_validator_interprets_h0_domain_semantics": false,
+    "status": "CODE_FIRST_PREBANK_AUTHORIZED"
   },
   "h0_admission_contract_pin": {
     "applies_to": [
@@ -78,11 +81,19 @@
       "independent_review",
       "separate_ready_transition"
     ],
-    "status": "BANKED_ENFORCED_REVIEW_REQUIRED",
+    "status": "ADMISSION_SEMANTIC_REVIEW_FAILED_HISTORICAL_ONLY",
     "task_id": "ITL-K0-H0-ADMISSION-CONTRACT-002A"
   },
-  "parent_task_status": "foundation_ready_h0_admission_002a_review_required",
-  "ready_transition_status": "foundation_only_h0_false_pending_independent_review_and_separate_ready_transition",
+  "code_first_prebank_task_pin": {
+    "bank_commit": "1fcafdc317fb3aed3b3e1cbf057e1f460e9308bd",
+    "card_blob": "523ea303c62b893d62db62fe6febb2ca3f2a5a88",
+    "card_path": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
+    "card_sha256": "19aefb27620bbc494d81065b4f44c01660c078409afaf551cb18aa7b01f6ff99",
+    "status": "BANKED_CODE_FIRST_PREBANK_AUTHORIZED",
+    "task_id": "ITL-K0-H0-CODE-FIRST-PREBANK-001A"
+  },
+  "parent_task_status": "code_first_h0_prebank_authorized_h0_false",
+  "ready_transition_status": "foundation_plus_code_first_prebank_only_h0_false",
   "red_field_addendum_pin": {
     "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
     "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
@@ -134,19 +145,21 @@
         "itl_instrument_freeze_formal": "56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92"
       },
       "authorized_implementation_targets": [
-        "EGO-K0-FOUNDATION-001A"
+        "EGO-K0-FOUNDATION-001A",
+        "ITL-K0-H0-CODE-FIRST-PREBANK-001A"
       ],
       "implementation_authorized": true,
-      "ledger_entry": "docs/research/FSP-STAGE-LEDGER.md#L-024",
+      "ledger_entry": "docs/research/FSP-STAGE-LEDGER.md#L-025",
       "h0_admission_contract_card": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
       "h0_effective_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
+      "code_first_prebank_task_card": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
       "parent_card": "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
       "red_field_addendum_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
       "red_field_correction_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
       "red_field_correction_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
       "red_field_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
       "transition_card": "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
-      "phase": "FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED",
+      "phase": "CODE_FIRST_H0_PREBANK_AUTHORIZED",
       "route_id": "K0-DUAL-TRACK-SUPERSESSION-001A"
     },
     "n2_terminal_boundary": {
@@ -171,5 +184,5 @@
     "sync_task_card": "docs/codex/tasks/ROUTE-STATE-MACHINE-001C-SAME-AGENT-KERNEL-FORK-SYNC.md"
   },
   "task_id": "ROUTE-STATE-MACHINE-001A",
-  "updated_at_utc": "2026-07-10T03:43:57Z"
+  "updated_at_utc": "2026-07-10T04:52:41Z"
 }
