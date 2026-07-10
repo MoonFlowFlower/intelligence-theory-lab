@@ -115,6 +115,714 @@ def _is_authorizing_value(value: Any) -> bool:
     return False
 
 
+def validate_red_field_contract(contract_payload: Any) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    if not isinstance(contract_payload, dict):
+        errors.append(
+            _new_error(
+                "red_field_contract_not_object",
+                "The committed Red-field contract must be a JSON object.",
+            )
+        )
+        contract_payload = {}
+
+    if contract_payload.get("task_id") != state_machine.K0_RED_FIELD_ADDENDUM_PIN["task_id"]:
+        errors.append(
+            _new_error(
+                "red_field_contract_task_id_mismatch",
+                "The Red-field contract task id must match the banked addendum pin.",
+                expected=state_machine.K0_RED_FIELD_ADDENDUM_PIN["task_id"],
+                actual=contract_payload.get("task_id"),
+            )
+        )
+
+    axes = contract_payload.get("evidence_axes")
+    axes = axes if isinstance(axes, dict) else {}
+    expected_axes = {
+        "evidence_state": list(state_machine.K0_RED_FIELD_EVIDENCE_STATES),
+        "control_comparison_state": list(state_machine.K0_RED_FIELD_CONTROL_STATES),
+        "comparison_state": list(state_machine.K0_RED_FIELD_RIVAL_STATES),
+    }
+    for field, expected in expected_axes.items():
+        actual = axes.get(field)
+        if actual != expected or not isinstance(actual, list) or len(actual) != len(set(actual)):
+            errors.append(
+                _new_error(
+                    f"red_field_contract_{field}_invalid",
+                    "Each Red-field axis must equal its frozen unique enum in frozen order.",
+                    field=field,
+                    expected=expected,
+                    actual=actual,
+                )
+            )
+    if "CONTROL_EQUIVALENT" in _string_values(axes.get("evidence_state")):
+        errors.append(
+            _new_error(
+                "red_field_control_equivalent_in_evidence_state",
+                "CONTROL_EQUIVALENT belongs only to the shortcut-control axis.",
+            )
+        )
+
+    required_control_provenance = {
+        "control_comparison_reason",
+        "frozen_control_panel_id",
+        "control_contrast_ids",
+        "control_signed_margin",
+        "control_confidence_interval",
+        "control_equivalence_band",
+        "control_equivalence_type",
+    }
+    required_rival_provenance = {
+        "rival_comparison_reason",
+        "frozen_rival_panel_id",
+        "rival_contrast_ids",
+        "rival_signed_margin",
+        "rival_confidence_interval",
+        "rival_equivalence_band",
+        "rival_equivalence_type",
+    }
+    required_equivalence_types: set[Any] = {
+        "CANDIDATE_PARITY",
+        "ADMISSION_CEILING_SATURATION",
+        "OWN_RULE_AMORTIZED_PARITY",
+        "CONTROL_BETTER",
+        None,
+    }
+    if set(axes.get("control_provenance_fields") or []) != required_control_provenance:
+        errors.append(
+            _new_error(
+                "red_field_control_provenance_fields_invalid",
+                "Control-axis provenance fields must equal the frozen set.",
+            )
+        )
+    if set(axes.get("rival_provenance_fields") or []) != required_rival_provenance:
+        errors.append(
+            _new_error(
+                "red_field_rival_provenance_fields_invalid",
+                "Rival-axis provenance fields must equal the frozen set.",
+            )
+        )
+    if set(axes.get("control_equivalence_type") or []) != required_equivalence_types:
+        errors.append(
+            _new_error(
+                "red_field_control_equivalence_types_invalid",
+                "Control equivalence types must equal the frozen set, including null.",
+            )
+        )
+
+    semantic_rules = contract_payload.get("semantic_rules")
+    semantic_rules = semantic_rules if isinstance(semantic_rules, dict) else {}
+    required_semantics = {
+        "absent_requires_valid_causal_ablation_failure": True,
+        "causal_pass_shortcut_parity_mapping": "PRESENT_BOUNDED_PLUS_CONTROL_EQUIVALENT",
+        "control_or_rival_run_underpowered_mapping": "STAR_INCONCLUSIVE",
+        "control_tie_blocks_architectural_specialness": True,
+        "strong_negative_can_satisfy_falsifier_collapse": True,
+        "strong_negative_is_automatic_statistical_equivalence": False,
+        "v_special_is_frozen_rival_panel_relative": True,
+    }
+    if any(semantic_rules.get(key) != value for key, value in required_semantics.items()):
+        errors.append(
+            _new_error(
+                "red_field_semantic_rules_invalid",
+                "Causal, shortcut, underpowered, strong-negative, and V_special semantics must remain frozen.",
+            )
+        )
+
+    role_contract = contract_payload.get("arm_role_contract")
+    role_contract = role_contract if isinstance(role_contract, dict) else {}
+    assignments = role_contract.get("assignments")
+    assignments = assignments if isinstance(assignments, list) else []
+    role_rows = [row for row in assignments if isinstance(row, dict)]
+    arm_ids = [row.get("arm_id") for row in role_rows]
+    role_by_arm = {
+        row.get("arm_id"): row.get("arm_role")
+        for row in role_rows
+        if isinstance(row.get("arm_id"), str)
+    }
+    if (
+        role_contract.get("roles") != list(state_machine.K0_RED_FIELD_ARM_ROLES)
+        or role_contract.get("one_role_per_arm_id") is not True
+        or role_contract.get("ex_ante_assignment_required") is not True
+        or len(role_rows) != len(assignments)
+        or len(arm_ids) != len(set(arm_ids))
+        or any(role not in state_machine.K0_RED_FIELD_ARM_ROLES for role in role_by_arm.values())
+    ):
+        errors.append(
+            _new_error(
+                "red_field_arm_role_overlap_or_invalid",
+                "Every named arm must have exactly one frozen ex-ante role.",
+            )
+        )
+
+    catalog = contract_payload.get("comparison_catalog")
+    catalog = catalog if isinstance(catalog, dict) else {}
+    evidence_catalog = set(catalog.get("evidence_contrast_ids") or [])
+    control_catalog = set(catalog.get("control_comparison_ids") or [])
+    rival_catalog = set(catalog.get("rival_comparison_ids") or [])
+    integrity_catalog = set(contract_payload.get("integrity_dependency_catalog") or [])
+    claim_catalog = set(contract_payload.get("claim_template_registry") or [])
+    mappings = contract_payload.get("component_control_mapping")
+    mappings = mappings if isinstance(mappings, list) else []
+    mapping_rows = [row for row in mappings if isinstance(row, dict)]
+    component_ids = [row.get("component_id") for row in mapping_rows]
+    required_mapping_fields = {
+        "component_id",
+        "evidence_contrast_ids",
+        "control_comparison_ids",
+        "rival_comparison_ids",
+        "integrity_dependency_ids",
+        "claim_template_ids",
+        "causal_arm_ids",
+        "shortcut_control_arm_ids",
+        "rival_arm_ids",
+        "integrity_control_arm_ids",
+    }
+    if component_ids != list(state_machine.K0_RED_FIELD_COMPONENT_IDS):
+        errors.append(
+            _new_error(
+                "red_field_component_mapping_set_invalid",
+                "The component mapping must contain the six frozen components in frozen order.",
+                actual=component_ids,
+            )
+        )
+
+    role_fields = {
+        "causal_arm_ids": "CAUSAL_ABLATION",
+        "shortcut_control_arm_ids": "SHORTCUT_CONTROL",
+        "rival_arm_ids": "RIVAL",
+        "integrity_control_arm_ids": "INTEGRITY_CONTROL",
+    }
+    for row in mapping_rows:
+        component_id = row.get("component_id")
+        missing_fields = sorted(required_mapping_fields - set(row))
+        empty_fields = sorted(
+            field
+            for field in required_mapping_fields - {"component_id"}
+            if not isinstance(row.get(field), list) or not row.get(field)
+        )
+        unresolved = {
+            "evidence_contrast_ids": sorted(set(row.get("evidence_contrast_ids") or []) - evidence_catalog),
+            "control_comparison_ids": sorted(set(row.get("control_comparison_ids") or []) - control_catalog),
+            "rival_comparison_ids": sorted(set(row.get("rival_comparison_ids") or []) - rival_catalog),
+            "integrity_dependency_ids": sorted(set(row.get("integrity_dependency_ids") or []) - integrity_catalog),
+            "claim_template_ids": sorted(set(row.get("claim_template_ids") or []) - claim_catalog),
+        }
+        role_errors = {
+            field: sorted(
+                arm
+                for arm in row.get(field) or []
+                if role_by_arm.get(arm) != expected_role
+            )
+            for field, expected_role in role_fields.items()
+        }
+        if missing_fields or empty_fields or any(unresolved.values()) or any(role_errors.values()):
+            errors.append(
+                _new_error(
+                    "red_field_component_mapping_invalid",
+                    "Every component must have resolved non-empty causal/control/rival/integrity mappings.",
+                    component_id=component_id,
+                    missing_fields=missing_fields,
+                    empty_fields=empty_fields,
+                    unresolved=unresolved,
+                    role_errors=role_errors,
+                )
+            )
+
+    mapping_by_component = {
+        row.get("component_id"): row
+        for row in mapping_rows
+        if isinstance(row.get("component_id"), str)
+    }
+    required_component_arms = {
+        "V_model": {
+            "causal_arm_ids": {"planner_bypass", "checkpoint_swap", "prediction_counterfactual"},
+            "shortcut_control_arm_ids": {
+                "observation_only",
+                "window_history",
+                "exact_lookup",
+                "nearest_neighbor",
+                "graph_lookup",
+                "transition_table",
+                "successor_map",
+                "count_table",
+                "fsm_planner",
+                "episodic_traversal",
+                "candidate_own_rule_amortized",
+            },
+        },
+        "V_online": {
+            "causal_arm_ids": {"no_update", "shuffled_outcome"},
+            "shortcut_control_arm_ids": {
+                "candidate_own_rule_batched",
+                "candidate_own_rule_amortized",
+                "same_feedback_budget_table_history_learner",
+            },
+        },
+        "V_replay": {
+            "causal_arm_ids": {"matched_replay_off"},
+            "shortcut_control_arm_ids": {
+                "window_history",
+                "episodic_traversal",
+                "graph_lookup",
+                "transition_table",
+                "successor_map",
+                "count_table",
+                "fsm_planner",
+                "matched_no_replay_amortized_learner",
+            },
+            "integrity_control_arm_ids": {"corrupted_replay_detector"},
+        },
+        "V_memory": {
+            "causal_arm_ids": {"memory_read_off", "memory_zero", "source_deletion", "history_replacement"},
+            "shortcut_control_arm_ids": {
+                "recency",
+                "summary",
+                "rag",
+                "exact_lookup",
+                "nearest_neighbor",
+                "window_history",
+                "graph_lookup",
+                "transition_table",
+                "successor_map",
+                "count_table",
+                "fsm_planner",
+                "episodic_traversal",
+            },
+        },
+        "V_transfer": {
+            "causal_arm_ids": {
+                "fresh_init",
+                "from_scratch",
+                "checkpoint_only",
+                "replay_reset",
+                "memory_reset",
+                "full_carryover",
+            },
+            "shortcut_control_arm_ids": {
+                "equal_budget_persistent_history_carrier",
+                "equal_budget_persistent_cache_carrier",
+                "equal_budget_persistent_batched_carrier",
+            },
+        },
+        "V_special": {
+            "shortcut_control_arm_ids": {
+                "observation_only",
+                "window_history",
+                "exact_lookup",
+                "nearest_neighbor",
+                "graph_lookup",
+                "transition_table",
+                "successor_map",
+                "count_table",
+                "fsm_planner",
+                "episodic_traversal",
+                "candidate_own_rule_amortized",
+                "candidate_own_rule_batched",
+                "same_feedback_budget_table_history_learner",
+                "matched_no_replay_amortized_learner",
+                "recency",
+                "summary",
+                "rag",
+                "equal_budget_persistent_history_carrier",
+                "equal_budget_persistent_cache_carrier",
+                "equal_budget_persistent_batched_carrier",
+            },
+        },
+    }
+    for component_id, required_fields in required_component_arms.items():
+        row = mapping_by_component.get(component_id, {})
+        for field, required_arms in required_fields.items():
+            actual_arms = set(row.get(field) or [])
+            if not required_arms.issubset(actual_arms):
+                errors.append(
+                    _new_error(
+                        "red_field_required_component_arm_missing",
+                        "A frozen causal/control/integrity arm is missing from its component mapping.",
+                        component_id=component_id,
+                        mapping_field=field,
+                        missing=sorted(required_arms - actual_arms),
+                    )
+                )
+    graph_cache = set(state_machine.K0_RED_FIELD_GRAPH_CACHE_ARMS)
+    for component_id in ("V_model", "V_replay", "V_memory", "V_special"):
+        shortcuts = set(mapping_by_component.get(component_id, {}).get("shortcut_control_arm_ids") or [])
+        if not graph_cache.issubset(shortcuts):
+            errors.append(
+                _new_error(
+                    "red_field_graph_cache_mapping_missing",
+                    "Every applicable component must include the full frozen graph/cache shortcut family.",
+                    component_id=component_id,
+                    missing=sorted(graph_cache - shortcuts),
+                )
+            )
+        if "window_history" not in shortcuts:
+            errors.append(
+                _new_error(
+                    "red_field_window_history_mapping_missing",
+                    "Window-history must remain an explicit shortcut control.",
+                    component_id=component_id,
+                )
+            )
+    replay_mapping = mapping_by_component.get("V_replay", {})
+    if (
+        "matched_replay_off" not in (replay_mapping.get("causal_arm_ids") or [])
+        or "corrupted_replay_detector" not in (replay_mapping.get("integrity_control_arm_ids") or [])
+        or role_by_arm.get("matched_replay_off") != "CAUSAL_ABLATION"
+        or role_by_arm.get("corrupted_replay_detector") != "INTEGRITY_CONTROL"
+    ):
+        errors.append(
+            _new_error(
+                "red_field_replay_causal_integrity_conflation",
+                "Matched replay-off and corrupted-replay detection must be distinct causal and integrity controls.",
+            )
+        )
+
+    signature = contract_payload.get("control_signature_contract")
+    signature = signature if isinstance(signature, dict) else {}
+    required_contrast_fields = {
+        "contrast_id",
+        "component_ids",
+        "control_class",
+        "family_ids",
+        "protocol_ids",
+        "full_arm_id",
+        "intervention_arm_id",
+        "reference_arm_id",
+        "estimand_ids",
+        "expected_effect",
+        "success_signature",
+        "failure_signature",
+        "ambiguous_signature",
+        "strong_negative_counts_as_success",
+        "required_power_spec_id",
+        "required_seed_block_id",
+        "blast_radius_id",
+        "verdict_mapping",
+    }
+    if (
+        set(signature.get("future_required_artifacts") or [])
+        != {"control_signature_contract.json", "control_signature_simulation.json"}
+        or set(signature.get("candidate_independent_simulation_cases") or [])
+        != {"parity", "strong_negative", "survival_positive", "boundary_failure"}
+        or set(signature.get("required_contrast_fields") or []) != required_contrast_fields
+        or signature.get("strong_negative_classification")
+        != "FALSIFIER_COLLAPSE_SUCCESS_NOT_CONTROL_INACTIVE"
+        or signature.get("strong_negative_is_statistical_equivalence") is not False
+    ):
+        errors.append(
+            _new_error(
+                "red_field_control_signature_contract_invalid",
+                "Sign simulation, contrast fields, and strong-negative semantics must remain frozen.",
+            )
+        )
+
+    determinism = contract_payload.get("determinism_contract")
+    determinism = determinism if isinstance(determinism, dict) else {}
+    required_rngs = {
+        "python_random",
+        "numpy",
+        "torch_cpu",
+        "torch_cuda",
+        "environment",
+        "action_tiebreak",
+        "replay_sampler",
+        "dataloader_worker",
+    }
+    required_compare_fields = {
+        "predictions",
+        "rankings",
+        "actions",
+        "state_hashes",
+        "update_deltas",
+        "checkpoint_hashes",
+        "metrics",
+    }
+    required_platform_pins = {"os", "python", "numpy", "torch", "device", "cuda", "cudnn", "driver"}
+    required_determinism_fields = {
+        "seed_derivation_function",
+        "rng_state_serialization_restore",
+        "torch_deterministic_algorithms",
+        "cudnn_benchmark_flag",
+        "cudnn_deterministic_flag",
+        "cpu_thread_count",
+        "interop_thread_count",
+    }
+    if (
+        determinism.get("exactness_mode") != "bit_exact_same_frozen_platform_backend_dependencies"
+        or determinism.get("original_run_counts_as_recompute") is not False
+        or determinism.get("fresh_processes_required") != 2
+        or determinism.get("launcher_sets_pythonhashseed_before_interpreter_start") is not True
+        or set(determinism.get("rng_registry") or []) != required_rngs
+        or determinism.get("unregistered_rng_mapping") != "FAIL"
+        or set(determinism.get("compare_fields") or []) != required_compare_fields
+        or set(determinism.get("platform_pins") or []) != required_platform_pins
+        or set(determinism.get("required_determinism_fields") or []) != required_determinism_fields
+        or set(determinism.get("forbidden_rng_sources") or [])
+        != {"time_based_seed", "undeclared_os_random", "implicit_global_rng"}
+        or set(determinism.get("excluded_volatile_fields") or []) != {"timestamp", "pid", "wall_clock"}
+        or determinism.get("process_isolation") != {"distinct_pid": True, "distinct_temp_dir": True}
+        or determinism.get("mismatch_mapping") != "REPLAY_COMPUTATION_INTEGRITY_FAILED"
+        or determinism.get("bit_exact_failure_mapping") != "INVALID_INSTRUMENT"
+        or determinism.get("post_result_tolerance_replay_forbidden") is not True
+    ):
+        errors.append(
+            _new_error(
+                "red_field_determinism_contract_invalid",
+                "The frozen bit-exact, RNG-registry, fresh-process x2, and mismatch contract is incomplete or drifted.",
+            )
+        )
+
+    power = contract_payload.get("power_mde_equivalence_contract")
+    power = power if isinstance(power, dict) else {}
+    required_decision_fields = {
+        "decision_kind",
+        "alpha",
+        "ci_method",
+        "sidedness",
+        "multiplicity_family",
+        "multiplicity_correction",
+        "target_power",
+        "sesoi",
+        "equivalence_margin",
+        "variance_source",
+        "fixed_seed_count",
+        "computed_mde",
+        "computed_power_at_sesoi",
+        "pass_predicate",
+        "underpowered_mapping",
+    }
+    required_equivalence_decisions = {
+        "CONTROL_EQUIVALENT",
+        "RIVAL_SATURATED",
+        "no_interference",
+        "retention_equivalence",
+        "order_invariance",
+    }
+    if (
+        set(power.get("future_required_sections") or []) != {"metrics", "estimands", "seed_blocks", "decision_specs"}
+        or set(power.get("decision_kinds") or []) != {"superiority", "equivalence", "noninferiority", "collapse"}
+        or set(power.get("decision_spec_required_fields") or []) != required_decision_fields
+        or set(power.get("powered_equivalence_required_for") or []) != required_equivalence_decisions
+        or power.get("not_rejecting_difference_is_equivalence") is not False
+        or power.get("seed_policy") != "FIXED_COUNT_OR_EX_ANTE_SEQUENTIAL_MAX_N_ALPHA_SPENDING"
+        or power.get("post_result_seed_addition_forbidden") is not True
+        or power.get("unused_frozen_input_mapping") != "INVALID_INSTRUMENT"
+        or power.get("underpowered_mapping") != "STAR_INCONCLUSIVE"
+        or power.get("rival_panel_max_rule") != "FROZEN_MULTIPLICITY_OR_NESTED_RESAMPLING"
+    ):
+        errors.append(
+            _new_error(
+                "red_field_power_mde_equivalence_contract_invalid",
+                "MDE, power, fixed-seed, multiplicity, and powered-equivalence rules must remain frozen.",
+            )
+        )
+
+    blast_radius = contract_payload.get("integrity_blast_radius")
+    blast_radius = blast_radius if isinstance(blast_radius, dict) else {}
+    expected_blast_rules = {
+        "shared_replay_recompute_engine_failure": "INVALIDATE_ALL_AND_ONLY_DEPENDENT_COMPONENTS_MAY_BE_GLOBAL",
+        "one_arm_or_trace_recomputation_failure": "INVALIDATE_ONLY_DEPENDENT_ESTIMANDS_AND_COMPONENTS",
+        "matched_replay_off_ties_full": "V_replay_ABSENT",
+        "matched_no_replay_shortcut_learner_ties": "CONTROL_EQUIVALENT",
+        "replay_reset_carrier_ties": "AFFECT_ONLY_MAPPED_V_transfer_REPLAY_CARRIER_PROPOSITION",
+    }
+    actual_blast_rules = {
+        row.get("failure_class"): row.get("mapping")
+        for row in blast_radius.get("rules") or []
+        if isinstance(row, dict)
+    }
+    if (
+        blast_radius.get("unconditional_replay_failure_global_propagation_forbidden") is not True
+        or blast_radius.get("local_leakage_uses_frozen_dependency_matrix") is not True
+        or actual_blast_rules != expected_blast_rules
+        or set(blast_radius.get("required_machine_fields") or [])
+        != {
+            "integrity_gate_id",
+            "gate_class",
+            "affected_arms",
+            "affected_estimands",
+            "affected_components",
+            "failure_action",
+            "state_mapping",
+            "resolver_function",
+        }
+    ):
+        errors.append(
+            _new_error(
+                "red_field_integrity_blast_radius_invalid",
+                "Replay/recompute failures must propagate through the frozen dependency-scoped blast-radius rules.",
+            )
+        )
+
+    firewall = contract_payload.get("firewall_contract")
+    firewall = firewall if isinstance(firewall, dict) else {}
+    other = contract_payload.get("other_red_fields")
+    other = other if isinstance(other, dict) else {}
+    positive_control = other.get("positive_control_producer")
+    positive_control = positive_control if isinstance(positive_control, dict) else {}
+    capability_whitelist = firewall.get("capability_whitelist")
+    capability_whitelist = capability_whitelist if isinstance(capability_whitelist, dict) else {}
+    evaluator_only_fields = {"family_id", "split", "order", "latent_rule", "heldout_label"}
+    if (
+        firewall.get("interface_audit_required") is not True
+        or firewall.get("trace_only_schema_required") is not True
+        or not evaluator_only_fields.issubset(set(capability_whitelist.get("forbidden") or []))
+        or set(other.get("evaluator_only_fields") or []) != evaluator_only_fields
+        or other.get("uncertainty_before_calibration") != "TRACE_ONLY_CANNOT_SUPPORT_PRESENT_BOUNDED"
+        or other.get("stop_condition_kind") != "CONTENT_BASED_NOT_ELAPSED_TIME"
+        or positive_control
+        != {
+            "candidate_blind_review": True,
+            "independent_bank_boundary": True,
+            "independent_module": True,
+            "k0r_may_be_sole_positive_control": False,
+        }
+    ):
+        errors.append(
+            _new_error(
+                "red_field_other_required_fields_invalid",
+                "Calibration, firewall, independent positive control, and content-based stop fields must remain frozen.",
+            )
+        )
+
+    return {
+        "producer_function": "validate_red_field_contract",
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
+def _git_output(repo_root: Path, *args: str, text: bool = True) -> str | bytes:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=repo_root,
+        check=True,
+        capture_output=True,
+        text=text,
+        timeout=10,
+    )
+    return completed.stdout.strip() if text else completed.stdout
+
+
+def _git_is_ancestor(repo_root: Path, ancestor: str, descendant: str = "HEAD") -> bool:
+    completed = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+        cwd=repo_root,
+        check=False,
+        capture_output=True,
+        timeout=10,
+    )
+    return completed.returncode == 0
+
+
+def validate_red_field_addendum_repository(
+    *,
+    repo_root: Path,
+    route_state_payload: Any,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    input_artifacts = [
+        state_machine.K0_RED_FIELD_ADDENDUM_CARD_PATH,
+        state_machine.K0_RED_FIELD_CONTRACT_PATH,
+    ]
+    if not isinstance(route_state_payload, dict):
+        errors.append(
+            _new_error(
+                "red_field_route_state_missing",
+                "The K0 route state is required for committed-object Red-field validation.",
+            )
+        )
+        route_state_payload = {}
+    pin = route_state_payload.get("red_field_addendum_pin")
+    if pin != state_machine.K0_RED_FIELD_ADDENDUM_PIN:
+        errors.append(
+            _new_error(
+                "red_field_addendum_pin_mismatch",
+                "The serialized addendum pin must equal the frozen Phase A committed-object pin.",
+                expected=state_machine.K0_RED_FIELD_ADDENDUM_PIN,
+                actual=pin,
+            )
+        )
+        pin = pin if isinstance(pin, dict) else {}
+
+    bank_commit = pin.get("bank_commit")
+    card_path = pin.get("card_path")
+    contract_path = pin.get("contract_path")
+    try:
+        head = str(_git_output(repo_root, "rev-parse", "HEAD"))
+    except (OSError, subprocess.SubprocessError) as exc:
+        errors.append(
+            _new_error(
+                "red_field_git_readback_failed",
+                "Git HEAD could not be read for the Red-field ancestry gate.",
+                error=str(exc),
+            )
+        )
+        head = ""
+
+    if not isinstance(bank_commit, str) or not _git_is_ancestor(repo_root, bank_commit, head or "HEAD"):
+        errors.append(
+            _new_error(
+                "red_field_bank_commit_not_ancestor",
+                "The Phase A addendum bank commit must be an ancestor of the current Phase B validation HEAD.",
+                bank_commit=bank_commit,
+                validation_head=head,
+            )
+        )
+
+    contract_payload: Any = None
+    if isinstance(bank_commit, str) and isinstance(card_path, str) and isinstance(contract_path, str):
+        try:
+            actual_card_blob = str(_git_output(repo_root, "rev-parse", f"{bank_commit}:{card_path}"))
+            actual_contract_blob = str(_git_output(repo_root, "rev-parse", f"{bank_commit}:{contract_path}"))
+            contract_bytes = _git_output(repo_root, "cat-file", "blob", actual_contract_blob, text=False)
+            assert isinstance(contract_bytes, bytes)
+            actual_contract_sha256 = hashlib.sha256(contract_bytes).hexdigest()
+            contract_payload = json.loads(contract_bytes.decode("utf-8"))
+        except (AssertionError, UnicodeDecodeError, json.JSONDecodeError, OSError, subprocess.SubprocessError) as exc:
+            errors.append(
+                _new_error(
+                    "red_field_committed_object_readback_failed",
+                    "The Phase A card/contract committed objects could not be read and parsed.",
+                    error=str(exc),
+                )
+            )
+        else:
+            actual = {
+                "card_blob": actual_card_blob,
+                "contract_blob": actual_contract_blob,
+                "contract_sha256": actual_contract_sha256,
+            }
+            expected = {
+                key: pin.get(key)
+                for key in ("card_blob", "contract_blob", "contract_sha256")
+            }
+            if actual != expected:
+                errors.append(
+                    _new_error(
+                        "red_field_committed_object_pin_drift",
+                        "Committed card blob, contract blob, and contract SHA-256 must match the serialized pin.",
+                        expected=expected,
+                        actual=actual,
+                    )
+                )
+
+    contract_result = validate_red_field_contract(contract_payload)
+    errors.extend(contract_result["validation_errors"])
+    warnings.extend(contract_result["validation_warnings"])
+    return {
+        "producer_function": "validate_red_field_addendum_repository",
+        "input_artifacts": input_artifacts,
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
 def _forbidden_current_frontier_authorizations(
     *,
     program_state_payload: dict[str, Any],
@@ -336,7 +1044,38 @@ def validate_route_payload(
                         actual=source_readback.get("transition_card") if isinstance(source_readback, dict) else None,
                     )
                 )
-            expected_ledger_prefix = state_machine.K0_READY_LEDGER_ENTRY_PREFIX
+            red_field_pin = state_payload.get("red_field_addendum_pin")
+            if red_field_pin is None:
+                errors.append(
+                    _new_error(
+                        "k0_red_field_addendum_pin_missing",
+                        "READY_TO_IMPLEMENT H0 authorization requires the banked Red-field addendum pin.",
+                    )
+                )
+            elif red_field_pin != state_machine.K0_RED_FIELD_ADDENDUM_PIN:
+                errors.append(
+                    _new_error(
+                        "k0_red_field_addendum_pin_mismatch",
+                        "The Red-field addendum pin must equal the frozen Phase A committed-object pin.",
+                        expected=state_machine.K0_RED_FIELD_ADDENDUM_PIN,
+                        actual=red_field_pin,
+                    )
+                )
+            if (
+                isinstance(state_payload.get("child_authorizations"), dict)
+                and state_payload["child_authorizations"].get("ITL-K0-H0-H1-INSTRUMENT-001A:H0") is True
+                and (
+                    not isinstance(red_field_pin, dict)
+                    or red_field_pin.get("red_field_gate_status") != "BANKED_AND_ENFORCED"
+                )
+            ):
+                errors.append(
+                    _new_error(
+                        "k0_h0_authorized_without_enforced_red_field_gate",
+                        "H0 may remain true only when the exact Red-field gate is banked and enforced.",
+                    )
+                )
+            expected_ledger_prefix = state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX
 
         if not isinstance(ledger_readback, dict):
             errors.append(
@@ -364,17 +1103,29 @@ def validate_route_payload(
                         actual=ledger_readback.get("required_entry_prefix"),
                     )
                 )
-            if current_state == "READY_TO_IMPLEMENT" and ledger_readback.get(
-                "preserved_entry_prefixes"
-            ) != [state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX]:
-                errors.append(
-                    _new_error(
-                        "k0_ready_preserved_ledger_prefix_mismatch",
-                        "The READY_TO_IMPLEMENT ledger declaration must preserve the parent registration entry.",
-                        expected=[state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX],
-                        actual=ledger_readback.get("preserved_entry_prefixes"),
+            if current_state == "READY_TO_IMPLEMENT":
+                expected_preserved_prefixes = [
+                    state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+                    state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
+                ]
+                if ledger_readback.get("preserved_entry_prefixes") != expected_preserved_prefixes:
+                    errors.append(
+                        _new_error(
+                            "k0_ready_preserved_ledger_prefix_mismatch",
+                            "The Red-field READY_TO_IMPLEMENT boundary must preserve L-020 and L-021.",
+                            expected=expected_preserved_prefixes,
+                            actual=ledger_readback.get("preserved_entry_prefixes"),
+                        )
                     )
-                )
+                if ledger_readback.get("preserved_entry_sha256") != state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES:
+                    errors.append(
+                        _new_error(
+                            "k0_ready_preserved_ledger_hash_mismatch",
+                            "The Red-field route must pin the exact full-line SHA-256 values for L-020 and L-021.",
+                            expected=state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES,
+                            actual=ledger_readback.get("preserved_entry_sha256"),
+                        )
+                    )
 
     if current_state == "CLOSURE_REVIEW_REQUIRED" and closure_payload is None:
         errors.append(
@@ -521,6 +1272,88 @@ def _route_input_artifacts(routes_dir: Path) -> list[str]:
     return artifacts
 
 
+def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    events: list[dict[str, Any]] = []
+    if not events_path.is_file():
+        errors.append(
+            _new_error(
+                "k0_red_field_event_file_missing",
+                "The K0 route events.jsonl file is required.",
+                path=_posix(events_path),
+            )
+        )
+    else:
+        for line_number, line in enumerate(events_path.read_text(encoding="utf-8").splitlines(), start=1):
+            if not line.strip():
+                continue
+            try:
+                payload = json.loads(line)
+            except json.JSONDecodeError as exc:
+                errors.append(
+                    _new_error(
+                        "k0_red_field_event_invalid_json",
+                        "Every K0 route event line must be valid JSON.",
+                        path=_posix(events_path),
+                        line_number=line_number,
+                        error=str(exc),
+                    )
+                )
+                continue
+            if not isinstance(payload, dict):
+                errors.append(
+                    _new_error(
+                        "k0_red_field_event_not_object",
+                        "Every K0 route event must be a JSON object.",
+                        path=_posix(events_path),
+                        line_number=line_number,
+                    )
+                )
+                continue
+            events.append(payload)
+
+    matches = [event for event in events if event.get("event") == "red_field_addendum_banked_and_enforced"]
+    if len(matches) != 1:
+        errors.append(
+            _new_error(
+                "k0_red_field_event_missing_or_duplicate",
+                "Exactly one Red-field bank/enforcement event must be appended.",
+                match_count=len(matches),
+                path=_posix(events_path),
+            )
+        )
+    else:
+        event = matches[0]
+        if (
+            event.get("route_id") != state_machine.K0_PARENT_ROUTE_ID
+            or event.get("phase") != state_machine.K0_READY_PHASE
+            or event.get("current_state") != "READY_TO_IMPLEMENT"
+            or event.get("red_field_addendum_pin") != state_machine.K0_RED_FIELD_ADDENDUM_PIN
+            or event.get("foundation_authorized") is not True
+            or event.get("h0_authorized_only_under_addendum") is not True
+            or event.get("preserved_false_targets")
+            != [
+                "EGO-K0-REFERENCE-KERNEL-001A",
+                "ITL-K0-H0-H1-INSTRUMENT-001A:H1",
+                "K0-IMMUTABLE-FREEZE-001A",
+                "ITL-K0-FORMAL-EVIDENCE-001A",
+            ]
+        ):
+            errors.append(
+                _new_error(
+                    "k0_red_field_event_contract_mismatch",
+                    "The Red-field route event must carry the exact state, phase, pin, and authorization boundary.",
+                )
+            )
+
+    return {
+        "producer_function": "validate_k0_red_field_event",
+        "validation_errors": errors,
+        "validation_warnings": [],
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
 def validate_routes_tree(
     *,
     routes_dir: Path,
@@ -581,6 +1414,14 @@ def validate_routes_tree(
             changed_files=changed_files,
             authorized_paths=authorized_paths,
         )
+        if (
+            route_id == state_machine.K0_PARENT_ROUTE_ID
+            and isinstance(state_payload, dict)
+            and state_payload.get("current_state") == "READY_TO_IMPLEMENT"
+        ):
+            event_result = validate_k0_red_field_event(route_dir / "events.jsonl")
+            local_errors.extend(event_result["validation_errors"])
+            result["validation_warnings"].extend(event_result["validation_warnings"])
         result["validation_errors"] = local_errors + result["validation_errors"]
         if result["validation_errors"]:
             result["verdict"] = "fail"
@@ -713,6 +1554,34 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                 route_current_state = route_state_payload.get("current_state")
                 source_readback = route_state_payload.get("source_readback")
                 ledger_readback = source_readback.get("ledger") if isinstance(source_readback, dict) else None
+                if (
+                    current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
+                    and route_current_state == "READY_TO_IMPLEMENT"
+                ):
+                    program_k0_mismatches: dict[str, Any] = {}
+                    expected_program_fields = {
+                        "allowed_next_actions": list(state_machine.K0_READY_ALLOWED_ACTIONS),
+                        "authorized_implementation_targets": list(
+                            state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS
+                        ),
+                        "child_authorizations": state_machine.K0_READY_CHILD_AUTHORIZATIONS,
+                        "red_field_addendum_pin": state_machine.K0_RED_FIELD_ADDENDUM_PIN,
+                        "current_route_posture": "k0_dual_track_first_pair_ready_with_red_field_addendum",
+                    }
+                    for field, expected in expected_program_fields.items():
+                        if program_state_payload.get(field) != expected:
+                            program_k0_mismatches[field] = {
+                                "expected": expected,
+                                "actual": program_state_payload.get(field),
+                            }
+                    if program_k0_mismatches:
+                        errors.append(
+                            _new_error(
+                                "program_state_k0_red_field_boundary_mismatch",
+                                "Program state must mirror the exact K0 Red-field authorization boundary.",
+                                mismatches=program_k0_mismatches,
+                            )
+                        )
                 if current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID and not isinstance(
                     ledger_readback, dict
                 ):
@@ -727,7 +1596,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                     ledger_relative_path = ledger_readback.get("path")
                     required_entry_prefix = ledger_readback.get("required_entry_prefix")
                     expected_k0_ledger_prefix = (
-                        state_machine.K0_READY_LEDGER_ENTRY_PREFIX
+                        state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX
                         if route_current_state == "READY_TO_IMPLEMENT"
                         else state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
                     )
@@ -824,17 +1693,34 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                     and route_current_state == "READY_TO_IMPLEMENT"
                                 ):
                                     preserved_prefixes = ledger_readback.get("preserved_entry_prefixes")
-                                    expected_preserved_prefixes = [state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX]
+                                    expected_preserved_prefixes = [
+                                        state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+                                        state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
+                                    ]
                                     if preserved_prefixes != expected_preserved_prefixes:
                                         errors.append(
                                             _new_error(
                                                 "current_frontier_k0_preserved_ledger_contract_mismatch",
-                                                "The READY_TO_IMPLEMENT frontier must preserve the parent registration ledger prefix.",
+                                                "The Red-field READY_TO_IMPLEMENT frontier must preserve L-020 and L-021.",
                                                 expected=expected_preserved_prefixes,
                                                 actual=preserved_prefixes,
                                             )
                                         )
                                     else:
+                                        preserved_hashes = ledger_readback.get("preserved_entry_sha256")
+                                        if preserved_hashes != state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES:
+                                            errors.append(
+                                                _new_error(
+                                                    "current_frontier_k0_preserved_ledger_hash_contract_mismatch",
+                                                    "The route state must pin the exact L-020/L-021 full-line hashes.",
+                                                    expected=state_machine.K0_RED_FIELD_PRESERVED_LEDGER_HASHES,
+                                                    actual=preserved_hashes,
+                                                )
+                                            )
+                                        expected_hash_by_prefix = {
+                                            state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX: state_machine.K0_PARENT_LEDGER_LINE_SHA256,
+                                            state_machine.K0_READY_LEDGER_ENTRY_PREFIX: state_machine.K0_READY_LEDGER_LINE_SHA256,
+                                        }
                                         for preserved_prefix in preserved_prefixes:
                                             preserved_matches = [
                                                 line for line in ledger_lines if line.startswith(preserved_prefix)
@@ -846,6 +1732,21 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                                         "Each preserved K0 ledger prefix must occur exactly once.",
                                                         required_entry_prefix=preserved_prefix,
                                                         match_count=len(preserved_matches),
+                                                        path=_posix(ledger_path),
+                                                    )
+                                                )
+                                            elif hashlib.sha256(
+                                                preserved_matches[0].encode("utf-8")
+                                            ).hexdigest() != expected_hash_by_prefix[preserved_prefix]:
+                                                errors.append(
+                                                    _new_error(
+                                                        "current_frontier_k0_preserved_ledger_line_drift",
+                                                        "A preserved K0 ledger line was rewritten after banking.",
+                                                        required_entry_prefix=preserved_prefix,
+                                                        expected_sha256=expected_hash_by_prefix[preserved_prefix],
+                                                        actual_sha256=hashlib.sha256(
+                                                            preserved_matches[0].encode("utf-8")
+                                                        ).hexdigest(),
                                                         path=_posix(ledger_path),
                                                     )
                                                 )
@@ -939,29 +1840,57 @@ def build_validation_report(
     )
     artifact_dir = root / state_machine.TASK_ARTIFACT_DIR
     program_state = validate_program_state(artifact_dir=artifact_dir, routes_dir=routes_dir)
+    red_field_addendum = {
+        "producer_function": "validate_red_field_addendum_repository",
+        "input_artifacts": [],
+        "validation_errors": [],
+        "validation_warnings": [],
+        "verdict": "not_applicable",
+    }
+    k0_state_path = routes_dir / state_machine.K0_PARENT_ROUTE_ID / "state.json"
+    if k0_state_path.is_file():
+        try:
+            k0_state_payload = load_json(k0_state_path)
+        except json.JSONDecodeError:
+            k0_state_payload = None
+        if isinstance(k0_state_payload, dict) and k0_state_payload.get("current_state") == "READY_TO_IMPLEMENT":
+            red_field_addendum = validate_red_field_addendum_repository(
+                repo_root=root,
+                route_state_payload=k0_state_payload,
+            )
     input_artifacts = [
         f"{state_machine.TASK_ARTIFACT_DIR}/routes/{artifact}"
         for artifact in route_tree["input_artifacts"]
     ]
     input_artifacts.extend(program_state["input_artifacts"])
+    input_artifacts.extend(red_field_addendum["input_artifacts"])
     schema_dir = root / state_machine.TASK_ARTIFACT_DIR / "schemas"
     for schema in sorted(schema_dir.glob("*.schema.json")) if schema_dir.exists() else []:
         input_artifacts.append(_relative_posix(schema, root))
 
-    validation_errors = route_tree["validation_errors"] + program_state["validation_errors"]
-    validation_warnings = route_tree["validation_warnings"] + program_state["validation_warnings"]
+    validation_errors = (
+        route_tree["validation_errors"]
+        + program_state["validation_errors"]
+        + red_field_addendum["validation_errors"]
+    )
+    validation_warnings = (
+        route_tree["validation_warnings"]
+        + program_state["validation_warnings"]
+        + red_field_addendum["validation_warnings"]
+    )
 
     return {
         "task_id": state_machine.TASK_ID,
         "producer_function": "build_validation_report",
         "input_artifacts": sorted(set(input_artifacts)),
         "run_id": f"{state_machine.TASK_ID.lower()}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}",
-        "aggregation_rule": "verdict is pass iff validate_routes_tree and validate_program_state return zero validation_errors",
+        "aggregation_rule": "verdict is pass iff validate_routes_tree, validate_program_state, and applicable validate_red_field_addendum_repository return zero validation_errors",
         "code_path_hash": code_path_hash(),
         "validation_errors": validation_errors,
         "validation_warnings": validation_warnings,
         "current_frontier_route_id": program_state["current_frontier_route_id"],
         "program_state_verdict": program_state["verdict"],
+        "red_field_addendum_verdict": red_field_addendum["verdict"],
         "route_count": route_tree["route_count"],
         "routes": [
             {
@@ -997,6 +1926,7 @@ def build_status(repo_root: str | Path) -> dict[str, Any]:
         "verdict": report["verdict"],
         "current_frontier_route_id": report["current_frontier_route_id"],
         "program_state_verdict": report["program_state_verdict"],
+        "red_field_addendum_verdict": report["red_field_addendum_verdict"],
         "routes": report["routes"],
         "validation_error_count": len(report["validation_errors"]),
         "validation_warning_count": len(report["validation_warnings"]),
@@ -1013,6 +1943,7 @@ def build_dashboard(repo_root: str | Path) -> dict[str, Any]:
         "route_count": report["route_count"],
         "current_frontier_route_id": report["current_frontier_route_id"],
         "program_state_verdict": report["program_state_verdict"],
+        "red_field_addendum_verdict": report["red_field_addendum_verdict"],
         "routes": report["routes"],
         "validation_error_codes": sorted({error["code"] for error in report["validation_errors"]}),
         "validation_warning_codes": sorted({warning["code"] for warning in report["validation_warnings"]}),

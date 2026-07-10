@@ -4,39 +4,57 @@
 
 - Layer: engineering implementation / route-governance evidence hygiene only.
 - Mainline integration status: not integrated; no EGO runtime or production path.
-- Enabled status: control plane authorizes the exact first pair only; no EGO
-  runtime, formal runner, or child implementation is enabled by this artifact.
-- Real trigger evidence: callable `routectl validate` output recorded in
-  `validation_report.json`.
-- Claim ceiling: local first-pair K0 control-plane authorization and prior
-  negative-evidence bookkeeping only.
+- Enabled status: Foundation remains authorized; H0 is authorized only as a
+  bank action under the exact Red-field addendum pins. K0-R, H1, Freeze,
+  Formal, scoring, runtime/mainline, and claims remain disabled.
+- Real trigger evidence: callable `routectl validate` over serialized route
+  state plus committed Git-object and SHA-256 readback of the Red-field card
+  and contract, recorded in `validation_report.json`.
+- Claim ceiling: local task-card/schema/control-plane enforcement only.
 - Current governed boundary route id: `K0-DUAL-TRACK-SUPERSESSION-001A`.
-- Current route posture: `k0_dual_track_first_pair_ready_to_implement`.
+- Current route posture:
+  `k0_dual_track_first_pair_ready_with_red_field_addendum`.
 - Active mechanism frontier: `none`.
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
 
-## K0 dual-track first-pair transition
+## K0 dual-track Red-field addendum enforcement
 
 - Parent card: `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.
 - Transition card:
   `docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md`.
+- Addendum card:
+  `docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md`.
+- Machine contract:
+  `artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json`.
 - Ledger transitions: append-only `FSP-STAGE-LEDGER.md` entries `L-020`
-  (registration) and `L-021` (exact first-pair readiness), accepted by the
-  operator in-session on 2026-07-09.
-- Route state: `READY_TO_IMPLEMENT`; phase `FIRST_PAIR_READY_TO_IMPLEMENT`.
+  (registration), `L-021` (exact first-pair readiness), and `L-022` (Red-field
+  addendum bank/enforcement), authorized by the operator in-session on
+  2026-07-09. Callable validation pins the full-line hashes of L-020/L-021 and
+  requires L-022 exactly once.
+- Route state: `READY_TO_IMPLEMENT`; phase
+  `FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM`.
 - Exact implementation authorizations:
   `EGO-K0-FOUNDATION-001A` and
-  `ITL-K0-H0-H1-INSTRUMENT-001A:H0` only.
+  `ITL-K0-H0-H1-INSTRUMENT-001A:H0` only, with H0 usable only for a bank that
+  consumes the Red-field pin.
+- Addendum bank commit:
+  `bfbe215518a8f31fd300e600c73bb9d59e635335`; card blob
+  `cc8b2720374bec1b566ede3c11d87c2290fb8345`; contract blob
+  `ba1c55cfeeffbbf7e3c0da15b8b52dd836ef6511`; contract SHA-256
+  `c1ada02360b26892ca4728b4c53ae36fa8dbf7f7202697c4288f64a1cb7be59c`.
 - Banked child commits: Ego Foundation
   `13bd9268993f74a41b4cc219855761681ab12b66`; Ego Reference Kernel
   `0f043254710b47700f2088213232aba777bd3f46`; ITL Instrument/Freeze/Formal
   `56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92`.
 - `EGO-K0-REFERENCE-KERNEL-001A`, H1, Freeze, Formal, scoring, experiment
   execution, runtime/mainline, claims, and remote publication remain explicit
-  `false`. No child implementation or formal run occurred in this transition.
-- The parent freezes a two-axis component verdict and dependency-scoped
-  integrity matrix. It does not report any component as tested or present.
+  `false`. No H0/H1/K0-R/Freeze/Formal implementation, bank, scoring, or run
+  occurred in this transition.
+- The additive contract freezes separate evidence, shortcut-control, and rival
+  axes plus ex-ante arm roles, sign simulation, bit-exact determinism,
+  power/equivalence, and dependency-scoped integrity requirements. It does not
+  report any component as tested or present.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
   remain unchanged; no prior negative result is rescued.
 
