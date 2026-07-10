@@ -28,7 +28,8 @@ K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS = (
     "theory_pressure",
     "ui_llm_deployment",
 )
-K0_READY_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM"
+K0_RED_FIELD_ADDENDUM_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM"
+K0_READY_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION"
 K0_READY_ALLOWED_ACTIONS = (
     "implement_EGO-K0-FOUNDATION-001A",
     "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0",
@@ -137,11 +138,34 @@ K0_RED_FIELD_LEDGER_ENTRY_PREFIX = (
     "- L-022 | 2026-07-09 | governance_addendum (operator authorized; transcribed by Codex) | "
     "K0 Red-field addendum `K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A` banked and enforced as the H0 prerequisite."
 )
+K0_RED_FIELD_CORRECTION_CARD_PATH = "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md"
+K0_RED_FIELD_CORRECTION_CONTRACT_PATH = (
+    "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json"
+)
+K0_RED_FIELD_CORRECTION_PIN = {
+    "task_id": "K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A",
+    "bank_commit": "882be402395e7301cf69fcc0a0bae1eca8dfcd68",
+    "card_path": K0_RED_FIELD_CORRECTION_CARD_PATH,
+    "card_blob": "a186c78028a69a81c408f3985fa0112fae10b9a0",
+    "contract_path": K0_RED_FIELD_CORRECTION_CONTRACT_PATH,
+    "contract_blob": "9fcb9a0036fe09232f5a8619c755b24703d2c2d9",
+    "contract_sha256": "2faa270dabebc4f83b8d51b689592a28fdfee96e44a80049835b40b31e304399",
+    "applies_to": ["K0-DUAL-TRACK", "ITL-K0-H0-H1-INSTRUMENT-001A:H0"],
+    "precedence": "additive_correction_controls_conflicting_red_field_terminal_formula_power_coverage_rng_and_claim_ceiling_fields_only",
+    "required_before": ["bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0"],
+    "red_field_correction_gate_status": "BANKED_AND_ENFORCED",
+}
+K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX = (
+    "- L-023 | 2026-07-09 | governance_correction (operator authorized; transcribed by Codex) | "
+    "K0 Red-field semantic correction `K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A` banked and enforced as the final H0 prerequisite."
+)
 K0_PARENT_LEDGER_LINE_SHA256 = "6dbc32929d0df4e646ce1af3a8010cf17f9d46ca79586f1c98075b0648f325cb"
 K0_READY_LEDGER_LINE_SHA256 = "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5"
+K0_RED_FIELD_LEDGER_LINE_SHA256 = "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46"
 K0_RED_FIELD_PRESERVED_LEDGER_HASHES = {
     "L-020": K0_PARENT_LEDGER_LINE_SHA256,
     "L-021": K0_READY_LEDGER_LINE_SHA256,
+    "L-022": K0_RED_FIELD_LEDGER_LINE_SHA256,
 }
 K0_RED_FIELD_EVIDENCE_STATES = (
     "NOT_TESTED",
@@ -163,6 +187,35 @@ K0_RED_FIELD_RIVAL_STATES = (
     "RIVAL_SATURATED",
     "RIVAL_SEPARATED",
 )
+K0_RED_FIELD_CORRECTED_CONTROL_STATES = K0_RED_FIELD_CONTROL_STATES + ("CONTROL_DOMINATED",)
+K0_RED_FIELD_CORRECTED_RIVAL_STATES = K0_RED_FIELD_RIVAL_STATES + ("RIVAL_DOMINATED",)
+K0_RED_FIELD_CORRECTED_CONTROL_EQUIVALENCE_TYPES = (
+    "CANDIDATE_PARITY",
+    "ADMISSION_CEILING_SATURATION",
+    "OWN_RULE_AMORTIZED_PARITY",
+    None,
+)
+K0_RED_FIELD_CORRECTION_CLAIM_CEILING = {
+    "allowed": ["task_card_schema_control_plane_enforcement_only"],
+    "forbidden": [
+        "learned_model",
+        "online_learning",
+        "replay_contribution",
+        "memory_causality",
+        "transfer",
+        "initiative",
+        "agency",
+        "autonomy",
+        "subjectivity",
+        "consciousness",
+        "real_emotion",
+        "functional_subject",
+        "electronic_life",
+        "EGO_readiness",
+        "product_benefit",
+        "mainline_effect",
+    ],
+}
 K0_RED_FIELD_ARM_ROLES = (
     "CAUSAL_ABLATION",
     "SHORTCUT_CONTROL",
@@ -248,6 +301,7 @@ AUTHORIZED_TASK_PATHS = (
     "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
+    "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
     "docs/research/FSP-STAGE-LEDGER.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
     "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
@@ -269,6 +323,7 @@ AUTHORIZED_TASK_PATHS = (
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
+    "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
 )
 
 ROADMAP_LIKE_MARKERS = (

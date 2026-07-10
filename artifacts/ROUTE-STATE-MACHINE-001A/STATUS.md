@@ -5,44 +5,53 @@
 - Layer: engineering implementation / route-governance evidence hygiene only.
 - Mainline integration status: not integrated; no EGO runtime or production path.
 - Enabled status: Foundation remains authorized; H0 is authorized only as a
-  bank action under the exact Red-field addendum pins. K0-R, H1, Freeze,
+  bank action under both exact Red-field overlay pins. K0-R, H1, Freeze,
   Formal, scoring, runtime/mainline, and claims remain disabled.
 - Real trigger evidence: callable `routectl validate` over serialized route
-  state plus committed Git-object and SHA-256 readback of the Red-field card
-  and contract, recorded in `validation_report.json`.
-- Claim ceiling: local task-card/schema/control-plane enforcement only.
+  state plus committed Git-object and SHA-256 readback of both Red-field cards
+  and contracts, recorded in `validation_report.json`.
+- Claim ceiling: local additive task-card/schema/control-plane enforcement only.
 - Current governed boundary route id: `K0-DUAL-TRACK-SUPERSESSION-001A`.
 - Current route posture:
-  `k0_dual_track_first_pair_ready_with_red_field_addendum`.
+  `k0_dual_track_first_pair_ready_with_red_field_correction`.
 - Active mechanism frontier: `none`.
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
 
-## K0 dual-track Red-field addendum enforcement
+## K0 dual-track Red-field additive enforcement
 
 - Parent card: `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.
 - Transition card:
   `docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md`.
 - Addendum card:
   `docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md`.
-- Machine contract:
+- Original machine contract:
   `artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json`.
+- Correction card:
+  `docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md`.
+- Correction machine contract:
+  `artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json`.
 - Ledger transitions: append-only `FSP-STAGE-LEDGER.md` entries `L-020`
-  (registration), `L-021` (exact first-pair readiness), and `L-022` (Red-field
-  addendum bank/enforcement), authorized by the operator in-session on
-  2026-07-09. Callable validation pins the full-line hashes of L-020/L-021 and
-  requires L-022 exactly once.
+  (registration), `L-021` (exact first-pair readiness), `L-022` (Red-field
+  addendum bank/enforcement), and `L-023` (semantic correction bank/enforcement),
+  authorized by the operator in-session on 2026-07-09. Callable validation pins
+  the full-line hashes of L-020 through L-022 and requires L-023 exactly once.
 - Route state: `READY_TO_IMPLEMENT`; phase
-  `FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM`.
+  `FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION`.
 - Exact implementation authorizations:
   `EGO-K0-FOUNDATION-001A` and
   `ITL-K0-H0-H1-INSTRUMENT-001A:H0` only, with H0 usable only for a bank that
-  consumes the Red-field pin.
+  consumes and satisfies both Red-field pins.
 - Addendum bank commit:
   `bfbe215518a8f31fd300e600c73bb9d59e635335`; card blob
   `cc8b2720374bec1b566ede3c11d87c2290fb8345`; contract blob
   `ba1c55cfeeffbbf7e3c0da15b8b52dd836ef6511`; contract SHA-256
   `c1ada02360b26892ca4728b4c53ae36fa8dbf7f7202697c4288f64a1cb7be59c`.
+- Correction bank commit:
+  `882be402395e7301cf69fcc0a0bae1eca8dfcd68`; card blob
+  `a186c78028a69a81c408f3985fa0112fae10b9a0`; contract blob
+  `9fcb9a0036fe09232f5a8619c755b24703d2c2d9`; contract SHA-256
+  `2faa270dabebc4f83b8d51b689592a28fdfee96e44a80049835b40b31e304399`.
 - Banked child commits: Ego Foundation
   `13bd9268993f74a41b4cc219855761681ab12b66`; Ego Reference Kernel
   `0f043254710b47700f2088213232aba777bd3f46`; ITL Instrument/Freeze/Formal
@@ -51,10 +60,11 @@
   execution, runtime/mainline, claims, and remote publication remain explicit
   `false`. No H0/H1/K0-R/Freeze/Formal implementation, bank, scoring, or run
   occurred in this transition.
-- The additive contract freezes separate evidence, shortcut-control, and rival
-  axes plus ex-ante arm roles, sign simulation, bit-exact determinism,
-  power/equivalence, and dependency-scoped integrity requirements. It does not
-  report any component as tested or present.
+- The original additive contract remains enforced. The correction additionally
+  freezes dominated terminals, six component formulas, powered causal absence,
+  exhaustive coverage, per-source RNG evidence, seed/power provenance, and the
+  exact machine claim ceiling. Neither contract reports a component as tested
+  or present.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
   remain unchanged; no prior negative result is rescued.
 

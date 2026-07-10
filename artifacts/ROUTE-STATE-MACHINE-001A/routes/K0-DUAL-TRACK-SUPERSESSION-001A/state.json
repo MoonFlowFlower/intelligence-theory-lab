@@ -40,11 +40,11 @@
     "ego_k0_foundation_001a": "card_banked_ready_to_implement",
     "ego_k0_reference_kernel_001a": "card_banked_and_blocked_on_foundation_plus_h0",
     "itl_k0_formal_evidence_001a": "card_banked_and_blocked_on_freeze",
-    "itl_k0_h0_h1_instrument_001a": "card_banked_h0_ready_only_under_pinned_red_field_addendum_h1_blocked_on_h0",
+    "itl_k0_h0_h1_instrument_001a": "card_banked_h0_ready_only_under_both_pinned_red_field_overlays_h1_blocked_on_h0",
     "k0_immutable_freeze_001a": "card_banked_and_blocked_on_k0r_plus_h1"
   },
   "implementation_authorized": true,
-  "phase": "FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM",
+  "phase": "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION",
   "red_field_addendum_pin": {
     "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
     "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
@@ -62,6 +62,24 @@
       "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0"
     ],
     "red_field_gate_status": "BANKED_AND_ENFORCED"
+  },
+  "red_field_correction_pin": {
+    "task_id": "K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A",
+    "bank_commit": "882be402395e7301cf69fcc0a0bae1eca8dfcd68",
+    "card_path": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
+    "card_blob": "a186c78028a69a81c408f3985fa0112fae10b9a0",
+    "contract_path": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
+    "contract_blob": "9fcb9a0036fe09232f5a8619c755b24703d2c2d9",
+    "contract_sha256": "2faa270dabebc4f83b8d51b689592a28fdfee96e44a80049835b40b31e304399",
+    "applies_to": [
+      "K0-DUAL-TRACK",
+      "ITL-K0-H0-H1-INSTRUMENT-001A:H0"
+    ],
+    "precedence": "additive_correction_controls_conflicting_red_field_terminal_formula_power_coverage_rng_and_claim_ceiling_fields_only",
+    "required_before": [
+      "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0"
+    ],
+    "red_field_correction_gate_status": "BANKED_AND_ENFORCED"
   },
   "route_family": "K0-DUAL-TRACK",
   "route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
@@ -85,17 +103,22 @@
       "path": "docs/research/FSP-STAGE-LEDGER.md",
       "preserved_entry_prefixes": [
         "- L-020 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | K0 dual-track supersession REGISTERED under `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.",
-        "- L-021 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | K0 dual-track moved REGISTERED -> READY_TO_IMPLEMENT for exactly `EGO-K0-FOUNDATION-001A` and `ITL-K0-H0-H1-INSTRUMENT-001A:H0`."
+        "- L-021 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | K0 dual-track moved REGISTERED -> READY_TO_IMPLEMENT for exactly `EGO-K0-FOUNDATION-001A` and `ITL-K0-H0-H1-INSTRUMENT-001A:H0`.",
+        "- L-022 | 2026-07-09 | governance_addendum (operator authorized; transcribed by Codex) | K0 Red-field addendum `K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A` banked and enforced as the H0 prerequisite."
       ],
       "preserved_entry_sha256": {
         "L-020": "6dbc32929d0df4e646ce1af3a8010cf17f9d46ca79586f1c98075b0648f325cb",
-        "L-021": "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5"
+        "L-021": "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5",
+        "L-022": "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46"
       },
       "red_field_addendum_transition": "L-022",
-      "required_entry_prefix": "- L-022 | 2026-07-09 | governance_addendum (operator authorized; transcribed by Codex) | K0 Red-field addendum `K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A` banked and enforced as the H0 prerequisite."
+      "red_field_correction_transition": "L-023",
+      "required_entry_prefix": "- L-023 | 2026-07-09 | governance_correction (operator authorized; transcribed by Codex) | K0 Red-field semantic correction `K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A` banked and enforced as the final H0 prerequisite."
     },
     "parent_card": "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
     "red_field_addendum_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
+    "red_field_correction_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
+    "red_field_correction_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
     "red_field_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
     "transition_card": "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "child_card_banks": {
@@ -164,5 +187,5 @@
       "route_id": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A"
     }
   },
-  "updated_at_utc": "2026-07-10T01:21:05Z"
+  "updated_at_utc": "2026-07-10T02:45:00Z"
 }

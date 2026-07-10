@@ -695,6 +695,462 @@ def validate_red_field_contract(contract_payload: Any) -> dict[str, Any]:
     }
 
 
+def _extract_machine_claim_ceiling(card_text: str) -> Any:
+    start_marker = "<!-- MACHINE_CLAIM_CEILING_BEGIN -->"
+    end_marker = "<!-- MACHINE_CLAIM_CEILING_END -->"
+    if card_text.count(start_marker) != 1 or card_text.count(end_marker) != 1:
+        raise ValueError("machine claim-ceiling markers must each occur exactly once")
+    block = card_text.split(start_marker, 1)[1].split(end_marker, 1)[0].strip()
+    if not block.startswith("```json") or not block.endswith("```"):
+        raise ValueError("machine claim-ceiling block must be a fenced JSON object")
+    return json.loads(block[len("```json") : -len("```")].strip())
+
+
+def validate_red_field_correction_contract(
+    correction_payload: Any,
+    base_contract_payload: Any,
+    *,
+    card_claim_ceiling: Any = None,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    if not isinstance(correction_payload, dict):
+        errors.append(
+            _new_error(
+                "red_field_correction_contract_not_object",
+                "The committed Red-field correction contract must be a JSON object.",
+            )
+        )
+        correction_payload = {}
+    if not isinstance(base_contract_payload, dict):
+        errors.append(
+            _new_error(
+                "red_field_correction_base_contract_not_object",
+                "The pinned original Red-field contract must be available for cross-contract validation.",
+            )
+        )
+        base_contract_payload = {}
+
+    if correction_payload.get("task_id") != state_machine.K0_RED_FIELD_CORRECTION_PIN["task_id"]:
+        errors.append(
+            _new_error(
+                "red_field_correction_task_id_mismatch",
+                "The correction task id must match its committed-object pin.",
+                expected=state_machine.K0_RED_FIELD_CORRECTION_PIN["task_id"],
+                actual=correction_payload.get("task_id"),
+            )
+        )
+    base_result = validate_red_field_contract(base_contract_payload)
+    if base_result["validation_errors"]:
+        errors.append(
+            _new_error(
+                "red_field_correction_base_contract_invalid",
+                "The correction cannot enforce over an invalid original Red-field contract.",
+                base_error_codes=[error["code"] for error in base_result["validation_errors"]],
+            )
+        )
+
+    expected_overlay = {
+        "base_contract_path": state_machine.K0_RED_FIELD_CONTRACT_PATH,
+        "base_task_id": state_machine.K0_RED_FIELD_ADDENDUM_PIN["task_id"],
+        "both_committed_object_gates_required": True,
+        "non_conflicting_base_constraints_remain_binding": True,
+        "precedence": "correction_controls_only_conflicting_terminal_formula_power_coverage_rng_and_claim_ceiling_fields",
+    }
+    if correction_payload.get("additive_overlay") != expected_overlay:
+        errors.append(
+            _new_error(
+                "red_field_correction_overlay_invalid",
+                "The correction must remain an additive overlay over the exact original contract.",
+            )
+        )
+
+    # C1: the V_special mapping is exhaustive and never converts inconclusive to presence or absence.
+    expected_v_special = {
+        "ABSENT_if": [
+            "any_referenced_component_ABSENT",
+            "powered_shortcut_parity_or_saturation",
+            "powered_rival_parity_or_saturation",
+            "candidate_CONTROL_DOMINATED",
+            "candidate_RIVAL_DOMINATED",
+        ],
+        "INVALID_INSTRUMENT_if": [
+            "required_comparison_underpowered",
+            "required_integrity_dependency_invalid",
+            "any_referenced_component_INVALID_INSTRUMENT",
+        ],
+        "PRESENT_BOUNDED_requires": [
+            "all_referenced_component_evidence_admissible_and_PRESENT_BOUNDED",
+            "CONTROL_SEPARATED",
+            "RIVAL_SEPARATED",
+            "all_integrity_dependencies_valid",
+        ],
+        "inconclusive_maps_to_absent_or_present": False,
+        "producer_function": "resolve_v_special_terminal_state",
+    }
+    if correction_payload.get("v_special_terminal_mapping") != expected_v_special:
+        errors.append(
+            _new_error(
+                "red_field_correction_c1_v_special_invalid",
+                "C1 V_special terminal semantics are incomplete or drifted.",
+            )
+        )
+
+    # C2: derive granular causal contrasts from the pinned original arm/component map.
+    base_mappings = base_contract_payload.get("component_control_mapping")
+    base_mappings = base_mappings if isinstance(base_mappings, list) else []
+    base_mapping_by_component = {
+        row.get("component_id"): row
+        for row in base_mappings
+        if isinstance(row, dict) and isinstance(row.get("component_id"), str)
+    }
+    causal_components = list(state_machine.K0_RED_FIELD_COMPONENT_IDS[:-1])
+    expected_contrast_catalog: list[dict[str, str]] = []
+    for component_id in causal_components:
+        for arm_id in base_mapping_by_component.get(component_id, {}).get("causal_arm_ids") or []:
+            expected_contrast_catalog.append(
+                {
+                    "arm_id": arm_id,
+                    "component_id": component_id,
+                    "contrast_id": f"contrast_{arm_id}",
+                }
+            )
+    contrast_catalog = correction_payload.get("causal_contrast_catalog")
+    if contrast_catalog != expected_contrast_catalog:
+        errors.append(
+            _new_error(
+                "red_field_correction_c2_contrast_catalog_invalid",
+                "Every original causal arm must resolve to one frozen granular causal contrast.",
+            )
+        )
+    contrast_ids = [row["contrast_id"] for row in expected_contrast_catalog]
+    expected_formula_fields = {
+        "component_id",
+        "mandatory_causal_contrast_ids",
+        "optional_causal_contrast_ids",
+        "causal_aggregation_rule",
+        "shortcut_panel_reduction_rule",
+        "rival_panel_reduction_rule",
+        "missing_arm_mapping",
+        "invalid_dependency_precedence",
+        "underpowered_precedence",
+        "terminal_state_formula",
+        "claim_emission_formula",
+        "producer_function",
+    }
+    common_expected = {
+        "causal_aggregation_rule": "AND_ALL_MANDATORY_CAUSAL_CONTRASTS_WITH_NO_POST_HOC_OPERATOR_SELECTION",
+        "claim_emission_formula": "PRESENT_BOUNDED_ALWAYS_EMITS_ONLY_CANDIDATE_INTERNAL_CAUSAL_SIGNATURE;BOUNDED_CONTROL_NON_EQUIVALENCE_REQUIRES_CONTROL_SEPARATED;RIVAL_QUALIFIER_NEVER_ERASES_COMPONENT_EVIDENCE",
+        "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+        "missing_arm_mapping": "INVALID_INSTRUMENT",
+        "optional_causal_contrast_ids": [],
+        "producer_function": "resolve_component_terminal_state",
+        "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+        "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+        "terminal_state_formula": "INVALID_IF_MISSING_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_MANDATORY_POWERED_NON_EFFECT;NOT_TESTED_IF_NO_REQUIRED_RUN_STARTED",
+        "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED",
+    }
+    formula_rows = correction_payload.get("component_verdict_formulas")
+    formula_rows = formula_rows if isinstance(formula_rows, list) else []
+    formula_error = [row.get("component_id") for row in formula_rows if isinstance(row, dict)] != list(
+        state_machine.K0_RED_FIELD_COMPONENT_IDS
+    )
+    for row in formula_rows:
+        if not isinstance(row, dict) or set(row) != expected_formula_fields:
+            formula_error = True
+            continue
+        component_id = row["component_id"]
+        expected_mandatory = (
+            contrast_ids
+            if component_id == "V_special"
+            else [
+                f"contrast_{arm_id}"
+                for arm_id in base_mapping_by_component.get(component_id, {}).get("causal_arm_ids") or []
+            ]
+        )
+        expected_row = dict(common_expected)
+        expected_row.update(
+            {
+                "component_id": component_id,
+                "mandatory_causal_contrast_ids": expected_mandatory,
+            }
+        )
+        if component_id == "V_special":
+            expected_row.update(
+                {
+                    "causal_aggregation_rule": "ALL_REFERENCED_COMPONENTS_PRESENT_BOUNDED",
+                    "claim_emission_formula": "PANEL_RELATIVE_SPECIALNESS_ONLY_IF_PRESENT_BOUNDED_WITH_CONTROL_SEPARATED_AND_RIVAL_SEPARATED;NO_CLAIM_FOR_ABSENT_INVALID_INSTRUMENT_OR_NOT_TESTED",
+                    "terminal_state_formula": "PRESENT_BOUNDED_IFF_ALL_REFERENCED_COMPONENTS_PRESENT_BOUNDED_AND_CONTROL_SEPARATED_AND_RIVAL_SEPARATED_AND_ALL_INTEGRITY_VALID;ABSENT_IF_ANY_REFERENCED_COMPONENT_ABSENT_OR_POWERED_CONTROL_EQUIVALENT_OR_CONTROL_DOMINATED_OR_RIVAL_SATURATED_OR_RIVAL_DOMINATED;INVALID_IF_REQUIRED_COMPARISON_UNDERPOWERED_OR_REQUIRED_INTEGRITY_OR_REFERENCED_COMPONENT_INVALID;NOT_TESTED_IF_REQUIRED_RUN_NOT_STARTED",
+                }
+            )
+        if row != expected_row:
+            formula_error = True
+    if formula_error or len(formula_rows) != len(state_machine.K0_RED_FIELD_COMPONENT_IDS):
+        errors.append(
+            _new_error(
+                "red_field_correction_c2_component_formulas_invalid",
+                "C2 requires six exact, resolved, fail-closed component formula rows.",
+            )
+        )
+    formula_contrast_refs = {
+        contrast_id
+        for row in formula_rows
+        if isinstance(row, dict)
+        for field in ("mandatory_causal_contrast_ids", "optional_causal_contrast_ids")
+        for contrast_id in (row.get(field) or [])
+    }
+    if formula_contrast_refs != set(contrast_ids):
+        errors.append(
+            _new_error(
+                "red_field_correction_c2_unused_or_unresolved_contrast",
+                "Every correction contrast must be used and every formula reference must resolve.",
+                unused=sorted(set(contrast_ids) - formula_contrast_refs),
+                unresolved=sorted(formula_contrast_refs - set(contrast_ids)),
+            )
+        )
+
+    # C3: superiority has its own terminal; CONTROL_BETTER is not an equivalence subtype.
+    expected_terminal_schema = {
+        "comparison_state": list(state_machine.K0_RED_FIELD_CORRECTED_RIVAL_STATES),
+        "control_comparison_state": list(state_machine.K0_RED_FIELD_CORRECTED_CONTROL_STATES),
+        "control_equivalence_type": list(state_machine.K0_RED_FIELD_CORRECTED_CONTROL_EQUIVALENCE_TYPES),
+        "evidence_state": list(state_machine.K0_RED_FIELD_EVIDENCE_STATES),
+        "fourth_verdict_axis_forbidden": True,
+        "terminal_rules": {
+            "candidate_powered_superiority": "STAR_SEPARATED",
+            "control_or_rival_powered_superiority": "STAR_DOMINATED",
+            "powered_parity_or_preregistered_ceiling_saturation": "CONTROL_EQUIVALENT_OR_RIVAL_SATURATED",
+            "underpowered": "STAR_INCONCLUSIVE",
+        },
+    }
+    terminal_schema = correction_payload.get("effective_terminal_schema")
+    enum_unique = isinstance(terminal_schema, dict) and all(
+        isinstance(terminal_schema.get(field), list)
+        and len(terminal_schema[field]) == len({json.dumps(value) for value in terminal_schema[field]})
+        for field in ("comparison_state", "control_comparison_state", "control_equivalence_type", "evidence_state")
+    )
+    if terminal_schema != expected_terminal_schema or not enum_unique:
+        errors.append(
+            _new_error(
+                "red_field_correction_c3_terminal_schema_invalid",
+                "C3 effective terminals, uniqueness, and superiority semantics are incomplete or drifted.",
+            )
+        )
+
+    # C4: absence is a powered decision, never failure-to-reject.
+    expected_absence = {
+        "causal_underpowered_mapping": "INVALID_INSTRUMENT",
+        "covered_causal_contrast_ids": contrast_ids,
+        "failure_to_reject_effect_is_absence": False,
+        "powered_absence_required_fields": [
+            "valid_full_arm",
+            "valid_intervention_arm",
+            "frozen_equivalence_or_noninferiority_decision",
+            "computed_power_at_sesoi",
+            "target_power",
+            "power_target_met",
+        ],
+        "powered_non_effect_required_for": [
+            "every_causal_ablation_no_effect_mapping",
+            "every_evidence_state_ABSENT_decision",
+        ],
+    }
+    if correction_payload.get("causal_absence_contract") != expected_absence:
+        errors.append(
+            _new_error(
+                "red_field_correction_c4_powered_absence_invalid",
+                "C4 causal absence must be frozen, powered, and exhaustive over all causal contrasts.",
+            )
+        )
+
+    # C5: coverage is closed over the pinned base assignments/mappings and both contrast catalogs.
+    expected_coverage = {
+        "all_arm_assignments_must_be_covered": True,
+        "all_component_mapped_arms_must_be_covered": True,
+        "all_contrast_ids_source": [
+            "original_addendum.comparison_catalog",
+            "correction.causal_contrast_catalog",
+        ],
+        "all_integrity_controls_must_have_detector_signatures": True,
+        "arm_assignment_ids_source": "original_addendum.arm_role_contract.assignments[*].arm_id",
+        "component_mapped_arm_ids_source": "original_addendum.component_control_mapping[*].*_arm_ids",
+        "integrity_control_ids_source": "original_addendum.arm_role_contract.assignments[arm_role=INTEGRITY_CONTROL].arm_id",
+        "orphan_arm_mapping": "INVALID_INSTRUMENT",
+        "required_artifact": "control_signature_coverage_report.json",
+        "required_report_fields": [
+            "arm_id",
+            "arm_role",
+            "component_ids",
+            "contrast_ids",
+            "simulation_case_ids",
+            "expected_sign_ids",
+            "coverage_status",
+            "producer_function",
+            "input_hashes",
+            "run_id",
+            "aggregation_rule",
+            "code_path_hash",
+        ],
+        "required_simulation_cases_per_contrast": [
+            "parity",
+            "strong_negative",
+            "survival_positive",
+            "boundary_failure",
+        ],
+        "unused_contrast_mapping": "INVALID_INSTRUMENT",
+    }
+    assignments = base_contract_payload.get("arm_role_contract", {}).get("assignments")
+    assignments = assignments if isinstance(assignments, list) else []
+    assigned_arm_ids = {
+        row.get("arm_id") for row in assignments if isinstance(row, dict) and isinstance(row.get("arm_id"), str)
+    }
+    mapped_arm_ids = {
+        arm_id
+        for row in base_mappings
+        if isinstance(row, dict)
+        for field in ("causal_arm_ids", "shortcut_control_arm_ids", "rival_arm_ids", "integrity_control_arm_ids")
+        for arm_id in (row.get(field) or [])
+    }
+    integrity_arm_ids = {
+        row.get("arm_id")
+        for row in assignments
+        if isinstance(row, dict) and row.get("arm_role") == "INTEGRITY_CONTROL"
+    }
+    original_catalog = base_contract_payload.get("comparison_catalog")
+    original_catalog = original_catalog if isinstance(original_catalog, dict) else {}
+    original_contrast_ids = {
+        contrast_id
+        for values in original_catalog.values()
+        if isinstance(values, list)
+        for contrast_id in values
+    }
+    if (
+        correction_payload.get("exhaustive_signature_coverage") != expected_coverage
+        or not assigned_arm_ids
+        or assigned_arm_ids != mapped_arm_ids
+        or not integrity_arm_ids
+        or not original_contrast_ids
+        or not contrast_ids
+    ):
+        errors.append(
+            _new_error(
+                "red_field_correction_c5_exhaustive_coverage_invalid",
+                "C5 must close coverage over every original assignment, mapped arm, integrity control, and contrast.",
+                orphan_assignments=sorted(assigned_arm_ids - mapped_arm_ids),
+                orphan_mappings=sorted(mapped_arm_ids - assigned_arm_ids),
+            )
+        )
+
+    # C6: every source has restore evidence and two independent recomputes.
+    expected_rng = {
+        "distinct_fresh_process_recompute_records_required": 2,
+        "distinct_pid_required": True,
+        "distinct_temp_dir_required": True,
+        "fresh_process_record_required_fields": [
+            "process_index",
+            "pid",
+            "temp_dir_hash",
+            "launcher_code_hash",
+            "pythonhashseed_commitment",
+            "serialized_state_hash",
+            "observation_hash",
+            "checkpoint_hash",
+            "config_hash",
+            "output_hash",
+        ],
+        "original_run_counts_as_recompute": False,
+        "required_rng_source_ids_source": "original_addendum.determinism_contract.rng_registry",
+        "rng_entry_required_fields": [
+            "source_id",
+            "library",
+            "namespace",
+            "seed_input_ids",
+            "seed_derivation_function",
+            "derived_seed_or_commitment",
+            "device_id",
+            "worker_id",
+            "initial_state_hash",
+            "serialized_state_hash",
+            "restored_state_hash",
+            "used_by_code_path_ids",
+            "restore_verdict",
+        ],
+    }
+    base_rng_sources = base_contract_payload.get("determinism_contract", {}).get("rng_registry")
+    if (
+        correction_payload.get("rng_evidence_contract") != expected_rng
+        or not isinstance(base_rng_sources, list)
+        or not base_rng_sources
+        or len(base_rng_sources) != len(set(base_rng_sources))
+    ):
+        errors.append(
+            _new_error(
+                "red_field_correction_c6_rng_evidence_invalid",
+                "C6 per-source RNG and distinct fresh-process evidence fields are incomplete or drifted.",
+            )
+        )
+
+    # C7: future H0 must choose exactly one ex-ante seed design with callable power provenance.
+    expected_power = {
+        "computed_mde_power_required_fields": [
+            "producer_function",
+            "input_artifact_hashes",
+            "run_id",
+            "seed_block_id",
+            "aggregation_rule",
+            "code_path_hash",
+        ],
+        "exactly_one_seed_design_required": True,
+        "fixed_seed_design_required_fields": ["fixed_seed_count", "frozen_seed_block_id"],
+        "forbidden": [
+            "null_fixed_count_plus_ambiguous_sequential_prose",
+            "hand_written_computed_power_or_mde",
+            "post_result_n_extension",
+        ],
+        "sequential_seed_design_required_fields": [
+            "sequential_schedule_id",
+            "analysis_looks",
+            "max_n",
+            "alpha_spending_rule",
+            "stopping_predicate",
+            "seed_release_order",
+        ],
+    }
+    if correction_payload.get("power_design_provenance") != expected_power:
+        errors.append(
+            _new_error(
+                "red_field_correction_c7_power_design_invalid",
+                "C7 seed-design exclusivity and computed power/MDE provenance are incomplete or drifted.",
+            )
+        )
+
+    # C8: the card and machine contract must carry the same exact single allowed claim and forbidden list.
+    claim_ceiling = correction_payload.get("claim_ceiling")
+    claim_unique = isinstance(claim_ceiling, dict) and all(
+        isinstance(claim_ceiling.get(field), list)
+        and len(claim_ceiling[field]) == len(set(claim_ceiling[field]))
+        for field in ("allowed", "forbidden")
+    )
+    if (
+        claim_ceiling != state_machine.K0_RED_FIELD_CORRECTION_CLAIM_CEILING
+        or not claim_unique
+        or (card_claim_ceiling is not None and card_claim_ceiling != claim_ceiling)
+    ):
+        errors.append(
+            _new_error(
+                "red_field_correction_c8_claim_ceiling_invalid",
+                "C8 machine/card claim ceilings must exact-match the frozen allowed and forbidden lists.",
+            )
+        )
+
+    return {
+        "producer_function": "validate_red_field_correction_contract",
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
 def _git_output(repo_root: Path, *args: str, text: bool = True) -> str | bytes:
     completed = subprocess.run(
         ["git", *args],
@@ -816,6 +1272,143 @@ def validate_red_field_addendum_repository(
     warnings.extend(contract_result["validation_warnings"])
     return {
         "producer_function": "validate_red_field_addendum_repository",
+        "input_artifacts": input_artifacts,
+        "validation_errors": errors,
+        "validation_warnings": warnings,
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
+def validate_red_field_correction_repository(
+    *,
+    repo_root: Path,
+    route_state_payload: Any,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    input_artifacts = [
+        state_machine.K0_RED_FIELD_ADDENDUM_CARD_PATH,
+        state_machine.K0_RED_FIELD_CONTRACT_PATH,
+        state_machine.K0_RED_FIELD_CORRECTION_CARD_PATH,
+        state_machine.K0_RED_FIELD_CORRECTION_CONTRACT_PATH,
+    ]
+    if not isinstance(route_state_payload, dict):
+        errors.append(
+            _new_error(
+                "red_field_correction_route_state_missing",
+                "The K0 route state is required for correction committed-object validation.",
+            )
+        )
+        route_state_payload = {}
+
+    if route_state_payload.get("red_field_addendum_pin") != state_machine.K0_RED_FIELD_ADDENDUM_PIN:
+        errors.append(
+            _new_error(
+                "red_field_correction_original_addendum_pin_missing_or_drifted",
+                "The correction cannot replace or remove the exact original Red-field addendum pin.",
+            )
+        )
+
+    pin = route_state_payload.get("red_field_correction_pin")
+    if pin != state_machine.K0_RED_FIELD_CORRECTION_PIN:
+        errors.append(
+            _new_error(
+                "red_field_correction_pin_mismatch",
+                "The serialized correction pin must equal the frozen Phase A committed-object pin.",
+                expected=state_machine.K0_RED_FIELD_CORRECTION_PIN,
+                actual=pin,
+            )
+        )
+        pin = pin if isinstance(pin, dict) else {}
+
+    bank_commit = pin.get("bank_commit")
+    card_path = pin.get("card_path")
+    contract_path = pin.get("contract_path")
+    try:
+        head = str(_git_output(repo_root, "rev-parse", "HEAD"))
+    except (OSError, subprocess.SubprocessError) as exc:
+        errors.append(
+            _new_error(
+                "red_field_correction_git_readback_failed",
+                "Git HEAD could not be read for the correction ancestry gate.",
+                error=str(exc),
+            )
+        )
+        head = ""
+    if not isinstance(bank_commit, str) or not _git_is_ancestor(repo_root, bank_commit, head or "HEAD"):
+        errors.append(
+            _new_error(
+                "red_field_correction_bank_commit_not_ancestor",
+                "The correction bank commit must be an ancestor of the Phase B validation HEAD.",
+                bank_commit=bank_commit,
+                validation_head=head,
+            )
+        )
+
+    correction_payload: Any = None
+    base_contract_payload: Any = None
+    card_claim_ceiling: Any = None
+    if isinstance(bank_commit, str) and isinstance(card_path, str) and isinstance(contract_path, str):
+        try:
+            actual_card_blob = str(_git_output(repo_root, "rev-parse", f"{bank_commit}:{card_path}"))
+            actual_contract_blob = str(_git_output(repo_root, "rev-parse", f"{bank_commit}:{contract_path}"))
+            card_bytes = _git_output(repo_root, "cat-file", "blob", actual_card_blob, text=False)
+            contract_bytes = _git_output(repo_root, "cat-file", "blob", actual_contract_blob, text=False)
+            base_contract_bytes = _git_output(
+                repo_root,
+                "cat-file",
+                "blob",
+                state_machine.K0_RED_FIELD_ADDENDUM_PIN["contract_blob"],
+                text=False,
+            )
+            assert isinstance(card_bytes, bytes)
+            assert isinstance(contract_bytes, bytes)
+            assert isinstance(base_contract_bytes, bytes)
+            actual_contract_sha256 = hashlib.sha256(contract_bytes).hexdigest()
+            correction_payload = json.loads(contract_bytes.decode("utf-8"))
+            base_contract_payload = json.loads(base_contract_bytes.decode("utf-8"))
+            card_claim_ceiling = _extract_machine_claim_ceiling(card_bytes.decode("utf-8"))
+        except (
+            AssertionError,
+            UnicodeDecodeError,
+            ValueError,
+            json.JSONDecodeError,
+            OSError,
+            subprocess.SubprocessError,
+        ) as exc:
+            errors.append(
+                _new_error(
+                    "red_field_correction_committed_object_readback_failed",
+                    "The correction card/contract or original contract could not be read and parsed from committed objects.",
+                    error=str(exc),
+                )
+            )
+        else:
+            actual = {
+                "card_blob": actual_card_blob,
+                "contract_blob": actual_contract_blob,
+                "contract_sha256": actual_contract_sha256,
+            }
+            expected = {key: pin.get(key) for key in ("card_blob", "contract_blob", "contract_sha256")}
+            if actual != expected:
+                errors.append(
+                    _new_error(
+                        "red_field_correction_committed_object_pin_drift",
+                        "Committed correction card/contract objects and SHA-256 must match the serialized pin.",
+                        expected=expected,
+                        actual=actual,
+                    )
+                )
+
+    contract_result = validate_red_field_correction_contract(
+        correction_payload,
+        base_contract_payload,
+        card_claim_ceiling=card_claim_ceiling,
+    )
+    errors.extend(contract_result["validation_errors"])
+    warnings.extend(contract_result["validation_warnings"])
+    return {
+        "producer_function": "validate_red_field_correction_repository",
         "input_artifacts": input_artifacts,
         "validation_errors": errors,
         "validation_warnings": warnings,
@@ -1061,21 +1654,41 @@ def validate_route_payload(
                         actual=red_field_pin,
                     )
                 )
+            red_field_correction_pin = state_payload.get("red_field_correction_pin")
+            if red_field_correction_pin is None:
+                errors.append(
+                    _new_error(
+                        "k0_red_field_correction_pin_missing",
+                        "READY_TO_IMPLEMENT H0 authorization requires the banked Red-field correction pin.",
+                    )
+                )
+            elif red_field_correction_pin != state_machine.K0_RED_FIELD_CORRECTION_PIN:
+                errors.append(
+                    _new_error(
+                        "k0_red_field_correction_pin_mismatch",
+                        "The Red-field correction pin must equal the frozen Phase A committed-object pin.",
+                        expected=state_machine.K0_RED_FIELD_CORRECTION_PIN,
+                        actual=red_field_correction_pin,
+                    )
+                )
             if (
                 isinstance(state_payload.get("child_authorizations"), dict)
                 and state_payload["child_authorizations"].get("ITL-K0-H0-H1-INSTRUMENT-001A:H0") is True
                 and (
                     not isinstance(red_field_pin, dict)
                     or red_field_pin.get("red_field_gate_status") != "BANKED_AND_ENFORCED"
+                    or not isinstance(red_field_correction_pin, dict)
+                    or red_field_correction_pin.get("red_field_correction_gate_status")
+                    != "BANKED_AND_ENFORCED"
                 )
             ):
                 errors.append(
                     _new_error(
                         "k0_h0_authorized_without_enforced_red_field_gate",
-                        "H0 may remain true only when the exact Red-field gate is banked and enforced.",
+                        "H0 may remain true only when both exact Red-field gates are banked and enforced.",
                     )
                 )
-            expected_ledger_prefix = state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX
+            expected_ledger_prefix = state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX
 
         if not isinstance(ledger_readback, dict):
             errors.append(
@@ -1107,12 +1720,13 @@ def validate_route_payload(
                 expected_preserved_prefixes = [
                     state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                     state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
+                    state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
                 ]
                 if ledger_readback.get("preserved_entry_prefixes") != expected_preserved_prefixes:
                     errors.append(
                         _new_error(
                             "k0_ready_preserved_ledger_prefix_mismatch",
-                            "The Red-field READY_TO_IMPLEMENT boundary must preserve L-020 and L-021.",
+                            "The corrected Red-field READY_TO_IMPLEMENT boundary must preserve L-020 through L-022.",
                             expected=expected_preserved_prefixes,
                             actual=ledger_readback.get("preserved_entry_prefixes"),
                         )
@@ -1326,7 +1940,7 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
         event = matches[0]
         if (
             event.get("route_id") != state_machine.K0_PARENT_ROUTE_ID
-            or event.get("phase") != state_machine.K0_READY_PHASE
+            or event.get("phase") != state_machine.K0_RED_FIELD_ADDENDUM_PHASE
             or event.get("current_state") != "READY_TO_IMPLEMENT"
             or event.get("red_field_addendum_pin") != state_machine.K0_RED_FIELD_ADDENDUM_PIN
             or event.get("foundation_authorized") is not True
@@ -1343,6 +1957,43 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
                 _new_error(
                     "k0_red_field_event_contract_mismatch",
                     "The Red-field route event must carry the exact state, phase, pin, and authorization boundary.",
+                )
+            )
+
+    correction_matches = [
+        event for event in events if event.get("event") == "red_field_semantic_correction_banked_and_enforced"
+    ]
+    if len(correction_matches) != 1:
+        errors.append(
+            _new_error(
+                "k0_red_field_correction_event_missing_or_duplicate",
+                "Exactly one Red-field semantic-correction bank/enforcement event must be appended.",
+                match_count=len(correction_matches),
+                path=_posix(events_path),
+            )
+        )
+    else:
+        event = correction_matches[0]
+        if (
+            event.get("route_id") != state_machine.K0_PARENT_ROUTE_ID
+            or event.get("phase") != state_machine.K0_READY_PHASE
+            or event.get("current_state") != "READY_TO_IMPLEMENT"
+            or event.get("red_field_addendum_pin") != state_machine.K0_RED_FIELD_ADDENDUM_PIN
+            or event.get("red_field_correction_pin") != state_machine.K0_RED_FIELD_CORRECTION_PIN
+            or event.get("foundation_authorized") is not True
+            or event.get("h0_authorized_only_under_both_red_gates") is not True
+            or event.get("preserved_false_targets")
+            != [
+                "EGO-K0-REFERENCE-KERNEL-001A",
+                "ITL-K0-H0-H1-INSTRUMENT-001A:H1",
+                "K0-IMMUTABLE-FREEZE-001A",
+                "ITL-K0-FORMAL-EVIDENCE-001A",
+            ]
+        ):
+            errors.append(
+                _new_error(
+                    "k0_red_field_correction_event_contract_mismatch",
+                    "The correction event must carry the exact phase, both pins, and preserved authorization boundary.",
                 )
             )
 
@@ -1566,7 +2217,8 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                         ),
                         "child_authorizations": state_machine.K0_READY_CHILD_AUTHORIZATIONS,
                         "red_field_addendum_pin": state_machine.K0_RED_FIELD_ADDENDUM_PIN,
-                        "current_route_posture": "k0_dual_track_first_pair_ready_with_red_field_addendum",
+                        "red_field_correction_pin": state_machine.K0_RED_FIELD_CORRECTION_PIN,
+                        "current_route_posture": "k0_dual_track_first_pair_ready_with_red_field_correction",
                     }
                     for field, expected in expected_program_fields.items():
                         if program_state_payload.get(field) != expected:
@@ -1596,7 +2248,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                     ledger_relative_path = ledger_readback.get("path")
                     required_entry_prefix = ledger_readback.get("required_entry_prefix")
                     expected_k0_ledger_prefix = (
-                        state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX
+                        state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX
                         if route_current_state == "READY_TO_IMPLEMENT"
                         else state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
                     )
@@ -1696,12 +2348,13 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                     expected_preserved_prefixes = [
                                         state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                                         state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
+                                        state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
                                     ]
                                     if preserved_prefixes != expected_preserved_prefixes:
                                         errors.append(
                                             _new_error(
                                                 "current_frontier_k0_preserved_ledger_contract_mismatch",
-                                                "The Red-field READY_TO_IMPLEMENT frontier must preserve L-020 and L-021.",
+                                                "The corrected Red-field READY_TO_IMPLEMENT frontier must preserve L-020 through L-022.",
                                                 expected=expected_preserved_prefixes,
                                                 actual=preserved_prefixes,
                                             )
@@ -1720,6 +2373,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                         expected_hash_by_prefix = {
                                             state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX: state_machine.K0_PARENT_LEDGER_LINE_SHA256,
                                             state_machine.K0_READY_LEDGER_ENTRY_PREFIX: state_machine.K0_READY_LEDGER_LINE_SHA256,
+                                            state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX: state_machine.K0_RED_FIELD_LEDGER_LINE_SHA256,
                                         }
                                         for preserved_prefix in preserved_prefixes:
                                             preserved_matches = [
@@ -1847,6 +2501,13 @@ def build_validation_report(
         "validation_warnings": [],
         "verdict": "not_applicable",
     }
+    red_field_correction = {
+        "producer_function": "validate_red_field_correction_repository",
+        "input_artifacts": [],
+        "validation_errors": [],
+        "validation_warnings": [],
+        "verdict": "not_applicable",
+    }
     k0_state_path = routes_dir / state_machine.K0_PARENT_ROUTE_ID / "state.json"
     if k0_state_path.is_file():
         try:
@@ -1858,12 +2519,17 @@ def build_validation_report(
                 repo_root=root,
                 route_state_payload=k0_state_payload,
             )
+            red_field_correction = validate_red_field_correction_repository(
+                repo_root=root,
+                route_state_payload=k0_state_payload,
+            )
     input_artifacts = [
         f"{state_machine.TASK_ARTIFACT_DIR}/routes/{artifact}"
         for artifact in route_tree["input_artifacts"]
     ]
     input_artifacts.extend(program_state["input_artifacts"])
     input_artifacts.extend(red_field_addendum["input_artifacts"])
+    input_artifacts.extend(red_field_correction["input_artifacts"])
     schema_dir = root / state_machine.TASK_ARTIFACT_DIR / "schemas"
     for schema in sorted(schema_dir.glob("*.schema.json")) if schema_dir.exists() else []:
         input_artifacts.append(_relative_posix(schema, root))
@@ -1872,11 +2538,13 @@ def build_validation_report(
         route_tree["validation_errors"]
         + program_state["validation_errors"]
         + red_field_addendum["validation_errors"]
+        + red_field_correction["validation_errors"]
     )
     validation_warnings = (
         route_tree["validation_warnings"]
         + program_state["validation_warnings"]
         + red_field_addendum["validation_warnings"]
+        + red_field_correction["validation_warnings"]
     )
 
     return {
@@ -1884,13 +2552,14 @@ def build_validation_report(
         "producer_function": "build_validation_report",
         "input_artifacts": sorted(set(input_artifacts)),
         "run_id": f"{state_machine.TASK_ID.lower()}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}",
-        "aggregation_rule": "verdict is pass iff validate_routes_tree, validate_program_state, and applicable validate_red_field_addendum_repository return zero validation_errors",
+        "aggregation_rule": "verdict is pass iff validate_routes_tree, validate_program_state, and applicable original-addendum and correction committed-object validators return zero validation_errors",
         "code_path_hash": code_path_hash(),
         "validation_errors": validation_errors,
         "validation_warnings": validation_warnings,
         "current_frontier_route_id": program_state["current_frontier_route_id"],
         "program_state_verdict": program_state["verdict"],
         "red_field_addendum_verdict": red_field_addendum["verdict"],
+        "red_field_correction_verdict": red_field_correction["verdict"],
         "route_count": route_tree["route_count"],
         "routes": [
             {
@@ -1927,6 +2596,7 @@ def build_status(repo_root: str | Path) -> dict[str, Any]:
         "current_frontier_route_id": report["current_frontier_route_id"],
         "program_state_verdict": report["program_state_verdict"],
         "red_field_addendum_verdict": report["red_field_addendum_verdict"],
+        "red_field_correction_verdict": report["red_field_correction_verdict"],
         "routes": report["routes"],
         "validation_error_count": len(report["validation_errors"]),
         "validation_warning_count": len(report["validation_warnings"]),
@@ -1944,6 +2614,7 @@ def build_dashboard(repo_root: str | Path) -> dict[str, Any]:
         "current_frontier_route_id": report["current_frontier_route_id"],
         "program_state_verdict": report["program_state_verdict"],
         "red_field_addendum_verdict": report["red_field_addendum_verdict"],
+        "red_field_correction_verdict": report["red_field_correction_verdict"],
         "routes": report["routes"],
         "validation_error_codes": sorted({error["code"] for error in report["validation_errors"]}),
         "validation_warning_codes": sorted({warning["code"] for warning in report["validation_warnings"]}),

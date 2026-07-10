@@ -1,7 +1,8 @@
 {
-  "aggregation_rule": "verdict is pass iff validate_routes_tree, validate_program_state, and applicable validate_red_field_addendum_repository return zero validation_errors",
+  "aggregation_rule": "verdict is pass iff validate_routes_tree, validate_program_state, and applicable original-addendum and correction committed-object validators return zero validation_errors",
   "authorized_paths": [
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
+    "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
     "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/events.jsonl",
@@ -16,6 +17,7 @@
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
     "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
+    "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
     "docs/codex/tasks/ROUTE-STATE-MACHINE-001A.md",
     "docs/codex/tasks/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
@@ -40,10 +42,11 @@
     "tests/route_state_machine_001a/test_validator.py"
   ],
   "claim_ceiling": "local route-governance validation only; no mechanism, theory, agency, autonomy, subjectivity, consciousness, EGO readiness, companion readiness, or mainline-effect claim",
-  "code_path_hash": "c086ad4fb12559ba24745b749c9a69c523a1566ebaf0c9a5d21d3a54a40c9208",
+  "code_path_hash": "cc961f5fa09b21933603ee3aa40b93cafe647e53677cefb03451f09d8f3a9423",
   "current_frontier_route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
   "input_artifacts": [
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
+    "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/state.json",
@@ -59,11 +62,13 @@
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/closure_packet.schema.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/route_state.schema.json",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
+    "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
     "docs/research/FSP-STAGE-LEDGER.md"
   ],
   "producer_function": "build_validation_report",
   "program_state_verdict": "pass",
   "red_field_addendum_verdict": "pass",
+  "red_field_correction_verdict": "pass",
   "route_count": 4,
   "routes": [
     {
@@ -91,7 +96,7 @@
       "verdict": "pass"
     }
   ],
-  "run_id": "route-state-machine-001a-20260710T013156Z-76500f2c",
+  "run_id": "route-state-machine-001a-20260710T024306Z-90ad2f99",
   "task_id": "ROUTE-STATE-MACHINE-001A",
   "validation_errors": [],
   "validation_warnings": [],
