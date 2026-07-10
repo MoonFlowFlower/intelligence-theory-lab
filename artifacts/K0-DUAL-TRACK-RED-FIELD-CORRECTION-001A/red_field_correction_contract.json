@@ -1,0 +1,328 @@
+{
+  "additive_overlay": {
+    "base_contract_path": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
+    "base_task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
+    "both_committed_object_gates_required": true,
+    "non_conflicting_base_constraints_remain_binding": true,
+    "precedence": "correction_controls_only_conflicting_terminal_formula_power_coverage_rng_and_claim_ceiling_fields"
+  },
+  "causal_absence_contract": {
+    "causal_underpowered_mapping": "INVALID_INSTRUMENT",
+    "covered_causal_contrast_ids": [
+      "contrast_planner_bypass",
+      "contrast_checkpoint_swap",
+      "contrast_prediction_counterfactual",
+      "contrast_no_update",
+      "contrast_shuffled_outcome",
+      "contrast_matched_replay_off",
+      "contrast_memory_read_off",
+      "contrast_memory_zero",
+      "contrast_source_deletion",
+      "contrast_history_replacement",
+      "contrast_fresh_init",
+      "contrast_from_scratch",
+      "contrast_checkpoint_only",
+      "contrast_replay_reset",
+      "contrast_memory_reset",
+      "contrast_full_carryover"
+    ],
+    "failure_to_reject_effect_is_absence": false,
+    "powered_absence_required_fields": [
+      "valid_full_arm",
+      "valid_intervention_arm",
+      "frozen_equivalence_or_noninferiority_decision",
+      "computed_power_at_sesoi",
+      "target_power",
+      "power_target_met"
+    ],
+    "powered_non_effect_required_for": [
+      "every_causal_ablation_no_effect_mapping",
+      "every_evidence_state_ABSENT_decision"
+    ]
+  },
+  "causal_contrast_catalog": [
+    {"arm_id": "planner_bypass", "component_id": "V_model", "contrast_id": "contrast_planner_bypass"},
+    {"arm_id": "checkpoint_swap", "component_id": "V_model", "contrast_id": "contrast_checkpoint_swap"},
+    {"arm_id": "prediction_counterfactual", "component_id": "V_model", "contrast_id": "contrast_prediction_counterfactual"},
+    {"arm_id": "no_update", "component_id": "V_online", "contrast_id": "contrast_no_update"},
+    {"arm_id": "shuffled_outcome", "component_id": "V_online", "contrast_id": "contrast_shuffled_outcome"},
+    {"arm_id": "matched_replay_off", "component_id": "V_replay", "contrast_id": "contrast_matched_replay_off"},
+    {"arm_id": "memory_read_off", "component_id": "V_memory", "contrast_id": "contrast_memory_read_off"},
+    {"arm_id": "memory_zero", "component_id": "V_memory", "contrast_id": "contrast_memory_zero"},
+    {"arm_id": "source_deletion", "component_id": "V_memory", "contrast_id": "contrast_source_deletion"},
+    {"arm_id": "history_replacement", "component_id": "V_memory", "contrast_id": "contrast_history_replacement"},
+    {"arm_id": "fresh_init", "component_id": "V_transfer", "contrast_id": "contrast_fresh_init"},
+    {"arm_id": "from_scratch", "component_id": "V_transfer", "contrast_id": "contrast_from_scratch"},
+    {"arm_id": "checkpoint_only", "component_id": "V_transfer", "contrast_id": "contrast_checkpoint_only"},
+    {"arm_id": "replay_reset", "component_id": "V_transfer", "contrast_id": "contrast_replay_reset"},
+    {"arm_id": "memory_reset", "component_id": "V_transfer", "contrast_id": "contrast_memory_reset"},
+    {"arm_id": "full_carryover", "component_id": "V_transfer", "contrast_id": "contrast_full_carryover"}
+  ],
+  "claim_ceiling": {
+    "allowed": [
+      "task_card_schema_control_plane_enforcement_only"
+    ],
+    "forbidden": [
+      "learned_model",
+      "online_learning",
+      "replay_contribution",
+      "memory_causality",
+      "transfer",
+      "initiative",
+      "agency",
+      "autonomy",
+      "subjectivity",
+      "consciousness",
+      "real_emotion",
+      "functional_subject",
+      "electronic_life",
+      "EGO_readiness",
+      "product_benefit",
+      "mainline_effect"
+    ]
+  },
+  "component_verdict_formulas": [
+    {
+      "causal_aggregation_rule": "AND_ALL_MANDATORY_CAUSAL_CONTRASTS_WITH_NO_POST_HOC_OPERATOR_SELECTION",
+      "claim_emission_formula": "PRESENT_BOUNDED_ALWAYS_EMITS_ONLY_CANDIDATE_INTERNAL_CAUSAL_SIGNATURE;BOUNDED_CONTROL_NON_EQUIVALENCE_REQUIRES_CONTROL_SEPARATED;RIVAL_QUALIFIER_NEVER_ERASES_COMPONENT_EVIDENCE",
+      "component_id": "V_model",
+      "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+      "mandatory_causal_contrast_ids": ["contrast_planner_bypass", "contrast_checkpoint_swap", "contrast_prediction_counterfactual"],
+      "missing_arm_mapping": "INVALID_INSTRUMENT",
+      "optional_causal_contrast_ids": [],
+      "producer_function": "resolve_component_terminal_state",
+      "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+      "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+      "terminal_state_formula": "INVALID_IF_MISSING_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_MANDATORY_POWERED_NON_EFFECT;NOT_TESTED_IF_NO_REQUIRED_RUN_STARTED",
+      "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED"
+    },
+    {
+      "causal_aggregation_rule": "AND_ALL_MANDATORY_CAUSAL_CONTRASTS_WITH_NO_POST_HOC_OPERATOR_SELECTION",
+      "claim_emission_formula": "PRESENT_BOUNDED_ALWAYS_EMITS_ONLY_CANDIDATE_INTERNAL_CAUSAL_SIGNATURE;BOUNDED_CONTROL_NON_EQUIVALENCE_REQUIRES_CONTROL_SEPARATED;RIVAL_QUALIFIER_NEVER_ERASES_COMPONENT_EVIDENCE",
+      "component_id": "V_online",
+      "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+      "mandatory_causal_contrast_ids": ["contrast_no_update", "contrast_shuffled_outcome"],
+      "missing_arm_mapping": "INVALID_INSTRUMENT",
+      "optional_causal_contrast_ids": [],
+      "producer_function": "resolve_component_terminal_state",
+      "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+      "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+      "terminal_state_formula": "INVALID_IF_MISSING_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_MANDATORY_POWERED_NON_EFFECT;NOT_TESTED_IF_NO_REQUIRED_RUN_STARTED",
+      "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED"
+    },
+    {
+      "causal_aggregation_rule": "AND_ALL_MANDATORY_CAUSAL_CONTRASTS_WITH_NO_POST_HOC_OPERATOR_SELECTION",
+      "claim_emission_formula": "PRESENT_BOUNDED_ALWAYS_EMITS_ONLY_CANDIDATE_INTERNAL_CAUSAL_SIGNATURE;BOUNDED_CONTROL_NON_EQUIVALENCE_REQUIRES_CONTROL_SEPARATED;RIVAL_QUALIFIER_NEVER_ERASES_COMPONENT_EVIDENCE",
+      "component_id": "V_replay",
+      "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+      "mandatory_causal_contrast_ids": ["contrast_matched_replay_off"],
+      "missing_arm_mapping": "INVALID_INSTRUMENT",
+      "optional_causal_contrast_ids": [],
+      "producer_function": "resolve_component_terminal_state",
+      "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+      "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+      "terminal_state_formula": "INVALID_IF_MISSING_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_MANDATORY_POWERED_NON_EFFECT;NOT_TESTED_IF_NO_REQUIRED_RUN_STARTED",
+      "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED"
+    },
+    {
+      "causal_aggregation_rule": "AND_ALL_MANDATORY_CAUSAL_CONTRASTS_WITH_NO_POST_HOC_OPERATOR_SELECTION",
+      "claim_emission_formula": "PRESENT_BOUNDED_ALWAYS_EMITS_ONLY_CANDIDATE_INTERNAL_CAUSAL_SIGNATURE;BOUNDED_CONTROL_NON_EQUIVALENCE_REQUIRES_CONTROL_SEPARATED;RIVAL_QUALIFIER_NEVER_ERASES_COMPONENT_EVIDENCE",
+      "component_id": "V_memory",
+      "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+      "mandatory_causal_contrast_ids": ["contrast_memory_read_off", "contrast_memory_zero", "contrast_source_deletion", "contrast_history_replacement"],
+      "missing_arm_mapping": "INVALID_INSTRUMENT",
+      "optional_causal_contrast_ids": [],
+      "producer_function": "resolve_component_terminal_state",
+      "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+      "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+      "terminal_state_formula": "INVALID_IF_MISSING_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_MANDATORY_POWERED_NON_EFFECT;NOT_TESTED_IF_NO_REQUIRED_RUN_STARTED",
+      "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED"
+    },
+    {
+      "causal_aggregation_rule": "AND_ALL_MANDATORY_CAUSAL_CONTRASTS_WITH_NO_POST_HOC_OPERATOR_SELECTION",
+      "claim_emission_formula": "PRESENT_BOUNDED_ALWAYS_EMITS_ONLY_CANDIDATE_INTERNAL_CAUSAL_SIGNATURE;BOUNDED_CONTROL_NON_EQUIVALENCE_REQUIRES_CONTROL_SEPARATED;RIVAL_QUALIFIER_NEVER_ERASES_COMPONENT_EVIDENCE",
+      "component_id": "V_transfer",
+      "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+      "mandatory_causal_contrast_ids": ["contrast_fresh_init", "contrast_from_scratch", "contrast_checkpoint_only", "contrast_replay_reset", "contrast_memory_reset", "contrast_full_carryover"],
+      "missing_arm_mapping": "INVALID_INSTRUMENT",
+      "optional_causal_contrast_ids": [],
+      "producer_function": "resolve_component_terminal_state",
+      "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+      "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+      "terminal_state_formula": "INVALID_IF_MISSING_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_MANDATORY_POWERED_NON_EFFECT;NOT_TESTED_IF_NO_REQUIRED_RUN_STARTED",
+      "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED"
+    },
+    {
+      "causal_aggregation_rule": "ALL_REFERENCED_COMPONENTS_PRESENT_BOUNDED",
+      "claim_emission_formula": "PANEL_RELATIVE_SPECIALNESS_ONLY_IF_PRESENT_BOUNDED_WITH_CONTROL_SEPARATED_AND_RIVAL_SEPARATED;NO_CLAIM_FOR_ABSENT_INVALID_INSTRUMENT_OR_NOT_TESTED",
+      "component_id": "V_special",
+      "invalid_dependency_precedence": "INVALID_INSTRUMENT_BEFORE_ANY_EVIDENCE_OR_COMPARISON_TERMINAL",
+      "mandatory_causal_contrast_ids": ["contrast_planner_bypass", "contrast_checkpoint_swap", "contrast_prediction_counterfactual", "contrast_no_update", "contrast_shuffled_outcome", "contrast_matched_replay_off", "contrast_memory_read_off", "contrast_memory_zero", "contrast_source_deletion", "contrast_history_replacement", "contrast_fresh_init", "contrast_from_scratch", "contrast_checkpoint_only", "contrast_replay_reset", "contrast_memory_reset", "contrast_full_carryover"],
+      "missing_arm_mapping": "INVALID_INSTRUMENT",
+      "optional_causal_contrast_ids": [],
+      "producer_function": "resolve_component_terminal_state",
+      "rival_panel_reduction_rule": "RIVAL_DOMINATED_IF_ANY_POWERED_RIVAL_SUPERIOR_ELSE_RIVAL_SATURATED_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_RIVAL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_RIVAL_INCONCLUSIVE",
+      "shortcut_panel_reduction_rule": "CONTROL_DOMINATED_IF_ANY_POWERED_CONTROL_SUPERIOR_ELSE_CONTROL_EQUIVALENT_IF_ANY_POWERED_PARITY_OR_FROZEN_CEILING_SATURATION_ELSE_CONTROL_SEPARATED_IF_CANDIDATE_POWERED_SUPERIOR_TO_ALL_ELSE_CONTROL_INCONCLUSIVE",
+      "terminal_state_formula": "PRESENT_BOUNDED_IFF_ALL_REFERENCED_COMPONENTS_PRESENT_BOUNDED_AND_CONTROL_SEPARATED_AND_RIVAL_SEPARATED_AND_ALL_INTEGRITY_VALID;ABSENT_IF_ANY_REFERENCED_COMPONENT_ABSENT_OR_POWERED_CONTROL_EQUIVALENT_OR_CONTROL_DOMINATED_OR_RIVAL_SATURATED_OR_RIVAL_DOMINATED;INVALID_IF_REQUIRED_COMPARISON_UNDERPOWERED_OR_REQUIRED_INTEGRITY_OR_REFERENCED_COMPONENT_INVALID;NOT_TESTED_IF_REQUIRED_RUN_NOT_STARTED",
+      "underpowered_precedence": "CAUSAL_TO_INVALID_INSTRUMENT_CONTROL_TO_CONTROL_INCONCLUSIVE_RIVAL_TO_RIVAL_INCONCLUSIVE_BEFORE_ABSENT_OR_SEPARATED"
+    }
+  ],
+  "effective_terminal_schema": {
+    "comparison_state": [
+      "NOT_APPLICABLE",
+      "RIVAL_NOT_RUN",
+      "RIVAL_INCONCLUSIVE",
+      "RIVAL_SATURATED",
+      "RIVAL_SEPARATED",
+      "RIVAL_DOMINATED"
+    ],
+    "control_comparison_state": [
+      "NOT_APPLICABLE",
+      "CONTROL_NOT_RUN",
+      "CONTROL_INCONCLUSIVE",
+      "CONTROL_EQUIVALENT",
+      "CONTROL_SEPARATED",
+      "CONTROL_DOMINATED"
+    ],
+    "control_equivalence_type": [
+      "CANDIDATE_PARITY",
+      "ADMISSION_CEILING_SATURATION",
+      "OWN_RULE_AMORTIZED_PARITY",
+      null
+    ],
+    "evidence_state": [
+      "NOT_TESTED",
+      "INVALID_INSTRUMENT",
+      "ABSENT",
+      "PRESENT_BOUNDED"
+    ],
+    "fourth_verdict_axis_forbidden": true,
+    "terminal_rules": {
+      "candidate_powered_superiority": "STAR_SEPARATED",
+      "control_or_rival_powered_superiority": "STAR_DOMINATED",
+      "powered_parity_or_preregistered_ceiling_saturation": "CONTROL_EQUIVALENT_OR_RIVAL_SATURATED",
+      "underpowered": "STAR_INCONCLUSIVE"
+    }
+  },
+  "exhaustive_signature_coverage": {
+    "all_arm_assignments_must_be_covered": true,
+    "all_component_mapped_arms_must_be_covered": true,
+    "all_contrast_ids_source": [
+      "original_addendum.comparison_catalog",
+      "correction.causal_contrast_catalog"
+    ],
+    "all_integrity_controls_must_have_detector_signatures": true,
+    "arm_assignment_ids_source": "original_addendum.arm_role_contract.assignments[*].arm_id",
+    "component_mapped_arm_ids_source": "original_addendum.component_control_mapping[*].*_arm_ids",
+    "integrity_control_ids_source": "original_addendum.arm_role_contract.assignments[arm_role=INTEGRITY_CONTROL].arm_id",
+    "orphan_arm_mapping": "INVALID_INSTRUMENT",
+    "required_artifact": "control_signature_coverage_report.json",
+    "required_report_fields": [
+      "arm_id",
+      "arm_role",
+      "component_ids",
+      "contrast_ids",
+      "simulation_case_ids",
+      "expected_sign_ids",
+      "coverage_status",
+      "producer_function",
+      "input_hashes",
+      "run_id",
+      "aggregation_rule",
+      "code_path_hash"
+    ],
+    "required_simulation_cases_per_contrast": [
+      "parity",
+      "strong_negative",
+      "survival_positive",
+      "boundary_failure"
+    ],
+    "unused_contrast_mapping": "INVALID_INSTRUMENT"
+  },
+  "power_design_provenance": {
+    "computed_mde_power_required_fields": [
+      "producer_function",
+      "input_artifact_hashes",
+      "run_id",
+      "seed_block_id",
+      "aggregation_rule",
+      "code_path_hash"
+    ],
+    "exactly_one_seed_design_required": true,
+    "fixed_seed_design_required_fields": [
+      "fixed_seed_count",
+      "frozen_seed_block_id"
+    ],
+    "forbidden": [
+      "null_fixed_count_plus_ambiguous_sequential_prose",
+      "hand_written_computed_power_or_mde",
+      "post_result_n_extension"
+    ],
+    "sequential_seed_design_required_fields": [
+      "sequential_schedule_id",
+      "analysis_looks",
+      "max_n",
+      "alpha_spending_rule",
+      "stopping_predicate",
+      "seed_release_order"
+    ]
+  },
+  "rng_evidence_contract": {
+    "distinct_fresh_process_recompute_records_required": 2,
+    "distinct_pid_required": true,
+    "distinct_temp_dir_required": true,
+    "fresh_process_record_required_fields": [
+      "process_index",
+      "pid",
+      "temp_dir_hash",
+      "launcher_code_hash",
+      "pythonhashseed_commitment",
+      "serialized_state_hash",
+      "observation_hash",
+      "checkpoint_hash",
+      "config_hash",
+      "output_hash"
+    ],
+    "original_run_counts_as_recompute": false,
+    "required_rng_source_ids_source": "original_addendum.determinism_contract.rng_registry",
+    "rng_entry_required_fields": [
+      "source_id",
+      "library",
+      "namespace",
+      "seed_input_ids",
+      "seed_derivation_function",
+      "derived_seed_or_commitment",
+      "device_id",
+      "worker_id",
+      "initial_state_hash",
+      "serialized_state_hash",
+      "restored_state_hash",
+      "used_by_code_path_ids",
+      "restore_verdict"
+    ]
+  },
+  "schema_version": "1.0.0",
+  "task_id": "K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A",
+  "v_special_terminal_mapping": {
+    "ABSENT_if": [
+      "any_referenced_component_ABSENT",
+      "powered_shortcut_parity_or_saturation",
+      "powered_rival_parity_or_saturation",
+      "candidate_CONTROL_DOMINATED",
+      "candidate_RIVAL_DOMINATED"
+    ],
+    "INVALID_INSTRUMENT_if": [
+      "required_comparison_underpowered",
+      "required_integrity_dependency_invalid",
+      "any_referenced_component_INVALID_INSTRUMENT"
+    ],
+    "PRESENT_BOUNDED_requires": [
+      "all_referenced_component_evidence_admissible_and_PRESENT_BOUNDED",
+      "CONTROL_SEPARATED",
+      "RIVAL_SEPARATED",
+      "all_integrity_dependencies_valid"
+    ],
+    "inconclusive_maps_to_absent_or_present": false,
+    "producer_function": "resolve_v_special_terminal_state"
+  }
+}
