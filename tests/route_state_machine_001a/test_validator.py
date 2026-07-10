@@ -108,6 +108,34 @@ def _valid_k0_parent_state() -> dict:
     }
 
 
+def _valid_k0_ready_state() -> dict:
+    state_machine, _ = _validator()
+    state = _valid_k0_parent_state()
+    state["current_state"] = "READY_TO_IMPLEMENT"
+    state["phase"] = state_machine.K0_READY_PHASE
+    state["implementation_authorized"] = True
+    state["allowed_next_actions"] = list(state_machine.K0_READY_ALLOWED_ACTIONS)
+    state["authorized_implementation_targets"] = list(
+        state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS
+    )
+    state["child_authorizations"] = deepcopy(state_machine.K0_READY_CHILD_AUTHORIZATIONS)
+    state["authorizations"] = {
+        key: key in state_machine.K0_READY_REQUIRED_TRUE_AUTHORIZATIONS
+        for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+    }
+    state["source_readback"] = {
+        "child_card_banks": deepcopy(state_machine.K0_READY_CHILD_CARD_BANKS),
+        "banked_card_objects": deepcopy(list(state_machine.K0_READY_BANKED_CARD_OBJECTS)),
+        "transition_card": state_machine.K0_READY_TRANSITION_CARD_PATH,
+        "ledger": {
+            "path": state_machine.K0_PARENT_LEDGER_PATH,
+            "required_entry_prefix": state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
+            "preserved_entry_prefixes": [state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX],
+        },
+    }
+    return state
+
+
 def _valid_program_state() -> dict:
     return {
         "task_id": "ROUTE-STATE-MACHINE-001A",
@@ -287,15 +315,15 @@ def test_k0_registered_parent_rejects_closure_packet_and_missing_ledger():
     )
 
     codes = _error_codes(result)
-    assert "k0_registered_parent_has_unexpected_closure" in codes
-    assert "k0_registered_parent_ledger_declaration_missing" in codes
+    assert "k0_parent_has_unexpected_closure" in codes
+    assert "k0_parent_ledger_declaration_missing" in codes
 
 
 @pytest.mark.parametrize(
     "current_state",
-    tuple(state for state in EXPECTED_ROUTE_STATES if state != "REGISTERED"),
+    tuple(state for state in EXPECTED_ROUTE_STATES if state not in ("REGISTERED", "READY_TO_IMPLEMENT")),
 )
-def test_k0_parent_rejects_state_transition_without_separate_contract(current_state):
+def test_k0_parent_rejects_state_outside_registered_and_ready_contract(current_state):
     _, validator = _validator()
     state = _valid_k0_parent_state()
     state["current_state"] = current_state
@@ -307,7 +335,112 @@ def test_k0_parent_rejects_state_transition_without_separate_contract(current_st
         changed_files=[],
     )
 
-    assert "k0_parent_state_not_registered" in _error_codes(result)
+    assert "k0_parent_state_outside_authorized_contract" in _error_codes(result)
+
+
+def test_valid_k0_ready_first_pair_contract_passes():
+    _, validator = _validator()
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=_valid_k0_ready_state(),
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert result["verdict"] == "pass"
+    assert result["validation_errors"] == []
+
+
+@pytest.mark.parametrize(
+    "child_id",
+    (
+        "EGO-K0-REFERENCE-KERNEL-001A",
+        "ITL-K0-H0-H1-INSTRUMENT-001A:H1",
+        "K0-IMMUTABLE-FREEZE-001A",
+        "ITL-K0-FORMAL-EVIDENCE-001A",
+    ),
+)
+def test_k0_ready_rejects_each_downstream_child_authorization(child_id):
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["child_authorizations"][child_id] = True
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_ready_child_authorizations_mismatch" in _error_codes(result)
+
+
+@pytest.mark.parametrize(
+    ("field", "expected_code"),
+    (
+        ("phase", "k0_ready_phase_mismatch"),
+        ("authorized_implementation_targets", "k0_ready_implementation_targets_mismatch"),
+    ),
+)
+def test_k0_ready_rejects_phase_or_target_drift(field, expected_code):
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state[field] = "drifted" if field == "phase" else ["EGO-K0-FOUNDATION-001A"]
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert expected_code in _error_codes(result)
+
+
+def test_k0_ready_rejects_child_commit_pin_drift():
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["source_readback"]["child_card_banks"]["ego_foundation"] = "0" * 40
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_ready_child_card_commit_pins_mismatch" in _error_codes(result)
+
+
+def test_k0_ready_rejects_banked_card_blob_drift():
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["source_readback"]["banked_card_objects"][0]["blob"] = "0" * 40
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_ready_banked_card_object_readback_mismatch" in _error_codes(result)
+
+
+def test_k0_ready_rejects_generic_authorization_drift():
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["authorizations"]["formal_run"] = True
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert "k0_ready_authorizations_mismatch" in _error_codes(result)
 
 
 def test_valid_pum_env_v0_closure_packet_passes():
@@ -580,6 +713,39 @@ def test_declared_current_frontier_ledger_entry_is_fail_closed(tmp_path):
     duplicate_report = _build_report_for_tmp_tree(tmp_path)
 
     assert "current_frontier_k0_ledger_entry_not_unique" in _error_codes(duplicate_report)
+
+
+def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_path):
+    state_machine, validator = _validator()
+    _write_valid_route_artifacts(tmp_path)
+    artifact_dir = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A"
+    route_dir = artifact_dir / "routes" / "K0-DUAL-TRACK-SUPERSESSION-001A"
+    route_dir.mkdir(parents=True)
+    validator.write_json(route_dir / "state.json", _valid_k0_ready_state())
+    program_state = _valid_program_state()
+    program_state["current_frontier_route_id"] = "K0-DUAL-TRACK-SUPERSESSION-001A"
+    program_state["allowed_next_actions"] = list(state_machine.K0_READY_ALLOWED_ACTIONS)
+    validator.write_json(artifact_dir / "program_state.json", program_state)
+    ledger_path = tmp_path / "docs" / "research" / "FSP-STAGE-LEDGER.md"
+    ledger_path.parent.mkdir(parents=True)
+    ledger_path.write_text(
+        f"{state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX} parent\n"
+        f"{state_machine.K0_READY_LEDGER_ENTRY_PREFIX} ready\n",
+        encoding="utf-8",
+    )
+
+    present_report = _build_report_for_tmp_tree(tmp_path)
+
+    assert present_report["verdict"] == "pass"
+
+    ledger_path.write_text(
+        f"{state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX} parent\n",
+        encoding="utf-8",
+    )
+
+    missing_ready_report = _build_report_for_tmp_tree(tmp_path)
+
+    assert "current_frontier_ledger_entry_missing" in _error_codes(missing_ready_report)
 
 
 def test_missing_program_state_fails(tmp_path):

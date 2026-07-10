@@ -4,33 +4,37 @@
 
 - Layer: engineering implementation / route-governance evidence hygiene only.
 - Mainline integration status: not integrated; no EGO runtime or production path.
-- Enabled status: local CLI only.
+- Enabled status: control plane authorizes the exact first pair only; no EGO
+  runtime, formal runner, or child implementation is enabled by this artifact.
 - Real trigger evidence: callable `routectl validate` output recorded in
   `validation_report.json`.
-- Claim ceiling: local K0 supersession/dependency governance and prior
+- Claim ceiling: local first-pair K0 control-plane authorization and prior
   negative-evidence bookkeeping only.
 - Current governed boundary route id: `K0-DUAL-TRACK-SUPERSESSION-001A`.
-- Current route posture:
-  `k0_dual_track_child_cards_banked_ready_transition_required`.
+- Current route posture: `k0_dual_track_first_pair_ready_to_implement`.
 - Active mechanism frontier: `none`.
 - Program-state gate: `program_state.json` is required and validated by the
   local CLI path.
 
-## K0 dual-track parent registration
+## K0 dual-track first-pair transition
 
 - Parent card: `docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md`.
-- Ledger transition: append-only `FSP-STAGE-LEDGER.md` entry `L-020`, accepted
-  by the operator in-session on 2026-07-09.
-- Route state: `REGISTERED`; phase
-  `CHILD_CARDS_BANKED_READY_TRANSITION_REQUIRED`.
-- Parent implementation authorization: `false`.
+- Transition card:
+  `docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md`.
+- Ledger transitions: append-only `FSP-STAGE-LEDGER.md` entries `L-020`
+  (registration) and `L-021` (exact first-pair readiness), accepted by the
+  operator in-session on 2026-07-09.
+- Route state: `READY_TO_IMPLEMENT`; phase `FIRST_PAIR_READY_TO_IMPLEMENT`.
+- Exact implementation authorizations:
+  `EGO-K0-FOUNDATION-001A` and
+  `ITL-K0-H0-H1-INSTRUMENT-001A:H0` only.
 - Banked child commits: Ego Foundation
   `13bd9268993f74a41b4cc219855761681ab12b66`; Ego Reference Kernel
   `0f043254710b47700f2088213232aba777bd3f46`; ITL Instrument/Freeze/Formal
   `56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92`.
-- No child implementation is authorized. The next boundary is a separate
-  fail-closed `READY_TO_IMPLEMENT` transition card pinning these commits; until
-  then Foundation, H0, K0-R, H1, Freeze, and Formal remain disabled.
+- `EGO-K0-REFERENCE-KERNEL-001A`, H1, Freeze, Formal, scoring, experiment
+  execution, runtime/mainline, claims, and remote publication remain explicit
+  `false`. No child implementation or formal run occurred in this transition.
 - The parent freezes a two-axis component verdict and dependency-scoped
   integrity matrix. It does not report any component as tested or present.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
@@ -153,6 +157,7 @@ and does not infer mechanism or theory failure.
 
 ## Transition command
 
-`transition` is deferred in this local version. Mutating route state still needs
-a bounded task card naming the exact state transition, allowed files, stop
-condition, rollback plan, and claim ceiling.
+`transition` remains deferred in this local version. This bounded transition was
+performed through the exact serialized artifact paths named by
+`K0-DUAL-TRACK-READY-TRANSITION-001A` and revalidated by callable
+`routectl`; no generic transition writer or second authorization path exists.

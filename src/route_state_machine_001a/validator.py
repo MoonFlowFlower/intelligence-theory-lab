@@ -177,80 +177,202 @@ def validate_route_payload(
         )
 
     if route_id == state_machine.K0_PARENT_ROUTE_ID:
-        if current_state != "REGISTERED":
+        if current_state not in ("REGISTERED", "READY_TO_IMPLEMENT"):
             errors.append(
                 _new_error(
-                    "k0_parent_state_not_registered",
-                    "This parent boundary is frozen at REGISTERED until a separate transition card changes the contract.",
+                    "k0_parent_state_outside_authorized_contract",
+                    "The K0 parent contract permits only REGISTERED or the separately carded READY_TO_IMPLEMENT boundary.",
                     current_state=current_state,
                 )
             )
         if closure_payload is not None:
             errors.append(
                 _new_error(
-                    "k0_registered_parent_has_unexpected_closure",
-                    "The registered K0 parent must not have a closure packet.",
+                    "k0_parent_has_unexpected_closure",
+                    "The K0 parent must not have a closure packet at REGISTERED or READY_TO_IMPLEMENT.",
                 )
             )
-        if state_payload.get("implementation_authorized") is not False:
-            errors.append(
-                _new_error(
-                    "k0_registered_parent_implementation_not_explicitly_false",
-                    "The registered K0 parent must set implementation_authorized to false.",
-                )
-            )
+
         authorizations = state_payload.get("authorizations")
-        invalid_authorizations = [
-            key
-            for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
-            if not isinstance(authorizations, dict) or authorizations.get(key) is not False
-        ]
-        if invalid_authorizations:
-            errors.append(
-                _new_error(
-                    "k0_registered_parent_forbidden_authorization",
-                    "Every K0 parent implementation, runtime, claim, and publication authorization must be explicit false.",
-                    invalid_or_missing=invalid_authorizations,
-                )
-            )
         allowed_actions = state_payload.get("allowed_next_actions")
-        if not isinstance(allowed_actions, list) or set(allowed_actions) != set(
-            state_machine.K0_PARENT_ALLOWED_ACTIONS
-        ):
-            errors.append(
-                _new_error(
-                    "k0_registered_parent_allowed_actions_mismatch",
-                    "The registered K0 parent may only authorize child-card banking and route validation.",
-                    expected=list(state_machine.K0_PARENT_ALLOWED_ACTIONS),
-                    actual=allowed_actions,
-                )
-            )
         source_readback = state_payload.get("source_readback")
         ledger_readback = source_readback.get("ledger") if isinstance(source_readback, dict) else None
+
+        if current_state == "REGISTERED":
+            if state_payload.get("implementation_authorized") is not False:
+                errors.append(
+                    _new_error(
+                        "k0_registered_parent_implementation_not_explicitly_false",
+                        "The registered K0 parent must set implementation_authorized to false.",
+                    )
+                )
+            invalid_authorizations = [
+                key
+                for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+                if not isinstance(authorizations, dict) or authorizations.get(key) is not False
+            ]
+            if invalid_authorizations:
+                errors.append(
+                    _new_error(
+                        "k0_registered_parent_forbidden_authorization",
+                        "Every registered K0 parent implementation, runtime, claim, and publication authorization must be explicit false.",
+                        invalid_or_missing=invalid_authorizations,
+                    )
+                )
+            if not isinstance(allowed_actions, list) or set(allowed_actions) != set(
+                state_machine.K0_PARENT_ALLOWED_ACTIONS
+            ):
+                errors.append(
+                    _new_error(
+                        "k0_registered_parent_allowed_actions_mismatch",
+                        "The registered K0 parent may only authorize child-card banking and route validation.",
+                        expected=list(state_machine.K0_PARENT_ALLOWED_ACTIONS),
+                        actual=allowed_actions,
+                    )
+                )
+            expected_ledger_prefix = state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
+        else:
+            if state_payload.get("implementation_authorized") is not True:
+                errors.append(
+                    _new_error(
+                        "k0_ready_implementation_authorization_not_explicitly_true",
+                        "READY_TO_IMPLEMENT must explicitly authorize only the frozen first-pair targets.",
+                    )
+                )
+            if state_payload.get("phase") != state_machine.K0_READY_PHASE:
+                errors.append(
+                    _new_error(
+                        "k0_ready_phase_mismatch",
+                        "The READY_TO_IMPLEMENT boundary must use the frozen first-pair phase.",
+                        expected=state_machine.K0_READY_PHASE,
+                        actual=state_payload.get("phase"),
+                    )
+                )
+            invalid_true_authorizations = [
+                key
+                for key in state_machine.K0_READY_REQUIRED_TRUE_AUTHORIZATIONS
+                if not isinstance(authorizations, dict) or authorizations.get(key) is not True
+            ]
+            invalid_false_authorizations = [
+                key
+                for key in state_machine.K0_READY_REQUIRED_FALSE_AUTHORIZATIONS
+                if not isinstance(authorizations, dict) or authorizations.get(key) is not False
+            ]
+            expected_authorization_keys = set(state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS)
+            actual_authorization_keys = set(authorizations) if isinstance(authorizations, dict) else set()
+            if (
+                invalid_true_authorizations
+                or invalid_false_authorizations
+                or actual_authorization_keys != expected_authorization_keys
+            ):
+                errors.append(
+                    _new_error(
+                        "k0_ready_authorizations_mismatch",
+                        "READY_TO_IMPLEMENT may authorize Foundation and H0 only; every other authorization must remain explicit false.",
+                        invalid_true=invalid_true_authorizations,
+                        invalid_false=invalid_false_authorizations,
+                        unexpected_or_missing_keys=sorted(actual_authorization_keys ^ expected_authorization_keys),
+                    )
+                )
+            if allowed_actions != list(state_machine.K0_READY_ALLOWED_ACTIONS):
+                errors.append(
+                    _new_error(
+                        "k0_ready_allowed_actions_mismatch",
+                        "The READY_TO_IMPLEMENT boundary must expose only the frozen first-pair actions and validation.",
+                        expected=list(state_machine.K0_READY_ALLOWED_ACTIONS),
+                        actual=allowed_actions,
+                    )
+                )
+            if state_payload.get("authorized_implementation_targets") != list(
+                state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS
+            ):
+                errors.append(
+                    _new_error(
+                        "k0_ready_implementation_targets_mismatch",
+                        "The READY_TO_IMPLEMENT boundary must name exactly Foundation and H0 in frozen order.",
+                        expected=list(state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS),
+                        actual=state_payload.get("authorized_implementation_targets"),
+                    )
+                )
+            if state_payload.get("child_authorizations") != state_machine.K0_READY_CHILD_AUTHORIZATIONS:
+                errors.append(
+                    _new_error(
+                        "k0_ready_child_authorizations_mismatch",
+                        "The child authorization map must contain exactly two true and four false frozen child entries.",
+                        expected=state_machine.K0_READY_CHILD_AUTHORIZATIONS,
+                        actual=state_payload.get("child_authorizations"),
+                    )
+                )
+            if not isinstance(source_readback, dict) or source_readback.get(
+                "child_card_banks"
+            ) != state_machine.K0_READY_CHILD_CARD_BANKS:
+                errors.append(
+                    _new_error(
+                        "k0_ready_child_card_commit_pins_mismatch",
+                        "The first-pair transition must pin the three frozen child-bank commits.",
+                        expected=state_machine.K0_READY_CHILD_CARD_BANKS,
+                        actual=source_readback.get("child_card_banks") if isinstance(source_readback, dict) else None,
+                    )
+                )
+            if not isinstance(source_readback, dict) or source_readback.get("banked_card_objects") != list(
+                state_machine.K0_READY_BANKED_CARD_OBJECTS
+            ):
+                errors.append(
+                    _new_error(
+                        "k0_ready_banked_card_object_readback_mismatch",
+                        "The first-pair transition must carry the exact six-card commit/path/blob readback.",
+                        expected=list(state_machine.K0_READY_BANKED_CARD_OBJECTS),
+                        actual=source_readback.get("banked_card_objects") if isinstance(source_readback, dict) else None,
+                    )
+                )
+            if not isinstance(source_readback, dict) or source_readback.get(
+                "transition_card"
+            ) != state_machine.K0_READY_TRANSITION_CARD_PATH:
+                errors.append(
+                    _new_error(
+                        "k0_ready_transition_card_mismatch",
+                        "The READY_TO_IMPLEMENT boundary must cite its separate bounded transition card.",
+                        expected=state_machine.K0_READY_TRANSITION_CARD_PATH,
+                        actual=source_readback.get("transition_card") if isinstance(source_readback, dict) else None,
+                    )
+                )
+            expected_ledger_prefix = state_machine.K0_READY_LEDGER_ENTRY_PREFIX
+
         if not isinstance(ledger_readback, dict):
             errors.append(
                 _new_error(
-                    "k0_registered_parent_ledger_declaration_missing",
-                    "The registered K0 parent must declare its exact append-only ledger dependency.",
+                    "k0_parent_ledger_declaration_missing",
+                    "The K0 parent must declare its exact append-only ledger dependency.",
                 )
             )
         else:
             if ledger_readback.get("path") != state_machine.K0_PARENT_LEDGER_PATH:
                 errors.append(
                     _new_error(
-                        "k0_registered_parent_ledger_path_mismatch",
+                        "k0_parent_ledger_path_mismatch",
                         "The K0 parent ledger path must equal the frozen repo-relative path.",
                         expected=state_machine.K0_PARENT_LEDGER_PATH,
                         actual=ledger_readback.get("path"),
                     )
                 )
-            if ledger_readback.get("required_entry_prefix") != state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX:
+            if ledger_readback.get("required_entry_prefix") != expected_ledger_prefix:
                 errors.append(
                     _new_error(
-                        "k0_registered_parent_ledger_prefix_mismatch",
-                        "The K0 parent ledger prefix must include the frozen task-specific transition text.",
-                        expected=state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+                        "k0_parent_ledger_prefix_mismatch",
+                        "The K0 parent ledger prefix must match its current frozen transition text.",
+                        expected=expected_ledger_prefix,
                         actual=ledger_readback.get("required_entry_prefix"),
+                    )
+                )
+            if current_state == "READY_TO_IMPLEMENT" and ledger_readback.get(
+                "preserved_entry_prefixes"
+            ) != [state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX]:
+                errors.append(
+                    _new_error(
+                        "k0_ready_preserved_ledger_prefix_mismatch",
+                        "The READY_TO_IMPLEMENT ledger declaration must preserve the parent registration entry.",
+                        expected=[state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX],
+                        actual=ledger_readback.get("preserved_entry_prefixes"),
                     )
                 )
 
@@ -588,6 +710,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                 input_artifacts.append(
                     _relative_posix(current_frontier_route_dir / "state.json", artifact_dir.parent.parent)
                 )
+                route_current_state = route_state_payload.get("current_state")
                 source_readback = route_state_payload.get("source_readback")
                 ledger_readback = source_readback.get("ledger") if isinstance(source_readback, dict) else None
                 if current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID and not isinstance(
@@ -603,6 +726,11 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                 if isinstance(ledger_readback, dict):
                     ledger_relative_path = ledger_readback.get("path")
                     required_entry_prefix = ledger_readback.get("required_entry_prefix")
+                    expected_k0_ledger_prefix = (
+                        state_machine.K0_READY_LEDGER_ENTRY_PREFIX
+                        if route_current_state == "READY_TO_IMPLEMENT"
+                        else state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
+                    )
                     if not isinstance(ledger_relative_path, str) or not ledger_relative_path.strip():
                         errors.append(
                             _new_error(
@@ -623,7 +751,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                         current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
                         and (
                             ledger_relative_path != state_machine.K0_PARENT_LEDGER_PATH
-                            or required_entry_prefix != state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
+                            or required_entry_prefix != expected_k0_ledger_prefix
                         )
                     ):
                         errors.append(
@@ -633,7 +761,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                 current_frontier_route_id=current_frontier_route_id,
                                 expected_path=state_machine.K0_PARENT_LEDGER_PATH,
                                 actual_path=ledger_relative_path,
-                                expected_entry_prefix=state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
+                                expected_entry_prefix=expected_k0_ledger_prefix,
                                 actual_entry_prefix=required_entry_prefix,
                             )
                         )
@@ -691,7 +819,37 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                             path=_posix(ledger_path),
                                         )
                                     )
-                current_state = route_state_payload.get("current_state")
+                                if (
+                                    current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
+                                    and route_current_state == "READY_TO_IMPLEMENT"
+                                ):
+                                    preserved_prefixes = ledger_readback.get("preserved_entry_prefixes")
+                                    expected_preserved_prefixes = [state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX]
+                                    if preserved_prefixes != expected_preserved_prefixes:
+                                        errors.append(
+                                            _new_error(
+                                                "current_frontier_k0_preserved_ledger_contract_mismatch",
+                                                "The READY_TO_IMPLEMENT frontier must preserve the parent registration ledger prefix.",
+                                                expected=expected_preserved_prefixes,
+                                                actual=preserved_prefixes,
+                                            )
+                                        )
+                                    else:
+                                        for preserved_prefix in preserved_prefixes:
+                                            preserved_matches = [
+                                                line for line in ledger_lines if line.startswith(preserved_prefix)
+                                            ]
+                                            if len(preserved_matches) != 1:
+                                                errors.append(
+                                                    _new_error(
+                                                        "current_frontier_k0_preserved_ledger_entry_not_unique",
+                                                        "Each preserved K0 ledger prefix must occur exactly once.",
+                                                        required_entry_prefix=preserved_prefix,
+                                                        match_count=len(preserved_matches),
+                                                        path=_posix(ledger_path),
+                                                    )
+                                                )
+                current_state = route_current_state
                 if current_state == "TOMBSTONED":
                     errors.append(
                         _new_error(
@@ -701,7 +859,7 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                         )
                     )
 
-                if current_state == "REGISTERED":
+                if current_state in ("REGISTERED", "READY_TO_IMPLEMENT"):
                     forbidden_authorizations = _forbidden_current_frontier_authorizations(
                         program_state_payload=program_state_payload,
                         route_state_payload=route_state_payload,
