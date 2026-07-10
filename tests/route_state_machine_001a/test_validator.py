@@ -125,8 +125,25 @@ def _valid_k0_ready_state() -> dict:
     state["h0_admission_contract_pin"] = deepcopy(
         state_machine.K0_H0_ADMISSION_HISTORICAL_PIN
     )
-    state["effective_h0_authority"] = deepcopy(state_machine.K0_CODE_FIRST_AUTHORITY)
+    state["effective_h0_authority"] = deepcopy(
+        state_machine.K0_PRECONDITION_CLOSED_AUTHORITY
+    )
     state["code_first_prebank_task_pin"] = deepcopy(state_machine.K0_CODE_FIRST_TASK_PIN)
+    state["precondition_closure_task_pin"] = deepcopy(
+        state_machine.K0_PRECONDITION_CLOSURE_CARD_PIN
+    )
+    state["phase_c_source_freeze_pin"] = deepcopy(
+        state_machine.K0_PHASE_C_SOURCE_FREEZE_PIN
+    )
+    state["precondition_failure"] = deepcopy(
+        state_machine.K0_PRECONDITION_FAILURE_RECORD
+    )
+    state["claim_ceiling"] = deepcopy(
+        state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING
+    )
+    state["forbidden_next_actions"] = list(
+        state_machine.K0_PRECONDITION_CLOSURE_FORBIDDEN_ACTIONS
+    )
     state["authorizations"] = {
         key: key in state_machine.K0_READY_REQUIRED_TRUE_AUTHORIZATIONS
         for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
@@ -137,16 +154,17 @@ def _valid_k0_ready_state() -> dict:
         "transition_card": state_machine.K0_READY_TRANSITION_CARD_PATH,
         "ledger": {
             "path": state_machine.K0_PARENT_LEDGER_PATH,
-            "required_entry_prefix": state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX,
+            "required_entry_prefix": state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX,
             "preserved_entry_prefixes": [
                 state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_RED_FIELD_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_RED_FIELD_CORRECTION_LEDGER_ENTRY_PREFIX,
                 state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX,
+                state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX,
             ],
             "preserved_entry_sha256": deepcopy(
-                state_machine.K0_CODE_FIRST_PRESERVED_LEDGER_HASHES
+                state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES
             ),
         },
     }
@@ -213,16 +231,54 @@ def _valid_k0_code_first_prebank_event() -> dict:
         "event": state_machine.K0_CODE_FIRST_AUTH_EVENT,
         "route_id": state_machine.K0_PARENT_ROUTE_ID,
         "current_state": "READY_TO_IMPLEMENT",
-        "phase": state_machine.K0_READY_PHASE,
+        "phase": state_machine.K0_CODE_FIRST_AUTHORIZATION_PHASE,
         "code_first_prebank_task_pin": deepcopy(state_machine.K0_CODE_FIRST_TASK_PIN),
         "authorized_implementation_targets": list(
-            state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS
+            state_machine.K0_CODE_FIRST_AUTHORIZATION_TARGETS
         ),
         "h0_admission_002a_status": "ADMISSION_SEMANTIC_REVIEW_FAILED_HISTORICAL_ONLY",
         "foundation_authorized": True,
         "code_first_prebank_authorized": True,
         "h0_authorized": False,
         "downstream_children_authorized": False,
+    }
+
+
+def _valid_k0_precondition_closure_event() -> dict:
+    state_machine, _ = _validator()
+    return {
+        "event": state_machine.K0_PRECONDITION_CLOSURE_EVENT,
+        "route_id": state_machine.K0_PARENT_ROUTE_ID,
+        "current_state": "READY_TO_IMPLEMENT",
+        "phase": state_machine.K0_READY_PHASE,
+        "precondition_closure_task_pin": deepcopy(
+            state_machine.K0_PRECONDITION_CLOSURE_CARD_PIN
+        ),
+        "phase_c_source_freeze_pin": deepcopy(
+            state_machine.K0_PHASE_C_SOURCE_FREEZE_PIN
+        ),
+        "precondition_failure": deepcopy(
+            state_machine.K0_PRECONDITION_FAILURE_RECORD
+        ),
+        "allowed_next_actions": list(state_machine.K0_READY_ALLOWED_ACTIONS),
+        "authorized_implementation_targets": list(
+            state_machine.K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS
+        ),
+        "authorizations": {
+            key: key in state_machine.K0_READY_REQUIRED_TRUE_AUTHORIZATIONS
+            for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+        },
+        "child_authorizations": deepcopy(
+            state_machine.K0_READY_CHILD_AUTHORIZATIONS
+        ),
+        "foundation_authorized": True,
+        "code_first_prebank_authorized": False,
+        "h0_authorized": False,
+        "downstream_children_authorized": False,
+        "claim_ceiling": deepcopy(
+            state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING
+        ),
+        "updated_at_utc": "2026-07-10T00:00:00Z",
     }
 
 
@@ -376,6 +432,7 @@ def test_k0_parent_route_paths_are_explicitly_authorized():
     assert state_machine.K0_RED_FIELD_CONTRACT_PATH in state_machine.AUTHORIZED_TASK_PATHS
     assert state_machine.K0_RED_FIELD_CORRECTION_CARD_PATH in state_machine.AUTHORIZED_TASK_PATHS
     assert state_machine.K0_RED_FIELD_CORRECTION_CONTRACT_PATH in state_machine.AUTHORIZED_TASK_PATHS
+    assert state_machine.K0_PRECONDITION_CLOSURE_CARD_PATH in state_machine.AUTHORIZED_TASK_PATHS
 
 
 @pytest.mark.parametrize(
@@ -477,6 +534,124 @@ def test_valid_k0_ready_first_pair_contract_passes():
 
     assert result["verdict"] == "pass"
     assert result["validation_errors"] == []
+
+
+def test_callable_phase_c_raw_recomputation_returns_exact_precondition_failure():
+    state_machine, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+
+    result = validator.recompute_code_first_prebank_phase_c(repo_root)
+
+    assert result["verdict"] == "pass"
+    assert result["computed_record"] == state_machine.K0_PRECONDITION_FAILURE_RECORD
+    assert len(result["checked_paths"]) == 16
+    assert result["present_phase_d_artifact_paths"] == []
+
+
+def test_committed_precondition_closure_contract_passes_without_h0_semantics():
+    state_machine, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    state = validator.load_json(
+        repo_root
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / state_machine.K0_PARENT_ROUTE_ID
+        / "state.json"
+    )
+
+    result = validator.validate_code_first_prebank_precondition_closure(
+        repo_root=repo_root,
+        route_state_payload=state,
+    )
+
+    assert result["verdict"] == "pass"
+    assert result["computed_record"]["instrument_validity"] == "NOT_TESTED"
+    assert result["computed_record"]["mechanism_evidence"] == "NOT_TESTED"
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_code"),
+    (
+        ("official_run_invoked", "k0_precondition_failure_record_mismatch"),
+        ("mismatch_count", "k0_precondition_failure_record_mismatch"),
+        ("mismatch_paths", "k0_precondition_failure_record_mismatch"),
+        ("phase_c_pin", "k0_phase_c_source_freeze_pin_mismatch"),
+        ("missing_closure_pin", "k0_precondition_closure_task_pin_mismatch"),
+        ("instrument_invalid", "k0_precondition_failure_record_mismatch"),
+        ("mechanism_failure", "k0_precondition_failure_record_mismatch"),
+    ),
+)
+def test_precondition_closure_state_mutations_fail_closed(mutation, expected_code):
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    if mutation == "official_run_invoked":
+        state["precondition_failure"]["official_run_invoked"] = True
+    elif mutation == "mismatch_count":
+        state["precondition_failure"]["mismatch_count"] = 3
+    elif mutation == "mismatch_paths":
+        state["precondition_failure"]["mismatch_paths"] = state[
+            "precondition_failure"
+        ]["mismatch_paths"][:-1]
+    elif mutation == "phase_c_pin":
+        state["phase_c_source_freeze_pin"]["phase_c_commit"] = "0" * 40
+    elif mutation == "missing_closure_pin":
+        del state["precondition_closure_task_pin"]
+    elif mutation == "instrument_invalid":
+        state["precondition_failure"]["classification"] = "INSTRUMENT_INVALID"
+    else:
+        state["precondition_failure"]["classification"] = "MECHANISM_ABSENT"
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    assert expected_code in _error_codes(result)
+
+
+def test_precondition_closure_rejects_code_first_or_rerun_authorization():
+    _, validator = _validator()
+    state = _valid_k0_ready_state()
+    state["authorizations"]["code_first_prebank_implementation"] = True
+    state["allowed_next_actions"].append(
+        "correct_or_rerun_ITL-K0-H0-CODE-FIRST-PREBANK-001A"
+    )
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=None,
+        changed_files=[],
+    )
+
+    codes = _error_codes(result)
+    assert "k0_ready_authorizations_mismatch" in codes
+    assert "k0_ready_allowed_actions_mismatch" in codes
+
+
+def test_phase_d_output_presence_fails_callable_recomputation(monkeypatch):
+    _, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    original_is_file = Path.is_file
+
+    def phase_d_positive_control(path):
+        if path.as_posix().endswith(
+            "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/result.json"
+        ):
+            return True
+        return original_is_file(path)
+
+    monkeypatch.setattr(Path, "is_file", phase_d_positive_control)
+    result = validator.recompute_code_first_prebank_phase_c(repo_root)
+
+    assert result["verdict"] == "fail"
+    assert result["present_phase_d_artifact_paths"] == [
+        "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/result.json"
+    ]
+    assert "code_first_phase_c_precondition_result_mismatch" in _error_codes(result)
 
 
 def test_h0_c1_c4_collision_resolves_once_without_component_erasure():
@@ -1285,7 +1460,7 @@ def test_k0_red_field_correction_event_rejects_missing_or_duplicate(tmp_path):
 
 
 def test_code_first_prebank_event_is_unique_and_exact(tmp_path):
-    _, validator = _validator()
+    state_machine, validator = _validator()
     import json
 
     repo_root = Path(__file__).resolve().parents[2]
@@ -1299,24 +1474,40 @@ def test_code_first_prebank_event_is_unique_and_exact(tmp_path):
     )
     lines = live_path.read_text(encoding="utf-8").splitlines()
     assert validator.validate_k0_red_field_event(live_path)["verdict"] == "pass"
+    payloads = [json.loads(line) for line in lines]
+    code_first_index = next(
+        index
+        for index, payload in enumerate(payloads)
+        if payload.get("event") == state_machine.K0_CODE_FIRST_AUTH_EVENT
+    )
 
     missing_path = tmp_path / "missing.jsonl"
-    missing_path.write_text("\n".join(lines[:-1]) + "\n", encoding="utf-8")
+    missing_path.write_text(
+        "\n".join(lines[:code_first_index] + lines[code_first_index + 1 :]) + "\n",
+        encoding="utf-8",
+    )
     assert "k0_code_first_prebank_event_missing_or_duplicate" in _error_codes(
         validator.validate_k0_red_field_event(missing_path)
     )
 
     duplicate_path = tmp_path / "duplicate.jsonl"
-    duplicate_path.write_text("\n".join(lines + [lines[-1]]) + "\n", encoding="utf-8")
+    duplicate_path.write_text(
+        "\n".join(lines + [lines[code_first_index]]) + "\n", encoding="utf-8"
+    )
     assert "k0_code_first_prebank_event_missing_or_duplicate" in _error_codes(
         validator.validate_k0_red_field_event(duplicate_path)
     )
 
-    drifted = json.loads(lines[-1])
+    drifted = json.loads(lines[code_first_index])
     drifted["h0_authorized"] = True
     drift_path = tmp_path / "drift.jsonl"
     drift_path.write_text(
-        "\n".join(lines[:-1] + [json.dumps(drifted, sort_keys=True)]) + "\n",
+        "\n".join(
+            lines[:code_first_index]
+            + [json.dumps(drifted, sort_keys=True)]
+            + lines[code_first_index + 1 :]
+        )
+        + "\n",
         encoding="utf-8",
     )
     assert "k0_code_first_prebank_event_contract_mismatch" in _error_codes(
@@ -1329,6 +1520,71 @@ def test_code_first_prebank_event_is_unique_and_exact(tmp_path):
     )
     assert "k0_h0_admission_event_missing_or_duplicate" in _error_codes(
         validator.validate_k0_red_field_event(historical_missing_path)
+    )
+
+
+def test_precondition_closure_event_is_unique_exact_and_preserves_history(tmp_path):
+    state_machine, validator = _validator()
+    import json
+
+    repo_root = Path(__file__).resolve().parents[2]
+    live_path = (
+        repo_root
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "K0-DUAL-TRACK-SUPERSESSION-001A"
+        / "events.jsonl"
+    )
+    lines = live_path.read_text(encoding="utf-8").splitlines()
+    payloads = [json.loads(line) for line in lines]
+    closure_index = next(
+        index
+        for index, payload in enumerate(payloads)
+        if payload.get("event") == state_machine.K0_PRECONDITION_CLOSURE_EVENT
+    )
+
+    missing_path = tmp_path / "closure-missing.jsonl"
+    missing_path.write_text(
+        "\n".join(lines[:closure_index] + lines[closure_index + 1 :]) + "\n",
+        encoding="utf-8",
+    )
+    assert "k0_precondition_closure_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(missing_path)
+    )
+
+    duplicate_path = tmp_path / "closure-duplicate.jsonl"
+    duplicate_path.write_text(
+        "\n".join(lines + [lines[closure_index]]) + "\n", encoding="utf-8"
+    )
+    assert "k0_precondition_closure_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(duplicate_path)
+    )
+
+    drifted = json.loads(lines[closure_index])
+    drifted["precondition_failure"]["official_run_invoked"] = True
+    drift_path = tmp_path / "closure-drift.jsonl"
+    drift_path.write_text(
+        "\n".join(
+            lines[:closure_index]
+            + [json.dumps(drifted, sort_keys=True, separators=(",", ":"))]
+            + lines[closure_index + 1 :]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    assert "k0_precondition_closure_event_contract_mismatch" in _error_codes(
+        validator.validate_k0_red_field_event(drift_path)
+    )
+
+    historical_drift = lines.copy()
+    historical_drift[0] = historical_drift[0].replace(
+        "parent_route_registered", "parent_route_rewritten"
+    )
+    historical_path = tmp_path / "historical-drift.jsonl"
+    historical_path.write_text("\n".join(historical_drift) + "\n", encoding="utf-8")
+    assert "k0_h0_preserved_event_bytes_drift" in _error_codes(
+        validator.validate_k0_red_field_event(historical_path)
     )
 
 
@@ -1621,6 +1877,8 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
         + json.dumps(_valid_k0_h0_admission_event(), sort_keys=True)
         + "\n"
         + json.dumps(_valid_k0_code_first_prebank_event(), sort_keys=True)
+        + "\n"
+        + json.dumps(_valid_k0_precondition_closure_event(), sort_keys=True)
         + "\n",
         encoding="utf-8",
     )
@@ -1636,9 +1894,28 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     program_state["h0_admission_contract_pin"] = deepcopy(
         state_machine.K0_H0_ADMISSION_HISTORICAL_PIN
     )
-    program_state["effective_h0_authority"] = deepcopy(state_machine.K0_CODE_FIRST_AUTHORITY)
+    program_state["effective_h0_authority"] = deepcopy(
+        state_machine.K0_PRECONDITION_CLOSED_AUTHORITY
+    )
     program_state["code_first_prebank_task_pin"] = deepcopy(state_machine.K0_CODE_FIRST_TASK_PIN)
-    program_state["current_route_posture"] = "code_first_h0_prebank_authorized"
+    program_state["precondition_closure_task_pin"] = deepcopy(
+        state_machine.K0_PRECONDITION_CLOSURE_CARD_PIN
+    )
+    program_state["phase_c_source_freeze_pin"] = deepcopy(
+        state_machine.K0_PHASE_C_SOURCE_FREEZE_PIN
+    )
+    program_state["precondition_failure"] = deepcopy(
+        state_machine.K0_PRECONDITION_FAILURE_RECORD
+    )
+    program_state["forbidden_next_actions"] = list(
+        state_machine.K0_PRECONDITION_CLOSURE_FORBIDDEN_ACTIONS
+    )
+    program_state["claim_ceiling"] = deepcopy(
+        state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING
+    )
+    program_state[
+        "current_route_posture"
+    ] = "code_first_h0_prebank_precondition_failed_science_branch_closed"
     validator.write_json(artifact_dir / "program_state.json", program_state)
     ledger_path = tmp_path / "docs" / "research" / "FSP-STAGE-LEDGER.md"
     ledger_path.parent.mkdir(parents=True)
@@ -1659,13 +1936,19 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
         for line in live_ledger_lines
         if line.startswith(state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX)
     )
+    l025 = next(
+        line
+        for line in live_ledger_lines
+        if line.startswith(state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX)
+    )
     ledger_path.write_text(
         f"{l020}\n"
         f"{l021}\n"
         f"{l022}\n"
         f"{l023}\n"
         f"{l024}\n"
-        f"{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} authorization\n",
+        f"{l025}\n"
+        f"{state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX} closure\n",
         encoding="utf-8",
     )
 
@@ -1675,19 +1958,19 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     assert "current_frontier_ledger_entry_missing" not in present_codes
     assert "current_frontier_k0_preserved_ledger_line_drift" not in present_codes
 
-    for rewritten_index in range(5):
-        preserved_lines = [l020, l021, l022, l023, l024]
+    for rewritten_index in range(6):
+        preserved_lines = [l020, l021, l022, l023, l024, l025]
         preserved_lines[rewritten_index] += " rewritten"
         ledger_path.write_text(
             "\n".join(preserved_lines)
-            + f"\n{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} authorization\n",
+            + f"\n{state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX} closure\n",
             encoding="utf-8",
         )
         rewritten_report = _build_report_for_tmp_tree(tmp_path)
         assert "current_frontier_k0_preserved_ledger_line_drift" in _error_codes(rewritten_report)
 
     ledger_path.write_text(
-        f"{l020}\n{l021}\n{l022}\n{l023}\n{l024}\n",
+        f"{l020}\n{l021}\n{l022}\n{l023}\n{l024}\n{l025}\n",
         encoding="utf-8",
     )
 
@@ -1696,9 +1979,9 @@ def test_ready_current_frontier_requires_ready_and_preserved_ledger_entries(tmp_
     assert "current_frontier_ledger_entry_missing" in _error_codes(missing_ready_report)
 
     ledger_path.write_text(
-        f"{l020}\n{l021}\n{l022}\n{l023}\n{l024}\n"
-        f"{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} first\n"
-        f"{state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX} duplicate\n",
+        f"{l020}\n{l021}\n{l022}\n{l023}\n{l024}\n{l025}\n"
+        f"{state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX} first\n"
+        f"{state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX} duplicate\n",
         encoding="utf-8",
     )
     duplicate_report = _build_report_for_tmp_tree(tmp_path)

@@ -1,14 +1,14 @@
 {
   "allowed_next_actions": [
     "implement_EGO-K0-FOUNDATION-001A",
-    "implement_ITL-K0-H0-CODE-FIRST-PREBANK-001A",
+    "operator_route_decision",
     "run_route_state_machine_validation"
   ],
   "authorizations": {
     "agency": false,
     "autonomy": false,
     "consciousness": false,
-    "code_first_prebank_implementation": true,
+    "code_first_prebank_implementation": false,
     "ego_mainline_runtime": false,
     "experiment_execution": false,
     "formal_run": false,
@@ -25,8 +25,7 @@
     "ui_llm_deployment": false
   },
   "authorized_implementation_targets": [
-    "EGO-K0-FOUNDATION-001A",
-    "ITL-K0-H0-CODE-FIRST-PREBANK-001A"
+    "EGO-K0-FOUNDATION-001A"
   ],
   "child_authorizations": {
     "EGO-K0-FOUNDATION-001A": true,
@@ -41,18 +40,32 @@
     "ego_k0_foundation_001a": "card_banked_ready_to_implement",
     "ego_k0_reference_kernel_001a": "card_banked_and_blocked_on_foundation_plus_h0",
     "itl_k0_formal_evidence_001a": "card_banked_and_blocked_on_freeze",
-    "itl_k0_h0_h1_instrument_001a": "code_first_h0_prebank_authorized_h0_false_h1_blocked_on_h0",
+    "itl_k0_h0_h1_instrument_001a": "code_first_h0_prebank_precondition_failed_science_branch_closed_h0_not_tested_h1_blocked",
     "k0_immutable_freeze_001a": "card_banked_and_blocked_on_k0r_plus_h1"
   },
   "implementation_authorized": true,
   "effective_h0_authority": {
+    "code_first_prebank_live_authority": false,
     "code_first_task_card": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
     "domain_semantics_location": "src/itl_k0_h0_h1_instrument_001a/",
     "historical_admission_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
     "historical_contract_semantic_authority": false,
+    "phase_c_source_freeze_live_authority": false,
     "route_validator_interprets_h0_domain_semantics": false,
-    "status": "CODE_FIRST_PREBANK_AUTHORIZED"
+    "status": "PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED"
   },
+  "forbidden_next_actions": [
+    "run_ITL-K0-H0-CODE-FIRST-PREBANK-001A_CLI",
+    "correct_or_rerun_ITL-K0-H0-CODE-FIRST-PREBANK-001A",
+    "modify_ITL-K0-H0-CODE-FIRST-PREBANK-001A_Phase-C_source_test_freeze",
+    "add_prebank_equality_definition_overlay",
+    "start_ITL-K0-H0-H1-INSTRUMENT-001A_H0",
+    "start_ITL-K0-H0-H1-INSTRUMENT-001A_H1",
+    "implement_EGO-K0-REFERENCE-KERNEL-001A",
+    "execute_K0-IMMUTABLE-FREEZE-001A",
+    "execute_ITL-K0-FORMAL-EVIDENCE-001A",
+    "push_tag_or_remote_anchor"
+  ],
   "h0_admission_contract_pin": {
     "applies_to": [
       "K0-DUAL-TRACK",
@@ -80,7 +93,77 @@
     "status": "BANKED_CODE_FIRST_PREBANK_AUTHORIZED",
     "task_id": "ITL-K0-H0-CODE-FIRST-PREBANK-001A"
   },
-  "phase": "CODE_FIRST_H0_PREBANK_AUTHORIZED",
+  "precondition_closure_task_pin": {
+    "bank_commit": "7d18f4fff8bb3994bc649752f9773783ea26c6ca",
+    "card_blob": "7cf43d31d4228af4912652fab3d92864749f6757",
+    "card_path": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md",
+    "card_sha256": "3ea3de34fbde529ecb4969bfe3a831613e6d1089b6678c44551f96974adaf4f2",
+    "status": "BANKED_PRECONDITION_CLOSURE_AUTHORITY",
+    "task_id": "ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A"
+  },
+  "phase_c_source_freeze_pin": {
+    "freeze_manifest_blob": "5deb00eb06cccc412284100da85627b9c3799c12",
+    "freeze_manifest_path": "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/freeze_manifest.json",
+    "freeze_manifest_sha256": "4d09c3232d743706ba6643ce35f46087e912528c5fe61e6cb6ee3af90f6ce2ef",
+    "frozen_path_count": 16,
+    "phase_c_commit": "381cc5f28b597325efba9abda055507b58c2133f",
+    "status": "IMMUTABLE_HISTORICAL_PRECONDITION_SOURCE_NO_LIVE_AUTHORITY",
+    "task_id": "ITL-K0-H0-CODE-FIRST-PREBANK-001A"
+  },
+  "precondition_failure": {
+    "checked_path_count": 16,
+    "classification": "IMPLEMENTATION_DEFECT",
+    "failure_class": "IMPLEMENTATION_DEFECT",
+    "freeze_manifest_self_hash_covered": false,
+    "instrument_validity": "NOT_TESTED",
+    "mechanism_evidence": "NOT_TESTED",
+    "mismatch_count": 4,
+    "mismatch_paths": [
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json"
+    ],
+    "official_run_invoked": false,
+    "phase_c_commit": "381cc5f28b597325efba9abda055507b58c2133f",
+    "phase_c_source_test_freeze_modified_by_closure": false,
+    "phase_d_artifacts_present": false,
+    "source_test_blob_drift": false,
+    "subtype": "PORTABLE_BYTE_FREEZE_PRECONDITION_INVALID",
+    "working_vs_git_line_ending_only_count": 5,
+    "working_vs_git_line_ending_only_paths": [
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/freeze_manifest.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json"
+    ],
+    "working_vs_git_other_difference_paths": []
+  },
+  "claim_ceiling": {
+    "forbidden_claims": [
+      "H0_failure",
+      "instrument_invalid",
+      "mechanism_absent",
+      "theory_falsified",
+      "code_first_prebank_validated",
+      "learning",
+      "memory",
+      "replay",
+      "transfer",
+      "agency",
+      "autonomy",
+      "subjectivity",
+      "consciousness",
+      "ego_readiness",
+      "companion_readiness",
+      "production_readiness",
+      "user_benefit",
+      "mainline_effect"
+    ],
+    "max": "pre-run implementation-defect closure and route-governance enforcement only"
+  },
+  "phase": "CODE_FIRST_H0_PREBANK_PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED",
   "red_field_addendum_pin": {
     "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
     "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
@@ -142,20 +225,23 @@
         "- L-021 | 2026-07-09 | transition_decision (operator accepted; transcribed by Codex) | K0 dual-track moved REGISTERED -> READY_TO_IMPLEMENT for exactly `EGO-K0-FOUNDATION-001A` and `ITL-K0-H0-H1-INSTRUMENT-001A:H0`.",
         "- L-022 | 2026-07-09 | governance_addendum (operator authorized; transcribed by Codex) | K0 Red-field addendum `K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A` banked and enforced as the H0 prerequisite.",
         "- L-023 | 2026-07-09 | governance_correction (operator authorized; transcribed by Codex) | K0 Red-field semantic correction `K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A` banked and enforced as the final H0 prerequisite.",
-        "- L-024 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | Consolidated H0 admission contract `ITL-K0-H0-ADMISSION-CONTRACT-002A` banked and enforced as the sole effective H0 semantic source; H0 moved true -> false pending independent review and a separate READY transition."
+        "- L-024 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | Consolidated H0 admission contract `ITL-K0-H0-ADMISSION-CONTRACT-002A` banked and enforced as the sole effective H0 semantic source; H0 moved true -> false pending independent review and a separate READY transition.",
+        "- L-025 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | H0 admission 002A semantic review failed and code-first prebank `ITL-K0-H0-CODE-FIRST-PREBANK-001A` was authorized."
       ],
       "preserved_entry_sha256": {
         "L-020": "6dbc32929d0df4e646ce1af3a8010cf17f9d46ca79586f1c98075b0648f325cb",
         "L-021": "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5",
         "L-022": "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46",
         "L-023": "aa4be0e838de1769e6583b108f82700d3627ffeb5023ad46dc40a89ea6dfa909",
-        "L-024": "86c12243732f029d28fc57ab1c2a5f2919193066c10f7b7701b2b72c646231ed"
+        "L-024": "86c12243732f029d28fc57ab1c2a5f2919193066c10f7b7701b2b72c646231ed",
+        "L-025": "183379fc3632b7cb14adb864fc581053a5b8f64e15f86d0eb95c9115fe1851fb"
       },
       "h0_admission_contract_transition": "L-024",
       "code_first_prebank_authorization": "L-025",
+      "code_first_prebank_precondition_closure": "L-026",
       "red_field_addendum_transition": "L-022",
       "red_field_correction_transition": "L-023",
-      "required_entry_prefix": "- L-025 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | H0 admission 002A semantic review failed and code-first prebank `ITL-K0-H0-CODE-FIRST-PREBANK-001A` was authorized."
+      "required_entry_prefix": "- L-026 | 2026-07-10 | governance_closure (operator authorized; transcribed by Codex) | ITL-K0-H0-CODE-FIRST-PREBANK-001A stopped before Phase D because its frozen raw-byte precondition was internally unsatisfied:"
     },
     "parent_card": "docs/codex/tasks/K0-DUAL-TRACK-SUPERSESSION-001A.md",
     "red_field_addendum_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
@@ -165,6 +251,7 @@
     "h0_admission_contract_card": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
     "h0_effective_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
     "code_first_prebank_task_card": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
+    "precondition_closure_task_card": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md",
     "transition_card": "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "child_card_banks": {
       "ego_foundation": "13bd9268993f74a41b4cc219855761681ab12b66",
@@ -232,5 +319,5 @@
       "route_id": "SAME-AGENT-MINIMAL-KERNEL-BRIDGE-001A"
     }
   },
-  "updated_at_utc": "2026-07-10T04:52:41Z"
+  "updated_at_utc": "2026-07-10T05:45:36Z"
 }

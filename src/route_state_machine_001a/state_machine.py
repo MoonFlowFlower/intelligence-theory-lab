@@ -32,15 +32,19 @@ K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS = (
 K0_RED_FIELD_ADDENDUM_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_ADDENDUM"
 K0_RED_FIELD_CORRECTION_PHASE = "FIRST_PAIR_READY_WITH_RED_FIELD_CORRECTION"
 K0_H0_ADMISSION_PHASE = "FOUNDATION_READY_H0_ADMISSION_002A_REVIEW_REQUIRED"
-K0_READY_PHASE = "CODE_FIRST_H0_PREBANK_AUTHORIZED"
+K0_CODE_FIRST_AUTHORIZATION_PHASE = "CODE_FIRST_H0_PREBANK_AUTHORIZED"
+K0_CODE_FIRST_AUTHORIZATION_TARGETS = (
+    "EGO-K0-FOUNDATION-001A",
+    "ITL-K0-H0-CODE-FIRST-PREBANK-001A",
+)
+K0_READY_PHASE = "CODE_FIRST_H0_PREBANK_PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED"
 K0_READY_ALLOWED_ACTIONS = (
     "implement_EGO-K0-FOUNDATION-001A",
-    "implement_ITL-K0-H0-CODE-FIRST-PREBANK-001A",
+    "operator_route_decision",
     "run_route_state_machine_validation",
 )
 K0_READY_AUTHORIZED_IMPLEMENTATION_TARGETS = (
     "EGO-K0-FOUNDATION-001A",
-    "ITL-K0-H0-CODE-FIRST-PREBANK-001A",
 )
 K0_READY_CHILD_AUTHORIZATIONS = {
     "EGO-K0-FOUNDATION-001A": True,
@@ -51,7 +55,6 @@ K0_READY_CHILD_AUTHORIZATIONS = {
     "ITL-K0-FORMAL-EVIDENCE-001A": False,
 }
 K0_READY_REQUIRED_TRUE_AUTHORIZATIONS = (
-    "code_first_prebank_implementation",
     "foundation_implementation",
 )
 K0_READY_REQUIRED_FALSE_AUTHORIZATIONS = tuple(
@@ -206,6 +209,121 @@ K0_CODE_FIRST_AUTHORITY = {
     "route_validator_interprets_h0_domain_semantics": False,
     "status": "CODE_FIRST_PREBANK_AUTHORIZED",
 }
+K0_PRECONDITION_CLOSURE_CARD_PATH = (
+    "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md"
+)
+K0_PRECONDITION_CLOSURE_CARD_PIN = {
+    "task_id": "ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A",
+    "bank_commit": "7d18f4fff8bb3994bc649752f9773783ea26c6ca",
+    "card_path": K0_PRECONDITION_CLOSURE_CARD_PATH,
+    "card_blob": "7cf43d31d4228af4912652fab3d92864749f6757",
+    "card_sha256": "3ea3de34fbde529ecb4969bfe3a831613e6d1089b6678c44551f96974adaf4f2",
+    "status": "BANKED_PRECONDITION_CLOSURE_AUTHORITY",
+}
+K0_PHASE_C_COMMIT = "381cc5f28b597325efba9abda055507b58c2133f"
+K0_PHASE_C_FREEZE_MANIFEST_PATH = (
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/freeze_manifest.json"
+)
+K0_PHASE_C_SOURCE_FREEZE_PIN = {
+    "task_id": "ITL-K0-H0-CODE-FIRST-PREBANK-001A",
+    "phase_c_commit": K0_PHASE_C_COMMIT,
+    "freeze_manifest_path": K0_PHASE_C_FREEZE_MANIFEST_PATH,
+    "freeze_manifest_blob": "5deb00eb06cccc412284100da85627b9c3799c12",
+    "freeze_manifest_sha256": "4d09c3232d743706ba6643ce35f46087e912528c5fe61e6cb6ee3af90f6ce2ef",
+    "frozen_path_count": 16,
+    "status": "IMMUTABLE_HISTORICAL_PRECONDITION_SOURCE_NO_LIVE_AUTHORITY",
+}
+K0_PRECONDITION_MISMATCH_PATHS = (
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json",
+)
+K0_PRECONDITION_WORKING_NEWLINE_ONLY_PATHS = (
+    K0_PHASE_C_FREEZE_MANIFEST_PATH,
+    *K0_PRECONDITION_MISMATCH_PATHS,
+)
+K0_PHASE_D_OUTPUT_FILENAMES = (
+    "result.json",
+    "atomic_specs.json",
+    "semantic_validation_report.json",
+    "permutation_report.json",
+    "mutation_report.json",
+    "metamorphic_report.json",
+    "baseline_comparison.json",
+    "ablation_report.json",
+    "path_authority_report.json",
+    "computed_evidence_provenance.json",
+    "replay_report.json",
+    "trace.jsonl",
+    "failure_manifest.json",
+)
+K0_PRECONDITION_FAILURE_RECORD = {
+    "classification": "IMPLEMENTATION_DEFECT",
+    "failure_class": "IMPLEMENTATION_DEFECT",
+    "subtype": "PORTABLE_BYTE_FREEZE_PRECONDITION_INVALID",
+    "instrument_validity": "NOT_TESTED",
+    "mechanism_evidence": "NOT_TESTED",
+    "phase_c_commit": K0_PHASE_C_COMMIT,
+    "checked_path_count": 16,
+    "mismatch_count": 4,
+    "mismatch_paths": list(K0_PRECONDITION_MISMATCH_PATHS),
+    "freeze_manifest_self_hash_covered": False,
+    "official_run_invoked": False,
+    "phase_d_artifacts_present": False,
+    "source_test_blob_drift": False,
+    "phase_c_source_test_freeze_modified_by_closure": False,
+    "working_vs_git_line_ending_only_count": 5,
+    "working_vs_git_line_ending_only_paths": list(
+        K0_PRECONDITION_WORKING_NEWLINE_ONLY_PATHS
+    ),
+    "working_vs_git_other_difference_paths": [],
+}
+K0_PRECONDITION_CLOSED_AUTHORITY = {
+    "code_first_task_card": K0_CODE_FIRST_TASK_CARD_PATH,
+    "domain_semantics_location": "src/itl_k0_h0_h1_instrument_001a/",
+    "historical_admission_contract": K0_H0_EFFECTIVE_CONTRACT_PATH,
+    "historical_contract_semantic_authority": False,
+    "code_first_prebank_live_authority": False,
+    "phase_c_source_freeze_live_authority": False,
+    "route_validator_interprets_h0_domain_semantics": False,
+    "status": "PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED",
+}
+K0_PRECONDITION_CLOSURE_CLAIM_CEILING = {
+    "max": "pre-run implementation-defect closure and route-governance enforcement only",
+    "forbidden_claims": [
+        "H0_failure",
+        "instrument_invalid",
+        "mechanism_absent",
+        "theory_falsified",
+        "code_first_prebank_validated",
+        "learning",
+        "memory",
+        "replay",
+        "transfer",
+        "agency",
+        "autonomy",
+        "subjectivity",
+        "consciousness",
+        "ego_readiness",
+        "companion_readiness",
+        "production_readiness",
+        "user_benefit",
+        "mainline_effect",
+    ],
+}
+K0_PRECONDITION_CLOSURE_FORBIDDEN_ACTIONS = (
+    "run_ITL-K0-H0-CODE-FIRST-PREBANK-001A_CLI",
+    "correct_or_rerun_ITL-K0-H0-CODE-FIRST-PREBANK-001A",
+    "modify_ITL-K0-H0-CODE-FIRST-PREBANK-001A_Phase-C_source_test_freeze",
+    "add_prebank_equality_definition_overlay",
+    "start_ITL-K0-H0-H1-INSTRUMENT-001A_H0",
+    "start_ITL-K0-H0-H1-INSTRUMENT-001A_H1",
+    "implement_EGO-K0-REFERENCE-KERNEL-001A",
+    "execute_K0-IMMUTABLE-FREEZE-001A",
+    "execute_ITL-K0-FORMAL-EVIDENCE-001A",
+    "push_tag_or_remote_anchor",
+)
 K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX = (
     "- L-024 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | "
     "Consolidated H0 admission contract `ITL-K0-H0-ADMISSION-CONTRACT-002A` banked and enforced as the sole effective H0 semantic source; H0 moved true -> false pending independent review and a separate READY transition."
@@ -214,11 +332,19 @@ K0_CODE_FIRST_LEDGER_ENTRY_PREFIX = (
     "- L-025 | 2026-07-09 | governance_replacement (operator authorized; transcribed by Codex) | "
     "H0 admission 002A semantic review failed and code-first prebank `ITL-K0-H0-CODE-FIRST-PREBANK-001A` was authorized."
 )
+K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX = (
+    "- L-026 | 2026-07-10 | governance_closure (operator authorized; transcribed by Codex) | "
+    "ITL-K0-H0-CODE-FIRST-PREBANK-001A stopped before Phase D because its frozen raw-byte precondition was internally unsatisfied:"
+)
 K0_PARENT_LEDGER_LINE_SHA256 = "6dbc32929d0df4e646ce1af3a8010cf17f9d46ca79586f1c98075b0648f325cb"
 K0_READY_LEDGER_LINE_SHA256 = "74fc0796fa500132809409364471d04ffb78315ce3bf20d8c30c58857b290cf5"
 K0_RED_FIELD_LEDGER_LINE_SHA256 = "a5626cc32c83d84db46ac3f8a8ba5af755e7c2724aebdde7070b5ba3a7130a46"
 K0_RED_FIELD_CORRECTION_LEDGER_LINE_SHA256 = "aa4be0e838de1769e6583b108f82700d3627ffeb5023ad46dc40a89ea6dfa909"
 K0_H0_ADMISSION_LEDGER_LINE_SHA256 = "86c12243732f029d28fc57ab1c2a5f2919193066c10f7b7701b2b72c646231ed"
+K0_CODE_FIRST_LEDGER_LINE_SHA256 = "183379fc3632b7cb14adb864fc581053a5b8f64e15f86d0eb95c9115fe1851fb"
+K0_PRECONDITION_CLOSURE_LEDGER_LINE_SHA256 = (
+    "547d89a69b9ad8560f40788b4f8fcaea6c07928a9266285ec304b6d79426edea"
+)
 K0_RED_FIELD_PRESERVED_LEDGER_HASHES = {
     "L-020": K0_PARENT_LEDGER_LINE_SHA256,
     "L-021": K0_READY_LEDGER_LINE_SHA256,
@@ -235,6 +361,17 @@ K0_CODE_FIRST_PRESERVED_LEDGER_HASHES = {
     **K0_RED_FIELD_PRESERVED_LEDGER_HASHES,
     "L-024": K0_H0_ADMISSION_LEDGER_LINE_SHA256,
 }
+K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES = {
+    **K0_CODE_FIRST_PRESERVED_LEDGER_HASHES,
+    "L-025": K0_CODE_FIRST_LEDGER_LINE_SHA256,
+}
+K0_PRECONDITION_CLOSURE_EVENT = (
+    "h0_code_first_prebank_precondition_failed_science_branch_closed"
+)
+K0_PRECONDITION_CLOSURE_PRESERVED_EVENT_COUNT = 7
+K0_PRECONDITION_CLOSURE_PRESERVED_EVENTS_SHA256 = (
+    "06328e4ab07511f088f6fc9777b43edd4c58ae63d0ce588197a569c0cba0a88c"
+)
 K0_H0_EVIDENCE_COMPONENT_IDS = (
     "V_model",
     "V_online",
@@ -432,6 +569,7 @@ AUTHORIZED_TASK_PATHS = (
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
     "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
     "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
+    "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md",
     "docs/research/FSP-STAGE-LEDGER.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
     "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",

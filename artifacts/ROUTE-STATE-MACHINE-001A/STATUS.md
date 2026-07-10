@@ -6,31 +6,50 @@
 - Mainline integration status: none; ITL remains offline and no EGO runtime or
   production path was modified.
 - Route state: `READY_TO_IMPLEMENT`; phase
-  `CODE_FIRST_H0_PREBANK_AUTHORIZED`.
-- Enabled status: Foundation=true and the bounded code-first prebank
-  source/test/freeze/evidence implementation=true. H0=false. H1, K0-R, Freeze,
-  Formal, scoring, experiment execution, EGO mainline/runtime, external writes,
-  claims, and remote publication remain false.
+  `CODE_FIRST_H0_PREBANK_PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED`.
+- Enabled status: Foundation=true only. The code-first prebank, H0, H1, K0-R,
+  Freeze, Formal, scoring, experiment execution, EGO mainline/runtime,
+  external writes, mechanism claims, and remote publication are false.
 - Current route posture:
-  `code_first_h0_prebank_authorized`.
+  `code_first_h0_prebank_precondition_failed_science_branch_closed`.
 - Active mechanism frontier: `none`.
 - Real trigger evidence: one appended route event
-  `h0_admission_002a_semantic_review_failed_code_first_prebank_authorized`, one
-  append-only L-025, and callable commit/blob/SHA/ancestry/task-pin validation.
-  No package source, official prebank trigger, H0 execution, or H0 evidence
-  exists yet.
-- Claim ceiling: code-first H0 contract prebank authorization and historical
-  object pin enforcement only.
+  `h0_code_first_prebank_precondition_failed_science_branch_closed`, one
+  append-only L-026, and callable Phase-C Git-object SHA-256 recomputation.
+  The recomputation checked 16 frozen paths and found exactly four manifest
+  mismatches. Phase D never began, the official CLI was not invoked, and no
+  official result or failure manifest exists.
+- Claim ceiling: pre-run implementation-defect closure and route-governance
+  enforcement only.
 
-## Code-first H0 prebank authorization
+## Code-first H0 prebank precondition closure
 
-- Task card:
+- Historical prebank task card:
   `docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md`.
-- Bank commit: `1fcafdc317fb3aed3b3e1cbf057e1f460e9308bd`.
-- Card blob: `523ea303c62b893d62db62fe6febb2ca3f2a5a88`.
-- Route validator checks its exact task pin, route authorization, exact paths,
-  ledger/event uniqueness, claim ceiling, and downstream false state. It does
-  not implement or interpret H0 reducer/oracle/atomic-spec domain semantics.
+- Historical prebank bank commit:
+  `1fcafdc317fb3aed3b3e1cbf057e1f460e9308bd`; card blob:
+  `523ea303c62b893d62fe6febb2ca3f2a5a88`.
+- Closure task card:
+  `docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md`.
+- Closure-card bank commit:
+  `7d18f4fff8bb3994bc649752f9773783ea26c6ca`; card blob:
+  `7cf43d31d4228af4912652fab3d92864749f6757`.
+- Phase-C pin: `381cc5f28b597325efba9abda055507b58c2133f`.
+- Computed result: `failure_class=IMPLEMENTATION_DEFECT`,
+  `subtype=PORTABLE_BYTE_FREEZE_PRECONDITION_INVALID`,
+  `instrument_validity=NOT_TESTED`, `mechanism_evidence=NOT_TESTED`,
+  `official_run_invoked=false`, `phase_d_artifacts_present=false`.
+- Exact mismatches:
+  - `artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json`
+  - `artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt`
+  - `artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json`
+  - `artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json`
+- The five working freeze-file differences are CRLF/LF representation only;
+  that explanation does not satisfy or redefine the frozen raw-byte rule.
+- The route validator checks task/commit/blob/SHA ancestry, Phase-C object-byte
+  recomputation, output absence, historical preservation, exact route state,
+  and claim ceiling. It does not call or interpret the H0 resolver, oracle, or
+  atomic-spec scorer.
 
 ## Historical H0 admission 002A
 
@@ -48,10 +67,10 @@
   card/contract objects remain byte-pinned provenance only. They have no
   implicit residual semantic authority. Current validation checks only their
   commit/blob/SHA/ancestry identity.
-- Ledger: L-020 through L-024 remain byte-pinned; L-025 occurs exactly once and
-  records the semantic-review failure plus code-first replacement boundary.
-- Event history: all six prior event lines remain byte-identical; the code-first
-  prebank authorization event occurs exactly once.
+- Ledger: L-020 through L-025 remain byte-pinned; L-026 occurs exactly once and
+  records the pre-run implementation-defect branch closure.
+- Event history: all seven prior event lines remain byte-identical; the
+  precondition-failure closure event occurs exactly once.
 - H0 remains false. No H0 bank, formal run, or mechanism episode occurred.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
   remain unchanged; no prior negative result is rescued.

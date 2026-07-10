@@ -1,5 +1,5 @@
 {
-  "aggregation_rule": "verdict is pass iff route/program validation, immutable historical H0/Red commit-blob-SHA-ancestry readback, and the code-first prebank task-card pin return zero validation_errors; no historical H0 domain semantic validator is invoked",
+  "aggregation_rule": "verdict is pass iff route/program validation, immutable historical H0/Red and code-first task pins, closure-card pin, Phase-C Git-object raw-byte recomputation, Phase-D absence, and Phase-C blob preservation return zero validation_errors; no H0 resolver, oracle, atomic-spec scorer, or mechanism-semantic validator is invoked",
   "authorized_paths": [
     "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
@@ -18,6 +18,7 @@
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
     "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
     "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
+    "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
@@ -43,9 +44,9 @@
     "src/route_state_machine_001a/validator.py",
     "tests/route_state_machine_001a/test_validator.py"
   ],
-  "claim_ceiling": "local route-governance validation only; no mechanism, theory, agency, autonomy, subjectivity, consciousness, EGO readiness, companion readiness, or mainline-effect claim",
+  "claim_ceiling": "pre-run implementation-defect closure and route-governance enforcement only",
   "code_first_prebank_task_pin_verdict": "pass",
-  "code_path_hash": "602aa58d37720ffebc8e51f4fee871398244f271e1aca6c8ef95cfc452d6c8bc",
+  "code_path_hash": "f4c19c4b314ebc51416eb9a0b166b24ae48cd34ed59b34de7156b94b60170ae7",
   "current_frontier_route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
   "h0_admission_atomic_tuple_count": 0,
   "h0_admission_contract_verdict": "historical_only_not_semantically_revalidated",
@@ -53,6 +54,11 @@
   "historical_h0_object_pin_verdict": "pass",
   "input_artifacts": [
     "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/freeze_manifest.json",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+    "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/program_state.json",
@@ -71,10 +77,153 @@
     "artifacts/ROUTE-STATE-MACHINE-001A/schemas/route_state.schema.json",
     "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
     "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
+    "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
     "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
-    "docs/research/FSP-STAGE-LEDGER.md"
+    "docs/research/FSP-STAGE-LEDGER.md",
+    "src/itl_k0_h0_h1_instrument_001a/__init__.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_cli.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_freeze.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_registry.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_resolver.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_schema.py",
+    "src/itl_k0_h0_h1_instrument_001a/h0_validation.py",
+    "tests/itl_k0_h0_h1_instrument_001a/test_h0_cli.py",
+    "tests/itl_k0_h0_h1_instrument_001a/test_h0_registry.py",
+    "tests/itl_k0_h0_h1_instrument_001a/test_h0_resolver.py",
+    "tests/itl_k0_h0_h1_instrument_001a/test_h0_schema.py",
+    "tests/itl_k0_h0_h1_instrument_001a/test_h0_validation.py"
   ],
+  "precondition_checked_paths": [
+    {
+      "match": false,
+      "path": "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+      "phase_c_git_object_sha256": "dfed5afb744af7f16744aa210fa76dbe4e1a500b7b6ad1ba38c3e7641e74dd16",
+      "recorded_sha256": "a7fcd1c997c99f4da49ac3c6b02cb12204d61c38a8b759ba8e183c9d62d1fcf6"
+    },
+    {
+      "match": false,
+      "path": "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+      "phase_c_git_object_sha256": "dfdd9cdb5d5b7d37d75a21001f17ffb35930cff0ed4954a673d5ccc638ea23f6",
+      "recorded_sha256": "4c02143f546e7871d285b6a528c7f04df4c4d3a111f5da0f356005f06ca671ec"
+    },
+    {
+      "match": false,
+      "path": "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+      "phase_c_git_object_sha256": "3ab87a100e8d1358a55f87bf1f6a1e20fe3f9c8cf3f78bbbf0a5792601cbeb59",
+      "recorded_sha256": "72970dc68c10da1d6405b57ce4253856320f6ea1194da696c8ee5848f2db6b18"
+    },
+    {
+      "match": false,
+      "path": "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json",
+      "phase_c_git_object_sha256": "d13ecf9cb4de105ab44e06c0cf6e3774521948d67e4e04e6c4ea794fe87064ad",
+      "recorded_sha256": "c64afe25a41d52b9863173684e7e0bd34a2b06063193b36759698ca55dff481b"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/__init__.py",
+      "phase_c_git_object_sha256": "2722775ce728a634103b59148ad32d07cf69ab1ada0e21952d55ee0477204341",
+      "recorded_sha256": "2722775ce728a634103b59148ad32d07cf69ab1ada0e21952d55ee0477204341"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/h0_cli.py",
+      "phase_c_git_object_sha256": "30f6264c990aca1ffe5542a0dbc590b428eb6c6415957384cce12033b6af4ec5",
+      "recorded_sha256": "30f6264c990aca1ffe5542a0dbc590b428eb6c6415957384cce12033b6af4ec5"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/h0_freeze.py",
+      "phase_c_git_object_sha256": "b9cff3d3a132ddcd6f7e491197fe48421cd8b56d2f7aa5c9126b98642b335bb4",
+      "recorded_sha256": "b9cff3d3a132ddcd6f7e491197fe48421cd8b56d2f7aa5c9126b98642b335bb4"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/h0_registry.py",
+      "phase_c_git_object_sha256": "506c5ec10454df0136951d2d503ddec712f3b7d61602f9b1f05cdc4b627a3b61",
+      "recorded_sha256": "506c5ec10454df0136951d2d503ddec712f3b7d61602f9b1f05cdc4b627a3b61"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/h0_resolver.py",
+      "phase_c_git_object_sha256": "4e888f2e7233f82a52075da608e74a72ecce22a7579c89859572afddff1057f3",
+      "recorded_sha256": "4e888f2e7233f82a52075da608e74a72ecce22a7579c89859572afddff1057f3"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/h0_schema.py",
+      "phase_c_git_object_sha256": "8ac93784e504719c1eca0aa09f8012cfec05319385bc895e8a7d29c6bc568647",
+      "recorded_sha256": "8ac93784e504719c1eca0aa09f8012cfec05319385bc895e8a7d29c6bc568647"
+    },
+    {
+      "match": true,
+      "path": "src/itl_k0_h0_h1_instrument_001a/h0_validation.py",
+      "phase_c_git_object_sha256": "83ae9211db4ada2ddbf6d47da03102070b9b69e6fc66773b4e70db093f9c29ba",
+      "recorded_sha256": "83ae9211db4ada2ddbf6d47da03102070b9b69e6fc66773b4e70db093f9c29ba"
+    },
+    {
+      "match": true,
+      "path": "tests/itl_k0_h0_h1_instrument_001a/test_h0_cli.py",
+      "phase_c_git_object_sha256": "991a860b1892cf8c1dc97d700102cf50f6451feba92321139fe6d83cd14d8d75",
+      "recorded_sha256": "991a860b1892cf8c1dc97d700102cf50f6451feba92321139fe6d83cd14d8d75"
+    },
+    {
+      "match": true,
+      "path": "tests/itl_k0_h0_h1_instrument_001a/test_h0_registry.py",
+      "phase_c_git_object_sha256": "fba89c229e40bdc811ed4bf700598705bd7f51360a87a2c2869301b00ba6bbe3",
+      "recorded_sha256": "fba89c229e40bdc811ed4bf700598705bd7f51360a87a2c2869301b00ba6bbe3"
+    },
+    {
+      "match": true,
+      "path": "tests/itl_k0_h0_h1_instrument_001a/test_h0_resolver.py",
+      "phase_c_git_object_sha256": "32b1dd4f417913d1e00aa2c00448b3b535c93cfc974b1286ade14de9fcc86193",
+      "recorded_sha256": "32b1dd4f417913d1e00aa2c00448b3b535c93cfc974b1286ade14de9fcc86193"
+    },
+    {
+      "match": true,
+      "path": "tests/itl_k0_h0_h1_instrument_001a/test_h0_schema.py",
+      "phase_c_git_object_sha256": "49ee8f18a72a47339e0a2ea6430346ac1c7111fa51cd03948703c7e2f041cef8",
+      "recorded_sha256": "49ee8f18a72a47339e0a2ea6430346ac1c7111fa51cd03948703c7e2f041cef8"
+    },
+    {
+      "match": true,
+      "path": "tests/itl_k0_h0_h1_instrument_001a/test_h0_validation.py",
+      "phase_c_git_object_sha256": "0b0009735177e18595ee524c44119e2d29d4f100097cc437c512bb7043d8b444",
+      "recorded_sha256": "0b0009735177e18595ee524c44119e2d29d4f100097cc437c512bb7043d8b444"
+    }
+  ],
+  "precondition_closure_verdict": "pass",
+  "precondition_failure": {
+    "checked_path_count": 16,
+    "classification": "IMPLEMENTATION_DEFECT",
+    "failure_class": "IMPLEMENTATION_DEFECT",
+    "freeze_manifest_self_hash_covered": false,
+    "instrument_validity": "NOT_TESTED",
+    "mechanism_evidence": "NOT_TESTED",
+    "mismatch_count": 4,
+    "mismatch_paths": [
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json"
+    ],
+    "official_run_invoked": false,
+    "phase_c_commit": "381cc5f28b597325efba9abda055507b58c2133f",
+    "phase_c_source_test_freeze_modified_by_closure": false,
+    "phase_d_artifacts_present": false,
+    "source_test_blob_drift": false,
+    "subtype": "PORTABLE_BYTE_FREEZE_PRECONDITION_INVALID",
+    "working_vs_git_line_ending_only_count": 5,
+    "working_vs_git_line_ending_only_paths": [
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/freeze_manifest.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/baseline_ablation_contract.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/claim_ceiling.txt",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/normative_field_manifest.json",
+      "artifacts/ITL-K0-H0-CODE-FIRST-PREBANK-001A/transformation_catalog.json"
+    ],
+    "working_vs_git_other_difference_paths": []
+  },
+  "present_phase_d_artifact_paths": [],
   "producer_function": "build_validation_report",
   "program_state_verdict": "pass",
   "red_field_addendum_verdict": "historical_only_not_semantically_revalidated",
@@ -106,7 +255,7 @@
       "verdict": "pass"
     }
   ],
-  "run_id": "route-state-machine-001a-20260710T045507Z-9a8d6849",
+  "run_id": "route-state-machine-001a-20260710T055124Z-15104ea3",
   "task_id": "ROUTE-STATE-MACHINE-001A",
   "validation_errors": [],
   "validation_warnings": [],
