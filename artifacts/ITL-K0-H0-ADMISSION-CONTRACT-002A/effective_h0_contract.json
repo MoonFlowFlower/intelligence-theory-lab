@@ -1,0 +1,779 @@
+{
+  "acceptance_contract": {
+    "h0_acceptance_filename": "h0_acceptance.json",
+    "h0_acceptance_hashes_all_required_siblings": true,
+    "h0_acceptance_self_hash_forbidden": true,
+    "h0_acceptance_self_path_excluded_from_sibling_manifest": true,
+    "post_commit_object_readback": {
+      "record_after_h0_commit_only": true,
+      "required_fields": [
+        "h0_commit",
+        "h0_acceptance_path",
+        "h0_acceptance_blob",
+        "h0_acceptance_sha256",
+        "object_store_readback_function"
+      ],
+      "self_blob_is_not_precomputed_inside_h0_acceptance": true
+    },
+    "producer_required_fields": [
+      "producer_function",
+      "input_artifacts",
+      "input_hashes",
+      "run_id",
+      "seed_context_episode_ids",
+      "aggregation_rule",
+      "code_path_hash"
+    ],
+    "status": "h0_contract_banked_valid"
+  },
+  "atomic_contrast_bijection": {
+    "aggregate_panel_id_substitution_forbidden": true,
+    "atomic_contrast_id_unique": true,
+    "bijection_key_fields": [
+      "component_id",
+      "panel_id",
+      "arm_id",
+      "arm_role"
+    ],
+    "every_declared_panel_arm_requires_atomic_spec": true,
+    "one_tuple_to_one_atomic_contrast": true,
+    "orphan_atomic_spec_forbidden": true,
+    "required_atomic_spec_fields": [
+      "atomic_contrast_id",
+      "component_id",
+      "panel_id",
+      "arm_id",
+      "arm_role",
+      "full_arm_id",
+      "intervention_arm_id",
+      "reference_arm_id",
+      "family_ids",
+      "protocol_ids",
+      "estimand_id",
+      "expected_sign",
+      "success_signature",
+      "failure_signature",
+      "ambiguous_signature",
+      "power_spec_id",
+      "seed_block_id",
+      "blast_radius_id",
+      "resolver_function"
+    ]
+  },
+  "authority": {
+    "effective_semantic_source": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
+    "historical_objects_have_no_implicit_semantic_authority": true,
+    "implicit_inheritance_forbidden": true,
+    "omitted_historical_fields_remain_effective": false,
+    "replacement_kind": "CONSOLIDATED_REPLACEMENT_SIMPLIFICATION",
+    "single_effective_semantic_source": true
+  },
+  "claim_ceilings": {
+    "admission_task": {
+      "exact": "consolidated H0 admission task-card/schema/control-plane enforcement only",
+      "forbidden": [
+        "H0_pass",
+        "instrument_validity",
+        "headroom",
+        "component_evidence",
+        "learning",
+        "replay",
+        "memory",
+        "transfer",
+        "initiative",
+        "mechanism",
+        "agency",
+        "autonomy",
+        "subjectivity",
+        "consciousness",
+        "EGO_readiness",
+        "mainline_effect"
+      ]
+    },
+    "future_h0": {
+      "exact": "immutable instrument preregistration contract banked only",
+      "forbidden": [
+        "instrument_validity",
+        "headroom",
+        "component_evidence",
+        "learning",
+        "replay",
+        "memory",
+        "transfer",
+        "initiative",
+        "mechanism",
+        "agency",
+        "autonomy",
+        "subjectivity",
+        "consciousness",
+        "EGO_readiness",
+        "mainline_effect"
+      ]
+    },
+    "interchangeable": false
+  },
+  "comparison_contract": {
+    "comparison_effect_scope": [
+      "control_comparison_state",
+      "rival_comparison_state",
+      "specialness_claim_admissibility"
+    ],
+    "comparison_may_change_component_evidence_to_absent": false,
+    "control_comparison_state": [
+      "NOT_APPLICABLE",
+      "CONTROL_NOT_RUN",
+      "CONTROL_INCONCLUSIVE",
+      "CONTROL_EQUIVALENT",
+      "CONTROL_SEPARATED",
+      "CONTROL_DOMINATED"
+    ],
+    "control_equivalence_type": [
+      "CANDIDATE_PARITY",
+      "ADMISSION_CEILING_SATURATION",
+      "OWN_RULE_AMORTIZED_PARITY",
+      null
+    ],
+    "control_underpowered_mapping": "CONTROL_INCONCLUSIVE",
+    "rival_comparison_state": [
+      "NOT_APPLICABLE",
+      "RIVAL_NOT_RUN",
+      "RIVAL_INCONCLUSIVE",
+      "RIVAL_SATURATED",
+      "RIVAL_SEPARATED",
+      "RIVAL_DOMINATED"
+    ],
+    "rival_underpowered_mapping": "RIVAL_INCONCLUSIVE",
+    "superiority_rules": {
+      "candidate_over_all_powered_comparators": "STAR_SEPARATED",
+      "comparator_over_candidate": "STAR_DOMINATED",
+      "powered_parity_or_frozen_ceiling": "CONTROL_EQUIVALENT_OR_RIVAL_SATURATED"
+    }
+  },
+  "component_absence_contract": {
+    "allowed_powered_proof_kinds": [
+      "CAUSAL_NO_CONTRIBUTION",
+      "CAUSAL_WRONG_SIGN"
+    ],
+    "causal_underpowered_mapping": "INVALID_INSTRUMENT",
+    "failure_to_reject_is_absence": false,
+    "powered_decision_required": true,
+    "required_fields": [
+      "valid_full_arm",
+      "valid_intervention_arm",
+      "proof_kind",
+      "frozen_estimand",
+      "expected_sign",
+      "computed_power_at_sesoi",
+      "target_power",
+      "power_target_met",
+      "decision_spec_id",
+      "seed_block_id"
+    ]
+  },
+  "component_panels": [
+    {
+      "causal": {
+        "arm_ids": [
+          "planner_bypass",
+          "checkpoint_swap",
+          "prediction_counterfactual"
+        ],
+        "arm_role": "CAUSAL_ABLATION",
+        "panel_id": "v_model_causal_panel"
+      },
+      "component_id": "V_model",
+      "control": {
+        "arm_ids": [
+          "observation_only",
+          "window_history",
+          "exact_lookup",
+          "nearest_neighbor",
+          "graph_lookup",
+          "transition_table",
+          "successor_map",
+          "count_table",
+          "fsm_planner",
+          "episodic_traversal",
+          "candidate_own_rule_amortized"
+        ],
+        "arm_role": "SHORTCUT_CONTROL",
+        "panel_id": "v_model_shortcut_panel"
+      },
+      "integrity": {
+        "arm_ids": [
+          "access_parity_audit",
+          "provenance_lineage_check",
+          "global_leakage_positive_control",
+          "rng_registry_audit",
+          "interface_capability_audit"
+        ],
+        "arm_role": "INTEGRITY_CONTROL",
+        "panel_id": "v_model_integrity_panel"
+      },
+      "rival": {
+        "arm_ids": [
+          "tabular_transition_rival",
+          "online_compositional_rival",
+          "drift_aware_replay_rival"
+        ],
+        "arm_role": "RIVAL",
+        "panel_id": "v_model_rival_panel"
+      }
+    },
+    {
+      "causal": {
+        "arm_ids": [
+          "no_update",
+          "shuffled_outcome"
+        ],
+        "arm_role": "CAUSAL_ABLATION",
+        "panel_id": "v_online_causal_panel"
+      },
+      "component_id": "V_online",
+      "control": {
+        "arm_ids": [
+          "candidate_own_rule_batched",
+          "candidate_own_rule_amortized",
+          "same_feedback_budget_table_history_learner"
+        ],
+        "arm_role": "SHORTCUT_CONTROL",
+        "panel_id": "v_online_shortcut_panel"
+      },
+      "integrity": {
+        "arm_ids": [
+          "access_parity_audit",
+          "provenance_lineage_check",
+          "global_leakage_positive_control",
+          "rng_registry_audit",
+          "interface_capability_audit"
+        ],
+        "arm_role": "INTEGRITY_CONTROL",
+        "panel_id": "v_online_integrity_panel"
+      },
+      "rival": {
+        "arm_ids": [
+          "online_compositional_rival",
+          "drift_aware_replay_rival"
+        ],
+        "arm_role": "RIVAL",
+        "panel_id": "v_online_rival_panel"
+      }
+    },
+    {
+      "causal": {
+        "arm_ids": [
+          "matched_replay_off"
+        ],
+        "arm_role": "CAUSAL_ABLATION",
+        "panel_id": "v_replay_causal_panel"
+      },
+      "component_id": "V_replay",
+      "control": {
+        "arm_ids": [
+          "window_history",
+          "episodic_traversal",
+          "graph_lookup",
+          "transition_table",
+          "successor_map",
+          "count_table",
+          "fsm_planner",
+          "matched_no_replay_amortized_learner"
+        ],
+        "arm_role": "SHORTCUT_CONTROL",
+        "panel_id": "v_replay_shortcut_panel"
+      },
+      "integrity": {
+        "arm_ids": [
+          "corrupted_replay_detector",
+          "access_parity_audit",
+          "provenance_lineage_check",
+          "global_leakage_positive_control",
+          "rng_registry_audit",
+          "interface_capability_audit"
+        ],
+        "arm_role": "INTEGRITY_CONTROL",
+        "panel_id": "v_replay_integrity_panel"
+      },
+      "rival": {
+        "arm_ids": [
+          "drift_aware_replay_rival"
+        ],
+        "arm_role": "RIVAL",
+        "panel_id": "v_replay_rival_panel"
+      }
+    },
+    {
+      "causal": {
+        "arm_ids": [
+          "memory_read_off",
+          "memory_zero",
+          "source_deletion",
+          "history_replacement"
+        ],
+        "arm_role": "CAUSAL_ABLATION",
+        "panel_id": "v_memory_causal_panel"
+      },
+      "component_id": "V_memory",
+      "control": {
+        "arm_ids": [
+          "recency",
+          "summary",
+          "rag",
+          "exact_lookup",
+          "nearest_neighbor",
+          "window_history",
+          "graph_lookup",
+          "transition_table",
+          "successor_map",
+          "count_table",
+          "fsm_planner",
+          "episodic_traversal"
+        ],
+        "arm_role": "SHORTCUT_CONTROL",
+        "panel_id": "v_memory_shortcut_panel"
+      },
+      "integrity": {
+        "arm_ids": [
+          "access_parity_audit",
+          "provenance_lineage_check",
+          "global_leakage_positive_control",
+          "rng_registry_audit",
+          "interface_capability_audit"
+        ],
+        "arm_role": "INTEGRITY_CONTROL",
+        "panel_id": "v_memory_integrity_panel"
+      },
+      "rival": {
+        "arm_ids": [
+          "tabular_transition_rival",
+          "online_compositional_rival",
+          "drift_aware_replay_rival"
+        ],
+        "arm_role": "RIVAL",
+        "panel_id": "v_memory_rival_panel"
+      }
+    },
+    {
+      "causal": {
+        "arm_ids": [
+          "fresh_init",
+          "from_scratch",
+          "checkpoint_only",
+          "replay_reset",
+          "memory_reset",
+          "full_carryover"
+        ],
+        "arm_role": "CAUSAL_ABLATION",
+        "panel_id": "v_transfer_causal_carrier_panel"
+      },
+      "component_id": "V_transfer",
+      "control": {
+        "arm_ids": [
+          "equal_budget_persistent_history_carrier",
+          "equal_budget_persistent_cache_carrier",
+          "equal_budget_persistent_batched_carrier"
+        ],
+        "arm_role": "SHORTCUT_CONTROL",
+        "panel_id": "v_transfer_shortcut_panel"
+      },
+      "integrity": {
+        "arm_ids": [
+          "access_parity_audit",
+          "provenance_lineage_check",
+          "global_leakage_positive_control",
+          "rng_registry_audit",
+          "interface_capability_audit"
+        ],
+        "arm_role": "INTEGRITY_CONTROL",
+        "panel_id": "v_transfer_integrity_panel"
+      },
+      "rival": {
+        "arm_ids": [
+          "online_compositional_rival",
+          "drift_aware_replay_rival"
+        ],
+        "arm_role": "RIVAL",
+        "panel_id": "v_transfer_rival_panel"
+      }
+    }
+  ],
+  "determinism_contract": {
+    "bit_exact_failure_mapping": "INVALID_INSTRUMENT",
+    "compare_fields": [
+      "predictions",
+      "rankings",
+      "actions",
+      "state_hashes",
+      "update_deltas",
+      "checkpoint_hashes",
+      "metrics"
+    ],
+    "distinct_fresh_process_recomputes": 2,
+    "distinct_pid": true,
+    "distinct_temp_dir": true,
+    "exactness_mode": "bit_exact_same_frozen_platform_backend_dependencies",
+    "launcher_sets_pythonhashseed_before_interpreter_start": true,
+    "original_run_counts_as_recompute": false,
+    "platform_pins": [
+      "os",
+      "python",
+      "numpy",
+      "torch",
+      "device",
+      "cuda",
+      "cudnn",
+      "driver"
+    ],
+    "post_result_tolerance_replay_forbidden": true,
+    "required_rng_sources": [
+      "python_random",
+      "numpy",
+      "torch_cpu",
+      "torch_cuda",
+      "environment",
+      "action_tiebreak",
+      "replay_sampler",
+      "dataloader_worker"
+    ],
+    "rng_record_fields": [
+      "source_id",
+      "library",
+      "namespace",
+      "seed_input_ids",
+      "seed_derivation_function",
+      "derived_seed_or_commitment",
+      "device_id",
+      "worker_id",
+      "initial_state_hash",
+      "serialized_state_hash",
+      "restored_state_hash",
+      "used_by_code_path_ids",
+      "restore_verdict"
+    ],
+    "unregistered_rng_mapping": "FAIL"
+  },
+  "evidence_schema": {
+    "evidence_components": [
+      "V_model",
+      "V_online",
+      "V_replay",
+      "V_memory",
+      "V_transfer"
+    ],
+    "evidence_state": [
+      "NOT_TESTED",
+      "INVALID_INSTRUMENT",
+      "ABSENT",
+      "PRESENT_BOUNDED"
+    ],
+    "fourth_verdict_axis_forbidden": true,
+    "v_special_is_evidence_component": false
+  },
+  "firewall_and_access_contract": {
+    "adapter_allowed": [
+      "typed_observation",
+      "legal_action_set",
+      "declared_feedback",
+      "budgeted_history_storage",
+      "frozen_kernel_abi"
+    ],
+    "adapter_forbidden": [
+      "family_id",
+      "split",
+      "sequence_order",
+      "latent_rule",
+      "heldout_label",
+      "future_observation",
+      "evaluator_oracle",
+      "undeclared_actuator"
+    ],
+    "candidate_control_rival_access_parity_required": true,
+    "interface_audit_required": true,
+    "network_external_service_llm_ui_forbidden": true,
+    "query_budget": 0
+  },
+  "historical_provenance": {
+    "semantic_status": "HISTORICAL_PINS_ONLY",
+    "objects": [
+      {
+        "bank_commit": "56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92",
+        "blob": "a642c5734d57af450104b115181a2f7dc18bb646",
+        "path": "docs/codex/tasks/ITL-K0-H0-H1-INSTRUMENT-001A.md",
+        "sha256": "49981dfe527c03812f79fdf6b54716de4234d12f583c6a33513145f36ebf48db",
+        "task_id": "ITL-K0-H0-H1-INSTRUMENT-001A"
+      },
+      {
+        "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
+        "blob": "cc8b2720374bec1b566ede3c11d87c2290fb8345",
+        "path": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A.md",
+        "sha256": "a7802e698434beadf219a1a170c9ae1bd373d914f81022051cf77a0c7d3dfc8b",
+        "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A"
+      },
+      {
+        "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
+        "blob": "ba1c55cfeeffbbf7e3c0da15b8b52dd836ef6511",
+        "path": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
+        "sha256": "c1ada02360b26892ca4728b4c53ae36fa8dbf7f7202697c4288f64a1cb7be59c",
+        "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A"
+      },
+      {
+        "bank_commit": "882be402395e7301cf69fcc0a0bae1eca8dfcd68",
+        "blob": "a186c78028a69a81c408f3985fa0112fae10b9a0",
+        "path": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
+        "sha256": "a1f681ca816250972f4f351107286d7446377aadf5dc2835f8a0d81f5e43edd1",
+        "task_id": "K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A"
+      },
+      {
+        "bank_commit": "882be402395e7301cf69fcc0a0bae1eca8dfcd68",
+        "blob": "9fcb9a0036fe09232f5a8619c755b24703d2c2d9",
+        "path": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
+        "sha256": "2faa270dabebc4f83b8d51b689592a28fdfee96e44a80049835b40b31e304399",
+        "task_id": "K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A"
+      }
+    ]
+  },
+  "integrity_contract": {
+    "dependency_ids": [
+      "shared_recompute_engine",
+      "corrupted_replay_detection",
+      "source_memory_lineage",
+      "carrier_lineage",
+      "access_parity",
+      "provenance_lineage",
+      "global_leakage",
+      "rng_registry",
+      "interface_capability"
+    ],
+    "global_gate_classes": [
+      "PROVENANCE",
+      "ACCESS",
+      "GLOBAL_LEAKAGE"
+    ],
+    "local_failure_invalidates_only_dependent_estimands_components": true,
+    "positive_control_leakage_scan_required": true,
+    "replay_off_and_corrupted_replay_are_distinct": true,
+    "shared_failure_may_invalidate_all_dependent_components": true,
+    "unconditional_replay_failure_global_propagation_forbidden": true
+  },
+  "path_authority": {
+    "allowed_external_side_effects": [
+      "C:/Users/LEO/AppData/Local/EGO_K0_SEALED/ITL-K0-H0-H1-INSTRUMENT-001A/heldout_preimage.json"
+    ],
+    "conditional_failure_artifact": "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/failure_manifest.json",
+    "repo_write_allowlist": [
+      "src/itl_k0_h0_h1_instrument_001a/__init__.py",
+      "src/itl_k0_h0_h1_instrument_001a/h0_freeze.py",
+      "tests/itl_k0_h0_h1_instrument_001a/test_h0_freeze.py",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/h0_contract.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/task_family_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/generator_distribution.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/adapter_capability_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/access_budget_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/metric_mde_contract.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/baseline_panel.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/component_control_mapping.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/component_dependency_matrix.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/protocol_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/positive_control_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/heldout_preimage_schema.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/heldout_seal_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/own_rule_constructor_contract.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/public_dev_fixture_manifest.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/smoke_contract.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/h0_acceptance.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/claim_ceiling.txt",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/control_signature_contract.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/control_signature_simulation.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/determinism_contract.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/control_signature_coverage_report.json",
+      "artifacts/ITL-K0-H0-H1-INSTRUMENT-001A/h0/failure_manifest.json"
+    ],
+    "unlisted_repo_path_forbidden": true
+  },
+  "power_and_seed_contract": {
+    "decision_kinds": [
+      "superiority",
+      "equivalence",
+      "noninferiority",
+      "collapse"
+    ],
+    "exactly_one_seed_design": true,
+    "failure_to_reject_is_equivalence": false,
+    "fixed_seed_required_fields": [
+      "fixed_seed_count",
+      "frozen_seed_block_id"
+    ],
+    "post_result_seed_addition_forbidden": true,
+    "powered_equivalence_required_for": [
+      "CONTROL_EQUIVALENT",
+      "RIVAL_SATURATED",
+      "no_interference",
+      "retention_equivalence",
+      "order_invariance"
+    ],
+    "provenance_fields": [
+      "producer_function",
+      "input_artifact_hashes",
+      "run_id",
+      "seed_block_id",
+      "aggregation_rule",
+      "code_path_hash"
+    ],
+    "sequential_seed_required_fields": [
+      "sequential_schedule_id",
+      "analysis_looks",
+      "max_n",
+      "alpha_spending_rule",
+      "stopping_predicate",
+      "seed_release_order"
+    ],
+    "unused_frozen_input_mapping": "INVALID_INSTRUMENT"
+  },
+  "prior_negative_evidence": [
+    {
+      "boundary": "RESIDUE_WINDOW_DOMINANCE",
+      "commit": "307da776b20de615d73b54b4e28f3f97da98a816",
+      "required_control": "window_history_and_cache_family"
+    },
+    {
+      "boundary": "PET_P0_ACCESS_ATTRIBUTION_DEFECT",
+      "commit": "6948427ad4f58535db5b66c8b4bf656f1d772f77",
+      "required_control": "access_parity_and_capability_firewall"
+    },
+    {
+      "boundary": "TLGP_SOURCE_FREEZE_DRIFT",
+      "commit": "63d5177480506f05c9783e00525177d4d048489e",
+      "required_control": "committed_object_ancestry_and_non_tautological_end_run_provenance"
+    },
+    {
+      "boundary": "VOI_003A_STATIC_SUFFICIENT",
+      "commit": "f2c19955528c746cd2de610679de3089ee52138b",
+      "required_control": "fresh_seed_powered_sign_and_mde_contract"
+    },
+    {
+      "boundary": "TLGP_TESTED_SCALE_BOUNDED_NEGATIVE",
+      "ledger_entries": [
+        "L-007"
+      ],
+      "required_control": "cross_lineage_caveat_preserved"
+    },
+    {
+      "boundary": "SAME_AGENT_DRIFT_AWARE_FAIR_RIVAL_GATE",
+      "ledger_entries": [
+        "L-015",
+        "L-016"
+      ],
+      "required_control": "tie_requires_downgrade"
+    },
+    {
+      "boundary": "N2_GRAPH_CLOSURE_BASELINE_EQUIVALENCE",
+      "ledger_entries": [
+        "L-017",
+        "L-018"
+      ],
+      "required_control": "cheap_fair_baseline_closure_preserved"
+    }
+  ],
+  "resolver_contract": {
+    "component_invalid_dependency_precedence": true,
+    "component_rule": "INVALID_IF_DEPENDENCY_INVALID_OR_CAUSAL_UNDERPOWERED;PRESENT_BOUNDED_IF_ALL_MANDATORY_CAUSAL_EFFECTS;ABSENT_IF_ANY_POWERED_CAUSAL_NO_CONTRIBUTION_OR_WRONG_SIGN;NOT_TESTED_IF_REQUIRED_RUN_NOT_STARTED",
+    "comparison_never_erases_component_evidence": true,
+    "required_functions": [
+      "resolve_component_terminal_state",
+      "resolve_specialness_admissibility",
+      "resolve_h0_terminal_bundle"
+    ],
+    "total_exclusive_deterministic_required": true
+  },
+  "schema_version": "itl.k0.h0.admission.002a.v1",
+  "specialness_predicate": {
+    "admissible_requires": [
+      "all_referenced_components_PRESENT_BOUNDED",
+      "all_integrity_dependencies_valid",
+      "CONTROL_SEPARATED",
+      "RIVAL_SEPARATED"
+    ],
+    "comparison_inconclusive_is_not_absence": true,
+    "referenced_components": [
+      "V_model",
+      "V_online",
+      "V_replay",
+      "V_memory",
+      "V_transfer"
+    ],
+    "returns_evidence_state": false,
+    "v_special_is_independent_evidence_axis": false
+  },
+  "task_family_and_protocol_contract": {
+    "families": [
+      {
+        "family_id": "A",
+        "name": "delayed_consequence_and_source_reliability",
+        "required_property": "current_observation_ambiguous_history_identifies_delayed_source_action_outcome_relation"
+      },
+      {
+        "family_id": "B",
+        "name": "heldout_factor_composition",
+        "required_property": "heldout_legal_combinations_are_novel_and_exact_tuple_lookup_cannot_solve"
+      },
+      {
+        "family_id": "C",
+        "name": "two_step_controllable_consequence",
+        "required_property": "ordinary_actions_change_intermediate_and_horizon2_outcomes_without_query_actions"
+      }
+    ],
+    "fresh_init_resets": [
+      "checkpoint",
+      "optimizer",
+      "memory",
+      "replay_buffer",
+      "kernel_rng",
+      "history"
+    ],
+    "heldout_commitment": {
+      "canonical_json": "utf8_sorted_keys_compact_no_trailing_whitespace",
+      "hash": "sha256",
+      "nonce_bytes": 32,
+      "preimage_fields": [
+        "schema_version",
+        "generator_distribution_hash",
+        "seed_records",
+        "nonce_hex"
+      ]
+    },
+    "persistent_sequence_carriers": [
+      "full_carryover",
+      "full_fresh_init",
+      "checkpoint_only",
+      "replay_reset",
+      "memory_reset"
+    ],
+    "program_generated_distributions_required": true
+  },
+  "task_id": "ITL-K0-H0-ADMISSION-CONTRACT-002A",
+  "trace_recompute_contract": {
+    "ablation_reruns_real_intervention": true,
+    "baseline_independent_callable_implementations": true,
+    "leakage_positive_control_required": true,
+    "replay_hash_only_forbidden": true,
+    "replay_recomputes_from": [
+      "serialized_state",
+      "observation"
+    ],
+    "trace_required_fields": [
+      "inputs",
+      "legal_actions",
+      "predictions",
+      "candidate_ranking",
+      "selected_action",
+      "outcome",
+      "prediction_error",
+      "update_delta",
+      "memory_replay_refs",
+      "ablation_id",
+      "adapter_capability_hash",
+      "seed_context_episode_ids",
+      "state_checkpoint_hashes"
+    ]
+  }
+}
