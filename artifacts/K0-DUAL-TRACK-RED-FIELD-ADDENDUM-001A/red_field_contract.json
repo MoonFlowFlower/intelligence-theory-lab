@@ -1,0 +1,523 @@
+{
+  "additive_overlay": {
+    "foundation_blocked": false,
+    "historical_bytes_rewritten": false,
+    "precedence": "this_addendum_controls_only_conflicting_K0_red_field_schema_and_enforcement_semantics",
+    "required_before": [
+      "bank_ITL-K0-H0-H1-INSTRUMENT-001A_H0"
+    ],
+    "still_requires_separate_transition": [
+      "ITL-K0-H0-H1-INSTRUMENT-001A:H1",
+      "EGO-K0-REFERENCE-KERNEL-001A",
+      "K0-IMMUTABLE-FREEZE-001A",
+      "ITL-K0-FORMAL-EVIDENCE-001A"
+    ]
+  },
+  "arm_role_contract": {
+    "assignments": [
+      {"arm_id": "planner_bypass", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "checkpoint_swap", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "prediction_counterfactual", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "no_update", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "shuffled_outcome", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "matched_replay_off", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "memory_read_off", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "memory_zero", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "source_deletion", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "history_replacement", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "fresh_init", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "from_scratch", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "checkpoint_only", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "replay_reset", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "memory_reset", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "full_carryover", "arm_role": "CAUSAL_ABLATION"},
+      {"arm_id": "observation_only", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "window_history", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "exact_lookup", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "nearest_neighbor", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "graph_lookup", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "transition_table", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "successor_map", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "count_table", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "fsm_planner", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "episodic_traversal", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "candidate_own_rule_amortized", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "candidate_own_rule_batched", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "same_feedback_budget_table_history_learner", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "matched_no_replay_amortized_learner", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "recency", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "summary", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "rag", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "equal_budget_persistent_history_carrier", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "equal_budget_persistent_cache_carrier", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "equal_budget_persistent_batched_carrier", "arm_role": "SHORTCUT_CONTROL"},
+      {"arm_id": "tabular_transition_rival", "arm_role": "RIVAL"},
+      {"arm_id": "online_compositional_rival", "arm_role": "RIVAL"},
+      {"arm_id": "drift_aware_replay_rival", "arm_role": "RIVAL"},
+      {"arm_id": "corrupted_replay_detector", "arm_role": "INTEGRITY_CONTROL"},
+      {"arm_id": "access_parity_audit", "arm_role": "INTEGRITY_CONTROL"},
+      {"arm_id": "provenance_lineage_check", "arm_role": "INTEGRITY_CONTROL"},
+      {"arm_id": "global_leakage_positive_control", "arm_role": "INTEGRITY_CONTROL"},
+      {"arm_id": "rng_registry_audit", "arm_role": "INTEGRITY_CONTROL"},
+      {"arm_id": "interface_capability_audit", "arm_role": "INTEGRITY_CONTROL"}
+    ],
+    "ex_ante_assignment_required": true,
+    "full_and_reference_instances_inherit_contrast_role": true,
+    "one_role_per_arm_id": true,
+    "roles": [
+      "CAUSAL_ABLATION",
+      "SHORTCUT_CONTROL",
+      "RIVAL",
+      "INTEGRITY_CONTROL"
+    ]
+  },
+  "claim_ceiling": "task-card/schema/control-plane enforcement only; no learned model, online learning, replay contribution, memory causality, transfer, initiative, agency, subjectivity, electronic life, EGO readiness, or mainline effect",
+  "claim_template_registry": [
+    "claim_v_model_bounded",
+    "claim_v_online_bounded",
+    "claim_v_replay_bounded",
+    "claim_v_memory_bounded",
+    "claim_v_transfer_bounded",
+    "claim_v_special_panel_relative"
+  ],
+  "component_control_mapping": [
+    {
+      "causal_arm_ids": ["planner_bypass", "checkpoint_swap", "prediction_counterfactual"],
+      "claim_template_ids": ["claim_v_model_bounded"],
+      "component_id": "V_model",
+      "control_comparison_ids": ["v_model_shortcut_panel"],
+      "evidence_contrast_ids": ["v_model_causal_panel"],
+      "integrity_control_arm_ids": ["access_parity_audit", "provenance_lineage_check", "global_leakage_positive_control", "rng_registry_audit", "interface_capability_audit"],
+      "integrity_dependency_ids": ["shared_recompute_engine", "access_parity", "provenance_lineage", "global_leakage", "rng_registry", "interface_capability"],
+      "rival_arm_ids": ["tabular_transition_rival", "online_compositional_rival", "drift_aware_replay_rival"],
+      "rival_comparison_ids": ["frozen_rival_panel"],
+      "shortcut_control_arm_ids": ["observation_only", "window_history", "exact_lookup", "nearest_neighbor", "graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "episodic_traversal", "candidate_own_rule_amortized"]
+    },
+    {
+      "causal_arm_ids": ["no_update", "shuffled_outcome"],
+      "claim_template_ids": ["claim_v_online_bounded"],
+      "component_id": "V_online",
+      "control_comparison_ids": ["v_online_shortcut_panel"],
+      "evidence_contrast_ids": ["v_online_causal_panel"],
+      "integrity_control_arm_ids": ["access_parity_audit", "provenance_lineage_check", "global_leakage_positive_control", "rng_registry_audit", "interface_capability_audit"],
+      "integrity_dependency_ids": ["shared_recompute_engine", "access_parity", "provenance_lineage", "global_leakage", "rng_registry", "interface_capability"],
+      "rival_arm_ids": ["online_compositional_rival", "drift_aware_replay_rival"],
+      "rival_comparison_ids": ["frozen_rival_panel"],
+      "shortcut_control_arm_ids": ["candidate_own_rule_batched", "candidate_own_rule_amortized", "same_feedback_budget_table_history_learner"]
+    },
+    {
+      "causal_arm_ids": ["matched_replay_off"],
+      "claim_template_ids": ["claim_v_replay_bounded"],
+      "component_id": "V_replay",
+      "control_comparison_ids": ["v_replay_shortcut_panel"],
+      "evidence_contrast_ids": ["v_replay_causal_panel"],
+      "integrity_control_arm_ids": ["corrupted_replay_detector", "access_parity_audit", "provenance_lineage_check", "global_leakage_positive_control", "rng_registry_audit", "interface_capability_audit"],
+      "integrity_dependency_ids": ["shared_recompute_engine", "corrupted_replay_detection", "access_parity", "provenance_lineage", "global_leakage", "rng_registry", "interface_capability"],
+      "rival_arm_ids": ["drift_aware_replay_rival"],
+      "rival_comparison_ids": ["frozen_rival_panel"],
+      "shortcut_control_arm_ids": ["window_history", "episodic_traversal", "graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "matched_no_replay_amortized_learner"]
+    },
+    {
+      "causal_arm_ids": ["memory_read_off", "memory_zero", "source_deletion", "history_replacement"],
+      "claim_template_ids": ["claim_v_memory_bounded"],
+      "component_id": "V_memory",
+      "control_comparison_ids": ["v_memory_shortcut_panel"],
+      "evidence_contrast_ids": ["v_memory_causal_panel"],
+      "integrity_control_arm_ids": ["access_parity_audit", "provenance_lineage_check", "global_leakage_positive_control", "rng_registry_audit", "interface_capability_audit"],
+      "integrity_dependency_ids": ["shared_recompute_engine", "source_memory_lineage", "access_parity", "provenance_lineage", "global_leakage", "rng_registry", "interface_capability"],
+      "rival_arm_ids": ["tabular_transition_rival", "online_compositional_rival", "drift_aware_replay_rival"],
+      "rival_comparison_ids": ["frozen_rival_panel"],
+      "shortcut_control_arm_ids": ["recency", "summary", "rag", "exact_lookup", "nearest_neighbor", "window_history", "graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "episodic_traversal"]
+    },
+    {
+      "causal_arm_ids": ["fresh_init", "from_scratch", "checkpoint_only", "replay_reset", "memory_reset", "full_carryover"],
+      "claim_template_ids": ["claim_v_transfer_bounded"],
+      "component_id": "V_transfer",
+      "control_comparison_ids": ["v_transfer_shortcut_panel"],
+      "evidence_contrast_ids": ["v_transfer_causal_carrier_panel"],
+      "integrity_control_arm_ids": ["access_parity_audit", "provenance_lineage_check", "global_leakage_positive_control", "rng_registry_audit", "interface_capability_audit"],
+      "integrity_dependency_ids": ["shared_recompute_engine", "carrier_lineage", "access_parity", "provenance_lineage", "global_leakage", "rng_registry", "interface_capability"],
+      "rival_arm_ids": ["online_compositional_rival", "drift_aware_replay_rival"],
+      "rival_comparison_ids": ["frozen_rival_panel"],
+      "shortcut_control_arm_ids": ["equal_budget_persistent_history_carrier", "equal_budget_persistent_cache_carrier", "equal_budget_persistent_batched_carrier"]
+    },
+    {
+      "causal_arm_ids": ["planner_bypass", "checkpoint_swap", "prediction_counterfactual", "no_update", "shuffled_outcome", "matched_replay_off", "memory_read_off", "memory_zero", "source_deletion", "history_replacement", "fresh_init", "from_scratch", "checkpoint_only", "replay_reset", "memory_reset", "full_carryover"],
+      "claim_admissibility_rule": "panel-relative specialness requires causally supported referenced components and no shortcut-control equivalence",
+      "claim_template_ids": ["claim_v_special_panel_relative"],
+      "component_id": "V_special",
+      "control_comparison_ids": ["v_special_full_shortcut_qualifier"],
+      "evidence_contrast_ids": ["v_model_causal_panel", "v_online_causal_panel", "v_replay_causal_panel", "v_memory_causal_panel", "v_transfer_causal_carrier_panel"],
+      "integrity_control_arm_ids": ["corrupted_replay_detector", "access_parity_audit", "provenance_lineage_check", "global_leakage_positive_control", "rng_registry_audit", "interface_capability_audit"],
+      "integrity_dependency_ids": ["shared_recompute_engine", "corrupted_replay_detection", "source_memory_lineage", "carrier_lineage", "access_parity", "provenance_lineage", "global_leakage", "rng_registry", "interface_capability"],
+      "rival_arm_ids": ["tabular_transition_rival", "online_compositional_rival", "drift_aware_replay_rival"],
+      "rival_comparison_ids": ["frozen_rival_panel"],
+      "shortcut_control_arm_ids": ["observation_only", "window_history", "exact_lookup", "nearest_neighbor", "graph_lookup", "transition_table", "successor_map", "count_table", "fsm_planner", "episodic_traversal", "candidate_own_rule_amortized", "candidate_own_rule_batched", "same_feedback_budget_table_history_learner", "matched_no_replay_amortized_learner", "recency", "summary", "rag", "equal_budget_persistent_history_carrier", "equal_budget_persistent_cache_carrier", "equal_budget_persistent_batched_carrier"]
+    }
+  ],
+  "comparison_catalog": {
+    "control_comparison_ids": [
+      "v_model_shortcut_panel",
+      "v_online_shortcut_panel",
+      "v_replay_shortcut_panel",
+      "v_memory_shortcut_panel",
+      "v_transfer_shortcut_panel",
+      "v_special_full_shortcut_qualifier"
+    ],
+    "evidence_contrast_ids": [
+      "v_model_causal_panel",
+      "v_online_causal_panel",
+      "v_replay_causal_panel",
+      "v_memory_causal_panel",
+      "v_transfer_causal_carrier_panel"
+    ],
+    "rival_comparison_ids": [
+      "frozen_rival_panel"
+    ]
+  },
+  "control_signature_contract": {
+    "candidate_independent_simulation_cases": [
+      "parity",
+      "strong_negative",
+      "survival_positive",
+      "boundary_failure"
+    ],
+    "future_required_artifacts": [
+      "control_signature_contract.json",
+      "control_signature_simulation.json"
+    ],
+    "required_contrast_fields": [
+      "contrast_id",
+      "component_ids",
+      "control_class",
+      "family_ids",
+      "protocol_ids",
+      "full_arm_id",
+      "intervention_arm_id",
+      "reference_arm_id",
+      "estimand_ids",
+      "expected_effect",
+      "success_signature",
+      "failure_signature",
+      "ambiguous_signature",
+      "strong_negative_counts_as_success",
+      "required_power_spec_id",
+      "required_seed_block_id",
+      "blast_radius_id",
+      "verdict_mapping"
+    ],
+    "strong_negative_classification": "FALSIFIER_COLLAPSE_SUCCESS_NOT_CONTROL_INACTIVE",
+    "strong_negative_is_statistical_equivalence": false
+  },
+  "determinism_contract": {
+    "bit_exact_failure_mapping": "INVALID_INSTRUMENT",
+    "compare_fields": [
+      "predictions",
+      "rankings",
+      "actions",
+      "state_hashes",
+      "update_deltas",
+      "checkpoint_hashes",
+      "metrics"
+    ],
+    "excluded_volatile_fields": [
+      "timestamp",
+      "pid",
+      "wall_clock"
+    ],
+    "exactness_mode": "bit_exact_same_frozen_platform_backend_dependencies",
+    "fresh_processes_required": 2,
+    "future_required_artifact": "determinism_contract.json",
+    "launcher_sets_pythonhashseed_before_interpreter_start": true,
+    "mismatch_mapping": "REPLAY_COMPUTATION_INTEGRITY_FAILED",
+    "original_run_counts_as_recompute": false,
+    "platform_pins": [
+      "os",
+      "python",
+      "numpy",
+      "torch",
+      "device",
+      "cuda",
+      "cudnn",
+      "driver"
+    ],
+    "post_result_tolerance_replay_forbidden": true,
+    "process_isolation": {
+      "distinct_pid": true,
+      "distinct_temp_dir": true
+    },
+    "required_determinism_fields": [
+      "seed_derivation_function",
+      "rng_state_serialization_restore",
+      "torch_deterministic_algorithms",
+      "cudnn_benchmark_flag",
+      "cudnn_deterministic_flag",
+      "cpu_thread_count",
+      "interop_thread_count"
+    ],
+    "rng_registry": [
+      "python_random",
+      "numpy",
+      "torch_cpu",
+      "torch_cuda",
+      "environment",
+      "action_tiebreak",
+      "replay_sampler",
+      "dataloader_worker"
+    ],
+    "unregistered_rng_mapping": "FAIL",
+    "forbidden_rng_sources": [
+      "time_based_seed",
+      "undeclared_os_random",
+      "implicit_global_rng"
+    ]
+  },
+  "evidence_axes": {
+    "comparison_state": [
+      "NOT_APPLICABLE",
+      "RIVAL_NOT_RUN",
+      "RIVAL_INCONCLUSIVE",
+      "RIVAL_SATURATED",
+      "RIVAL_SEPARATED"
+    ],
+    "control_comparison_state": [
+      "NOT_APPLICABLE",
+      "CONTROL_NOT_RUN",
+      "CONTROL_INCONCLUSIVE",
+      "CONTROL_EQUIVALENT",
+      "CONTROL_SEPARATED"
+    ],
+    "control_equivalence_type": [
+      "CANDIDATE_PARITY",
+      "ADMISSION_CEILING_SATURATION",
+      "OWN_RULE_AMORTIZED_PARITY",
+      "CONTROL_BETTER",
+      null
+    ],
+    "control_provenance_fields": [
+      "control_comparison_reason",
+      "frozen_control_panel_id",
+      "control_contrast_ids",
+      "control_signed_margin",
+      "control_confidence_interval",
+      "control_equivalence_band",
+      "control_equivalence_type"
+    ],
+    "evidence_state": [
+      "NOT_TESTED",
+      "INVALID_INSTRUMENT",
+      "ABSENT",
+      "PRESENT_BOUNDED"
+    ],
+    "rival_provenance_fields": [
+      "rival_comparison_reason",
+      "frozen_rival_panel_id",
+      "rival_contrast_ids",
+      "rival_signed_margin",
+      "rival_confidence_interval",
+      "rival_equivalence_band",
+      "rival_equivalence_type"
+    ]
+  },
+  "firewall_contract": {
+    "capability_whitelist": {
+      "allowed": [
+        "typed_observation",
+        "legal_action_set",
+        "declared_feedback",
+        "budgeted_history_storage",
+        "frozen_kernel_abi"
+      ],
+      "forbidden": [
+        "family_id",
+        "split",
+        "order",
+        "latent_rule",
+        "heldout_label",
+        "future_observation",
+        "evaluator_oracle",
+        "undeclared_actuator"
+      ]
+    },
+    "interface_audit_required": true,
+    "trace_only_schema_required": true
+  },
+  "integrity_blast_radius": {
+    "global_gate_classes": [
+      "PROVENANCE",
+      "ACCESS",
+      "GLOBAL_LEAKAGE"
+    ],
+    "local_leakage_uses_frozen_dependency_matrix": true,
+    "required_machine_fields": [
+      "integrity_gate_id",
+      "gate_class",
+      "affected_arms",
+      "affected_estimands",
+      "affected_components",
+      "failure_action",
+      "state_mapping",
+      "resolver_function"
+    ],
+    "rules": [
+      {
+        "failure_class": "shared_replay_recompute_engine_failure",
+        "mapping": "INVALIDATE_ALL_AND_ONLY_DEPENDENT_COMPONENTS_MAY_BE_GLOBAL"
+      },
+      {
+        "failure_class": "one_arm_or_trace_recomputation_failure",
+        "mapping": "INVALIDATE_ONLY_DEPENDENT_ESTIMANDS_AND_COMPONENTS"
+      },
+      {
+        "failure_class": "matched_replay_off_ties_full",
+        "mapping": "V_replay_ABSENT"
+      },
+      {
+        "failure_class": "matched_no_replay_shortcut_learner_ties",
+        "mapping": "CONTROL_EQUIVALENT"
+      },
+      {
+        "failure_class": "replay_reset_carrier_ties",
+        "mapping": "AFFECT_ONLY_MAPPED_V_transfer_REPLAY_CARRIER_PROPOSITION"
+      }
+    ],
+    "unconditional_replay_failure_global_propagation_forbidden": true
+  },
+  "integrity_dependency_catalog": [
+    "shared_recompute_engine",
+    "corrupted_replay_detection",
+    "source_memory_lineage",
+    "carrier_lineage",
+    "access_parity",
+    "provenance_lineage",
+    "global_leakage",
+    "rng_registry",
+    "interface_capability"
+  ],
+  "other_red_fields": {
+    "evaluator_only_fields": [
+      "family_id",
+      "split",
+      "order",
+      "latent_rule",
+      "heldout_label"
+    ],
+    "positive_control_producer": {
+      "candidate_blind_review": true,
+      "independent_bank_boundary": true,
+      "independent_module": true,
+      "k0r_may_be_sole_positive_control": false
+    },
+    "stop_condition_kind": "CONTENT_BASED_NOT_ELAPSED_TIME",
+    "uncertainty_before_calibration": "TRACE_ONLY_CANNOT_SUPPORT_PRESENT_BOUNDED"
+  },
+  "power_mde_equivalence_contract": {
+    "decision_kinds": [
+      "superiority",
+      "equivalence",
+      "noninferiority",
+      "collapse"
+    ],
+    "decision_spec_required_fields": [
+      "decision_kind",
+      "alpha",
+      "ci_method",
+      "sidedness",
+      "multiplicity_family",
+      "multiplicity_correction",
+      "target_power",
+      "sesoi",
+      "equivalence_margin",
+      "variance_source",
+      "fixed_seed_count",
+      "computed_mde",
+      "computed_power_at_sesoi",
+      "pass_predicate",
+      "underpowered_mapping"
+    ],
+    "future_required_artifact": "metric_mde_contract.json",
+    "future_required_sections": [
+      "metrics",
+      "estimands",
+      "seed_blocks",
+      "decision_specs"
+    ],
+    "not_rejecting_difference_is_equivalence": false,
+    "powered_equivalence_required_for": [
+      "CONTROL_EQUIVALENT",
+      "RIVAL_SATURATED",
+      "no_interference",
+      "retention_equivalence",
+      "order_invariance"
+    ],
+    "rival_panel_max_rule": "FROZEN_MULTIPLICITY_OR_NESTED_RESAMPLING",
+    "seed_policy": "FIXED_COUNT_OR_EX_ANTE_SEQUENTIAL_MAX_N_ALPHA_SPENDING",
+    "post_result_seed_addition_forbidden": true,
+    "underpowered_mapping": "STAR_INCONCLUSIVE",
+    "unused_frozen_input_mapping": "INVALID_INSTRUMENT"
+  },
+  "prior_negative_evidence": [
+    {
+      "commit": "307da776b20de615d73b54b4e28f3f97da98a816",
+      "line_ranges": ["63-71"],
+      "object_verified": true,
+      "path": "docs/GATE1-REPLAY-CONSOLIDATION-LINEAGE-CLOSEOUT-001.md",
+      "repo": "intelligence-theory-lab",
+      "requires": ["window_history", "graph_cache_family"]
+    },
+    {
+      "audit_commit": "6948427ad4f58535db5b66c8b4bf656f1d772f77",
+      "line_ranges": ["3-24"],
+      "object_verified": true,
+      "path": "artifacts/egodesktop_pet_world_integration_001a/p0/audit_claude_full_hostile_001.md",
+      "repo": "Ego",
+      "requires": ["access_parity", "capability_firewall", "local_and_recency_controls"],
+      "subject_commit": "7c8a91ad8448d0639ab2500fa8404182652b2289"
+    },
+    {
+      "commit": "63d5177480506f05c9783e00525177d4d048489e",
+      "line_ranges": ["5-9", "23-25"],
+      "object_verified": true,
+      "path": "artifacts/CLAUDE-INDEPENDENT-TLGP-001B-R2-OFFICIAL-FULL-RUN-AUDIT-001/audit_report.md",
+      "repo": "intelligence-theory-lab",
+      "requires": ["committed_object_pins", "ancestry", "non_tautological_source_drift_check"]
+    },
+    {
+      "closure_commit": "f2c19955528c746cd2de610679de3089ee52138b",
+      "evidence_commit": "67edff12e7803f410264aee366889870c89d7245",
+      "line_ranges": ["9-10", "18-28", "33-39"],
+      "object_verified": true,
+      "path": "docs/research/UNCERTAINTY-VOI-REQUEST-MECHANISM-CLOSURE-001.md",
+      "repo": "intelligence-theory-lab",
+      "requires": ["pre_freeze_sign_simulation", "fresh_seed_block", "frozen_mde", "strong_negative_semantics"]
+    },
+    {
+      "commits": [
+        "d431e6c2112212d64d0aabb55a3d457a93b1c039",
+        "da52c6abb1adf5d1e9d2bf65118dde16530feb44"
+      ],
+      "line_ranges": ["20-21"],
+      "object_verified": true,
+      "path": "docs/research/FSP-STAGE-LEDGER.md",
+      "repo": "intelligence-theory-lab",
+      "requires": ["integrated_cache_baselines", "drift_aware_continual_rival", "pre_mechanism_claim_discriminability"]
+    }
+  ],
+  "schema_version": "k0.red_field_addendum.v1",
+  "semantic_rules": {
+    "absent_requires_valid_causal_ablation_failure": true,
+    "causal_pass_shortcut_parity_mapping": "PRESENT_BOUNDED_PLUS_CONTROL_EQUIVALENT",
+    "control_or_rival_run_underpowered_mapping": "STAR_INCONCLUSIVE",
+    "control_tie_blocks_architectural_specialness": true,
+    "strong_negative_can_satisfy_falsifier_collapse": true,
+    "strong_negative_is_automatic_statistical_equivalence": false,
+    "v_special_is_frozen_rival_panel_relative": true
+  },
+  "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
+  "timeline_contract": {
+    "k0r_before_discriminability_gate_allowed_as": "CAPABILITY_REFERENCE_INSTRUMENT_ONLY",
+    "k0r_mechanism_interpretation_before_gate": false,
+    "l015_l016_gate_required_before_first_mechanism_claim": true,
+    "l015_l016_waived_by_default": false
+  }
+}
