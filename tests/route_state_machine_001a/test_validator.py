@@ -698,11 +698,133 @@ def test_foundation_cross_repo_unavailable_fails_closed(tmp_path):
 @pytest.mark.parametrize(
     ("mutation", "expected_code"),
     (
+        ("commit_lineage", "foundation_commit_lineage_mismatch"),
+        ("artifact_commit_scope", "foundation_artifact_commit_scope_mismatch"),
+        ("artifact_tree", "foundation_artifact_tree_mismatch"),
+        ("artifact_manifest", "foundation_artifact_manifest_mismatch"),
+        ("result_object", "foundation_result_object_mismatch"),
+        ("test_fix_scope", "foundation_test_fix_scope_mismatch"),
+        ("test_fix_object", "foundation_test_fix_object_mismatch"),
+        ("test_fix_artifact_tree", "foundation_test_fix_artifact_tree_drift"),
+    ),
+)
+def test_foundation_external_git_object_mutations_fail_at_target_branch(
+    mutation,
+    expected_code,
+    monkeypatch,
+):
+    state_machine, validator = _validator()
+    repo_root, state, _ = _live_foundation_acceptance_packet()
+    pin = state_machine.K0_FOUNDATION_ACCEPTANCE_PIN
+
+    assert state["foundation_acceptance_pin"] == pin
+    positive_control = validator.validate_foundation_acceptance_repository(
+        repo_root=repo_root,
+        route_state_payload=state,
+    )
+    assert positive_control["verdict"] == "pass"
+    assert positive_control["validation_errors"] == []
+
+    real_git_output = validator._git_output
+    mutation_hits = 0
+    result_blob_reads = 0
+
+    def mutated_git_output(git_root, *args, text=True):
+        nonlocal mutation_hits, result_blob_reads
+        raw = real_git_output(git_root, *args, text=text)
+
+        if mutation == "commit_lineage" and args == (
+            "rev-parse",
+            f"{pin['artifact_commit']}^",
+        ):
+            mutation_hits += 1
+            return pin["artifact_commit"]
+        if mutation == "artifact_commit_scope" and args == (
+            "diff-tree",
+            "--no-commit-id",
+            "--name-status",
+            "-r",
+            pin["artifact_commit"],
+        ):
+            mutation_hits += 1
+            return f"{raw}\nM\tREADME.md"
+        if mutation == "artifact_tree" and args == (
+            "rev-parse",
+            f"{pin['artifact_commit']}:artifacts/ego_k0_foundation_001a",
+        ):
+            mutation_hits += 1
+            return pin["result_blob"]
+        if mutation == "artifact_manifest" and args == (
+            "cat-file",
+            "blob",
+            pin["artifact_manifest"][0]["blob"],
+        ) and text is False:
+            mutation_hits += 1
+            assert isinstance(raw, bytes)
+            return raw + b"\x00"
+        if mutation == "result_object" and args == (
+            "cat-file",
+            "blob",
+            pin["result_blob"],
+        ) and text is False:
+            result_blob_reads += 1
+            if result_blob_reads == 2:
+                mutation_hits += 1
+                assert isinstance(raw, bytes)
+                return raw + b"\n"
+        if mutation == "test_fix_scope" and args == (
+            "diff-tree",
+            "--no-commit-id",
+            "--name-status",
+            "-r",
+            pin["test_fix_commit"],
+        ):
+            mutation_hits += 1
+            return f"{raw}\nA\tREADME.md"
+        if mutation == "test_fix_object" and args == (
+            "cat-file",
+            "blob",
+            pin["test_fix_blob"],
+        ) and text is False:
+            mutation_hits += 1
+            assert isinstance(raw, bytes)
+            return raw + b"\n"
+        if mutation == "test_fix_artifact_tree" and args == (
+            "rev-parse",
+            f"{pin['test_fix_commit']}:artifacts/ego_k0_foundation_001a",
+        ):
+            mutation_hits += 1
+            return pin["result_blob"]
+        return raw
+
+    monkeypatch.setattr(validator, "_git_output", mutated_git_output)
+    result = validator.validate_foundation_acceptance_repository(
+        repo_root=repo_root,
+        route_state_payload=state,
+    )
+    codes = _error_codes(result)
+
+    assert mutation_hits == 1
+    assert state["foundation_acceptance_pin"] == pin
+    assert codes == {expected_code}
+    assert "foundation_acceptance_pin_mismatch" not in codes
+    assert "foundation_cross_repo_git_readback_failed" not in codes
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_code"),
+    (
         ("foundation_authorization", "k0_foundation_acceptance_boundary_mismatch"),
         ("implementation_target", "k0_foundation_acceptance_boundary_mismatch"),
         ("wrong_phase", "k0_foundation_acceptance_boundary_mismatch"),
+        ("wrong_current_state", "k0_parent_state_outside_authorized_contract"),
         ("mechanism_authorization", "k0_foundation_acceptance_boundary_mismatch"),
         ("start_k0r_action", "k0_foundation_acceptance_boundary_mismatch"),
+        ("old_h0_reopen_action", "k0_foundation_acceptance_boundary_mismatch"),
+        (
+            "old_h0_correction_rerun_action",
+            "k0_foundation_acceptance_boundary_mismatch",
+        ),
         ("wrong_closure_type", "k0_foundation_closure_packet_mismatch"),
         ("theory_authorization", "k0_foundation_closure_packet_mismatch"),
     ),
@@ -716,10 +838,20 @@ def test_foundation_acceptance_route_mutations_fail_closed(mutation, expected_co
         state["authorized_implementation_targets"] = ["EGO-K0-FOUNDATION-001A"]
     elif mutation == "wrong_phase":
         state["phase"] = "READY_TO_IMPLEMENT"
+    elif mutation == "wrong_current_state":
+        state["current_state"] = "ADJUDICATED"
     elif mutation == "mechanism_authorization":
         state["authorizations"]["mechanism_validity"] = True
     elif mutation == "start_k0r_action":
         state["allowed_next_actions"][0] = "start_EGO-K0-REFERENCE-KERNEL-001A"
+    elif mutation == "old_h0_reopen_action":
+        state["allowed_next_actions"][0] = (
+            "start_ITL-K0-H0-H1-INSTRUMENT-001A_H0"
+        )
+    elif mutation == "old_h0_correction_rerun_action":
+        state["allowed_next_actions"][0] = (
+            "correct_or_rerun_ITL-K0-H0-CODE-FIRST-PREBANK-001A"
+        )
     elif mutation == "wrong_closure_type":
         closure["closure_type"] = "ADJUDICATED"
     elif mutation == "theory_authorization":
