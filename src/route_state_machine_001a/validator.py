@@ -1639,6 +1639,341 @@ def _git_is_ancestor(repo_root: Path, ancestor: str, descendant: str = "HEAD") -
     return completed.returncode == 0
 
 
+def validate_foundation_result_payload(payload: Any) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    if not isinstance(payload, dict):
+        errors.append(
+            _new_error(
+                "foundation_result_not_object",
+                "The pinned Foundation result must parse as a JSON object.",
+            )
+        )
+        payload = {}
+
+    required_fields = {
+        "official_evidence_bank": True,
+        "verdict": "foundation_engineering_pass",
+        "enabled": False,
+        "mainline_connected": False,
+        "runtime_authority": "none",
+    }
+    for field, expected in required_fields.items():
+        if payload.get(field) != expected:
+            errors.append(
+                _new_error(
+                    "foundation_result_field_mismatch",
+                    "A required official Foundation result field drifted.",
+                    field=field,
+                    expected=expected,
+                    actual=payload.get(field),
+                )
+            )
+
+    gates = payload.get("per_gate_outcomes")
+    if not isinstance(gates, dict) or len(gates) != 21:
+        errors.append(
+            _new_error(
+                "foundation_result_gate_count_mismatch",
+                "The official Foundation result must contain exactly 21 computed gate outcomes.",
+                actual_count=len(gates) if isinstance(gates, dict) else None,
+            )
+        )
+    else:
+        failed_gates = sorted(
+            gate_id
+            for gate_id, outcome in gates.items()
+            if not isinstance(outcome, dict)
+            or outcome.get("ok") is not True
+            or outcome.get("outcome") != "pass"
+        )
+        if failed_gates:
+            errors.append(
+                _new_error(
+                    "foundation_result_gate_not_pass",
+                    "Every one of the 21 pinned Foundation gate outcomes must be computed pass.",
+                    failed_gates=failed_gates,
+                )
+            )
+
+    for field in (
+        "producer_function",
+        "input_artifact_hashes",
+        "run_id",
+        "aggregation_rule",
+        "code_path_hash",
+    ):
+        value = payload.get(field)
+        if value is None or value == "" or value == {} or value == []:
+            errors.append(
+                _new_error(
+                    "foundation_result_provenance_field_missing",
+                    "The official Foundation result must retain all computed-evidence provenance fields.",
+                    field=field,
+                )
+            )
+
+    return {
+        "producer_function": "validate_foundation_result_payload",
+        "validation_errors": errors,
+        "validation_warnings": [],
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
+def validate_foundation_acceptance_repository(
+    *,
+    repo_root: Path,
+    route_state_payload: Any,
+) -> dict[str, Any]:
+    errors: list[dict[str, Any]] = []
+    input_artifacts: list[str] = []
+    state = route_state_payload if isinstance(route_state_payload, dict) else {}
+    serialized_pin = state.get("foundation_acceptance_pin")
+    pin = state_machine.K0_FOUNDATION_ACCEPTANCE_PIN
+    if serialized_pin != pin:
+        errors.append(
+            _new_error(
+                "foundation_acceptance_pin_mismatch",
+                "The K0 state packet must carry the exact complete Foundation acceptance pin.",
+                expected=pin,
+                actual=serialized_pin,
+            )
+        )
+
+    ego_repo = repo_root.resolve().parent / pin["repo"]
+    input_artifacts.extend(
+        [
+            f"{pin['repo']}@{pin['producer_commit']}",
+            f"{pin['repo']}@{pin['artifact_commit']}:artifacts/ego_k0_foundation_001a",
+            f"{pin['repo']}@{pin['test_fix_commit']}:{pin['test_fix_path']}",
+        ]
+    )
+    result_payload: Any = None
+    actual_manifest: list[dict[str, str]] = []
+    try:
+        discovered_root = Path(str(_git_output(ego_repo, "rev-parse", "--show-toplevel"))).resolve()
+        if discovered_root != ego_repo.resolve():
+            raise ValueError(f"sibling Ego Git root mismatch: {discovered_root}")
+
+        artifact_parent = str(_git_output(ego_repo, "rev-parse", f"{pin['artifact_commit']}^"))
+        test_fix_parent = str(_git_output(ego_repo, "rev-parse", f"{pin['test_fix_commit']}^"))
+        if artifact_parent != pin["producer_commit"] or test_fix_parent != pin["artifact_commit"]:
+            errors.append(
+                _new_error(
+                    "foundation_commit_lineage_mismatch",
+                    "Foundation commits must form the direct producer -> artifact -> test-fix lineage.",
+                    artifact_parent=artifact_parent,
+                    test_fix_parent=test_fix_parent,
+                )
+            )
+
+        artifact_changes_raw = str(
+            _git_output(
+                ego_repo,
+                "diff-tree",
+                "--no-commit-id",
+                "--name-status",
+                "-r",
+                pin["artifact_commit"],
+            )
+        )
+        artifact_changes = [
+            tuple(line.split("\t", 1))
+            for line in artifact_changes_raw.splitlines()
+            if line.strip()
+        ]
+        expected_artifact_changes = [
+            ("A", entry["path"]) for entry in pin["artifact_manifest"]
+        ]
+        if artifact_changes != expected_artifact_changes:
+            errors.append(
+                _new_error(
+                    "foundation_artifact_commit_scope_mismatch",
+                    "The artifact commit must add exactly the frozen 14 artifact paths.",
+                    expected=expected_artifact_changes,
+                    actual=artifact_changes,
+                )
+            )
+
+        artifact_tree = str(
+            _git_output(
+                ego_repo,
+                "rev-parse",
+                f"{pin['artifact_commit']}:artifacts/ego_k0_foundation_001a",
+            )
+        )
+        if artifact_tree != pin["artifact_tree"]:
+            errors.append(
+                _new_error(
+                    "foundation_artifact_tree_mismatch",
+                    "The Foundation artifact tree object drifted.",
+                    expected=pin["artifact_tree"],
+                    actual=artifact_tree,
+                )
+            )
+
+        ls_tree = _git_output(
+            ego_repo,
+            "ls-tree",
+            "-r",
+            "-z",
+            pin["artifact_commit"],
+            "artifacts/ego_k0_foundation_001a",
+            text=False,
+        )
+        assert isinstance(ls_tree, bytes)
+        for record in ls_tree.split(b"\0"):
+            if not record:
+                continue
+            metadata, raw_path = record.split(b"\t", 1)
+            mode, object_type, blob = metadata.decode("ascii").split()
+            if object_type != "blob":
+                raise ValueError(f"unexpected artifact object type: {object_type}")
+            blob_bytes = _git_output(ego_repo, "cat-file", "blob", blob, text=False)
+            assert isinstance(blob_bytes, bytes)
+            actual_manifest.append(
+                {
+                    "path": raw_path.decode("utf-8"),
+                    "mode": mode,
+                    "blob": blob,
+                    "sha256": hashlib.sha256(blob_bytes).hexdigest(),
+                }
+            )
+        if actual_manifest != pin["artifact_manifest"]:
+            errors.append(
+                _new_error(
+                    "foundation_artifact_manifest_mismatch",
+                    "The recomputed 14-entry path/mode/blob/SHA-256 manifest drifted.",
+                    expected=pin["artifact_manifest"],
+                    actual=actual_manifest,
+                )
+            )
+
+        result_blob = str(
+            _git_output(
+                ego_repo,
+                "rev-parse",
+                f"{pin['artifact_commit']}:{pin['result_path']}",
+            )
+        )
+        result_bytes = _git_output(ego_repo, "cat-file", "blob", result_blob, text=False)
+        assert isinstance(result_bytes, bytes)
+        result_sha256 = hashlib.sha256(result_bytes).hexdigest()
+        if result_blob != pin["result_blob"] or result_sha256 != pin["result_sha256"]:
+            errors.append(
+                _new_error(
+                    "foundation_result_object_mismatch",
+                    "The result blob and raw-byte SHA-256 must equal the frozen acceptance pin.",
+                    expected={"blob": pin["result_blob"], "sha256": pin["result_sha256"]},
+                    actual={"blob": result_blob, "sha256": result_sha256},
+                )
+            )
+        result_payload = json.loads(result_bytes.decode("utf-8"))
+
+        test_fix_changes_raw = str(
+            _git_output(
+                ego_repo,
+                "diff-tree",
+                "--no-commit-id",
+                "--name-status",
+                "-r",
+                pin["test_fix_commit"],
+            )
+        )
+        test_fix_changes = [
+            tuple(line.split("\t", 1))
+            for line in test_fix_changes_raw.splitlines()
+            if line.strip()
+        ]
+        if test_fix_changes != [("M", pin["test_fix_path"])]:
+            errors.append(
+                _new_error(
+                    "foundation_test_fix_scope_mismatch",
+                    "The test-fix commit may change only tests/test_ego_k0_foundation.py.",
+                    actual=test_fix_changes,
+                )
+            )
+
+        test_blob = str(
+            _git_output(
+                ego_repo,
+                "rev-parse",
+                f"{pin['test_fix_commit']}:{pin['test_fix_path']}",
+            )
+        )
+        test_bytes = _git_output(ego_repo, "cat-file", "blob", test_blob, text=False)
+        assert isinstance(test_bytes, bytes)
+        test_sha256 = hashlib.sha256(test_bytes).hexdigest()
+        if test_blob != pin["test_fix_blob"] or test_sha256 != pin["test_fix_sha256"]:
+            errors.append(
+                _new_error(
+                    "foundation_test_fix_object_mismatch",
+                    "The test-fix blob and raw-byte SHA-256 must equal the frozen acceptance pin.",
+                    expected={"blob": pin["test_fix_blob"], "sha256": pin["test_fix_sha256"]},
+                    actual={"blob": test_blob, "sha256": test_sha256},
+                )
+            )
+        test_fix_tree = str(
+            _git_output(
+                ego_repo,
+                "rev-parse",
+                f"{pin['test_fix_commit']}:artifacts/ego_k0_foundation_001a",
+            )
+        )
+        if test_fix_tree != pin["artifact_tree"]:
+            errors.append(
+                _new_error(
+                    "foundation_test_fix_artifact_tree_drift",
+                    "The test-fix commit must preserve the canonical Foundation artifact tree.",
+                    expected=pin["artifact_tree"],
+                    actual=test_fix_tree,
+                )
+            )
+    except (
+        AssertionError,
+        UnicodeDecodeError,
+        json.JSONDecodeError,
+        OSError,
+        subprocess.SubprocessError,
+        ValueError,
+    ) as exc:
+        errors.append(
+            _new_error(
+                "foundation_cross_repo_git_readback_failed",
+                "The sibling Ego repository/object store is unavailable or could not be read fail-closed.",
+                repo=str(ego_repo),
+                error=str(exc),
+            )
+        )
+
+    result_validation = validate_foundation_result_payload(result_payload)
+    errors.extend(result_validation["validation_errors"])
+    return {
+        "producer_function": "validate_foundation_acceptance_repository",
+        "input_artifacts": input_artifacts,
+        "run_id": (
+            f"k0-foundation-acceptance-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-"
+            f"{uuid.uuid4().hex[:8]}"
+        ),
+        "aggregation_rule": (
+            "pass iff sibling Ego Git root is discovered, direct lineage, commit scopes, "
+            "14-entry raw-object manifest, result/test objects, 21 computed gates, and "
+            "disabled/non-mainline official fields all match the frozen state pin"
+        ),
+        "code_path_hash": code_path_hash(),
+        "artifact_manifest": actual_manifest,
+        "official_gate_count": (
+            len(result_payload.get("per_gate_outcomes", {}))
+            if isinstance(result_payload, dict)
+            and isinstance(result_payload.get("per_gate_outcomes"), dict)
+            else 0
+        ),
+        "validation_errors": errors,
+        "validation_warnings": [],
+        "verdict": "pass" if not errors else "fail",
+    }
+
+
 def validate_red_field_addendum_repository(
     *,
     repo_root: Path,
@@ -2437,7 +2772,11 @@ def validate_code_first_prebank_precondition_closure(
         "phase_c_source_freeze_pin": state_machine.K0_PHASE_C_SOURCE_FREEZE_PIN,
         "precondition_failure": state_machine.K0_PRECONDITION_FAILURE_RECORD,
         "effective_h0_authority": state_machine.K0_PRECONDITION_CLOSED_AUTHORITY,
-        "claim_ceiling": state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING,
+        "claim_ceiling": (
+            state_machine.K0_FOUNDATION_ACCEPTANCE_CLAIM_CEILING
+            if state.get("phase") == state_machine.K0_FOUNDATION_ACCEPTANCE_PHASE
+            else state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING
+        ),
     }
     for field, expected in expected_fields.items():
         if state.get(field) != expected:
@@ -2541,15 +2880,19 @@ def validate_route_payload(
         )
 
     if route_id == state_machine.K0_PARENT_ROUTE_ID:
-        if current_state not in ("REGISTERED", "READY_TO_IMPLEMENT"):
+        if current_state not in (
+            "REGISTERED",
+            "READY_TO_IMPLEMENT",
+            "CLOSURE_REVIEW_REQUIRED",
+        ):
             errors.append(
                 _new_error(
                     "k0_parent_state_outside_authorized_contract",
-                    "The K0 parent contract permits only REGISTERED or the separately carded READY_TO_IMPLEMENT boundary.",
+                    "The K0 parent contract permits REGISTERED, the separately carded READY boundary, or the Foundation acceptance operator-decision boundary.",
                     current_state=current_state,
                 )
             )
-        if closure_payload is not None:
+        if closure_payload is not None and current_state != "CLOSURE_REVIEW_REQUIRED":
             errors.append(
                 _new_error(
                     "k0_parent_has_unexpected_closure",
@@ -2595,7 +2938,7 @@ def validate_route_payload(
                     )
                 )
             expected_ledger_prefix = state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
-        else:
+        elif current_state == "READY_TO_IMPLEMENT":
             if state_payload.get("implementation_authorized") is not True:
                 errors.append(
                     _new_error(
@@ -2821,6 +3164,87 @@ def validate_route_payload(
                     )
                 )
             expected_ledger_prefix = state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX
+        else:
+            expected_authorization_keys = set(
+                state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+            )
+            actual_authorization_keys = (
+                set(authorizations) if isinstance(authorizations, dict) else set()
+            )
+            invalid_authorizations = [
+                key
+                for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+                if not isinstance(authorizations, dict)
+                or authorizations.get(key) is not False
+            ]
+            closure_mismatches: dict[str, Any] = {}
+            expected_fields = {
+                "phase": state_machine.K0_FOUNDATION_ACCEPTANCE_PHASE,
+                "closure_type": "GOVERNANCE_STOP",
+                "implementation_authorized": False,
+                "authorized_implementation_targets": [],
+                "child_authorizations": state_machine.K0_FOUNDATION_ACCEPTANCE_CHILD_AUTHORIZATIONS,
+                "allowed_next_actions": list(
+                    state_machine.K0_FOUNDATION_ACCEPTANCE_ALLOWED_ACTIONS
+                ),
+                "foundation_acceptance_pin": state_machine.K0_FOUNDATION_ACCEPTANCE_PIN,
+                "component_status": state_machine.K0_FOUNDATION_ACCEPTANCE_COMPONENT_STATUS,
+                "effective_h0_authority": state_machine.K0_PRECONDITION_CLOSED_AUTHORITY,
+                "precondition_failure": state_machine.K0_PRECONDITION_FAILURE_RECORD,
+                "claim_ceiling": state_machine.K0_FOUNDATION_ACCEPTANCE_CLAIM_CEILING,
+                "forbidden_next_actions": list(
+                    state_machine.K0_FOUNDATION_ACCEPTANCE_FORBIDDEN_ACTIONS
+                ),
+            }
+            for field, expected in expected_fields.items():
+                if state_payload.get(field) != expected:
+                    closure_mismatches[field] = {
+                        "expected": expected,
+                        "actual": state_payload.get(field),
+                    }
+            if (
+                invalid_authorizations
+                or actual_authorization_keys != expected_authorization_keys
+            ):
+                closure_mismatches["authorizations"] = {
+                    "expected": {
+                        key: False
+                        for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+                    },
+                    "actual": authorizations,
+                }
+            if closure_mismatches:
+                errors.append(
+                    _new_error(
+                        "k0_foundation_acceptance_boundary_mismatch",
+                        "The Foundation acceptance boundary must consume every implementation/child authorization and preserve the exact operator-decision posture.",
+                        mismatches=closure_mismatches,
+                    )
+                )
+            for field, expected in (
+                ("h0_admission_contract_pin", state_machine.K0_H0_ADMISSION_HISTORICAL_PIN),
+                ("red_field_addendum_pin", state_machine.K0_RED_FIELD_ADDENDUM_PIN),
+                ("red_field_correction_pin", state_machine.K0_RED_FIELD_CORRECTION_PIN),
+                ("code_first_prebank_task_pin", state_machine.K0_CODE_FIRST_TASK_PIN),
+                (
+                    "precondition_closure_task_pin",
+                    state_machine.K0_PRECONDITION_CLOSURE_CARD_PIN,
+                ),
+                ("phase_c_source_freeze_pin", state_machine.K0_PHASE_C_SOURCE_FREEZE_PIN),
+            ):
+                if state_payload.get(field) != expected:
+                    errors.append(
+                        _new_error(
+                            "k0_foundation_acceptance_historical_pin_mismatch",
+                            "The Foundation acceptance boundary must preserve every exact historical H0 provenance pin.",
+                            field=field,
+                            expected=expected,
+                            actual=state_payload.get(field),
+                        )
+                    )
+            expected_ledger_prefix = (
+                state_machine.K0_FOUNDATION_ACCEPTANCE_LEDGER_ENTRY_PREFIX
+            )
 
         if not isinstance(ledger_readback, dict):
             errors.append(
@@ -2848,7 +3272,7 @@ def validate_route_payload(
                         actual=ledger_readback.get("required_entry_prefix"),
                     )
                 )
-            if current_state == "READY_TO_IMPLEMENT":
+            if current_state in ("READY_TO_IMPLEMENT", "CLOSURE_REVIEW_REQUIRED"):
                 expected_preserved_prefixes = [
                     state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX,
                     state_machine.K0_READY_LEDGER_ENTRY_PREFIX,
@@ -2857,21 +3281,31 @@ def validate_route_payload(
                     state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX,
                     state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX,
                 ]
+                expected_preserved_hashes = (
+                    state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES
+                )
+                if current_state == "CLOSURE_REVIEW_REQUIRED":
+                    expected_preserved_prefixes.append(
+                        state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX
+                    )
+                    expected_preserved_hashes = (
+                        state_machine.K0_FOUNDATION_ACCEPTANCE_PRESERVED_LEDGER_HASHES
+                    )
                 if ledger_readback.get("preserved_entry_prefixes") != expected_preserved_prefixes:
                     errors.append(
                         _new_error(
                             "k0_ready_preserved_ledger_prefix_mismatch",
-                            "The precondition-closure boundary must preserve L-020 through L-025.",
+                            "The K0 boundary must preserve every prior append-only ledger line.",
                             expected=expected_preserved_prefixes,
                             actual=ledger_readback.get("preserved_entry_prefixes"),
                         )
                     )
-                if ledger_readback.get("preserved_entry_sha256") != state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES:
+                if ledger_readback.get("preserved_entry_sha256") != expected_preserved_hashes:
                     errors.append(
                         _new_error(
                             "k0_ready_preserved_ledger_hash_mismatch",
-                            "The closure route must pin the exact full-line SHA-256 values for L-020 through L-025.",
-                            expected=state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES,
+                            "The closure route must pin the exact full-line SHA-256 values for every prior K0 ledger line.",
+                            expected=expected_preserved_hashes,
                             actual=ledger_readback.get("preserved_entry_sha256"),
                         )
                     )
@@ -2971,6 +3405,20 @@ def validate_route_payload(
                     )
                 )
 
+        if (
+            route_id == state_machine.K0_PARENT_ROUTE_ID
+            and current_state == "CLOSURE_REVIEW_REQUIRED"
+            and closure_payload != state_machine.K0_FOUNDATION_CLOSURE_PACKET
+        ):
+            errors.append(
+                _new_error(
+                    "k0_foundation_closure_packet_mismatch",
+                    "The K0 closure packet must be the exact governance-stop reference packet and must not duplicate the complete Foundation pin.",
+                    expected=state_machine.K0_FOUNDATION_CLOSURE_PACKET,
+                    actual=closure_payload,
+                )
+            )
+
     if current_state == "CLOSURE_REVIEW_REQUIRED":
         blocked_changed_files = [
             _posix(path)
@@ -3036,15 +3484,15 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
         raw_event_bytes = events_path.read_bytes()
         preserved_prefix_bytes = b"".join(
             raw_event_bytes.splitlines(keepends=True)[
-                : state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_EVENT_COUNT
+                : state_machine.K0_FOUNDATION_ACCEPTANCE_PRESERVED_EVENT_COUNT
             ]
         )
-        if hashlib.sha256(preserved_prefix_bytes).hexdigest() != state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_EVENTS_SHA256:
+        if hashlib.sha256(preserved_prefix_bytes).hexdigest() != state_machine.K0_FOUNDATION_ACCEPTANCE_PRESERVED_EVENTS_SHA256:
             errors.append(
                 _new_error(
                     "k0_h0_preserved_event_bytes_drift",
-                    "The seven historical K0 event lines must remain byte-identical.",
-                    expected_sha256=state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_EVENTS_SHA256,
+                    "The eight historical K0 event lines must remain byte-identical.",
+                    expected_sha256=state_machine.K0_FOUNDATION_ACCEPTANCE_PRESERVED_EVENTS_SHA256,
                     actual_sha256=hashlib.sha256(preserved_prefix_bytes).hexdigest(),
                 )
             )
@@ -3107,6 +3555,57 @@ def validate_k0_red_field_event(events_path: Path) -> dict[str, Any]:
                 _new_error(
                     "k0_red_field_event_contract_mismatch",
                     "The Red-field route event must carry the exact state, phase, pin, and authorization boundary.",
+                )
+            )
+
+    acceptance_matches = [
+        event
+        for event in events
+        if event.get("event") == state_machine.K0_FOUNDATION_ACCEPTANCE_EVENT
+    ]
+    if len(acceptance_matches) != 1:
+        errors.append(
+            _new_error(
+                "k0_foundation_acceptance_event_missing_or_duplicate",
+                "Exactly one Foundation engineering acceptance/operator-decision event must be appended.",
+                match_count=len(acceptance_matches),
+                path=_posix(events_path),
+            )
+        )
+    else:
+        event = acceptance_matches[0]
+        expected_event = {
+            "event": state_machine.K0_FOUNDATION_ACCEPTANCE_EVENT,
+            "route_id": state_machine.K0_PARENT_ROUTE_ID,
+            "current_state": "CLOSURE_REVIEW_REQUIRED",
+            "phase": state_machine.K0_FOUNDATION_ACCEPTANCE_PHASE,
+            "closure_type": "GOVERNANCE_STOP",
+            "foundation_acceptance_pin_ref": "state.json#foundation_acceptance_pin",
+            "foundation_engineering_evidence": "BANKED_ACCEPTED_BOUNDED",
+            "foundation_authorized": False,
+            "child_authorizations": state_machine.K0_FOUNDATION_ACCEPTANCE_CHILD_AUTHORIZATIONS,
+            "h0_status": "NOT_TESTED",
+            "k0_reference_h1_freeze_formal_status": "BLOCKED_NOT_TESTED",
+            "mechanism_evidence_authorized": False,
+            "theory_pressure_authorized": False,
+            "runtime_authorized": False,
+            "mainline_authorized": False,
+            "operator_decision": "replace_versus_close_pending_after_separate_EGO_sync",
+        }
+        event_without_timestamp = {
+            key: value for key, value in event.items() if key != "updated_at_utc"
+        }
+        if (
+            event_without_timestamp != expected_event
+            or not isinstance(event.get("updated_at_utc"), str)
+            or not event["updated_at_utc"].strip()
+        ):
+            errors.append(
+                _new_error(
+                    "k0_foundation_acceptance_event_contract_mismatch",
+                    "The Foundation acceptance event must record the exact consumed-authorization and operator-decision boundary.",
+                    expected=expected_event,
+                    actual=event_without_timestamp,
                 )
             )
 
@@ -3516,6 +4015,53 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                 mismatches=program_k0_mismatches,
                             )
                         )
+                elif (
+                    current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
+                    and route_current_state == "CLOSURE_REVIEW_REQUIRED"
+                ):
+                    program_k0_mismatches: dict[str, Any] = {}
+                    expected_program_fields = {
+                        "allowed_next_actions": list(
+                            state_machine.K0_FOUNDATION_ACCEPTANCE_ALLOWED_ACTIONS
+                        ),
+                        "authorized_implementation_targets": [],
+                        "child_authorizations": state_machine.K0_FOUNDATION_ACCEPTANCE_CHILD_AUTHORIZATIONS,
+                        "forbidden_next_actions": list(
+                            state_machine.K0_FOUNDATION_ACCEPTANCE_FORBIDDEN_ACTIONS
+                        ),
+                        "claim_ceiling": state_machine.K0_FOUNDATION_ACCEPTANCE_CLAIM_CEILING,
+                        "current_route_posture": "foundation_engineering_accepted_h0_not_tested_operator_decision_required",
+                        "implementation_authorized": False,
+                        "mechanism_evidence_authorized": False,
+                        "theory_pressure_authorized": False,
+                        "runtime_authorized": False,
+                        "mainline_authorized": False,
+                        "route_authorizations": {
+                            key: False
+                            for key in state_machine.K0_PARENT_REQUIRED_FALSE_AUTHORIZATIONS
+                        },
+                    }
+                    for field, expected in expected_program_fields.items():
+                        if program_state_payload.get(field) != expected:
+                            program_k0_mismatches[field] = {
+                                "expected": expected,
+                                "actual": program_state_payload.get(field),
+                            }
+                    if "foundation_acceptance_pin" in program_state_payload:
+                        program_k0_mismatches["foundation_acceptance_pin"] = {
+                            "expected": "absent; canonical pin lives only in route state.json",
+                            "actual": program_state_payload.get(
+                                "foundation_acceptance_pin"
+                            ),
+                        }
+                    if program_k0_mismatches:
+                        errors.append(
+                            _new_error(
+                                "program_state_k0_foundation_acceptance_boundary_mismatch",
+                                "Program state must mirror only the exact consumed-authorization/operator-decision posture.",
+                                mismatches=program_k0_mismatches,
+                            )
+                        )
                 if current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID and not isinstance(
                     ledger_readback, dict
                 ):
@@ -3530,9 +4076,13 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                     ledger_relative_path = ledger_readback.get("path")
                     required_entry_prefix = ledger_readback.get("required_entry_prefix")
                     expected_k0_ledger_prefix = (
-                        state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX
-                        if route_current_state == "READY_TO_IMPLEMENT"
-                        else state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
+                        state_machine.K0_FOUNDATION_ACCEPTANCE_LEDGER_ENTRY_PREFIX
+                        if route_current_state == "CLOSURE_REVIEW_REQUIRED"
+                        else (
+                            state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX
+                            if route_current_state == "READY_TO_IMPLEMENT"
+                            else state_machine.K0_PARENT_LEDGER_ENTRY_PREFIX
+                        )
                     )
                     if not isinstance(ledger_relative_path, str) or not ledger_relative_path.strip():
                         errors.append(
@@ -3622,9 +4172,30 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                             path=_posix(ledger_path),
                                         )
                                     )
+                                elif (
+                                    current_frontier_route_id
+                                    == state_machine.K0_PARENT_ROUTE_ID
+                                    and route_current_state
+                                    == "CLOSURE_REVIEW_REQUIRED"
+                                    and hashlib.sha256(
+                                        matching_lines[0].encode("utf-8")
+                                    ).hexdigest()
+                                    != state_machine.K0_FOUNDATION_ACCEPTANCE_LEDGER_LINE_SHA256
+                                ):
+                                    errors.append(
+                                        _new_error(
+                                            "current_frontier_k0_foundation_acceptance_ledger_line_drift",
+                                            "The unique L-027 Foundation acceptance line must remain exact.",
+                                            expected_sha256=state_machine.K0_FOUNDATION_ACCEPTANCE_LEDGER_LINE_SHA256,
+                                            actual_sha256=hashlib.sha256(
+                                                matching_lines[0].encode("utf-8")
+                                            ).hexdigest(),
+                                        )
+                                    )
                                 if (
                                     current_frontier_route_id == state_machine.K0_PARENT_ROUTE_ID
-                                    and route_current_state == "READY_TO_IMPLEMENT"
+                                    and route_current_state
+                                    in ("READY_TO_IMPLEMENT", "CLOSURE_REVIEW_REQUIRED")
                                 ):
                                     preserved_prefixes = ledger_readback.get("preserved_entry_prefixes")
                                     expected_preserved_prefixes = [
@@ -3635,23 +4206,33 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                         state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX,
                                         state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX,
                                     ]
+                                    expected_preserved_hashes = (
+                                        state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES
+                                    )
+                                    if route_current_state == "CLOSURE_REVIEW_REQUIRED":
+                                        expected_preserved_prefixes.append(
+                                            state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX
+                                        )
+                                        expected_preserved_hashes = (
+                                            state_machine.K0_FOUNDATION_ACCEPTANCE_PRESERVED_LEDGER_HASHES
+                                        )
                                     if preserved_prefixes != expected_preserved_prefixes:
                                         errors.append(
                                             _new_error(
                                                 "current_frontier_k0_preserved_ledger_contract_mismatch",
-                                                "The precondition-closure frontier must preserve L-020 through L-025.",
+                                                "The K0 frontier must preserve every prior append-only ledger line.",
                                                 expected=expected_preserved_prefixes,
                                                 actual=preserved_prefixes,
                                             )
                                         )
                                     else:
                                         preserved_hashes = ledger_readback.get("preserved_entry_sha256")
-                                        if preserved_hashes != state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES:
+                                        if preserved_hashes != expected_preserved_hashes:
                                             errors.append(
                                                 _new_error(
                                                     "current_frontier_k0_preserved_ledger_hash_contract_mismatch",
-                                                    "The route state must pin the exact L-020 through L-025 full-line hashes.",
-                                                    expected=state_machine.K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES,
+                                                    "The route state must pin the exact full-line hashes for every prior K0 ledger line.",
+                                                    expected=expected_preserved_hashes,
                                                     actual=preserved_hashes,
                                                 )
                                             )
@@ -3663,6 +4244,10 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                                             state_machine.K0_H0_ADMISSION_LEDGER_ENTRY_PREFIX: state_machine.K0_H0_ADMISSION_LEDGER_LINE_SHA256,
                                             state_machine.K0_CODE_FIRST_LEDGER_ENTRY_PREFIX: state_machine.K0_CODE_FIRST_LEDGER_LINE_SHA256,
                                         }
+                                        if route_current_state == "CLOSURE_REVIEW_REQUIRED":
+                                            expected_hash_by_prefix[
+                                                state_machine.K0_PRECONDITION_CLOSURE_LEDGER_ENTRY_PREFIX
+                                            ] = state_machine.K0_PRECONDITION_CLOSURE_LEDGER_LINE_SHA256
                                         for preserved_prefix in preserved_prefixes:
                                             preserved_matches = [
                                                 line for line in ledger_lines if line.startswith(preserved_prefix)
@@ -3702,7 +4287,11 @@ def validate_program_state(*, artifact_dir: Path, routes_dir: Path) -> dict[str,
                         )
                     )
 
-                if current_state in ("REGISTERED", "READY_TO_IMPLEMENT"):
+                if current_state in (
+                    "REGISTERED",
+                    "READY_TO_IMPLEMENT",
+                    "CLOSURE_REVIEW_REQUIRED",
+                ):
                     forbidden_authorizations = _forbidden_current_frontier_authorizations(
                         program_state_payload=program_state_payload,
                         route_state_payload=route_state_payload,
@@ -3806,13 +4395,29 @@ def build_validation_report(
         "validation_warnings": [],
         "verdict": "not_applicable",
     }
+    foundation_acceptance = {
+        "producer_function": "validate_foundation_acceptance_repository",
+        "input_artifacts": [],
+        "run_id": None,
+        "aggregation_rule": None,
+        "code_path_hash": code_path_hash(),
+        "artifact_manifest": [],
+        "official_gate_count": 0,
+        "validation_errors": [],
+        "validation_warnings": [],
+        "verdict": "not_applicable",
+    }
     k0_state_path = routes_dir / state_machine.K0_PARENT_ROUTE_ID / "state.json"
     if k0_state_path.is_file():
         try:
             k0_state_payload = load_json(k0_state_path)
         except json.JSONDecodeError:
             k0_state_payload = None
-        if isinstance(k0_state_payload, dict) and k0_state_payload.get("current_state") == "READY_TO_IMPLEMENT":
+        if (
+            isinstance(k0_state_payload, dict)
+            and k0_state_payload.get("current_state")
+            in ("READY_TO_IMPLEMENT", "CLOSURE_REVIEW_REQUIRED")
+        ):
             historical_h0_objects = validate_historical_h0_object_pins(
                 repo_root=root,
                 route_state_payload=k0_state_payload,
@@ -3821,11 +4426,41 @@ def build_validation_report(
                 repo_root=root,
                 route_state_payload=k0_state_payload,
             )
-            if k0_state_payload.get("phase") == state_machine.K0_READY_PHASE:
+            if k0_state_payload.get("phase") in (
+                state_machine.K0_READY_PHASE,
+                state_machine.K0_FOUNDATION_ACCEPTANCE_PHASE,
+            ):
                 precondition_closure = validate_code_first_prebank_precondition_closure(
                     repo_root=root,
                     route_state_payload=k0_state_payload,
                 )
+            if (
+                k0_state_payload.get("current_state")
+                == "CLOSURE_REVIEW_REQUIRED"
+                and k0_state_payload.get("phase")
+                == state_machine.K0_FOUNDATION_ACCEPTANCE_PHASE
+            ):
+                foundation_acceptance = validate_foundation_acceptance_repository(
+                    repo_root=root,
+                    route_state_payload=k0_state_payload,
+                )
+                required_checks = {
+                    "historical_h0_object_pins": historical_h0_objects["verdict"],
+                    "code_first_prebank_task_pin": code_first_task["verdict"],
+                    "precondition_closure_recomputation": precondition_closure["verdict"],
+                    "foundation_acceptance": foundation_acceptance["verdict"],
+                }
+                for check_id, verdict in required_checks.items():
+                    if verdict != "pass":
+                        foundation_acceptance["validation_errors"].append(
+                            _new_error(
+                                "k0_foundation_acceptance_required_check_not_pass",
+                                "Every historical and cross-repo callable check must remain live and pass at the Foundation acceptance boundary.",
+                                check_id=check_id,
+                                verdict=verdict,
+                            )
+                        )
+                        foundation_acceptance["verdict"] = "fail"
     input_artifacts = [
         f"{state_machine.TASK_ARTIFACT_DIR}/routes/{artifact}"
         for artifact in route_tree["input_artifacts"]
@@ -3834,6 +4469,7 @@ def build_validation_report(
     input_artifacts.extend(historical_h0_objects["input_artifacts"])
     input_artifacts.extend(code_first_task["input_artifacts"])
     input_artifacts.extend(precondition_closure["input_artifacts"])
+    input_artifacts.extend(foundation_acceptance["input_artifacts"])
     schema_dir = root / state_machine.TASK_ARTIFACT_DIR / "schemas"
     for schema in sorted(schema_dir.glob("*.schema.json")) if schema_dir.exists() else []:
         input_artifacts.append(_relative_posix(schema, root))
@@ -3844,6 +4480,7 @@ def build_validation_report(
         + historical_h0_objects["validation_errors"]
         + code_first_task["validation_errors"]
         + precondition_closure["validation_errors"]
+        + foundation_acceptance["validation_errors"]
     )
     validation_warnings = (
         route_tree["validation_warnings"]
@@ -3851,6 +4488,7 @@ def build_validation_report(
         + historical_h0_objects["validation_warnings"]
         + code_first_task["validation_warnings"]
         + precondition_closure["validation_warnings"]
+        + foundation_acceptance["validation_warnings"]
     )
 
     return {
@@ -3858,7 +4496,7 @@ def build_validation_report(
         "producer_function": "build_validation_report",
         "input_artifacts": sorted(set(input_artifacts)),
         "run_id": f"{state_machine.TASK_ID.lower()}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}",
-        "aggregation_rule": "verdict is pass iff route/program validation, immutable historical H0/Red and code-first task pins, closure-card pin, Phase-C Git-object raw-byte recomputation, Phase-D absence, and Phase-C blob preservation return zero validation_errors; no H0 resolver, oracle, atomic-spec scorer, or mechanism-semantic validator is invoked",
+        "aggregation_rule": "verdict is pass iff route/program validation, immutable historical H0/Red and code-first task pins, closure-card pin, Phase-C Git-object raw-byte recomputation, Phase-D absence, Phase-C blob preservation, and when applicable sibling Ego Foundation lineage/scope/14-object manifest/result/test validation return zero validation_errors; no official Foundation producer, H0 resolver, oracle, atomic-spec scorer, or mechanism-semantic validator is invoked",
         "code_path_hash": code_path_hash(),
         "validation_errors": validation_errors,
         "validation_warnings": validation_warnings,
@@ -3870,6 +4508,21 @@ def build_validation_report(
         "historical_h0_object_pin_verdict": historical_h0_objects["verdict"],
         "code_first_prebank_task_pin_verdict": code_first_task["verdict"],
         "precondition_closure_verdict": precondition_closure["verdict"],
+        "foundation_acceptance_verdict": foundation_acceptance["verdict"],
+        "foundation_acceptance_provenance": {
+            key: foundation_acceptance.get(key)
+            for key in (
+                "producer_function",
+                "input_artifacts",
+                "run_id",
+                "aggregation_rule",
+                "code_path_hash",
+                "official_gate_count",
+            )
+        },
+        "foundation_artifact_manifest": foundation_acceptance[
+            "artifact_manifest"
+        ],
         "precondition_failure": precondition_closure["computed_record"],
         "precondition_checked_paths": precondition_closure["checked_paths"],
         "present_phase_d_artifact_paths": precondition_closure[
@@ -3889,9 +4542,11 @@ def build_validation_report(
         ],
         "changed_files": route_tree["changed_files"],
         "authorized_paths": sorted(effective_authorized_paths),
-        "claim_ceiling": state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING[
-            "max"
-        ],
+        "claim_ceiling": (
+            state_machine.K0_FOUNDATION_ACCEPTANCE_CLAIM_CEILING["max"]
+            if foundation_acceptance["verdict"] != "not_applicable"
+            else state_machine.K0_PRECONDITION_CLOSURE_CLAIM_CEILING["max"]
+        ),
         "verdict": "pass" if not validation_errors else "fail",
     }
 
@@ -3920,6 +4575,7 @@ def build_status(repo_root: str | Path) -> dict[str, Any]:
         "historical_h0_object_pin_verdict": report["historical_h0_object_pin_verdict"],
         "code_first_prebank_task_pin_verdict": report["code_first_prebank_task_pin_verdict"],
         "precondition_closure_verdict": report["precondition_closure_verdict"],
+        "foundation_acceptance_verdict": report["foundation_acceptance_verdict"],
         "h0_admission_truth_table_scenarios": report["h0_admission_truth_table_scenarios"],
         "h0_admission_atomic_tuple_count": report["h0_admission_atomic_tuple_count"],
         "routes": report["routes"],
@@ -3944,6 +4600,10 @@ def build_dashboard(repo_root: str | Path) -> dict[str, Any]:
         "historical_h0_object_pin_verdict": report["historical_h0_object_pin_verdict"],
         "code_first_prebank_task_pin_verdict": report["code_first_prebank_task_pin_verdict"],
         "precondition_closure_verdict": report["precondition_closure_verdict"],
+        "foundation_acceptance_verdict": report["foundation_acceptance_verdict"],
+        "foundation_acceptance_provenance": report[
+            "foundation_acceptance_provenance"
+        ],
         "precondition_failure": report["precondition_failure"],
         "present_phase_d_artifact_paths": report[
             "present_phase_d_artifact_paths"

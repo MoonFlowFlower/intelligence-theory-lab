@@ -372,6 +372,121 @@ K0_PRECONDITION_CLOSURE_PRESERVED_EVENT_COUNT = 7
 K0_PRECONDITION_CLOSURE_PRESERVED_EVENTS_SHA256 = (
     "06328e4ab07511f088f6fc9777b43edd4c58ae63d0ce588197a569c0cba0a88c"
 )
+K0_FOUNDATION_ACCEPTANCE_PHASE = (
+    "FOUNDATION_ENGINEERING_ACCEPTED_H0_NOT_TESTED_OPERATOR_DECISION_REQUIRED"
+)
+K0_FOUNDATION_ACCEPTANCE_CARD_PATH = (
+    "docs/codex/tasks/K0-FOUNDATION-ACCEPTANCE-TRANSITION-001A.md"
+)
+K0_FOUNDATION_ACCEPTANCE_ALLOWED_ACTIONS = (
+    "sync_EGO_foundation_acceptance_route_views_under_separate_task",
+    "operator_route_decision_after_EGO_sync",
+    "run_route_state_machine_validation",
+)
+K0_FOUNDATION_ACCEPTANCE_CHILD_AUTHORIZATIONS = {
+    key: False for key in K0_READY_CHILD_AUTHORIZATIONS
+}
+K0_FOUNDATION_ARTIFACT_MANIFEST = (
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/atomic_second_write_probe.sqlite3", "mode": "100644", "blob": "4e4f0b67446d1018a9617fa0eb4bd0c67bd12510", "sha256": "f1c99dacbc5da9c2e654abf5e6af325ba1607ac5dbb0a18b161969a1d386e47a"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/fail_closed_probe.sqlite3", "mode": "100644", "blob": "2ce2f53bd77a3015299ab988ecaaafda333a95da", "sha256": "9fcdaff3dae235ddc7115b25b7240b5f14467351b336530b24f36610a930714e"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/foundation.sqlite3", "mode": "100644", "blob": "00380b446752269424ce78510473e49e29aaecb4", "sha256": "05b6ab12823f56be65eefa7f1fe346f27fd8505a7e9bc5d3119c4ee85df2e4eb"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/fresh_replay_1/replay_report.json", "mode": "100644", "blob": "e4c7791ff00b2a73f931365d963d55e4e2fc9e55", "sha256": "0c26f4804761204029411f03c2d49ca25ec848973d58cec7f6c097e8fc23ae9a"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/fresh_replay_2/replay_report.json", "mode": "100644", "blob": "17fa2209f39f52def72eb6f1bac3e453369fed09", "sha256": "eb3393f3643bc69b0a50eef0758205637e32102c64f9efa5e8b7676c122799ce"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/implementation_validation_report.json", "mode": "100644", "blob": "ab741064b0fb950116d9daae9035d4b118fb97a2", "sha256": "2db62915b2f9f8d617c192b00b0740ba1d016edf80a64ce47a6ebe35d161f9de"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/initial_checkpoint.json", "mode": "100644", "blob": "3c4aec5a4e6d1e0bcee38bce00167172ded045ad", "sha256": "6867c9c6d27fb1f1d38646c946d8e06c17188c5a74f54ac6d84cc27246d9fff8"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/metadata_checkpoint_tampered_clone.sqlite3", "mode": "100644", "blob": "82d4ace40545150d3368a419165cf0e625dac7db", "sha256": "1136766f331a344d7dc2f3f9e1bda2afe2e8b5832c44fa8806cfbf133aa9b350"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/metadata_event_tampered_clone.sqlite3", "mode": "100644", "blob": "7b9386b2ae858cbbde9dd39627da76b560b838cd", "sha256": "00df95370e9e86e3331033cc59173d118a02c028bf2f8c7161cb7097df6d7cc0"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/post_commit_delivery_probe.sqlite3", "mode": "100644", "blob": "de2e7764122939f5d441dbbe69e164469d7d59d4", "sha256": "071fd961ea9a900deb20f88c7f6ec95390007279841358f63824e42f69edddab"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/source_traces.json", "mode": "100644", "blob": "baadcfd915be64d46383145e23b45bba439e3124", "sha256": "ab1b7e5d246cf391cb1d76d9df7a53d9d3a5ed4376ffc9c001acfcc5fec9e271"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/tampered_clone.sqlite3", "mode": "100644", "blob": "bdacf44f0909daef0c327d90efd4f936a16b1735", "sha256": "92f565c0f6ffbc61ba8eee79beb1fc50cb30c187e8127a41a8993eca82b85564"},
+    {"path": "artifacts/ego_k0_foundation_001a/raw_validation/trace_feedback_probe.sqlite3", "mode": "100644", "blob": "8d25f865cf619c3a36c019eeef08561c5f84bf5d", "sha256": "e548aa1e2df334564ddcf998de87f24b479271bdfc2889a024fab08ff92e7fe8"},
+    {"path": "artifacts/ego_k0_foundation_001a/result.json", "mode": "100644", "blob": "a8b3237afc40a1f56df3906870ff94c5db9c10ff", "sha256": "834b4764514062f8937488fd4b89684b5ae684e9522d67f440ed3c077f077067"},
+)
+K0_FOUNDATION_ACCEPTANCE_PIN = {
+    "task_id": "EGO-K0-FOUNDATION-001A",
+    "repo": "Ego",
+    "producer_commit": "7dd6619c0c643344984d49383c61190bbab04f21",
+    "artifact_commit": "8318bb33212f79e1e0a9cea15cad7b9cd176a0f5",
+    "artifact_tree": "907457e7d3028ba5437cf0e7730ec068a21cbf6b",
+    "result_path": "artifacts/ego_k0_foundation_001a/result.json",
+    "result_blob": "a8b3237afc40a1f56df3906870ff94c5db9c10ff",
+    "result_sha256": "834b4764514062f8937488fd4b89684b5ae684e9522d67f440ed3c077f077067",
+    "test_fix_commit": "a95aa3f2d94bc4cb36f83e29e34a2c69da28497a",
+    "test_fix_path": "tests/test_ego_k0_foundation.py",
+    "test_fix_blob": "922cea09a2c2b3c64be70e387a79f1027985fcc3",
+    "test_fix_sha256": "062c0f6de20dde5566c56938c516f8900b936a689c82b1fdc657816b8b65393a",
+    "artifact_manifest": list(K0_FOUNDATION_ARTIFACT_MANIFEST),
+    "acceptance_status": "BANKED_ACCEPTED_BOUNDED",
+}
+K0_FOUNDATION_ACCEPTANCE_CLAIM_CEILING = {
+    "max": "local cross-repo provenance-backed Foundation engineering acceptance and route authorization consumption only",
+    "forbidden_claims": [
+        "mechanism_validity",
+        "instrument_validity",
+        "theory_pressure",
+        "learning",
+        "replay_or_consolidation",
+        "agency",
+        "autonomy",
+        "subjectivity",
+        "consciousness",
+        "ego_readiness",
+        "runtime_or_mainline_effect",
+        "companion_readiness",
+        "production_readiness",
+        "user_benefit",
+    ],
+}
+K0_FOUNDATION_ACCEPTANCE_COMPONENT_STATUS = {
+    "foundation_engineering_evidence": "BANKED_ACCEPTED_BOUNDED",
+    "h0": "NOT_TESTED",
+    "k0_reference": "BLOCKED_NOT_TESTED",
+    "h1": "BLOCKED_NOT_TESTED",
+    "freeze": "BLOCKED_NOT_TESTED",
+    "formal": "BLOCKED_NOT_TESTED",
+}
+K0_FOUNDATION_ACCEPTANCE_FORBIDDEN_ACTIONS = (
+    *K0_PRECONDITION_CLOSURE_FORBIDDEN_ACTIONS,
+    "rerun_EGO-K0-FOUNDATION-001A_official_evidence",
+    "implement_EGO-K0-FOUNDATION-001A",
+    "start_EGO-K0-REFERENCE-KERNEL-001A",
+    "select_replace_or_close_without_operator_decision",
+)
+K0_FOUNDATION_ACCEPTANCE_LEDGER_ENTRY_PREFIX = (
+    "- L-027 | 2026-07-10 | transition_decision (operator authorized; transcribed by Codex) | "
+    "Foundation official bounded engineering evidence accepted as `BANKED_ACCEPTED_BOUNDED`; "
+    "Foundation implementation authorization consumed; H0 remains `NOT_TESTED`; "
+    "K0-R/H1/Freeze/Formal remain `BLOCKED_NOT_TESTED`; operator replace-versus-close "
+    "decision remains pending after separate EGO route-view sync."
+)
+K0_FOUNDATION_ACCEPTANCE_LEDGER_LINE_SHA256 = (
+    "07a31a5dfb2cfb429d05aef841049d6684a8ec22dbfd7827c069ba4647749347"
+)
+K0_FOUNDATION_ACCEPTANCE_PRESERVED_LEDGER_HASHES = {
+    **K0_PRECONDITION_CLOSURE_PRESERVED_LEDGER_HASHES,
+    "L-026": K0_PRECONDITION_CLOSURE_LEDGER_LINE_SHA256,
+}
+K0_FOUNDATION_ACCEPTANCE_EVENT = (
+    "foundation_engineering_accepted_operator_decision_required"
+)
+K0_FOUNDATION_ACCEPTANCE_PRESERVED_EVENT_COUNT = 8
+K0_FOUNDATION_ACCEPTANCE_PRESERVED_EVENTS_SHA256 = (
+    "21bb75176c47fcc69f9432c1ff0846585772e3b44ab204acd89b6cc509b39c85"
+)
+K0_FOUNDATION_CLOSURE_PACKET = {
+    "route_id": K0_PARENT_ROUTE_ID,
+    "closure_type": "GOVERNANCE_STOP",
+    "allowed_next_actions": list(K0_FOUNDATION_ACCEPTANCE_ALLOWED_ACTIONS),
+    "forbidden_next_actions": list(K0_FOUNDATION_ACCEPTANCE_FORBIDDEN_ACTIONS),
+    "claim_ceiling": K0_FOUNDATION_ACCEPTANCE_CLAIM_CEILING,
+    "foundation_acceptance_pin_ref": "state.json#foundation_acceptance_pin",
+    "evidence_status": K0_FOUNDATION_ACCEPTANCE_COMPONENT_STATUS,
+    "mechanism_evidence_authorized": False,
+    "theory_pressure_authorized": False,
+    "runtime_authorized": False,
+    "mainline_authorized": False,
+    "operator_decision": "replace_versus_close_pending_after_separate_EGO_sync",
+}
 K0_H0_EVIDENCE_COMPONENT_IDS = (
     "V_model",
     "V_online",
@@ -570,6 +685,7 @@ AUTHORIZED_TASK_PATHS = (
     "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
     "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
     "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-PRECONDITION-CLOSURE-001A.md",
+    "docs/codex/tasks/K0-FOUNDATION-ACCEPTANCE-TRANSITION-001A.md",
     "docs/research/FSP-STAGE-LEDGER.md",
     "docs/research/ROUTE-STATE-MACHINE-001A.md",
     "docs/research/ROUTE-STATE-MACHINE-001B-CURRENT-FRONTIER-GATE.md",
@@ -588,6 +704,7 @@ AUTHORIZED_TASK_PATHS = (
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/events.jsonl",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/state.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/events.jsonl",
+    "artifacts/ROUTE-STATE-MACHINE-001A/routes/K0-DUAL-TRACK-SUPERSESSION-001A/closure.json",
     "artifacts/ROUTE-STATE-MACHINE-001A/STATUS.md",
     "artifacts/ROUTE-STATE-MACHINE-001A/validation_report.json",
     "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",

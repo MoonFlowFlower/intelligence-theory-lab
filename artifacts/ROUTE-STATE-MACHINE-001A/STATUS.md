@@ -5,22 +5,52 @@
 - Layer: engineering evidence-governance plus mechanism-hypothesis schema.
 - Mainline integration status: none; ITL remains offline and no EGO runtime or
   production path was modified.
-- Route state: `READY_TO_IMPLEMENT`; phase
-  `CODE_FIRST_H0_PREBANK_PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED`.
-- Enabled status: Foundation=true only. The code-first prebank, H0, H1, K0-R,
-  Freeze, Formal, scoring, experiment execution, EGO mainline/runtime,
-  external writes, mechanism claims, and remote publication are false.
+- Route state: `CLOSURE_REVIEW_REQUIRED`; phase
+  `FOUNDATION_ENGINEERING_ACCEPTED_H0_NOT_TESTED_OPERATOR_DECISION_REQUIRED`;
+  closure type `GOVERNANCE_STOP`.
+- Enabled status: all route authorizations and all six child authorizations are
+  false. Foundation implementation authorization was consumed. Runtime,
+  EGO mainline, H0, H1, K0-R, Freeze, Formal, scoring, experiments, mechanism
+  claims, theory pressure, and remote publication remain false.
 - Current route posture:
-  `code_first_h0_prebank_precondition_failed_science_branch_closed`.
+  `foundation_engineering_accepted_h0_not_tested_operator_decision_required`.
 - Active mechanism frontier: `none`.
-- Real trigger evidence: one appended route event
-  `h0_code_first_prebank_precondition_failed_science_branch_closed`, one
-  append-only L-026, and callable Phase-C Git-object SHA-256 recomputation.
-  The recomputation checked 16 frozen paths and found exactly four manifest
-  mismatches. Phase D never began, the official CLI was not invoked, and no
-  official result or failure manifest exists.
-- Claim ceiling: pre-run implementation-defect closure and route-governance
-  enforcement only.
+- Real trigger evidence: callable sibling Ego Git-object readback verifies the
+  direct producer/artifact/test-fix lineage, exact 14-object path/mode/blob/
+  SHA-256 manifest, pinned result and test objects, 21/21 computed gates, and
+  disabled/non-mainline official fields. The focused Ego suite passed without
+  changing the canonical artifact tree. Event
+  `foundation_engineering_accepted_operator_decision_required` and L-027 were
+  appended while preserving all prior bytes. The H0 Phase-C historical
+  recomputation remains live and still records `NOT_TESTED`.
+- Component status: Foundation engineering evidence
+  `BANKED_ACCEPTED_BOUNDED`; H0 `NOT_TESTED`; K0-R/H1/Freeze/Formal
+  `BLOCKED_NOT_TESTED`.
+- Allowed actions are limited to separate EGO route-view sync, operator
+  replace-versus-close decision after that sync, and route validation.
+- Claim ceiling: local cross-repo provenance-backed Foundation engineering
+  acceptance and route authorization consumption only.
+
+## Foundation acceptance boundary
+
+- Canonical complete acceptance pin: K0 route `state.json` only.
+- Closure `closure.json` references
+  `state.json#foundation_acceptance_pin`; it does not duplicate the pin.
+- Producer commit:
+  `7dd6619c0c643344984d49383c61190bbab04f21`.
+- Artifact commit/tree:
+  `8318bb33212f79e1e0a9cea15cad7b9cd176a0f5` /
+  `907457e7d3028ba5437cf0e7730ec068a21cbf6b`.
+- Result blob/SHA-256:
+  `a8b3237afc40a1f56df3906870ff94c5db9c10ff` /
+  `834b4764514062f8937488fd4b89684b5ae684e9522d67f440ed3c077f077067`.
+- Test-fix commit/blob/SHA-256:
+  `a95aa3f2d94bc4cb36f83e29e34a2c69da28497a` /
+  `922cea09a2c2b3c64be70e387a79f1027985fcc3` /
+  `062c0f6de20dde5566c56938c516f8900b936a689c82b1fdc657816b8b65393a`.
+- No official evidence producer was invoked by route validation.
+- Replace versus close remains an operator decision; this route transition
+  does not select either outcome.
 
 ## Code-first H0 prebank precondition closure
 
@@ -67,10 +97,11 @@
   card/contract objects remain byte-pinned provenance only. They have no
   implicit residual semantic authority. Current validation checks only their
   commit/blob/SHA/ancestry identity.
-- Ledger: L-020 through L-025 remain byte-pinned; L-026 occurs exactly once and
-  records the pre-run implementation-defect branch closure.
-- Event history: all seven prior event lines remain byte-identical; the
-  precondition-failure closure event occurs exactly once.
+- Ledger: L-020 through L-026 remain byte-pinned; L-027 occurs exactly once and
+  records bounded Foundation acceptance, authorization consumption, H0
+  `NOT_TESTED`, and the pending operator decision.
+- Event history: all eight prior event lines remain byte-identical; the
+  Foundation acceptance event occurs exactly once.
 - H0 remains false. No H0 bank, formal run, or mechanism episode occurred.
 - The old same-agent tiny contrast, N2, Borrow-first, and active-C boundaries
   remain unchanged; no prior negative result is rescued.
@@ -192,8 +223,9 @@ and does not infer mechanism or theory failure.
 
 ## Transition command
 
-`transition` remains deferred in this local version. This bounded transition was
-performed through the exact serialized artifact paths named by
-`ITL-K0-H0-ADMISSION-CONTRACT-002A` and revalidated by callable `routectl`; no
-generic transition writer or second authorization path exists. The transition
-sets H0 false and authorizes review only.
+`transition` remains deferred in this local version. This bounded transition
+was performed through the exact serialized artifact paths named by
+`K0-FOUNDATION-ACCEPTANCE-TRANSITION-001A` and revalidated by callable
+`routectl`; no generic transition writer or second authorization path exists.
+It consumes Foundation implementation authorization, keeps every child false,
+preserves H0 as `NOT_TESTED`, and stops at operator decision.

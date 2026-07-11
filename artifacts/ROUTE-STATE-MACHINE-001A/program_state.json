@@ -1,41 +1,35 @@
 {
   "active_mechanism_frontier": "none",
   "allowed_next_actions": [
-    "implement_EGO-K0-FOUNDATION-001A",
-    "operator_route_decision",
+    "sync_EGO_foundation_acceptance_route_views_under_separate_task",
+    "operator_route_decision_after_EGO_sync",
     "run_route_state_machine_validation"
   ],
-  "authorized_implementation_targets": [
-    "EGO-K0-FOUNDATION-001A"
-  ],
+  "authorized_implementation_targets": [],
   "c_preflight_status": "design_only_allowed_if_ex_ante_active_interventional_separation_stated",
   "claim_ceiling": {
+    "max": "local cross-repo provenance-backed Foundation engineering acceptance and route authorization consumption only",
     "forbidden_claims": [
-      "H0_failure",
-      "instrument_invalid",
-      "mechanism_absent",
-      "theory_falsified",
-      "code_first_prebank_validated",
+      "mechanism_validity",
+      "instrument_validity",
+      "theory_pressure",
       "learning",
-      "memory",
-      "replay",
-      "transfer",
+      "replay_or_consolidation",
       "agency",
       "autonomy",
       "subjectivity",
       "consciousness",
       "ego_readiness",
+      "runtime_or_mainline_effect",
       "companion_readiness",
       "production_readiness",
-      "user_benefit",
-      "mainline_effect"
-    ],
-    "max": "pre-run implementation-defect closure and route-governance enforcement only"
+      "user_benefit"
+    ]
   },
   "current_frontier_route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
-  "current_route_posture": "code_first_h0_prebank_precondition_failed_science_branch_closed",
+  "current_route_posture": "foundation_engineering_accepted_h0_not_tested_operator_decision_required",
   "child_authorizations": {
-    "EGO-K0-FOUNDATION-001A": true,
+    "EGO-K0-FOUNDATION-001A": false,
     "ITL-K0-H0-H1-INSTRUMENT-001A:H0": false,
     "EGO-K0-REFERENCE-KERNEL-001A": false,
     "ITL-K0-H0-H1-INSTRUMENT-001A:H1": false,
@@ -52,7 +46,11 @@
     "implement_EGO-K0-REFERENCE-KERNEL-001A",
     "execute_K0-IMMUTABLE-FREEZE-001A",
     "execute_ITL-K0-FORMAL-EVIDENCE-001A",
-    "push_tag_or_remote_anchor"
+    "push_tag_or_remote_anchor",
+    "rerun_EGO-K0-FOUNDATION-001A_official_evidence",
+    "implement_EGO-K0-FOUNDATION-001A",
+    "start_EGO-K0-REFERENCE-KERNEL-001A",
+    "select_replace_or_close_without_operator_decision"
   ],
   "effective_h0_authority": {
     "code_first_prebank_live_authority": false,
@@ -138,8 +136,8 @@
     ],
     "working_vs_git_other_difference_paths": []
   },
-  "parent_task_status": "code_first_h0_prebank_precondition_failed_science_branch_closed_h0_not_tested",
-  "ready_transition_status": "foundation_only_code_first_prebank_consumed_h0_false",
+  "parent_task_status": "foundation_engineering_accepted_h0_not_tested_operator_decision_required",
+  "ready_transition_status": "foundation_acceptance_consumed_all_children_false",
   "red_field_addendum_pin": {
     "task_id": "K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A",
     "bank_commit": "bfbe215518a8f31fd300e600c73bb9d59e635335",
@@ -190,11 +188,9 @@
         "ego_reference_kernel": "0f043254710b47700f2088213232aba777bd3f46",
         "itl_instrument_freeze_formal": "56f56a998a0ec6e897f98d9ce51a0d8b06eb0f92"
       },
-      "authorized_implementation_targets": [
-        "EGO-K0-FOUNDATION-001A"
-      ],
-      "implementation_authorized": true,
-      "ledger_entry": "docs/research/FSP-STAGE-LEDGER.md#L-026",
+      "authorized_implementation_targets": [],
+      "implementation_authorized": false,
+      "ledger_entry": "docs/research/FSP-STAGE-LEDGER.md#L-027",
       "h0_admission_contract_card": "docs/codex/tasks/ITL-K0-H0-ADMISSION-CONTRACT-002A.md",
       "h0_effective_contract": "artifacts/ITL-K0-H0-ADMISSION-CONTRACT-002A/effective_h0_contract.json",
       "code_first_prebank_task_card": "docs/codex/tasks/ITL-K0-H0-CODE-FIRST-PREBANK-001A.md",
@@ -204,9 +200,15 @@
       "red_field_correction_card": "docs/codex/tasks/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A.md",
       "red_field_correction_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-CORRECTION-001A/red_field_correction_contract.json",
       "red_field_contract": "artifacts/K0-DUAL-TRACK-RED-FIELD-ADDENDUM-001A/red_field_contract.json",
-      "transition_card": "docs/codex/tasks/K0-DUAL-TRACK-READY-TRANSITION-001A.md",
-      "phase": "CODE_FIRST_H0_PREBANK_PRECONDITION_FAILED_SCIENCE_BRANCH_CLOSED",
-      "route_id": "K0-DUAL-TRACK-SUPERSESSION-001A"
+      "transition_card": "docs/codex/tasks/K0-FOUNDATION-ACCEPTANCE-TRANSITION-001A.md",
+      "phase": "FOUNDATION_ENGINEERING_ACCEPTED_H0_NOT_TESTED_OPERATOR_DECISION_REQUIRED",
+      "route_id": "K0-DUAL-TRACK-SUPERSESSION-001A",
+      "allowed_next_actions": [
+        "sync_EGO_foundation_acceptance_route_views_under_separate_task",
+        "operator_route_decision_after_EGO_sync",
+        "run_route_state_machine_validation"
+      ],
+      "closure_type": "GOVERNANCE_STOP"
     },
     "n2_terminal_boundary": {
       "closure_path": "artifacts/ROUTE-STATE-MACHINE-001A/routes/N2-SBMC-ENV-REDESIGN-001A/closure.json",
@@ -230,5 +232,30 @@
     "sync_task_card": "docs/codex/tasks/ROUTE-STATE-MACHINE-001C-SAME-AGENT-KERNEL-FORK-SYNC.md"
   },
   "task_id": "ROUTE-STATE-MACHINE-001A",
-  "updated_at_utc": "2026-07-10T05:45:36Z"
+  "updated_at_utc": "2026-07-10T21:45:00Z",
+  "implementation_authorized": false,
+  "mechanism_evidence_authorized": false,
+  "theory_pressure_authorized": false,
+  "runtime_authorized": false,
+  "mainline_authorized": false,
+  "route_authorizations": {
+    "agency": false,
+    "autonomy": false,
+    "code_first_prebank_implementation": false,
+    "consciousness": false,
+    "ego_mainline_runtime": false,
+    "experiment_execution": false,
+    "formal_run": false,
+    "foundation_implementation": false,
+    "freeze": false,
+    "h0_implementation": false,
+    "h1_implementation": false,
+    "k0_reference_implementation": false,
+    "mechanism_validity": false,
+    "remote_anchor": false,
+    "scoring": false,
+    "subjectivity": false,
+    "theory_pressure": false,
+    "ui_llm_deployment": false
+  }
 }

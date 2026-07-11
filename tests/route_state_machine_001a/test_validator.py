@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import json
 from pathlib import Path
 
 import pytest
@@ -505,7 +506,12 @@ def test_k0_registered_parent_rejects_closure_packet_and_missing_ledger():
 
 @pytest.mark.parametrize(
     "current_state",
-    tuple(state for state in EXPECTED_ROUTE_STATES if state not in ("REGISTERED", "READY_TO_IMPLEMENT")),
+    tuple(
+        state
+        for state in EXPECTED_ROUTE_STATES
+        if state
+        not in ("REGISTERED", "READY_TO_IMPLEMENT", "CLOSURE_REVIEW_REQUIRED")
+    ),
 )
 def test_k0_parent_rejects_state_outside_registered_and_ready_contract(current_state):
     _, validator = _validator()
@@ -534,6 +540,343 @@ def test_valid_k0_ready_first_pair_contract_passes():
 
     assert result["verdict"] == "pass"
     assert result["validation_errors"] == []
+
+
+def _live_foundation_acceptance_packet():
+    repo_root = Path(__file__).resolve().parents[2]
+    route_dir = (
+        repo_root
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "K0-DUAL-TRACK-SUPERSESSION-001A"
+    )
+    return (
+        repo_root,
+        json.loads((route_dir / "state.json").read_text(encoding="utf-8")),
+        json.loads((route_dir / "closure.json").read_text(encoding="utf-8")),
+    )
+
+
+def test_valid_k0_foundation_acceptance_boundary_and_cross_repo_provenance_pass():
+    _, validator = _validator()
+    repo_root, state, closure = _live_foundation_acceptance_packet()
+
+    route_result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=closure,
+        changed_files=[],
+    )
+    provenance = validator.validate_foundation_acceptance_repository(
+        repo_root=repo_root,
+        route_state_payload=state,
+    )
+
+    assert route_result["verdict"] == "pass"
+    assert provenance["verdict"] == "pass"
+    assert provenance["official_gate_count"] == 21
+    assert len(provenance["artifact_manifest"]) == 14
+    for field in (
+        "producer_function",
+        "input_artifacts",
+        "run_id",
+        "aggregation_rule",
+        "code_path_hash",
+    ):
+        assert provenance[field]
+
+
+@pytest.mark.parametrize(
+    ("pin_path", "replacement"),
+    (
+        (("producer_commit",), "0" * 40),
+        (("artifact_commit",), "1" * 40),
+        (("test_fix_commit",), "2" * 40),
+        (("artifact_tree",), "3" * 40),
+        (("result_blob",), "4" * 40),
+        (("result_sha256",), "5" * 64),
+        (("test_fix_blob",), "6" * 40),
+        (("test_fix_sha256",), "7" * 64),
+        (("artifact_manifest", 0, "path"), "artifacts/wrong"),
+        (("artifact_manifest", 1, "blob"), "8" * 40),
+        (("artifact_manifest", 2, "sha256"), "9" * 64),
+    ),
+)
+def test_foundation_acceptance_pin_mutations_fail_closed(pin_path, replacement):
+    _, validator = _validator()
+    repo_root, state, _ = _live_foundation_acceptance_packet()
+    target = state["foundation_acceptance_pin"]
+    for key in pin_path[:-1]:
+        target = target[key]
+    target[pin_path[-1]] = replacement
+
+    result = validator.validate_foundation_acceptance_repository(
+        repo_root=repo_root,
+        route_state_payload=state,
+    )
+
+    assert "foundation_acceptance_pin_mismatch" in _error_codes(result)
+
+
+def test_foundation_acceptance_manifest_count_mutation_fails_closed():
+    _, validator = _validator()
+    repo_root, state, _ = _live_foundation_acceptance_packet()
+    state["foundation_acceptance_pin"]["artifact_manifest"].pop()
+
+    result = validator.validate_foundation_acceptance_repository(
+        repo_root=repo_root,
+        route_state_payload=state,
+    )
+
+    assert "foundation_acceptance_pin_mismatch" in _error_codes(result)
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    (
+        ("official_evidence_bank", False),
+        ("verdict", "fail"),
+        ("enabled", True),
+        ("mainline_connected", True),
+        ("runtime_authority", "runtime"),
+    ),
+)
+def test_foundation_official_result_field_mutations_fail(field, replacement):
+    state_machine, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    ego_repo = repo_root.parent / "Ego"
+    raw = validator._git_output(
+        ego_repo,
+        "cat-file",
+        "blob",
+        state_machine.K0_FOUNDATION_ACCEPTANCE_PIN["result_blob"],
+        text=False,
+    )
+    payload = json.loads(raw.decode("utf-8"))
+    payload[field] = replacement
+
+    result = validator.validate_foundation_result_payload(payload)
+
+    assert result["verdict"] == "fail"
+
+
+def test_foundation_official_result_gate_mutation_fails():
+    state_machine, validator = _validator()
+    repo_root = Path(__file__).resolve().parents[2]
+    raw = validator._git_output(
+        repo_root.parent / "Ego",
+        "cat-file",
+        "blob",
+        state_machine.K0_FOUNDATION_ACCEPTANCE_PIN["result_blob"],
+        text=False,
+    )
+    payload = json.loads(raw.decode("utf-8"))
+    gate_id = next(iter(payload["per_gate_outcomes"]))
+    payload["per_gate_outcomes"][gate_id]["ok"] = False
+
+    result = validator.validate_foundation_result_payload(payload)
+
+    assert "foundation_result_gate_not_pass" in _error_codes(result)
+
+
+def test_foundation_cross_repo_unavailable_fails_closed(tmp_path):
+    _, validator = _validator()
+    _, state, _ = _live_foundation_acceptance_packet()
+    fake_itl = tmp_path / "intelligence-theory-lab"
+    fake_itl.mkdir()
+
+    result = validator.validate_foundation_acceptance_repository(
+        repo_root=fake_itl,
+        route_state_payload=state,
+    )
+
+    assert "foundation_cross_repo_git_readback_failed" in _error_codes(result)
+    assert result["verdict"] == "fail"
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_code"),
+    (
+        ("foundation_authorization", "k0_foundation_acceptance_boundary_mismatch"),
+        ("implementation_target", "k0_foundation_acceptance_boundary_mismatch"),
+        ("wrong_phase", "k0_foundation_acceptance_boundary_mismatch"),
+        ("mechanism_authorization", "k0_foundation_acceptance_boundary_mismatch"),
+        ("start_k0r_action", "k0_foundation_acceptance_boundary_mismatch"),
+        ("wrong_closure_type", "k0_foundation_closure_packet_mismatch"),
+        ("theory_authorization", "k0_foundation_closure_packet_mismatch"),
+    ),
+)
+def test_foundation_acceptance_route_mutations_fail_closed(mutation, expected_code):
+    _, validator = _validator()
+    _, state, closure = _live_foundation_acceptance_packet()
+    if mutation == "foundation_authorization":
+        state["authorizations"]["foundation_implementation"] = True
+    elif mutation == "implementation_target":
+        state["authorized_implementation_targets"] = ["EGO-K0-FOUNDATION-001A"]
+    elif mutation == "wrong_phase":
+        state["phase"] = "READY_TO_IMPLEMENT"
+    elif mutation == "mechanism_authorization":
+        state["authorizations"]["mechanism_validity"] = True
+    elif mutation == "start_k0r_action":
+        state["allowed_next_actions"][0] = "start_EGO-K0-REFERENCE-KERNEL-001A"
+    elif mutation == "wrong_closure_type":
+        closure["closure_type"] = "ADJUDICATED"
+    elif mutation == "theory_authorization":
+        closure["theory_pressure_authorized"] = True
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=closure,
+        changed_files=[],
+    )
+
+    assert expected_code in _error_codes(result)
+
+
+@pytest.mark.parametrize(
+    "child_id",
+    (
+        "EGO-K0-FOUNDATION-001A",
+        "ITL-K0-H0-H1-INSTRUMENT-001A:H0",
+        "EGO-K0-REFERENCE-KERNEL-001A",
+        "ITL-K0-H0-H1-INSTRUMENT-001A:H1",
+        "K0-IMMUTABLE-FREEZE-001A",
+        "ITL-K0-FORMAL-EVIDENCE-001A",
+    ),
+)
+def test_foundation_acceptance_rejects_any_true_child(child_id):
+    _, validator = _validator()
+    _, state, closure = _live_foundation_acceptance_packet()
+    state["child_authorizations"][child_id] = True
+
+    result = validator.validate_route_payload(
+        route_id="K0-DUAL-TRACK-SUPERSESSION-001A",
+        state_payload=state,
+        closure_payload=closure,
+        changed_files=[],
+    )
+
+    assert "k0_foundation_acceptance_boundary_mismatch" in _error_codes(result)
+
+
+def test_foundation_acceptance_event_is_unique_exact_and_preserves_history(tmp_path):
+    state_machine, validator = _validator()
+    repo_root, _, _ = _live_foundation_acceptance_packet()
+    live_path = (
+        repo_root
+        / "artifacts"
+        / "ROUTE-STATE-MACHINE-001A"
+        / "routes"
+        / "K0-DUAL-TRACK-SUPERSESSION-001A"
+        / "events.jsonl"
+    )
+    lines = live_path.read_text(encoding="utf-8").splitlines()
+    payloads = [json.loads(line) for line in lines]
+    index = next(
+        i
+        for i, payload in enumerate(payloads)
+        if payload.get("event") == state_machine.K0_FOUNDATION_ACCEPTANCE_EVENT
+    )
+
+    missing = tmp_path / "missing.jsonl"
+    missing.write_text(
+        "\n".join(lines[:index] + lines[index + 1 :]) + "\n", encoding="utf-8"
+    )
+    duplicate = tmp_path / "duplicate.jsonl"
+    duplicate.write_text("\n".join(lines + [lines[index]]) + "\n", encoding="utf-8")
+    historical = tmp_path / "historical.jsonl"
+    historical_lines = lines.copy()
+    historical_lines[0] = historical_lines[0].replace(
+        "parent_route_registered", "parent_route_rewritten"
+    )
+    historical.write_text("\n".join(historical_lines) + "\n", encoding="utf-8")
+
+    assert "k0_foundation_acceptance_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(missing)
+    )
+    assert "k0_foundation_acceptance_event_missing_or_duplicate" in _error_codes(
+        validator.validate_k0_red_field_event(duplicate)
+    )
+    assert "k0_h0_preserved_event_bytes_drift" in _error_codes(
+        validator.validate_k0_red_field_event(historical)
+    )
+
+
+@pytest.mark.parametrize(
+    ("mode", "expected_code"),
+    (
+        ("missing", "current_frontier_ledger_entry_missing"),
+        ("duplicate", "current_frontier_k0_ledger_entry_not_unique"),
+    ),
+)
+def test_foundation_acceptance_ledger_entry_is_unique(mode, expected_code, tmp_path):
+    _, validator = _validator()
+    repo_root, state, _ = _live_foundation_acceptance_packet()
+    live_program = json.loads(
+        (
+            repo_root
+            / "artifacts"
+            / "ROUTE-STATE-MACHINE-001A"
+            / "program_state.json"
+        ).read_text(encoding="utf-8")
+    )
+    live_lines = (
+        repo_root / "docs" / "research" / "FSP-STAGE-LEDGER.md"
+    ).read_text(encoding="utf-8").splitlines()
+    l027 = next(line for line in live_lines if line.startswith("- L-027 |"))
+    if mode == "missing":
+        ledger_lines = [line for line in live_lines if line != l027]
+    else:
+        ledger_lines = [*live_lines, l027]
+
+    artifact_dir = tmp_path / "artifacts" / "ROUTE-STATE-MACHINE-001A"
+    route_dir = artifact_dir / "routes" / "K0-DUAL-TRACK-SUPERSESSION-001A"
+    route_dir.mkdir(parents=True)
+    validator.write_json(route_dir / "state.json", state)
+    validator.write_json(artifact_dir / "program_state.json", live_program)
+    ledger_path = tmp_path / "docs" / "research" / "FSP-STAGE-LEDGER.md"
+    ledger_path.parent.mkdir(parents=True)
+    ledger_path.write_text("\n".join(ledger_lines) + "\n", encoding="utf-8")
+
+    result = validator.validate_program_state(
+        artifact_dir=artifact_dir,
+        routes_dir=artifact_dir / "routes",
+    )
+
+    assert expected_code in _error_codes(result)
+
+
+def test_foundation_acceptance_blocks_if_h0_precondition_recomputation_is_lost(
+    monkeypatch,
+):
+    _, validator = _validator()
+    repo_root, _, _ = _live_foundation_acceptance_packet()
+    monkeypatch.setattr(
+        validator,
+        "validate_code_first_prebank_precondition_closure",
+        lambda **_: {
+            "producer_function": "disabled",
+            "input_artifacts": [],
+            "computed_record": {},
+            "checked_paths": [],
+            "present_phase_d_artifact_paths": [],
+            "validation_errors": [],
+            "validation_warnings": [],
+            "verdict": "not_applicable",
+        },
+    )
+
+    result = validator.build_validation_report(
+        repo_root,
+        changed_files=[],
+        authorized_paths=[],
+    )
+
+    assert "k0_foundation_acceptance_required_check_not_pass" in _error_codes(
+        result
+    )
 
 
 def test_callable_phase_c_raw_recomputation_returns_exact_precondition_failure():
